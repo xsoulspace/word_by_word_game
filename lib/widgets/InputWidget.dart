@@ -39,13 +39,31 @@ class _InputWidgetState extends State<InputWidget> {
     return OutlineInputBorder(borderRadius: BorderRadius.circular(20));
   }
 
+  _decreaseButton({bool fromBeginning}) {
+    ScoreModel scoreModel = Provider.of<ScoreModel>(context, listen: false);
+
+    return IconButton(
+      disabledColor: Colors.grey,
+      iconSize: 36,
+      color: Colors.red,
+      splashColor: Colors.red.withOpacity(0.4),
+      hoverColor: Colors.red.withOpacity(0.1),
+      highlightColor: Colors.red.withOpacity(0.2),
+      icon: Icon(Icons.remove),
+      onPressed: scoreModel.isLettersIncreaseDescreaseAvailable
+          ? () => scoreModel.decreaseLettersLimit(fromBeginning: fromBeginning)
+          : null,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     ScoreModel globalScoreModel = Provider.of<ScoreModel>(context);
-    return Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
+    return Material(
+        child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
           Center(
             child: Consumer<ScoreModel>(
                 builder: (BuildContext buildContext, ScoreModel scoreModel,
@@ -58,54 +76,51 @@ class _InputWidgetState extends State<InputWidget> {
           Row(
             children: [
               // first input
-              Expanded(
-                child: TextField(
-                  readOnly: globalScoreModel.isNewGame,
-                  textAlign: TextAlign.end,
-                  decoration: InputDecoration(
-                      border: globalScoreModel.isNewGame
-                          ? InputBorder.none
-                          : _textFieldOutlineInputBorder(),
-                      hintText: ''),
-                  controller: _leftTextController,
+              Visibility(
+                visible: globalScoreModel.isNotNewGame &&
+                    globalScoreModel.isCurrentLettersNotEmpty,
+                child: Expanded(
+                  child: TextField(
+                    readOnly: globalScoreModel.isNewGame,
+                    textAlign: TextAlign.end,
+                    decoration: InputDecoration(
+                        border: _textFieldOutlineInputBorder(),
+                        // TODO: add word tranlation
+                        hintText: 'add beginning'),
+                    controller: _leftTextController,
+                  ),
                 ),
               ),
+
               // // letters
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+              Visibility(
+                  visible: globalScoreModel.isNotNewGame &&
+                      globalScoreModel.isCurrentLettersNotEmpty,
+                  maintainState: true,
+                  maintainAnimation: true,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        IconButton(
-                          onPressed: () =>
-                              globalScoreModel.increaseLettersLimit(),
-                          icon: Icon(Icons.add),
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        IconButton(
-                          icon: Icon(Icons.remove),
-                          onPressed: () =>
-                              globalScoreModel.decreaseLettersLimit(),
-                        ),
+                        _decreaseButton(fromBeginning: true),
+                        Consumer<ScoreModel>(
+                            builder: (BuildContext buildContext,
+                                    ScoreModel scoreModel, Widget widget) =>
+                                Text(scoreModel.currentLetters)),
+                        _decreaseButton(fromBeginning: false)
                       ],
                     ),
-                    Consumer<ScoreModel>(
-                        builder: (BuildContext buildContext,
-                                ScoreModel scoreModel, Widget widget) =>
-                            Text(scoreModel.currentLetters)),
-                  ],
-                ),
-              ),
+                  )),
               // second input
               Expanded(
                 child: TextField(
                   decoration: InputDecoration(
-                      border: _textFieldOutlineInputBorder(), hintText: ''),
+                      border: _textFieldOutlineInputBorder(),
+                      //TODO: add translation
+                      hintText: globalScoreModel.isNewGame
+                          ? 'add new word'
+                          : 'add ending'),
                   controller: _rightTextController,
                 ),
               )
@@ -114,13 +129,18 @@ class _InputWidgetState extends State<InputWidget> {
           Padding(
             padding: EdgeInsets.only(top: 30),
             child: Center(
-              child: MaterialButton(
+              child: FlatButton(
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30)),
                 child: // TODO: add international text
-                    Text('Add'),
+                    Padding(
+                  padding: EdgeInsets.all(24),
+                  child: Text('add', style: TextStyle(fontSize: 24)),
+                ),
                 onPressed: () => _addNewWord(),
               ),
             ),
           )
-        ]);
+        ]));
   }
 }

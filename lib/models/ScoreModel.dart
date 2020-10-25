@@ -1,19 +1,16 @@
 import 'package:flutter/widgets.dart';
 
 class ScoreModel extends ChangeNotifier {
-  // TODO: add to persistent store
   int _highestCounter = 0;
   int _wordsCounter = 0;
-  // TODO: add to persistent store
   String _lastWord = '';
-  // TODO: add to persistent store
   String _currentLetters = '';
-  final int _maxLettersReplacesCounter = 3;
-  int _initialLettersLimit = 3;
+  get isCurrentLettersEmpty => _currentLetters.isEmpty;
+  get isCurrentLettersNotEmpty => _currentLetters.isNotEmpty;
+
+  final int _initialLettersLimit = 3;
   int _lettersLimit = 3;
 
-  // TODO: add to persistent store
-  int _currentLettersReplacesCounter = 0;
   get lettersLimit => _lettersLimit;
   get counter => _wordsCounter;
   get highscore => _highestCounter;
@@ -22,7 +19,7 @@ class ScoreModel extends ChangeNotifier {
       ? _lastWord.substring(0, _lastWord.length - _lettersLimit)
       : '';
   get isNewGame => _lastWord.isEmpty;
-  get currentLettersReplaceCounter => _currentLettersReplacesCounter;
+  get isNotNewGame => _lastWord.isNotEmpty;
   get currentLetters => _currentLetters;
   void _setCurrentLetters() {
     if (_lastWord.length >= _lettersLimit)
@@ -42,19 +39,45 @@ class ScoreModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void resetWordsCounterAndLastWord() {
+  void resetParams() {
     _wordsCounter = 0;
     _lastWord = '';
-    _currentLettersReplacesCounter = _maxLettersReplacesCounter;
+    _currentLettersIncreaseDecreaseCounter = _maxLettersIncreaseDecreaseCounter;
     _resetLettersLimit();
     notifyListeners();
   }
 
+  // REPLACE LETTERS LOGIC
+  get isLettersReplaceAvailable =>
+      _currentLettersIncreaseDecreaseCounter > 0 && isNotNewGame;
+  get isLettersReplaceNotAvailable => !isLettersReplaceAvailable;
+
   void resetLetters() {
-    if (_currentLettersReplacesCounter > 0) {
+    if (_currentLetters.isEmpty) return;
+    if (isLettersReplaceAvailable) {
+      final length = _currentLetters.length;
       _currentLetters = '';
-      _currentLettersReplacesCounter--;
+      _currentLettersIncreaseDecreaseCounter =
+          _currentLettersIncreaseDecreaseCounter - length;
+      notifyListeners();
     } else
+      // TODO: add translate
+      throw 'cannot reset as all resets reach limit';
+  }
+
+  // count how many times user can increase or decrease letters in word
+  final int _maxLettersIncreaseDecreaseCounter = 6;
+  int _currentLettersIncreaseDecreaseCounter = 6;
+  get currentLettersIncreaseDecreaseCounter =>
+      _currentLettersIncreaseDecreaseCounter;
+  get isLettersIncreaseDescreaseAvailable =>
+      _currentLettersIncreaseDecreaseCounter > 0;
+  get isLettersIncreaseDescreaseNotAvailable =>
+      _currentLettersIncreaseDecreaseCounter < 1;
+
+  _checkDecreaseIncreasePossibility() {
+    if (isLettersIncreaseDescreaseNotAvailable)
+      // TODO: add translate
       throw 'cannot reset as all resets reach limit';
   }
 
@@ -62,16 +85,17 @@ class ScoreModel extends ChangeNotifier {
     _lettersLimit = _initialLettersLimit;
   }
 
-  void increaseLettersLimit() {
-    final newMaxLimit = _lastWord.length;
-    _lettersLimit++;
-    if (_lettersLimit > newMaxLimit) _lettersLimit = newMaxLimit;
-    _setCurrentLetters();
-  }
-
-  void decreaseLettersLimit() {
+  void decreaseLettersLimit({bool fromBeginning = false}) {
+    if (isNewGame || isCurrentLettersEmpty) return;
+    _checkDecreaseIncreasePossibility();
     _lettersLimit--;
-    if (_lettersLimit < 1) _lettersLimit = 1;
-    _setCurrentLetters();
+    _currentLettersIncreaseDecreaseCounter--;
+    if (fromBeginning) {
+      _currentLetters =
+          _currentLetters.substring(_currentLetters.length - _lettersLimit);
+    } else {
+      _currentLetters = _currentLetters.substring(0, _lettersLimit);
+    }
+    notifyListeners();
   }
 }

@@ -26,16 +26,11 @@ main() {
   test('checking reset', () {
     final scoreModel = ScoreModel();
     scoreModel.add(NEW_WORD);
-    scoreModel.resetWordsCounterAndLastWord();
+    scoreModel.resetParams();
     expect(scoreModel.counter, 0);
     expect(scoreModel.lastWord, '');
     expect(scoreModel.highscore, 1);
-  });
-  test('increase limit', () {
-    final scoreModel = ScoreModel();
-    scoreModel.add(NEW_WORD);
-    scoreModel.increaseLettersLimit();
-    expect(scoreModel.lettersLimit, 4);
+    expect(scoreModel.currentLettersIncreaseDecreaseCounter, 6);
   });
   test('decrease limit', () {
     final scoreModel = ScoreModel();
