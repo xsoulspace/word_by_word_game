@@ -7,7 +7,7 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        Provider(create: (context) => ScoreModel()),
+        ChangeNotifierProvider(create: (context) => ScoreModel()),
       ],
       child: MyApp(),
     ),

@@ -8,9 +8,15 @@ class InputScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
+      decoration:
+          BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
+      padding: EdgeInsets.all(30),
       child: Column(children: [
         UpperToolbar(),
-        InputWidget(),
+        Padding(
+          padding: EdgeInsets.only(top: 30),
+          child: InputWidget(),
+        )
       ]),
     ));
   }

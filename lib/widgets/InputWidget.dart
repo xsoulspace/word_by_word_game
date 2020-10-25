@@ -9,23 +9,39 @@ class InputWidget extends StatefulWidget {
 }
 
 class _InputWidgetState extends State<InputWidget> {
-  TextEditingController _leftTextController = TextEditingController();
-  TextEditingController _rightTextController = TextEditingController();
+  final TextEditingController _leftTextController = TextEditingController();
+  final TextEditingController _rightTextController = TextEditingController();
   _addNewWord() {
-    String leftLetters = _leftTextController.value.text;
-    String rightLetters = _leftTextController.value.text;
-
-    if (leftLetters.isEmpty && rightLetters.isEmpty) {
-      ScoreModel scoreModel = Provider.of<ScoreModel>(context);
+    String leftLetters = _leftTextController.text;
+    String rightLetters = _rightTextController.text;
+    if (leftLetters.isNotEmpty || rightLetters.isNotEmpty) {
+      ScoreModel scoreModel = Provider.of<ScoreModel>(context, listen: false);
       final newWord = '$leftLetters${scoreModel.currentLetters}$rightLetters';
-      if (newWord.length > 3) scoreModel.add(newWord);
+      if (newWord.length >= 3) {
+        scoreModel.add(newWord);
+        _leftTextController.text = '';
+        _rightTextController.text = '';
+      }
     }
-
     // show error that field need to be filled
   }
 
   @override
+  void dispose() {
+    // Clean up the controller when the widget is removed from the
+    // widget tree.
+    _leftTextController.dispose();
+    _rightTextController.dispose();
+    super.dispose();
+  }
+
+  _textFieldOutlineInputBorder() {
+    return OutlineInputBorder(borderRadius: BorderRadius.circular(20));
+  }
+
+  @override
   Widget build(BuildContext context) {
+    ScoreModel globalScoreModel = Provider.of<ScoreModel>(context);
     return Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -36,32 +52,73 @@ class _InputWidgetState extends State<InputWidget> {
                         Widget widget) =>
                     Text(scoreModel.lastWordWithoutLetters)),
           ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 10),
+          ),
           Row(
             children: [
               // first input
-              TextField(
-                decoration:
-                    InputDecoration(border: InputBorder.none, hintText: ''),
-                controller: _leftTextController,
+              Expanded(
+                child: TextField(
+                  readOnly: globalScoreModel.isNewGame,
+                  textAlign: TextAlign.end,
+                  decoration: InputDecoration(
+                      border: globalScoreModel.isNewGame
+                          ? InputBorder.none
+                          : _textFieldOutlineInputBorder(),
+                      hintText: ''),
+                  controller: _leftTextController,
+                ),
               ),
-              // letters
-              Consumer<ScoreModel>(
-                  builder: (BuildContext buildContext, ScoreModel scoreModel,
-                          Widget widget) =>
-                      Text(scoreModel.currentLetters)),
+              // // letters
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        IconButton(
+                          onPressed: () =>
+                              globalScoreModel.increaseLettersLimit(),
+                          icon: Icon(Icons.add),
+                        ),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        IconButton(
+                          icon: Icon(Icons.remove),
+                          onPressed: () =>
+                              globalScoreModel.decreaseLettersLimit(),
+                        ),
+                      ],
+                    ),
+                    Consumer<ScoreModel>(
+                        builder: (BuildContext buildContext,
+                                ScoreModel scoreModel, Widget widget) =>
+                            Text(scoreModel.currentLetters)),
+                  ],
+                ),
+              ),
               // second input
-              TextField(
-                decoration:
-                    InputDecoration(border: InputBorder.none, hintText: ''),
-                controller: _rightTextController,
-              ),
+              Expanded(
+                child: TextField(
+                  decoration: InputDecoration(
+                      border: _textFieldOutlineInputBorder(), hintText: ''),
+                  controller: _rightTextController,
+                ),
+              )
             ],
           ),
-          Center(
-            child: MaterialButton(
-              child: // TODO: add international text
-                  Text('Add'),
-              onPressed: () => _addNewWord,
+          Padding(
+            padding: EdgeInsets.only(top: 30),
+            child: Center(
+              child: MaterialButton(
+                child: // TODO: add international text
+                    Text('Add'),
+                onPressed: () => _addNewWord(),
+              ),
             ),
           )
         ]);

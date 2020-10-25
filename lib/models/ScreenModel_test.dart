@@ -23,4 +23,26 @@ main() {
     scoreModel.add(NEW_WORD);
     expect(scoreModel.lastWordWithoutLetters, 'neww');
   });
+  test('checking reset', () {
+    final scoreModel = ScoreModel();
+    scoreModel.add(NEW_WORD);
+    scoreModel.resetWordsCounterAndLastWord();
+    expect(scoreModel.counter, 0);
+    expect(scoreModel.lastWord, '');
+    expect(scoreModel.highscore, 1);
+  });
+  test('increase limit', () {
+    final scoreModel = ScoreModel();
+    scoreModel.add(NEW_WORD);
+    scoreModel.increaseLettersLimit();
+    expect(scoreModel.lettersLimit, 4);
+  });
+  test('decrease limit', () {
+    final scoreModel = ScoreModel();
+    scoreModel.add(NEW_WORD);
+    scoreModel.decreaseLettersLimit();
+    scoreModel.decreaseLettersLimit();
+    scoreModel.decreaseLettersLimit();
+    expect(scoreModel.lettersLimit, 1);
+  });
 }

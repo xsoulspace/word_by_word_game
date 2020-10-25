@@ -9,9 +9,14 @@ class UpperToolbar extends StatelessWidget {
       child: Row(
         children: [
           Column(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
               // TODO: add international
-              Text('Words count'),
+
+              Text('words count'),
+              Padding(
+                padding: EdgeInsets.only(bottom: 10),
+              ),
               Consumer<ScoreModel>(
                 builder: (context, value, child) =>
                     // TODO: add international
