@@ -24,11 +24,13 @@ class ScoreModel extends ChangeNotifier {
   get currentLetters => _currentLetters;
 
   void add(String newWord) {
-    _wordsCounter = _wordsCounter++;
+    final fixedNewWord = newWord.replaceAll(' ', '').toLowerCase();
+    _wordsCounter++;
     if (_wordsCounter > _highestCounter) _highestCounter = _wordsCounter;
-    _lastWord = newWord;
-    if (newWord.length >= _lettersLimit)
-      _currentLetters = newWord.substring(newWord.length - _lettersLimit);
+    _lastWord = fixedNewWord;
+    if (fixedNewWord.length >= _lettersLimit)
+      _currentLetters =
+          fixedNewWord.substring(fixedNewWord.length - _lettersLimit);
     else
       throw 'new Word must have length more than $_lettersLimit ';
     notifyListeners();

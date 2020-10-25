@@ -14,10 +14,12 @@ class UpperToolbar extends StatelessWidget {
               Text('Words count'),
               Consumer<ScoreModel>(
                 builder: (context, value, child) =>
+                    // TODO: add international
                     Text('current: ${value.counter}'),
               ),
               Consumer<ScoreModel>(
                 builder: (context, value, child) =>
+                    // TODO: add international
                     Text('highscore: ${value.highscore}'),
               ),
             ],
