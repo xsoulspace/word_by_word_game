@@ -99,7 +99,7 @@ class _InputWidgetState extends State<InputWidget> {
                   maintainState: true,
                   maintainAnimation: true,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 20),
+                    padding: EdgeInsets.symmetric(horizontal: 10),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [

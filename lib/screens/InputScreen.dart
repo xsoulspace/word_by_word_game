@@ -18,7 +18,7 @@ class InputScreen extends StatelessWidget {
       child: Column(children: [
         UpperToolbar(),
         Padding(
-          padding: EdgeInsets.all(30),
+          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
           child: InputWidget(),
         ),
         Visibility(
