@@ -16,9 +16,9 @@ class ScoreModel extends ChangeNotifier {
     }
   }
 
-  Future<int> get _highestCounter async {
+  Future<int> get highscore async {
     await _checkAndLoadStorageInstance();
-    return int.parse(_storage.getString(ScoreModelConsts.highscore) ?? '0');
+    return int.tryParse(_storage.getString(ScoreModelConsts.highscore) ?? 0);
   }
 
   Future<void> _saveHighscoreToStorage(int highestCounter) async {
@@ -37,15 +37,17 @@ class ScoreModel extends ChangeNotifier {
   int _lettersLimit = 3;
 
   get lettersLimit => _lettersLimit;
-  get counter => _wordsCounter;
-  Future<int> get highscore async => await _highestCounter;
   get lastWord => _lastWord;
   get lastWordWithoutLetters => _lastWord.length > _lettersLimit
       ? _lastWord.substring(0, _lastWord.length - _lettersLimit)
       : '';
+  
+  
   get isNewGame => _lastWord.isEmpty;
   get isNotNewGame => _lastWord.isNotEmpty;
   get currentLetters => _currentLetters;
+  
+  
   void _setCurrentLetters() {
     if (_lastWord.length >= _lettersLimit)
       _currentLetters = _lastWord.substring(_lastWord.length - _lettersLimit);
@@ -58,8 +60,8 @@ class ScoreModel extends ChangeNotifier {
     _resetLettersLimit();
     final fixedNewWord = newWord.replaceAll(' ', '').toLowerCase();
     _wordsCounter++;
-    int highscore = await _highestCounter;
-    if (_wordsCounter > highscore) {
+    int _highscore = await highscore;
+    if (_wordsCounter > _highscore) {
       await _saveHighscoreToStorage(_wordsCounter);
     }
     _lastWord = fixedNewWord;
@@ -125,5 +127,12 @@ class ScoreModel extends ChangeNotifier {
       _currentLetters = _currentLetters.substring(0, _lettersLimit);
     }
     notifyListeners();
+  }
+
+  toJson() async{
+
+  }
+  fromJson(){
+
   }
 }
