@@ -11,14 +11,14 @@ class InputWidget extends StatefulWidget {
 class _InputWidgetState extends State<InputWidget> {
   final TextEditingController _leftTextController = TextEditingController();
   final TextEditingController _rightTextController = TextEditingController();
-  _addNewWord() {
+  _addNewWord() async {
     String leftLetters = _leftTextController.text;
     String rightLetters = _rightTextController.text;
     if (leftLetters.isNotEmpty || rightLetters.isNotEmpty) {
       ScoreModel scoreModel = Provider.of<ScoreModel>(context, listen: false);
       final newWord = '$leftLetters${scoreModel.currentLetters}$rightLetters';
       if (newWord.length >= 3) {
-        scoreModel.add(newWord);
+        await scoreModel.add(newWord);
         _leftTextController.text = '';
         _rightTextController.text = '';
       }
@@ -137,7 +137,7 @@ class _InputWidgetState extends State<InputWidget> {
                   padding: EdgeInsets.all(24),
                   child: Text('add', style: TextStyle(fontSize: 24)),
                 ),
-                onPressed: () => _addNewWord(),
+                onPressed: () async => await _addNewWord(),
               ),
             ),
           )

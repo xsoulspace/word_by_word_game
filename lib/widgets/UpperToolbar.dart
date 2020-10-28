@@ -7,6 +7,10 @@ import 'package:word_by_word_game/widgets/MenuWidget.dart';
 class UpperToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    ScoreModel globalScoreModel = Provider.of<ScoreModel>(
+      context,
+    );
+
     return Material(
       elevation: 3,
       child: Container(
@@ -27,10 +31,21 @@ class UpperToolbar extends StatelessWidget {
                       // TODO: add translation
                       Text('current: ${value.counter}'),
                 ),
-                Consumer<ScoreModel>(
-                  builder: (context, value, child) =>
-                      // TODO: add translation
-                      Text('highscore: ${value.highscore}'),
+                Row(
+                  children: [
+                    // TODO: add translation
+                    Text('highscore: '),
+
+                    Consumer<ScoreModel>(
+                        builder: (context, value, child) =>
+                            Text('${value.highscore}')),
+                    FutureBuilder(
+                        future: globalScoreModel.loadHighscoreToStorage(),
+                        builder: (BuildContext context,
+                            AsyncSnapshot<void> snapshot) {
+                          return Text('');
+                        }),
+                  ],
                 ),
               ],
             ),

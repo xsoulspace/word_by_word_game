@@ -1,7 +1,34 @@
 import 'package:flutter/widgets.dart';
+import 'package:word_by_word_game/utils/storage_util.dart';
+
+class ScoreModelConsts {
+  static String highscore = 'highscore';
+}
 
 class ScoreModel extends ChangeNotifier {
+  StorageUtil _storage;
+  ScoreModel() {
+    _checkAndLoadStorageInstance();
+  }
+  _checkAndLoadStorageInstance() async {
+    if (_storage == null) {
+      await StorageUtil.getInstance().then((inst) => _storage = inst);
+    }
+  }
+
   int _highestCounter = 0;
+  Future<void> loadHighscoreToStorage() async {
+    await _checkAndLoadStorageInstance();
+    _highestCounter =
+        int.parse(_storage.getString(ScoreModelConsts.highscore) ?? '0');
+  }
+
+  Future<void> _saveHighscoreToStorage() async {
+    await _checkAndLoadStorageInstance();
+    await _storage.putString(
+        ScoreModelConsts.highscore, _highestCounter.toString());
+  }
+
   int _wordsCounter = 0;
   String _lastWord = '';
   String _currentLetters = '';
@@ -29,11 +56,14 @@ class ScoreModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void add(String newWord) {
+  Future<void> add(String newWord) async {
     _resetLettersLimit();
     final fixedNewWord = newWord.replaceAll(' ', '').toLowerCase();
     _wordsCounter++;
-    if (_wordsCounter > _highestCounter) _highestCounter = _wordsCounter;
+    if (_wordsCounter > _highestCounter) {
+      _highestCounter = _wordsCounter;
+      await _saveHighscoreToStorage();
+    }
     _lastWord = fixedNewWord;
     _setCurrentLetters();
     notifyListeners();
