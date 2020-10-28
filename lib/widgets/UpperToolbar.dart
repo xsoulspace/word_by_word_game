@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
+import 'package:word_by_word_game/widgets/CircularSpinner.dart';
 import 'package:word_by_word_game/widgets/MenuWidget.dart';
 
 class UpperToolbar extends StatelessWidget {
@@ -10,7 +11,6 @@ class UpperToolbar extends StatelessWidget {
     ScoreModel globalScoreModel = Provider.of<ScoreModel>(
       context,
     );
-
     return Material(
       elevation: 3,
       child: Container(
@@ -37,14 +37,22 @@ class UpperToolbar extends StatelessWidget {
                     Text('highscore: '),
 
                     Consumer<ScoreModel>(
-                        builder: (context, value, child) =>
-                            Text('${value.highscore}')),
-                    FutureBuilder(
-                        future: globalScoreModel.loadHighscoreToStorage(),
-                        builder: (BuildContext context,
-                            AsyncSnapshot<void> snapshot) {
-                          return Text('');
-                        }),
+                      builder: (context, value, child) => FutureBuilder(
+                          future: value.highscore,
+                          builder: (BuildContext context,
+                              AsyncSnapshot<int> snapshot) {
+                            if (snapshot.connectionState ==
+                                ConnectionState.waiting) {
+                              return SizedBox(
+                                width: 10,
+                                child: CircularSpinner(),
+                                height: 10,
+                              );
+                            } else {
+                              return Text('${snapshot.data}');
+                            }
+                          }),
+                    ),
                   ],
                 ),
               ],
