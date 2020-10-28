@@ -8,9 +8,6 @@ import 'package:word_by_word_game/widgets/MenuWidget.dart';
 class UpperToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScoreModel globalScoreModel = Provider.of<ScoreModel>(
-      context,
-    );
     return Material(
       elevation: 3,
       child: Container(
@@ -18,44 +15,47 @@ class UpperToolbar extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // TODO: add translation
-                Text('words count'),
-                Padding(
-                  padding: EdgeInsets.only(bottom: 10),
-                ),
-                Consumer<ScoreModel>(
-                  builder: (context, value, child) =>
+            SizedBox(
+              width: 100,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // TODO: add translation
+                  Text('words count'),
+                  Padding(
+                    padding: EdgeInsets.only(bottom: 10),
+                  ),
+                  Consumer<ScoreModel>(
+                    builder: (context, value, child) =>
+                        // TODO: add translation
+                        Text('current: ${value.counter}'),
+                  ),
+                  Row(
+                    children: [
                       // TODO: add translation
-                      Text('current: ${value.counter}'),
-                ),
-                Row(
-                  children: [
-                    // TODO: add translation
-                    Text('highscore: '),
+                      Text('highscore: '),
 
-                    Consumer<ScoreModel>(
-                      builder: (context, value, child) => FutureBuilder(
-                          future: value.highscore,
-                          builder: (BuildContext context,
-                              AsyncSnapshot<int> snapshot) {
-                            if (snapshot.connectionState ==
-                                ConnectionState.waiting) {
-                              return SizedBox(
-                                width: 10,
-                                child: CircularSpinner(),
-                                height: 10,
-                              );
-                            } else {
-                              return Text('${snapshot.data}');
-                            }
-                          }),
-                    ),
-                  ],
-                ),
-              ],
+                      Consumer<ScoreModel>(
+                        builder: (context, value, child) => FutureBuilder(
+                            future: value.highscore,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<int> snapshot) {
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return SizedBox(
+                                  width: 8,
+                                  child: CircularSpinner(),
+                                  height: 8,
+                                );
+                              } else {
+                                return Text('${snapshot.data}');
+                              }
+                            }),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
             SizedBox(
               width: 40,

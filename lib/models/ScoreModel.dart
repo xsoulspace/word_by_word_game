@@ -21,8 +21,6 @@ class ScoreModel extends ChangeNotifier {
     return int.parse(_storage.getString(ScoreModelConsts.highscore) ?? '0');
   }
 
-  Future<void> loadHighscoreToStorage() async {}
-
   Future<void> _saveHighscoreToStorage(int highestCounter) async {
     await _checkAndLoadStorageInstance();
     await _storage.putString(
