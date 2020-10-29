@@ -1,26 +1,27 @@
 import 'package:flutter/widgets.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/Word.dart';
+import 'package:word_by_word_game/models/StorageMixin.dart';
 
-class WordsModel extends ChangeNotifier {
-  ///
-  /// Storage init
-  ///
+part 'WordsModel.g.dart';
 
+@JsonSerializable()
+class WordsModel extends ChangeNotifier with StorageMixin {
   ///
   /// Words stack
   ///
-  final Map<int, List<int>> _wordsIdsByPlayerIdMap = {};
-  final Map<int, Word> _allWordsByWordIdMap = {};
-  int _wordsIdMax = 0;
+  final Map<int, List<int>> wordsIdsByPlayerIdMap;
+  final Map<int, Word> allWordsByWordIdMap;
+  int wordsIdMax = 0;
 
   ///
   /// Words stack functions
   ///
-  String getWordByWordId({int wordId}) => _allWordsByWordIdMap[wordId] ?? '';
+  String getWordByWordId({int wordId}) => allWordsByWordIdMap[wordId] ?? '';
 
   List<int> getWordsIdsListByPlayer({Player player}) =>
-      _wordsIdsByPlayerIdMap[player.id] ?? [];
+      wordsIdsByPlayerIdMap[player.id] ?? [];
 
   String getLastWordForPlayer({Player player}) {
     var wordsIdsList = getWordsIdsListByPlayer(player: player);
@@ -32,16 +33,16 @@ class WordsModel extends ChangeNotifier {
   Future<void> addNewWordForPLayer({Player player}) async {
     var lastword = getLastWordPhraseByPlayer(player: player);
     var newWord = '$newWordBeginning$lastword$newWordEnding';
-    var isNewWordExists = _allWordsByWordIdMap.containsValue(newWord);
+    var isNewWordExists = allWordsByWordIdMap.containsValue(newWord);
     if (isNewWordExists) return;
-    _wordsIdMax++;
-    _allWordsByWordIdMap.putIfAbsent(
-        _wordsIdMax, () => Word(id: _wordsIdMax, value: newWord));
+    wordsIdMax++;
+    allWordsByWordIdMap.putIfAbsent(
+        wordsIdMax, () => Word(id: wordsIdMax, value: newWord));
     var playerWordsIds = getWordsIdsListByPlayer(player: player);
-    var isNewIdExists = playerWordsIds.contains(_wordsIdMax);
+    var isNewIdExists = playerWordsIds.contains(wordsIdMax);
     if (isNewIdExists) return;
-    playerWordsIds.add(_wordsIdMax);
-    _wordsIdsByPlayerIdMap[player.id] = playerWordsIds;
+    playerWordsIds.add(wordsIdMax);
+    wordsIdsByPlayerIdMap[player.id] = playerWordsIds;
     notifyListeners();
   }
 
@@ -63,4 +64,21 @@ class WordsModel extends ChangeNotifier {
   ///
   String newWordBeginning = '';
   String newWordEnding = '';
+
+  ///
+  /// Serialization
+  ///
+  WordsModel(
+      this.newWordBeginning,
+      this.newWordEnding,
+      this.phraseLimit,
+      this.phraseLimitMax,
+      this.wordsIdMax,
+      this.wordsIdsByPlayerIdMap,
+      this.allWordsByWordIdMap) {
+    checkAndLoadStorageInstance();
+  }
+  factory WordsModel.fromJson(Map<String, dynamic> json) =>
+      _$WordsModelFromJson(json);
+  Map<String, dynamic> toJson() => _$WordsModelToJson(this);
 }

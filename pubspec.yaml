@@ -5,6 +5,8 @@ description: A new Flutter project.
 # pub.dev using `pub publish`. This is preferred for private packages.
 publish_to: "none" # Remove this line if you wish to publish to pub.dev
 
+# flutter pub run build_runner build
+
 # The following defines the version and build number for your application.
 # A version number is three numbers separated by dots, like 1.2.43
 # followed by an optional build number separated by a +.
@@ -31,11 +33,14 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
   shared_preferences: ">=0.5.12+2 <2.0.0"
+  json_annotation: ^3.1.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.8.1"
+  json_serializable: ^3.5.0
+  build_runner: ^1.10.4
 
 flutter_icons:
   ios: true

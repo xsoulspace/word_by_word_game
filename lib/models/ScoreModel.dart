@@ -1,29 +1,23 @@
 import 'package:flutter/widgets.dart';
-import 'package:word_by_word_game/utils/storage_util.dart';
+import 'package:word_by_word_game/models/StorageMixin.dart';
 
 class ScoreModelConsts {
   static String highscore = 'highscore';
 }
 
-class ScoreModel extends ChangeNotifier {
-  StorageUtil _storage;
+class ScoreModel extends ChangeNotifier with StorageMixin {
   ScoreModel() {
-    _checkAndLoadStorageInstance();
-  }
-  Future<void> _checkAndLoadStorageInstance() async {
-    if (_storage == null) {
-      await StorageUtil.getInstance().then((inst) => _storage = inst);
-    }
+    checkAndLoadStorageInstance();
   }
 
   Future<int> get highscore async {
-    await _checkAndLoadStorageInstance();
-    return int.tryParse(_storage.getString(ScoreModelConsts.highscore) ?? 0);
+    await checkAndLoadStorageInstance();
+    return int.tryParse(storage.getString(ScoreModelConsts.highscore) ?? 0);
   }
 
   Future<void> _saveHighscoreToStorage(int highestCounter) async {
-    await _checkAndLoadStorageInstance();
-    await _storage.putString(
+    await checkAndLoadStorageInstance();
+    await storage.putString(
         ScoreModelConsts.highscore, highestCounter.toString());
   }
 
@@ -41,13 +35,11 @@ class ScoreModel extends ChangeNotifier {
   get lastWordWithoutLetters => _lastWord.length > _lettersLimit
       ? _lastWord.substring(0, _lastWord.length - _lettersLimit)
       : '';
-  
-  
+
   get isNewGame => _lastWord.isEmpty;
   get isNotNewGame => _lastWord.isNotEmpty;
   get currentLetters => _currentLetters;
-  
-  
+
   void _setCurrentLetters() {
     if (_lastWord.length >= _lettersLimit)
       _currentLetters = _lastWord.substring(_lastWord.length - _lettersLimit);
@@ -129,10 +121,6 @@ class ScoreModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  toJson() async{
-
-  }
-  fromJson(){
-
-  }
+  toJson() async {}
+  fromJson() {}
 }

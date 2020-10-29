@@ -1,24 +1,35 @@
 import 'package:flutter/widgets.dart';
+import 'package:json_annotation/json_annotation.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/PlayerColor.dart';
+import 'package:word_by_word_game/models/StorageMixin.dart';
 
-class PlayersModel extends ChangeNotifier {
-  ///
-  /// Storage
-  ///
+part 'PlayersModel.g.dart';
 
+@JsonSerializable()
+class PlayersModel extends ChangeNotifier with StorageMixin {
   ///
   /// Players data
   ///
-  final Map<int, Player> _playersByPlayerIdMap = {};
-  int _playerIdMax = 0;
+  final Map<int, Player> playersByPlayerIdMap;
+  int playerIdMax = 0;
   Future<void> addPlayerByColor({PlayerColor playerColor}) async {
-    _playerIdMax++;
-    _playersByPlayerIdMap.putIfAbsent(
-        _playerIdMax, () => Player(id: _playerIdMax, playerColor: playerColor));
+    playerIdMax++;
+    playersByPlayerIdMap.putIfAbsent(
+        playerIdMax, () => Player(id: playerIdMax, playerColor: playerColor));
   }
 
   Future<void> resetPlayers() async {
-    _playersByPlayerIdMap.clear();
+    playersByPlayerIdMap.clear();
   }
+
+  ///
+  /// JSON serialization
+  ///
+  PlayersModel(this.playerIdMax, this.playersByPlayerIdMap) {
+    checkAndLoadStorageInstance();
+  }
+  factory PlayersModel.fromJson(Map<String, dynamic> json) =>
+      _$PlayersModelFromJson(json);
+  Map<String, dynamic> toJson() => _$PlayersModelToJson(this);
 }
