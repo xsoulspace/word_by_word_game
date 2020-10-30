@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/Word.dart';
-import 'package:word_by_word_game/models/StorageMixin.dart';
 
 part 'WordsModel.g.dart';
 
@@ -13,7 +10,7 @@ class WordsModelConsts {
 }
 
 @JsonSerializable()
-class WordsModel extends ChangeNotifier with StorageMixin {
+class WordsModel extends ChangeNotifier {
   ///
   /// Words stack
   ///
@@ -75,34 +72,15 @@ class WordsModel extends ChangeNotifier with StorageMixin {
   /// Serialization
   ///
   WordsModel(
-      this.newWordBeginning,
-      this.newWordEnding,
-      this.phraseLimit,
-      this.phraseLimitMax,
-      this.wordsIdMax,
-      this.wordsIdsByPlayerIdMap,
-      this.allWordsByWordIdMap) {
-    checkAndLoadStorageInstance();
-  }
+      {this.newWordBeginning = '',
+      this.newWordEnding = '',
+      this.phraseLimit = 3,
+      this.phraseLimitMax = 3,
+      this.wordsIdMax = 0,
+      this.wordsIdsByPlayerIdMap = const {},
+      this.allWordsByWordIdMap = const {}});
+
   factory WordsModel.fromJson(Map<String, dynamic> json) =>
       _$WordsModelFromJson(json);
   Map<String, dynamic> toJson() => _$WordsModelToJson(this);
-
-  Future<void> saveToStorage() async {
-    storage.putString(WordsModelConsts.storagename, jsonEncode(toJson()));
-  }
-
-  Future<void> loadFromStorage() async {
-    var modelStr = storage.getString(WordsModelConsts.storagename);
-    if (modelStr == null) return;
-    var model = WordsModel.fromJson(jsonDecode(modelStr));
-    this.newWordBeginning = model.newWordBeginning;
-    this.newWordEnding = model.newWordEnding;
-    this.phraseLimit = model.phraseLimit;
-    this.phraseLimitMax = model.phraseLimitMax;
-    this.wordsIdMax = model.wordsIdMax;
-    this.wordsIdsByPlayerIdMap = model.wordsIdsByPlayerIdMap;
-    this.allWordsByWordIdMap = model.allWordsByWordIdMap;
-    notifyListeners();
-  }
 }

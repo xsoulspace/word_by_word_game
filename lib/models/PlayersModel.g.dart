@@ -8,8 +8,9 @@ part of 'PlayersModel.dart';
 
 PlayersModel _$PlayersModelFromJson(Map<String, dynamic> json) {
   return PlayersModel(
-    json['playerIdMax'] as int,
-    (json['playersByPlayerIdMap'] as Map<String, dynamic>)?.map(
+    playerIdMax: json['playerIdMax'] as int,
+    playersByPlayerIdMap:
+        (json['playersByPlayerIdMap'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k),
           e == null ? null : Player.fromJson(e as Map<String, dynamic>)),
     ),

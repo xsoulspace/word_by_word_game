@@ -8,16 +8,18 @@ part of 'WordsModel.dart';
 
 WordsModel _$WordsModelFromJson(Map<String, dynamic> json) {
   return WordsModel(
-    json['newWordBeginning'] as String,
-    json['newWordEnding'] as String,
-    json['phraseLimit'] as int,
-    json['phraseLimitMax'] as int,
-    json['wordsIdMax'] as int,
-    (json['wordsIdsByPlayerIdMap'] as Map<String, dynamic>)?.map(
+    newWordBeginning: json['newWordBeginning'] as String,
+    newWordEnding: json['newWordEnding'] as String,
+    phraseLimit: json['phraseLimit'] as int,
+    phraseLimitMax: json['phraseLimitMax'] as int,
+    wordsIdMax: json['wordsIdMax'] as int,
+    wordsIdsByPlayerIdMap:
+        (json['wordsIdsByPlayerIdMap'] as Map<String, dynamic>)?.map(
       (k, e) =>
           MapEntry(int.parse(k), (e as List)?.map((e) => e as int)?.toList()),
     ),
-    (json['allWordsByWordIdMap'] as Map<String, dynamic>)?.map(
+    allWordsByWordIdMap:
+        (json['allWordsByWordIdMap'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k),
           e == null ? null : Word.fromJson(e as Map<String, dynamic>)),
     ),
