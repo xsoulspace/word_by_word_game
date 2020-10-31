@@ -19,7 +19,7 @@ class WordsModel extends ChangeNotifier {
   int wordsIdMax = 0;
 
   ///
-  /// Words stack functions
+  /// Words conrol functions
   ///
   String getWordByWordId({int wordId}) => allWordsByWordIdMap[wordId] ?? '';
 
@@ -34,8 +34,7 @@ class WordsModel extends ChangeNotifier {
   }
 
   Future<void> addNewWordForPLayer({Player player}) async {
-    var lastword = getLastWordPhraseByPlayer(player: player);
-    var newWord = '$newWordBeginning$lastword$newWordEnding';
+    var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding';
     var isNewWordExists = allWordsByWordIdMap.containsValue(newWord);
     if (isNewWordExists) return;
     wordsIdMax++;
@@ -49,17 +48,53 @@ class WordsModel extends ChangeNotifier {
     notifyListeners();
   }
 
+  bool get isNoWordsRecordedYet => allWordsByWordIdMap.isEmpty;
+  bool get isAtLeastOneWordRecorded => allWordsByWordIdMap.isNotEmpty;
+
   ///
   /// Phrase control
   ///
   int phraseLimitMax = 3;
   int phraseLimit = 3;
-  String getLastWordPhraseByPlayer({Player player}) {
-    if (phraseLimit <= 0) return '';
+  int phraseLimitLettersLeft = 6;
+  bool get isPhraseLimitAvailable =>
+      phraseLimitLettersLeft >= 1 && phraseLimit > 0;
+  bool get isPhraseLimitNotAvailable =>
+      phraseLimitLettersLeft < 1 || phraseLimit < 1;
+
+  ///
+  /// Phrase control
+  ///
+  String phraseFromLastword = '';
+  bool get isPhraseFromLastwordEmpty => phraseFromLastword.isEmpty;
+  bool get isPhraseFromLastwordNotEmpty => phraseFromLastword.isNotEmpty;
+
+  /// Functions
+  void setLastWordPhraseByPlayer({Player player}) {
+    if (isPhraseLimitNotAvailable) {
+      phraseFromLastword = '';
+      return;
+    }
     var lastword = getLastWordForPlayer(player: player);
-    return lastword.length >= phraseLimit
+    phraseFromLastword = lastword.length >= phraseLimit
         ? lastword.substring(lastword.length - phraseLimit)
         : lastword;
+    notifyListeners();
+  }
+
+  void reducePhraseLimit({bool isFromBeginning}) {
+    if (isPhraseLimitNotAvailable) return;
+    if (isPhraseFromLastwordEmpty) return;
+    phraseLimit--;
+    phraseLimitLettersLeft--;
+    if (isFromBeginning) {
+      phraseFromLastword = phraseFromLastword.substring(
+          0, phraseFromLastword.length - phraseLimit);
+    } else {
+      phraseFromLastword =
+          phraseFromLastword.substring(phraseFromLastword.length - phraseLimit);
+    }
+    notifyListeners();
   }
 
   ///
@@ -76,6 +111,7 @@ class WordsModel extends ChangeNotifier {
       this.newWordEnding = '',
       this.phraseLimit = 3,
       this.phraseLimitMax = 3,
+      this.phraseLimitLettersLeft = 6,
       this.wordsIdMax = 0,
       this.wordsIdsByPlayerIdMap = const {},
       this.allWordsByWordIdMap = const {}});

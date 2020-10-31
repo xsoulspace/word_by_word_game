@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
+import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/CircularSpinner.dart';
 import 'package:word_by_word_game/widgets/MenuWidget.dart';
 
 class UpperToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var scoreModel = Provider.of<ScoreModel>(context);
     return Material(
       elevation: 3,
       child: Container(
@@ -25,10 +28,12 @@ class UpperToolbar extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: 10),
                   ),
-                  Consumer<ScoreModel>(
-                    builder: (context, value, child) =>
+                  Consumer2<WordsModel, PlayersModel>(
+                    builder: (context, wordsModel, playersModel, child) =>
                         // TODO: add translation
-                        Text('current: ${value.counter}'),
+                        // TODO: add current highscore
+                        Text(
+                            'current: ${scoreModel.calculateHighscore(wordsModel)}'),
                   ),
                   Row(
                     children: [

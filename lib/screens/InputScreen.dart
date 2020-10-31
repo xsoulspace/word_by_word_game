@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
+import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/ExtraMenu.dart';
 import 'package:word_by_word_game/widgets/InputWidget.dart';
 import 'package:word_by_word_game/widgets/PlayerWidget.dart';
@@ -11,8 +12,8 @@ import 'package:word_by_word_game/widgets/UpperToolbar.dart';
 class InputScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var scoreModel = Provider.of<ScoreModel>(context);
     var playersModel = Provider.of<PlayersModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context);
     return Scaffold(
         body: Container(
       decoration:
@@ -25,11 +26,14 @@ class InputScreen extends StatelessWidget {
         ),
         Row(
           children: [
-            PlayerWidget(player: playersModel.currentPlayer,isDisabled: true,)
+            PlayerWidget(
+              player: playersModel.currentPlayer,
+              isDisabled: true,
+            )
           ],
         ),
         Visibility(
-          visible: scoreModel.isNotNewGame,
+          visible: wordsModel.isAtLeastOneWordRecorded,
           maintainState: true,
           maintainAnimation: true,
           child: ExtraMenu(),

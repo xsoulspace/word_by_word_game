@@ -7,6 +7,9 @@ class ScoreModelConsts {
 }
 
 class ScoreModel extends ChangeNotifier with StorageMixin {
+  ///
+  /// Highscore operations
+  ///
   Future<int> get highscore async {
     await checkAndLoadStorageInstance();
     return int.parse(
