@@ -24,7 +24,10 @@ WordsModel _$WordsModelFromJson(Map<String, dynamic> json) {
       (k, e) => MapEntry(int.parse(k),
           e == null ? null : Word.fromJson(e as Map<String, dynamic>)),
     ),
-  )..phraseFromLastword = json['phraseFromLastword'] as String;
+  )
+    ..phraseFromLastword = json['phraseFromLastword'] as String
+    ..privateLastword = json['privateLastword'] as String
+    ..lastword = json['lastword'];
 }
 
 Map<String, dynamic> _$WordsModelToJson(WordsModel instance) =>
@@ -38,6 +41,8 @@ Map<String, dynamic> _$WordsModelToJson(WordsModel instance) =>
       'phraseLimit': instance.phraseLimit,
       'phraseLimitLettersLeft': instance.phraseLimitLettersLeft,
       'phraseFromLastword': instance.phraseFromLastword,
+      'privateLastword': instance.privateLastword,
+      'lastword': instance.lastword,
       'newWordBeginning': instance.newWordBeginning,
       'newWordEnding': instance.newWordEnding,
     };

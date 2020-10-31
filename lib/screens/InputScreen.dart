@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
-import 'package:word_by_word_game/models/ScoreModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/ExtraMenu.dart';
 import 'package:word_by_word_game/widgets/InputWidget.dart';

@@ -21,27 +21,28 @@ class WordsModel extends ChangeNotifier {
   ///
   /// Words conrol functions
   ///
-  String getWordByWordId({int wordId}) => allWordsByWordIdMap[wordId] ?? '';
+  String getWordByWordId({@required int wordId}) =>
+      allWordsByWordIdMap[wordId] ?? '';
 
-  List<int> getWordsIdsListByPlayer({Player player}) =>
+  List<int> getWordsIdsListByPlayer({@required Player player}) =>
       wordsIdsByPlayerIdMap[player.id] ?? [];
-  List<Word> getWordsListByPlayer({Player player}) {
+  List<Word> getWordsListByPlayer({@required Player player}) {
     var wordsIds = getWordsIdsListByPlayer(player: player);
     return wordsIds.map((id) => allWordsByWordIdMap[id]);
   }
 
-  String getLastWordForPlayer({Player player}) {
+  String getLastWordForPlayer({@required Player player}) {
     var wordsIdsList = getWordsIdsListByPlayer(player: player);
     return wordsIdsList.length > 0
         ? getWordByWordId(wordId: wordsIdsList.last)
         : '';
   }
 
-  Future<void> addNewWordForPLayer({Player player}) async {
+  Future<bool> addNewWordForPLayer({@required Player player}) async {
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding';
     var isNewWordExists = allWordsByWordIdMap.containsValue(newWord);
 
-    if (isNewWordExists) return;
+    if (isNewWordExists) return false;
 
     wordsIdMax++;
 
@@ -51,14 +52,18 @@ class WordsModel extends ChangeNotifier {
     var playerWordsIds = getWordsIdsListByPlayer(player: player);
     var isNewIdExists = playerWordsIds.contains(wordsIdMax);
 
-    if (isNewIdExists) return;
+    if (isNewIdExists) return false;
 
     playerWordsIds.add(wordsIdMax);
-    wordsIdsByPlayerIdMap[player.id] = playerWordsIds;
+    wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
+    privateLastword = newWord;
+
+    setLastWordPhrase();
 
     newWordBeginning = '';
     newWordEnding = '';
     notifyListeners();
+    return true;
   }
 
   bool get isNoWordsRecordedYet => allWordsByWordIdMap.isEmpty;
@@ -82,20 +87,26 @@ class WordsModel extends ChangeNotifier {
   bool get isPhraseFromLastwordEmpty => phraseFromLastword.isEmpty;
   bool get isPhraseFromLastwordNotEmpty => phraseFromLastword.isNotEmpty;
 
+  String privateLastword = '';
+  set lastword(String word) {
+    privateLastword = word;
+  }
+
+  get lastword => privateLastword;
+
   /// Functions
-  void setLastWordPhraseByPlayer({Player player}) {
+  void setLastWordPhrase() {
     if (isPhraseLimitNotAvailable) {
       phraseFromLastword = '';
       return;
     }
-    var lastword = getLastWordForPlayer(player: player);
     phraseFromLastword = lastword.length >= phraseLimit
         ? lastword.substring(lastword.length - phraseLimit)
         : lastword;
     notifyListeners();
   }
 
-  void reducePhraseLimit({bool isFromBeginning}) {
+  void reducePhraseLimit({@required bool isFromBeginning}) {
     if (isPhraseLimitNotAvailable) return;
     if (isPhraseFromLastwordEmpty) return;
 

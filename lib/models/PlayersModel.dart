@@ -46,6 +46,7 @@ class PlayersModel extends ChangeNotifier {
   }
 
   get isOnePlayerPlaying => playersByPlayerIdMap.length == 1;
+  get isNotOnePlayerPlaying => playersByPlayerIdMap.length > 1;
 
   ///
   /// JSON serialization

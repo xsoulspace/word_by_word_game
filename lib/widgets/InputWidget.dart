@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/models/ScoreModel.dart';
+import 'package:word_by_word_game/models/PlayersModel.dart';
+import 'package:word_by_word_game/models/StorageModel.dart';
+import 'package:word_by_word_game/models/WordsModel.dart';
 
 class InputWidget extends StatefulWidget {
   @override
@@ -15,21 +17,38 @@ class _InputWidgetState extends State<InputWidget> {
     String leftLetters = _leftTextController.text;
     String rightLetters = _rightTextController.text;
     if (leftLetters.isNotEmpty || rightLetters.isNotEmpty) {
-      ScoreModel scoreModel = Provider.of<ScoreModel>(context, listen: false);
-      final newWord = '$leftLetters${scoreModel.currentLetters}$rightLetters';
-      if (newWord.length >= 3) {
-        await scoreModel.add(newWord);
-        _leftTextController.text = '';
-        _rightTextController.text = '';
+      var wordsModel = Provider.of<WordsModel>(context, listen: false);
+      var playersModel = Provider.of<PlayersModel>(context, listen: false);
+      var storageModel = Provider.of<StorageModel>(context, listen: false);
+      var isWordSuccessfullyAdded = await wordsModel.addNewWordForPLayer(
+          player: playersModel.currentPlayer);
+      if (isWordSuccessfullyAdded) {
+        await storageModel.saveWordsModel();
+        _leftTextController.text = wordsModel.newWordBeginning;
+        _rightTextController.text = wordsModel.newWordEnding;
+        if (playersModel.isNotOnePlayerPlaying) {
+          playersModel.nextPlayer();
+          await storageModel.savePlayersModel();
+        }
       }
     }
     // show error that field need to be filled
   }
 
   @override
+  void initState() {
+    _leftTextController.addListener(_updateWordsModelPhrases);
+    _rightTextController.addListener(_updateWordsModelPhrases);
+    super.initState();
+  }
+
+  @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
+
+    _leftTextController.removeListener(_updateWordsModelPhrases);
+    _rightTextController.removeListener(_updateWordsModelPhrases);
     _leftTextController.dispose();
     _rightTextController.dispose();
     super.dispose();
@@ -39,8 +58,9 @@ class _InputWidgetState extends State<InputWidget> {
     return OutlineInputBorder(borderRadius: BorderRadius.circular(20));
   }
 
-  _decreaseButton({bool fromBeginning}) {
-    ScoreModel scoreModel = Provider.of<ScoreModel>(context, listen: false);
+  _decreaseButton({@required bool isFromBeginning}) {
+    var storageModel = Provider.of<StorageModel>(context, listen: false);
+    var wordsModel = Provider.of<WordsModel>(context, listen: false);
 
     return IconButton(
       disabledColor: Colors.grey,
@@ -50,25 +70,37 @@ class _InputWidgetState extends State<InputWidget> {
       hoverColor: Colors.red.withOpacity(0.1),
       highlightColor: Colors.red.withOpacity(0.2),
       icon: Icon(Icons.remove),
-      onPressed: scoreModel.isLettersIncreaseDescreaseAvailable
-          ? () => scoreModel.decreaseLettersLimit(fromBeginning: fromBeginning)
+      onPressed: wordsModel.isPhraseLimitAvailable
+          ? () async {
+              wordsModel.reducePhraseLimit(isFromBeginning: isFromBeginning);
+              await storageModel.saveWordsModel();
+            }
           : null,
     );
   }
 
+  _updateWordsModelPhrases() async {
+    var storageModel = Provider.of<StorageModel>(context, listen: false);
+    var wordsModel = Provider.of<WordsModel>(context, listen: false);
+    wordsModel.newWordBeginning = _leftTextController.text;
+    wordsModel.newWordEnding = _rightTextController.text;
+    await storageModel.saveWordsModel();
+  }
+
   @override
   Widget build(BuildContext context) {
-    ScoreModel globalScoreModel = Provider.of<ScoreModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context);
+
     return Material(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
           Center(
-            child: Consumer<ScoreModel>(
-                builder: (BuildContext buildContext, ScoreModel scoreModel,
-                        Widget widget) =>
-                    Text(scoreModel.lastWordWithoutLetters)),
+            child: Consumer<WordsModel>(
+                builder:
+                    (BuildContext buildContext, wordsModel, Widget widget) =>
+                        Text(wordsModel.lastword)),
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10),
@@ -77,11 +109,10 @@ class _InputWidgetState extends State<InputWidget> {
             children: [
               // first input
               Visibility(
-                visible: globalScoreModel.isNotNewGame &&
-                    globalScoreModel.isCurrentLettersNotEmpty,
+                visible: wordsModel.isAtLeastOneWordRecorded &&
+                    wordsModel.isPhraseFromLastwordNotEmpty,
                 child: Expanded(
                   child: TextField(
-                    readOnly: globalScoreModel.isNewGame,
                     textAlign: TextAlign.end,
                     decoration: InputDecoration(
                         border: _textFieldOutlineInputBorder(),
@@ -94,21 +125,19 @@ class _InputWidgetState extends State<InputWidget> {
 
               // // letters
               Visibility(
-                  visible: globalScoreModel.isNotNewGame &&
-                      globalScoreModel.isCurrentLettersNotEmpty,
-                  maintainState: true,
-                  maintainAnimation: true,
+                  visible: wordsModel.isAtLeastOneWordRecorded &&
+                      wordsModel.isPhraseFromLastwordNotEmpty,
                   child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10),
+                    padding: EdgeInsets.symmetric(horizontal: 5),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        _decreaseButton(fromBeginning: true),
-                        Consumer<ScoreModel>(
-                            builder: (BuildContext buildContext,
-                                    ScoreModel scoreModel, Widget widget) =>
-                                Text(scoreModel.currentLetters)),
-                        _decreaseButton(fromBeginning: false)
+                        _decreaseButton(isFromBeginning: true),
+                        Consumer<WordsModel>(
+                            builder: (BuildContext buildContext, wordsModel,
+                                    Widget widget) =>
+                                Text(wordsModel.phraseFromLastword)),
+                        _decreaseButton(isFromBeginning: false)
                       ],
                     ),
                   )),
@@ -118,7 +147,7 @@ class _InputWidgetState extends State<InputWidget> {
                   decoration: InputDecoration(
                       border: _textFieldOutlineInputBorder(),
                       //TODO: add translation
-                      hintText: globalScoreModel.isNewGame
+                      hintText: wordsModel.isNoWordsRecordedYet
                           ? 'add new word'
                           : 'add ending'),
                   controller: _rightTextController,
