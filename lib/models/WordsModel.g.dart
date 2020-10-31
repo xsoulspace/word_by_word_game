@@ -8,22 +8,20 @@ part of 'WordsModel.dart';
 
 WordsModel _$WordsModelFromJson(Map<String, dynamic> json) {
   return WordsModel(
+    (json['allWordsByWordIdMap'] as Map<String, dynamic>)?.map(
+      (k, e) => MapEntry(int.parse(k),
+          e == null ? null : Word.fromJson(e as Map<String, dynamic>)),
+    ),
+    (json['wordsIdsByPlayerIdMap'] as Map<String, dynamic>)?.map(
+      (k, e) =>
+          MapEntry(int.parse(k), (e as List)?.map((e) => e as int)?.toList()),
+    ),
     newWordBeginning: json['newWordBeginning'] as String,
     newWordEnding: json['newWordEnding'] as String,
     phraseLimit: json['phraseLimit'] as int,
     phraseLimitMax: json['phraseLimitMax'] as int,
     phraseLimitLettersLeft: json['phraseLimitLettersLeft'] as int,
     wordsIdMax: json['wordsIdMax'] as int,
-    wordsIdsByPlayerIdMap:
-        (json['wordsIdsByPlayerIdMap'] as Map<String, dynamic>)?.map(
-      (k, e) =>
-          MapEntry(int.parse(k), (e as List)?.map((e) => e as int)?.toList()),
-    ),
-    allWordsByWordIdMap:
-        (json['allWordsByWordIdMap'] as Map<String, dynamic>)?.map(
-      (k, e) => MapEntry(int.parse(k),
-          e == null ? null : Word.fromJson(e as Map<String, dynamic>)),
-    ),
   )
     ..phraseFromLastword = json['phraseFromLastword'] as String
     ..privateLastword = json['privateLastword'] as String

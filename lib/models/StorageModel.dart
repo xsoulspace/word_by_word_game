@@ -21,13 +21,13 @@ class StorageModel extends ChangeNotifier with StorageMixin {
   }
 
   Future<void> savePlayersModel() async {
-    var playersModel = Provider.of<PlayersModel>(context);
+    var playersModel = Provider.of<PlayersModel>(context, listen: false);
     await save(
         key: PlayersModelConsts.storagename, value: playersModel.toJson());
   }
 
   Future<void> loadPlayersModel() async {
-    var playersModel = Provider.of<PlayersModel>(context);
+    var playersModel = Provider.of<PlayersModel>(context, listen: false);
     var modelStr = await load(PlayersModelConsts.storagename);
     if (modelStr == null) return;
     var model = PlayersModel.fromJson(modelStr);
@@ -38,12 +38,12 @@ class StorageModel extends ChangeNotifier with StorageMixin {
   }
 
   Future<void> saveWordsModel() async {
-    var wordsModel = Provider.of<WordsModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context, listen: false);
     await save(key: WordsModelConsts.storagename, value: wordsModel.toJson());
   }
 
   Future<void> loadWordsModel() async {
-    var wordsModel = Provider.of<WordsModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context, listen: false);
     var modelStr = await load(WordsModelConsts.storagename);
     if (modelStr == null) return;
     var model = WordsModel.fromJson(modelStr);
@@ -52,9 +52,11 @@ class StorageModel extends ChangeNotifier with StorageMixin {
       ..newWordEnding = model.newWordEnding
       ..phraseLimit = model.phraseLimit
       ..phraseLimitMax = model.phraseLimitMax
-      ..wordsIdMax = model.wordsIdMax
-      ..wordsIdsByPlayerIdMap = model.wordsIdsByPlayerIdMap
-      ..allWordsByWordIdMap = model.allWordsByWordIdMap;
+      ..wordsIdMax = model.wordsIdMax;
+    wordsModel.reloadState(
+        allWordsByWordIdMap: model.allWordsByWordIdMap,
+        wordsIdsPlayerIdMap: model.wordsIdsByPlayerIdMap);
+
     notifyListeners();
   }
 }

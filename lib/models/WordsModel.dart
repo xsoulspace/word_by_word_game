@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:word_by_word_game/entities/Player.dart';
@@ -9,26 +11,30 @@ class WordsModelConsts {
   static String storagename = 'wordsmodel';
 }
 
-@JsonSerializable()
+@JsonSerializable(nullable: true)
 class WordsModel extends ChangeNotifier {
   ///
   /// Words stack
   ///
-  Map<int, List<int>> wordsIdsByPlayerIdMap = {};
-  Map<int, Word> allWordsByWordIdMap = {};
+  Map<int, List<int>> _wordsIdsByPlayerIdMap;
+  UnmodifiableMapView<int, List<int>> get wordsIdsByPlayerIdMap =>
+      UnmodifiableMapView(_wordsIdsByPlayerIdMap);
+  Map<int, Word> _allWordsByWordIdMap;
+  UnmodifiableMapView<int, Word> get allWordsByWordIdMap =>
+      UnmodifiableMapView(allWordsByWordIdMap);
   int wordsIdMax = 0;
 
   ///
   /// Words conrol functions
   ///
   String getWordByWordId({@required int wordId}) =>
-      allWordsByWordIdMap[wordId] ?? '';
+      _allWordsByWordIdMap[wordId] ?? '';
 
   List<int> getWordsIdsListByPlayer({@required Player player}) =>
-      wordsIdsByPlayerIdMap[player.id] ?? [];
+      _wordsIdsByPlayerIdMap[player.id] ?? [];
   List<Word> getWordsListByPlayer({@required Player player}) {
     var wordsIds = getWordsIdsListByPlayer(player: player);
-    return wordsIds.map((id) => allWordsByWordIdMap[id]);
+    return wordsIds.map((id) => _allWordsByWordIdMap[id]).toList();
   }
 
   String getLastWordForPlayer({@required Player player}) {
@@ -40,13 +46,13 @@ class WordsModel extends ChangeNotifier {
 
   Future<bool> addNewWordForPLayer({@required Player player}) async {
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding';
-    var isNewWordExists = allWordsByWordIdMap.containsValue(newWord);
+    var isNewWordExists = _allWordsByWordIdMap.containsValue(newWord);
 
     if (isNewWordExists) return false;
 
     wordsIdMax++;
 
-    allWordsByWordIdMap.putIfAbsent(
+    _allWordsByWordIdMap.putIfAbsent(
         wordsIdMax, () => Word(id: wordsIdMax, value: newWord));
 
     var playerWordsIds = getWordsIdsListByPlayer(player: player);
@@ -55,7 +61,7 @@ class WordsModel extends ChangeNotifier {
     if (isNewIdExists) return false;
 
     playerWordsIds.add(wordsIdMax);
-    wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
+    _wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
     privateLastword = newWord;
 
     setLastWordPhrase();
@@ -66,8 +72,8 @@ class WordsModel extends ChangeNotifier {
     return true;
   }
 
-  bool get isNoWordsRecordedYet => allWordsByWordIdMap.isEmpty;
-  bool get isAtLeastOneWordRecorded => allWordsByWordIdMap.isNotEmpty;
+  bool get isNoWordsRecordedYet => _allWordsByWordIdMap.isEmpty;
+  bool get isAtLeastOneWordRecorded => _allWordsByWordIdMap.isNotEmpty;
 
   ///
   /// Phrase control
@@ -158,22 +164,35 @@ class WordsModel extends ChangeNotifier {
     phraseLimitMax = 3;
     phraseLimitLettersLeft = 6;
     wordsIdMax = 0;
-    wordsIdsByPlayerIdMap.clear();
-    allWordsByWordIdMap.clear();
+    _wordsIdsByPlayerIdMap.clear();
+    _allWordsByWordIdMap.clear();
+  }
+
+  void reloadState(
+      {Map<int, Word> allWordsByWordIdMap,
+      Map<int, List<int>> wordsIdsPlayerIdMap}) {
+    _wordsIdsByPlayerIdMap.clear();
+    _wordsIdsByPlayerIdMap.addAll(wordsIdsPlayerIdMap);
+    _allWordsByWordIdMap.clear();
+    _allWordsByWordIdMap.addAll(allWordsByWordIdMap);
   }
 
   ///
   /// Serialization
   ///
   WordsModel(
-      {this.newWordBeginning = '',
-      this.newWordEnding = '',
-      this.phraseLimit = 3,
-      this.phraseLimitMax = 3,
-      this.phraseLimitLettersLeft = 6,
-      this.wordsIdMax = 0,
-      this.wordsIdsByPlayerIdMap = const {},
-      this.allWordsByWordIdMap = const {}});
+    Map<int, Word> allWordsByWordIdMap,
+    Map<int, List<int>> wordsIdsByPlayerIdMap, {
+    this.newWordBeginning = '',
+    this.newWordEnding = '',
+    this.phraseLimit = 3,
+    this.phraseLimitMax = 3,
+    this.phraseLimitLettersLeft = 6,
+    this.wordsIdMax = 0,
+  }) {
+    this._allWordsByWordIdMap = allWordsByWordIdMap;
+    this._wordsIdsByPlayerIdMap = wordsIdsByPlayerIdMap;
+  }
 
   factory WordsModel.fromJson(Map<String, dynamic> json) =>
       _$WordsModelFromJson(json);

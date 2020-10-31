@@ -10,7 +10,6 @@ import 'package:word_by_word_game/widgets/MenuWidget.dart';
 class UpperToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var scoreModel = Provider.of<ScoreModel>(context);
     return Material(
       elevation: 3,
       child: Container(
@@ -28,8 +27,8 @@ class UpperToolbar extends StatelessWidget {
                   Padding(
                     padding: EdgeInsets.only(bottom: 10),
                   ),
-                  Consumer2<WordsModel, PlayersModel>(
-                      builder: (context, wordsModel, playersModel, child) {
+                  Consumer3<WordsModel, PlayersModel, ScoreModel>(builder:
+                      (context, wordsModel, playersModel, scoreModel, child) {
                     var wordsList = wordsModel.getWordsListByPlayer(
                         player: playersModel.currentPlayer);
                     var highscore = scoreModel.calculateHighscore(wordsList);

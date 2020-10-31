@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
+import 'package:word_by_word_game/models/ScoreModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/screens/InputScreen.dart';
@@ -16,10 +17,11 @@ void main() {
                 playerIdMax: 1,
                 playersByPlayerIdMap: {firstPlayer.id: firstPlayer},
                 currentPlayer: firstPlayer)),
-        ChangeNotifierProvider(create: (context) => WordsModel()),
+        ChangeNotifierProvider(create: (context) => WordsModel({}, {})),
         ChangeNotifierProvider(create: (context) => PlayerColorsModel()),
         ChangeNotifierProvider(
             create: (context) => StorageModel(context: context)),
+        ChangeNotifierProvider(create: (context) => ScoreModel()),
       ],
       child: MyApp(),
     ),

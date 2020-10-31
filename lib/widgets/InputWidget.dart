@@ -89,7 +89,7 @@ class _InputWidgetState extends State<InputWidget> {
 
   @override
   Widget build(BuildContext context) {
-    var wordsModel = Provider.of<WordsModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context, listen: false);
 
     return Material(
         child: Column(
