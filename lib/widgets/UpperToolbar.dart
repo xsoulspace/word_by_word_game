@@ -29,12 +29,13 @@ class UpperToolbar extends StatelessWidget {
                     padding: EdgeInsets.only(bottom: 10),
                   ),
                   Consumer2<WordsModel, PlayersModel>(
-                    builder: (context, wordsModel, playersModel, child) =>
-                        // TODO: add translation
-                        // TODO: add current highscore
-                        Text(
-                            'current: ${scoreModel.calculateHighscore(wordsModel)}'),
-                  ),
+                      builder: (context, wordsModel, playersModel, child) {
+                    var wordsList = wordsModel.getWordsListByPlayer(
+                        player: playersModel.currentPlayer);
+                    var highscore = scoreModel.calculateHighscore(wordsList);
+                    // TODO: add translation
+                    return Text('current: $highscore');
+                  }),
                   Row(
                     children: [
                       // TODO: add translation
@@ -69,11 +70,11 @@ class UpperToolbar extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Consumer<ScoreModel>(
-                  builder: (context, value, child) =>
+                Consumer<WordsModel>(
+                  builder: (context, wordsModel, child) =>
                       // TODO: add translation
                       Text(
-                          'letters to remove: ${value.currentLettersIncreaseDecreaseCounter}'),
+                          'common letters to remove: ${wordsModel.phraseLimitLettersLeft}'),
                 ),
               ],
             ),

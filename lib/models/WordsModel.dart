@@ -25,6 +25,10 @@ class WordsModel extends ChangeNotifier {
 
   List<int> getWordsIdsListByPlayer({Player player}) =>
       wordsIdsByPlayerIdMap[player.id] ?? [];
+  List<Word> getWordsListByPlayer({Player player}) {
+    var wordsIds = getWordsIdsListByPlayer(player: player);
+    return wordsIds.map((id) => allWordsByWordIdMap[id]);
+  }
 
   String getLastWordForPlayer({Player player}) {
     var wordsIdsList = getWordsIdsListByPlayer(player: player);
