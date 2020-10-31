@@ -40,13 +40,19 @@ class WordsModel extends ChangeNotifier {
   Future<void> addNewWordForPLayer({Player player}) async {
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding';
     var isNewWordExists = allWordsByWordIdMap.containsValue(newWord);
+
     if (isNewWordExists) return;
+
     wordsIdMax++;
+
     allWordsByWordIdMap.putIfAbsent(
         wordsIdMax, () => Word(id: wordsIdMax, value: newWord));
+
     var playerWordsIds = getWordsIdsListByPlayer(player: player);
     var isNewIdExists = playerWordsIds.contains(wordsIdMax);
+
     if (isNewIdExists) return;
+
     playerWordsIds.add(wordsIdMax);
     wordsIdsByPlayerIdMap[player.id] = playerWordsIds;
 
@@ -92,14 +98,34 @@ class WordsModel extends ChangeNotifier {
   void reducePhraseLimit({bool isFromBeginning}) {
     if (isPhraseLimitNotAvailable) return;
     if (isPhraseFromLastwordEmpty) return;
+
     phraseLimit--;
     phraseLimitLettersLeft--;
+
     if (isFromBeginning) {
-      phraseFromLastword = phraseFromLastword.substring(
-          0, phraseFromLastword.length - phraseLimit);
+      phraseFromLastword =
+          phraseFromLastword.substring(0, phraseFromLastword.length - 1);
     } else {
       phraseFromLastword =
-          phraseFromLastword.substring(phraseFromLastword.length - phraseLimit);
+          phraseFromLastword.substring(phraseFromLastword.length - 1);
+    }
+
+    notifyListeners();
+  }
+
+  resetPhraseFromLastword() {
+    int phraseLength = phraseFromLastword.length;
+
+    if (isPhraseLimitNotAvailable) return;
+
+    bool iCanUsePhraseLeft = phraseLength <= phraseLimitLettersLeft;
+    if (iCanUsePhraseLeft) {
+      phraseFromLastword = '';
+      phraseLimitLettersLeft = phraseLimitLettersLeft - phraseLength;
+    } else {
+      phraseFromLastword =
+          phraseFromLastword.substring(phraseLength - phraseLimitLettersLeft);
+      phraseLimitLettersLeft = 0;
     }
     notifyListeners();
   }
