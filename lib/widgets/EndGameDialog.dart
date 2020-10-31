@@ -2,17 +2,26 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
+import 'package:word_by_word_game/models/StorageModel.dart';
+import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/CircularSpinner.dart';
+import 'package:word_by_word_game/widgets/PlayerWidget.dart';
 
 class EndGameDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScoreModel scoreModel = Provider.of<ScoreModel>(context);
+    var scoreModel = Provider.of<ScoreModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context);
+    var playersModel = Provider.of<PlayersModel>(context);
+    var storageModel = Provider.of<StorageModel>(context);
+
     return CupertinoAlertDialog(
       title: Text('Congratulations!'),
       content: Column(children: [
-        Text('This time your score is ${scoreModel.counter}'),
+        _playersHighscores(context: context),
         FutureBuilder(
             future: scoreModel.highscore,
             builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
@@ -23,7 +32,7 @@ class EndGameDialog extends StatelessWidget {
                   height: 10,
                 );
               } else {
-                return Text('Your highscore is ${snapshot.data}');
+                return Text('Max highscore is ${snapshot.data}');
               }
             }),
       ]),
@@ -39,13 +48,58 @@ class EndGameDialog extends StatelessWidget {
         Material(
           child: ListTile(
             title: Text('Start again.'),
-            onTap: () {
-              scoreModel.resetParams();
+            onTap: () async {
+              wordsModel.resetToNewGame();
+              await storageModel.saveWordsModel();
+              playersModel.setCurrentPlayer(player:playersModel.playersList.first);
               Navigator.pop(context);
             },
           ),
         )
       ],
     );
+  }
+
+  Widget _playersHighscores({@required BuildContext context}) {
+    var scoreModel = Provider.of<ScoreModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context);
+    var playersModel = Provider.of<PlayersModel>(context);
+    getPlayerHighscore({@required Player player}) {
+      var wordsList = wordsModel.getWordsListByPlayer(player: player);
+      var highscore = scoreModel.calculateHighscore(wordsList);
+      scoreModel.highscore.then((currentHighscore) {
+        if (highscore > currentHighscore) {
+          scoreModel.saveHighscore(highscore);
+        }
+      });
+      return highscore;
+    }
+
+    if (playersModel.isOnePlayerPlaying) {
+      var playerHighscore =
+          getPlayerHighscore(player: playersModel.currentPlayer);
+      return Text('This time your score is $playerHighscore');
+    } else {
+      /// setting highscore
+      var playersList = playersModel.playersList.map((player) {
+        player.highscore = getPlayerHighscore(player: player);
+        return player;
+      }).toList();
+
+      /// descending order
+      playersList.sort(
+          (playerA, playerB) => playerA.highscore.compareTo(playerB.highscore));
+      return Column(children: [
+        ...playersList.map((player) => Row(
+              children: [
+                PlayerWidget(player: player),
+                SizedBox(
+                  width: 10,
+                ),
+                Text(player.highscore.toString())
+              ],
+            ))
+      ]);
+    }
   }
 }

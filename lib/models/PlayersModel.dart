@@ -19,15 +19,33 @@ class PlayersModel extends ChangeNotifier {
   int playerIdMax = 1;
   List<Player> get playersList => playersByPlayerIdMap.values.toList();
   Player currentPlayer = firstPlayer;
-  Future<void> addPlayerByColor({PlayerColor playerColor}) async {
+  void addPlayerByColor({@required PlayerColor playerColor}) {
     playerIdMax++;
     playersByPlayerIdMap.putIfAbsent(
         playerIdMax, () => Player(id: playerIdMax, playerColor: playerColor));
   }
 
-  Future<void> resetPlayers() async {
-    playersByPlayerIdMap.clear();
+  setCurrentPlayer({@required Player player}) {
+    currentPlayer = player;
+    notifyListeners();
   }
+
+  nextPlayer() {
+    var playerIndex =
+        playersList.indexWhere((player) => player.id == currentPlayer.id);
+    var player = playerIndex == null
+        ? firstPlayer
+        : playersList[playerIndex] ?? firstPlayer;
+    setCurrentPlayer(player: player);
+  }
+
+  void resetPlayers() {
+    playersByPlayerIdMap.clear();
+    playersByPlayerIdMap.putIfAbsent(firstPlayer.id, () => firstPlayer);
+    notifyListeners();
+  }
+
+  get isOnePlayerPlaying => playersByPlayerIdMap.length == 1;
 
   ///
   /// JSON serialization

@@ -49,6 +49,9 @@ class WordsModel extends ChangeNotifier {
     if (isNewIdExists) return;
     playerWordsIds.add(wordsIdMax);
     wordsIdsByPlayerIdMap[player.id] = playerWordsIds;
+
+    newWordBeginning = '';
+    newWordEnding = '';
     notifyListeners();
   }
 
@@ -106,6 +109,21 @@ class WordsModel extends ChangeNotifier {
   ///
   String newWordBeginning = '';
   String newWordEnding = '';
+
+  ///
+  /// Reset state
+  ///
+
+  resetToNewGame() {
+    newWordBeginning = '';
+    newWordEnding = '';
+    phraseLimit = 3;
+    phraseLimitMax = 3;
+    phraseLimitLettersLeft = 6;
+    wordsIdMax = 0;
+    wordsIdsByPlayerIdMap.clear();
+    allWordsByWordIdMap.clear();
+  }
 
   ///
   /// Serialization

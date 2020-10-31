@@ -33,6 +33,11 @@ class UpperToolbar extends StatelessWidget {
                     var wordsList = wordsModel.getWordsListByPlayer(
                         player: playersModel.currentPlayer);
                     var highscore = scoreModel.calculateHighscore(wordsList);
+                    scoreModel.highscore.then((currentHighscore) {
+                      if (highscore > currentHighscore) {
+                        scoreModel.saveHighscore(highscore);
+                      }
+                    });
                     // TODO: add translation
                     return Text('current: $highscore');
                   }),

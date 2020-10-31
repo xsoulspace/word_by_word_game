@@ -8,7 +8,8 @@ part 'Player.g.dart';
 class Player {
   final int id;
   final PlayerColor playerColor;
-  Player({@required this.id, @required this.playerColor});
+  int highscore = 0;
+  Player({@required this.id, @required this.playerColor, this.highscore});
 
   factory Player.fromJson(Map<String, dynamic> json) => _$PlayerFromJson(json);
   Map<String, dynamic> toJson() => _$PlayerToJson(this);
