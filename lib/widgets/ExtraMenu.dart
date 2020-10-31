@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
+import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 
 class ExtraMenu extends StatelessWidget {
   @override
@@ -29,6 +30,7 @@ class ExtraMenu extends StatelessWidget {
               onTap: () {
                 _showEndGameDialog(context);
               }),
+          PlayerChooser()
         ],
       ),
     );

@@ -14,8 +14,8 @@ class WordsModel extends ChangeNotifier {
   ///
   /// Words stack
   ///
-  Map<int, List<int>> wordsIdsByPlayerIdMap;
-  Map<int, Word> allWordsByWordIdMap;
+  Map<int, List<int>> wordsIdsByPlayerIdMap = {};
+  Map<int, Word> allWordsByWordIdMap = {};
   int wordsIdMax = 0;
 
   ///

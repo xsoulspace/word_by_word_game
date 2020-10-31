@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/PlayerColor.dart';
 
@@ -14,8 +15,10 @@ class PlayersModel extends ChangeNotifier {
   ///
   /// Players data
   ///
-  Map<int, Player> playersByPlayerIdMap;
-  int playerIdMax = 0;
+  Map<int, Player> playersByPlayerIdMap = {};
+  int playerIdMax = 1;
+  List<Player> get playersList => playersByPlayerIdMap.values.toList();
+  Player currentPlayer = firstPlayer;
   Future<void> addPlayerByColor({PlayerColor playerColor}) async {
     playerIdMax++;
     playersByPlayerIdMap.putIfAbsent(
@@ -29,10 +32,10 @@ class PlayersModel extends ChangeNotifier {
   ///
   /// JSON serialization
   ///
-  PlayersModel({
-    this.playerIdMax = 0,
-    this.playersByPlayerIdMap = const {},
-  });
+  PlayersModel(
+      {this.playerIdMax,
+      @required this.playersByPlayerIdMap,
+      @required this.currentPlayer});
 
   factory PlayersModel.fromJson(Map<String, dynamic> json) =>
       _$PlayersModelFromJson(json);

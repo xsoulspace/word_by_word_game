@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
@@ -10,7 +11,11 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => PlayersModel()),
+        ChangeNotifierProvider(
+            create: (context) => PlayersModel(
+                playerIdMax: 1,
+                playersByPlayerIdMap: {firstPlayer.id: firstPlayer},
+                currentPlayer: firstPlayer)),
         ChangeNotifierProvider(create: (context) => WordsModel()),
         ChangeNotifierProvider(create: (context) => PlayerColorsModel()),
         ChangeNotifierProvider(

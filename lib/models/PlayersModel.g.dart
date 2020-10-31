@@ -14,6 +14,9 @@ PlayersModel _$PlayersModelFromJson(Map<String, dynamic> json) {
       (k, e) => MapEntry(int.parse(k),
           e == null ? null : Player.fromJson(e as Map<String, dynamic>)),
     ),
+    currentPlayer: json['currentPlayer'] == null
+        ? null
+        : Player.fromJson(json['currentPlayer'] as Map<String, dynamic>),
   );
 }
 
@@ -22,4 +25,5 @@ Map<String, dynamic> _$PlayersModelToJson(PlayersModel instance) =>
       'playersByPlayerIdMap': instance.playersByPlayerIdMap
           ?.map((k, e) => MapEntry(k.toString(), e)),
       'playerIdMax': instance.playerIdMax,
+      'currentPlayer': instance.currentPlayer,
     };
