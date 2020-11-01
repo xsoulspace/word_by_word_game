@@ -42,15 +42,21 @@ class InputScreen extends StatelessWidget {
               NotificationsWidget(
                 gameNotification: notificationsModel.gameNotification,
               ),
-              Padding(
-                padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
-                child: InputWidget(),
+              Container(
+                color: Colors.white.withOpacity(0.85),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
+                  child: InputWidget(),
+                ),
               ),
-              Visibility(
-                visible: wordsModel.isAtLeastOneWordRecorded,
-                maintainState: true,
-                maintainAnimation: true,
-                child: ExtraMenu(),
+              Container(
+                color: Colors.white.withOpacity(0.85),
+                child: Visibility(
+                  visible: wordsModel.isAtLeastOneWordRecorded,
+                  maintainState: true,
+                  maintainAnimation: true,
+                  child: ExtraMenu(),
+                ),
               ),
             ]),
           ),

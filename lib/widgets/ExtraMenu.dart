@@ -20,7 +20,7 @@ class ExtraMenu extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
-              leading: Icon(Icons.skip_next),
+              leading: Icon(Icons.cached),
               enabled: wordsModel.isAtLeastOneWordRecorded &&
                   wordsModel.isPhraseFromLastwordNotEmpty &&
                   wordsModel.isPhraseLimitLeftAvailable,
