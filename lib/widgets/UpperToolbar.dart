@@ -39,7 +39,6 @@ class UpperToolbar extends StatelessWidget {
                     children: [
                       // TODO: add translation
                       Text('highscore: '),
-
                       Consumer<ScoreModel>(
                         builder: (context, value, child) => FutureBuilder(
                             future: value.highscore,

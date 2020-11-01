@@ -33,7 +33,7 @@ class StorageModel extends ChangeNotifier with StorageMixin {
     var model = PlayersModel.fromJson(modelStr);
     playersModel
       ..playerIdMax = model.playerIdMax
-      ..playersByPlayerIdMap = model.playersByPlayerIdMap;
+      ..reloadPlayers(playersByPlayerIdMap: model.playersByPlayerIdMap);
     notifyListeners();
   }
 

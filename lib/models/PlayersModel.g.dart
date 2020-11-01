@@ -8,12 +8,11 @@ part of 'PlayersModel.dart';
 
 PlayersModel _$PlayersModelFromJson(Map<String, dynamic> json) {
   return PlayersModel(
-    playerIdMax: json['playerIdMax'] as int,
-    playersByPlayerIdMap:
-        (json['playersByPlayerIdMap'] as Map<String, dynamic>)?.map(
+    (json['playersByPlayerIdMap'] as Map<String, dynamic>)?.map(
       (k, e) => MapEntry(int.parse(k),
           e == null ? null : Player.fromJson(e as Map<String, dynamic>)),
     ),
+    playerIdMax: json['playerIdMax'] as int,
     currentPlayer: json['currentPlayer'] == null
         ? null
         : Player.fromJson(json['currentPlayer'] as Map<String, dynamic>),

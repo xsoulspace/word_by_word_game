@@ -13,10 +13,8 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(
-            create: (context) => PlayersModel(
-                playerIdMax: 1,
-                playersByPlayerIdMap: {firstPlayer.id: firstPlayer},
-                currentPlayer: firstPlayer)),
+            create: (context) => PlayersModel({firstPlayer.id: firstPlayer},
+                playerIdMax: 1, currentPlayer: firstPlayer)),
         ChangeNotifierProvider(create: (context) => WordsModel({}, {})),
         ChangeNotifierProvider(create: (context) => PlayerColorsModel()),
         ChangeNotifierProvider(

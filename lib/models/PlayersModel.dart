@@ -1,3 +1,5 @@
+import 'dart:collection';
+
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:word_by_word_game/entities/FirstPlayer.dart';
@@ -10,19 +12,23 @@ class PlayersModelConsts {
   static String storagename = 'playersmodel';
 }
 
-@JsonSerializable()
+@JsonSerializable(nullable: true)
 class PlayersModel extends ChangeNotifier {
   ///
   /// Players data
   ///
-  Map<int, Player> playersByPlayerIdMap = {};
+  Map<int, Player> _playersByPlayerIdMap = {};
+  UnmodifiableMapView<int, Player> get playersByPlayerIdMap =>
+      UnmodifiableMapView(_playersByPlayerIdMap);
+
   int playerIdMax = 1;
-  List<Player> get playersList => playersByPlayerIdMap.values.toList();
+  List<Player> get playersList => _playersByPlayerIdMap.values.toList();
   Player currentPlayer = firstPlayer;
   void addPlayerByColor({@required PlayerColor playerColor}) {
     playerIdMax++;
-    playersByPlayerIdMap.putIfAbsent(
+    _playersByPlayerIdMap.putIfAbsent(
         playerIdMax, () => Player(id: playerIdMax, playerColor: playerColor));
+    notifyListeners();
   }
 
   setCurrentPlayer({@required Player player}) {
@@ -40,21 +46,27 @@ class PlayersModel extends ChangeNotifier {
   }
 
   void resetPlayers() {
-    playersByPlayerIdMap.clear();
-    playersByPlayerIdMap.putIfAbsent(firstPlayer.id, () => firstPlayer);
+    _playersByPlayerIdMap.clear();
+    _playersByPlayerIdMap.putIfAbsent(firstPlayer.id, () => firstPlayer);
     notifyListeners();
   }
 
-  get isOnePlayerPlaying => playersByPlayerIdMap.length == 1;
-  get isNotOnePlayerPlaying => playersByPlayerIdMap.length > 1;
+  void reloadPlayers({@required Map<int, Player> playersByPlayerIdMap}) {
+    _playersByPlayerIdMap.clear();
+    _playersByPlayerIdMap.addAll(playersByPlayerIdMap);
+    notifyListeners();
+  }
+
+  get isOnePlayerPlaying => _playersByPlayerIdMap.length == 1;
+  get isNotOnePlayerPlaying => _playersByPlayerIdMap.length > 1;
 
   ///
   /// JSON serialization
   ///
-  PlayersModel(
-      {this.playerIdMax,
-      @required this.playersByPlayerIdMap,
-      @required this.currentPlayer});
+  PlayersModel(Map<int, Player> playersByPlayerIdMap,
+      {this.playerIdMax, @required this.currentPlayer}) {
+    this._playersByPlayerIdMap = playersByPlayerIdMap;
+  }
 
   factory PlayersModel.fromJson(Map<String, dynamic> json) =>
       _$PlayersModelFromJson(json);
