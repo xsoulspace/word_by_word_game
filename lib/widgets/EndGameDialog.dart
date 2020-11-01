@@ -47,6 +47,7 @@ class EndGameDialog extends StatelessWidget {
       ),
       actions: [
         Material(
+          color: Colors.transparent,
           child: ListTile(
             title: Text('Continue'),
             onTap: () {
@@ -55,8 +56,12 @@ class EndGameDialog extends StatelessWidget {
           ),
         ),
         Material(
+          color: Colors.transparent,
           child: ListTile(
-            title: Text('Start again.'),
+            title: Text(
+              'Start again',
+              textAlign: TextAlign.end,
+            ),
             onTap: () async {
               wordsModel.resetToNewGame();
               await storageModel.saveWordsModel();

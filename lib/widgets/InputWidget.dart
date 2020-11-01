@@ -80,19 +80,25 @@ class _InputWidgetState extends State<InputWidget> {
             children: [
           Row(
             children: [
-              PlayerWidget(
-                player: playersModel.currentPlayer,
-                isDisabled: true,
-              ),
-              Expanded(
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Consumer<WordsModel>(
-                      builder: (BuildContext buildContext, wordsModel,
-                              Widget widget) =>
-                          Text(wordsModel.lastword)),
-                ),
-              ),
+              //TODO: add translation
+              Text('Player: '),
+              SizedBox(width: 10),
+              Container(
+                  height: 30.0,
+                  width: 30.0,
+                  child: FittedBox(
+                      child: PlayerWidget(
+                    player: playersModel.currentPlayer,
+                    isDisabled: true,
+                    fontSize: 24,
+                  ))),
+              SizedBox(width: 30),
+              Consumer<WordsModel>(
+                  builder:
+                      (BuildContext buildContext, wordsModel, Widget widget) =>
+                          Text(wordsModel.isAtLeastOneWordRecorded
+                              ? 'Last word:   ${wordsModel.lastword}'
+                              : '')),
             ],
           ),
           Padding(
@@ -106,6 +112,7 @@ class _InputWidgetState extends State<InputWidget> {
                     wordsModel.isPhraseFromLastwordNotEmpty,
                 child: Expanded(
                   child: TextField(
+                    style: TextStyle(fontSize: 14.0),
                     textAlign: TextAlign.end,
                     decoration: InputDecoration(
                         border: _textFieldOutlineInputBorder(),
@@ -136,6 +143,7 @@ class _InputWidgetState extends State<InputWidget> {
               // second input
               Expanded(
                 child: TextField(
+                  style: TextStyle(fontSize: 14.0),
                   decoration: InputDecoration(
                       border: _textFieldOutlineInputBorder(),
                       //TODO: add translation
@@ -178,14 +186,17 @@ class _InputWidgetState extends State<InputWidget> {
           player: playersModel.currentPlayer);
       if (gameNotification.status) {
         await storageModel.saveWordsModel();
-        _leftTextController.text = wordsModel.newWordBeginning;
-        _rightTextController.text = wordsModel.newWordEnding;
+        _leftTextController.text = '';
+        _rightTextController.text = '';
         if (playersModel.isNotOnePlayerPlaying) {
           playersModel.nextPlayer();
           await storageModel.savePlayersModel();
         }
+        // resetting notification state
+        notificationsModel.gameNotification = null;
+      } else {
+        notificationsModel.gameNotification = gameNotification;
       }
-      notificationsModel.gameNotification = gameNotification;
     }
   }
 }

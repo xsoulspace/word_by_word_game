@@ -25,7 +25,7 @@ WordsModel _$WordsModelFromJson(Map<String, dynamic> json) {
   )
     ..phraseFromLastword = json['phraseFromLastword'] as String
     ..privateLastword = json['privateLastword'] as String
-    ..lastword = json['lastword'];
+    ..lastword = json['lastword'] as String;
 }
 
 Map<String, dynamic> _$WordsModelToJson(WordsModel instance) =>

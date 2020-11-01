@@ -27,6 +27,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                 : '')) {
       _animationController.reset();
       _animationController.forward();
+    } else {
+      _animationController.reset();
     }
   }
 

@@ -15,6 +15,10 @@ PlayersModel _$PlayersModelFromJson(Map<String, dynamic> json) {
     currentPlayer: json['currentPlayer'] == null
         ? null
         : Player.fromJson(json['currentPlayer'] as Map<String, dynamic>),
+    tempPlayers: (json['tempPlayers'] as List)
+        ?.map((e) =>
+            e == null ? null : Player.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
   );
 }
 
@@ -22,5 +26,6 @@ Map<String, dynamic> _$PlayersModelToJson(PlayersModel instance) =>
     <String, dynamic>{
       'playersByPlayerIdMap': instance.playersByPlayerIdMap
           ?.map((k, e) => MapEntry(k.toString(), e)),
+      'tempPlayers': instance.tempPlayers,
       'currentPlayer': instance.currentPlayer,
     };

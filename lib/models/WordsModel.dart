@@ -49,7 +49,9 @@ class WordsModel extends ChangeNotifier {
 
   Future<GameNotification> addNewWordForPLayer(
       {@required Player player}) async {
-    var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding';
+    var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding'
+        .toLowerCase()
+        .replaceAll(' ', '');
     // TODO: add translation
     if (newWord.length < phraseLimit)
       return GameNotification(
@@ -109,9 +111,10 @@ class WordsModel extends ChangeNotifier {
   String privateLastword = '';
   set lastword(String word) {
     privateLastword = word;
+    notifyListeners();
   }
 
-  get lastword => privateLastword;
+  String get lastword => privateLastword;
 
   /// Functions
   void setLastWordPhrase() {
@@ -160,8 +163,19 @@ class WordsModel extends ChangeNotifier {
   ///
   /// Current words state control
   ///
-  String newWordBeginning = '';
-  String newWordEnding = '';
+  String _newWordBeginning = '';
+  String get newWordBeginning => _newWordBeginning;
+  set newWordBeginning(String newWordBeginning) {
+    _newWordBeginning = newWordBeginning;
+    notifyListeners();
+  }
+
+  String _newWordEnding = '';
+  String get newWordEnding => _newWordEnding;
+  set newWordEnding(String newWordEnding) {
+    _newWordEnding = newWordEnding;
+    notifyListeners();
+  }
 
   ///
   /// Reset state
@@ -176,6 +190,7 @@ class WordsModel extends ChangeNotifier {
     wordsIdMax = 0;
     _wordsIdsByPlayerIdMap.clear();
     _allWordsByWordIdMap.clear();
+    privateLastword = '';
     notifyListeners();
   }
 
@@ -195,8 +210,8 @@ class WordsModel extends ChangeNotifier {
   WordsModel(
     Map<int, Word> allWordsByWordIdMap,
     Map<int, List<int>> wordsIdsByPlayerIdMap, {
-    this.newWordBeginning = '',
-    this.newWordEnding = '',
+    String newWordBeginning = '',
+    String newWordEnding = '',
     this.phraseLimit = 3,
     this.phraseLimitMax = 3,
     this.phraseLimitLettersLeft = 6,
@@ -204,6 +219,9 @@ class WordsModel extends ChangeNotifier {
   }) {
     this._allWordsByWordIdMap = allWordsByWordIdMap;
     this._wordsIdsByPlayerIdMap = wordsIdsByPlayerIdMap;
+    this._newWordBeginning = newWordBeginning;
+    this._newWordEnding = newWordEnding;
+    notifyListeners();
   }
 
   factory WordsModel.fromJson(Map<String, dynamic> json) =>

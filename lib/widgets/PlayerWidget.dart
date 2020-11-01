@@ -7,23 +7,36 @@ class PlayerWidget extends StatelessWidget {
   final bool isDisabled;
   final bool isEnabled;
   final Function() onTap;
+  final double fontSize;
   PlayerWidget(
       {@required this.player,
       this.isDisabled = false,
       this.isEnabled = true,
-      this.onTap});
+      this.onTap,
+      this.fontSize});
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: isDisabled ? null : onTap,
-      child: (CircleAvatar(
-        backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
-        child: Text(
-          '${player.id}',
-          style:
-              TextStyle(color: Theme.of(context).primaryTextTheme.button.color),
-        ),
-      )),
+    return FloatingActionButton(
+      elevation: 1,
+      backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
+      onPressed: isDisabled ? null : onTap,
+      child: Text(
+        '${player.id}',
+        style: TextStyle(
+            fontSize: fontSize,
+            color: Theme.of(context).primaryTextTheme.subtitle1.color),
+      ),
     );
+    //  InkWell(
+    //   onTap: isDisabled ? null : onTap,
+    //   child: (CircleAvatar(
+    //     backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
+    // child: Text(
+    //   '${player.id}',
+    //   style: TextStyle(
+    //       color: Theme.of(context).primaryTextTheme.subtitle1.color),
+    // ),
+    //   )),
+    // );
   }
 }
