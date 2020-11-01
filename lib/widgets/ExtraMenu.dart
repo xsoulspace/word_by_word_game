@@ -11,9 +11,15 @@ class ExtraMenu extends StatelessWidget {
     var wordsModel = Provider.of<WordsModel>(context);
     var storageModel = Provider.of<StorageModel>(context);
     return Material(
+      color: Colors.transparent,
       child: Column(
         children: [
           ListTile(
+              focusColor: Colors.white.withOpacity(0.4),
+              hoverColor: Colors.white.withOpacity(0.2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
               leading: Icon(Icons.skip_next),
               enabled: wordsModel.isAtLeastOneWordRecorded &&
                   wordsModel.isPhraseFromLastwordNotEmpty &&
@@ -26,6 +32,11 @@ class ExtraMenu extends StatelessWidget {
                 await storageModel.saveWordsModel();
               }),
           ListTile(
+              focusColor: Colors.white.withOpacity(0.4),
+              hoverColor: Colors.white.withOpacity(0.2),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(20),
+              ),
               leading: Icon(Icons.add_circle_outline),
               title:
                   // TODO: add translation

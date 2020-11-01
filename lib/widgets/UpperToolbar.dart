@@ -9,6 +9,7 @@ import 'package:word_by_word_game/widgets/MenuWidget.dart';
 
 void openBottomMenu(BuildContext context) {
   showModalBottomSheet(
+      backgroundColor: Colors.transparent,
       enableDrag: true,
       context: context,
       builder: (BuildContext buildContext) {
@@ -20,8 +21,11 @@ class UpperToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.transparent,
       elevation: 3,
+      shadowColor: Theme.of(context).shadowColor.withOpacity(0.2),
       child: Container(
+        color: Colors.white.withOpacity(0.4),
         padding: EdgeInsets.all(20),
         child: Row(children: [
           Wrap(
