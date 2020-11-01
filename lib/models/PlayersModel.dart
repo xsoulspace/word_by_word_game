@@ -43,9 +43,10 @@ class PlayersModel extends ChangeNotifier {
   nextPlayer() {
     var playerIndex =
         playersList.indexWhere((player) => player.id == currentPlayer.id);
-    var player = playerIndex == null
+    var newPlayerIndex = playerIndex + 1;
+    var player = playerIndex == null || newPlayerIndex > playersList.length - 1
         ? firstPlayer
-        : playersList[playerIndex] ?? firstPlayer;
+        : playersList[newPlayerIndex] ?? firstPlayer;
     setCurrentPlayer(player: player);
   }
 

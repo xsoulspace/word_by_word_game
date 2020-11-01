@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
@@ -24,6 +25,7 @@ void main() {
         ChangeNotifierProvider(
             create: (context) => StorageModel(context: context)),
         ChangeNotifierProvider(create: (context) => ScoreModel()),
+        ChangeNotifierProvider(create: (context) => NotificationsModel())
       ],
       child: MyApp(),
     ),

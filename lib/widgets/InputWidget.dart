@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
@@ -14,45 +15,24 @@ class InputWidget extends StatefulWidget {
 class _InputWidgetState extends State<InputWidget> {
   final TextEditingController _leftTextController = TextEditingController();
   final TextEditingController _rightTextController = TextEditingController();
-  _addNewWord() async {
-    String leftLetters = _leftTextController.text;
-    String rightLetters = _rightTextController.text;
-    if (leftLetters.isNotEmpty || rightLetters.isNotEmpty) {
-      var wordsModel = Provider.of<WordsModel>(context, listen: false);
-      var playersModel = Provider.of<PlayersModel>(context, listen: false);
-      var storageModel = Provider.of<StorageModel>(context, listen: false);
-      var isWordSuccessfullyAdded = await wordsModel.addNewWordForPLayer(
-          player: playersModel.currentPlayer);
-      if (isWordSuccessfullyAdded) {
-        await storageModel.saveWordsModel();
-        _leftTextController.text = wordsModel.newWordBeginning;
-        _rightTextController.text = wordsModel.newWordEnding;
-        if (playersModel.isNotOnePlayerPlaying) {
-          playersModel.nextPlayer();
-          await storageModel.savePlayersModel();
-        }
-      }
-    }
-    // show error that field need to be filled
-  }
 
   @override
   void initState() {
+    super.initState();
     _leftTextController.addListener(_updateWordsModelPhrases);
     _rightTextController.addListener(_updateWordsModelPhrases);
-    super.initState();
   }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
+    super.dispose();
 
     _leftTextController.removeListener(_updateWordsModelPhrases);
     _leftTextController.dispose();
     _rightTextController.removeListener(_updateWordsModelPhrases);
     _rightTextController.dispose();
-    super.dispose();
   }
 
   _textFieldOutlineInputBorder() {
@@ -183,5 +163,29 @@ class _InputWidgetState extends State<InputWidget> {
             ),
           )
         ]));
+  }
+
+  _addNewWord() async {
+    String leftLetters = _leftTextController.text;
+    String rightLetters = _rightTextController.text;
+    if (leftLetters.isNotEmpty || rightLetters.isNotEmpty) {
+      var notificationsModel =
+          Provider.of<NotificationsModel>(context, listen: false);
+      var wordsModel = Provider.of<WordsModel>(context, listen: false);
+      var playersModel = Provider.of<PlayersModel>(context, listen: false);
+      var storageModel = Provider.of<StorageModel>(context, listen: false);
+      var gameNotification = await wordsModel.addNewWordForPLayer(
+          player: playersModel.currentPlayer);
+      if (gameNotification.status) {
+        await storageModel.saveWordsModel();
+        _leftTextController.text = wordsModel.newWordBeginning;
+        _rightTextController.text = wordsModel.newWordEnding;
+        if (playersModel.isNotOnePlayerPlaying) {
+          playersModel.nextPlayer();
+          await storageModel.savePlayersModel();
+        }
+      }
+      notificationsModel.gameNotification = gameNotification;
+    }
   }
 }

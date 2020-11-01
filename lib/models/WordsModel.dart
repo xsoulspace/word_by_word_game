@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:word_by_word_game/entities/GameNotification.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/Word.dart';
 
@@ -23,6 +24,8 @@ class WordsModel extends ChangeNotifier {
   UnmodifiableMapView<int, Word> get allWordsByWordIdMap =>
       UnmodifiableMapView(allWordsByWordIdMap);
   int wordsIdMax = 0;
+  List<String> get allWordsValues =>
+      _allWordsByWordIdMap.values.map((e) => e.value).toList();
 
   ///
   /// Words conrol functions
@@ -44,11 +47,18 @@ class WordsModel extends ChangeNotifier {
         : '';
   }
 
-  Future<bool> addNewWordForPLayer({@required Player player}) async {
+  Future<GameNotification> addNewWordForPLayer(
+      {@required Player player}) async {
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding';
-    var isNewWordExists = _allWordsByWordIdMap.containsValue(newWord);
+    // TODO: add translation
+    if (newWord.length < phraseLimit)
+      return GameNotification(
+          status: false, text: 'Word needs to have more then $phraseLimit');
+    var isNewWordExists = allWordsValues.contains(newWord);
 
-    if (isNewWordExists) return false;
+    if (isNewWordExists)
+      return GameNotification(
+          status: false, text: 'This word was written aleady!');
 
     wordsIdMax++;
 
@@ -58,7 +68,9 @@ class WordsModel extends ChangeNotifier {
     var playerWordsIds = getWordsIdsListByPlayer(player: player);
     var isNewIdExists = playerWordsIds.contains(wordsIdMax);
 
-    if (isNewIdExists) return false;
+    if (isNewIdExists)
+      return GameNotification(
+          status: false, text: 'This word was written aleady!');
 
     playerWordsIds.add(wordsIdMax);
     _wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
@@ -70,7 +82,7 @@ class WordsModel extends ChangeNotifier {
     newWordBeginning = '';
     newWordEnding = '';
     notifyListeners();
-    return true;
+    return GameNotification(status: true, text: 'Word added!');
   }
 
   bool get isNoWordsRecordedYet => _allWordsByWordIdMap.isEmpty;
@@ -164,6 +176,7 @@ class WordsModel extends ChangeNotifier {
     wordsIdMax = 0;
     _wordsIdsByPlayerIdMap.clear();
     _allWordsByWordIdMap.clear();
+    notifyListeners();
   }
 
   void reloadState(
@@ -173,6 +186,7 @@ class WordsModel extends ChangeNotifier {
     _wordsIdsByPlayerIdMap.addAll(wordsIdsPlayerIdMap);
     _allWordsByWordIdMap.clear();
     _allWordsByWordIdMap.addAll(allWordsByWordIdMap);
+    notifyListeners();
   }
 
   ///

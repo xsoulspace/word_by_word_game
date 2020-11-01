@@ -20,22 +20,31 @@ class EndGameDialog extends StatelessWidget {
 
     return CupertinoAlertDialog(
       title: Text('Congratulations!'),
-      content: Column(children: [
-        _playersHighscores(context: context),
-        FutureBuilder(
-            future: scoreModel.highscore,
-            builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return SizedBox(
-                  width: 10,
-                  child: CircularSpinner(),
-                  height: 10,
-                );
-              } else {
-                return Text('Max highscore is ${snapshot.data}');
-              }
-            }),
-      ]),
+      content: Material(
+        color: Colors.transparent,
+        child: Column(children: [
+          SizedBox(
+            height: 10,
+          ),
+          _playersHighscores(context: context),
+          SizedBox(
+            height: 10,
+          ),
+          FutureBuilder(
+              future: scoreModel.highscore,
+              builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return SizedBox(
+                    width: 10,
+                    child: CircularSpinner(),
+                    height: 10,
+                  );
+                } else {
+                  return Text('Max highscore is ${snapshot.data}');
+                }
+              }),
+        ]),
+      ),
       actions: [
         Material(
           child: ListTile(
@@ -51,7 +60,8 @@ class EndGameDialog extends StatelessWidget {
             onTap: () async {
               wordsModel.resetToNewGame();
               await storageModel.saveWordsModel();
-              playersModel.setCurrentPlayer(player:playersModel.playersList.first);
+              playersModel.setCurrentPlayer(
+                  player: playersModel.playersList.first);
               Navigator.pop(context);
             },
           ),
@@ -88,16 +98,19 @@ class EndGameDialog extends StatelessWidget {
 
       /// descending order
       playersList.sort(
-          (playerA, playerB) => playerA.highscore.compareTo(playerB.highscore));
+          (playerA, playerB) => playerB.highscore.compareTo(playerA.highscore));
       return Column(children: [
-        ...playersList.map((player) => Row(
-              children: [
-                PlayerWidget(player: player),
-                SizedBox(
-                  width: 10,
-                ),
-                Text(player.highscore.toString())
-              ],
+        ...playersList.map((player) => Padding(
+              padding: EdgeInsets.symmetric(vertical: 4),
+              child: Row(
+                children: [
+                  PlayerWidget(player: player),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  Text(player.highscore.toString())
+                ],
+              ),
             ))
       ]);
     }
