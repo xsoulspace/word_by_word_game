@@ -47,20 +47,21 @@ class EndGameDialog extends StatelessWidget {
       ),
       actions: [
         Material(
-          color: Colors.transparent,
           child: ListTile(
-            title: Text('Continue'),
+            title: Text(
+              'Continue',
+              textAlign: TextAlign.center,
+            ),
             onTap: () {
               Navigator.pop(context);
             },
           ),
         ),
         Material(
-          color: Colors.transparent,
           child: ListTile(
             title: Text(
               'Start again',
-              textAlign: TextAlign.end,
+              textAlign: TextAlign.center,
             ),
             onTap: () async {
               wordsModel.resetToNewGame();

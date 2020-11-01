@@ -36,7 +36,15 @@ class _InputWidgetState extends State<InputWidget> {
   }
 
   _textFieldOutlineInputBorder() {
-    return OutlineInputBorder(borderRadius: BorderRadius.circular(20));
+    return OutlineInputBorder(
+      borderRadius: BorderRadius.circular(20),
+    );
+  }
+
+  _textFieldFocusOutlineInputBorder() {
+    return OutlineInputBorder(
+        borderRadius: BorderRadius.circular(20),
+        borderSide: BorderSide(color: Colors.white.withOpacity(0.7)));
   }
 
   _decreaseButton({@required bool isFromBeginning}) {
@@ -74,103 +82,111 @@ class _InputWidgetState extends State<InputWidget> {
     var playersModel = Provider.of<PlayersModel>(context);
 
     return Material(
+        color: Colors.transparent,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          Row(
-            children: [
-              //TODO: add translation
-              Text('Player: '),
-              SizedBox(width: 10),
-              Container(
-                  height: 30.0,
-                  width: 30.0,
-                  child: FittedBox(
-                      child: PlayerWidget(
-                    player: playersModel.currentPlayer,
-                    isDisabled: true,
-                    fontSize: 24,
-                  ))),
-              SizedBox(width: 30),
-              Consumer<WordsModel>(
-                  builder:
-                      (BuildContext buildContext, wordsModel, Widget widget) =>
+              Row(
+                children: [
+                  //TODO: add translation
+                  Text('Player: '),
+                  SizedBox(width: 10),
+                  Container(
+                      height: 30.0,
+                      width: 30.0,
+                      child: FittedBox(
+                          child: PlayerWidget(
+                        player: playersModel.currentPlayer,
+                        isDisabled: true,
+                        fontSize: 24,
+                      ))),
+                  SizedBox(width: 30),
+                  Consumer<WordsModel>(
+                      builder: (BuildContext buildContext, wordsModel,
+                              Widget widget) =>
                           Text(wordsModel.isAtLeastOneWordRecorded
                               ? 'Last word:   ${wordsModel.lastword}'
                               : '')),
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(vertical: 10),
-          ),
-          Row(
-            children: [
-              // first input
-              Visibility(
-                visible: wordsModel.isAtLeastOneWordRecorded &&
-                    wordsModel.isPhraseFromLastwordNotEmpty,
-                child: Expanded(
-                  child: TextField(
-                    style: TextStyle(fontSize: 14.0),
-                    textAlign: TextAlign.end,
-                    decoration: InputDecoration(
-                        border: _textFieldOutlineInputBorder(),
-                        // TODO: add word tranlation
-                        hintText: 'add beginning'),
-                    controller: _leftTextController,
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(vertical: 10),
+              ),
+              Row(
+                children: [
+                  // first input
+                  Visibility(
+                    visible: wordsModel.isAtLeastOneWordRecorded &&
+                        wordsModel.isPhraseFromLastwordNotEmpty,
+                    child: Expanded(
+                      child: TextField(
+                        style: TextStyle(fontSize: 14.0),
+                        textAlign: TextAlign.end,
+                        decoration: InputDecoration(
+                            focusedBorder: _textFieldFocusOutlineInputBorder(),
+                            border: _textFieldOutlineInputBorder(),
+                            // TODO: add word tranlation
+                            hintText: 'add beginning'),
+                        controller: _leftTextController,
+                      ),
+                    ),
+                  ),
+                  // // letters
+                  Visibility(
+                      visible: wordsModel.isAtLeastOneWordRecorded &&
+                          wordsModel.isPhraseFromLastwordNotEmpty,
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 5),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            _decreaseButton(isFromBeginning: true),
+                            Consumer<WordsModel>(
+                                builder: (BuildContext buildContext, wordsModel,
+                                        Widget widget) =>
+                                    Text(wordsModel.phraseFromLastword)),
+                            _decreaseButton(isFromBeginning: false)
+                          ],
+                        ),
+                      )),
+                  // second input
+                  Expanded(
+                    child: TextField(
+                      style: TextStyle(fontSize: 14.0),
+                      decoration: InputDecoration(
+                          focusedBorder: _textFieldFocusOutlineInputBorder(),
+                          border: _textFieldOutlineInputBorder(),
+                          //TODO: add translation
+                          hintText: wordsModel.isNoWordsRecordedYet
+                              ? 'add new word'
+                              : 'add ending'),
+                      controller: _rightTextController,
+                    ),
+                  )
+                ],
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 30),
+                child: Center(
+                  child: FlatButton(
+                    hoverColor: Colors.white.withOpacity(0.3),
+                    focusColor: Colors.white.withOpacity(0.5),
+                    splashColor: playersModel.currentPlayer.playerColor.color
+                        .withOpacity(0.4),
+                    highlightColor: Colors.white.withOpacity(0.7),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30)),
+                    child: // TODO: add international text
+                        Padding(
+                      padding: EdgeInsets.all(24),
+                      child: Text('add', style: TextStyle(fontSize: 24)),
+                    ),
+                    onPressed: () async => await _addNewWord(),
                   ),
                 ),
-              ),
-              // // letters
-              Visibility(
-                  visible: wordsModel.isAtLeastOneWordRecorded &&
-                      wordsModel.isPhraseFromLastwordNotEmpty,
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 5),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        _decreaseButton(isFromBeginning: true),
-                        Consumer<WordsModel>(
-                            builder: (BuildContext buildContext, wordsModel,
-                                    Widget widget) =>
-                                Text(wordsModel.phraseFromLastword)),
-                        _decreaseButton(isFromBeginning: false)
-                      ],
-                    ),
-                  )),
-              // second input
-              Expanded(
-                child: TextField(
-                  style: TextStyle(fontSize: 14.0),
-                  decoration: InputDecoration(
-                      border: _textFieldOutlineInputBorder(),
-                      //TODO: add translation
-                      hintText: wordsModel.isNoWordsRecordedYet
-                          ? 'add new word'
-                          : 'add ending'),
-                  controller: _rightTextController,
-                ),
               )
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 30),
-            child: Center(
-              child: FlatButton(
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30)),
-                child: // TODO: add international text
-                    Padding(
-                  padding: EdgeInsets.all(24),
-                  child: Text('add', style: TextStyle(fontSize: 24)),
-                ),
-                onPressed: () async => await _addNewWord(),
-              ),
-            ),
-          )
-        ]));
+            ]));
   }
 
   _addNewWord() async {
