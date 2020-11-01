@@ -21,13 +21,17 @@ class PlayersModel extends ChangeNotifier {
   UnmodifiableMapView<int, Player> get playersByPlayerIdMap =>
       UnmodifiableMapView(_playersByPlayerIdMap);
 
-  int playerIdMax = 1;
+  /// Temp players doesn't need to be changed at all,
+  /// at least until new color generated
+  List<Player> tempPlayers = [];
+
   List<Player> get playersList => _playersByPlayerIdMap.values.toList();
+
   Player currentPlayer = firstPlayer;
+
   void addPlayerByColor({@required PlayerColor playerColor}) {
-    playerIdMax++;
-    _playersByPlayerIdMap.putIfAbsent(
-        playerIdMax, () => Player(id: playerIdMax, playerColor: playerColor));
+    _playersByPlayerIdMap.putIfAbsent(playerColor.id,
+        () => Player(id: playerColor.id, playerColor: playerColor));
     notifyListeners();
   }
 
@@ -45,9 +49,21 @@ class PlayersModel extends ChangeNotifier {
     setCurrentPlayer(player: player);
   }
 
+  bool hasPLayer({@required Player player}) =>
+      _playersByPlayerIdMap.containsKey(player.id);
+
   void resetPlayers() {
     _playersByPlayerIdMap.clear();
     _playersByPlayerIdMap.putIfAbsent(firstPlayer.id, () => firstPlayer);
+    notifyListeners();
+  }
+
+  void removePlayersAfterPlayer({@required Player player}) {
+    var players =
+        playersList.where((modelPlayer) => modelPlayer.id > player.id);
+    players.forEach((modelPlayer) {
+      _playersByPlayerIdMap.remove(modelPlayer.id);
+    });
     notifyListeners();
   }
 
@@ -64,7 +80,7 @@ class PlayersModel extends ChangeNotifier {
   /// JSON serialization
   ///
   PlayersModel(Map<int, Player> playersByPlayerIdMap,
-      {this.playerIdMax, @required this.currentPlayer}) {
+      {@required this.currentPlayer, this.tempPlayers}) {
     this._playersByPlayerIdMap = playersByPlayerIdMap;
   }
 

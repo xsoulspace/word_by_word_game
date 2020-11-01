@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/entities/FirstPlayer.dart';
-import 'package:word_by_word_game/models/PlayerColorsModel.dart';
+import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/widgets/PlayerWidget.dart';
@@ -25,11 +24,8 @@ class PlayerChooser extends StatelessWidget {
           ),
           Row(
             children: [
-              ...playersModel.isOnePlayerPlaying
-                  ? [PlayerWidget(isDisabled: true, player: firstPlayer)]
-                  : playersModel.playersList.map((player) =>
-                      PlayerWidget(player: player, isDisabled: false)),
-              _addNewPlayer(context)
+              ...playersModel.tempPlayers.map((player) =>
+                  _playerController(context: context, player: player))
             ],
           ),
         ],
@@ -43,20 +39,33 @@ class PlayerChooser extends StatelessWidget {
   //       shape: BoxShape.circle,
   //       color: Colors.green,
   //     ))
-  Widget _addNewPlayer(BuildContext context) {
+  Widget _playerController(
+      {@required BuildContext context, @required Player player}) {
     var playersModel = Provider.of<PlayersModel>(context, listen: false);
-    var playerColorsModel =
-        Provider.of<PlayerColorsModel>(context, listen: false);
     var storageModel = Provider.of<StorageModel>(context, listen: false);
-
-    return IconButton(
-      icon: Icon(Icons.add),
-      // TODO: add new player
-      onPressed: () async {
-        var playerColor = playerColorsModel.getRandomColor();
-        playersModel.addPlayerByColor(playerColor: playerColor);
-        await storageModel.savePlayersModel();
-      },
+    bool isExists = playersModel.hasPLayer(player: player);
+    return Padding(
+      padding: EdgeInsets.only(left: 8.0),
+      child: PlayerWidget(
+        player: player,
+        isEnabled: isExists,
+        onTap: () async {
+          if (isExists) {
+            // remove player and all players after
+            playersModel.removePlayersAfterPlayer(player: player);
+          } else {
+            // add players before
+            var playersToAdd = playersModel.tempPlayers.where((tempPlayer) =>
+                tempPlayer.id <= player.id &&
+                !playersModel.hasPLayer(player: tempPlayer));
+            playersToAdd.forEach((tempPlayer) {
+              playersModel.addPlayerByColor(
+                  playerColor: tempPlayer.playerColor);
+            });
+          }
+          await storageModel.savePlayersModel();
+        },
+      ),
     );
   }
 }

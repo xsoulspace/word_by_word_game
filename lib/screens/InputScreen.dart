@@ -14,19 +14,22 @@ class InputScreen extends StatelessWidget {
         body: Container(
       decoration:
           BoxDecoration(color: Theme.of(context).scaffoldBackgroundColor),
-      child: Column(children: [
-        UpperToolbar(),
-        Padding(
-          padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
-          child: InputWidget(),
-        ),
-        Visibility(
-          visible: wordsModel.isAtLeastOneWordRecorded,
-          maintainState: true,
-          maintainAnimation: true,
-          child: ExtraMenu(),
-        ),
-      ]),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.vertical,
+        child: Column(children: [
+          UpperToolbar(),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
+            child: InputWidget(),
+          ),
+          Visibility(
+            visible: wordsModel.isAtLeastOneWordRecorded,
+            maintainState: true,
+            maintainAnimation: true,
+            child: ExtraMenu(),
+          ),
+        ]),
+      ),
     ));
   }
 }

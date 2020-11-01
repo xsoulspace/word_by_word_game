@@ -5,16 +5,24 @@ import 'package:word_by_word_game/entities/Player.dart';
 class PlayerWidget extends StatelessWidget {
   final Player player;
   final bool isDisabled;
-  PlayerWidget({@required this.player, this.isDisabled});
+  final bool isEnabled;
+  final Function() onTap;
+  PlayerWidget(
+      {@required this.player,
+      this.isDisabled = false,
+      this.isEnabled = true,
+      this.onTap});
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      // remove player
-      // TODO: add new player
-      onTap: isDisabled ? null : () => {},
+      onTap: isDisabled ? null : onTap,
       child: (CircleAvatar(
-        backgroundColor: player.playerColor.color,
-        child: Text('${player.id}'),
+        backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
+        child: Text(
+          '${player.id}',
+          style:
+              TextStyle(color: Theme.of(context).primaryTextTheme.button.color),
+        ),
       )),
     );
   }
