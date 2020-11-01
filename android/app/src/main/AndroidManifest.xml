@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.word_by_word_game">
+    package="dev.xsoulspace.word_by_word_game">
    <application
-        android:label="word_by_word_game"
+        android:label="Word by word"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
