@@ -9,22 +9,29 @@ class PlayerChooser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var playersModel = Provider.of<PlayersModel>(context);
-    return Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          // TODO: add translation
-          child: Text('Players: '),
-        ),
-        Row(
-          children: [
-            PlayerWidget(isDisabled: true, player: firstPlayer),
-            ...playersModel.playersList.map(
-                (player) => PlayerWidget(player: player, isDisabled: false)),
-            _addNewPlayer()
-          ],
-        ),
-      ],
+    return Padding(
+      padding: EdgeInsets.only(top: 10),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            // TODO: add translation
+            child: Text('Players: '),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Row(
+            children: [
+              ...playersModel.isOnePlayerPlaying
+                  ? [PlayerWidget(isDisabled: true, player: firstPlayer)]
+                  : playersModel.playersList.map((player) =>
+                      PlayerWidget(player: player, isDisabled: false)),
+              _addNewPlayer()
+            ],
+          ),
+        ],
+      ),
     );
   }
 

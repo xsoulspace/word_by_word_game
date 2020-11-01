@@ -22,11 +22,6 @@ class UpperToolbar extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // TODO: add translation
-                  Text('words count'),
-                  Padding(
-                    padding: EdgeInsets.only(bottom: 10),
-                  ),
                   Consumer3<WordsModel, PlayersModel, ScoreModel>(builder:
                       (context, wordsModel, playersModel, scoreModel, child) {
                     var wordsList = wordsModel.getWordsListByPlayer(

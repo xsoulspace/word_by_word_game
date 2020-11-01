@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
+import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 
 class MenuWidget extends StatelessWidget {
   @override
@@ -17,6 +18,7 @@ class MenuWidget extends StatelessWidget {
                   // TODO: add translation
                   Text('New Game'),
               onTap: () => showEndGameDialog(context)),
+          PlayerChooser(),
           Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -28,7 +30,7 @@ class MenuWidget extends StatelessWidget {
               SizedBox(height: 0.01 * size.height),
               Text('2020 \u00a9 X Soul Space '),
             ],
-          )
+          ),
         ],
       ),
     );

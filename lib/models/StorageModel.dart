@@ -21,9 +21,9 @@ class StorageModel extends ChangeNotifier with StorageMixin {
   }
 
   Future<void> savePlayersModel() async {
-    var playersModel = Provider.of<PlayersModel>(context, listen: false);
-    await save(
-        key: PlayersModelConsts.storagename, value: playersModel.toJson());
+    // var playersModel = Provider.of<PlayersModel>(context, listen: false);
+    // await save(
+    //     key: PlayersModelConsts.storagename, value: playersModel.toJson());
   }
 
   Future<void> loadPlayersModel() async {
@@ -38,8 +38,8 @@ class StorageModel extends ChangeNotifier with StorageMixin {
   }
 
   Future<void> saveWordsModel() async {
-    var wordsModel = Provider.of<WordsModel>(context, listen: false);
-    await save(key: WordsModelConsts.storagename, value: wordsModel.toJson());
+    // var wordsModel = Provider.of<WordsModel>(context, listen: false);
+    // await save(key: WordsModelConsts.storagename, value: wordsModel.toJson());
   }
 
   Future<void> loadWordsModel() async {

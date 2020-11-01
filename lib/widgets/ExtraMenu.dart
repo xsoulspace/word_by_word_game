@@ -4,7 +4,6 @@ import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
-import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 
 class ExtraMenu extends StatelessWidget {
   @override
@@ -18,7 +17,7 @@ class ExtraMenu extends StatelessWidget {
               leading: Icon(Icons.skip_next),
               enabled: wordsModel.isAtLeastOneWordRecorded &&
                   wordsModel.isPhraseFromLastwordNotEmpty &&
-                  wordsModel.isPhraseLimitAvailable,
+                  wordsModel.isPhraseLimitLeftAvailable,
               title:
                   // TODO: add translation
                   Text('Reset ending'),
@@ -34,7 +33,6 @@ class ExtraMenu extends StatelessWidget {
               onTap: () {
                 _showEndGameDialog(context);
               }),
-          PlayerChooser()
         ],
       ),
     );

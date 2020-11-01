@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
+import 'package:word_by_word_game/widgets/PlayerWidget.dart';
 
 class InputWidget extends StatefulWidget {
   @override
@@ -48,8 +49,8 @@ class _InputWidgetState extends State<InputWidget> {
     // widget tree.
 
     _leftTextController.removeListener(_updateWordsModelPhrases);
-    _rightTextController.removeListener(_updateWordsModelPhrases);
     _leftTextController.dispose();
+    _rightTextController.removeListener(_updateWordsModelPhrases);
     _rightTextController.dispose();
     super.dispose();
   }
@@ -70,7 +71,7 @@ class _InputWidgetState extends State<InputWidget> {
       hoverColor: Colors.red.withOpacity(0.1),
       highlightColor: Colors.red.withOpacity(0.2),
       icon: Icon(Icons.remove),
-      onPressed: wordsModel.isPhraseLimitAvailable
+      onPressed: wordsModel.isPhraseLimitLeftAvailable
           ? () async {
               wordsModel.reducePhraseLimit(isFromBeginning: isFromBeginning);
               await storageModel.saveWordsModel();
@@ -90,17 +91,29 @@ class _InputWidgetState extends State<InputWidget> {
   @override
   Widget build(BuildContext context) {
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
+    var playersModel = Provider.of<PlayersModel>(context);
 
     return Material(
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-          Center(
-            child: Consumer<WordsModel>(
-                builder:
-                    (BuildContext buildContext, wordsModel, Widget widget) =>
-                        Text(wordsModel.lastword)),
+          Row(
+            children: [
+              PlayerWidget(
+                player: playersModel.currentPlayer,
+                isDisabled: true,
+              ),
+              Expanded(
+                child: Align(
+                  alignment: Alignment.center,
+                  child: Consumer<WordsModel>(
+                      builder: (BuildContext buildContext, wordsModel,
+                              Widget widget) =>
+                          Text(wordsModel.lastword)),
+                ),
+              ),
+            ],
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 10),
@@ -122,7 +135,6 @@ class _InputWidgetState extends State<InputWidget> {
                   ),
                 ),
               ),
-
               // // letters
               Visibility(
                   visible: wordsModel.isAtLeastOneWordRecorded &&

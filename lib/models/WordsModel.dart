@@ -63,6 +63,7 @@ class WordsModel extends ChangeNotifier {
     playerWordsIds.add(wordsIdMax);
     _wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
     privateLastword = newWord;
+    phraseLimit = phraseLimitMax;
 
     setLastWordPhrase();
 
@@ -81,10 +82,10 @@ class WordsModel extends ChangeNotifier {
   int phraseLimitMax = 3;
   int phraseLimit = 3;
   int phraseLimitLettersLeft = 6;
-  bool get isPhraseLimitAvailable =>
-      phraseLimitLettersLeft >= 1 && phraseLimit > 0;
-  bool get isPhraseLimitNotAvailable =>
-      phraseLimitLettersLeft < 1 || phraseLimit < 1;
+  bool get isPhraseLimitAvailable => phraseLimit > 0;
+  bool get isPhraseLimitNotAvailable => phraseLimit < 1;
+  bool get isPhraseLimitLeftAvailable => phraseLimitLettersLeft >= 1;
+  bool get isPhraseLimitLeftNotAvailable => phraseLimitLettersLeft < 1;
 
   ///
   /// Phrase control
@@ -116,16 +117,13 @@ class WordsModel extends ChangeNotifier {
     if (isPhraseLimitNotAvailable) return;
     if (isPhraseFromLastwordEmpty) return;
 
-    phraseLimit--;
-    phraseLimitLettersLeft--;
-
     if (isFromBeginning) {
-      phraseFromLastword =
-          phraseFromLastword.substring(0, phraseFromLastword.length - 1);
+      phraseFromLastword = phraseFromLastword.substring(1);
     } else {
       phraseFromLastword =
-          phraseFromLastword.substring(phraseFromLastword.length - 1);
+          phraseFromLastword.substring(0, phraseFromLastword.length - 1);
     }
+    phraseLimitLettersLeft--;
 
     notifyListeners();
   }
