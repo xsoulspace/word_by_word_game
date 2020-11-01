@@ -26,7 +26,7 @@ class UpperToolbar extends StatelessWidget {
       shadowColor: Theme.of(context).shadowColor.withOpacity(0.2),
       child: Container(
         color: Colors.white.withOpacity(0.4),
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.only(top: 30, bottom: 20, left: 20, right: 20),
         child: Row(children: [
           Wrap(
             children: [

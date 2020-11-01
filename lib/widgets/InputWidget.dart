@@ -42,22 +42,26 @@ class _InputWidgetState extends State<InputWidget> {
   }
 
   _textFieldFocusOutlineInputBorder() {
+    var playersModel = Provider.of<PlayersModel>(context, listen: false);
     return OutlineInputBorder(
         borderRadius: BorderRadius.circular(20),
-        borderSide: BorderSide(color: Colors.white.withOpacity(0.7)));
+        borderSide: BorderSide(
+            color:
+                playersModel.currentPlayer.playerColor.color.withOpacity(0.7)));
   }
 
   _decreaseButton({@required bool isFromBeginning}) {
     var storageModel = Provider.of<StorageModel>(context, listen: false);
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
-
+    var playersModel = Provider.of<PlayersModel>(context, listen: false);
+    var playerColor = playersModel.currentPlayer.playerColor.color;
     return IconButton(
       disabledColor: Colors.grey,
       iconSize: 36,
-      color: Colors.red,
-      splashColor: Colors.red.withOpacity(0.4),
-      hoverColor: Colors.red.withOpacity(0.1),
-      highlightColor: Colors.red.withOpacity(0.2),
+      color: playerColor,
+      splashColor: playerColor.withOpacity(0.4),
+      hoverColor: playerColor.withOpacity(0.1),
+      highlightColor: playerColor.withOpacity(0.2),
       icon: Icon(Icons.remove),
       onPressed: wordsModel.isPhraseLimitLeftAvailable
           ? () async {
