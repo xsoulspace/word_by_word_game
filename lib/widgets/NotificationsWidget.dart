@@ -57,7 +57,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
   }
 
   disposeNotification() {
-    var notificationsModel = Provider.of<NotificationsModel>(context);
+    var notificationsModel =
+        Provider.of<NotificationsModel>(context, listen: false);
     _animationController.reset();
     notificationsModel.gameNotification = null;
   }
@@ -67,6 +68,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
     var notificationsModel = Provider.of<NotificationsModel>(context);
     return SlideTransition(
       child: Material(
+        color: Colors.transparent,
         child: Dismissible(
           key: ValueKey(_counter),
           onDismissed: (DismissDirection direction) {
