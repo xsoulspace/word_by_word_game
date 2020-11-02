@@ -3,7 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'Word.g.dart';
 
-@JsonSerializable()
+@JsonSerializable(nullable: true)
 class Word {
   final int id;
   final String value;
