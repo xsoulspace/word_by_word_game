@@ -21,7 +21,7 @@ class ScoreModel extends ChangeNotifier with StorageMixin {
     await storage.putString(ScoreModelConsts.highscore, value.toString());
   }
 
-  int calculateHighscore(List<Word> words) => words.length > 1
+  int calculateHighscore(List<Word> words) => words.length > 0
       ? words
               .reduce((value, element) =>
                   Word(id: 0, value: '${value.value}${element.value}'))

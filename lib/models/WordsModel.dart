@@ -22,7 +22,7 @@ class WordsModel extends ChangeNotifier {
       UnmodifiableMapView(_wordsIdsByPlayerIdMap);
   Map<int, Word> _allWordsByWordIdMap;
   UnmodifiableMapView<int, Word> get allWordsByWordIdMap =>
-      UnmodifiableMapView(allWordsByWordIdMap);
+      UnmodifiableMapView(_allWordsByWordIdMap);
   int wordsIdMax = 0;
   List<String> get allWordsValues =>
       _allWordsByWordIdMap.values.map((e) => e.value).toList();
