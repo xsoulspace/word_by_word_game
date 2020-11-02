@@ -15,24 +15,23 @@ class InputWidget extends StatefulWidget {
 class _InputWidgetState extends State<InputWidget> {
   final TextEditingController _leftTextController = TextEditingController();
   final TextEditingController _rightTextController = TextEditingController();
-
   @override
   void initState() {
     super.initState();
-    _leftTextController.addListener(_updateWordsModelPhrases);
-    _rightTextController.addListener(_updateWordsModelPhrases);
+    // _leftTextController.addListener(_updateWordsModelPhrases);
+    // _rightTextController.addListener(_updateWordsModelPhrases);
   }
 
   @override
   void dispose() {
     // Clean up the controller when the widget is removed from the
     // widget tree.
-    super.dispose();
 
-    _leftTextController.removeListener(_updateWordsModelPhrases);
+    // _leftTextController.removeListener(_updateWordsModelPhrases);
     _leftTextController.dispose();
-    _rightTextController.removeListener(_updateWordsModelPhrases);
+    // _rightTextController.removeListener(_updateWordsModelPhrases);
     _rightTextController.dispose();
+    super.dispose();
   }
 
   _textFieldOutlineInputBorder() {
@@ -72,18 +71,33 @@ class _InputWidgetState extends State<InputWidget> {
     );
   }
 
-  _updateWordsModelPhrases() async {
-    var storageModel = Provider.of<StorageModel>(context, listen: false);
+  _updateWordsModelPhrases(
+      {@required String value, @required bool isFromBeginning}) async {
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
-    wordsModel.newWordBeginning = _leftTextController.text;
-    wordsModel.newWordEnding = _rightTextController.text;
+    if (isFromBeginning) {
+      wordsModel.newWordBeginning = value;
+    } else {
+      wordsModel.newWordEnding = value;
+    }
+    var storageModel = Provider.of<StorageModel>(context, listen: false);
     await storageModel.saveWordsModel();
   }
 
+  bool _isLeftControllerInitialized = false;
+  bool _isRightControllerInitialized = false;
   @override
   Widget build(BuildContext context) {
-    var wordsModel = Provider.of<WordsModel>(context, listen: false);
+    var wordsModel = Provider.of<WordsModel>(context);
     var playersModel = Provider.of<PlayersModel>(context);
+    if (!_isLeftControllerInitialized &&
+        wordsModel.newWordBeginning.length > 0) {
+      _leftTextController.text = wordsModel.newWordBeginning;
+      _isLeftControllerInitialized = true;
+    }
+    if (!_isRightControllerInitialized && wordsModel.newWordEnding.length > 0) {
+      _rightTextController.text = wordsModel.newWordEnding;
+      _isRightControllerInitialized = true;
+    }
 
     return Material(
         color: Colors.transparent,
@@ -132,6 +146,8 @@ class _InputWidgetState extends State<InputWidget> {
                             border: _textFieldOutlineInputBorder(),
                             // TODO: add word tranlation
                             hintText: 'add beginning'),
+                        onChanged: (String value) => _updateWordsModelPhrases(
+                            isFromBeginning: true, value: value),
                         controller: _leftTextController,
                       ),
                     ),
@@ -165,6 +181,8 @@ class _InputWidgetState extends State<InputWidget> {
                           hintText: wordsModel.isNoWordsRecordedYet
                               ? 'add new word'
                               : 'add ending'),
+                      onChanged: (String value) => _updateWordsModelPhrases(
+                          isFromBeginning: false, value: value),
                       controller: _rightTextController,
                     ),
                   )
@@ -194,29 +212,25 @@ class _InputWidgetState extends State<InputWidget> {
   }
 
   _addNewWord() async {
-    String leftLetters = _leftTextController.text;
-    String rightLetters = _rightTextController.text;
-    if (leftLetters.isNotEmpty || rightLetters.isNotEmpty) {
-      var notificationsModel =
-          Provider.of<NotificationsModel>(context, listen: false);
-      var wordsModel = Provider.of<WordsModel>(context, listen: false);
-      var playersModel = Provider.of<PlayersModel>(context, listen: false);
-      var storageModel = Provider.of<StorageModel>(context, listen: false);
-      var gameNotification = await wordsModel.addNewWordForPLayer(
-          player: playersModel.currentPlayer);
-      if (gameNotification.status) {
-        await storageModel.saveWordsModel();
-        _leftTextController.text = '';
-        _rightTextController.text = '';
-        if (playersModel.isNotOnePlayerPlaying) {
-          playersModel.nextPlayer();
-          await storageModel.savePlayersModel();
-        }
-        // resetting notification state
-        notificationsModel.gameNotification = null;
-      } else {
-        notificationsModel.gameNotification = gameNotification;
+    var notificationsModel =
+        Provider.of<NotificationsModel>(context, listen: false);
+    var wordsModel = Provider.of<WordsModel>(context, listen: false);
+    var playersModel = Provider.of<PlayersModel>(context, listen: false);
+    var storageModel = Provider.of<StorageModel>(context, listen: false);
+    var gameNotification = await wordsModel.addNewWordForPLayer(
+        player: playersModel.currentPlayer);
+    if (gameNotification.status) {
+      await storageModel.saveWordsModel();
+      _leftTextController.text = wordsModel.newWordBeginning;
+      _rightTextController.text = wordsModel.newWordEnding;
+      if (playersModel.isNotOnePlayerPlaying) {
+        playersModel.nextPlayer();
+        await storageModel.savePlayersModel();
       }
+      // resetting notification state
+      notificationsModel.gameNotification = null;
+    } else {
+      notificationsModel.gameNotification = gameNotification;
     }
   }
 }

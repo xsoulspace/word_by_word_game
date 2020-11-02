@@ -22,10 +22,14 @@ void main() {
                     .toList())),
         ChangeNotifierProvider(create: (context) => WordsModel({}, {})),
         ChangeNotifierProvider(create: (context) => PlayerColorsModel()),
-        ChangeNotifierProvider(
-            create: (context) => StorageModel(context: context)),
         ChangeNotifierProvider(create: (context) => ScoreModel()),
-        ChangeNotifierProvider(create: (context) => NotificationsModel())
+        ChangeNotifierProvider(create: (context) => NotificationsModel()),
+        FutureProvider(create: (BuildContext context) async {
+          var wordsModel = Provider.of<WordsModel>(context, listen: false);
+          var playersModel = Provider.of<PlayersModel>(context, listen: false);
+          return await StorageModel.create(
+              wordsModel: wordsModel, playersModel: playersModel);
+        }),
       ],
       child: MyApp(),
     ),
