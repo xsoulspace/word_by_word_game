@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
 import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 
@@ -15,21 +16,18 @@ class MenuWidget extends StatelessWidget {
         children: [
           ListTile(
               leading: Icon(Icons.add_circle_outline),
-              title:
-                  // TODO: add translation
-                  Text('New Game'),
+              title: Text(MainLocalizations.of(context).newGame),
               onTap: () => showEndGameDialog(context)),
           PlayerChooser(),
           Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                  'For any bugs or ideas please send your feedback to xsoulspace@gmail.com'),
+              Text(MainLocalizations.of(context).sendFeedback),
               SizedBox(height: 0.01 * size.height),
-              Text('Thank you and happy gaming!'),
+              Text(MainLocalizations.of(context).thankYou),
               SizedBox(height: 0.01 * size.height),
-              Text('2020 \u00a9 X Soul Space '),
+              Text(MainLocalizations.of(context).copyright),
             ],
           ),
         ],

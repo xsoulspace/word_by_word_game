@@ -1,7 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
+import 'package:intl/intl_standalone.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/constants/Locales.dart';
 import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
@@ -40,10 +46,43 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
-        home: InputScreen());
+    return FutureBuilder(
+        future: kIsWeb ? Future<String>(() => '') : findSystemLocale(),
+        builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            String _locale = snapshot.data == '' ? Languages.en : snapshot.data;
+            Intl.defaultLocale = _locale;
+
+            MainLocalizationsDelegate _localeOverrideDelegate =
+                MainLocalizationsDelegate(Locale(Intl.defaultLocale));
+
+            return MaterialApp(
+                debugShowCheckedModeBanner: false,
+                localeListResolutionCallback: (locales, supportedLocales) {
+                  Locale locale = _localeOverrideDelegate.overridenLocale;
+                  bool isFoundLocale =
+                      _localeOverrideDelegate.isSupported(locale);
+                  if (!isFoundLocale) {
+                    return Locales.en;
+                  }
+                  return locale;
+                },
+                localizationsDelegates: [
+                  GlobalMaterialLocalizations.delegate,
+                  GlobalWidgetsLocalizations.delegate,
+                  GlobalCupertinoLocalizations.delegate,
+                ],
+                supportedLocales: [
+                  Locales.en,
+                  Locales.ru,
+                ],
+                theme: ThemeData(
+                  primarySwatch: Colors.blue,
+                ),
+                home: InputScreen());
+          } else {
+            return CircularProgressIndicator();
+          }
+        });
   }
 }

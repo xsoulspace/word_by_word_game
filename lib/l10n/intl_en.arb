@@ -1,0 +1,103 @@
+{
+  "@@last_modified": "2020-11-02T23:39:34.052047",
+  "finishGame": "Finish game",
+  "@finishGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetEnding": "Reset ending",
+  "@resetEnding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "congratulations": "Congratulations!",
+  "@congratulations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxHighscoreIs": "Max highscore is ",
+  "@maxHighscoreIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueGame": "Continue ",
+  "@continueGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startAgain": "Start again ",
+  "@startAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourHighscore": "This time your score is ",
+  "@yourHighscore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "player": "Player: ",
+  "@player": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastword": "Last word: ",
+  "@lastword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddBeginning": "add beginning",
+  "@hintAddBeginning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddNewWord": "add new word",
+  "@hintAddNewWord": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddEnding": "add ending",
+  "@hintAddEnding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewWord": "add",
+  "@addNewWord": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newGame": "New Game",
+  "@newGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFeedback": "For any bugs or ideas please send your feedback to xsoulspace@gmail.com",
+  "@sendFeedback": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thankYou": "Thank you and happy gaming!",
+  "@thankYou": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyright": "2020 © X Soul Space ",
+  "@copyright": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentScore": "current score: ",
+  "@currentScore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "highscore": "highscore: ",
+  "@highscore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lettersToRemove": "letters to remove: ",
+  "@lettersToRemove": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

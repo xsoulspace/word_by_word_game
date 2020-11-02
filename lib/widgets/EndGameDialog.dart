@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
@@ -19,7 +20,7 @@ class EndGameDialog extends StatelessWidget {
     var storageModel = Provider.of<StorageModel>(context);
 
     return CupertinoAlertDialog(
-      title: Text('Congratulations!'),
+      title: Text(MainLocalizations.of(context).congratulations),
       content: Material(
         color: Colors.transparent,
         child: Column(children: [
@@ -40,7 +41,9 @@ class EndGameDialog extends StatelessWidget {
                     height: 10,
                   );
                 } else {
-                  return Text('Max highscore is ${snapshot.data}');
+                  var maxHighscoreText =
+                      MainLocalizations.of(context).maxHighscoreIs;
+                  return Text('$maxHighscoreText ${snapshot.data}');
                 }
               }),
         ]),
@@ -49,7 +52,7 @@ class EndGameDialog extends StatelessWidget {
         Material(
           child: ListTile(
             title: Text(
-              'Continue',
+              MainLocalizations.of(context).continueGame,
               textAlign: TextAlign.center,
             ),
             onTap: () {
@@ -60,7 +63,7 @@ class EndGameDialog extends StatelessWidget {
         Material(
           child: ListTile(
             title: Text(
-              'Start again',
+              MainLocalizations.of(context).startAgain,
               textAlign: TextAlign.center,
             ),
             onTap: () async {
@@ -94,7 +97,8 @@ class EndGameDialog extends StatelessWidget {
     if (playersModel.isOnePlayerPlaying) {
       var playerHighscore =
           getPlayerHighscore(player: playersModel.currentPlayer);
-      return Text('This time your score is $playerHighscore');
+      var yourHighscoreText = MainLocalizations.of(context).yourHighscore;
+      return Text('$yourHighscoreText $playerHighscore');
     } else {
       /// setting highscore
       var playersList = playersModel.playersList.map((player) {
