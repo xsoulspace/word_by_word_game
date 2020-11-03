@@ -21,6 +21,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-
+    "addNewWord" : MessageLookupByLibrary.simpleMessage("добавить"),
+    "congratulations" : MessageLookupByLibrary.simpleMessage("Поздравляем!"),
+    "continueGame" : MessageLookupByLibrary.simpleMessage("Продолжить "),
+    "copyright" : MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
+    "currentScore" : MessageLookupByLibrary.simpleMessage("текущий результат: "),
+    "finishGame" : MessageLookupByLibrary.simpleMessage("Завершить игру"),
+    "highscore" : MessageLookupByLibrary.simpleMessage("результат: "),
+    "hintAddBeginning" : MessageLookupByLibrary.simpleMessage("ввести начало"),
+    "hintAddEnding" : MessageLookupByLibrary.simpleMessage("ввести окончание"),
+    "hintAddNewWord" : MessageLookupByLibrary.simpleMessage("ввести новое слово"),
+    "lastword" : MessageLookupByLibrary.simpleMessage("Последнее слово: "),
+    "lettersToRemove" : MessageLookupByLibrary.simpleMessage("буквы для удаления: "),
+    "maxHighscoreIs" : MessageLookupByLibrary.simpleMessage("Лучший результат "),
+    "newGame" : MessageLookupByLibrary.simpleMessage("Новая игра"),
+    "player" : MessageLookupByLibrary.simpleMessage("Игрок: "),
+    "players" : MessageLookupByLibrary.simpleMessage("Игроки: "),
+    "resetEnding" : MessageLookupByLibrary.simpleMessage("Сбросить слово"),
+    "sendFeedback" : MessageLookupByLibrary.simpleMessage("Если у вас есть идеи как улучшить игру или увидели баг - отправите письмо на xsoulspace@gmail.com"),
+    "startAgain" : MessageLookupByLibrary.simpleMessage("Заново "),
+    "thankYou" : MessageLookupByLibrary.simpleMessage("Спасибо за игру и хорошего времяпрепровождения!"),
+    "yourHighscore" : MessageLookupByLibrary.simpleMessage("В этот раз, результат ")
   };
 }

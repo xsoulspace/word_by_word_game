@@ -99,5 +99,10 @@
   "@lettersToRemove": {
     "type": "text",
     "placeholders": {}
+  },
+  "players": "Players: ",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
   }
 }

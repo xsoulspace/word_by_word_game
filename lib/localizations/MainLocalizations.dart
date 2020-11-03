@@ -4,21 +4,18 @@ import 'package:word_by_word_game/constants/Locales.dart';
 import 'package:word_by_word_game/l10n/messages_all.dart';
 
 // flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localizations/MainLocalizations.dart
+
 // flutter pub run intl_translation:generate_from_arb \
-//     --output-dir=lib/l10n --no-use-deferred-loading \
-//     lib/main.dart \
-//     lib/l10n/intl_en.arb lib/l10n/intl_ru.arb lib/l10n/intl_messages.arb
+//  --output-dir=lib/l10n --no-use-deferred-loading \
+//  lib/l10n/intl_messages.arb lib/l10n/intl_en.arb lib/l10n/intl_ru.arb lib/localizations/MainLocalizations.dart
 class MainLocalizations {
-  static Locale locale = Locales.en;
   static Future<MainLocalizations> load(Locale locale) {
     final String name = locale.countryCode == null || locale.countryCode.isEmpty
         ? locale.languageCode
         : locale.toString();
     final String localeName = Intl.canonicalizedLocale(name);
-
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-
       return MainLocalizations();
     });
   }
@@ -102,11 +99,18 @@ class MainLocalizations {
   }
 
   String get highscore {
-    return Intl.message('highscore: ', name: 'highscore');
+    return Intl.message(
+      'highscore: ',
+      name: 'highscore',
+    );
   }
 
   String get lettersToRemove {
     return Intl.message('letters to remove: ', name: 'lettersToRemove');
+  }
+
+  String get players {
+    return Intl.message('Players: ', name: 'players');
   }
 }
 

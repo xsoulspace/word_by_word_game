@@ -21,6 +21,26 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
-
+    "addNewWord" : MessageLookupByLibrary.simpleMessage("add"),
+    "congratulations" : MessageLookupByLibrary.simpleMessage("Congratulations!"),
+    "continueGame" : MessageLookupByLibrary.simpleMessage("Continue "),
+    "copyright" : MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
+    "currentScore" : MessageLookupByLibrary.simpleMessage("current score: "),
+    "finishGame" : MessageLookupByLibrary.simpleMessage("Finish game"),
+    "highscore" : MessageLookupByLibrary.simpleMessage("highscore: "),
+    "hintAddBeginning" : MessageLookupByLibrary.simpleMessage("add beginning"),
+    "hintAddEnding" : MessageLookupByLibrary.simpleMessage("add ending"),
+    "hintAddNewWord" : MessageLookupByLibrary.simpleMessage("add new word"),
+    "lastword" : MessageLookupByLibrary.simpleMessage("Last word: "),
+    "lettersToRemove" : MessageLookupByLibrary.simpleMessage("letters to remove: "),
+    "maxHighscoreIs" : MessageLookupByLibrary.simpleMessage("Max highscore is "),
+    "newGame" : MessageLookupByLibrary.simpleMessage("New Game"),
+    "player" : MessageLookupByLibrary.simpleMessage("Player: "),
+    "players" : MessageLookupByLibrary.simpleMessage("Players: "),
+    "resetEnding" : MessageLookupByLibrary.simpleMessage("Reset ending"),
+    "sendFeedback" : MessageLookupByLibrary.simpleMessage("For any bugs or ideas please send your feedback to xsoulspace@gmail.com"),
+    "startAgain" : MessageLookupByLibrary.simpleMessage("Start again "),
+    "thankYou" : MessageLookupByLibrary.simpleMessage("Thank you and happy gaming!"),
+    "yourHighscore" : MessageLookupByLibrary.simpleMessage("This time your score is ")
   };
 }

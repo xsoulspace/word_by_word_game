@@ -25,7 +25,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "startAgain": "Начать заново ",
+  "startAgain": "Заново ",
   "@startAgain": {
     "type": "text",
     "placeholders": {}
@@ -70,12 +70,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "В случае багов или идей присылайте письмо на xsoulspace@gmail.com",
+  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправите письмо на xsoulspace@gmail.com",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
   },
-  "thankYou": "Спасибо за игру и хорошего времяпровождения!",
+  "thankYou": "Спасибо за игру и хорошего времяпрепровождения!",
   "@thankYou": {
     "type": "text",
     "placeholders": {}
@@ -97,6 +97,11 @@
   },
   "lettersToRemove": "буквы для удаления: ",
   "@lettersToRemove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "Игроки: ",
+  "@players": {
     "type": "text",
     "placeholders": {}
   }

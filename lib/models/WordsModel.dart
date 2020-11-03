@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:word_by_word_game/entities/GameNotification.dart';
+import 'package:word_by_word_game/entities/LocalName.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/Word.dart';
 
@@ -52,15 +53,20 @@ class WordsModel extends ChangeNotifier {
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding'
         .toLowerCase()
         .replaceAll(' ', '');
-    // TODO: add translation
     if (newWord.length < phraseLimit)
       return GameNotification(
-          status: false, text: 'Word needs to have more then $phraseLimit');
+          status: false,
+          localName: LocalName(
+              en: 'Word needs to have more then $phraseLimit',
+              ru: 'Слово должно быть больше чем $phraseLimit'));
     var isNewWordExists = allWordsValues.contains(newWord);
 
     if (isNewWordExists)
       return GameNotification(
-          status: false, text: 'This word was written aleady!');
+          status: false,
+          localName: LocalName(
+              en: 'This word was written aleady!',
+              ru: 'Это слово уже записано!'));
 
     wordsIdMax++;
 
@@ -72,7 +78,10 @@ class WordsModel extends ChangeNotifier {
 
     if (isNewIdExists)
       return GameNotification(
-          status: false, text: 'This word was written aleady!');
+          status: false,
+          localName: LocalName(
+              en: 'This word was written aleady!',
+              ru: 'Это слово уже записано!'));
 
     playerWordsIds.add(wordsIdMax);
     _wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
@@ -84,7 +93,9 @@ class WordsModel extends ChangeNotifier {
     newWordBeginning = '';
     newWordEnding = '';
     notifyListeners();
-    return GameNotification(status: true, text: 'Word added!');
+    return GameNotification(
+        status: true,
+        localName: LocalName(en: 'Word added!', ru: 'Слово добавлено!'));
   }
 
   bool get isNoWordsRecordedYet => _allWordsByWordIdMap.isEmpty;

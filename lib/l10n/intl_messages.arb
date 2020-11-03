@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-11-02T23:39:34.052047",
+  "@@last_modified": "2020-11-03T04:20:13.003304",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -97,6 +97,11 @@
   },
   "lettersToRemove": "letters to remove: ",
   "@lettersToRemove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "Players: ",
+  "@players": {
     "type": "text",
     "placeholders": {}
   }

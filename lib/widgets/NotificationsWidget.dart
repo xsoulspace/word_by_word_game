@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/entities/GameNotification.dart';
+import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 
 class NotificationsWidget extends StatefulWidget {
-  final gameNotification;
+  final GameNotification gameNotification;
   NotificationsWidget({@required this.gameNotification});
   @override
   _NotificationsWidgetState createState() =>
@@ -13,17 +15,18 @@ class NotificationsWidget extends StatefulWidget {
 
 class _NotificationsWidgetState extends State<NotificationsWidget>
     with SingleTickerProviderStateMixin {
-  final gameNotification;
+  final GameNotification gameNotification;
   int _counter = 0;
 
   _NotificationsWidgetState({@required this.gameNotification});
   @override
   didUpdateWidget(NotificationsWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.gameNotification != null &&
-        widget.gameNotification.text !=
+    NotificationsWidget newWidget = widget;
+    if (newWidget.gameNotification != null &&
+        newWidget.gameNotification.localName !=
             (oldWidget.gameNotification != null
-                ? oldWidget.gameNotification.text
+                ? oldWidget.gameNotification.localName
                 : '')) {
       _animationController.reset();
       _animationController.forward();
@@ -88,7 +91,10 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                        Text(notificationsModel.gameNotification.text),
+                        Consumer<LocaleModel>(
+                            builder: (context, localeModel, widget) => Text(
+                                notificationsModel.gameNotification.localName
+                                    .getName(localeModel.locale))),
                         IconButton(
                             icon: Icon(Icons.close),
                             onPressed: () {
