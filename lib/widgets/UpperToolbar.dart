@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
@@ -40,8 +41,9 @@ class UpperToolbar extends StatelessWidget {
                     scoreModel.saveHighscore(highscore);
                   }
                 });
-                // TODO: add translation
-                return Text('current score: $highscore');
+                var currentHighscoreText =
+                    MainLocalizations.of(context).currentScore;
+                return Text('$currentHighscoreText $highscore');
               }),
               SizedBox(
                 width: 12,
@@ -50,8 +52,7 @@ class UpperToolbar extends StatelessWidget {
                 width: 90,
                 child: Row(
                   children: [
-                    // TODO: add translation
-                    Text('highscore: '),
+                    Text(MainLocalizations.of(context).highscore),
                     Consumer<ScoreModel>(
                       builder: (context, value, child) => FutureBuilder(
                           future: value.highscore,
@@ -75,21 +76,12 @@ class UpperToolbar extends StatelessWidget {
               SizedBox(
                 width: 10,
               ),
-              Consumer<WordsModel>(
-                builder: (context, wordsModel, child) =>
-                    // TODO: add translation
-                    Text(
-                        'letters to remove: ${wordsModel.phraseLimitLettersLeft}'),
-              ),
-              // Expanded(
-              //     child: Align(
-              //   alignment: Alignment.topRight,
-              //   child: IconButton(
-              //     onPressed: () => openBottomMenu(context),
-              //     iconSize: 36,
-              //     icon: Icon(Icons.menu),
-              //   ),
-              // ))
+              Consumer<WordsModel>(builder: (context, wordsModel, child) {
+                var lettersToRemoveText =
+                    MainLocalizations.of(context).lettersToRemove;
+                return Text(
+                    '$lettersToRemoveText ${wordsModel.phraseLimitLettersLeft}');
+              }),
             ],
           ),
         ]),

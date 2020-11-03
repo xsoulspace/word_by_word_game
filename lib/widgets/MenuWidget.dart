@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+import 'package:word_by_word_game/entities/NamedLocale.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
 import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 
@@ -13,23 +17,55 @@ class MenuWidget extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ListTile(
-              leading: Icon(Icons.add_circle_outline),
-              title:
-                  // TODO: add translation
-                  Text('New Game'),
-              onTap: () => showEndGameDialog(context)),
+          Row(
+            children: [
+              FlatButton(
+                onPressed: () => showEndGameDialog(context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Icon(Icons.add_circle_outline),
+                    SizedBox(
+                      width: 10,
+                    ),
+                    Text(MainLocalizations.of(context).newGame),
+                  ],
+                ),
+                height: 50,
+                minWidth: 200,
+              ),
+              SizedBox(
+                width: 35,
+              ),
+              Consumer<LocaleModel>(builder: (context, localeModel, child) {
+                return DropdownButton<NamedLocale>(
+                    value: localeModel.currentNamedLocale,
+                    items: LocaleModelConsts.namedLocales
+                        .map<DropdownMenuItem<NamedLocale>>((namedLocale) {
+                      return DropdownMenuItem<NamedLocale>(
+                        key: Key(namedLocale.name),
+                        value: namedLocale,
+                        child: Text(
+                          namedLocale.name,
+                        ),
+                      );
+                    }).toList(),
+                    onChanged: (NamedLocale namedLocale) async {
+                      await localeModel.switchLang(namedLocale.locale);
+                    });
+              })
+            ],
+          ),
           PlayerChooser(),
           Spacer(),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                  'For any bugs or ideas please send your feedback to xsoulspace@gmail.com'),
+              Text(MainLocalizations.of(context).sendFeedback),
               SizedBox(height: 0.01 * size.height),
-              Text('Thank you and happy gaming!'),
+              Text(MainLocalizations.of(context).thankYou),
               SizedBox(height: 0.01 * size.height),
-              Text('2020 \u00a9 X Soul Space '),
+              Text(MainLocalizations.of(context).copyright),
             ],
           ),
         ],

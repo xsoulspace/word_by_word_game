@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
@@ -24,9 +25,7 @@ class ExtraMenu extends StatelessWidget {
               enabled: wordsModel.isAtLeastOneWordRecorded &&
                   wordsModel.isPhraseFromLastwordNotEmpty &&
                   wordsModel.isPhraseLimitLeftAvailable,
-              title:
-                  // TODO: add translation
-                  Text('Reset ending'),
+              title: Text(MainLocalizations.of(context).resetEnding),
               onTap: () async {
                 wordsModel.resetPhraseFromLastword();
                 await storageModel.saveWordsModel();
@@ -38,18 +37,16 @@ class ExtraMenu extends StatelessWidget {
                 borderRadius: BorderRadius.circular(20),
               ),
               leading: Icon(Icons.add_circle_outline),
-              title:
-                  // TODO: add translation
-                  Text('End Game'),
+              title: Text(MainLocalizations.of(context).finishGame),
               onTap: () {
-                _showEndGameDialog(context);
+                _showFinishGameDialog(context);
               }),
         ],
       ),
     );
   }
 
-  _showEndGameDialog(BuildContext context) {
+  _showFinishGameDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => EndGameDialog(),

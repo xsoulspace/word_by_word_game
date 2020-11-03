@@ -1,0 +1,108 @@
+{
+  "@@last_modified": "2020-11-02T23:39:34.052047",
+  "finishGame": "Завершить игру",
+  "@finishGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetEnding": "Сбросить слово",
+  "@resetEnding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "congratulations": "Поздравляем!",
+  "@congratulations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxHighscoreIs": "Лучший результат ",
+  "@maxHighscoreIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueGame": "Продолжить ",
+  "@continueGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startAgain": "Заново ",
+  "@startAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourHighscore": "В этот раз, результат ",
+  "@yourHighscore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "player": "Игрок: ",
+  "@player": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastword": "Последнее слово: ",
+  "@lastword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddBeginning": "ввести начало",
+  "@hintAddBeginning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddNewWord": "ввести новое слово",
+  "@hintAddNewWord": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddEnding": "ввести окончание",
+  "@hintAddEnding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewWord": "добавить",
+  "@addNewWord": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newGame": "Новая игра",
+  "@newGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправите письмо на xsoulspace@gmail.com",
+  "@sendFeedback": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thankYou": "Спасибо за игру и хорошего времяпрепровождения!",
+  "@thankYou": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyright": "2020 © X Soul Space ",
+  "@copyright": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentScore": "текущий результат: ",
+  "@currentScore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "highscore": "результат: ",
+  "@highscore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lettersToRemove": "буквы для удаления: ",
+  "@lettersToRemove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "Игроки: ",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

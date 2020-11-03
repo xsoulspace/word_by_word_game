@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
@@ -107,8 +108,7 @@ class _InputWidgetState extends State<InputWidget> {
             children: [
               Row(
                 children: [
-                  //TODO: add translation
-                  Text('Player: '),
+                  Text(MainLocalizations.of(context).player),
                   SizedBox(width: 10),
                   Container(
                       height: 30.0,
@@ -124,7 +124,7 @@ class _InputWidgetState extends State<InputWidget> {
                       builder: (BuildContext buildContext, wordsModel,
                               Widget widget) =>
                           Text(wordsModel.isAtLeastOneWordRecorded
-                              ? 'Last word:   ${wordsModel.lastword}'
+                              ? '${MainLocalizations.of(context).lastword} ${wordsModel.lastword}'
                               : '')),
                 ],
               ),
@@ -144,8 +144,8 @@ class _InputWidgetState extends State<InputWidget> {
                         decoration: InputDecoration(
                             focusedBorder: _textFieldFocusOutlineInputBorder(),
                             border: _textFieldOutlineInputBorder(),
-                            // TODO: add word tranlation
-                            hintText: 'add beginning'),
+                            hintText:
+                                MainLocalizations.of(context).hintAddBeginning),
                         onChanged: (String value) => _updateWordsModelPhrases(
                             isFromBeginning: true, value: value),
                         controller: _leftTextController,
@@ -177,10 +177,9 @@ class _InputWidgetState extends State<InputWidget> {
                       decoration: InputDecoration(
                           focusedBorder: _textFieldFocusOutlineInputBorder(),
                           border: _textFieldOutlineInputBorder(),
-                          //TODO: add translation
                           hintText: wordsModel.isNoWordsRecordedYet
-                              ? 'add new word'
-                              : 'add ending'),
+                              ? MainLocalizations.of(context).hintAddNewWord
+                              : MainLocalizations.of(context).hintAddEnding),
                       onChanged: (String value) => _updateWordsModelPhrases(
                           isFromBeginning: false, value: value),
                       controller: _rightTextController,
@@ -199,10 +198,10 @@ class _InputWidgetState extends State<InputWidget> {
                     highlightColor: Colors.white.withOpacity(0.7),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
-                    child: // TODO: add international text
-                        Padding(
+                    child: Padding(
                       padding: EdgeInsets.all(24),
-                      child: Text('add', style: TextStyle(fontSize: 24)),
+                      child: Text(MainLocalizations.of(context).addNewWord,
+                          style: TextStyle(fontSize: 24)),
                     ),
                     onPressed: () async => await _addNewWord(),
                   ),
