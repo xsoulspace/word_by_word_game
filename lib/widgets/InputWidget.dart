@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/constants/AppConstraints.dart';
+import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
 import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
@@ -281,10 +283,11 @@ class _InputWidgetState extends State<InputWidget> {
         Provider.of<NotificationsModel>(context, listen: false);
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
     var playersModel = Provider.of<PlayersModel>(context, listen: false);
+    var localeModel = Provider.of<LocaleModel>(context, listen: false);
     var storageModel = Provider.of<StorageModel>(context, listen: false);
     var gameNotification = await wordsModel.addNewWordForPLayer(
-        player: playersModel.currentPlayer);
-    if (gameNotification.status) {
+        player: playersModel.currentPlayer, locale: localeModel.locale);
+    if (gameNotification.status == GameNotificationStatuses.done) {
       await storageModel.saveWordsModel();
       _leftTextController.text = wordsModel.newWordBeginning;
       _rightTextController.text = wordsModel.newWordEnding;

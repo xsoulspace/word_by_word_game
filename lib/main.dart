@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:word_by_word_game/constants/Locales.dart';
 import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
@@ -45,6 +46,8 @@ class MyApp extends StatelessWidget {
             return MultiProvider(providers: [
               ChangeNotifierProvider(create: (context) => snapshot.data),
               ChangeNotifierProvider(
+                  create: (context) => LocalDictionaryModel()),
+              ChangeNotifierProvider(
                   create: (context) => PlayersModel(
                       {firstPlayer.id: firstPlayer},
                       currentPlayer: firstPlayer,
@@ -52,7 +55,12 @@ class MyApp extends StatelessWidget {
                           .map((color) =>
                               Player(id: color.id, playerColor: color))
                           .toList())),
-              ChangeNotifierProvider(create: (context) => WordsModel({}, {})),
+              ChangeNotifierProvider(create: (context) {
+                var localDictionaryModel =
+                    Provider.of<LocalDictionaryModel>(context);
+                return WordsModel({}, {},
+                    localDictionaryModel: localDictionaryModel);
+              }),
               ChangeNotifierProvider(create: (context) => PlayerColorsModel()),
               ChangeNotifierProvider(create: (context) => ScoreModel()),
               ChangeNotifierProvider(create: (context) => NotificationsModel()),
@@ -61,8 +69,12 @@ class MyApp extends StatelessWidget {
                     Provider.of<WordsModel>(context, listen: false);
                 var playersModel =
                     Provider.of<PlayersModel>(context, listen: false);
+                var localDictionaryModel =
+                    Provider.of<LocalDictionaryModel>(context, listen: false);
                 return await StorageModel.create(
-                    wordsModel: wordsModel, playersModel: playersModel);
+                    wordsModel: wordsModel,
+                    playersModel: playersModel,
+                    localDictionaryModel: localDictionaryModel);
               }),
             ], child: ScaffoldApp());
           } else {

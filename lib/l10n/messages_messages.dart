@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "addNewWord" : MessageLookupByLibrary.simpleMessage("add"),
+    "addToDictionary" : MessageLookupByLibrary.simpleMessage("Add to dictionary"),
     "congratulations" : MessageLookupByLibrary.simpleMessage("Congratulations!"),
     "continueGame" : MessageLookupByLibrary.simpleMessage("Continue "),
     "copyright" : MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),

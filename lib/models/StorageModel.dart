@@ -1,34 +1,33 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageMixin.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 
 class StorageModel extends ChangeNotifier with StorageMixin {
   WordsModel _wordsModel;
-  set wordsModel(WordsModel wordsModel) {
-    if (wordsModel != null) _wordsModel = wordsModel;
-  }
-
   PlayersModel _playersModel;
-  set playersModel(PlayersModel playersModel) {
-    if (playersModel != null) _playersModel = playersModel;
-  }
+  LocalDictionaryModel _localDictionaryModel;
 
   // Private constructor
-  StorageModel._create(this._wordsModel, this._playersModel);
+  StorageModel._create(
+      this._wordsModel, this._playersModel, this._localDictionaryModel);
 
   /// Public factory
   static Future<StorageModel> create(
       {@required WordsModel wordsModel,
-      @required PlayersModel playersModel}) async {
+      @required PlayersModel playersModel,
+      @required LocalDictionaryModel localDictionaryModel}) async {
     // Call the private constructor
-    var storageModel = StorageModel._create(wordsModel, playersModel);
+    var storageModel =
+        StorageModel._create(wordsModel, playersModel, localDictionaryModel);
 
     await storageModel.checkAndLoadStorageInstance();
     await storageModel.loadPlayersModel();
     await storageModel.loadWordsModel();
+    await storageModel.loadLocalDictionary();
     // Return the fully initialized object
     return storageModel;
   }
@@ -83,5 +82,21 @@ class StorageModel extends ChangeNotifier with StorageMixin {
           wordsIdsPlayerIdMap: model.wordsIdsByPlayerIdMap)
       ..notifyListeners();
     notifyListeners();
+  }
+
+  Future<void> loadLocalDictionary() async {
+    var modelStr = await load(LocalDictionaryModelConsts.storagename);
+    if (modelStr == null) return;
+    var model = LocalDictionaryModel.fromJson(modelStr);
+    _localDictionaryModel
+      ..reloadState(words: model.words)
+      ..notifyListeners();
+    notifyListeners();
+  }
+
+  Future<void> saveLocalDictionary() async {
+    await save(
+        key: LocalDictionaryModelConsts.storagename,
+        value: _localDictionaryModel.toJson());
   }
 }
