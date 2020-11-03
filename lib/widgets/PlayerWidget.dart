@@ -27,16 +27,5 @@ class PlayerWidget extends StatelessWidget {
             color: Theme.of(context).primaryTextTheme.subtitle1.color),
       ),
     );
-    //  InkWell(
-    //   onTap: isDisabled ? null : onTap,
-    //   child: (CircleAvatar(
-    //     backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
-    // child: Text(
-    //   '${player.id}',
-    //   style: TextStyle(
-    //       color: Theme.of(context).primaryTextTheme.subtitle1.color),
-    // ),
-    //   )),
-    // );
   }
 }

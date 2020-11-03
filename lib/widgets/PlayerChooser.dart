@@ -13,22 +13,27 @@ class PlayerChooser extends StatelessWidget {
     var playersModel = Provider.of<PlayersModel>(context);
     return Padding(
       padding: EdgeInsets.only(top: 10),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.centerLeft,
-            child: Text(MainLocalizations.of(context).players),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Row(
-            children: [
-              ...playersModel.tempPlayers.map((player) =>
-                  _playerController(context: context, player: player))
-            ],
-          ),
-        ],
+      child: Container(
+        height: 50,
+        child: ListView(
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          children: [
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(MainLocalizations.of(context).players),
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            Row(
+              children: [
+                ...playersModel.tempPlayers.map((player) =>
+                    _playerController(context: context, player: player))
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
