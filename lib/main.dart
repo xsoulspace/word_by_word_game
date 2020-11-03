@@ -57,7 +57,7 @@ class MyApp extends StatelessWidget {
                           .toList())),
               ChangeNotifierProvider(create: (context) {
                 var localDictionaryModel =
-                    Provider.of<LocalDictionaryModel>(context);
+                    Provider.of<LocalDictionaryModel>(context, listen: false);
                 return WordsModel({}, {},
                     localDictionaryModel: localDictionaryModel);
               }),

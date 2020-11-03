@@ -9,16 +9,19 @@ class LocalDictionaryModelConsts {
 
 @JsonSerializable(nullable: true)
 class LocalDictionaryModel extends ChangeNotifier {
-  final Set<String> words;
-  LocalDictionaryModel({this.words = const {}});
+  Set<String> _words;
+  LocalDictionaryModel({Set<String> words}) {
+    this._words = words ?? {};
+  }
+  Set<String> get words => _words;
   void addWord(String value) {
-    words.add(value);
+    _words.add(value);
     notifyListeners();
   }
 
   void reloadState({@required Set<String> words}) {
-    words.clear();
-    words.addAll(words);
+    _words.clear();
+    _words.addAll(words);
   }
 
   factory LocalDictionaryModel.fromJson(Map<String, dynamic> json) =>

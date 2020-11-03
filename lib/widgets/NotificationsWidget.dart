@@ -83,7 +83,8 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
   }
 
   _clearNotification() {
-    var notificationsModel = Provider.of<NotificationsModel>(context);
+    var notificationsModel =
+        Provider.of<NotificationsModel>(context, listen: false);
     _animationController
         .reverse()
         .then((value) => notificationsModel.gameNotification = null);
@@ -120,10 +121,12 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                 ? Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                        Consumer<LocaleModel>(
-                            builder: (context, localeModel, widget) => Text(
-                                notificationsModel.gameNotification.localName
-                                    .getName(localeModel.locale))),
+                        Flexible(
+                          child: Consumer<LocaleModel>(
+                              builder: (context, localeModel, widget) => Text(
+                                  notificationsModel.gameNotification.localName
+                                      .getName(localeModel.locale))),
+                        ),
                         Visibility(
                           visible:
                               notificationsModel.gameNotification != null &&

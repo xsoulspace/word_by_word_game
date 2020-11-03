@@ -58,6 +58,7 @@ class WordsModel extends ChangeNotifier {
 
   Future<GameNotification> addNewWordForPLayer(
       {@required Player player, @required Locale locale}) async {
+    /// checking limit
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding'
         .toLowerCase()
         .replaceAll(' ', '');
@@ -67,8 +68,9 @@ class WordsModel extends ChangeNotifier {
           localName: LocalName(
               en: 'Word needs to have more then $phraseLimit',
               ru: 'Слово должно быть больше чем $phraseLimit'));
-    var isNewWordExists = allWordsValues.contains(newWord);
 
+    /// checking is Word was added
+    var isNewWordExists = allWordsValues.contains(newWord);
     if (isNewWordExists)
       return GameNotification(
           status: GameNotificationStatuses.error,
@@ -78,19 +80,7 @@ class WordsModel extends ChangeNotifier {
 
     wordsIdMax++;
 
-    _allWordsByWordIdMap.putIfAbsent(
-        wordsIdMax, () => Word(id: wordsIdMax, value: newWord));
-
-    var playerWordsIds = getWordsIdsListByPlayer(player: player);
-    var isNewIdExists = playerWordsIds.contains(wordsIdMax);
-
-    if (isNewIdExists)
-      return GameNotification(
-          status: GameNotificationStatuses.error,
-          localName: LocalName(
-              en: 'This word was written aleady!',
-              ru: 'Это слово уже записано!'));
-// check with dictionaries
+    /// checking with external dictionaries
     var isExistsInDictionary = (() {
       if (locale == Locales.en) {
         return EnglishWords.nouns.contains(newWord);
@@ -100,6 +90,7 @@ class WordsModel extends ChangeNotifier {
       return true;
     })();
 
+    /// checking with internal dictionaries
     if (!isExistsInDictionary) {
       var isExistsInLocalDictionary =
           _localDictionaryModel.words.contains(newWord);
@@ -113,8 +104,22 @@ class WordsModel extends ChangeNotifier {
       }
     }
 
+    /// checking word id identity
+    var playerWordsIds = getWordsIdsListByPlayer(player: player);
+    var isNewIdExists = playerWordsIds.contains(wordsIdMax);
+
+    if (isNewIdExists)
+      return GameNotification(
+          status: GameNotificationStatuses.error,
+          localName: LocalName(
+              en: 'This word was written aleady!',
+              ru: 'Это слово уже записано!'));
+
+    _allWordsByWordIdMap.putIfAbsent(
+        wordsIdMax, () => Word(id: wordsIdMax, value: newWord));
     playerWordsIds.add(wordsIdMax);
     _wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
+
     privateLastword = newWord;
     phraseLimit = phraseLimitMax;
 
