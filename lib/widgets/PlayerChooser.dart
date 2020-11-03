@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/widgets/PlayerWidget.dart';
@@ -16,8 +17,7 @@ class PlayerChooser extends StatelessWidget {
         children: [
           Align(
             alignment: Alignment.centerLeft,
-            // TODO: add translation
-            child: Text('Players: '),
+            child: Text(MainLocalizations.of(context).players),
           ),
           SizedBox(
             height: 10,

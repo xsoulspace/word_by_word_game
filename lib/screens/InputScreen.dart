@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/entities/PlayerColor.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
@@ -9,6 +10,21 @@ import 'package:word_by_word_game/widgets/InputWidget.dart';
 import 'package:word_by_word_game/widgets/MenuFAB.dart';
 import 'package:word_by_word_game/widgets/NotificationsWidget.dart';
 import 'package:word_by_word_game/widgets/UpperToolbar.dart';
+
+BoxDecoration appGradientBoxDecoration(
+        {@required PlayerColor playerColor, MaterialColor secondColor}) =>
+    BoxDecoration(
+        gradient: LinearGradient(
+            stops: [
+              0.1,
+              1,
+            ],
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              playerColor.color.withOpacity(0.4),
+              secondColor.withOpacity(0.4)
+            ]));
 
 class InputScreen extends StatelessWidget {
   @override
@@ -22,19 +38,9 @@ class InputScreen extends StatelessWidget {
           builder: (BuildContext context, BoxConstraints constraints) {
         return Container(
           height: constraints.maxHeight,
-          decoration: BoxDecoration(
-              gradient: LinearGradient(
-                  stops: [
-                    0.1,
-                    1,
-                  ],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    playersModel.currentPlayer.playerColor.color
-                        .withOpacity(0.4),
-                    Theme.of(context).primaryColor.withOpacity(0.4)
-                  ])),
+          decoration: appGradientBoxDecoration(
+              playerColor: playersModel.currentPlayer.playerColor,
+              secondColor: Theme.of(context).primaryColor),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
             child: Column(children: [
