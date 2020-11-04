@@ -6,6 +6,7 @@
 <p align="center">
 <a href="https://snapcraft.io/word-by-word-game">
 <img style="margin-bottom: 17px; margin-left: 23px;" alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
+<a style="margin-bottom: 17px; margin-left: 23px;" href='https://play.google.com/store/apps/details?id=dev.xsoulspace.word_by_word_game&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img height="90px"; alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </a>
 
 </p>
