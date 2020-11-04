@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/constants/AppConstraints.dart';
 import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
 import 'package:word_by_word_game/entities/GameNotification.dart';
 import 'package:word_by_word_game/localizations/MainLocalizations.dart';
@@ -98,9 +99,18 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
     await storageModel.saveLocalDictionary();
   }
 
+  bool _isNotificationExists({@required GameNotification gameNotification}) {
+    return gameNotification != null;
+  }
+
   @override
   Widget build(BuildContext context) {
     var notificationsModel = Provider.of<NotificationsModel>(context);
+    var isNotificationExists = _isNotificationExists(
+        gameNotification: notificationsModel.gameNotification);
+    var _hasNewWord = isNotificationExists &&
+        notificationsModel.gameNotification.newWord != null;
+    var size = MediaQuery.of(context).size;
     return SlideTransition(
       child: Material(
         color: Colors.transparent,
@@ -114,37 +124,34 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
           },
           child: Container(
             padding: EdgeInsets.all(10),
-            color: notificationsModel.gameNotification != null
+            color: isNotificationExists
                 ? _getColor(notificationsModel.gameNotification.status)
                 : Colors.transparent,
-            child: notificationsModel.gameNotification != null
-                ? Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                        Flexible(
-                          child: Consumer<LocaleModel>(
-                              builder: (context, localeModel, widget) => Text(
-                                  notificationsModel.gameNotification.localName
-                                      .getName(localeModel.locale))),
-                        ),
-                        Visibility(
-                          visible:
-                              notificationsModel.gameNotification != null &&
-                                  notificationsModel.gameNotification.newWord !=
-                                      null,
-                          child: FlatButton(
-                              child: Text(MainLocalizations.of(context)
-                                  .addToDictionary),
-                              onPressed: () {
-                                _addNewWordToDictionary(
-                                    newWord: notificationsModel
-                                        .gameNotification.newWord);
-                                _clearNotification();
-                              }),
-                        ),
-                        IconButton(
-                            icon: Icon(Icons.close),
-                            onPressed: () => _clearNotification())
+            child: isNotificationExists
+                ? (AppConstraints.isMedium(size.width) ||
+                            AppConstraints.isMobile(size.width)) &&
+                        _hasNewWord
+                    ? Column(
+                        children: [
+                          _notificationText(),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              _addWordToDictionaryButton(
+                                  isVisible: _hasNewWord),
+                              _closeButton()
+                            ],
+                          )
+                        ],
+                      )
+                    : Row(children: [
+                        _notificationText(),
+                        _addWordToDictionaryButton(isVisible: _hasNewWord),
+                        Expanded(
+                          child: Align(
+                              alignment: Alignment.centerRight,
+                              child: _closeButton()),
+                        )
                       ])
                 : null,
           ),
@@ -152,5 +159,32 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
       ),
       position: _offsetPositionAnimation,
     );
+  }
+
+  Widget _notificationText() {
+    var notificationsModel = Provider.of<NotificationsModel>(context);
+    return Consumer<LocaleModel>(
+        builder: (context, localeModel, widget) => Text(notificationsModel
+            .gameNotification.localName
+            .getName(localeModel.locale)));
+  }
+
+  Widget _addWordToDictionaryButton({@required bool isVisible}) {
+    var notificationsModel = Provider.of<NotificationsModel>(context);
+    return Visibility(
+      visible: isVisible,
+      child: FlatButton(
+          child: Text(MainLocalizations.of(context).addToDictionary),
+          onPressed: () {
+            _addNewWordToDictionary(
+                newWord: notificationsModel.gameNotification.newWord);
+            _clearNotification();
+          }),
+    );
+  }
+
+  Widget _closeButton() {
+    return IconButton(
+        icon: Icon(Icons.close), onPressed: () => _clearNotification());
   }
 }

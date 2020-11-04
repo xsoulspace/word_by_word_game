@@ -129,6 +129,8 @@ class _InputWidgetState extends State<InputWidget> {
       _rightTextController.text = wordsModel.newWordEnding;
       _isRightControllerInitialized = true;
     }
+    var size = MediaQuery.of(context).size;
+
     return Material(
         color: Colors.transparent,
         child: Column(
@@ -136,19 +138,9 @@ class _InputWidgetState extends State<InputWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               LayoutBuilder(builder: (context, constraints) {
-                if (constraints.maxWidth > AppConstraints.mobileWidth) {
-                  return Row(
-                    children: [
-                      Text(MainLocalizations.of(context).player),
-                      SizedBox(width: 10),
-                      _playerWidget(),
-                      SizedBox(width: 30),
-                      _lastwordWidget()
-                    ],
-                  );
-                } else {
+                if (AppConstraints.isMobile(constraints.maxWidth)) {
                   return Container(
-                    height: 80,
+                    height: size.height * 0.1,
                     child: Column(
                       children: [
                         Row(
@@ -164,13 +156,35 @@ class _InputWidgetState extends State<InputWidget> {
                       ],
                     ),
                   );
+                } else {
+                  return Row(
+                    children: [
+                      Text(MainLocalizations.of(context).player),
+                      SizedBox(width: 10),
+                      _playerWidget(),
+                      SizedBox(width: 30),
+                      _lastwordWidget()
+                    ],
+                  );
                 }
               }),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
               ),
               LayoutBuilder(builder: (context, constraints) {
-                if (constraints.maxWidth > AppConstraints.mobileWidth) {
+                if (AppConstraints.isMobile(constraints.maxWidth)) {
+                  return Container(
+                    height: size.height * 0.2,
+                    child: Column(children: [
+                      // first input
+                      _beginnigTextField(),
+                      // // letters
+                      _decreaseAndPhraseWidget(),
+                      // second input
+                      _endingTextField()
+                    ]),
+                  );
+                } else {
                   return Row(
                     children: [
                       // first input
@@ -181,22 +195,15 @@ class _InputWidgetState extends State<InputWidget> {
                       _endingTextField()
                     ],
                   );
-                } else {
-                  return Container(
-                    height: 150,
-                    child: Column(children: [
-                      // first input
-                      _beginnigTextField(),
-                      // // letters
-                      _decreaseAndPhraseWidget(),
-                      // second input
-                      _endingTextField()
-                    ]),
-                  );
                 }
               }),
               Padding(
-                padding: EdgeInsets.only(top: 30),
+                padding: EdgeInsets.only(
+                    top: AppConstraints.isMobile(size.width)
+                        ? 5
+                        : AppConstraints.isMedium(size.width)
+                            ? 14
+                            : 30),
                 child: Center(
                   child: FlatButton(
                     hoverColor: Colors.white.withOpacity(0.3),
@@ -207,9 +214,19 @@ class _InputWidgetState extends State<InputWidget> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(30)),
                     child: Padding(
-                      padding: EdgeInsets.all(24),
+                      padding:
+                          EdgeInsets.all(AppConstraints.isMobile(size.width)
+                              ? 5
+                              : AppConstraints.isMedium(size.width)
+                                  ? 14
+                                  : 24),
                       child: Text(MainLocalizations.of(context).addNewWord,
-                          style: TextStyle(fontSize: 24)),
+                          style: TextStyle(
+                              fontSize: AppConstraints.isMobile(size.width)
+                                  ? 14
+                                  : AppConstraints.isMedium(size.width)
+                                      ? 18
+                                      : 24)),
                     ),
                     onPressed: () async => await _addNewWord(),
                   ),

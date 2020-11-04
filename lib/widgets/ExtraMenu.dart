@@ -18,9 +18,6 @@ class ExtraMenu extends StatelessWidget {
           ListTile(
               focusColor: Colors.white.withOpacity(0.4),
               hoverColor: Colors.white.withOpacity(0.2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
               leading: Icon(Icons.cached),
               enabled: wordsModel.isAtLeastOneWordRecorded &&
                   wordsModel.isPhraseFromLastwordNotEmpty &&
@@ -33,9 +30,6 @@ class ExtraMenu extends StatelessWidget {
           ListTile(
               focusColor: Colors.white.withOpacity(0.4),
               hoverColor: Colors.white.withOpacity(0.2),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
               leading: Icon(Icons.add_circle_outline),
               title: Text(MainLocalizations.of(context).finishGame),
               onTap: () => _showFinishGameDialog(context)),

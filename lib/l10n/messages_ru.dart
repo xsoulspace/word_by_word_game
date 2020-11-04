@@ -39,7 +39,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "player" : MessageLookupByLibrary.simpleMessage("Игрок: "),
     "players" : MessageLookupByLibrary.simpleMessage("Игроки: "),
     "resetEnding" : MessageLookupByLibrary.simpleMessage("Сбросить слово"),
-    "sendFeedback" : MessageLookupByLibrary.simpleMessage("Если у вас есть идеи как улучшить игру или увидели баг - отправите письмо на xsoulspace@gmail.com"),
+    "sendFeedback" : MessageLookupByLibrary.simpleMessage("Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на xsoulspace@gmail.com"),
     "startAgain" : MessageLookupByLibrary.simpleMessage("Заново "),
     "thankYou" : MessageLookupByLibrary.simpleMessage("Спасибо за игру и хорошего времяпрепровождения!"),
     "yourHighscore" : MessageLookupByLibrary.simpleMessage("В этот раз, результат ")
