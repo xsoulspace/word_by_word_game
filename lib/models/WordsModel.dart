@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:russian_words/russian_words.dart' as RussianWords;
 import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
-import 'package:word_by_word_game/constants/Locales.dart';
 import 'package:word_by_word_game/entities/GameNotification.dart';
 import 'package:word_by_word_game/entities/LocalName.dart';
 import 'package:word_by_word_game/entities/Player.dart';
@@ -82,12 +81,10 @@ class WordsModel extends ChangeNotifier {
 
     /// checking with external dictionaries
     var isExistsInDictionary = (() {
-      if (locale == Locales.en) {
-        return EnglishWords.nouns.contains(newWord);
-      } else if (locale == Locales.ru) {
-        return RussianWords.nouns.contains(newWord);
-      }
-      return true;
+      var isEnglishWord = EnglishWords.nouns.contains(newWord);
+      var isRussianWord = RussianWords.nouns.contains(newWord);
+      if (isEnglishWord || isRussianWord) return true;
+      return false;
     })();
 
     /// checking with internal dictionaries
@@ -95,10 +92,11 @@ class WordsModel extends ChangeNotifier {
       var isExistsInLocalDictionary =
           _localDictionaryModel.words.contains(newWord);
       if (!isExistsInLocalDictionary) {
+        var newWordUpper = newWord.toUpperCase();
         return GameNotification(
             localName: LocalName(
-                en: 'Whoa, cannot find this word in dictionary! Try another, or add word to dictionary.',
-                ru: 'Ого, этого слова нет в словаре! Попробуйте другое или добавьте его в словарь.'),
+                en: 'Whoa, cannot find word $newWordUpper in dictionary! Try another, or add word to dictionary.',
+                ru: 'Ого, слова $newWordUpper нет в словаре! Попробуйте другое или добавьте его в словарь.'),
             status: GameNotificationStatuses.warn,
             newWord: newWord);
       }

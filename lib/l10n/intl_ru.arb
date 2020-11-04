@@ -70,7 +70,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправите письмо на xsoulspace@gmail.com",
+  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на xsoulspace@gmail.com",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
