@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-11-03T04:20:13.003304",
+  "@@last_modified": "2020-11-04T01:07:37.983370",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -102,6 +102,11 @@
   },
   "players": "Players: ",
   "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToDictionary": "Add to dictionary",
+  "@addToDictionary": {
     "type": "text",
     "placeholders": {}
   }

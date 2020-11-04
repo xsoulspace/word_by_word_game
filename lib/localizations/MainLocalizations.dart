@@ -112,6 +112,10 @@ class MainLocalizations {
   String get players {
     return Intl.message('Players: ', name: 'players');
   }
+
+  String get addToDictionary {
+    return Intl.message('Add to dictionary', name: 'addToDictionary');
+  }
 }
 
 class MainLocalizationsDelegate

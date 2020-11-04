@@ -38,9 +38,7 @@ class ExtraMenu extends StatelessWidget {
               ),
               leading: Icon(Icons.add_circle_outline),
               title: Text(MainLocalizations.of(context).finishGame),
-              onTap: () {
-                _showFinishGameDialog(context);
-              }),
+              onTap: () => _showFinishGameDialog(context)),
         ],
       ),
     );

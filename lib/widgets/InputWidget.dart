@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/constants/AppConstraints.dart';
+import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
 import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
@@ -50,7 +53,7 @@ class _InputWidgetState extends State<InputWidget> {
                 playersModel.currentPlayer.playerColor.color.withOpacity(0.7)));
   }
 
-  _decreaseButton({@required bool isFromBeginning}) {
+  Widget _decreaseButton({@required bool isFromBeginning}) {
     var storageModel = Provider.of<StorageModel>(context, listen: false);
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
     var playersModel = Provider.of<PlayersModel>(context, listen: false);
@@ -72,7 +75,7 @@ class _InputWidgetState extends State<InputWidget> {
     );
   }
 
-  _updateWordsModelPhrases(
+  Future<void> _updateWordsModelPhrases(
       {@required String value, @required bool isFromBeginning}) async {
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
     if (isFromBeginning) {
@@ -86,6 +89,33 @@ class _InputWidgetState extends State<InputWidget> {
 
   bool _isLeftControllerInitialized = false;
   bool _isRightControllerInitialized = false;
+
+  Widget _playerWidget() {
+    var playersModel = Provider.of<PlayersModel>(context);
+    return Container(
+        height: 30.0,
+        width: 30.0,
+        child: FittedBox(
+            child: PlayerWidget(
+          player: playersModel.currentPlayer,
+          isDisabled: true,
+          fontSize: 24,
+        )));
+  }
+
+  Widget _lastwordWidget() {
+    return Flexible(
+      child: Consumer<WordsModel>(
+          builder: (BuildContext buildContext, wordsModel, Widget widget) =>
+              Text(
+                wordsModel.isAtLeastOneWordRecorded
+                    ? '${MainLocalizations.of(context).lastword} ${wordsModel.lastword}'
+                    : '',
+                textAlign: TextAlign.center,
+              )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     var wordsModel = Provider.of<WordsModel>(context);
@@ -99,94 +129,72 @@ class _InputWidgetState extends State<InputWidget> {
       _rightTextController.text = wordsModel.newWordEnding;
       _isRightControllerInitialized = true;
     }
-
     return Material(
         color: Colors.transparent,
         child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Row(
-                children: [
-                  Text(MainLocalizations.of(context).player),
-                  SizedBox(width: 10),
-                  Container(
-                      height: 30.0,
-                      width: 30.0,
-                      child: FittedBox(
-                          child: PlayerWidget(
-                        player: playersModel.currentPlayer,
-                        isDisabled: true,
-                        fontSize: 24,
-                      ))),
-                  SizedBox(width: 30),
-                  Consumer<WordsModel>(
-                      builder: (BuildContext buildContext, wordsModel,
-                              Widget widget) =>
-                          Text(wordsModel.isAtLeastOneWordRecorded
-                              ? '${MainLocalizations.of(context).lastword} ${wordsModel.lastword}'
-                              : '')),
-                ],
-              ),
+              LayoutBuilder(builder: (context, constraints) {
+                if (constraints.maxWidth > AppConstraints.mobileWidth) {
+                  return Row(
+                    children: [
+                      Text(MainLocalizations.of(context).player),
+                      SizedBox(width: 10),
+                      _playerWidget(),
+                      SizedBox(width: 30),
+                      _lastwordWidget()
+                    ],
+                  );
+                } else {
+                  return Container(
+                    height: 80,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(MainLocalizations.of(context).player),
+                            SizedBox(width: 10),
+                            _playerWidget(),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        _lastwordWidget()
+                      ],
+                    ),
+                  );
+                }
+              }),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
               ),
-              Row(
-                children: [
-                  // first input
-                  Visibility(
-                    visible: wordsModel.isAtLeastOneWordRecorded &&
-                        wordsModel.isPhraseFromLastwordNotEmpty,
-                    child: Expanded(
-                      child: TextField(
-                        style: TextStyle(fontSize: 14.0),
-                        textAlign: TextAlign.end,
-                        decoration: InputDecoration(
-                            focusedBorder: _textFieldFocusOutlineInputBorder(),
-                            border: _textFieldOutlineInputBorder(),
-                            hintText:
-                                MainLocalizations.of(context).hintAddBeginning),
-                        onChanged: (String value) => _updateWordsModelPhrases(
-                            isFromBeginning: true, value: value),
-                        controller: _leftTextController,
-                      ),
-                    ),
-                  ),
-                  // // letters
-                  Visibility(
-                      visible: wordsModel.isAtLeastOneWordRecorded &&
-                          wordsModel.isPhraseFromLastwordNotEmpty,
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 5),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            _decreaseButton(isFromBeginning: true),
-                            Consumer<WordsModel>(
-                                builder: (BuildContext buildContext, wordsModel,
-                                        Widget widget) =>
-                                    Text(wordsModel.phraseFromLastword)),
-                            _decreaseButton(isFromBeginning: false)
-                          ],
-                        ),
-                      )),
-                  // second input
-                  Expanded(
-                    child: TextField(
-                      style: TextStyle(fontSize: 14.0),
-                      decoration: InputDecoration(
-                          focusedBorder: _textFieldFocusOutlineInputBorder(),
-                          border: _textFieldOutlineInputBorder(),
-                          hintText: wordsModel.isNoWordsRecordedYet
-                              ? MainLocalizations.of(context).hintAddNewWord
-                              : MainLocalizations.of(context).hintAddEnding),
-                      onChanged: (String value) => _updateWordsModelPhrases(
-                          isFromBeginning: false, value: value),
-                      controller: _rightTextController,
-                    ),
-                  )
-                ],
-              ),
+              LayoutBuilder(builder: (context, constraints) {
+                if (constraints.maxWidth > AppConstraints.mobileWidth) {
+                  return Row(
+                    children: [
+                      // first input
+                      _beginnigTextField(),
+                      // // letters
+                      _decreaseAndPhraseWidget(),
+                      // second input
+                      _endingTextField()
+                    ],
+                  );
+                } else {
+                  return Container(
+                    height: 150,
+                    child: Column(children: [
+                      // first input
+                      _beginnigTextField(),
+                      // // letters
+                      _decreaseAndPhraseWidget(),
+                      // second input
+                      _endingTextField()
+                    ]),
+                  );
+                }
+              }),
               Padding(
                 padding: EdgeInsets.only(top: 30),
                 child: Center(
@@ -210,15 +218,76 @@ class _InputWidgetState extends State<InputWidget> {
             ]));
   }
 
-  _addNewWord() async {
+  Widget _decreaseAndPhraseWidget() {
+    var wordsModel = Provider.of<WordsModel>(context);
+    return Visibility(
+      visible: wordsModel.isAtLeastOneWordRecorded &&
+          wordsModel.isPhraseFromLastwordNotEmpty,
+      child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: 5),
+          child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _decreaseButton(isFromBeginning: true),
+                Consumer<WordsModel>(
+                    builder: (BuildContext buildContext, wordsModel,
+                            Widget widget) =>
+                        Text(wordsModel.phraseFromLastword)),
+                _decreaseButton(isFromBeginning: false)
+              ])),
+    );
+  }
+
+  Widget _beginnigTextField() {
+    var wordsModel = Provider.of<WordsModel>(context);
+    return Visibility(
+      visible: wordsModel.isAtLeastOneWordRecorded &&
+          wordsModel.isPhraseFromLastwordNotEmpty,
+      child: Expanded(
+        child: TextField(
+          style: TextStyle(fontSize: 14.0),
+          textAlign: TextAlign.end,
+          decoration: InputDecoration(
+              focusedBorder: _textFieldFocusOutlineInputBorder(),
+              border: _textFieldOutlineInputBorder(),
+              hintText: MainLocalizations.of(context).hintAddBeginning),
+          onChanged: (String value) =>
+              _updateWordsModelPhrases(isFromBeginning: true, value: value),
+          controller: _leftTextController,
+        ),
+      ),
+    );
+  }
+
+  Widget _endingTextField() {
+    var wordsModel = Provider.of<WordsModel>(context);
+    return Expanded(
+      child: TextField(
+        style: TextStyle(fontSize: 14.0),
+        decoration: InputDecoration(
+            focusedBorder: _textFieldFocusOutlineInputBorder(),
+            border: _textFieldOutlineInputBorder(),
+            hintText: wordsModel.isNoWordsRecordedYet
+                ? MainLocalizations.of(context).hintAddNewWord
+                : MainLocalizations.of(context).hintAddEnding),
+        onChanged: (String value) =>
+            _updateWordsModelPhrases(isFromBeginning: false, value: value),
+        controller: _rightTextController,
+      ),
+    );
+  }
+
+  Future<void> _addNewWord() async {
     var notificationsModel =
         Provider.of<NotificationsModel>(context, listen: false);
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
     var playersModel = Provider.of<PlayersModel>(context, listen: false);
+    var localeModel = Provider.of<LocaleModel>(context, listen: false);
     var storageModel = Provider.of<StorageModel>(context, listen: false);
     var gameNotification = await wordsModel.addNewWordForPLayer(
-        player: playersModel.currentPlayer);
-    if (gameNotification.status) {
+        player: playersModel.currentPlayer, locale: localeModel.locale);
+    if (gameNotification.status == GameNotificationStatuses.done) {
       await storageModel.saveWordsModel();
       _leftTextController.text = wordsModel.newWordBeginning;
       _rightTextController.text = wordsModel.newWordEnding;

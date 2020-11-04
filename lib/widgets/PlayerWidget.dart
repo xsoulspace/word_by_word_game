@@ -18,6 +18,7 @@ class PlayerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       elevation: 1,
+      hoverElevation: 6,
       backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
       onPressed: isDisabled ? null : onTap,
       child: Text(
@@ -27,16 +28,5 @@ class PlayerWidget extends StatelessWidget {
             color: Theme.of(context).primaryTextTheme.subtitle1.color),
       ),
     );
-    //  InkWell(
-    //   onTap: isDisabled ? null : onTap,
-    //   child: (CircleAvatar(
-    //     backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
-    // child: Text(
-    //   '${player.id}',
-    //   style: TextStyle(
-    //       color: Theme.of(context).primaryTextTheme.subtitle1.color),
-    // ),
-    //   )),
-    // );
   }
 }
