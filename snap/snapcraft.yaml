@@ -1,0 +1,41 @@
+name: word-by-word-game
+version: 0.0.6+2
+summary: Simple & fun game to write word based on last 3 letters of last word
+description: |
+  Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
+
+  Any word will be check with internal dictionary (available for two languages: English and Russian)
+
+  You can play with your friends, but more in old school way - to give phone to another player.
+
+  For ideas, improvements and bugs please write feedback or send a message to xsoulspace@gmail.com.
+
+  Have a fun and a great time!
+icon: snap/gui/icon-512.png
+
+confinement: strict
+base: core18
+grade: stable
+
+slots:
+  dbus-word-by-word-game: # name this whatever you want
+    interface: dbus
+    bus: session
+    name: dev.xsoulspace.word_by_word_game # adjust accordingly
+
+apps:
+  word-by-word-game:
+    command: word_by_word_game
+    extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
+    # using dev as it is the one channel that supports linux
+    plugs:
+      - home
+      - network
+    slots:
+      - dbus-word-by-word-game
+
+parts:
+  word-by-word-game:
+    source: .
+    plugin: flutter
+    flutter-target: lib/main.dart # The main entry-point file of the application
