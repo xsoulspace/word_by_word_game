@@ -62,7 +62,7 @@ class WordsModel extends ChangeNotifier {
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding'
         .toLowerCase()
         .replaceAll(' ', '');
-    if (newWord.length < phraseLimit)
+    if (newWord.length <= phraseLimit)
       return GameNotification(
           status: GameNotificationStatuses.error,
           localName: LocalName(
@@ -230,6 +230,7 @@ class WordsModel extends ChangeNotifier {
   resetToNewGame() {
     newWordBeginning = '';
     newWordEnding = '';
+    phraseFromLastword = '';
     phraseLimit = 3;
     phraseLimitMax = 3;
     phraseLimitLettersLeft = 6;

@@ -45,10 +45,18 @@ class LocaleModel extends ChangeNotifier with StorageMixin {
   static Future<Locale> loadSavedLocale() async {
     StorageUtil storage = await StorageUtil.getInstance();
     String localeStr = storage.getString(LocaleModelConsts.storagename);
-    if (localeStr == null || localeStr == '') {
-      if (kIsWeb || Platform.isWindows) return Locales.en;
+    if (localeStr.isEmpty) {
+      // FIXME: strange things happend with locales on all OS!
+      // seems like it has new formats nn__UTF08__NN
+      if (kIsWeb ||
+          Platform.isWindows ||
+          Platform.isLinux ||
+          Platform.isAndroid ||
+          Platform.isIOS ||
+          Platform.isMacOS) return Locales.en;
 
-      Intl.defaultLocale = await findSystemLocale();
+      var systemLocale = await findSystemLocale();
+      Intl.defaultLocale = systemLocale;
       return Locale(Intl.defaultLocale);
     }
 
@@ -67,7 +75,7 @@ class LocaleModel extends ChangeNotifier with StorageMixin {
 
   NamedLocale get currentNamedLocale =>
       LocaleModelConsts.namedLocales.firstWhere((namedLocale) {
-        var isEqual = _locale == namedLocale.locale;
+        var isEqual = _locale.languageCode == namedLocale.locale.languageCode;
         return isEqual;
       });
 }

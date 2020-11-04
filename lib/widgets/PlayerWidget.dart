@@ -18,6 +18,7 @@ class PlayerWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return FloatingActionButton(
       elevation: 1,
+      hoverElevation: 6,
       backgroundColor: isEnabled ? player.playerColor.color : Colors.grey,
       onPressed: isDisabled ? null : onTap,
       child: Text(
