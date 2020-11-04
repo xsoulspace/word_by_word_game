@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/constants/AppConstraints.dart';
 import 'package:word_by_word_game/entities/NamedLocale.dart';
 import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/LocaleModel.dart';
@@ -13,13 +12,16 @@ class MenuWidget extends StatelessWidget {
     return FlatButton(
       onPressed: () => showEndGameDialog(context),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(Icons.add_circle_outline),
+          Icon(Icons.add),
           SizedBox(
             width: 10,
           ),
-          Text(MainLocalizations.of(context).newGame),
+          Text(
+            MainLocalizations.of(context).newGame,
+            style: TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
+          ),
         ],
       ),
       height: 50,
@@ -47,26 +49,23 @@ class MenuWidget extends StatelessWidget {
     });
   }
 
-  Widget _mainWidget({@required BuildContext context, @required bool extend}) {
+  Widget _mainWidget({@required BuildContext context}) {
+    var size = MediaQuery.of(context).size;
     return Container(
+      height: double.infinity,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.vertical(
-            top: extend ? Radius.zero : Radius.circular(24),
-            bottom: Radius.zero),
+            top: Radius.circular(24), bottom: Radius.zero),
         color: Colors.white,
       ),
-      margin: EdgeInsets.symmetric(horizontal: extend ? 0 : 5),
-      padding: EdgeInsets.only(
-          top: extend ? 10 : 20,
-          bottom: 20,
-          right: extend ? 4 : 20,
-          left: extend ? 4 : 20),
+      margin: EdgeInsets.symmetric(horizontal: 5),
+      padding: EdgeInsets.only(top: 20, bottom: 20, right: 20, left: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           LayoutBuilder(
             builder: (context, constraints) {
-              if (constraints.maxWidth > AppConstraints.mobileWidth) {
+              if (constraints.maxWidth >= 400) {
                 return Row(
                   children: [
                     _newGameButton(context),
@@ -78,14 +77,15 @@ class MenuWidget extends StatelessWidget {
                 );
               } else {
                 return Container(
-                    height: 100,
+                    height: size.height * 0.18,
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         _newGameButton(context),
                         SizedBox(
-                          height: 10,
+                          height: 7,
                         ),
-                        _languageToogle()
+                        _languageToogle(),
                       ],
                     ));
               }
@@ -121,18 +121,7 @@ class MenuWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(builder: (context, constraints) {
-      if (constraints.maxHeight > 350) {
-        return _mainWidget(context: context, extend: false);
-      } else {
-        return SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: _mainWidget(
-              extend: true,
-              context: context,
-            ));
-      }
-    });
+    return _mainWidget(context: context);
   }
 
   showEndGameDialog(BuildContext context) {
