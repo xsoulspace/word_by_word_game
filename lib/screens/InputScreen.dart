@@ -34,40 +34,37 @@ class InputScreen extends StatelessWidget {
     var playersModel = Provider.of<PlayersModel>(context);
 
     return Scaffold(
-      body: LayoutBuilder(
-          builder: (BuildContext context, BoxConstraints constraints) {
-        return Container(
-          height: constraints.maxHeight,
-          decoration: appGradientBoxDecoration(
-              playerColor: playersModel.currentPlayer.playerColor,
-              secondColor: Theme.of(context).primaryColor),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.vertical,
-            child: Column(children: [
-              UpperToolbar(),
-              NotificationsWidget(
-                gameNotification: notificationsModel.gameNotification,
+      body: Container(
+        height: double.infinity,
+        decoration: appGradientBoxDecoration(
+            playerColor: playersModel.currentPlayer.playerColor,
+            secondColor: Theme.of(context).primaryColor),
+        child: SingleChildScrollView(
+          scrollDirection: Axis.vertical,
+          child: Column(children: [
+            UpperToolbar(),
+            NotificationsWidget(
+              gameNotification: notificationsModel.gameNotification,
+            ),
+            Container(
+              color: Colors.white.withOpacity(0.85),
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
+                child: InputWidget(),
               ),
-              Container(
-                color: Colors.white.withOpacity(0.85),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 30, horizontal: 5),
-                  child: InputWidget(),
-                ),
+            ),
+            Container(
+              color: Colors.white.withOpacity(0.85),
+              child: Visibility(
+                visible: wordsModel.isAtLeastOneWordRecorded,
+                maintainState: true,
+                maintainAnimation: true,
+                child: ExtraMenu(),
               ),
-              Container(
-                color: Colors.white.withOpacity(0.85),
-                child: Visibility(
-                  visible: wordsModel.isAtLeastOneWordRecorded,
-                  maintainState: true,
-                  maintainAnimation: true,
-                  child: ExtraMenu(),
-                ),
-              ),
-            ]),
-          ),
-        );
-      }),
+            ),
+          ]),
+        ),
+      ),
       floatingActionButton: MenuFAB(),
     );
   }

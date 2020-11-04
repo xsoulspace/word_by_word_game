@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 
 class Locales {
-  static Locale get en => Locale(Languages.en, 'EN');
-  static Locale get ru => Locale(Languages.ru, 'RU');
+  static const Locale en = Locale(Languages.en, 'EN');
+  static const Locale ru = Locale(Languages.ru, 'RU');
 }
 
 class Languages {
-  static String ru = 'ru';
-  static String en = 'en';
-  static final List items = [
+  static const String ru = 'ru';
+  static const String en = 'en';
+  static const List items = [
     ru,
     en,
   ];

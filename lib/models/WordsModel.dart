@@ -1,11 +1,16 @@
 import 'dart:collection';
 
+import 'package:english_words/english_words.dart' as EnglishWords;
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:russian_words/russian_words.dart' as RussianWords;
+import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
+import 'package:word_by_word_game/constants/Locales.dart';
 import 'package:word_by_word_game/entities/GameNotification.dart';
 import 'package:word_by_word_game/entities/LocalName.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/Word.dart';
+import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 
 part 'WordsModel.g.dart';
 
@@ -15,6 +20,9 @@ class WordsModelConsts {
 
 @JsonSerializable(nullable: true)
 class WordsModel extends ChangeNotifier {
+  @JsonKey(ignore: true)
+  LocalDictionaryModel _localDictionaryModel;
+
   ///
   /// Words stack
   ///
@@ -49,42 +57,69 @@ class WordsModel extends ChangeNotifier {
   }
 
   Future<GameNotification> addNewWordForPLayer(
-      {@required Player player}) async {
+      {@required Player player, @required Locale locale}) async {
+    /// checking limit
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding'
         .toLowerCase()
         .replaceAll(' ', '');
-    if (newWord.length < phraseLimit)
+    if (newWord.length <= phraseLimit)
       return GameNotification(
-          status: false,
+          status: GameNotificationStatuses.error,
           localName: LocalName(
               en: 'Word needs to have more then $phraseLimit',
               ru: 'Слово должно быть больше чем $phraseLimit'));
-    var isNewWordExists = allWordsValues.contains(newWord);
 
+    /// checking is Word was added
+    var isNewWordExists = allWordsValues.contains(newWord);
     if (isNewWordExists)
       return GameNotification(
-          status: false,
+          status: GameNotificationStatuses.error,
           localName: LocalName(
               en: 'This word was written aleady!',
               ru: 'Это слово уже записано!'));
 
     wordsIdMax++;
 
-    _allWordsByWordIdMap.putIfAbsent(
-        wordsIdMax, () => Word(id: wordsIdMax, value: newWord));
+    /// checking with external dictionaries
+    var isExistsInDictionary = (() {
+      if (locale == Locales.en) {
+        return EnglishWords.nouns.contains(newWord);
+      } else if (locale == Locales.ru) {
+        return RussianWords.nouns.contains(newWord);
+      }
+      return true;
+    })();
 
+    /// checking with internal dictionaries
+    if (!isExistsInDictionary) {
+      var isExistsInLocalDictionary =
+          _localDictionaryModel.words.contains(newWord);
+      if (!isExistsInLocalDictionary) {
+        return GameNotification(
+            localName: LocalName(
+                en: 'Whoa, cannot find this word in dictionary! Try another, or add word to dictionary.',
+                ru: 'Ого, этого слова нет в словаре! Попробуйте другое или добавьте его в словарь.'),
+            status: GameNotificationStatuses.warn,
+            newWord: newWord);
+      }
+    }
+
+    /// checking word id identity
     var playerWordsIds = getWordsIdsListByPlayer(player: player);
     var isNewIdExists = playerWordsIds.contains(wordsIdMax);
 
     if (isNewIdExists)
       return GameNotification(
-          status: false,
+          status: GameNotificationStatuses.error,
           localName: LocalName(
               en: 'This word was written aleady!',
               ru: 'Это слово уже записано!'));
 
+    _allWordsByWordIdMap.putIfAbsent(
+        wordsIdMax, () => Word(id: wordsIdMax, value: newWord));
     playerWordsIds.add(wordsIdMax);
     _wordsIdsByPlayerIdMap.putIfAbsent(player.id, () => playerWordsIds);
+
     privateLastword = newWord;
     phraseLimit = phraseLimitMax;
 
@@ -94,7 +129,7 @@ class WordsModel extends ChangeNotifier {
     newWordEnding = '';
     notifyListeners();
     return GameNotification(
-        status: true,
+        status: GameNotificationStatuses.done,
         localName: LocalName(en: 'Word added!', ru: 'Слово добавлено!'));
   }
 
@@ -195,6 +230,7 @@ class WordsModel extends ChangeNotifier {
   resetToNewGame() {
     newWordBeginning = '';
     newWordEnding = '';
+    phraseFromLastword = '';
     phraseLimit = 3;
     phraseLimitMax = 3;
     phraseLimitLettersLeft = 6;
@@ -223,6 +259,7 @@ class WordsModel extends ChangeNotifier {
     Map<int, List<int>> wordsIdsByPlayerIdMap, {
     String newWordBeginning = '',
     String newWordEnding = '',
+    LocalDictionaryModel localDictionaryModel,
     this.phraseLimit = 3,
     this.phraseLimitMax = 3,
     this.phraseLimitLettersLeft = 6,
@@ -232,6 +269,8 @@ class WordsModel extends ChangeNotifier {
     this._wordsIdsByPlayerIdMap = wordsIdsByPlayerIdMap;
     this._newWordBeginning = newWordBeginning;
     this._newWordEnding = newWordEnding;
+    this._localDictionaryModel = localDictionaryModel;
+
     notifyListeners();
   }
 
