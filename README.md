@@ -11,6 +11,10 @@
 
 </p>
 
+<p>
+Discussions: <a href="https://4pda.ru/forum/index.php?showtopic=1010027">4PDA</a>
+</p>
+
 # About
 
 Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
