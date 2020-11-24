@@ -11,9 +11,6 @@
 
 </p>
 
-<p>
-Discussions: <a href="https://4pda.ru/forum/index.php?showtopic=1010027">4PDA</a>
-</p>
 
 # About
 
