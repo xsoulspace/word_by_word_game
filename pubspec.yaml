@@ -49,7 +49,7 @@ dev_dependencies:
   # FIXME: due problem with intl_tranlsation
   # analyzer dependency overriden.
   # FIXME: to run flutter pub run build_runner build need to comment intl_translation and analyzer override
-  intl_translation: ^0.17.10+1
+  # intl_translation: ^0.17.10+1
   # flutter pub run flutter_launcher_icons:main
 
 flutter_icons:
