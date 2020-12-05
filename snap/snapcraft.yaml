@@ -1,5 +1,5 @@
 name: word-by-word-game
-version: 0.0.6+2
+version: 0.0.6+4
 summary: Simple & fun game to write word based on last 3 letters of last word
 description: |
   Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
@@ -11,14 +11,15 @@ description: |
   For ideas, improvements and bugs please write feedback or send a message to xsoulspace@gmail.com.
 
   Have a fun and a great time!
-icon: snap/gui/icon-512.png
-
+icon: snap/gui/word-by-word-game.png
+desktop: var/lib/snapd/desktop/applications/word-by-word-game.desktop
+command: desktop-launch $SNAP/usr/bin/word-by-word-game
 confinement: strict
 base: core18
 grade: stable
 
 slots:
-  dbus-word-by-word-game: # name this whatever you want
+  dbus-word-by-word-game:
     interface: dbus
     bus: session
     name: dev.xsoulspace.word_by_word_game # adjust accordingly
@@ -31,6 +32,9 @@ apps:
     plugs:
       - home
       - network
+      - desktop
+      - desktop-legacy
+
     slots:
       - dbus-word-by-word-game
 
