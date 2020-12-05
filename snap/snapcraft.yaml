@@ -12,8 +12,6 @@ description: |
 
   Have a fun and a great time!
 icon: snap/gui/word-by-word-game.png
-desktop: var/lib/snapd/desktop/applications/word-by-word-game.desktop
-command: desktop-launch $SNAP/usr/bin/word-by-word-game
 confinement: strict
 base: core18
 grade: stable
