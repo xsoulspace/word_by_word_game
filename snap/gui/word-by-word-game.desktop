@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Word By Word Game
+
+GenericName=Word By Word Game
+Comment=Simple, fun and self-educative game to write word after word, based on last 3 letters of last word
+Exec=word-by-word-game
+Icon=${SNAP}/meta/gui/word-by-word-game.png
+Terminal=false
+Type=Application
+Categories=Education;Game;
