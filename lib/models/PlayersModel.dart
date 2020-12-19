@@ -12,7 +12,7 @@ class PlayersModelConsts {
   static String storagename = 'playersmodel';
 }
 
-@JsonSerializable(nullable: true)
+@JsonSerializable()
 class PlayersModel extends ChangeNotifier {
   ///
   /// Players data

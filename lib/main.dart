@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
                     wordsModel: wordsModel,
                     playersModel: playersModel,
                     localDictionaryModel: localDictionaryModel);
-              }),
+              }, initialData: null,),
             ], child: ScaffoldApp());
           } else {
             return Center(child: CircularProgressIndicator());
