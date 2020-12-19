@@ -10,7 +10,7 @@ import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 class MenuWidget extends StatelessWidget {
   Widget _newGameButton(BuildContext context) {
     return FlatButton(
-      onPressed: () => showEndGameDialog(context),
+      onPressed: () => showEndGameDialog(context: context),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -123,13 +123,11 @@ class MenuWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return _mainWidget(context: context);
   }
+}
 
-  showEndGameDialog(BuildContext context) {
-    bool isCanPop = Navigator.canPop(context);
-    if (isCanPop) Navigator.pop(context);
-    showDialog(
-      context: context,
-      builder: (context) => EndGameDialog(),
-    );
-  }
+void showEndGameDialog({@required BuildContext context}) {
+  showDialog(
+    context: context,
+    builder: (context) => EndGameDialog(),
+  );
 }

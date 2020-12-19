@@ -7,6 +7,7 @@ import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/ExtraMenu.dart';
 import 'package:word_by_word_game/widgets/InputWidget.dart';
+import 'package:word_by_word_game/widgets/MenuWidget.dart';
 import 'package:word_by_word_game/widgets/NotificationsWidget.dart';
 import 'package:word_by_word_game/widgets/UpperToolbar.dart';
 
@@ -88,22 +89,25 @@ class InputScreen extends StatelessWidget {
 class FabItem {
   final IconData iconData;
   final String label;
-  FabItem({@required this.iconData, @required this.label});
+  final Function callback;
+  FabItem(
+      {@required this.iconData, @required this.label, @required this.callback});
 }
 
-final items = [
-  FabItem(iconData: Icons.info_outline, label: 'Info'),
-  FabItem(iconData: Icons.translate, label: 'Language'),
-  FabItem(
-    iconData: Icons.add,
-    label: 'New',
-  ),
-  FabItem(iconData: Icons.people, label: 'Players'),
-];
+final getMenuItems = ({@required context}) => [
+      FabItem(iconData: Icons.info_outline, label: 'Info', callback: () {}),
+      FabItem(
+          iconData: Icons.add,
+          label: 'New',
+          callback: () => showEndGameDialog(context: context)),
+      FabItem(iconData: Icons.people, label: 'Players', callback: () {}),
+      FabItem(iconData: Icons.translate, label: 'Language', callback: () {}),
+    ];
 
 class BottomFabBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var items = getMenuItems(context: context);
     return BottomNavigationBar(
       backgroundColor: Colors.transparent,
       selectedItemColor: Colors.grey[800],
@@ -118,6 +122,10 @@ class BottomFabBar extends StatelessWidget {
           ),
         )
       ],
+      onTap: (index) {
+        var item = items[index];
+        if (item != null) item.callback();
+      },
     );
   }
 }
@@ -127,12 +135,13 @@ class LeftFabBar extends StatelessWidget {
   LeftFabBar({@required this.width});
   @override
   Widget build(BuildContext context) {
+    var items = getMenuItems(context: context);
+
     return Material(
       elevation: 4,
       color: Colors.transparent,
       child: Container(
           width: width,
-          padding: EdgeInsets.symmetric(horizontal: 4),
           child: Column(children: [
             SizedBox(height: 10),
             Expanded(
@@ -147,11 +156,12 @@ class LeftFabBar extends StatelessWidget {
                     itemBuilder: (context, counter) {
                       var item = items[counter];
                       return InkWell(
-                        onTap: () {},
+                        onTap: item.callback,
                         splashColor: Colors.white.withOpacity(0.45),
                         focusColor: Colors.white.withOpacity(0.55),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 10.0),
+                          padding: EdgeInsets.only(
+                              top: 6.0, left: 4, right: 4, bottom: 4),
                           child: Column(
                             children: [
                               Padding(
