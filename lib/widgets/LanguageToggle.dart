@@ -11,8 +11,7 @@ class LanguageToggle extends StatelessWidget {
       return DropdownButton<NamedLocale>(
           isExpanded: true,
           value: localeModel.currentNamedLocale,
-          items: LocaleModelConsts.namedLocales
-              .map<DropdownMenuItem<NamedLocale>>((namedLocale) {
+          items: LocaleModelConsts.namedLocales.map((namedLocale) {
             return DropdownMenuItem<NamedLocale>(
               key: Key(namedLocale.name),
               value: namedLocale,

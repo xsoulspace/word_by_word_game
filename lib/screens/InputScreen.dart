@@ -6,11 +6,14 @@ import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
+import 'package:word_by_word_game/widgets/EndGameDialog.dart';
 import 'package:word_by_word_game/widgets/ExtraMenu.dart';
+import 'package:word_by_word_game/widgets/InfoWidget.dart';
 import 'package:word_by_word_game/widgets/InputWidget.dart';
 import 'package:word_by_word_game/widgets/LanguageToggle.dart';
 import 'package:word_by_word_game/widgets/LeftBar.dart';
 import 'package:word_by_word_game/widgets/NotificationsWidget.dart';
+import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 import 'package:word_by_word_game/widgets/UpperToolbar.dart';
 
 final double leftBarWidth = 54;
@@ -76,10 +79,9 @@ class InputScreen extends StatelessWidget {
           isMobile
               ? Align(
                   alignment: Alignment.bottomCenter,
-                  child: Theme(
-                      data: Theme.of(context)
-                          .copyWith(canvasColor: Colors.transparent),
-                      child: BottomFabBar()))
+                  child: BottonBar(
+                    minHeight: 60,
+                  ))
               : LeftBar(
                   minWidth: leftBarWidth,
                 ),
@@ -162,18 +164,140 @@ class MenuItemWidget extends StatelessWidget {
   }
 }
 
-class BottomFabBar extends StatelessWidget {
+class BottonBar extends StatefulWidget {
+  final double minHeight;
+  BottonBar({@required this.minHeight});
+  @override
+  _BottonBarState createState() => _BottonBarState();
+}
+
+class _BottonBarState extends State<BottonBar> {
+  bool isClosed = true;
+
+  final double heightExpanded = 200;
+  double get currentHeight {
+    return isClosed ? widget.minHeight : heightExpanded;
+  }
+
+  closeBar() {
+    setState(() {
+      isClosed = true;
+      selectedItemIndex = -1;
+    });
+  }
+
+  int selectedItemIndex = -1;
+  final duration = Duration(milliseconds: 150);
   @override
   Widget build(BuildContext context) {
-    return BottomNavigationBar(
-      backgroundColor: Colors.transparent,
-      selectedItemColor: Colors.grey[800],
-      unselectedItemColor: Colors.grey[800],
-      showUnselectedLabels: true,
-      showSelectedLabels: true,
-      items: <BottomNavigationBarItem>[],
-      onTap: (index) {},
-    );
+    var menuItemsModel = Provider.of<MenuItemsModel>(context);
+    var menuItems = menuItemsModel.menuItems;
+    var playersModel = Provider.of<PlayersModel>(context);
+    var selectedColor =
+        playersModel.currentPlayer.playerColor.color.withOpacity(0.6);
+
+    return Material(
+        elevation: 4,
+        color: Colors.transparent,
+        child: AnimatedContainer(
+            duration: duration,
+            height: currentHeight,
+            color: isClosed
+                ? Colors.white.withOpacity(0.4)
+                : Colors.white.withOpacity(0.95),
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Center(
+                    child: SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ...menuItems.map((menuItem) {
+                              var isSelected = menuItem.id == selectedItemIndex;
+                              return SizedBox(
+                                width: widget.minHeight,
+                                child: MenuItemWidget(
+                                    duration: duration,
+                                    menuItem: menuItem,
+                                    onTap: () {
+                                      switch (menuItem.code) {
+                                        case MenuItemsEnum.New:
+                                          closeBar();
+                                          showEndGameDialog(context: context);
+                                          break;
+                                        default:
+                                          setState(() {
+                                            selectedItemIndex = menuItem.id;
+                                            isClosed = false;
+                                          });
+                                          break;
+                                      }
+                                    },
+                                    isSelected: isSelected),
+                              );
+                            }),
+                            AnimatedSwitcher(
+                                duration: duration,
+                                child: !isClosed
+                                    ? Material(
+                                        child: InkWell(
+                                          splashColor:
+                                              selectedColor.withOpacity(0.4),
+                                          focusColor:
+                                              selectedColor.withOpacity(0.2),
+                                          hoverColor:
+                                              selectedColor.withOpacity(0.1),
+                                          onTap: () {
+                                            closeBar();
+                                          },
+                                          child: Align(
+                                            alignment: Alignment.centerRight,
+                                            child: Icon(
+                                              Icons.arrow_drop_down,
+                                              size: widget.minHeight,
+                                              color: Colors.grey[800],
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    : Container())
+                          ]),
+                    ),
+                  ),
+                  Expanded(
+                    child: AnimatedOpacity(
+                        duration: duration,
+                        opacity: isClosed ? 0 : 1,
+                        child: (() {
+                          var selectedMenuItems = menuItems
+                              .where((item) => item.id == selectedItemIndex)
+                              .toList();
+                          if (selectedMenuItems.length == 0) return Container();
+                          var selectedMenuItem = selectedMenuItems.first;
+                          switch (selectedMenuItem.code) {
+                            case MenuItemsEnum.Info:
+                              return Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: InfoWidget(),
+                              );
+                            case MenuItemsEnum.Players:
+                              return Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: PlayerChooser(),
+                              );
+                            case MenuItemsEnum.Language:
+                              return Padding(
+                                padding: EdgeInsets.all(8.0),
+                                child: LanguageToggle(),
+                              );
+                            default:
+                              return Container();
+                          }
+                        })()),
+                  )
+                ])));
   }
 }
 

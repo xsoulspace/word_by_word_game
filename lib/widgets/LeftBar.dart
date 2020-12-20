@@ -73,7 +73,12 @@ class _LeftBarState extends State<LeftBar> {
                       },
                       itemCount: menuItems.length,
                       itemBuilder: (context, counter) {
-                        var menuItem = menuItems[counter];
+                        var selectedMenuItems = menuItems
+                            .where((item) => item.id == counter)
+                            .toList();
+                        if (selectedMenuItems.length == 0) return Container();
+                        var menuItem = selectedMenuItems.first;
+
                         var isSelected = counter == selectedItemIndex;
                         return MenuItemWidget(
                             duration: duration,
@@ -89,6 +94,7 @@ class _LeftBarState extends State<LeftBar> {
                                     selectedItemIndex = counter;
                                     isClosed = false;
                                   });
+                                  break;
                               }
                             },
                             children: (() {
@@ -107,6 +113,7 @@ class _LeftBarState extends State<LeftBar> {
                                         ])
                                   ];
                                 default:
+                                  break;
                               }
                             })(),
                             isSelected: isSelected);
@@ -126,7 +133,7 @@ class _LeftBarState extends State<LeftBar> {
                       alignment: Alignment.centerRight,
                       child: Icon(
                         Icons.arrow_left,
-                        size: 50.0,
+                        size: widget.minWidth,
                         color: Colors.grey[800],
                       ),
                     ),
