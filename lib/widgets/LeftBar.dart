@@ -18,7 +18,7 @@ class LeftBar extends StatefulWidget {
 class _LeftBarState extends State<LeftBar> {
   bool isClosed = true;
 
-  final double widthExpanded = 300;
+  final double widthExpanded = 330;
   double get currentWidth {
     return isClosed ? widget.minWidth : widthExpanded;
   }
