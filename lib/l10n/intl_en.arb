@@ -70,7 +70,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "For any bugs or ideas please send your feedback to xsoulspace@gmail.com",
+  "sendFeedback": "For any bugs or ideas please send your feedback to idea@xsoulspace.dev",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
@@ -100,8 +100,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "players": "Players: ",
+  "players": "Players ",
   "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLanguage": "Language ",
+  "@menuLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuInfo": "Info ",
+  "@menuInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuNewGame": "New ",
+  "@menuNewGame": {
     "type": "text",
     "placeholders": {}
   },

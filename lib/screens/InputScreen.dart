@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/entities/PlayerColor.dart';
+import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
@@ -114,11 +115,13 @@ class MenuItemWidget extends StatelessWidget {
   }
 
   Widget textWidget({@required selectedColor}) {
-    return Text(
-      menuItem.label,
-      style: TextStyle(
-          fontSize: 10, color: isSelected ? selectedColor : Colors.grey[800]),
-    );
+    return Consumer<LocaleModel>(
+        builder: (context, localeModel, widget) => Text(
+              menuItem.label.getName(localeModel.locale),
+              style: TextStyle(
+                  fontSize: 10,
+                  color: isSelected ? selectedColor : Colors.grey[800]),
+            ));
   }
 
   @override
