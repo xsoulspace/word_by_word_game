@@ -17,4 +17,6 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter pub get
       - run: flutter build web --release --no-sound-null-safety
-      - run: flutter build linux --release --no-sound-null-safety
+      - run: flutter config --enable-linux-desktop
+      - run: flutter pub get
+      - run: flutter build -d linux --release --no-sound-null-safety
