@@ -11,6 +11,13 @@ import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/CircularSpinner.dart';
 import 'package:word_by_word_game/widgets/PlayerWidget.dart';
 
+void showEndGameDialog({@required BuildContext context}) {
+  showDialog(
+    context: context,
+    builder: (context) => EndGameDialog(),
+  );
+}
+
 class EndGameDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
