@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-11-04T01:07:37.983370",
+  "@@last_modified": "2020-12-20T17:16:35.412787",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -100,8 +100,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "players": "Players: ",
+  "players": "Players ",
   "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLanguage": "Language ",
+  "@menuLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuInfo": "Info ",
+  "@menuInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuNewGame": "New ",
+  "@menuNewGame": {
     "type": "text",
     "placeholders": {}
   },

@@ -110,7 +110,19 @@ class MainLocalizations {
   }
 
   String get players {
-    return Intl.message('Players: ', name: 'players');
+    return Intl.message('Players ', name: 'players');
+  }
+
+  String get menuLanguage {
+    return Intl.message('Language ', name: 'menuLanguage');
+  }
+
+  String get menuInfo {
+    return Intl.message('Info ', name: 'menuInfo');
+  }
+
+  String get menuNewGame {
+    return Intl.message('New ', name: 'menuNewGame');
   }
 
   String get addToDictionary {
