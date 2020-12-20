@@ -1,11 +1,11 @@
-name: Flutter Build Web Test
+name: Flutter Build Tests
 on:
   push:
     branches:
       - develop
 jobs:
   build:
-    name: Flutter Build Web Test
+    name: Flutter Build Tests
     env:
       my_secret: ${{secrets.COMMIT_SECRET}}
     runs-on: ubuntu-latest
@@ -17,6 +17,3 @@ jobs:
       - run: flutter config --enable-web
       - run: flutter pub get
       - run: flutter build web --release --no-sound-null-safety
-      - run: flutter config --enable-linux-desktop
-      - run: flutter pub get
-      - run: flutter build -d linux --release --no-sound-null-safety
