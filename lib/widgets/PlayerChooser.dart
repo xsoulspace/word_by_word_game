@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/entities/Player.dart';
-import 'package:word_by_word_game/localizations/MainLocalizations.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/widgets/PlayerWidget.dart';
@@ -14,13 +13,6 @@ class PlayerChooser extends StatelessWidget {
     return Container(
       height: 80,
       child: Column(children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text(MainLocalizations.of(context).players),
-        ),
-        SizedBox(
-          height: 10,
-        ),
         Expanded(
           child: ListView(
             shrinkWrap: true,
@@ -53,6 +45,7 @@ class PlayerChooser extends StatelessWidget {
     return Padding(
       padding: EdgeInsets.only(left: 8.0),
       child: PlayerWidget(
+        fontSize: 15,
         player: player,
         isEnabled: isExists,
         onTap: () async {

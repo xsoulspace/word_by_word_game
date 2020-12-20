@@ -6,6 +6,7 @@ import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 import 'package:word_by_word_game/models/LocaleModel.dart';
+import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
@@ -62,20 +63,24 @@ class MyApp extends StatelessWidget {
                     localDictionaryModel: localDictionaryModel);
               }),
               ChangeNotifierProvider(create: (context) => PlayerColorsModel()),
+              ChangeNotifierProvider(create: (context) => MenuItemsModel()),
               ChangeNotifierProvider(create: (context) => ScoreModel()),
               ChangeNotifierProvider(create: (context) => NotificationsModel()),
-              FutureProvider(create: (BuildContext context) async {
-                var wordsModel =
-                    Provider.of<WordsModel>(context, listen: false);
-                var playersModel =
-                    Provider.of<PlayersModel>(context, listen: false);
-                var localDictionaryModel =
-                    Provider.of<LocalDictionaryModel>(context, listen: false);
-                return await StorageModel.create(
-                    wordsModel: wordsModel,
-                    playersModel: playersModel,
-                    localDictionaryModel: localDictionaryModel);
-              }, initialData: null,),
+              FutureProvider(
+                create: (BuildContext context) async {
+                  var wordsModel =
+                      Provider.of<WordsModel>(context, listen: false);
+                  var playersModel =
+                      Provider.of<PlayersModel>(context, listen: false);
+                  var localDictionaryModel =
+                      Provider.of<LocalDictionaryModel>(context, listen: false);
+                  return await StorageModel.create(
+                      wordsModel: wordsModel,
+                      playersModel: playersModel,
+                      localDictionaryModel: localDictionaryModel);
+                },
+                initialData: null,
+              ),
             ], child: ScaffoldApp());
           } else {
             return Center(child: CircularProgressIndicator());

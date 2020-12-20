@@ -29,26 +29,6 @@ class MenuWidget extends StatelessWidget {
     );
   }
 
-  Widget _languageToogle() {
-    return Consumer<LocaleModel>(builder: (context, localeModel, child) {
-      return DropdownButton<NamedLocale>(
-          value: localeModel.currentNamedLocale,
-          items: LocaleModelConsts.namedLocales
-              .map<DropdownMenuItem<NamedLocale>>((namedLocale) {
-            return DropdownMenuItem<NamedLocale>(
-              key: Key(namedLocale.name),
-              value: namedLocale,
-              child: Text(
-                namedLocale.name,
-              ),
-            );
-          }).toList(),
-          onChanged: (NamedLocale namedLocale) async {
-            await localeModel.switchLang(namedLocale.locale);
-          });
-    });
-  }
-
   Widget _mainWidget({@required BuildContext context}) {
     var size = MediaQuery.of(context).size;
     return Container(
@@ -72,7 +52,7 @@ class MenuWidget extends StatelessWidget {
                     SizedBox(
                       width: 35,
                     ),
-                    _languageToogle()
+                    // _languageToogle()
                   ],
                 );
               } else {
@@ -85,7 +65,7 @@ class MenuWidget extends StatelessWidget {
                         SizedBox(
                           height: 7,
                         ),
-                        _languageToogle(),
+                        // _languageToogle(),
                       ],
                     ));
               }
@@ -125,9 +105,49 @@ class MenuWidget extends StatelessWidget {
   }
 }
 
+class InfoWidget extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(MainLocalizations.of(context).sendFeedback),
+        SizedBox(height: 10),
+        Text(MainLocalizations.of(context).thankYou),
+        SizedBox(height: 10),
+        Text(MainLocalizations.of(context).copyright),
+      ],
+    );
+  }
+}
+
 void showEndGameDialog({@required BuildContext context}) {
   showDialog(
     context: context,
     builder: (context) => EndGameDialog(),
   );
+}
+
+class LanguageToogle extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<LocaleModel>(builder: (context, localeModel, child) {
+      return DropdownButton<NamedLocale>(
+          isExpanded: true,
+          value: localeModel.currentNamedLocale,
+          items: LocaleModelConsts.namedLocales
+              .map<DropdownMenuItem<NamedLocale>>((namedLocale) {
+            return DropdownMenuItem<NamedLocale>(
+              key: Key(namedLocale.name),
+              value: namedLocale,
+              child: Text(
+                namedLocale.name,
+              ),
+            );
+          }).toList(),
+          onChanged: (NamedLocale namedLocale) async {
+            await localeModel.switchLang(namedLocale.locale);
+          });
+    });
+  }
 }
