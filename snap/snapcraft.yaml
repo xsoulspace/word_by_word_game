@@ -1,5 +1,5 @@
 name: word-by-word-game
-version: 0.0.6+4
+version: 0.0.7+6
 summary: Simple & fun game to write word based on last 3 letters of last word
 description: |
   Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
