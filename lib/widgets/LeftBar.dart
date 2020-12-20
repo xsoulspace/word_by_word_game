@@ -90,10 +90,14 @@ class _LeftBarState extends State<LeftBar> {
                                   showEndGameDialog(context: context);
                                   break;
                                 default:
-                                  setState(() {
-                                    selectedItemIndex = counter;
-                                    isClosed = false;
-                                  });
+                                  if (selectedItemIndex == counter) {
+                                    closeBar();
+                                  } else {
+                                    setState(() {
+                                      selectedItemIndex = counter;
+                                      isClosed = false;
+                                    });
+                                  }
                                   break;
                               }
                             },

@@ -228,10 +228,16 @@ class _BottonBarState extends State<BottonBar> {
                                           showEndGameDialog(context: context);
                                           break;
                                         default:
-                                          setState(() {
-                                            selectedItemIndex = menuItem.id;
-                                            isClosed = false;
-                                          });
+                                          if (selectedItemIndex ==
+                                              menuItem.id) {
+                                            closeBar();
+                                          } else {
+                                            setState(() {
+                                              selectedItemIndex = menuItem.id;
+                                              isClosed = false;
+                                            });
+                                          }
+
                                           break;
                                       }
                                     },
