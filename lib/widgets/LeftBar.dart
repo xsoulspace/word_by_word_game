@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
-import 'package:word_by_word_game/screens/InputScreen.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
 import 'package:word_by_word_game/widgets/InfoWidget.dart';
 import 'package:word_by_word_game/widgets/LanguageToggle.dart';
+import 'package:word_by_word_game/widgets/MenuItemWidget.dart';
 import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 
 class LeftBar extends StatefulWidget {
@@ -56,6 +56,7 @@ class _LeftBarState extends State<LeftBar> {
       child: Material(
         elevation: 4,
         color: Colors.transparent,
+        shadowColor: Theme.of(context).shadowColor.withOpacity(0.2),
         child: AnimatedContainer(
             width: currentWidth,
             curve: Curves.easeOut,
