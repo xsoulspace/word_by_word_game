@@ -1,40 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/models/ScoreModel.dart';
+import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/models/StorageModel.dart';
+import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
 
 class ExtraMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    ScoreModel scoreModel = Provider.of<ScoreModel>(context);
+    var wordsModel = Provider.of<WordsModel>(context);
+    var storageModel = Provider.of<StorageModel>(context);
     return Material(
+      color: Colors.transparent,
       child: Column(
         children: [
           ListTile(
-              leading: Icon(Icons.skip_next),
-              enabled: scoreModel.isLettersReplaceAvailable &&
-                  scoreModel.isCurrentLettersNotEmpty,
-              title:
-                  // TODO: add translation
-                  Text('Reset ending'),
-              onTap: () {
-                scoreModel.resetLetters();
+              focusColor: Colors.white.withOpacity(0.4),
+              hoverColor: Colors.white.withOpacity(0.2),
+              leading: Icon(Icons.cached),
+              enabled: wordsModel.isAtLeastOneWordRecorded &&
+                  wordsModel.isPhraseFromLastwordNotEmpty &&
+                  wordsModel.isPhraseLimitLeftAvailable,
+              title: Text(MainLocalizations.of(context).resetEnding),
+              onTap: () async {
+                wordsModel.resetPhraseFromLastword();
+                await storageModel.saveWordsModel();
               }),
           ListTile(
+              focusColor: Colors.white.withOpacity(0.4),
+              hoverColor: Colors.white.withOpacity(0.2),
               leading: Icon(Icons.add_circle_outline),
-              title:
-                  // TODO: add translation
-                  Text('End Game'),
-              onTap: () {
-                _showEndGameDialog(context);
-              }),
+              title: Text(MainLocalizations.of(context).finishGame),
+              onTap: () => _showFinishGameDialog(context)),
         ],
       ),
     );
   }
 
-  _showEndGameDialog(BuildContext context) {
+  _showFinishGameDialog(BuildContext context) {
     showDialog(
       context: context,
       builder: (context) => EndGameDialog(),

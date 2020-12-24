@@ -8,6 +8,8 @@
 .buildlog/
 .history
 .svn/
+*.apk
+*.snap
 
 # IntelliJ related
 *.iml
