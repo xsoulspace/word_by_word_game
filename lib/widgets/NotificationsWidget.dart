@@ -71,7 +71,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
     notificationsModel.gameNotification = null;
   }
 
-  Color _getColor(GameNotificationStatuses status) {
+  Color _getColor({@required GameNotificationStatuses status}) {
     switch (status) {
       case GameNotificationStatuses.done:
         return Colors.greenAccent[100];
@@ -79,8 +79,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
         return Colors.deepOrange[100];
       case GameNotificationStatuses.warn:
         return Colors.amber[100];
+      default:
+        return Colors.transparent;
     }
-    return Colors.transparent;
   }
 
   _clearNotification() {
@@ -111,6 +112,9 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
     var _hasNewWord = isNotificationExists &&
         notificationsModel.gameNotification.newWord != null;
     var size = MediaQuery.of(context).size;
+    var notifyStatus = isNotificationExists
+        ? notificationsModel.gameNotification.status
+        : null;
     return SlideTransition(
       child: Material(
         color: Colors.transparent,
@@ -125,7 +129,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
           child: Container(
             padding: EdgeInsets.all(10),
             color: isNotificationExists
-                ? _getColor(notificationsModel.gameNotification.status)
+                ? _getColor(status: notifyStatus)
                 : Colors.transparent,
             child: isNotificationExists
                 ? (AppConstraints.isMedium(size.width) ||
@@ -144,15 +148,13 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
                           )
                         ],
                       )
-                    : Row(children: [
-                        _notificationText(),
-                        _addWordToDictionaryButton(isVisible: _hasNewWord),
-                        Expanded(
-                          child: Align(
-                              alignment: Alignment.centerRight,
-                              child: _closeButton()),
-                        )
-                      ])
+                    : Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                            Flexible(child: _notificationText()),
+                            _addWordToDictionaryButton(isVisible: _hasNewWord),
+                            _closeButton()
+                          ])
                 : null,
           ),
         ),
@@ -174,6 +176,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
     return Visibility(
       visible: isVisible,
       child: FlatButton(
+          height: 50,
           child: Text(MainLocalizations.of(context).addToDictionary),
           onPressed: () {
             _addNewWordToDictionary(
@@ -184,7 +187,23 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
   }
 
   Widget _closeButton() {
-    return IconButton(
-        icon: Icon(Icons.close), onPressed: () => _clearNotification());
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+          borderRadius: BorderRadius.circular(24),
+          splashColor: Colors.grey.withOpacity(0.4),
+          hoverColor: Colors.grey.withOpacity(0.05),
+          focusColor: Colors.grey.withOpacity(0.1),
+          child: SizedBox(
+            height: 50,
+            width: 50,
+            child: Icon(
+              Icons.close,
+              size: 24.0,
+              color: Colors.grey[800],
+            ),
+          ),
+          onTap: () => _clearNotification()),
+    );
   }
 }

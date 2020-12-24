@@ -6,17 +6,6 @@ import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/widgets/CircularSpinner.dart';
-import 'package:word_by_word_game/widgets/MenuWidget.dart';
-
-void openBottomMenu(BuildContext context) {
-  showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      enableDrag: true,
-      context: context,
-      builder: (BuildContext buildContext) {
-        return FractionallySizedBox(heightFactor: 1.1, child: MenuWidget());
-      });
-}
 
 class UpperToolbar extends StatelessWidget {
   @override

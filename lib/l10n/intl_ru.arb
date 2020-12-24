@@ -70,7 +70,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на xsoulspace@gmail.com",
+  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на idea@xsoulspace.dev",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
@@ -100,8 +100,23 @@
     "type": "text",
     "placeholders": {}
   },
-  "players": "Игроки: ",
+  "players": "Игроки ",
   "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLanguage": "Язык ",
+  "@menuLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuInfo": "Об игре ",
+  "@menuInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuNewGame": "Заново ",
+  "@menuNewGame": {
     "type": "text",
     "placeholders": {}
   },

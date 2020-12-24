@@ -17,7 +17,7 @@ class WordsModelConsts {
   static String storagename = 'wordsmodel';
 }
 
-@JsonSerializable(nullable: true)
+@JsonSerializable()
 class WordsModel extends ChangeNotifier {
   @JsonKey(ignore: true)
   LocalDictionaryModel _localDictionaryModel;
