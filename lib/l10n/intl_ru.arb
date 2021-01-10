@@ -45,7 +45,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hintAddBeginning": "ввести начало",
+  "hintAddBeginning": "начало",
   "@hintAddBeginning": {
     "type": "text",
     "placeholders": {}
@@ -55,7 +55,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hintAddEnding": "ввести окончание",
+  "hintAddEnding": "окончание",
   "@hintAddEnding": {
     "type": "text",
     "placeholders": {}

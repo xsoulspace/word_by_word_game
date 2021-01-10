@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-01-10T20:17:22.543781",
+  "@@last_modified": "2021-01-11T00:02:20.724967",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -45,7 +45,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hintAddBeginning": "add beginning",
+  "hintAddBeginning": "beginning",
   "@hintAddBeginning": {
     "type": "text",
     "placeholders": {}
@@ -55,7 +55,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hintAddEnding": "add ending",
+  "hintAddEnding": "ending",
   "@hintAddEnding": {
     "type": "text",
     "placeholders": {}
@@ -70,7 +70,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "For any bugs or ideas please send your feedback to xsoulspace@gmail.com",
+  "sendFeedback": "For any bugs or ideas please send your feedback to idea@xsoulspace.dev",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}

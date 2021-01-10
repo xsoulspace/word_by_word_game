@@ -47,7 +47,7 @@ class UpperToolbar extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 30,
+                      width: 15,
                     ),
                     Text(MainLocalizations.of(context).highscore),
                     Expanded(
@@ -64,7 +64,7 @@ class UpperToolbar extends StatelessWidget {
                 Row(
                   children: [
                     SizedBox(
-                      width: 30,
+                      width: 15,
                     ),
                     Text(MainLocalizations.of(context).player),
                     SizedBox(
@@ -100,7 +100,7 @@ class UpperToolbar extends StatelessWidget {
                           return CircularSpinner();
                         } else {
                           return Text(
-                            '50${snapshot.data}',
+                            '${snapshot.data}',
                             textAlign: TextAlign.start,
                           );
                         }

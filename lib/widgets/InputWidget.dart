@@ -125,7 +125,7 @@ class _InputWidgetState extends State<InputWidget> {
             children: [
               Row(children: [
                 SizedBox(
-                  width: 40,
+                  width: 20,
                 ),
                 _lastwordWidget()
               ]),
@@ -220,7 +220,7 @@ class _InputWidgetState extends State<InputWidget> {
                   ],
                 ),
                 Visibility(
-                    visible: wordsModel.isPhraseLimitAvailable,
+                    visible: wordsModel.isPhraseLimitLeftAvailable,
                     child: Center(
                       child: Consumer<WordsModel>(
                           builder: (context, wordsModel, child) {

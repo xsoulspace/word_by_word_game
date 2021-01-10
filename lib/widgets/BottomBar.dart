@@ -31,6 +31,13 @@ class _BottomBarState extends State<BottomBar> {
     });
   }
 
+  openBar() {
+    setState(() {
+      isClosed = false;
+      selectedItemIndex = MenuItemsEnum.Info.index;
+    });
+  }
+
   int selectedItemIndex = -1;
   final duration = Duration(milliseconds: 150);
   @override
@@ -40,115 +47,137 @@ class _BottomBarState extends State<BottomBar> {
     var playersModel = Provider.of<PlayersModel>(context);
     var selectedColor =
         playersModel.currentPlayer.playerColor.color.withOpacity(0.6);
+    var sizeHeight = MediaQuery.of(context).size.height;
+    var isKeyboardOpened =
+        WidgetsBinding.instance.window.viewInsets.bottom > 0.0;
 
-    return Material(
-        elevation: 4,
-        color: Colors.transparent,
-        shadowColor: Theme.of(context).shadowColor.withOpacity(0.2),
-        child: AnimatedContainer(
-            duration: duration,
-            height: currentHeight,
-            color: isClosed
-                ? Colors.white.withOpacity(0.4)
-                : Colors.white.withOpacity(0.95),
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Center(
-                    child: SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            ...menuItems.map((menuItem) {
-                              var isSelected = menuItem.id == selectedItemIndex;
-                              return SizedBox(
-                                width: widget.minHeight,
-                                child: MenuItemWidget(
-                                    duration: duration,
-                                    menuItem: menuItem,
-                                    onTap: () {
-                                      switch (menuItem.code) {
-                                        case MenuItemsEnum.New:
-                                          closeBar();
-                                          showEndGameDialog(context: context);
-                                          break;
-                                        default:
-                                          if (selectedItemIndex ==
-                                              menuItem.id) {
-                                            closeBar();
-                                          } else {
-                                            setState(() {
-                                              selectedItemIndex = menuItem.id;
-                                              isClosed = false;
-                                            });
-                                          }
-
-                                          break;
-                                      }
-                                    },
-                                    isSelected: isSelected),
-                              );
-                            }),
-                            AnimatedSwitcher(
-                                duration: duration,
-                                child: !isClosed
-                                    ? Material(
-                                        child: InkWell(
-                                          splashColor:
-                                              selectedColor.withOpacity(0.4),
-                                          focusColor:
-                                              selectedColor.withOpacity(0.2),
-                                          hoverColor:
-                                              selectedColor.withOpacity(0.1),
+    return AnimatedSwitcher(
+      duration: duration,
+      child: isKeyboardOpened && isClosed
+          ? Align(
+              alignment: Alignment.bottomRight,
+              child: FloatingActionButton(
+                onPressed: openBar,
+                child: Icon(Icons.menu),
+                backgroundColor: selectedColor,
+              ),
+            )
+          : Material(
+              elevation: 4,
+              color: Colors.transparent,
+              shadowColor: Theme.of(context).shadowColor.withOpacity(0.2),
+              child: AnimatedContainer(
+                  duration: duration,
+                  height: currentHeight,
+                  color: isClosed && sizeHeight > 490
+                      ? Colors.white.withOpacity(0.4)
+                      : Colors.white.withOpacity(0.95),
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Center(
+                          child: SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ...menuItems.map((menuItem) {
+                                    var isSelected =
+                                        menuItem.id == selectedItemIndex;
+                                    return SizedBox(
+                                      width: widget.minHeight,
+                                      child: MenuItemWidget(
+                                          duration: duration,
+                                          menuItem: menuItem,
                                           onTap: () {
-                                            closeBar();
+                                            switch (menuItem.code) {
+                                              case MenuItemsEnum.New:
+                                                closeBar();
+                                                showEndGameDialog(
+                                                    context: context);
+                                                break;
+                                              default:
+                                                if (selectedItemIndex ==
+                                                    menuItem.id) {
+                                                  closeBar();
+                                                } else {
+                                                  setState(() {
+                                                    selectedItemIndex =
+                                                        menuItem.id;
+                                                    isClosed = false;
+                                                  });
+                                                }
+
+                                                break;
+                                            }
                                           },
-                                          child: Align(
-                                            alignment: Alignment.centerRight,
-                                            child: Icon(
-                                              Icons.arrow_drop_down,
-                                              size: widget.minHeight,
-                                              color: Colors.grey[800],
-                                            ),
-                                          ),
-                                        ),
-                                      )
-                                    : Container())
-                          ]),
-                    ),
-                  ),
-                  Expanded(
-                    child: AnimatedOpacity(
-                        duration: duration,
-                        opacity: isClosed ? 0 : 1,
-                        child: (() {
-                          var selectedMenuItems = menuItems
-                              .where((item) => item.id == selectedItemIndex)
-                              .toList();
-                          if (selectedMenuItems.length == 0) return Container();
-                          var selectedMenuItem = selectedMenuItems.first;
-                          switch (selectedMenuItem.code) {
-                            case MenuItemsEnum.Info:
-                              return Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: InfoWidget(),
-                              );
-                            case MenuItemsEnum.Players:
-                              return Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: PlayerChooser(),
-                              );
-                            case MenuItemsEnum.Language:
-                              return Padding(
-                                padding: EdgeInsets.all(8.0),
-                                child: LanguageToggle(),
-                              );
-                            default:
-                              return Container();
-                          }
-                        })()),
-                  )
-                ])));
+                                          isSelected: isSelected),
+                                    );
+                                  }),
+                                  AnimatedSwitcher(
+                                      duration: duration,
+                                      child: !isClosed
+                                          ? Material(
+                                              child: InkWell(
+                                                splashColor: selectedColor
+                                                    .withOpacity(0.4),
+                                                focusColor: selectedColor
+                                                    .withOpacity(0.2),
+                                                hoverColor: selectedColor
+                                                    .withOpacity(0.1),
+                                                onTap: () {
+                                                  closeBar();
+                                                },
+                                                child: Align(
+                                                  alignment:
+                                                      Alignment.centerRight,
+                                                  child: Icon(
+                                                    Icons.arrow_drop_down,
+                                                    size: widget.minHeight,
+                                                    color: Colors.grey[800],
+                                                  ),
+                                                ),
+                                              ),
+                                            )
+                                          : Container())
+                                ]),
+                          ),
+                        ),
+                        Expanded(
+                          child: AnimatedOpacity(
+                              duration: duration,
+                              opacity: isClosed ? 0 : 1,
+                              child: (() {
+                                var selectedMenuItems = menuItems
+                                    .where(
+                                        (item) => item.id == selectedItemIndex)
+                                    .toList();
+                                if (selectedMenuItems.length == 0)
+                                  return Container();
+                                var selectedMenuItem = selectedMenuItems.first;
+                                switch (selectedMenuItem.code) {
+                                  case MenuItemsEnum.Info:
+                                    return Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: InfoWidget(),
+                                    );
+                                  case MenuItemsEnum.Players:
+                                    return Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: PlayerChooser(),
+                                    );
+                                  case MenuItemsEnum.Language:
+                                    return Padding(
+                                      padding: EdgeInsets.all(8.0),
+                                      child: LanguageToggle(),
+                                    );
+                                  default:
+                                    return Container();
+                                }
+                              })()),
+                        )
+                      ]))),
+    );
   }
 }

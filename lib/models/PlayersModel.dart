@@ -35,12 +35,12 @@ class PlayersModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  setCurrentPlayer({@required Player player}) {
+  void setCurrentPlayer({@required Player player}) {
     currentPlayer = player;
     notifyListeners();
   }
 
-  nextPlayer() {
+  void nextPlayer() {
     var playerIndex =
         playersList.indexWhere((player) => player.id == currentPlayer.id);
     var newPlayerIndex = playerIndex + 1;
