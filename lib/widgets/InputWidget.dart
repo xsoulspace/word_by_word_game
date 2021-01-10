@@ -9,7 +9,6 @@ import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
-import 'package:word_by_word_game/widgets/PlayerWidget.dart';
 
 class InputWidget extends StatefulWidget {
   @override
@@ -90,19 +89,6 @@ class _InputWidgetState extends State<InputWidget> {
   bool _isLeftControllerInitialized = false;
   bool _isRightControllerInitialized = false;
 
-  Widget _playerWidget() {
-    var playersModel = Provider.of<PlayersModel>(context);
-    return Container(
-        height: 30.0,
-        width: 30.0,
-        child: FittedBox(
-            child: PlayerWidget(
-          player: playersModel.currentPlayer,
-          isDisabled: true,
-          fontSize: 24,
-        )));
-  }
-
   Widget _lastwordWidget() {
     return Flexible(
       child: Consumer<WordsModel>(
@@ -137,37 +123,12 @@ class _InputWidgetState extends State<InputWidget> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LayoutBuilder(builder: (context, constraints) {
-                if (AppConstraints.isMobile(constraints.maxWidth)) {
-                  return Container(
-                    height: size.height * 0.1,
-                    child: Column(
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Text(MainLocalizations.of(context).player),
-                            SizedBox(width: 10),
-                            _playerWidget(),
-                          ],
-                        ),
-                        SizedBox(height: 10),
-                        _lastwordWidget()
-                      ],
-                    ),
-                  );
-                } else {
-                  return Row(
-                    children: [
-                      Text(MainLocalizations.of(context).player),
-                      SizedBox(width: 10),
-                      _playerWidget(),
-                      SizedBox(width: 30),
-                      _lastwordWidget()
-                    ],
-                  );
-                }
-              }),
+              Row(children: [
+                SizedBox(
+                  width: 20,
+                ),
+                _lastwordWidget()
+              ]),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
               ),
@@ -242,16 +203,35 @@ class _InputWidgetState extends State<InputWidget> {
           wordsModel.isPhraseFromLastwordNotEmpty,
       child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 5),
-          child: Row(
+          child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _decreaseButton(isFromBeginning: true),
-                Consumer<WordsModel>(
-                    builder: (BuildContext buildContext, wordsModel,
-                            Widget widget) =>
-                        Text(wordsModel.phraseFromLastword)),
-                _decreaseButton(isFromBeginning: false)
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _decreaseButton(isFromBeginning: true),
+                    Consumer<WordsModel>(
+                        builder: (BuildContext buildContext, wordsModel,
+                                Widget widget) =>
+                            Text(wordsModel.phraseFromLastword)),
+                    _decreaseButton(isFromBeginning: false)
+                  ],
+                ),
+                Visibility(
+                    visible: wordsModel.isPhraseLimitLeftAvailable,
+                    child: Center(
+                      child: Consumer<WordsModel>(
+                          builder: (context, wordsModel, child) {
+                        var lettersToRemoveText =
+                            MainLocalizations.of(context).lettersToRemove;
+                        return Text(
+                          '${wordsModel.phraseLimitLettersLeft} $lettersToRemoveText',
+                          style: TextStyle(fontSize: 10),
+                        );
+                      }),
+                    ))
               ])),
     );
   }
