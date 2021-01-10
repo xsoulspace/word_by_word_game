@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-01-10T20:10:29.969848",
+  "@@last_modified": "2021-01-10T20:17:22.543781",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -95,7 +95,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lettersToRemove": "letters to remove: ",
+  "lettersToRemove": "letters to remove",
   "@lettersToRemove": {
     "type": "text",
     "placeholders": {}

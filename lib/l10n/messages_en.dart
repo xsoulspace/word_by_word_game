@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hintAddEnding" : MessageLookupByLibrary.simpleMessage("add ending"),
     "hintAddNewWord" : MessageLookupByLibrary.simpleMessage("add new word"),
     "lastword" : MessageLookupByLibrary.simpleMessage("Last word: "),
-    "lettersToRemove" : MessageLookupByLibrary.simpleMessage("letters to remove: "),
+    "lettersToRemove" : MessageLookupByLibrary.simpleMessage("letters to remove"),
     "maxHighscoreIs" : MessageLookupByLibrary.simpleMessage("Max highscore is "),
     "menuInfo" : MessageLookupByLibrary.simpleMessage("Info "),
     "menuLanguage" : MessageLookupByLibrary.simpleMessage("Language "),

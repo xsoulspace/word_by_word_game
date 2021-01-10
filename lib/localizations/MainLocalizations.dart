@@ -106,7 +106,7 @@ class MainLocalizations {
   }
 
   String get lettersToRemove {
-    return Intl.message('letters to remove: ', name: 'lettersToRemove');
+    return Intl.message('letters to remove', name: 'lettersToRemove');
   }
 
   String get players {
