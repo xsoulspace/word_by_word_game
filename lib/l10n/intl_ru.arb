@@ -35,7 +35,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "player": "Игрок: ",
+  "player": "игрок",
   "@player": {
     "type": "text",
     "placeholders": {}
@@ -45,7 +45,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hintAddBeginning": "ввести начало",
+  "hintAddBeginning": "начало",
   "@hintAddBeginning": {
     "type": "text",
     "placeholders": {}
@@ -55,7 +55,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "hintAddEnding": "ввести окончание",
+  "hintAddEnding": "окончание",
   "@hintAddEnding": {
     "type": "text",
     "placeholders": {}
@@ -85,17 +85,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentScore": "текущий результат: ",
+  "currentScore": "результат",
   "@currentScore": {
     "type": "text",
     "placeholders": {}
   },
-  "highscore": "результат: ",
+  "highscore": "лучший результат",
   "@highscore": {
     "type": "text",
     "placeholders": {}
   },
-  "lettersToRemove": "буквы для удаления: ",
+  "lettersToRemove": "букв для удаления",
   "@lettersToRemove": {
     "type": "text",
     "placeholders": {}

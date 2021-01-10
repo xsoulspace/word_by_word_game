@@ -30,3 +30,28 @@ class PlayerWidget extends StatelessWidget {
     );
   }
 }
+
+class PlayerHighscoreWidget extends StatelessWidget {
+  final Player player;
+  final double fontSize;
+  PlayerHighscoreWidget({@required this.player, this.fontSize});
+  @override
+  Widget build(BuildContext context) {
+    var subtitleColor = Theme.of(context).primaryTextTheme.subtitle1.color;
+    return Material(
+        type: MaterialType.transparency,
+        child: Container(
+          decoration: BoxDecoration(
+              // border: Border.all(color: subtitleColor, width: 0.4),
+              color: player.playerColor.color,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(4)),
+          child: Row(children: [
+            Text(
+              '92${player.highscore}',
+              style: TextStyle(fontSize: fontSize, color: subtitleColor),
+            ),
+          ]),
+        ));
+  }
+}

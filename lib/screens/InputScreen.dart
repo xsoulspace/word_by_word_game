@@ -36,7 +36,7 @@ class InputScreen extends StatelessWidget {
     var wordsModel = Provider.of<WordsModel>(context);
     var notificationsModel = Provider.of<NotificationsModel>(context);
     var playersModel = Provider.of<PlayersModel>(context);
-    var isMobile = MediaQuery.of(context).size.width < 700;
+    var isMobile = MediaQuery.of(context).size.width <= 500;
     return Scaffold(
       body: Stack(
         children: <Widget>[

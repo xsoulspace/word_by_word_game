@@ -28,6 +28,10 @@ class MainLocalizations {
     return Intl.message('Finish game', name: 'finishGame');
   }
 
+  String get nextPlayer {
+    return Intl.message('Next player', name: 'nextPlayer');
+  }
+
   String get resetEnding {
     return Intl.message('Reset ending', name: 'resetEnding');
   }
@@ -53,7 +57,7 @@ class MainLocalizations {
   }
 
   String get player {
-    return Intl.message('Player: ', name: 'player');
+    return Intl.message('player', name: 'player');
   }
 
   String get lastword {
@@ -61,7 +65,7 @@ class MainLocalizations {
   }
 
   String get hintAddBeginning {
-    return Intl.message('add beginning', name: 'hintAddBeginning');
+    return Intl.message('beginning', name: 'hintAddBeginning');
   }
 
   String get hintAddNewWord {
@@ -69,7 +73,7 @@ class MainLocalizations {
   }
 
   String get hintAddEnding {
-    return Intl.message('add ending', name: 'hintAddEnding');
+    return Intl.message('ending', name: 'hintAddEnding');
   }
 
   String get addNewWord {
@@ -82,7 +86,7 @@ class MainLocalizations {
 
   String get sendFeedback {
     return Intl.message(
-        'For any bugs or ideas please send your feedback to xsoulspace@gmail.com',
+        'For any bugs or ideas please send your feedback to idea@xsoulspace.dev',
         name: 'sendFeedback');
   }
 
@@ -95,18 +99,18 @@ class MainLocalizations {
   }
 
   String get currentScore {
-    return Intl.message('current score: ', name: 'currentScore');
+    return Intl.message('score', name: 'currentScore');
   }
 
   String get highscore {
     return Intl.message(
-      'highscore: ',
+      'highscore',
       name: 'highscore',
     );
   }
 
   String get lettersToRemove {
-    return Intl.message('letters to remove: ', name: 'lettersToRemove');
+    return Intl.message('letters to remove', name: 'lettersToRemove');
   }
 
   String get players {
