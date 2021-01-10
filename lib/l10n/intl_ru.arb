@@ -95,7 +95,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "lettersToRemove": "буквы для удаления",
+  "lettersToRemove": "букв для удаления",
   "@lettersToRemove": {
     "type": "text",
     "placeholders": {}

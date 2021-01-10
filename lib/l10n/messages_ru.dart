@@ -33,7 +33,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "hintAddEnding" : MessageLookupByLibrary.simpleMessage("ввести окончание"),
     "hintAddNewWord" : MessageLookupByLibrary.simpleMessage("ввести новое слово"),
     "lastword" : MessageLookupByLibrary.simpleMessage("Последнее слово: "),
-    "lettersToRemove" : MessageLookupByLibrary.simpleMessage("буквы для удаления"),
+    "lettersToRemove" : MessageLookupByLibrary.simpleMessage("букв для удаления"),
     "maxHighscoreIs" : MessageLookupByLibrary.simpleMessage("Лучший результат "),
     "menuInfo" : MessageLookupByLibrary.simpleMessage("Об игре "),
     "menuLanguage" : MessageLookupByLibrary.simpleMessage("Язык "),
