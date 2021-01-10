@@ -123,23 +123,12 @@ class _InputWidgetState extends State<InputWidget> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              LayoutBuilder(builder: (context, constraints) {
-                if (AppConstraints.isMobile(constraints.maxWidth)) {
-                  return Container(
-                    height: size.height * 0.1,
-                    child: Column(
-                      children: [_lastwordWidget()],
-                    ),
-                  );
-                } else {
-                  return Row(children: [
-                    SizedBox(
-                      width: 40,
-                    ),
-                    _lastwordWidget()
-                  ]);
-                }
-              }),
+              Row(children: [
+                SizedBox(
+                  width: 40,
+                ),
+                _lastwordWidget()
+              ]),
               Padding(
                 padding: EdgeInsets.symmetric(vertical: 10),
               ),
@@ -214,16 +203,35 @@ class _InputWidgetState extends State<InputWidget> {
           wordsModel.isPhraseFromLastwordNotEmpty,
       child: Padding(
           padding: EdgeInsets.symmetric(horizontal: 5),
-          child: Row(
+          child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                _decreaseButton(isFromBeginning: true),
-                Consumer<WordsModel>(
-                    builder: (BuildContext buildContext, wordsModel,
-                            Widget widget) =>
-                        Text(wordsModel.phraseFromLastword)),
-                _decreaseButton(isFromBeginning: false)
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _decreaseButton(isFromBeginning: true),
+                    Consumer<WordsModel>(
+                        builder: (BuildContext buildContext, wordsModel,
+                                Widget widget) =>
+                            Text(wordsModel.phraseFromLastword)),
+                    _decreaseButton(isFromBeginning: false)
+                  ],
+                ),
+                Visibility(
+                    visible: wordsModel.isPhraseLimitAvailable,
+                    child: Center(
+                      child: Consumer<WordsModel>(
+                          builder: (context, wordsModel, child) {
+                        var lettersToRemoveText =
+                            MainLocalizations.of(context).lettersToRemove;
+                        return Text(
+                          '${wordsModel.phraseLimitLettersLeft} $lettersToRemoveText',
+                          style: TextStyle(fontSize: 10),
+                        );
+                      }),
+                    ))
               ])),
     );
   }

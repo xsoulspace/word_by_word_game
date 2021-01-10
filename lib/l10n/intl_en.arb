@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2021-01-10T15:44:23.928475",
+  "@@last_modified": "2021-01-10T20:10:29.969848",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -35,7 +35,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "player": "Player",
+  "player": "player",
   "@player": {
     "type": "text",
     "placeholders": {}
@@ -90,7 +90,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "highscore": "highscore: ",
+  "highscore": "highscore",
   "@highscore": {
     "type": "text",
     "placeholders": {}

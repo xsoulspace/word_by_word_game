@@ -14,8 +14,8 @@ class UpperToolbar extends StatelessWidget {
   Widget build(BuildContext context) {
     Widget _playerWidget({@required Player player}) {
       return Container(
-          height: 40.0,
-          width: 40.0,
+          height: 30.0,
+          width: 30.0,
           child: FittedBox(
               child: PlayerWidget(
             player: player,
@@ -24,110 +24,116 @@ class UpperToolbar extends StatelessWidget {
           )));
     }
 
-    Widget _playerHighscoreWidget({@required Player player}) {
-      return Container(
-          height: 24.0,
-          width: 24.0,
-          child: FittedBox(
-              child: PlayerHighscoreWidget(
-            player: player,
-            fontSize: 24,
-          )));
-    }
-
     var playersModel = Provider.of<PlayersModel>(context);
     var size = MediaQuery.of(context).size;
     var currentPlayer = playersModel.currentPlayer;
+    var playerColor = currentPlayer.playerColor.color;
     return Material(
       color: Colors.transparent,
       elevation: 3,
       shadowColor: Theme.of(context).shadowColor.withOpacity(0.2),
       child: Container(
-        height: 120,
+        height: 105,
         width: size.width,
-        color: Colors.white.withOpacity(0.4),
+        color: Theme.of(context).canvasColor.withOpacity(0.4),
         padding: EdgeInsets.only(top: 35, bottom: 20, left: 20, right: 20),
-        child: ListView(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          children: [
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.end,
+        child: Row(children: [
+          SizedBox(
+            width: 200,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                Row(
                   children: [
+                    SizedBox(
+                      width: 30,
+                    ),
+                    Text(MainLocalizations.of(context).highscore),
+                    Expanded(
+                      child: Divider(
+                        endIndent: 10,
+                        indent: 10,
+                        color: Theme.of(context).primaryColor.withOpacity(0.6),
+                        thickness: 0.4,
+                        height: 0.4,
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 30,
+                    ),
                     Text(MainLocalizations.of(context).player),
                     SizedBox(
-                      height: 5,
+                      width: 10,
                     ),
-                    _playerWidget(player: currentPlayer)
+                    _playerWidget(player: currentPlayer),
+                    Expanded(
+                      child: Divider(
+                        indent: 10,
+                        endIndent: 10,
+                        color: playerColor.withOpacity(0.8),
+                        thickness: 0.4,
+                        height: 0.4,
+                      ),
+                    ),
                   ],
                 ),
-                SizedBox(
-                  width: 10,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(MainLocalizations.of(context).currentScore),
-                    Consumer3<WordsModel, PlayersModel, ScoreModel>(builder:
-                        (context, wordsModel, playersModel, scoreModel, child) {
-                      var wordsList = wordsModel.getWordsListByPlayer(
-                          player: playersModel.currentPlayer);
-                      var highscore = scoreModel.calculateHighscore(wordsList);
-                      scoreModel.highscore.then((currentHighscore) {
-                        if (highscore > currentHighscore) {
-                          scoreModel.saveHighscore(highscore);
-                        }
-                      });
-                      currentPlayer.highscore = highscore;
-                      return _playerHighscoreWidget(player: currentPlayer);
-                    }),
-                  ],
-                )
               ],
             ),
-            SizedBox(
-              width: 12,
-            ),
-            SizedBox(
-              width: 90,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(MainLocalizations.of(context).highscore),
-                  Consumer<ScoreModel>(
-                    builder: (context, value, child) => FutureBuilder(
-                        future: value.highscore,
-                        builder: (BuildContext context,
-                            AsyncSnapshot<int> snapshot) {
-                          if (snapshot.connectionState ==
-                              ConnectionState.waiting) {
-                            return SizedBox(
-                              width: 8,
-                              child: CircularSpinner(),
-                              height: 8,
-                            );
-                          } else {
-                            return Text('${snapshot.data}');
-                          }
-                        }),
-                  ),
-                ],
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Consumer<ScoreModel>(
+                builder: (context, value, child) => FutureBuilder(
+                    future: value.highscore,
+                    builder:
+                        (BuildContext context, AsyncSnapshot<int> snapshot) {
+                      var widget = (() {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return CircularSpinner();
+                        } else {
+                          return Text(
+                            '50${snapshot.data}',
+                            textAlign: TextAlign.start,
+                          );
+                        }
+                      })();
+                      return SizedBox(
+                        width:
+                            snapshot.connectionState == ConnectionState.waiting
+                                ? 15
+                                : null,
+                        height: 15,
+                        child: widget,
+                      );
+                    }),
               ),
-            ),
-            SizedBox(
-              width: 10,
-            ),
-            Consumer<WordsModel>(builder: (context, wordsModel, child) {
-              var lettersToRemoveText =
-                  MainLocalizations.of(context).lettersToRemove;
-              return Text(
-                  '$lettersToRemoveText ${wordsModel.phraseLimitLettersLeft}');
-            }),
-          ],
-        ),
+              Consumer3<WordsModel, PlayersModel, ScoreModel>(builder:
+                  (context, wordsModel, playersModel, scoreModel, child) {
+                var wordsList = wordsModel.getWordsListByPlayer(
+                    player: playersModel.currentPlayer);
+                var highscore = scoreModel.calculateHighscore(wordsList);
+                scoreModel.highscore.then((currentHighscore) {
+                  if (highscore > currentHighscore) {
+                    scoreModel.saveHighscore(highscore);
+                  }
+                });
+                currentPlayer.highscore = highscore;
+                return Text(
+                  highscore.toString(),
+                  textAlign: TextAlign.start,
+                );
+              })
+            ],
+          )
+        ]),
       ),
     );
   }

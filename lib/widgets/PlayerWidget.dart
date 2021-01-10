@@ -37,17 +37,21 @@ class PlayerHighscoreWidget extends StatelessWidget {
   PlayerHighscoreWidget({@required this.player, this.fontSize});
   @override
   Widget build(BuildContext context) {
-    return FloatingActionButton(
-      elevation: 0,
-      hoverElevation: 6,
-      backgroundColor: player.playerColor.color.withOpacity(0.75),
-      onPressed: null,
-      child: Text(
-        '${player.highscore}',
-        style: TextStyle(
-            fontSize: fontSize,
-            color: Theme.of(context).primaryTextTheme.subtitle1.color),
-      ),
-    );
+    var subtitleColor = Theme.of(context).primaryTextTheme.subtitle1.color;
+    return Material(
+        type: MaterialType.transparency,
+        child: Container(
+          decoration: BoxDecoration(
+              // border: Border.all(color: subtitleColor, width: 0.4),
+              color: player.playerColor.color,
+              shape: BoxShape.rectangle,
+              borderRadius: BorderRadius.circular(4)),
+          child: Row(children: [
+            Text(
+              '92${player.highscore}',
+              style: TextStyle(fontSize: fontSize, color: subtitleColor),
+            ),
+          ]),
+        ));
   }
 }
