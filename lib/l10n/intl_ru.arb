@@ -35,7 +35,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "player": "Игрок: ",
+  "player": "Игрок",
   "@player": {
     "type": "text",
     "placeholders": {}
@@ -85,12 +85,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentScore": "текущий результат: ",
+  "currentScore": "результат",
   "@currentScore": {
     "type": "text",
     "placeholders": {}
   },
-  "highscore": "результат: ",
+  "highscore": "лучший результат: ",
   "@highscore": {
     "type": "text",
     "placeholders": {}

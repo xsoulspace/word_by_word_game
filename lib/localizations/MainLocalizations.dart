@@ -53,7 +53,7 @@ class MainLocalizations {
   }
 
   String get player {
-    return Intl.message('Player: ', name: 'player');
+    return Intl.message('Player', name: 'player');
   }
 
   String get lastword {
@@ -95,7 +95,7 @@ class MainLocalizations {
   }
 
   String get currentScore {
-    return Intl.message('current score: ', name: 'currentScore');
+    return Intl.message('score', name: 'currentScore');
   }
 
   String get highscore {

@@ -30,3 +30,24 @@ class PlayerWidget extends StatelessWidget {
     );
   }
 }
+
+class PlayerHighscoreWidget extends StatelessWidget {
+  final Player player;
+  final double fontSize;
+  PlayerHighscoreWidget({@required this.player, this.fontSize});
+  @override
+  Widget build(BuildContext context) {
+    return FloatingActionButton(
+      elevation: 0,
+      hoverElevation: 6,
+      backgroundColor: player.playerColor.color.withOpacity(0.75),
+      onPressed: null,
+      child: Text(
+        '${player.highscore}',
+        style: TextStyle(
+            fontSize: fontSize,
+            color: Theme.of(context).primaryTextTheme.subtitle1.color),
+      ),
+    );
+  }
+}

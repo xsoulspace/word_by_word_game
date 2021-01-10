@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-11-02T23:39:34.052047",
+  "@@last_modified": "2021-01-10T15:44:23.928475",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -35,7 +35,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "player": "Player: ",
+  "player": "Player",
   "@player": {
     "type": "text",
     "placeholders": {}
@@ -70,7 +70,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "For any bugs or ideas please send your feedback to idea@xsoulspace.dev",
+  "sendFeedback": "For any bugs or ideas please send your feedback to xsoulspace@gmail.com",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
@@ -85,7 +85,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentScore": "current score: ",
+  "currentScore": "score",
   "@currentScore": {
     "type": "text",
     "placeholders": {}

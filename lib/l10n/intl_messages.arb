@@ -1,5 +1,5 @@
 {
-  "@@last_modified": "2020-12-20T17:16:35.412787",
+  "@@last_modified": "2021-01-10T15:44:23.928475",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -35,7 +35,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "player": "Player: ",
+  "player": "Player",
   "@player": {
     "type": "text",
     "placeholders": {}
@@ -85,7 +85,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentScore": "current score: ",
+  "currentScore": "score",
   "@currentScore": {
     "type": "text",
     "placeholders": {}
