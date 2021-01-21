@@ -5,6 +5,7 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:word_by_word_game/entities/FirstPlayer.dart';
 import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/PlayerColor.dart';
+import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 
 part 'PlayersModel.g.dart';
 
@@ -70,7 +71,15 @@ class PlayersModel extends ChangeNotifier {
 
   void reloadPlayers({@required Map<int, Player> playersByPlayerIdMap}) {
     _playersByPlayerIdMap.clear();
+    // FIXME: recolor players function
+    // remove after all players will update to new version
+    playersByPlayerIdMap.map((key, player) {
+      var color = playerColors.where((color) => color.id == player.id).first;
+      player.playerColor = color;
+      return MapEntry(key, player);
+    });
     _playersByPlayerIdMap.addAll(playersByPlayerIdMap);
+
     notifyListeners();
   }
 

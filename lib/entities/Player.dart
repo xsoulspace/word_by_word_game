@@ -7,7 +7,7 @@ part 'Player.g.dart';
 @JsonSerializable(explicitToJson: true)
 class Player {
   final int id;
-  final PlayerColor playerColor;
+  PlayerColor playerColor;
   int highscore = 0;
   // Penalty is how many letters will be reduced from final highscore
   // Usually applies when user clicks Next Player button
