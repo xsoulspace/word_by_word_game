@@ -182,8 +182,11 @@ class WordsModel extends ChangeNotifier {
       phraseFromLastword =
           phraseFromLastword.substring(0, phraseFromLastword.length - 1);
     }
-    phraseLimitLettersLeft--;
+    reduceLimitLettersLeft();
+  }
 
+  void reduceLimitLettersLeft() {
+    phraseLimitLettersLeft--;
     notifyListeners();
   }
 

@@ -28,6 +28,7 @@ class UpperToolbar extends StatelessWidget {
     var size = MediaQuery.of(context).size;
     var currentPlayer = playersModel.currentPlayer;
     var playerColor = currentPlayer.playerColor.color;
+
     return Material(
       color: Colors.transparent,
       elevation: 3,
@@ -119,7 +120,9 @@ class UpperToolbar extends StatelessWidget {
                   (context, wordsModel, playersModel, scoreModel, child) {
                 var wordsList = wordsModel.getWordsListByPlayer(
                     player: playersModel.currentPlayer);
-                var highscore = scoreModel.calculateHighscore(wordsList);
+                var highscore = scoreModel.calculateHighscore(
+                    player: playersModel.currentPlayer, words: wordsList);
+
                 scoreModel.highscore.then((currentHighscore) {
                   if (highscore > currentHighscore) {
                     scoreModel.saveHighscore(highscore);

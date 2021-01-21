@@ -9,7 +9,11 @@ class Player {
   final int id;
   final PlayerColor playerColor;
   int highscore = 0;
-  Player({@required this.id, @required this.playerColor, this.highscore});
+  // Penalty is how many letters will be reduced from final highscore
+  // Usually applies when user clicks Next Player button
+  int penaltyScore = 0;
+  Player(
+      {@required this.id, @required this.playerColor, highscore, penaltyScore});
 
   factory Player.fromJson(Map<String, dynamic> json) => _$PlayerFromJson(json);
   Map<String, dynamic> toJson() => _$PlayerToJson(this);

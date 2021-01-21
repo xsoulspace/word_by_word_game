@@ -92,7 +92,8 @@ class EndGameDialog extends StatelessWidget {
     var playersModel = Provider.of<PlayersModel>(context);
     getPlayerHighscore({@required Player player}) {
       var wordsList = wordsModel.getWordsListByPlayer(player: player);
-      var highscore = scoreModel.calculateHighscore(wordsList);
+      var highscore =
+          scoreModel.calculateHighscore(player: player, words: wordsList);
       scoreModel.highscore.then((currentHighscore) {
         if (highscore > currentHighscore) {
           scoreModel.saveHighscore(highscore);
