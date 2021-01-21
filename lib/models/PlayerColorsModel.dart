@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:word_by_word_game/entities/PlayerColor.dart';
 
 List<PlayerColor> playerColors = [
-  PlayerColor(id: 1, colorPrimary: Colors.green.value),
-  PlayerColor(id: 2, colorPrimary: Colors.purple[800].value),
+  PlayerColor(id: 1, colorPrimary: Colors.purple[800].value),
+  PlayerColor(id: 2, colorPrimary: Colors.green.value),
   PlayerColor(id: 3, colorPrimary: Colors.amber[800].value),
   PlayerColor(id: 4, colorPrimary: Colors.blue.value),
   PlayerColor(id: 5, colorPrimary: Colors.cyan.value),
