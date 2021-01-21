@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/entities/Word.dart';
 import 'package:word_by_word_game/models/StorageMixin.dart';
 
@@ -21,12 +22,19 @@ class ScoreModel extends ChangeNotifier with StorageMixin {
     await storage.putString(ScoreModelConsts.highscore, value.toString());
   }
 
-  int calculateHighscore(List<Word> words) => words.length > 0
-      ? words
-              .reduce((value, element) =>
-                  Word(id: 0, value: '${value.value}${element.value}'))
-              .value
-              .length -
-          (words.length * 3)
-      : 0;
+  int calculateHighscore(
+      {@required List<Word> words, @required Player player}) {
+    int highscore = words.length > 0
+        ? words
+                .reduce((value, element) =>
+                    Word(id: 0, value: '${value.value}${element.value}'))
+                .value
+                .length -
+            (words.length * 3)
+        : 0;
+    if (player.penaltyScore != null && player.penaltyScore > 0) {
+      highscore -= player.penaltyScore;
+    }
+    return highscore;
+  }
 }

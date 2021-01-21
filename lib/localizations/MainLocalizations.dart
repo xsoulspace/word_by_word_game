@@ -118,7 +118,7 @@ class MainLocalizations {
   }
 
   String get menuLanguage {
-    return Intl.message('Language ', name: 'menuLanguage');
+    return Intl.message('Lang ', name: 'menuLanguage');
   }
 
   String get menuInfo {

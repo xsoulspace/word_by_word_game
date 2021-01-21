@@ -21,7 +21,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # In iOS, build-name is used as CFBundleShortVersionString while build-number used as CFBundleVersion.
 # Read more about iOS versioning at
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
-version: 0.0.8+11
+version: 0.0.8+12
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -31,13 +31,13 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  provider: ^4.3.2+3 #^5.0.0-nullsafety.2
+  provider: ^4.3.3 #^5.0.0-nullsafety.2
   russian_words: ^0.1.0
   english_words: ^3.1.5 #^4.0.0-nullsafety.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: ^1.0.0
+  cupertino_icons: ^1.0.2
   shared_preferences: ">=0.5.12+4  <2.0.0"
   json_annotation: ^3.1.1 #^4.0.0-nullsafety.0
 
@@ -50,7 +50,7 @@ dev_dependencies:
     sdk: flutter
   flutter_launcher_icons: "^0.8.1"
   json_serializable: ^3.5.1 #^4.0.0-nullsafety.0
-  build_runner: ^1.10.11
+  build_runner: ^1.10.13
   # FIXME: due problem with intl_tranlsation
   # analyzer dependency overriden.
   # FIXME: to run flutter pub run build_runner build need to comment intl_translation and analyzer override

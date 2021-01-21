@@ -12,7 +12,6 @@ class ExtraMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     var wordsModel = Provider.of<WordsModel>(context);
     var playersModel = Provider.of<PlayersModel>(context);
-    var storageModel = Provider.of<StorageModel>(context, listen: false);
     var isNextActionsEnabled = wordsModel.isAtLeastOneWordRecorded &&
         wordsModel.isPhraseFromLastwordNotEmpty &&
         wordsModel.isPhraseLimitLeftAvailable;
@@ -20,26 +19,16 @@ class ExtraMenu extends StatelessWidget {
       color: Colors.transparent,
       child: Column(
         children: [
-          ListTile(
-              focusColor: Colors.white.withOpacity(0.4),
-              hoverColor: Colors.white.withOpacity(0.2),
-              leading: Icon(Icons.cached),
-              enabled: isNextActionsEnabled,
-              title: Text(MainLocalizations.of(context).resetEnding),
-              onTap: () async => await _resetWords(context: context)),
           Visibility(
             visible: playersModel.isNotOnePlayerPlaying,
             child: ListTile(
                 focusColor: Colors.white.withOpacity(0.4),
                 hoverColor: Colors.white.withOpacity(0.2),
                 leading: Icon(Icons.skip_next),
-                enabled: isNextActionsEnabled,
+                enabled:
+                    isNextActionsEnabled && playersModel.isPlayerHasHighscore,
                 title: Text(MainLocalizations.of(context).nextPlayer),
-                onTap: () async {
-                  await _resetWords(context: context);
-                  playersModel.nextPlayer();
-                  await storageModel.savePlayersModel();
-                }),
+                onTap: () => _nextPlayer(context: context)),
           ),
           ListTile(
               focusColor: Colors.white.withOpacity(0.4),
@@ -59,10 +48,20 @@ class ExtraMenu extends StatelessWidget {
     );
   }
 
-  Future<void> _resetWords({@required BuildContext context}) async {
+  Future<void> _nextPlayer({@required BuildContext context}) async {
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
+    var playersModel = Provider.of<PlayersModel>(context, listen: false);
     var storageModel = Provider.of<StorageModel>(context, listen: false);
-    wordsModel.resetPhraseFromLastword();
+    wordsModel.reduceLimitLettersLeft();
+    playersModel.addPenaltyToCurrentPlayer();
+    playersModel.nextPlayer();
+    await storageModel.savePlayersModel();
     await storageModel.saveWordsModel();
   }
+  // Future<void> _resetWords({@required BuildContext context}) async {
+  //   var wordsModel = Provider.of<WordsModel>(context, listen: false);
+  //   var storageModel = Provider.of<StorageModel>(context, listen: false);
+  // wordsModel.resetPhraseFromLastword();
+  // await storageModel.saveWordsModel();
+  // }
 }

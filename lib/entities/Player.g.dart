@@ -12,7 +12,8 @@ Player _$PlayerFromJson(Map<String, dynamic> json) {
     playerColor: json['playerColor'] == null
         ? null
         : PlayerColor.fromJson(json['playerColor'] as Map<String, dynamic>),
-    highscore: json['highscore'] as int,
+    highscore: json['highscore'],
+    penaltyScore: json['penaltyScore'],
   );
 }
 
@@ -20,4 +21,5 @@ Map<String, dynamic> _$PlayerToJson(Player instance) => <String, dynamic>{
       'id': instance.id,
       'playerColor': instance.playerColor?.toJson(),
       'highscore': instance.highscore,
+      'penaltyScore': instance.penaltyScore,
     };

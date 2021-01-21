@@ -76,6 +76,17 @@ class PlayersModel extends ChangeNotifier {
 
   get isOnePlayerPlaying => _playersByPlayerIdMap.length == 1;
   get isNotOnePlayerPlaying => _playersByPlayerIdMap.length > 1;
+  final _penaltyLimit = 3;
+  void addPenaltyToCurrentPlayer() {
+    currentPlayer.penaltyScore += _penaltyLimit;
+    _playersByPlayerIdMap.update(currentPlayer.id, (value) => currentPlayer,
+        ifAbsent: () => currentPlayer);
+    notifyListeners();
+  }
+
+  get isPlayerHasHighscore =>
+      currentPlayer.highscore != null &&
+      currentPlayer.highscore >= _penaltyLimit;
 
   ///
   /// JSON serialization
