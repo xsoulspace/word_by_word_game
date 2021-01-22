@@ -36,7 +36,7 @@ class MenuItemsModel extends ChangeNotifier {
     MenuItem(
         id: 3,
         iconData: Icons.translate,
-        label: LocalName(en: 'Language', ru: 'Язык'),
+        label: LocalName(en: 'Lang', ru: 'Язык'),
         code: MenuItemsEnum.Language)
   ];
 }
