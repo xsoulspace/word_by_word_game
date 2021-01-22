@@ -19,7 +19,6 @@ class ExtraMenu extends StatelessWidget {
       color: Colors.transparent,
       child: Column(
         children: [
-          // OutlinedButton(child: Text(''), onPressed: () {}),
           Visibility(
             visible: playersModel.isNotOnePlayerPlaying,
             child: ListTile(

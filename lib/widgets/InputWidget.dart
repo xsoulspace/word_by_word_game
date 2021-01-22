@@ -166,14 +166,7 @@ class _InputWidgetState extends State<InputWidget> {
                             ? 14
                             : 30),
                 child: Center(
-                  child: FlatButton(
-                    hoverColor: Colors.white.withOpacity(0.3),
-                    focusColor: Colors.white.withOpacity(0.5),
-                    splashColor: playersModel.currentPlayer.playerColor.color
-                        .withOpacity(0.4),
-                    highlightColor: Colors.white.withOpacity(0.7),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30)),
+                  child: TextButton(
                     child: Padding(
                       padding:
                           EdgeInsets.all(AppConstraints.isMobile(size.width)
@@ -183,13 +176,22 @@ class _InputWidgetState extends State<InputWidget> {
                                   : 24),
                       child: Text(MainLocalizations.of(context).addNewWord,
                           style: TextStyle(
+                              color: Colors.grey[800],
                               fontSize: AppConstraints.isMobile(size.width)
                                   ? 14
-                                  : AppConstraints.isMedium(size.width)
-                                      ? 18
-                                      : 24)),
+                                  : 18)),
                     ),
                     onPressed: () async => await _addNewWord(),
+                    style: ButtonStyle(
+                      overlayColor: MaterialStateProperty.all<Color>(
+                          playersModel.currentPlayer.playerColor.color
+                              .withOpacity(0.05)),
+                      shape: MaterialStateProperty.all<OutlinedBorder>(
+                          RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30))),
+                      backgroundColor:
+                          MaterialStateProperty.all<Color>(Colors.transparent),
+                    ),
                   ),
                 ),
               )
