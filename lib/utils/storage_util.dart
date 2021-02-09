@@ -26,6 +26,6 @@ class StorageUtil {
   // put string
   Future putString(String key, String value) {
     if (_preferences == null) return null;
-    return _preferences.setString(key, value);
+    return await _preferences.setString(key, value);
   }
 }
