@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
+import 'package:word_by_word_game/shared_utils_models/locale_model.dart';
 
 class MenuItemWidget extends StatelessWidget {
   final MenuItem menuItem;
@@ -11,12 +11,12 @@ class MenuItemWidget extends StatelessWidget {
   final List<Widget> children;
   final Duration duration;
   MenuItemWidget(
-      {@required this.menuItem,
+      {required this.menuItem,
       this.onTap,
-      @required this.isSelected,
+      required this.isSelected,
       this.children,
-      @required this.duration});
-  Widget iconWidget({@required selectedColor}) {
+      required this.duration});
+  Widget iconWidget({required selectedColor}) {
     return Padding(
       padding: EdgeInsets.only(top: 4.0, bottom: 2.0),
       child: Icon(
@@ -26,7 +26,7 @@ class MenuItemWidget extends StatelessWidget {
     );
   }
 
-  Widget textWidget({@required selectedColor}) {
+  Widget textWidget({required selectedColor}) {
     return Consumer<LocaleModel>(
         builder: (context, localeModel, widget) => Text(
               menuItem.label.getName(localeModel.locale),

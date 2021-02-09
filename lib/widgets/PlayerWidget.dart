@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
 
 class PlayerWidget extends StatelessWidget {
   final Player player;
@@ -9,7 +9,7 @@ class PlayerWidget extends StatelessWidget {
   final Function() onTap;
   final double fontSize;
   PlayerWidget(
-      {@required this.player,
+      {required this.player,
       this.isDisabled = false,
       this.isEnabled = true,
       this.onTap,
@@ -34,7 +34,7 @@ class PlayerWidget extends StatelessWidget {
 class PlayerHighscoreWidget extends StatelessWidget {
   final Player player;
   final double fontSize;
-  PlayerHighscoreWidget({@required this.player, this.fontSize});
+  PlayerHighscoreWidget({required this.player, this.fontSize});
   @override
   Widget build(BuildContext context) {
     var subtitleColor = Theme.of(context).primaryTextTheme.subtitle1.color;

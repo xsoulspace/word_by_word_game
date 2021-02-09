@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:word_by_word_game/entities/PlayerColor.dart';
+import 'package:word_by_word_game/abstract/PlayerColor.dart';
 
 List<PlayerColor> playerColors = [
   PlayerColor(id: 1, colorPrimary: Colors.purple[800].value),
@@ -26,6 +26,6 @@ class PlayerColorsModel extends ChangeNotifier {
   PlayerColor getRandomColor() =>
       colorsList[next(max: _colorsMap.length - 1, min: 0)];
 
-  int next({@required int min, @required int max}) =>
+  int next({required int min, required int max}) =>
       min + _random.nextInt(max - min);
 }

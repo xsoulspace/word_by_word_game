@@ -19,7 +19,7 @@ class LocalDictionaryModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void reloadState({@required Set<String> words}) {
+  void reloadState({required Set<String> words}) {
     _words.clear();
     _words.addAll(words);
   }

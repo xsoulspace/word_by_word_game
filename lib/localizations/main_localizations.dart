@@ -1,3 +1,4 @@
+// @dart=2.11
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:word_by_word_game/constants/Locales.dart';

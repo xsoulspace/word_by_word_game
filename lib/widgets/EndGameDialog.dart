@@ -2,16 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/entities/Player.dart';
-import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
+import 'package:word_by_word_game/localizations/main_localizations.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
-import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_model.dart';
 import 'package:word_by_word_game/widgets/CircularSpinner.dart';
 import 'package:word_by_word_game/widgets/PlayerWidget.dart';
 
-void showEndGameDialog({@required BuildContext context}) {
+void showEndGameDialog({required BuildContext context}) {
   showDialog(
     context: context,
     builder: (context) => EndGameDialog(),
@@ -86,11 +86,11 @@ class EndGameDialog extends StatelessWidget {
     );
   }
 
-  Widget _playersHighscores({@required BuildContext context}) {
+  Widget _playersHighscores({required BuildContext context}) {
     var scoreModel = Provider.of<ScoreModel>(context);
     var wordsModel = Provider.of<WordsModel>(context);
     var playersModel = Provider.of<PlayersModel>(context);
-    getPlayerHighscore({@required Player player}) {
+    getPlayerHighscore({required Player player}) {
       var wordsList = wordsModel.getWordsListByPlayer(player: player);
       var highscore =
           scoreModel.calculateHighscore(player: player, words: wordsList);

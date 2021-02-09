@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/entities/Player.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
-import 'package:word_by_word_game/models/StorageModel.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_model.dart';
 import 'package:word_by_word_game/widgets/PlayerWidget.dart';
 
 class PlayerChooser extends StatelessWidget {
@@ -38,7 +38,7 @@ class PlayerChooser extends StatelessWidget {
   //       color: Colors.green,
   //     ))
   Widget _playerController(
-      {@required BuildContext context, @required Player player}) {
+      {required BuildContext context, required Player player}) {
     var playersModel = Provider.of<PlayersModel>(context, listen: false);
     var storageModel = Provider.of<StorageModel>(context, listen: false);
     bool isExists = playersModel.hasPLayer(player: player);

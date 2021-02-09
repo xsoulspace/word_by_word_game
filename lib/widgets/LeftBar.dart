@@ -2,15 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
+import 'package:word_by_word_game/shared_widgets/locale_switcher.dart';
 import 'package:word_by_word_game/widgets/EndGameDialog.dart';
 import 'package:word_by_word_game/widgets/InfoWidget.dart';
-import 'package:word_by_word_game/widgets/LanguageToggle.dart';
 import 'package:word_by_word_game/widgets/MenuItemWidget.dart';
 import 'package:word_by_word_game/widgets/PlayerChooser.dart';
 
 class LeftBar extends StatefulWidget {
   final double minWidth;
-  LeftBar({@required this.minWidth});
+  LeftBar({required this.minWidth});
   @override
   _LeftBarState createState() => _LeftBarState();
 }
@@ -114,7 +114,7 @@ class _LeftBarState extends State<LeftBar> {
                                         mainAxisAlignment:
                                             MainAxisAlignment.start,
                                         children: [
-                                          Expanded(child: LanguageToggle())
+                                          Expanded(child: LocaleSwitcher())
                                         ])
                                   ];
                                 default:

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
 
@@ -8,7 +7,7 @@ part 'PlayerColor.g.dart';
 class PlayerColor {
   final int id;
   final int colorPrimary;
-  PlayerColor({@required this.id, @required this.colorPrimary});
+  PlayerColor({required this.id, required this.colorPrimary});
 
   Color get color => Color(colorPrimary);
 

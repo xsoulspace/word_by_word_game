@@ -1,6 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:word_by_word_game/entities/PlayerColor.dart';
+import 'package:word_by_word_game/abstract/PlayerColor.dart';
 
 part 'Player.g.dart';
 
@@ -13,7 +12,7 @@ class Player {
   // Usually applies when user clicks Next Player button
   int penaltyScore = 0;
   Player(
-      {@required this.id, @required this.playerColor, highscore, penaltyScore});
+      {required this.id, required this.playerColor, highscore, penaltyScore});
 
   factory Player.fromJson(Map<String, dynamic> json) => _$PlayerFromJson(json);
   Map<String, dynamic> toJson() => _$PlayerToJson(this);

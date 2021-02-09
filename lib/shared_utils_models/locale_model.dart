@@ -4,11 +4,11 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
+import 'package:word_by_word_game/abstract/NamedLocale.dart';
 import 'package:word_by_word_game/constants/Locales.dart';
-import 'package:word_by_word_game/entities/NamedLocale.dart';
-import 'package:word_by_word_game/localizations/MainLocalizations.dart';
-import 'package:word_by_word_game/models/StorageMixin.dart';
-import 'package:word_by_word_game/utils/storage_util.dart';
+import 'package:word_by_word_game/localizations/main_localizations.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_mixin.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_util.dart';
 
 class LocaleModelConsts {
   static final String storagename = 'locale';
@@ -44,7 +44,7 @@ class LocaleModel extends ChangeNotifier with StorageMixin {
 
   static Future<Locale> loadSavedLocale() async {
     StorageUtil storage = await StorageUtil.getInstance();
-    String localeStr = await storage.getString(LocaleModelConsts.storagename);
+    String localeStr = storage.getString(LocaleModelConsts.storagename);
     if (localeStr.isEmpty) {
       // FIXME: strange things happend with locales on all OS!
       // seems like it has new formats nn__UTF08__NN
@@ -57,7 +57,7 @@ class LocaleModel extends ChangeNotifier with StorageMixin {
 
       var systemLocale = await findSystemLocale();
       Intl.defaultLocale = systemLocale;
-      return Locale(Intl.defaultLocale);
+      return Locale(Intl.defaultLocale ?? Languages.en);
     }
 
     String localeCanon = Intl.canonicalizedLocale(localeStr);
@@ -65,11 +65,11 @@ class LocaleModel extends ChangeNotifier with StorageMixin {
     return localef;
   }
 
-  Future<void> switchLang(Locale localef) async {
+  Future<void> switchLang(Locale? localef) async {
+    if (localef == null) return;
     await MainLocalizations.load(localef);
-    await checkAndLoadStorageInstance();
-    (await storage).putString(
-        LocaleModelConsts.storagename, localef.languageCode);
+    (await storage)
+        .putString(LocaleModelConsts.storagename, localef.languageCode);
     locale = localef;
   }
 

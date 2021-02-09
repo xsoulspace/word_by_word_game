@@ -3,12 +3,12 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/constants/AppConstraints.dart';
 import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
-import 'package:word_by_word_game/localizations/MainLocalizations.dart';
-import 'package:word_by_word_game/models/LocaleModel.dart';
+import 'package:word_by_word_game/localizations/main_localizations.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
-import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
+import 'package:word_by_word_game/shared_utils_models/locale_model.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_model.dart';
 
 class InputWidget extends StatefulWidget {
   @override
@@ -52,7 +52,7 @@ class _InputWidgetState extends State<InputWidget> {
                 playersModel.currentPlayer.playerColor.color.withOpacity(0.7)));
   }
 
-  Widget _decreaseButton({@required bool isFromBeginning}) {
+  Widget _decreaseButton({required bool isFromBeginning}) {
     var storageModel = Provider.of<StorageModel>(context, listen: false);
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
     var playersModel = Provider.of<PlayersModel>(context, listen: false);
@@ -75,7 +75,7 @@ class _InputWidgetState extends State<InputWidget> {
   }
 
   Future<void> _updateWordsModelPhrases(
-      {@required String value, @required bool isFromBeginning}) async {
+      {required String value, required bool isFromBeginning}) async {
     var wordsModel = Provider.of<WordsModel>(context, listen: false);
     if (isFromBeginning) {
       wordsModel.newWordBeginning = value;

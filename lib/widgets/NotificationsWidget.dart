@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/abstract/GameNotification.dart';
 import 'package:word_by_word_game/constants/AppConstraints.dart';
 import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
-import 'package:word_by_word_game/entities/GameNotification.dart';
-import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/localizations/main_localizations.dart';
 import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
-import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
-import 'package:word_by_word_game/models/StorageModel.dart';
+import 'package:word_by_word_game/shared_utils_models/locale_model.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_model.dart';
 
 class NotificationsWidget extends StatefulWidget {
   final GameNotification gameNotification;
-  NotificationsWidget({@required this.gameNotification});
+  NotificationsWidget({required this.gameNotification});
   @override
   _NotificationsWidgetState createState() =>
       _NotificationsWidgetState(gameNotification: this.gameNotification);
@@ -23,7 +23,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
   final GameNotification gameNotification;
   int _counter = 0;
 
-  _NotificationsWidgetState({@required this.gameNotification});
+  _NotificationsWidgetState({required this.gameNotification});
   @override
   didUpdateWidget(NotificationsWidget oldWidget) {
     super.didUpdateWidget(oldWidget);
@@ -71,7 +71,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
     notificationsModel.gameNotification = null;
   }
 
-  Color _getColor({@required GameNotificationStatuses status}) {
+  Color _getColor({required GameNotificationStatuses status}) {
     switch (status) {
       case GameNotificationStatuses.done:
         return Colors.greenAccent[100];
@@ -92,7 +92,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
         .then((value) => notificationsModel.gameNotification = null);
   }
 
-  _addNewWordToDictionary({@required String newWord}) async {
+  _addNewWordToDictionary({required String newWord}) async {
     var localDictionaryModel =
         Provider.of<LocalDictionaryModel>(context, listen: false);
     localDictionaryModel.addWord(newWord);
@@ -100,7 +100,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
     await storageModel.saveLocalDictionary();
   }
 
-  bool _isNotificationExists({@required GameNotification gameNotification}) {
+  bool _isNotificationExists({required GameNotification gameNotification}) {
     return gameNotification != null;
   }
 
@@ -171,7 +171,7 @@ class _NotificationsWidgetState extends State<NotificationsWidget>
             .getName(localeModel.locale)));
   }
 
-  Widget _addWordToDictionaryButton({@required bool isVisible}) {
+  Widget _addWordToDictionaryButton({required bool isVisible}) {
     var notificationsModel = Provider.of<NotificationsModel>(context);
     return Visibility(
       visible: isVisible,

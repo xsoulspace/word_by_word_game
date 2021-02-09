@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:word_by_word_game/entities/LocalName.dart';
+import 'package:word_by_word_game/abstract/LocalName.dart';
 
 enum MenuItemsEnum { Info, New, Players, Language }
 
@@ -10,10 +10,10 @@ class MenuItem {
   final LocalName label;
   final MenuItemsEnum code;
   MenuItem(
-      {@required this.iconData,
-      @required this.label,
-      @required this.code,
-      @required this.id});
+      {required this.iconData,
+      required this.label,
+      required this.code,
+      required this.id});
 }
 
 class MenuItemsModel extends ChangeNotifier {

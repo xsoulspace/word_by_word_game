@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/entities/NamedLocale.dart';
-import 'package:word_by_word_game/models/LocaleModel.dart';
+import 'package:word_by_word_game/abstract/NamedLocale.dart';
+import 'package:word_by_word_game/shared_utils_models/locale_model.dart';
 
-class LanguageToggle extends StatelessWidget {
+class LocaleSwitcher extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Consumer<LocaleModel>(builder: (context, localeModel, child) {
@@ -20,8 +20,8 @@ class LanguageToggle extends StatelessWidget {
               ),
             );
           }).toList(),
-          onChanged: (NamedLocale namedLocale) async {
-            await localeModel.switchLang(namedLocale.locale);
+          onChanged: (NamedLocale? namedLocale) async {
+            await localeModel.switchLang(namedLocale?.locale);
           });
     });
   }

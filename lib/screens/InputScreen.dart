@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/entities/PlayerColor.dart';
+import 'package:word_by_word_game/abstract/PlayerColor.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
+import 'package:word_by_word_game/shared_widgets/locale_switcher.dart';
 import 'package:word_by_word_game/widgets/BottomBar.dart';
 import 'package:word_by_word_game/widgets/ExtraMenu.dart';
 import 'package:word_by_word_game/widgets/InputWidget.dart';
-import 'package:word_by_word_game/widgets/LanguageToggle.dart';
 import 'package:word_by_word_game/widgets/LeftBar.dart';
 import 'package:word_by_word_game/widgets/NotificationsWidget.dart';
 import 'package:word_by_word_game/widgets/UpperToolbar.dart';
@@ -16,7 +16,7 @@ import 'package:word_by_word_game/widgets/UpperToolbar.dart';
 final double leftBarWidth = 54;
 
 BoxDecoration appGradientBoxDecoration(
-        {@required PlayerColor playerColor, MaterialColor secondColor}) =>
+        {required PlayerColor playerColor, required Color secondColor}) =>
     BoxDecoration(
         gradient: LinearGradient(
             stops: [
@@ -135,7 +135,7 @@ openLanguagePopup(BuildContext context) {
                           ),
                           Row(
                               mainAxisAlignment: MainAxisAlignment.start,
-                              children: [Expanded(child: LanguageToggle())])
+                              children: [Expanded(child: LocaleSwitcher())])
                         ]),
                       ),
                     )

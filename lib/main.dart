@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/abstract/FirstPlayer.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
 import 'package:word_by_word_game/constants/Locales.dart';
-import 'package:word_by_word_game/entities/FirstPlayer.dart';
-import 'package:word_by_word_game/entities/Player.dart';
 import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
-import 'package:word_by_word_game/models/LocaleModel.dart';
 import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
-import 'package:word_by_word_game/models/StorageModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
 import 'package:word_by_word_game/screens/InputScreen.dart';
+import 'package:word_by_word_game/shared_utils_models/locale_model.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_model.dart';
 
 void main() {
   runApp(

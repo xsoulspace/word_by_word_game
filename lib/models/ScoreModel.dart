@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
-import 'package:word_by_word_game/entities/Player.dart';
-import 'package:word_by_word_game/entities/Word.dart';
-import 'package:word_by_word_game/models/StorageMixin.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
+import 'package:word_by_word_game/abstract/Word.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_mixin.dart';
 
 class ScoreModelConsts {
   static String highscore = 'highscore';
@@ -22,8 +22,7 @@ class ScoreModel extends ChangeNotifier with StorageMixin {
     await storage.putString(ScoreModelConsts.highscore, value.toString());
   }
 
-  int calculateHighscore(
-      {@required List<Word> words, @required Player player}) {
+  int calculateHighscore({required List<Word> words, required Player player}) {
     int highscore = words.length > 0
         ? words
                 .reduce((value, element) =>

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/entities/Player.dart';
-import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
+import 'package:word_by_word_game/localizations/main_localizations.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
 import 'package:word_by_word_game/models/ScoreModel.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
@@ -12,7 +12,7 @@ import 'package:word_by_word_game/widgets/PlayerWidget.dart';
 class UpperToolbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Widget _playerWidget({@required Player player}) {
+    Widget _playerWidget({required Player player}) {
       return Container(
           height: 30.0,
           width: 30.0,

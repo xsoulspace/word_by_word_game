@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 import 'package:word_by_word_game/models/PlayersModel.dart';
-import 'package:word_by_word_game/models/StorageMixin.dart';
 import 'package:word_by_word_game/models/WordsModel.dart';
+import 'package:word_by_word_game/shared_utils_models/storage_mixin.dart';
 
 class StorageModel extends ChangeNotifier with StorageMixin {
   WordsModel _wordsModel;
@@ -17,14 +17,13 @@ class StorageModel extends ChangeNotifier with StorageMixin {
 
   /// Public factory
   static Future<StorageModel> create(
-      {@required WordsModel wordsModel,
-      @required PlayersModel playersModel,
-      @required LocalDictionaryModel localDictionaryModel}) async {
+      {required WordsModel wordsModel,
+      required PlayersModel playersModel,
+      required LocalDictionaryModel localDictionaryModel}) async {
     // Call the private constructor
     var storageModel =
         StorageModel._create(wordsModel, playersModel, localDictionaryModel);
 
-    await storageModel.checkAndLoadStorageInstance();
     await storageModel.loadPlayersModel();
     await storageModel.loadWordsModel();
     await storageModel.loadLocalDictionary();
@@ -32,14 +31,12 @@ class StorageModel extends ChangeNotifier with StorageMixin {
     return storageModel;
   }
 
-  Future<void> save<T>({@required String key, @required Object value}) async {
-    await checkAndLoadStorageInstance();
-    await storage.putString(key, jsonEncode(value));
+  Future<void> save<T>({required String key, required Object value}) async {
+    (await storage).putString(key, jsonEncode(value));
   }
 
-  Future<T> load<T>(String key) async {
-    await checkAndLoadStorageInstance();
-    var value = storage.getString(key);
+  Future<T?> load<T>(String key) async {
+    var value = (await storage).getString(key);
     if (value == '') return null;
     return jsonDecode(value);
   }

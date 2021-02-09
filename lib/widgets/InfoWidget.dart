@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:word_by_word_game/localizations/MainLocalizations.dart';
+import 'package:word_by_word_game/localizations/main_localizations.dart';
 
 class InfoWidget extends StatelessWidget {
   @override

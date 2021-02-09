@@ -2,9 +2,9 @@ import 'dart:collection';
 
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:word_by_word_game/entities/FirstPlayer.dart';
-import 'package:word_by_word_game/entities/Player.dart';
-import 'package:word_by_word_game/entities/PlayerColor.dart';
+import 'package:word_by_word_game/abstract/FirstPlayer.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
+import 'package:word_by_word_game/abstract/PlayerColor.dart';
 import 'package:word_by_word_game/models/PlayerColorsModel.dart';
 
 part 'PlayersModel.g.dart';
@@ -30,13 +30,13 @@ class PlayersModel extends ChangeNotifier {
 
   Player currentPlayer = firstPlayer;
 
-  void addPlayerByColor({@required PlayerColor playerColor}) {
+  void addPlayerByColor({required PlayerColor playerColor}) {
     _playersByPlayerIdMap.putIfAbsent(playerColor.id,
         () => Player(id: playerColor.id, playerColor: playerColor));
     notifyListeners();
   }
 
-  void setCurrentPlayer({@required Player player}) {
+  void setCurrentPlayer({required Player player}) {
     currentPlayer = player;
     notifyListeners();
   }
@@ -51,7 +51,7 @@ class PlayersModel extends ChangeNotifier {
     setCurrentPlayer(player: player);
   }
 
-  bool hasPLayer({@required Player player}) =>
+  bool hasPLayer({required Player player}) =>
       _playersByPlayerIdMap.containsKey(player.id);
 
   void resetPlayers() {
@@ -60,7 +60,7 @@ class PlayersModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void removePlayersAfterPlayer({@required Player player}) {
+  void removePlayersAfterPlayer({required Player player}) {
     var players =
         playersList.where((modelPlayer) => modelPlayer.id > player.id);
     players.forEach((modelPlayer) {
@@ -69,7 +69,7 @@ class PlayersModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void reloadPlayers({@required Map<int, Player> playersByPlayerIdMap}) {
+  void reloadPlayers({required Map<int, Player> playersByPlayerIdMap}) {
     _playersByPlayerIdMap.clear();
     // FIXME: recolor players function
     // remove after all players will update to new version
@@ -101,7 +101,7 @@ class PlayersModel extends ChangeNotifier {
   /// JSON serialization
   ///
   PlayersModel(Map<int, Player> playersByPlayerIdMap,
-      {@required this.currentPlayer, this.tempPlayers}) {
+      {required this.currentPlayer, this.tempPlayers}) {
     this._playersByPlayerIdMap = playersByPlayerIdMap;
   }
 

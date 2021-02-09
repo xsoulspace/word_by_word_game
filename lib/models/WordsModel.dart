@@ -4,11 +4,11 @@ import 'package:english_words/english_words.dart' as EnglishWords;
 import 'package:flutter/widgets.dart';
 import 'package:json_annotation/json_annotation.dart';
 import 'package:russian_words/russian_words.dart' as RussianWords;
+import 'package:word_by_word_game/abstract/GameNotification.dart';
+import 'package:word_by_word_game/abstract/LocalName.dart';
+import 'package:word_by_word_game/abstract/Player.dart';
+import 'package:word_by_word_game/abstract/Word.dart';
 import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
-import 'package:word_by_word_game/entities/GameNotification.dart';
-import 'package:word_by_word_game/entities/LocalName.dart';
-import 'package:word_by_word_game/entities/Player.dart';
-import 'package:word_by_word_game/entities/Word.dart';
 import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 
 part 'WordsModel.g.dart';
@@ -38,17 +38,17 @@ class WordsModel extends ChangeNotifier {
   ///
   /// Words conrol functions
   ///
-  String getWordByWordId({@required int wordId}) =>
+  String getWordByWordId({required int wordId}) =>
       _allWordsByWordIdMap[wordId] ?? '';
 
-  List<int> getWordsIdsListByPlayer({@required Player player}) =>
+  List<int> getWordsIdsListByPlayer({required Player player}) =>
       _wordsIdsByPlayerIdMap[player.id] ?? [];
-  List<Word> getWordsListByPlayer({@required Player player}) {
+  List<Word> getWordsListByPlayer({required Player player}) {
     var wordsIds = getWordsIdsListByPlayer(player: player);
     return wordsIds.map((id) => _allWordsByWordIdMap[id]).toList();
   }
 
-  String getLastWordForPlayer({@required Player player}) {
+  String getLastWordForPlayer({required Player player}) {
     var wordsIdsList = getWordsIdsListByPlayer(player: player);
     return wordsIdsList.length > 0
         ? getWordByWordId(wordId: wordsIdsList.last)
@@ -56,7 +56,7 @@ class WordsModel extends ChangeNotifier {
   }
 
   Future<GameNotification> addNewWordForPLayer(
-      {@required Player player, @required Locale locale}) async {
+      {required Player player, required Locale locale}) async {
     /// checking limit
     var newWord = '$newWordBeginning$phraseFromLastword$newWordEnding'
         .toLowerCase()
@@ -172,7 +172,7 @@ class WordsModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  void reducePhraseLimit({@required bool isFromBeginning}) {
+  void reducePhraseLimit({required bool isFromBeginning}) {
     if (isPhraseLimitNotAvailable) return;
     if (isPhraseFromLastwordEmpty) return;
 
