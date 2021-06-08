@@ -113,6 +113,7 @@ class ScaffoldApp extends StatelessWidget {
         ],
         supportedLocales: [
           Locales.en,
+          Locales.it,
           Locales.ru,
         ],
         theme: ThemeData(

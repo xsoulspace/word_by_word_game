@@ -18,6 +18,10 @@ class LocaleModelConsts {
       locale: Locales.en,
     ),
     NamedLocale(
+      name: 'Italian',
+      locale: Locales.it,
+    ),
+    NamedLocale(
       name: 'Русский',
       locale: Locales.ru,
     ),

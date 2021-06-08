@@ -11,7 +11,6 @@
 
 </p>
 
-
 # About
 
 Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
@@ -23,3 +22,11 @@ You can play with your friends, but more in old school way - to give phone to an
 For ideas, improvements and bugs please write feedback or send a message to idea@xsoulspace.dev
 
 Have a fun and a great time!
+
+---
+
+<br/>
+
+# Huge thank you all contributors
+
+[@albanobattistella](https://github.com/albanobattistella)
