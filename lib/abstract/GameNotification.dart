@@ -1,5 +1,5 @@
 import 'package:word_by_word_game/abstract/LocalName.dart';
-import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
+import 'package:word_by_word_game/constants/game_notification_statuses.dart';
 
 class GameNotification {
   final GameNotificationStatuses status;

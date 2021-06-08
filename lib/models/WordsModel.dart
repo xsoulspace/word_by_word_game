@@ -8,7 +8,7 @@ import 'package:word_by_word_game/abstract/GameNotification.dart';
 import 'package:word_by_word_game/abstract/LocalName.dart';
 import 'package:word_by_word_game/abstract/Player.dart';
 import 'package:word_by_word_game/abstract/Word.dart';
-import 'package:word_by_word_game/constants/GameNotificationStatuses.dart';
+import 'package:word_by_word_game/constants/game_notification_statuses.dart';
 import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 
 part 'WordsModel.g.dart';

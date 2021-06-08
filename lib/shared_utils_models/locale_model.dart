@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/intl_standalone.dart';
 import 'package:word_by_word_game/abstract/NamedLocale.dart';
-import 'package:word_by_word_game/constants/Locales.dart';
+import 'package:word_by_word_game/constants/locales.dart';
 import 'package:word_by_word_game/localizations/main_localizations.dart';
 import 'package:word_by_word_game/shared_utils_models/storage_mixin.dart';
 import 'package:word_by_word_game/shared_utils_models/storage_util.dart';

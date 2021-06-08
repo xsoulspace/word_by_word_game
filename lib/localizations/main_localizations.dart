@@ -1,7 +1,7 @@
 // @dart=2.11
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
-import 'package:word_by_word_game/constants/Locales.dart';
+import 'package:word_by_word_game/constants/locales.dart';
 import 'package:word_by_word_game/l10n/messages_all.dart';
 
 // flutter pub run intl_translation:extract_to_arb --output-dir=lib/l10n lib/localizations/MainLocalizations.dart

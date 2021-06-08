@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/abstract/FirstPlayer.dart';
 import 'package:word_by_word_game/abstract/Player.dart';
-import 'package:word_by_word_game/constants/Locales.dart';
+import 'package:word_by_word_game/constants/locales.dart';
 import 'package:word_by_word_game/models/LocalDictionaryModel.dart';
 import 'package:word_by_word_game/models/MenuItemsModel.dart';
 import 'package:word_by_word_game/models/NotificationsModel.dart';
