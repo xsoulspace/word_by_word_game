@@ -24,7 +24,7 @@ class StorageUtil {
   }
 
   // put string
-  Future putString(String key, String value) {
+  Future<bool> putString(String key, String value) async {
     if (_preferences == null) return null;
     return await _preferences.setString(key, value);
   }

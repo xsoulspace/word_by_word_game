@@ -18,6 +18,10 @@ class LocaleModelConsts {
       locale: Locales.en,
     ),
     NamedLocale(
+      name: 'Italian',
+      locale: Locales.it,
+    ),
+    NamedLocale(
       name: 'Русский',
       locale: Locales.ru,
     ),
@@ -44,7 +48,7 @@ class LocaleModel extends ChangeNotifier with StorageMixin {
 
   static Future<Locale> loadSavedLocale() async {
     StorageUtil storage = await StorageUtil.getInstance();
-    String localeStr = await storage.getString(LocaleModelConsts.storagename);
+    String localeStr = storage.getString(LocaleModelConsts.storagename);
     if (localeStr.isEmpty) {
       // FIXME: strange things happend with locales on all OS!
       // seems like it has new formats nn__UTF08__NN
@@ -68,7 +72,7 @@ class LocaleModel extends ChangeNotifier with StorageMixin {
   Future<void> switchLang(Locale localef) async {
     await MainLocalizations.load(localef);
     await checkAndLoadStorageInstance();
-    (await storage).putString(
+    await storage.putString(
         LocaleModelConsts.storagename, localef.languageCode);
     locale = localef;
   }
