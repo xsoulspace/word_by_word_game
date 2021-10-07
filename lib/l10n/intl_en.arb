@@ -1,5 +1,4 @@
 {
-  "@@last_modified": "2021-01-21T23:58:51.060295",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
