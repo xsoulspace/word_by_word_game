@@ -1,5 +1,5 @@
 name: word-by-word-game
-version: 0.0.9
+version: 2.0.0
 summary: Simple & fun game to write word based on last 3 letters of last word
 description: |
   Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
@@ -25,7 +25,7 @@ slots:
 apps:
   word-by-word-game:
     command: word_by_word_game
-    extensions: [flutter-dev] # Where "master" defines which Flutter channel to use for the build
+    extensions: [flutter-master] # Where "master" defines which Flutter channel to use for the build
     # using dev as it is the one channel that supports linux
     plugs:
       - home
