@@ -27,6 +27,6 @@ Have a fun and a great time!
 
 <br/>
 
-# Huge thank you all contributors
+# Huge thank you for contributions!
 
 [@albanobattistella](https://github.com/albanobattistella)

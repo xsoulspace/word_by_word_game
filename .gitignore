@@ -3,14 +3,14 @@
 *.log
 *.pyc
 *.swp
+*.snap
 .DS_Store
 .atom/
 .buildlog/
 .history
 .svn/
-*.apk
-*.snap
-
+/android/key.properties
+android/key.properties
 # IntelliJ related
 *.iml
 *.ipr
