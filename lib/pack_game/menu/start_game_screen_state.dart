@@ -1,14 +1,14 @@
 part of pack_game;
 
-GameBookWriterScreenState useGameBookWriterScreenState() => use(
+StartGameScreenState useStartGameScreenState() => use(
       LifeHook(
-        debugLabel: 'GameBookWriterScreenState',
-        state: GameBookWriterScreenState(),
+        debugLabel: 'StartGameScreenState',
+        state: StartGameScreenState(),
       ),
     );
 
-class GameBookWriterScreenState implements LifeState {
-  GameBookWriterScreenState();
+class StartGameScreenState implements LifeState {
+  StartGameScreenState();
 
   @override
   ValueChanged<VoidCallback>? setState;

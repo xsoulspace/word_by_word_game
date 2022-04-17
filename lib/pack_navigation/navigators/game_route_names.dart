@@ -7,6 +7,10 @@ typedef GameRouteName = String;
 class GameRouteNames {
   GameRouteNames._();
   static const home = '/';
+
+  static const gameBookShelf = '/book-shelf';
+  static const gameWordWriter = '/word-writer';
+
   static const unknown404 = '/404';
   static const settings = '/settings';
   static const generalSettings = '$settings/general';
@@ -18,6 +22,8 @@ class GameRouteNames {
   /// !In case of new routes all routes should be added to values!
   static const values = [
     home,
+    gameBookShelf,
+    gameWordWriter,
     unknown404,
     settings,
     appInfo,
