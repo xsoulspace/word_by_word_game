@@ -1,4 +1,4 @@
-part of utils;
+part of pack_navigation;
 
 /// Used by [TemplateRouteParser] to guard access to routes.
 ///
@@ -40,26 +40,53 @@ class TemplateRouteParser extends RouteInformationParser<ParsedRoute> {
   ) async =>
       _parse(routeInformation);
 
+  ParsedRoute? _handleMatch({
+    required final String pathTemplate,
+    required final String path,
+    required final Map<String, String> queryParams,
+  }) {
+    final parameters = <String>[];
+    final pathRegExp = pathToRegExp(pathTemplate, parameters: parameters);
+    if (pathRegExp.hasMatch(path)) {
+      final match = pathRegExp.matchAsPrefix(path);
+      if (match == null) return null;
+      final paramsJson = extract(parameters, match);
+      return ParsedRoute(
+        path: path,
+        pathTemplate: pathTemplate,
+        parameters: GameRouteParameters.fromJson(paramsJson),
+        queryParameters: queryParams,
+      );
+    }
+    return null;
+  }
+
   Future<ParsedRoute> _parse(final RouteInformation routeInformation) async {
     final path = routeInformation.location!;
     final queryParams = Uri.parse(path).queryParameters;
-    var parsedRoute = initialRoute;
+    ParsedRoute? parsedRoute;
 
-    for (final pathTemplate in _pathTemplates) {
-      final parameters = <String>[];
-      final pathRegExp = pathToRegExp(pathTemplate, parameters: parameters);
-      if (pathRegExp.hasMatch(path)) {
-        final match = pathRegExp.matchAsPrefix(path);
-        if (match == null) continue;
-        final params = extract(parameters, match);
-        parsedRoute = ParsedRoute(
+    /// first try to check every pathTemplate by full equality
+    final hasEqualityMatch = _pathTemplates.contains(path);
+    if (hasEqualityMatch) {
+      parsedRoute = _handleMatch(
+        path: path,
+        pathTemplate: path,
+        queryParams: queryParams,
+      );
+    }
+    if (parsedRoute == null) {
+      for (final pathTemplate in _pathTemplates) {
+        parsedRoute = _handleMatch(
           path: path,
           pathTemplate: pathTemplate,
-          parameters: params,
-          queryParameters: queryParams,
+          queryParams: queryParams,
         );
+        if (parsedRoute != null) break;
       }
     }
+
+    parsedRoute ??= initialRoute;
 
     // Redirect if a guard is present
     final guards = this.guards ?? [];

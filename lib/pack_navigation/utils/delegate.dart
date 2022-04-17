@@ -1,4 +1,4 @@
-part of utils;
+part of pack_navigation;
 
 class SimpleRouterDelegate extends RouterDelegate<ParsedRoute>
     with

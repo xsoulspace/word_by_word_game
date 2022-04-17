@@ -1,4 +1,4 @@
-part of utils;
+part of pack_navigation;
 
 /// The current route state. To change the current route, call obtain the state
 /// using `RouteStateScope.of(context)` and call `go()`:

@@ -1,0 +1,29 @@
+library pack_navigation;
+
+import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:json_annotation/json_annotation.dart';
+import 'package:path_to_regexp/path_to_regexp.dart';
+import 'package:quiver/core.dart';
+import 'package:word_by_word_game/library/widgets/widgets.dart';
+
+part 'abstract/abstract_navigator_layout_builder.dart';
+part 'abstract/abstract_navigator_page_builder.dart';
+part 'abstract/abstract_navigator_popper.dart';
+part 'navigators/game_navigator.dart';
+part 'navigators/game_navigator_controller.dart';
+part 'navigators/game_navigator_layout_builder.dart';
+part 'navigators/game_navigator_page_builder.dart';
+part 'navigators/game_navigator_popper.dart';
+part 'navigators/game_route_names.dart';
+part 'navigators/navigator_data_provider.dart';
+part 'pack_navigation.g.dart';
+part 'utils/delegate.dart';
+part 'utils/game_route_parameters.dart';
+part 'utils/parsed_route.dart';
+part 'utils/parser.dart';
+part 'utils/route_state.dart';
+part 'widgets/navigator_material_page.dart';
+part 'widgets/navigator_pop_scope.dart';

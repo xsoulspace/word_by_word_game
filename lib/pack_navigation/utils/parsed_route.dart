@@ -1,4 +1,4 @@
-part of utils;
+part of pack_navigation;
 
 /// A route path that has been parsed by [TemplateRouteParser].
 @immutable
@@ -12,7 +12,7 @@ class ParsedRoute {
   const ParsedRoute.fromPathTemplate(final String template)
       : path = template,
         pathTemplate = template,
-        parameters = const {},
+        parameters = GameRouteParameters.empty,
         queryParameters = const {};
 
   /// The current path location without query parameters. (/book/123)
@@ -22,7 +22,7 @@ class ParsedRoute {
   final String pathTemplate;
 
   /// The path parameters ({id: 123})
-  final Map<String, String> parameters;
+  final GameRouteParameters parameters;
 
   /// The query parameters ({search: abc})
   final Map<String, String> queryParameters;
@@ -31,7 +31,7 @@ class ParsedRoute {
   ParsedRoute copyWith({
     final String? path,
     final String? pathTemplate,
-    final Map<String, String>? parameters,
+    final GameRouteParameters? parameters,
     final Map<String, String>? queryParameters,
   }) =>
       ParsedRoute(
@@ -40,13 +40,14 @@ class ParsedRoute {
         pathTemplate: pathTemplate ?? this.pathTemplate,
         queryParameters: queryParameters ?? this.queryParameters,
       );
+
   @override
   // ignore: avoid_equals_and_hash_code_on_mutable_classes
   bool operator ==(final Object other) =>
       other is ParsedRoute &&
       other.pathTemplate == pathTemplate &&
       other.path == path &&
-      _mapEquality.equals(parameters, other.parameters) &&
+      parameters == other.parameters &&
       _mapEquality.equals(queryParameters, other.queryParameters);
 
   @override
@@ -54,7 +55,7 @@ class ParsedRoute {
   int get hashCode => hash4(
         path,
         pathTemplate,
-        _mapEquality.hash(parameters),
+        parameters,
         _mapEquality.hash(queryParameters),
       );
 
