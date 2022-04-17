@@ -1,5 +1,10 @@
 part of pack_settings;
 
+enum AppStateLoadingStatuses {
+  settings,
+  migratingOldData,
+}
+
 /// A class that many Widgets can interact with to read user settings, update
 /// user settings, or listen to user settings changes.
 ///
