@@ -1,21 +1,15 @@
 part of pack_settings;
 
-enum AppStateLoadingStatuses {
-  settings,
-  migratingOldData,
-}
-
 /// A class that many Widgets can interact with to read user settings, update
 /// user settings, or listen to user settings changes.
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
-// ignore: prefer_mixin
-class SettingsController with ChangeNotifier {
-  SettingsController({required final this.settingsService});
+class GeneralSettingsController extends ChangeNotifier {
+  GeneralSettingsController({required final this.settingsService});
 
   // Make SettingsService a private variable so it is not used directly.
-  final SettingsService settingsService;
+  final GeneralSettingsService settingsService;
 
   Locale? _locale;
   Locale? get locale => _locale;
@@ -42,11 +36,11 @@ class SettingsController with ChangeNotifier {
     notify();
   }
 
-  AppStateLoadingStatuses? _loadingStatus;
+  GameStateLoadingStatuses? _loadingStatus;
 
-  AppStateLoadingStatuses? get loadingStatus => _loadingStatus;
+  GameStateLoadingStatuses? get loadingStatus => _loadingStatus;
 
-  set loadingStatus(final AppStateLoadingStatuses? loadingStatus) {
+  set loadingStatus(final GameStateLoadingStatuses? loadingStatus) {
     _loadingStatus = loadingStatus;
     notify();
   }
@@ -59,17 +53,21 @@ class SettingsController with ChangeNotifier {
   }
 
   void notify() => notifyListeners();
+
+  ThemeData lightTheme = ThemeData.light();
+  ThemeData darkTheme = ThemeData.dark();
+  ThemeMode themeMode = ThemeMode.system;
 }
 
-/// Provides the current [SettingsController] to descendent widgets in the tree.
-class SettingsStateScope extends InheritedNotifier<SettingsController> {
+/// Provides the current [GeneralSettingsController] to descendent widgets in the tree.
+class SettingsStateScope extends InheritedNotifier<GeneralSettingsController> {
   const SettingsStateScope({
-    required final SettingsController notifier,
+    required final GeneralSettingsController notifier,
     required final Widget child,
     final Key? key,
   }) : super(key: key, notifier: notifier, child: child);
 
-  static SettingsController of(final BuildContext context) {
+  static GeneralSettingsController of(final BuildContext context) {
     final state = context
         .dependOnInheritedWidgetOfExactType<SettingsStateScope>()
         ?.notifier;

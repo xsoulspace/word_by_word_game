@@ -1,10 +1,10 @@
 part of pack_game;
 
 class PauseMenuScreen extends HookWidget {
-  const PauseMenuScreen({Key? key}) : super(key: key);
+  const PauseMenuScreen({final Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(final BuildContext context) {
     final state = usePauseMenuScreenState();
     return Container();
   }
