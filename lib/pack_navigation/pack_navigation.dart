@@ -8,6 +8,8 @@ import 'package:json_annotation/json_annotation.dart';
 import 'package:path_to_regexp/path_to_regexp.dart';
 import 'package:quiver/core.dart';
 import 'package:word_by_word_game/library/widgets/widgets.dart';
+import 'package:word_by_word_game/pack_game/pack_game.dart';
+import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 
 part 'abstract/abstract_navigator_layout_builder.dart';
 part 'abstract/abstract_navigator_page_builder.dart';

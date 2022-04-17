@@ -13,11 +13,19 @@ class GameNavigatorPageBuilder implements AbstractNavigatorPageBuilder {
   final BuildContext context;
 
   static const _homeKey = ValueKey(GameRouteNames.home);
-  Page homePage() {
+  Page bookShelf() {
     return NavigatorMaterialPage(
       key: _homeKey,
       popper: popper,
-      child: Container(),
+      child: const GameBookShelfScreen(),
+    );
+  }
+
+  Page settings() {
+    return NavigatorMaterialPage(
+      key: _homeKey,
+      popper: popper,
+      child: const SettingsScreen(),
     );
   }
 }

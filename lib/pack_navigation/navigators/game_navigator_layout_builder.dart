@@ -12,7 +12,8 @@ class GameNavigatorLayoutBuilder implements AbstractNavigatorLayoutBuilder {
   List<Page> buildPages() {
     return [
       if (pathTemplate.startsWith(GameRouteNames.home)) ...[
-        pageBuilder.homePage(),
+        pageBuilder.bookShelf(),
+        if (pathTemplate == GameRouteNames.settings) pageBuilder.settings()
       ] else
         GameNavigatorPageBuilder.emptyPage,
     ];
