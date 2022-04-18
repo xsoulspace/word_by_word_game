@@ -6,6 +6,12 @@ class GameBookShelfScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = useGameBookShelfScreenState();
-    return Container();
+
+    return Scaffold(
+      appBar: const UpperGameBar(),
+      body: Column(
+        children: [],
+      ),
+    );
   }
 }
