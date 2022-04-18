@@ -12,6 +12,8 @@ class GameBookWriterScreenState implements LifeState {
 
   @override
   ValueChanged<VoidCallback>? setState;
+  final firstPartController = TextEditingController();
+  final secondPartController = TextEditingController();
 
   @override
   void initState() {
@@ -20,6 +22,13 @@ class GameBookWriterScreenState implements LifeState {
 
   @override
   void dispose() {
-    // TODO: implement dispose
+    firstPartController.dispose();
+    secondPartController.dispose();
   }
+
+  String get fullWord =>
+      '${firstPartController.text}${secondPartController.text}';
+  int get lettersCounter => fullWord.length;
+
+  void onChooseBooks() {}
 }

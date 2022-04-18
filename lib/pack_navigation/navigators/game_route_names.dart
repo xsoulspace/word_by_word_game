@@ -8,8 +8,20 @@ class GameRouteNames {
   GameRouteNames._();
   static const home = '/';
 
-  static const gameBookShelf = '/book-shelf';
-  static const gameWordWriter = '/word-writer';
+  static const gameBookShelf = '/game/book-shelf';
+  static const gameWordWriter = '/game/word-writer';
+
+  static const gamePauseMenu = '$gameBookShelf/pause';
+  static const gameBookShelfPauseMenu = '$gameBookShelf/pause';
+  static const gameWordWriterPauseMenu = '$gameWordWriter/pause';
+
+  static String getPauseMenu({required final RouteState routeState}) {
+    final path = routeState.route.path;
+    if (path.contains('game')) {
+      return '$path/pause';
+    }
+    return '$gameBookShelf/pause';
+  }
 
   static const unknown404 = '/404';
   static const settings = '/settings';
@@ -24,6 +36,9 @@ class GameRouteNames {
     home,
     gameBookShelf,
     gameWordWriter,
+    gamePauseMenu,
+    gameBookShelfPauseMenu,
+    gameWordWriterPauseMenu,
     unknown404,
     settings,
     appInfo,

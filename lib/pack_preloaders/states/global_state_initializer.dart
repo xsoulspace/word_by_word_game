@@ -7,8 +7,8 @@ class GlobalStateInitializer implements StateInitializer {
   final GeneralSettingsController settings;
 
   @override
-  Future<void> onLoad({required final BuildContext context}) {
+  Future<void> onLoad({required final BuildContext context}) async {
     // TODO: implement onLoad
-    throw UnimplementedError();
+    // throw UnimplementedError();
   }
 }

@@ -13,8 +13,12 @@ class GameNavigatorController {
 
   void go(final GameRouteName routeName) => routeState.go(routeName);
   void goHome() => routeState.go(GameRouteNames.home);
-
   void goSettings() => routeState.go(GameRouteNames.settings);
+
+  void goBookShelf() => routeState.go(GameRouteNames.gameBookShelf);
+  void goPauseMenu() => routeState.go(
+        GameRouteNames.getPauseMenu(routeState: routeState),
+      );
 
   void goAppInfo() => routeState.go(GameRouteNames.appInfo);
 }

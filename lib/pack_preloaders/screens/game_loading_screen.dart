@@ -14,15 +14,18 @@ class GameLoadingScreen extends StatelessWidget {
     return ColoredBox(
       color: AppColors.black,
       child: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation(AppColors.primary2),
-            ),
-            const SizedBox(height: 5),
-            Text(statusText),
-          ],
+        child: Directionality(
+          textDirection: TextDirection.ltr,
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation(AppColors.primary2),
+              ),
+              const SizedBox(height: 5),
+              Text(statusText),
+            ],
+          ),
         ),
       ),
     );

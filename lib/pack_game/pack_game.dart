@@ -20,4 +20,5 @@ part 'menu/pause_menu_screen.dart';
 part 'menu/pause_menu_screen_state.dart';
 part 'menu/start_game_screen.dart';
 part 'menu/start_game_screen_state.dart';
+part 'widgets/upper_game_bar.dart';
 part 'word_by_word_game.dart';

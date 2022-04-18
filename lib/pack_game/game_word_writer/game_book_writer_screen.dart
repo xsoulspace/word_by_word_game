@@ -6,6 +6,29 @@ class GameBookWriterScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = useGameBookWriterScreenState();
-    return Container();
+    final navigatorController = context.read<GameNavigatorController>();
+    return Scaffold(
+      appBar: const UpperGameBar(),
+      body: Column(
+        children: [
+          Row(
+            children: [
+              TextField(
+                controller: state.firstPartController,
+              ),
+              const Text('- rld -'),
+              TextField(
+                controller: state.secondPartController,
+              ),
+            ],
+          ),
+          Text('will add ${state.lettersCounter}'),
+          OutlinedButton(
+            onPressed: navigatorController.goBookShelf,
+            child: const Text('Choose books'),
+          ),
+        ],
+      ),
+    );
   }
 }
