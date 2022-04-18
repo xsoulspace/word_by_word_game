@@ -1,5 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  test('GameGenerator', () {});
+  group('GameGenerator', () {
+    test('can create a game with shelf level', () {});
+  });
 }
