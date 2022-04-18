@@ -43,5 +43,9 @@
   "section-end": {
     "prefix": "section end",
     "body": "/// ********************************************\n/// *      ${1:TITLE} END\n/// ********************************************"
+  },
+  "main-test": {
+    "prefix": "mtest",
+    "body": "import 'package:flutter_test/flutter_test.dart';\n\nvoid main() {\n  test('${1}', () {});\n}"
   }
 }
