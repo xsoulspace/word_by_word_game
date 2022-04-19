@@ -5,11 +5,11 @@ part of pack_settings;
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
-class GeneralSettingsController extends ChangeNotifier {
-  GeneralSettingsController({required final this.settingsService});
+class GeneralSettingsNotifier extends ChangeNotifier {
+  GeneralSettingsNotifier({required final this.settingsService});
 
   // Make SettingsService a private variable so it is not used directly.
-  final GeneralSettingsService settingsService;
+  final GeneralSettingsServiceI settingsService;
 
   Locale? _locale;
   Locale? get locale => _locale;
@@ -59,15 +59,15 @@ class GeneralSettingsController extends ChangeNotifier {
   ThemeMode themeMode = ThemeMode.system;
 }
 
-/// Provides the current [GeneralSettingsController] to descendent widgets in the tree.
-class SettingsStateScope extends InheritedNotifier<GeneralSettingsController> {
+/// Provides the current [GeneralSettingsNotifier] to descendent widgets in the tree.
+class SettingsStateScope extends InheritedNotifier<GeneralSettingsNotifier> {
   const SettingsStateScope({
-    required final GeneralSettingsController notifier,
+    required final GeneralSettingsNotifier notifier,
     required final Widget child,
     final Key? key,
   }) : super(key: key, notifier: notifier, child: child);
 
-  static GeneralSettingsController of(final BuildContext context) {
+  static GeneralSettingsNotifier of(final BuildContext context) {
     final state = context
         .dependOnInheritedWidgetOfExactType<SettingsStateScope>()
         ?.notifier;

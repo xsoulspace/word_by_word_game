@@ -6,7 +6,7 @@ class AppStateProvider extends StatelessWidget {
     final Key? key,
   }) : super(key: key);
   final WidgetBuilder builder;
-  GeneralSettingsController get _settings => GlobalStateNotifiers.settings;
+  GeneralSettingsNotifier get _settings => GlobalStateNotifiers.settings;
   @override
   Widget build(final BuildContext context) {
     final child = MultiProvider(

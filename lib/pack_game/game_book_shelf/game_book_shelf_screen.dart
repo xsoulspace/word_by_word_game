@@ -9,9 +9,7 @@ class GameBookShelfScreen extends HookWidget {
 
     return Scaffold(
       appBar: const UpperGameBar(),
-      body: Column(
-        children: [],
-      ),
+      body: Column(),
     );
   }
 }

@@ -37,7 +37,7 @@ class _GameScaffoldState extends State<GameScaffold> {
 
   @override
   Widget build(final BuildContext context) {
-    final settings = context.read<GeneralSettingsController>();
+    final settings = context.read<GeneralSettingsNotifier>();
 
     return RouteStateScope(
       notifier: routeState,

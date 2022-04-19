@@ -16,11 +16,11 @@ class UpperGameBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.pause),
         ),
         const Spacer(),
-        Text('Player 1'),
+        const Text('Player 1'),
         const Spacer(),
         FloatingActionButton.small(
           onPressed: () {},
-          child: Text('45'),
+          child: const Text('45'),
         ),
       ],
     );

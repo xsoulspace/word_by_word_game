@@ -4,7 +4,7 @@ class GlobalStateInitializer implements StateInitializer {
   GlobalStateInitializer({
     required final this.settings,
   });
-  final GeneralSettingsController settings;
+  final GeneralSettingsNotifier settings;
 
   @override
   Future<void> onLoad({required final BuildContext context}) async {

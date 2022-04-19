@@ -3,7 +3,7 @@ library abstract;
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:word_by_word_game/utils/utils.dart';
+import 'package:word_by_word_game/_utils/utils.dart';
 
 part 'abstract.g.dart';
 part 'loadable.dart';

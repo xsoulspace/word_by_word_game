@@ -6,7 +6,7 @@ class GameLoadingScreen extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(final BuildContext context) {
-    final settings = context.watch<GeneralSettingsController>();
+    final settings = context.watch<GeneralSettingsNotifier>();
     final statusText = gameLoadingStatusesTitles[settings.loadingStatus]
             ?.getByLanguage(intl.Intl.systemLocale) ??
         '';
