@@ -1,6 +1,6 @@
 part of abstract;
 
-typedef GameModelId = int;
+typedef GameModelId = String;
 
 @immutable
 class GameModel {

@@ -7,7 +7,7 @@ class GameLevelModel {
     required this.unselectedBooks,
     required this.players,
   });
-  final int id;
+  final String id;
 
   /// All untaken books should be kept in the list
   ///

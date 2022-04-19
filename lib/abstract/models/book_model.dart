@@ -6,7 +6,7 @@ enum BookKind {
   poem,
 }
 
-typedef BookModelId = int;
+typedef BookModelId = String;
 
 /// The book is an object that can be taken from the shelf
 /// only if [GamePlayerModel] has [GameLetter] equals to
@@ -19,6 +19,13 @@ class BookModel {
     required this.playersInvestments,
     this.score = ScoreModel.zero,
   });
+
+  BookModel.create({
+    required this.kind,
+  })  : id = IdCreator.create(),
+        playersInvestments = {},
+        score = ScoreModel.zero;
+
   final BookModelId id;
   final BookKind kind;
   final Map<PlayerProfileModelId, GameLetter> playersInvestments;
