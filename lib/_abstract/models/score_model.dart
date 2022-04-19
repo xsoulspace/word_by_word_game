@@ -4,12 +4,11 @@ typedef GameLetter = int;
 typedef GameKnowledge = int;
 
 @immutable
-class ScoreModel {
-  const ScoreModel({
-    this.knowledgeCount = 0,
-    this.lettersCount = 0,
-  });
+@Freezed()
+class ScoreModel with _$ScoreModel {
+  const factory ScoreModel({
+    @Default(0) final int knowledgeCount,
+    @Default(0) final int lettersCount,
+  }) = _ScoreModel;
   static const zero = ScoreModel();
-  final GameLetter lettersCount;
-  final GameKnowledge knowledgeCount;
 }

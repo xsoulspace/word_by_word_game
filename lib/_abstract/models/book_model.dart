@@ -12,22 +12,22 @@ typedef BookModelId = String;
 /// only if [GamePlayerModel] has [GameLetter] equals to
 /// [letterCount]
 @immutable
-class BookModel {
-  const BookModel({
-    required this.id,
-    required this.kind,
-    required this.playersInvestments,
-    this.score = ScoreModel.zero,
-  });
-
-  BookModel.create({
-    required this.kind,
-  })  : id = IdCreator.create(),
-        playersInvestments = {},
-        score = ScoreModel.zero;
-
-  final BookModelId id;
-  final BookKind kind;
-  final Map<PlayerProfileModelId, GameLetter> playersInvestments;
-  final ScoreModel score;
+@Freezed()
+class BookModel with _$BookModel {
+  const factory BookModel({
+    required final BookModelId id,
+    required final BookKind kind,
+    required final Map<PlayerProfileModelId, GameLetter> playersInvestments,
+    required final ScoreModel score,
+  }) = _BookModel;
+  const BookModel._();
+  factory BookModel.create({
+    required final BookKind kind,
+  }) =>
+      BookModel(
+        kind: kind,
+        id: IdCreator.create(),
+        playersInvestments: const {},
+        score: ScoreModel.zero,
+      );
 }

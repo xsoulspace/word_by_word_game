@@ -3,15 +3,17 @@ part of abstract;
 typedef GameModelId = String;
 
 @immutable
-class GameModel {
-  const GameModel({
-    required this.id,
-    required this.createdAt,
-    required this.levels,
-    this.currentLevelIndex = 0,
-  });
-  final GameModelId id;
-  final DateTime createdAt;
-  final List<GameLevelModel> levels;
-  final int currentLevelIndex;
+@Freezed()
+class GameModel with _$GameModel {
+  const factory GameModel({
+    required final GameModelId id,
+    required final DateTime createdAt,
+    required final List<GameLevelModel> levels,
+    @Default(0) final int currentLevelIndex,
+  }) = _GameModel;
+  static final empty = GameModel(
+    createdAt: DateTime.now(),
+    id: '',
+    levels: const [],
+  );
 }

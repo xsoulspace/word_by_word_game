@@ -1,11 +1,10 @@
 part of abstract;
 
 @immutable
-class GamePlayerModel {
-  const GamePlayerModel({
-    required this.id,
-    required this.books,
-  });
-  final PlayerProfileModelId id;
-  final List<BookModel> books;
+@Freezed()
+class GamePlayerModel with _$GamePlayerModel {
+  const factory GamePlayerModel({
+    required final PlayerProfileModelId id,
+    required final List<BookModel> books,
+  }) = _GamePlayerModel;
 }
