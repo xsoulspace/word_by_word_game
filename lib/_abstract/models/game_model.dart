@@ -15,6 +15,7 @@ class GameModel with _$GameModel {
     required final GameModelId id,
     required final DateTime createdAt,
     required final List<BookShelfLevelModel> bookShelfLevels,
+    required final PlayerProfileModelId hostPlayerId,
     @Default(0) final int currentBookShelfLevelIndex,
   }) = _GameModel;
   const GameModel._();
@@ -22,9 +23,11 @@ class GameModel with _$GameModel {
       _$GameModelFromJson(json);
 
   factory GameModel.create({
+    required final PlayerProfileModelId hostPlayerId,
     required final List<BookShelfLevelModel> bookShelfLevels,
   }) =>
       GameModel(
+        hostPlayerId: hostPlayerId,
         bookShelfLevels: bookShelfLevels,
         createdAt: DateTime.now(),
         id: IdCreator.create(),
@@ -33,6 +36,7 @@ class GameModel with _$GameModel {
 
   static final empty = GameModel(
     createdAt: DateTime.now(),
+    hostPlayerId: '0',
     id: '0',
     bookShelfLevels: const [],
   );

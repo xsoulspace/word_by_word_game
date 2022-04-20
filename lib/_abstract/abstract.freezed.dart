@@ -479,6 +479,7 @@ mixin _$GameModel {
   DateTime get createdAt => throw _privateConstructorUsedError;
   List<BookShelfLevelModel> get bookShelfLevels =>
       throw _privateConstructorUsedError;
+  String get hostPlayerId => throw _privateConstructorUsedError;
   int get currentBookShelfLevelIndex => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -495,6 +496,7 @@ abstract class $GameModelCopyWith<$Res> {
       {String id,
       DateTime createdAt,
       List<BookShelfLevelModel> bookShelfLevels,
+      String hostPlayerId,
       int currentBookShelfLevelIndex});
 }
 
@@ -511,6 +513,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? id = freezed,
     Object? createdAt = freezed,
     Object? bookShelfLevels = freezed,
+    Object? hostPlayerId = freezed,
     Object? currentBookShelfLevelIndex = freezed,
   }) {
     return _then(_value.copyWith(
@@ -526,6 +529,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.bookShelfLevels
           : bookShelfLevels // ignore: cast_nullable_to_non_nullable
               as List<BookShelfLevelModel>,
+      hostPlayerId: hostPlayerId == freezed
+          ? _value.hostPlayerId
+          : hostPlayerId // ignore: cast_nullable_to_non_nullable
+              as String,
       currentBookShelfLevelIndex: currentBookShelfLevelIndex == freezed
           ? _value.currentBookShelfLevelIndex
           : currentBookShelfLevelIndex // ignore: cast_nullable_to_non_nullable
@@ -544,6 +551,7 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       {String id,
       DateTime createdAt,
       List<BookShelfLevelModel> bookShelfLevels,
+      String hostPlayerId,
       int currentBookShelfLevelIndex});
 }
 
@@ -561,6 +569,7 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? createdAt = freezed,
     Object? bookShelfLevels = freezed,
+    Object? hostPlayerId = freezed,
     Object? currentBookShelfLevelIndex = freezed,
   }) {
     return _then(_GameModel(
@@ -576,6 +585,10 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.bookShelfLevels
           : bookShelfLevels // ignore: cast_nullable_to_non_nullable
               as List<BookShelfLevelModel>,
+      hostPlayerId: hostPlayerId == freezed
+          ? _value.hostPlayerId
+          : hostPlayerId // ignore: cast_nullable_to_non_nullable
+              as String,
       currentBookShelfLevelIndex: currentBookShelfLevelIndex == freezed
           ? _value.currentBookShelfLevelIndex
           : currentBookShelfLevelIndex // ignore: cast_nullable_to_non_nullable
@@ -591,6 +604,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
       {required this.id,
       required this.createdAt,
       required final List<BookShelfLevelModel> bookShelfLevels,
+      required this.hostPlayerId,
       this.currentBookShelfLevelIndex = 0})
       : _bookShelfLevels = bookShelfLevels,
         super._();
@@ -610,12 +624,14 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
   }
 
   @override
+  final String hostPlayerId;
+  @override
   @JsonKey()
   final int currentBookShelfLevelIndex;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GameModel(id: $id, createdAt: $createdAt, bookShelfLevels: $bookShelfLevels, currentBookShelfLevelIndex: $currentBookShelfLevelIndex)';
+    return 'GameModel(id: $id, createdAt: $createdAt, bookShelfLevels: $bookShelfLevels, hostPlayerId: $hostPlayerId, currentBookShelfLevelIndex: $currentBookShelfLevelIndex)';
   }
 
   @override
@@ -626,6 +642,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('bookShelfLevels', bookShelfLevels))
+      ..add(DiagnosticsProperty('hostPlayerId', hostPlayerId))
       ..add(DiagnosticsProperty(
           'currentBookShelfLevelIndex', currentBookShelfLevelIndex));
   }
@@ -639,6 +656,8 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality()
                 .equals(other.bookShelfLevels, bookShelfLevels) &&
+            const DeepCollectionEquality()
+                .equals(other.hostPlayerId, hostPlayerId) &&
             const DeepCollectionEquality().equals(
                 other.currentBookShelfLevelIndex, currentBookShelfLevelIndex));
   }
@@ -650,6 +669,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(bookShelfLevels),
+      const DeepCollectionEquality().hash(hostPlayerId),
       const DeepCollectionEquality().hash(currentBookShelfLevelIndex));
 
   @JsonKey(ignore: true)
@@ -668,6 +688,7 @@ abstract class _GameModel extends GameModel {
       {required final String id,
       required final DateTime createdAt,
       required final List<BookShelfLevelModel> bookShelfLevels,
+      required final String hostPlayerId,
       final int currentBookShelfLevelIndex}) = _$_GameModel;
   const _GameModel._() : super._();
 
@@ -681,6 +702,8 @@ abstract class _GameModel extends GameModel {
   @override
   List<BookShelfLevelModel> get bookShelfLevels =>
       throw _privateConstructorUsedError;
+  @override
+  String get hostPlayerId => throw _privateConstructorUsedError;
   @override
   int get currentBookShelfLevelIndex => throw _privateConstructorUsedError;
   @override

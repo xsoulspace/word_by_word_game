@@ -55,6 +55,7 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
       bookShelfLevels: (json['bookShelfLevels'] as List<dynamic>)
           .map((e) => BookShelfLevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      hostPlayerId: json['hostPlayerId'] as String,
       currentBookShelfLevelIndex:
           json['currentBookShelfLevelIndex'] as int? ?? 0,
     );
@@ -64,6 +65,7 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'id': instance.id,
       'createdAt': instance.createdAt.toIso8601String(),
       'bookShelfLevels': instance.bookShelfLevels,
+      'hostPlayerId': instance.hostPlayerId,
       'currentBookShelfLevelIndex': instance.currentBookShelfLevelIndex,
     };
 

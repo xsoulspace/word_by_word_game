@@ -23,7 +23,7 @@ class BookShelfLevelModel with _$BookShelfLevelModel {
   factory BookShelfLevelModel.fromJson(final Map<String, dynamic> json) =>
       _$BookShelfLevelModelFromJson(json);
   factory BookShelfLevelModel.create({
-    required final Map<String, GamePlayerModel> players,
+    required final Map<PlayerProfileModelId, GamePlayerModel> players,
     required final List<BookModel> unselectedBooks,
   }) =>
       BookShelfLevelModel(

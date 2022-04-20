@@ -5,11 +5,12 @@ enum GameLevelKind {
 }
 
 class GameLevelGenerator {
-  List<BookShelfLevelModel> createBookShelfLevels() {
-    // TODO(arenukvern): add books generation
+  List<BookShelfLevelModel> createBookShelfLevels({
+    required final Map<PlayerProfileModelId, GamePlayerModel> players,
+  }) {
     return [
       BookShelfLevelModel.create(
-        players: const {},
+        players: players,
         unselectedBooks: const [],
       )
     ];
