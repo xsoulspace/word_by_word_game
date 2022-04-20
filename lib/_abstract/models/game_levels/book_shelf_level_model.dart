@@ -22,7 +22,15 @@ class BookShelfLevelModel with _$BookShelfLevelModel {
   const BookShelfLevelModel._();
   factory BookShelfLevelModel.fromJson(final Map<String, dynamic> json) =>
       _$BookShelfLevelModelFromJson(json);
-  // factory fromJson() => _$GameLevel
+  factory BookShelfLevelModel.create({
+    required final Map<String, GamePlayerModel> players,
+    required final List<BookModel> unselectedBooks,
+  }) =>
+      BookShelfLevelModel(
+        id: IdCreator.create(),
+        players: players,
+        unselectedBooks: unselectedBooks,
+      );
   static const empty = BookShelfLevelModel(
     id: '0',
     players: {},

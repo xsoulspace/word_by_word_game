@@ -21,6 +21,16 @@ class GameModel with _$GameModel {
   factory GameModel.fromJson(final Map<String, dynamic> json) =>
       _$GameModelFromJson(json);
 
+  factory GameModel.create({
+    required final List<BookShelfLevelModel> bookShelfLevels,
+  }) =>
+      GameModel(
+        bookShelfLevels: bookShelfLevels,
+        createdAt: DateTime.now(),
+        id: IdCreator.create(),
+        currentBookShelfLevelIndex: 0,
+      );
+
   static final empty = GameModel(
     createdAt: DateTime.now(),
     id: '0',
