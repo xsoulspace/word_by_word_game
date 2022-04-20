@@ -12,7 +12,7 @@ class GameGenerator {
   final GameLevelGenerator levelGenerator;
 
   GameModel createGame({
-    required final Set<GameLevelKind> levelKinds,
+    required final List<GameLevelKind> levelKinds,
     required final Map<PlayerProfileModelId, GamePlayerModel> players,
     required final PlayerProfileModelId hostPlayerId,
   }) {

@@ -15,5 +15,7 @@ part '_services/profile_service.dart';
 part '_services/profile_service_i.dart';
 part '_states/game_loading_statuses.dart';
 part '_states/general_settings_notifier.dart';
+part '_states/profile_notifier.dart';
+part '_states/profile_notifier_i.dart';
 part 'settings/settings_screen.dart';
 part 'settings/settings_screen_state.dart';

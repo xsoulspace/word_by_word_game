@@ -16,6 +16,10 @@ class GamePlayerModel with _$GamePlayerModel {
   const GamePlayerModel._();
   factory GamePlayerModel.fromJson(final Map<String, dynamic> json) =>
       _$GamePlayerModelFromJson(json);
+  factory GamePlayerModel.fromProfileModel({
+    required final PlayerProfileModel profile,
+  }) =>
+      GamePlayerModel(id: profile.id, books: const []);
 
   static const empty = GamePlayerModel(books: [], id: '0');
 }

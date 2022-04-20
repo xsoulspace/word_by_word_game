@@ -30,4 +30,9 @@ class PlayerProfileModel with _$PlayerProfileModel {
     name: '',
   );
   Color get color => Color(colorValue);
+
+  /// Use this method to create new instance of [GamePlayerModel]
+  @useResult
+  GamePlayerModel toNewGameProfile() =>
+      GamePlayerModel.fromProfileModel(profile: this);
 }

@@ -1,10 +1,22 @@
 part of pack_game;
 
 class GameService implements GameServiceI {
+  GameService({
+    required this.profileNotifier,
+  });
+  @override
+  final ProfileNotifierI profileNotifier;
+  final _gameGenerator = GameGenerator.init();
   @override
   Future<GameModel> createGame() async {
-    // TODO: implement createGame
-    throw UnimplementedError();
+    final profile = profileNotifier.profile;
+    return _gameGenerator.createGame(
+      levelKinds: [
+        GameLevelKind.bookShelf,
+      ],
+      players: {},
+      hostPlayerId: profile.id,
+    );
   }
 
   @override
