@@ -12,7 +12,13 @@ typedef BookModelId = String;
 /// only if [GamePlayerModel] has [GameLetter] equals to
 /// [letterCount]
 @immutable
-@Freezed()
+@Freezed(
+  fromJson: true,
+  toJson: true,
+  equal: true,
+  addImplicitFinal: true,
+  copyWith: true,
+)
 class BookModel with _$BookModel {
   const factory BookModel({
     required final BookModelId id,
@@ -21,6 +27,8 @@ class BookModel with _$BookModel {
     required final ScoreModel score,
   }) = _BookModel;
   const BookModel._();
+  factory BookModel.fromJson(final Map<String, dynamic> json) =>
+      _$BookModelFromJson(json);
   factory BookModel.create({
     required final BookKind kind,
   }) =>

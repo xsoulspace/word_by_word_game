@@ -4,15 +4,20 @@ import 'package:word_by_word_game/pack_game/pack_game.dart';
 
 void main() {
   group('GameService', () {
-    final gameService = GameService();
-    final emptyGame = GameModel.empty;
-    test('can create a game', () {});
+    final GameServiceI gameService = GameService();
+    test('can create a game', () async {
+      final GameModel newGame = await gameService.createGame();
 
-    test('can save a game', () async {
-      await gameService.saveGame();
-
-      expect(actual, equals(emptyGame));
+      expect(newGame.bookShelfLevels.length, equals(1));
+      expect(newGame.id.isNotEmpty, isTrue);
     });
-    test('can load a game', () {});
+
+    test('can create, save and load a game', () async {
+      final GameModel newGame = await gameService.createGame();
+      await gameService.saveGame(game: newGame);
+      final gameSave = await gameService.loadGame();
+
+      expect(gameSave, equals(newGame));
+    });
   });
 }

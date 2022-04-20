@@ -3,7 +3,13 @@ part of abstract;
 typedef PlayerProfileModelId = String;
 
 @immutable
-@Freezed()
+@Freezed(
+  fromJson: true,
+  toJson: true,
+  equal: true,
+  addImplicitFinal: true,
+  copyWith: true,
+)
 class PlayerProfileModel with _$PlayerProfileModel {
   const factory PlayerProfileModel({
     required final PlayerProfileModelId id,
@@ -12,12 +18,16 @@ class PlayerProfileModel with _$PlayerProfileModel {
 
     /// The [GameKnowledge] and [GameLetter] will be counted
     /// as highscore based on this [BookModel] list in [GameLevelModel]
-    required final GameLevelModel levelsHighscore,
+    required final Set<GameModelId> playedGames,
   }) = _PlayerProfileModel;
   const PlayerProfileModel._();
-
+  factory PlayerProfileModel.fromJson(final Map<String, dynamic> json) =>
+      _$PlayerProfileModelFromJson(json);
+  static const empty = PlayerProfileModel(
+    colorValue: 0xFFFF9000,
+    id: '0',
+    playedGames: {},
+    name: '',
+  );
   Color get color => Color(colorValue);
 }
-
-Color intToColor(final int color) => Color(color);
-int intFromColor(final Color color) => color.value;

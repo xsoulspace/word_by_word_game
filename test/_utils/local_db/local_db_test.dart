@@ -19,11 +19,11 @@ void main() {
 
   group('LocalDb', () {
     test('.getJsonId() can get', () async {
-      final id = db?.getJsonId({'id': 1});
-      expect(id, equals(1));
+      final id = db?.getJsonId({'id': '1'});
+      expect(id, equals('1'));
     });
     test('.put() & .get() can put and get back', () async {
-      final level = GameLevelModel.empty;
+      const level = BookShelfLevelModel.empty;
       final levelJson = level.toJson();
       await db?.put(
         storeName: DbStore.profile,
@@ -36,7 +36,7 @@ void main() {
       expect(resultJson, equals(levelJson));
     });
     test('.put() & .remove() can put and remove', () async {
-      final level = GameLevelModel.empty;
+      const level = BookShelfLevelModel.empty;
       final levelJson = level.toJson();
 
       await db?.put(

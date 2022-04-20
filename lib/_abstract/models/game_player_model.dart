@@ -1,10 +1,21 @@
 part of abstract;
 
 @immutable
-@Freezed()
+@Freezed(
+  fromJson: true,
+  toJson: true,
+  equal: true,
+  addImplicitFinal: true,
+  copyWith: true,
+)
 class GamePlayerModel with _$GamePlayerModel {
   const factory GamePlayerModel({
     required final PlayerProfileModelId id,
     required final List<BookModel> books,
   }) = _GamePlayerModel;
+  const GamePlayerModel._();
+  factory GamePlayerModel.fromJson(final Map<String, dynamic> json) =>
+      _$GamePlayerModelFromJson(json);
+
+  static const empty = GamePlayerModel(books: [], id: '0');
 }

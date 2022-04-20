@@ -14,6 +14,10 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+BookModel _$BookModelFromJson(Map<String, dynamic> json) {
+  return _BookModel.fromJson(json);
+}
+
 /// @nodoc
 mixin _$BookModel {
   String get id => throw _privateConstructorUsedError;
@@ -21,6 +25,7 @@ mixin _$BookModel {
   Map<String, int> get playersInvestments => throw _privateConstructorUsedError;
   ScoreModel get score => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BookModelCopyWith<BookModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -136,7 +141,7 @@ class __$BookModelCopyWithImpl<$Res> extends _$BookModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
   const _$_BookModel(
       {required this.id,
@@ -145,6 +150,9 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
       required this.score})
       : _playersInvestments = playersInvestments,
         super._();
+
+  factory _$_BookModel.fromJson(Map<String, dynamic> json) =>
+      _$$_BookModelFromJson(json);
 
   @override
   final String id;
@@ -188,6 +196,7 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
             const DeepCollectionEquality().equals(other.score, score));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -200,6 +209,11 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
   @override
   _$BookModelCopyWith<_BookModel> get copyWith =>
       __$BookModelCopyWithImpl<_BookModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BookModelToJson(this);
+  }
 }
 
 abstract class _BookModel extends BookModel {
@@ -209,6 +223,9 @@ abstract class _BookModel extends BookModel {
       required final Map<String, int> playersInvestments,
       required final ScoreModel score}) = _$_BookModel;
   const _BookModel._() : super._();
+
+  factory _BookModel.fromJson(Map<String, dynamic> json) =
+      _$_BookModel.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -224,8 +241,12 @@ abstract class _BookModel extends BookModel {
       throw _privateConstructorUsedError;
 }
 
+BookShelfLevelModel _$BookShelfLevelModelFromJson(Map<String, dynamic> json) {
+  return _BookShelfLevelModel.fromJson(json);
+}
+
 /// @nodoc
-mixin _$GameLevelModel {
+mixin _$BookShelfLevelModel {
   String get id => throw _privateConstructorUsedError;
 
   /// All untaken books should be kept in the list
@@ -236,16 +257,17 @@ mixin _$GameLevelModel {
   Map<String, GamePlayerModel> get players =>
       throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameLevelModelCopyWith<GameLevelModel> get copyWith =>
+  $BookShelfLevelModelCopyWith<BookShelfLevelModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameLevelModelCopyWith<$Res> {
-  factory $GameLevelModelCopyWith(
-          GameLevelModel value, $Res Function(GameLevelModel) then) =
-      _$GameLevelModelCopyWithImpl<$Res>;
+abstract class $BookShelfLevelModelCopyWith<$Res> {
+  factory $BookShelfLevelModelCopyWith(
+          BookShelfLevelModel value, $Res Function(BookShelfLevelModel) then) =
+      _$BookShelfLevelModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
       List<BookModel> unselectedBooks,
@@ -253,13 +275,13 @@ abstract class $GameLevelModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameLevelModelCopyWithImpl<$Res>
-    implements $GameLevelModelCopyWith<$Res> {
-  _$GameLevelModelCopyWithImpl(this._value, this._then);
+class _$BookShelfLevelModelCopyWithImpl<$Res>
+    implements $BookShelfLevelModelCopyWith<$Res> {
+  _$BookShelfLevelModelCopyWithImpl(this._value, this._then);
 
-  final GameLevelModel _value;
+  final BookShelfLevelModel _value;
   // ignore: unused_field
-  final $Res Function(GameLevelModel) _then;
+  final $Res Function(BookShelfLevelModel) _then;
 
   @override
   $Res call({
@@ -285,11 +307,11 @@ class _$GameLevelModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$GameLevelModelCopyWith<$Res>
-    implements $GameLevelModelCopyWith<$Res> {
-  factory _$GameLevelModelCopyWith(
-          _GameLevelModel value, $Res Function(_GameLevelModel) then) =
-      __$GameLevelModelCopyWithImpl<$Res>;
+abstract class _$BookShelfLevelModelCopyWith<$Res>
+    implements $BookShelfLevelModelCopyWith<$Res> {
+  factory _$BookShelfLevelModelCopyWith(_BookShelfLevelModel value,
+          $Res Function(_BookShelfLevelModel) then) =
+      __$BookShelfLevelModelCopyWithImpl<$Res>;
   @override
   $Res call(
       {String id,
@@ -298,15 +320,15 @@ abstract class _$GameLevelModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$GameLevelModelCopyWithImpl<$Res>
-    extends _$GameLevelModelCopyWithImpl<$Res>
-    implements _$GameLevelModelCopyWith<$Res> {
-  __$GameLevelModelCopyWithImpl(
-      _GameLevelModel _value, $Res Function(_GameLevelModel) _then)
-      : super(_value, (v) => _then(v as _GameLevelModel));
+class __$BookShelfLevelModelCopyWithImpl<$Res>
+    extends _$BookShelfLevelModelCopyWithImpl<$Res>
+    implements _$BookShelfLevelModelCopyWith<$Res> {
+  __$BookShelfLevelModelCopyWithImpl(
+      _BookShelfLevelModel _value, $Res Function(_BookShelfLevelModel) _then)
+      : super(_value, (v) => _then(v as _BookShelfLevelModel));
 
   @override
-  _GameLevelModel get _value => super._value as _GameLevelModel;
+  _BookShelfLevelModel get _value => super._value as _BookShelfLevelModel;
 
   @override
   $Res call({
@@ -314,7 +336,7 @@ class __$GameLevelModelCopyWithImpl<$Res>
     Object? unselectedBooks = freezed,
     Object? players = freezed,
   }) {
-    return _then(_GameLevelModel(
+    return _then(_BookShelfLevelModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -332,15 +354,19 @@ class __$GameLevelModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$_GameLevelModel extends _GameLevelModel with DiagnosticableTreeMixin {
-  const _$_GameLevelModel(
+@JsonSerializable()
+class _$_BookShelfLevelModel extends _BookShelfLevelModel
+    with DiagnosticableTreeMixin {
+  const _$_BookShelfLevelModel(
       {required this.id,
       required final List<BookModel> unselectedBooks,
       required final Map<String, GamePlayerModel> players})
       : _unselectedBooks = unselectedBooks,
         _players = players,
         super._();
+
+  factory _$_BookShelfLevelModel.fromJson(Map<String, dynamic> json) =>
+      _$$_BookShelfLevelModelFromJson(json);
 
   @override
   final String id;
@@ -370,14 +396,14 @@ class _$_GameLevelModel extends _GameLevelModel with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GameLevelModel(id: $id, unselectedBooks: $unselectedBooks, players: $players)';
+    return 'BookShelfLevelModel(id: $id, unselectedBooks: $unselectedBooks, players: $players)';
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
     properties
-      ..add(DiagnosticsProperty('type', 'GameLevelModel'))
+      ..add(DiagnosticsProperty('type', 'BookShelfLevelModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('unselectedBooks', unselectedBooks))
       ..add(DiagnosticsProperty('players', players));
@@ -387,13 +413,14 @@ class _$_GameLevelModel extends _GameLevelModel with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GameLevelModel &&
+            other is _BookShelfLevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.unselectedBooks, unselectedBooks) &&
             const DeepCollectionEquality().equals(other.players, players));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -403,16 +430,26 @@ class _$_GameLevelModel extends _GameLevelModel with DiagnosticableTreeMixin {
 
   @JsonKey(ignore: true)
   @override
-  _$GameLevelModelCopyWith<_GameLevelModel> get copyWith =>
-      __$GameLevelModelCopyWithImpl<_GameLevelModel>(this, _$identity);
+  _$BookShelfLevelModelCopyWith<_BookShelfLevelModel> get copyWith =>
+      __$BookShelfLevelModelCopyWithImpl<_BookShelfLevelModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BookShelfLevelModelToJson(this);
+  }
 }
 
-abstract class _GameLevelModel extends GameLevelModel {
-  const factory _GameLevelModel(
-      {required final String id,
-      required final List<BookModel> unselectedBooks,
-      required final Map<String, GamePlayerModel> players}) = _$_GameLevelModel;
-  const _GameLevelModel._() : super._();
+abstract class _BookShelfLevelModel extends BookShelfLevelModel {
+  const factory _BookShelfLevelModel(
+          {required final String id,
+          required final List<BookModel> unselectedBooks,
+          required final Map<String, GamePlayerModel> players}) =
+      _$_BookShelfLevelModel;
+  const _BookShelfLevelModel._() : super._();
+
+  factory _BookShelfLevelModel.fromJson(Map<String, dynamic> json) =
+      _$_BookShelfLevelModel.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -428,17 +465,23 @@ abstract class _GameLevelModel extends GameLevelModel {
       throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GameLevelModelCopyWith<_GameLevelModel> get copyWith =>
+  _$BookShelfLevelModelCopyWith<_BookShelfLevelModel> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+GameModel _$GameModelFromJson(Map<String, dynamic> json) {
+  return _GameModel.fromJson(json);
 }
 
 /// @nodoc
 mixin _$GameModel {
   String get id => throw _privateConstructorUsedError;
   DateTime get createdAt => throw _privateConstructorUsedError;
-  List<GameLevelModel> get levels => throw _privateConstructorUsedError;
-  int get currentLevelIndex => throw _privateConstructorUsedError;
+  List<BookShelfLevelModel> get bookShelfLevels =>
+      throw _privateConstructorUsedError;
+  int get currentBookShelfLevelIndex => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GameModelCopyWith<GameModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -451,8 +494,8 @@ abstract class $GameModelCopyWith<$Res> {
   $Res call(
       {String id,
       DateTime createdAt,
-      List<GameLevelModel> levels,
-      int currentLevelIndex});
+      List<BookShelfLevelModel> bookShelfLevels,
+      int currentBookShelfLevelIndex});
 }
 
 /// @nodoc
@@ -467,8 +510,8 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? createdAt = freezed,
-    Object? levels = freezed,
-    Object? currentLevelIndex = freezed,
+    Object? bookShelfLevels = freezed,
+    Object? currentBookShelfLevelIndex = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -479,13 +522,13 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      levels: levels == freezed
-          ? _value.levels
-          : levels // ignore: cast_nullable_to_non_nullable
-              as List<GameLevelModel>,
-      currentLevelIndex: currentLevelIndex == freezed
-          ? _value.currentLevelIndex
-          : currentLevelIndex // ignore: cast_nullable_to_non_nullable
+      bookShelfLevels: bookShelfLevels == freezed
+          ? _value.bookShelfLevels
+          : bookShelfLevels // ignore: cast_nullable_to_non_nullable
+              as List<BookShelfLevelModel>,
+      currentBookShelfLevelIndex: currentBookShelfLevelIndex == freezed
+          ? _value.currentBookShelfLevelIndex
+          : currentBookShelfLevelIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -500,8 +543,8 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
   $Res call(
       {String id,
       DateTime createdAt,
-      List<GameLevelModel> levels,
-      int currentLevelIndex});
+      List<BookShelfLevelModel> bookShelfLevels,
+      int currentBookShelfLevelIndex});
 }
 
 /// @nodoc
@@ -517,8 +560,8 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? createdAt = freezed,
-    Object? levels = freezed,
-    Object? currentLevelIndex = freezed,
+    Object? bookShelfLevels = freezed,
+    Object? currentBookShelfLevelIndex = freezed,
   }) {
     return _then(_GameModel(
       id: id == freezed
@@ -529,46 +572,50 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
-      levels: levels == freezed
-          ? _value.levels
-          : levels // ignore: cast_nullable_to_non_nullable
-              as List<GameLevelModel>,
-      currentLevelIndex: currentLevelIndex == freezed
-          ? _value.currentLevelIndex
-          : currentLevelIndex // ignore: cast_nullable_to_non_nullable
+      bookShelfLevels: bookShelfLevels == freezed
+          ? _value.bookShelfLevels
+          : bookShelfLevels // ignore: cast_nullable_to_non_nullable
+              as List<BookShelfLevelModel>,
+      currentBookShelfLevelIndex: currentBookShelfLevelIndex == freezed
+          ? _value.currentBookShelfLevelIndex
+          : currentBookShelfLevelIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
 }
 
 /// @nodoc
-
-class _$_GameModel with DiagnosticableTreeMixin implements _GameModel {
+@JsonSerializable()
+class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
   const _$_GameModel(
       {required this.id,
       required this.createdAt,
-      required final List<GameLevelModel> levels,
-      this.currentLevelIndex = 0})
-      : _levels = levels;
+      required final List<BookShelfLevelModel> bookShelfLevels,
+      this.currentBookShelfLevelIndex = 0})
+      : _bookShelfLevels = bookShelfLevels,
+        super._();
+
+  factory _$_GameModel.fromJson(Map<String, dynamic> json) =>
+      _$$_GameModelFromJson(json);
 
   @override
   final String id;
   @override
   final DateTime createdAt;
-  final List<GameLevelModel> _levels;
+  final List<BookShelfLevelModel> _bookShelfLevels;
   @override
-  List<GameLevelModel> get levels {
+  List<BookShelfLevelModel> get bookShelfLevels {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_levels);
+    return EqualUnmodifiableListView(_bookShelfLevels);
   }
 
   @override
   @JsonKey()
-  final int currentLevelIndex;
+  final int currentBookShelfLevelIndex;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GameModel(id: $id, createdAt: $createdAt, levels: $levels, currentLevelIndex: $currentLevelIndex)';
+    return 'GameModel(id: $id, createdAt: $createdAt, bookShelfLevels: $bookShelfLevels, currentBookShelfLevelIndex: $currentBookShelfLevelIndex)';
   }
 
   @override
@@ -578,8 +625,9 @@ class _$_GameModel with DiagnosticableTreeMixin implements _GameModel {
       ..add(DiagnosticsProperty('type', 'GameModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('createdAt', createdAt))
-      ..add(DiagnosticsProperty('levels', levels))
-      ..add(DiagnosticsProperty('currentLevelIndex', currentLevelIndex));
+      ..add(DiagnosticsProperty('bookShelfLevels', bookShelfLevels))
+      ..add(DiagnosticsProperty(
+          'currentBookShelfLevelIndex', currentBookShelfLevelIndex));
   }
 
   @override
@@ -589,44 +637,60 @@ class _$_GameModel with DiagnosticableTreeMixin implements _GameModel {
             other is _GameModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.levels, levels) &&
             const DeepCollectionEquality()
-                .equals(other.currentLevelIndex, currentLevelIndex));
+                .equals(other.bookShelfLevels, bookShelfLevels) &&
+            const DeepCollectionEquality().equals(
+                other.currentBookShelfLevelIndex, currentBookShelfLevelIndex));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(levels),
-      const DeepCollectionEquality().hash(currentLevelIndex));
+      const DeepCollectionEquality().hash(bookShelfLevels),
+      const DeepCollectionEquality().hash(currentBookShelfLevelIndex));
 
   @JsonKey(ignore: true)
   @override
   _$GameModelCopyWith<_GameModel> get copyWith =>
       __$GameModelCopyWithImpl<_GameModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GameModelToJson(this);
+  }
 }
 
-abstract class _GameModel implements GameModel {
+abstract class _GameModel extends GameModel {
   const factory _GameModel(
       {required final String id,
       required final DateTime createdAt,
-      required final List<GameLevelModel> levels,
-      final int currentLevelIndex}) = _$_GameModel;
+      required final List<BookShelfLevelModel> bookShelfLevels,
+      final int currentBookShelfLevelIndex}) = _$_GameModel;
+  const _GameModel._() : super._();
+
+  factory _GameModel.fromJson(Map<String, dynamic> json) =
+      _$_GameModel.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
   @override
   DateTime get createdAt => throw _privateConstructorUsedError;
   @override
-  List<GameLevelModel> get levels => throw _privateConstructorUsedError;
+  List<BookShelfLevelModel> get bookShelfLevels =>
+      throw _privateConstructorUsedError;
   @override
-  int get currentLevelIndex => throw _privateConstructorUsedError;
+  int get currentBookShelfLevelIndex => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$GameModelCopyWith<_GameModel> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+GamePlayerModel _$GamePlayerModelFromJson(Map<String, dynamic> json) {
+  return _GamePlayerModel.fromJson(json);
 }
 
 /// @nodoc
@@ -634,6 +698,7 @@ mixin _$GamePlayerModel {
   String get id => throw _privateConstructorUsedError;
   List<BookModel> get books => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $GamePlayerModelCopyWith<GamePlayerModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -714,13 +779,15 @@ class __$GamePlayerModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$_GamePlayerModel
-    with DiagnosticableTreeMixin
-    implements _GamePlayerModel {
+@JsonSerializable()
+class _$_GamePlayerModel extends _GamePlayerModel with DiagnosticableTreeMixin {
   const _$_GamePlayerModel(
       {required this.id, required final List<BookModel> books})
-      : _books = books;
+      : _books = books,
+        super._();
+
+  factory _$_GamePlayerModel.fromJson(Map<String, dynamic> json) =>
+      _$$_GamePlayerModelFromJson(json);
 
   @override
   final String id;
@@ -754,6 +821,7 @@ class _$_GamePlayerModel
             const DeepCollectionEquality().equals(other.books, books));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -764,12 +832,21 @@ class _$_GamePlayerModel
   @override
   _$GamePlayerModelCopyWith<_GamePlayerModel> get copyWith =>
       __$GamePlayerModelCopyWithImpl<_GamePlayerModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GamePlayerModelToJson(this);
+  }
 }
 
-abstract class _GamePlayerModel implements GamePlayerModel {
+abstract class _GamePlayerModel extends GamePlayerModel {
   const factory _GamePlayerModel(
       {required final String id,
       required final List<BookModel> books}) = _$_GamePlayerModel;
+  const _GamePlayerModel._() : super._();
+
+  factory _GamePlayerModel.fromJson(Map<String, dynamic> json) =
+      _$_GamePlayerModel.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -781,6 +858,10 @@ abstract class _GamePlayerModel implements GamePlayerModel {
       throw _privateConstructorUsedError;
 }
 
+PlayerProfileModel _$PlayerProfileModelFromJson(Map<String, dynamic> json) {
+  return _PlayerProfileModel.fromJson(json);
+}
+
 /// @nodoc
 mixin _$PlayerProfileModel {
   String get id => throw _privateConstructorUsedError;
@@ -789,8 +870,9 @@ mixin _$PlayerProfileModel {
 
   /// The [GameKnowledge] and [GameLetter] will be counted
   /// as highscore based on this [BookModel] list in [GameLevelModel]
-  GameLevelModel get levelsHighscore => throw _privateConstructorUsedError;
+  Set<String> get playedGames => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlayerProfileModelCopyWith<PlayerProfileModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -801,10 +883,7 @@ abstract class $PlayerProfileModelCopyWith<$Res> {
   factory $PlayerProfileModelCopyWith(
           PlayerProfileModel value, $Res Function(PlayerProfileModel) then) =
       _$PlayerProfileModelCopyWithImpl<$Res>;
-  $Res call(
-      {String id, int colorValue, String name, GameLevelModel levelsHighscore});
-
-  $GameLevelModelCopyWith<$Res> get levelsHighscore;
+  $Res call({String id, int colorValue, String name, Set<String> playedGames});
 }
 
 /// @nodoc
@@ -821,7 +900,7 @@ class _$PlayerProfileModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? colorValue = freezed,
     Object? name = freezed,
-    Object? levelsHighscore = freezed,
+    Object? playedGames = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -836,18 +915,11 @@ class _$PlayerProfileModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      levelsHighscore: levelsHighscore == freezed
-          ? _value.levelsHighscore
-          : levelsHighscore // ignore: cast_nullable_to_non_nullable
-              as GameLevelModel,
+      playedGames: playedGames == freezed
+          ? _value.playedGames
+          : playedGames // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
-  }
-
-  @override
-  $GameLevelModelCopyWith<$Res> get levelsHighscore {
-    return $GameLevelModelCopyWith<$Res>(_value.levelsHighscore, (value) {
-      return _then(_value.copyWith(levelsHighscore: value));
-    });
   }
 }
 
@@ -858,11 +930,7 @@ abstract class _$PlayerProfileModelCopyWith<$Res>
           _PlayerProfileModel value, $Res Function(_PlayerProfileModel) then) =
       __$PlayerProfileModelCopyWithImpl<$Res>;
   @override
-  $Res call(
-      {String id, int colorValue, String name, GameLevelModel levelsHighscore});
-
-  @override
-  $GameLevelModelCopyWith<$Res> get levelsHighscore;
+  $Res call({String id, int colorValue, String name, Set<String> playedGames});
 }
 
 /// @nodoc
@@ -881,7 +949,7 @@ class __$PlayerProfileModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? colorValue = freezed,
     Object? name = freezed,
-    Object? levelsHighscore = freezed,
+    Object? playedGames = freezed,
   }) {
     return _then(_PlayerProfileModel(
       id: id == freezed
@@ -896,24 +964,28 @@ class __$PlayerProfileModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      levelsHighscore: levelsHighscore == freezed
-          ? _value.levelsHighscore
-          : levelsHighscore // ignore: cast_nullable_to_non_nullable
-              as GameLevelModel,
+      playedGames: playedGames == freezed
+          ? _value.playedGames
+          : playedGames // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_PlayerProfileModel extends _PlayerProfileModel
     with DiagnosticableTreeMixin {
   const _$_PlayerProfileModel(
       {required this.id,
       required this.colorValue,
       required this.name,
-      required this.levelsHighscore})
-      : super._();
+      required final Set<String> playedGames})
+      : _playedGames = playedGames,
+        super._();
+
+  factory _$_PlayerProfileModel.fromJson(Map<String, dynamic> json) =>
+      _$$_PlayerProfileModelFromJson(json);
 
   @override
   final String id;
@@ -924,12 +996,19 @@ class _$_PlayerProfileModel extends _PlayerProfileModel
 
   /// The [GameKnowledge] and [GameLetter] will be counted
   /// as highscore based on this [BookModel] list in [GameLevelModel]
+  final Set<String> _playedGames;
+
+  /// The [GameKnowledge] and [GameLetter] will be counted
+  /// as highscore based on this [BookModel] list in [GameLevelModel]
   @override
-  final GameLevelModel levelsHighscore;
+  Set<String> get playedGames {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_playedGames);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'PlayerProfileModel(id: $id, colorValue: $colorValue, name: $name, levelsHighscore: $levelsHighscore)';
+    return 'PlayerProfileModel(id: $id, colorValue: $colorValue, name: $name, playedGames: $playedGames)';
   }
 
   @override
@@ -940,7 +1019,7 @@ class _$_PlayerProfileModel extends _PlayerProfileModel
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('colorValue', colorValue))
       ..add(DiagnosticsProperty('name', name))
-      ..add(DiagnosticsProperty('levelsHighscore', levelsHighscore));
+      ..add(DiagnosticsProperty('playedGames', playedGames));
   }
 
   @override
@@ -953,21 +1032,27 @@ class _$_PlayerProfileModel extends _PlayerProfileModel
                 .equals(other.colorValue, colorValue) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
-                .equals(other.levelsHighscore, levelsHighscore));
+                .equals(other.playedGames, playedGames));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(colorValue),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(levelsHighscore));
+      const DeepCollectionEquality().hash(playedGames));
 
   @JsonKey(ignore: true)
   @override
   _$PlayerProfileModelCopyWith<_PlayerProfileModel> get copyWith =>
       __$PlayerProfileModelCopyWithImpl<_PlayerProfileModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlayerProfileModelToJson(this);
+  }
 }
 
 abstract class _PlayerProfileModel extends PlayerProfileModel {
@@ -975,8 +1060,11 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
       {required final String id,
       required final int colorValue,
       required final String name,
-      required final GameLevelModel levelsHighscore}) = _$_PlayerProfileModel;
+      required final Set<String> playedGames}) = _$_PlayerProfileModel;
   const _PlayerProfileModel._() : super._();
+
+  factory _PlayerProfileModel.fromJson(Map<String, dynamic> json) =
+      _$_PlayerProfileModel.fromJson;
 
   @override
   String get id => throw _privateConstructorUsedError;
@@ -988,11 +1076,15 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
 
   /// The [GameKnowledge] and [GameLetter] will be counted
   /// as highscore based on this [BookModel] list in [GameLevelModel]
-  GameLevelModel get levelsHighscore => throw _privateConstructorUsedError;
+  Set<String> get playedGames => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$PlayerProfileModelCopyWith<_PlayerProfileModel> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+ScoreModel _$ScoreModelFromJson(Map<String, dynamic> json) {
+  return _ScoreModel.fromJson(json);
 }
 
 /// @nodoc
@@ -1000,6 +1092,7 @@ mixin _$ScoreModel {
   int get knowledgeCount => throw _privateConstructorUsedError;
   int get lettersCount => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $ScoreModelCopyWith<ScoreModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1077,9 +1170,13 @@ class __$ScoreModelCopyWithImpl<$Res> extends _$ScoreModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
+@JsonSerializable()
+class _$_ScoreModel extends _ScoreModel with DiagnosticableTreeMixin {
+  const _$_ScoreModel({this.knowledgeCount = 0, this.lettersCount = 0})
+      : super._();
 
-class _$_ScoreModel with DiagnosticableTreeMixin implements _ScoreModel {
-  const _$_ScoreModel({this.knowledgeCount = 0, this.lettersCount = 0});
+  factory _$_ScoreModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ScoreModelFromJson(json);
 
   @override
   @JsonKey()
@@ -1113,6 +1210,7 @@ class _$_ScoreModel with DiagnosticableTreeMixin implements _ScoreModel {
                 .equals(other.lettersCount, lettersCount));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1123,11 +1221,20 @@ class _$_ScoreModel with DiagnosticableTreeMixin implements _ScoreModel {
   @override
   _$ScoreModelCopyWith<_ScoreModel> get copyWith =>
       __$ScoreModelCopyWithImpl<_ScoreModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ScoreModelToJson(this);
+  }
 }
 
-abstract class _ScoreModel implements ScoreModel {
+abstract class _ScoreModel extends ScoreModel {
   const factory _ScoreModel(
       {final int knowledgeCount, final int lettersCount}) = _$_ScoreModel;
+  const _ScoreModel._() : super._();
+
+  factory _ScoreModel.fromJson(Map<String, dynamic> json) =
+      _$_ScoreModel.fromJson;
 
   @override
   int get knowledgeCount => throw _privateConstructorUsedError;

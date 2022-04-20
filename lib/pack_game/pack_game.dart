@@ -12,6 +12,7 @@ import 'package:word_by_word_game/pack_preloaders/pack_preloaders.dart';
 import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 
 part '_services/game_service.dart';
+part '_services/game_service_i.dart';
 part '_states/game_state_notifier.dart';
 part '_widgets/upper_game_bar.dart';
 part 'game_book_shelf/game_book_shelf_screen.dart';

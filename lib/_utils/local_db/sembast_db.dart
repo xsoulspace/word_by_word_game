@@ -37,10 +37,18 @@ class SembastDb<TDbName extends Enum> implements LocalDbI<TDbName> {
 
   @override
   String getJsonId(final Map<String, dynamic> json) {
-    final id = json['id'] as String?;
-    if (id == null || id.isEmpty) {
-      throw ArgumentError.value(
+    dynamic id = json['id'];
+    if (id == null) {
+      throw ArgumentError.notNull(
         "json $json doesn't have an id. Please provide it to json.",
+      );
+    }
+    if (id is int) {
+      id = '$id';
+    }
+    if (id is! String || id.isEmpty) {
+      throw ArgumentError.value(
+        'json $json id has wrong type or empty',
       );
     }
     return id;
