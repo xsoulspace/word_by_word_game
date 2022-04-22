@@ -64,6 +64,7 @@ dev_dependencies:
   freezed: ^2.0.0
   hive_generator: ^1.1.2
   json_serializable: ^6.1.6
+  vector_math: ^2.1.1
 
 # flutter pub run flutter_launcher_icons:main
 flutter_icons:

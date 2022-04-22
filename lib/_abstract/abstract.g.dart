@@ -11,7 +11,10 @@ _$_BookModel _$$_BookModelFromJson(Map<String, dynamic> json) => _$_BookModel(
       kind: $enumDecode(_$BookKindEnumMap, json['kind']),
       playersInvestments:
           Map<String, int>.from(json['playersInvestments'] as Map),
-      score: ScoreModel.fromJson(json['score'] as Map<String, dynamic>),
+      height: (json['height'] as num).toDouble(),
+      axis: $enumDecode(_$BookAxisEnumMap, json['axis']),
+      lettersCount: json['lettersCount'] as int,
+      width: (json['width'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$_BookModelToJson(_$_BookModel instance) =>
@@ -19,7 +22,10 @@ Map<String, dynamic> _$$_BookModelToJson(_$_BookModel instance) =>
       'id': instance.id,
       'kind': _$BookKindEnumMap[instance.kind],
       'playersInvestments': instance.playersInvestments,
-      'score': instance.score,
+      'height': instance.height,
+      'axis': _$BookAxisEnumMap[instance.axis],
+      'lettersCount': instance.lettersCount,
+      'width': instance.width,
     };
 
 const _$BookKindEnumMap = {
@@ -28,12 +34,18 @@ const _$BookKindEnumMap = {
   BookKind.poem: 'poem',
 };
 
+const _$BookAxisEnumMap = {
+  BookAxis.horizontal: 'horizontal',
+  BookAxis.vertical: 'vertical',
+  BookAxis.frontal: 'frontal',
+};
+
 _$_BookShelfLevelModel _$$_BookShelfLevelModelFromJson(
         Map<String, dynamic> json) =>
     _$_BookShelfLevelModel(
       id: json['id'] as String,
-      unselectedBooks: (json['unselectedBooks'] as List<dynamic>)
-          .map((e) => BookModel.fromJson(e as Map<String, dynamic>))
+      slots: (json['slots'] as List<dynamic>)
+          .map((e) => BookShelfSlotModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       players: (json['players'] as Map<String, dynamic>).map(
         (k, e) =>
@@ -45,8 +57,38 @@ Map<String, dynamic> _$$_BookShelfLevelModelToJson(
         _$_BookShelfLevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'unselectedBooks': instance.unselectedBooks,
+      'slots': instance.slots,
       'players': instance.players,
+    };
+
+_$_BookShelfModel _$$_BookShelfModelFromJson(Map<String, dynamic> json) =>
+    _$_BookShelfModel(
+      width: (json['width'] as num).toDouble(),
+      height: (json['height'] as num).toDouble(),
+      slots: (json['slots'] as List<dynamic>)
+          .map((e) => BookShelfSlotModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_BookShelfModelToJson(_$_BookShelfModel instance) =>
+    <String, dynamic>{
+      'width': instance.width,
+      'height': instance.height,
+      'slots': instance.slots,
+    };
+
+_$_BookShelfSlotModel _$$_BookShelfSlotModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_BookShelfSlotModel(
+      books: (json['books'] as List<dynamic>)
+          .map((e) => BookModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+    );
+
+Map<String, dynamic> _$$_BookShelfSlotModelToJson(
+        _$_BookShelfSlotModel instance) =>
+    <String, dynamic>{
+      'books': instance.books,
     };
 
 _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(

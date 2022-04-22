@@ -15,6 +15,7 @@ class GameGenerator {
     required final List<GameLevelKind> levelKinds,
     required final Map<PlayerProfileModelId, GamePlayerModel> players,
     required final PlayerProfileModelId hostPlayerId,
+    required final double screenWidth,
   }) {
     List<BookShelfLevelModel> bookShelfLevels = [];
     for (final levelKind in levelKinds) {
@@ -22,6 +23,7 @@ class GameGenerator {
         case GameLevelKind.bookShelf:
           bookShelfLevels = levelGenerator.createBookShelfLevels(
             players: players,
+            screenWidth: screenWidth,
           );
           break;
       }

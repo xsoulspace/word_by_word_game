@@ -16,7 +16,7 @@ class BookShelfLevelModel with _$BookShelfLevelModel {
     ///
     /// In case if [GamePlayerModel] took new book, the book
     /// should be transfered to his list of books
-    required final List<BookModel> unselectedBooks,
+    required final List<BookShelfSlotModel> slots,
     required final Map<PlayerProfileModelId, GamePlayerModel> players,
   }) = _BookShelfLevelModel;
   const BookShelfLevelModel._();
@@ -24,16 +24,16 @@ class BookShelfLevelModel with _$BookShelfLevelModel {
       _$BookShelfLevelModelFromJson(json);
   factory BookShelfLevelModel.create({
     required final Map<PlayerProfileModelId, GamePlayerModel> players,
-    required final List<BookModel> unselectedBooks,
+    required final List<BookShelfSlotModel> slots,
   }) =>
       BookShelfLevelModel(
         id: IdCreator.create(),
         players: players,
-        unselectedBooks: unselectedBooks,
+        slots: slots,
       );
   static const empty = BookShelfLevelModel(
     id: '0',
     players: {},
-    unselectedBooks: [],
+    slots: [],
   );
 }
