@@ -44,8 +44,8 @@ _$_BookShelfLevelModel _$$_BookShelfLevelModelFromJson(
         Map<String, dynamic> json) =>
     _$_BookShelfLevelModel(
       id: json['id'] as String,
-      slots: (json['slots'] as List<dynamic>)
-          .map((e) => BookShelfSlotModel.fromJson(e as Map<String, dynamic>))
+      shelves: (json['shelves'] as List<dynamic>)
+          .map((e) => BookShelfModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       players: (json['players'] as Map<String, dynamic>).map(
         (k, e) =>
@@ -57,7 +57,7 @@ Map<String, dynamic> _$$_BookShelfLevelModelToJson(
         _$_BookShelfLevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'slots': instance.slots,
+      'shelves': instance.shelves,
       'players': instance.players,
     };
 

@@ -6,7 +6,6 @@ part of abstract;
   equal: true,
   addImplicitFinal: true,
   copyWith: true,
-  makeCollectionsUnmodifiable: false,
 )
 class BookShelfModel with _$BookShelfModel {
   const factory BookShelfModel({

@@ -12,9 +12,9 @@ class GameLevelGenerator {
     return [
       BookShelfLevelModel.create(
         players: players,
-        slots: BookShelfGenerator(
+        shelves: BookShelfGenerator(
           screenWidth: screenWidth,
-        ).createShelfs(),
+        ).createShelves(),
       ),
     ];
   }
@@ -38,7 +38,7 @@ class BookGenerator {
 class BookShelfGenerator {
   BookShelfGenerator({
     required this.screenWidth,
-  })  : shelfsCount = shelfCountRandomer.next(),
+  })  : shelvesCount = shelfCountRandomer.next(),
         booksCount = booksMaxMinRandomers.map(
           (final bookKind, final randomer) =>
               MapEntry(bookKind, randomer.next()),
@@ -76,14 +76,14 @@ class BookShelfGenerator {
   };
   final _bookGenerator = BookGenerator();
   final double screenWidth;
-  final int shelfsCount;
+  final int shelvesCount;
   final Map<BookKind, int> booksCount;
-  List<BookShelfModel> createShelfs() {
+  List<BookShelfModel> createShelves() {
     final booksToFill = booksCount;
 
     /// from down to up
     /// left to right
-    return List.generate(shelfsCount, (final i) {
+    return List.generate(shelvesCount, (final i) {
       return createShelf(
         booksToFill: booksToFill,
         screenWidth: screenWidth,
@@ -117,10 +117,12 @@ class BookShelfGenerator {
 
       booksToFill[bookKind] = booksCount - resultBookCount;
 
-      final slot = BookShelfSlotModel.empty();
+      BookShelfSlotModel slot = BookShelfSlotModel.empty();
       for (int i = 0; i < booksCount; i++) {
         final book = _bookGenerator.createBook(kind: bookKind);
-        slots.add(slot..books.add(book));
+        slot = slot.copyWith(
+          books: [...slot.books, book],
+        );
       }
       slots.add(slot);
     }

@@ -317,7 +317,7 @@ mixin _$BookShelfLevelModel {
   ///
   /// In case if [GamePlayerModel] took new book, the book
   /// should be transfered to his list of books
-  List<BookShelfSlotModel> get slots => throw _privateConstructorUsedError;
+  List<BookShelfModel> get shelves => throw _privateConstructorUsedError;
   Map<String, GamePlayerModel> get players =>
       throw _privateConstructorUsedError;
 
@@ -334,7 +334,7 @@ abstract class $BookShelfLevelModelCopyWith<$Res> {
       _$BookShelfLevelModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      List<BookShelfSlotModel> slots,
+      List<BookShelfModel> shelves,
       Map<String, GamePlayerModel> players});
 }
 
@@ -350,7 +350,7 @@ class _$BookShelfLevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? slots = freezed,
+    Object? shelves = freezed,
     Object? players = freezed,
   }) {
     return _then(_value.copyWith(
@@ -358,10 +358,10 @@ class _$BookShelfLevelModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      slots: slots == freezed
-          ? _value.slots
-          : slots // ignore: cast_nullable_to_non_nullable
-              as List<BookShelfSlotModel>,
+      shelves: shelves == freezed
+          ? _value.shelves
+          : shelves // ignore: cast_nullable_to_non_nullable
+              as List<BookShelfModel>,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -379,7 +379,7 @@ abstract class _$BookShelfLevelModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      List<BookShelfSlotModel> slots,
+      List<BookShelfModel> shelves,
       Map<String, GamePlayerModel> players});
 }
 
@@ -397,7 +397,7 @@ class __$BookShelfLevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? slots = freezed,
+    Object? shelves = freezed,
     Object? players = freezed,
   }) {
     return _then(_BookShelfLevelModel(
@@ -405,10 +405,10 @@ class __$BookShelfLevelModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      slots: slots == freezed
-          ? _value.slots
-          : slots // ignore: cast_nullable_to_non_nullable
-              as List<BookShelfSlotModel>,
+      shelves: shelves == freezed
+          ? _value.shelves
+          : shelves // ignore: cast_nullable_to_non_nullable
+              as List<BookShelfModel>,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -423,9 +423,9 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
     with DiagnosticableTreeMixin {
   const _$_BookShelfLevelModel(
       {required this.id,
-      required final List<BookShelfSlotModel> slots,
+      required final List<BookShelfModel> shelves,
       required final Map<String, GamePlayerModel> players})
-      : _slots = slots,
+      : _shelves = shelves,
         _players = players,
         super._();
 
@@ -439,16 +439,16 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
   ///
   /// In case if [GamePlayerModel] took new book, the book
   /// should be transfered to his list of books
-  final List<BookShelfSlotModel> _slots;
+  final List<BookShelfModel> _shelves;
 
   /// All untaken books should be kept in the list
   ///
   /// In case if [GamePlayerModel] took new book, the book
   /// should be transfered to his list of books
   @override
-  List<BookShelfSlotModel> get slots {
+  List<BookShelfModel> get shelves {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_slots);
+    return EqualUnmodifiableListView(_shelves);
   }
 
   final Map<String, GamePlayerModel> _players;
@@ -460,7 +460,7 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookShelfLevelModel(id: $id, slots: $slots, players: $players)';
+    return 'BookShelfLevelModel(id: $id, shelves: $shelves, players: $players)';
   }
 
   @override
@@ -469,7 +469,7 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
     properties
       ..add(DiagnosticsProperty('type', 'BookShelfLevelModel'))
       ..add(DiagnosticsProperty('id', id))
-      ..add(DiagnosticsProperty('slots', slots))
+      ..add(DiagnosticsProperty('shelves', shelves))
       ..add(DiagnosticsProperty('players', players));
   }
 
@@ -479,7 +479,7 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
         (other.runtimeType == runtimeType &&
             other is _BookShelfLevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.slots, slots) &&
+            const DeepCollectionEquality().equals(other.shelves, shelves) &&
             const DeepCollectionEquality().equals(other.players, players));
   }
 
@@ -488,7 +488,7 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(slots),
+      const DeepCollectionEquality().hash(shelves),
       const DeepCollectionEquality().hash(players));
 
   @JsonKey(ignore: true)
@@ -506,7 +506,7 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
 abstract class _BookShelfLevelModel extends BookShelfLevelModel {
   const factory _BookShelfLevelModel(
           {required final String id,
-          required final List<BookShelfSlotModel> slots,
+          required final List<BookShelfModel> shelves,
           required final Map<String, GamePlayerModel> players}) =
       _$_BookShelfLevelModel;
   const _BookShelfLevelModel._() : super._();
@@ -522,7 +522,7 @@ abstract class _BookShelfLevelModel extends BookShelfLevelModel {
   ///
   /// In case if [GamePlayerModel] took new book, the book
   /// should be transfered to his list of books
-  List<BookShelfSlotModel> get slots => throw _privateConstructorUsedError;
+  List<BookShelfModel> get shelves => throw _privateConstructorUsedError;
   @override
   Map<String, GamePlayerModel> get players =>
       throw _privateConstructorUsedError;
@@ -636,8 +636,11 @@ class __$BookShelfModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
   const _$_BookShelfModel(
-      {required this.width, required this.height, required this.slots})
-      : super._();
+      {required this.width,
+      required this.height,
+      required final List<BookShelfSlotModel> slots})
+      : _slots = slots,
+        super._();
 
   factory _$_BookShelfModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookShelfModelFromJson(json);
@@ -646,8 +649,12 @@ class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
   final double width;
   @override
   final double height;
+  final List<BookShelfSlotModel> _slots;
   @override
-  final List<BookShelfSlotModel> slots;
+  List<BookShelfSlotModel> get slots {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_slots);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
@@ -797,13 +804,19 @@ class __$BookShelfSlotModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BookShelfSlotModel extends _BookShelfSlotModel
     with DiagnosticableTreeMixin {
-  const _$_BookShelfSlotModel({required this.books}) : super._();
+  const _$_BookShelfSlotModel({required final List<BookModel> books})
+      : _books = books,
+        super._();
 
   factory _$_BookShelfSlotModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookShelfSlotModelFromJson(json);
 
+  final List<BookModel> _books;
   @override
-  final List<BookModel> books;
+  List<BookModel> get books {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_books);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
