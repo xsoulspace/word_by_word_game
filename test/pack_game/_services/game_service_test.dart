@@ -44,10 +44,7 @@ void main() {
         [],
         (final books, final shelf) => [
           ...books,
-          ...shelf.slots.fold<List<BookModel>>(
-            [],
-            (final slotBooks, final slot) => [...slotBooks, ...slot.books],
-          ),
+          ...shelf.getAllBooks(),
         ],
       );
 

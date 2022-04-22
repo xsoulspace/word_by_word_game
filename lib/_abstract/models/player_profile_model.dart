@@ -23,6 +23,16 @@ class PlayerProfileModel with _$PlayerProfileModel {
   const PlayerProfileModel._();
   factory PlayerProfileModel.fromJson(final Map<String, dynamic> json) =>
       _$PlayerProfileModelFromJson(json);
+  factory PlayerProfileModel.create({
+    required final String name,
+    required final int colorValue,
+  }) =>
+      PlayerProfileModel(
+        colorValue: colorValue,
+        id: IdCreator.create(),
+        name: name,
+        playedGames: const {},
+      );
   static const empty = PlayerProfileModel(
     colorValue: 0xFFFF9000,
     id: '0',

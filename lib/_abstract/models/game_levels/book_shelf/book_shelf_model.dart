@@ -26,4 +26,9 @@ class BookShelfModel with _$BookShelfModel {
         width: width,
         slots: [],
       );
+  @useResult
+  List<BookModel> getAllBooks() => slots.fold<List<BookModel>>(
+        [],
+        (final slotBooks, final slot) => [...slotBooks, ...slot.books],
+      );
 }

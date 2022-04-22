@@ -39,6 +39,20 @@ class BookShelfGenerator {
       max: 3,
     ),
   };
+  static final booksMaxMinRandomersPerBookAxis = <BookAxis, Randomer>{
+    BookAxis.horizontal: Randomer(
+      max: 5,
+      min: 1,
+    ),
+    BookAxis.vertical: Randomer(
+      max: 3,
+      min: 1,
+    ),
+    BookAxis.frontal: Randomer(
+      max: 2,
+      min: 1,
+    ),
+  };
   final _bookGenerator = BookGenerator();
   final double screenWidth;
   final int shelvesCount;
@@ -51,30 +65,17 @@ class BookShelfGenerator {
     return List.generate(shelvesCount, (final i) {
       return createShelf(
         booksToFill: booksToFill,
-        screenWidth: screenWidth,
       );
     });
   }
 
   BookShelfModel createShelf({
-    required final double screenWidth,
     required final Map<BookKind, int> booksToFill,
   }) {
     final slots = <BookShelfSlotModel>[];
     for (final bookKind in BookKind.values) {
-      final booksCount = booksToFill[bookKind];
-      if (booksCount == null) {
-        throw ArgumentError.notNull(
-          'provide [booksCount] for bookKind:[$bookKind]',
-        );
-      }
-
-      final bookWidth = BookModel.booksWidths[bookKind];
-      if (bookWidth == null) {
-        throw ArgumentError.notNull(
-          'provide [bookWidth] for bookKind:[$bookKind]',
-        );
-      }
+      final booksCount = booksToFill[bookKind]!;
+      final bookWidth = BookModel.booksWidths[bookKind]!;
 
       final resultBookCount = (screenWidth / bookWidth).floor();
 
@@ -83,13 +84,27 @@ class BookShelfGenerator {
       booksToFill[bookKind] = booksCount - resultBookCount;
 
       BookShelfSlotModel slot = BookShelfSlotModel.empty();
+
+      final bookAxis = BookModel.bookKindAxis[bookKind]!;
+      final bookLimitRandomer = booksMaxMinRandomersPerBookAxis[bookAxis]!;
+
+      int bookLimit = bookLimitRandomer.next();
       for (int i = 0; i < booksCount; i++) {
         final book = _bookGenerator.createBook(kind: bookKind);
         slot = slot.copyWith(
           books: [...slot.books, book],
         );
+
+        bookLimit--;
+
+        if (i == booksCount - 1) {
+          slots.add(slot);
+        } else if (bookLimit == 0) {
+          slots.add(slot);
+          bookLimit = bookLimitRandomer.next();
+          slot = BookShelfSlotModel.empty();
+        }
       }
-      slots.add(slot);
     }
     return BookShelfModel(
       width: screenWidth,

@@ -7,8 +7,18 @@ enum BookKind {
 }
 
 enum BookAxis {
+  ///  _____
+  /// |_____|
   horizontal,
+
+  ///  _
+  /// | |
+  ///  _
   vertical,
+
+  ///  _____
+  /// |     |
+  ///  _____
   frontal,
 }
 
@@ -42,35 +52,47 @@ class BookModel with _$BookModel {
   factory BookModel.fromJson(final Map<String, dynamic> json) =>
       _$BookModelFromJson(json);
 
-  factory BookModel.prose() => BookModel(
-        width: proseWidth,
-        height: bookHeight,
-        axis: BookAxis.frontal,
-        kind: BookKind.prose,
-        id: IdCreator.create(),
-        playersInvestments: const {},
-        lettersCount: 10,
-      );
+  factory BookModel.prose() {
+    const bookKind = BookKind.prose;
+    final bookAxis = bookKindAxis[bookKind]!;
+    return BookModel(
+      width: proseWidth,
+      height: bookHeight,
+      axis: bookAxis,
+      kind: bookKind,
+      id: IdCreator.create(),
+      playersInvestments: const {},
+      lettersCount: 10,
+    );
+  }
 
-  factory BookModel.poem() => BookModel(
-        width: poemWidth,
-        height: bookHeight,
-        axis: BookAxis.vertical,
-        kind: BookKind.poem,
-        id: IdCreator.create(),
-        playersInvestments: const {},
-        lettersCount: 7,
-      );
+  factory BookModel.poem() {
+    const bookKind = BookKind.poem;
+    final bookAxis = bookKindAxis[bookKind]!;
+    return BookModel(
+      width: poemWidth,
+      height: bookHeight,
+      axis: bookAxis,
+      kind: bookKind,
+      id: IdCreator.create(),
+      playersInvestments: const {},
+      lettersCount: 7,
+    );
+  }
 
-  factory BookModel.science() => BookModel(
-        width: scienceWidth,
-        height: bookHeight,
-        axis: BookAxis.horizontal,
-        kind: BookKind.science,
-        id: IdCreator.create(),
-        playersInvestments: const {},
-        lettersCount: 14,
-      );
+  factory BookModel.science() {
+    const bookKind = BookKind.science;
+    final bookAxis = bookKindAxis[bookKind]!;
+    return BookModel(
+      width: scienceWidth,
+      height: bookHeight,
+      axis: bookAxis,
+      kind: bookKind,
+      id: IdCreator.create(),
+      playersInvestments: const {},
+      lettersCount: 14,
+    );
+  }
   static const poemWidth = 25.0;
   static const proseWidth = 90.0;
   static const scienceWidth = 60.0;
@@ -78,6 +100,11 @@ class BookModel with _$BookModel {
     BookKind.poem: poemWidth,
     BookKind.prose: proseWidth,
     BookKind.science: scienceWidth,
+  };
+  static const bookKindAxis = <BookKind, BookAxis>{
+    BookKind.poem: BookAxis.vertical,
+    BookKind.prose: BookAxis.frontal,
+    BookKind.science: BookAxis.horizontal,
   };
 
   static const bookHeight = 110.0;
