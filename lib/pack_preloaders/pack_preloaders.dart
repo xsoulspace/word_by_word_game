@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:word_by_word_game/_library/theme/theme.dart';
 import 'package:word_by_word_game/_library/widgets/widgets.dart';
 import 'package:word_by_word_game/_utils/utils.dart';
+import 'package:word_by_word_game/pack_game/pack_game.dart';
 import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 
 part 'screens/game_loader.dart';

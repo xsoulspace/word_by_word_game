@@ -13,13 +13,30 @@ class AppStateProvider extends StatelessWidget {
       providers: [
         /// Keep _settings is global is important as it will not lose all
         /// changes during global rebuild
-        ChangeNotifierProvider(create: (final _) => _settings),
+        ChangeNotifierProvider(create: (final context) => _settings),
+        Provider<ProfileServiceI>(
+          create: (final context) => ProfileService(),
+        ),
+        ChangeNotifierProvider<ProfileNotifierI>(
+          create: (final context) => ProfileNotifier(
+            profileService: context.read(),
+          ),
+        ),
+        Provider<GameServiceI>(
+          create: (final context) => GameService(
+            profileNotifier: context.read(),
+          ),
+        ),
+        Provider<RuntimeGameNotifier>(
+          create: (final context) => RuntimeGameNotifier(),
+        ),
       ],
       child: Builder(
         builder: (final context) {
           return StateLoader(
             initializer: GlobalStateInitializer(
               settings: _settings,
+              runtimeGameNotifier: context.read(),
             ),
             loader: const GameLoadingScreen(),
             child: builder(context),
