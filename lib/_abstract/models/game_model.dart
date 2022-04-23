@@ -40,4 +40,6 @@ class GameModel with _$GameModel {
     id: '0',
     bookShelfLevels: const [],
   );
+
+  bool get isEmpty => id == '0';
 }

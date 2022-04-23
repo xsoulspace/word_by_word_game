@@ -11,5 +11,6 @@ import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 part 'screens/game_loader.dart';
 part 'screens/game_loading_screen.dart';
 part 'screens/game_preloader.dart';
+part 'states/game_state_initializer.dart';
 part 'states/global_state_initializer.dart';
 part 'states/global_state_notifiers.dart';

@@ -14,7 +14,7 @@ import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 
 part '_services/game_service.dart';
 part '_services/game_service_i.dart';
-part '_states/game_state_notifier.dart';
+part '_states/runtime_game_notifier.dart';
 part '_utils/book_generator.dart';
 part '_utils/book_shelf_generator.dart';
 part '_utils/game_generator.dart';
