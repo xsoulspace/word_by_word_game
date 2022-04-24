@@ -23,7 +23,7 @@ class GameService implements GameServiceI {
   }
 
   @override
-  Future<GameModel> loadGame() async {
+  Future<GameModel?> loadGame() async {
     // TODO: implement loadGame
     throw UnimplementedError();
   }

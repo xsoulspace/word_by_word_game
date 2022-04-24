@@ -5,7 +5,7 @@ part of pack_settings;
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
-class GeneralSettingsNotifier extends ChangeNotifier {
+class GeneralSettingsNotifier extends ChangeNotifier implements Loadable {
   GeneralSettingsNotifier({required final this.settingsService});
 
   // Make SettingsService a private variable so it is not used directly.
@@ -28,7 +28,8 @@ class GeneralSettingsNotifier extends ChangeNotifier {
   /// Load the user's settings from the SettingsService. It may load from a
   /// local database or the internet. The controller only knows it can load the
   /// settings from the service.
-  Future<void> load() async {
+  @override
+  Future<void> onLoad({required final BuildContext context}) async {
     _locale = await settingsService.locale();
     migrated = await settingsService.migrated();
 

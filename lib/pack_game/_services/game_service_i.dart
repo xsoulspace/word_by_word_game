@@ -8,5 +8,5 @@ abstract class GameServiceI {
   Future<void> saveGame({
     required final GameModel game,
   });
-  Future<GameModel> loadGame();
+  Future<GameModel?> loadGame();
 }
