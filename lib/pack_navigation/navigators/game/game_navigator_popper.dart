@@ -1,8 +1,8 @@
 part of pack_navigation;
 
-class GlobalNavigatorPopper extends NavigatorDataProvider
+class GameNavigatorPopper extends NavigatorDataProvider
     implements AbstractNavigatorPopper {
-  GlobalNavigatorPopper({
+  GameNavigatorPopper({
     required final BuildContext context,
     required final RouteState routeState,
   }) : super(

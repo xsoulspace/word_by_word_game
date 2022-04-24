@@ -6,7 +6,7 @@ class GameBookWriterScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = useGameBookWriterScreenState();
-    final navigatorController = context.read<GameNavigatorController>();
+    final navigatorController = context.read<GlobalNavigatorController>();
     return Scaffold(
       appBar: const UpperGameBar(),
       body: Column(

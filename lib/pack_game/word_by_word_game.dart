@@ -6,7 +6,7 @@ class WordByWordGame extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return AppStateProvider(
-      builder: (final _) => const GameScaffold(),
+      builder: (final _) => const GlobalScaffold(),
     );
   }
 }

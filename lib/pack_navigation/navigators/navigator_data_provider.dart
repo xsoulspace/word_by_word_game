@@ -5,12 +5,12 @@ class NavigatorDataProvider {
     required final this.routeState,
     required final BuildContext context,
   })  : pathTemplate = routeState.route.pathTemplate,
-        navigatorController = GameNavigatorController.use(
+        navigatorController = GlobalNavigatorController.use(
           routeState: routeState,
           context: context,
           screenLayout: ScreenLayout.of(context),
         );
-  final GameNavigatorController navigatorController;
+  final GlobalNavigatorController navigatorController;
   final RouteState routeState;
   final String pathTemplate;
 }

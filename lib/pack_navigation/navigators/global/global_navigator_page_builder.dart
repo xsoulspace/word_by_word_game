@@ -1,30 +1,31 @@
 part of pack_navigation;
 
-class GameNavigatorPageBuilder
-    implements AbstractNavigatorPageBuilder<GameNavigatorPopper> {
-  GameNavigatorPageBuilder({
+class GlobalNavigatorPageBuilder
+    implements AbstractNavigatorPageBuilder<GlobalNavigatorPopper> {
+  GlobalNavigatorPageBuilder({
     required final this.popper,
     required final this.context,
   });
   static final emptyPage = MaterialPage(child: Container());
 
   @override
-  final GameNavigatorPopper popper;
+  final GlobalNavigatorPopper popper;
   @override
   final BuildContext context;
 
-  static const _homeKey = ValueKey(GlobalRouteNames.home);
-  Page bookShelf() {
+  static const _settingsKey = ValueKey(GlobalRouteNames.settings);
+  static const _gameNKey = ValueKey(GlobalRouteNames.home);
+  Page game() {
     return NavigatorMaterialPage(
-      key: _homeKey,
+      key: _gameNKey,
       popper: popper,
-      child: const GameBookShelfScreen(),
+      child: const GameScaffold(),
     );
   }
 
   Page settings() {
     return NavigatorMaterialPage(
-      key: _homeKey,
+      key: _settingsKey,
       popper: popper,
       child: const SettingsScreen(),
     );

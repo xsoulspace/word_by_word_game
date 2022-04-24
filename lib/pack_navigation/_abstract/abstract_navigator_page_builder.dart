@@ -8,7 +8,8 @@ abstract class AbstractNavigatorPageBuilder<
 
 extension AbstractNavigatorPageBuilderExtension
     on AbstractNavigatorPageBuilder {
-  GameNavigatorController get navigatorController => popper.navigatorController;
+  GlobalNavigatorController get navigatorController =>
+      popper.navigatorController;
   RouteState get routeState => popper.routeState;
   GameRouteParameters get params => popper.routeState.route.parameters;
   String get pathTemplate => popper.pathTemplate;

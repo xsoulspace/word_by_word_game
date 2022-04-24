@@ -8,7 +8,7 @@ class UpperGameBar extends StatelessWidget implements PreferredSizeWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final navigatorController = context.read<GameNavigatorController>();
+    final navigatorController = context.read<GlobalNavigatorController>();
     return Row(
       children: [
         IconButton(

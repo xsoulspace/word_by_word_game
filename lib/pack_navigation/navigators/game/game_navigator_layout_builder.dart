@@ -1,24 +1,25 @@
 part of pack_navigation;
 
-class GlobalNavigatorLayoutBuilder
+class GameNavigatorLayoutBuilder
     implements
-        AbstractNavigatorLayoutBuilder<GlobalNavigatorPageBuilder,
-            GlobalNavigatorPopper> {
-  GlobalNavigatorLayoutBuilder({
+        AbstractNavigatorLayoutBuilder<GameNavigatorPageBuilder,
+            GameNavigatorPopper> {
+  GameNavigatorLayoutBuilder({
     required final this.pageBuilder,
   }) : popper = pageBuilder.popper;
   @override
-  final GlobalNavigatorPageBuilder pageBuilder;
+  final GameNavigatorPageBuilder pageBuilder;
   @override
-  final GlobalNavigatorPopper popper;
+  final GameNavigatorPopper popper;
 
   List<Page> buildPages() {
     return [
       if (pathTemplate.startsWith(GlobalRouteNames.home)) ...[
-        pageBuilder.game(),
-        if (pathTemplate == GlobalRouteNames.settings) pageBuilder.settings()
+        pageBuilder.bookShelf(),
+        if (pathTemplate == GlobalRouteNames.gamePauseMenu)
+          pageBuilder.pauseMenu()
       ] else
-        GlobalNavigatorPageBuilder.emptyPage,
+        GameNavigatorPageBuilder.emptyPage,
     ];
   }
 

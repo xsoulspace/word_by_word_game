@@ -1,8 +1,8 @@
 part of pack_navigation;
 
 @immutable
-class GameNavigatorController {
-  const GameNavigatorController.use({
+class GlobalNavigatorController {
+  const GlobalNavigatorController.use({
     required final this.routeState,
     required final this.context,
     required this.screenLayout,

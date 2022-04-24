@@ -1,7 +1,7 @@
 part of pack_navigation;
 
-class GlobalNavigator extends StatelessWidget {
-  const GlobalNavigator({
+class GameNavigator extends StatelessWidget {
+  const GameNavigator({
     required final this.navigatorKey,
     required final this.routeState,
     final Key? key,
@@ -13,9 +13,9 @@ class GlobalNavigator extends StatelessWidget {
   Widget build(final BuildContext context) {
     return NavigationScaffold(
       navigatorKey: navigatorKey,
-      layoutBuilderConstructor: GlobalNavigatorLayoutBuilder.new,
-      pageBuilderConstructor: GlobalNavigatorPageBuilder.new,
-      popperConstructor: GlobalNavigatorPopper.new,
+      layoutBuilderConstructor: GameNavigatorLayoutBuilder.new,
+      pageBuilderConstructor: GameNavigatorPageBuilder.new,
+      popperConstructor: GameNavigatorPopper.new,
       routeState: routeState,
     );
   }
