@@ -23,6 +23,14 @@ class GlobalNavigatorPageBuilder
     );
   }
 
+  Page menu() {
+    return NavigatorMaterialPage(
+      key: _settingsKey,
+      popper: popper,
+      child: const GlobalMenuScreen(),
+    );
+  }
+
   Page settings() {
     return NavigatorMaterialPage(
       key: _settingsKey,

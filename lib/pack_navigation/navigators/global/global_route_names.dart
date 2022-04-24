@@ -8,6 +8,10 @@ class GlobalRouteNames {
   GlobalRouteNames._();
   static const home = '/';
 
+  /// ********************************************
+  /// *      GAME START
+  /// ********************************************
+
   static const gameBookShelf = '/game/book-shelf';
   static const gameWordWriter = '/game/word-writer';
 
@@ -23,28 +27,62 @@ class GlobalRouteNames {
     return '$gameBookShelf/pause';
   }
 
+  /// ********************************************
+  /// *      GAME END
+  /// ********************************************
+
   static const unknown404 = '/404';
-  static const settings = '/settings';
+  static const menu = '/menu';
+
+  /// ********************************************
+  /// *      SETTINGS START
+  /// ********************************************
+
+  static const settings = '/menu/settings';
   static const generalSettings = '$settings/general';
   static const profile = '$settings/profile';
   static const subscription = '$settings/subscription';
   static const changelog = '$settings/changelog';
   static const appInfo = '/game-info';
 
+  /// ********************************************
+  /// *      SETTINGS END
+  /// ********************************************
+
   /// !In case of new routes all routes should be added to values!
   static const values = [
     home,
+
+    /// ********************************************
+    /// *      GAME START
+    /// ********************************************
+
     gameBookShelf,
     gameWordWriter,
     gamePauseMenu,
     gameBookShelfPauseMenu,
     gameWordWriterPauseMenu,
+
+    /// ********************************************
+    /// *      GAME END
+    /// ********************************************
+
     unknown404,
+    menu,
+
+    /// ********************************************
+    /// *      SETTINGS START
+    /// ********************************************
+
     settings,
-    appInfo,
     generalSettings,
     profile,
     subscription,
     changelog,
+    appInfo,
+
+    /// ********************************************
+    /// *      SETTINGS END
+    /// ********************************************
   ];
 }

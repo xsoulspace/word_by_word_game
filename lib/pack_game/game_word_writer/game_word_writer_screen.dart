@@ -1,11 +1,11 @@
 part of pack_game;
 
-class GameBookWriterScreen extends HookWidget {
-  const GameBookWriterScreen({final Key? key}) : super(key: key);
+class GameWordWriterScreen extends HookWidget {
+  const GameWordWriterScreen({final Key? key}) : super(key: key);
 
   @override
   Widget build(final BuildContext context) {
-    final state = useGameBookWriterScreenState();
+    final state = useGameWordWriterScreenState();
     final navigatorController = context.read<GlobalNavigatorController>();
     return Scaffold(
       appBar: const UpperGameBar(),

@@ -1,14 +1,14 @@
 part of pack_game;
 
-StartGameScreenState useStartGameScreenState() => use(
+GlobalMenuScreenState useGlobalMenuScreenState() => use(
       LifeHook(
-        debugLabel: 'StartGameScreenState',
-        state: StartGameScreenState(),
+        debugLabel: 'GlobalMenuScreenState',
+        state: GlobalMenuScreenState(),
       ),
     );
 
-class StartGameScreenState implements LifeState {
-  StartGameScreenState();
+class GlobalMenuScreenState implements LifeState {
+  GlobalMenuScreenState();
 
   @override
   ValueChanged<VoidCallback>? setState;

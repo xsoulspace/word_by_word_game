@@ -16,7 +16,11 @@ class GlobalNavigatorLayoutBuilder
     return [
       if (pathTemplate.startsWith(GlobalRouteNames.home)) ...[
         pageBuilder.game(),
-        if (pathTemplate == GlobalRouteNames.settings) pageBuilder.settings()
+        if (pathTemplate.startsWith(GlobalRouteNames.menu)) ...[
+          pageBuilder.menu(),
+          // TODO(arenukvern): refactor settings to settings navigator
+          if (pathTemplate == GlobalRouteNames.settings) pageBuilder.settings(),
+        ]
       ] else
         GlobalNavigatorPageBuilder.emptyPage,
     ];

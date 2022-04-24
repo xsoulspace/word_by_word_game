@@ -23,11 +23,19 @@ class GameNavigatorPageBuilder
     );
   }
 
+  Page wordWriter() {
+    return NavigatorMaterialPage(
+      key: _homeKey,
+      popper: popper,
+      child: const GameWordWriterScreen(),
+    );
+  }
+
   Page pauseMenu() {
     return NavigatorMaterialPage(
       key: _pauseMenuKey,
       popper: popper,
-      child: const SettingsScreen(),
+      child: const PauseMenuScreen(),
     );
   }
 }

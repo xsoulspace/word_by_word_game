@@ -16,8 +16,7 @@ class GameNavigatorLayoutBuilder
     return [
       if (pathTemplate.startsWith(GlobalRouteNames.home)) ...[
         pageBuilder.bookShelf(),
-        if (pathTemplate == GlobalRouteNames.gamePauseMenu)
-          pageBuilder.pauseMenu()
+        if (pathTemplate.contains('pause')) pageBuilder.pauseMenu()
       ] else
         GameNavigatorPageBuilder.emptyPage,
     ];
