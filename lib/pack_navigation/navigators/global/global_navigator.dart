@@ -11,7 +11,7 @@ class GlobalNavigator extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return NavigatorScaffold(
+    return NavigationScaffold(
       navigatorKey: navigatorKey,
       layoutBuilderConstructor: GameNavigatorLayoutBuilder.new,
       pageBuilderConstructor: GameNavigatorPageBuilder.new,

@@ -2,12 +2,12 @@ part of pack_navigation;
 
 /// Builds the top-level navigator for the app. The pages to display are based
 /// on the `routeState` that was parsed by the TemplateRouteParser.
-class NavigatorScaffold<
+class NavigationScaffold<
     TPopper extends AbstractNavigatorPopper,
     TPageBuilder extends AbstractNavigatorPageBuilder<TPopper>,
     TLayoutBuilder extends AbstractNavigatorLayoutBuilder<TPageBuilder,
         TPopper>> extends StatelessWidget {
-  const NavigatorScaffold({
+  const NavigationScaffold({
     required this.navigatorKey,
     required this.routeState,
     required this.layoutBuilderConstructor,
