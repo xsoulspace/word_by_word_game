@@ -39,7 +39,6 @@ class AppStateProvider extends StatelessWidget {
             initializer: GlobalStateInitializer(
               settings: _settings,
               runtimeGameNotifier: context.read(),
-              gameService: context.read(),
             ),
             loader: const GameLoadingScreen(),
             child: builder(context),

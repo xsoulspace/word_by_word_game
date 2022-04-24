@@ -17,7 +17,7 @@ class _GameScaffoldState extends State<GameScaffold> {
   void initState() {
     /// Configure the parser with all of the app's allowed path templates.
     routeParser = TemplateRouteParser(
-      allowedPaths: GameRouteNames.values,
+      allowedPaths: GlobalRouteNames.values,
       guards: [],
     );
 

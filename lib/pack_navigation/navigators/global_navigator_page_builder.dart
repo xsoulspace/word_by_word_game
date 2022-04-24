@@ -12,7 +12,7 @@ class GameNavigatorPageBuilder implements AbstractNavigatorPageBuilder {
   @override
   final BuildContext context;
 
-  static const _homeKey = ValueKey(GameRouteNames.home);
+  static const _homeKey = ValueKey(GlobalRouteNames.home);
   Page bookShelf() {
     return NavigatorMaterialPage(
       key: _homeKey,

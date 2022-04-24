@@ -1,11 +1,11 @@
 part of pack_navigation;
 
-/// Choose name from [GameRouteNames]
-typedef GameRouteName = String;
+/// Choose name from [GlobalRouteNames]
+typedef GlobalRouteName = String;
 
 /// !In case of new routes all routes should be added to values!
-class GameRouteNames {
-  GameRouteNames._();
+class GlobalRouteNames {
+  GlobalRouteNames._();
   static const home = '/';
 
   static const gameBookShelf = '/game/book-shelf';
