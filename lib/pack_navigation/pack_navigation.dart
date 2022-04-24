@@ -21,6 +21,7 @@ part '_utils/parser.dart';
 part '_utils/route_state.dart';
 part '_widgets/navigator_material_page.dart';
 part '_widgets/navigator_pop_scope.dart';
+part '_widgets/navigator_scaffold.dart';
 part 'navigators/global_navigator.dart';
 part 'navigators/global_navigator_controller.dart';
 part 'navigators/global_navigator_layout_builder.dart';

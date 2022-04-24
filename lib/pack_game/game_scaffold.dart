@@ -26,7 +26,7 @@ class _GameScaffoldState extends State<GameScaffold> {
     routerDelegate = SimpleRouterDelegate(
       routeState: routeState,
       navigatorKey: navigatorKey,
-      builder: (final context) => GameNavigator(
+      builder: (final context) => GlobalNavigator(
         navigatorKey: navigatorKey,
         routeState: routeState,
       ),

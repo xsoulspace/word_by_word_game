@@ -1,6 +1,9 @@
 part of pack_navigation;
 
-class GameNavigatorLayoutBuilder implements AbstractNavigatorLayoutBuilder {
+class GameNavigatorLayoutBuilder
+    implements
+        AbstractNavigatorLayoutBuilder<GameNavigatorPageBuilder,
+            GameNavigatorPopper> {
   GameNavigatorLayoutBuilder({
     required final this.pageBuilder,
   }) : popper = pageBuilder.popper;
@@ -19,10 +22,17 @@ class GameNavigatorLayoutBuilder implements AbstractNavigatorLayoutBuilder {
     ];
   }
 
+  @override
   List<Page> getLargeScreenPages() {
     return buildPages();
   }
 
+  @override
+  List<Page> getMediumScreenPages() {
+    return buildPages();
+  }
+
+  @override
   List<Page> getSmallScreenPages() {
     return buildPages();
   }

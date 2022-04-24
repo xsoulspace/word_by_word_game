@@ -1,6 +1,7 @@
 part of pack_navigation;
 
-class GameNavigatorPageBuilder implements AbstractNavigatorPageBuilder {
+class GameNavigatorPageBuilder
+    implements AbstractNavigatorPageBuilder<GameNavigatorPopper> {
   GameNavigatorPageBuilder({
     required final this.popper,
     required final this.context,
