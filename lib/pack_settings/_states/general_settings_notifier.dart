@@ -60,7 +60,8 @@ class GeneralSettingsNotifier extends ChangeNotifier implements Loadable {
   ThemeMode themeMode = ThemeMode.system;
 }
 
-/// Provides the current [GeneralSettingsNotifier] to descendent widgets in the tree.
+/// Provides the current [GeneralSettingsNotifier] to descendent widgets
+/// in the tree.
 class SettingsStateScope extends InheritedNotifier<GeneralSettingsNotifier> {
   const SettingsStateScope({
     required final GeneralSettingsNotifier notifier,

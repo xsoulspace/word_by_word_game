@@ -102,8 +102,10 @@ class SembastDb<TDbName extends Enum> implements LocalDbI<TDbName> {
   }
 
   @override
-  Future<void> remove(
-      {required final TDbName storeName, required final String id}) {
+  Future<void> remove({
+    required final TDbName storeName,
+    required final String id,
+  }) {
     return getStore(storeName).record(id).delete(db);
   }
 

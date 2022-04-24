@@ -10,7 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (tester) async {
+  testWidgets('Counter increments smoke test', (final tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const WordByWordGame());
 

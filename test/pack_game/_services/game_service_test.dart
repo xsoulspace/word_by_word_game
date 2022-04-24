@@ -44,6 +44,7 @@ void main() {
         [],
         (final books, final shelf) => [
           ...books,
+          // ignore: unused_result
           ...shelf.getAllBooks(),
         ],
       );
