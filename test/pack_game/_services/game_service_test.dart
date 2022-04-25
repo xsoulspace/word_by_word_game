@@ -1,24 +1,38 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
+import 'package:word_by_word_game/_utils/utils.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 
+import '../../_utils/local_db/local_db_helper.dart';
+
 void main() {
-  group('GameService', () {
-    const screenWidth = 600.0;
-    final profile = PlayerProfileModel(
-      id: '1',
-      colorValue: Colors.white.value,
-      name: '',
-      playedGames: const {},
-    );
-    final profileNotifier = ProfileNotifier(
-      profileService: ProfileService(),
-    )..profile = profile;
-    final GameServiceI gameService = GameService(
+  late LocalDbI localDb;
+  late GameServiceI gameService;
+
+  const screenWidth = 600.0;
+  final profile = PlayerProfileModel(
+    id: '1',
+    colorValue: Colors.white.value,
+    name: '',
+    playedGames: const {},
+  );
+
+  final profileNotifier = ProfileNotifier(
+    profileService: ProfileService(),
+  )..profile = profile;
+
+  setUpAll(() async {
+    localDb = await SembastDbHelper<DbStore>().setup();
+
+    gameService = GameService(
+      gameLocalApiService: GameLocalApiService(localDb: localDb),
       profileNotifier: profileNotifier,
     );
+  });
+
+  group('GameService', () {
     test('can create a game with book shelves & slots & books', () async {
       final GameModel newGame = await gameService.createGame(
         screenWidth: screenWidth,
