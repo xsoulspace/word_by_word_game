@@ -12,6 +12,7 @@ import 'package:word_by_word_game/pack_navigation/pack_navigation.dart';
 import 'package:word_by_word_game/pack_preloaders/pack_preloaders.dart';
 import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 
+part '_services/game_local_api_service.dart';
 part '_services/game_service.dart';
 part '_services/game_service_i.dart';
 part '_states/runtime_game_notifier.dart';

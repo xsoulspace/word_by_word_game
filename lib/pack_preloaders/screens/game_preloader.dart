@@ -22,12 +22,22 @@ class AppStateProvider extends StatelessWidget {
             profileService: context.read(),
           ),
         ),
+        FutureProvider<LocalDbI<DbStore>?>(
+          initialData: null,
+          create: (final context) async => SembastDb.init(),
+        ),
+        Provider<GameLocalApiService>(
+          create: (final context) => GameLocalApiService(
+            localDb: context.read(),
+          ),
+        ),
         Provider<GameServiceI>(
           create: (final context) => GameService(
             profileNotifier: context.read(),
+            gameLocalApiService: context.read(),
           ),
         ),
-        Provider<RuntimeGameNotifier>(
+        ChangeNotifierProvider<RuntimeGameNotifier>(
           create: (final context) => RuntimeGameNotifier(
             gameService: context.read(),
           ),

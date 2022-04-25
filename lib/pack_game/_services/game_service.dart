@@ -3,10 +3,15 @@ part of pack_game;
 class GameService implements GameServiceI {
   GameService({
     required this.profileNotifier,
+    required this.gameLocalApiService,
   });
   @override
   final ProfileNotifierI profileNotifier;
+  @override
+  final GameLocalApiService gameLocalApiService;
+
   final _gameGenerator = GameGenerator.init();
+
   @override
   Future<GameModel> createGame({
     required final double screenWidth,
@@ -24,15 +29,13 @@ class GameService implements GameServiceI {
 
   @override
   Future<GameModel?> loadGame() async {
-    // TODO: implement loadGame
-    throw UnimplementedError();
+    return gameLocalApiService.loadLastGame();
   }
 
   @override
   Future<void> saveGame({
     required final GameModel game,
-  }) {
-    // TODO: implement saveGame
-    throw UnimplementedError();
+  }) async {
+    await gameLocalApiService.saveGame(game: game);
   }
 }

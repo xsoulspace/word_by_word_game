@@ -12,7 +12,7 @@ class GameScaffold extends HookWidget {
     return GameLoader(
       builder: (final context) => GameNavigator(
         navigatorKey: navigatorKey.value,
-        routeState: context.read(),
+        routeState: RouteStateScope.of(context),
       ),
     );
   }
