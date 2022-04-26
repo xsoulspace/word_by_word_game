@@ -18,7 +18,7 @@ class BookShelfLevelModel with _$BookShelfLevelModel {
     /// In case if [GamePlayerModel] took new book, the book
     /// should be transfered to his list of books
     required final List<BookShelfModel> shelves,
-    required final Map<PlayerProfileModelId, GamePlayerModel> players,
+    required final LevelPlayers players,
   }) = _BookShelfLevelModel;
   const BookShelfLevelModel._();
   factory BookShelfLevelModel.fromJson(final Map<String, dynamic> json) =>

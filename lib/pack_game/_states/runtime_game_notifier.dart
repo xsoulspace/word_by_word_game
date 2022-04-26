@@ -27,4 +27,13 @@ class RuntimeGameNotifier extends ChangeNotifier implements Loadable {
     }
     notifyListeners();
   }
+
+  Future<void> updateGame({
+    required final GameModel game,
+    final bool notifyListeners = false,
+  }) async {
+    this.game = game;
+    await gameService.saveGame(game: game);
+    if (notifyListeners) notify();
+  }
 }

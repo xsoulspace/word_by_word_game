@@ -1,6 +1,7 @@
 part of abstract;
 
 typedef GameModelId = String;
+typedef LevelPlayers = Map<PlayerProfileModelId, GamePlayerModel>;
 
 @immutable
 @Freezed(
