@@ -12,23 +12,9 @@ class GameNavigatorPopper extends NavigatorDataProvider
 
   @override
   Future<bool> handleWillPop() async {
-    switch (pathTemplate) {
-      case GlobalRouteNames.settings:
-      case GlobalRouteNames.generalSettings:
-        navigatorController.goHome();
-        break;
-      case GlobalRouteNames.subscription:
-      case GlobalRouteNames.changelog:
-      case GlobalRouteNames.profile:
-        if (navigatorController.screenLayout.small) {
-          navigatorController.goSettings();
-        } else {
-          navigatorController.goHome();
-        }
-        break;
-      case GlobalRouteNames.home:
+    if (pathTemplate.contains('pause')) {
+      navigatorController.goHome();
     }
-
     return false;
   }
 

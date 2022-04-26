@@ -3,9 +3,11 @@ part of pack_preloaders;
 class AppStateProvider extends StatelessWidget {
   const AppStateProvider({
     required final this.builder,
+    required final this.db,
     final Key? key,
   }) : super(key: key);
   final WidgetBuilder builder;
+  final LocalDbI<DbStore> db;
   GeneralSettingsNotifier get _settings => GlobalStateNotifiers.settings;
   @override
   Widget build(final BuildContext context) {
@@ -22,13 +24,12 @@ class AppStateProvider extends StatelessWidget {
             profileService: context.read(),
           ),
         ),
-        FutureProvider<LocalDbI<DbStore>?>(
-          initialData: null,
-          create: (final context) async => SembastDb.init(),
+        Provider<LocalDbI<DbStore>>(
+          create: (final context) => db,
         ),
         Provider<GameLocalApiService>(
           create: (final context) => GameLocalApiService(
-            localDb: context.read(),
+            localDb: context.read<LocalDbI<DbStore>>(),
           ),
         ),
         Provider<GameServiceI>(
@@ -40,6 +41,7 @@ class AppStateProvider extends StatelessWidget {
         ChangeNotifierProvider<RuntimeGameNotifier>(
           create: (final context) => RuntimeGameNotifier(
             gameService: context.read(),
+            profileNotifier: context.read(),
           ),
         ),
       ],
@@ -56,6 +58,7 @@ class AppStateProvider extends StatelessWidget {
         },
       ),
     );
+
     if (isNativeDesktop) {
       return child;
     }

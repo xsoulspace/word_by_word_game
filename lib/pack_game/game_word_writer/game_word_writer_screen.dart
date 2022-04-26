@@ -6,7 +6,11 @@ class GameWordWriterScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = useGameWordWriterScreenState();
-    final navigatorController = context.read<GlobalNavigatorController>();
+    final navigatorController = GlobalNavigatorController.use(
+      routeState: context.read(),
+      context: context,
+      screenLayout: ScreenLayout.of(context),
+    );
     return Scaffold(
       appBar: const UpperGameBar(),
       body: Column(

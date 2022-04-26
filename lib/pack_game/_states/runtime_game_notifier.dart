@@ -3,9 +3,11 @@ part of pack_game;
 class RuntimeGameNotifier extends ChangeNotifier implements Loadable {
   RuntimeGameNotifier({
     required this.gameService,
+    required this.profileNotifier,
   });
   final GameServiceI gameService;
-
+  final ProfileNotifierI profileNotifier;
+  final GameGenerator gameGenerator = GameGenerator.init();
   GameModel game = GameModel.empty;
 
   @override
@@ -13,6 +15,15 @@ class RuntimeGameNotifier extends ChangeNotifier implements Loadable {
     final gameSave = await gameService.loadGame();
     if (gameSave != null) {
       game = gameSave;
+    } else {
+      final profile = profileNotifier.profile;
+      final hostPlayerId = profile.id;
+      game = gameGenerator.createGame(
+        levelKinds: [GameLevelKind.bookShelf],
+        players: {hostPlayerId: profile.toNewGameProfile()},
+        hostPlayerId: hostPlayerId,
+        screenWidth: ScreenLayout.maxSmallWidth,
+      );
     }
     notifyListeners();
   }

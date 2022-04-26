@@ -3,8 +3,8 @@ part of pack_navigation;
 @immutable
 class GlobalNavigatorController {
   const GlobalNavigatorController.use({
-    required final this.routeState,
-    required final this.context,
+    required this.routeState,
+    required this.context,
     required this.screenLayout,
   });
   final RouteState routeState;
