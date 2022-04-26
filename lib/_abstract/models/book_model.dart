@@ -36,6 +36,7 @@ typedef BookModelId = String;
   copyWith: true,
 )
 class BookModel with _$BookModel {
+  @JsonSerializable(explicitToJson: true)
   const factory BookModel({
     required final BookModelId id,
     required final BookKind kind,

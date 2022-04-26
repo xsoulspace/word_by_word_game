@@ -171,7 +171,8 @@ class __$BookModelCopyWithImpl<$Res> extends _$BookModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
   const _$_BookModel(
       {required this.id,
@@ -418,7 +419,8 @@ class __$BookShelfLevelModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_BookShelfLevelModel extends _BookShelfLevelModel
     with DiagnosticableTreeMixin {
   const _$_BookShelfLevelModel(
@@ -633,7 +635,8 @@ class __$BookShelfModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
   const _$_BookShelfModel(
       {required this.width,
@@ -801,7 +804,8 @@ class __$BookShelfSlotModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_BookShelfSlotModel extends _BookShelfSlotModel
     with DiagnosticableTreeMixin {
   const _$_BookShelfSlotModel({required final List<BookModel> books})
@@ -1000,7 +1004,8 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
   const _$_GameModel(
       {required this.id,
@@ -1204,7 +1209,8 @@ class __$GamePlayerModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_GamePlayerModel extends _GamePlayerModel with DiagnosticableTreeMixin {
   const _$_GamePlayerModel(
       {required this.id, required final List<BookModel> books})
@@ -1398,7 +1404,8 @@ class __$PlayerProfileModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_PlayerProfileModel extends _PlayerProfileModel
     with DiagnosticableTreeMixin {
   const _$_PlayerProfileModel(
@@ -1595,7 +1602,8 @@ class __$ScoreModelCopyWithImpl<$Res> extends _$ScoreModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_ScoreModel extends _ScoreModel with DiagnosticableTreeMixin {
   const _$_ScoreModel({this.knowledgeCount = 0, this.lettersCount = 0})
       : super._();

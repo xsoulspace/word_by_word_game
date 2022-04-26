@@ -12,6 +12,7 @@ typedef GameKnowledge = int;
   copyWith: true,
 )
 class ScoreModel with _$ScoreModel {
+  @JsonSerializable(explicitToJson: true)
   const factory ScoreModel({
     @Default(0) final int knowledgeCount,
     @Default(0) final int lettersCount,

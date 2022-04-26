@@ -9,6 +9,7 @@ part of abstract;
   copyWith: true,
 )
 class BookShelfLevelModel with _$BookShelfLevelModel {
+  @JsonSerializable(explicitToJson: true)
   const factory BookShelfLevelModel({
     required final String id,
 

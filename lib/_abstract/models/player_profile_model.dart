@@ -11,6 +11,7 @@ typedef PlayerProfileModelId = String;
   copyWith: true,
 )
 class PlayerProfileModel with _$PlayerProfileModel {
+  @JsonSerializable(explicitToJson: true)
   const factory PlayerProfileModel({
     required final PlayerProfileModelId id,
     required final int colorValue,

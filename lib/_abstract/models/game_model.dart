@@ -11,6 +11,7 @@ typedef GameModelId = String;
   copyWith: true,
 )
 class GameModel with _$GameModel {
+  @JsonSerializable(explicitToJson: true)
   const factory GameModel({
     required final GameModelId id,
     required final DateTime createdAt,

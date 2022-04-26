@@ -8,6 +8,7 @@ part of abstract;
   copyWith: true,
 )
 class BookShelfSlotModel with _$BookShelfSlotModel {
+  @JsonSerializable(explicitToJson: true)
   const factory BookShelfSlotModel({
     required final List<BookModel> books,
   }) = _BookShelfSlotModel;

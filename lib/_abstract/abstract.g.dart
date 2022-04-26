@@ -57,8 +57,8 @@ Map<String, dynamic> _$$_BookShelfLevelModelToJson(
         _$_BookShelfLevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'shelves': instance.shelves,
-      'players': instance.players,
+      'shelves': instance.shelves.map((e) => e.toJson()).toList(),
+      'players': instance.players.map((k, e) => MapEntry(k, e.toJson())),
     };
 
 _$_BookShelfModel _$$_BookShelfModelFromJson(Map<String, dynamic> json) =>
@@ -74,7 +74,7 @@ Map<String, dynamic> _$$_BookShelfModelToJson(_$_BookShelfModel instance) =>
     <String, dynamic>{
       'width': instance.width,
       'height': instance.height,
-      'slots': instance.slots,
+      'slots': instance.slots.map((e) => e.toJson()).toList(),
     };
 
 _$_BookShelfSlotModel _$$_BookShelfSlotModelFromJson(
@@ -88,7 +88,7 @@ _$_BookShelfSlotModel _$$_BookShelfSlotModelFromJson(
 Map<String, dynamic> _$$_BookShelfSlotModelToJson(
         _$_BookShelfSlotModel instance) =>
     <String, dynamic>{
-      'books': instance.books,
+      'books': instance.books.map((e) => e.toJson()).toList(),
     };
 
 _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
@@ -106,7 +106,8 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'createdAt': instance.createdAt.toIso8601String(),
-      'bookShelfLevels': instance.bookShelfLevels,
+      'bookShelfLevels':
+          instance.bookShelfLevels.map((e) => e.toJson()).toList(),
       'hostPlayerId': instance.hostPlayerId,
       'currentBookShelfLevelIndex': instance.currentBookShelfLevelIndex,
     };
@@ -122,7 +123,7 @@ _$_GamePlayerModel _$$_GamePlayerModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_GamePlayerModelToJson(_$_GamePlayerModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'books': instance.books,
+      'books': instance.books.map((e) => e.toJson()).toList(),
     };
 
 _$_PlayerProfileModel _$$_PlayerProfileModelFromJson(

@@ -9,6 +9,7 @@ part of abstract;
   copyWith: true,
 )
 class GamePlayerModel with _$GamePlayerModel {
+  @JsonSerializable(explicitToJson: true)
   const factory GamePlayerModel({
     required final PlayerProfileModelId id,
     required final List<BookModel> books,

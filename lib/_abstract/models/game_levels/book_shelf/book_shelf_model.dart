@@ -8,6 +8,7 @@ part of abstract;
   copyWith: true,
 )
 class BookShelfModel with _$BookShelfModel {
+  @JsonSerializable(explicitToJson: true)
   const factory BookShelfModel({
     required final double width,
     required final double height,
