@@ -105,7 +105,8 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
           .map((e) => BookShelfLevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       hostPlayerId: json['hostPlayerId'] as String,
-      lastWrittenWord: json['lastWrittenWord'] as String,
+      wordWriterState: WordWriterStateModel.fromJson(
+          json['wordWriterState'] as Map<String, dynamic>),
       currentPlayerId: json['currentPlayerId'] as String?,
       currentBookShelfLevelIndex:
           json['currentBookShelfLevelIndex'] as int? ?? 0,
@@ -118,7 +119,7 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'bookShelfLevels':
           instance.bookShelfLevels.map((e) => e.toJson()).toList(),
       'hostPlayerId': instance.hostPlayerId,
-      'lastWrittenWord': instance.lastWrittenWord,
+      'wordWriterState': instance.wordWriterState.toJson(),
       'currentPlayerId': instance.currentPlayerId,
       'currentBookShelfLevelIndex': instance.currentBookShelfLevelIndex,
     };
@@ -167,6 +168,24 @@ Map<String, dynamic> _$$_ScoreModelToJson(_$_ScoreModel instance) =>
     <String, dynamic>{
       'knowledgeCount': instance.knowledgeCount,
       'lettersCount': instance.lettersCount,
+    };
+
+_$_WordWriterContextModel _$$_WordWriterContextModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_WordWriterContextModel(
+      lastWord: json['lastWord'] as String,
+      leftPartOfWord: json['leftPartOfWord'] as String,
+      middlePartOfWord: json['middlePartOfWord'] as String,
+      rightPartOfWord: json['rightPartOfWord'] as String,
+    );
+
+Map<String, dynamic> _$$_WordWriterContextModelToJson(
+        _$_WordWriterContextModel instance) =>
+    <String, dynamic>{
+      'lastWord': instance.lastWord,
+      'leftPartOfWord': instance.leftPartOfWord,
+      'middlePartOfWord': instance.middlePartOfWord,
+      'rightPartOfWord': instance.rightPartOfWord,
     };
 
 LocalizedText _$LocalizedTextFromJson(Map<String, dynamic> json) =>

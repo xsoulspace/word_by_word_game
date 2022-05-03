@@ -1,7 +1,5 @@
 library abstract;
 
-import 'dart:collection';
-
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -23,3 +21,4 @@ part 'models/game_player_model.dart';
 part 'models/game_word_model.dart';
 part 'models/player_profile_model.dart';
 part 'models/score_model.dart';
+part 'models/word_writer_state_model.dart';

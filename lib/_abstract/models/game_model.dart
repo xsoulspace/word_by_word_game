@@ -18,7 +18,7 @@ class GameModel with _$GameModel {
     required final DateTime createdAt,
     required final List<BookShelfLevelModel> bookShelfLevels,
     required final PlayerProfileModelId hostPlayerId,
-    required final GameWordModel lastWrittenWord,
+    required final WordWriterStateModel wordWriterState,
     final PlayerProfileModelId? currentPlayerId,
     @Default(0) final int currentBookShelfLevelIndex,
   }) = _GameModel;
@@ -31,7 +31,7 @@ class GameModel with _$GameModel {
     required final List<BookShelfLevelModel> bookShelfLevels,
   }) =>
       GameModel(
-        lastWrittenWord: '',
+        wordWriterState: WordWriterStateModel.empty(),
         hostPlayerId: hostPlayerId,
         bookShelfLevels: bookShelfLevels,
         createdAt: DateTime.now(),
@@ -40,7 +40,7 @@ class GameModel with _$GameModel {
       );
 
   static final empty = GameModel(
-    lastWrittenWord: '',
+    wordWriterState: WordWriterStateModel.empty(),
     createdAt: DateTime.now(),
     hostPlayerId: '0',
     id: '0',

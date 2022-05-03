@@ -11,12 +11,14 @@ class GameWordWriterScreen extends HookWidget {
       context: context,
       screenLayout: ScreenLayout.of(context),
     );
+
     return Scaffold(
       appBar: const UpperGameBar(),
       body: Column(
         children: [
           const WordCompositionRow(),
-          Text('will add ${state.lettersCounter}'),
+          Text('will add ${state.lettersCount}'),
+          const SizedBox(height: 24),
           OutlinedButton(
             onPressed: navigatorController.goBookShelf,
             child: const Text('Choose books'),

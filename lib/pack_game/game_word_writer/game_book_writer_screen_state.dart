@@ -28,7 +28,7 @@ class GameWordWriterScreenState implements LifeState {
 
   String get fullWord =>
       '${firstPartController.text}${secondPartController.text}';
-  int get lettersCounter => fullWord.length;
+  int get lettersCount => fullWord.length;
 
   void onChooseBooks() {}
 }

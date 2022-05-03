@@ -977,7 +977,8 @@ mixin _$GameModel {
   List<BookShelfLevelModel> get bookShelfLevels =>
       throw _privateConstructorUsedError;
   String get hostPlayerId => throw _privateConstructorUsedError;
-  String get lastWrittenWord => throw _privateConstructorUsedError;
+  WordWriterStateModel get wordWriterState =>
+      throw _privateConstructorUsedError;
   String? get currentPlayerId => throw _privateConstructorUsedError;
   int get currentBookShelfLevelIndex => throw _privateConstructorUsedError;
 
@@ -996,9 +997,11 @@ abstract class $GameModelCopyWith<$Res> {
       DateTime createdAt,
       List<BookShelfLevelModel> bookShelfLevels,
       String hostPlayerId,
-      String lastWrittenWord,
+      WordWriterStateModel wordWriterState,
       String? currentPlayerId,
       int currentBookShelfLevelIndex});
+
+  $WordWriterStateModelCopyWith<$Res> get wordWriterState;
 }
 
 /// @nodoc
@@ -1015,7 +1018,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? createdAt = freezed,
     Object? bookShelfLevels = freezed,
     Object? hostPlayerId = freezed,
-    Object? lastWrittenWord = freezed,
+    Object? wordWriterState = freezed,
     Object? currentPlayerId = freezed,
     Object? currentBookShelfLevelIndex = freezed,
   }) {
@@ -1036,10 +1039,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.hostPlayerId
           : hostPlayerId // ignore: cast_nullable_to_non_nullable
               as String,
-      lastWrittenWord: lastWrittenWord == freezed
-          ? _value.lastWrittenWord
-          : lastWrittenWord // ignore: cast_nullable_to_non_nullable
-              as String,
+      wordWriterState: wordWriterState == freezed
+          ? _value.wordWriterState
+          : wordWriterState // ignore: cast_nullable_to_non_nullable
+              as WordWriterStateModel,
       currentPlayerId: currentPlayerId == freezed
           ? _value.currentPlayerId
           : currentPlayerId // ignore: cast_nullable_to_non_nullable
@@ -1049,6 +1052,13 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           : currentBookShelfLevelIndex // ignore: cast_nullable_to_non_nullable
               as int,
     ));
+  }
+
+  @override
+  $WordWriterStateModelCopyWith<$Res> get wordWriterState {
+    return $WordWriterStateModelCopyWith<$Res>(_value.wordWriterState, (value) {
+      return _then(_value.copyWith(wordWriterState: value));
+    });
   }
 }
 
@@ -1063,9 +1073,12 @@ abstract class _$GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       DateTime createdAt,
       List<BookShelfLevelModel> bookShelfLevels,
       String hostPlayerId,
-      String lastWrittenWord,
+      WordWriterStateModel wordWriterState,
       String? currentPlayerId,
       int currentBookShelfLevelIndex});
+
+  @override
+  $WordWriterStateModelCopyWith<$Res> get wordWriterState;
 }
 
 /// @nodoc
@@ -1083,7 +1096,7 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? createdAt = freezed,
     Object? bookShelfLevels = freezed,
     Object? hostPlayerId = freezed,
-    Object? lastWrittenWord = freezed,
+    Object? wordWriterState = freezed,
     Object? currentPlayerId = freezed,
     Object? currentBookShelfLevelIndex = freezed,
   }) {
@@ -1104,10 +1117,10 @@ class __$GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.hostPlayerId
           : hostPlayerId // ignore: cast_nullable_to_non_nullable
               as String,
-      lastWrittenWord: lastWrittenWord == freezed
-          ? _value.lastWrittenWord
-          : lastWrittenWord // ignore: cast_nullable_to_non_nullable
-              as String,
+      wordWriterState: wordWriterState == freezed
+          ? _value.wordWriterState
+          : wordWriterState // ignore: cast_nullable_to_non_nullable
+              as WordWriterStateModel,
       currentPlayerId: currentPlayerId == freezed
           ? _value.currentPlayerId
           : currentPlayerId // ignore: cast_nullable_to_non_nullable
@@ -1129,7 +1142,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
       required this.createdAt,
       required final List<BookShelfLevelModel> bookShelfLevels,
       required this.hostPlayerId,
-      required this.lastWrittenWord,
+      required this.wordWriterState,
       this.currentPlayerId,
       this.currentBookShelfLevelIndex = 0})
       : _bookShelfLevels = bookShelfLevels,
@@ -1152,7 +1165,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
   @override
   final String hostPlayerId;
   @override
-  final String lastWrittenWord;
+  final WordWriterStateModel wordWriterState;
   @override
   final String? currentPlayerId;
   @override
@@ -1161,7 +1174,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'GameModel(id: $id, createdAt: $createdAt, bookShelfLevels: $bookShelfLevels, hostPlayerId: $hostPlayerId, lastWrittenWord: $lastWrittenWord, currentPlayerId: $currentPlayerId, currentBookShelfLevelIndex: $currentBookShelfLevelIndex)';
+    return 'GameModel(id: $id, createdAt: $createdAt, bookShelfLevels: $bookShelfLevels, hostPlayerId: $hostPlayerId, wordWriterState: $wordWriterState, currentPlayerId: $currentPlayerId, currentBookShelfLevelIndex: $currentBookShelfLevelIndex)';
   }
 
   @override
@@ -1173,7 +1186,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('createdAt', createdAt))
       ..add(DiagnosticsProperty('bookShelfLevels', bookShelfLevels))
       ..add(DiagnosticsProperty('hostPlayerId', hostPlayerId))
-      ..add(DiagnosticsProperty('lastWrittenWord', lastWrittenWord))
+      ..add(DiagnosticsProperty('wordWriterState', wordWriterState))
       ..add(DiagnosticsProperty('currentPlayerId', currentPlayerId))
       ..add(DiagnosticsProperty(
           'currentBookShelfLevelIndex', currentBookShelfLevelIndex));
@@ -1191,7 +1204,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
             const DeepCollectionEquality()
                 .equals(other.hostPlayerId, hostPlayerId) &&
             const DeepCollectionEquality()
-                .equals(other.lastWrittenWord, lastWrittenWord) &&
+                .equals(other.wordWriterState, wordWriterState) &&
             const DeepCollectionEquality()
                 .equals(other.currentPlayerId, currentPlayerId) &&
             const DeepCollectionEquality().equals(
@@ -1206,7 +1219,7 @@ class _$_GameModel extends _GameModel with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(bookShelfLevels),
       const DeepCollectionEquality().hash(hostPlayerId),
-      const DeepCollectionEquality().hash(lastWrittenWord),
+      const DeepCollectionEquality().hash(wordWriterState),
       const DeepCollectionEquality().hash(currentPlayerId),
       const DeepCollectionEquality().hash(currentBookShelfLevelIndex));
 
@@ -1227,7 +1240,7 @@ abstract class _GameModel extends GameModel {
       required final DateTime createdAt,
       required final List<BookShelfLevelModel> bookShelfLevels,
       required final String hostPlayerId,
-      required final String lastWrittenWord,
+      required final WordWriterStateModel wordWriterState,
       final String? currentPlayerId,
       final int currentBookShelfLevelIndex}) = _$_GameModel;
   const _GameModel._() : super._();
@@ -1245,7 +1258,8 @@ abstract class _GameModel extends GameModel {
   @override
   String get hostPlayerId => throw _privateConstructorUsedError;
   @override
-  String get lastWrittenWord => throw _privateConstructorUsedError;
+  WordWriterStateModel get wordWriterState =>
+      throw _privateConstructorUsedError;
   @override
   String? get currentPlayerId => throw _privateConstructorUsedError;
   @override
@@ -1813,5 +1827,224 @@ abstract class _ScoreModel extends ScoreModel {
   @override
   @JsonKey(ignore: true)
   _$ScoreModelCopyWith<_ScoreModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+WordWriterStateModel _$WordWriterStateModelFromJson(Map<String, dynamic> json) {
+  return _WordWriterContextModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$WordWriterStateModel {
+  String get lastWord => throw _privateConstructorUsedError;
+  String get leftPartOfWord => throw _privateConstructorUsedError;
+  String get middlePartOfWord => throw _privateConstructorUsedError;
+  String get rightPartOfWord => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $WordWriterStateModelCopyWith<WordWriterStateModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WordWriterStateModelCopyWith<$Res> {
+  factory $WordWriterStateModelCopyWith(WordWriterStateModel value,
+          $Res Function(WordWriterStateModel) then) =
+      _$WordWriterStateModelCopyWithImpl<$Res>;
+  $Res call(
+      {String lastWord,
+      String leftPartOfWord,
+      String middlePartOfWord,
+      String rightPartOfWord});
+}
+
+/// @nodoc
+class _$WordWriterStateModelCopyWithImpl<$Res>
+    implements $WordWriterStateModelCopyWith<$Res> {
+  _$WordWriterStateModelCopyWithImpl(this._value, this._then);
+
+  final WordWriterStateModel _value;
+  // ignore: unused_field
+  final $Res Function(WordWriterStateModel) _then;
+
+  @override
+  $Res call({
+    Object? lastWord = freezed,
+    Object? leftPartOfWord = freezed,
+    Object? middlePartOfWord = freezed,
+    Object? rightPartOfWord = freezed,
+  }) {
+    return _then(_value.copyWith(
+      lastWord: lastWord == freezed
+          ? _value.lastWord
+          : lastWord // ignore: cast_nullable_to_non_nullable
+              as String,
+      leftPartOfWord: leftPartOfWord == freezed
+          ? _value.leftPartOfWord
+          : leftPartOfWord // ignore: cast_nullable_to_non_nullable
+              as String,
+      middlePartOfWord: middlePartOfWord == freezed
+          ? _value.middlePartOfWord
+          : middlePartOfWord // ignore: cast_nullable_to_non_nullable
+              as String,
+      rightPartOfWord: rightPartOfWord == freezed
+          ? _value.rightPartOfWord
+          : rightPartOfWord // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$WordWriterContextModelCopyWith<$Res>
+    implements $WordWriterStateModelCopyWith<$Res> {
+  factory _$WordWriterContextModelCopyWith(_WordWriterContextModel value,
+          $Res Function(_WordWriterContextModel) then) =
+      __$WordWriterContextModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String lastWord,
+      String leftPartOfWord,
+      String middlePartOfWord,
+      String rightPartOfWord});
+}
+
+/// @nodoc
+class __$WordWriterContextModelCopyWithImpl<$Res>
+    extends _$WordWriterStateModelCopyWithImpl<$Res>
+    implements _$WordWriterContextModelCopyWith<$Res> {
+  __$WordWriterContextModelCopyWithImpl(_WordWriterContextModel _value,
+      $Res Function(_WordWriterContextModel) _then)
+      : super(_value, (v) => _then(v as _WordWriterContextModel));
+
+  @override
+  _WordWriterContextModel get _value => super._value as _WordWriterContextModel;
+
+  @override
+  $Res call({
+    Object? lastWord = freezed,
+    Object? leftPartOfWord = freezed,
+    Object? middlePartOfWord = freezed,
+    Object? rightPartOfWord = freezed,
+  }) {
+    return _then(_WordWriterContextModel(
+      lastWord: lastWord == freezed
+          ? _value.lastWord
+          : lastWord // ignore: cast_nullable_to_non_nullable
+              as String,
+      leftPartOfWord: leftPartOfWord == freezed
+          ? _value.leftPartOfWord
+          : leftPartOfWord // ignore: cast_nullable_to_non_nullable
+              as String,
+      middlePartOfWord: middlePartOfWord == freezed
+          ? _value.middlePartOfWord
+          : middlePartOfWord // ignore: cast_nullable_to_non_nullable
+              as String,
+      rightPartOfWord: rightPartOfWord == freezed
+          ? _value.rightPartOfWord
+          : rightPartOfWord // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_WordWriterContextModel extends _WordWriterContextModel
+    with DiagnosticableTreeMixin {
+  const _$_WordWriterContextModel(
+      {required this.lastWord,
+      required this.leftPartOfWord,
+      required this.middlePartOfWord,
+      required this.rightPartOfWord})
+      : super._();
+
+  factory _$_WordWriterContextModel.fromJson(Map<String, dynamic> json) =>
+      _$$_WordWriterContextModelFromJson(json);
+
+  @override
+  final String lastWord;
+  @override
+  final String leftPartOfWord;
+  @override
+  final String middlePartOfWord;
+  @override
+  final String rightPartOfWord;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'WordWriterStateModel(lastWord: $lastWord, leftPartOfWord: $leftPartOfWord, middlePartOfWord: $middlePartOfWord, rightPartOfWord: $rightPartOfWord)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WordWriterStateModel'))
+      ..add(DiagnosticsProperty('lastWord', lastWord))
+      ..add(DiagnosticsProperty('leftPartOfWord', leftPartOfWord))
+      ..add(DiagnosticsProperty('middlePartOfWord', middlePartOfWord))
+      ..add(DiagnosticsProperty('rightPartOfWord', rightPartOfWord));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _WordWriterContextModel &&
+            const DeepCollectionEquality().equals(other.lastWord, lastWord) &&
+            const DeepCollectionEquality()
+                .equals(other.leftPartOfWord, leftPartOfWord) &&
+            const DeepCollectionEquality()
+                .equals(other.middlePartOfWord, middlePartOfWord) &&
+            const DeepCollectionEquality()
+                .equals(other.rightPartOfWord, rightPartOfWord));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(lastWord),
+      const DeepCollectionEquality().hash(leftPartOfWord),
+      const DeepCollectionEquality().hash(middlePartOfWord),
+      const DeepCollectionEquality().hash(rightPartOfWord));
+
+  @JsonKey(ignore: true)
+  @override
+  _$WordWriterContextModelCopyWith<_WordWriterContextModel> get copyWith =>
+      __$WordWriterContextModelCopyWithImpl<_WordWriterContextModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_WordWriterContextModelToJson(this);
+  }
+}
+
+abstract class _WordWriterContextModel extends WordWriterStateModel {
+  const factory _WordWriterContextModel(
+      {required final String lastWord,
+      required final String leftPartOfWord,
+      required final String middlePartOfWord,
+      required final String rightPartOfWord}) = _$_WordWriterContextModel;
+  const _WordWriterContextModel._() : super._();
+
+  factory _WordWriterContextModel.fromJson(Map<String, dynamic> json) =
+      _$_WordWriterContextModel.fromJson;
+
+  @override
+  String get lastWord => throw _privateConstructorUsedError;
+  @override
+  String get leftPartOfWord => throw _privateConstructorUsedError;
+  @override
+  String get middlePartOfWord => throw _privateConstructorUsedError;
+  @override
+  String get rightPartOfWord => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$WordWriterContextModelCopyWith<_WordWriterContextModel> get copyWith =>
       throw _privateConstructorUsedError;
 }

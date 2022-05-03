@@ -13,7 +13,7 @@ class WrittenWordsNotifier extends GameNotifier {
   }) {
     if (bookShelfLevel != null) {
       writtenWords.addAll(bookShelfLevel.writtenWords);
-      lastWord.value = game.lastWrittenWord;
+      lastWord.value = game.wordWriterState.lastWord;
     }
     notify();
   }
@@ -33,8 +33,8 @@ class WrittenWordsNotifier extends GameNotifier {
     notify();
 
     await updateGame(
-      game: _copyGame(
-        lastWrittenWord: word,
+      game: game.copyWith.wordWriterState(
+        lastWord: word,
       ),
     );
   }

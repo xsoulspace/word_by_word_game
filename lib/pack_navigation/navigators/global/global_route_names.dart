@@ -23,7 +23,7 @@ class GlobalRouteNames {
     if (path.contains('game')) {
       return '$path/pause';
     }
-    return '$gameBookShelf/pause';
+    return '$gameWordWriter/pause';
   }
 
   /// ********************************************
