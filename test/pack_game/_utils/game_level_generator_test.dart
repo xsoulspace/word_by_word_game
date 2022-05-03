@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
@@ -13,7 +14,7 @@ void main() {
       final gamePlayer = player.toNewGameProfile();
       final levelGenerator = GameLevelGenerator();
       final shelfLevels = levelGenerator.createBookShelfLevels(
-        players: {player.id: gamePlayer},
+        players: [gamePlayer],
         screenWidth: 600,
       );
 
@@ -21,7 +22,11 @@ void main() {
 
       final shelfLevel = shelfLevels.first;
       expect(shelfLevel.players.isNotEmpty, isTrue);
-      expect(shelfLevel.players[player.id], equals(gamePlayer));
+      expect(
+        shelfLevel.players
+            .firstWhereOrNull((final player) => player == gamePlayer),
+        isNotNull,
+      );
 
       expect(shelfLevel.shelves.isNotEmpty, isTrue);
     });

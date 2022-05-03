@@ -13,11 +13,13 @@ class GameNavigatorPageBuilder
   @override
   final BuildContext context;
 
-  static const _homeKey = ValueKey(GlobalRouteNames.home);
-  static const _pauseMenuKey = ValueKey(GlobalRouteNames.gamePauseMenu);
+  static const _bookShelfKey = ValueKey(GlobalRouteNames.gameBookShelf);
+  static const _pauseMenuKey =
+      ValueKey(GlobalRouteNames.gameBookShelfPauseMenu);
+  static const _wordWriterKey = ValueKey(GlobalRouteNames.gameWordWriter);
   Page bookShelf() {
     return NavigatorMaterialPage(
-      key: _homeKey,
+      key: _bookShelfKey,
       popper: popper,
       child: const GameBookShelfScreen(),
     );
@@ -25,7 +27,7 @@ class GameNavigatorPageBuilder
 
   Page wordWriter() {
     return NavigatorMaterialPage(
-      key: _homeKey,
+      key: _wordWriterKey,
       popper: popper,
       child: const GameWordWriterScreen(),
     );

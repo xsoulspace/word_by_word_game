@@ -93,7 +93,7 @@ class ScreenLayout {
   final BoxConstraints? constraints;
   static const maxFullscreenPageWidth = 500.0;
   static const minFullscreenPageWidth = 450.0;
-  static const maxSmallWidth = 700.0;
+  static const maxSmallWidth = 300.0;
   static const maxMediumWidth = 1000.0;
 
   Size get size {

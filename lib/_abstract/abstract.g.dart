@@ -49,10 +49,10 @@ _$_BookShelfLevelModel _$$_BookShelfLevelModelFromJson(
       shelves: (json['shelves'] as List<dynamic>)
           .map((e) => BookShelfModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      players: (json['players'] as Map<String, dynamic>).map(
-        (k, e) =>
-            MapEntry(k, GamePlayerModel.fromJson(e as Map<String, dynamic>)),
-      ),
+      writtenWords: Map<String, String>.from(json['writtenWords'] as Map),
+      players: (json['players'] as List<dynamic>)
+          .map((e) => GamePlayerModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$_BookShelfLevelModelToJson(
@@ -60,7 +60,8 @@ Map<String, dynamic> _$$_BookShelfLevelModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'shelves': instance.shelves.map((e) => e.toJson()).toList(),
-      'players': instance.players.map((k, e) => MapEntry(k, e.toJson())),
+      'writtenWords': instance.writtenWords,
+      'players': instance.players.map((e) => e.toJson()).toList(),
     };
 
 _$_BookShelfModel _$$_BookShelfModelFromJson(Map<String, dynamic> json) =>
@@ -104,6 +105,8 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
           .map((e) => BookShelfLevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       hostPlayerId: json['hostPlayerId'] as String,
+      lastWrittenWord: json['lastWrittenWord'] as String,
+      currentPlayerId: json['currentPlayerId'] as String?,
       currentBookShelfLevelIndex:
           json['currentBookShelfLevelIndex'] as int? ?? 0,
     );
@@ -115,6 +118,8 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'bookShelfLevels':
           instance.bookShelfLevels.map((e) => e.toJson()).toList(),
       'hostPlayerId': instance.hostPlayerId,
+      'lastWrittenWord': instance.lastWrittenWord,
+      'currentPlayerId': instance.currentPlayerId,
       'currentBookShelfLevelIndex': instance.currentBookShelfLevelIndex,
     };
 

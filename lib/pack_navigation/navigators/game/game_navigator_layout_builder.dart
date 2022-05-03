@@ -14,11 +14,15 @@ class GameNavigatorLayoutBuilder
 
   List<Page> buildPages() {
     return [
+      GameNavigatorPageBuilder.emptyPage,
       if (pathTemplate.startsWith(GlobalRouteNames.home)) ...[
-        pageBuilder.bookShelf(),
+        if (pathTemplate == GlobalRouteNames.home ||
+            pathTemplate == GlobalRouteNames.gameWordWriter)
+          pageBuilder.wordWriter()
+        else if (pathTemplate == GlobalRouteNames.gameBookShelf)
+          pageBuilder.bookShelf(),
         if (pathTemplate.contains('pause')) pageBuilder.pauseMenu()
-      ] else
-        GameNavigatorPageBuilder.emptyPage,
+      ]
     ];
   }
 

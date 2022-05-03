@@ -1,7 +1,7 @@
 part of abstract;
 
 typedef GameModelId = String;
-typedef LevelPlayers = Map<PlayerProfileModelId, GamePlayerModel>;
+typedef LevelPlayers = List<GamePlayerModel>;
 
 @immutable
 @Freezed(
@@ -18,6 +18,8 @@ class GameModel with _$GameModel {
     required final DateTime createdAt,
     required final List<BookShelfLevelModel> bookShelfLevels,
     required final PlayerProfileModelId hostPlayerId,
+    required final GameWordModel lastWrittenWord,
+    final PlayerProfileModelId? currentPlayerId,
     @Default(0) final int currentBookShelfLevelIndex,
   }) = _GameModel;
   const GameModel._();
@@ -29,6 +31,7 @@ class GameModel with _$GameModel {
     required final List<BookShelfLevelModel> bookShelfLevels,
   }) =>
       GameModel(
+        lastWrittenWord: '',
         hostPlayerId: hostPlayerId,
         bookShelfLevels: bookShelfLevels,
         createdAt: DateTime.now(),
@@ -37,6 +40,7 @@ class GameModel with _$GameModel {
       );
 
   static final empty = GameModel(
+    lastWrittenWord: '',
     createdAt: DateTime.now(),
     hostPlayerId: '0',
     id: '0',

@@ -19,10 +19,8 @@ class PauseMenuScreen extends HookWidget {
       appBar: PauseAppBar(
         onMenuTap: navigatorController.goMenu,
       ),
-      body: GestureDetector(
-        onTap: () {
-          Navigator.pop(context);
-        },
+      body: InkWell(
+        onTap: navigatorController.goBackFromPauseMenu,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
@@ -34,7 +32,6 @@ class PauseMenuScreen extends HookWidget {
             const Spacer(),
             TextButton(
               onPressed: () {
-                //
                 // navigatorController.go
               },
               child: const Padding(
@@ -59,21 +56,26 @@ class PauseAppBar extends StatelessWidget implements PreferredSizeWidget {
   }) : super(key: key);
   final VoidCallback onMenuTap;
   @override
-  Size get preferredSize => const Size(double.infinity, 150.0);
+  Size get preferredSize => const Size(double.infinity, 70.0);
 
   @override
   Widget build(final BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        TextButton(
-          onPressed: onMenuTap,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: const [
-              Icon(Icons.settings),
-              Text('Menu'),
-            ],
+        Expanded(
+          child: TextButton(
+            onPressed: onMenuTap,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: const [
+                SizedBox(
+                  height: double.infinity,
+                ),
+                Icon(Icons.settings),
+                Text('Menu'),
+              ],
+            ),
           ),
         ),
       ],

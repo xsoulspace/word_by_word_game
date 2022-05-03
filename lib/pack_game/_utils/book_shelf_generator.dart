@@ -109,8 +109,7 @@ class BookShelfGenerator {
         }
       }
     }
-    return BookShelfModel(
-      id: IdCreator.create(),
+    return BookShelfModel.create(
       width: screenWidth,
       height: slots.fold(
         shelfHeight,

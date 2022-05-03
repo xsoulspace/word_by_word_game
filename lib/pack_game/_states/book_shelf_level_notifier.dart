@@ -3,7 +3,22 @@ part of pack_game;
 class BookShelfLevelNotifier extends LevelNotifier {
   BookShelfLevelNotifier({
     required final RuntimeGameNotifier runtimeGameNotifier,
-  }) : super(runtimeGameNotifier: runtimeGameNotifier);
+    required final WrittenWordsNotifier writtenWordsNotifier,
+  }) : super(
+          runtimeGameNotifier: runtimeGameNotifier,
+          writtenWordsNotifier: writtenWordsNotifier,
+        );
+
+  @override
+  Future<void> onLoad({required final BuildContext context}) {
+    _updateCurrentLevelParams();
+    return super.onLoad(context: context);
+  }
+
+  void _updateCurrentLevelParams() {
+    players.assignAll(_bookShelfLevelModel.players);
+    notify();
+  }
 
   int get currentLevelIndex => game.currentBookShelfLevelIndex;
   late BookShelfLevelModel _bookShelfLevelModel = getCurrentLevel();
@@ -11,8 +26,8 @@ class BookShelfLevelNotifier extends LevelNotifier {
   List<BookShelfModel> get shelves => _bookShelfLevelModel.shelves;
 
   @override
-  Future<void> addPlayer({required final PlayerProfileModel profile}) async {
-    super.addPlayer(profile: profile);
+  Future<void> addPlayer({required final PlayerProfileModel player}) async {
+    super.addPlayer(player: player);
   }
 
   Future<void> nextLevel() async {
@@ -40,12 +55,7 @@ class BookShelfLevelNotifier extends LevelNotifier {
     return game.bookShelfLevels[currentLevelIndex];
   }
 
-  void updateCurrentLevelParams() {
-    players.assignAll(_bookShelfLevelModel.players);
-    notify();
-  }
-
-  Future<int> addWordToBook({
+  Future<int> addWordLettersToBook({
     required final GamePlayerModel player,
     required final String word,
     required final BookModel book,
@@ -53,18 +63,27 @@ class BookShelfLevelNotifier extends LevelNotifier {
     final lettersCount = word.length;
     int applyingCount = 0;
     final lettersLeft = book.lettersCount - lettersCount;
+
     if (lettersLeft <= 0) {
       applyingCount = book.lettersCount;
     } else {
       applyingCount = lettersCount;
     }
+
     final updatedBook = book.copyWith(
       playersInvestments: book.updatePlayerInvestments(
         gamePlayer: player,
         letterCount: applyingCount,
       ),
     );
-    // TODO(arenukvern): update level
+
+    final updatedLevel = BookUpdater(
+      book: book,
+      level: _bookShelfLevelModel,
+    ).updateBook(book: updatedBook);
+
+    await updateCurrentLevel(level: updatedLevel);
+
     return lettersLeft;
   }
 

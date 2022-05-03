@@ -26,10 +26,22 @@ class BookShelfModel with _$BookShelfModel {
     required final double height,
   }) =>
       BookShelfModel(
-        id: '',
+        id: IdCreator.create(),
         height: height,
         width: width,
         slots: [],
+      );
+
+  factory BookShelfModel.create({
+    required final double width,
+    required final double height,
+    required final List<BookShelfSlotModel> slots,
+  }) =>
+      BookShelfModel(
+        id: IdCreator.create(),
+        height: height,
+        width: width,
+        slots: slots,
       );
   @useResult
   List<BookModel> getAllBooks() => slots.fold<List<BookModel>>(

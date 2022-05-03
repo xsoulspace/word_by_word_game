@@ -13,7 +13,7 @@ class GameGenerator {
 
   GameModel createGame({
     required final List<GameLevelKind> levelKinds,
-    required final Map<PlayerProfileModelId, GamePlayerModel> players,
+    required final List<GamePlayerModel> players,
     required final PlayerProfileModelId hostPlayerId,
     required final double screenWidth,
   }) {

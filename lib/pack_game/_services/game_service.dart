@@ -22,7 +22,7 @@ class GameService implements GameServiceI {
       levelKinds: [
         GameLevelKind.bookShelf,
       ],
-      players: {},
+      players: [profile.toNewGameProfile()],
       hostPlayerId: profile.id,
     );
   }

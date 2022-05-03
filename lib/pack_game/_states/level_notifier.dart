@@ -3,8 +3,10 @@ part of pack_game;
 abstract class LevelNotifier extends ChangeNotifier implements Loadable {
   LevelNotifier({
     required this.runtimeGameNotifier,
+    required this.writtenWordsNotifier,
   });
   final RuntimeGameNotifier runtimeGameNotifier;
+  final WrittenWordsNotifier writtenWordsNotifier;
 
   @override
   Future<void> onLoad({required final BuildContext context}) async {}
@@ -22,12 +24,14 @@ abstract class LevelNotifier extends ChangeNotifier implements Loadable {
 
   GameModel get game => runtimeGameNotifier.game;
 
-  final players = {};
+  /// Order is important, because the order of players
+  /// means order of turns.
+  final players = <GamePlayerModel>[];
 
   /// Call super first
   @mustCallSuper
-  void addPlayer({required final PlayerProfileModel profile}) {
-    players[profile.id] = profile;
+  void addPlayer({required final PlayerProfileModel player}) {
+    players.add(player.toNewGameProfile());
     notifyListeners();
   }
 }

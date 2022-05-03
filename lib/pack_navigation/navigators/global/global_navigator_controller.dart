@@ -20,6 +20,10 @@ class GlobalNavigatorController {
   void goPauseMenu() => routeState.go(
         GlobalRouteNames.getPauseMenu(routeState: routeState),
       );
+  void goBackFromPauseMenu() {
+    final newPath = routeState.route.path.replaceAll('/pause', '');
+    routeState.go(newPath);
+  }
 
   void goAppInfo() => routeState.go(GlobalRouteNames.appInfo);
 }

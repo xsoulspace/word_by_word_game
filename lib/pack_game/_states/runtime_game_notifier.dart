@@ -20,7 +20,7 @@ class RuntimeGameNotifier extends ChangeNotifier implements Loadable {
       final hostPlayerId = profile.id;
       game = gameGenerator.createGame(
         levelKinds: [GameLevelKind.bookShelf],
-        players: {hostPlayerId: profile.toNewGameProfile()},
+        players: [profile.toNewGameProfile()],
         hostPlayerId: hostPlayerId,
         screenWidth: ScreenLayout.maxSmallWidth,
       );

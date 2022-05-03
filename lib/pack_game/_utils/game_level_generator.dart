@@ -15,7 +15,7 @@ class GameLevelGenerator {
   /// 3. For each shelf, fill slots with books.
   /// Filling from left to right, down to up
   List<BookShelfLevelModel> createBookShelfLevels({
-    required final Map<PlayerProfileModelId, GamePlayerModel> players,
+    required final List<GamePlayerModel> players,
     required final double screenWidth,
   }) {
     return [
