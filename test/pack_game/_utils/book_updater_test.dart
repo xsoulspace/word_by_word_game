@@ -56,5 +56,27 @@ void main() {
         equals(3),
       );
     });
+    test('can update book twice', () {
+      final bookUpdater = BookUpdater(book: poemBook, level: level);
+      BookModel updatedBook = poemBook.copyWith(
+        playersInvestments: poemBook.updatePlayerInvestments(
+          gamePlayer: _gamePlayer,
+          letterCount: 3,
+        ),
+      );
+      updatedBook = updatedBook.copyWith(
+        playersInvestments: updatedBook.updatePlayerInvestments(
+          gamePlayer: _gamePlayer,
+          letterCount: 4,
+        ),
+      );
+
+      final updatedLevel = bookUpdater.updateBook(book: updatedBook);
+      expect(
+        updatedLevel.shelves[shelfIndex].slots[slotIndex].books[bookIndex]
+            .playersInvestments[_gamePlayer.id],
+        equals(7),
+      );
+    });
   });
 }
