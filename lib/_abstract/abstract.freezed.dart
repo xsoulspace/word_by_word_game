@@ -1364,7 +1364,7 @@ mixin _$PlayerProfileModel {
   int get colorValue => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
 
-  /// The [GameKnowledge] and [GameLetter] will be counted
+  /// The [GameKnowledge] and [GameLetterCount] will be counted
   /// as highscore based on this [BookModel] list in [GameLevelModel]
   Set<String> get playedGames => throw _privateConstructorUsedError;
 
@@ -1491,11 +1491,11 @@ class _$_PlayerProfileModel extends _PlayerProfileModel
   @override
   final String name;
 
-  /// The [GameKnowledge] and [GameLetter] will be counted
+  /// The [GameKnowledge] and [GameLetterCount] will be counted
   /// as highscore based on this [BookModel] list in [GameLevelModel]
   final Set<String> _playedGames;
 
-  /// The [GameKnowledge] and [GameLetter] will be counted
+  /// The [GameKnowledge] and [GameLetterCount] will be counted
   /// as highscore based on this [BookModel] list in [GameLevelModel]
   @override
   Set<String> get playedGames {
@@ -1571,7 +1571,7 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
   String get name => throw _privateConstructorUsedError;
   @override
 
-  /// The [GameKnowledge] and [GameLetter] will be counted
+  /// The [GameKnowledge] and [GameLetterCount] will be counted
   /// as highscore based on this [BookModel] list in [GameLevelModel]
   Set<String> get playedGames => throw _privateConstructorUsedError;
   @override

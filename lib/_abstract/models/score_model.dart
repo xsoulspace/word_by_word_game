@@ -1,6 +1,6 @@
 part of abstract;
 
-typedef GameLetter = int;
+typedef GameLetterCount = int;
 typedef GameKnowledge = int;
 
 @immutable

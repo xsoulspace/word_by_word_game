@@ -25,7 +25,7 @@ enum BookAxis {
 typedef BookModelId = String;
 
 /// The book is an object that can be taken from the shelf
-/// only if [GamePlayerModel] has [GameLetter] equals to
+/// only if [GamePlayerModel] has [GameLetterCount] equals to
 /// [letterCount]
 @immutable
 @Freezed(
@@ -43,7 +43,8 @@ class BookModel with _$BookModel {
     required final BookModelId id,
     required final BookShelfSlotModelId slotId,
     required final BookKind kind,
-    required final Map<PlayerProfileModelId, GameLetter> playersInvestments,
+    required final Map<PlayerProfileModelId, GameLetterCount>
+        playersInvestments,
     required final double height,
     required final BookAxis axis,
     required final int lettersCount,
@@ -124,4 +125,17 @@ class BookModel with _$BookModel {
 
   /// 3 is a book count in book column
   static const maxShelfSlotHeight = scienceWidth * 3;
+
+  Map<PlayerProfileModelId, GameLetterCount> updatePlayerInvestments({
+    required final GamePlayerModel gamePlayer,
+    required final GameLetterCount letterCount,
+  }) {
+    final playerInvestments =
+        (playersInvestments[gamePlayer.id] ?? 0) + letterCount;
+
+    return {
+      ...playersInvestments,
+      gamePlayer.id: playerInvestments,
+    };
+  }
 }

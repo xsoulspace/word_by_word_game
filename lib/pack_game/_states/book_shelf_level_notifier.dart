@@ -59,9 +59,12 @@ class BookShelfLevelNotifier extends LevelNotifier {
       applyingCount = lettersCount;
     }
     final updatedBook = book.copyWith(
-      playersInvestments: {player.id: applyingCount},
+      playersInvestments: book.updatePlayerInvestments(
+        gamePlayer: player,
+        letterCount: applyingCount,
+      ),
     );
-    book.playersInvestments[player.id] = applyingCount;
+    // TODO(arenukvern): update level
     return lettersLeft;
   }
 

@@ -41,5 +41,20 @@ void main() {
       expect(bookUpdater.slotIndex, equals(slotIndex));
       expect(bookUpdater.shelfIndex, equals(shelfIndex));
     });
+    test('can update book', () {
+      final bookUpdater = BookUpdater(book: poemBook, level: level);
+      final updatedBook = poemBook.copyWith(
+        playersInvestments: poemBook.updatePlayerInvestments(
+          gamePlayer: _gamePlayer,
+          letterCount: 3,
+        ),
+      );
+      final updatedLevel = bookUpdater.updateBook(book: updatedBook);
+      expect(
+        updatedLevel.shelves[shelfIndex].slots[slotIndex].books[bookIndex]
+            .playersInvestments[_gamePlayer.id],
+        equals(3),
+      );
+    });
   });
 }
