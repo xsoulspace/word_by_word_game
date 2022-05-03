@@ -1,5 +1,7 @@
 part of abstract;
 
+typedef BookShelfModelId = String;
+
 @Freezed(
   fromJson: true,
   toJson: true,
@@ -10,6 +12,7 @@ part of abstract;
 class BookShelfModel with _$BookShelfModel {
   @JsonSerializable(explicitToJson: true)
   const factory BookShelfModel({
+    required final BookShelfModelId id,
     required final double width,
     required final double height,
     required final List<BookShelfSlotModel> slots,
@@ -23,6 +26,7 @@ class BookShelfModel with _$BookShelfModel {
     required final double height,
   }) =>
       BookShelfModel(
+        id: '',
         height: height,
         width: width,
         slots: [],

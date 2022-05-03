@@ -5,9 +5,10 @@ class BookShelfLevelNotifier extends LevelNotifier {
     required final RuntimeGameNotifier runtimeGameNotifier,
   }) : super(runtimeGameNotifier: runtimeGameNotifier);
 
-  late BookShelfLevelModel bookShelfLevelModel = getCurrentLevel();
-
   int get currentLevelIndex => game.currentBookShelfLevelIndex;
+  late BookShelfLevelModel _bookShelfLevelModel = getCurrentLevel();
+
+  List<BookShelfModel> get shelves => _bookShelfLevelModel.shelves;
 
   @override
   Future<void> addPlayer({required final PlayerProfileModel profile}) async {
@@ -20,6 +21,8 @@ class BookShelfLevelNotifier extends LevelNotifier {
     );
 
     await updateGame(game: updatedGame);
+    _bookShelfLevelModel = getCurrentLevel();
+    notify();
   }
 
   Future<void> updateCurrentLevel({
@@ -36,4 +39,33 @@ class BookShelfLevelNotifier extends LevelNotifier {
   BookShelfLevelModel getCurrentLevel() {
     return game.bookShelfLevels[currentLevelIndex];
   }
+
+  void updateCurrentLevelParams() {
+    players.assignAll(_bookShelfLevelModel.players);
+    notify();
+  }
+
+  Future<int> addWordToBook({
+    required final GamePlayerModel player,
+    required final String word,
+    required final BookModel book,
+  }) async {
+    final lettersCount = word.length;
+    int applyingCount = 0;
+    final lettersLeft = book.lettersCount - lettersCount;
+    if (lettersLeft <= 0) {
+      applyingCount = book.lettersCount;
+    } else {
+      applyingCount = lettersCount;
+    }
+    final updatedBook = book.copyWith(
+      playersInvestments: {player.id: applyingCount},
+    );
+    book.playersInvestments[player.id] = applyingCount;
+    return lettersLeft;
+  }
+
+  void updateBook({
+    required final BookModel book,
+  }) {}
 }

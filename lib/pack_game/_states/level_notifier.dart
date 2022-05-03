@@ -1,10 +1,13 @@
 part of pack_game;
 
-abstract class LevelNotifier extends ChangeNotifier {
+abstract class LevelNotifier extends ChangeNotifier implements Loadable {
   LevelNotifier({
     required this.runtimeGameNotifier,
   });
   final RuntimeGameNotifier runtimeGameNotifier;
+
+  @override
+  Future<void> onLoad({required final BuildContext context}) async {}
 
   /// ********************************************
   /// *      INHERITED FUNCTIONS START

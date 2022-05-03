@@ -90,7 +90,10 @@ class BookShelfGenerator {
 
       int bookLimit = bookLimitRandomer.next();
       for (int i = 0; i < booksCount; i++) {
-        final book = _bookGenerator.createBook(kind: bookKind);
+        final book = _bookGenerator.createBook(
+          kind: bookKind,
+          slotId: slot.id,
+        );
         slot = slot.copyWith(
           books: [...slot.books, book],
         );
@@ -107,6 +110,7 @@ class BookShelfGenerator {
       }
     }
     return BookShelfModel(
+      id: IdCreator.create(),
       width: screenWidth,
       height: slots.fold(
         shelfHeight,

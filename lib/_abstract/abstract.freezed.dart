@@ -21,6 +21,7 @@ BookModel _$BookModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$BookModel {
   String get id => throw _privateConstructorUsedError;
+  String get slotId => throw _privateConstructorUsedError;
   BookKind get kind => throw _privateConstructorUsedError;
   Map<String, int> get playersInvestments => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $BookModelCopyWith<$Res> {
       _$BookModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      String slotId,
       BookKind kind,
       Map<String, int> playersInvestments,
       double height,
@@ -62,6 +64,7 @@ class _$BookModelCopyWithImpl<$Res> implements $BookModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? slotId = freezed,
     Object? kind = freezed,
     Object? playersInvestments = freezed,
     Object? height = freezed,
@@ -73,6 +76,10 @@ class _$BookModelCopyWithImpl<$Res> implements $BookModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      slotId: slotId == freezed
+          ? _value.slotId
+          : slotId // ignore: cast_nullable_to_non_nullable
               as String,
       kind: kind == freezed
           ? _value.kind
@@ -110,6 +117,7 @@ abstract class _$BookModelCopyWith<$Res> implements $BookModelCopyWith<$Res> {
   @override
   $Res call(
       {String id,
+      String slotId,
       BookKind kind,
       Map<String, int> playersInvestments,
       double height,
@@ -130,6 +138,7 @@ class __$BookModelCopyWithImpl<$Res> extends _$BookModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? slotId = freezed,
     Object? kind = freezed,
     Object? playersInvestments = freezed,
     Object? height = freezed,
@@ -141,6 +150,10 @@ class __$BookModelCopyWithImpl<$Res> extends _$BookModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      slotId: slotId == freezed
+          ? _value.slotId
+          : slotId // ignore: cast_nullable_to_non_nullable
               as String,
       kind: kind == freezed
           ? _value.kind
@@ -176,6 +189,7 @@ class __$BookModelCopyWithImpl<$Res> extends _$BookModelCopyWithImpl<$Res>
 class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
   const _$_BookModel(
       {required this.id,
+      required this.slotId,
       required this.kind,
       required final Map<String, int> playersInvestments,
       required this.height,
@@ -190,6 +204,8 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
 
   @override
   final String id;
+  @override
+  final String slotId;
   @override
   final BookKind kind;
   final Map<String, int> _playersInvestments;
@@ -213,7 +229,7 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookModel(id: $id, kind: $kind, playersInvestments: $playersInvestments, height: $height, axis: $axis, lettersCount: $lettersCount, width: $width)';
+    return 'BookModel(id: $id, slotId: $slotId, kind: $kind, playersInvestments: $playersInvestments, height: $height, axis: $axis, lettersCount: $lettersCount, width: $width)';
   }
 
   @override
@@ -222,6 +238,7 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'BookModel'))
       ..add(DiagnosticsProperty('id', id))
+      ..add(DiagnosticsProperty('slotId', slotId))
       ..add(DiagnosticsProperty('kind', kind))
       ..add(DiagnosticsProperty('playersInvestments', playersInvestments))
       ..add(DiagnosticsProperty('height', height))
@@ -236,6 +253,7 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
         (other.runtimeType == runtimeType &&
             other is _BookModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.slotId, slotId) &&
             const DeepCollectionEquality().equals(other.kind, kind) &&
             const DeepCollectionEquality()
                 .equals(other.playersInvestments, playersInvestments) &&
@@ -251,6 +269,7 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(slotId),
       const DeepCollectionEquality().hash(kind),
       const DeepCollectionEquality().hash(playersInvestments),
       const DeepCollectionEquality().hash(height),
@@ -272,6 +291,7 @@ class _$_BookModel extends _BookModel with DiagnosticableTreeMixin {
 abstract class _BookModel extends BookModel {
   const factory _BookModel(
       {required final String id,
+      required final String slotId,
       required final BookKind kind,
       required final Map<String, int> playersInvestments,
       required final double height,
@@ -285,6 +305,8 @@ abstract class _BookModel extends BookModel {
 
   @override
   String get id => throw _privateConstructorUsedError;
+  @override
+  String get slotId => throw _privateConstructorUsedError;
   @override
   BookKind get kind => throw _privateConstructorUsedError;
   @override
@@ -540,6 +562,7 @@ BookShelfModel _$BookShelfModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookShelfModel {
+  String get id => throw _privateConstructorUsedError;
   double get width => throw _privateConstructorUsedError;
   double get height => throw _privateConstructorUsedError;
   List<BookShelfSlotModel> get slots => throw _privateConstructorUsedError;
@@ -555,7 +578,8 @@ abstract class $BookShelfModelCopyWith<$Res> {
   factory $BookShelfModelCopyWith(
           BookShelfModel value, $Res Function(BookShelfModel) then) =
       _$BookShelfModelCopyWithImpl<$Res>;
-  $Res call({double width, double height, List<BookShelfSlotModel> slots});
+  $Res call(
+      {String id, double width, double height, List<BookShelfSlotModel> slots});
 }
 
 /// @nodoc
@@ -569,11 +593,16 @@ class _$BookShelfModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? width = freezed,
     Object? height = freezed,
     Object? slots = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -597,7 +626,8 @@ abstract class _$BookShelfModelCopyWith<$Res>
           _BookShelfModel value, $Res Function(_BookShelfModel) then) =
       __$BookShelfModelCopyWithImpl<$Res>;
   @override
-  $Res call({double width, double height, List<BookShelfSlotModel> slots});
+  $Res call(
+      {String id, double width, double height, List<BookShelfSlotModel> slots});
 }
 
 /// @nodoc
@@ -613,11 +643,16 @@ class __$BookShelfModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? width = freezed,
     Object? height = freezed,
     Object? slots = freezed,
   }) {
     return _then(_BookShelfModel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       width: width == freezed
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -639,7 +674,8 @@ class __$BookShelfModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
   const _$_BookShelfModel(
-      {required this.width,
+      {required this.id,
+      required this.width,
       required this.height,
       required final List<BookShelfSlotModel> slots})
       : _slots = slots,
@@ -648,6 +684,8 @@ class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
   factory _$_BookShelfModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookShelfModelFromJson(json);
 
+  @override
+  final String id;
   @override
   final double width;
   @override
@@ -661,7 +699,7 @@ class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookShelfModel(width: $width, height: $height, slots: $slots)';
+    return 'BookShelfModel(id: $id, width: $width, height: $height, slots: $slots)';
   }
 
   @override
@@ -669,6 +707,7 @@ class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'BookShelfModel'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('width', width))
       ..add(DiagnosticsProperty('height', height))
       ..add(DiagnosticsProperty('slots', slots));
@@ -679,6 +718,7 @@ class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BookShelfModel &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.width, width) &&
             const DeepCollectionEquality().equals(other.height, height) &&
             const DeepCollectionEquality().equals(other.slots, slots));
@@ -688,6 +728,7 @@ class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(width),
       const DeepCollectionEquality().hash(height),
       const DeepCollectionEquality().hash(slots));
@@ -705,7 +746,8 @@ class _$_BookShelfModel extends _BookShelfModel with DiagnosticableTreeMixin {
 
 abstract class _BookShelfModel extends BookShelfModel {
   const factory _BookShelfModel(
-      {required final double width,
+      {required final String id,
+      required final double width,
       required final double height,
       required final List<BookShelfSlotModel> slots}) = _$_BookShelfModel;
   const _BookShelfModel._() : super._();
@@ -713,6 +755,8 @@ abstract class _BookShelfModel extends BookShelfModel {
   factory _BookShelfModel.fromJson(Map<String, dynamic> json) =
       _$_BookShelfModel.fromJson;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   double get width => throw _privateConstructorUsedError;
   @override
@@ -731,6 +775,7 @@ BookShelfSlotModel _$BookShelfSlotModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$BookShelfSlotModel {
+  String get id => throw _privateConstructorUsedError;
   List<BookModel> get books => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -744,7 +789,7 @@ abstract class $BookShelfSlotModelCopyWith<$Res> {
   factory $BookShelfSlotModelCopyWith(
           BookShelfSlotModel value, $Res Function(BookShelfSlotModel) then) =
       _$BookShelfSlotModelCopyWithImpl<$Res>;
-  $Res call({List<BookModel> books});
+  $Res call({String id, List<BookModel> books});
 }
 
 /// @nodoc
@@ -758,9 +803,14 @@ class _$BookShelfSlotModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? books = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       books: books == freezed
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
@@ -776,7 +826,7 @@ abstract class _$BookShelfSlotModelCopyWith<$Res>
           _BookShelfSlotModel value, $Res Function(_BookShelfSlotModel) then) =
       __$BookShelfSlotModelCopyWithImpl<$Res>;
   @override
-  $Res call({List<BookModel> books});
+  $Res call({String id, List<BookModel> books});
 }
 
 /// @nodoc
@@ -792,9 +842,14 @@ class __$BookShelfSlotModelCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? books = freezed,
   }) {
     return _then(_BookShelfSlotModel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       books: books == freezed
           ? _value.books
           : books // ignore: cast_nullable_to_non_nullable
@@ -808,13 +863,16 @@ class __$BookShelfSlotModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_BookShelfSlotModel extends _BookShelfSlotModel
     with DiagnosticableTreeMixin {
-  const _$_BookShelfSlotModel({required final List<BookModel> books})
+  const _$_BookShelfSlotModel(
+      {required this.id, required final List<BookModel> books})
       : _books = books,
         super._();
 
   factory _$_BookShelfSlotModel.fromJson(Map<String, dynamic> json) =>
       _$$_BookShelfSlotModelFromJson(json);
 
+  @override
+  final String id;
   final List<BookModel> _books;
   @override
   List<BookModel> get books {
@@ -824,7 +882,7 @@ class _$_BookShelfSlotModel extends _BookShelfSlotModel
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookShelfSlotModel(books: $books)';
+    return 'BookShelfSlotModel(id: $id, books: $books)';
   }
 
   @override
@@ -832,6 +890,7 @@ class _$_BookShelfSlotModel extends _BookShelfSlotModel
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'BookShelfSlotModel'))
+      ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('books', books));
   }
 
@@ -840,13 +899,16 @@ class _$_BookShelfSlotModel extends _BookShelfSlotModel
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _BookShelfSlotModel &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.books, books));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(books));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(books));
 
   @JsonKey(ignore: true)
   @override
@@ -860,13 +922,16 @@ class _$_BookShelfSlotModel extends _BookShelfSlotModel
 }
 
 abstract class _BookShelfSlotModel extends BookShelfSlotModel {
-  const factory _BookShelfSlotModel({required final List<BookModel> books}) =
-      _$_BookShelfSlotModel;
+  const factory _BookShelfSlotModel(
+      {required final String id,
+      required final List<BookModel> books}) = _$_BookShelfSlotModel;
   const _BookShelfSlotModel._() : super._();
 
   factory _BookShelfSlotModel.fromJson(Map<String, dynamic> json) =
       _$_BookShelfSlotModel.fromJson;
 
+  @override
+  String get id => throw _privateConstructorUsedError;
   @override
   List<BookModel> get books => throw _privateConstructorUsedError;
   @override

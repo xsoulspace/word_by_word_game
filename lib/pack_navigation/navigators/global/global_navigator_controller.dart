@@ -14,6 +14,7 @@ class GlobalNavigatorController {
   void go(final GlobalRouteName routeName) => routeState.go(routeName);
   void goHome() => routeState.go(GlobalRouteNames.home);
   void goSettings() => routeState.go(GlobalRouteNames.settings);
+  void goMenu() => routeState.go(GlobalRouteNames.menu);
 
   void goBookShelf() => routeState.go(GlobalRouteNames.gameBookShelf);
   void goPauseMenu() => routeState.go(

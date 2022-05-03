@@ -13,7 +13,9 @@ import 'package:universal_io/io.dart';
 import 'package:uuid/uuid.dart';
 
 part 'abstract_util.dart';
-part 'extensions/chnage_notifier_extension.dart';
+part 'extensions/change_notifier_extension.dart';
+part 'extensions/list_extension.dart';
+part 'extensions/map_extension.dart';
 part 'id_creator.dart';
 part 'is_desktop.dart';
 part 'local_db/db_store.dart';

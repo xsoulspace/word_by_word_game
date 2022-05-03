@@ -9,10 +9,23 @@ class GameScaffold extends HookWidget {
     /// this state should be rewritten to stateful or lifestate
     final navigatorKey = useState(GlobalKey<NavigatorState>());
 
-    return GameLoader(
-      builder: (final context) => GameNavigator(
-        navigatorKey: navigatorKey.value,
-        routeState: RouteStateScope.of(context),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (final context) => BookShelfLevelNotifier(
+            runtimeGameNotifier: context.read(),
+          ),
+        )
+      ],
+      child: Builder(
+        builder: (final context) {
+          return GameLoader(
+            builder: (final context) => GameNavigator(
+              navigatorKey: navigatorKey.value,
+              routeState: RouteStateScope.of(context),
+            ),
+          );
+        },
       ),
     );
   }

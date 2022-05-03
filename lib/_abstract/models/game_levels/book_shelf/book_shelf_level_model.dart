@@ -1,5 +1,7 @@
 part of abstract;
 
+typedef BookShelfLevelModelId = String;
+
 @immutable
 @Freezed(
   fromJson: true,
@@ -11,7 +13,7 @@ part of abstract;
 class BookShelfLevelModel with _$BookShelfLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory BookShelfLevelModel({
-    required final String id,
+    required final BookShelfLevelModelId id,
 
     /// All untaken books should be kept in the list
     ///

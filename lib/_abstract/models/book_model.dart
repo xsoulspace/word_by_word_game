@@ -36,9 +36,12 @@ typedef BookModelId = String;
   copyWith: true,
 )
 class BookModel with _$BookModel {
-  @JsonSerializable(explicitToJson: true)
+  @JsonSerializable(
+    explicitToJson: true,
+  )
   const factory BookModel({
     required final BookModelId id,
+    required final BookShelfSlotModelId slotId,
     required final BookKind kind,
     required final Map<PlayerProfileModelId, GameLetter> playersInvestments,
     required final double height,
@@ -53,10 +56,13 @@ class BookModel with _$BookModel {
   factory BookModel.fromJson(final Map<String, dynamic> json) =>
       _$BookModelFromJson(json);
 
-  factory BookModel.prose() {
+  factory BookModel.prose({
+    required final BookShelfSlotModelId slotId,
+  }) {
     const bookKind = BookKind.prose;
     final bookAxis = bookKindAxis[bookKind]!;
     return BookModel(
+      slotId: slotId,
       width: proseWidth,
       height: bookHeight,
       axis: bookAxis,
@@ -67,10 +73,13 @@ class BookModel with _$BookModel {
     );
   }
 
-  factory BookModel.poem() {
+  factory BookModel.poem({
+    required final BookShelfSlotModelId slotId,
+  }) {
     const bookKind = BookKind.poem;
     final bookAxis = bookKindAxis[bookKind]!;
     return BookModel(
+      slotId: slotId,
       width: poemWidth,
       height: bookHeight,
       axis: bookAxis,
@@ -81,10 +90,13 @@ class BookModel with _$BookModel {
     );
   }
 
-  factory BookModel.science() {
+  factory BookModel.science({
+    required final BookShelfSlotModelId slotId,
+  }) {
     const bookKind = BookKind.science;
     final bookAxis = bookKindAxis[bookKind]!;
     return BookModel(
+      slotId: slotId,
       width: scienceWidth,
       height: bookHeight,
       axis: bookAxis,

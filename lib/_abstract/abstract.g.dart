@@ -8,6 +8,7 @@ part of abstract;
 
 _$_BookModel _$$_BookModelFromJson(Map<String, dynamic> json) => _$_BookModel(
       id: json['id'] as String,
+      slotId: json['slotId'] as String,
       kind: $enumDecode(_$BookKindEnumMap, json['kind']),
       playersInvestments:
           Map<String, int>.from(json['playersInvestments'] as Map),
@@ -20,6 +21,7 @@ _$_BookModel _$$_BookModelFromJson(Map<String, dynamic> json) => _$_BookModel(
 Map<String, dynamic> _$$_BookModelToJson(_$_BookModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'slotId': instance.slotId,
       'kind': _$BookKindEnumMap[instance.kind],
       'playersInvestments': instance.playersInvestments,
       'height': instance.height,
@@ -63,6 +65,7 @@ Map<String, dynamic> _$$_BookShelfLevelModelToJson(
 
 _$_BookShelfModel _$$_BookShelfModelFromJson(Map<String, dynamic> json) =>
     _$_BookShelfModel(
+      id: json['id'] as String,
       width: (json['width'] as num).toDouble(),
       height: (json['height'] as num).toDouble(),
       slots: (json['slots'] as List<dynamic>)
@@ -72,6 +75,7 @@ _$_BookShelfModel _$$_BookShelfModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_BookShelfModelToJson(_$_BookShelfModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'width': instance.width,
       'height': instance.height,
       'slots': instance.slots.map((e) => e.toJson()).toList(),
@@ -80,6 +84,7 @@ Map<String, dynamic> _$$_BookShelfModelToJson(_$_BookShelfModel instance) =>
 _$_BookShelfSlotModel _$$_BookShelfSlotModelFromJson(
         Map<String, dynamic> json) =>
     _$_BookShelfSlotModel(
+      id: json['id'] as String,
       books: (json['books'] as List<dynamic>)
           .map((e) => BookModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -88,6 +93,7 @@ _$_BookShelfSlotModel _$$_BookShelfSlotModelFromJson(
 Map<String, dynamic> _$$_BookShelfSlotModelToJson(
         _$_BookShelfSlotModel instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'books': instance.books.map((e) => e.toJson()).toList(),
     };
 
