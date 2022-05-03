@@ -17,9 +17,7 @@ class BookShelfLevelNotifier extends LevelNotifier {
 
   void _updateCurrentLevelParams() {
     players.assignAll(_bookShelfLevelModel.players);
-    writtenWordsNotifier.loadWords(
-      bookShelfLevel: _bookShelfLevelModel,
-    );
+    writtenWordsNotifier.loadWords();
     notify();
   }
 

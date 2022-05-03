@@ -7,14 +7,11 @@ class WrittenWordsNotifier extends GameNotifier {
 
   final writtenWords = <GameWordModel, PlayerProfileModelId>{};
   final lastWord = ValueNotifier<GameWordModel>('');
+  WordWriterStateModel get wordWriterState => game.wordWriterState;
+  void loadWords() {
+    writtenWords.assignAll(wordWriterState.writtenWords);
+    lastWord.value = wordWriterState.lastWord;
 
-  void loadWords({
-    final BookShelfLevelModel? bookShelfLevel,
-  }) {
-    if (bookShelfLevel != null) {
-      writtenWords.addAll(bookShelfLevel.writtenWords);
-      lastWord.value = game.wordWriterState.lastWord;
-    }
     notify();
   }
 
@@ -35,6 +32,7 @@ class WrittenWordsNotifier extends GameNotifier {
     await updateGame(
       game: game.copyWith.wordWriterState(
         lastWord: word,
+        writtenWords: {...writtenWords},
       ),
     );
   }

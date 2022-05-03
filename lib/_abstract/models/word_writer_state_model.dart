@@ -15,6 +15,7 @@ class WordWriterStateModel with _$WordWriterStateModel {
     required final String leftPartOfWord,
     required final String middlePartOfWord,
     required final String rightPartOfWord,
+    required final Map<GameWordModel, PlayerProfileModelId> writtenWords,
   }) = _WordWriterContextModel;
   const WordWriterStateModel._();
   factory WordWriterStateModel.fromJson(final Map<String, dynamic> json) =>
@@ -25,5 +26,6 @@ class WordWriterStateModel with _$WordWriterStateModel {
         leftPartOfWord: '',
         middlePartOfWord: '',
         rightPartOfWord: '',
+        writtenWords: {},
       );
 }

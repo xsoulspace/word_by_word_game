@@ -20,7 +20,6 @@ class BookShelfLevelModel with _$BookShelfLevelModel {
     /// In case if [GamePlayerModel] took new book, the book
     /// should be transfered to his list of books
     required final List<BookShelfModel> shelves,
-    required final Map<GameWordModel, PlayerProfileModelId> writtenWords,
     required final LevelPlayers players,
   }) = _BookShelfLevelModel;
   const BookShelfLevelModel._();
@@ -34,13 +33,11 @@ class BookShelfLevelModel with _$BookShelfLevelModel {
         id: IdCreator.create(),
         players: players,
         shelves: shelves,
-        writtenWords: const {},
       );
 
   static const empty = BookShelfLevelModel(
     id: '0',
     players: [],
-    writtenWords: {},
     shelves: [],
   );
 }

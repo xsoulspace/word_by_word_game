@@ -49,7 +49,6 @@ _$_BookShelfLevelModel _$$_BookShelfLevelModelFromJson(
       shelves: (json['shelves'] as List<dynamic>)
           .map((e) => BookShelfModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      writtenWords: Map<String, String>.from(json['writtenWords'] as Map),
       players: (json['players'] as List<dynamic>)
           .map((e) => GamePlayerModel.fromJson(e as Map<String, dynamic>))
           .toList(),
@@ -60,7 +59,6 @@ Map<String, dynamic> _$$_BookShelfLevelModelToJson(
     <String, dynamic>{
       'id': instance.id,
       'shelves': instance.shelves.map((e) => e.toJson()).toList(),
-      'writtenWords': instance.writtenWords,
       'players': instance.players.map((e) => e.toJson()).toList(),
     };
 
@@ -177,6 +175,7 @@ _$_WordWriterContextModel _$$_WordWriterContextModelFromJson(
       leftPartOfWord: json['leftPartOfWord'] as String,
       middlePartOfWord: json['middlePartOfWord'] as String,
       rightPartOfWord: json['rightPartOfWord'] as String,
+      writtenWords: Map<String, String>.from(json['writtenWords'] as Map),
     );
 
 Map<String, dynamic> _$$_WordWriterContextModelToJson(
@@ -186,6 +185,7 @@ Map<String, dynamic> _$$_WordWriterContextModelToJson(
       'leftPartOfWord': instance.leftPartOfWord,
       'middlePartOfWord': instance.middlePartOfWord,
       'rightPartOfWord': instance.rightPartOfWord,
+      'writtenWords': instance.writtenWords,
     };
 
 LocalizedText _$LocalizedTextFromJson(Map<String, dynamic> json) =>

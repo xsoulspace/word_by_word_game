@@ -341,7 +341,6 @@ mixin _$BookShelfLevelModel {
   /// In case if [GamePlayerModel] took new book, the book
   /// should be transfered to his list of books
   List<BookShelfModel> get shelves => throw _privateConstructorUsedError;
-  Map<String, String> get writtenWords => throw _privateConstructorUsedError;
   List<GamePlayerModel> get players => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -356,10 +355,7 @@ abstract class $BookShelfLevelModelCopyWith<$Res> {
           BookShelfLevelModel value, $Res Function(BookShelfLevelModel) then) =
       _$BookShelfLevelModelCopyWithImpl<$Res>;
   $Res call(
-      {String id,
-      List<BookShelfModel> shelves,
-      Map<String, String> writtenWords,
-      List<GamePlayerModel> players});
+      {String id, List<BookShelfModel> shelves, List<GamePlayerModel> players});
 }
 
 /// @nodoc
@@ -375,7 +371,6 @@ class _$BookShelfLevelModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? shelves = freezed,
-    Object? writtenWords = freezed,
     Object? players = freezed,
   }) {
     return _then(_value.copyWith(
@@ -387,10 +382,6 @@ class _$BookShelfLevelModelCopyWithImpl<$Res>
           ? _value.shelves
           : shelves // ignore: cast_nullable_to_non_nullable
               as List<BookShelfModel>,
-      writtenWords: writtenWords == freezed
-          ? _value.writtenWords
-          : writtenWords // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -407,10 +398,7 @@ abstract class _$BookShelfLevelModelCopyWith<$Res>
       __$BookShelfLevelModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id,
-      List<BookShelfModel> shelves,
-      Map<String, String> writtenWords,
-      List<GamePlayerModel> players});
+      {String id, List<BookShelfModel> shelves, List<GamePlayerModel> players});
 }
 
 /// @nodoc
@@ -428,7 +416,6 @@ class __$BookShelfLevelModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? shelves = freezed,
-    Object? writtenWords = freezed,
     Object? players = freezed,
   }) {
     return _then(_BookShelfLevelModel(
@@ -440,10 +427,6 @@ class __$BookShelfLevelModelCopyWithImpl<$Res>
           ? _value.shelves
           : shelves // ignore: cast_nullable_to_non_nullable
               as List<BookShelfModel>,
-      writtenWords: writtenWords == freezed
-          ? _value.writtenWords
-          : writtenWords // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -460,10 +443,8 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
   const _$_BookShelfLevelModel(
       {required this.id,
       required final List<BookShelfModel> shelves,
-      required final Map<String, String> writtenWords,
       required final List<GamePlayerModel> players})
       : _shelves = shelves,
-        _writtenWords = writtenWords,
         _players = players,
         super._();
 
@@ -489,13 +470,6 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
     return EqualUnmodifiableListView(_shelves);
   }
 
-  final Map<String, String> _writtenWords;
-  @override
-  Map<String, String> get writtenWords {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_writtenWords);
-  }
-
   final List<GamePlayerModel> _players;
   @override
   List<GamePlayerModel> get players {
@@ -505,7 +479,7 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BookShelfLevelModel(id: $id, shelves: $shelves, writtenWords: $writtenWords, players: $players)';
+    return 'BookShelfLevelModel(id: $id, shelves: $shelves, players: $players)';
   }
 
   @override
@@ -515,7 +489,6 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
       ..add(DiagnosticsProperty('type', 'BookShelfLevelModel'))
       ..add(DiagnosticsProperty('id', id))
       ..add(DiagnosticsProperty('shelves', shelves))
-      ..add(DiagnosticsProperty('writtenWords', writtenWords))
       ..add(DiagnosticsProperty('players', players));
   }
 
@@ -526,8 +499,6 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
             other is _BookShelfLevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.shelves, shelves) &&
-            const DeepCollectionEquality()
-                .equals(other.writtenWords, writtenWords) &&
             const DeepCollectionEquality().equals(other.players, players));
   }
 
@@ -537,7 +508,6 @@ class _$_BookShelfLevelModel extends _BookShelfLevelModel
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(shelves),
-      const DeepCollectionEquality().hash(writtenWords),
       const DeepCollectionEquality().hash(players));
 
   @JsonKey(ignore: true)
@@ -556,7 +526,6 @@ abstract class _BookShelfLevelModel extends BookShelfLevelModel {
   const factory _BookShelfLevelModel(
       {required final String id,
       required final List<BookShelfModel> shelves,
-      required final Map<String, String> writtenWords,
       required final List<GamePlayerModel> players}) = _$_BookShelfLevelModel;
   const _BookShelfLevelModel._() : super._();
 
@@ -572,8 +541,6 @@ abstract class _BookShelfLevelModel extends BookShelfLevelModel {
   /// In case if [GamePlayerModel] took new book, the book
   /// should be transfered to his list of books
   List<BookShelfModel> get shelves => throw _privateConstructorUsedError;
-  @override
-  Map<String, String> get writtenWords => throw _privateConstructorUsedError;
   @override
   List<GamePlayerModel> get players => throw _privateConstructorUsedError;
   @override
@@ -1840,6 +1807,7 @@ mixin _$WordWriterStateModel {
   String get leftPartOfWord => throw _privateConstructorUsedError;
   String get middlePartOfWord => throw _privateConstructorUsedError;
   String get rightPartOfWord => throw _privateConstructorUsedError;
+  Map<String, String> get writtenWords => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1856,7 +1824,8 @@ abstract class $WordWriterStateModelCopyWith<$Res> {
       {String lastWord,
       String leftPartOfWord,
       String middlePartOfWord,
-      String rightPartOfWord});
+      String rightPartOfWord,
+      Map<String, String> writtenWords});
 }
 
 /// @nodoc
@@ -1874,6 +1843,7 @@ class _$WordWriterStateModelCopyWithImpl<$Res>
     Object? leftPartOfWord = freezed,
     Object? middlePartOfWord = freezed,
     Object? rightPartOfWord = freezed,
+    Object? writtenWords = freezed,
   }) {
     return _then(_value.copyWith(
       lastWord: lastWord == freezed
@@ -1892,6 +1862,10 @@ class _$WordWriterStateModelCopyWithImpl<$Res>
           ? _value.rightPartOfWord
           : rightPartOfWord // ignore: cast_nullable_to_non_nullable
               as String,
+      writtenWords: writtenWords == freezed
+          ? _value.writtenWords
+          : writtenWords // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
     ));
   }
 }
@@ -1907,7 +1881,8 @@ abstract class _$WordWriterContextModelCopyWith<$Res>
       {String lastWord,
       String leftPartOfWord,
       String middlePartOfWord,
-      String rightPartOfWord});
+      String rightPartOfWord,
+      Map<String, String> writtenWords});
 }
 
 /// @nodoc
@@ -1927,6 +1902,7 @@ class __$WordWriterContextModelCopyWithImpl<$Res>
     Object? leftPartOfWord = freezed,
     Object? middlePartOfWord = freezed,
     Object? rightPartOfWord = freezed,
+    Object? writtenWords = freezed,
   }) {
     return _then(_WordWriterContextModel(
       lastWord: lastWord == freezed
@@ -1945,6 +1921,10 @@ class __$WordWriterContextModelCopyWithImpl<$Res>
           ? _value.rightPartOfWord
           : rightPartOfWord // ignore: cast_nullable_to_non_nullable
               as String,
+      writtenWords: writtenWords == freezed
+          ? _value.writtenWords
+          : writtenWords // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
     ));
   }
 }
@@ -1958,8 +1938,10 @@ class _$_WordWriterContextModel extends _WordWriterContextModel
       {required this.lastWord,
       required this.leftPartOfWord,
       required this.middlePartOfWord,
-      required this.rightPartOfWord})
-      : super._();
+      required this.rightPartOfWord,
+      required final Map<String, String> writtenWords})
+      : _writtenWords = writtenWords,
+        super._();
 
   factory _$_WordWriterContextModel.fromJson(Map<String, dynamic> json) =>
       _$$_WordWriterContextModelFromJson(json);
@@ -1972,10 +1954,16 @@ class _$_WordWriterContextModel extends _WordWriterContextModel
   final String middlePartOfWord;
   @override
   final String rightPartOfWord;
+  final Map<String, String> _writtenWords;
+  @override
+  Map<String, String> get writtenWords {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_writtenWords);
+  }
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WordWriterStateModel(lastWord: $lastWord, leftPartOfWord: $leftPartOfWord, middlePartOfWord: $middlePartOfWord, rightPartOfWord: $rightPartOfWord)';
+    return 'WordWriterStateModel(lastWord: $lastWord, leftPartOfWord: $leftPartOfWord, middlePartOfWord: $middlePartOfWord, rightPartOfWord: $rightPartOfWord, writtenWords: $writtenWords)';
   }
 
   @override
@@ -1986,7 +1974,8 @@ class _$_WordWriterContextModel extends _WordWriterContextModel
       ..add(DiagnosticsProperty('lastWord', lastWord))
       ..add(DiagnosticsProperty('leftPartOfWord', leftPartOfWord))
       ..add(DiagnosticsProperty('middlePartOfWord', middlePartOfWord))
-      ..add(DiagnosticsProperty('rightPartOfWord', rightPartOfWord));
+      ..add(DiagnosticsProperty('rightPartOfWord', rightPartOfWord))
+      ..add(DiagnosticsProperty('writtenWords', writtenWords));
   }
 
   @override
@@ -2000,7 +1989,9 @@ class _$_WordWriterContextModel extends _WordWriterContextModel
             const DeepCollectionEquality()
                 .equals(other.middlePartOfWord, middlePartOfWord) &&
             const DeepCollectionEquality()
-                .equals(other.rightPartOfWord, rightPartOfWord));
+                .equals(other.rightPartOfWord, rightPartOfWord) &&
+            const DeepCollectionEquality()
+                .equals(other.writtenWords, writtenWords));
   }
 
   @JsonKey(ignore: true)
@@ -2010,7 +2001,8 @@ class _$_WordWriterContextModel extends _WordWriterContextModel
       const DeepCollectionEquality().hash(lastWord),
       const DeepCollectionEquality().hash(leftPartOfWord),
       const DeepCollectionEquality().hash(middlePartOfWord),
-      const DeepCollectionEquality().hash(rightPartOfWord));
+      const DeepCollectionEquality().hash(rightPartOfWord),
+      const DeepCollectionEquality().hash(writtenWords));
 
   @JsonKey(ignore: true)
   @override
@@ -2026,10 +2018,12 @@ class _$_WordWriterContextModel extends _WordWriterContextModel
 
 abstract class _WordWriterContextModel extends WordWriterStateModel {
   const factory _WordWriterContextModel(
-      {required final String lastWord,
-      required final String leftPartOfWord,
-      required final String middlePartOfWord,
-      required final String rightPartOfWord}) = _$_WordWriterContextModel;
+          {required final String lastWord,
+          required final String leftPartOfWord,
+          required final String middlePartOfWord,
+          required final String rightPartOfWord,
+          required final Map<String, String> writtenWords}) =
+      _$_WordWriterContextModel;
   const _WordWriterContextModel._() : super._();
 
   factory _WordWriterContextModel.fromJson(Map<String, dynamic> json) =
@@ -2043,6 +2037,8 @@ abstract class _WordWriterContextModel extends WordWriterStateModel {
   String get middlePartOfWord => throw _privateConstructorUsedError;
   @override
   String get rightPartOfWord => throw _privateConstructorUsedError;
+  @override
+  Map<String, String> get writtenWords => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$WordWriterContextModelCopyWith<_WordWriterContextModel> get copyWith =>
