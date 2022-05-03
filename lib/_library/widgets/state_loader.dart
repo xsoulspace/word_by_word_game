@@ -1,6 +1,6 @@
 part of widgets;
 
-abstract class StateInitializer extends Loadable {}
+abstract class StateInitializer extends ContextfullLoadable {}
 
 class StateLoader extends HookWidget {
   const StateLoader({

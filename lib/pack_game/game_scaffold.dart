@@ -12,7 +12,9 @@ class GameScaffold extends HookWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (final context) => WrittenWordsNotifier(),
+          create: (final context) => WrittenWordsNotifier(
+            runtimeGameNotifier: context.read(),
+          ),
         ),
         ChangeNotifierProvider(
           create: (final context) => BookShelfLevelNotifier(

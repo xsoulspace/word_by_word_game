@@ -1,28 +1,15 @@
 part of pack_game;
 
-abstract class LevelNotifier extends ChangeNotifier implements Loadable {
+abstract class LevelNotifier extends GameNotifier
+    implements ContextfullLoadable {
   LevelNotifier({
-    required this.runtimeGameNotifier,
+    required final RuntimeGameNotifier runtimeGameNotifier,
     required this.writtenWordsNotifier,
-  });
-  final RuntimeGameNotifier runtimeGameNotifier;
+  }) : super(runtimeGameNotifier: runtimeGameNotifier);
   final WrittenWordsNotifier writtenWordsNotifier;
 
   @override
   Future<void> onLoad({required final BuildContext context}) async {}
-
-  /// ********************************************
-  /// *      INHERITED FUNCTIONS START
-  /// ********************************************
-  ///
-  late final _copyGame = game.copyWith.call;
-  late final updateGame = runtimeGameNotifier.updateGame;
-
-  /// ********************************************
-  /// *      INHERITED FUNCTINOS END
-  /// ********************************************
-
-  GameModel get game => runtimeGameNotifier.game;
 
   /// Order is important, because the order of players
   /// means order of turns.

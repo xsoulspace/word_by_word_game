@@ -5,7 +5,8 @@ part of pack_settings;
 ///
 /// Controllers glue Data Services to Flutter Widgets. The SettingsController
 /// uses the SettingsService to store and retrieve user settings.
-class GeneralSettingsNotifier extends ChangeNotifier implements Loadable {
+class GeneralSettingsNotifier extends ChangeNotifier
+    implements ContextfullLoadable {
   GeneralSettingsNotifier({required final this.settingsService});
 
   // Make SettingsService a private variable so it is not used directly.

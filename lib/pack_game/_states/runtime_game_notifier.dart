@@ -1,6 +1,7 @@
 part of pack_game;
 
-class RuntimeGameNotifier extends ChangeNotifier implements Loadable {
+class RuntimeGameNotifier extends ChangeNotifier
+    implements ContextfullLoadable {
   RuntimeGameNotifier({
     required this.gameService,
     required this.profileNotifier,

@@ -2,7 +2,6 @@ library pack_game;
 
 import 'dart:async';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -21,6 +20,7 @@ part '_services/game_local_api_service.dart';
 part '_services/game_service.dart';
 part '_services/game_service_i.dart';
 part '_states/book_shelf_level_notifier.dart';
+part '_states/game_notifier.dart';
 part '_states/level_notifier.dart';
 part '_states/runtime_game_notifier.dart';
 part '_states/written_words_notifier.dart';
