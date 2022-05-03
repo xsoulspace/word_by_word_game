@@ -53,10 +53,28 @@ class BookUpdater {
         ..removeAt(bookIndex)
         ..insert(bookIndex, book),
     );
+    return _updateSlot(shelf: shelf, slot: updatedSlot);
+  }
+
+  BookShelfLevelModel removeBook({
+    required final BookModel book,
+  }) {
+    final shelf = getShelf();
+    final slot = getSlot(shelf: shelf);
+    final updatedSlot = slot.copyWith(
+      books: [...slot.books]..removeAt(bookIndex),
+    );
+    return _updateSlot(shelf: shelf, slot: updatedSlot);
+  }
+
+  BookShelfLevelModel _updateSlot({
+    required final BookShelfSlotModel slot,
+    required final BookShelfModel shelf,
+  }) {
     final updatedShelf = shelf.copyWith(
       slots: [...shelf.slots]
         ..removeAt(slotIndex)
-        ..insert(slotIndex, updatedSlot),
+        ..insert(slotIndex, slot),
     );
     final updatedLevel = level.copyWith(
       shelves: [...level.shelves]

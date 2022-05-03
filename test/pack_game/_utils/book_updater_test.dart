@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
@@ -76,6 +77,16 @@ void main() {
         updatedLevel.shelves[shelfIndex].slots[slotIndex].books[bookIndex]
             .playersInvestments[_gamePlayer.id],
         equals(7),
+      );
+    });
+    test('can remove book', () {
+      final bookUpdater = BookUpdater(book: poemBook, level: level);
+
+      final updatedLevel = bookUpdater.removeBook(book: poemBook);
+      expect(
+        updatedLevel.shelves[shelfIndex].slots[slotIndex].books
+            .firstWhereOrNull((final searchBook) => searchBook == poemBook),
+        isNull,
       );
     });
   });
