@@ -1,7 +1,7 @@
 part of pack_game;
 
-class BookUpdater {
-  BookUpdater({
+class BookLevelUpdater {
+  BookLevelUpdater({
     required final BookModel book,
     required this.level,
   }) : _book = book {

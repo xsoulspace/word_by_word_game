@@ -36,14 +36,14 @@ void main() {
       },
     );
     test('can get correct indexes', () {
-      final bookUpdater = BookUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
 
       expect(bookUpdater.bookIndex, equals(bookIndex));
       expect(bookUpdater.slotIndex, equals(slotIndex));
       expect(bookUpdater.shelfIndex, equals(shelfIndex));
     });
     test('can update book', () {
-      final bookUpdater = BookUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
       final updatedBook = poemBook.copyWith(
         playersInvestments: poemBook.updatePlayerInvestments(
           gamePlayer: _gamePlayer,
@@ -58,7 +58,7 @@ void main() {
       );
     });
     test('can update book twice', () {
-      final bookUpdater = BookUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
       BookModel updatedBook = poemBook.copyWith(
         playersInvestments: poemBook.updatePlayerInvestments(
           gamePlayer: _gamePlayer,
@@ -80,7 +80,7 @@ void main() {
       );
     });
     test('can remove book', () {
-      final bookUpdater = BookUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
 
       final updatedLevel = bookUpdater.removeBook(book: poemBook);
       expect(

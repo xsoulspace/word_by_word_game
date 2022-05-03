@@ -21,4 +21,16 @@ abstract class LevelNotifier extends GameNotifier
     players.add(player.toNewGameProfile());
     notifyListeners();
   }
+
+  /// Call super first
+  @mustCallSuper
+  void updatePlayer({required final GamePlayerModel player}) {
+    final playerIndex = players.indexWhere(
+      (final searchPlayer) => player.id == searchPlayer.id,
+    );
+    players
+      ..removeAt(playerIndex)
+      ..insert(playerIndex, player);
+    notifyListeners();
+  }
 }

@@ -29,6 +29,19 @@ class BookShelfLevelNotifier extends LevelNotifier {
   @override
   Future<void> addPlayer({required final PlayerProfileModel player}) async {
     super.addPlayer(player: player);
+    _bookShelfLevelModel = _bookShelfLevelModel.copyWith(
+      players: players,
+    );
+    notify();
+  }
+
+  @override
+  Future<void> updatePlayer({required final GamePlayerModel player}) async {
+    super.updatePlayer(player: player);
+    _bookShelfLevelModel = _bookShelfLevelModel.copyWith(
+      players: players,
+    );
+    notify();
   }
 
   Future<void> nextLevel() async {
@@ -65,10 +78,13 @@ class BookShelfLevelNotifier extends LevelNotifier {
     final lettersCount = word.length;
     int applyingCount = 0;
     final lettersLeft = book.lettersCount - lettersCount;
+    final isToMoveToPlayer = lettersLeft <= 0;
 
-    if (lettersLeft <= 0) {
+    if (isToMoveToPlayer) {
+      /// book should be moved to player
       applyingCount = book.lettersCount;
     } else {
+      /// book should be kept in slot
       applyingCount = lettersCount;
     }
 
@@ -79,17 +95,25 @@ class BookShelfLevelNotifier extends LevelNotifier {
       ),
     );
 
-    final updatedLevel = BookUpdater(
+    BookShelfLevelModel updatedLevel;
+
+    final updater = BookLevelUpdater(
       book: book,
       level: _bookShelfLevelModel,
-    ).updateBook(book: updatedBook);
+    );
+
+    if (isToMoveToPlayer) {
+      updatedLevel = updater.removeBook(book: updatedBook);
+      final updatedPlayer = player.copyWith(
+        books: [...player.books, updatedBook],
+      );
+      await updatePlayer(player: updatedPlayer);
+    } else {
+      updatedLevel = updater.updateBook(book: updatedBook);
+    }
 
     await updateCurrentLevel(level: updatedLevel);
 
     return lettersLeft;
   }
-
-  void updateBook({
-    required final BookModel book,
-  }) {}
 }
