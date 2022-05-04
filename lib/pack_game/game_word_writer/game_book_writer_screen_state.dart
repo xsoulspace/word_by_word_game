@@ -22,12 +22,20 @@ class GameWordWriterScreenState implements LifeState {
   final WrittenWordsNotifier writtenWordsNotifier;
   @override
   VoidCallback? setState;
-  final leftPartController = TextEditingController();
-  final rightPartController = TextEditingController();
-  final middlePart = ValueNotifier('');
+  late final leftPartController = TextEditingController(
+    text: writtenWordsNotifier.wordWriterState.leftPartOfWord,
+  );
+  late final rightPartController = TextEditingController(
+    text: writtenWordsNotifier.wordWriterState.rightPartOfWord,
+  );
+  late final middlePart = ValueNotifier(
+    writtenWordsNotifier.wordWriterState.middlePartOfWord,
+  );
   final GlobalNavigatorController navigatorController;
   final _wordUpdatesController = StreamController<bool>();
-  final fullWordNotifier = ValueNotifier<String>('');
+  late final fullWordNotifier = ValueNotifier<String>(
+    writtenWordsNotifier.wordWriterState.fullWord,
+  );
 
   @override
   void initState() {
