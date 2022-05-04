@@ -11,6 +11,7 @@ class WordCompositionRow extends StatelessWidget {
   Widget build(final BuildContext context) {
     final size = MediaQuery.of(context).size;
     final screenLayout = ScreenLayout.of(context);
+    final writtenWordsNotifier = context.read<WrittenWordsNotifier>();
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -25,49 +26,61 @@ class WordCompositionRow extends StatelessWidget {
           ],
         ),
         const Padding(
-          padding: EdgeInsets.symmetric(vertical: Sizes.m),
+          padding: EdgeInsets.symmetric(vertical: PaddingSizes.medium),
         ),
-        LayoutBuilder(
-          builder: (final context, final constraints) {
-            final leftTextField = Expanded(
-              child: WordPartTextField(
-                controller: wordWriterState.leftPartController,
-                hintText: S.of(context).hintAddBeginning,
-              ),
-            );
-            final rightTextField = Expanded(
-              child: WordPartTextField(
+        ValueListenableBuilder<String>(
+          valueListenable: writtenWordsNotifier.lastWordNotifier,
+          builder: (final context, final lastWord, final child) {
+            if (lastWord.isEmpty) {
+              return WordPartTextField(
                 controller: wordWriterState.rightPartController,
-                hintText: S.of(context).hintAddEnding,
-              ),
-            );
-
-            final middleWordPartActions = MiddleWordPartActions(
-              middleWordPartNotifier: wordWriterState.middlePart,
-              onLeftTap: wordWriterState.onDecreaseLeftPart,
-              onRightTap: wordWriterState.onDecreaseRightPart,
-            );
-
-            if (screenLayout.small) {
-              return SizedBox(
-                height: size.height * 0.2,
-                child: Column(
-                  children: [
-                    leftTextField,
-                    middleWordPartActions,
-                    rightTextField,
-                  ],
-                ),
-              );
-            } else {
-              return Row(
-                children: [
-                  leftTextField,
-                  middleWordPartActions,
-                  rightTextField,
-                ],
+                hintText: S.of(context).hintAddNewWord,
               );
             }
+
+            return LayoutBuilder(
+              builder: (final context, final constraints) {
+                final leftTextField = Expanded(
+                  child: WordPartTextField(
+                    controller: wordWriterState.leftPartController,
+                    hintText: S.of(context).hintAddBeginning,
+                  ),
+                );
+                final rightTextField = Expanded(
+                  child: WordPartTextField(
+                    controller: wordWriterState.rightPartController,
+                    hintText: S.of(context).hintAddEnding,
+                  ),
+                );
+
+                final middleWordPartActions = MiddleWordPartActions(
+                  middleWordPartNotifier: wordWriterState.middlePart,
+                  onLeftTap: wordWriterState.onDecreaseLeftPart,
+                  onRightTap: wordWriterState.onDecreaseRightPart,
+                );
+
+                if (screenLayout.small) {
+                  return SizedBox(
+                    height: size.height * 0.2,
+                    child: Column(
+                      children: [
+                        leftTextField,
+                        middleWordPartActions,
+                        rightTextField,
+                      ],
+                    ),
+                  );
+                } else {
+                  return Row(
+                    children: [
+                      leftTextField,
+                      middleWordPartActions,
+                      rightTextField,
+                    ],
+                  );
+                }
+              },
+            );
           },
         ),
       ],
@@ -91,10 +104,10 @@ class WordPartTextField extends StatelessWidget {
       style: const TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Sizes.l),
+          borderRadius: BorderRadius.circular(PaddingSizes.large),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(Sizes.l),
+          borderRadius: BorderRadius.circular(PaddingSizes.large),
         ),
         hintText: hintText,
       ),
@@ -138,7 +151,7 @@ class MiddleWordPartActions extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Sizes.s),
+      padding: const EdgeInsets.symmetric(horizontal: PaddingSizes.small),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -173,7 +186,7 @@ class LastWordText extends StatelessWidget {
     final writtenWordsNotifier = context.read<WrittenWordsNotifier>();
 
     return ValueListenableBuilder<String>(
-      valueListenable: writtenWordsNotifier.lastWord,
+      valueListenable: writtenWordsNotifier.lastWordNotifier,
       builder: (final context, final word, final child) => Text(word),
     );
   }

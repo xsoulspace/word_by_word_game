@@ -18,15 +18,16 @@ class GameWordWriterScreen extends HookWidget {
     return Scaffold(
       appBar: const UpperGameBar(),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(horizontal: Sizes.m),
+        padding: const EdgeInsets.symmetric(horizontal: PaddingSizes.medium),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             WordCompositionRow(
               wordWriterState: state,
             ),
+            const SizedBox(height: PaddingSizes.large),
             Text('will add ${state.lettersCount}'),
-            const SizedBox(height: 24),
+            const SizedBox(height: PaddingSizes.large),
             OutlinedButton(
               onPressed: state.onAddWord,
               child: const Text('Choose books'),
