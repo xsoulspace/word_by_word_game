@@ -58,7 +58,7 @@ class GeneralSettingsNotifier extends ChangeNotifier
 
   ThemeData lightTheme = ThemeData.light();
   ThemeData darkTheme = ThemeData.dark();
-  ThemeMode themeMode = ThemeMode.system;
+  ThemeMode themeMode = ThemeMode.light;
 }
 
 /// Provides the current [GeneralSettingsNotifier] to descendent widgets

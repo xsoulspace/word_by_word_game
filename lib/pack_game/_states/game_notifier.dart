@@ -11,7 +11,7 @@ abstract class GameNotifier extends ChangeNotifier {
   /// ********************************************
   ///
   late final _copyGame = game.copyWith.call;
-  late final updateGame = runtimeGameNotifier.updateGame;
+  late final silentlyUpdateGame = runtimeGameNotifier.updateGame;
 
   /// ********************************************
   /// *      INHERITED FUNCTINOS END

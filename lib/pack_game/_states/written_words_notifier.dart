@@ -5,9 +5,26 @@ class WrittenWordsNotifier extends GameNotifier {
     required final RuntimeGameNotifier runtimeGameNotifier,
   }) : super(runtimeGameNotifier: runtimeGameNotifier);
 
+  @override
+  void dispose() {
+    lastWord.dispose();
+    super.dispose();
+  }
+
   final writtenWords = <GameWordModel, PlayerProfileModelId>{};
   final lastWord = ValueNotifier<GameWordModel>('');
+
   WordWriterStateModel get wordWriterState => game.wordWriterState;
+  Future<void> setWordWriterState(
+    final WordWriterStateModel wordWriterState,
+  ) async {
+    await silentlyUpdateGame(
+      game: _copyGame(
+        wordWriterState: wordWriterState,
+      ),
+    );
+  }
+
   void loadWords() {
     writtenWords.assignAll(wordWriterState.writtenWords);
     lastWord.value = wordWriterState.lastWord;
@@ -29,7 +46,7 @@ class WrittenWordsNotifier extends GameNotifier {
     lastWord.value = word;
     notify();
 
-    await updateGame(
+    await silentlyUpdateGame(
       game: game.copyWith.wordWriterState(
         lastWord: word,
         writtenWords: {...writtenWords},
@@ -41,10 +58,4 @@ class WrittenWordsNotifier extends GameNotifier {
     required final GameWordModel word,
   }) =>
       writtenWords[word] != null;
-
-  @override
-  void dispose() {
-    lastWord.dispose();
-    super.dispose();
-  }
 }

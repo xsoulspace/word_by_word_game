@@ -49,7 +49,7 @@ class BookShelfLevelNotifier extends LevelNotifier {
       currentBookShelfLevelIndex: currentLevelIndex + 1,
     );
 
-    await updateGame(game: updatedGame);
+    await silentlyUpdateGame(game: updatedGame);
     _bookShelfLevelModel = getCurrentLevel();
     _updateCurrentLevelParams();
     notify();
@@ -62,7 +62,7 @@ class BookShelfLevelNotifier extends LevelNotifier {
       ..removeAt(currentLevelIndex)
       ..insert(currentLevelIndex, level);
     final updatedGame = _copyGame(bookShelfLevels: updatedLeveles);
-    await updateGame(game: updatedGame);
+    await silentlyUpdateGame(game: updatedGame);
   }
 
   @useResult

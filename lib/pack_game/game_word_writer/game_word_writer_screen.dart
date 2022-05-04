@@ -5,22 +5,27 @@ class GameWordWriterScreen extends HookWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final state = useGameWordWriterScreenState();
     final navigatorController = GlobalNavigatorController.use(
       routeState: RouteStateScope.of(context),
-      context: context,
       screenLayout: ScreenLayout.of(context),
+      context: context,
+    );
+    final state = useGameWordWriterScreenState(
+      writtenWordsNotifier: context.read(),
+      navigatorController: navigatorController,
     );
 
     return Scaffold(
       appBar: const UpperGameBar(),
       body: Column(
         children: [
-          const WordCompositionRow(),
+          WordCompositionRow(
+            wordWriterState: state,
+          ),
           Text('will add ${state.lettersCount}'),
           const SizedBox(height: 24),
           OutlinedButton(
-            onPressed: navigatorController.goBookShelf,
+            onPressed: state.onAddWord,
             child: const Text('Choose books'),
           ),
         ],
