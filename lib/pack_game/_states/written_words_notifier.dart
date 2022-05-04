@@ -13,6 +13,7 @@ class WrittenWordsNotifier extends GameNotifier {
 
   final writtenWords = <GameWordModel, PlayerProfileModelId>{};
   final lastWord = ValueNotifier<GameWordModel>('');
+  final highscoreNotifier = ValueNotifier<String>('');
 
   WordWriterStateModel get wordWriterState => game.wordWriterState;
   Future<void> setWordWriterState(

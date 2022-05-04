@@ -14,6 +14,7 @@ class GlobalRouteNames {
 
   static const gameBookShelf = '/game/book-shelf';
   static const gameWordWriter = '/game/word-writer';
+  static const gameHighScore = '/game/high-score';
 
   static const gameBookShelfPauseMenu = '$gameBookShelf/pause';
   static const gameWordWriterPauseMenu = '$gameWordWriter/pause';
@@ -60,6 +61,7 @@ class GlobalRouteNames {
     gameWordWriter,
     gameBookShelfPauseMenu,
     gameWordWriterPauseMenu,
+    gameHighScore,
 
     /// ********************************************
     /// *      GAME END

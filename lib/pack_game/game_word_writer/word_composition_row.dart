@@ -29,13 +29,17 @@ class WordCompositionRow extends StatelessWidget {
         ),
         LayoutBuilder(
           builder: (final context, final constraints) {
-            final leftTextField = WordPartTextField(
-              controller: wordWriterState.leftPartController,
-              hintText: S.of(context).hintAddBeginning,
+            final leftTextField = Expanded(
+              child: WordPartTextField(
+                controller: wordWriterState.leftPartController,
+                hintText: S.of(context).hintAddBeginning,
+              ),
             );
-            final rightTextField = WordPartTextField(
-              controller: wordWriterState.rightPartController,
-              hintText: S.of(context).hintAddEnding,
+            final rightTextField = Expanded(
+              child: WordPartTextField(
+                controller: wordWriterState.rightPartController,
+                hintText: S.of(context).hintAddEnding,
+              ),
             );
 
             final middleWordPartActions = MiddleWordPartActions(

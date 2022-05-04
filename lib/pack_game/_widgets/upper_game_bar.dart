@@ -13,6 +13,9 @@ class UpperGameBar extends StatelessWidget implements PreferredSizeWidget {
       routeState: RouteStateScope.of(context),
       screenLayout: ScreenLayout.of(context),
     );
+    final runtimeGameNotifier = context.read<RuntimeGameNotifier>();
+    final writtenWordsNotifier = context.read<WrittenWordsNotifier>();
+
     return Row(
       children: [
         IconButton(
@@ -20,12 +23,20 @@ class UpperGameBar extends StatelessWidget implements PreferredSizeWidget {
           icon: const Icon(Icons.pause),
         ),
         const Spacer(),
-        const Text('Player 1'),
-        const Spacer(),
-        FloatingActionButton.small(
-          onPressed: () {},
-          child: const Text('45'),
+        ValueListenableBuilder<GamePlayerModel>(
+          valueListenable: runtimeGameNotifier.currentPlayer,
+          builder: (final context, final player, final child) =>
+              Text('Player ${player.id}'),
         ),
+        const Spacer(),
+        TextButton(
+          onPressed: navigatorController.goHighScore,
+          child: ValueListenableBuilder<String>(
+            valueListenable: writtenWordsNotifier.highscoreNotifier,
+            builder: (final context, final highscore, final child) =>
+                Text(highscore),
+          ),
+        )
       ],
     );
   }

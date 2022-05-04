@@ -8,6 +8,8 @@ class RuntimeGameNotifier extends ChangeNotifier
   });
   final GameServiceI gameService;
   final ProfileNotifierI profileNotifier;
+  final currentPlayer = ValueNotifier<GamePlayerModel>(GamePlayerModel.empty);
+
   final GameGenerator gameGenerator = GameGenerator.init();
   GameModel game = GameModel.empty;
 
@@ -19,12 +21,14 @@ class RuntimeGameNotifier extends ChangeNotifier
     } else {
       final profile = profileNotifier.profile;
       final hostPlayerId = profile.id;
+      final player = profile.toNewGameProfile();
       game = gameGenerator.createGame(
         levelKinds: [GameLevelKind.bookShelf],
-        players: [profile.toNewGameProfile()],
+        players: [player],
         hostPlayerId: hostPlayerId,
         screenWidth: ScreenLayout.maxSmallWidth,
       );
+      currentPlayer.value = player;
     }
     notifyListeners();
   }
