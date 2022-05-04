@@ -11,7 +11,7 @@ class GameBookShelfScreenState implements LifeState {
   GameBookShelfScreenState();
 
   @override
-  ValueChanged<VoidCallback>? setState;
+  VoidCallback? setState;
 
   @override
   void initState() {

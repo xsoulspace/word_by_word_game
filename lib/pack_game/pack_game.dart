@@ -7,6 +7,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
+import 'package:recase/recase.dart';
+import 'package:rxdart/rxdart.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
 import 'package:word_by_word_game/_library/hooks/hooks.dart';
 import 'package:word_by_word_game/_library/theme/theme.dart';

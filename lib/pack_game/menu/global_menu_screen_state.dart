@@ -11,7 +11,7 @@ class GlobalMenuScreenState implements LifeState {
   GlobalMenuScreenState();
 
   @override
-  ValueChanged<VoidCallback>? setState;
+  VoidCallback? setState;
 
   @override
   void initState() {

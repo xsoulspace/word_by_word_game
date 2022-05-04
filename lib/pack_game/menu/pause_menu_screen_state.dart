@@ -11,7 +11,7 @@ class PauseMenuScreenState implements LifeState {
   PauseMenuScreenState();
 
   @override
-  ValueChanged<VoidCallback>? setState;
+  VoidCallback? setState;
 
   @override
   void initState() {

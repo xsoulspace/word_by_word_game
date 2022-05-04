@@ -11,7 +11,7 @@ class SettingsScreenState implements LifeState {
   SettingsScreenState();
 
   @override
-  ValueChanged<VoidCallback>? setState;
+  VoidCallback? setState;
 
   @override
   void initState() {

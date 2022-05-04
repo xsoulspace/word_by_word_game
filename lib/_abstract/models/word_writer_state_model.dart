@@ -28,4 +28,6 @@ class WordWriterStateModel with _$WordWriterStateModel {
         rightPartOfWord: '',
         writtenWords: {},
       );
+
+  String get fullWord => '$leftPartOfWord$middlePartOfWord$rightPartOfWord';
 }

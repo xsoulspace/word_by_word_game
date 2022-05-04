@@ -3,7 +3,7 @@ part of hooks;
 abstract class LifeState {
   void initState();
   void dispose();
-  ValueChanged<VoidCallback>? setState;
+  VoidCallback? setState;
 }
 
 class LifeHook<T extends LifeState> extends Hook<T> {
@@ -25,7 +25,9 @@ class _LifeHookState<T extends LifeState> extends HookState<T, LifeHook<T>> {
   @override
   void initHook() {
     _innerState
-      ..setState = setState
+      ..setState = () {
+        setState(() {});
+      }
       ..initState();
     super.initHook();
   }

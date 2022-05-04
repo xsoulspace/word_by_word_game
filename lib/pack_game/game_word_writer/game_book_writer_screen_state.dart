@@ -21,16 +21,24 @@ class GameWordWriterScreenState implements LifeState {
   });
   final WrittenWordsNotifier writtenWordsNotifier;
   @override
-  ValueChanged<VoidCallback>? setState;
+  VoidCallback? setState;
   final leftPartController = TextEditingController();
   final rightPartController = TextEditingController();
   final middlePart = ValueNotifier('');
   final GlobalNavigatorController navigatorController;
+  final _wordUpdatesController = StreamController<bool>();
+  final fullWordNotifier = ValueNotifier<String>('');
+
   @override
   void initState() {
     leftPartController.addListener(onPartChanged);
     middlePart.addListener(onPartChanged);
     rightPartController.addListener(onPartChanged);
+    _wordUpdatesController.stream
+        .sampleTime(
+          const Duration(milliseconds: 300),
+        )
+        .forEach(changeFullWord);
   }
 
   @override
@@ -44,9 +52,19 @@ class GameWordWriterScreenState implements LifeState {
     middlePart
       ..removeListener(onPartChanged)
       ..dispose();
+    _wordUpdatesController.close();
+    fullWordNotifier.dispose();
   }
 
-  Future<void> onPartChanged() async {
+  @useResult
+  String getFullWord() => '${leftPartController.text}${middlePart.value}'
+      '${rightPartController.text}';
+  // ignore: avoid_positional_boolean_parameters
+  Future<void> changeFullWord([final bool update = false]) async {
+    final newFullWord = getFullWord();
+    if (newFullWord == fullWordNotifier.value) return;
+    fullWordNotifier.value = newFullWord;
+
     await writtenWordsNotifier.setWordWriterState(
       writtenWordsNotifier.wordWriterState.copyWith(
         leftPartOfWord: leftPartController.text,
@@ -56,9 +74,7 @@ class GameWordWriterScreenState implements LifeState {
     );
   }
 
-  String get fullWord =>
-      '${leftPartController.text}${rightPartController.text}';
-  int get lettersCount => fullWord.length;
+  void onPartChanged() => _wordUpdatesController.add(true);
 
   void onDecreaseLeftPart() {}
   void onDecreaseRightPart() {}

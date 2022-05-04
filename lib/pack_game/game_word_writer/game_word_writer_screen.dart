@@ -26,11 +26,21 @@ class GameWordWriterScreen extends HookWidget {
               wordWriterState: state,
             ),
             const SizedBox(height: PaddingSizes.large),
-            Text('will add ${state.lettersCount}'),
+            ValueListenableBuilder<String>(
+              valueListenable: state.fullWordNotifier,
+              builder: (final context, final fullword, final child) {
+                return Text('This word will add ${fullword.length} letters.');
+              },
+            ),
             const SizedBox(height: PaddingSizes.large),
-            OutlinedButton(
-              onPressed: state.onAddWord,
-              child: const Text('Choose books'),
+            ValueListenableBuilder<String>(
+              valueListenable: state.fullWordNotifier,
+              builder: (final context, final fullword, final child) {
+                return OutlinedButton(
+                  onPressed: fullword.isEmpty ? null : state.onAddWord,
+                  child: Text(S.of(context).addNewWord.pascalCase),
+                );
+              },
             ),
           ],
         ),
