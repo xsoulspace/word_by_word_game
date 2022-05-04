@@ -25,7 +25,7 @@ class WordCompositionRow extends StatelessWidget {
           ],
         ),
         const Padding(
-          padding: EdgeInsets.symmetric(vertical: 10),
+          padding: EdgeInsets.symmetric(vertical: Sizes.m),
         ),
         LayoutBuilder(
           builder: (final context, final constraints) {
@@ -91,10 +91,10 @@ class WordPartTextField extends StatelessWidget {
       style: const TextStyle(fontSize: 14.0),
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(Sizes.l),
         ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(Sizes.l),
         ),
         hintText: hintText,
       ),
@@ -138,7 +138,7 @@ class MiddleWordPartActions extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 5),
+      padding: const EdgeInsets.symmetric(horizontal: Sizes.s),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

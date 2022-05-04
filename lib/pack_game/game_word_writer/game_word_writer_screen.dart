@@ -17,18 +17,22 @@ class GameWordWriterScreen extends HookWidget {
 
     return Scaffold(
       appBar: const UpperGameBar(),
-      body: Column(
-        children: [
-          WordCompositionRow(
-            wordWriterState: state,
-          ),
-          Text('will add ${state.lettersCount}'),
-          const SizedBox(height: 24),
-          OutlinedButton(
-            onPressed: state.onAddWord,
-            child: const Text('Choose books'),
-          ),
-        ],
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.symmetric(horizontal: Sizes.m),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            WordCompositionRow(
+              wordWriterState: state,
+            ),
+            Text('will add ${state.lettersCount}'),
+            const SizedBox(height: 24),
+            OutlinedButton(
+              onPressed: state.onAddWord,
+              child: const Text('Choose books'),
+            ),
+          ],
+        ),
       ),
     );
   }

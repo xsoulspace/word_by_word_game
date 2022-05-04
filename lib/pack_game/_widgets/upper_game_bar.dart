@@ -16,27 +16,33 @@ class UpperGameBar extends StatelessWidget implements PreferredSizeWidget {
     final runtimeGameNotifier = context.read<RuntimeGameNotifier>();
     final writtenWordsNotifier = context.read<WrittenWordsNotifier>();
 
-    return Row(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        IconButton(
-          onPressed: navigatorController.goPauseMenu,
-          icon: const Icon(Icons.pause),
+        const TopSafeArea(),
+        Row(
+          children: [
+            IconButton(
+              onPressed: navigatorController.goPauseMenu,
+              icon: const Icon(Icons.pause),
+            ),
+            const Spacer(),
+            ValueListenableBuilder<GamePlayerModel>(
+              valueListenable: runtimeGameNotifier.currentPlayer,
+              builder: (final context, final player, final child) =>
+                  Text('Player ${player.id}'),
+            ),
+            const Spacer(),
+            TextButton(
+              onPressed: navigatorController.goHighScore,
+              child: ValueListenableBuilder<String>(
+                valueListenable: writtenWordsNotifier.highscoreNotifier,
+                builder: (final context, final highscore, final child) =>
+                    Text(highscore),
+              ),
+            )
+          ],
         ),
-        const Spacer(),
-        ValueListenableBuilder<GamePlayerModel>(
-          valueListenable: runtimeGameNotifier.currentPlayer,
-          builder: (final context, final player, final child) =>
-              Text('Player ${player.id}'),
-        ),
-        const Spacer(),
-        TextButton(
-          onPressed: navigatorController.goHighScore,
-          child: ValueListenableBuilder<String>(
-            valueListenable: writtenWordsNotifier.highscoreNotifier,
-            builder: (final context, final highscore, final child) =>
-                Text(highscore),
-          ),
-        )
       ],
     );
   }

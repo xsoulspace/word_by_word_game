@@ -9,6 +9,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
 import 'package:word_by_word_game/_library/hooks/hooks.dart';
+import 'package:word_by_word_game/_library/theme/theme.dart';
 import 'package:word_by_word_game/_library/widgets/widgets.dart';
 import 'package:word_by_word_game/_utils/utils.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
