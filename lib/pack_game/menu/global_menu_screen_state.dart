@@ -7,11 +7,8 @@ GlobalMenuScreenState useGlobalMenuScreenState() => use(
       ),
     );
 
-class GlobalMenuScreenState implements LifeState {
+class GlobalMenuScreenState extends LifeState {
   GlobalMenuScreenState();
-
-  @override
-  VoidCallback? setState;
 
   @override
   void initState() {

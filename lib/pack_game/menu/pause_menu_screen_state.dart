@@ -7,11 +7,8 @@ PauseMenuScreenState usePauseMenuScreenState() => use(
       ),
     );
 
-class PauseMenuScreenState implements LifeState {
+class PauseMenuScreenState extends LifeState {
   PauseMenuScreenState();
-
-  @override
-  VoidCallback? setState;
 
   @override
   void initState() {

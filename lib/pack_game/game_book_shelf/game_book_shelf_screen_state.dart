@@ -7,11 +7,8 @@ GameBookShelfScreenState useGameBookShelfScreenState() => use(
       ),
     );
 
-class GameBookShelfScreenState implements LifeState {
+class GameBookShelfScreenState extends LifeState {
   GameBookShelfScreenState();
-
-  @override
-  VoidCallback? setState;
 
   @override
   void initState() {

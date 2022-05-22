@@ -14,14 +14,12 @@ GameWordWriterScreenState useGameWordWriterScreenState({
       ),
     );
 
-class GameWordWriterScreenState implements LifeState {
+class GameWordWriterScreenState extends LifeState {
   GameWordWriterScreenState({
     required this.writtenWordsNotifier,
     required this.navigatorController,
   });
   final WrittenWordsNotifier writtenWordsNotifier;
-  @override
-  VoidCallback? setState;
   late final leftPartController = TextEditingController(
     text: writtenWordsNotifier.wordWriterState.leftPartOfWord,
   );

@@ -7,11 +7,8 @@ SettingsScreenState useSettingsScreenState() => use(
       ),
     );
 
-class SettingsScreenState implements LifeState {
+class SettingsScreenState extends LifeState {
   SettingsScreenState();
-
-  @override
-  VoidCallback? setState;
 
   @override
   void initState() {
