@@ -10,7 +10,7 @@ class WordByWordGame extends StatelessWidget {
   Widget build(final BuildContext context) {
     return AppStateProvider(
       db: db,
-      builder: (final _) => const GlobalScaffold(),
+      builder: (final context) => const GlobalScaffold(),
     );
   }
 }
