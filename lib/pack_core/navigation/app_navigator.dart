@@ -53,7 +53,7 @@ class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
       );
 
   Page game() => NavigatorPage(
-        child: const MoonDefenceGameWidget(),
+        child: const WbwGameWidget(),
         key: keys.game,
       );
 }

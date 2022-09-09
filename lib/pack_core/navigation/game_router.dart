@@ -1,7 +1,8 @@
 import 'package:flame/game.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_game/pack_game.dart';
 
-enum GameRoutes { moonSurface, room }
+enum GameRoutes { testLevel }
 
 enum GameOverlaysRoutes { levelsHud, debug }
 
@@ -9,7 +10,7 @@ class GameRouter {
   const GameRouter();
   RouterComponent init() {
     return RouterComponent(
-      initialRoute: GameRoutes.moonSurface.name,
+      initialRoute: GameRoutes.testLevel.name,
       routes: const GameRoutesBuilder().build(),
     );
   }
@@ -17,12 +18,12 @@ class GameRouter {
 
 class GameOverlayBuilderMapRouter {
   const GameOverlayBuilderMapRouter();
-  Map<String, OverlayWidgetBuilder<MoonDefenceGame>> build() =>
+  Map<String, OverlayWidgetBuilder<WbwGame>> build() =>
       _build().map((final key, final value) => MapEntry(key.name, value));
-  Map<GameOverlaysRoutes, OverlayWidgetBuilder<MoonDefenceGame>> _build() {
+  Map<GameOverlaysRoutes, OverlayWidgetBuilder<WbwGame>> _build() {
     return {
       GameOverlaysRoutes.levelsHud: (final context, final game) =>
-          MoonDefenceGameProvider(
+          WbwGameProvider(
             game: game,
             child: const LevelsHudScreenOverlay(),
           ),
@@ -34,8 +35,7 @@ class GameRoutesBuilder {
   const GameRoutesBuilder();
   Map<GameRoutes, Route> _build() {
     return {
-      GameRoutes.moonSurface: Route(MoonSurfaceLvlComponent.new),
-      GameRoutes.room: Route(RoomLvlComponent.new),
+      GameRoutes.testLevel: Route(TestLevelComponent.new),
     };
   }
 

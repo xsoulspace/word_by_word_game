@@ -13,16 +13,8 @@ class AppServicesProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final initialProviders = <BlocProviderSingleChildWidget>[
-      BlocProvider<DebugBloc>(create: (final context) => DebugBloc()),
-      BlocProvider<WorldLocationBloc>(
-        create: (final context) => WorldLocationBloc(),
-      ),
-      BlocProvider<WorldBloc>(
-        create: (final context) => WorldBloc(read: context.read),
-      ),
+      BlocProvider<LevelBloc>(create: (final context) => LevelBloc()),
       BlocProvider<ResourcesBloc>(create: (final context) => ResourcesBloc()),
-      BlocProvider<UnitsBloc>(create: (final context) => UnitsBloc()),
-      BlocProvider<MissionsBloc>(create: (final context) => MissionsBloc()),
     ];
 
     final otherProviders = <BlocProviderSingleChildWidget>[];

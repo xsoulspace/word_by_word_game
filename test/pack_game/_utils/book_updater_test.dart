@@ -1,7 +1,5 @@
-import 'package:collection/collection.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
-import 'package:word_by_word_game/pack_game/pack_game.dart';
 
 const _gamePlayer = GamePlayerModel.empty;
 void main() {
@@ -36,14 +34,14 @@ void main() {
       },
     );
     test('can get correct indexes', () {
-      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, testLevel: level);
 
       expect(bookUpdater.bookIndex, equals(bookIndex));
       expect(bookUpdater.slotIndex, equals(slotIndex));
       expect(bookUpdater.shelfIndex, equals(shelfIndex));
     });
     test('can update book', () {
-      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, testLevel: level);
       final updatedBook = poemBook.copyWith(
         playersInvestments: poemBook.updatePlayerInvestments(
           gamePlayer: _gamePlayer,
@@ -58,7 +56,7 @@ void main() {
       );
     });
     test('can update book twice', () {
-      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, testLevel: level);
       BookModel updatedBook = poemBook.copyWith(
         playersInvestments: poemBook.updatePlayerInvestments(
           gamePlayer: _gamePlayer,
@@ -80,7 +78,7 @@ void main() {
       );
     });
     test('can remove book', () {
-      final bookUpdater = BookLevelUpdater(book: poemBook, level: level);
+      final bookUpdater = BookLevelUpdater(book: poemBook, testLevel: level);
 
       final updatedLevel = bookUpdater.removeBook(book: poemBook);
       expect(
