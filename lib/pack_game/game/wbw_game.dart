@@ -24,7 +24,6 @@ class WbwGame extends FlameGame with HasCollisionDetection, FlameGameActions {
     // Enable initial overlays
     overlays.addAll([
       GameOverlaysRoutes.levelsHud.name,
-      GameOverlaysRoutes.debug.name,
     ]);
     return super.onLoad();
   }
