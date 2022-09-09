@@ -1,0 +1,132 @@
+{
+  "finishGame": "Gioco finito",
+  "@finishGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "nextPlayer": "Prossimo giocatore",
+  "@nextPlayer": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "resetEnding": "Reimposta fine",
+  "@resetEnding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "congratulations": "Congratulazioni!",
+  "@congratulations": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "maxHighscoreIs": "Il punteggio massimo è ",
+  "@maxHighscoreIs": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "continueGame": "Continua ",
+  "@continueGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "startAgain": "Ricomincia ",
+  "@startAgain": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "yourHighscore": "Questa volta il tuo punteggio è",
+  "@yourHighscore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "player": "giocatore",
+  "@player": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lastword": "Ultima parola: ",
+  "@lastword": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddBeginning": "inizio",
+  "@hintAddBeginning": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddNewWord": "aggiungi nuova parola",
+  "@hintAddNewWord": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "hintAddEnding": "fine",
+  "@hintAddEnding": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addNewWord": "aggiungi",
+  "@addNewWord": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "newGame": "Nuovo gioco",
+  "@newGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "sendFeedback": "Per qualsiasi bug o idea, invia il tuo feedback a idea@xsoulspace.dev",
+  "@sendFeedback": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "thankYou": "Grazie e buon gioco!",
+  "@thankYou": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "copyright": "2020 © X Soul Space ",
+  "@copyright": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "currentScore": "punteggio",
+  "@currentScore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "highscore": "Punteggio più alto",
+  "@highscore": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "lettersToRemove": "lettere da rimuovere",
+  "@lettersToRemove": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "players": "Players ",
+  "@players": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuLanguage": "Lingua ",
+  "@menuLanguage": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuInfo": "Info ",
+  "@menuInfo": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "menuNewGame": "Nuovo ",
+  "@menuNewGame": {
+    "type": "text",
+    "placeholders": {}
+  },
+  "addToDictionary": "Aggiungi al dizionario",
+  "@addToDictionary": {
+    "type": "text",
+    "placeholders": {}
+  }
+}

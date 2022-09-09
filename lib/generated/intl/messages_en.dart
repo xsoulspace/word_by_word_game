@@ -21,40 +21,5 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   final messages = _notInlinedMessages(_notInlinedMessages);
-  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "addNewWord": MessageLookupByLibrary.simpleMessage("add"),
-        "addToDictionary":
-            MessageLookupByLibrary.simpleMessage("Add to dictionary"),
-        "congratulations":
-            MessageLookupByLibrary.simpleMessage("Congratulations!"),
-        "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
-        "copyright":
-            MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
-        "currentScore": MessageLookupByLibrary.simpleMessage("score"),
-        "finishGame": MessageLookupByLibrary.simpleMessage("Finish game"),
-        "highscore": MessageLookupByLibrary.simpleMessage("highscore"),
-        "hintAddBeginning": MessageLookupByLibrary.simpleMessage("beginning"),
-        "hintAddEnding": MessageLookupByLibrary.simpleMessage("ending"),
-        "hintAddNewWord": MessageLookupByLibrary.simpleMessage("add new word"),
-        "lastword": MessageLookupByLibrary.simpleMessage("Last word: "),
-        "lettersToRemove":
-            MessageLookupByLibrary.simpleMessage("letters to remove"),
-        "maxHighscoreIs":
-            MessageLookupByLibrary.simpleMessage("Max highscore is "),
-        "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
-        "menuLanguage": MessageLookupByLibrary.simpleMessage("Lang "),
-        "menuNewGame": MessageLookupByLibrary.simpleMessage("New "),
-        "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
-        "nextPlayer": MessageLookupByLibrary.simpleMessage("Next player"),
-        "player": MessageLookupByLibrary.simpleMessage("player"),
-        "players": MessageLookupByLibrary.simpleMessage("Players "),
-        "resetEnding": MessageLookupByLibrary.simpleMessage("Reset ending"),
-        "sendFeedback": MessageLookupByLibrary.simpleMessage(
-            "For any bugs or ideas please send your feedback to idea@xsoulspace.dev"),
-        "startAgain": MessageLookupByLibrary.simpleMessage("Start again "),
-        "thankYou":
-            MessageLookupByLibrary.simpleMessage("Thank you and happy gaming!"),
-        "yourHighscore":
-            MessageLookupByLibrary.simpleMessage("This time your score is ")
-      };
+  static Map<String, Function> _notInlinedMessages(_) => <String, Function>{};
 }

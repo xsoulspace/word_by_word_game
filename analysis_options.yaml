@@ -15,6 +15,7 @@ analyzer:
     - "**.gen.dart"
     - "**.g.dart"
     - old/
+    - old_2/
     - "**/generated/"
     - "generated_plugin_registrant.dart"
 
