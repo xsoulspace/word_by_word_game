@@ -16,18 +16,19 @@ class WbwGameWidget extends HookWidget {
     final uiTheme = UiTheme.of(context);
     final spacing = uiTheme.spacing;
 
-    return MouseRegion(
-      onHover: (final _) {
-        if (!gameFocusNode.hasFocus) {
-          gameFocusNode.requestFocus();
-        }
-      },
-      child: Scaffold(
-        body: Column(
-          children: [
-            Expanded(
-              child: Padding(
-                padding: EdgeInsets.all(spacing.medium),
+    return Scaffold(
+      body: Column(
+        children: [
+          Expanded(
+            child: Padding(
+              padding: EdgeInsets.all(spacing.medium),
+              child: MouseRegion(
+                onHover: (final _) {
+                  // TODO(arenukvern): do we need this or not?
+                  if (!gameFocusNode.hasFocus) {
+                    gameFocusNode.requestFocus();
+                  }
+                },
                 child: GameWidget<WbwGame>.controlled(
                   focusNode: gameFocusNode,
                   gameFactory: () => WbwGame.use(read: context.read),
@@ -48,9 +49,9 @@ class WbwGameWidget extends HookWidget {
                 ),
               ),
             ),
-            const ControlsWidget(),
-          ],
-        ),
+          ),
+          const ControlsWidget(),
+        ],
       ),
     );
   }
