@@ -1,85 +1,80 @@
 {
-  "finishGame": "Finish game",
+  "finishGame": "Завершить игру",
   "@finishGame": {
     "type": "text",
     "placeholders": {}
   },
-  "nextPlayer": "Next player",
-  "@nextPlayer": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "resetEnding": "Reset ending",
+  "resetEnding": "Сбросить слово",
   "@resetEnding": {
     "type": "text",
     "placeholders": {}
   },
-  "congratulations": "Congratulations!",
+  "congratulations": "Поздравляем!",
   "@congratulations": {
     "type": "text",
     "placeholders": {}
   },
-  "maxHighscoreIs": "Max highscore is ",
+  "maxHighscoreIs": "Лучший результат ",
   "@maxHighscoreIs": {
     "type": "text",
     "placeholders": {}
   },
-  "continueGame": "Continue ",
+  "continueGame": "Продолжить ",
   "@continueGame": {
     "type": "text",
     "placeholders": {}
   },
-  "startAgain": "Start again ",
+  "startAgain": "Заново ",
   "@startAgain": {
     "type": "text",
     "placeholders": {}
   },
-  "yourHighscore": "This time your score is ",
+  "yourHighscore": "В этот раз, результат ",
   "@yourHighscore": {
     "type": "text",
     "placeholders": {}
   },
-  "player": "player",
+  "player": "игрок",
   "@player": {
     "type": "text",
     "placeholders": {}
   },
-  "lastword": "Last word: ",
+  "lastword": "Последнее слово: ",
   "@lastword": {
     "type": "text",
     "placeholders": {}
   },
-  "hintAddBeginning": "beginning",
+  "hintAddBeginning": "начало",
   "@hintAddBeginning": {
     "type": "text",
     "placeholders": {}
   },
-  "hintAddNewWord": "add new word",
+  "hintAddNewWord": "ввести новое слово",
   "@hintAddNewWord": {
     "type": "text",
     "placeholders": {}
   },
-  "hintAddEnding": "ending",
+  "hintAddEnding": "окончание",
   "@hintAddEnding": {
     "type": "text",
     "placeholders": {}
   },
-  "addNewWord": "add",
+  "addNewWord": "добавить",
   "@addNewWord": {
     "type": "text",
     "placeholders": {}
   },
-  "newGame": "New Game",
+  "newGame": "Новая игра",
   "@newGame": {
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "For any bugs or ideas please send your feedback to idea@xsoulspace.dev",
+  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на idea@xsoulspace.dev",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
   },
-  "thankYou": "Thank you and happy gaming!",
+  "thankYou": "Спасибо за игру и хорошего времяпрепровождения!",
   "@thankYou": {
     "type": "text",
     "placeholders": {}
@@ -89,42 +84,42 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentScore": "score",
+  "currentScore": "результат",
   "@currentScore": {
     "type": "text",
     "placeholders": {}
   },
-  "highscore": "highscore",
+  "highscore": "лучший результат",
   "@highscore": {
     "type": "text",
     "placeholders": {}
   },
-  "lettersToRemove": "letters to remove",
+  "lettersToRemove": "букв для удаления",
   "@lettersToRemove": {
     "type": "text",
     "placeholders": {}
   },
-  "players": "Players ",
+  "players": "Игроки ",
   "@players": {
     "type": "text",
     "placeholders": {}
   },
-  "menuLanguage": "Lang ",
+  "menuLanguage": "Язык ",
   "@menuLanguage": {
     "type": "text",
     "placeholders": {}
   },
-  "menuInfo": "Info ",
+  "menuInfo": "Об игре ",
   "@menuInfo": {
     "type": "text",
     "placeholders": {}
   },
-  "menuNewGame": "New ",
+  "menuNewGame": "Заново ",
   "@menuNewGame": {
     "type": "text",
     "placeholders": {}
   },
-  "addToDictionary": "Add to dictionary",
+  "addToDictionary": "Добавить в словарь",
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}

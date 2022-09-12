@@ -50,7 +50,6 @@ dependencies:
   shared_preferences: ^2.0.13
   universal_io: ^2.0.4
   url_launcher: ^6.1.2
-  uuid: ^3.0.6
   english_words: ^4.0.0
   flare_flutter: ^3.0.2
   flutter:
@@ -102,7 +101,7 @@ flutter_gen:
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.
 flutter:
-  generate: true
+  generate: false
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

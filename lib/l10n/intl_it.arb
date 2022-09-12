@@ -1,85 +1,85 @@
 {
-  "finishGame": "Finish game",
+  "finishGame": "Gioco finito",
   "@finishGame": {
     "type": "text",
     "placeholders": {}
   },
-  "nextPlayer": "Next player",
+  "nextPlayer": "Prossimo giocatore",
   "@nextPlayer": {
     "type": "text",
     "placeholders": {}
   },
-  "resetEnding": "Reset ending",
+  "resetEnding": "Reimposta fine",
   "@resetEnding": {
     "type": "text",
     "placeholders": {}
   },
-  "congratulations": "Congratulations!",
+  "congratulations": "Congratulazioni!",
   "@congratulations": {
     "type": "text",
     "placeholders": {}
   },
-  "maxHighscoreIs": "Max highscore is ",
+  "maxHighscoreIs": "Il punteggio massimo è ",
   "@maxHighscoreIs": {
     "type": "text",
     "placeholders": {}
   },
-  "continueGame": "Continue ",
+  "continueGame": "Continua ",
   "@continueGame": {
     "type": "text",
     "placeholders": {}
   },
-  "startAgain": "Start again ",
+  "startAgain": "Ricomincia ",
   "@startAgain": {
     "type": "text",
     "placeholders": {}
   },
-  "yourHighscore": "This time your score is ",
+  "yourHighscore": "Questa volta il tuo punteggio è",
   "@yourHighscore": {
     "type": "text",
     "placeholders": {}
   },
-  "player": "player",
+  "player": "giocatore",
   "@player": {
     "type": "text",
     "placeholders": {}
   },
-  "lastword": "Last word: ",
+  "lastword": "Ultima parola: ",
   "@lastword": {
     "type": "text",
     "placeholders": {}
   },
-  "hintAddBeginning": "beginning",
+  "hintAddBeginning": "inizio",
   "@hintAddBeginning": {
     "type": "text",
     "placeholders": {}
   },
-  "hintAddNewWord": "add new word",
+  "hintAddNewWord": "aggiungi nuova parola",
   "@hintAddNewWord": {
     "type": "text",
     "placeholders": {}
   },
-  "hintAddEnding": "ending",
+  "hintAddEnding": "fine",
   "@hintAddEnding": {
     "type": "text",
     "placeholders": {}
   },
-  "addNewWord": "add",
+  "addNewWord": "aggiungi",
   "@addNewWord": {
     "type": "text",
     "placeholders": {}
   },
-  "newGame": "New Game",
+  "newGame": "Nuovo gioco",
   "@newGame": {
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "For any bugs or ideas please send your feedback to idea@xsoulspace.dev",
+  "sendFeedback": "Per qualsiasi bug o idea, invia il tuo feedback a idea@xsoulspace.dev",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
   },
-  "thankYou": "Thank you and happy gaming!",
+  "thankYou": "Grazie e buon gioco!",
   "@thankYou": {
     "type": "text",
     "placeholders": {}
@@ -89,17 +89,17 @@
     "type": "text",
     "placeholders": {}
   },
-  "currentScore": "score",
+  "currentScore": "punteggio",
   "@currentScore": {
     "type": "text",
     "placeholders": {}
   },
-  "highscore": "highscore",
+  "highscore": "Punteggio più alto",
   "@highscore": {
     "type": "text",
     "placeholders": {}
   },
-  "lettersToRemove": "letters to remove",
+  "lettersToRemove": "lettere da rimuovere",
   "@lettersToRemove": {
     "type": "text",
     "placeholders": {}
@@ -109,7 +109,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "menuLanguage": "Lang ",
+  "menuLanguage": "Lingua ",
   "@menuLanguage": {
     "type": "text",
     "placeholders": {}
@@ -119,12 +119,12 @@
     "type": "text",
     "placeholders": {}
   },
-  "menuNewGame": "New ",
+  "menuNewGame": "Nuovo ",
   "@menuNewGame": {
     "type": "text",
     "placeholders": {}
   },
-  "addToDictionary": "Add to dictionary",
+  "addToDictionary": "Aggiungi al dizionario",
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}

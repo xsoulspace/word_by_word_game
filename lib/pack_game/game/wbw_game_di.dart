@@ -16,7 +16,7 @@ class WbwGameDiDto {
       FlameBlocProvider<ResourcesBloc, ResourcesState>.value(
         value: resourcesBloc,
       ),
-      FlameBlocProvider<LevelBloc, LevelState>.value(
+      FlameBlocProvider<LevelBloc, LevelBlocState>.value(
         value: levelBloc,
       ),
     ];

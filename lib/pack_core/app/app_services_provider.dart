@@ -2,7 +2,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 // ignore: implementation_imports
 import 'package:flutter_bloc/src/bloc_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 class AppServicesProvider extends StatelessWidget {
   const AppServicesProvider({
@@ -12,19 +14,36 @@ class AppServicesProvider extends StatelessWidget {
   final Widget child;
   @override
   Widget build(final BuildContext context) {
-    final initialProviders = <BlocProviderSingleChildWidget>[
-      BlocProvider<LevelBloc>(create: (final context) => LevelBloc()),
-      BlocProvider<ResourcesBloc>(create: (final context) => ResourcesBloc()),
-    ];
-
-    final otherProviders = <BlocProviderSingleChildWidget>[];
-
-    return MultiBlocProvider(
+    return MultiProvider(
       providers: [
-        ...initialProviders,
-        ...otherProviders,
+        Provider<MechanicsCollection>(
+          create: (final context) => MechanicsCollection.v1,
+        )
       ],
-      child: child,
+      child: Builder(
+        builder: (final context) {
+          final initialProviders = <BlocProviderSingleChildWidget>[
+            BlocProvider<LevelBloc>(
+              create: (final context) => LevelBloc(
+                diDto: LevelBlocDiDto.use(context.read),
+              ),
+            ),
+            BlocProvider<ResourcesBloc>(
+              create: (final context) => ResourcesBloc(),
+            ),
+          ];
+
+          final otherProviders = <BlocProviderSingleChildWidget>[];
+
+          return MultiBlocProvider(
+            providers: [
+              ...initialProviders,
+              ...otherProviders,
+            ],
+            child: child,
+          );
+        },
+      ),
     );
   }
 }

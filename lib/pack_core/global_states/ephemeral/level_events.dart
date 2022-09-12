@@ -14,3 +14,12 @@ class WorldTimeTickEvent extends LevelEvent {
 class LoadLevelEvent extends LevelEvent {
   const LoadLevelEvent();
 }
+
+class ChangeCurrentWordEvent extends LevelEvent {
+  const ChangeCurrentWordEvent({
+    required this.word,
+  });
+  final CurrentWordModel word;
+  @override
+  List<Object?> get props => [word];
+}
