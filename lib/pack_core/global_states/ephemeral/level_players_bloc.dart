@@ -19,16 +19,17 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
   LevelPlayersBloc({
     required this.diDto,
   }) : super(const EmptyLevelPlayersBlocState()) {
-    on<LoadLevelPlayersEvent>(_onLoadLevelPlayers);
+    on<InitLevelPlayersEvent>(_onInitLevelPlayers);
     on<SwitchToNextPlayerEvent>(_onSwitchToNextPlayer);
   }
   final LevelPlayersBlocDiDto diDto;
 
-  void _onLoadLevelPlayers(
-    final LoadLevelPlayersEvent event,
+  void _onInitLevelPlayers(
+    final InitLevelPlayersEvent event,
     final Emitter<LevelPlayersBlocState> emit,
   ) {
-    emit(event.liveState);
+    final liveState = LiveLevelPlayersBlocState.fromModel(event.playersModel);
+    emit(liveState);
   }
 
   void _onSwitchToNextPlayer(

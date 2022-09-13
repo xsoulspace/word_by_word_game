@@ -1,6 +1,8 @@
 // ignore_for_file: invalid_annotation_target
 
-part of 'level_bloc.dart';
+part of 'models.dart';
+
+typedef LevelModelId = String;
 
 @immutable
 @Freezed(
@@ -10,17 +12,18 @@ part of 'level_bloc.dart';
   addImplicitFinal: true,
   copyWith: true,
 )
-class LevelBlocState with _$LevelBlocState {
+class LevelModel with _$LevelModel {
   @JsonSerializable(
     explicitToJson: true,
   )
-  const factory LevelBlocState({
+  const factory LevelModel({
+    required final LevelModelId id,
+    required final LevelPlayersModel players,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordType, PlayerProfileModelId> words,
     @Default('') final String latestWord,
-  }) = _LevelBlocState;
-  const LevelBlocState._();
-  factory LevelBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LevelBlocStateFromJson(json);
-  static const empty = LevelBlocState();
+  }) = _LevelModel;
+  const LevelModel._();
+  factory LevelModel.fromJson(final Map<String, dynamic> json) =>
+      _$LevelModelFromJson(json);
 }

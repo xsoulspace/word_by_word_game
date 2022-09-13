@@ -6,8 +6,7 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CurrentWordModel _$$_CurrentWordModelFromJson(
-        final Map<String, dynamic> json) =>
+_$_CurrentWordModel _$$_CurrentWordModelFromJson(Map<String, dynamic> json) =>
     _$_CurrentWordModel(
       leftPart: json['leftPart'] as String? ?? '',
       middlePart: json['middlePart'] as String? ?? '',
@@ -15,8 +14,7 @@ _$_CurrentWordModel _$$_CurrentWordModelFromJson(
       fullWord: json['fullWord'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_CurrentWordModelToJson(
-        final _$_CurrentWordModel instance) =>
+Map<String, dynamic> _$$_CurrentWordModelToJson(_$_CurrentWordModel instance) =>
     <String, dynamic>{
       'leftPart': instance.leftPart,
       'middlePart': instance.middlePart,
@@ -24,21 +22,74 @@ Map<String, dynamic> _$$_CurrentWordModelToJson(
       'fullWord': instance.fullWord,
     };
 
+_$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
+      id: json['id'] as String,
+      levels: (json['levels'] as List<dynamic>)
+          .map((e) => LevelModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      currentLevelId: json['currentLevelId'] as String,
+    );
+
+Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'levels': instance.levels.map((e) => e.toJson()).toList(),
+      'currentLevelId': instance.currentLevelId,
+    };
+
+_$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
+    _$_LevelModel(
+      id: json['id'] as String,
+      players:
+          LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
+      currentWord: json['currentWord'] == null
+          ? const CurrentWordModel()
+          : CurrentWordModel.fromJson(
+              json['currentWord'] as Map<String, dynamic>),
+      words: (json['words'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(k, e as String),
+          ) ??
+          const {},
+      latestWord: json['latestWord'] as String? ?? '',
+    );
+
+Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'players': instance.players.toJson(),
+      'currentWord': instance.currentWord.toJson(),
+      'words': instance.words,
+      'latestWord': instance.latestWord,
+    };
+
+_$_LevelPlayersModel _$$_LevelPlayersModelFromJson(Map<String, dynamic> json) =>
+    _$_LevelPlayersModel(
+      players: (json['players'] as List<dynamic>)
+          .map((e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      currentPlayerId: json['currentPlayerId'] as String,
+    );
+
+Map<String, dynamic> _$$_LevelPlayersModelToJson(
+        _$_LevelPlayersModel instance) =>
+    <String, dynamic>{
+      'players': instance.players.map((e) => e.toJson()).toList(),
+      'currentPlayerId': instance.currentPlayerId,
+    };
+
 _$_PlayerProfileModel _$$_PlayerProfileModelFromJson(
-  final Map<String, dynamic> json,
-) =>
+        Map<String, dynamic> json) =>
     _$_PlayerProfileModel(
       id: json['id'] as String,
       colorValue: json['colorValue'] as int,
       name: json['name'] as String,
       playedGames: (json['playedGames'] as List<dynamic>)
-          .map((final e) => e as String)
+          .map((e) => e as String)
           .toSet(),
     );
 
 Map<String, dynamic> _$$_PlayerProfileModelToJson(
-  final _$_PlayerProfileModel instance,
-) =>
+        _$_PlayerProfileModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'colorValue': instance.colorValue,
@@ -46,12 +97,12 @@ Map<String, dynamic> _$$_PlayerProfileModelToJson(
       'playedGames': instance.playedGames.toList(),
     };
 
-_$_WorldDateTime _$$_WorldDateTimeFromJson(final Map<String, dynamic> json) =>
+_$_WorldDateTime _$$_WorldDateTimeFromJson(Map<String, dynamic> json) =>
     _$_WorldDateTime(
       second: json['second'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$_WorldDateTimeToJson(final _$_WorldDateTime instance) =>
+Map<String, dynamic> _$$_WorldDateTimeToJson(_$_WorldDateTime instance) =>
     <String, dynamic>{
       'second': instance.second,
     };

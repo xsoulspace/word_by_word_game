@@ -3,33 +3,40 @@ import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/ephemeral/level_players_bloc.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 
 part 'level_bloc.freezed.dart';
 part 'level_bloc.g.dart';
-part 'level_events.dart';
-part 'level_states.dart';
+part 'level_bloc_events.dart';
+part 'level_bloc_states.dart';
 
 class LevelBlocDiDto {
-  LevelBlocDiDto.use(final Locator read) : mechanics = read();
+  LevelBlocDiDto.use(final Locator read)
+      : mechanics = read(),
+        levelPlayersBloc = read();
   final MechanicsCollection mechanics;
+  final LevelPlayersBloc levelPlayersBloc;
 }
 
-class LevelBloc extends Bloc<LevelEvent, LevelBlocState> {
+class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   LevelBloc({
     required this.diDto,
-  }) : super(LevelBlocState.empty) {
-    on<LoadLevelEvent>(_onLoadLevel);
+  }) : super(const EmptyLevelBlocState()) {
+    on<InitLevelEvent>(_onInitLevel);
     on<WorldTimeTickEvent>(_onWorldTimeTick);
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
     on<AcceptNewWordEvent>(_onAcceptNewWord);
   }
   final LevelBlocDiDto diDto;
 
-  void _onLoadLevel(
-    final LoadLevelEvent event,
+  void _onInitLevel(
+    final InitLevelEvent event,
     final Emitter<LevelBlocState> emit,
-  ) {}
+  ) {
+    final liveLevel = LiveLevelBlocState.fromModel(event.levelModel);
+    emit(liveLevel);
+  }
 
   void _onWorldTimeTick(
     final WorldTimeTickEvent event,
@@ -40,7 +47,11 @@ class LevelBloc extends Bloc<LevelEvent, LevelBlocState> {
     final ChangeCurrentWordEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final newState = state.copyWith(
+    final effectiveState = state;
+    if (effectiveState is! LiveLevelBlocState) {
+      throw ArgumentError.value(effectiveState);
+    }
+    final newState = effectiveState.copyWith(
       currentWord: event.word,
     );
     emit(newState);
@@ -50,15 +61,28 @@ class LevelBloc extends Bloc<LevelEvent, LevelBlocState> {
     final AcceptNewWordEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final newWord = state.currentWord.fullWord;
-    // final updatedWords =  {
-    //     ...state.words,
-    //   }..[newWord] = ;
+    final effectiveState = state;
+    if (effectiveState is! LiveLevelBlocState) {
+      throw ArgumentError.value(effectiveState);
+    }
+    final newWord = effectiveState.currentWord.fullWord;
+    final updatedWords = {
+      ...effectiveState.words,
+    }..[newWord] = _getLiveLevelPlayersState().currentPlayerId;
+    final updatedState = effectiveState.copyWith(
+      latestWord: newWord,
+      words: updatedWords,
+    );
+    emit(updatedState);
+    diDto.levelPlayersBloc.add(const SwitchToNextPlayerEvent());
+    // TODO(arenukvern): countdown reset event
+  }
 
-    // final updatedState = state.copyWith(
-    //   latestWord: newWord,
-    //   words:updatedWords,
-    // );
-    // emit(updatedState);
+  LiveLevelPlayersBlocState _getLiveLevelPlayersState() {
+    final playersState = diDto.levelPlayersBloc.state;
+    if (playersState is! LiveLevelPlayersBlocState) {
+      throw ArgumentError.value(playersState);
+    }
+    return playersState;
   }
 }

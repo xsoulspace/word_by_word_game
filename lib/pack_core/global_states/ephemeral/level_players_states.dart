@@ -33,4 +33,13 @@ class LiveLevelPlayersBlocState extends LevelPlayersBlocState
   const LiveLevelPlayersBlocState._();
   factory LiveLevelPlayersBlocState.fromJson(final Map<String, dynamic> json) =>
       _$LiveLevelPlayersBlocStateFromJson(json);
+
+  factory LiveLevelPlayersBlocState.fromModel(
+    final LevelPlayersModel levelPlayersModel,
+  ) {
+    return LiveLevelPlayersBlocState(
+      currentPlayerId: levelPlayersModel.currentPlayerId,
+      players: levelPlayersModel.players,
+    );
+  }
 }

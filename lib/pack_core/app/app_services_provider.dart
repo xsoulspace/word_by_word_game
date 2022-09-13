@@ -23,6 +23,11 @@ class AppServicesProvider extends StatelessWidget {
       child: Builder(
         builder: (final context) {
           final initialProviders = <BlocProviderSingleChildWidget>[
+            BlocProvider(
+              create: (final context) => LevelPlayersBloc(
+                diDto: LevelPlayersBlocDiDto.use(context.read),
+              ),
+            ),
             BlocProvider<LevelBloc>(
               create: (final context) => LevelBloc(
                 diDto: LevelBlocDiDto.use(context.read),

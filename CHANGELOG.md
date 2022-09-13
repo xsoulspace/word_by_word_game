@@ -1,10 +1,13 @@
 ## September 13th 2022
 
+- player turn switcher.
+
 - full word combination logic and saving to the level state.
+
+
 - create countdown mechanics.
 - reset countdown by sending the new word.
 
-- player turn switcher.
 
 Game states:
 Empty state - no players, no levels, no active game

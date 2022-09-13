@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
 import 'package:word_by_word_game/pack_game/controls/controls.dart';
-import 'package:word_by_word_game/pack_game/controls/widgets/widgets.dart';
 import 'package:word_by_word_game/pack_game/game/wbw_game.dart';
 
 class WbwGameWidget extends HookWidget {
@@ -54,36 +53,6 @@ class WbwGameWidget extends HookWidget {
           const ControlsWidget(),
         ],
       ),
-    );
-  }
-}
-
-class ControlsWidget extends StatelessWidget {
-  const ControlsWidget({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(24),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: const [
-          PlayerSwitcher(),
-          Expanded(child: WordCompositionRow()),
-          SendWordActionButton(),
-        ],
-      ),
-    );
-  }
-}
-
-class PlayerSwitcher extends StatelessWidget {
-  const PlayerSwitcher({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    return Container(
-      color: Colors.red,
     );
   }
 }

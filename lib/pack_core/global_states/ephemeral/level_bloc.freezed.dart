@@ -14,29 +14,31 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-LevelBlocState _$LevelBlocStateFromJson(Map<String, dynamic> json) {
-  return _LevelBlocState.fromJson(json);
+LiveLevelBlocState _$LiveLevelBlocStateFromJson(Map<String, dynamic> json) {
+  return _LiveLevelBlocState.fromJson(json);
 }
 
 /// @nodoc
-mixin _$LevelBlocState {
+mixin _$LiveLevelBlocState {
+  String get id => throw _privateConstructorUsedError;
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $LevelBlocStateCopyWith<LevelBlocState> get copyWith =>
+  $LiveLevelBlocStateCopyWith<LiveLevelBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LevelBlocStateCopyWith<$Res> {
-  factory $LevelBlocStateCopyWith(
-          LevelBlocState value, $Res Function(LevelBlocState) then) =
-      _$LevelBlocStateCopyWithImpl<$Res>;
+abstract class $LiveLevelBlocStateCopyWith<$Res> {
+  factory $LiveLevelBlocStateCopyWith(
+          LiveLevelBlocState value, $Res Function(LiveLevelBlocState) then) =
+      _$LiveLevelBlocStateCopyWithImpl<$Res>;
   $Res call(
-      {CurrentWordModel currentWord,
+      {String id,
+      CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord});
 
@@ -44,21 +46,26 @@ abstract class $LevelBlocStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LevelBlocStateCopyWithImpl<$Res>
-    implements $LevelBlocStateCopyWith<$Res> {
-  _$LevelBlocStateCopyWithImpl(this._value, this._then);
+class _$LiveLevelBlocStateCopyWithImpl<$Res>
+    implements $LiveLevelBlocStateCopyWith<$Res> {
+  _$LiveLevelBlocStateCopyWithImpl(this._value, this._then);
 
-  final LevelBlocState _value;
+  final LiveLevelBlocState _value;
   // ignore: unused_field
-  final $Res Function(LevelBlocState) _then;
+  final $Res Function(LiveLevelBlocState) _then;
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
   }) {
     return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -83,14 +90,15 @@ class _$LevelBlocStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$$_LevelBlocStateCopyWith<$Res>
-    implements $LevelBlocStateCopyWith<$Res> {
-  factory _$$_LevelBlocStateCopyWith(
-          _$_LevelBlocState value, $Res Function(_$_LevelBlocState) then) =
-      __$$_LevelBlocStateCopyWithImpl<$Res>;
+abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
+    implements $LiveLevelBlocStateCopyWith<$Res> {
+  factory _$$_LiveLevelBlocStateCopyWith(_$_LiveLevelBlocState value,
+          $Res Function(_$_LiveLevelBlocState) then) =
+      __$$_LiveLevelBlocStateCopyWithImpl<$Res>;
   @override
   $Res call(
-      {CurrentWordModel currentWord,
+      {String id,
+      CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord});
 
@@ -99,23 +107,28 @@ abstract class _$$_LevelBlocStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LevelBlocStateCopyWithImpl<$Res>
-    extends _$LevelBlocStateCopyWithImpl<$Res>
-    implements _$$_LevelBlocStateCopyWith<$Res> {
-  __$$_LevelBlocStateCopyWithImpl(
-      _$_LevelBlocState _value, $Res Function(_$_LevelBlocState) _then)
-      : super(_value, (v) => _then(v as _$_LevelBlocState));
+class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
+    extends _$LiveLevelBlocStateCopyWithImpl<$Res>
+    implements _$$_LiveLevelBlocStateCopyWith<$Res> {
+  __$$_LiveLevelBlocStateCopyWithImpl(
+      _$_LiveLevelBlocState _value, $Res Function(_$_LiveLevelBlocState) _then)
+      : super(_value, (v) => _then(v as _$_LiveLevelBlocState));
 
   @override
-  _$_LevelBlocState get _value => super._value as _$_LevelBlocState;
+  _$_LiveLevelBlocState get _value => super._value as _$_LiveLevelBlocState;
 
   @override
   $Res call({
+    Object? id = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
   }) {
-    return _then(_$_LevelBlocState(
+    return _then(_$_LiveLevelBlocState(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -135,17 +148,20 @@ class __$$_LevelBlocStateCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LevelBlocState extends _LevelBlocState {
-  const _$_LevelBlocState(
-      {this.currentWord = const CurrentWordModel(),
+class _$_LiveLevelBlocState extends _LiveLevelBlocState {
+  const _$_LiveLevelBlocState(
+      {required this.id,
+      this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = ''})
       : _words = words,
         super._();
 
-  factory _$_LevelBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$_LevelBlocStateFromJson(json);
+  factory _$_LiveLevelBlocState.fromJson(Map<String, dynamic> json) =>
+      _$$_LiveLevelBlocStateFromJson(json);
 
+  @override
+  final String id;
   @override
   @JsonKey()
   final CurrentWordModel currentWord;
@@ -163,14 +179,15 @@ class _$_LevelBlocState extends _LevelBlocState {
 
   @override
   String toString() {
-    return 'LevelBlocState(currentWord: $currentWord, words: $words, latestWord: $latestWord)';
+    return 'LiveLevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LevelBlocState &&
+            other is _$_LiveLevelBlocState &&
+            const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.currentWord, currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
@@ -182,33 +199,39 @@ class _$_LevelBlocState extends _LevelBlocState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord));
 
   @JsonKey(ignore: true)
   @override
-  _$$_LevelBlocStateCopyWith<_$_LevelBlocState> get copyWith =>
-      __$$_LevelBlocStateCopyWithImpl<_$_LevelBlocState>(this, _$identity);
+  _$$_LiveLevelBlocStateCopyWith<_$_LiveLevelBlocState> get copyWith =>
+      __$$_LiveLevelBlocStateCopyWithImpl<_$_LiveLevelBlocState>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LevelBlocStateToJson(
+    return _$$_LiveLevelBlocStateToJson(
       this,
     );
   }
 }
 
-abstract class _LevelBlocState extends LevelBlocState {
-  const factory _LevelBlocState(
-      {final CurrentWordModel currentWord,
+abstract class _LiveLevelBlocState extends LiveLevelBlocState
+    implements LevelBlocState {
+  const factory _LiveLevelBlocState(
+      {required final String id,
+      final CurrentWordModel currentWord,
       final Map<String, String> words,
-      final String latestWord}) = _$_LevelBlocState;
-  const _LevelBlocState._() : super._();
+      final String latestWord}) = _$_LiveLevelBlocState;
+  const _LiveLevelBlocState._() : super._();
 
-  factory _LevelBlocState.fromJson(Map<String, dynamic> json) =
-      _$_LevelBlocState.fromJson;
+  factory _LiveLevelBlocState.fromJson(Map<String, dynamic> json) =
+      _$_LiveLevelBlocState.fromJson;
 
+  @override
+  String get id;
   @override
   CurrentWordModel get currentWord;
   @override
@@ -217,6 +240,6 @@ abstract class _LevelBlocState extends LevelBlocState {
   String get latestWord;
   @override
   @JsonKey(ignore: true)
-  _$$_LevelBlocStateCopyWith<_$_LevelBlocState> get copyWith =>
+  _$$_LiveLevelBlocStateCopyWith<_$_LiveLevelBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -6,8 +6,10 @@ part of 'level_bloc.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LevelBlocState _$$_LevelBlocStateFromJson(Map<String, dynamic> json) =>
-    _$_LevelBlocState(
+_$_LiveLevelBlocState _$$_LiveLevelBlocStateFromJson(
+        Map<String, dynamic> json) =>
+    _$_LiveLevelBlocState(
+      id: json['id'] as String,
       currentWord: json['currentWord'] == null
           ? const CurrentWordModel()
           : CurrentWordModel.fromJson(
@@ -19,8 +21,10 @@ _$_LevelBlocState _$$_LevelBlocStateFromJson(Map<String, dynamic> json) =>
       latestWord: json['latestWord'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_LevelBlocStateToJson(_$_LevelBlocState instance) =>
+Map<String, dynamic> _$$_LiveLevelBlocStateToJson(
+        _$_LiveLevelBlocState instance) =>
     <String, dynamic>{
+      'id': instance.id,
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,

@@ -217,6 +217,611 @@ abstract class _CurrentWordModel extends CurrentWordModel {
       throw _privateConstructorUsedError;
 }
 
+GameModel _$GameModelFromJson(Map<String, dynamic> json) {
+  return _GameModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GameModel {
+  String get id => throw _privateConstructorUsedError;
+  List<LevelModel> get levels => throw _privateConstructorUsedError;
+  String get currentLevelId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GameModelCopyWith<GameModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GameModelCopyWith<$Res> {
+  factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
+      _$GameModelCopyWithImpl<$Res>;
+  $Res call({String id, List<LevelModel> levels, String currentLevelId});
+}
+
+/// @nodoc
+class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
+  _$GameModelCopyWithImpl(this._value, this._then);
+
+  final GameModel _value;
+  // ignore: unused_field
+  final $Res Function(GameModel) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? levels = freezed,
+    Object? currentLevelId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      levels: levels == freezed
+          ? _value.levels
+          : levels // ignore: cast_nullable_to_non_nullable
+              as List<LevelModel>,
+      currentLevelId: currentLevelId == freezed
+          ? _value.currentLevelId
+          : currentLevelId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
+  factory _$$_GameModelCopyWith(
+          _$_GameModel value, $Res Function(_$_GameModel) then) =
+      __$$_GameModelCopyWithImpl<$Res>;
+  @override
+  $Res call({String id, List<LevelModel> levels, String currentLevelId});
+}
+
+/// @nodoc
+class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
+    implements _$$_GameModelCopyWith<$Res> {
+  __$$_GameModelCopyWithImpl(
+      _$_GameModel _value, $Res Function(_$_GameModel) _then)
+      : super(_value, (v) => _then(v as _$_GameModel));
+
+  @override
+  _$_GameModel get _value => super._value as _$_GameModel;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? levels = freezed,
+    Object? currentLevelId = freezed,
+  }) {
+    return _then(_$_GameModel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      levels: levels == freezed
+          ? _value._levels
+          : levels // ignore: cast_nullable_to_non_nullable
+              as List<LevelModel>,
+      currentLevelId: currentLevelId == freezed
+          ? _value.currentLevelId
+          : currentLevelId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_GameModel extends _GameModel {
+  const _$_GameModel(
+      {required this.id,
+      required final List<LevelModel> levels,
+      required this.currentLevelId})
+      : _levels = levels,
+        super._();
+
+  factory _$_GameModel.fromJson(Map<String, dynamic> json) =>
+      _$$_GameModelFromJson(json);
+
+  @override
+  final String id;
+  final List<LevelModel> _levels;
+  @override
+  List<LevelModel> get levels {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_levels);
+  }
+
+  @override
+  final String currentLevelId;
+
+  @override
+  String toString() {
+    return 'GameModel(id: $id, levels: $levels, currentLevelId: $currentLevelId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GameModel &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other._levels, _levels) &&
+            const DeepCollectionEquality()
+                .equals(other.currentLevelId, currentLevelId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(_levels),
+      const DeepCollectionEquality().hash(currentLevelId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
+      __$$_GameModelCopyWithImpl<_$_GameModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GameModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GameModel extends GameModel {
+  const factory _GameModel(
+      {required final String id,
+      required final List<LevelModel> levels,
+      required final String currentLevelId}) = _$_GameModel;
+  const _GameModel._() : super._();
+
+  factory _GameModel.fromJson(Map<String, dynamic> json) =
+      _$_GameModel.fromJson;
+
+  @override
+  String get id;
+  @override
+  List<LevelModel> get levels;
+  @override
+  String get currentLevelId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
+  return _LevelModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LevelModel {
+  String get id => throw _privateConstructorUsedError;
+  LevelPlayersModel get players => throw _privateConstructorUsedError;
+  CurrentWordModel get currentWord => throw _privateConstructorUsedError;
+  Map<String, String> get words => throw _privateConstructorUsedError;
+  String get latestWord => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LevelModelCopyWith<LevelModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LevelModelCopyWith<$Res> {
+  factory $LevelModelCopyWith(
+          LevelModel value, $Res Function(LevelModel) then) =
+      _$LevelModelCopyWithImpl<$Res>;
+  $Res call(
+      {String id,
+      LevelPlayersModel players,
+      CurrentWordModel currentWord,
+      Map<String, String> words,
+      String latestWord});
+
+  $LevelPlayersModelCopyWith<$Res> get players;
+  $CurrentWordModelCopyWith<$Res> get currentWord;
+}
+
+/// @nodoc
+class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
+  _$LevelModelCopyWithImpl(this._value, this._then);
+
+  final LevelModel _value;
+  // ignore: unused_field
+  final $Res Function(LevelModel) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? players = freezed,
+    Object? currentWord = freezed,
+    Object? words = freezed,
+    Object? latestWord = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as LevelPlayersModel,
+      currentWord: currentWord == freezed
+          ? _value.currentWord
+          : currentWord // ignore: cast_nullable_to_non_nullable
+              as CurrentWordModel,
+      words: words == freezed
+          ? _value.words
+          : words // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      latestWord: latestWord == freezed
+          ? _value.latestWord
+          : latestWord // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+
+  @override
+  $LevelPlayersModelCopyWith<$Res> get players {
+    return $LevelPlayersModelCopyWith<$Res>(_value.players, (value) {
+      return _then(_value.copyWith(players: value));
+    });
+  }
+
+  @override
+  $CurrentWordModelCopyWith<$Res> get currentWord {
+    return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
+      return _then(_value.copyWith(currentWord: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_LevelModelCopyWith<$Res>
+    implements $LevelModelCopyWith<$Res> {
+  factory _$$_LevelModelCopyWith(
+          _$_LevelModel value, $Res Function(_$_LevelModel) then) =
+      __$$_LevelModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String id,
+      LevelPlayersModel players,
+      CurrentWordModel currentWord,
+      Map<String, String> words,
+      String latestWord});
+
+  @override
+  $LevelPlayersModelCopyWith<$Res> get players;
+  @override
+  $CurrentWordModelCopyWith<$Res> get currentWord;
+}
+
+/// @nodoc
+class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
+    implements _$$_LevelModelCopyWith<$Res> {
+  __$$_LevelModelCopyWithImpl(
+      _$_LevelModel _value, $Res Function(_$_LevelModel) _then)
+      : super(_value, (v) => _then(v as _$_LevelModel));
+
+  @override
+  _$_LevelModel get _value => super._value as _$_LevelModel;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? players = freezed,
+    Object? currentWord = freezed,
+    Object? words = freezed,
+    Object? latestWord = freezed,
+  }) {
+    return _then(_$_LevelModel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as LevelPlayersModel,
+      currentWord: currentWord == freezed
+          ? _value.currentWord
+          : currentWord // ignore: cast_nullable_to_non_nullable
+              as CurrentWordModel,
+      words: words == freezed
+          ? _value._words
+          : words // ignore: cast_nullable_to_non_nullable
+              as Map<String, String>,
+      latestWord: latestWord == freezed
+          ? _value.latestWord
+          : latestWord // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_LevelModel extends _LevelModel {
+  const _$_LevelModel(
+      {required this.id,
+      required this.players,
+      this.currentWord = const CurrentWordModel(),
+      final Map<String, String> words = const {},
+      this.latestWord = ''})
+      : _words = words,
+        super._();
+
+  factory _$_LevelModel.fromJson(Map<String, dynamic> json) =>
+      _$$_LevelModelFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final LevelPlayersModel players;
+  @override
+  @JsonKey()
+  final CurrentWordModel currentWord;
+  final Map<String, String> _words;
+  @override
+  @JsonKey()
+  Map<String, String> get words {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_words);
+  }
+
+  @override
+  @JsonKey()
+  final String latestWord;
+
+  @override
+  String toString() {
+    return 'LevelModel(id: $id, players: $players, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LevelModel &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.players, players) &&
+            const DeepCollectionEquality()
+                .equals(other.currentWord, currentWord) &&
+            const DeepCollectionEquality().equals(other._words, _words) &&
+            const DeepCollectionEquality()
+                .equals(other.latestWord, latestWord));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(players),
+      const DeepCollectionEquality().hash(currentWord),
+      const DeepCollectionEquality().hash(_words),
+      const DeepCollectionEquality().hash(latestWord));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>
+      __$$_LevelModelCopyWithImpl<_$_LevelModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LevelModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LevelModel extends LevelModel {
+  const factory _LevelModel(
+      {required final String id,
+      required final LevelPlayersModel players,
+      final CurrentWordModel currentWord,
+      final Map<String, String> words,
+      final String latestWord}) = _$_LevelModel;
+  const _LevelModel._() : super._();
+
+  factory _LevelModel.fromJson(Map<String, dynamic> json) =
+      _$_LevelModel.fromJson;
+
+  @override
+  String get id;
+  @override
+  LevelPlayersModel get players;
+  @override
+  CurrentWordModel get currentWord;
+  @override
+  Map<String, String> get words;
+  @override
+  String get latestWord;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+LevelPlayersModel _$LevelPlayersModelFromJson(Map<String, dynamic> json) {
+  return _LevelPlayersModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LevelPlayersModel {
+  List<PlayerProfileModel> get players => throw _privateConstructorUsedError;
+  String get currentPlayerId => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LevelPlayersModelCopyWith<LevelPlayersModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LevelPlayersModelCopyWith<$Res> {
+  factory $LevelPlayersModelCopyWith(
+          LevelPlayersModel value, $Res Function(LevelPlayersModel) then) =
+      _$LevelPlayersModelCopyWithImpl<$Res>;
+  $Res call({List<PlayerProfileModel> players, String currentPlayerId});
+}
+
+/// @nodoc
+class _$LevelPlayersModelCopyWithImpl<$Res>
+    implements $LevelPlayersModelCopyWith<$Res> {
+  _$LevelPlayersModelCopyWithImpl(this._value, this._then);
+
+  final LevelPlayersModel _value;
+  // ignore: unused_field
+  final $Res Function(LevelPlayersModel) _then;
+
+  @override
+  $Res call({
+    Object? players = freezed,
+    Object? currentPlayerId = freezed,
+  }) {
+    return _then(_value.copyWith(
+      players: players == freezed
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as List<PlayerProfileModel>,
+      currentPlayerId: currentPlayerId == freezed
+          ? _value.currentPlayerId
+          : currentPlayerId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_LevelPlayersModelCopyWith<$Res>
+    implements $LevelPlayersModelCopyWith<$Res> {
+  factory _$$_LevelPlayersModelCopyWith(_$_LevelPlayersModel value,
+          $Res Function(_$_LevelPlayersModel) then) =
+      __$$_LevelPlayersModelCopyWithImpl<$Res>;
+  @override
+  $Res call({List<PlayerProfileModel> players, String currentPlayerId});
+}
+
+/// @nodoc
+class __$$_LevelPlayersModelCopyWithImpl<$Res>
+    extends _$LevelPlayersModelCopyWithImpl<$Res>
+    implements _$$_LevelPlayersModelCopyWith<$Res> {
+  __$$_LevelPlayersModelCopyWithImpl(
+      _$_LevelPlayersModel _value, $Res Function(_$_LevelPlayersModel) _then)
+      : super(_value, (v) => _then(v as _$_LevelPlayersModel));
+
+  @override
+  _$_LevelPlayersModel get _value => super._value as _$_LevelPlayersModel;
+
+  @override
+  $Res call({
+    Object? players = freezed,
+    Object? currentPlayerId = freezed,
+  }) {
+    return _then(_$_LevelPlayersModel(
+      players: players == freezed
+          ? _value._players
+          : players // ignore: cast_nullable_to_non_nullable
+              as List<PlayerProfileModel>,
+      currentPlayerId: currentPlayerId == freezed
+          ? _value.currentPlayerId
+          : currentPlayerId // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_LevelPlayersModel extends _LevelPlayersModel {
+  const _$_LevelPlayersModel(
+      {required final List<PlayerProfileModel> players,
+      required this.currentPlayerId})
+      : _players = players,
+        super._();
+
+  factory _$_LevelPlayersModel.fromJson(Map<String, dynamic> json) =>
+      _$$_LevelPlayersModelFromJson(json);
+
+  final List<PlayerProfileModel> _players;
+  @override
+  List<PlayerProfileModel> get players {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_players);
+  }
+
+  @override
+  final String currentPlayerId;
+
+  @override
+  String toString() {
+    return 'LevelPlayersModel(players: $players, currentPlayerId: $currentPlayerId)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LevelPlayersModel &&
+            const DeepCollectionEquality().equals(other._players, _players) &&
+            const DeepCollectionEquality()
+                .equals(other.currentPlayerId, currentPlayerId));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_players),
+      const DeepCollectionEquality().hash(currentPlayerId));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LevelPlayersModelCopyWith<_$_LevelPlayersModel> get copyWith =>
+      __$$_LevelPlayersModelCopyWithImpl<_$_LevelPlayersModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LevelPlayersModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LevelPlayersModel extends LevelPlayersModel {
+  const factory _LevelPlayersModel(
+      {required final List<PlayerProfileModel> players,
+      required final String currentPlayerId}) = _$_LevelPlayersModel;
+  const _LevelPlayersModel._() : super._();
+
+  factory _LevelPlayersModel.fromJson(Map<String, dynamic> json) =
+      _$_LevelPlayersModel.fromJson;
+
+  @override
+  List<PlayerProfileModel> get players;
+  @override
+  String get currentPlayerId;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LevelPlayersModelCopyWith<_$_LevelPlayersModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 PlayerProfileModel _$PlayerProfileModelFromJson(Map<String, dynamic> json) {
   return _PlayerProfileModel.fromJson(json);
 }

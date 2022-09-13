@@ -8,11 +8,11 @@ abstract class LevelPlayersEvent extends Equatable {
 }
 
 @immutable
-class LoadLevelPlayersEvent extends LevelPlayersEvent {
-  const LoadLevelPlayersEvent({
-    required this.liveState,
+class InitLevelPlayersEvent extends LevelPlayersEvent {
+  const InitLevelPlayersEvent({
+    required this.playersModel,
   });
-  final LiveLevelPlayersBlocState liveState;
+  final LevelPlayersModel playersModel;
 }
 
 @immutable

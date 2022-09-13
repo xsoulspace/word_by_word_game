@@ -31,7 +31,7 @@ class _SendWordActionButton extends LifeState {
   }
 }
 
-class SendWordActionButton extends StatelessWidget {
+class SendWordActionButton extends HookWidget {
   const SendWordActionButton({super.key});
 
   @override
