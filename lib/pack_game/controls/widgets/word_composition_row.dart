@@ -26,12 +26,13 @@ class WordCompositionRow extends HookWidget {
     final spacing = uiTheme.spacing;
 
     return BlocBuilder<LevelBloc, LevelBlocState>(
-      buildWhen: (
-        final previous,
-        final current,
-      ) =>
-          previous.latestWord != current.latestWord,
+      buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+        checkLiveState: (final previous, final current) =>
+            previous.latestWord != current.latestWord,
+      ),
       builder: (final context, final levelState) {
+        if (levelState is! LiveLevelBlocState) return const SizedBox();
+
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -59,10 +60,15 @@ class WordCompositionRow extends HookWidget {
 
                 final middleWordPartActions =
                     BlocBuilder<LevelBloc, LevelBlocState>(
-                  buildWhen: (final previous, final current) =>
-                      previous.currentWord.middlePart !=
-                      current.currentWord.middlePart,
+                  buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+                    checkLiveState: (final previous, final current) =>
+                        previous.currentWord.middlePart !=
+                        current.currentWord.middlePart,
+                  ),
                   builder: (final context, final blocState) {
+                    if (blocState is! LiveLevelBlocState) {
+                      return const SizedBox();
+                    }
                     return MiddleWordPartActions(
                       middlePartOfWord: blocState.currentWord.middlePart,
                       onLeftTap: state.onDecreaseLeftPart,

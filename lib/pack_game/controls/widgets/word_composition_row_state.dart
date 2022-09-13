@@ -25,10 +25,10 @@ class _WordCompositionState extends LifeState {
   _WordCompositionState({
     required this.diDto,
   })  : leftPartController = TextEditingController(
-          text: diDto.levelBloc.state.currentWord.leftPart,
+          text: diDto.levelBloc.getLiveState().currentWord.leftPart,
         ),
         rightPartController = TextEditingController(
-          text: diDto.levelBloc.state.currentWord.rightPart,
+          text: diDto.levelBloc.getLiveState().currentWord.rightPart,
         );
   final TextEditingController leftPartController;
   final TextEditingController rightPartController;
@@ -39,6 +39,8 @@ class _WordCompositionState extends LifeState {
   @override
   void initState() {
     super.initState();
+    // TODO(arenukvern): listen  diDto.levelBloc changes
+    /// (changed from empty or loading to the live state)
     leftPartController.addListener(_onPartChanged);
     rightPartController.addListener(_onPartChanged);
     _wordUpdatesController.stream
@@ -52,7 +54,7 @@ class _WordCompositionState extends LifeState {
     final newWord = diDto.mechanics.wordComposition.applyPartsChanges(
       word: CurrentWordModel(
         leftPart: leftPartController.text,
-        middlePart: diDto.levelBloc.state.currentWord.middlePart,
+        middlePart: diDto.levelBloc.getLiveState().currentWord.middlePart,
         rightPart: rightPartController.text,
       ),
     );

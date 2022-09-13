@@ -28,6 +28,30 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
     on<AcceptNewWordEvent>(_onAcceptNewWord);
   }
+
+  static bool Function(LevelBlocState previous, LevelBlocState current)
+      useCheckStateEqualityBuilder({
+    required final bool Function(
+      LiveLevelBlocState previous,
+      LiveLevelBlocState current,
+    )
+        checkLiveState,
+  }) {
+    return (final previous, final current) {
+      if (previous is LiveLevelBlocState && current is! LiveLevelBlocState) {
+        return true;
+      }
+      if (previous is! LiveLevelBlocState && current is LiveLevelBlocState) {
+        return true;
+      }
+      if (current is LiveLevelBlocState && previous is LiveLevelBlocState) {
+        return checkLiveState(current, previous);
+      }
+
+      return false;
+    };
+  }
+
   final LevelBlocDiDto diDto;
 
   void _onInitLevel(
@@ -68,7 +92,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final newWord = effectiveState.currentWord.fullWord;
     final updatedWords = {
       ...effectiveState.words,
-    }..[newWord] = _getLiveLevelPlayersState().currentPlayerId;
+    }..[newWord] = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
     final updatedState = effectiveState.copyWith(
       latestWord: newWord,
       words: updatedWords,
@@ -78,11 +102,11 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     // TODO(arenukvern): countdown reset event
   }
 
-  LiveLevelPlayersBlocState _getLiveLevelPlayersState() {
-    final playersState = diDto.levelPlayersBloc.state;
-    if (playersState is! LiveLevelPlayersBlocState) {
-      throw ArgumentError.value(playersState);
+  LiveLevelBlocState getLiveState() {
+    final effectiveState = state;
+    if (effectiveState is! LiveLevelBlocState) {
+      throw ArgumentError.value(effectiveState);
     }
-    return playersState;
+    return effectiveState;
   }
 }

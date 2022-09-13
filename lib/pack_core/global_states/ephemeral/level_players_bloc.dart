@@ -67,4 +67,12 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
 
     emit(updatedState);
   }
+
+  LiveLevelPlayersBlocState getLiveState() {
+    final effectiveState = state;
+    if (effectiveState is! LiveLevelPlayersBlocState) {
+      throw ArgumentError.value(effectiveState);
+    }
+    return effectiveState;
+  }
 }
