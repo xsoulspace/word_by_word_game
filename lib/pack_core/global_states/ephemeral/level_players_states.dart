@@ -27,7 +27,7 @@ class LiveLevelPlayersBlocState extends LevelPlayersBlocState
   )
   @Implements<LevelPlayersBlocState>()
   const factory LiveLevelPlayersBlocState({
-    required final Set<PlayerProfileModel> players,
+    required final List<PlayerProfileModel> players,
     required final PlayerProfileModelId currentPlayerId,
   }) = _LiveLevelPlayersBlocState;
   const LiveLevelPlayersBlocState._();

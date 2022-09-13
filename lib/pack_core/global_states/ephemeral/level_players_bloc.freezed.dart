@@ -21,7 +21,7 @@ LiveLevelPlayersBlocState _$LiveLevelPlayersBlocStateFromJson(
 
 /// @nodoc
 mixin _$LiveLevelPlayersBlocState {
-  Set<PlayerProfileModel> get players => throw _privateConstructorUsedError;
+  List<PlayerProfileModel> get players => throw _privateConstructorUsedError;
   String get currentPlayerId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -35,7 +35,7 @@ abstract class $LiveLevelPlayersBlocStateCopyWith<$Res> {
   factory $LiveLevelPlayersBlocStateCopyWith(LiveLevelPlayersBlocState value,
           $Res Function(LiveLevelPlayersBlocState) then) =
       _$LiveLevelPlayersBlocStateCopyWithImpl<$Res>;
-  $Res call({Set<PlayerProfileModel> players, String currentPlayerId});
+  $Res call({List<PlayerProfileModel> players, String currentPlayerId});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$LiveLevelPlayersBlocStateCopyWithImpl<$Res>
       players: players == freezed
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
-              as Set<PlayerProfileModel>,
+              as List<PlayerProfileModel>,
       currentPlayerId: currentPlayerId == freezed
           ? _value.currentPlayerId
           : currentPlayerId // ignore: cast_nullable_to_non_nullable
@@ -73,7 +73,7 @@ abstract class _$$_LiveLevelPlayersBlocStateCopyWith<$Res>
           $Res Function(_$_LiveLevelPlayersBlocState) then) =
       __$$_LiveLevelPlayersBlocStateCopyWithImpl<$Res>;
   @override
-  $Res call({Set<PlayerProfileModel> players, String currentPlayerId});
+  $Res call({List<PlayerProfileModel> players, String currentPlayerId});
 }
 
 /// @nodoc
@@ -98,7 +98,7 @@ class __$$_LiveLevelPlayersBlocStateCopyWithImpl<$Res>
       players: players == freezed
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
-              as Set<PlayerProfileModel>,
+              as List<PlayerProfileModel>,
       currentPlayerId: currentPlayerId == freezed
           ? _value.currentPlayerId
           : currentPlayerId // ignore: cast_nullable_to_non_nullable
@@ -112,7 +112,7 @@ class __$$_LiveLevelPlayersBlocStateCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_LiveLevelPlayersBlocState extends _LiveLevelPlayersBlocState {
   const _$_LiveLevelPlayersBlocState(
-      {required final Set<PlayerProfileModel> players,
+      {required final List<PlayerProfileModel> players,
       required this.currentPlayerId})
       : _players = players,
         super._();
@@ -120,11 +120,11 @@ class _$_LiveLevelPlayersBlocState extends _LiveLevelPlayersBlocState {
   factory _$_LiveLevelPlayersBlocState.fromJson(Map<String, dynamic> json) =>
       _$$_LiveLevelPlayersBlocStateFromJson(json);
 
-  final Set<PlayerProfileModel> _players;
+  final List<PlayerProfileModel> _players;
   @override
-  Set<PlayerProfileModel> get players {
+  List<PlayerProfileModel> get players {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_players);
+    return EqualUnmodifiableListView(_players);
   }
 
   @override
@@ -169,7 +169,7 @@ class _$_LiveLevelPlayersBlocState extends _LiveLevelPlayersBlocState {
 abstract class _LiveLevelPlayersBlocState extends LiveLevelPlayersBlocState
     implements LevelPlayersBlocState {
   const factory _LiveLevelPlayersBlocState(
-      {required final Set<PlayerProfileModel> players,
+      {required final List<PlayerProfileModel> players,
       required final String currentPlayerId}) = _$_LiveLevelPlayersBlocState;
   const _LiveLevelPlayersBlocState._() : super._();
 
@@ -177,7 +177,7 @@ abstract class _LiveLevelPlayersBlocState extends LiveLevelPlayersBlocState
       _$_LiveLevelPlayersBlocState.fromJson;
 
   @override
-  Set<PlayerProfileModel> get players;
+  List<PlayerProfileModel> get players;
   @override
   String get currentPlayerId;
   @override

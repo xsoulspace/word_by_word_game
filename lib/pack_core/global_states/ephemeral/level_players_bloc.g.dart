@@ -11,7 +11,7 @@ _$_LiveLevelPlayersBlocState _$$_LiveLevelPlayersBlocStateFromJson(
     _$_LiveLevelPlayersBlocState(
       players: (json['players'] as List<dynamic>)
           .map((e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
-          .toSet(),
+          .toList(),
       currentPlayerId: json['currentPlayerId'] as String,
     );
 
