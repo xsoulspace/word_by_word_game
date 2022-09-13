@@ -23,3 +23,7 @@ class ChangeCurrentWordEvent extends LevelEvent {
   @override
   List<Object?> get props => [word];
 }
+
+class AcceptNewWordEvent extends LevelEvent {
+  const AcceptNewWordEvent();
+}

@@ -27,13 +27,14 @@ Future<void> bootstrap(final FutureOr<Widget> Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.setLandscape();
 
-  FlutterError.onError = (final details) {
-    log(details.exceptionAsString(), stackTrace: details.stack);
-  };
+  // FlutterError.onError = (final details) {
+  //   log(details.exceptionAsString(), stackTrace: details.stack);
+  // };
   Bloc.observer = AppBlocObserver();
   await runZonedGuarded(
     () async => runApp(await builder()),
-    (final error, final stackTrace) =>
-        log(error.toString(), stackTrace: stackTrace),
+    (final error, final stackTrace) {
+      log(error.toString(), stackTrace: stackTrace);
+    },
   );
 }

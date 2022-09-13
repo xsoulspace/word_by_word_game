@@ -22,6 +22,7 @@ class LevelBloc extends Bloc<LevelEvent, LevelBlocState> {
     on<LoadLevelEvent>(_onLoadLevel);
     on<WorldTimeTickEvent>(_onWorldTimeTick);
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
+    on<AcceptNewWordEvent>(_onAcceptNewWord);
   }
   final LevelBlocDiDto diDto;
 
@@ -43,5 +44,21 @@ class LevelBloc extends Bloc<LevelEvent, LevelBlocState> {
       currentWord: event.word,
     );
     emit(newState);
+  }
+
+  void _onAcceptNewWord(
+    final AcceptNewWordEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final newWord = state.currentWord.fullWord;
+    // final updatedWords =  {
+    //     ...state.words,
+    //   }..[newWord] = ;
+
+    // final updatedState = state.copyWith(
+    //   latestWord: newWord,
+    //   words:updatedWords,
+    // );
+    // emit(updatedState);
   }
 }
