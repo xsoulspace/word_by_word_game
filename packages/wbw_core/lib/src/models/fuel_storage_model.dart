@@ -10,7 +10,7 @@ part of 'models.dart';
 )
 class FuelStorageModel with _$FuelStorageModel {
   const factory FuelStorageModel({
-    @Default(0.0) final double value,
+    @Default(100) final double value,
   }) = _FuelStorageModel;
 
   const FuelStorageModel._();

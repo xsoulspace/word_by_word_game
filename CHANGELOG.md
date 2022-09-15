@@ -1,11 +1,15 @@
 ## September 15th 2022
 
 - Fix a bug with middle word part update.
+- Added basic mechancis to consume fuel over the time.
+- Added basic Fuel Mechanics with an option to refuel storage by sending a new word.
+- Added basic Score Mechanics to convert the word to the score and then convert it to the fuel.
 
 What's next:
 
-- create a check mechanics for the word with already written words.
-
+- Create a check mechanics for the word with already written words.
+- Player turn switcher.
+- Decrease the middle part from left, and from right sides.
 
 ## September 13th 2022
 

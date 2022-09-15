@@ -38,3 +38,12 @@ class ChangeCurrentWordEvent extends LevelBlocEvent {
 class AcceptNewWordEvent extends LevelBlocEvent {
   const AcceptNewWordEvent();
 }
+
+@immutable
+class RefuelStorageEvent extends LevelBlocEvent {
+  const RefuelStorageEvent({
+    required this.score,
+  });
+
+  final ScoreModel score;
+}

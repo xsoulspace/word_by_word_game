@@ -27,6 +27,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<ConsumeTickEvent>(_consumeTickEvent);
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
     on<AcceptNewWordEvent>(_onAcceptNewWord);
+    on<RefuelStorageEvent>(_onRefuelStorage);
   }
 
   static bool Function(LevelBlocState previous, LevelBlocState current)
@@ -78,6 +79,21 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     emit(updatedState);
   }
 
+  void _onRefuelStorage(
+    final RefuelStorageEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final effectiveState = getLiveState();
+    final fuelMechanics = diDto.mechanics.fuelMechanics;
+    final fuel = fuelMechanics.getFuelFromScore(score: event.score);
+    final fuelStorage = fuelMechanics.refuel(
+      fuelStorage: effectiveState.fuelStorage,
+      fuel: fuel,
+    );
+    final updatedState = effectiveState.copyWith(fuelStorage: fuelStorage);
+    emit(updatedState);
+  }
+
   void _onChangeCurrentWord(
     final ChangeCurrentWordEvent event,
     final Emitter<LevelBlocState> emit,
@@ -105,7 +121,9 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     );
     emit(updatedState);
     diDto.levelPlayersBloc.add(const SwitchToNextPlayerEvent());
-    // TODO(arenukvern): countdown reset event
+    final score =
+        diDto.mechanics.scoreMechanics.getScoreFromWord(word: newWord);
+    add(RefuelStorageEvent(score: score));
   }
 
   LiveLevelBlocState getLiveState() {

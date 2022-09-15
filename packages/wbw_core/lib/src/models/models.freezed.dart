@@ -429,7 +429,7 @@ class __$$_FuelStorageModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_FuelStorageModel extends _FuelStorageModel {
-  const _$_FuelStorageModel({this.value = 0.0}) : super._();
+  const _$_FuelStorageModel({this.value = 100}) : super._();
 
   factory _$_FuelStorageModel.fromJson(Map<String, dynamic> json) =>
       _$$_FuelStorageModelFromJson(json);
@@ -923,7 +923,7 @@ class _$_LevelModel extends _LevelModel {
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
-      this.fuelStorage = 0})
+      this.fuelStorage = const FuelStorageModel()})
       : _words = words,
         super._();
 

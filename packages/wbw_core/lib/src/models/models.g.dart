@@ -33,7 +33,7 @@ Map<String, dynamic> _$$_FuelModelToJson(_$_FuelModel instance) =>
 
 _$_FuelStorageModel _$$_FuelStorageModelFromJson(Map<String, dynamic> json) =>
     _$_FuelStorageModel(
-      value: (json['value'] as num?)?.toDouble() ?? 0.0,
+      value: (json['value'] as num?)?.toDouble() ?? 100,
     );
 
 Map<String, dynamic> _$$_FuelStorageModelToJson(_$_FuelStorageModel instance) =>
@@ -81,7 +81,7 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           const {},
       latestWord: json['latestWord'] as String? ?? '',
       fuelStorage: json['fuelStorage'] == null
-          ? 0
+          ? const FuelStorageModel()
           : FuelStorageModel.fromJson(
               json['fuelStorage'] as Map<String, dynamic>),
     );

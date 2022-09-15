@@ -1,4 +1,6 @@
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/controls/widgets/widgets.dart';
 
 class ControlsWidget extends StatelessWidget {
@@ -14,7 +16,19 @@ class ControlsWidget extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const PlayerSwitcher(),
+          Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              BlocBuilder<LevelBloc, LevelBlocState>(
+                builder: (final context, final state) {
+                  if (state is! LiveLevelBlocState) return const SizedBox();
+
+                  return Text(state.fuelStorage.value.toString());
+                },
+              ),
+              const PlayerSwitcher(),
+            ],
+          ),
           uiTheme.horizontalBoxes.large,
           const Expanded(child: WordCompositionRow()),
           uiTheme.horizontalBoxes.large,
