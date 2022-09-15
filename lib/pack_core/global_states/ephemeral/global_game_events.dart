@@ -15,6 +15,11 @@ class InitGlobalGameEvent extends GameEvent {
   final GameModel gameModel;
 }
 
+class WorldTimeTickEvent extends GameEvent {
+  const WorldTimeTickEvent(this.worldTimeManager);
+  final WorldTimeMechanics worldTimeManager;
+}
+
 @immutable
 class InitGlobalGameLevelEvent extends GameEvent {
   const InitGlobalGameLevelEvent({

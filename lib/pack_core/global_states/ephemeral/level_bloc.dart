@@ -24,7 +24,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     required this.diDto,
   }) : super(const EmptyLevelBlocState()) {
     on<InitLevelEvent>(_onInitLevel);
-    on<WorldTimeTickEvent>(_onWorldTimeTick);
+    on<ConsumeTickEvent>(_consumeTickEvent);
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
     on<AcceptNewWordEvent>(_onAcceptNewWord);
   }
@@ -62,20 +62,27 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     emit(liveLevel);
   }
 
-  void _onWorldTimeTick(
-    final WorldTimeTickEvent event,
+  void _consumeTickEvent(
+    final ConsumeTickEvent event,
     final Emitter<LevelBlocState> emit,
-  ) {}
+  ) {
+    final fuelStorage = diDto.mechanics.fuelMechanics.consumeTick(
+      fuelStorage: getLiveState().fuelStorage,
+      timeDeltaInSeconds: event.timeDeltaInSeconds,
+    );
+
+    final updatedState = getLiveState().copyWith(
+      fuelStorage: fuelStorage,
+    );
+
+    emit(updatedState);
+  }
 
   void _onChangeCurrentWord(
     final ChangeCurrentWordEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final effectiveState = state;
-    if (effectiveState is! LiveLevelBlocState) {
-      throw ArgumentError.value(effectiveState);
-    }
-    final newState = effectiveState.copyWith(
+    final newState = getLiveState().copyWith(
       currentWord: event.word,
     );
     emit(newState);
@@ -85,10 +92,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final AcceptNewWordEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final effectiveState = state;
-    if (effectiveState is! LiveLevelBlocState) {
-      throw ArgumentError.value(effectiveState);
-    }
+    final effectiveState = getLiveState();
     final newWord = effectiveState.currentWord.fullWord;
     final updatedWords = {
       ...effectiveState.words,

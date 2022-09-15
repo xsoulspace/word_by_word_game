@@ -22,12 +22,39 @@ Map<String, dynamic> _$$_CurrentWordModelToJson(_$_CurrentWordModel instance) =>
       'fullWord': instance.fullWord,
     };
 
+_$_FuelModel _$$_FuelModelFromJson(Map<String, dynamic> json) => _$_FuelModel(
+      value: (json['value'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$_FuelModelToJson(_$_FuelModel instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+    };
+
+_$_FuelStorageModel _$$_FuelStorageModelFromJson(Map<String, dynamic> json) =>
+    _$_FuelStorageModel(
+      value: (json['value'] as num?)?.toDouble() ?? 0.0,
+    );
+
+Map<String, dynamic> _$$_FuelStorageModelToJson(_$_FuelStorageModel instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+    };
+
 _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
       id: json['id'] as String,
       levels: (json['levels'] as List<dynamic>)
           .map((e) => LevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentLevelId: json['currentLevelId'] as String,
+      dateTime: json['dateTime'] == null
+          ? const WorldDateTimeModel()
+          : WorldDateTimeModel.fromJson(
+              json['dateTime'] as Map<String, dynamic>),
+      lastDateTime: json['lastDateTime'] == null
+          ? const WorldDateTimeModel()
+          : WorldDateTimeModel.fromJson(
+              json['lastDateTime'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
@@ -35,6 +62,8 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'id': instance.id,
       'levels': instance.levels.map((e) => e.toJson()).toList(),
       'currentLevelId': instance.currentLevelId,
+      'dateTime': instance.dateTime.toJson(),
+      'lastDateTime': instance.lastDateTime.toJson(),
     };
 
 _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
@@ -51,6 +80,10 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           ) ??
           const {},
       latestWord: json['latestWord'] as String? ?? '',
+      fuelStorage: json['fuelStorage'] == null
+          ? 0
+          : FuelStorageModel.fromJson(
+              json['fuelStorage'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
@@ -60,6 +93,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
+      'fuelStorage': instance.fuelStorage.toJson(),
     };
 
 _$_LevelPlayersModel _$$_LevelPlayersModelFromJson(Map<String, dynamic> json) =>
@@ -95,6 +129,16 @@ Map<String, dynamic> _$$_PlayerProfileModelToJson(
       'colorValue': instance.colorValue,
       'name': instance.name,
       'playedGames': instance.playedGames.toList(),
+    };
+
+_$_ScoreModel _$$_ScoreModelFromJson(Map<String, dynamic> json) =>
+    _$_ScoreModel(
+      value: (json['value'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$_ScoreModelToJson(_$_ScoreModel instance) =>
+    <String, dynamic>{
+      'value': instance.value,
     };
 
 _$_WorldDateTime _$$_WorldDateTimeFromJson(Map<String, dynamic> json) =>

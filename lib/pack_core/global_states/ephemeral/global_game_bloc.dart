@@ -27,6 +27,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   }) : super(const EmptyGlobalGameBlocState()) {
     on<InitGlobalGameEvent>(_onInitGlobalGame);
     on<InitGlobalGameLevelEvent>(_onInitGlobalGameLevel);
+    on<WorldTimeTickEvent>(_onWorldTick);
   }
   final GlobalGameBlocDiDto diDto;
 
@@ -60,5 +61,37 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       ..levelBloc.add(InitLevelEvent(levelModel: levelModel))
       ..levelPlayersBloc
           .add(InitLevelPlayersEvent(playersModel: levelModel.players));
+  }
+
+  void _onWorldTick(
+    final WorldTimeTickEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) {
+    final effectiveState = getLiveState();
+
+    final newDateTime = event.worldTimeManager.dateTime;
+    final lastDateTime = effectiveState.dateTime;
+    final dateTimeDelta = newDateTime.second - lastDateTime.second;
+    final newState = effectiveState.copyWith(
+      lastDateTime: lastDateTime,
+      dateTime: newDateTime,
+      dateTimeDelta: dateTimeDelta,
+    );
+    emit(newState);
+    _shareNewDateTime(newState);
+  }
+
+  void _shareNewDateTime(final LiveGlobalGameBlocState newState) {
+    diDto.levelBloc.add(
+      ConsumeTickEvent(timeDeltaInSeconds: newState.dateTimeDelta),
+    );
+  }
+
+  LiveGlobalGameBlocState getLiveState() {
+    final effectiveState = state;
+    if (effectiveState is! LiveGlobalGameBlocState) {
+      throw ArgumentError.value(effectiveState);
+    }
+    return effectiveState;
   }
 }

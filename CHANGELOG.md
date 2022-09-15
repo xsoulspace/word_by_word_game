@@ -1,5 +1,10 @@
 ## September 15th 2022
 
+- Fix a bug with middle word part update.
+
+What's next:
+
+- create a check mechanics for the word with already written words.
 
 
 ## September 13th 2022

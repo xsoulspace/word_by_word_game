@@ -217,6 +217,273 @@ abstract class _CurrentWordModel extends CurrentWordModel {
       throw _privateConstructorUsedError;
 }
 
+FuelModel _$FuelModelFromJson(Map<String, dynamic> json) {
+  return _FuelModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FuelModel {
+  double get value => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FuelModelCopyWith<FuelModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FuelModelCopyWith<$Res> {
+  factory $FuelModelCopyWith(FuelModel value, $Res Function(FuelModel) then) =
+      _$FuelModelCopyWithImpl<$Res>;
+  $Res call({double value});
+}
+
+/// @nodoc
+class _$FuelModelCopyWithImpl<$Res> implements $FuelModelCopyWith<$Res> {
+  _$FuelModelCopyWithImpl(this._value, this._then);
+
+  final FuelModel _value;
+  // ignore: unused_field
+  final $Res Function(FuelModel) _then;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_value.copyWith(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_FuelModelCopyWith<$Res> implements $FuelModelCopyWith<$Res> {
+  factory _$$_FuelModelCopyWith(
+          _$_FuelModel value, $Res Function(_$_FuelModel) then) =
+      __$$_FuelModelCopyWithImpl<$Res>;
+  @override
+  $Res call({double value});
+}
+
+/// @nodoc
+class __$$_FuelModelCopyWithImpl<$Res> extends _$FuelModelCopyWithImpl<$Res>
+    implements _$$_FuelModelCopyWith<$Res> {
+  __$$_FuelModelCopyWithImpl(
+      _$_FuelModel _value, $Res Function(_$_FuelModel) _then)
+      : super(_value, (v) => _then(v as _$_FuelModel));
+
+  @override
+  _$_FuelModel get _value => super._value as _$_FuelModel;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_$_FuelModel(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FuelModel extends _FuelModel {
+  const _$_FuelModel({required this.value}) : super._();
+
+  factory _$_FuelModel.fromJson(Map<String, dynamic> json) =>
+      _$$_FuelModelFromJson(json);
+
+  @override
+  final double value;
+
+  @override
+  String toString() {
+    return 'FuelModel(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FuelModel &&
+            const DeepCollectionEquality().equals(other.value, value));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FuelModelCopyWith<_$_FuelModel> get copyWith =>
+      __$$_FuelModelCopyWithImpl<_$_FuelModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_FuelModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FuelModel extends FuelModel {
+  const factory _FuelModel({required final double value}) = _$_FuelModel;
+  const _FuelModel._() : super._();
+
+  factory _FuelModel.fromJson(Map<String, dynamic> json) =
+      _$_FuelModel.fromJson;
+
+  @override
+  double get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FuelModelCopyWith<_$_FuelModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+FuelStorageModel _$FuelStorageModelFromJson(Map<String, dynamic> json) {
+  return _FuelStorageModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$FuelStorageModel {
+  double get value => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $FuelStorageModelCopyWith<FuelStorageModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $FuelStorageModelCopyWith<$Res> {
+  factory $FuelStorageModelCopyWith(
+          FuelStorageModel value, $Res Function(FuelStorageModel) then) =
+      _$FuelStorageModelCopyWithImpl<$Res>;
+  $Res call({double value});
+}
+
+/// @nodoc
+class _$FuelStorageModelCopyWithImpl<$Res>
+    implements $FuelStorageModelCopyWith<$Res> {
+  _$FuelStorageModelCopyWithImpl(this._value, this._then);
+
+  final FuelStorageModel _value;
+  // ignore: unused_field
+  final $Res Function(FuelStorageModel) _then;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_value.copyWith(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_FuelStorageModelCopyWith<$Res>
+    implements $FuelStorageModelCopyWith<$Res> {
+  factory _$$_FuelStorageModelCopyWith(
+          _$_FuelStorageModel value, $Res Function(_$_FuelStorageModel) then) =
+      __$$_FuelStorageModelCopyWithImpl<$Res>;
+  @override
+  $Res call({double value});
+}
+
+/// @nodoc
+class __$$_FuelStorageModelCopyWithImpl<$Res>
+    extends _$FuelStorageModelCopyWithImpl<$Res>
+    implements _$$_FuelStorageModelCopyWith<$Res> {
+  __$$_FuelStorageModelCopyWithImpl(
+      _$_FuelStorageModel _value, $Res Function(_$_FuelStorageModel) _then)
+      : super(_value, (v) => _then(v as _$_FuelStorageModel));
+
+  @override
+  _$_FuelStorageModel get _value => super._value as _$_FuelStorageModel;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_$_FuelStorageModel(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_FuelStorageModel extends _FuelStorageModel {
+  const _$_FuelStorageModel({this.value = 0.0}) : super._();
+
+  factory _$_FuelStorageModel.fromJson(Map<String, dynamic> json) =>
+      _$$_FuelStorageModelFromJson(json);
+
+  @override
+  @JsonKey()
+  final double value;
+
+  @override
+  String toString() {
+    return 'FuelStorageModel(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_FuelStorageModel &&
+            const DeepCollectionEquality().equals(other.value, value));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_FuelStorageModelCopyWith<_$_FuelStorageModel> get copyWith =>
+      __$$_FuelStorageModelCopyWithImpl<_$_FuelStorageModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_FuelStorageModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _FuelStorageModel extends FuelStorageModel {
+  const factory _FuelStorageModel({final double value}) = _$_FuelStorageModel;
+  const _FuelStorageModel._() : super._();
+
+  factory _FuelStorageModel.fromJson(Map<String, dynamic> json) =
+      _$_FuelStorageModel.fromJson;
+
+  @override
+  double get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$_FuelStorageModelCopyWith<_$_FuelStorageModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 GameModel _$GameModelFromJson(Map<String, dynamic> json) {
   return _GameModel.fromJson(json);
 }
@@ -226,6 +493,8 @@ mixin _$GameModel {
   String get id => throw _privateConstructorUsedError;
   List<LevelModel> get levels => throw _privateConstructorUsedError;
   String get currentLevelId => throw _privateConstructorUsedError;
+  WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
+  WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -237,7 +506,15 @@ mixin _$GameModel {
 abstract class $GameModelCopyWith<$Res> {
   factory $GameModelCopyWith(GameModel value, $Res Function(GameModel) then) =
       _$GameModelCopyWithImpl<$Res>;
-  $Res call({String id, List<LevelModel> levels, String currentLevelId});
+  $Res call(
+      {String id,
+      List<LevelModel> levels,
+      String currentLevelId,
+      WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime});
+
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
 
 /// @nodoc
@@ -253,6 +530,8 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? id = freezed,
     Object? levels = freezed,
     Object? currentLevelId = freezed,
+    Object? dateTime = freezed,
+    Object? lastDateTime = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -267,7 +546,29 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: lastDateTime == freezed
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
     ));
+  }
+
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get dateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.dateTime, (value) {
+      return _then(_value.copyWith(dateTime: value));
+    });
+  }
+
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.lastDateTime, (value) {
+      return _then(_value.copyWith(lastDateTime: value));
+    });
   }
 }
 
@@ -277,7 +578,17 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
           _$_GameModel value, $Res Function(_$_GameModel) then) =
       __$$_GameModelCopyWithImpl<$Res>;
   @override
-  $Res call({String id, List<LevelModel> levels, String currentLevelId});
+  $Res call(
+      {String id,
+      List<LevelModel> levels,
+      String currentLevelId,
+      WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime});
+
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
 
 /// @nodoc
@@ -295,6 +606,8 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? levels = freezed,
     Object? currentLevelId = freezed,
+    Object? dateTime = freezed,
+    Object? lastDateTime = freezed,
   }) {
     return _then(_$_GameModel(
       id: id == freezed
@@ -309,6 +622,14 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: lastDateTime == freezed
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
     ));
   }
 }
@@ -320,7 +641,9 @@ class _$_GameModel extends _GameModel {
   const _$_GameModel(
       {required this.id,
       required final List<LevelModel> levels,
-      required this.currentLevelId})
+      required this.currentLevelId,
+      this.dateTime = const WorldDateTimeModel(),
+      this.lastDateTime = const WorldDateTimeModel()})
       : _levels = levels,
         super._();
 
@@ -338,10 +661,16 @@ class _$_GameModel extends _GameModel {
 
   @override
   final String currentLevelId;
+  @override
+  @JsonKey()
+  final WorldDateTimeModel dateTime;
+  @override
+  @JsonKey()
+  final WorldDateTimeModel lastDateTime;
 
   @override
   String toString() {
-    return 'GameModel(id: $id, levels: $levels, currentLevelId: $currentLevelId)';
+    return 'GameModel(id: $id, levels: $levels, currentLevelId: $currentLevelId, dateTime: $dateTime, lastDateTime: $lastDateTime)';
   }
 
   @override
@@ -352,7 +681,10 @@ class _$_GameModel extends _GameModel {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other._levels, _levels) &&
             const DeepCollectionEquality()
-                .equals(other.currentLevelId, currentLevelId));
+                .equals(other.currentLevelId, currentLevelId) &&
+            const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
+            const DeepCollectionEquality()
+                .equals(other.lastDateTime, lastDateTime));
   }
 
   @JsonKey(ignore: true)
@@ -361,7 +693,9 @@ class _$_GameModel extends _GameModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(_levels),
-      const DeepCollectionEquality().hash(currentLevelId));
+      const DeepCollectionEquality().hash(currentLevelId),
+      const DeepCollectionEquality().hash(dateTime),
+      const DeepCollectionEquality().hash(lastDateTime));
 
   @JsonKey(ignore: true)
   @override
@@ -380,7 +714,9 @@ abstract class _GameModel extends GameModel {
   const factory _GameModel(
       {required final String id,
       required final List<LevelModel> levels,
-      required final String currentLevelId}) = _$_GameModel;
+      required final String currentLevelId,
+      final WorldDateTimeModel dateTime,
+      final WorldDateTimeModel lastDateTime}) = _$_GameModel;
   const _GameModel._() : super._();
 
   factory _GameModel.fromJson(Map<String, dynamic> json) =
@@ -392,6 +728,10 @@ abstract class _GameModel extends GameModel {
   List<LevelModel> get levels;
   @override
   String get currentLevelId;
+  @override
+  WorldDateTimeModel get dateTime;
+  @override
+  WorldDateTimeModel get lastDateTime;
   @override
   @JsonKey(ignore: true)
   _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
@@ -409,6 +749,7 @@ mixin _$LevelModel {
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
+  FuelStorageModel get fuelStorage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -426,10 +767,12 @@ abstract class $LevelModelCopyWith<$Res> {
       LevelPlayersModel players,
       CurrentWordModel currentWord,
       Map<String, String> words,
-      String latestWord});
+      String latestWord,
+      FuelStorageModel fuelStorage});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $CurrentWordModelCopyWith<$Res> get currentWord;
+  $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
 
 /// @nodoc
@@ -447,6 +790,7 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
+    Object? fuelStorage = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -469,6 +813,10 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
+      fuelStorage: fuelStorage == freezed
+          ? _value.fuelStorage
+          : fuelStorage // ignore: cast_nullable_to_non_nullable
+              as FuelStorageModel,
     ));
   }
 
@@ -485,6 +833,13 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
       return _then(_value.copyWith(currentWord: value));
     });
   }
+
+  @override
+  $FuelStorageModelCopyWith<$Res> get fuelStorage {
+    return $FuelStorageModelCopyWith<$Res>(_value.fuelStorage, (value) {
+      return _then(_value.copyWith(fuelStorage: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -499,12 +854,15 @@ abstract class _$$_LevelModelCopyWith<$Res>
       LevelPlayersModel players,
       CurrentWordModel currentWord,
       Map<String, String> words,
-      String latestWord});
+      String latestWord,
+      FuelStorageModel fuelStorage});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
+  @override
+  $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
 
 /// @nodoc
@@ -524,6 +882,7 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
+    Object? fuelStorage = freezed,
   }) {
     return _then(_$_LevelModel(
       id: id == freezed
@@ -546,6 +905,10 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
+      fuelStorage: fuelStorage == freezed
+          ? _value.fuelStorage
+          : fuelStorage // ignore: cast_nullable_to_non_nullable
+              as FuelStorageModel,
     ));
   }
 }
@@ -559,7 +922,8 @@ class _$_LevelModel extends _LevelModel {
       required this.players,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
-      this.latestWord = ''})
+      this.latestWord = '',
+      this.fuelStorage = 0})
       : _words = words,
         super._();
 
@@ -584,10 +948,13 @@ class _$_LevelModel extends _LevelModel {
   @override
   @JsonKey()
   final String latestWord;
+  @override
+  @JsonKey()
+  final FuelStorageModel fuelStorage;
 
   @override
   String toString() {
-    return 'LevelModel(id: $id, players: $players, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
+    return 'LevelModel(id: $id, players: $players, currentWord: $currentWord, words: $words, latestWord: $latestWord, fuelStorage: $fuelStorage)';
   }
 
   @override
@@ -601,7 +968,9 @@ class _$_LevelModel extends _LevelModel {
                 .equals(other.currentWord, currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
             const DeepCollectionEquality()
-                .equals(other.latestWord, latestWord));
+                .equals(other.latestWord, latestWord) &&
+            const DeepCollectionEquality()
+                .equals(other.fuelStorage, fuelStorage));
   }
 
   @JsonKey(ignore: true)
@@ -612,7 +981,8 @@ class _$_LevelModel extends _LevelModel {
       const DeepCollectionEquality().hash(players),
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
-      const DeepCollectionEquality().hash(latestWord));
+      const DeepCollectionEquality().hash(latestWord),
+      const DeepCollectionEquality().hash(fuelStorage));
 
   @JsonKey(ignore: true)
   @override
@@ -633,7 +1003,8 @@ abstract class _LevelModel extends LevelModel {
       required final LevelPlayersModel players,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
-      final String latestWord}) = _$_LevelModel;
+      final String latestWord,
+      final FuelStorageModel fuelStorage}) = _$_LevelModel;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -649,6 +1020,8 @@ abstract class _LevelModel extends LevelModel {
   Map<String, String> get words;
   @override
   String get latestWord;
+  @override
+  FuelStorageModel get fuelStorage;
   @override
   @JsonKey(ignore: true)
   _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>
@@ -1032,6 +1405,139 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
   @override
   @JsonKey(ignore: true)
   _$$_PlayerProfileModelCopyWith<_$_PlayerProfileModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ScoreModel _$ScoreModelFromJson(Map<String, dynamic> json) {
+  return _ScoreModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$ScoreModel {
+  double get value => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ScoreModelCopyWith<ScoreModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ScoreModelCopyWith<$Res> {
+  factory $ScoreModelCopyWith(
+          ScoreModel value, $Res Function(ScoreModel) then) =
+      _$ScoreModelCopyWithImpl<$Res>;
+  $Res call({double value});
+}
+
+/// @nodoc
+class _$ScoreModelCopyWithImpl<$Res> implements $ScoreModelCopyWith<$Res> {
+  _$ScoreModelCopyWithImpl(this._value, this._then);
+
+  final ScoreModel _value;
+  // ignore: unused_field
+  final $Res Function(ScoreModel) _then;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_value.copyWith(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_ScoreModelCopyWith<$Res>
+    implements $ScoreModelCopyWith<$Res> {
+  factory _$$_ScoreModelCopyWith(
+          _$_ScoreModel value, $Res Function(_$_ScoreModel) then) =
+      __$$_ScoreModelCopyWithImpl<$Res>;
+  @override
+  $Res call({double value});
+}
+
+/// @nodoc
+class __$$_ScoreModelCopyWithImpl<$Res> extends _$ScoreModelCopyWithImpl<$Res>
+    implements _$$_ScoreModelCopyWith<$Res> {
+  __$$_ScoreModelCopyWithImpl(
+      _$_ScoreModel _value, $Res Function(_$_ScoreModel) _then)
+      : super(_value, (v) => _then(v as _$_ScoreModel));
+
+  @override
+  _$_ScoreModel get _value => super._value as _$_ScoreModel;
+
+  @override
+  $Res call({
+    Object? value = freezed,
+  }) {
+    return _then(_$_ScoreModel(
+      value: value == freezed
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ScoreModel extends _ScoreModel {
+  const _$_ScoreModel({required this.value}) : super._();
+
+  factory _$_ScoreModel.fromJson(Map<String, dynamic> json) =>
+      _$$_ScoreModelFromJson(json);
+
+  @override
+  final double value;
+
+  @override
+  String toString() {
+    return 'ScoreModel(value: $value)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_ScoreModel &&
+            const DeepCollectionEquality().equals(other.value, value));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(value));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_ScoreModelCopyWith<_$_ScoreModel> get copyWith =>
+      __$$_ScoreModelCopyWithImpl<_$_ScoreModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_ScoreModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _ScoreModel extends ScoreModel {
+  const factory _ScoreModel({required final double value}) = _$_ScoreModel;
+  const _ScoreModel._() : super._();
+
+  factory _ScoreModel.fromJson(Map<String, dynamic> json) =
+      _$_ScoreModel.fromJson;
+
+  @override
+  double get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$_ScoreModelCopyWith<_$_ScoreModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

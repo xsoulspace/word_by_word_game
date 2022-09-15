@@ -29,7 +29,7 @@ class WbwGame extends FlameGame with HasCollisionDetection, FlameGameActions {
   }
 
   void listenWorldTime(final WorldTimeMechanics time) {
-    diDto.levelBloc.add(WorldTimeTickEvent(time));
+    diDto.globalGameBloc.add(WorldTimeTickEvent(time));
   }
 
   @override

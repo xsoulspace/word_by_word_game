@@ -20,6 +20,8 @@ class GameModel with _$GameModel {
     required final GameModelId id,
     required final List<LevelModel> levels,
     required final LevelModelId currentLevelId,
+    @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
+    @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
   }) = _GameModel;
   const GameModel._();
   factory GameModel.fromJson(final Map<String, dynamic> json) =>

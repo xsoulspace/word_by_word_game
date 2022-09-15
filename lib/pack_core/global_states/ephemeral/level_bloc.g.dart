@@ -19,6 +19,10 @@ _$_LiveLevelBlocState _$$_LiveLevelBlocStateFromJson(
           ) ??
           const {},
       latestWord: json['latestWord'] as String? ?? '',
+      fuelStorage: json['fuelStorage'] == null
+          ? const FuelStorageModel()
+          : FuelStorageModel.fromJson(
+              json['fuelStorage'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_LiveLevelBlocStateToJson(
@@ -28,4 +32,5 @@ Map<String, dynamic> _$$_LiveLevelBlocStateToJson(
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
+      'fuelStorage': instance.fuelStorage.toJson(),
     };

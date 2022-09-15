@@ -27,6 +27,9 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
   const factory LiveGlobalGameBlocState({
     required final GameModelId id,
     required final LevelModelId currentLevelId,
+    @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
+    @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
+    @Default(0) final int dateTimeDelta,
   }) = _LiveGlobalGameBlocState;
   const LiveGlobalGameBlocState._();
   factory LiveGlobalGameBlocState.fromJson(final Map<String, dynamic> json) =>
@@ -36,6 +39,8 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
     return LiveGlobalGameBlocState(
       currentLevelId: gameModel.currentLevelId,
       id: gameModel.id,
+      dateTime: gameModel.dateTime,
+      lastDateTime: gameModel.lastDateTime,
     );
   }
 }

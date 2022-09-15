@@ -30,6 +30,7 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordType, PlayerProfileModelId> words,
     @Default('') final String latestWord,
+    @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _LiveLevelBlocState;
   const LiveLevelBlocState._();
   factory LiveLevelBlocState.fromJson(final Map<String, dynamic> json) =>
@@ -41,6 +42,7 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
       latestWord: levelModel.latestWord,
       words: levelModel.words,
       id: levelModel.id,
+      fuelStorage: levelModel.fuelStorage,
     );
   }
 }

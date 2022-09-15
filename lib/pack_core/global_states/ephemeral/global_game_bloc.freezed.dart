@@ -23,6 +23,9 @@ LiveGlobalGameBlocState _$LiveGlobalGameBlocStateFromJson(
 mixin _$LiveGlobalGameBlocState {
   String get id => throw _privateConstructorUsedError;
   String get currentLevelId => throw _privateConstructorUsedError;
+  WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
+  WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
+  int get dateTimeDelta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -35,7 +38,15 @@ abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
   factory $LiveGlobalGameBlocStateCopyWith(LiveGlobalGameBlocState value,
           $Res Function(LiveGlobalGameBlocState) then) =
       _$LiveGlobalGameBlocStateCopyWithImpl<$Res>;
-  $Res call({String id, String currentLevelId});
+  $Res call(
+      {String id,
+      String currentLevelId,
+      WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime,
+      int dateTimeDelta});
+
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
 
 /// @nodoc
@@ -51,6 +62,9 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? currentLevelId = freezed,
+    Object? dateTime = freezed,
+    Object? lastDateTime = freezed,
+    Object? dateTimeDelta = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -61,7 +75,33 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: lastDateTime == freezed
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      dateTimeDelta: dateTimeDelta == freezed
+          ? _value.dateTimeDelta
+          : dateTimeDelta // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
+  }
+
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get dateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.dateTime, (value) {
+      return _then(_value.copyWith(dateTime: value));
+    });
+  }
+
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.lastDateTime, (value) {
+      return _then(_value.copyWith(lastDateTime: value));
+    });
   }
 }
 
@@ -72,7 +112,17 @@ abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
           $Res Function(_$_LiveGlobalGameBlocState) then) =
       __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String currentLevelId});
+  $Res call(
+      {String id,
+      String currentLevelId,
+      WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime,
+      int dateTimeDelta});
+
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
 
 /// @nodoc
@@ -91,6 +141,9 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? currentLevelId = freezed,
+    Object? dateTime = freezed,
+    Object? lastDateTime = freezed,
+    Object? dateTimeDelta = freezed,
   }) {
     return _then(_$_LiveGlobalGameBlocState(
       id: id == freezed
@@ -101,6 +154,18 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      dateTime: dateTime == freezed
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: lastDateTime == freezed
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      dateTimeDelta: dateTimeDelta == freezed
+          ? _value.dateTimeDelta
+          : dateTimeDelta // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -110,7 +175,11 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   const _$_LiveGlobalGameBlocState(
-      {required this.id, required this.currentLevelId})
+      {required this.id,
+      required this.currentLevelId,
+      this.dateTime = const WorldDateTimeModel(),
+      this.lastDateTime = const WorldDateTimeModel(),
+      this.dateTimeDelta = 0})
       : super._();
 
   factory _$_LiveGlobalGameBlocState.fromJson(Map<String, dynamic> json) =>
@@ -120,10 +189,19 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   final String id;
   @override
   final String currentLevelId;
+  @override
+  @JsonKey()
+  final WorldDateTimeModel dateTime;
+  @override
+  @JsonKey()
+  final WorldDateTimeModel lastDateTime;
+  @override
+  @JsonKey()
+  final int dateTimeDelta;
 
   @override
   String toString() {
-    return 'LiveGlobalGameBlocState(id: $id, currentLevelId: $currentLevelId)';
+    return 'LiveGlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, dateTime: $dateTime, lastDateTime: $lastDateTime, dateTimeDelta: $dateTimeDelta)';
   }
 
   @override
@@ -133,7 +211,12 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
             other is _$_LiveGlobalGameBlocState &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
-                .equals(other.currentLevelId, currentLevelId));
+                .equals(other.currentLevelId, currentLevelId) &&
+            const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
+            const DeepCollectionEquality()
+                .equals(other.lastDateTime, lastDateTime) &&
+            const DeepCollectionEquality()
+                .equals(other.dateTimeDelta, dateTimeDelta));
   }
 
   @JsonKey(ignore: true)
@@ -141,7 +224,10 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(currentLevelId));
+      const DeepCollectionEquality().hash(currentLevelId),
+      const DeepCollectionEquality().hash(dateTime),
+      const DeepCollectionEquality().hash(lastDateTime),
+      const DeepCollectionEquality().hash(dateTimeDelta));
 
   @JsonKey(ignore: true)
   @override
@@ -162,7 +248,10 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
     implements GlobalGameBlocState {
   const factory _LiveGlobalGameBlocState(
       {required final String id,
-      required final String currentLevelId}) = _$_LiveGlobalGameBlocState;
+      required final String currentLevelId,
+      final WorldDateTimeModel dateTime,
+      final WorldDateTimeModel lastDateTime,
+      final int dateTimeDelta}) = _$_LiveGlobalGameBlocState;
   const _LiveGlobalGameBlocState._() : super._();
 
   factory _LiveGlobalGameBlocState.fromJson(Map<String, dynamic> json) =
@@ -172,6 +261,12 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
   String get id;
   @override
   String get currentLevelId;
+  @override
+  WorldDateTimeModel get dateTime;
+  @override
+  WorldDateTimeModel get lastDateTime;
+  @override
+  int get dateTimeDelta;
   @override
   @JsonKey(ignore: true)
   _$$_LiveGlobalGameBlocStateCopyWith<_$_LiveGlobalGameBlocState>

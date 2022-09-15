@@ -8,17 +8,20 @@ abstract class LevelBlocEvent extends Equatable {
 }
 
 @immutable
-class WorldTimeTickEvent extends LevelBlocEvent {
-  const WorldTimeTickEvent(this.worldTimeManager);
-  final WorldTimeMechanics worldTimeManager;
-}
-
-@immutable
 class InitLevelEvent extends LevelBlocEvent {
   const InitLevelEvent({
     required this.levelModel,
   });
   final LevelModel levelModel;
+}
+
+class ConsumeTickEvent extends LevelBlocEvent {
+  const ConsumeTickEvent({
+    required this.timeDeltaInSeconds,
+  });
+
+  /// How many seconds was from the last tick
+  final int timeDeltaInSeconds;
 }
 
 @immutable
