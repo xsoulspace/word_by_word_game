@@ -39,8 +39,6 @@ class _WordCompositionState extends LifeState {
   @override
   void initState() {
     super.initState();
-    // TODO(arenukvern): listen  diDto.levelBloc changes
-    /// (changed from empty or loading to the live state)
     leftPartController.addListener(_onPartChanged);
     rightPartController.addListener(_onPartChanged);
     _wordUpdatesController.stream
@@ -74,6 +72,11 @@ class _WordCompositionState extends LifeState {
   void onDecreaseRightPart() {
     // TODO(arenukvern): description
     throw UnimplementedError();
+  }
+
+  void onLatestWordChanged() {
+    leftPartController.clear();
+    rightPartController.clear();
   }
 
   @override

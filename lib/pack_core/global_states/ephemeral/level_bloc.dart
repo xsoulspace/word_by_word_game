@@ -95,9 +95,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     }..[newWord] = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
     final updatedState = effectiveState.copyWith(
       latestWord: newWord,
-      currentWord: const CurrentWordModel(
-        middlePart: '',
-      ),
+      currentWord: diDto.mechanics.wordComposition
+          .createNextCurrentWordFromFullWord(fullword: newWord),
       words: updatedWords,
     );
     emit(updatedState);

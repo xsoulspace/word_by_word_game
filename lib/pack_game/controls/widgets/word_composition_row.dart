@@ -24,71 +24,77 @@ class WordCompositionRow extends HookWidget {
     final state = _useWordCompositionState(read: context.read);
     final uiTheme = UiTheme.of(context);
     final spacing = uiTheme.spacing;
-
-    return BlocBuilder<LevelBloc, LevelBlocState>(
-      buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-        checkLiveState: (final previous, final current) =>
-            previous.latestWord != current.latestWord,
-      ),
-      builder: (final context, final levelState) {
-        if (levelState is! LiveLevelBlocState) return const SizedBox();
-
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            LastWordText(latestWord: levelState.latestWord),
-            Builder(
-              builder: (final context) {
-                if (levelState.latestWord.isEmpty) {
-                  return WordPartTextField(
-                    controller: state.rightPartController,
-                    hintText: S.of(context).hintAddNewWord,
-                  );
-                }
-                final leftTextField = Expanded(
-                  child: WordPartTextField(
-                    controller: state.leftPartController,
-                    hintText: S.of(context).hintAddBeginning,
-                  ),
-                );
-                final rightTextField = Expanded(
-                  child: WordPartTextField(
-                    controller: state.rightPartController,
-                    hintText: S.of(context).hintAddEnding,
-                  ),
-                );
-
-                final middleWordPartActions =
-                    BlocBuilder<LevelBloc, LevelBlocState>(
-                  buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-                    checkLiveState: (final previous, final current) =>
-                        previous.currentWord.middlePart !=
-                        current.currentWord.middlePart,
-                  ),
-                  builder: (final context, final blocState) {
-                    if (blocState is! LiveLevelBlocState) {
-                      return const SizedBox();
-                    }
-                    return MiddleWordPartActions(
-                      middlePartOfWord: blocState.currentWord.middlePart,
-                      onLeftTap: state.onDecreaseLeftPart,
-                      onRightTap: state.onDecreaseRightPart,
-                    );
-                  },
-                );
-
-                return Row(
-                  children: [
-                    leftTextField,
-                    middleWordPartActions,
-                    rightTextField,
-                  ],
-                );
-              },
-            ),
-          ],
-        );
+    final buildAndListenWhenCallback = LevelBloc.useCheckStateEqualityBuilder(
+      checkLiveState: (final previous, final current) =>
+          previous.latestWord != current.latestWord,
+    );
+    return BlocListener<LevelBloc, LevelBlocState>(
+      listener: (final context, final blocState) {
+        state.onLatestWordChanged();
       },
+      listenWhen: buildAndListenWhenCallback,
+      child: BlocBuilder<LevelBloc, LevelBlocState>(
+        buildWhen: buildAndListenWhenCallback,
+        builder: (final context, final levelState) {
+          if (levelState is! LiveLevelBlocState) return const SizedBox();
+
+          return Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              LastWordText(latestWord: levelState.latestWord),
+              Builder(
+                builder: (final context) {
+                  if (levelState.latestWord.isEmpty) {
+                    return WordPartTextField(
+                      controller: state.rightPartController,
+                      hintText: S.of(context).hintAddNewWord,
+                    );
+                  }
+                  final leftTextField = Expanded(
+                    child: WordPartTextField(
+                      controller: state.leftPartController,
+                      hintText: S.of(context).hintAddBeginning,
+                    ),
+                  );
+                  final rightTextField = Expanded(
+                    child: WordPartTextField(
+                      controller: state.rightPartController,
+                      hintText: S.of(context).hintAddEnding,
+                    ),
+                  );
+
+                  final middleWordPartActions =
+                      BlocBuilder<LevelBloc, LevelBlocState>(
+                    buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+                      checkLiveState: (final previous, final current) =>
+                          previous.currentWord.middlePart !=
+                          current.currentWord.middlePart,
+                    ),
+                    builder: (final context, final blocState) {
+                      if (blocState is! LiveLevelBlocState) {
+                        return const SizedBox();
+                      }
+                      return MiddleWordPartActions(
+                        middlePartOfWord: blocState.currentWord.middlePart,
+                        onLeftTap: state.onDecreaseLeftPart,
+                        onRightTap: state.onDecreaseRightPart,
+                      );
+                    },
+                  );
+
+                  return Row(
+                    children: [
+                      leftTextField,
+                      middleWordPartActions,
+                      rightTextField,
+                    ],
+                  );
+                },
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
