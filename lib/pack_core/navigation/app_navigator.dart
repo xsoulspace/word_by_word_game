@@ -30,8 +30,10 @@ class AppNavigator extends HookWidget {
 }
 
 class AppPageBuilderKeys {
-  final mainMenu = const ValueKey('mainMenu');
+  final pause = const ValueKey('mainMenu');
   final game = const ValueKey('game');
+  final allLevels = const ValueKey('allLevels');
+  final levelOptions = const ValueKey('levelOptions');
 }
 
 class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
@@ -47,15 +49,27 @@ class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
 
   final AppPageBuilderKeys keys;
 
-  Page mainMenu() => NavigatorPage(
-        child: const MainMenuScreen(),
-        key: keys.mainMenu,
+  Page pause() => NavigatorPage(
+        child: const PauseScreen(),
+        key: keys.pause,
       );
 
-  Page game() => NavigatorPage(
-        child: const WbwGameWidget(),
-        key: keys.game,
+  Page allLevels() => NavigatorPage(
+        child: const AllLevelsScreen(),
+        key: keys.allLevels,
       );
+
+  Page levelOptions() => NavigatorPage(
+        child: const LevelOptionsScreen(),
+        key: keys.levelOptions,
+      );
+
+  Page game() {
+    return NavigatorPage(
+      child: const WbwGameWidget(),
+      key: keys.game,
+    );
+  }
 }
 
 class AppLayoutBuilder
@@ -64,12 +78,19 @@ class AppLayoutBuilder
   @override
   List<Page> buildPages() {
     final pages = <Page>[
-      AppPageBuilder.emptyPage,
+      pageBuilder.game(),
     ];
-    if (pathTemplate == NavigationRoutes.mainMenu || pathTemplate == '/') {
-      pages.add(pageBuilder.mainMenu());
-    } else if (pathTemplate.startsWith(NavigationRoutes.game)) {
-      pages.add(pageBuilder.game());
+    if (pathTemplate.startsWith(NavigationRoutes.levelRoot)) {
+      if (pathTemplate == NavigationRoutes.levelOptions) {
+        pages.add(pageBuilder.levelOptions());
+      } else if (pathTemplate == NavigationRoutes.allLevels) {
+        pages.add(pageBuilder.allLevels());
+      }
+    }
+
+    /// should be at the end of the layout layers
+    if (pathTemplate == NavigationRoutes.pause) {
+      pages.add(pageBuilder.pause());
     }
     return pages;
   }

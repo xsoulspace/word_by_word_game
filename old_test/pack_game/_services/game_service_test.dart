@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
 import 'package:word_by_word_game/_utils/utils.dart';
-import 'package:word_by_word_game/pack_game/pack_game.dart';
 import 'package:word_by_word_game/pack_settings/pack_settings.dart';
 
 import '../../_utils/local_db/local_db_helper.dart';
@@ -86,7 +85,7 @@ void main() {
       final GameModel newGame = await gameService.createGame(
         screenWidth: screenWidth,
       );
-      await gameService.saveGame(game: newGame);
+      await gameService.saveGame(playableLevel: newGame);
       final gameSave = await gameService.loadGame();
 
       expect(gameSave, equals(newGame));

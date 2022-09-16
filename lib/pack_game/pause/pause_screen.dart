@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 
-class MainMenuScreen extends StatelessWidget {
-  const MainMenuScreen({
+class PauseScreen extends StatelessWidget {
+  const PauseScreen({
     final Key? key,
   }) : super(key: key);
   @override

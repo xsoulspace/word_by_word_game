@@ -2,6 +2,11 @@
 
 - Added decrease mechanics for the word buttons.
 
+TODO:
+- add level players chooser.
+
+
+
 ## September 15th 2022
 
 - Fix a bug with middle word part update.
