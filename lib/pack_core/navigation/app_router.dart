@@ -8,19 +8,23 @@ class NavigationRoutes {
   static const allLevels = '/lvl/all';
 
   static const levelRoot = '/lvl';
+  static const playableLevel = '/lvl/:id';
+
+  static String toPlayableLevel({required final LevelModelId id}) => '/lvl/$id';
 
   static const levelOptions = '/lvl/:id/options';
   static String getLevelOptions({required final LevelModelId id}) =>
       '/lvl/$id/options';
 
-  static const routes = [pause, root, levelOptions, allLevels];
+  static const routes = [root, allLevels, playableLevel, levelOptions, pause];
 }
 
 class AppRouterController extends RouterController {
   AppRouterController.use(super.read) : super.use();
+  void toPlayableLevel({required final LevelModelId id}) =>
+      to(NavigationRoutes.toPlayableLevel(id: id));
 
-  void toMainMenu() => to(NavigationRoutes.pause);
-  void toGame() => to(NavigationRoutes.root);
+  void toPause() => to(NavigationRoutes.pause);
   void toLevelOptions({
     required final LevelModelId id,
   }) =>
