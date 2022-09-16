@@ -47,3 +47,12 @@ class RefuelStorageEvent extends LevelBlocEvent {
 
   final ScoreModel score;
 }
+
+@immutable
+class DecreaseMiddlePartEvent extends LevelBlocEvent {
+  const DecreaseMiddlePartEvent({
+    required this.type,
+  });
+
+  final DecreaseMiddlePart type;
+}

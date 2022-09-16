@@ -27,5 +27,38 @@ void main() {
         throwsArgumentError,
       );
     });
+    test('applyDecreaseMiddlePartType - can reset allLetters', () {
+      const currentWord = CurrentWordModel(middlePart: 'dic');
+      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
+        currentWord: currentWord,
+        type: DecreaseMiddlePart.allLetters,
+      );
+      expect(
+        result,
+        equals(const CurrentWordModel()),
+      );
+    });
+    test('applyDecreaseMiddlePartType - can reset left letter', () {
+      const currentWord = CurrentWordModel(middlePart: 'dic');
+      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
+        currentWord: currentWord,
+        type: DecreaseMiddlePart.leftLetter,
+      );
+      expect(
+        result,
+        equals(const CurrentWordModel(fullWord: 'ic', middlePart: 'ic')),
+      );
+    });
+    test('applyDecreaseMiddlePartType - can reset right letter', () {
+      const currentWord = CurrentWordModel(middlePart: 'dic');
+      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
+        currentWord: currentWord,
+        type: DecreaseMiddlePart.rightLetter,
+      );
+      expect(
+        result,
+        equals(const CurrentWordModel(fullWord: 'di', middlePart: 'di')),
+      );
+    });
   });
 }

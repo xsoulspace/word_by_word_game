@@ -1,3 +1,7 @@
+## September 17th 2022
+
+- Added decrease mechanics for the word buttons.
+
 ## September 15th 2022
 
 - Fix a bug with middle word part update.
@@ -6,7 +10,7 @@
 - Added basic Score Mechanics to convert the word to the score and then convert it to the fuel.
 
 What's next:
-
+- Ui notifications when the word is already written or just incorrect.
 - Create a check mechanics for the word with already written words.
 - Player turn switcher.
 - Decrease the middle part from left, and from right sides.

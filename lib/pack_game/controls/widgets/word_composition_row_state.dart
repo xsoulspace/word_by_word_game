@@ -65,13 +65,27 @@ class _WordCompositionState extends LifeState {
   }
 
   void onDecreaseLeftPart() {
-    // TODO(arenukvern): description
-    throw UnimplementedError();
+    diDto.levelBloc.add(
+      const DecreaseMiddlePartEvent(
+        type: DecreaseMiddlePart.leftLetter,
+      ),
+    );
   }
 
   void onDecreaseRightPart() {
-    // TODO(arenukvern): description
-    throw UnimplementedError();
+    diDto.levelBloc.add(
+      const DecreaseMiddlePartEvent(
+        type: DecreaseMiddlePart.rightLetter,
+      ),
+    );
+  }
+
+  void onResetMiddlePart() {
+    diDto.levelBloc.add(
+      const DecreaseMiddlePartEvent(
+        type: DecreaseMiddlePart.allLetters,
+      ),
+    );
   }
 
   void onLatestWordChanged() {

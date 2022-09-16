@@ -76,8 +76,8 @@ class WordCompositionRow extends HookWidget {
                       }
                       return MiddleWordPartActions(
                         middlePartOfWord: blocState.currentWord.middlePart,
-                        onLeftTap: state.onDecreaseLeftPart,
-                        onRightTap: state.onDecreaseRightPart,
+                        onLeftPressed: state.onDecreaseLeftPart,
+                        onRightPressed: state.onDecreaseRightPart,
                       );
                     },
                   );
@@ -151,13 +151,13 @@ class MinusIconButton extends StatelessWidget {
 class MiddleWordPartActions extends StatelessWidget {
   const MiddleWordPartActions({
     required this.middlePartOfWord,
-    required this.onLeftTap,
-    required this.onRightTap,
+    required this.onLeftPressed,
+    required this.onRightPressed,
     final Key? key,
   }) : super(key: key);
   final String middlePartOfWord;
-  final VoidCallback onLeftTap;
-  final VoidCallback onRightTap;
+  final VoidCallback onLeftPressed;
+  final VoidCallback onRightPressed;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
@@ -165,17 +165,20 @@ class MiddleWordPartActions extends StatelessWidget {
 
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: spacing.small),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          MinusIconButton(
-            onPressed: onLeftTap,
-          ),
-          Text(middlePartOfWord),
-          MinusIconButton(
-            onPressed: onRightTap,
-          )
-        ],
+      child: Visibility(
+        visible: middlePartOfWord.isNotEmpty,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            MinusIconButton(
+              onPressed: onLeftPressed,
+            ),
+            Text(middlePartOfWord),
+            MinusIconButton(
+              onPressed: onRightPressed,
+            )
+          ],
+        ),
       ),
     );
   }

@@ -28,6 +28,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
     on<AcceptNewWordEvent>(_onAcceptNewWord);
     on<RefuelStorageEvent>(_onRefuelStorage);
+    on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
   }
 
   static bool Function(LevelBlocState previous, LevelBlocState current)
@@ -83,14 +84,14 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final RefuelStorageEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final effectiveState = getLiveState();
+    final liveState = getLiveState();
     final fuelMechanics = diDto.mechanics.fuelMechanics;
     final fuel = fuelMechanics.getFuelFromScore(score: event.score);
     final fuelStorage = fuelMechanics.refuel(
-      fuelStorage: effectiveState.fuelStorage,
+      fuelStorage: liveState.fuelStorage,
       fuel: fuel,
     );
-    final updatedState = effectiveState.copyWith(fuelStorage: fuelStorage);
+    final updatedState = liveState.copyWith(fuelStorage: fuelStorage);
     emit(updatedState);
   }
 
@@ -108,12 +109,12 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final AcceptNewWordEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final effectiveState = getLiveState();
-    final newWord = effectiveState.currentWord.fullWord;
+    final liveState = getLiveState();
+    final newWord = liveState.currentWord.fullWord;
     final updatedWords = {
-      ...effectiveState.words,
+      ...liveState.words,
     }..[newWord] = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
-    final updatedState = effectiveState.copyWith(
+    final updatedState = liveState.copyWith(
       latestWord: newWord,
       currentWord: diDto.mechanics.wordComposition
           .createNextCurrentWordFromFullWord(fullword: newWord),
@@ -124,6 +125,22 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final score =
         diDto.mechanics.scoreMechanics.getScoreFromWord(word: newWord);
     add(RefuelStorageEvent(score: score));
+  }
+
+  void _onDecreaseMiddlePart(
+    final DecreaseMiddlePartEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final updatedWord =
+        diDto.mechanics.wordComposition.applyDecreaseMiddlePartType(
+      type: event.type,
+      currentWord: liveState.currentWord,
+    );
+    final updatedState = liveState.copyWith(
+      currentWord: updatedWord,
+    );
+    emit(updatedState);
   }
 
   LiveLevelBlocState getLiveState() {
