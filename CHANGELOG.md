@@ -1,16 +1,16 @@
-## September 18th 2022
+## September 17th-2 2022
 
+Today's update:
 - Added Chracter Model and Character Selector on Level Options Screen.
 - Added Player Profile Creator (UI and simple logic).
 - Added Player Profiles selector (UI and simple logic).
 - Added ability to use Level Options to play a level.
 
-TODO:
 
-- Pass Level Options to the Level & Level Players Bloc to initialize the level.
-- Add Buttons Play & Return to levels.
+What's next:
 - Player turn switcher.
-
+- Ui notifications when the word is already written or just incorrect.
+- Create a check mechanics for the word with already written words.
 
 ## September 17th 2022
 
