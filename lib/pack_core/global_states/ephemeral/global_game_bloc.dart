@@ -38,18 +38,17 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     final gameModel = event.gameModel;
     final liveGame = LiveGlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
-
-    final index = gameModel.levels
-        .indexWhere((final level) => level.id == liveGame.currentLevelId);
-    if (index < 0) {
-      throw ArgumentError.value(
-        index,
-        '_onInitGlobalGame -> find index of the current level',
-        'current level is not presented in the game model.',
-      );
+    if (liveGame.currentLevelId.isNotEmpty && gameModel.levels.isNotEmpty) {
+      final levelModel = gameModel.levels[liveGame.currentLevelId];
+      if (levelModel == null) {
+        throw ArgumentError.value(
+          levelModel,
+          'current level ${liveGame.currentLevelId} is not '
+          'presented in the game model.',
+        );
+      }
+      add(InitGlobalGameLevelEvent(levelModel: levelModel));
     }
-    final levelModel = gameModel.levels[index];
-    add(InitGlobalGameLevelEvent(levelModel: levelModel));
   }
 
   void _onInitGlobalGameLevel(
@@ -93,5 +92,11 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       throw ArgumentError.value(effectiveState);
     }
     return effectiveState;
+  }
+
+  TemplateLevelModel getTemplateLevelById({required final LevelModelId id}) {
+    final liveState = getLiveState();
+    // TODO(arenukvern): handle null error
+    return liveState.templateLevels.firstWhere((final level) => level.id == id);
   }
 }

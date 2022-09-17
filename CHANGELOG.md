@@ -1,10 +1,15 @@
 ## September 17th 2022
 
 - Added decrease mechanics for the word buttons.
+- Added All Levels Screen with option to choose level.
+- Added Basic Level Options Screen with option to choose player character.
 
-TODO:
-- add level players chooser.
 
+What's next:
+- Add an option to add several players simultaneously.
+- Ui notifications when the word is already written or just incorrect.
+- Create a check mechanics for the word with already written words.
+- Player turn switcher.
 
 
 ## September 15th 2022

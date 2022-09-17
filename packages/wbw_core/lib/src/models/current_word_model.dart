@@ -11,6 +11,9 @@ typedef FullWordType = String;
   copyWith: true,
 )
 class CurrentWordModel with _$CurrentWordModel {
+  @JsonSerializable(
+    explicitToJson: true,
+  )
   const factory CurrentWordModel({
     @Default('') final String leftPart,
     @Default('') final String middlePart,

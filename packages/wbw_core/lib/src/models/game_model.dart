@@ -18,10 +18,16 @@ class GameModel with _$GameModel {
   )
   const factory GameModel({
     required final GameModelId id,
-    required final List<LevelModel> levels,
+
+    /// Levels that should be used to create [LevelModel]
+    required final List<TemplateLevelModel> templateLevels,
     required final LevelModelId currentLevelId,
+
+    /// Levels that player already started
+    @Default({}) final Map<LevelModelId, LevelModel> levels,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
+    @Default([]) final List<PlayerProfileModel> playersCollection,
   }) = _GameModel;
   const GameModel._();
   factory GameModel.fromJson(final Map<String, dynamic> json) =>

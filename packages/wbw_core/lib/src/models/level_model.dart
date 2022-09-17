@@ -28,3 +28,22 @@ class LevelModel with _$LevelModel {
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
       _$LevelModelFromJson(json);
 }
+
+@immutable
+@Freezed(
+  fromJson: true,
+  toJson: true,
+  equal: true,
+  addImplicitFinal: true,
+  copyWith: true,
+)
+class TemplateLevelModel with _$TemplateLevelModel {
+  @JsonSerializable(explicitToJson: true)
+  const factory TemplateLevelModel({
+    required final LevelModelId id,
+    @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
+  }) = _TemplateLevelModel;
+  const TemplateLevelModel._();
+  factory TemplateLevelModel.fromJson(final Map<String, dynamic> json) =>
+      _$TemplateLevelModelFromJson(json);
+}

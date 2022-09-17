@@ -10,7 +10,7 @@ _$_LiveGlobalGameBlocState _$$_LiveGlobalGameBlocStateFromJson(
         Map<String, dynamic> json) =>
     _$_LiveGlobalGameBlocState(
       id: json['id'] as String,
-      currentLevelId: json['currentLevelId'] as String,
+      currentLevelId: json['currentLevelId'] as String? ?? '',
       dateTime: json['dateTime'] == null
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
@@ -19,6 +19,21 @@ _$_LiveGlobalGameBlocState _$$_LiveGlobalGameBlocStateFromJson(
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
               json['lastDateTime'] as Map<String, dynamic>),
+      levels: (json['levels'] as Map<String, dynamic>?)?.map(
+            (k, e) =>
+                MapEntry(k, LevelModel.fromJson(e as Map<String, dynamic>)),
+          ) ??
+          const {},
+      templateLevels: (json['templateLevels'] as List<dynamic>?)
+              ?.map(
+                  (e) => TemplateLevelModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      playersCollection: (json['playersCollection'] as List<dynamic>?)
+              ?.map(
+                  (e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       dateTimeDelta: json['dateTimeDelta'] as int? ?? 0,
     );
 
@@ -29,5 +44,9 @@ Map<String, dynamic> _$$_LiveGlobalGameBlocStateToJson(
       'currentLevelId': instance.currentLevelId,
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
+      'levels': instance.levels.map((k, e) => MapEntry(k, e.toJson())),
+      'templateLevels': instance.templateLevels.map((e) => e.toJson()).toList(),
+      'playersCollection':
+          instance.playersCollection.map((e) => e.toJson()).toList(),
       'dateTimeDelta': instance.dateTimeDelta,
     };

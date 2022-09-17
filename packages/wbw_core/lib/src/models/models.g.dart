@@ -43,10 +43,15 @@ Map<String, dynamic> _$$_FuelStorageModelToJson(_$_FuelStorageModel instance) =>
 
 _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
       id: json['id'] as String,
-      levels: (json['levels'] as List<dynamic>)
-          .map((e) => LevelModel.fromJson(e as Map<String, dynamic>))
+      templateLevels: (json['templateLevels'] as List<dynamic>)
+          .map((e) => TemplateLevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentLevelId: json['currentLevelId'] as String,
+      levels: (json['levels'] as Map<String, dynamic>?)?.map(
+            (k, e) =>
+                MapEntry(k, LevelModel.fromJson(e as Map<String, dynamic>)),
+          ) ??
+          const {},
       dateTime: json['dateTime'] == null
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
@@ -55,15 +60,23 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
               json['lastDateTime'] as Map<String, dynamic>),
+      playersCollection: (json['playersCollection'] as List<dynamic>?)
+              ?.map(
+                  (e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'levels': instance.levels.map((e) => e.toJson()).toList(),
+      'templateLevels': instance.templateLevels.map((e) => e.toJson()).toList(),
       'currentLevelId': instance.currentLevelId,
+      'levels': instance.levels.map((k, e) => MapEntry(k, e.toJson())),
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
+      'playersCollection':
+          instance.playersCollection.map((e) => e.toJson()).toList(),
     };
 
 _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
@@ -93,6 +106,23 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
+      'fuelStorage': instance.fuelStorage.toJson(),
+    };
+
+_$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TemplateLevelModel(
+      id: json['id'] as String,
+      fuelStorage: json['fuelStorage'] == null
+          ? const FuelStorageModel()
+          : FuelStorageModel.fromJson(
+              json['fuelStorage'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_TemplateLevelModelToJson(
+        _$_TemplateLevelModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
       'fuelStorage': instance.fuelStorage.toJson(),
     };
 

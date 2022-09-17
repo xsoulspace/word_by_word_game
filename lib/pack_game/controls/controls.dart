@@ -10,6 +10,9 @@ class ControlsWidget extends StatelessWidget {
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final spacing = uiTheme.spacing;
+    final levelBloc = context.watch<LevelBloc>();
+    final levelState = levelBloc.state;
+    if (levelState is! LiveLevelBlocState) return const SizedBox();
 
     return Padding(
       padding: EdgeInsets.all(spacing.large),
@@ -19,13 +22,7 @@ class ControlsWidget extends StatelessWidget {
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              BlocBuilder<LevelBloc, LevelBlocState>(
-                builder: (final context, final state) {
-                  if (state is! LiveLevelBlocState) return const SizedBox();
-
-                  return Text(state.fuelStorage.value.toString());
-                },
-              ),
+              Text(levelState.fuelStorage.value.toString()),
               const PlayerSwitcher(),
             ],
           ),

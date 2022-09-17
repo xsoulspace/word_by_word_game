@@ -7,10 +7,13 @@ import 'package:wbw_core/wbw_core.dart';
 
 class WorldTimeMechanics extends Component {
   WorldTimeMechanics();
+
   late final timer = lib_async.Timer.periodic(
     const Duration(seconds: 1),
     calculateNextDateTime,
   );
+  void _cancelTimer() => timer.cancel();
+
   final _listeners = <ValueChanged<WorldTimeMechanics>>{};
   void addListener(final ValueChanged<WorldTimeMechanics> listener) =>
       _listeners.add(listener);
@@ -28,7 +31,8 @@ class WorldTimeMechanics extends Component {
   /// real second to world second
   int get speedDelta => 1 * _currentSpeed;
 
-  int _currentSpeed = _defaultSpeed;
+  /// It should be pause at the beginning of the game
+  int _currentSpeed = 0;
 
   void speedX2() => _currentSpeed = _defaultSpeed + (_speedStep * 2);
   void speedX3() => _currentSpeed = _defaultSpeed + (_speedStep * 3);
@@ -67,6 +71,19 @@ class WorldTimeMechanics extends Component {
     return super.onLoad();
   }
 
+  /// Run this method when the player should initialize the
+  void onInitLevel({
+    required final WorldDateTimeModel worldDateTime,
+  }) {
+    useDateTime(worldDateTime);
+    resume();
+  }
+
+  /// Run this method when the player completes or exit the game level
+  void onLevelCompleted() {
+    pause();
+  }
+
   void calculateNextDateTime(final lib_async.Timer timer) {
     if (paused) return;
     final nextDateTime = _datetime.copyWith(
@@ -78,7 +95,7 @@ class WorldTimeMechanics extends Component {
   @override
   void onRemove() {
     _listeners.clear();
-    timer.cancel();
+    _cancelTimer();
     super.onRemove();
   }
 }

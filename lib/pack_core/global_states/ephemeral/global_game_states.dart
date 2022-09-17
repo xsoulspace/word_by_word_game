@@ -26,9 +26,15 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
   @Implements<GlobalGameBlocState>()
   const factory LiveGlobalGameBlocState({
     required final GameModelId id,
-    required final LevelModelId currentLevelId,
+    @Default('') final LevelModelId currentLevelId,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
+    @Default({}) final Map<LevelModelId, LevelModel> levels,
+    @Default([]) final List<TemplateLevelModel> templateLevels,
+
+    /// The [playersCollection] is the collection of players characters,
+    /// which will be available for user to playe and progress through the game.
+    @Default([]) final List<PlayerProfileModel> playersCollection,
     @Default(0) final int dateTimeDelta,
   }) = _LiveGlobalGameBlocState;
   const LiveGlobalGameBlocState._();
@@ -41,6 +47,9 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
       id: gameModel.id,
       dateTime: gameModel.dateTime,
       lastDateTime: gameModel.lastDateTime,
+      levels: gameModel.levels,
+      templateLevels: gameModel.templateLevels,
+      playersCollection: gameModel.playersCollection,
     );
   }
 }

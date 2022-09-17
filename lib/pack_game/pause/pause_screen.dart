@@ -8,7 +8,7 @@ import 'package:word_by_word_game/pack_core/pack_core.dart';
 
 part 'pause_screen_state.dart';
 
-class PauseScreen extends StatelessWidget {
+class PauseScreen extends HookWidget {
   const PauseScreen({
     final Key? key,
   }) : super(key: key);

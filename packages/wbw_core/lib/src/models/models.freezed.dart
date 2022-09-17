@@ -128,7 +128,8 @@ class __$$_CurrentWordModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_CurrentWordModel extends _CurrentWordModel {
   const _$_CurrentWordModel(
       {this.leftPart = '',
@@ -292,7 +293,8 @@ class __$$_FuelModelCopyWithImpl<$Res> extends _$FuelModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_FuelModel extends _FuelModel {
   const _$_FuelModel({required this.value}) : super._();
 
@@ -427,7 +429,8 @@ class __$$_FuelStorageModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_FuelStorageModel extends _FuelStorageModel {
   const _$_FuelStorageModel({this.value = 100}) : super._();
 
@@ -491,10 +494,18 @@ GameModel _$GameModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$GameModel {
   String get id => throw _privateConstructorUsedError;
-  List<LevelModel> get levels => throw _privateConstructorUsedError;
+
+  /// Levels that should be used to create [LevelModel]
+  List<TemplateLevelModel> get templateLevels =>
+      throw _privateConstructorUsedError;
   String get currentLevelId => throw _privateConstructorUsedError;
+
+  /// Levels that player already started
+  Map<String, LevelModel> get levels => throw _privateConstructorUsedError;
   WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
   WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
+  List<PlayerProfileModel> get playersCollection =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -508,10 +519,12 @@ abstract class $GameModelCopyWith<$Res> {
       _$GameModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      List<LevelModel> levels,
+      List<TemplateLevelModel> templateLevels,
       String currentLevelId,
+      Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
-      WorldDateTimeModel lastDateTime});
+      WorldDateTimeModel lastDateTime,
+      List<PlayerProfileModel> playersCollection});
 
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
@@ -528,24 +541,30 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? levels = freezed,
+    Object? templateLevels = freezed,
     Object? currentLevelId = freezed,
+    Object? levels = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
+    Object? playersCollection = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      levels: levels == freezed
-          ? _value.levels
-          : levels // ignore: cast_nullable_to_non_nullable
-              as List<LevelModel>,
+      templateLevels: templateLevels == freezed
+          ? _value.templateLevels
+          : templateLevels // ignore: cast_nullable_to_non_nullable
+              as List<TemplateLevelModel>,
       currentLevelId: currentLevelId == freezed
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      levels: levels == freezed
+          ? _value.levels
+          : levels // ignore: cast_nullable_to_non_nullable
+              as Map<String, LevelModel>,
       dateTime: dateTime == freezed
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -554,6 +573,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.lastDateTime
           : lastDateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
+      playersCollection: playersCollection == freezed
+          ? _value.playersCollection
+          : playersCollection // ignore: cast_nullable_to_non_nullable
+              as List<PlayerProfileModel>,
     ));
   }
 
@@ -580,10 +603,12 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
   @override
   $Res call(
       {String id,
-      List<LevelModel> levels,
+      List<TemplateLevelModel> templateLevels,
       String currentLevelId,
+      Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
-      WorldDateTimeModel lastDateTime});
+      WorldDateTimeModel lastDateTime,
+      List<PlayerProfileModel> playersCollection});
 
   @override
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
@@ -604,24 +629,30 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? levels = freezed,
+    Object? templateLevels = freezed,
     Object? currentLevelId = freezed,
+    Object? levels = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
+    Object? playersCollection = freezed,
   }) {
     return _then(_$_GameModel(
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      levels: levels == freezed
-          ? _value._levels
-          : levels // ignore: cast_nullable_to_non_nullable
-              as List<LevelModel>,
+      templateLevels: templateLevels == freezed
+          ? _value._templateLevels
+          : templateLevels // ignore: cast_nullable_to_non_nullable
+              as List<TemplateLevelModel>,
       currentLevelId: currentLevelId == freezed
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      levels: levels == freezed
+          ? _value._levels
+          : levels // ignore: cast_nullable_to_non_nullable
+              as Map<String, LevelModel>,
       dateTime: dateTime == freezed
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -630,6 +661,10 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.lastDateTime
           : lastDateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
+      playersCollection: playersCollection == freezed
+          ? _value._playersCollection
+          : playersCollection // ignore: cast_nullable_to_non_nullable
+              as List<PlayerProfileModel>,
     ));
   }
 }
@@ -640,11 +675,15 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
 class _$_GameModel extends _GameModel {
   const _$_GameModel(
       {required this.id,
-      required final List<LevelModel> levels,
+      required final List<TemplateLevelModel> templateLevels,
       required this.currentLevelId,
+      final Map<String, LevelModel> levels = const {},
       this.dateTime = const WorldDateTimeModel(),
-      this.lastDateTime = const WorldDateTimeModel()})
-      : _levels = levels,
+      this.lastDateTime = const WorldDateTimeModel(),
+      final List<PlayerProfileModel> playersCollection = const []})
+      : _templateLevels = templateLevels,
+        _levels = levels,
+        _playersCollection = playersCollection,
         super._();
 
   factory _$_GameModel.fromJson(Map<String, dynamic> json) =>
@@ -652,25 +691,48 @@ class _$_GameModel extends _GameModel {
 
   @override
   final String id;
-  final List<LevelModel> _levels;
+
+  /// Levels that should be used to create [LevelModel]
+  final List<TemplateLevelModel> _templateLevels;
+
+  /// Levels that should be used to create [LevelModel]
   @override
-  List<LevelModel> get levels {
+  List<TemplateLevelModel> get templateLevels {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_levels);
+    return EqualUnmodifiableListView(_templateLevels);
   }
 
   @override
   final String currentLevelId;
+
+  /// Levels that player already started
+  final Map<String, LevelModel> _levels;
+
+  /// Levels that player already started
+  @override
+  @JsonKey()
+  Map<String, LevelModel> get levels {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_levels);
+  }
+
   @override
   @JsonKey()
   final WorldDateTimeModel dateTime;
   @override
   @JsonKey()
   final WorldDateTimeModel lastDateTime;
+  final List<PlayerProfileModel> _playersCollection;
+  @override
+  @JsonKey()
+  List<PlayerProfileModel> get playersCollection {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_playersCollection);
+  }
 
   @override
   String toString() {
-    return 'GameModel(id: $id, levels: $levels, currentLevelId: $currentLevelId, dateTime: $dateTime, lastDateTime: $lastDateTime)';
+    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection)';
   }
 
   @override
@@ -679,12 +741,16 @@ class _$_GameModel extends _GameModel {
         (other.runtimeType == runtimeType &&
             other is _$_GameModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other._levels, _levels) &&
+            const DeepCollectionEquality()
+                .equals(other._templateLevels, _templateLevels) &&
             const DeepCollectionEquality()
                 .equals(other.currentLevelId, currentLevelId) &&
+            const DeepCollectionEquality().equals(other._levels, _levels) &&
             const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
             const DeepCollectionEquality()
-                .equals(other.lastDateTime, lastDateTime));
+                .equals(other.lastDateTime, lastDateTime) &&
+            const DeepCollectionEquality()
+                .equals(other._playersCollection, _playersCollection));
   }
 
   @JsonKey(ignore: true)
@@ -692,10 +758,12 @@ class _$_GameModel extends _GameModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(_levels),
+      const DeepCollectionEquality().hash(_templateLevels),
       const DeepCollectionEquality().hash(currentLevelId),
+      const DeepCollectionEquality().hash(_levels),
       const DeepCollectionEquality().hash(dateTime),
-      const DeepCollectionEquality().hash(lastDateTime));
+      const DeepCollectionEquality().hash(lastDateTime),
+      const DeepCollectionEquality().hash(_playersCollection));
 
   @JsonKey(ignore: true)
   @override
@@ -713,10 +781,12 @@ class _$_GameModel extends _GameModel {
 abstract class _GameModel extends GameModel {
   const factory _GameModel(
       {required final String id,
-      required final List<LevelModel> levels,
+      required final List<TemplateLevelModel> templateLevels,
       required final String currentLevelId,
+      final Map<String, LevelModel> levels,
       final WorldDateTimeModel dateTime,
-      final WorldDateTimeModel lastDateTime}) = _$_GameModel;
+      final WorldDateTimeModel lastDateTime,
+      final List<PlayerProfileModel> playersCollection}) = _$_GameModel;
   const _GameModel._() : super._();
 
   factory _GameModel.fromJson(Map<String, dynamic> json) =
@@ -725,13 +795,21 @@ abstract class _GameModel extends GameModel {
   @override
   String get id;
   @override
-  List<LevelModel> get levels;
+
+  /// Levels that should be used to create [LevelModel]
+  List<TemplateLevelModel> get templateLevels;
   @override
   String get currentLevelId;
+  @override
+
+  /// Levels that player already started
+  Map<String, LevelModel> get levels;
   @override
   WorldDateTimeModel get dateTime;
   @override
   WorldDateTimeModel get lastDateTime;
+  @override
+  List<PlayerProfileModel> get playersCollection;
   @override
   @JsonKey(ignore: true)
   _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
@@ -1025,6 +1103,179 @@ abstract class _LevelModel extends LevelModel {
   @override
   @JsonKey(ignore: true)
   _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TemplateLevelModel _$TemplateLevelModelFromJson(Map<String, dynamic> json) {
+  return _TemplateLevelModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TemplateLevelModel {
+  String get id => throw _privateConstructorUsedError;
+  FuelStorageModel get fuelStorage => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TemplateLevelModelCopyWith<TemplateLevelModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TemplateLevelModelCopyWith<$Res> {
+  factory $TemplateLevelModelCopyWith(
+          TemplateLevelModel value, $Res Function(TemplateLevelModel) then) =
+      _$TemplateLevelModelCopyWithImpl<$Res>;
+  $Res call({String id, FuelStorageModel fuelStorage});
+
+  $FuelStorageModelCopyWith<$Res> get fuelStorage;
+}
+
+/// @nodoc
+class _$TemplateLevelModelCopyWithImpl<$Res>
+    implements $TemplateLevelModelCopyWith<$Res> {
+  _$TemplateLevelModelCopyWithImpl(this._value, this._then);
+
+  final TemplateLevelModel _value;
+  // ignore: unused_field
+  final $Res Function(TemplateLevelModel) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fuelStorage = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      fuelStorage: fuelStorage == freezed
+          ? _value.fuelStorage
+          : fuelStorage // ignore: cast_nullable_to_non_nullable
+              as FuelStorageModel,
+    ));
+  }
+
+  @override
+  $FuelStorageModelCopyWith<$Res> get fuelStorage {
+    return $FuelStorageModelCopyWith<$Res>(_value.fuelStorage, (value) {
+      return _then(_value.copyWith(fuelStorage: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_TemplateLevelModelCopyWith<$Res>
+    implements $TemplateLevelModelCopyWith<$Res> {
+  factory _$$_TemplateLevelModelCopyWith(_$_TemplateLevelModel value,
+          $Res Function(_$_TemplateLevelModel) then) =
+      __$$_TemplateLevelModelCopyWithImpl<$Res>;
+  @override
+  $Res call({String id, FuelStorageModel fuelStorage});
+
+  @override
+  $FuelStorageModelCopyWith<$Res> get fuelStorage;
+}
+
+/// @nodoc
+class __$$_TemplateLevelModelCopyWithImpl<$Res>
+    extends _$TemplateLevelModelCopyWithImpl<$Res>
+    implements _$$_TemplateLevelModelCopyWith<$Res> {
+  __$$_TemplateLevelModelCopyWithImpl(
+      _$_TemplateLevelModel _value, $Res Function(_$_TemplateLevelModel) _then)
+      : super(_value, (v) => _then(v as _$_TemplateLevelModel));
+
+  @override
+  _$_TemplateLevelModel get _value => super._value as _$_TemplateLevelModel;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? fuelStorage = freezed,
+  }) {
+    return _then(_$_TemplateLevelModel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      fuelStorage: fuelStorage == freezed
+          ? _value.fuelStorage
+          : fuelStorage // ignore: cast_nullable_to_non_nullable
+              as FuelStorageModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_TemplateLevelModel extends _TemplateLevelModel {
+  const _$_TemplateLevelModel(
+      {required this.id, this.fuelStorage = const FuelStorageModel()})
+      : super._();
+
+  factory _$_TemplateLevelModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TemplateLevelModelFromJson(json);
+
+  @override
+  final String id;
+  @override
+  @JsonKey()
+  final FuelStorageModel fuelStorage;
+
+  @override
+  String toString() {
+    return 'TemplateLevelModel(id: $id, fuelStorage: $fuelStorage)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TemplateLevelModel &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.fuelStorage, fuelStorage));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(fuelStorage));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_TemplateLevelModelCopyWith<_$_TemplateLevelModel> get copyWith =>
+      __$$_TemplateLevelModelCopyWithImpl<_$_TemplateLevelModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TemplateLevelModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TemplateLevelModel extends TemplateLevelModel {
+  const factory _TemplateLevelModel(
+      {required final String id,
+      final FuelStorageModel fuelStorage}) = _$_TemplateLevelModel;
+  const _TemplateLevelModel._() : super._();
+
+  factory _TemplateLevelModel.fromJson(Map<String, dynamic> json) =
+      _$_TemplateLevelModel.fromJson;
+
+  @override
+  String get id;
+  @override
+  FuelStorageModel get fuelStorage;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TemplateLevelModelCopyWith<_$_TemplateLevelModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

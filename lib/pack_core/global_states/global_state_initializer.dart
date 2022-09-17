@@ -8,25 +8,22 @@ class GlobalStateInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
+    // TODO(arenukvern): load the latest game or create the game from the template
     final player = PlayerProfileModel.create(
       name: 'ohman',
       colorValue: Colors.red.value,
     );
     final players = <PlayerProfileModel>[player];
-    final levels = <LevelModel>[
-      LevelModel(
-        id: 'test level',
-        players: LevelPlayersModel(
-          currentPlayerId: player.id,
-          players: players,
-        ),
-      ),
-    ];
     final initGameEvent = InitGlobalGameEvent(
       gameModel: GameModel(
         id: 'game',
-        levels: levels,
-        currentLevelId: levels.first.id,
+        templateLevels: const [
+          TemplateLevelModel(
+            id: 'test level',
+          ),
+        ],
+        currentLevelId: '',
+        playersCollection: players,
       ),
     );
     read<GlobalGameBloc>().add(initGameEvent);

@@ -89,7 +89,8 @@ class AppLayoutBuilder
     }
 
     /// should be at the end of the layout layers
-    if (pathTemplate == NavigationRoutes.pause) {
+    if (pathTemplate == NavigationRoutes.pause ||
+        pathTemplate == NavigationRoutes.root) {
       pages.add(pageBuilder.pause());
     }
     return pages;

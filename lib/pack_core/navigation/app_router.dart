@@ -8,11 +8,11 @@ class NavigationRoutes {
   static const allLevels = '/lvl/all';
 
   static const levelRoot = '/lvl';
-  static const playableLevel = '/lvl/:id';
+  static const playableLevel = '/lvl/:levelId';
 
   static String toPlayableLevel({required final LevelModelId id}) => '/lvl/$id';
 
-  static const levelOptions = '/lvl/:id/options';
+  static const levelOptions = '/lvl/:levelId/options';
   static String getLevelOptions({required final LevelModelId id}) =>
       '/lvl/$id/options';
 

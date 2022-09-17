@@ -9,6 +9,9 @@ part of 'models.dart';
   copyWith: true,
 )
 class FuelModel with _$FuelModel {
+  @JsonSerializable(
+    explicitToJson: true,
+  )
   const factory FuelModel({
     required final double value,
   }) = _FuelModel;
