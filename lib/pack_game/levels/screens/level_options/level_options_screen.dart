@@ -15,14 +15,18 @@ class LevelOptionsScreen extends HookWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final state = _useLevelOptionsScreenState(read: context.read);
     final uiTheme = UiTheme.of(context);
     final globalGameBloc = context.watch<GlobalGameBloc>();
     final liveState = globalGameBloc.getLiveState();
     final playersCharacters = liveState.playersCharacters;
     final routeState = context.watch<RouteState>();
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
-    final level = globalGameBloc.getTemplateLevelById(id: routeArgs.levelId);
+    final templateLevel =
+        globalGameBloc.getTemplateLevelById(id: routeArgs.levelId);
+    final state = _useLevelOptionsScreenState(
+      read: context.read,
+      templateLevel: templateLevel,
+    );
     final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
@@ -33,7 +37,7 @@ class LevelOptionsScreen extends HookWidget {
         child: Column(
           children: [
             Text(
-              level.id.toUpperCase(),
+              templateLevel.id.toUpperCase(),
               style: theme.textTheme.bodyLarge,
             ),
             uiTheme.verticalBoxes.extraLarge,
@@ -62,6 +66,19 @@ class LevelOptionsScreen extends HookWidget {
                 checkIsPlayerSelected: state.checkIsPlayerSelected,
                 onPlayerCreated: state.onPlayerProfileCreated,
               ),
+            ),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: state.onReturnToLevels,
+                  child: const Text('Return to all levels'),
+                ),
+                const Spacer(),
+                TextButton(
+                  onPressed: state.onPlay,
+                  child: const Text('Play'),
+                ),
+              ],
             ),
           ],
         ),

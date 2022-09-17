@@ -59,8 +59,12 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     final levelModel = event.levelModel;
     diDto
       ..levelBloc.add(InitLevelEvent(levelModel: levelModel))
-      ..levelPlayersBloc
-          .add(InitLevelPlayersEvent(playersModel: levelModel.players));
+      ..levelPlayersBloc.add(
+        InitLevelPlayersEvent(
+          playersModel: levelModel.players,
+          charactersModel: levelModel.characters,
+        ),
+      );
   }
 
   void _onWorldTick(

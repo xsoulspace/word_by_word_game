@@ -86,11 +86,26 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
           instance.playersCharacters.map((e) => e.toJson()).toList(),
     };
 
+_$_LevelCharactersModel _$$_LevelCharactersModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_LevelCharactersModel(
+      playerCharacter: PlayerCharacterModel.fromJson(
+          json['playerCharacter'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_LevelCharactersModelToJson(
+        _$_LevelCharactersModel instance) =>
+    <String, dynamic>{
+      'playerCharacter': instance.playerCharacter.toJson(),
+    };
+
 _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
     _$_LevelModel(
       id: json['id'] as String,
       players:
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
+      characters: LevelCharactersModel.fromJson(
+          json['characters'] as Map<String, dynamic>),
       currentWord: json['currentWord'] == null
           ? const CurrentWordModel()
           : CurrentWordModel.fromJson(
@@ -110,6 +125,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'players': instance.players.toJson(),
+      'characters': instance.characters.toJson(),
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,

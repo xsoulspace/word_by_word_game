@@ -28,7 +28,10 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     final InitLevelPlayersEvent event,
     final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = LiveLevelPlayersBlocState.fromModel(event.playersModel);
+    final liveState = LiveLevelPlayersBlocState.fromModel(
+      levelPlayersModel: event.playersModel,
+      levelCharactersModel: event.charactersModel,
+    );
     emit(liveState);
   }
 

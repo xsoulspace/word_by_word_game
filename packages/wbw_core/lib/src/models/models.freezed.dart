@@ -854,6 +854,159 @@ abstract class _GameModel extends GameModel {
       throw _privateConstructorUsedError;
 }
 
+LevelCharactersModel _$LevelCharactersModelFromJson(Map<String, dynamic> json) {
+  return _LevelCharactersModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LevelCharactersModel {
+  PlayerCharacterModel get playerCharacter =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LevelCharactersModelCopyWith<LevelCharactersModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LevelCharactersModelCopyWith<$Res> {
+  factory $LevelCharactersModelCopyWith(LevelCharactersModel value,
+          $Res Function(LevelCharactersModel) then) =
+      _$LevelCharactersModelCopyWithImpl<$Res>;
+  $Res call({PlayerCharacterModel playerCharacter});
+
+  $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+}
+
+/// @nodoc
+class _$LevelCharactersModelCopyWithImpl<$Res>
+    implements $LevelCharactersModelCopyWith<$Res> {
+  _$LevelCharactersModelCopyWithImpl(this._value, this._then);
+
+  final LevelCharactersModel _value;
+  // ignore: unused_field
+  final $Res Function(LevelCharactersModel) _then;
+
+  @override
+  $Res call({
+    Object? playerCharacter = freezed,
+  }) {
+    return _then(_value.copyWith(
+      playerCharacter: playerCharacter == freezed
+          ? _value.playerCharacter
+          : playerCharacter // ignore: cast_nullable_to_non_nullable
+              as PlayerCharacterModel,
+    ));
+  }
+
+  @override
+  $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
+    return $PlayerCharacterModelCopyWith<$Res>(_value.playerCharacter, (value) {
+      return _then(_value.copyWith(playerCharacter: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_LevelCharactersModelCopyWith<$Res>
+    implements $LevelCharactersModelCopyWith<$Res> {
+  factory _$$_LevelCharactersModelCopyWith(_$_LevelCharactersModel value,
+          $Res Function(_$_LevelCharactersModel) then) =
+      __$$_LevelCharactersModelCopyWithImpl<$Res>;
+  @override
+  $Res call({PlayerCharacterModel playerCharacter});
+
+  @override
+  $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+}
+
+/// @nodoc
+class __$$_LevelCharactersModelCopyWithImpl<$Res>
+    extends _$LevelCharactersModelCopyWithImpl<$Res>
+    implements _$$_LevelCharactersModelCopyWith<$Res> {
+  __$$_LevelCharactersModelCopyWithImpl(_$_LevelCharactersModel _value,
+      $Res Function(_$_LevelCharactersModel) _then)
+      : super(_value, (v) => _then(v as _$_LevelCharactersModel));
+
+  @override
+  _$_LevelCharactersModel get _value => super._value as _$_LevelCharactersModel;
+
+  @override
+  $Res call({
+    Object? playerCharacter = freezed,
+  }) {
+    return _then(_$_LevelCharactersModel(
+      playerCharacter: playerCharacter == freezed
+          ? _value.playerCharacter
+          : playerCharacter // ignore: cast_nullable_to_non_nullable
+              as PlayerCharacterModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_LevelCharactersModel extends _LevelCharactersModel {
+  const _$_LevelCharactersModel({required this.playerCharacter}) : super._();
+
+  factory _$_LevelCharactersModel.fromJson(Map<String, dynamic> json) =>
+      _$$_LevelCharactersModelFromJson(json);
+
+  @override
+  final PlayerCharacterModel playerCharacter;
+
+  @override
+  String toString() {
+    return 'LevelCharactersModel(playerCharacter: $playerCharacter)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LevelCharactersModel &&
+            const DeepCollectionEquality()
+                .equals(other.playerCharacter, playerCharacter));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(playerCharacter));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LevelCharactersModelCopyWith<_$_LevelCharactersModel> get copyWith =>
+      __$$_LevelCharactersModelCopyWithImpl<_$_LevelCharactersModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LevelCharactersModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LevelCharactersModel extends LevelCharactersModel {
+  const factory _LevelCharactersModel(
+          {required final PlayerCharacterModel playerCharacter}) =
+      _$_LevelCharactersModel;
+  const _LevelCharactersModel._() : super._();
+
+  factory _LevelCharactersModel.fromJson(Map<String, dynamic> json) =
+      _$_LevelCharactersModel.fromJson;
+
+  @override
+  PlayerCharacterModel get playerCharacter;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LevelCharactersModelCopyWith<_$_LevelCharactersModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
   return _LevelModel.fromJson(json);
 }
@@ -862,6 +1015,7 @@ LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
 mixin _$LevelModel {
   String get id => throw _privateConstructorUsedError;
   LevelPlayersModel get players => throw _privateConstructorUsedError;
+  LevelCharactersModel get characters => throw _privateConstructorUsedError;
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
@@ -881,12 +1035,14 @@ abstract class $LevelModelCopyWith<$Res> {
   $Res call(
       {String id,
       LevelPlayersModel players,
+      LevelCharactersModel characters,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
       FuelStorageModel fuelStorage});
 
   $LevelPlayersModelCopyWith<$Res> get players;
+  $LevelCharactersModelCopyWith<$Res> get characters;
   $CurrentWordModelCopyWith<$Res> get currentWord;
   $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
@@ -903,6 +1059,7 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? players = freezed,
+    Object? characters = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -917,6 +1074,10 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
               as LevelPlayersModel,
+      characters: characters == freezed
+          ? _value.characters
+          : characters // ignore: cast_nullable_to_non_nullable
+              as LevelCharactersModel,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -940,6 +1101,13 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
   $LevelPlayersModelCopyWith<$Res> get players {
     return $LevelPlayersModelCopyWith<$Res>(_value.players, (value) {
       return _then(_value.copyWith(players: value));
+    });
+  }
+
+  @override
+  $LevelCharactersModelCopyWith<$Res> get characters {
+    return $LevelCharactersModelCopyWith<$Res>(_value.characters, (value) {
+      return _then(_value.copyWith(characters: value));
     });
   }
 
@@ -968,6 +1136,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
   $Res call(
       {String id,
       LevelPlayersModel players,
+      LevelCharactersModel characters,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
@@ -975,6 +1144,8 @@ abstract class _$$_LevelModelCopyWith<$Res>
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
+  @override
+  $LevelCharactersModelCopyWith<$Res> get characters;
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
   @override
@@ -995,6 +1166,7 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? players = freezed,
+    Object? characters = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -1009,6 +1181,10 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
               as LevelPlayersModel,
+      characters: characters == freezed
+          ? _value.characters
+          : characters // ignore: cast_nullable_to_non_nullable
+              as LevelCharactersModel,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -1036,6 +1212,7 @@ class _$_LevelModel extends _LevelModel {
   const _$_LevelModel(
       {required this.id,
       required this.players,
+      required this.characters,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
@@ -1050,6 +1227,8 @@ class _$_LevelModel extends _LevelModel {
   final String id;
   @override
   final LevelPlayersModel players;
+  @override
+  final LevelCharactersModel characters;
   @override
   @JsonKey()
   final CurrentWordModel currentWord;
@@ -1070,7 +1249,7 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(id: $id, players: $players, currentWord: $currentWord, words: $words, latestWord: $latestWord, fuelStorage: $fuelStorage)';
+    return 'LevelModel(id: $id, players: $players, characters: $characters, currentWord: $currentWord, words: $words, latestWord: $latestWord, fuelStorage: $fuelStorage)';
   }
 
   @override
@@ -1080,6 +1259,8 @@ class _$_LevelModel extends _LevelModel {
             other is _$_LevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.players, players) &&
+            const DeepCollectionEquality()
+                .equals(other.characters, characters) &&
             const DeepCollectionEquality()
                 .equals(other.currentWord, currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
@@ -1095,6 +1276,7 @@ class _$_LevelModel extends _LevelModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(players),
+      const DeepCollectionEquality().hash(characters),
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord),
@@ -1117,6 +1299,7 @@ abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
       {required final String id,
       required final LevelPlayersModel players,
+      required final LevelCharactersModel characters,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
       final String latestWord,
@@ -1130,6 +1313,8 @@ abstract class _LevelModel extends LevelModel {
   String get id;
   @override
   LevelPlayersModel get players;
+  @override
+  LevelCharactersModel get characters;
   @override
   CurrentWordModel get currentWord;
   @override

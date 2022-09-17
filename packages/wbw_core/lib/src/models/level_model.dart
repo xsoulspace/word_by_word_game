@@ -19,6 +19,7 @@ class LevelModel with _$LevelModel {
   const factory LevelModel({
     required final LevelModelId id,
     required final LevelPlayersModel players,
+    required final LevelCharactersModel characters,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordType, PlayerProfileModelId> words,
     @Default('') final String latestWord,

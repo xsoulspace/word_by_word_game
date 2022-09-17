@@ -1,9 +1,16 @@
 ## September 18th 2022
 
+- Added Chracter Model and Character Selector on Level Options Screen.
+- Added Player Profile Creator (UI and simple logic).
+- Added Player Profiles selector (UI and simple logic).
+- Added ability to use Level Options to play a level.
+
 TODO:
 
-- Add character class.
-- Add an option to add several players simultaneously.
+- Pass Level Options to the Level & Level Players Bloc to initialize the level.
+- Add Buttons Play & Return to levels.
+- Player turn switcher.
+
 
 ## September 17th 2022
 

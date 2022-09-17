@@ -10,20 +10,24 @@ class _LevelOptionsScreenDiDto {
 
 _LevelOptionsScreenState _useLevelOptionsScreenState({
   required final Locator read,
+  required final TemplateLevelModel templateLevel,
 }) =>
     use(
       LifeHook(
         debugLabel: '_LevelOptionsScreenState',
-        state:
-            _LevelOptionsScreenState(diDto: _LevelOptionsScreenDiDto.use(read)),
+        state: _LevelOptionsScreenState(
+          diDto: _LevelOptionsScreenDiDto.use(read),
+          templateLevel: templateLevel,
+        ),
       ),
     );
 
 class _LevelOptionsScreenState extends LifeState {
   _LevelOptionsScreenState({
     required this.diDto,
+    required this.templateLevel,
   });
-
+  final TemplateLevelModel templateLevel;
   final _LevelOptionsScreenDiDto diDto;
 
   PlayerCharacterModelId? characterId;
@@ -52,5 +56,32 @@ class _LevelOptionsScreenState extends LifeState {
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
     diDto.globalGameBloc.add(CreatePlayerProfileEvent(profile: profile));
     onPlayerSelected(profile);
+  }
+
+  void onPlay() {
+    final liveState = diDto.globalGameBloc.getLiveState();
+    final charactersCollection = liveState.playersCharacters;
+    final playersCollection = liveState.playersCollection;
+    final levelPlayers = playersIds
+        .map((id) => playersCollection.firstWhere((player) => player.id == id));
+    final levelCharecters = charactersCollection
+        .firstWhere((character) => character.id == characterId);
+
+    final level = LevelModel(
+      characters: LevelCharactersModel(
+        playerCharacter: levelCharecters,
+      ),
+      players: LevelPlayersModel(
+        currentPlayerId: playersIds.first,
+        players: levelPlayers.toList(),
+      ),
+      id: templateLevel.id,
+    );
+    diDto.globalGameBloc.add(InitGlobalGameLevelEvent(levelModel: level));
+    diDto.appRouterController.toPlayableLevel(id: level.id);
+  }
+
+  void onReturnToLevels() {
+    diDto.appRouterController.toAllLevel();
   }
 }

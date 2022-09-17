@@ -11,8 +11,10 @@ abstract class LevelPlayersEvent extends Equatable {
 class InitLevelPlayersEvent extends LevelPlayersEvent {
   const InitLevelPlayersEvent({
     required this.playersModel,
+    required this.charactersModel,
   });
   final LevelPlayersModel playersModel;
+  final LevelCharactersModel charactersModel;
 }
 
 @immutable
