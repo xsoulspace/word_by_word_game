@@ -6,7 +6,7 @@ void main() {
   group('BookUpdater', () {
     final levelGenerator = GameLevelGenerator();
     final shelfLevels = levelGenerator.createBookShelfLevels(
-      players: [_gamePlayer],
+      characters: [_gamePlayer],
       screenWidth: 600,
     );
     final level = shelfLevels.first;

@@ -33,6 +33,8 @@ mixin _$LiveGlobalGameBlocState {
   /// which will be available for user to playe and progress through the game.
   List<PlayerProfileModel> get playersCollection =>
       throw _privateConstructorUsedError;
+  List<PlayerCharacterModel> get playersCharacters =>
+      throw _privateConstructorUsedError;
   int get dateTimeDelta => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,6 +56,7 @@ abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
       Map<String, LevelModel> levels,
       List<TemplateLevelModel> templateLevels,
       List<PlayerProfileModel> playersCollection,
+      List<PlayerCharacterModel> playersCharacters,
       int dateTimeDelta});
 
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
@@ -78,6 +81,7 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
     Object? levels = freezed,
     Object? templateLevels = freezed,
     Object? playersCollection = freezed,
+    Object? playersCharacters = freezed,
     Object? dateTimeDelta = freezed,
   }) {
     return _then(_value.copyWith(
@@ -109,6 +113,10 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
               as List<PlayerProfileModel>,
+      playersCharacters: playersCharacters == freezed
+          ? _value.playersCharacters
+          : playersCharacters // ignore: cast_nullable_to_non_nullable
+              as List<PlayerCharacterModel>,
       dateTimeDelta: dateTimeDelta == freezed
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
@@ -146,6 +154,7 @@ abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
       Map<String, LevelModel> levels,
       List<TemplateLevelModel> templateLevels,
       List<PlayerProfileModel> playersCollection,
+      List<PlayerCharacterModel> playersCharacters,
       int dateTimeDelta});
 
   @override
@@ -175,6 +184,7 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
     Object? levels = freezed,
     Object? templateLevels = freezed,
     Object? playersCollection = freezed,
+    Object? playersCharacters = freezed,
     Object? dateTimeDelta = freezed,
   }) {
     return _then(_$_LiveGlobalGameBlocState(
@@ -206,6 +216,10 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
           ? _value._playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
               as List<PlayerProfileModel>,
+      playersCharacters: playersCharacters == freezed
+          ? _value._playersCharacters
+          : playersCharacters // ignore: cast_nullable_to_non_nullable
+              as List<PlayerCharacterModel>,
       dateTimeDelta: dateTimeDelta == freezed
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
@@ -226,10 +240,12 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
       final Map<String, LevelModel> levels = const {},
       final List<TemplateLevelModel> templateLevels = const [],
       final List<PlayerProfileModel> playersCollection = const [],
+      final List<PlayerCharacterModel> playersCharacters = const [],
       this.dateTimeDelta = 0})
       : _levels = levels,
         _templateLevels = templateLevels,
         _playersCollection = playersCollection,
+        _playersCharacters = playersCharacters,
         super._();
 
   factory _$_LiveGlobalGameBlocState.fromJson(Map<String, dynamic> json) =>
@@ -275,13 +291,21 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
     return EqualUnmodifiableListView(_playersCollection);
   }
 
+  final List<PlayerCharacterModel> _playersCharacters;
+  @override
+  @JsonKey()
+  List<PlayerCharacterModel> get playersCharacters {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_playersCharacters);
+  }
+
   @override
   @JsonKey()
   final int dateTimeDelta;
 
   @override
   String toString() {
-    return 'LiveGlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, dateTimeDelta: $dateTimeDelta)';
+    return 'LiveGlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta)';
   }
 
   @override
@@ -301,6 +325,8 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
             const DeepCollectionEquality()
                 .equals(other._playersCollection, _playersCollection) &&
             const DeepCollectionEquality()
+                .equals(other._playersCharacters, _playersCharacters) &&
+            const DeepCollectionEquality()
                 .equals(other.dateTimeDelta, dateTimeDelta));
   }
 
@@ -315,6 +341,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
       const DeepCollectionEquality().hash(_levels),
       const DeepCollectionEquality().hash(_templateLevels),
       const DeepCollectionEquality().hash(_playersCollection),
+      const DeepCollectionEquality().hash(_playersCharacters),
       const DeepCollectionEquality().hash(dateTimeDelta));
 
   @JsonKey(ignore: true)
@@ -342,6 +369,7 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
       final Map<String, LevelModel> levels,
       final List<TemplateLevelModel> templateLevels,
       final List<PlayerProfileModel> playersCollection,
+      final List<PlayerCharacterModel> playersCharacters,
       final int dateTimeDelta}) = _$_LiveGlobalGameBlocState;
   const _LiveGlobalGameBlocState._() : super._();
 
@@ -365,6 +393,8 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
   /// The [playersCollection] is the collection of players characters,
   /// which will be available for user to playe and progress through the game.
   List<PlayerProfileModel> get playersCollection;
+  @override
+  List<PlayerCharacterModel> get playersCharacters;
   @override
   int get dateTimeDelta;
   @override

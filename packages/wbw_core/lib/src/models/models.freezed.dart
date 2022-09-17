@@ -504,7 +504,11 @@ mixin _$GameModel {
   Map<String, LevelModel> get levels => throw _privateConstructorUsedError;
   WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
   WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
+
+  /// Global players statistics and data.
   List<PlayerProfileModel> get playersCollection =>
+      throw _privateConstructorUsedError;
+  List<PlayerCharacterModel> get playersCharacters =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -524,7 +528,8 @@ abstract class $GameModelCopyWith<$Res> {
       Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      List<PlayerProfileModel> playersCollection});
+      List<PlayerProfileModel> playersCollection,
+      List<PlayerCharacterModel> playersCharacters});
 
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
@@ -547,6 +552,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
     Object? playersCollection = freezed,
+    Object? playersCharacters = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -577,6 +583,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
               as List<PlayerProfileModel>,
+      playersCharacters: playersCharacters == freezed
+          ? _value.playersCharacters
+          : playersCharacters // ignore: cast_nullable_to_non_nullable
+              as List<PlayerCharacterModel>,
     ));
   }
 
@@ -608,7 +618,8 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      List<PlayerProfileModel> playersCollection});
+      List<PlayerProfileModel> playersCollection,
+      List<PlayerCharacterModel> playersCharacters});
 
   @override
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
@@ -635,6 +646,7 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
     Object? playersCollection = freezed,
+    Object? playersCharacters = freezed,
   }) {
     return _then(_$_GameModel(
       id: id == freezed
@@ -665,6 +677,10 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value._playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
               as List<PlayerProfileModel>,
+      playersCharacters: playersCharacters == freezed
+          ? _value._playersCharacters
+          : playersCharacters // ignore: cast_nullable_to_non_nullable
+              as List<PlayerCharacterModel>,
     ));
   }
 }
@@ -680,10 +696,12 @@ class _$_GameModel extends _GameModel {
       final Map<String, LevelModel> levels = const {},
       this.dateTime = const WorldDateTimeModel(),
       this.lastDateTime = const WorldDateTimeModel(),
-      final List<PlayerProfileModel> playersCollection = const []})
+      final List<PlayerProfileModel> playersCollection = const [],
+      final List<PlayerCharacterModel> playersCharacters = const []})
       : _templateLevels = templateLevels,
         _levels = levels,
         _playersCollection = playersCollection,
+        _playersCharacters = playersCharacters,
         super._();
 
   factory _$_GameModel.fromJson(Map<String, dynamic> json) =>
@@ -722,7 +740,11 @@ class _$_GameModel extends _GameModel {
   @override
   @JsonKey()
   final WorldDateTimeModel lastDateTime;
+
+  /// Global players statistics and data.
   final List<PlayerProfileModel> _playersCollection;
+
+  /// Global players statistics and data.
   @override
   @JsonKey()
   List<PlayerProfileModel> get playersCollection {
@@ -730,9 +752,17 @@ class _$_GameModel extends _GameModel {
     return EqualUnmodifiableListView(_playersCollection);
   }
 
+  final List<PlayerCharacterModel> _playersCharacters;
+  @override
+  @JsonKey()
+  List<PlayerCharacterModel> get playersCharacters {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_playersCharacters);
+  }
+
   @override
   String toString() {
-    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection)';
+    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters)';
   }
 
   @override
@@ -750,7 +780,9 @@ class _$_GameModel extends _GameModel {
             const DeepCollectionEquality()
                 .equals(other.lastDateTime, lastDateTime) &&
             const DeepCollectionEquality()
-                .equals(other._playersCollection, _playersCollection));
+                .equals(other._playersCollection, _playersCollection) &&
+            const DeepCollectionEquality()
+                .equals(other._playersCharacters, _playersCharacters));
   }
 
   @JsonKey(ignore: true)
@@ -763,7 +795,8 @@ class _$_GameModel extends _GameModel {
       const DeepCollectionEquality().hash(_levels),
       const DeepCollectionEquality().hash(dateTime),
       const DeepCollectionEquality().hash(lastDateTime),
-      const DeepCollectionEquality().hash(_playersCollection));
+      const DeepCollectionEquality().hash(_playersCollection),
+      const DeepCollectionEquality().hash(_playersCharacters));
 
   @JsonKey(ignore: true)
   @override
@@ -786,7 +819,8 @@ abstract class _GameModel extends GameModel {
       final Map<String, LevelModel> levels,
       final WorldDateTimeModel dateTime,
       final WorldDateTimeModel lastDateTime,
-      final List<PlayerProfileModel> playersCollection}) = _$_GameModel;
+      final List<PlayerProfileModel> playersCollection,
+      final List<PlayerCharacterModel> playersCharacters}) = _$_GameModel;
   const _GameModel._() : super._();
 
   factory _GameModel.fromJson(Map<String, dynamic> json) =
@@ -809,7 +843,11 @@ abstract class _GameModel extends GameModel {
   @override
   WorldDateTimeModel get lastDateTime;
   @override
+
+  /// Global players statistics and data.
   List<PlayerProfileModel> get playersCollection;
+  @override
+  List<PlayerCharacterModel> get playersCharacters;
   @override
   @JsonKey(ignore: true)
   _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
@@ -1443,6 +1481,184 @@ abstract class _LevelPlayersModel extends LevelPlayersModel {
   @override
   @JsonKey(ignore: true)
   _$$_LevelPlayersModelCopyWith<_$_LevelPlayersModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PlayerCharacterModel _$PlayerCharacterModelFromJson(Map<String, dynamic> json) {
+  return _PlayerCharacterModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PlayerCharacterModel {
+  String get id => throw _privateConstructorUsedError;
+  String get name => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PlayerCharacterModelCopyWith<PlayerCharacterModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlayerCharacterModelCopyWith<$Res> {
+  factory $PlayerCharacterModelCopyWith(PlayerCharacterModel value,
+          $Res Function(PlayerCharacterModel) then) =
+      _$PlayerCharacterModelCopyWithImpl<$Res>;
+  $Res call({String id, String name, String description});
+}
+
+/// @nodoc
+class _$PlayerCharacterModelCopyWithImpl<$Res>
+    implements $PlayerCharacterModelCopyWith<$Res> {
+  _$PlayerCharacterModelCopyWithImpl(this._value, this._then);
+
+  final PlayerCharacterModel _value;
+  // ignore: unused_field
+  final $Res Function(PlayerCharacterModel) _then;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+  }) {
+    return _then(_value.copyWith(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_PlayerCharacterModelCopyWith<$Res>
+    implements $PlayerCharacterModelCopyWith<$Res> {
+  factory _$$_PlayerCharacterModelCopyWith(_$_PlayerCharacterModel value,
+          $Res Function(_$_PlayerCharacterModel) then) =
+      __$$_PlayerCharacterModelCopyWithImpl<$Res>;
+  @override
+  $Res call({String id, String name, String description});
+}
+
+/// @nodoc
+class __$$_PlayerCharacterModelCopyWithImpl<$Res>
+    extends _$PlayerCharacterModelCopyWithImpl<$Res>
+    implements _$$_PlayerCharacterModelCopyWith<$Res> {
+  __$$_PlayerCharacterModelCopyWithImpl(_$_PlayerCharacterModel _value,
+      $Res Function(_$_PlayerCharacterModel) _then)
+      : super(_value, (v) => _then(v as _$_PlayerCharacterModel));
+
+  @override
+  _$_PlayerCharacterModel get _value => super._value as _$_PlayerCharacterModel;
+
+  @override
+  $Res call({
+    Object? id = freezed,
+    Object? name = freezed,
+    Object? description = freezed,
+  }) {
+    return _then(_$_PlayerCharacterModel(
+      id: id == freezed
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_PlayerCharacterModel extends _PlayerCharacterModel {
+  const _$_PlayerCharacterModel(
+      {required this.id, required this.name, required this.description})
+      : super._();
+
+  factory _$_PlayerCharacterModel.fromJson(Map<String, dynamic> json) =>
+      _$$_PlayerCharacterModelFromJson(json);
+
+  @override
+  final String id;
+  @override
+  final String name;
+  @override
+  final String description;
+
+  @override
+  String toString() {
+    return 'PlayerCharacterModel(id: $id, name: $name, description: $description)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PlayerCharacterModel &&
+            const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(name),
+      const DeepCollectionEquality().hash(description));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>
+      __$$_PlayerCharacterModelCopyWithImpl<_$_PlayerCharacterModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlayerCharacterModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlayerCharacterModel extends PlayerCharacterModel {
+  const factory _PlayerCharacterModel(
+      {required final String id,
+      required final String name,
+      required final String description}) = _$_PlayerCharacterModel;
+  const _PlayerCharacterModel._() : super._();
+
+  factory _PlayerCharacterModel.fromJson(Map<String, dynamic> json) =
+      _$_PlayerCharacterModel.fromJson;
+
+  @override
+  String get id;
+  @override
+  String get name;
+  @override
+  String get description;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -11,6 +11,7 @@ part 'level_model.dart';
 part 'level_players_model.dart';
 part 'models.freezed.dart';
 part 'models.g.dart';
+part 'player_character_model.dart';
 part 'player_profile_model.dart';
 part 'score_model.dart';
 part 'typedefs.dart';

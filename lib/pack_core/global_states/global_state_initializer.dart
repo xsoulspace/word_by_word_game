@@ -10,7 +10,7 @@ class GlobalStateInitializer extends StateInitializer {
     final read = context.read;
     // TODO(arenukvern): load the latest game or create the game from the template
     final player = PlayerProfileModel.create(
-      name: 'ohman',
+      name: 'ohman player',
       colorValue: Colors.red.value,
     );
     final players = <PlayerProfileModel>[player];
@@ -21,6 +21,18 @@ class GlobalStateInitializer extends StateInitializer {
           TemplateLevelModel(
             id: 'test level',
           ),
+        ],
+        playersCharacters: const [
+          PlayerCharacterModel(
+            id: 'ohman char',
+            name: 'OhMan',
+            description: 'Simple boring character',
+          ),
+          PlayerCharacterModel(
+            id: 'waterman',
+            name: 'Waterman',
+            description: 'Another boring character',
+          )
         ],
         currentLevelId: '',
         playersCollection: players,

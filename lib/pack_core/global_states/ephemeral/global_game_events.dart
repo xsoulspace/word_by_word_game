@@ -27,3 +27,11 @@ class InitGlobalGameLevelEvent extends GameEvent {
   });
   final LevelModel levelModel;
 }
+
+@immutable
+class CreatePlayerProfileEvent extends GameEvent {
+  const CreatePlayerProfileEvent({
+    required this.profile,
+  });
+  final PlayerProfileModel profile;
+}

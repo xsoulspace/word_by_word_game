@@ -34,6 +34,11 @@ _$_LiveGlobalGameBlocState _$$_LiveGlobalGameBlocStateFromJson(
                   (e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      playersCharacters: (json['playersCharacters'] as List<dynamic>?)
+              ?.map((e) =>
+                  PlayerCharacterModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       dateTimeDelta: json['dateTimeDelta'] as int? ?? 0,
     );
 
@@ -48,5 +53,7 @@ Map<String, dynamic> _$$_LiveGlobalGameBlocStateToJson(
       'templateLevels': instance.templateLevels.map((e) => e.toJson()).toList(),
       'playersCollection':
           instance.playersCollection.map((e) => e.toJson()).toList(),
+      'playersCharacters':
+          instance.playersCharacters.map((e) => e.toJson()).toList(),
       'dateTimeDelta': instance.dateTimeDelta,
     };

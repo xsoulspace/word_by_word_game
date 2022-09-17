@@ -27,7 +27,10 @@ class GameModel with _$GameModel {
     @Default({}) final Map<LevelModelId, LevelModel> levels,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
+
+    /// Global players statistics and data.
     @Default([]) final List<PlayerProfileModel> playersCollection,
+    @Default([]) final List<PlayerCharacterModel> playersCharacters,
   }) = _GameModel;
   const GameModel._();
   factory GameModel.fromJson(final Map<String, dynamic> json) =>

@@ -1,3 +1,10 @@
+## September 18th 2022
+
+TODO:
+
+- Add character class.
+- Add an option to add several players simultaneously.
+
 ## September 17th 2022
 
 Today's update:

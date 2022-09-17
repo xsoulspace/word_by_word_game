@@ -35,6 +35,7 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
     /// The [playersCollection] is the collection of players characters,
     /// which will be available for user to playe and progress through the game.
     @Default([]) final List<PlayerProfileModel> playersCollection,
+    @Default([]) final List<PlayerCharacterModel> playersCharacters,
     @Default(0) final int dateTimeDelta,
   }) = _LiveGlobalGameBlocState;
   const LiveGlobalGameBlocState._();
@@ -50,6 +51,7 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
       levels: gameModel.levels,
       templateLevels: gameModel.templateLevels,
       playersCollection: gameModel.playersCollection,
+      playersCharacters: gameModel.playersCharacters,
     );
   }
 }
