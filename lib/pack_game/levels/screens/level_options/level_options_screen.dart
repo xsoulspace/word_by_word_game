@@ -19,7 +19,6 @@ class LevelOptionsScreen extends HookWidget {
     final uiTheme = UiTheme.of(context);
     final globalGameBloc = context.watch<GlobalGameBloc>();
     final liveState = globalGameBloc.getLiveState();
-    final players = liveState.playersCollection;
     final playersCharacters = liveState.playersCharacters;
     final routeState = context.watch<RouteState>();
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
@@ -51,11 +50,12 @@ class LevelOptionsScreen extends HookWidget {
               'Select The Players',
             ),
             uiTheme.verticalBoxes.large,
-            PlayerSelectorRow(
-              players: players,
-              onPlayerSelected: state.onPlayerSelected,
-              checkIsPlayerSelected: state.checkIsPlayerSelected,
-              onPlayerCreated: state.onPlayerProfileCreated,
+            Expanded(
+              child: PlayerSelectorRow(
+                onPlayerSelected: state.onPlayerSelected,
+                checkIsPlayerSelected: state.checkIsPlayerSelected,
+                onPlayerCreated: state.onPlayerProfileCreated,
+              ),
             ),
           ],
         ),
@@ -63,8 +63,6 @@ class LevelOptionsScreen extends HookWidget {
     );
   }
 }
-
-typedef CheckFunction<T> = bool Function(T);
 
 class CharactersRow extends StatelessWidget {
   const CharactersRow({
@@ -132,22 +130,27 @@ class CharacterCard extends StatelessWidget {
 
 class PlayerSelectorRow extends StatelessWidget {
   const PlayerSelectorRow({
-    required this.players,
     required this.onPlayerSelected,
     required this.checkIsPlayerSelected,
     required this.onPlayerCreated,
     super.key,
   });
-  final List<PlayerProfileModel> players;
   final ValueChanged<PlayerProfileModel> onPlayerSelected;
   final CheckFunction<PlayerProfileModel> checkIsPlayerSelected;
   final ValueChanged<PlayerProfileModel> onPlayerCreated;
   @override
   Widget build(final BuildContext context) {
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         PlayerProfileCreator(
           onPlayerCreated: onPlayerCreated,
+        ),
+        Expanded(
+          child: PlayerProfileList(
+            checkIsPlayerSelected: checkIsPlayerSelected,
+            onSelected: onPlayerSelected,
+          ),
         ),
       ],
     );
