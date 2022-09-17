@@ -1,9 +1,9 @@
 ## September 17th 2022
 
+Today's update:
 - Added decrease mechanics for the word buttons.
-- Added All Levels Screen with option to choose level.
-- Added Basic Level Options Screen with option to choose player character.
-
+- Added All Levels Screen with an option to choose a level.
+- Added Basic Level Options Screen with an option to choose player character.
 
 What's next:
 - Add an option to add several players simultaneously.
