@@ -21,12 +21,28 @@ class PlayerProfileCreatorState extends LifeState {
   PlayerProfileCreatorState({
     required this.diDto,
   });
-
+  final nameController = TextEditingController();
   final PlayerProfileCreatorDiDto diDto;
-  Color _color = Colors.white;
+  Color _color = Colors.teal;
   Color get color => _color;
   set color(final Color color) {
     _color = color;
     setState();
+  }
+
+  PlayerProfileModel? onCreateProfile() {
+    if (nameController.text.isEmpty) return null;
+    final newPlayer = PlayerProfileModel.create(
+      name: nameController.text,
+      colorValue: color.value,
+    );
+    nameController.text = '';
+    return newPlayer;
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
   }
 }

@@ -24,6 +24,7 @@ class LevelOptionsScreen extends HookWidget {
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
     final level = globalGameBloc.getTemplateLevelById(id: routeArgs.levelId);
     final screenSize = MediaQuery.of(context).size;
+    final theme = Theme.of(context);
 
     return Scaffold(
       body: Container(
@@ -31,10 +32,14 @@ class LevelOptionsScreen extends HookWidget {
         padding: EdgeInsets.all(uiTheme.spacing.large),
         child: Column(
           children: [
-            Text(level.id.toUpperCase()),
+            Text(
+              level.id.toUpperCase(),
+              style: theme.textTheme.bodyLarge,
+            ),
             uiTheme.verticalBoxes.extraLarge,
-            const Text(
+            Text(
               'Choose Your Character',
+              style: theme.textTheme.headlineMedium,
             ),
             uiTheme.verticalBoxes.large,
             SizedBox(
@@ -46,8 +51,9 @@ class LevelOptionsScreen extends HookWidget {
               ),
             ),
             uiTheme.verticalBoxes.extraLarge,
-            const Text(
+            Text(
               'Select The Players',
+              style: theme.textTheme.headlineMedium,
             ),
             uiTheme.verticalBoxes.large,
             Expanded(

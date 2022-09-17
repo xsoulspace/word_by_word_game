@@ -41,15 +41,24 @@ class PlayerProfileCreator extends HookWidget {
                 ),
                 uiTheme.horizontalBoxes.large,
                 SizedBox(
-                  width: 80,
+                  width: 140,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const TextField(
-                        decoration: InputDecoration.collapsed(hintText: 'Name'),
+                      TextField(
+                        controller: state.nameController,
+                        decoration:
+                            const InputDecoration.collapsed(hintText: 'Name'),
                       ),
                       uiTheme.verticalBoxes.large,
-                      TextButton(onPressed: () {}, child: const Text('Create'))
+                      TextButton(
+                        onPressed: () {
+                          final profile = state.onCreateProfile();
+                          if (profile == null) return;
+                          onPlayerCreated(profile);
+                        },
+                        child: const Text('Create'),
+                      )
                     ],
                   ),
                 ),

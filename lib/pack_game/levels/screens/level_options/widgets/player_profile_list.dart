@@ -20,7 +20,9 @@ class PlayerProfileList extends StatelessWidget {
         builder: (final context, final state) {
           if (state is! LiveGlobalGameBlocState) return const SizedBox();
           final players = state.playersCollection;
-          return ListView.builder(
+          return ListView.separated(
+            separatorBuilder: (final context, final index) =>
+                uiTheme.verticalBoxes.medium,
             padding: EdgeInsets.all(uiTheme.spacing.large),
             itemCount: players.length,
             shrinkWrap: true,
