@@ -34,7 +34,9 @@ class AppServicesProvider extends StatelessWidget {
               ),
             ),
             BlocProvider<ResourcesBloc>(
-              create: (final context) => ResourcesBloc(),
+              create: (final context) => ResourcesBloc(
+                diDto: ResourcesBlocDiDto.use(context.read),
+              ),
             ),
             BlocProvider<GlobalGameBloc>(
               create: (final context) => GlobalGameBloc(

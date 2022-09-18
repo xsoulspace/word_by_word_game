@@ -1,11 +1,11 @@
 import 'dart:async' as lib_async;
 import 'dart:developer';
 
-import 'package:flame/components.dart';
 import 'package:flutter/material.dart';
+import 'package:life_hooks/life_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-class WorldTimeMechanics extends Component {
+class WorldTimeMechanics implements Loadable {
   WorldTimeMechanics();
 
   late final timer = lib_async.Timer.periodic(
@@ -66,9 +66,8 @@ class WorldTimeMechanics extends Component {
   }
 
   @override
-  lib_async.Future<void>? onLoad() {
+  lib_async.Future<void> onLoad() async {
     log('TIMER: ${timer.isActive} ${timer.tick}');
-    return super.onLoad();
   }
 
   /// Run this method when the player should initialize the
@@ -92,10 +91,8 @@ class WorldTimeMechanics extends Component {
     useDateTime(nextDateTime);
   }
 
-  @override
-  void onRemove() {
+  void dispose() {
     _listeners.clear();
     _cancelTimer();
-    super.onRemove();
   }
 }

@@ -35,3 +35,22 @@ class CreatePlayerProfileEvent extends GameEvent {
   });
   final PlayerProfileModel profile;
 }
+
+@immutable
+class LevelPartLoadedEvent extends GameEvent {
+  const LevelPartLoadedEvent({
+    required this.loadedState,
+  });
+  final LevelPartStates loadedState;
+}
+
+enum LevelPartStates {
+  level,
+  players,
+  resources;
+
+  const LevelPartStates();
+  static bool containsAll(final Set<LevelPartStates> states) {
+    return states.difference(values.toSet()).isEmpty;
+  }
+}

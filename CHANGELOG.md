@@ -1,7 +1,7 @@
 ## September 18th 2022
 
 TODO: 
-- Ensure level is initialized and is running.
+- Ensure the level is initialized and is running.
 - Add Pause button to the level.
 - Player turn switcher.
 - Create a check mechanics for the word with already written words.

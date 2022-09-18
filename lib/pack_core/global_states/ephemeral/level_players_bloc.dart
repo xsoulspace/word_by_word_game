@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_bloc.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'level_players_bloc.freezed.dart';
@@ -11,8 +12,11 @@ part 'level_players_events.dart';
 part 'level_players_states.dart';
 
 class LevelPlayersBlocDiDto {
-  LevelPlayersBlocDiDto.use(final Locator read) : mechanics = read();
+  LevelPlayersBlocDiDto.use(final Locator read)
+      : mechanics = read(),
+        globalGameBloc = read();
   final MechanicsCollection mechanics;
+  final GlobalGameBloc globalGameBloc;
 }
 
 class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
@@ -33,6 +37,9 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
       levelCharactersModel: event.charactersModel,
     );
     emit(liveState);
+    diDto.globalGameBloc.add(
+      const LevelPartLoadedEvent(loadedState: LevelPartStates.players),
+    );
   }
 
   void _onSwitchToNextPlayer(

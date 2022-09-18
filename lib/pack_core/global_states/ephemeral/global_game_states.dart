@@ -25,6 +25,10 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
   @JsonSerializable(explicitToJson: true)
   @Implements<GlobalGameBlocState>()
   const factory LiveGlobalGameBlocState({
+    /// ********************************************
+    /// *      RESTORABLE FROM MODEL
+    /// ********************************************
+
     required final GameModelId id,
     @Default('') final LevelModelId currentLevelId,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
@@ -36,7 +40,12 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
     /// which will be available for user to playe and progress through the game.
     @Default([]) final List<PlayerProfileModel> playersCollection,
     @Default([]) final List<PlayerCharacterModel> playersCharacters,
+
+    /// ********************************************
+    /// *      NON-RESTORABLE
+    /// ********************************************
     @Default(0) final int dateTimeDelta,
+    @Default({}) final Set<LevelPartStates> loadedLevelParts,
   }) = _LiveGlobalGameBlocState;
   const LiveGlobalGameBlocState._();
   factory LiveGlobalGameBlocState.fromJson(final Map<String, dynamic> json) =>

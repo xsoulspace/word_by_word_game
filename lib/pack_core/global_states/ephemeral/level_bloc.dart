@@ -3,7 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/level_players_bloc.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 
 part 'level_bloc.freezed.dart';
@@ -14,9 +14,11 @@ part 'level_bloc_states.dart';
 class LevelBlocDiDto {
   LevelBlocDiDto.use(final Locator read)
       : mechanics = read(),
-        levelPlayersBloc = read();
+        levelPlayersBloc = read(),
+        globalGameBloc = read();
   final MechanicsCollection mechanics;
   final LevelPlayersBloc levelPlayersBloc;
+  final GlobalGameBloc globalGameBloc;
 }
 
 class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
@@ -62,6 +64,9 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   ) {
     final liveLevel = LiveLevelBlocState.fromModel(event.levelModel);
     emit(liveLevel);
+    diDto.globalGameBloc.add(
+      const LevelPartLoadedEvent(loadedState: LevelPartStates.level),
+    );
   }
 
   void _consumeTickEvent(

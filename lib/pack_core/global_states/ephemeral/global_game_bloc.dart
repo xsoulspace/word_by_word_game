@@ -15,10 +15,12 @@ class GlobalGameBlocDiDto {
   GlobalGameBlocDiDto.use(final Locator read)
       : mechanics = read(),
         levelBloc = read(),
-        levelPlayersBloc = read();
+        levelPlayersBloc = read(),
+        resourcesBloc = read();
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
+  final ResourcesBloc resourcesBloc;
 }
 
 class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
@@ -29,8 +31,20 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     on<InitGlobalGameLevelEvent>(_onInitGlobalGameLevel);
     on<WorldTimeTickEvent>(_onWorldTick);
     on<CreatePlayerProfileEvent>(_onCreatePlayerProfile);
+    on<LevelPartLoadedEvent>(_onLevelPartLoaded);
+    diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
   }
+
   final GlobalGameBlocDiDto diDto;
+  void _addWorldTimeTick(final WorldTimeMechanics time) {
+    add(WorldTimeTickEvent(time));
+  }
+
+  @override
+  Future<void> close() {
+    diDto.mechanics.worldTime.removeListener(_addWorldTimeTick);
+    return super.close();
+  }
 
   void _onInitGlobalGame(
     final InitGlobalGameEvent event,
@@ -56,6 +70,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     final InitGlobalGameLevelEvent event,
     final Emitter<GlobalGameBlocState> emit,
   ) {
+    emit(_getResetedLevelLoad());
     final levelModel = event.levelModel;
     diDto
       ..levelBloc.add(InitLevelEvent(levelModel: levelModel))
@@ -64,7 +79,34 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
           playersModel: levelModel.players,
           charactersModel: levelModel.characters,
         ),
-      );
+      )
+      ..resourcesBloc.add(const InitResourcesEvent());
+  }
+
+  LiveGlobalGameBlocState _getResetedLevelLoad() {
+    diDto.mechanics.worldTime.pause();
+    final liveState = getLiveState();
+    return liveState.copyWith(loadedLevelParts: {});
+  }
+
+  void _onLevelPartLoaded(
+    final LevelPartLoadedEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final loadedStates = {...liveState.loadedLevelParts, event.loadedState};
+    final updateState = liveState.copyWith(
+      loadedLevelParts: loadedStates,
+    );
+    emit(updateState);
+    _verifyLevelLoad(loadedStates: loadedStates);
+  }
+
+  void _verifyLevelLoad({required final Set<LevelPartStates> loadedStates}) {
+    final isLoaded = LevelPartStates.containsAll(loadedStates);
+    if (isLoaded) {
+      diDto.mechanics.worldTime.resume();
+    }
   }
 
   void _onWorldTick(

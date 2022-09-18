@@ -40,6 +40,10 @@ _$_LiveGlobalGameBlocState _$$_LiveGlobalGameBlocStateFromJson(
               .toList() ??
           const [],
       dateTimeDelta: json['dateTimeDelta'] as int? ?? 0,
+      loadedLevelParts: (json['loadedLevelParts'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$LevelPartStatesEnumMap, e))
+              .toSet() ??
+          const {},
     );
 
 Map<String, dynamic> _$$_LiveGlobalGameBlocStateToJson(
@@ -56,4 +60,13 @@ Map<String, dynamic> _$$_LiveGlobalGameBlocStateToJson(
       'playersCharacters':
           instance.playersCharacters.map((e) => e.toJson()).toList(),
       'dateTimeDelta': instance.dateTimeDelta,
+      'loadedLevelParts': instance.loadedLevelParts
+          .map((e) => _$LevelPartStatesEnumMap[e]!)
+          .toList(),
     };
+
+const _$LevelPartStatesEnumMap = {
+  LevelPartStates.level: 'level',
+  LevelPartStates.players: 'players',
+  LevelPartStates.resources: 'resources',
+};
