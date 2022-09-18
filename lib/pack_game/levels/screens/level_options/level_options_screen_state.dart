@@ -62,10 +62,14 @@ class _LevelOptionsScreenState extends LifeState {
     final liveState = diDto.globalGameBloc.getLiveState();
     final charactersCollection = liveState.playersCharacters;
     final playersCollection = liveState.playersCollection;
-    final levelPlayers = playersIds
-        .map((id) => playersCollection.firstWhere((player) => player.id == id));
-    final levelCharecters = charactersCollection
-        .firstWhere((character) => character.id == characterId);
+    final levelPlayers = playersIds.map(
+      (final id) => playersCollection.firstWhere(
+        (final player) => player.id == id,
+      ),
+    );
+    final levelCharecters = charactersCollection.firstWhere(
+      (final character) => character.id == characterId,
+    );
 
     final level = LevelModel(
       characters: LevelCharactersModel(

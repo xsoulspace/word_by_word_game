@@ -1,3 +1,20 @@
+## September 18th 2022
+
+TODO: 
+- Ensure level is initialized and is running.
+- Add Pause button to the level.
+- Player turn switcher.
+- Create a check mechanics for the word with already written words.
+-- prototype stage
+- Save & Load the game state.
+- Create player's character and ability to move.
+- Create simple obstacles for level (vertical and horizontal)
+- Create Game Camera and set it to follow the player's character.
+- Replace solid color by blur background for Pause Screen.
+
+
+
+
 ## September 17th-2 2022
 
 Today's update:
