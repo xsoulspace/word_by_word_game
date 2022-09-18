@@ -2,9 +2,10 @@
 
 - Added level state initialization and playing.
 - Player turn switcher.
+- Added Pause button to the level to call Pause Menu.
+- Added ability to continue latest level from the Pause Menu.
 
 TODO: 
-- Add Pause button to the level.
 - Create a check mechanics for the word with already written words.
 -- prototype stage
 - Save & Load the game state.
