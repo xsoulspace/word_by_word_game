@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
-import 'package:word_by_word_game/pack_game/controls/controls.dart';
 import 'package:word_by_word_game/pack_game/game/wbw_game.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/levels_hud.dart';
 
 class WbwGameWidget extends HookWidget {
   const WbwGameWidget({final Key? key}) : super(key: key);
