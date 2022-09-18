@@ -3,9 +3,11 @@ part of 'pause_screen.dart';
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
       : routeState = read(),
-        appRouterController = AppRouterController.use(read);
+        appRouterController = AppRouterController.use(read),
+        mechanics = read();
   final RouteState routeState;
   final AppRouterController appRouterController;
+  final MechanicsCollection mechanics;
 }
 
 _PauseScreenState _usePauseScreenState({
@@ -25,7 +27,10 @@ class _PauseScreenState extends LifeState {
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
-  void onContinue() {
-    diDto.appRouterController.toPlayableLevel(id: '');
+  void onContinue({
+    required final LevelModelId id,
+  }) {
+    diDto.appRouterController.toPlayableLevel(id: id);
+    diDto.mechanics.worldTime.resume();
   }
 }

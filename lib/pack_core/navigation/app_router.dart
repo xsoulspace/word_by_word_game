@@ -4,13 +4,13 @@ import 'package:wbw_core/wbw_core.dart';
 class NavigationRoutes {
   NavigationRoutes._();
   static const root = '/';
-  static const pause = '/pause';
   static const allLevels = '/lvl/all';
 
   static const levelRoot = '/lvl';
   static const playableLevel = '/lvl/:levelId';
-
   static String toPlayableLevel({required final LevelModelId id}) => '/lvl/$id';
+  static const pause = '/lvl/:levelId/pause';
+  static String toPause({required final LevelModelId id}) => '/lvl/$id/pause';
 
   static const levelOptions = '/lvl/:levelId/options';
   static String getLevelOptions({required final LevelModelId id}) =>
@@ -24,7 +24,10 @@ class AppRouterController extends RouterController {
   void toPlayableLevel({required final LevelModelId id}) =>
       to(NavigationRoutes.toPlayableLevel(id: id));
 
-  void toPause() => to(NavigationRoutes.pause);
+  void toPause({
+    required final LevelModelId id,
+  }) =>
+      to(NavigationRoutes.toPause(id: id));
   void toLevelOptions({
     required final LevelModelId id,
   }) =>
