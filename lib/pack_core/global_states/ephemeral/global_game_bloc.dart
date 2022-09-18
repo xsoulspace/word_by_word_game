@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -46,10 +48,10 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     return super.close();
   }
 
-  void _onInitGlobalGame(
+  Future<void> _onInitGlobalGame(
     final InitGlobalGameEvent event,
     final Emitter<GlobalGameBlocState> emit,
-  ) {
+  ) async {
     final gameModel = event.gameModel;
     final liveGame = LiveGlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
@@ -64,6 +66,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       }
       add(InitGlobalGameLevelEvent(levelModel: levelModel));
     }
+    unawaited(diDto.mechanics.worldTime.onLoad());
   }
 
   void _onInitGlobalGameLevel(

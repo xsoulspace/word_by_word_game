@@ -14,9 +14,10 @@ part 'level_players_states.dart';
 class LevelPlayersBlocDiDto {
   LevelPlayersBlocDiDto.use(final Locator read)
       : mechanics = read(),
-        globalGameBloc = read();
+        _read = read;
+  final Locator _read;
+  GlobalGameBloc get globalGameBloc => _read();
   final MechanicsCollection mechanics;
-  final GlobalGameBloc globalGameBloc;
 }
 
 class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {

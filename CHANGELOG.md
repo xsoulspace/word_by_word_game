@@ -1,9 +1,11 @@
 ## September 18th 2022
 
+- Added level state initialization and playing.
+
+
 TODO: 
-- Ensure the level is initialized and is running.
-- Add Pause button to the level.
 - Player turn switcher.
+- Add Pause button to the level.
 - Create a check mechanics for the word with already written words.
 -- prototype stage
 - Save & Load the game state.

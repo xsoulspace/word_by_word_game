@@ -22,25 +22,26 @@ class AppServicesProvider extends StatelessWidget {
       ],
       child: Builder(
         builder: (final context) {
+          late Locator providersContextLocator;
           final initialProviders = <BlocProviderSingleChildWidget>[
             BlocProvider(
               create: (final context) => LevelPlayersBloc(
-                diDto: LevelPlayersBlocDiDto.use(context.read),
+                diDto: LevelPlayersBlocDiDto.use(providersContextLocator),
               ),
             ),
             BlocProvider<LevelBloc>(
               create: (final context) => LevelBloc(
-                diDto: LevelBlocDiDto.use(context.read),
+                diDto: LevelBlocDiDto.use(providersContextLocator),
               ),
             ),
             BlocProvider<ResourcesBloc>(
               create: (final context) => ResourcesBloc(
-                diDto: ResourcesBlocDiDto.use(context.read),
+                diDto: ResourcesBlocDiDto.use(providersContextLocator),
               ),
             ),
             BlocProvider<GlobalGameBloc>(
               create: (final context) => GlobalGameBloc(
-                diDto: GlobalGameBlocDiDto.use(context.read),
+                diDto: GlobalGameBlocDiDto.use(providersContextLocator),
               ),
             ),
           ];
@@ -52,7 +53,12 @@ class AppServicesProvider extends StatelessWidget {
               ...initialProviders,
               ...otherProviders,
             ],
-            child: child,
+            child: Builder(
+              builder: (final context) {
+                providersContextLocator = context.read;
+                return child;
+              },
+            ),
           );
         },
       ),

@@ -51,6 +51,8 @@ enum LevelPartStates {
 
   const LevelPartStates();
   static bool containsAll(final Set<LevelPartStates> states) {
-    return states.difference(values.toSet()).isEmpty;
+    final diff = values.toSet().difference(states);
+    final isEqual = diff.isEmpty;
+    return isEqual;
   }
 }
