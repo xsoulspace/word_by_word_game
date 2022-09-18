@@ -1,10 +1,4 @@
-## September 18th 2022
-
-- Added level state initialization and playing.
-- Player turn switcher.
-- Added Pause button to the level to call Pause Menu.
-- Added ability to continue latest level from the Pause Menu.
-
+## Next
 TODO: 
 - Create a check mechanics for the word with already written words.
 -- prototype stage
@@ -14,8 +8,16 @@ TODO:
 - Create Game Camera and set it to follow the player's character.
 - Replace solid color by blur background for Pause Screen.
 
+## September 18th 2022
 
+Today's update:
+- Added level state initialization and playing.
+- Player turn switcher.
+- Added Pause button to the level to call Pause Menu.
+- Added ability to continue latest level from the Pause Menu.
 
+What's next:
+- Create a check mechanics for the word with already written words.
 
 ## September 17th-2 2022
 
