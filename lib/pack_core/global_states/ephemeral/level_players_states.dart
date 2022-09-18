@@ -45,4 +45,9 @@ class LiveLevelPlayersBlocState extends LevelPlayersBlocState
       playerCharacter: levelCharactersModel.playerCharacter,
     );
   }
+
+  Iterable<PlayerProfileModel> get notCurrentPlayers =>
+      players.where((final player) => player.id != currentPlayerId);
+  PlayerProfileModel get currentPlayer =>
+      players.firstWhere((final player) => player.id == currentPlayerId);
 }

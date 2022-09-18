@@ -47,36 +47,26 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     final SwitchToNextPlayerEvent event,
     final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final effectiveState = state;
-    if (effectiveState is! LiveLevelPlayersBlocState) {
-      throw ArgumentError.value(state);
-    }
-    final players = effectiveState.players;
-    final index = players.indexWhere(
-      (final player) => player.id == effectiveState.currentPlayerId,
-    );
-    if (index < 0) {
-      throw ArgumentError.value(
-        index,
-        '_onSwitchToNextPlayer -> find index of the current player',
-        'currentPlayerId is not presented in the state.',
-      );
-    }
-    final nextIndex = index + 1;
-    final lastIndex = players.length - 1;
+    final liveState = getLiveState();
+    final players = [...liveState.players];
 
-    PlayerProfileModel newPlayer;
-    if (nextIndex > lastIndex) {
-      newPlayer = players.first;
+    if (players.length == 1) {
+      return;
     } else {
-      newPlayer = players[nextIndex];
+      final currentPlayer = liveState.currentPlayer;
+
+      final updatedPlayers = [...players]
+        ..removeWhere((final player) => player.id == currentPlayer.id)
+        ..add(currentPlayer);
+      final newPlayer = updatedPlayers.first;
+
+      final updatedState = liveState.copyWith(
+        currentPlayerId: newPlayer.id,
+        players: updatedPlayers,
+      );
+
+      emit(updatedState);
     }
-
-    final updatedState = effectiveState.copyWith(
-      currentPlayerId: newPlayer.id,
-    );
-
-    emit(updatedState);
   }
 
   LiveLevelPlayersBlocState getLiveState() {

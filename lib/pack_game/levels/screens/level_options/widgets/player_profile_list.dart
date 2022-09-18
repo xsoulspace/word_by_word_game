@@ -46,32 +46,44 @@ class PlayerProfileList extends StatelessWidget {
 class PlayerProfileTile extends StatelessWidget {
   const PlayerProfileTile({
     required this.player,
-    required this.onSelected,
-    required this.selected,
+    this.onSelected,
+    this.selected,
     super.key,
   });
   final PlayerProfileModel player;
-  final ValueChanged<PlayerProfileModel> onSelected;
-  final bool selected;
+  final ValueChanged<PlayerProfileModel>? onSelected;
+  final bool? selected;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Container(
-          decoration: BoxDecoration(
-            color: player.color,
-            borderRadius: BorderRadius.circular(24),
-          ),
-          width: 40,
-          height: 40,
-        ),
+        PlayerProfileAvatar(player: player),
         uiTheme.horizontalBoxes.medium,
         Text(player.name),
-        const Spacer(),
-        Checkbox(value: selected, onChanged: (final _) => onSelected(player)),
+        if (onSelected != null) ...[
+          const Spacer(),
+          Checkbox(value: selected, onChanged: (final _) => onSelected!(player))
+        ],
       ],
+    );
+  }
+}
+
+class PlayerProfileAvatar extends StatelessWidget {
+  const PlayerProfileAvatar({required this.player, super.key});
+  final PlayerProfileModel player;
+  @override
+  Widget build(final BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: player.color,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      width: 40,
+      height: 40,
+      child: Text(player.name),
     );
   }
 }

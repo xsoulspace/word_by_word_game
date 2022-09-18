@@ -14,24 +14,29 @@ class ControlsWidget extends StatelessWidget {
     final levelState = levelBloc.state;
     if (levelState is! LiveLevelBlocState) return const SizedBox();
 
-    return Padding(
-      padding: EdgeInsets.all(spacing.large),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(levelState.fuelStorage.value.toString()),
-              const PlayerSwitcher(),
-            ],
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Column(
+          children: [
+            Text(levelState.fuelStorage.value.toString()),
+            const PlayerSwitcher(),
+          ],
+        ),
+        Expanded(
+          child: Padding(
+            padding: EdgeInsets.all(spacing.large),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Expanded(child: WordCompositionRow()),
+                uiTheme.horizontalBoxes.large,
+                const SendWordActionButton(),
+              ],
+            ),
           ),
-          uiTheme.horizontalBoxes.large,
-          const Expanded(child: WordCompositionRow()),
-          uiTheme.horizontalBoxes.large,
-          const SendWordActionButton(),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
