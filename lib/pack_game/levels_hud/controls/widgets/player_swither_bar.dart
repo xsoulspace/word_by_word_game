@@ -32,7 +32,7 @@ class PlayerSwitcher extends HookWidget {
                     maxWidth: 50,
                   ),
                   child: Wrap(
-                    children: [...players, ...players, ...players, ...players]
+                    children: [...players]
                         .map(
                           (final player) => Material(
                             elevation: 4,

@@ -74,7 +74,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final ConsumeTickEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final fuelStorage = diDto.mechanics.fuelMechanics.consumeTick(
+    final fuelStorage = diDto.mechanics.fuel.consumeTick(
       fuelStorage: getLiveState().fuelStorage,
       timeDeltaInSeconds: event.timeDeltaInSeconds,
     );
@@ -91,7 +91,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
-    final fuelMechanics = diDto.mechanics.fuelMechanics;
+    final fuelMechanics = diDto.mechanics.fuel;
     final fuel = fuelMechanics.getFuelFromScore(score: event.score);
     final fuelStorage = fuelMechanics.refuel(
       fuelStorage: liveState.fuelStorage,
@@ -107,8 +107,31 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   ) {
     final newState = getLiveState().copyWith(
       currentWord: event.word,
+      wordWarning: WordWarning.none,
     );
     emit(newState);
+  }
+
+  WordWarning _checkNewWord(
+    final CurrentWordModel word,
+  ) {
+    final dicionaryMechanics = diDto.mechanics.dictionary;
+    final isWritten = dicionaryMechanics.checkIsWordIsWritten(
+      word: word,
+      words: getLiveState().words,
+    );
+    if (word.cleanWord.isEmpty) {
+      return WordWarning.none;
+    }
+
+    if (isWritten) {
+      return WordWarning.isWritten;
+    }
+    final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(word: word);
+    if (!isCorrect) {
+      return WordWarning.isNotCorrect;
+    }
+    return WordWarning.none;
   }
 
   void _onAcceptNewWord(
@@ -116,21 +139,30 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
-    final newWord = liveState.currentWord.fullWord;
-    final updatedWords = {
-      ...liveState.words,
-    }..[newWord] = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
-    final updatedState = liveState.copyWith(
-      latestWord: newWord,
-      currentWord: diDto.mechanics.wordComposition
-          .createNextCurrentWordFromFullWord(fullword: newWord),
-      words: updatedWords,
-    );
-    emit(updatedState);
-    diDto.levelPlayersBloc.add(const SwitchToNextPlayerEvent());
-    final score =
-        diDto.mechanics.scoreMechanics.getScoreFromWord(word: newWord);
-    add(RefuelStorageEvent(score: score));
+    final newWord = liveState.currentWord.cleanWord;
+    final wordWarning = _checkNewWord(liveState.currentWord);
+    if (wordWarning == WordWarning.none) {
+      final updatedWords = {
+        ...liveState.words,
+      }..[newWord] = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
+      final updatedState = liveState.copyWith(
+        latestWord: newWord,
+        currentWord: diDto.mechanics.wordComposition
+            .createNextCurrentWordFromFullWord(word: liveState.currentWord),
+        words: updatedWords,
+        wordWarning: wordWarning,
+      );
+      emit(updatedState);
+      diDto.levelPlayersBloc.add(const SwitchToNextPlayerEvent());
+      final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
+      add(RefuelStorageEvent(score: score));
+    } else {
+      emit(
+        liveState.copyWith(
+          wordWarning: wordWarning,
+        ),
+      );
+    }
   }
 
   void _onDecreaseMiddlePart(

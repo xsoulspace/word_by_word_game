@@ -14,6 +14,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "wordIsNotCorrect": "Whoa, cannot find word {word} in dictionary! Try another word.",
+  "wordAlreadyWritten": "This word already written. Try another word.",
   "maxHighscoreIs": "Лучший результат ",
   "@maxHighscoreIs": {
     "type": "text",

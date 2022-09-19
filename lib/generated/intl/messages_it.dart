@@ -20,6 +20,9 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'it';
 
+  static String m0(word) =>
+      "Whoa, cannot find word ${word} in dictionary! Try another word.";
+
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addNewWord": MessageLookupByLibrary.simpleMessage("aggiungi"),
@@ -56,6 +59,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "startAgain": MessageLookupByLibrary.simpleMessage("Ricomincia "),
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Grazie e buon gioco!"),
+        "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
+            "This word already written. Try another word."),
+        "wordIsNotCorrect": m0,
         "yourHighscore": MessageLookupByLibrary.simpleMessage(
             "Questa volta il tuo punteggio è")
       };

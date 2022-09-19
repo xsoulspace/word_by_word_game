@@ -19,17 +19,17 @@ class WordCompositionMechanics {
   /// 1. Fullword turn into the middlePart
   /// 2. middlepart is the ending part of the Fullword
   CurrentWordModel createNextCurrentWordFromFullWord({
-    required final String fullword,
+    required final CurrentWordModel word,
     final int middlePartLimit = 3,
   }) {
-    final String word = fullword.toLowerCase().replaceAll(' ', '');
-    final wordLength = word.length;
+    final String fullWord = word.cleanWord;
+    final wordLength = fullWord.length;
     if (wordLength < middlePartLimit) {
       throw ArgumentError.value(
         'wordLength < middlePartLimit: ${wordLength < middlePartLimit}',
       );
     }
-    final middlePart = word.substring(
+    final middlePart = fullWord.substring(
       wordLength - middlePartLimit,
       wordLength,
     );

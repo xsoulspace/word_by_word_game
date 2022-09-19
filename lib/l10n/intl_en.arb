@@ -9,6 +9,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "wordIsNotCorrect": "Whoa, we cannot find a word {word} in our dictionary! Try another word.",
+  "wordAlreadyWritten": "This word already written. Try another word.",
   "resetEnding": "Reset ending",
   "@resetEnding": {
     "type": "text",

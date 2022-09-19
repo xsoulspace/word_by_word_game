@@ -7,9 +7,10 @@ void main() {
     final wordCompoisitionMechanics = WordCompositionMechanics();
     test('createNextCurrentWordFromFullWord - fullword. Length >= 3 ', () {
       const fullword = 'dictionary';
+      const word = CurrentWordModel(fullWord: fullword);
       final nextWord =
           wordCompoisitionMechanics.createNextCurrentWordFromFullWord(
-        fullword: fullword,
+        word: word,
       );
 
       expect(
@@ -19,10 +20,11 @@ void main() {
     });
     test('createNextCurrentWordFromFullWord - fullword. Length < 3 ', () {
       const fullword = 'di';
+      const word = CurrentWordModel(fullWord: fullword);
 
       expect(
         () => wordCompoisitionMechanics.createNextCurrentWordFromFullWord(
-          fullword: fullword,
+          word: word,
         ),
         throwsArgumentError,
       );

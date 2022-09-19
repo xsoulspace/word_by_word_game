@@ -21,7 +21,7 @@ class LevelModel with _$LevelModel {
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
-    @Default({}) final Map<FullWordType, PlayerProfileModelId> words,
+    @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
     @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _LevelModel;

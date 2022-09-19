@@ -23,6 +23,9 @@ _$_LiveLevelBlocState _$$_LiveLevelBlocStateFromJson(
           ? const FuelStorageModel()
           : FuelStorageModel.fromJson(
               json['fuelStorage'] as Map<String, dynamic>),
+      wordWarning:
+          $enumDecodeNullable(_$WordWarningEnumMap, json['wordWarning']) ??
+              WordWarning.none,
     );
 
 Map<String, dynamic> _$$_LiveLevelBlocStateToJson(
@@ -33,4 +36,11 @@ Map<String, dynamic> _$$_LiveLevelBlocStateToJson(
       'words': instance.words,
       'latestWord': instance.latestWord,
       'fuelStorage': instance.fuelStorage.toJson(),
+      'wordWarning': _$WordWarningEnumMap[instance.wordWarning]!,
     };
+
+const _$WordWarningEnumMap = {
+  WordWarning.none: 'none',
+  WordWarning.isWritten: 'isWritten',
+  WordWarning.isNotCorrect: 'isNotCorrect',
+};

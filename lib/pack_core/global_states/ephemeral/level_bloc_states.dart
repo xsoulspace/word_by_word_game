@@ -12,6 +12,12 @@ class EmptyLevelBlocState extends LevelBlocState {
   const EmptyLevelBlocState();
 }
 
+enum WordWarning {
+  none,
+  isWritten,
+  isNotCorrect,
+}
+
 @immutable
 @Freezed(
   fromJson: true,
@@ -28,9 +34,14 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
   const factory LiveLevelBlocState({
     required final LevelModelId id,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
-    @Default({}) final Map<FullWordType, PlayerProfileModelId> words,
+    @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
     @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
+
+    /// ********************************************
+    /// *      NON PERSISTENT
+    /// ********************************************
+    @Default(WordWarning.none) final WordWarning wordWarning,
   }) = _LiveLevelBlocState;
   const LiveLevelBlocState._();
   factory LiveLevelBlocState.fromJson(final Map<String, dynamic> json) =>

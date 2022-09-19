@@ -1,6 +1,6 @@
 part of 'models.dart';
 
-typedef FullWordType = String;
+typedef FullWordString = String;
 
 @immutable
 @Freezed(
@@ -18,11 +18,13 @@ class CurrentWordModel with _$CurrentWordModel {
     @Default('') final String leftPart,
     @Default('') final String middlePart,
     @Default('') final String rightPart,
-    @Default('') final FullWordType fullWord,
+    @Default('') final FullWordString fullWord,
   }) = _CurrentWordModel;
 
   const CurrentWordModel._();
 
   factory CurrentWordModel.fromJson(final Map<String, dynamic> json) =>
       _$CurrentWordModelFromJson(json);
+
+  String get cleanWord => fullWord.toLowerCase().replaceAll(' ', '');
 }

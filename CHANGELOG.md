@@ -1,12 +1,22 @@
 ## Next
-TODO: 
-- Create a check mechanics for the word with already written words.
+
+## September 20th 2022
+
+- Created a check mechanics for the word within already written words and Language dictionaries.
+- Added notification if the word is written or not correct.
+
+
+
 -- prototype stage
+
 - Save & Load the game state.
 - Create player's character and ability to move.
 - Create simple obstacles for level (vertical and horizontal)
 - Create Game Camera and set it to follow the player's character.
 - Replace solid color by blur background for Pause Screen.
+- Gamify UI.
+
+-- Release a game
 
 ## September 18th 2022
 

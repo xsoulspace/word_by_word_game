@@ -70,6 +70,26 @@ class S {
     );
   }
 
+  /// `Whoa, we cannot find a word {word} in our dictionary! Try another word.`
+  String wordIsNotCorrect(Object word) {
+    return Intl.message(
+      'Whoa, we cannot find a word $word in our dictionary! Try another word.',
+      name: 'wordIsNotCorrect',
+      desc: '',
+      args: [word],
+    );
+  }
+
+  /// `This word already written. Try another word.`
+  String get wordAlreadyWritten {
+    return Intl.message(
+      'This word already written. Try another word.',
+      name: 'wordAlreadyWritten',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Reset ending`
   String get resetEnding {
     return Intl.message(

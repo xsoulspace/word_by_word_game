@@ -56,6 +56,7 @@ class _WordCompositionState extends LifeState {
         rightPart: rightPartController.text,
       ),
     );
+
     _wordUpdatesController.add(newWord);
   }
 
