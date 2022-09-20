@@ -4,6 +4,25 @@
 
 - Added ability to Save & Load the game: now it loads the game save during game start and when player press a button save in pause menu it saves the game.
 
+What's next:
+- Create player's character and ability to move.
+- Create simple obstacles for level (vertical and horizontal)
+- Create Game Camera and set it to follow the player's character.
+
+
+-- Prototype stage
+
+- Replace solid color by blur background for Pause Screen.
+- Gamify UI.
+
+-- Bugs & Improvements stage
+
+- Add limitation to cut the middle part (should be dependent from the available score).
+- Add End Game mechanics.
+- Fix game initialization - no errors is shown in the debug console.
+- Add an option to start level fresh and continue if you have a progress (saved lvl).
+
+-- Release a game prototype.
 
 ## September 20th 2022
 
@@ -14,19 +33,6 @@ Today's update:
 What's next:
 - Save & Load the game state.
 
-
--- prototype stage
-
-- Save & Load the game state.
-- Create player's character and ability to move.
-- Create simple obstacles for level (vertical and horizontal)
-- Create Game Camera and set it to follow the player's character.
-- Replace solid color by blur background for Pause Screen.
-- Gamify UI.
-- Fix game initialization - no errors is shown in the debug console.
-- Add an option to start level fresh and continue if you have a progress (saved lvl).
-
--- Release a game
 
 ## September 18th 2022
 
