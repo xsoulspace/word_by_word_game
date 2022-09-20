@@ -2,9 +2,12 @@
 
 ## September 20th 2022
 
+Today's update:
 - Created a check mechanics for the word within already written words and Language dictionaries.
 - Added notification if the word is written or not correct.
 
+What's next:
+- Save & Load the game state.
 
 
 -- prototype stage
