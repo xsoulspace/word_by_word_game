@@ -1,5 +1,10 @@
 ## Next
 
+## September 22th 2022
+
+- Added ability to Save & Load the game: now it loads the game save during game start and when player press a button save in pause menu it saves the game.
+
+
 ## September 20th 2022
 
 Today's update:
@@ -18,6 +23,8 @@ What's next:
 - Create Game Camera and set it to follow the player's character.
 - Replace solid color by blur background for Pause Screen.
 - Gamify UI.
+- Fix game initialization - no errors is shown in the debug console.
+- Add an option to start level fresh and continue if you have a progress (saved lvl).
 
 -- Release a game
 

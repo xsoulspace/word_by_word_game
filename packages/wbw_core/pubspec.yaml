@@ -19,6 +19,7 @@ dependencies:
   path_to_regexp: ^0.4.0
   provider: ^6.0.3
   quiver: ^3.1.0
+  shared_preferences: ^2.0.15
   universal_io: ^2.0.4
   uuid: ^3.0.6
 

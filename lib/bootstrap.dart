@@ -4,6 +4,7 @@ import 'dart:developer';
 import 'package:bloc/bloc.dart';
 import 'package:flame/flame.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -23,18 +24,14 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(final FutureOr<Widget> Function() builder) async {
+Future<void> bootstrap(final Widget Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
   await Flame.device.setLandscape();
-
-  // FlutterError.onError = (final details) {
-  //   log(details.exceptionAsString(), stackTrace: details.stack);
-  // };
+  final analyticsService = AnalyticsService();
+  await analyticsService.onLoad();
   Bloc.observer = AppBlocObserver();
-  await runZonedGuarded(
-    () async => runApp(await builder()),
-    (final error, final stackTrace) {
-      log(error.toString(), stackTrace: stackTrace);
-    },
+  runZonedGuarded(
+    () => runApp(builder()),
+    analyticsService.recordError,
   );
 }

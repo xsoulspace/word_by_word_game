@@ -4,8 +4,10 @@ class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
       : routeState = read(),
         appRouterController = AppRouterController.use(read),
-        mechanics = read();
+        mechanics = read(),
+        globalGameBloc = read();
   final RouteState routeState;
+  final GlobalGameBloc globalGameBloc;
   final AppRouterController appRouterController;
   final MechanicsCollection mechanics;
 }
@@ -27,6 +29,10 @@ class _PauseScreenState extends LifeState {
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
+  void onSaveGame() {
+    diDto.globalGameBloc.add(const SaveCurrentLevelEvent());
+  }
+
   void onContinue({
     required final LevelModelId id,
   }) {

@@ -4,6 +4,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
@@ -17,11 +18,10 @@ class PauseScreen extends HookWidget {
   Widget build(final BuildContext context) {
     final appRouterController = AppRouterController.use(context.read);
     final state = _usePauseScreenState(read: context.read);
-    // TODO(arenukvern): check local storage for an id.
     final routeState = context.watch<RouteState>();
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
     final levelId = routeArgs.levelId;
-    final isContinueVisible = levelId.isNotEmpty;
+    final isLevelRunning = levelId.isNotEmpty;
     final uiTheme = UiTheme.of(context);
 
     return Scaffold(
@@ -30,10 +30,18 @@ class PauseScreen extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Visibility(
-              visible: isContinueVisible,
+              visible: isLevelRunning,
               child: UiFilledButton.text(
                 text: 'Continue',
                 onPressed: () => state.onContinue(id: levelId),
+              ),
+            ),
+            uiTheme.verticalBoxes.large,
+            Visibility(
+              visible: isLevelRunning,
+              child: UiFilledButton.text(
+                text: 'Save',
+                onPressed: state.onSaveGame,
               ),
             ),
             uiTheme.verticalBoxes.large,

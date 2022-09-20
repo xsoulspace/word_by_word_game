@@ -56,3 +56,13 @@ enum LevelPartStates {
     return isEqual;
   }
 }
+
+@immutable
+class SaveGameEvent extends GameEvent {
+  const SaveGameEvent();
+}
+
+@immutable
+class SaveCurrentLevelEvent extends GameEvent {
+  const SaveCurrentLevelEvent();
+}

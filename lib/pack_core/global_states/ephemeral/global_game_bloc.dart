@@ -18,11 +18,13 @@ class GlobalGameBlocDiDto {
       : mechanics = read(),
         levelBloc = read(),
         levelPlayersBloc = read(),
-        resourcesBloc = read();
+        resourcesBloc = read(),
+        services = read();
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
   final ResourcesBloc resourcesBloc;
+  final ServicesCollection services;
 }
 
 class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
@@ -34,6 +36,8 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     on<WorldTimeTickEvent>(_onWorldTick);
     on<CreatePlayerProfileEvent>(_onCreatePlayerProfile);
     on<LevelPartLoadedEvent>(_onLevelPartLoaded);
+    on<SaveGameEvent>(_onSaveGame);
+    on<SaveCurrentLevelEvent>(_onSaveCurrentLevel);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
   }
 
@@ -98,18 +102,17 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   ) {
     final liveState = getLiveState();
     final loadedStates = {...liveState.loadedLevelParts, event.loadedState};
-    final updateState = liveState.copyWith(
+    LiveGlobalGameBlocState updateState = liveState.copyWith(
       loadedLevelParts: loadedStates,
     );
-    emit(updateState);
-    _verifyLevelLoad(loadedStates: loadedStates);
-  }
-
-  void _verifyLevelLoad({required final Set<LevelPartStates> loadedStates}) {
     final isLoaded = LevelPartStates.containsAll(loadedStates);
     if (isLoaded) {
       diDto.mechanics.worldTime.resume();
+      updateState = updateState.copyWith(
+        currentLevelId: diDto.levelBloc.getLiveState().id,
+      );
     }
+    emit(updateState);
   }
 
   void _onWorldTick(
@@ -146,6 +149,69 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       playersCollection: [...liveState.playersCollection, profile],
     );
     emit(updateState);
+  }
+
+  /// before to save game, make sure to add [SaveCurrentLevelEvent]
+  Future<void> _onSaveGame(
+    final SaveGameEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) async =>
+      _saveGame();
+
+  Future<void> _saveGame({
+    final LiveGlobalGameBlocState? liveState,
+  }) async {
+    final resolvedLiveState = liveState ?? getLiveState();
+    final gameModel = _getGameModel(liveState: resolvedLiveState);
+    await diDto.services.gamePersistence.saveGame(game: gameModel);
+  }
+
+  Future<void> _onSaveCurrentLevel(
+    final SaveCurrentLevelEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) async {
+    final liveState = getLiveState();
+    final currentLevelId = liveState.currentLevelId;
+    final levels = {...liveState.levels}..[currentLevelId] =
+        _getCurrentLevelModel();
+    final updatedState = liveState.copyWith(
+      levels: levels,
+    );
+    emit(updatedState);
+    await _saveGame(liveState: updatedState);
+  }
+
+  GameModel _getGameModel({required final LiveGlobalGameBlocState liveState}) {
+    return GameModel(
+      id: liveState.id,
+      currentLevelId: liveState.currentLevelId,
+      templateLevels: liveState.templateLevels,
+      dateTime: liveState.dateTime,
+      lastDateTime: liveState.lastDateTime,
+      levels: liveState.levels,
+      playersCharacters: liveState.playersCharacters,
+      playersCollection: liveState.playersCollection,
+    );
+  }
+
+  LevelModel _getCurrentLevelModel() {
+    final liveLevelState = diDto.levelBloc.getLiveState();
+    final livePlayersState = diDto.levelPlayersBloc.getLiveState();
+
+    return LevelModel(
+      id: liveLevelState.id,
+      currentWord: liveLevelState.currentWord,
+      fuelStorage: liveLevelState.fuelStorage,
+      latestWord: liveLevelState.latestWord,
+      words: liveLevelState.words,
+      characters: LevelCharactersModel(
+        playerCharacter: livePlayersState.playerCharacter,
+      ),
+      players: LevelPlayersModel(
+        currentPlayerId: livePlayersState.currentPlayerId,
+        players: livePlayersState.players,
+      ),
+    );
   }
 
   LiveGlobalGameBlocState getLiveState() {
