@@ -31,56 +31,60 @@ class LevelOptionsScreen extends HookWidget {
     final theme = Theme.of(context);
 
     return Scaffold(
-      body: Container(
-        alignment: Alignment.center,
-        padding: EdgeInsets.all(uiTheme.spacing.large),
-        child: Column(
-          children: [
-            Text(
-              templateLevel.id.toUpperCase(),
-              style: theme.textTheme.bodyLarge,
-            ),
-            uiTheme.verticalBoxes.extraLarge,
-            Text(
-              'Choose Your Character',
-              style: theme.textTheme.headlineMedium,
-            ),
-            uiTheme.verticalBoxes.large,
-            SizedBox(
-              height: screenSize.height * 0.3,
-              child: CharactersRow(
-                characters: playersCharacters,
-                checkIsCharacterSelected: state.checkIsCharacterSelected,
-                onCharacterPressed: state.onCharacterPressed,
+      body: Center(
+        child: SingleChildScrollView(
+          padding: EdgeInsets.all(uiTheme.spacing.large),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                templateLevel.id.toUpperCase(),
+                style: theme.textTheme.bodyLarge,
               ),
-            ),
-            uiTheme.verticalBoxes.extraLarge,
-            Text(
-              'Select The Players',
-              style: theme.textTheme.headlineMedium,
-            ),
-            uiTheme.verticalBoxes.large,
-            Expanded(
-              child: PlayerSelectorRow(
-                onPlayerSelected: state.onPlayerSelected,
-                checkIsPlayerSelected: state.checkIsPlayerSelected,
-                onPlayerCreated: state.onPlayerProfileCreated,
+              uiTheme.verticalBoxes.extraLarge,
+              Text(
+                'Choose Your Character',
+                style: theme.textTheme.headlineMedium,
               ),
-            ),
-            Row(
-              children: [
-                TextButton(
-                  onPressed: state.onReturnToLevels,
-                  child: const Text('Return to all levels'),
+              uiTheme.verticalBoxes.large,
+              SizedBox(
+                height: screenSize.height * 0.3,
+                child: CharactersRow(
+                  characters: playersCharacters,
+                  checkIsCharacterSelected: state.checkIsCharacterSelected,
+                  onCharacterPressed: state.onCharacterPressed,
                 ),
-                const Spacer(),
-                TextButton(
-                  onPressed: state.onPlay,
-                  child: const Text('Play'),
+              ),
+              uiTheme.verticalBoxes.extraLarge,
+              Text(
+                'Select The Players',
+                style: theme.textTheme.headlineMedium,
+              ),
+              uiTheme.verticalBoxes.large,
+              SizedBox(
+                height: 200,
+                child: PlayerSelectorRow(
+                  onPlayerSelected: state.onPlayerSelected,
+                  checkIsPlayerSelected: state.checkIsPlayerSelected,
+                  onPlayerCreated: state.onPlayerProfileCreated,
                 ),
-              ],
-            ),
-          ],
+              ),
+              uiTheme.verticalBoxes.extraLarge,
+              Row(
+                children: [
+                  TextButton(
+                    onPressed: state.onReturnToLevels,
+                    child: const Text('Return to all levels'),
+                  ),
+                  const Spacer(),
+                  TextButton(
+                    onPressed: state.onPlay,
+                    child: const Text('Play'),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

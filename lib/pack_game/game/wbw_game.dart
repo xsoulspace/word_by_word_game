@@ -74,12 +74,12 @@ class CharacterComponent extends PositionComponent with CollisionCallbacks {
 
   @override
   void update(final double dt) {
-    const yVelocity = 0.00;
-    const xVelocity = 0.00;
-    y -= yVelocity;
-    x += xVelocity;
-    // y = 0;
-    // x = 0;
+    // const yVelocity = 0.00;
+    // const xVelocity = 0.00;
+    // y -= yVelocity;
+    // x += xVelocity;
+    y = 0;
+    x = 0;
     super.update(dt);
   }
 }
