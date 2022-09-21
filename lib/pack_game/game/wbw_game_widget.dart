@@ -31,7 +31,10 @@ class WbwGameWidget extends HookWidget {
                 },
                 child: GameWidget<WbwGame>.controlled(
                   focusNode: gameFocusNode,
-                  gameFactory: () => WbwGame.use(read: context.read),
+                  gameFactory: () => WbwGame.use(
+                    read: context.read,
+                    theme: Theme.of(context),
+                  ),
                   //Work in progress loading screen on game start
                   loadingBuilder: (final context) => const Center(
                     child: CircularProgressIndicator(),

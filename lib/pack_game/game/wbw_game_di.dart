@@ -1,8 +1,10 @@
 part of 'wbw_game.dart';
 
 class WbwGameDiDto {
-  WbwGameDiDto.use({required final Locator read})
-      : levelBloc = read(),
+  WbwGameDiDto.use({
+    required final Locator read,
+    required this.theme,
+  })  : levelBloc = read(),
         resourcesBloc = read(),
         globalGameBloc = read();
 
@@ -12,6 +14,7 @@ class WbwGameDiDto {
   final LevelBloc levelBloc;
   final GlobalGameBloc globalGameBloc;
   final ResourcesBloc resourcesBloc;
+  final ThemeData theme;
 
   FlameMultiBlocProvider getBlocsProviderComponent() {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[

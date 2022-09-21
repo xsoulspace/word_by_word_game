@@ -1,13 +1,17 @@
 ## Next
 
 ## September 22th 2022
-
-- Added ability to Save & Load the game: now it loads the game save during game start and when player press a button save in pause menu it saves the game.
+- Added Game Camera and now it follows the player's character.
+- Basic character physics mechanics with ability to consume fuel, go up, keep a line, go down.
+- Added the same background color for the all elements of the ui and game world.
 
 What's next:
-- Create player's character and ability to move.
-- Create simple obstacles for level (vertical and horizontal)
-- Create Game Camera and set it to follow the player's character.
+- Link character component params and character state params (fuel).
+- Link world and world components follow the current game state (blocs).
+- Create Graphic Set for the Tiled Map.
+- Create Tiled map with obstacles.
+- Add Tiled map with obstacles to the game.
+- Add collision between player's character and the obstacle.
 
 
 -- Prototype stage
@@ -23,6 +27,16 @@ What's next:
 - Add an option to start level fresh and continue if you have a progress (saved lvl).
 
 -- Release a game prototype.
+
+
+## September 22th 2022
+
+- Added ability to Save & Load the game: now it loads the game save during game start and when player press a button save in pause menu it saves the game.
+
+What's next:
+- Create player's character and ability to move.
+- Create simple obstacles for level (vertical and horizontal)
+- Create Game Camera and set it to follow the player's character.
 
 ## September 20th 2022
 
