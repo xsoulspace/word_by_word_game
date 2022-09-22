@@ -16,7 +16,9 @@ class WbwGameDiDto {
   final ResourcesBloc resourcesBloc;
   final ThemeData theme;
 
-  FlameMultiBlocProvider getBlocsProviderComponent() {
+  FlameMultiBlocProvider getBlocsProviderComponent({
+    required final List<Component>? children,
+  }) {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
       FlameBlocProvider<ResourcesBloc, ResourcesState>.value(
         value: resourcesBloc,
@@ -31,6 +33,7 @@ class WbwGameDiDto {
 
     return FlameMultiBlocProvider(
       providers: providers,
+      children: children,
     );
   }
 }

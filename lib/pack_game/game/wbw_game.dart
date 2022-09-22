@@ -31,36 +31,42 @@ class WbwGame extends FlameGame with HasCollisionDetection {
     debugMode = true;
     children.register<CameraComponent>();
     world = World();
-    await add(world);
+    router = const GameRouter().init();
+    final providersComponent = diDto.getBlocsProviderComponent(
+      children: [
+        world,
+        router,
+      ],
+    );
 
     await world.addAll([character, ObstactleComponent()]);
 
-    router = const GameRouter().init();
-    await addAll([router]);
     // Enable initial overlays
     overlays.addAll([
       GameOverlaysRoutes.levelsHud.name,
     ]);
-    await _initCamera();
+    worldCamera = await _initCamera();
+    await providersComponent.add(worldCamera);
+    await add(providersComponent);
     return super.onLoad();
   }
 
-  Future<void> _initCamera() async {
+  Future<CameraComponent> _initCamera() async {
     final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
-    worldCamera = CameraComponent(
+    final camera = CameraComponent(
       world: world,
       viewport: MaxViewport(),
     );
     // TODO(arenukvern): uncomment when tiled will be ready
     // ..setBounds(bounds);
-    worldCamera.viewfinder
+    camera.viewfinder
       ..visibleGameSize = Vector2(0, 0)
       ..position = character.position
       ..anchor = Anchor.center;
-    await add(worldCamera);
     // TODO(arenukvern): update (remove & add) the character when
     /// the level is changed
-    worldCamera.follow(character);
+    camera.follow(character);
+    return camera;
   }
 
   @override
@@ -232,7 +238,7 @@ class CharacterComponent extends PositionComponent
       Rect.fromLTWH(0, 0, width, height),
       paint,
     );
-    textPaint.render(canvas, '${params.fuel}', Vector2(10, 10));
+    textPaint.render(canvas, '${params.fuel.value}', Vector2(10, 10));
 
     super.render(canvas);
   }
