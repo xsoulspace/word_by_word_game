@@ -7,10 +7,13 @@ import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 
+part 'wbw_game.freezed.dart';
 part 'wbw_game_di.dart';
 
 class WbwGame extends FlameGame with HasCollisionDetection {
@@ -48,12 +51,15 @@ class WbwGame extends FlameGame with HasCollisionDetection {
       world: world,
       viewport: MaxViewport(),
     );
+    // TODO(arenukvern): uncomment when tiled will be ready
     // ..setBounds(bounds);
     worldCamera.viewfinder
       ..visibleGameSize = Vector2(0, 0)
       ..position = character.position
       ..anchor = Anchor.center;
     await add(worldCamera);
+    // TODO(arenukvern): update (remove & add) the character when
+    /// the level is changed
     worldCamera.follow(character);
   }
 
@@ -61,55 +67,96 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   Color backgroundColor() => diDto.theme.colorScheme.surface;
 }
 
-class CharacterComponent extends PositionComponent with CollisionCallbacks {
-  CharacterComponent()
-      : super(
-          position: Vector2(50, 50),
-          size: Vector2(20, 20),
-        );
-  double fuel = 300.0;
-  double get fuelNormalPower => 50.5;
-  double fuelHighPower = 0;
+@immutable
+@Freezed(
+  fromJson: false,
+  toJson: false,
+  equal: true,
+  addImplicitFinal: true,
+  copyWith: true,
+)
+class FlyingObjectsParams with _$FlyingObjectsParams {
+  const factory FlyingObjectsParams({
+    @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
 
+    /// it can be changed and can be dependent from the character.
+    @Default(50.5) final double fuelNormalPower,
+
+    /// 0.005 with +- sign.
+    /// + is go down.
+    /// - is go up.
+    /// 0 is just use horizontal direction.
+    ///
+    /// The current logic is to force a player to always
+    /// have enough fuel to be on the line.
+    ///
+    /// But the other idea, is to also somehow give the player
+    /// controls for the [requiredLiftForce] i.e. ability to
+    /// keep line, go up and go down
+    @Default(0.5) final double requiredLiftForce,
+  }) = _FlyingObjectsParams;
+  const FlyingObjectsParams._();
+
+  factory FlyingObjectsParams.fromCharacterModel(
+    final PlayerCharacterModel character,
+  ) {
+    return FlyingObjectsParams(
+      fuel: character.fuel,
+      fuelNormalPower: character.fuelNormalPower,
+      requiredLiftForce: character.requiredLiftForce,
+    );
+  }
+
+  /// immutable
+  /// Is the power if the character trying to move above the highest line
+  /// (allowed altitude)
+  double get fuelHighPower => 0;
+
+  /// immutable
   double get baseGravityForce => 0.05;
-  double get gravityForce {
-    final force = baseGravityForce * (y / 10);
+
+  /// can be changed but it is external force, and should not be changed
+  /// by the player. nature force
+  double get windForce => .03;
+
+  /// -1 or +1 - can be changed, nature force
+  int get windSign => -1;
+}
+
+class ForceResult {
+  ForceResult({
+    this.fuel = 0.0,
+    this.force = 0.0,
+  });
+  final double force;
+  final double fuel;
+}
+
+class BasicFlyingObjectMechanics {
+  BasicFlyingObjectMechanics({
+    required this.params,
+  });
+  final FlyingObjectsParams params;
+  double getGravityForce(final double y) {
+    final force = params.baseGravityForce * (y / 10);
     if (force > 0.2) {
       return 0.2;
     }
     return force;
   }
 
-  double get windForce => .03;
-
-  /// -1 or +1
-  final int windSign = -1;
-
-  /// 0.005 with +- sign.
-  /// + is go down.
-  /// - is go up.
-  /// 0 is just use horizontal direction.
-  ///
-  /// The current logic is to force a player to always
-  /// have enough fuel to be on the line.
-  ///
-  /// But the other idea, is to also somehow give the player
-  /// controls for the [requiredLiftForce] i.e. ability to
-  /// keep line, go up and go down
-  double get requiredLiftForce => 0.5;
-
-  double get liftForce {
+  ForceResult getLiftForce(final double y) {
+    double fuel = params.fuel.value;
     if (fuel < 0) {
-      fuel = 0;
-      return 0;
+      return ForceResult();
     }
-    double fuelPower = fuelNormalPower;
+    double fuelPower = params.fuelNormalPower;
     if (y < 10) {
-      fuelPower = fuelHighPower;
+      fuelPower = params.fuelHighPower;
     }
 
-    final double lift = gravityForce + requiredLiftForce;
-    double fuelConsumption = lift / fuelNormalPower;
+    final double requiredLift = getGravityForce(y) + params.requiredLiftForce;
+    double fuelConsumption = requiredLift / params.fuelNormalPower;
     if (fuelConsumption < fuel) {
       fuel -= fuelConsumption;
     } else {
@@ -125,18 +172,53 @@ class CharacterComponent extends PositionComponent with CollisionCallbacks {
       }
     }
 
-    return fuelConsumption * fuelPower;
+    final liftForce = fuelConsumption * fuelPower;
+
+    return ForceResult(
+      fuel: fuel,
+      force: liftForce,
+    );
   }
 
-  double get yVelocity {
-    return liftForce - gravityForce;
+  ForceResult getYVelocity(final double y) {
+    final liftForceResult = getLiftForce(y);
+    final velocity = liftForceResult.force - getGravityForce(y);
+
+    return ForceResult(
+      force: velocity,
+      fuel: liftForceResult.fuel,
+    );
   }
 
   double get xVelocity {
-    return windSign * windForce;
+    return params.windSign * params.windForce;
+  }
+}
+
+class CharacterComponent extends PositionComponent
+    with CollisionCallbacks, HasGameRef<WbwGame> {
+  CharacterComponent()
+      : super(
+          position: Vector2(50, 50),
+          size: Vector2(20, 20),
+        );
+  @override
+  Future<void>? onLoad() async {
+    await add(
+      FlameBlocListener<LevelBloc, LevelBlocState>(
+        onNewState: _handleLevelState,
+      ),
+    );
+    return super.onLoad();
+  }
+
+  void _handleLevelState(final LevelBlocState levelState) {
+    if (levelState is! LiveLevelBlocState) return;
+    // TODO(arenukvern): update params
   }
 
   final paint = Paint()..color = Colors.white;
+  FlyingObjectsParams params = const FlyingObjectsParams();
 
   @override
   void render(final Canvas canvas) {
@@ -150,15 +232,24 @@ class CharacterComponent extends PositionComponent with CollisionCallbacks {
       Rect.fromLTWH(0, 0, width, height),
       paint,
     );
-    textPaint.render(canvas, '$fuel', Vector2(10, 10));
+    textPaint.render(canvas, '${params.fuel}', Vector2(10, 10));
 
     super.render(canvas);
   }
 
   @override
   void update(final double dt) {
-    y -= yVelocity;
-    x -= xVelocity;
+    final mechanics = BasicFlyingObjectMechanics(
+      params: params,
+    );
+    final yResult = mechanics.getYVelocity(y);
+    y -= yResult.force;
+    params = params.copyWith(
+      fuel: FuelStorageModel(value: yResult.fuel),
+    );
+    // TODO(arenukvern): add updated fuel to the bloc
+    // gameRef.diDto.levelBloc.add();
+    x -= mechanics.xVelocity;
     // fuel = 90;
     // y = 1;
     // x = 0;

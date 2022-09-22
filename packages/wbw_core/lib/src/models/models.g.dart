@@ -170,6 +170,11 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
+      fuel: json['fuel'] == null
+          ? const FuelStorageModel(value: 150)
+          : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
+      fuelNormalPower: (json['fuelNormalPower'] as num?)?.toDouble() ?? 50.5,
+      requiredLiftForce: (json['requiredLiftForce'] as num?)?.toDouble() ?? 0.5,
     );
 
 Map<String, dynamic> _$$_PlayerCharacterModelToJson(
@@ -178,6 +183,9 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
+      'fuel': instance.fuel.toJson(),
+      'fuelNormalPower': instance.fuelNormalPower,
+      'requiredLiftForce': instance.requiredLiftForce,
     };
 
 _$_PlayerProfileModel _$$_PlayerProfileModelFromJson(

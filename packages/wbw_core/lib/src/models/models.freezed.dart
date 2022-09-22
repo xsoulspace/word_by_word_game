@@ -1678,6 +1678,9 @@ mixin _$PlayerCharacterModel {
   String get id => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
+  FuelStorageModel get fuel => throw _privateConstructorUsedError;
+  double get fuelNormalPower => throw _privateConstructorUsedError;
+  double get requiredLiftForce => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1690,7 +1693,15 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
   factory $PlayerCharacterModelCopyWith(PlayerCharacterModel value,
           $Res Function(PlayerCharacterModel) then) =
       _$PlayerCharacterModelCopyWithImpl<$Res>;
-  $Res call({String id, String name, String description});
+  $Res call(
+      {String id,
+      String name,
+      String description,
+      FuelStorageModel fuel,
+      double fuelNormalPower,
+      double requiredLiftForce});
+
+  $FuelStorageModelCopyWith<$Res> get fuel;
 }
 
 /// @nodoc
@@ -1707,6 +1718,9 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? fuel = freezed,
+    Object? fuelNormalPower = freezed,
+    Object? requiredLiftForce = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -1721,7 +1735,26 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      fuel: fuel == freezed
+          ? _value.fuel
+          : fuel // ignore: cast_nullable_to_non_nullable
+              as FuelStorageModel,
+      fuelNormalPower: fuelNormalPower == freezed
+          ? _value.fuelNormalPower
+          : fuelNormalPower // ignore: cast_nullable_to_non_nullable
+              as double,
+      requiredLiftForce: requiredLiftForce == freezed
+          ? _value.requiredLiftForce
+          : requiredLiftForce // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
+  }
+
+  @override
+  $FuelStorageModelCopyWith<$Res> get fuel {
+    return $FuelStorageModelCopyWith<$Res>(_value.fuel, (value) {
+      return _then(_value.copyWith(fuel: value));
+    });
   }
 }
 
@@ -1732,7 +1765,16 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
           $Res Function(_$_PlayerCharacterModel) then) =
       __$$_PlayerCharacterModelCopyWithImpl<$Res>;
   @override
-  $Res call({String id, String name, String description});
+  $Res call(
+      {String id,
+      String name,
+      String description,
+      FuelStorageModel fuel,
+      double fuelNormalPower,
+      double requiredLiftForce});
+
+  @override
+  $FuelStorageModelCopyWith<$Res> get fuel;
 }
 
 /// @nodoc
@@ -1751,6 +1793,9 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? description = freezed,
+    Object? fuel = freezed,
+    Object? fuelNormalPower = freezed,
+    Object? requiredLiftForce = freezed,
   }) {
     return _then(_$_PlayerCharacterModel(
       id: id == freezed
@@ -1765,6 +1810,18 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.description
           : description // ignore: cast_nullable_to_non_nullable
               as String,
+      fuel: fuel == freezed
+          ? _value.fuel
+          : fuel // ignore: cast_nullable_to_non_nullable
+              as FuelStorageModel,
+      fuelNormalPower: fuelNormalPower == freezed
+          ? _value.fuelNormalPower
+          : fuelNormalPower // ignore: cast_nullable_to_non_nullable
+              as double,
+      requiredLiftForce: requiredLiftForce == freezed
+          ? _value.requiredLiftForce
+          : requiredLiftForce // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -1774,7 +1831,12 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   const _$_PlayerCharacterModel(
-      {required this.id, required this.name, required this.description})
+      {required this.id,
+      required this.name,
+      required this.description,
+      this.fuel = const FuelStorageModel(value: 150),
+      this.fuelNormalPower = 50.5,
+      this.requiredLiftForce = 0.5})
       : super._();
 
   factory _$_PlayerCharacterModel.fromJson(Map<String, dynamic> json) =>
@@ -1786,10 +1848,19 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   final String name;
   @override
   final String description;
+  @override
+  @JsonKey()
+  final FuelStorageModel fuel;
+  @override
+  @JsonKey()
+  final double fuelNormalPower;
+  @override
+  @JsonKey()
+  final double requiredLiftForce;
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, name: $name, description: $description)';
+    return 'PlayerCharacterModel(id: $id, name: $name, description: $description, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce)';
   }
 
   @override
@@ -1800,7 +1871,12 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
-                .equals(other.description, description));
+                .equals(other.description, description) &&
+            const DeepCollectionEquality().equals(other.fuel, fuel) &&
+            const DeepCollectionEquality()
+                .equals(other.fuelNormalPower, fuelNormalPower) &&
+            const DeepCollectionEquality()
+                .equals(other.requiredLiftForce, requiredLiftForce));
   }
 
   @JsonKey(ignore: true)
@@ -1809,7 +1885,10 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(description));
+      const DeepCollectionEquality().hash(description),
+      const DeepCollectionEquality().hash(fuel),
+      const DeepCollectionEquality().hash(fuelNormalPower),
+      const DeepCollectionEquality().hash(requiredLiftForce));
 
   @JsonKey(ignore: true)
   @override
@@ -1829,7 +1908,10 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   const factory _PlayerCharacterModel(
       {required final String id,
       required final String name,
-      required final String description}) = _$_PlayerCharacterModel;
+      required final String description,
+      final FuelStorageModel fuel,
+      final double fuelNormalPower,
+      final double requiredLiftForce}) = _$_PlayerCharacterModel;
   const _PlayerCharacterModel._() : super._();
 
   factory _PlayerCharacterModel.fromJson(Map<String, dynamic> json) =
@@ -1841,6 +1923,12 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   String get name;
   @override
   String get description;
+  @override
+  FuelStorageModel get fuel;
+  @override
+  double get fuelNormalPower;
+  @override
+  double get requiredLiftForce;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>
