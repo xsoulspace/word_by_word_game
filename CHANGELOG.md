@@ -1,5 +1,10 @@
 ## Next
 
+TODO:
+- Fix game camera
+- Link character component params and character state params (fuel).
+
+
 ## September 22th 2022
 - Added Game Camera and now it follows the player's character.
 - Basic character physics mechanics with ability to consume fuel, go up, keep a line, go down.

@@ -8,17 +8,17 @@ import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
+import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
-part 'wbw_game.freezed.dart';
 part 'wbw_game_di.dart';
 
 int get kTileDimension => 16;
-int get kTilesHeight => 7;
+int get kTilesMaxHeight => 20;
+int get kTilesHeight => 12;
 
 class WbwGame extends FlameGame with HasCollisionDetection {
   WbwGame.use({required final Locator read, required final ThemeData theme})
@@ -26,36 +26,51 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   final WbwGameDiDto diDto;
   late final RouterComponent router;
 
-  late final CameraComponent worldCamera;
+  late CameraComponent worldCamera;
   late final World world;
-  final character = CharacterComponent();
+  late CharacterComponent character;
   LevelLayoutComponent? currentLevelLayout;
+  late FlameMultiBlocProvider providersComponent;
   @override
   Future<void> onLoad() async {
     debugMode = true;
     children.register<CameraComponent>();
     world = World();
     router = const GameRouter().init();
-    currentLevelLayout =
-        LevelLayoutComponent(tileMapName: 'pixel_black_white_landscape');
-    final providersComponent = diDto.getBlocsProviderComponent(
+
+    providersComponent = diDto.getBlocsProviderComponent(
       children: [
         world,
         router,
       ],
     );
 
-    await world.addAll(
-      [if (currentLevelLayout != null) currentLevelLayout!, character],
-    );
+    final levelLayout = LevelLayoutComponent(
+      tileMapName: 'pixel_black_white_landscape',
+      onLoadBuilder: (final map) async {
+        const groundHeight = 30.0;
 
+        character = CharacterComponent(
+          levelHeight: map.tileMap.map.height.toDouble() + groundHeight,
+        );
+
+        await world.add(character);
+
+        // TODO(arenukvern): update (remove & add) the character when
+        // / the level is changed
+        worldCamera.follow(character);
+      },
+    );
+    currentLevelLayout = levelLayout;
+    await world.addAll([levelLayout]);
+
+    worldCamera = await _initCamera();
+    await providersComponent.add(worldCamera);
+    await add(providersComponent);
     // Enable initial overlays
     overlays.addAll([
       GameOverlaysRoutes.levelsHud.name,
     ]);
-    worldCamera = await _initCamera();
-    await providersComponent.add(worldCamera);
-    await add(providersComponent);
     return super.onLoad();
   }
 
@@ -63,21 +78,14 @@ class WbwGame extends FlameGame with HasCollisionDetection {
     final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
     final camera = CameraComponent(
       world: world,
-      viewport: MaxViewport(),
-    );
-    // TODO(arenukvern): uncomment when tiled will be ready
-    // ..setBounds(bounds);
+    ); //..setBounds(bounds);
 
     camera.viewfinder
-      // ..visibleGameSize = Vector2(
-      //   30 * kTileDimension.toDouble() / 2,
-      //   kTilesHeight * kTileDimension.toDouble() / 3,
-      // )
-      ..position = character.position
+      ..visibleGameSize = Vector2(
+        30 * kTileDimension.toDouble() / 2,
+        kTilesHeight * kTileDimension.toDouble(),
+      )
       ..anchor = Anchor.center;
-    // TODO(arenukvern): update (remove & add) the character when
-    /// the level is changed
-    camera.follow(character);
     return camera;
   }
 
@@ -85,141 +93,17 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   Color backgroundColor() => diDto.theme.colorScheme.surface;
 }
 
-@immutable
-@Freezed(
-  fromJson: false,
-  toJson: false,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
-class FlyingObjectsParams with _$FlyingObjectsParams {
-  const factory FlyingObjectsParams({
-    @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
-
-    /// it can be changed and can be dependent from the character.
-    @Default(50.5) final double fuelNormalPower,
-
-    /// 0.005 with +- sign.
-    /// + is go down.
-    /// - is go up.
-    /// 0 is just use horizontal direction.
-    ///
-    /// The current logic is to force a player to always
-    /// have enough fuel to be on the line.
-    ///
-    /// But the other idea, is to also somehow give the player
-    /// controls for the [requiredLiftForce] i.e. ability to
-    /// keep line, go up and go down
-    @Default(0.5) final double requiredLiftForce,
-  }) = _FlyingObjectsParams;
-  const FlyingObjectsParams._();
-
-  factory FlyingObjectsParams.fromCharacterModel(
-    final PlayerCharacterModel character,
-  ) {
-    return FlyingObjectsParams(
-      fuel: character.fuel,
-      fuelNormalPower: character.fuelNormalPower,
-      requiredLiftForce: character.requiredLiftForce,
-    );
-  }
-
-  /// immutable
-  /// Is the power if the character trying to move above the highest line
-  /// (allowed altitude)
-  double get fuelHighPower => 0;
-
-  /// immutable
-  double get baseGravityForce => 0.05;
-
-  /// can be changed but it is external force, and should not be changed
-  /// by the player. nature force
-  double get windForce => .03;
-
-  /// -1 or +1 - can be changed, nature force
-  int get windSign => -1;
-}
-
-class ForceResult {
-  ForceResult({
-    this.fuel = 0.0,
-    this.force = 0.0,
-  });
-  final double force;
-  final double fuel;
-}
-
-class BasicFlyingObjectMechanics {
-  BasicFlyingObjectMechanics({
-    required this.params,
-  });
-  final FlyingObjectsParams params;
-  double getGravityForce(final double y) {
-    final force = params.baseGravityForce * (y / 10);
-    if (force > 0.2) {
-      return 0.2;
-    }
-    return force;
-  }
-
-  ForceResult getLiftForce(final double y) {
-    double fuel = params.fuel.value;
-    if (fuel < 0) {
-      return ForceResult();
-    }
-    double fuelPower = params.fuelNormalPower;
-    if (y < 10) {
-      fuelPower = params.fuelHighPower;
-    }
-
-    final double requiredLift = getGravityForce(y) + params.requiredLiftForce;
-    double fuelConsumption = requiredLift / params.fuelNormalPower;
-    if (fuelConsumption < fuel) {
-      fuel -= fuelConsumption;
-    } else {
-      if (fuel == 0) {
-        fuelConsumption = 0;
-      } else {
-        fuelConsumption -= fuel;
-      }
-      if (fuelConsumption < 0) {
-        fuelConsumption = fuel;
-      } else {
-        fuel -= fuelConsumption;
-      }
-    }
-
-    final liftForce = fuelConsumption * fuelPower;
-
-    return ForceResult(
-      fuel: fuel,
-      force: liftForce,
-    );
-  }
-
-  ForceResult getYVelocity(final double y) {
-    final liftForceResult = getLiftForce(y);
-    final velocity = liftForceResult.force - getGravityForce(y);
-
-    return ForceResult(
-      force: velocity,
-      fuel: liftForceResult.fuel,
-    );
-  }
-
-  double get xVelocity {
-    return params.windSign * params.windForce;
-  }
-}
-
 class CharacterComponent extends PositionComponent
     with CollisionCallbacks, HasGameRef<WbwGame> {
-  CharacterComponent()
-      : super(
-          position: Vector2(50, 50),
-          size: Vector2(20, 20),
+  CharacterComponent({
+    required this.levelHeight,
+  }) : super(
+          size: Vector2(16, 16),
         );
+  final paint = Paint()..color = Colors.blue;
+  final double levelHeight;
+  late FlyingObjectsParams params;
+
   @override
   Future<void>? onLoad() async {
     await add(
@@ -227,6 +111,8 @@ class CharacterComponent extends PositionComponent
         onNewState: _handleLevelState,
       ),
     );
+    params = const FlyingObjectsParams();
+    position = Vector2(params.minXBoundry, (kTilesMaxHeight - 2) * 16);
     return super.onLoad();
   }
 
@@ -234,9 +120,6 @@ class CharacterComponent extends PositionComponent
     if (levelState is! LiveLevelBlocState) return;
     // TODO(arenukvern): update params
   }
-
-  final paint = Paint()..color = Colors.blue;
-  FlyingObjectsParams params = const FlyingObjectsParams();
 
   @override
   void render(final Canvas canvas) {
@@ -261,11 +144,13 @@ class CharacterComponent extends PositionComponent
       params: params,
     );
     final yResult = mechanics.getYVelocity(y);
-    if (y < 10 && yResult.fuel > 0) {
+    if (y < params.minYBoundry && yResult.fuel > 0) {
+      // noop
     } else {
       y -= yResult.force;
     }
     params = params.copyWith(
+      // fuel: const FuelStorageModel( value: 90),
       fuel: FuelStorageModel(value: yResult.fuel),
       fuelNormalPower: 2.0,
     );
@@ -273,7 +158,7 @@ class CharacterComponent extends PositionComponent
     // gameRef.diDto.levelBloc.add();
     x -= mechanics.xVelocity;
     // fuel = 90;
-    // y = 1;
+    // y = 0;
     // x = 0;
     super.update(dt);
   }
@@ -282,16 +167,22 @@ class CharacterComponent extends PositionComponent
 class LevelLayoutComponent extends PositionComponent {
   LevelLayoutComponent({
     required this.tileMapName,
-  });
+    required this.onLoadBuilder,
+  }) : super();
   final String tileMapName;
+  final Future<void> Function(TiledComponent map) onLoadBuilder;
   late TiledComponent map;
   @override
-  Future<void>? onLoad() async {
-    await super.onLoad();
+  Future<void> onLoad() async {
+    print('onLoad');
     map = await TiledComponent.load(
       '$tileMapName.tmx',
       Vector2.all(16),
     );
+
+    await onLoadBuilder(map);
+
     await add(map);
+    await super.onLoad();
   }
 }

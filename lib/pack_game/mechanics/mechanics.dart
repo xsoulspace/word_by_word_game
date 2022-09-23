@@ -5,6 +5,7 @@ export './dictionary_mechanics.dart';
 export './fuel_mechanics.dart';
 export './word_composition_mechanics.dart';
 export './world_time_mechanics.dart';
+export 'objects/objects.dart';
 
 class MechanicsCollection {
   MechanicsCollection._({

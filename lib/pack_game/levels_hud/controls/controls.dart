@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -8,13 +9,15 @@ class ControlsWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
     final spacing = uiTheme.spacing;
     final levelBloc = context.watch<LevelBloc>();
     final levelState = levelBloc.state;
     if (levelState is! LiveLevelBlocState) return const SizedBox();
 
-    return SizedBox(
+    return Container(
+      color: theme.colorScheme.surface,
       height: 190,
       child: Row(
         mainAxisSize: MainAxisSize.min,

@@ -9,10 +9,28 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsImagesGen {
+  const $AssetsImagesGen();
+
+  /// File path: assets/images/pixel_black_white_tileset.png
+  AssetGenImage get pixelBlackWhiteTileset =>
+      const AssetGenImage('assets/images/pixel_black_white_tileset.png');
+}
+
+class $AssetsTilesGen {
+  const $AssetsTilesGen();
+
+  /// File path: assets/tiles/pixel_black_white_landscape.tmx
+  String get pixelBlackWhiteLandscape =>
+      'assets/tiles/pixel_black_white_landscape.tmx';
+}
+
 class Assets {
   Assets._();
 
   static const AssetGenImage icon = AssetGenImage('assets/icon.png');
+  static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsTilesGen tiles = $AssetsTilesGen();
   static const AssetGenImage wordByWord1 =
       AssetGenImage('assets/word_by_word_1.png');
   static const AssetGenImage wordByWord2 =
