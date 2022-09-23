@@ -5,6 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -16,6 +17,9 @@ import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 part 'wbw_game.freezed.dart';
 part 'wbw_game_di.dart';
 
+int get kTileDimension => 16;
+int get kTilesHeight => 7;
+
 class WbwGame extends FlameGame with HasCollisionDetection {
   WbwGame.use({required final Locator read, required final ThemeData theme})
       : diDto = WbwGameDiDto.use(read: read, theme: theme);
@@ -25,13 +29,15 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   late final CameraComponent worldCamera;
   late final World world;
   final character = CharacterComponent();
-
+  LevelLayoutComponent? currentLevelLayout;
   @override
   Future<void> onLoad() async {
     debugMode = true;
     children.register<CameraComponent>();
     world = World();
     router = const GameRouter().init();
+    currentLevelLayout =
+        LevelLayoutComponent(tileMapName: 'pixel_black_white_landscape');
     final providersComponent = diDto.getBlocsProviderComponent(
       children: [
         world,
@@ -39,7 +45,9 @@ class WbwGame extends FlameGame with HasCollisionDetection {
       ],
     );
 
-    await world.addAll([character, ObstactleComponent()]);
+    await world.addAll(
+      [if (currentLevelLayout != null) currentLevelLayout!, character],
+    );
 
     // Enable initial overlays
     overlays.addAll([
@@ -59,8 +67,12 @@ class WbwGame extends FlameGame with HasCollisionDetection {
     );
     // TODO(arenukvern): uncomment when tiled will be ready
     // ..setBounds(bounds);
+
     camera.viewfinder
-      ..visibleGameSize = Vector2(0, 0)
+      // ..visibleGameSize = Vector2(
+      //   30 * kTileDimension.toDouble() / 2,
+      //   kTilesHeight * kTileDimension.toDouble() / 3,
+      // )
       ..position = character.position
       ..anchor = Anchor.center;
     // TODO(arenukvern): update (remove & add) the character when
@@ -223,7 +235,7 @@ class CharacterComponent extends PositionComponent
     // TODO(arenukvern): update params
   }
 
-  final paint = Paint()..color = Colors.white;
+  final paint = Paint()..color = Colors.blue;
   FlyingObjectsParams params = const FlyingObjectsParams();
 
   @override
@@ -249,9 +261,13 @@ class CharacterComponent extends PositionComponent
       params: params,
     );
     final yResult = mechanics.getYVelocity(y);
-    y -= yResult.force;
+    if (y < 10 && yResult.fuel > 0) {
+    } else {
+      y -= yResult.force;
+    }
     params = params.copyWith(
       fuel: FuelStorageModel(value: yResult.fuel),
+      fuelNormalPower: 2.0,
     );
     // TODO(arenukvern): add updated fuel to the bloc
     // gameRef.diDto.levelBloc.add();
@@ -263,23 +279,19 @@ class CharacterComponent extends PositionComponent
   }
 }
 
-class ObstactleComponent extends PositionComponent with CollisionCallbacks {
-  ObstactleComponent()
-      : super(
-          position: Vector2(50, 50),
-          size: Vector2(20, 20),
-        );
-
+class LevelLayoutComponent extends PositionComponent {
+  LevelLayoutComponent({
+    required this.tileMapName,
+  });
+  final String tileMapName;
+  late TiledComponent map;
   @override
-  void render(final Canvas canvas) {
-    final paint = Paint()..color = Colors.red;
-    canvas.drawRect(
-      Rect.fromLTWH(0, 0, width, height),
-      paint,
+  Future<void>? onLoad() async {
+    await super.onLoad();
+    map = await TiledComponent.load(
+      '$tileMapName.tmx',
+      Vector2.all(16),
     );
-    super.render(canvas);
+    await add(map);
   }
 }
-
-/// 1. Force character go down and go right
-/// 2. Make the camera follow the character
