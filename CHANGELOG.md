@@ -6,10 +6,10 @@
 What's next:
 - Link world and world components follow the current game state (blocs).
 
-- Create Graphic Set for the Tiled Map.
-- Create Tiled map with obstacles.
 - Add Tiled map with obstacles to the game.
 - Add collision between player's character and the obstacle.
+- Create Graphic Set for the Tiled Map.
+- Create Tiled map with obstacles.
 
 
 -- Prototype stage

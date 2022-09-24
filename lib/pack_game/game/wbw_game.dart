@@ -9,6 +9,7 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
+import 'package:tiled/tiled.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
@@ -17,8 +18,9 @@ import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 part 'wbw_game_di.dart';
 
 int get kTileDimension => 16;
-int get kTilesMaxHeight => 20;
-int get kTilesHeight => 12;
+int get kMapTilesHeight => 20;
+int get kVisibleTilesHeight => 12;
+int get kVisibleTilesWidth => 30;
 
 class WbwGame extends FlameGame with HasCollisionDetection {
   WbwGame.use({required final Locator read, required final ThemeData theme})
@@ -82,8 +84,8 @@ class WbwGame extends FlameGame with HasCollisionDetection {
 
     camera.viewfinder
       ..visibleGameSize = Vector2(
-        30 * kTileDimension.toDouble() / 2,
-        kTilesHeight * kTileDimension.toDouble(),
+        kVisibleTilesWidth * kTileDimension.toDouble() / 2,
+        kVisibleTilesHeight * kTileDimension.toDouble(),
       )
       ..anchor = Anchor.center;
     return camera;
@@ -112,7 +114,7 @@ class CharacterComponent extends PositionComponent
       ),
     );
     params = const FlyingObjectsParams();
-    position = Vector2(params.minXBoundry, (kTilesMaxHeight - 2) * 16);
+    position = Vector2(params.minXBoundry, (kMapTilesHeight - 2) * 16);
     return super.onLoad();
   }
 
@@ -178,8 +180,26 @@ class LevelLayoutComponent extends PositionComponent {
     );
 
     await onLoadBuilder(map);
-
+    final base = map.tileMap.map.tilesets[0];
+    final obstacles = base.tiles.where((final e) {
+      final objectGroup = e.objectGroup;
+      if (objectGroup is! ObjectGroup) return false;
+      return objectGroup.objects[0].name == 'obstacle';
+    }).toList();
+    // map.tileMap
+    //     .getLayer<TileLayer>('tile_obstacles')
+    //     ?.data
+    //     ?.map((final gidList) => gidList.map((final e) => e.tile));
     await add(map);
+
     await super.onLoad();
   }
 }
+
+
+/// 1. Create a new Tile Obstacle Component with the Hitbox Polygon.
+/// The polygon hitbox should be created from the GIDs and the 
+/// collidable tiles. The constructor should have param 
+/// how many tiles to the height and width should be used.
+/// 2. Use Tile Obstacle Component to define collidable level.
+/// 3. Write collision logic with the player.
