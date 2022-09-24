@@ -107,7 +107,7 @@ class CharacterComponent extends PositionComponent
   @override
   Future<void>? onLoad() async {
     await add(
-      FlameBlocListener<LevelBloc, LevelBlocState>(
+      FlameBlocListener<LevelPlayersBloc, LevelPlayersBlocState>(
         onNewState: _handleLevelState,
       ),
     );
@@ -116,9 +116,11 @@ class CharacterComponent extends PositionComponent
     return super.onLoad();
   }
 
-  void _handleLevelState(final LevelBlocState levelState) {
-    if (levelState is! LiveLevelBlocState) return;
-    // TODO(arenukvern): update params
+  void _handleLevelState(final LevelPlayersBlocState levelState) {
+    if (levelState is! LiveLevelPlayersBlocState) return;
+    params = params.copyWith(
+      fuel: levelState.playerCharacter.fuel,
+    );
   }
 
   @override
@@ -126,6 +128,7 @@ class CharacterComponent extends PositionComponent
     final textPaint = TextPaint(
       style: const TextStyle(
         fontSize: 24.0,
+        color: Colors.blue,
       ),
     );
 
@@ -149,13 +152,8 @@ class CharacterComponent extends PositionComponent
     } else {
       y -= yResult.force;
     }
-    params = params.copyWith(
-      // fuel: const FuelStorageModel( value: 90),
-      fuel: FuelStorageModel(value: yResult.fuel),
-      fuelNormalPower: 2.0,
-    );
-    // TODO(arenukvern): add updated fuel to the bloc
-    // gameRef.diDto.levelBloc.add();
+    gameRef.diDto.levelPlayersBloc
+        .add(ConsumeFuelEvent(fuel: FuelStorageModel(value: yResult.fuel)));
     x -= mechanics.xVelocity;
     // fuel = 90;
     // y = 0;
@@ -174,7 +172,6 @@ class LevelLayoutComponent extends PositionComponent {
   late TiledComponent map;
   @override
   Future<void> onLoad() async {
-    print('onLoad');
     map = await TiledComponent.load(
       '$tileMapName.tmx',
       Vector2.all(16),

@@ -21,3 +21,20 @@ class InitLevelPlayersEvent extends LevelPlayersEvent {
 class SwitchToNextPlayerEvent extends LevelPlayersEvent {
   const SwitchToNextPlayerEvent();
 }
+
+@immutable
+class ConsumeFuelEvent extends LevelPlayersEvent {
+  const ConsumeFuelEvent({
+    required this.fuel,
+  });
+  final FuelStorageModel fuel;
+}
+
+@immutable
+class RefuelStorageEvent extends LevelPlayersEvent {
+  const RefuelStorageEvent({
+    required this.score,
+  });
+
+  final ScoreModel score;
+}

@@ -26,6 +26,8 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
   }) : super(const EmptyLevelPlayersBlocState()) {
     on<InitLevelPlayersEvent>(_onInitLevelPlayers);
     on<SwitchToNextPlayerEvent>(_onSwitchToNextPlayer);
+    on<ConsumeFuelEvent>(_consumeCharacterFuel);
+    on<RefuelStorageEvent>(_onRefuelStorage);
   }
   final LevelPlayersBlocDiDto diDto;
 
@@ -67,6 +69,39 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
 
       emit(updatedState);
     }
+  }
+
+  void _consumeCharacterFuel(
+    final ConsumeFuelEvent event,
+    final Emitter<LevelPlayersBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final updatedState = liveState.copyWith(
+      playerCharacter: liveState.playerCharacter.copyWith(
+        fuel: event.fuel,
+      ),
+    );
+
+    emit(updatedState);
+  }
+
+  void _onRefuelStorage(
+    final RefuelStorageEvent event,
+    final Emitter<LevelPlayersBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final fuelMechanics = diDto.mechanics.fuel;
+    final fuel = fuelMechanics.getFuelFromScore(score: event.score);
+    final fuelStorage = fuelMechanics.refuel(
+      fuelStorage: liveState.playerCharacter.fuel,
+      fuel: fuel,
+    );
+    final updatedState = liveState.copyWith(
+      playerCharacter: liveState.playerCharacter.copyWith(
+        fuel: fuelStorage,
+      ),
+    );
+    emit(updatedState);
   }
 
   LiveLevelPlayersBlocState getLiveState() {

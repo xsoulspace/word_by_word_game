@@ -24,7 +24,6 @@ mixin _$LiveLevelBlocState {
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
-  FuelStorageModel get fuelStorage => throw _privateConstructorUsedError;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -47,11 +46,9 @@ abstract class $LiveLevelBlocStateCopyWith<$Res> {
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
-      FuelStorageModel fuelStorage,
       WordWarning wordWarning});
 
   $CurrentWordModelCopyWith<$Res> get currentWord;
-  $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
 
 /// @nodoc
@@ -69,7 +66,6 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
-    Object? fuelStorage = freezed,
     Object? wordWarning = freezed,
   }) {
     return _then(_value.copyWith(
@@ -89,10 +85,6 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
-      fuelStorage: fuelStorage == freezed
-          ? _value.fuelStorage
-          : fuelStorage // ignore: cast_nullable_to_non_nullable
-              as FuelStorageModel,
       wordWarning: wordWarning == freezed
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -104,13 +96,6 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
   $CurrentWordModelCopyWith<$Res> get currentWord {
     return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
       return _then(_value.copyWith(currentWord: value));
-    });
-  }
-
-  @override
-  $FuelStorageModelCopyWith<$Res> get fuelStorage {
-    return $FuelStorageModelCopyWith<$Res>(_value.fuelStorage, (value) {
-      return _then(_value.copyWith(fuelStorage: value));
     });
   }
 }
@@ -127,13 +112,10 @@ abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
-      FuelStorageModel fuelStorage,
       WordWarning wordWarning});
 
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
-  @override
-  $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
 
 /// @nodoc
@@ -153,7 +135,6 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
-    Object? fuelStorage = freezed,
     Object? wordWarning = freezed,
   }) {
     return _then(_$_LiveLevelBlocState(
@@ -173,10 +154,6 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
-      fuelStorage: fuelStorage == freezed
-          ? _value.fuelStorage
-          : fuelStorage // ignore: cast_nullable_to_non_nullable
-              as FuelStorageModel,
       wordWarning: wordWarning == freezed
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -194,7 +171,6 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
-      this.fuelStorage = const FuelStorageModel(),
       this.wordWarning = WordWarning.none})
       : _words = words,
         super._();
@@ -218,9 +194,6 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   @override
   @JsonKey()
   final String latestWord;
-  @override
-  @JsonKey()
-  final FuelStorageModel fuelStorage;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -231,7 +204,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   String toString() {
-    return 'LiveLevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, fuelStorage: $fuelStorage, wordWarning: $wordWarning)';
+    return 'LiveLevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, wordWarning: $wordWarning)';
   }
 
   @override
@@ -246,8 +219,6 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
             const DeepCollectionEquality()
                 .equals(other.latestWord, latestWord) &&
             const DeepCollectionEquality()
-                .equals(other.fuelStorage, fuelStorage) &&
-            const DeepCollectionEquality()
                 .equals(other.wordWarning, wordWarning));
   }
 
@@ -259,7 +230,6 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord),
-      const DeepCollectionEquality().hash(fuelStorage),
       const DeepCollectionEquality().hash(wordWarning));
 
   @JsonKey(ignore: true)
@@ -283,7 +253,6 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
       final CurrentWordModel currentWord,
       final Map<String, String> words,
       final String latestWord,
-      final FuelStorageModel fuelStorage,
       final WordWarning wordWarning}) = _$_LiveLevelBlocState;
   const _LiveLevelBlocState._() : super._();
 
@@ -298,8 +267,6 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
   Map<String, String> get words;
   @override
   String get latestWord;
-  @override
-  FuelStorageModel get fuelStorage;
   @override
 
   /// ********************************************

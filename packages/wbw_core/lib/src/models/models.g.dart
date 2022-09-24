@@ -115,10 +115,6 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           ) ??
           const {},
       latestWord: json['latestWord'] as String? ?? '',
-      fuelStorage: json['fuelStorage'] == null
-          ? const FuelStorageModel()
-          : FuelStorageModel.fromJson(
-              json['fuelStorage'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
@@ -129,7 +125,6 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
-      'fuelStorage': instance.fuelStorage.toJson(),
     };
 
 _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(

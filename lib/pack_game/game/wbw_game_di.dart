@@ -5,6 +5,7 @@ class WbwGameDiDto {
     required final Locator read,
     required this.theme,
   })  : levelBloc = read(),
+        levelPlayersBloc = read(),
         resourcesBloc = read(),
         globalGameBloc = read();
 
@@ -12,6 +13,7 @@ class WbwGameDiDto {
   /// *      Ephemeral
   /// ********************************************
   final LevelBloc levelBloc;
+  final LevelPlayersBloc levelPlayersBloc;
   final GlobalGameBloc globalGameBloc;
   final ResourcesBloc resourcesBloc;
   final ThemeData theme;
@@ -25,6 +27,9 @@ class WbwGameDiDto {
       ),
       FlameBlocProvider<LevelBloc, LevelBlocState>.value(
         value: levelBloc,
+      ),
+      FlameBlocProvider<LevelPlayersBloc, LevelPlayersBlocState>.value(
+        value: levelPlayersBloc,
       ),
       FlameBlocProvider<GlobalGameBloc, GlobalGameBlocState>.value(
         value: globalGameBloc,

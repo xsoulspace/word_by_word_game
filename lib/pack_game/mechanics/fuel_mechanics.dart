@@ -22,17 +22,4 @@ class FuelMechanics {
       value: fuelStorage.value + fuel.value,
     );
   }
-
-  /// Will use fuel accordingly to the [timeDeltaInSeconds]
-  FuelStorageModel consumeTick({
-    required final FuelStorageModel fuelStorage,
-    required final int timeDeltaInSeconds,
-  }) {
-    final consumedFuel = timeDeltaInSeconds * 0.0005;
-    final newFuelValue =
-        double.parse((fuelStorage.value - consumedFuel).toStringAsFixed(2));
-    return fuelStorage.copyWith(
-      value: newFuelValue,
-    );
-  }
 }

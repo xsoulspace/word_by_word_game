@@ -146,7 +146,7 @@ class __$$_FlyingObjectsParamsCopyWithImpl<$Res>
 class _$_FlyingObjectsParams extends _FlyingObjectsParams {
   const _$_FlyingObjectsParams(
       {this.fuel = const FuelStorageModel(value: 150),
-      this.fuelNormalPower = 50.5,
+      this.fuelNormalPower = 2.0,
       this.requiredLiftForce = 0.5})
       : super._();
 

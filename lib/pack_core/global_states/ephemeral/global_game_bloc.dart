@@ -201,7 +201,6 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     return LevelModel(
       id: liveLevelState.id,
       currentWord: liveLevelState.currentWord,
-      fuelStorage: liveLevelState.fuelStorage,
       latestWord: liveLevelState.latestWord,
       words: liveLevelState.words,
       characters: LevelCharactersModel(

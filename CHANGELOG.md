@@ -1,18 +1,11 @@
 ## Next
 
-TODO:
-- Fix game camera
-- Link character component params and character state params (fuel).
-
-
-## September 22th 2022
-- Added Game Camera and now it follows the player's character.
-- Basic character physics mechanics with ability to consume fuel, go up, keep a line, go down.
-- Added the same background color for the all elements of the ui and game world.
+- Fixed game camera size.
+- Linked character component fuel and global character state fuel. Added refuel machanics and it works!
 
 What's next:
-- Link character component params and character state params (fuel).
 - Link world and world components follow the current game state (blocs).
+
 - Create Graphic Set for the Tiled Map.
 - Create Tiled map with obstacles.
 - Add Tiled map with obstacles to the game.
@@ -32,6 +25,13 @@ What's next:
 - Add an option to start level fresh and continue if you have a progress (saved lvl).
 
 -- Release a game prototype.
+
+
+
+## September 22th 2022
+- Added Game Camera and now it follows the player's character.
+- Basic character physics mechanics with ability to consume fuel, go up, keep a line, go down.
+- Added the same background color for the all elements of the ui and game world.
 
 
 ## September 22th 2022

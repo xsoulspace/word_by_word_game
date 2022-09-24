@@ -36,7 +36,6 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
-    @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
 
     /// ********************************************
     /// *      NON PERSISTENT
@@ -53,7 +52,6 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
       latestWord: levelModel.latestWord,
       words: levelModel.words,
       id: levelModel.id,
-      fuelStorage: levelModel.fuelStorage,
     );
   }
 }

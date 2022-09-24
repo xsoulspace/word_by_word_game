@@ -16,7 +16,7 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
     @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
 
     /// it can be changed and can be dependent from the character.
-    @Default(50.5) final double fuelNormalPower,
+    @Default(2.0) final double fuelNormalPower,
 
     /// 0.005 with +- sign.
     /// + is go down.
@@ -56,7 +56,7 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
   double get windForce => .03;
 
   /// -1 or +1 - can be changed, nature force
-  int get windSign => 0;
+  int get windSign => -1;
   double get minXBoundry => 250.0;
   double get minYBoundry => 100.0;
 }

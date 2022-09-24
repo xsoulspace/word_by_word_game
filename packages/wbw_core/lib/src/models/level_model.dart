@@ -23,7 +23,6 @@ class LevelModel with _$LevelModel {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
-    @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>

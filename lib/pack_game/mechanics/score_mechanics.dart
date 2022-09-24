@@ -4,6 +4,6 @@ class ScoreMechanics {
   ScoreModel getScoreFromWord({
     required final String word,
   }) {
-    return ScoreModel(value: word.length.toDouble());
+    return ScoreModel(value: (word.length * 65).toDouble());
   }
 }

@@ -40,15 +40,6 @@ class AcceptNewWordEvent extends LevelBlocEvent {
 }
 
 @immutable
-class RefuelStorageEvent extends LevelBlocEvent {
-  const RefuelStorageEvent({
-    required this.score,
-  });
-
-  final ScoreModel score;
-}
-
-@immutable
 class DecreaseMiddlePartEvent extends LevelBlocEvent {
   const DecreaseMiddlePartEvent({
     required this.type,

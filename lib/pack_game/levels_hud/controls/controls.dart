@@ -23,12 +23,7 @@ class ControlsWidget extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Column(
-            children: [
-              Text(levelState.fuelStorage.value.toString()),
-              const PlayerSwitcher(),
-            ],
-          ),
+          const PlayerSwitcher(),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(
