@@ -180,12 +180,14 @@ class LevelLayoutComponent extends PositionComponent {
     );
 
     await onLoadBuilder(map);
-    final base = map.tileMap.map.tilesets[0];
-    final obstacles = base.tiles.where((final e) {
+    final baseTileset = map.tileMap.map.tilesets[0];
+    final obstaclesRects = baseTileset.tiles.where((final e) {
       final objectGroup = e.objectGroup;
       if (objectGroup is! ObjectGroup) return false;
       return objectGroup.objects[0].name == 'obstacle';
     }).toList();
+
+    map.tileMap.getLayer<TileLayer>('tile_obstacles')?.tileData;
     // map.tileMap
     //     .getLayer<TileLayer>('tile_obstacles')
     //     ?.data
@@ -196,6 +198,23 @@ class LevelLayoutComponent extends PositionComponent {
   }
 }
 
+class ObstacleComponent extends PositionComponent {
+  ObstacleComponent({
+    required this.gids,
+    required this.obstacleTiles,
+  });
+  final List<List<Gid>> gids;
+  final Map<Gid, Tile> obstacleTiles;
+
+  @override
+  Future<void> onLoad() async {
+    await super.onLoad();
+    // final vertices = PolygonCreator(tileData: gids, tiledObjects: obstacleTiles)
+    //     .createPolygon();
+    // final obstaclePolygon = PolygonComponent.(vertices);
+    // await add(obstaclePolygon);
+  }
+}
 
 /// 1. Create a new Tile Obstacle Component with the Hitbox Polygon.
 /// The polygon hitbox should be created from the GIDs and the 
