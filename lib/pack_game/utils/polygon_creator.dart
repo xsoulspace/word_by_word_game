@@ -1,8 +1,8 @@
-import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:tiled/tiled.dart';
 
+/// should not be used
 class PolygonCreator {
   PolygonCreator({
     required this.tileData,
@@ -10,24 +10,26 @@ class PolygonCreator {
     this.tileDimension = 16,
   });
 
-  /// Root list is a column, and the inner lists are rows.
+  /// Root list is a rows, and the inner lists are columns.
   final List<List<Gid>> tileData;
   final Map<Gid, TiledObject> tiledObjects;
   final int tileDimension;
-  List<Vector2> createPolygon() {
+
+  List<Vector2>? createPolygon() {
     /// column -> row -> tile points
-    final rawPoints = <List<TilePoints?>>[];
-    final columns = tileData;
+    final mapRows = <List<TilePoints?>?>[];
+    final originalRows = [...tileData];
 
     /// get all points relative to the map
-    for (int columnIndex = 0; columnIndex < columns.length; columnIndex++) {
-      final row = columns[columnIndex];
+    for (int rowIndex = 0; rowIndex < originalRows.length; rowIndex++) {
+      final row = originalRows[rowIndex];
 
       final rowPoints = <TilePoints?>[];
-      for (int tileIndex = 0; tileIndex < row.length; tileIndex++) {
-        final gid = row[tileIndex];
+      for (int columnIndex = 0; columnIndex < row.length; columnIndex++) {
+        final gid = row[columnIndex];
+        final isTransparent = gid.tile == 0;
         final tiledObject = tiledObjects[gid];
-        if (tiledObject == null) {
+        if (tiledObject == null || isTransparent) {
           rowPoints.add(null);
           continue;
         }
@@ -38,22 +40,25 @@ class PolygonCreator {
           final width = tiledObject.width + x;
 
           /// relative points to the tile
-          final Vector2 topLeft = Vector2(x, y);
-          final Vector2 bottomLeft = Vector2(x, height);
-          final Vector2 bottomRight = Vector2(width, height);
-          final Vector2 topRight = Vector2(width, y);
+          final topLeft = Vector2(x, y);
+          final bottomLeft = Vector2(x, height);
+          final bottomRight = Vector2(width, height);
+          final topRight = Vector2(width, y);
 
           final mapX = (columnIndex * tileDimension).toDouble();
-          final mapY = (tileIndex * tileDimension).toDouble();
+          final mapY = (rowIndex * tileDimension).toDouble();
 
           /// relative points to the tile map
           final mapVector = Vector2(mapX, mapY);
 
           final tilePoints = TilePoints(
-            bottomLeft: bottomLeft..add(mapVector),
-            bottomRight: bottomRight..add(mapVector),
-            topLeft: topLeft..add(mapVector),
-            topRight: topRight..add(mapVector),
+            gid: gid,
+            rows: [
+              [topLeft, topRight].map((final e) => e..add(mapVector)).toList(),
+              [bottomLeft, bottomRight]
+                  .map((final e) => e..add(mapVector))
+                  .toList(),
+            ],
           );
           rowPoints.add(tilePoints);
         } else {
@@ -61,49 +66,84 @@ class PolygonCreator {
           throw UnimplementedError();
         }
       }
-      rawPoints.add(rowPoints);
+      mapRows.add(rowPoints);
     }
 
-    /// order map points to draw a polygon in counter-clockwise fashion
-    /// (top right, top left, bottom left, bottom right)
-    final vertices = <Vector2>[];
+    final checkedRows = [...mapRows];
 
-    while (rawPoints.isNotEmpty) {
-      /// extract all left side points
-      /// remove all left side points
-      /// extract all bottom side points
-      for (final row in rawPoints) {
-        final firstTilePoints =
-            row.firstWhereOrNull((final points) => points != null);
-        if (firstTilePoints == null) continue;
-        final leftSidePoints = firstTilePoints.leftSide;
-        vertices.addAll(leftSidePoints);
-      }
-      final bottomRow = rawPoints.reversed
-          .toList()
-          .firstWhereOrNull((final row) => row.whereNotNull().isNotEmpty)!;
+    /// find point
+    GidPoint? getStartPoint() {
+      bool rowsNotEmpty = true;
+      while (rowsNotEmpty) {
+        for (int rowIndex = 0; rowIndex < checkedRows.length; rowIndex++) {
+          final row = checkedRows[rowIndex];
+          if (row == null) {
+            continue;
+          }
 
-      for (final tilePoints in bottomRow) {
-        ////
-        if (tilePoints == null) continue;
-        vertices.addAll([tilePoints.bottomLeft, tilePoints.bottomRight]);
+          /// start from last to first
+
+          for (int columnIndex = row.length - 1;
+              columnIndex >= 0;
+              columnIndex--) {
+            final tilePoints = row[columnIndex];
+            if (tilePoints == null) {
+              row.removeLast();
+            } else {
+              return GidPoint(
+                tilePoints: tilePoints,
+                columnIndex: columnIndex,
+                rowIndex: rowIndex,
+              );
+            }
+          }
+        }
+        rowsNotEmpty = false;
       }
+      return null;
     }
 
-    return vertices;
+    final firstPoint = getStartPoint()!;
+
+    void getIntersections(final GidPoint point) {
+      /// find neighbours points around the start point
+      final top = mapRows[point.rowIndex - 1]?[point.columnIndex];
+      final topLeft = mapRows[point.rowIndex - 1]?[point.columnIndex - 1];
+      final topRight = mapRows[point.rowIndex - 1]?[point.columnIndex + 1];
+
+      final bottom = mapRows[point.rowIndex + 1]?[point.columnIndex];
+      final bottomLeft = mapRows[point.rowIndex + 1]?[point.columnIndex - 1];
+      final bottomRight = mapRows[point.rowIndex + 1]?[point.columnIndex + 1];
+    }
+
+    getIntersections(firstPoint);
+    return null;
   }
 }
 
 class TilePoints {
   TilePoints({
-    required this.bottomLeft,
-    required this.topLeft,
-    required this.bottomRight,
-    required this.topRight,
+    required this.rows,
+    required this.gid,
   });
-  final Vector2 topLeft;
-  final Vector2 bottomLeft;
-  final Vector2 bottomRight;
-  final Vector2 topRight;
-  List<Vector2> get leftSide => [topLeft, bottomLeft];
+  final Gid gid;
+  final List<List<Vector2>> rows;
+  List<Vector2> get leftSide {
+    final column = <Vector2>[];
+    for (final row in rows) {
+      column.add(row.first);
+    }
+    return column;
+  }
+}
+
+class GidPoint {
+  GidPoint({
+    required this.columnIndex,
+    required this.rowIndex,
+    required this.tilePoints,
+  });
+  final int columnIndex;
+  final int rowIndex;
+  final TilePoints tilePoints;
 }
