@@ -5,7 +5,7 @@ import 'package:word_by_word_game/pack_game/utils/utils.dart';
 
 void main() {
   group('ObstacleLevelHelper', () {
-    test('createPolygon', () {
+    test('checkCollision', () {
       const groundTileId = 1;
       const upperGroundTileId = 2;
       const transparentTileId = 0;
