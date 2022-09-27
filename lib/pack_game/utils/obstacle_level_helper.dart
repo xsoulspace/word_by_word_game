@@ -1,19 +1,44 @@
-import 'package:flame/components.dart';
+import 'package:collection/collection.dart';
 import 'package:flame/game.dart';
+import 'package:flame_tiled/flame_tiled.dart';
 import 'package:tiled/tiled.dart';
 
 class ObstacleLevelHelper {
   ObstacleLevelHelper({
     required this.tileData,
     required this.tiledObjects,
-    required this.tiles,
     this.tileDimension = 16,
   });
 
+  factory ObstacleLevelHelper.fromMapComponent({
+    required final TiledComponent<FlameGame> tiledMapComponent,
+    required final int tileDimension,
+  }) {
+    final tileObstaclesLayer =
+        tiledMapComponent.tileMap.getLayer<TileLayer>('tile_obstacles');
+    final tileData = tileObstaclesLayer?.tileData;
+
+    final baseTileset = tiledMapComponent.tileMap.map.tilesets[0];
+    final tiledObjectsEntries = baseTileset.tiles.map((final e) {
+      final objectGroup = e.objectGroup;
+      if (objectGroup is! ObjectGroup) return null;
+      final obj = objectGroup.objects[0];
+      if (obj.name == 'obstacle') return MapEntry(obj.gid!, obj);
+      return null;
+    }).whereNotNull();
+
+    return ObstacleLevelHelper(
+      tileData: tileData ?? [],
+      tiledObjects: Map.fromEntries(tiledObjectsEntries),
+      tileDimension: tileDimension,
+    );
+  }
+
   /// Root list is a rows, and the inner lists are columns.
   final List<List<Gid>> tileData;
-  final Map<Gid, TiledObject> tiledObjects;
-  final Map<Gid, Tile> tiles;
+
+  /// int is GID number
+  final Map<int, TiledObject> tiledObjects;
   final int tileDimension;
   void onLoad() {}
   bool checkCollision(final Vector2 position) {
@@ -30,12 +55,12 @@ class ObstacleLevelHelper {
     return tiledObjects[gid.tile];
   }
 
-  Tile? getCollisionTile(final Vector2 position) {
-    final x = _roundToTileDimension(position.x);
-    final y = _roundToTileDimension(position.y);
-    final gid = tileData[y][x];
-    return tiles[gid.tile];
-  }
+  // Tile? getCollisionTile(final Vector2 position) {
+  //   final x = _roundToTileDimension(position.x);
+  //   final y = _roundToTileDimension(position.y);
+  //   final gid = tileData[y][x];
+  //   return tiles[gid];
+  // }
 
   int _roundToTileDimension(final double n) {
     return _roundToMultiple(n.toInt(), tileDimension) ~/ tileDimension;

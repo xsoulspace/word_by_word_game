@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
@@ -9,11 +8,11 @@ import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:tiled/tiled.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
+import 'package:word_by_word_game/pack_game/utils/utils.dart';
 
 part 'wbw_game_di.dart';
 
@@ -33,6 +32,7 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   late CharacterComponent character;
   LevelLayoutComponent? currentLevelLayout;
   late FlameMultiBlocProvider providersComponent;
+  late ObstacleLevelHelper obstacleLevelHelper;
   @override
   Future<void> onLoad() async {
     debugMode = true;
@@ -50,10 +50,16 @@ class WbwGame extends FlameGame with HasCollisionDetection {
     final levelLayout = LevelLayoutComponent(
       tileMapName: 'pixel_black_white_landscape',
       onLoadBuilder: (final map) async {
+        final obstacleLevelHelper = ObstacleLevelHelper.fromMapComponent(
+          tiledMapComponent: map,
+          tileDimension: kTileDimension,
+        );
+
         const groundHeight = 30.0;
 
         character = CharacterComponent(
           levelHeight: map.tileMap.map.height.toDouble() + groundHeight,
+          obstacleLevelHelper: obstacleLevelHelper,
         );
 
         await world.add(character);
@@ -95,16 +101,17 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   Color backgroundColor() => diDto.theme.colorScheme.surface;
 }
 
-class CharacterComponent extends PositionComponent
-    with CollisionCallbacks, HasGameRef<WbwGame> {
+class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
   CharacterComponent({
     required this.levelHeight,
+    required this.obstacleLevelHelper,
   }) : super(
           size: Vector2(16, 16),
         );
   final paint = Paint()..color = Colors.blue;
   final double levelHeight;
   late FlyingObjectsParams params;
+  final ObstacleLevelHelper obstacleLevelHelper;
 
   @override
   Future<void>? onLoad() async {
@@ -143,8 +150,14 @@ class CharacterComponent extends PositionComponent
     super.render(canvas);
   }
 
+  void onCollision() {}
+
   @override
   void update(final double dt) {
+    final collided = obstacleLevelHelper.checkCollision(position);
+    if (collided) {
+      onCollision();
+    }
     final mechanics = BasicFlyingObjectMechanics(
       params: params,
     );
@@ -180,45 +193,9 @@ class LevelLayoutComponent extends PositionComponent {
     );
 
     await onLoadBuilder(map);
-    final baseTileset = map.tileMap.map.tilesets[0];
-    final obstaclesRects = baseTileset.tiles.where((final e) {
-      final objectGroup = e.objectGroup;
-      if (objectGroup is! ObjectGroup) return false;
-      return objectGroup.objects[0].name == 'obstacle';
-    }).toList();
 
-    map.tileMap.getLayer<TileLayer>('tile_obstacles')?.tileData;
-    // map.tileMap
-    //     .getLayer<TileLayer>('tile_obstacles')
-    //     ?.data
-    //     ?.map((final gidList) => gidList.map((final e) => e.tile));
     await add(map);
 
     await super.onLoad();
   }
 }
-
-class ObstacleComponent extends PositionComponent {
-  ObstacleComponent({
-    required this.gids,
-    required this.obstacleTiles,
-  });
-  final List<List<Gid>> gids;
-  final Map<Gid, Tile> obstacleTiles;
-
-  @override
-  Future<void> onLoad() async {
-    await super.onLoad();
-    // final vertices = PolygonCreator(tileData: gids, tiledObjects: obstacleTiles)
-    //     .createPolygon();
-    // final obstaclePolygon = PolygonComponent.(vertices);
-    // await add(obstaclePolygon);
-  }
-}
-
-/// 1. Create a new Tile Obstacle Component with the Hitbox Polygon.
-/// The polygon hitbox should be created from the GIDs and the 
-/// collidable tiles. The constructor should have param 
-/// how many tiles to the height and width should be used.
-/// 2. Use Tile Obstacle Component to define collidable level.
-/// 3. Write collision logic with the player.

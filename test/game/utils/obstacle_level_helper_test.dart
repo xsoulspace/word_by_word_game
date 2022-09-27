@@ -42,23 +42,20 @@ void main() {
       final obstacleLevelHelper = ObstacleLevelHelper(
         tileData: [upperRow, groundRow],
         tiledObjects: {
-          groundGid: TiledObject(
+          groundGid.tile: TiledObject(
             id: groundTileId,
             width: tileDimension,
 
             /// 16 + 4
             height: 4,
           ),
-          upperGid: TiledObject(
+          upperGid.tile: TiledObject(
             id: upperGroundTileId,
             x: 4,
             y: 2,
             width: 8,
             height: 14,
           ),
-        },
-        tiles: {
-          // TODO(arenukvern): add tiles
         },
       );
 
