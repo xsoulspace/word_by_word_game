@@ -23,7 +23,7 @@ class ObstacleLevelHelper {
       final objectGroup = e.objectGroup;
       if (objectGroup is! ObjectGroup) return null;
       final obj = objectGroup.objects[0];
-      if (obj.name == 'obstacle') return MapEntry(obj.gid!, obj);
+      if (obj.name == 'obstacle') return MapEntry(obj.id, obj);
       return null;
     }).whereNotNull();
 
@@ -42,9 +42,12 @@ class ObstacleLevelHelper {
   final int tileDimension;
   void onLoad() {}
   bool checkCollision(final Vector2 position) {
-    final x = _roundToTileDimension(position.x);
-    final y = _roundToTileDimension(position.y);
-    final gid = tileData[y][x];
+    final rowIndex = _roundToTileDimension(position.x);
+    final columnIndex = _roundToTileDimension(position.y);
+    if (columnIndex > tileData.length - 1) return false;
+    final row = tileData[rowIndex];
+    if (columnIndex > row.length - 1) return false;
+    final gid = row[columnIndex];
     return gid.tile != 0;
   }
 

@@ -150,7 +150,9 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     super.render(canvas);
   }
 
-  void onCollision() {}
+  void onCollision() {
+    print('!!COLLISION!!');
+  }
 
   @override
   void update(final double dt) {
