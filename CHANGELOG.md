@@ -1,16 +1,18 @@
 ## Next
 
-- Fixed game camera size.
-- Linked character component fuel and global character state fuel. Added refuel machanics and it works!
+## September 28th 2022
+
+- Linked world and world components states to follow the current level state.
 
 What's next:
-- Link world and world components follow the current game state (blocs).
+
+- Add collision between player's character and the obstacle.
+- Add end games screen
+- Add highscore per level.
 
 - Add Tiled map with obstacles to the game.
-- Add collision between player's character and the obstacle.
 - Create Graphic Set for the Tiled Map.
 - Create Tiled map with obstacles.
-
 
 -- Prototype stage
 
@@ -20,12 +22,18 @@ What's next:
 -- Bugs & Improvements stage
 
 - Add limitation to cut the middle part (should be dependent from the available score).
-- Add End Game mechanics.
 - Fix game initialization - no errors is shown in the debug console.
 - Add an option to start level fresh and continue if you have a progress (saved lvl).
 
 -- Release a game prototype.
 
+
+## September 25th 2022
+- Fixed game camera size.
+- Linked character component fuel and global character state fuel. Added refuel machanics and it works!
+
+What's next:
+- Link world and world components follow the current game state (blocs).
 
 
 ## September 22th 2022

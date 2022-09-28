@@ -20,6 +20,7 @@ class LevelModel with _$LevelModel {
     required final LevelModelId id,
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
+    required final ResourcesModel resources,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
@@ -41,6 +42,7 @@ class TemplateLevelModel with _$TemplateLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory TemplateLevelModel({
     required final LevelModelId id,
+    required final ResourcesModel resources,
     @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _TemplateLevelModel;
   const TemplateLevelModel._();

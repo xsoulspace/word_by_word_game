@@ -2,10 +2,13 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_bloc.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/level_players_bloc.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
+part 'resources_bloc.freezed.dart';
+part 'resources_bloc.g.dart';
 part 'resources_events.dart';
 part 'resources_states.dart';
 
@@ -20,10 +23,10 @@ class ResourcesBlocDiDto {
   final LevelPlayersBloc levelPlayersBloc;
 }
 
-class ResourcesBloc extends Bloc<ResourcesEvent, ResourcesState> {
+class ResourcesBloc extends Bloc<ResourcesEvent, ResourcesBlocState> {
   ResourcesBloc({
     required this.diDto,
-  }) : super(const ResourcesState.initial()) {
+  }) : super(const EmptyResourcesBlocState()) {
     on<InitResourcesEvent>(_onInitResources);
   }
 
@@ -31,11 +34,21 @@ class ResourcesBloc extends Bloc<ResourcesEvent, ResourcesState> {
 
   void _onInitResources(
     final InitResourcesEvent event,
-    final Emitter<ResourcesState> emit,
+    final Emitter<ResourcesBlocState> emit,
   ) {
-    // TODO(arenukvern): add resources load
+    final updatedState = LiveResourcesBlocState.fromModel(event.resources);
+    emit(updatedState);
+
     diDto.globalGameBloc.add(
       const LevelPartLoadedEvent(loadedState: LevelPartStates.resources),
     );
+  }
+
+  LiveResourcesBlocState getLiveState() {
+    final effectiveState = state;
+    if (effectiveState is! LiveResourcesBlocState) {
+      throw ArgumentError.value(effectiveState);
+    }
+    return effectiveState;
   }
 }

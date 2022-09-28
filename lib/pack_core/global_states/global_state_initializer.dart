@@ -41,18 +41,23 @@ class GlobalStateInitializer extends StateInitializer {
         templateLevels: const [
           TemplateLevelModel(
             id: 'test level',
+            resources: ResourcesModel(
+              tileMapName: 'pixel_black_white_landscape',
+            ),
           ),
         ],
-        playersCharacters: const [
+        playersCharacters: [
           PlayerCharacterModel(
             id: 'ohman char',
             name: 'OhMan',
             description: 'Simple boring character',
+            color: Colors.green.value,
           ),
           PlayerCharacterModel(
             id: 'waterman',
             name: 'Waterman',
             description: 'Another boring character',
+            color: Colors.cyan.value,
           )
         ],
         currentLevelId: '',

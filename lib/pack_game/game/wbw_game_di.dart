@@ -22,7 +22,7 @@ class WbwGameDiDto {
     required final List<Component>? children,
   }) {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
-      FlameBlocProvider<ResourcesBloc, ResourcesState>.value(
+      FlameBlocProvider<ResourcesBloc, ResourcesBlocState>.value(
         value: resourcesBloc,
       ),
       FlameBlocProvider<LevelBloc, LevelBlocState>.value(

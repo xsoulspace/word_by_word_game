@@ -72,6 +72,7 @@ class _LevelOptionsScreenState extends LifeState {
     );
 
     final level = LevelModel(
+      resources: templateLevel.resources,
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),
@@ -81,6 +82,7 @@ class _LevelOptionsScreenState extends LifeState {
       ),
       id: templateLevel.id,
     );
+
     diDto.globalGameBloc.add(InitGlobalGameLevelEvent(levelModel: level));
     diDto.appRouterController.toPlayableLevel(id: level.id);
   }

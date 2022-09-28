@@ -63,4 +63,7 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
       playersCharacters: gameModel.playersCharacters,
     );
   }
+
+  bool get isLevelCompletelyLoaded =>
+      LevelPartStates.containsAll(loadedLevelParts);
 }

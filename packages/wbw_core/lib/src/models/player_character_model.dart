@@ -18,6 +18,7 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     required final PlayerCharacterModelId id,
     required final String name,
     required final String description,
+    required final int color,
     @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
     @Default(50.5) final double fuelNormalPower,
     @Default(0.5) final double requiredLiftForce,

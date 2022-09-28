@@ -8,5 +8,8 @@ abstract class ResourcesEvent extends Equatable {
 
 @immutable
 class InitResourcesEvent extends ResourcesEvent {
-  const InitResourcesEvent();
+  const InitResourcesEvent({
+    required this.resources,
+  });
+  final ResourcesModel resources;
 }

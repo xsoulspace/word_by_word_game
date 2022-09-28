@@ -41,10 +41,11 @@ class ObstacleLevelHelper {
   final Map<int, TiledObject> tiledObjects;
   final int tileDimension;
   void onLoad() {}
+
   bool checkCollision(final Vector2 position) {
     final rowIndex = _roundToTileDimension(position.x);
     final columnIndex = _roundToTileDimension(position.y);
-    if (columnIndex > tileData.length - 1) return false;
+    if (rowIndex > tileData.length - 1) return false;
     final row = tileData[rowIndex];
     if (columnIndex > row.length - 1) return false;
     final gid = row[columnIndex];
@@ -52,9 +53,9 @@ class ObstacleLevelHelper {
   }
 
   TiledObject? getCollisionTiledObject(final Vector2 position) {
-    final x = _roundToTileDimension(position.x);
-    final y = _roundToTileDimension(position.y);
-    final gid = tileData[y][x];
+    final rowIndex = _roundToTileDimension(position.x);
+    final columnInex = _roundToTileDimension(position.y);
+    final gid = tileData[rowIndex][columnInex];
     return tiledObjects[gid.tile];
   }
 

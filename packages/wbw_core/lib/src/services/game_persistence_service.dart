@@ -16,7 +16,11 @@ class GamePersistenceService {
   Future<GameModel?> loadGame() async {
     final jsonMap = await localDataService.getMap(_persistenceKey);
     if (jsonMap.isEmpty) return null;
-
-    return GameModel.fromJson(jsonMap);
+    try {
+      return GameModel.fromJson(jsonMap);
+    } catch (e) {
+      print(e);
+      return null;
+    }
   }
 }

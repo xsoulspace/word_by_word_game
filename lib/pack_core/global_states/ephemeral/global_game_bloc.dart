@@ -87,7 +87,11 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
           charactersModel: levelModel.characters,
         ),
       )
-      ..resourcesBloc.add(const InitResourcesEvent());
+      ..resourcesBloc.add(
+        InitResourcesEvent(
+          resources: levelModel.resources,
+        ),
+      );
   }
 
   LiveGlobalGameBlocState _getResetedLevelLoad() {
@@ -105,8 +109,8 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     LiveGlobalGameBlocState updateState = liveState.copyWith(
       loadedLevelParts: loadedStates,
     );
-    final isLoaded = LevelPartStates.containsAll(loadedStates);
-    if (isLoaded) {
+
+    if (updateState.isLevelCompletelyLoaded) {
       diDto.mechanics.worldTime.resume();
       updateState = updateState.copyWith(
         currentLevelId: diDto.levelBloc.getLiveState().id,
@@ -196,6 +200,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
 
   LevelModel _getCurrentLevelModel() {
     final liveLevelState = diDto.levelBloc.getLiveState();
+    final liveResourcesState = diDto.resourcesBloc.getLiveState();
     final livePlayersState = diDto.levelPlayersBloc.getLiveState();
 
     return LevelModel(
@@ -209,6 +214,9 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       players: LevelPlayersModel(
         currentPlayerId: livePlayersState.currentPlayerId,
         players: livePlayersState.players,
+      ),
+      resources: ResourcesModel(
+        tileMapName: liveResourcesState.tileMapName,
       ),
     );
   }

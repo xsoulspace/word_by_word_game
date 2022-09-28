@@ -106,6 +106,8 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
           json['characters'] as Map<String, dynamic>),
+      resources:
+          ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
       currentWord: json['currentWord'] == null
           ? const CurrentWordModel()
           : CurrentWordModel.fromJson(
@@ -122,6 +124,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'id': instance.id,
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
+      'resources': instance.resources.toJson(),
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
@@ -131,6 +134,8 @@ _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
         Map<String, dynamic> json) =>
     _$_TemplateLevelModel(
       id: json['id'] as String,
+      resources:
+          ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
       fuelStorage: json['fuelStorage'] == null
           ? const FuelStorageModel()
           : FuelStorageModel.fromJson(
@@ -141,6 +146,7 @@ Map<String, dynamic> _$$_TemplateLevelModelToJson(
         _$_TemplateLevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'resources': instance.resources.toJson(),
       'fuelStorage': instance.fuelStorage.toJson(),
     };
 
@@ -165,6 +171,7 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
       id: json['id'] as String,
       name: json['name'] as String,
       description: json['description'] as String,
+      color: json['color'] as int,
       fuel: json['fuel'] == null
           ? const FuelStorageModel(value: 150)
           : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
@@ -178,6 +185,7 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'id': instance.id,
       'name': instance.name,
       'description': instance.description,
+      'color': instance.color,
       'fuel': instance.fuel.toJson(),
       'fuelNormalPower': instance.fuelNormalPower,
       'requiredLiftForce': instance.requiredLiftForce,
@@ -201,6 +209,16 @@ Map<String, dynamic> _$$_PlayerProfileModelToJson(
       'colorValue': instance.colorValue,
       'name': instance.name,
       'playedGames': instance.playedGames.toList(),
+    };
+
+_$_ResourcesModel _$$_ResourcesModelFromJson(Map<String, dynamic> json) =>
+    _$_ResourcesModel(
+      tileMapName: json['tileMapName'] as String,
+    );
+
+Map<String, dynamic> _$$_ResourcesModelToJson(_$_ResourcesModel instance) =>
+    <String, dynamic>{
+      'tileMapName': instance.tileMapName,
     };
 
 _$_ScoreModel _$$_ScoreModelFromJson(Map<String, dynamic> json) =>

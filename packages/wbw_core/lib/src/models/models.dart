@@ -14,6 +14,7 @@ part 'models.freezed.dart';
 part 'models.g.dart';
 part 'player_character_model.dart';
 part 'player_profile_model.dart';
+part 'resources_model.dart';
 part 'score_model.dart';
 part 'typedefs.dart';
 part 'world_time.dart';
