@@ -7,23 +7,33 @@
 What's next:
 
 - Add collision between player's character and the obstacle.
-- Add end games screen
-- Add highscore per level.
+- Add end games screen.
+- Add highscore per level and in total (LocalService).
+the Global highscore is:
+- (+) word length * level modifier (hardness of the level)
+- (-) the score used by a player to decrease middle word part
+- (-) to the player who crashed the character.
+- (+) character modifier (hardness of the character)
+
+Player highscore:
+- max words count
+- max letters length
+- max distance
+- flight time.
+
+
+- Add limitation to cut the middle part (should be dependent from the available score).
+- Add an option to start level fresh and continue if you have a progress (saved lvl).
+
+-- Prototype stage
 
 - Add Tiled map with obstacles to the game.
 - Create Graphic Set for the Tiled Map.
 - Create Tiled map with obstacles.
-
--- Prototype stage
-
-- Replace solid color by blur background for Pause Screen.
-- Gamify UI.
-
--- Bugs & Improvements stage
-
-- Add limitation to cut the middle part (should be dependent from the available score).
-- Fix game initialization - no errors is shown in the debug console.
-- Add an option to start level fresh and continue if you have a progress (saved lvl).
+- Gamify UI:
+- Add Character descriptions
+- Add Level description.
+- Replace solid color by blur background for Pause Screen (?).
 
 -- Release a game prototype.
 
