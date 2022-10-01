@@ -23,6 +23,8 @@ class LevelOptionsScreen extends HookWidget {
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
     final templateLevel =
         globalGameBloc.getTemplateLevelById(id: routeArgs.levelId);
+    if (templateLevel == null) return const SizedBox();
+
     final state = _useLevelOptionsScreenState(
       read: context.read,
       templateLevel: templateLevel,
@@ -37,9 +39,19 @@ class LevelOptionsScreen extends HookWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
-                templateLevel.id.toUpperCase(),
-                style: theme.textTheme.bodyLarge,
+              Row(
+                children: [
+                  GameBackButton(
+                    onPressed: state.onReturnToLevels,
+                  ),
+                  Expanded(
+                    child: Text(
+                      templateLevel.stringName.toUpperCase(),
+                      style: theme.textTheme.bodyLarge,
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ],
               ),
               uiTheme.verticalBoxes.extraLarge,
               Text(

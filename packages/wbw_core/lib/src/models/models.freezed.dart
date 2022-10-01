@@ -1013,7 +1013,9 @@ LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LevelModel {
-  String get id => throw _privateConstructorUsedError;
+  String get id =>
+      throw _privateConstructorUsedError; // TODO(arenukvern): add i18n object
+  String get stringName => throw _privateConstructorUsedError;
   LevelPlayersModel get players => throw _privateConstructorUsedError;
   LevelCharactersModel get characters => throw _privateConstructorUsedError;
   ResourcesModel get resources => throw _privateConstructorUsedError;
@@ -1034,6 +1036,7 @@ abstract class $LevelModelCopyWith<$Res> {
       _$LevelModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      String stringName,
       LevelPlayersModel players,
       LevelCharactersModel characters,
       ResourcesModel resources,
@@ -1058,6 +1061,7 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
+    Object? stringName = freezed,
     Object? players = freezed,
     Object? characters = freezed,
     Object? resources = freezed,
@@ -1069,6 +1073,10 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      stringName: stringName == freezed
+          ? _value.stringName
+          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       players: players == freezed
           ? _value.players
@@ -1135,6 +1143,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
+      String stringName,
       LevelPlayersModel players,
       LevelCharactersModel characters,
       ResourcesModel resources,
@@ -1165,6 +1174,7 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? stringName = freezed,
     Object? players = freezed,
     Object? characters = freezed,
     Object? resources = freezed,
@@ -1176,6 +1186,10 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      stringName: stringName == freezed
+          ? _value.stringName
+          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       players: players == freezed
           ? _value.players
@@ -1211,6 +1225,7 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
 class _$_LevelModel extends _LevelModel {
   const _$_LevelModel(
       {required this.id,
+      required this.stringName,
       required this.players,
       required this.characters,
       required this.resources,
@@ -1225,6 +1240,9 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   final String id;
+// TODO(arenukvern): add i18n object
+  @override
+  final String stringName;
   @override
   final LevelPlayersModel players;
   @override
@@ -1248,7 +1266,7 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(id: $id, players: $players, characters: $characters, resources: $resources, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
+    return 'LevelModel(id: $id, stringName: $stringName, players: $players, characters: $characters, resources: $resources, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
   }
 
   @override
@@ -1257,6 +1275,8 @@ class _$_LevelModel extends _LevelModel {
         (other.runtimeType == runtimeType &&
             other is _$_LevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.stringName, stringName) &&
             const DeepCollectionEquality().equals(other.players, players) &&
             const DeepCollectionEquality()
                 .equals(other.characters, characters) &&
@@ -1273,6 +1293,7 @@ class _$_LevelModel extends _LevelModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(stringName),
       const DeepCollectionEquality().hash(players),
       const DeepCollectionEquality().hash(characters),
       const DeepCollectionEquality().hash(resources),
@@ -1296,6 +1317,7 @@ class _$_LevelModel extends _LevelModel {
 abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
       {required final String id,
+      required final String stringName,
       required final LevelPlayersModel players,
       required final LevelCharactersModel characters,
       required final ResourcesModel resources,
@@ -1309,6 +1331,8 @@ abstract class _LevelModel extends LevelModel {
 
   @override
   String get id;
+  @override // TODO(arenukvern): add i18n object
+  String get stringName;
   @override
   LevelPlayersModel get players;
   @override
@@ -1333,7 +1357,9 @@ TemplateLevelModel _$TemplateLevelModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TemplateLevelModel {
-  String get id => throw _privateConstructorUsedError;
+  String get id =>
+      throw _privateConstructorUsedError; // TODO(arenukvern): add i18n object
+  String get stringName => throw _privateConstructorUsedError;
   ResourcesModel get resources => throw _privateConstructorUsedError;
   FuelStorageModel get fuelStorage => throw _privateConstructorUsedError;
 
@@ -1349,7 +1375,10 @@ abstract class $TemplateLevelModelCopyWith<$Res> {
           TemplateLevelModel value, $Res Function(TemplateLevelModel) then) =
       _$TemplateLevelModelCopyWithImpl<$Res>;
   $Res call(
-      {String id, ResourcesModel resources, FuelStorageModel fuelStorage});
+      {String id,
+      String stringName,
+      ResourcesModel resources,
+      FuelStorageModel fuelStorage});
 
   $ResourcesModelCopyWith<$Res> get resources;
   $FuelStorageModelCopyWith<$Res> get fuelStorage;
@@ -1367,6 +1396,7 @@ class _$TemplateLevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? stringName = freezed,
     Object? resources = freezed,
     Object? fuelStorage = freezed,
   }) {
@@ -1374,6 +1404,10 @@ class _$TemplateLevelModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      stringName: stringName == freezed
+          ? _value.stringName
+          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       resources: resources == freezed
           ? _value.resources
@@ -1409,7 +1443,10 @@ abstract class _$$_TemplateLevelModelCopyWith<$Res>
       __$$_TemplateLevelModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String id, ResourcesModel resources, FuelStorageModel fuelStorage});
+      {String id,
+      String stringName,
+      ResourcesModel resources,
+      FuelStorageModel fuelStorage});
 
   @override
   $ResourcesModelCopyWith<$Res> get resources;
@@ -1431,6 +1468,7 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? stringName = freezed,
     Object? resources = freezed,
     Object? fuelStorage = freezed,
   }) {
@@ -1438,6 +1476,10 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      stringName: stringName == freezed
+          ? _value.stringName
+          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       resources: resources == freezed
           ? _value.resources
@@ -1457,6 +1499,7 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
 class _$_TemplateLevelModel extends _TemplateLevelModel {
   const _$_TemplateLevelModel(
       {required this.id,
+      required this.stringName,
       required this.resources,
       this.fuelStorage = const FuelStorageModel()})
       : super._();
@@ -1466,6 +1509,9 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
 
   @override
   final String id;
+// TODO(arenukvern): add i18n object
+  @override
+  final String stringName;
   @override
   final ResourcesModel resources;
   @override
@@ -1474,7 +1520,7 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
 
   @override
   String toString() {
-    return 'TemplateLevelModel(id: $id, resources: $resources, fuelStorage: $fuelStorage)';
+    return 'TemplateLevelModel(id: $id, stringName: $stringName, resources: $resources, fuelStorage: $fuelStorage)';
   }
 
   @override
@@ -1483,6 +1529,8 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
         (other.runtimeType == runtimeType &&
             other is _$_TemplateLevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.stringName, stringName) &&
             const DeepCollectionEquality().equals(other.resources, resources) &&
             const DeepCollectionEquality()
                 .equals(other.fuelStorage, fuelStorage));
@@ -1493,6 +1541,7 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(stringName),
       const DeepCollectionEquality().hash(resources),
       const DeepCollectionEquality().hash(fuelStorage));
 
@@ -1513,6 +1562,7 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
 abstract class _TemplateLevelModel extends TemplateLevelModel {
   const factory _TemplateLevelModel(
       {required final String id,
+      required final String stringName,
       required final ResourcesModel resources,
       final FuelStorageModel fuelStorage}) = _$_TemplateLevelModel;
   const _TemplateLevelModel._() : super._();
@@ -1522,6 +1572,8 @@ abstract class _TemplateLevelModel extends TemplateLevelModel {
 
   @override
   String get id;
+  @override // TODO(arenukvern): add i18n object
+  String get stringName;
   @override
   ResourcesModel get resources;
   @override
@@ -2475,6 +2527,8 @@ PlayerHighscoreModel _$PlayerHighscoreModelFromJson(Map<String, dynamic> json) {
 mixin _$PlayerHighscoreModel {
   int get maxWordsCount => throw _privateConstructorUsedError;
   int get maxLettersCount => throw _privateConstructorUsedError;
+  int get totalWordsCount => throw _privateConstructorUsedError;
+  int get totalLettersCount => throw _privateConstructorUsedError;
   ScoreModel get score => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2488,7 +2542,12 @@ abstract class $PlayerHighscoreModelCopyWith<$Res> {
   factory $PlayerHighscoreModelCopyWith(PlayerHighscoreModel value,
           $Res Function(PlayerHighscoreModel) then) =
       _$PlayerHighscoreModelCopyWithImpl<$Res>;
-  $Res call({int maxWordsCount, int maxLettersCount, ScoreModel score});
+  $Res call(
+      {int maxWordsCount,
+      int maxLettersCount,
+      int totalWordsCount,
+      int totalLettersCount,
+      ScoreModel score});
 
   $ScoreModelCopyWith<$Res> get score;
 }
@@ -2506,6 +2565,8 @@ class _$PlayerHighscoreModelCopyWithImpl<$Res>
   $Res call({
     Object? maxWordsCount = freezed,
     Object? maxLettersCount = freezed,
+    Object? totalWordsCount = freezed,
+    Object? totalLettersCount = freezed,
     Object? score = freezed,
   }) {
     return _then(_value.copyWith(
@@ -2516,6 +2577,14 @@ class _$PlayerHighscoreModelCopyWithImpl<$Res>
       maxLettersCount: maxLettersCount == freezed
           ? _value.maxLettersCount
           : maxLettersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalWordsCount: totalWordsCount == freezed
+          ? _value.totalWordsCount
+          : totalWordsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalLettersCount: totalLettersCount == freezed
+          ? _value.totalLettersCount
+          : totalLettersCount // ignore: cast_nullable_to_non_nullable
               as int,
       score: score == freezed
           ? _value.score
@@ -2539,7 +2608,12 @@ abstract class _$$_PlayerHighscoreModelCopyWith<$Res>
           $Res Function(_$_PlayerHighscoreModel) then) =
       __$$_PlayerHighscoreModelCopyWithImpl<$Res>;
   @override
-  $Res call({int maxWordsCount, int maxLettersCount, ScoreModel score});
+  $Res call(
+      {int maxWordsCount,
+      int maxLettersCount,
+      int totalWordsCount,
+      int totalLettersCount,
+      ScoreModel score});
 
   @override
   $ScoreModelCopyWith<$Res> get score;
@@ -2560,6 +2634,8 @@ class __$$_PlayerHighscoreModelCopyWithImpl<$Res>
   $Res call({
     Object? maxWordsCount = freezed,
     Object? maxLettersCount = freezed,
+    Object? totalWordsCount = freezed,
+    Object? totalLettersCount = freezed,
     Object? score = freezed,
   }) {
     return _then(_$_PlayerHighscoreModel(
@@ -2570,6 +2646,14 @@ class __$$_PlayerHighscoreModelCopyWithImpl<$Res>
       maxLettersCount: maxLettersCount == freezed
           ? _value.maxLettersCount
           : maxLettersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalWordsCount: totalWordsCount == freezed
+          ? _value.totalWordsCount
+          : totalWordsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      totalLettersCount: totalLettersCount == freezed
+          ? _value.totalLettersCount
+          : totalLettersCount // ignore: cast_nullable_to_non_nullable
               as int,
       score: score == freezed
           ? _value.score
@@ -2586,6 +2670,8 @@ class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
   const _$_PlayerHighscoreModel(
       {this.maxWordsCount = 0,
       this.maxLettersCount = 0,
+      this.totalWordsCount = 0,
+      this.totalLettersCount = 0,
       this.score = ScoreModel.zero})
       : super._();
 
@@ -2600,11 +2686,17 @@ class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
   final int maxLettersCount;
   @override
   @JsonKey()
+  final int totalWordsCount;
+  @override
+  @JsonKey()
+  final int totalLettersCount;
+  @override
+  @JsonKey()
   final ScoreModel score;
 
   @override
   String toString() {
-    return 'PlayerHighscoreModel(maxWordsCount: $maxWordsCount, maxLettersCount: $maxLettersCount, score: $score)';
+    return 'PlayerHighscoreModel(maxWordsCount: $maxWordsCount, maxLettersCount: $maxLettersCount, totalWordsCount: $totalWordsCount, totalLettersCount: $totalLettersCount, score: $score)';
   }
 
   @override
@@ -2616,6 +2708,10 @@ class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
                 .equals(other.maxWordsCount, maxWordsCount) &&
             const DeepCollectionEquality()
                 .equals(other.maxLettersCount, maxLettersCount) &&
+            const DeepCollectionEquality()
+                .equals(other.totalWordsCount, totalWordsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.totalLettersCount, totalLettersCount) &&
             const DeepCollectionEquality().equals(other.score, score));
   }
 
@@ -2625,6 +2721,8 @@ class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
       runtimeType,
       const DeepCollectionEquality().hash(maxWordsCount),
       const DeepCollectionEquality().hash(maxLettersCount),
+      const DeepCollectionEquality().hash(totalWordsCount),
+      const DeepCollectionEquality().hash(totalLettersCount),
       const DeepCollectionEquality().hash(score));
 
   @JsonKey(ignore: true)
@@ -2645,6 +2743,8 @@ abstract class _PlayerHighscoreModel extends PlayerHighscoreModel {
   const factory _PlayerHighscoreModel(
       {final int maxWordsCount,
       final int maxLettersCount,
+      final int totalWordsCount,
+      final int totalLettersCount,
       final ScoreModel score}) = _$_PlayerHighscoreModel;
   const _PlayerHighscoreModel._() : super._();
 
@@ -2655,6 +2755,10 @@ abstract class _PlayerHighscoreModel extends PlayerHighscoreModel {
   int get maxWordsCount;
   @override
   int get maxLettersCount;
+  @override
+  int get totalWordsCount;
+  @override
+  int get totalLettersCount;
   @override
   ScoreModel get score;
   @override
@@ -2672,6 +2776,7 @@ PlayerLevelHighscoreModel _$PlayerLevelHighscoreModelFromJson(
 mixin _$PlayerLevelHighscoreModel {
   String get levelId => throw _privateConstructorUsedError;
   double get maxDistance => throw _privateConstructorUsedError;
+  double get totalDistance => throw _privateConstructorUsedError;
   double get landingsCount => throw _privateConstructorUsedError;
   double get flightTime => throw _privateConstructorUsedError;
 
@@ -2689,6 +2794,7 @@ abstract class $PlayerLevelHighscoreModelCopyWith<$Res> {
   $Res call(
       {String levelId,
       double maxDistance,
+      double totalDistance,
       double landingsCount,
       double flightTime});
 }
@@ -2706,6 +2812,7 @@ class _$PlayerLevelHighscoreModelCopyWithImpl<$Res>
   $Res call({
     Object? levelId = freezed,
     Object? maxDistance = freezed,
+    Object? totalDistance = freezed,
     Object? landingsCount = freezed,
     Object? flightTime = freezed,
   }) {
@@ -2717,6 +2824,10 @@ class _$PlayerLevelHighscoreModelCopyWithImpl<$Res>
       maxDistance: maxDistance == freezed
           ? _value.maxDistance
           : maxDistance // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalDistance: totalDistance == freezed
+          ? _value.totalDistance
+          : totalDistance // ignore: cast_nullable_to_non_nullable
               as double,
       landingsCount: landingsCount == freezed
           ? _value.landingsCount
@@ -2741,6 +2852,7 @@ abstract class _$$_PlayerLevelHighscoreModelCopyWith<$Res>
   $Res call(
       {String levelId,
       double maxDistance,
+      double totalDistance,
       double landingsCount,
       double flightTime});
 }
@@ -2762,6 +2874,7 @@ class __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>
   $Res call({
     Object? levelId = freezed,
     Object? maxDistance = freezed,
+    Object? totalDistance = freezed,
     Object? landingsCount = freezed,
     Object? flightTime = freezed,
   }) {
@@ -2773,6 +2886,10 @@ class __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>
       maxDistance: maxDistance == freezed
           ? _value.maxDistance
           : maxDistance // ignore: cast_nullable_to_non_nullable
+              as double,
+      totalDistance: totalDistance == freezed
+          ? _value.totalDistance
+          : totalDistance // ignore: cast_nullable_to_non_nullable
               as double,
       landingsCount: landingsCount == freezed
           ? _value.landingsCount
@@ -2793,6 +2910,7 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
   const _$_PlayerLevelHighscoreModel(
       {required this.levelId,
       this.maxDistance = 0,
+      this.totalDistance = 0,
       this.landingsCount = 0,
       this.flightTime = 0})
       : super._();
@@ -2807,6 +2925,9 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
   final double maxDistance;
   @override
   @JsonKey()
+  final double totalDistance;
+  @override
+  @JsonKey()
   final double landingsCount;
   @override
   @JsonKey()
@@ -2814,7 +2935,7 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
 
   @override
   String toString() {
-    return 'PlayerLevelHighscoreModel(levelId: $levelId, maxDistance: $maxDistance, landingsCount: $landingsCount, flightTime: $flightTime)';
+    return 'PlayerLevelHighscoreModel(levelId: $levelId, maxDistance: $maxDistance, totalDistance: $totalDistance, landingsCount: $landingsCount, flightTime: $flightTime)';
   }
 
   @override
@@ -2825,6 +2946,8 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
             const DeepCollectionEquality().equals(other.levelId, levelId) &&
             const DeepCollectionEquality()
                 .equals(other.maxDistance, maxDistance) &&
+            const DeepCollectionEquality()
+                .equals(other.totalDistance, totalDistance) &&
             const DeepCollectionEquality()
                 .equals(other.landingsCount, landingsCount) &&
             const DeepCollectionEquality()
@@ -2837,6 +2960,7 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
       runtimeType,
       const DeepCollectionEquality().hash(levelId),
       const DeepCollectionEquality().hash(maxDistance),
+      const DeepCollectionEquality().hash(totalDistance),
       const DeepCollectionEquality().hash(landingsCount),
       const DeepCollectionEquality().hash(flightTime));
 
@@ -2858,6 +2982,7 @@ abstract class _PlayerLevelHighscoreModel extends PlayerLevelHighscoreModel {
   const factory _PlayerLevelHighscoreModel(
       {required final String levelId,
       final double maxDistance,
+      final double totalDistance,
       final double landingsCount,
       final double flightTime}) = _$_PlayerLevelHighscoreModel;
   const _PlayerLevelHighscoreModel._() : super._();
@@ -2869,6 +2994,8 @@ abstract class _PlayerLevelHighscoreModel extends PlayerLevelHighscoreModel {
   String get levelId;
   @override
   double get maxDistance;
+  @override
+  double get totalDistance;
   @override
   double get landingsCount;
   @override

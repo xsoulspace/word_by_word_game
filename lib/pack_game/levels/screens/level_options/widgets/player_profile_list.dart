@@ -76,14 +76,16 @@ class PlayerProfileAvatar extends StatelessWidget {
   final PlayerProfileModel player;
   @override
   Widget build(final BuildContext context) {
+    final score = player.highscore.score.value;
     return Container(
       decoration: BoxDecoration(
         color: player.color,
         borderRadius: BorderRadius.circular(24),
       ),
-      width: 40,
-      height: 40,
-      child: Text(player.name),
+      width: 45,
+      height: 45,
+      alignment: Alignment.center,
+      child: Text('${score.toInt()}'),
     );
   }
 }

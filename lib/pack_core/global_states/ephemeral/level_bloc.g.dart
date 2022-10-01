@@ -10,6 +10,7 @@ _$_LiveLevelBlocState _$$_LiveLevelBlocStateFromJson(
         Map<String, dynamic> json) =>
     _$_LiveLevelBlocState(
       id: json['id'] as String,
+      stringName: json['stringName'] as String,
       currentWord: json['currentWord'] == null
           ? const CurrentWordModel()
           : CurrentWordModel.fromJson(
@@ -28,6 +29,7 @@ Map<String, dynamic> _$$_LiveLevelBlocStateToJson(
         _$_LiveLevelBlocState instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'stringName': instance.stringName,
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,

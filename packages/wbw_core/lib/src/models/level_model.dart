@@ -18,6 +18,8 @@ class LevelModel with _$LevelModel {
   )
   const factory LevelModel({
     required final LevelModelId id,
+    // TODO(arenukvern): add i18n object
+    required final String stringName,
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
     required final ResourcesModel resources,
@@ -42,6 +44,8 @@ class TemplateLevelModel with _$TemplateLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory TemplateLevelModel({
     required final LevelModelId id,
+    // TODO(arenukvern): add i18n object
+    required final String stringName,
     required final ResourcesModel resources,
     @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _TemplateLevelModel;

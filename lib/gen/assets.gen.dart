@@ -5,7 +5,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import
+// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal
 
 import 'package:flutter/widgets.dart';
 
@@ -21,6 +21,9 @@ class $AssetsTilesGen {
   /// File path: assets/tiles/pixel_black_white_landscape.tmx
   String get pixelBlackWhiteLandscape =>
       'assets/tiles/pixel_black_white_landscape.tmx';
+
+  /// List of all assets
+  List<String> get values => [pixelBlackWhiteLandscape];
 }
 
 class $AssetsImagesTilesetsGen {
@@ -29,6 +32,9 @@ class $AssetsImagesTilesetsGen {
   /// File path: assets/images/tilesets/pixel_black_white_tileset.png
   AssetGenImage get pixelBlackWhiteTileset => const AssetGenImage(
       'assets/images/tilesets/pixel_black_white_tileset.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [pixelBlackWhiteTileset];
 }
 
 class Assets {
@@ -41,6 +47,9 @@ class Assets {
       AssetGenImage('assets/word_by_word_1.png');
   static const AssetGenImage wordByWord2 =
       AssetGenImage('assets/word_by_word_2.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [icon, wordByWord1, wordByWord2];
 }
 
 class AssetGenImage {
@@ -100,6 +109,8 @@ class AssetGenImage {
       cacheHeight: cacheHeight,
     );
   }
+
+  ImageProvider provider() => AssetImage(_assetName);
 
   String get path => _assetName;
 

@@ -20,7 +20,8 @@ LiveLevelBlocState _$LiveLevelBlocStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LiveLevelBlocState {
-  String get id => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError; // TODO(arenukvern): i18n
+  String get stringName => throw _privateConstructorUsedError;
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
@@ -43,6 +44,7 @@ abstract class $LiveLevelBlocStateCopyWith<$Res> {
       _$LiveLevelBlocStateCopyWithImpl<$Res>;
   $Res call(
       {String id,
+      String stringName,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
@@ -63,6 +65,7 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? stringName = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -72,6 +75,10 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      stringName: stringName == freezed
+          ? _value.stringName
+          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       currentWord: currentWord == freezed
           ? _value.currentWord
@@ -109,6 +116,7 @@ abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
   @override
   $Res call(
       {String id,
+      String stringName,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
@@ -132,6 +140,7 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
+    Object? stringName = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -141,6 +150,10 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      stringName: stringName == freezed
+          ? _value.stringName
+          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       currentWord: currentWord == freezed
           ? _value.currentWord
@@ -168,6 +181,7 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
 class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   const _$_LiveLevelBlocState(
       {required this.id,
+      required this.stringName,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
@@ -180,6 +194,9 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   final String id;
+// TODO(arenukvern): i18n
+  @override
+  final String stringName;
   @override
   @JsonKey()
   final CurrentWordModel currentWord;
@@ -204,7 +221,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   String toString() {
-    return 'LiveLevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, wordWarning: $wordWarning)';
+    return 'LiveLevelBlocState(id: $id, stringName: $stringName, currentWord: $currentWord, words: $words, latestWord: $latestWord, wordWarning: $wordWarning)';
   }
 
   @override
@@ -213,6 +230,8 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
         (other.runtimeType == runtimeType &&
             other is _$_LiveLevelBlocState &&
             const DeepCollectionEquality().equals(other.id, id) &&
+            const DeepCollectionEquality()
+                .equals(other.stringName, stringName) &&
             const DeepCollectionEquality()
                 .equals(other.currentWord, currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
@@ -227,6 +246,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
+      const DeepCollectionEquality().hash(stringName),
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord),
@@ -250,6 +270,7 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
     implements LevelBlocState {
   const factory _LiveLevelBlocState(
       {required final String id,
+      required final String stringName,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
       final String latestWord,
@@ -261,6 +282,8 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
 
   @override
   String get id;
+  @override // TODO(arenukvern): i18n
+  String get stringName;
   @override
   CurrentWordModel get currentWord;
   @override

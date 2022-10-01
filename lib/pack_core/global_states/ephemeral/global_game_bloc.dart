@@ -162,35 +162,37 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     final EndLevelEvent event,
     final Emitter<GlobalGameBlocState> emit,
   ) {
-    if (event.isWon) {
-      final currentLevelModel = _getCurrentLevelModel();
-      final players = currentLevelModel.players;
-      final liveState = getLiveState();
-      final updatedPlayers = [...liveState.playersCollection];
-      for (final player in players.players) {
-        final updatedPlayer = diDto.mechanics.score.countPlayerLevelHighscore(
-          player: player,
-          levelId: currentLevelModel.id,
-          isLevelFinished: true,
-          maxDistance: event.maxDistance,
-        );
-        final index = updatedPlayers.indexWhere(
-          (final e) => e.id == updatedPlayer.id,
-        );
-        if (index < 0) {
-          updatedPlayers.add(updatedPlayer);
-        } else {
-          updatedPlayers[index] = updatedPlayer;
-        }
-      }
-      final updatedState = liveState.copyWith(
-        playersCollection: updatedPlayers,
+    final currentLevelModel = _getCurrentLevelModel();
+    final players = currentLevelModel.players;
+    final liveState = getLiveState();
+    final updatedPlayers = [...liveState.playersCollection];
+    for (final player in players.players) {
+      PlayerProfileModel updatedPlayer =
+          diDto.mechanics.score.countPlayerLevelHighscore(
+        player: player,
+        levelId: currentLevelModel.id,
+        isLevelFinished: event.isWon,
+        maxDistance: event.maxDistance,
       );
-      emit(updatedState);
-      _saveGame(liveState: updatedState);
-    } else {
-      // noop
+      final index = updatedPlayers.indexWhere(
+        (final e) => e.id == updatedPlayer.id,
+      );
+      if (index < 0) {
+        updatedPlayers.add(updatedPlayer);
+      } else {
+        final globalProfile = updatedPlayers[index];
+        updatedPlayer = diDto.mechanics.score.mergePlayerProfiles(
+          globalProfile: globalProfile,
+          levelProfile: updatedPlayer,
+        );
+        updatedPlayers[index] = updatedPlayer;
+      }
     }
+    final updatedState = liveState.copyWith(
+      playersCollection: updatedPlayers,
+    );
+    emit(updatedState);
+    _saveGame(liveState: updatedState);
   }
 
   void _onCharacterCollision(
@@ -216,6 +218,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       playersCollection: [...liveState.playersCollection, profile],
     );
     emit(updateState);
+    _saveGame();
   }
 
   /// before to save game, make sure to add [SaveCurrentLevelEvent]
@@ -267,6 +270,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     final livePlayersState = diDto.levelPlayersBloc.getLiveState();
 
     return LevelModel(
+      stringName: liveLevelState.stringName,
       id: liveLevelState.id,
       currentWord: liveLevelState.currentWord,
       latestWord: liveLevelState.latestWord,
@@ -292,7 +296,9 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     return effectiveState;
   }
 
-  TemplateLevelModel getTemplateLevelById({required final LevelModelId id}) {
+  TemplateLevelModel? getTemplateLevelById({required final LevelModelId id}) {
+    if (id.isEmpty) return null;
+
     final liveState = getLiveState();
     // TODO(arenukvern): handle null error
     return liveState.templateLevels.firstWhere((final level) => level.id == id);

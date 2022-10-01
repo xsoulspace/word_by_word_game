@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 import 'package:wbw_core/wbw_core.dart';
 
 const int kIncreaseScoreModifier = 65;
@@ -53,6 +55,8 @@ class ScoreMechanics {
         score: highscore.score.copyWith(
           value: highscore.score.value + score.value,
         ),
+        totalLettersCount: maxLettersCount,
+        totalWordsCount: maxWordsCount,
       ),
     );
   }
@@ -72,19 +76,53 @@ class ScoreMechanics {
 
     PlayerLevelHighscoreModel levelHighscore = levelsHighscores[levelId] ??
         PlayerLevelHighscoreModel(levelId: levelId);
+    final newMaxDistance = math.max(
+      maxDistance,
+      levelHighscore.maxDistance,
+    );
     levelHighscore = levelHighscore.copyWith(
       // TODO(arenukvern): add a way to count flight time
       // flightTime: ,
       landingsCount: isLevelFinished
           ? levelHighscore.landingsCount + 1
           : levelHighscore.landingsCount,
-      maxDistance: maxDistance,
+      maxDistance: newMaxDistance,
+      totalDistance: levelHighscore.totalDistance + maxDistance,
     );
 
     levelsHighscores[levelId] = levelHighscore;
 
     return player.copyWith(
       levelsHighscores: levelsHighscores,
+    );
+  }
+
+  /// level profile can have a score zero
+  PlayerProfileModel mergePlayerProfiles({
+    required final PlayerProfileModel globalProfile,
+    required final PlayerProfileModel levelProfile,
+  }) {
+    final gScore = globalProfile.highscore;
+    final lScore = levelProfile.highscore;
+    final maxLettersCount = math.max(
+      gScore.maxLettersCount,
+      lScore.maxLettersCount,
+    );
+    final maxWordsCount = math.max(
+      gScore.maxWordsCount,
+      lScore.maxWordsCount,
+    );
+
+    return globalProfile.copyWith(
+      highscore: gScore.copyWith(
+        score: gScore.score.copyWith(
+          value: gScore.score.value + lScore.score.value,
+        ),
+        maxLettersCount: maxLettersCount,
+        maxWordsCount: maxWordsCount,
+        totalLettersCount: gScore.totalLettersCount + lScore.totalLettersCount,
+        totalWordsCount: gScore.totalWordsCount + lScore.totalWordsCount,
+      ),
     );
   }
 }

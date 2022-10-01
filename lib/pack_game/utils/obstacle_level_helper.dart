@@ -52,10 +52,10 @@ class ObstacleLevelHelper {
 
   bool checkCollision(final Vector2 position) {
     /// horizontal index
-    final columnIndex = _roundToTileDimension(position.x);
+    final columnIndex = roundToTileDimension(position.x);
 
     /// vertical index
-    final rowIndex = _roundToTileDimension(position.y);
+    final rowIndex = roundToTileDimension(position.y);
     if (rowIndex > tileData.length - 1) return false;
     final row = tileData[rowIndex];
     if (columnIndex > row.length - 1) return false;
@@ -65,7 +65,7 @@ class ObstacleLevelHelper {
 
   SideCollisionEvent checkSideCollision(final Vector2 position) {
     /// horizontal index
-    final columnIndex = _roundToTileDimension(position.x);
+    final columnIndex = roundToTileDimension(position.x);
     final firstRow = tileData.first;
     if (columnIndex > firstRow.length) {
       return const SideCollisionEvent(hasRightSideCollision: true);
@@ -84,10 +84,10 @@ class ObstacleLevelHelper {
 
   TiledObject? getCollisionTiledObject(final Vector2 position) {
     /// horizontal index
-    final columnIndex = _roundToTileDimension(position.x);
+    final columnIndex = roundToTileDimension(position.x);
 
     /// vertical index
-    final rowIndex = _roundToTileDimension(position.y);
+    final rowIndex = roundToTileDimension(position.y);
     final gid = tileData[rowIndex][columnIndex];
     return tiledObjects[gid.tile];
   }
@@ -99,7 +99,7 @@ class ObstacleLevelHelper {
   //   return tiles[gid];
   // }
 
-  int _roundToTileDimension(final double n) {
+  int roundToTileDimension(final double n) {
     return _roundToMultiple(n.toInt(), tileDimension) ~/ tileDimension;
   }
 

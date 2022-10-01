@@ -55,6 +55,8 @@ class PlayerHighscoreModel with _$PlayerHighscoreModel {
   const factory PlayerHighscoreModel({
     @Default(0) final int maxWordsCount,
     @Default(0) final int maxLettersCount,
+    @Default(0) final int totalWordsCount,
+    @Default(0) final int totalLettersCount,
     @Default(ScoreModel.zero) final ScoreModel score,
   }) = _PlayerHighscoreModel;
   const PlayerHighscoreModel._();
@@ -77,6 +79,7 @@ class PlayerLevelHighscoreModel with _$PlayerLevelHighscoreModel {
   const factory PlayerLevelHighscoreModel({
     required final LevelModelId levelId,
     @Default(0) final double maxDistance,
+    @Default(0) final double totalDistance,
     @Default(0) final double landingsCount,
     @Default(0) final double flightTime,
   }) = _PlayerLevelHighscoreModel;

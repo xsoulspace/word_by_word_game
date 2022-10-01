@@ -11,11 +11,14 @@
 - Added Win Level Dialog - now the player should be able to complete the level.
 - Added count level highscore when the level is finished.
 - Updated game player highscore from level player when the level is finished.
+- Added visible player score in level controls.
+- Added combined highscore of the player in the level options.
+- Added Players & Highscore Screen
 
-TODO:
+What's next:
 
-- show current player score and maybe show bar with the counter which will shows the decrease counts?
-- show level highscore in the lost dialog & win dialog.
+- Save the position of the character and restore it.
+- Reset navigation path when player is finished a level.
 
 ## September 28th 2022
 
@@ -23,8 +26,7 @@ TODO:
 
 What's next:
 
-- Add highscore per level and in total (LocalService).
-  the Global highscore is:
+- Global highscore is:
 - (+) word length \* level modifier (hardness of the level)
 - (-) the score used by a player to decrease middle word part
 - (-) to the player who landing | crashed the character.
@@ -41,6 +43,8 @@ What's next:
 - Add Character descriptions
 - Add Level description.
 - Replace solid color by blur background for Pause Screen (?).
+- show bar with the counter which will shows the decrease counts?
+- show level highscore in the lost dialog & win dialog.
 
 -- Release a game prototype.
 

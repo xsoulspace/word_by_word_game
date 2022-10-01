@@ -76,12 +76,27 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
   void _showLevelLostDialog() {
     gameRef.diDto
       ..globalGameBloc.add(const CharacterCollisionEvent())
-      ..dialogController.showLevelLostDialog();
+      ..dialogController.showLevelLostDialog(
+        EndLevelEvent(
+          isWon: false,
+          maxDistance: maxDistance.toDouble(),
+        ),
+      );
   }
+
+  int get maxDistance =>
+      obstacleLevelHelper.roundToTileDimension(position.x) -
+      obstacleLevelHelper.roundToTileDimension(params.minXBoundry);
 
   void _showLevelWinDialog() {
     gameRef.diDto
       ..globalGameBloc.add(const CharacterCollisionEvent())
+      ..globalGameBloc.add(
+        EndLevelEvent(
+          isWon: true,
+          maxDistance: maxDistance.toDouble(),
+        ),
+      )
       ..dialogController.showLevelWinDialog();
   }
 
@@ -114,7 +129,7 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     gameRef.diDto.levelPlayersBloc.add(
       ConsumeFuelEvent(
         fuel: FuelStorageModel(
-          // value: 90,
+          // value: 1,
           value: yResult.fuel,
         ),
       ),

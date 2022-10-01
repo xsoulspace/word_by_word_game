@@ -102,6 +102,7 @@ Map<String, dynamic> _$$_LevelCharactersModelToJson(
 _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
     _$_LevelModel(
       id: json['id'] as String,
+      stringName: json['stringName'] as String,
       players:
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
@@ -122,6 +123,7 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'stringName': instance.stringName,
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
       'resources': instance.resources.toJson(),
@@ -134,6 +136,7 @@ _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
         Map<String, dynamic> json) =>
     _$_TemplateLevelModel(
       id: json['id'] as String,
+      stringName: json['stringName'] as String,
       resources:
           ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
       fuelStorage: json['fuelStorage'] == null
@@ -146,6 +149,7 @@ Map<String, dynamic> _$$_TemplateLevelModelToJson(
         _$_TemplateLevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+      'stringName': instance.stringName,
       'resources': instance.resources.toJson(),
       'fuelStorage': instance.fuelStorage.toJson(),
     };
@@ -246,6 +250,8 @@ _$_PlayerHighscoreModel _$$_PlayerHighscoreModelFromJson(
     _$_PlayerHighscoreModel(
       maxWordsCount: json['maxWordsCount'] as int? ?? 0,
       maxLettersCount: json['maxLettersCount'] as int? ?? 0,
+      totalWordsCount: json['totalWordsCount'] as int? ?? 0,
+      totalLettersCount: json['totalLettersCount'] as int? ?? 0,
       score: json['score'] == null
           ? ScoreModel.zero
           : ScoreModel.fromJson(json['score'] as Map<String, dynamic>),
@@ -256,6 +262,8 @@ Map<String, dynamic> _$$_PlayerHighscoreModelToJson(
     <String, dynamic>{
       'maxWordsCount': instance.maxWordsCount,
       'maxLettersCount': instance.maxLettersCount,
+      'totalWordsCount': instance.totalWordsCount,
+      'totalLettersCount': instance.totalLettersCount,
       'score': instance.score.toJson(),
     };
 
@@ -264,6 +272,7 @@ _$_PlayerLevelHighscoreModel _$$_PlayerLevelHighscoreModelFromJson(
     _$_PlayerLevelHighscoreModel(
       levelId: json['levelId'] as String,
       maxDistance: (json['maxDistance'] as num?)?.toDouble() ?? 0,
+      totalDistance: (json['totalDistance'] as num?)?.toDouble() ?? 0,
       landingsCount: (json['landingsCount'] as num?)?.toDouble() ?? 0,
       flightTime: (json['flightTime'] as num?)?.toDouble() ?? 0,
     );
@@ -273,6 +282,7 @@ Map<String, dynamic> _$$_PlayerLevelHighscoreModelToJson(
     <String, dynamic>{
       'levelId': instance.levelId,
       'maxDistance': instance.maxDistance,
+      'totalDistance': instance.totalDistance,
       'landingsCount': instance.landingsCount,
       'flightTime': instance.flightTime,
     };

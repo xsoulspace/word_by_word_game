@@ -11,16 +11,20 @@ class ControlsWidget extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
+
     final spacing = uiTheme.spacing;
     final levelBloc = context.watch<LevelBloc>();
     final levelState = levelBloc.state;
     if (levelState is! LiveLevelBlocState) return const SizedBox();
 
     return Container(
-      color: theme.colorScheme.surface,
+      decoration: BoxDecoration(
+        color: theme.colorScheme.surface,
+        borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+      ),
       height: 190,
+      constraints: const BoxConstraints(maxWidth: 700),
       child: Row(
-        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const PlayerSwitcher(),

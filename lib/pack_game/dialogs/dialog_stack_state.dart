@@ -1,8 +1,8 @@
 part of 'dialog_stack.dart';
 
 class _DialogStackDiDto {
-  // ignore: avoid_unused_constructor_parameters
-  _DialogStackDiDto.use(final Locator read);
+  _DialogStackDiDto.use(final Locator read) : globalGameBloc = read();
+  final GlobalGameBloc globalGameBloc;
 }
 
 _DialogStackState _useDialogStackState({
@@ -34,8 +34,11 @@ class _DialogStackState extends LifeState {
     setState();
   }
 
-  void _showLevelLostDialog() {
+  EndLevelEvent? endLevelEvent;
+
+  void _showLevelLostDialog(final EndLevelEvent endLevelEvent) {
     dialogType = GameDialogType.levelLost;
+    this.endLevelEvent = endLevelEvent;
   }
 
   void _showLevelWinDialog() {
@@ -44,5 +47,14 @@ class _DialogStackState extends LifeState {
 
   void _closeDialog() {
     dialogType = GameDialogType.none;
+    endLevelEvent = null;
+  }
+
+  void onSendEndLevelEvent() {
+    final event = endLevelEvent;
+    if (event != null) {
+      diDto.globalGameBloc.add(event);
+      endLevelEvent = null;
+    }
   }
 }

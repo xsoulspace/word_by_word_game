@@ -17,14 +17,30 @@ class AllLevelsScreen extends HookWidget {
   Widget build(final BuildContext context) {
     final state = _useAllLevelsScreenState(read: context.read);
     final uiTheme = UiTheme.of(context);
+    final theme = Theme.of(context);
     return Scaffold(
       body: Container(
         alignment: Alignment.center,
         padding: EdgeInsets.all(uiTheme.spacing.large),
         child: Column(
           children: [
-            const Text('All Levels'),
             uiTheme.verticalBoxes.large,
+            Row(
+              children: [
+                GameBackButton(
+                  onPressed: state.onGoBack,
+                ),
+                Expanded(
+                  child: Text(
+                    'Choose A Landscape',
+                    style: theme.textTheme.headlineLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+            uiTheme.verticalBoxes.extraLarge,
+            uiTheme.verticalBoxes.extraLarge,
             Expanded(
               child: BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
                 builder: (final context, final blocState) {
@@ -68,11 +84,17 @@ class _LevelCard extends StatelessWidget {
   final TemplateLevelModel level;
   @override
   Widget build(final BuildContext context) {
+    final uiTheme = UiTheme.of(context);
     return Card(
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () => onPressed(level),
-        child: Center(child: Text(level.id)),
+        child: Padding(
+          padding: EdgeInsets.all(uiTheme.spacing.medium),
+          child: Center(
+            child: Text(level.stringName, textAlign: TextAlign.center),
+          ),
+        ),
       ),
     );
   }

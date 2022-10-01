@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_lost_dialog.dart';
 import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_win_dialog.dart';
@@ -34,7 +35,9 @@ class DialogStack extends HookWidget {
                 case GameDialogType.none:
                   return const SizedBox();
                 case GameDialogType.levelLost:
-                  child = const LevelLostDialog();
+                  child = LevelLostDialog(
+                    onSendEndLevelEvent: state.onSendEndLevelEvent,
+                  );
                   break;
                 case GameDialogType.levelWin:
                   child = const LevelWinDialog();

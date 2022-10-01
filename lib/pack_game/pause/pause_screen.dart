@@ -16,7 +16,6 @@ class PauseScreen extends HookWidget {
   }) : super(key: key);
   @override
   Widget build(final BuildContext context) {
-    final appRouterController = AppRouterController.use(context.read);
     final state = _usePauseScreenState(read: context.read);
     final routeState = context.watch<RouteState>();
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
@@ -37,18 +36,16 @@ class PauseScreen extends HookWidget {
               ),
             ),
             uiTheme.verticalBoxes.large,
-            Visibility(
-              visible: isLevelRunning,
-              child: UiFilledButton.text(
-                text: 'Save',
-                onPressed: state.onSaveGame,
-              ),
+            UiFilledButton.text(
+              text: 'Start New Game',
+              onPressed: state.onToAllLevels,
             ),
             uiTheme.verticalBoxes.large,
             UiFilledButton.text(
-              text: 'Start New Game',
-              onPressed: appRouterController.toAllLevel,
+              text: 'Players & Highscore',
+              onPressed: state.onToPlayersAndHighscore,
             ),
+            uiTheme.verticalBoxes.large,
           ],
         ),
       ),

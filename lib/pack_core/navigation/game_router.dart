@@ -2,7 +2,7 @@ import 'package:flame/game.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 
-enum GameRoutes { testLevel }
+enum GameRoutes { level }
 
 enum GameOverlaysRoutes { levelsHud, debug }
 
@@ -10,7 +10,7 @@ class GameRouter {
   const GameRouter();
   RouterComponent init() {
     return RouterComponent(
-      initialRoute: GameRoutes.testLevel.name,
+      initialRoute: GameRoutes.level.name,
       routes: const GameRoutesBuilder().build(),
     );
   }
@@ -35,7 +35,7 @@ class GameRoutesBuilder {
   const GameRoutesBuilder();
   Map<GameRoutes, Route> _build() {
     return {
-      GameRoutes.testLevel: Route(TestLevelComponent.new),
+      GameRoutes.level: Route(LevelComponent.new),
     };
   }
 

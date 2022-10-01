@@ -29,14 +29,18 @@ class _PauseScreenState extends LifeState {
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
-  void onSaveGame() {
-    diDto.globalGameBloc.add(const SaveCurrentLevelEvent());
-  }
-
   void onContinue({
     required final LevelModelId id,
   }) {
     diDto.appRouterController.toPlayableLevel(id: id);
     diDto.mechanics.worldTime.resume();
+  }
+
+  void onToAllLevels() {
+    diDto.appRouterController.toAllLevel();
+  }
+
+  void onToPlayersAndHighscore() {
+    diDto.appRouterController.toPlayersAndHighscore();
   }
 }

@@ -31,6 +31,14 @@ class _LevelOptionsScreenState extends LifeState {
   final _LevelOptionsScreenDiDto diDto;
 
   PlayerCharacterModelId? characterId;
+
+  @override
+  void initState() {
+    super.initState();
+    final liveState = diDto.globalGameBloc.getLiveState();
+    characterId = liveState.playersCharacters.first.id;
+  }
+
   bool checkIsCharacterSelected(final PlayerCharacterModel character) =>
       characterId == character.id;
   void onCharacterPressed(final PlayerCharacterModel character) {
@@ -72,13 +80,20 @@ class _LevelOptionsScreenState extends LifeState {
     );
 
     final level = LevelModel(
+      stringName: templateLevel.stringName,
       resources: templateLevel.resources,
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),
       players: LevelPlayersModel(
         currentPlayerId: playersIds.first,
-        players: levelPlayers.toList(),
+        players: levelPlayers
+            .map(
+              (final e) => e.copyWith(
+                highscore: PlayerHighscoreModel.empty,
+              ),
+            )
+            .toList(),
       ),
       id: templateLevel.id,
     );
