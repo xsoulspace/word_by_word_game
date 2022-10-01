@@ -73,6 +73,16 @@ class CharacterCollisionEvent extends GameEvent {
 }
 
 @immutable
+class EndLevelEvent extends GameEvent {
+  const EndLevelEvent({
+    required this.isWon,
+    required this.maxDistance,
+  });
+  final bool isWon;
+  final double maxDistance;
+}
+
+@immutable
 class RestartLevelEvent extends GameEvent {
   const RestartLevelEvent();
 }

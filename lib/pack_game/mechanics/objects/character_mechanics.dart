@@ -53,8 +53,9 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
 
   /// can be changed but it is external force, and should not be changed
   /// by the player. nature force
-  // double get windForce => .5;
-  double get windForce => .03;
+  // double get windForce => .8;
+  // double get windForce => -.4;
+  double get windForce => .08;
 
   /// -1 or +1 - can be changed, nature force
   int get windSign => -1;

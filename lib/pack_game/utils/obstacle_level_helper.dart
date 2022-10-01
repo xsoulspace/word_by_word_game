@@ -1,14 +1,18 @@
 import 'package:collection/collection.dart';
+import 'package:equatable/equatable.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
+import 'package:flutter/material.dart';
 import 'package:tiled/tiled.dart';
+import 'package:word_by_word_game/pack_game/game/game.dart';
 
 class ObstacleLevelHelper {
   ObstacleLevelHelper({
     required this.tileData,
     required this.tiledObjects,
+    this.sideTileWidth = kLevelSideTileWidth,
     this.tileDimension = 16,
-  });
+  }) : rightSideTileWidth = sideTileWidth;
 
   factory ObstacleLevelHelper.fromMapComponent({
     required final TiledComponent<FlameGame> tiledMapComponent,
@@ -40,7 +44,11 @@ class ObstacleLevelHelper {
   /// int is GID number
   final Map<int, TiledObject> tiledObjects;
   final int tileDimension;
-  void onLoad() {}
+  final int sideTileWidth;
+  int rightSideTileWidth;
+  void onLoad() {
+    rightSideTileWidth = tileData.first.length - sideTileWidth;
+  }
 
   bool checkCollision(final Vector2 position) {
     /// horizontal index
@@ -53,6 +61,25 @@ class ObstacleLevelHelper {
     if (columnIndex > row.length - 1) return false;
     final gid = row[columnIndex];
     return gid.tile != 0;
+  }
+
+  SideCollisionEvent checkSideCollision(final Vector2 position) {
+    /// horizontal index
+    final columnIndex = _roundToTileDimension(position.x);
+    final firstRow = tileData.first;
+    if (columnIndex > firstRow.length) {
+      return const SideCollisionEvent(hasRightSideCollision: true);
+    }
+    if (columnIndex <= 0) {
+      return const SideCollisionEvent(hasLeftSideCollision: true);
+    }
+    final hasRightSideCollision = columnIndex >= rightSideTileWidth;
+    final hasLeftSideCollision = columnIndex <= sideTileWidth;
+
+    return SideCollisionEvent(
+      hasRightSideCollision: hasRightSideCollision,
+      hasLeftSideCollision: hasLeftSideCollision,
+    );
   }
 
   TiledObject? getCollisionTiledObject(final Vector2 position) {
@@ -86,4 +113,17 @@ class ObstacleLevelHelper {
     }
     return n;
   }
+}
+
+@immutable
+class SideCollisionEvent extends Equatable {
+  const SideCollisionEvent({
+    this.hasRightSideCollision = false,
+    this.hasLeftSideCollision = false,
+  });
+  final bool hasRightSideCollision;
+  final bool hasLeftSideCollision;
+
+  @override
+  List<Object?> get props => [hasRightSideCollision, hasLeftSideCollision];
 }

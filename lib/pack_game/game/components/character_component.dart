@@ -73,17 +73,34 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     super.render(canvas);
   }
 
-  void onCollision() {
+  void _showLevelLostDialog() {
     gameRef.diDto
       ..globalGameBloc.add(const CharacterCollisionEvent())
-      ..dialogController.showEndGameDialog();
+      ..dialogController.showLevelLostDialog();
+  }
+
+  void _showLevelWinDialog() {
+    gameRef.diDto
+      ..globalGameBloc.add(const CharacterCollisionEvent())
+      ..dialogController.showLevelWinDialog();
+  }
+
+  void _onCollision() {
+    final sideCollision = obstacleLevelHelper.checkSideCollision(position);
+    if (sideCollision.hasRightSideCollision) {
+      _showLevelWinDialog();
+    } else if (sideCollision.hasLeftSideCollision) {
+      _showLevelLostDialog();
+    } else {
+      _showLevelLostDialog();
+    }
   }
 
   @override
   void update(final double dt) {
     final collided = obstacleLevelHelper.checkCollision(position);
     if (collided) {
-      onCollision();
+      _onCollision();
     }
     final mechanics = BasicFlyingObjectMechanics(
       params: params,
@@ -94,8 +111,14 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     } else {
       y -= yResult.force;
     }
-    gameRef.diDto.levelPlayersBloc
-        .add(ConsumeFuelEvent(fuel: FuelStorageModel(value: yResult.fuel)));
+    gameRef.diDto.levelPlayersBloc.add(
+      ConsumeFuelEvent(
+        fuel: FuelStorageModel(
+          // value: 90,
+          value: yResult.fuel,
+        ),
+      ),
+    );
     x -= mechanics.xVelocity;
     // fuel = 90;
     // y = 0;

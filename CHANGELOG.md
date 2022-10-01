@@ -8,13 +8,14 @@
 - Added end game dialog with two options - to landscapes and start again.
 - Added ability to decrease the middle part when the player has enough score.
 - Added highscore counter savable to the player.
+- Added Win Level Dialog - now the player should be able to complete the level.
+- Added count level highscore when the level is finished.
+- Updated game player highscore from level player when the level is finished.
 
 TODO:
 
 - show current player score and maybe show bar with the counter which will shows the decrease counts?
-- update game player highscore from level player when the level is finished.
-- count level highscore when the level is finished and show it in the end game dialog.
-- add Win Level Dialog.
+- show level highscore in the lost dialog & win dialog.
 
 ## September 28th 2022
 

@@ -20,8 +20,9 @@ class _DialogStackState extends LifeState {
     required this.diDto,
   });
   late final dialogController = DialogController(
-    showEndGameDialog: _showEndGameDialog,
+    showLevelLostDialog: _showLevelLostDialog,
     closeDialog: _closeDialog,
+    showLevelWinDialog: _showLevelWinDialog,
   );
   final _DialogStackDiDto diDto;
   GameDialogType _dialogType = GameDialogType.none;
@@ -33,8 +34,12 @@ class _DialogStackState extends LifeState {
     setState();
   }
 
-  void _showEndGameDialog() {
-    dialogType = GameDialogType.endGame;
+  void _showLevelLostDialog() {
+    dialogType = GameDialogType.levelLost;
+  }
+
+  void _showLevelWinDialog() {
+    dialogType = GameDialogType.levelWin;
   }
 
   void _closeDialog() {

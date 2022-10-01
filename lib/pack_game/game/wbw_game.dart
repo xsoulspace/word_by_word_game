@@ -23,13 +23,14 @@ int get kMapTilesPlayableHeight => 20;
 int get kVisibleTilesHeight => 12;
 int get kVisibleTilesWidth => 30;
 String get kDefaultTilesetPath => 'tilesets/pixel_black_white_tileset.png';
+const int kLevelSideTileWidth = 16;
 
 class WbwGame extends FlameGame with HasCollisionDetection {
-  WbwGame.use(
-      {required final Locator read,
-      required final ThemeData theme,
-      required final DialogController dialogController})
-      : diDto = WbwGameDiDto.use(
+  WbwGame.use({
+    required final Locator read,
+    required final ThemeData theme,
+    required final DialogController dialogController,
+  }) : diDto = WbwGameDiDto.use(
           read: read,
           theme: theme,
           dialogController: dialogController,
@@ -132,7 +133,7 @@ class WbwGame extends FlameGame with HasCollisionDetection {
         final obstacleLevelHelper = ObstacleLevelHelper.fromMapComponent(
           tiledMapComponent: map,
           tileDimension: kTileDimension,
-        );
+        )..onLoad();
 
         const groundHeight = 30.0;
 
@@ -141,7 +142,6 @@ class WbwGame extends FlameGame with HasCollisionDetection {
           obstacleLevelHelper: obstacleLevelHelper,
           characterModel: playersState.playerCharacter,
         );
-
         await world.add(newCharacter);
 
         worldCamera.follow(newCharacter);

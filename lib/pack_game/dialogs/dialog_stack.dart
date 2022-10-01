@@ -3,12 +3,13 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/pack_game/dialogs/game_end/game_end_dialog.dart';
+import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_lost_dialog.dart';
+import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_win_dialog.dart';
 import 'package:word_by_word_game/pack_game/dialogs/widgets/dialog_barrier.dart';
 
 part 'dialog_stack_state.dart';
 
-enum GameDialogType { none, endGame }
+enum GameDialogType { none, levelLost, levelWin }
 
 class DialogStack extends HookWidget {
   const DialogStack({
@@ -32,8 +33,11 @@ class DialogStack extends HookWidget {
               switch (state.dialogType) {
                 case GameDialogType.none:
                   return const SizedBox();
-                case GameDialogType.endGame:
-                  child = const GameEndDialog();
+                case GameDialogType.levelLost:
+                  child = const LevelLostDialog();
+                  break;
+                case GameDialogType.levelWin:
+                  child = const LevelWinDialog();
                   break;
               }
 

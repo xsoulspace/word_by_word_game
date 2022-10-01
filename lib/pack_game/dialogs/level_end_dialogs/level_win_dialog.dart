@@ -6,8 +6,8 @@ import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
 
-class GameEndDialog extends StatelessWidget {
-  const GameEndDialog({super.key});
+class LevelWinDialog extends StatelessWidget {
+  const LevelWinDialog({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -28,7 +28,7 @@ class GameEndDialog extends StatelessWidget {
           padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
           children: [
             Text(
-              'You have landed in the middle of nowhere..',
+              'Congratulations! You passed this landscape!',
               style: theme.textTheme.titleLarge,
             ),
             uiTheme.verticalBoxes.extraLarge,
@@ -55,7 +55,7 @@ class GameEndDialog extends StatelessWidget {
                     context.read<DialogController>().closeDialog();
                   },
                   child: const Text('Start Again'),
-                )
+                ),
               ],
             ),
           ],
