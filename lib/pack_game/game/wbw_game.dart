@@ -16,7 +16,7 @@ part 'wbw_game_di.dart';
 
 int get kTileDimension => 16;
 
-int get kMapTilesHeight => 20;
+int get kMapTilesPlayableHeight => 20;
 
 int get kVisibleTilesHeight => 12;
 int get kVisibleTilesWidth => 30;

@@ -32,7 +32,7 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     );
     paint.color = Color(characterModel.color);
     params = const FlyingObjectsParams();
-    position = Vector2(params.minXBoundry, (kMapTilesHeight - 2) * 16);
+    position = Vector2(params.minXBoundry, (kMapTilesPlayableHeight - 2) * 16);
     return super.onLoad();
   }
 
