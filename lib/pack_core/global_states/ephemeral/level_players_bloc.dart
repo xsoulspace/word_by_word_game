@@ -28,6 +28,7 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     on<SwitchToNextPlayerEvent>(_onSwitchToNextPlayer);
     on<ConsumeFuelEvent>(_consumeCharacterFuel);
     on<RefuelStorageEvent>(_onRefuelStorage);
+    on<UpdatePlayerHighscoreEvent>(_onUpdatePlayerHighscore);
   }
   final LevelPlayersBlocDiDto diDto;
 
@@ -100,6 +101,32 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
       playerCharacter: liveState.playerCharacter.copyWith(
         fuel: fuelStorage,
       ),
+    );
+    emit(updatedState);
+  }
+
+  void _onUpdatePlayerHighscore(
+    final UpdatePlayerHighscoreEvent event,
+    final Emitter<LevelPlayersBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final updatedPlayers = [...liveState.players];
+    final index = updatedPlayers
+        .indexWhere((final player) => player.id == event.playerId);
+    if (index < 0) {
+      // TODO(arenukvern): add exception
+      return;
+    }
+    final player = liveState.players[index];
+    final updatedPlayer = diDto.mechanics.score.countPlayerHighscore(
+      player: player,
+      score: event.score,
+      word: event.word,
+    );
+    updatedPlayers[index] = updatedPlayer;
+
+    final updatedState = liveState.copyWith(
+      players: updatedPlayers,
     );
     emit(updatedState);
   }

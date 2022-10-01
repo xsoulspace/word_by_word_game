@@ -2226,9 +2226,9 @@ mixin _$PlayerProfileModel {
   String get id => throw _privateConstructorUsedError;
   int get colorValue => throw _privateConstructorUsedError;
   String get name => throw _privateConstructorUsedError;
-
-  /// TODO(arenukvern): maybe should be removed
-  Set<String> get playedGames => throw _privateConstructorUsedError;
+  Map<String, PlayerLevelHighscoreModel> get levelsHighscores =>
+      throw _privateConstructorUsedError;
+  PlayerHighscoreModel get highscore => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -2241,7 +2241,14 @@ abstract class $PlayerProfileModelCopyWith<$Res> {
   factory $PlayerProfileModelCopyWith(
           PlayerProfileModel value, $Res Function(PlayerProfileModel) then) =
       _$PlayerProfileModelCopyWithImpl<$Res>;
-  $Res call({String id, int colorValue, String name, Set<String> playedGames});
+  $Res call(
+      {String id,
+      int colorValue,
+      String name,
+      Map<String, PlayerLevelHighscoreModel> levelsHighscores,
+      PlayerHighscoreModel highscore});
+
+  $PlayerHighscoreModelCopyWith<$Res> get highscore;
 }
 
 /// @nodoc
@@ -2258,7 +2265,8 @@ class _$PlayerProfileModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? colorValue = freezed,
     Object? name = freezed,
-    Object? playedGames = freezed,
+    Object? levelsHighscores = freezed,
+    Object? highscore = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -2273,11 +2281,22 @@ class _$PlayerProfileModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      playedGames: playedGames == freezed
-          ? _value.playedGames
-          : playedGames // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+      levelsHighscores: levelsHighscores == freezed
+          ? _value.levelsHighscores
+          : levelsHighscores // ignore: cast_nullable_to_non_nullable
+              as Map<String, PlayerLevelHighscoreModel>,
+      highscore: highscore == freezed
+          ? _value.highscore
+          : highscore // ignore: cast_nullable_to_non_nullable
+              as PlayerHighscoreModel,
     ));
+  }
+
+  @override
+  $PlayerHighscoreModelCopyWith<$Res> get highscore {
+    return $PlayerHighscoreModelCopyWith<$Res>(_value.highscore, (value) {
+      return _then(_value.copyWith(highscore: value));
+    });
   }
 }
 
@@ -2288,7 +2307,15 @@ abstract class _$$_PlayerProfileModelCopyWith<$Res>
           $Res Function(_$_PlayerProfileModel) then) =
       __$$_PlayerProfileModelCopyWithImpl<$Res>;
   @override
-  $Res call({String id, int colorValue, String name, Set<String> playedGames});
+  $Res call(
+      {String id,
+      int colorValue,
+      String name,
+      Map<String, PlayerLevelHighscoreModel> levelsHighscores,
+      PlayerHighscoreModel highscore});
+
+  @override
+  $PlayerHighscoreModelCopyWith<$Res> get highscore;
 }
 
 /// @nodoc
@@ -2307,7 +2334,8 @@ class __$$_PlayerProfileModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? colorValue = freezed,
     Object? name = freezed,
-    Object? playedGames = freezed,
+    Object? levelsHighscores = freezed,
+    Object? highscore = freezed,
   }) {
     return _then(_$_PlayerProfileModel(
       id: id == freezed
@@ -2322,10 +2350,14 @@ class __$$_PlayerProfileModelCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
-      playedGames: playedGames == freezed
-          ? _value._playedGames
-          : playedGames // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+      levelsHighscores: levelsHighscores == freezed
+          ? _value._levelsHighscores
+          : levelsHighscores // ignore: cast_nullable_to_non_nullable
+              as Map<String, PlayerLevelHighscoreModel>,
+      highscore: highscore == freezed
+          ? _value.highscore
+          : highscore // ignore: cast_nullable_to_non_nullable
+              as PlayerHighscoreModel,
     ));
   }
 }
@@ -2338,8 +2370,9 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
       {required this.id,
       required this.colorValue,
       required this.name,
-      required final Set<String> playedGames})
-      : _playedGames = playedGames,
+      final Map<String, PlayerLevelHighscoreModel> levelsHighscores = const {},
+      this.highscore = PlayerHighscoreModel.empty})
+      : _levelsHighscores = levelsHighscores,
         super._();
 
   factory _$_PlayerProfileModel.fromJson(Map<String, dynamic> json) =>
@@ -2351,20 +2384,21 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
   final int colorValue;
   @override
   final String name;
-
-  /// TODO(arenukvern): maybe should be removed
-  final Set<String> _playedGames;
-
-  /// TODO(arenukvern): maybe should be removed
+  final Map<String, PlayerLevelHighscoreModel> _levelsHighscores;
   @override
-  Set<String> get playedGames {
+  @JsonKey()
+  Map<String, PlayerLevelHighscoreModel> get levelsHighscores {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_playedGames);
+    return EqualUnmodifiableMapView(_levelsHighscores);
   }
 
   @override
+  @JsonKey()
+  final PlayerHighscoreModel highscore;
+
+  @override
   String toString() {
-    return 'PlayerProfileModel(id: $id, colorValue: $colorValue, name: $name, playedGames: $playedGames)';
+    return 'PlayerProfileModel(id: $id, colorValue: $colorValue, name: $name, levelsHighscores: $levelsHighscores, highscore: $highscore)';
   }
 
   @override
@@ -2377,7 +2411,8 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
                 .equals(other.colorValue, colorValue) &&
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
-                .equals(other._playedGames, _playedGames));
+                .equals(other._levelsHighscores, _levelsHighscores) &&
+            const DeepCollectionEquality().equals(other.highscore, highscore));
   }
 
   @JsonKey(ignore: true)
@@ -2387,7 +2422,8 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(colorValue),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(_playedGames));
+      const DeepCollectionEquality().hash(_levelsHighscores),
+      const DeepCollectionEquality().hash(highscore));
 
   @JsonKey(ignore: true)
   @override
@@ -2408,7 +2444,8 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
       {required final String id,
       required final int colorValue,
       required final String name,
-      required final Set<String> playedGames}) = _$_PlayerProfileModel;
+      final Map<String, PlayerLevelHighscoreModel> levelsHighscores,
+      final PlayerHighscoreModel highscore}) = _$_PlayerProfileModel;
   const _PlayerProfileModel._() : super._();
 
   factory _PlayerProfileModel.fromJson(Map<String, dynamic> json) =
@@ -2421,13 +2458,425 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
   @override
   String get name;
   @override
-
-  /// TODO(arenukvern): maybe should be removed
-  Set<String> get playedGames;
+  Map<String, PlayerLevelHighscoreModel> get levelsHighscores;
+  @override
+  PlayerHighscoreModel get highscore;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerProfileModelCopyWith<_$_PlayerProfileModel> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+PlayerHighscoreModel _$PlayerHighscoreModelFromJson(Map<String, dynamic> json) {
+  return _PlayerHighscoreModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PlayerHighscoreModel {
+  int get maxWordsCount => throw _privateConstructorUsedError;
+  int get maxLettersCount => throw _privateConstructorUsedError;
+  ScoreModel get score => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PlayerHighscoreModelCopyWith<PlayerHighscoreModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlayerHighscoreModelCopyWith<$Res> {
+  factory $PlayerHighscoreModelCopyWith(PlayerHighscoreModel value,
+          $Res Function(PlayerHighscoreModel) then) =
+      _$PlayerHighscoreModelCopyWithImpl<$Res>;
+  $Res call({int maxWordsCount, int maxLettersCount, ScoreModel score});
+
+  $ScoreModelCopyWith<$Res> get score;
+}
+
+/// @nodoc
+class _$PlayerHighscoreModelCopyWithImpl<$Res>
+    implements $PlayerHighscoreModelCopyWith<$Res> {
+  _$PlayerHighscoreModelCopyWithImpl(this._value, this._then);
+
+  final PlayerHighscoreModel _value;
+  // ignore: unused_field
+  final $Res Function(PlayerHighscoreModel) _then;
+
+  @override
+  $Res call({
+    Object? maxWordsCount = freezed,
+    Object? maxLettersCount = freezed,
+    Object? score = freezed,
+  }) {
+    return _then(_value.copyWith(
+      maxWordsCount: maxWordsCount == freezed
+          ? _value.maxWordsCount
+          : maxWordsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxLettersCount: maxLettersCount == freezed
+          ? _value.maxLettersCount
+          : maxLettersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      score: score == freezed
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as ScoreModel,
+    ));
+  }
+
+  @override
+  $ScoreModelCopyWith<$Res> get score {
+    return $ScoreModelCopyWith<$Res>(_value.score, (value) {
+      return _then(_value.copyWith(score: value));
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_PlayerHighscoreModelCopyWith<$Res>
+    implements $PlayerHighscoreModelCopyWith<$Res> {
+  factory _$$_PlayerHighscoreModelCopyWith(_$_PlayerHighscoreModel value,
+          $Res Function(_$_PlayerHighscoreModel) then) =
+      __$$_PlayerHighscoreModelCopyWithImpl<$Res>;
+  @override
+  $Res call({int maxWordsCount, int maxLettersCount, ScoreModel score});
+
+  @override
+  $ScoreModelCopyWith<$Res> get score;
+}
+
+/// @nodoc
+class __$$_PlayerHighscoreModelCopyWithImpl<$Res>
+    extends _$PlayerHighscoreModelCopyWithImpl<$Res>
+    implements _$$_PlayerHighscoreModelCopyWith<$Res> {
+  __$$_PlayerHighscoreModelCopyWithImpl(_$_PlayerHighscoreModel _value,
+      $Res Function(_$_PlayerHighscoreModel) _then)
+      : super(_value, (v) => _then(v as _$_PlayerHighscoreModel));
+
+  @override
+  _$_PlayerHighscoreModel get _value => super._value as _$_PlayerHighscoreModel;
+
+  @override
+  $Res call({
+    Object? maxWordsCount = freezed,
+    Object? maxLettersCount = freezed,
+    Object? score = freezed,
+  }) {
+    return _then(_$_PlayerHighscoreModel(
+      maxWordsCount: maxWordsCount == freezed
+          ? _value.maxWordsCount
+          : maxWordsCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      maxLettersCount: maxLettersCount == freezed
+          ? _value.maxLettersCount
+          : maxLettersCount // ignore: cast_nullable_to_non_nullable
+              as int,
+      score: score == freezed
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as ScoreModel,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
+  const _$_PlayerHighscoreModel(
+      {this.maxWordsCount = 0,
+      this.maxLettersCount = 0,
+      this.score = ScoreModel.zero})
+      : super._();
+
+  factory _$_PlayerHighscoreModel.fromJson(Map<String, dynamic> json) =>
+      _$$_PlayerHighscoreModelFromJson(json);
+
+  @override
+  @JsonKey()
+  final int maxWordsCount;
+  @override
+  @JsonKey()
+  final int maxLettersCount;
+  @override
+  @JsonKey()
+  final ScoreModel score;
+
+  @override
+  String toString() {
+    return 'PlayerHighscoreModel(maxWordsCount: $maxWordsCount, maxLettersCount: $maxLettersCount, score: $score)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PlayerHighscoreModel &&
+            const DeepCollectionEquality()
+                .equals(other.maxWordsCount, maxWordsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.maxLettersCount, maxLettersCount) &&
+            const DeepCollectionEquality().equals(other.score, score));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(maxWordsCount),
+      const DeepCollectionEquality().hash(maxLettersCount),
+      const DeepCollectionEquality().hash(score));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PlayerHighscoreModelCopyWith<_$_PlayerHighscoreModel> get copyWith =>
+      __$$_PlayerHighscoreModelCopyWithImpl<_$_PlayerHighscoreModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlayerHighscoreModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlayerHighscoreModel extends PlayerHighscoreModel {
+  const factory _PlayerHighscoreModel(
+      {final int maxWordsCount,
+      final int maxLettersCount,
+      final ScoreModel score}) = _$_PlayerHighscoreModel;
+  const _PlayerHighscoreModel._() : super._();
+
+  factory _PlayerHighscoreModel.fromJson(Map<String, dynamic> json) =
+      _$_PlayerHighscoreModel.fromJson;
+
+  @override
+  int get maxWordsCount;
+  @override
+  int get maxLettersCount;
+  @override
+  ScoreModel get score;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PlayerHighscoreModelCopyWith<_$_PlayerHighscoreModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+PlayerLevelHighscoreModel _$PlayerLevelHighscoreModelFromJson(
+    Map<String, dynamic> json) {
+  return _PlayerLevelHighscoreModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$PlayerLevelHighscoreModel {
+  String get levelId => throw _privateConstructorUsedError;
+  double get maxDistance => throw _privateConstructorUsedError;
+  double get landingsCount => throw _privateConstructorUsedError;
+  double get flightTime => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $PlayerLevelHighscoreModelCopyWith<PlayerLevelHighscoreModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $PlayerLevelHighscoreModelCopyWith<$Res> {
+  factory $PlayerLevelHighscoreModelCopyWith(PlayerLevelHighscoreModel value,
+          $Res Function(PlayerLevelHighscoreModel) then) =
+      _$PlayerLevelHighscoreModelCopyWithImpl<$Res>;
+  $Res call(
+      {String levelId,
+      double maxDistance,
+      double landingsCount,
+      double flightTime});
+}
+
+/// @nodoc
+class _$PlayerLevelHighscoreModelCopyWithImpl<$Res>
+    implements $PlayerLevelHighscoreModelCopyWith<$Res> {
+  _$PlayerLevelHighscoreModelCopyWithImpl(this._value, this._then);
+
+  final PlayerLevelHighscoreModel _value;
+  // ignore: unused_field
+  final $Res Function(PlayerLevelHighscoreModel) _then;
+
+  @override
+  $Res call({
+    Object? levelId = freezed,
+    Object? maxDistance = freezed,
+    Object? landingsCount = freezed,
+    Object? flightTime = freezed,
+  }) {
+    return _then(_value.copyWith(
+      levelId: levelId == freezed
+          ? _value.levelId
+          : levelId // ignore: cast_nullable_to_non_nullable
+              as String,
+      maxDistance: maxDistance == freezed
+          ? _value.maxDistance
+          : maxDistance // ignore: cast_nullable_to_non_nullable
+              as double,
+      landingsCount: landingsCount == freezed
+          ? _value.landingsCount
+          : landingsCount // ignore: cast_nullable_to_non_nullable
+              as double,
+      flightTime: flightTime == freezed
+          ? _value.flightTime
+          : flightTime // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_PlayerLevelHighscoreModelCopyWith<$Res>
+    implements $PlayerLevelHighscoreModelCopyWith<$Res> {
+  factory _$$_PlayerLevelHighscoreModelCopyWith(
+          _$_PlayerLevelHighscoreModel value,
+          $Res Function(_$_PlayerLevelHighscoreModel) then) =
+      __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {String levelId,
+      double maxDistance,
+      double landingsCount,
+      double flightTime});
+}
+
+/// @nodoc
+class __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>
+    extends _$PlayerLevelHighscoreModelCopyWithImpl<$Res>
+    implements _$$_PlayerLevelHighscoreModelCopyWith<$Res> {
+  __$$_PlayerLevelHighscoreModelCopyWithImpl(
+      _$_PlayerLevelHighscoreModel _value,
+      $Res Function(_$_PlayerLevelHighscoreModel) _then)
+      : super(_value, (v) => _then(v as _$_PlayerLevelHighscoreModel));
+
+  @override
+  _$_PlayerLevelHighscoreModel get _value =>
+      super._value as _$_PlayerLevelHighscoreModel;
+
+  @override
+  $Res call({
+    Object? levelId = freezed,
+    Object? maxDistance = freezed,
+    Object? landingsCount = freezed,
+    Object? flightTime = freezed,
+  }) {
+    return _then(_$_PlayerLevelHighscoreModel(
+      levelId: levelId == freezed
+          ? _value.levelId
+          : levelId // ignore: cast_nullable_to_non_nullable
+              as String,
+      maxDistance: maxDistance == freezed
+          ? _value.maxDistance
+          : maxDistance // ignore: cast_nullable_to_non_nullable
+              as double,
+      landingsCount: landingsCount == freezed
+          ? _value.landingsCount
+          : landingsCount // ignore: cast_nullable_to_non_nullable
+              as double,
+      flightTime: flightTime == freezed
+          ? _value.flightTime
+          : flightTime // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
+  const _$_PlayerLevelHighscoreModel(
+      {required this.levelId,
+      this.maxDistance = 0,
+      this.landingsCount = 0,
+      this.flightTime = 0})
+      : super._();
+
+  factory _$_PlayerLevelHighscoreModel.fromJson(Map<String, dynamic> json) =>
+      _$$_PlayerLevelHighscoreModelFromJson(json);
+
+  @override
+  final String levelId;
+  @override
+  @JsonKey()
+  final double maxDistance;
+  @override
+  @JsonKey()
+  final double landingsCount;
+  @override
+  @JsonKey()
+  final double flightTime;
+
+  @override
+  String toString() {
+    return 'PlayerLevelHighscoreModel(levelId: $levelId, maxDistance: $maxDistance, landingsCount: $landingsCount, flightTime: $flightTime)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PlayerLevelHighscoreModel &&
+            const DeepCollectionEquality().equals(other.levelId, levelId) &&
+            const DeepCollectionEquality()
+                .equals(other.maxDistance, maxDistance) &&
+            const DeepCollectionEquality()
+                .equals(other.landingsCount, landingsCount) &&
+            const DeepCollectionEquality()
+                .equals(other.flightTime, flightTime));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(levelId),
+      const DeepCollectionEquality().hash(maxDistance),
+      const DeepCollectionEquality().hash(landingsCount),
+      const DeepCollectionEquality().hash(flightTime));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_PlayerLevelHighscoreModelCopyWith<_$_PlayerLevelHighscoreModel>
+      get copyWith => __$$_PlayerLevelHighscoreModelCopyWithImpl<
+          _$_PlayerLevelHighscoreModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlayerLevelHighscoreModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlayerLevelHighscoreModel extends PlayerLevelHighscoreModel {
+  const factory _PlayerLevelHighscoreModel(
+      {required final String levelId,
+      final double maxDistance,
+      final double landingsCount,
+      final double flightTime}) = _$_PlayerLevelHighscoreModel;
+  const _PlayerLevelHighscoreModel._() : super._();
+
+  factory _PlayerLevelHighscoreModel.fromJson(Map<String, dynamic> json) =
+      _$_PlayerLevelHighscoreModel.fromJson;
+
+  @override
+  String get levelId;
+  @override
+  double get maxDistance;
+  @override
+  double get landingsCount;
+  @override
+  double get flightTime;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PlayerLevelHighscoreModelCopyWith<_$_PlayerLevelHighscoreModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 ResourcesModel _$ResourcesModelFromJson(Map<String, dynamic> json) {

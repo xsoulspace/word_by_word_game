@@ -117,9 +117,10 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final newWord = liveState.currentWord.cleanWord;
     final wordWarning = _checkNewWord(liveState.currentWord);
     if (wordWarning == WordWarning.none) {
+      final levelPlayersBloc = diDto.levelPlayersBloc;
       final updatedWords = {
         ...liveState.words,
-      }..[newWord] = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
+      }..[newWord] = levelPlayersBloc.getLiveState().currentPlayerId;
       final updatedState = liveState.copyWith(
         latestWord: newWord,
         currentWord: diDto.mechanics.wordComposition
@@ -128,9 +129,18 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
         wordWarning: wordWarning,
       );
       emit(updatedState);
-      diDto.levelPlayersBloc.add(const SwitchToNextPlayerEvent());
+      final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
+      levelPlayersBloc.add(const SwitchToNextPlayerEvent());
       final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
-      diDto.levelPlayersBloc.add(RefuelStorageEvent(score: score));
+      levelPlayersBloc
+        ..add(RefuelStorageEvent(score: score))
+        ..add(
+          UpdatePlayerHighscoreEvent(
+            word: newWord,
+            score: score,
+            playerId: playerId,
+          ),
+        );
     } else {
       emit(
         liveState.copyWith(
@@ -154,6 +164,14 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
       currentWord: updatedWord,
     );
     emit(updatedState);
+    final playerId = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
+    final score = diDto.mechanics.score.getDecreaseScore(lettersCount: 1);
+    diDto.levelPlayersBloc.add(
+      UpdatePlayerHighscoreEvent(
+        score: score,
+        playerId: playerId,
+      ),
+    );
   }
 
   LiveLevelBlocState getLiveState() {

@@ -38,3 +38,15 @@ class RefuelStorageEvent extends LevelPlayersEvent {
 
   final ScoreModel score;
 }
+
+@immutable
+class UpdatePlayerHighscoreEvent extends LevelPlayersEvent {
+  const UpdatePlayerHighscoreEvent({
+    required this.score,
+    required this.playerId,
+    this.word,
+  });
+  final PlayerProfileModelId playerId;
+  final ScoreModel score;
+  final String? word;
+}

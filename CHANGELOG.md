@@ -6,6 +6,15 @@
 - sprite for character
 - Added collision between player's character and the obstacle.
 - Added end game dialog with two options - to landscapes and start again.
+- Added ability to decrease the middle part when the player has enough score.
+- Added highscore counter savable to the player.
+
+TODO:
+
+- show current player score and maybe show bar with the counter which will shows the decrease counts?
+- update game player highscore from level player when the level is finished.
+- count level highscore when the level is finished and show it in the end game dialog.
+- add Win Level Dialog.
 
 ## September 28th 2022
 
@@ -20,14 +29,6 @@ What's next:
 - (-) to the player who landing | crashed the character.
 - (+) character modifier (hardness of the character)
 
-Player highscore:
-
-- max words count
-- max letters length
-- max distance
-- flight time.
-
-- Add limitation to cut the middle part (should be dependent from the available score).
 - Add an option to start level fresh and continue if you have a progress (saved lvl).
 
 -- Prototype stage

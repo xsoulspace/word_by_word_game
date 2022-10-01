@@ -177,22 +177,41 @@ class MiddleWordPartActions extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final spacing = uiTheme.spacing;
 
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: spacing.small),
-      child: Visibility(
-        visible: middlePartOfWord.isNotEmpty,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            MinusIconButton(
-              onPressed: onLeftPressed,
-            ),
-            Text(middlePartOfWord),
-            MinusIconButton(
-              onPressed: onRightPressed,
-            )
-          ],
-        ),
+    final player =
+        context.select<LevelPlayersBloc, PlayerProfileModel>((final bloc) {
+      final liveState = bloc.getLiveState();
+      return liveState.currentPlayer;
+    });
+
+    final mechanics = context.watch<MechanicsCollection>();
+
+    final isPlayerAbleToDecrease = mechanics.score.checkPlayerAbilityToDecrease(
+      player: player,
+    );
+
+    Widget child;
+    if (isPlayerAbleToDecrease) {
+      child = Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          MinusIconButton(
+            onPressed: onLeftPressed,
+          ),
+          Text(middlePartOfWord),
+          MinusIconButton(
+            onPressed: onRightPressed,
+          )
+        ],
+      );
+    } else {
+      child = Text(middlePartOfWord);
+    }
+
+    return Visibility(
+      visible: middlePartOfWord.isNotEmpty,
+      child: Padding(
+        padding: EdgeInsets.symmetric(horizontal: spacing.medium),
+        child: child,
       ),
     );
   }
