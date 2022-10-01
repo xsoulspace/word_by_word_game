@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/pack_game/game/game.dart';
 
 class GlobalStateInitializer extends StateInitializer {
   @override
@@ -50,12 +51,24 @@ class GlobalStateInitializer extends StateInitializer {
           PlayerCharacterModel(
             id: 'ohman char',
             name: 'OhMan',
+            asset: CharacterAssetModel(
+              srcPositionX: 0,
+              srcPositionY: kTileDimension * 6,
+              srcSizeX: kTileDimension,
+              srcSizeY: kTileDimension,
+            ),
             description: 'Simple boring character',
             color: Colors.green.value,
           ),
           PlayerCharacterModel(
             id: 'waterman',
             name: 'Waterman',
+            asset: CharacterAssetModel(
+              srcPositionX: 0,
+              srcPositionY: kTileDimension * 6,
+              srcSizeX: kTileDimension,
+              srcSizeY: kTileDimension,
+            ),
             description: 'Another boring character',
             color: Colors.cyan.value,
           )

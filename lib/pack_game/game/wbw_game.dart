@@ -20,6 +20,7 @@ int get kMapTilesPlayableHeight => 20;
 
 int get kVisibleTilesHeight => 12;
 int get kVisibleTilesWidth => 30;
+String get kDefaultTilesetPath => 'tilesets/pixel_black_white_tileset.png';
 
 class WbwGame extends FlameGame with HasCollisionDetection {
   WbwGame.use({required final Locator read, required final ThemeData theme})
@@ -58,6 +59,10 @@ class WbwGame extends FlameGame with HasCollisionDetection {
     overlays.addAll([
       GameOverlaysRoutes.levelsHud.name,
     ]);
+    // assets loading
+
+    await images.load(kDefaultTilesetPath);
+
     return super.onLoad();
   }
 

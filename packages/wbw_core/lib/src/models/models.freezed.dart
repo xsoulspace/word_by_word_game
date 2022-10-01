@@ -1709,6 +1709,7 @@ mixin _$PlayerCharacterModel {
   String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
+  CharacterAssetModel get asset => throw _privateConstructorUsedError;
   FuelStorageModel get fuel => throw _privateConstructorUsedError;
   double get fuelNormalPower => throw _privateConstructorUsedError;
   double get requiredLiftForce => throw _privateConstructorUsedError;
@@ -1729,10 +1730,12 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       String name,
       String description,
       int color,
+      CharacterAssetModel asset,
       FuelStorageModel fuel,
       double fuelNormalPower,
       double requiredLiftForce});
 
+  $CharacterAssetModelCopyWith<$Res> get asset;
   $FuelStorageModelCopyWith<$Res> get fuel;
 }
 
@@ -1751,6 +1754,7 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? color = freezed,
+    Object? asset = freezed,
     Object? fuel = freezed,
     Object? fuelNormalPower = freezed,
     Object? requiredLiftForce = freezed,
@@ -1772,6 +1776,10 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int,
+      asset: asset == freezed
+          ? _value.asset
+          : asset // ignore: cast_nullable_to_non_nullable
+              as CharacterAssetModel,
       fuel: fuel == freezed
           ? _value.fuel
           : fuel // ignore: cast_nullable_to_non_nullable
@@ -1785,6 +1793,13 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
           : requiredLiftForce // ignore: cast_nullable_to_non_nullable
               as double,
     ));
+  }
+
+  @override
+  $CharacterAssetModelCopyWith<$Res> get asset {
+    return $CharacterAssetModelCopyWith<$Res>(_value.asset, (value) {
+      return _then(_value.copyWith(asset: value));
+    });
   }
 
   @override
@@ -1807,10 +1822,13 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
       String name,
       String description,
       int color,
+      CharacterAssetModel asset,
       FuelStorageModel fuel,
       double fuelNormalPower,
       double requiredLiftForce});
 
+  @override
+  $CharacterAssetModelCopyWith<$Res> get asset;
   @override
   $FuelStorageModelCopyWith<$Res> get fuel;
 }
@@ -1832,6 +1850,7 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
     Object? name = freezed,
     Object? description = freezed,
     Object? color = freezed,
+    Object? asset = freezed,
     Object? fuel = freezed,
     Object? fuelNormalPower = freezed,
     Object? requiredLiftForce = freezed,
@@ -1853,6 +1872,10 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.color
           : color // ignore: cast_nullable_to_non_nullable
               as int,
+      asset: asset == freezed
+          ? _value.asset
+          : asset // ignore: cast_nullable_to_non_nullable
+              as CharacterAssetModel,
       fuel: fuel == freezed
           ? _value.fuel
           : fuel // ignore: cast_nullable_to_non_nullable
@@ -1878,6 +1901,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       required this.name,
       required this.description,
       required this.color,
+      required this.asset,
       this.fuel = const FuelStorageModel(value: 150),
       this.fuelNormalPower = 50.5,
       this.requiredLiftForce = 0.5})
@@ -1895,6 +1919,8 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   @override
   final int color;
   @override
+  final CharacterAssetModel asset;
+  @override
   @JsonKey()
   final FuelStorageModel fuel;
   @override
@@ -1906,7 +1932,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, name: $name, description: $description, color: $color, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce)';
+    return 'PlayerCharacterModel(id: $id, name: $name, description: $description, color: $color, asset: $asset, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce)';
   }
 
   @override
@@ -1919,6 +1945,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.color, color) &&
+            const DeepCollectionEquality().equals(other.asset, asset) &&
             const DeepCollectionEquality().equals(other.fuel, fuel) &&
             const DeepCollectionEquality()
                 .equals(other.fuelNormalPower, fuelNormalPower) &&
@@ -1934,6 +1961,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(asset),
       const DeepCollectionEquality().hash(fuel),
       const DeepCollectionEquality().hash(fuelNormalPower),
       const DeepCollectionEquality().hash(requiredLiftForce));
@@ -1958,6 +1986,7 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
       required final String name,
       required final String description,
       required final int color,
+      required final CharacterAssetModel asset,
       final FuelStorageModel fuel,
       final double fuelNormalPower,
       final double requiredLiftForce}) = _$_PlayerCharacterModel;
@@ -1975,6 +2004,8 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   @override
   int get color;
   @override
+  CharacterAssetModel get asset;
+  @override
   FuelStorageModel get fuel;
   @override
   double get fuelNormalPower;
@@ -1983,6 +2014,206 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   @override
   @JsonKey(ignore: true)
   _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+CharacterAssetModel _$CharacterAssetModelFromJson(Map<String, dynamic> json) {
+  return _CharacterAssetModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CharacterAssetModel {
+  int get srcPositionX => throw _privateConstructorUsedError;
+  int get srcPositionY => throw _privateConstructorUsedError;
+  int get srcSizeX => throw _privateConstructorUsedError;
+  int get srcSizeY => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CharacterAssetModelCopyWith<CharacterAssetModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CharacterAssetModelCopyWith<$Res> {
+  factory $CharacterAssetModelCopyWith(
+          CharacterAssetModel value, $Res Function(CharacterAssetModel) then) =
+      _$CharacterAssetModelCopyWithImpl<$Res>;
+  $Res call({int srcPositionX, int srcPositionY, int srcSizeX, int srcSizeY});
+}
+
+/// @nodoc
+class _$CharacterAssetModelCopyWithImpl<$Res>
+    implements $CharacterAssetModelCopyWith<$Res> {
+  _$CharacterAssetModelCopyWithImpl(this._value, this._then);
+
+  final CharacterAssetModel _value;
+  // ignore: unused_field
+  final $Res Function(CharacterAssetModel) _then;
+
+  @override
+  $Res call({
+    Object? srcPositionX = freezed,
+    Object? srcPositionY = freezed,
+    Object? srcSizeX = freezed,
+    Object? srcSizeY = freezed,
+  }) {
+    return _then(_value.copyWith(
+      srcPositionX: srcPositionX == freezed
+          ? _value.srcPositionX
+          : srcPositionX // ignore: cast_nullable_to_non_nullable
+              as int,
+      srcPositionY: srcPositionY == freezed
+          ? _value.srcPositionY
+          : srcPositionY // ignore: cast_nullable_to_non_nullable
+              as int,
+      srcSizeX: srcSizeX == freezed
+          ? _value.srcSizeX
+          : srcSizeX // ignore: cast_nullable_to_non_nullable
+              as int,
+      srcSizeY: srcSizeY == freezed
+          ? _value.srcSizeY
+          : srcSizeY // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_CharacterAssetModelCopyWith<$Res>
+    implements $CharacterAssetModelCopyWith<$Res> {
+  factory _$$_CharacterAssetModelCopyWith(_$_CharacterAssetModel value,
+          $Res Function(_$_CharacterAssetModel) then) =
+      __$$_CharacterAssetModelCopyWithImpl<$Res>;
+  @override
+  $Res call({int srcPositionX, int srcPositionY, int srcSizeX, int srcSizeY});
+}
+
+/// @nodoc
+class __$$_CharacterAssetModelCopyWithImpl<$Res>
+    extends _$CharacterAssetModelCopyWithImpl<$Res>
+    implements _$$_CharacterAssetModelCopyWith<$Res> {
+  __$$_CharacterAssetModelCopyWithImpl(_$_CharacterAssetModel _value,
+      $Res Function(_$_CharacterAssetModel) _then)
+      : super(_value, (v) => _then(v as _$_CharacterAssetModel));
+
+  @override
+  _$_CharacterAssetModel get _value => super._value as _$_CharacterAssetModel;
+
+  @override
+  $Res call({
+    Object? srcPositionX = freezed,
+    Object? srcPositionY = freezed,
+    Object? srcSizeX = freezed,
+    Object? srcSizeY = freezed,
+  }) {
+    return _then(_$_CharacterAssetModel(
+      srcPositionX: srcPositionX == freezed
+          ? _value.srcPositionX
+          : srcPositionX // ignore: cast_nullable_to_non_nullable
+              as int,
+      srcPositionY: srcPositionY == freezed
+          ? _value.srcPositionY
+          : srcPositionY // ignore: cast_nullable_to_non_nullable
+              as int,
+      srcSizeX: srcSizeX == freezed
+          ? _value.srcSizeX
+          : srcSizeX // ignore: cast_nullable_to_non_nullable
+              as int,
+      srcSizeY: srcSizeY == freezed
+          ? _value.srcSizeY
+          : srcSizeY // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_CharacterAssetModel extends _CharacterAssetModel {
+  const _$_CharacterAssetModel(
+      {required this.srcPositionX,
+      required this.srcPositionY,
+      required this.srcSizeX,
+      required this.srcSizeY})
+      : super._();
+
+  factory _$_CharacterAssetModel.fromJson(Map<String, dynamic> json) =>
+      _$$_CharacterAssetModelFromJson(json);
+
+  @override
+  final int srcPositionX;
+  @override
+  final int srcPositionY;
+  @override
+  final int srcSizeX;
+  @override
+  final int srcSizeY;
+
+  @override
+  String toString() {
+    return 'CharacterAssetModel(srcPositionX: $srcPositionX, srcPositionY: $srcPositionY, srcSizeX: $srcSizeX, srcSizeY: $srcSizeY)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CharacterAssetModel &&
+            const DeepCollectionEquality()
+                .equals(other.srcPositionX, srcPositionX) &&
+            const DeepCollectionEquality()
+                .equals(other.srcPositionY, srcPositionY) &&
+            const DeepCollectionEquality().equals(other.srcSizeX, srcSizeX) &&
+            const DeepCollectionEquality().equals(other.srcSizeY, srcSizeY));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(srcPositionX),
+      const DeepCollectionEquality().hash(srcPositionY),
+      const DeepCollectionEquality().hash(srcSizeX),
+      const DeepCollectionEquality().hash(srcSizeY));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_CharacterAssetModelCopyWith<_$_CharacterAssetModel> get copyWith =>
+      __$$_CharacterAssetModelCopyWithImpl<_$_CharacterAssetModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CharacterAssetModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CharacterAssetModel extends CharacterAssetModel {
+  const factory _CharacterAssetModel(
+      {required final int srcPositionX,
+      required final int srcPositionY,
+      required final int srcSizeX,
+      required final int srcSizeY}) = _$_CharacterAssetModel;
+  const _CharacterAssetModel._() : super._();
+
+  factory _CharacterAssetModel.fromJson(Map<String, dynamic> json) =
+      _$_CharacterAssetModel.fromJson;
+
+  @override
+  int get srcPositionX;
+  @override
+  int get srcPositionY;
+  @override
+  int get srcSizeX;
+  @override
+  int get srcSizeY;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CharacterAssetModelCopyWith<_$_CharacterAssetModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

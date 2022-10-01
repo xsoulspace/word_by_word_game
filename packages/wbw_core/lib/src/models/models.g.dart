@@ -172,6 +172,8 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
       name: json['name'] as String,
       description: json['description'] as String,
       color: json['color'] as int,
+      asset:
+          CharacterAssetModel.fromJson(json['asset'] as Map<String, dynamic>),
       fuel: json['fuel'] == null
           ? const FuelStorageModel(value: 150)
           : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
@@ -186,9 +188,28 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'name': instance.name,
       'description': instance.description,
       'color': instance.color,
+      'asset': instance.asset.toJson(),
       'fuel': instance.fuel.toJson(),
       'fuelNormalPower': instance.fuelNormalPower,
       'requiredLiftForce': instance.requiredLiftForce,
+    };
+
+_$_CharacterAssetModel _$$_CharacterAssetModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_CharacterAssetModel(
+      srcPositionX: json['srcPositionX'] as int,
+      srcPositionY: json['srcPositionY'] as int,
+      srcSizeX: json['srcSizeX'] as int,
+      srcSizeY: json['srcSizeY'] as int,
+    );
+
+Map<String, dynamic> _$$_CharacterAssetModelToJson(
+        _$_CharacterAssetModel instance) =>
+    <String, dynamic>{
+      'srcPositionX': instance.srcPositionX,
+      'srcPositionY': instance.srcPositionY,
+      'srcSizeX': instance.srcSizeX,
+      'srcSizeY': instance.srcSizeY,
     };
 
 _$_PlayerProfileModel _$$_PlayerProfileModelFromJson(

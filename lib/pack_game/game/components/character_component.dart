@@ -22,12 +22,25 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
   final double levelHeight;
   late FlyingObjectsParams params;
   final ObstacleLevelHelper obstacleLevelHelper;
+  late Sprite sprite;
 
   @override
   Future<void>? onLoad() async {
     await add(
       FlameBlocListener<LevelPlayersBloc, LevelPlayersBlocState>(
         onNewState: _handleLevelState,
+      ),
+    );
+    final asset = characterModel.asset;
+    sprite = await Sprite.load(
+      kDefaultTilesetPath,
+      srcPosition: Vector2(
+        asset.srcPositionX.toDouble(),
+        asset.srcPositionY.toDouble(),
+      ),
+      srcSize: Vector2(
+        asset.srcSizeX.toDouble(),
+        asset.srcSizeY.toDouble(),
       ),
     );
     paint.color = Color(characterModel.color);
@@ -51,11 +64,7 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
         color: Colors.blue,
       ),
     );
-
-    canvas.drawRect(
-      Rect.fromLTWH(0, 0, width, height),
-      paint,
-    );
+    sprite.render(canvas, size: size);
     textPaint.render(canvas, '${params.fuel.value}', Vector2(10, 10));
 
     super.render(canvas);
