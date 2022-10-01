@@ -38,6 +38,8 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     on<LevelPartLoadedEvent>(_onLevelPartLoaded);
     on<SaveGameEvent>(_onSaveGame);
     on<SaveCurrentLevelEvent>(_onSaveCurrentLevel);
+    on<CharacterCollisionEvent>(_onCharacterCollision);
+    on<RestartLevelEvent>(_restartLevel);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
   }
 
@@ -73,12 +75,30 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     unawaited(diDto.mechanics.worldTime.onLoad());
   }
 
+  void _restartLevel(
+    final RestartLevelEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final levelModel = liveState.currentLevelModel;
+    if (levelModel == null) {
+      // TODO(arenuvkern): description
+      throw UnimplementedError();
+    } else {
+      add(InitGlobalGameLevelEvent(levelModel: levelModel));
+    }
+  }
+
   void _onInitGlobalGameLevel(
     final InitGlobalGameLevelEvent event,
     final Emitter<GlobalGameBlocState> emit,
   ) {
-    emit(_getResetedLevelLoad());
     final levelModel = event.levelModel;
+    LiveGlobalGameBlocState updatedState = _getResetedLevelLoad();
+    updatedState = updatedState.copyWith(
+      currentLevelModel: levelModel,
+    );
+    emit(updatedState);
     diDto
       ..levelBloc.add(InitLevelEvent(levelModel: levelModel))
       ..levelPlayersBloc.add(
@@ -135,6 +155,13 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     );
     emit(newState);
     _shareNewDateTime(newState);
+  }
+
+  void _onCharacterCollision(
+    final CharacterCollisionEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) {
+    diDto.mechanics.worldTime.pause();
   }
 
   void _shareNewDateTime(final LiveGlobalGameBlocState newState) {

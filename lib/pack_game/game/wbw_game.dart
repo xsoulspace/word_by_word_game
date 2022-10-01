@@ -9,7 +9,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
+import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/pack_game/game/components/components.dart';
+import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 import 'package:word_by_word_game/pack_game/utils/utils.dart';
 
 part 'wbw_game_di.dart';
@@ -23,8 +25,15 @@ int get kVisibleTilesWidth => 30;
 String get kDefaultTilesetPath => 'tilesets/pixel_black_white_tileset.png';
 
 class WbwGame extends FlameGame with HasCollisionDetection {
-  WbwGame.use({required final Locator read, required final ThemeData theme})
-      : diDto = WbwGameDiDto.use(read: read, theme: theme);
+  WbwGame.use(
+      {required final Locator read,
+      required final ThemeData theme,
+      required final DialogController dialogController})
+      : diDto = WbwGameDiDto.use(
+          read: read,
+          theme: theme,
+          dialogController: dialogController,
+        );
   final WbwGameDiDto diDto;
   late final RouterComponent router;
 
@@ -39,7 +48,7 @@ class WbwGame extends FlameGame with HasCollisionDetection {
     children.register<CameraComponent>();
     world = World();
     router = const GameRouter().init();
-
+    diDto.mechanics.worldTime.addListener(_onWorldTimeChange);
     providersComponent = diDto.getBlocsProviderComponent(
       children: [
         world,
@@ -79,6 +88,16 @@ class WbwGame extends FlameGame with HasCollisionDetection {
       )
       ..anchor = Anchor.center;
     return camera;
+  }
+
+  void _onWorldTimeChange(final WorldTimeMechanics worldTimeMechanics) {
+    if (worldTimeMechanics.paused) {
+      if (paused) return;
+      paused = true;
+    } else {
+      if (!paused) return;
+      paused = false;
+    }
   }
 
   Future<void> _handleGlobalGameStateChanges(

@@ -4,10 +4,12 @@ class WbwGameDiDto {
   WbwGameDiDto.use({
     required final Locator read,
     required this.theme,
+    required this.dialogController,
   })  : levelBloc = read(),
         levelPlayersBloc = read(),
         resourcesBloc = read(),
-        globalGameBloc = read();
+        globalGameBloc = read(),
+        mechanics = read();
 
   /// ********************************************
   /// *      Ephemeral
@@ -16,7 +18,9 @@ class WbwGameDiDto {
   final LevelPlayersBloc levelPlayersBloc;
   final GlobalGameBloc globalGameBloc;
   final ResourcesBloc resourcesBloc;
+  final MechanicsCollection mechanics;
   final ThemeData theme;
+  final DialogController dialogController;
 
   FlameMultiBlocProvider getBlocsProviderComponent({
     required final List<Component>? children,

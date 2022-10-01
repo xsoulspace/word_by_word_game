@@ -66,3 +66,13 @@ class SaveGameEvent extends GameEvent {
 class SaveCurrentLevelEvent extends GameEvent {
   const SaveCurrentLevelEvent();
 }
+
+@immutable
+class CharacterCollisionEvent extends GameEvent {
+  const CharacterCollisionEvent();
+}
+
+@immutable
+class RestartLevelEvent extends GameEvent {
+  const RestartLevelEvent();
+}

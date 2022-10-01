@@ -26,6 +26,13 @@ mixin _$LiveGlobalGameBlocState {
   /// ********************************************
   String get id => throw _privateConstructorUsedError;
   String get currentLevelId => throw _privateConstructorUsedError;
+
+  /// Current Level Model is a model with all level configurations
+  /// chosen by the user (players, characters, etc).
+  /// It should not be update or changed during the playing the level.
+  /// It should be set during the level first initialization
+  /// (When the player clicks play button).
+  LevelModel? get currentLevelModel => throw _privateConstructorUsedError;
   WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
   WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
   Map<String, LevelModel> get levels => throw _privateConstructorUsedError;
@@ -60,6 +67,7 @@ abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
   $Res call(
       {String id,
       String currentLevelId,
+      LevelModel? currentLevelModel,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       Map<String, LevelModel> levels,
@@ -69,6 +77,7 @@ abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
       int dateTimeDelta,
       Set<LevelPartStates> loadedLevelParts});
 
+  $LevelModelCopyWith<$Res>? get currentLevelModel;
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
@@ -86,6 +95,7 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? currentLevelId = freezed,
+    Object? currentLevelModel = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
     Object? levels = freezed,
@@ -104,6 +114,10 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      currentLevelModel: currentLevelModel == freezed
+          ? _value.currentLevelModel
+          : currentLevelModel // ignore: cast_nullable_to_non_nullable
+              as LevelModel?,
       dateTime: dateTime == freezed
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -140,6 +154,17 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
   }
 
   @override
+  $LevelModelCopyWith<$Res>? get currentLevelModel {
+    if (_value.currentLevelModel == null) {
+      return null;
+    }
+
+    return $LevelModelCopyWith<$Res>(_value.currentLevelModel!, (value) {
+      return _then(_value.copyWith(currentLevelModel: value));
+    });
+  }
+
+  @override
   $WorldDateTimeModelCopyWith<$Res> get dateTime {
     return $WorldDateTimeModelCopyWith<$Res>(_value.dateTime, (value) {
       return _then(_value.copyWith(dateTime: value));
@@ -164,6 +189,7 @@ abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
   $Res call(
       {String id,
       String currentLevelId,
+      LevelModel? currentLevelModel,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       Map<String, LevelModel> levels,
@@ -173,6 +199,8 @@ abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
       int dateTimeDelta,
       Set<LevelPartStates> loadedLevelParts});
 
+  @override
+  $LevelModelCopyWith<$Res>? get currentLevelModel;
   @override
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   @override
@@ -195,6 +223,7 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? currentLevelId = freezed,
+    Object? currentLevelModel = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
     Object? levels = freezed,
@@ -213,6 +242,10 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      currentLevelModel: currentLevelModel == freezed
+          ? _value.currentLevelModel
+          : currentLevelModel // ignore: cast_nullable_to_non_nullable
+              as LevelModel?,
       dateTime: dateTime == freezed
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -256,6 +289,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   const _$_LiveGlobalGameBlocState(
       {required this.id,
       this.currentLevelId = '',
+      this.currentLevelModel,
       this.dateTime = const WorldDateTimeModel(),
       this.lastDateTime = const WorldDateTimeModel(),
       final Map<String, LevelModel> levels = const {},
@@ -282,6 +316,14 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   @override
   @JsonKey()
   final String currentLevelId;
+
+  /// Current Level Model is a model with all level configurations
+  /// chosen by the user (players, characters, etc).
+  /// It should not be update or changed during the playing the level.
+  /// It should be set during the level first initialization
+  /// (When the player clicks play button).
+  @override
+  final LevelModel? currentLevelModel;
   @override
   @JsonKey()
   final WorldDateTimeModel dateTime;
@@ -341,7 +383,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
 
   @override
   String toString() {
-    return 'LiveGlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta, loadedLevelParts: $loadedLevelParts)';
+    return 'LiveGlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta, loadedLevelParts: $loadedLevelParts)';
   }
 
   @override
@@ -352,6 +394,8 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality()
                 .equals(other.currentLevelId, currentLevelId) &&
+            const DeepCollectionEquality()
+                .equals(other.currentLevelModel, currentLevelModel) &&
             const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
             const DeepCollectionEquality()
                 .equals(other.lastDateTime, lastDateTime) &&
@@ -374,6 +418,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(currentLevelId),
+      const DeepCollectionEquality().hash(currentLevelModel),
       const DeepCollectionEquality().hash(dateTime),
       const DeepCollectionEquality().hash(lastDateTime),
       const DeepCollectionEquality().hash(_levels),
@@ -403,6 +448,7 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
   const factory _LiveGlobalGameBlocState(
           {required final String id,
           final String currentLevelId,
+          final LevelModel? currentLevelModel,
           final WorldDateTimeModel dateTime,
           final WorldDateTimeModel lastDateTime,
           final Map<String, LevelModel> levels,
@@ -425,6 +471,14 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
   String get id;
   @override
   String get currentLevelId;
+  @override
+
+  /// Current Level Model is a model with all level configurations
+  /// chosen by the user (players, characters, etc).
+  /// It should not be update or changed during the playing the level.
+  /// It should be set during the level first initialization
+  /// (When the player clicks play button).
+  LevelModel? get currentLevelModel;
   @override
   WorldDateTimeModel get dateTime;
   @override

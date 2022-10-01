@@ -31,6 +31,13 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
 
     required final GameModelId id,
     @Default('') final LevelModelId currentLevelId,
+
+    /// Current Level Model is a model with all level configurations
+    /// chosen by the user (players, characters, etc).
+    /// It should not be update or changed during the playing the level.
+    /// It should be set during the level first initialization
+    /// (When the player clicks play button).
+    final LevelModel? currentLevelModel,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
     @Default({}) final Map<LevelModelId, LevelModel> levels,

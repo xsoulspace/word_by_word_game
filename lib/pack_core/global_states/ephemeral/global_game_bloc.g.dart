@@ -11,6 +11,10 @@ _$_LiveGlobalGameBlocState _$$_LiveGlobalGameBlocStateFromJson(
     _$_LiveGlobalGameBlocState(
       id: json['id'] as String,
       currentLevelId: json['currentLevelId'] as String? ?? '',
+      currentLevelModel: json['currentLevelModel'] == null
+          ? null
+          : LevelModel.fromJson(
+              json['currentLevelModel'] as Map<String, dynamic>),
       dateTime: json['dateTime'] == null
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
@@ -51,6 +55,7 @@ Map<String, dynamic> _$$_LiveGlobalGameBlocStateToJson(
     <String, dynamic>{
       'id': instance.id,
       'currentLevelId': instance.currentLevelId,
+      'currentLevelModel': instance.currentLevelModel?.toJson(),
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
       'levels': instance.levels.map((k, e) => MapEntry(k, e.toJson())),

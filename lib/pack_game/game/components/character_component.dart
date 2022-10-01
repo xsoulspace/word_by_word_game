@@ -45,7 +45,10 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     );
     paint.color = Color(characterModel.color);
     params = const FlyingObjectsParams();
-    position = Vector2(params.minXBoundry, (kMapTilesPlayableHeight - 2) * 16);
+    position = Vector2(
+      params.minXBoundry,
+      ((kMapTilesPlayableHeight - 3) * kTileDimension).toDouble(),
+    );
     return super.onLoad();
   }
 
@@ -71,7 +74,9 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
   }
 
   void onCollision() {
-    print('!!COLLISION!!');
+    gameRef.diDto
+      ..globalGameBloc.add(const CharacterCollisionEvent())
+      ..dialogController.showEndGameDialog();
   }
 
   @override

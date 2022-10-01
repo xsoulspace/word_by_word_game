@@ -12,9 +12,7 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  /// File path: assets/images/pixel_black_white_tileset.png
-  AssetGenImage get pixelBlackWhiteTileset =>
-      const AssetGenImage('assets/images/pixel_black_white_tileset.png');
+  $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
 }
 
 class $AssetsTilesGen {
@@ -23,6 +21,14 @@ class $AssetsTilesGen {
   /// File path: assets/tiles/pixel_black_white_landscape.tmx
   String get pixelBlackWhiteLandscape =>
       'assets/tiles/pixel_black_white_landscape.tmx';
+}
+
+class $AssetsImagesTilesetsGen {
+  const $AssetsImagesTilesetsGen();
+
+  /// File path: assets/images/tilesets/pixel_black_white_tileset.png
+  AssetGenImage get pixelBlackWhiteTileset => const AssetGenImage(
+      'assets/images/tilesets/pixel_black_white_tileset.png');
 }
 
 class Assets {
