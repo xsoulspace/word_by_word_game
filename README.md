@@ -42,3 +42,7 @@ Have a fun and a great time!
 # Huge thank you for contributions!
 
 [@albanobattistella](https://github.com/albanobattistella)
+
+# Support
+
+Support the Game on https://boosty.to/arenukvern
