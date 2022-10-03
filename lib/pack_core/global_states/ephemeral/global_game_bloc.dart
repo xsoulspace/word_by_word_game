@@ -71,7 +71,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
           'presented in the game model.',
         );
       }
-      add(InitGlobalGameLevelEvent(levelModel: levelModel));
+      add(InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false));
     }
     unawaited(diDto.mechanics.worldTime.onLoad());
   }
@@ -96,10 +96,12 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   ) {
     final levelModel = event.levelModel;
     LiveGlobalGameBlocState updatedState = _getResetedLevelLoad();
-    updatedState = updatedState.copyWith(
-      currentLevelModel: levelModel,
-    );
-    emit(updatedState);
+    if (event.isNewStart) {
+      updatedState = updatedState.copyWith(
+        currentLevelModel: levelModel,
+      );
+      emit(updatedState);
+    }
     diDto
       ..levelBloc.add(InitLevelEvent(levelModel: levelModel))
       ..levelPlayersBloc.add(
@@ -254,6 +256,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   GameModel _getGameModel({required final LiveGlobalGameBlocState liveState}) {
     return GameModel(
       id: liveState.id,
+      currentLevel: liveState.currentLevelModel,
       currentLevelId: liveState.currentLevelId,
       templateLevels: liveState.templateLevels,
       dateTime: liveState.dateTime,

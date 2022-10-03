@@ -31,11 +31,6 @@ class GlobalStateInitializer extends StateInitializer {
       return InitGlobalGameEvent(gameModel: savedGame);
     }
 
-    final player = PlayerProfileModel.create(
-      name: 'ohman player',
-      colorValue: Colors.red.value,
-    );
-    final players = <PlayerProfileModel>[player];
     return InitGlobalGameEvent(
       gameModel: GameModel(
         id: 'game',
@@ -50,32 +45,19 @@ class GlobalStateInitializer extends StateInitializer {
         ],
         playersCharacters: [
           PlayerCharacterModel(
-            id: 'ohman char',
-            name: 'OhMan',
+            id: 'hot-air-balloon',
+            name: 'Hot Air Balloon',
             asset: CharacterAssetModel(
-              srcPositionX: 0,
-              srcPositionY: kTileDimension * 6,
+              srcPosition: SerializedVector2(x: 0, y: kTileDimension * 6),
               srcSizeX: kTileDimension,
               srcSizeY: kTileDimension,
             ),
-            description: 'Simple boring character',
+            description: 'Moves with the wind..',
             color: Colors.green.value,
           ),
-          PlayerCharacterModel(
-            id: 'waterman',
-            name: 'Waterman',
-            asset: CharacterAssetModel(
-              srcPositionX: 0,
-              srcPositionY: kTileDimension * 6,
-              srcSizeX: kTileDimension,
-              srcSizeY: kTileDimension,
-            ),
-            description: 'Another boring character',
-            color: Colors.cyan.value,
-          )
         ],
         currentLevelId: '',
-        playersCollection: players,
+        playersCollection: const [],
       ),
     );
   }

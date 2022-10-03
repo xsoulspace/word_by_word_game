@@ -23,6 +23,9 @@ class GameModel with _$GameModel {
     required final List<TemplateLevelModel> templateLevels,
     required final LevelModelId currentLevelId,
 
+    /// Saved level configuration to get player an option to restart a level
+    final LevelModel? currentLevel,
+
     /// Levels that player already started
     @Default({}) final Map<LevelModelId, LevelModel> levels,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,

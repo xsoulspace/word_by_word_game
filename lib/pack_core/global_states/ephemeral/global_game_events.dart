@@ -24,8 +24,10 @@ class WorldTimeTickEvent extends GameEvent {
 class InitGlobalGameLevelEvent extends GameEvent {
   const InitGlobalGameLevelEvent({
     required this.levelModel,
+    this.isNewStart = true,
   });
   final LevelModel levelModel;
+  final bool isNewStart;
 }
 
 @immutable

@@ -31,6 +31,14 @@ class ConsumeFuelEvent extends LevelPlayersEvent {
 }
 
 @immutable
+class ChangeCharacterPositionEvent extends LevelPlayersEvent {
+  const ChangeCharacterPositionEvent({
+    required this.position,
+  });
+  final Vector2 position;
+}
+
+@immutable
 class RefuelStorageEvent extends LevelPlayersEvent {
   const RefuelStorageEvent({
     required this.score,

@@ -61,6 +61,7 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
   factory LiveGlobalGameBlocState.fromModel(final GameModel gameModel) {
     return LiveGlobalGameBlocState(
       currentLevelId: gameModel.currentLevelId,
+      currentLevelModel: gameModel.currentLevel,
       id: gameModel.id,
       dateTime: gameModel.dateTime,
       lastDateTime: gameModel.lastDateTime,

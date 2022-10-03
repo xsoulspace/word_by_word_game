@@ -47,6 +47,9 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
           .map((e) => TemplateLevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentLevelId: json['currentLevelId'] as String,
+      currentLevel: json['currentLevel'] == null
+          ? null
+          : LevelModel.fromJson(json['currentLevel'] as Map<String, dynamic>),
       levels: (json['levels'] as Map<String, dynamic>?)?.map(
             (k, e) =>
                 MapEntry(k, LevelModel.fromJson(e as Map<String, dynamic>)),
@@ -77,6 +80,7 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'id': instance.id,
       'templateLevels': instance.templateLevels.map((e) => e.toJson()).toList(),
       'currentLevelId': instance.currentLevelId,
+      'currentLevel': instance.currentLevel?.toJson(),
       'levels': instance.levels.map((k, e) => MapEntry(k, e.toJson())),
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
@@ -178,6 +182,10 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
       color: json['color'] as int,
       asset:
           CharacterAssetModel.fromJson(json['asset'] as Map<String, dynamic>),
+      position: json['position'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['position'] as Map<String, dynamic>),
       fuel: json['fuel'] == null
           ? const FuelStorageModel(value: 150)
           : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
@@ -193,6 +201,7 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'description': instance.description,
       'color': instance.color,
       'asset': instance.asset.toJson(),
+      'position': instance.position.toJson(),
       'fuel': instance.fuel.toJson(),
       'fuelNormalPower': instance.fuelNormalPower,
       'requiredLiftForce': instance.requiredLiftForce,
@@ -201,8 +210,8 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
 _$_CharacterAssetModel _$$_CharacterAssetModelFromJson(
         Map<String, dynamic> json) =>
     _$_CharacterAssetModel(
-      srcPositionX: json['srcPositionX'] as int,
-      srcPositionY: json['srcPositionY'] as int,
+      srcPosition: SerializedVector2.fromJson(
+          json['srcPosition'] as Map<String, dynamic>),
       srcSizeX: json['srcSizeX'] as int,
       srcSizeY: json['srcSizeY'] as int,
     );
@@ -210,10 +219,22 @@ _$_CharacterAssetModel _$$_CharacterAssetModelFromJson(
 Map<String, dynamic> _$$_CharacterAssetModelToJson(
         _$_CharacterAssetModel instance) =>
     <String, dynamic>{
-      'srcPositionX': instance.srcPositionX,
-      'srcPositionY': instance.srcPositionY,
+      'srcPosition': instance.srcPosition.toJson(),
       'srcSizeX': instance.srcSizeX,
       'srcSizeY': instance.srcSizeY,
+    };
+
+_$_SerializedVector2 _$$_SerializedVector2FromJson(Map<String, dynamic> json) =>
+    _$_SerializedVector2(
+      x: (json['x'] as num?)?.toDouble() ?? 0,
+      y: (json['y'] as num?)?.toDouble() ?? 0,
+    );
+
+Map<String, dynamic> _$$_SerializedVector2ToJson(
+        _$_SerializedVector2 instance) =>
+    <String, dynamic>{
+      'x': instance.x,
+      'y': instance.y,
     };
 
 _$_PlayerProfileModel _$$_PlayerProfileModelFromJson(

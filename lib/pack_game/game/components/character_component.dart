@@ -35,8 +35,8 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     sprite = await Sprite.load(
       kDefaultTilesetPath,
       srcPosition: Vector2(
-        asset.srcPositionX.toDouble(),
-        asset.srcPositionY.toDouble(),
+        asset.srcPosition.x,
+        asset.srcPosition.y,
       ),
       srcSize: Vector2(
         asset.srcSizeX.toDouble(),
@@ -45,10 +45,12 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
     );
     paint.color = Color(characterModel.color);
     params = const FlyingObjectsParams();
-    position = Vector2(
-      params.minXBoundry,
-      ((kMapTilesPlayableHeight - 3) * kTileDimension).toDouble(),
-    );
+    position = characterModel.position.isZero
+        ? Vector2(
+            params.minXBoundry,
+            ((kMapTilesPlayableHeight - 3) * kTileDimension).toDouble(),
+          )
+        : characterModel.position.toVector2();
     return super.onLoad();
   }
 
@@ -135,6 +137,13 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
       ),
     );
     x -= mechanics.xVelocity;
+
+    gameRef.diDto.levelPlayersBloc.add(
+      ChangeCharacterPositionEvent(
+        position: position,
+      ),
+    );
+
     // fuel = 90;
     // y = 0;
     // x = 0;

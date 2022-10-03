@@ -1,5 +1,10 @@
 ## Next
 
+## October 2th 2022
+
+- Now character able to restore its position when is loaded.
+- Fixed start again button with ability to restart level.
+
 ## October 1th 2022
 
 - test level with basic mountains

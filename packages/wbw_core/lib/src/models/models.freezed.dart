@@ -500,6 +500,9 @@ mixin _$GameModel {
       throw _privateConstructorUsedError;
   String get currentLevelId => throw _privateConstructorUsedError;
 
+  /// Saved level configuration to get player an option to restart a level
+  LevelModel? get currentLevel => throw _privateConstructorUsedError;
+
   /// Levels that player already started
   Map<String, LevelModel> get levels => throw _privateConstructorUsedError;
   WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
@@ -525,12 +528,14 @@ abstract class $GameModelCopyWith<$Res> {
       {String id,
       List<TemplateLevelModel> templateLevels,
       String currentLevelId,
+      LevelModel? currentLevel,
       Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters});
 
+  $LevelModelCopyWith<$Res>? get currentLevel;
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
@@ -548,6 +553,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? id = freezed,
     Object? templateLevels = freezed,
     Object? currentLevelId = freezed,
+    Object? currentLevel = freezed,
     Object? levels = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
@@ -567,6 +573,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      currentLevel: currentLevel == freezed
+          ? _value.currentLevel
+          : currentLevel // ignore: cast_nullable_to_non_nullable
+              as LevelModel?,
       levels: levels == freezed
           ? _value.levels
           : levels // ignore: cast_nullable_to_non_nullable
@@ -588,6 +598,17 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           : playersCharacters // ignore: cast_nullable_to_non_nullable
               as List<PlayerCharacterModel>,
     ));
+  }
+
+  @override
+  $LevelModelCopyWith<$Res>? get currentLevel {
+    if (_value.currentLevel == null) {
+      return null;
+    }
+
+    return $LevelModelCopyWith<$Res>(_value.currentLevel!, (value) {
+      return _then(_value.copyWith(currentLevel: value));
+    });
   }
 
   @override
@@ -615,12 +636,15 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       {String id,
       List<TemplateLevelModel> templateLevels,
       String currentLevelId,
+      LevelModel? currentLevel,
       Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters});
 
+  @override
+  $LevelModelCopyWith<$Res>? get currentLevel;
   @override
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   @override
@@ -642,6 +666,7 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? id = freezed,
     Object? templateLevels = freezed,
     Object? currentLevelId = freezed,
+    Object? currentLevel = freezed,
     Object? levels = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
@@ -661,6 +686,10 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
+      currentLevel: currentLevel == freezed
+          ? _value.currentLevel
+          : currentLevel // ignore: cast_nullable_to_non_nullable
+              as LevelModel?,
       levels: levels == freezed
           ? _value._levels
           : levels // ignore: cast_nullable_to_non_nullable
@@ -693,6 +722,7 @@ class _$_GameModel extends _GameModel {
       {required this.id,
       required final List<TemplateLevelModel> templateLevels,
       required this.currentLevelId,
+      this.currentLevel,
       final Map<String, LevelModel> levels = const {},
       this.dateTime = const WorldDateTimeModel(),
       this.lastDateTime = const WorldDateTimeModel(),
@@ -722,6 +752,10 @@ class _$_GameModel extends _GameModel {
 
   @override
   final String currentLevelId;
+
+  /// Saved level configuration to get player an option to restart a level
+  @override
+  final LevelModel? currentLevel;
 
   /// Levels that player already started
   final Map<String, LevelModel> _levels;
@@ -762,7 +796,7 @@ class _$_GameModel extends _GameModel {
 
   @override
   String toString() {
-    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters)';
+    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, currentLevel: $currentLevel, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters)';
   }
 
   @override
@@ -775,6 +809,8 @@ class _$_GameModel extends _GameModel {
                 .equals(other._templateLevels, _templateLevels) &&
             const DeepCollectionEquality()
                 .equals(other.currentLevelId, currentLevelId) &&
+            const DeepCollectionEquality()
+                .equals(other.currentLevel, currentLevel) &&
             const DeepCollectionEquality().equals(other._levels, _levels) &&
             const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
             const DeepCollectionEquality()
@@ -792,6 +828,7 @@ class _$_GameModel extends _GameModel {
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(_templateLevels),
       const DeepCollectionEquality().hash(currentLevelId),
+      const DeepCollectionEquality().hash(currentLevel),
       const DeepCollectionEquality().hash(_levels),
       const DeepCollectionEquality().hash(dateTime),
       const DeepCollectionEquality().hash(lastDateTime),
@@ -816,6 +853,7 @@ abstract class _GameModel extends GameModel {
       {required final String id,
       required final List<TemplateLevelModel> templateLevels,
       required final String currentLevelId,
+      final LevelModel? currentLevel,
       final Map<String, LevelModel> levels,
       final WorldDateTimeModel dateTime,
       final WorldDateTimeModel lastDateTime,
@@ -834,6 +872,10 @@ abstract class _GameModel extends GameModel {
   List<TemplateLevelModel> get templateLevels;
   @override
   String get currentLevelId;
+  @override
+
+  /// Saved level configuration to get player an option to restart a level
+  LevelModel? get currentLevel;
   @override
 
   /// Levels that player already started
@@ -1762,6 +1804,7 @@ mixin _$PlayerCharacterModel {
   String get description => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   CharacterAssetModel get asset => throw _privateConstructorUsedError;
+  SerializedVector2 get position => throw _privateConstructorUsedError;
   FuelStorageModel get fuel => throw _privateConstructorUsedError;
   double get fuelNormalPower => throw _privateConstructorUsedError;
   double get requiredLiftForce => throw _privateConstructorUsedError;
@@ -1783,11 +1826,13 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       String description,
       int color,
       CharacterAssetModel asset,
+      SerializedVector2 position,
       FuelStorageModel fuel,
       double fuelNormalPower,
       double requiredLiftForce});
 
   $CharacterAssetModelCopyWith<$Res> get asset;
+  $SerializedVector2CopyWith<$Res> get position;
   $FuelStorageModelCopyWith<$Res> get fuel;
 }
 
@@ -1807,6 +1852,7 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? color = freezed,
     Object? asset = freezed,
+    Object? position = freezed,
     Object? fuel = freezed,
     Object? fuelNormalPower = freezed,
     Object? requiredLiftForce = freezed,
@@ -1832,6 +1878,10 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.asset
           : asset // ignore: cast_nullable_to_non_nullable
               as CharacterAssetModel,
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
       fuel: fuel == freezed
           ? _value.fuel
           : fuel // ignore: cast_nullable_to_non_nullable
@@ -1851,6 +1901,13 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
   $CharacterAssetModelCopyWith<$Res> get asset {
     return $CharacterAssetModelCopyWith<$Res>(_value.asset, (value) {
       return _then(_value.copyWith(asset: value));
+    });
+  }
+
+  @override
+  $SerializedVector2CopyWith<$Res> get position {
+    return $SerializedVector2CopyWith<$Res>(_value.position, (value) {
+      return _then(_value.copyWith(position: value));
     });
   }
 
@@ -1875,12 +1932,15 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
       String description,
       int color,
       CharacterAssetModel asset,
+      SerializedVector2 position,
       FuelStorageModel fuel,
       double fuelNormalPower,
       double requiredLiftForce});
 
   @override
   $CharacterAssetModelCopyWith<$Res> get asset;
+  @override
+  $SerializedVector2CopyWith<$Res> get position;
   @override
   $FuelStorageModelCopyWith<$Res> get fuel;
 }
@@ -1903,6 +1963,7 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
     Object? description = freezed,
     Object? color = freezed,
     Object? asset = freezed,
+    Object? position = freezed,
     Object? fuel = freezed,
     Object? fuelNormalPower = freezed,
     Object? requiredLiftForce = freezed,
@@ -1928,6 +1989,10 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.asset
           : asset // ignore: cast_nullable_to_non_nullable
               as CharacterAssetModel,
+      position: position == freezed
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
       fuel: fuel == freezed
           ? _value.fuel
           : fuel // ignore: cast_nullable_to_non_nullable
@@ -1954,6 +2019,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       required this.description,
       required this.color,
       required this.asset,
+      this.position = SerializedVector2.zero,
       this.fuel = const FuelStorageModel(value: 150),
       this.fuelNormalPower = 50.5,
       this.requiredLiftForce = 0.5})
@@ -1974,6 +2040,9 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   final CharacterAssetModel asset;
   @override
   @JsonKey()
+  final SerializedVector2 position;
+  @override
+  @JsonKey()
   final FuelStorageModel fuel;
   @override
   @JsonKey()
@@ -1984,7 +2053,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, name: $name, description: $description, color: $color, asset: $asset, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce)';
+    return 'PlayerCharacterModel(id: $id, name: $name, description: $description, color: $color, asset: $asset, position: $position, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce)';
   }
 
   @override
@@ -1998,6 +2067,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality().equals(other.asset, asset) &&
+            const DeepCollectionEquality().equals(other.position, position) &&
             const DeepCollectionEquality().equals(other.fuel, fuel) &&
             const DeepCollectionEquality()
                 .equals(other.fuelNormalPower, fuelNormalPower) &&
@@ -2014,6 +2084,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(asset),
+      const DeepCollectionEquality().hash(position),
       const DeepCollectionEquality().hash(fuel),
       const DeepCollectionEquality().hash(fuelNormalPower),
       const DeepCollectionEquality().hash(requiredLiftForce));
@@ -2039,6 +2110,7 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
       required final String description,
       required final int color,
       required final CharacterAssetModel asset,
+      final SerializedVector2 position,
       final FuelStorageModel fuel,
       final double fuelNormalPower,
       final double requiredLiftForce}) = _$_PlayerCharacterModel;
@@ -2058,6 +2130,8 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   @override
   CharacterAssetModel get asset;
   @override
+  SerializedVector2 get position;
+  @override
   FuelStorageModel get fuel;
   @override
   double get fuelNormalPower;
@@ -2075,8 +2149,7 @@ CharacterAssetModel _$CharacterAssetModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CharacterAssetModel {
-  int get srcPositionX => throw _privateConstructorUsedError;
-  int get srcPositionY => throw _privateConstructorUsedError;
+  SerializedVector2 get srcPosition => throw _privateConstructorUsedError;
   int get srcSizeX => throw _privateConstructorUsedError;
   int get srcSizeY => throw _privateConstructorUsedError;
 
@@ -2091,7 +2164,9 @@ abstract class $CharacterAssetModelCopyWith<$Res> {
   factory $CharacterAssetModelCopyWith(
           CharacterAssetModel value, $Res Function(CharacterAssetModel) then) =
       _$CharacterAssetModelCopyWithImpl<$Res>;
-  $Res call({int srcPositionX, int srcPositionY, int srcSizeX, int srcSizeY});
+  $Res call({SerializedVector2 srcPosition, int srcSizeX, int srcSizeY});
+
+  $SerializedVector2CopyWith<$Res> get srcPosition;
 }
 
 /// @nodoc
@@ -2105,20 +2180,15 @@ class _$CharacterAssetModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? srcPositionX = freezed,
-    Object? srcPositionY = freezed,
+    Object? srcPosition = freezed,
     Object? srcSizeX = freezed,
     Object? srcSizeY = freezed,
   }) {
     return _then(_value.copyWith(
-      srcPositionX: srcPositionX == freezed
-          ? _value.srcPositionX
-          : srcPositionX // ignore: cast_nullable_to_non_nullable
-              as int,
-      srcPositionY: srcPositionY == freezed
-          ? _value.srcPositionY
-          : srcPositionY // ignore: cast_nullable_to_non_nullable
-              as int,
+      srcPosition: srcPosition == freezed
+          ? _value.srcPosition
+          : srcPosition // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
       srcSizeX: srcSizeX == freezed
           ? _value.srcSizeX
           : srcSizeX // ignore: cast_nullable_to_non_nullable
@@ -2129,6 +2199,13 @@ class _$CharacterAssetModelCopyWithImpl<$Res>
               as int,
     ));
   }
+
+  @override
+  $SerializedVector2CopyWith<$Res> get srcPosition {
+    return $SerializedVector2CopyWith<$Res>(_value.srcPosition, (value) {
+      return _then(_value.copyWith(srcPosition: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -2138,7 +2215,10 @@ abstract class _$$_CharacterAssetModelCopyWith<$Res>
           $Res Function(_$_CharacterAssetModel) then) =
       __$$_CharacterAssetModelCopyWithImpl<$Res>;
   @override
-  $Res call({int srcPositionX, int srcPositionY, int srcSizeX, int srcSizeY});
+  $Res call({SerializedVector2 srcPosition, int srcSizeX, int srcSizeY});
+
+  @override
+  $SerializedVector2CopyWith<$Res> get srcPosition;
 }
 
 /// @nodoc
@@ -2154,20 +2234,15 @@ class __$$_CharacterAssetModelCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object? srcPositionX = freezed,
-    Object? srcPositionY = freezed,
+    Object? srcPosition = freezed,
     Object? srcSizeX = freezed,
     Object? srcSizeY = freezed,
   }) {
     return _then(_$_CharacterAssetModel(
-      srcPositionX: srcPositionX == freezed
-          ? _value.srcPositionX
-          : srcPositionX // ignore: cast_nullable_to_non_nullable
-              as int,
-      srcPositionY: srcPositionY == freezed
-          ? _value.srcPositionY
-          : srcPositionY // ignore: cast_nullable_to_non_nullable
-              as int,
+      srcPosition: srcPosition == freezed
+          ? _value.srcPosition
+          : srcPosition // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
       srcSizeX: srcSizeX == freezed
           ? _value.srcSizeX
           : srcSizeX // ignore: cast_nullable_to_non_nullable
@@ -2185,8 +2260,7 @@ class __$$_CharacterAssetModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_CharacterAssetModel extends _CharacterAssetModel {
   const _$_CharacterAssetModel(
-      {required this.srcPositionX,
-      required this.srcPositionY,
+      {required this.srcPosition,
       required this.srcSizeX,
       required this.srcSizeY})
       : super._();
@@ -2195,9 +2269,7 @@ class _$_CharacterAssetModel extends _CharacterAssetModel {
       _$$_CharacterAssetModelFromJson(json);
 
   @override
-  final int srcPositionX;
-  @override
-  final int srcPositionY;
+  final SerializedVector2 srcPosition;
   @override
   final int srcSizeX;
   @override
@@ -2205,7 +2277,7 @@ class _$_CharacterAssetModel extends _CharacterAssetModel {
 
   @override
   String toString() {
-    return 'CharacterAssetModel(srcPositionX: $srcPositionX, srcPositionY: $srcPositionY, srcSizeX: $srcSizeX, srcSizeY: $srcSizeY)';
+    return 'CharacterAssetModel(srcPosition: $srcPosition, srcSizeX: $srcSizeX, srcSizeY: $srcSizeY)';
   }
 
   @override
@@ -2214,9 +2286,7 @@ class _$_CharacterAssetModel extends _CharacterAssetModel {
         (other.runtimeType == runtimeType &&
             other is _$_CharacterAssetModel &&
             const DeepCollectionEquality()
-                .equals(other.srcPositionX, srcPositionX) &&
-            const DeepCollectionEquality()
-                .equals(other.srcPositionY, srcPositionY) &&
+                .equals(other.srcPosition, srcPosition) &&
             const DeepCollectionEquality().equals(other.srcSizeX, srcSizeX) &&
             const DeepCollectionEquality().equals(other.srcSizeY, srcSizeY));
   }
@@ -2225,8 +2295,7 @@ class _$_CharacterAssetModel extends _CharacterAssetModel {
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(srcPositionX),
-      const DeepCollectionEquality().hash(srcPositionY),
+      const DeepCollectionEquality().hash(srcPosition),
       const DeepCollectionEquality().hash(srcSizeX),
       const DeepCollectionEquality().hash(srcSizeY));
 
@@ -2246,8 +2315,7 @@ class _$_CharacterAssetModel extends _CharacterAssetModel {
 
 abstract class _CharacterAssetModel extends CharacterAssetModel {
   const factory _CharacterAssetModel(
-      {required final int srcPositionX,
-      required final int srcPositionY,
+      {required final SerializedVector2 srcPosition,
       required final int srcSizeX,
       required final int srcSizeY}) = _$_CharacterAssetModel;
   const _CharacterAssetModel._() : super._();
@@ -2256,9 +2324,7 @@ abstract class _CharacterAssetModel extends CharacterAssetModel {
       _$_CharacterAssetModel.fromJson;
 
   @override
-  int get srcPositionX;
-  @override
-  int get srcPositionY;
+  SerializedVector2 get srcPosition;
   @override
   int get srcSizeX;
   @override
@@ -2266,6 +2332,164 @@ abstract class _CharacterAssetModel extends CharacterAssetModel {
   @override
   @JsonKey(ignore: true)
   _$$_CharacterAssetModelCopyWith<_$_CharacterAssetModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+SerializedVector2 _$SerializedVector2FromJson(Map<String, dynamic> json) {
+  return _SerializedVector2.fromJson(json);
+}
+
+/// @nodoc
+mixin _$SerializedVector2 {
+  double get x => throw _privateConstructorUsedError;
+  double get y => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $SerializedVector2CopyWith<SerializedVector2> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $SerializedVector2CopyWith<$Res> {
+  factory $SerializedVector2CopyWith(
+          SerializedVector2 value, $Res Function(SerializedVector2) then) =
+      _$SerializedVector2CopyWithImpl<$Res>;
+  $Res call({double x, double y});
+}
+
+/// @nodoc
+class _$SerializedVector2CopyWithImpl<$Res>
+    implements $SerializedVector2CopyWith<$Res> {
+  _$SerializedVector2CopyWithImpl(this._value, this._then);
+
+  final SerializedVector2 _value;
+  // ignore: unused_field
+  final $Res Function(SerializedVector2) _then;
+
+  @override
+  $Res call({
+    Object? x = freezed,
+    Object? y = freezed,
+  }) {
+    return _then(_value.copyWith(
+      x: x == freezed
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as double,
+      y: y == freezed
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_SerializedVector2CopyWith<$Res>
+    implements $SerializedVector2CopyWith<$Res> {
+  factory _$$_SerializedVector2CopyWith(_$_SerializedVector2 value,
+          $Res Function(_$_SerializedVector2) then) =
+      __$$_SerializedVector2CopyWithImpl<$Res>;
+  @override
+  $Res call({double x, double y});
+}
+
+/// @nodoc
+class __$$_SerializedVector2CopyWithImpl<$Res>
+    extends _$SerializedVector2CopyWithImpl<$Res>
+    implements _$$_SerializedVector2CopyWith<$Res> {
+  __$$_SerializedVector2CopyWithImpl(
+      _$_SerializedVector2 _value, $Res Function(_$_SerializedVector2) _then)
+      : super(_value, (v) => _then(v as _$_SerializedVector2));
+
+  @override
+  _$_SerializedVector2 get _value => super._value as _$_SerializedVector2;
+
+  @override
+  $Res call({
+    Object? x = freezed,
+    Object? y = freezed,
+  }) {
+    return _then(_$_SerializedVector2(
+      x: x == freezed
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
+              as double,
+      y: y == freezed
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
+              as double,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_SerializedVector2 extends _SerializedVector2 {
+  const _$_SerializedVector2({this.x = 0, this.y = 0}) : super._();
+
+  factory _$_SerializedVector2.fromJson(Map<String, dynamic> json) =>
+      _$$_SerializedVector2FromJson(json);
+
+  @override
+  @JsonKey()
+  final double x;
+  @override
+  @JsonKey()
+  final double y;
+
+  @override
+  String toString() {
+    return 'SerializedVector2(x: $x, y: $y)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SerializedVector2 &&
+            const DeepCollectionEquality().equals(other.x, x) &&
+            const DeepCollectionEquality().equals(other.y, y));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(x),
+      const DeepCollectionEquality().hash(y));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_SerializedVector2CopyWith<_$_SerializedVector2> get copyWith =>
+      __$$_SerializedVector2CopyWithImpl<_$_SerializedVector2>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_SerializedVector2ToJson(
+      this,
+    );
+  }
+}
+
+abstract class _SerializedVector2 extends SerializedVector2 {
+  const factory _SerializedVector2({final double x, final double y}) =
+      _$_SerializedVector2;
+  const _SerializedVector2._() : super._();
+
+  factory _SerializedVector2.fromJson(Map<String, dynamic> json) =
+      _$_SerializedVector2.fromJson;
+
+  @override
+  double get x;
+  @override
+  double get y;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SerializedVector2CopyWith<_$_SerializedVector2> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

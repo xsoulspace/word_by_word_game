@@ -1,4 +1,5 @@
 import 'package:equatable/equatable.dart';
+import 'package:flame/extensions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
@@ -29,6 +30,7 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     on<ConsumeFuelEvent>(_consumeCharacterFuel);
     on<RefuelStorageEvent>(_onRefuelStorage);
     on<UpdatePlayerHighscoreEvent>(_onUpdatePlayerHighscore);
+    on<ChangeCharacterPositionEvent>(_onChangeCharacterPosition);
   }
   final LevelPlayersBlocDiDto diDto;
 
@@ -80,6 +82,21 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     final updatedState = liveState.copyWith(
       playerCharacter: liveState.playerCharacter.copyWith(
         fuel: event.fuel,
+      ),
+    );
+
+    emit(updatedState);
+  }
+
+  void _onChangeCharacterPosition(
+    final ChangeCharacterPositionEvent event,
+    final Emitter<LevelPlayersBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final position = event.position;
+    final updatedState = liveState.copyWith(
+      playerCharacter: liveState.playerCharacter.copyWith(
+        position: SerializedVector2(x: position.x, y: position.y),
       ),
     );
 
