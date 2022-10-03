@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
@@ -45,7 +46,7 @@ class WbwGame extends FlameGame with HasCollisionDetection {
 
   @override
   Future<void> onLoad() async {
-    debugMode = true;
+    debugMode = kDebugMode;
     children.register<CameraComponent>();
     world = World();
     router = const GameRouter().init();

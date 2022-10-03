@@ -65,12 +65,12 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
   void render(final Canvas canvas) {
     final textPaint = TextPaint(
       style: const TextStyle(
-        fontSize: 24.0,
+        fontSize: 18.0,
         color: Colors.blue,
       ),
     );
     sprite.render(canvas, size: size);
-    textPaint.render(canvas, '${params.fuel.value}', Vector2(10, 10));
+    textPaint.render(canvas, '${params.fuel.value.toInt()}', Vector2(16, 8));
 
     super.render(canvas);
   }

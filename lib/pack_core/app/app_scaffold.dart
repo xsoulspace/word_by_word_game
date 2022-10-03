@@ -74,7 +74,7 @@ class AppScaffoldBuilder extends HookWidget {
         colorScheme: BrandColorSchemes.dark,
         useMaterial3: true,
       ),
-      themeMode: ThemeMode.dark,
+      // themeMode: ThemeMode.dark,
       routeInformationParser: routeParser,
       routerDelegate: state.routerDelegate,
       localizationsDelegates: const [
