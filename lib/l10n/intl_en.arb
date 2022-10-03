@@ -1,5 +1,4 @@
 {
-  "@@last_modified": "2021-01-21T23:58:51.060295",
   "finishGame": "Finish game",
   "@finishGame": {
     "type": "text",
@@ -10,6 +9,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "wordIsNotCorrect": "Whoa, we cannot find a word {word} in our dictionary! Try another word.",
+  "wordAlreadyWritten": "This word already written. Try another word.",
   "resetEnding": "Reset ending",
   "@resetEnding": {
     "type": "text",

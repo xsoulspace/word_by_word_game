@@ -3,19 +3,20 @@
 *.log
 *.pyc
 *.swp
+*.snap
 .DS_Store
 .atom/
 .buildlog/
 .history
 .svn/
-*.apk
-*.snap
-
+/android/key.properties
+android/key.properties
 # IntelliJ related
 *.iml
 *.ipr
 *.iws
 .idea/
+.fvm/flutter_sdk
 
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
