@@ -48,6 +48,28 @@ class _WordCompositionState extends LifeState {
         .forEach(_changeFullWord);
   }
 
+  final leftWordKeyFocus = FocusNode();
+  final leftWordFocus = FocusNode();
+  final rightWordKeyFocus = FocusNode();
+  final rightWordFocus = FocusNode();
+
+  void onSend() {
+    onRequestLeftTextFocus();
+    diDto.levelBloc.add(const AcceptNewWordEvent());
+  }
+
+  void onRequestLeftTextFocus() {
+    WidgetsBinding.instance.addPostFrameCallback((final _) {
+      leftWordFocus.requestFocus();
+    });
+  }
+
+  void onRequestRightTextFocus() {
+    WidgetsBinding.instance.addPostFrameCallback((final _) {
+      rightWordFocus.requestFocus();
+    });
+  }
+
   void _onPartChanged() {
     final newWord = diDto.mechanics.wordComposition.applyPartsChanges(
       word: CurrentWordModel(
@@ -103,6 +125,10 @@ class _WordCompositionState extends LifeState {
       ..removeListener(_onPartChanged)
       ..dispose();
     _wordUpdatesController.close();
+    leftWordKeyFocus.dispose();
+    rightWordKeyFocus.dispose();
+    rightWordFocus.dispose();
+    leftWordFocus.dispose();
     super.dispose();
   }
 }

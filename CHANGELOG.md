@@ -4,6 +4,7 @@
 
 - Now character able to restore its position when is loaded.
 - Fixed start again button with ability to restart level.
+- Added focus changes for text fields.
 
 ## October 1th 2022
 

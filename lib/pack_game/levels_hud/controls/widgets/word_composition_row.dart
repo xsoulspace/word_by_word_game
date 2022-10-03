@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
@@ -45,24 +46,27 @@ class WordCompositionRow extends HookWidget {
               LastWordText(latestWord: levelState.latestWord),
               Builder(
                 builder: (final context) {
+                  Widget rightTextField = WordPartTextField(
+                    keyFocusNode: state.rightWordKeyFocus,
+                    textFieldFocusNode: state.rightWordFocus,
+                    controller: state.rightPartController,
+                    hintText: S.of(context).hintAddEnding,
+                    onSubmitted: state.onSend,
+                  );
                   if (levelState.latestWord.isEmpty) {
-                    return WordPartTextField(
-                      controller: state.rightPartController,
-                      hintText: S.of(context).hintAddNewWord,
-                    );
+                    return rightTextField;
                   }
                   final leftTextField = Expanded(
                     child: WordPartTextField(
+                      textFieldFocusNode: state.leftWordFocus,
+                      onEnterPressed: state.onRequestRightTextFocus,
+                      onSubmitted: state.onRequestRightTextFocus,
+                      keyFocusNode: state.leftWordKeyFocus,
                       controller: state.leftPartController,
                       hintText: S.of(context).hintAddBeginning,
                     ),
                   );
-                  final rightTextField = Expanded(
-                    child: WordPartTextField(
-                      controller: state.rightPartController,
-                      hintText: S.of(context).hintAddEnding,
-                    ),
-                  );
+                  rightTextField = Expanded(child: rightTextField);
 
                   final middleWordPartActions =
                       BlocBuilder<LevelBloc, LevelBlocState>(
@@ -100,7 +104,9 @@ class WordCompositionRow extends HookWidget {
                     const Flexible(child: WarningNotification()),
                     Padding(
                       padding: EdgeInsets.only(left: spacing.extraLarge),
-                      child: const SendWordActionButton(),
+                      child: SendWordActionButton(
+                        onPressed: state.onSend,
+                      ),
                     ),
                   ],
                 ),
@@ -117,25 +123,43 @@ class WordPartTextField extends StatelessWidget {
   const WordPartTextField({
     required this.controller,
     required this.hintText,
+    required this.onSubmitted,
+    required this.keyFocusNode,
+    this.onEnterPressed,
+    this.textFieldFocusNode,
     final Key? key,
   }) : super(key: key);
   final TextEditingController controller;
   final String hintText;
+  final VoidCallback? onEnterPressed;
+  final VoidCallback? onSubmitted;
+  final FocusNode keyFocusNode;
+  final FocusNode? textFieldFocusNode;
 
   @override
   Widget build(final BuildContext context) {
-    return TextField(
-      style: const TextStyle(fontSize: 14.0),
-      decoration: InputDecoration(
-        focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
+    return RawKeyboardListener(
+      focusNode: keyFocusNode,
+      onKey: (final event) {
+        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+          onEnterPressed?.call();
+        }
+      },
+      child: TextField(
+        focusNode: textFieldFocusNode,
+        onSubmitted: (final _) => onSubmitted?.call(),
+        style: const TextStyle(fontSize: 14.0),
+        decoration: InputDecoration(
+          focusedBorder: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+          hintText: hintText,
         ),
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        hintText: hintText,
+        controller: controller,
       ),
-      controller: controller,
     );
   }
 }
