@@ -121,6 +121,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   ) {
     final liveState = getLiveState();
     final newWord = liveState.currentWord.cleanWord;
+    if (newWord.isEmpty) return;
+
     final wordWarning = _checkNewWord(liveState.currentWord);
     if (wordWarning == WordWarning.none) {
       final levelPlayersBloc = diDto.levelPlayersBloc;

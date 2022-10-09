@@ -42,6 +42,7 @@ class WordCompositionRow extends HookWidget {
           if (levelState is! LiveLevelBlocState) return const SizedBox();
 
           return Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               LastWordText(latestWord: levelState.latestWord),
               Builder(
@@ -97,19 +98,17 @@ class WordCompositionRow extends HookWidget {
                 },
               ),
               uiTheme.verticalBoxes.medium,
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Flexible(child: WarningNotification()),
-                    Padding(
-                      padding: EdgeInsets.only(left: spacing.extraLarge),
-                      child: SendWordActionButton(
-                        onPressed: state.onSend,
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Flexible(child: WarningNotification()),
+                  Padding(
+                    padding: EdgeInsets.only(left: spacing.extraLarge),
+                    child: SendWordActionButton(
+                      onPressed: state.onSend,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ],
           );
@@ -148,6 +147,7 @@ class WordPartTextField extends StatelessWidget {
       child: TextField(
         focusNode: textFieldFocusNode,
         onSubmitted: (final _) => onSubmitted?.call(),
+        onEditingComplete: () {},
         style: const TextStyle(fontSize: 14.0),
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
