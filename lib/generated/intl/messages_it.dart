@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'it';
 
   static String m0(word) =>
-      "Whoa, cannot find word ${word} in dictionary! Try another word.";
+      "Non riusciamo a trovare la parola ${word} nel nostro dizionario! Prova un\'altra parola o aggiungila.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
@@ -60,7 +60,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Grazie e buon gioco!"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
-            "This word already written. Try another word."),
+            "Questa parola è già scritta. Prova con un\'altra parola."),
         "wordIsNotCorrect": m0,
         "yourHighscore": MessageLookupByLibrary.simpleMessage(
             "Questa volta il tuo punteggio è")

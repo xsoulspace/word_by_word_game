@@ -21,7 +21,7 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'en';
 
   static String m0(word) =>
-      "Whoa, we cannot find a word ${word} in our dictionary! Try another word.";
+      "We cannot find the word ${word} in our dictionary! Try another word or add it.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{

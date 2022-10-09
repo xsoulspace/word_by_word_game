@@ -11,8 +11,8 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/send_action_button.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/warning_notification.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_actions_buttons.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
@@ -102,11 +102,17 @@ class WordCompositionRow extends HookWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   const Flexible(child: WarningNotification()),
-                  Padding(
-                    padding: EdgeInsets.only(left: spacing.extraLarge),
-                    child: SendWordActionButton(
-                      onPressed: state.onSend,
-                    ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SendWordButton(
+                        onPressed: state.onSend,
+                      ),
+                      AddWordToDictionaryButton(
+                        onPressed: state.onAddWordToDictionary,
+                      ),
+                    ],
                   ),
                 ],
               ),

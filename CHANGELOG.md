@@ -14,6 +14,11 @@
 
 ## Next
 
+## October 10th 2022
+
+- Restored an option to add new word to local dictionary.
+- Fixed mobile layout for level options screen.
+
 What's next:
 
 - Adapt layout for mobile devices.

@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -33,6 +34,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<ConsumeTickEvent>(_consumeTickEvent);
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
     on<AcceptNewWordEvent>(_onAcceptNewWord);
+    on<AddNewWordToDictionaryEvent>(_onAddNewWordToDictionary);
     on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
   }
 
@@ -113,6 +115,19 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
       return WordWarning.isNotCorrect;
     }
     return WordWarning.none;
+  }
+
+  void _onAddNewWordToDictionary(
+    final AddNewWordToDictionaryEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    diDto.dictionaryBloc.add(
+      AddWordToDictionaryBlocEvent(word: liveState.currentWord.cleanWord),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((final _) {
+      add(const AcceptNewWordEvent());
+    });
   }
 
   void _onAcceptNewWord(

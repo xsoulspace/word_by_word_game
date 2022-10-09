@@ -21,6 +21,7 @@ class DictionariesBloc
   }) : super(const EmptyDictionariesBlocState()) {
     on<InitDictionariesBlocEvent>(_onInit);
     on<SaveDictionariesBlocEvent>(_onSave);
+    on<AddWordToDictionaryBlocEvent>(_onAddWord);
   }
   final DictionariesBlocDiDto diDto;
   Future<void> _onInit(
@@ -41,6 +42,21 @@ class DictionariesBloc
     await diDto.services.dictionaryPersistence.saveDictionary(
       dictionary: getLiveState().localDictionary,
     );
+  }
+
+  Future<void> _onAddWord(
+    final AddWordToDictionaryBlocEvent event,
+    final Emitter<DictionariesBlocState> emit,
+  ) async {
+    final liveState = getLiveState();
+    final dictionary = getLiveState().localDictionary;
+    final updatedDictionary =
+        dictionary.copyWith(words: {...dictionary.words, event.word});
+    final updatedState = liveState.copyWith(
+      localDictionary: updatedDictionary,
+    );
+    emit(updatedState);
+    add(const SaveDictionariesBlocEvent());
   }
 
   LiveDictionariesBlocState getLiveState() {

@@ -14,6 +14,12 @@ class InitDictionariesBlocEvent extends DictionariesBlocEvent {
 }
 
 @immutable
+class AddWordToDictionaryBlocEvent extends DictionariesBlocEvent {
+  const AddWordToDictionaryBlocEvent({required this.word});
+  final String word;
+}
+
+@immutable
 class SaveDictionariesBlocEvent extends DictionariesBlocEvent {
   const SaveDictionariesBlocEvent();
 }

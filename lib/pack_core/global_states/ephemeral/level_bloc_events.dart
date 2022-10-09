@@ -40,6 +40,11 @@ class AcceptNewWordEvent extends LevelBlocEvent {
 }
 
 @immutable
+class AddNewWordToDictionaryEvent extends LevelBlocEvent {
+  const AddNewWordToDictionaryEvent();
+}
+
+@immutable
 class DecreaseMiddlePartEvent extends LevelBlocEvent {
   const DecreaseMiddlePartEvent({
     required this.type,
