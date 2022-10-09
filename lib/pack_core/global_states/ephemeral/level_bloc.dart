@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/ephemeral/dictionaries_bloc.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 
@@ -15,11 +16,13 @@ class LevelBlocDiDto {
   LevelBlocDiDto.use(final Locator read)
       : mechanics = read(),
         levelPlayersBloc = read(),
+        dictionaryBloc = read(),
         _read = read;
   final Locator _read;
   GlobalGameBloc get globalGameBloc => _read();
   final MechanicsCollection mechanics;
   final LevelPlayersBloc levelPlayersBloc;
+  final DictionariesBloc dictionaryBloc;
 }
 
 class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
@@ -102,7 +105,10 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     if (isWritten) {
       return WordWarning.isWritten;
     }
-    final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(word: word);
+    final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(
+      word: word,
+      localDictionary: diDto.dictionaryBloc.getLiveState().localDictionary,
+    );
     if (!isCorrect) {
       return WordWarning.isNotCorrect;
     }
