@@ -1,8 +1,9 @@
-## Next
+## Ideas & TODO
 
-What's next:
-
+- show bar with the counter which will shows the decrease counts?
+- show level highscore in the lost dialog & win dialog.
 - Reset navigation path when player is finished a level.
+
 - Add an option to start level fresh and continue if you have a progress (saved lvl).
 
 - Global highscore is:
@@ -11,19 +12,20 @@ What's next:
 - (-) to the player who landing | crashed the character.
 - (+) character modifier (hardness of the character)
 
--- Prototype stage
+## Next
 
+What's next:
+
+- Adapt layout for mobile devices.
+- Add migration from the old version.
+- Add suggest random word option by score.
+
+- Gamify UI.
 - Add Tiled map with obstacles to the game.
 - Create Graphic Set for the Tiled Map.
 - Create Tiled map with obstacles.
-- Gamify UI:
 - Add Character descriptions
 - Add Level description.
-- Replace solid color by blur background for Pause Screen (?).
-- show bar with the counter which will shows the decrease counts?
-- show level highscore in the lost dialog & win dialog.
-
--- Release a game prototype.
 
 ## October 2th 2022
 
