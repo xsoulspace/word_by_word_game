@@ -26,13 +26,13 @@ class _DialogState extends LifeState {
 
   final _DialogStateDiDto diDto;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
 
-    _suggestedWord = diDto.levelBloc.getLiveState().getWordSuggestion();
-  }
+  //   _suggestedWord = diDto.levelBloc.getLiveState().getWordSuggestion();
+  // }
 
   String _suggestedWord = '';
 
