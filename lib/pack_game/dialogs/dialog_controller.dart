@@ -5,9 +5,11 @@ class DialogController {
   DialogController({
     required this.showLevelLostDialog,
     required this.showLevelWinDialog,
+    required this.showLevelWordSuggestionDialog,
     required this.closeDialog,
   });
   void Function(EndLevelEvent endLevelEvent) showLevelLostDialog;
   VoidCallback showLevelWinDialog;
   VoidCallback closeDialog;
+  VoidCallback showLevelWordSuggestionDialog;
 }

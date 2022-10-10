@@ -18,11 +18,10 @@
 
 - Restored an option to add new word to local dictionary.
 - Fixed mobile layout for level options screen.
+- Fixed mobile layout for game.
 
 What's next:
 
-- Adapt layout for mobile devices.
-- Add migration from the old version.
 - Add suggest random word option by score.
 
 - Gamify UI.
