@@ -14,8 +14,8 @@
     "type": "text",
     "placeholders": {}
   },
-  "wordIsNotCorrect": "Whoa, cannot find word {word} in dictionary! Try another word.",
-  "wordAlreadyWritten": "This word already written. Try another word.",
+  "wordIsNotCorrect": "Non riusciamo a trovare la parola {word} nel nostro dizionario! Prova un'altra parola o aggiungila.",
+  "wordAlreadyWritten": "Questa parola è già scritta. Prova con un'altra parola.",
   "congratulations": "Congratulazioni!",
   "@congratulations": {
     "type": "text",

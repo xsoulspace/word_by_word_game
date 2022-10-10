@@ -5,6 +5,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/widgets.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'levels_hud_screen_overlay_state.dart';
@@ -18,6 +19,22 @@ class LevelsHudScreenOverlay extends HookWidget {
     final state = _useStateState(read: context.read);
     return Stack(
       children: [
+        const Positioned(
+          left: 0,
+          top: 20,
+          child: PlayersSideBar(),
+        ),
+        Positioned(
+          top: 20,
+          right: PlayersSideBar.maxWidth + 20,
+          left: PlayersSideBar.maxWidth + 10,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+              Flexible(child: WarningNotification()),
+            ],
+          ),
+        ),
         Positioned(
           top: 20,
           right: 20,

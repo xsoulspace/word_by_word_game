@@ -58,6 +58,10 @@ class _WordCompositionState extends LifeState {
     diDto.levelBloc.add(const AcceptNewWordEvent());
   }
 
+  void onAddWordToDictionary() {
+    diDto.levelBloc.add(const AddNewWordToDictionaryEvent());
+  }
+
   void onRequestLeftTextFocus() {
     WidgetsBinding.instance.addPostFrameCallback((final _) {
       leftWordFocus.requestFocus();

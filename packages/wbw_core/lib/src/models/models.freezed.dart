@@ -1793,6 +1793,149 @@ abstract class _LevelPlayersModel extends LevelPlayersModel {
       throw _privateConstructorUsedError;
 }
 
+LocalDictionaryModel _$LocalDictionaryModelFromJson(Map<String, dynamic> json) {
+  return _LocalDictionaryModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LocalDictionaryModel {
+  Set<String> get words => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LocalDictionaryModelCopyWith<LocalDictionaryModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LocalDictionaryModelCopyWith<$Res> {
+  factory $LocalDictionaryModelCopyWith(LocalDictionaryModel value,
+          $Res Function(LocalDictionaryModel) then) =
+      _$LocalDictionaryModelCopyWithImpl<$Res>;
+  $Res call({Set<String> words});
+}
+
+/// @nodoc
+class _$LocalDictionaryModelCopyWithImpl<$Res>
+    implements $LocalDictionaryModelCopyWith<$Res> {
+  _$LocalDictionaryModelCopyWithImpl(this._value, this._then);
+
+  final LocalDictionaryModel _value;
+  // ignore: unused_field
+  final $Res Function(LocalDictionaryModel) _then;
+
+  @override
+  $Res call({
+    Object? words = freezed,
+  }) {
+    return _then(_value.copyWith(
+      words: words == freezed
+          ? _value.words
+          : words // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_LocalDictionaryModelCopyWith<$Res>
+    implements $LocalDictionaryModelCopyWith<$Res> {
+  factory _$$_LocalDictionaryModelCopyWith(_$_LocalDictionaryModel value,
+          $Res Function(_$_LocalDictionaryModel) then) =
+      __$$_LocalDictionaryModelCopyWithImpl<$Res>;
+  @override
+  $Res call({Set<String> words});
+}
+
+/// @nodoc
+class __$$_LocalDictionaryModelCopyWithImpl<$Res>
+    extends _$LocalDictionaryModelCopyWithImpl<$Res>
+    implements _$$_LocalDictionaryModelCopyWith<$Res> {
+  __$$_LocalDictionaryModelCopyWithImpl(_$_LocalDictionaryModel _value,
+      $Res Function(_$_LocalDictionaryModel) _then)
+      : super(_value, (v) => _then(v as _$_LocalDictionaryModel));
+
+  @override
+  _$_LocalDictionaryModel get _value => super._value as _$_LocalDictionaryModel;
+
+  @override
+  $Res call({
+    Object? words = freezed,
+  }) {
+    return _then(_$_LocalDictionaryModel(
+      words: words == freezed
+          ? _value._words
+          : words // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_LocalDictionaryModel implements _LocalDictionaryModel {
+  const _$_LocalDictionaryModel({final Set<String> words = const {}})
+      : _words = words;
+
+  factory _$_LocalDictionaryModel.fromJson(Map<String, dynamic> json) =>
+      _$$_LocalDictionaryModelFromJson(json);
+
+  final Set<String> _words;
+  @override
+  @JsonKey()
+  Set<String> get words {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableSetView(_words);
+  }
+
+  @override
+  String toString() {
+    return 'LocalDictionaryModel(words: $words)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LocalDictionaryModel &&
+            const DeepCollectionEquality().equals(other._words, _words));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_words));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_LocalDictionaryModelCopyWith<_$_LocalDictionaryModel> get copyWith =>
+      __$$_LocalDictionaryModelCopyWithImpl<_$_LocalDictionaryModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_LocalDictionaryModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LocalDictionaryModel implements LocalDictionaryModel {
+  const factory _LocalDictionaryModel({final Set<String> words}) =
+      _$_LocalDictionaryModel;
+
+  factory _LocalDictionaryModel.fromJson(Map<String, dynamic> json) =
+      _$_LocalDictionaryModel.fromJson;
+
+  @override
+  Set<String> get words;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LocalDictionaryModelCopyWith<_$_LocalDictionaryModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 PlayerCharacterModel _$PlayerCharacterModelFromJson(Map<String, dynamic> json) {
   return _PlayerCharacterModel.fromJson(json);
 }

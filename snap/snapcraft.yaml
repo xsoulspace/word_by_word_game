@@ -1,14 +1,13 @@
 name: word-by-word-game
-version: 2.0.0+15
+version: 2.1.0+16
 summary: Word Arcade-> write word based on last 3 letters of last word & pass Landscape
 description: |
-  ---- Please note -----
-
-  New beta version available! But please note: new version is completely rewritten and is in active development.
+  New version available! 
+  Please note: new version is completely rewritten and is in active development.
   So any part of the gameplay is subject to change.
   Actual DevLog is available on https://arenukvern.itch.io/word-by-word-game and in Discord server https://discord.com/invite/y54DpJwmAn
 
-  ---- Description -----
+  --- DESCRIPTION ---
 
   Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
 

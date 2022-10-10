@@ -9,7 +9,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "wordIsNotCorrect": "Whoa, we cannot find a word {word} in our dictionary! Try another word.",
+  "wordIsNotCorrect": "We cannot find the word {word} in our dictionary! Try another word or add it.",
   "wordAlreadyWritten": "This word already written. Try another word.",
   "resetEnding": "Reset ending",
   "@resetEnding": {

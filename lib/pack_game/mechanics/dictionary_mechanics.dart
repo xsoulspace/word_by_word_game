@@ -12,10 +12,13 @@ class DictionaryMechanics {
 
   bool checkIsWordIsCorrect({
     required final CurrentWordModel word,
+    required final LocalDictionaryModel localDictionary,
   }) {
     final cleanWord = word.cleanWord;
     final isEnglishWord = english_words.nouns.contains(cleanWord);
     final isRussianWord = russian_words.nouns.contains(cleanWord);
-    return isEnglishWord || isRussianWord;
+    if (isEnglishWord || isRussianWord) return true;
+
+    return localDictionary.words.contains(cleanWord);
   }
 }

@@ -23,6 +23,7 @@ class _DialogStackState extends LifeState {
     showLevelLostDialog: _showLevelLostDialog,
     closeDialog: _closeDialog,
     showLevelWinDialog: _showLevelWinDialog,
+    showLevelWordSuggestionDialog: _showLevelWordSuggestionDialog,
   );
   final _DialogStackDiDto diDto;
   GameDialogType _dialogType = GameDialogType.none;
@@ -43,6 +44,10 @@ class _DialogStackState extends LifeState {
 
   void _showLevelWinDialog() {
     dialogType = GameDialogType.levelWin;
+  }
+
+  void _showLevelWordSuggestionDialog() {
+    dialogType = GameDialogType.levelWordSuggestion;
   }
 
   void _closeDialog() {
