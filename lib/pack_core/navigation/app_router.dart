@@ -7,6 +7,7 @@ class NavigationRoutes {
   static const root = '/';
   static const allLevels = '/lvl/all';
   static const highscore = '/highscore';
+  static const settings = '/settings';
 
   static const levelRoot = '/lvl';
   static const playableLevel = '/lvl/:levelId';
@@ -24,7 +25,8 @@ class NavigationRoutes {
     playableLevel,
     levelOptions,
     pause,
-    highscore
+    highscore,
+    settings
   ];
 }
 
@@ -34,6 +36,7 @@ class AppRouterController extends RouterController {
       to(NavigationRoutes.toPlayableLevel(id: id));
 
   void toRoot() => to(NavigationRoutes.root);
+  void toSettings() => to(NavigationRoutes.settings);
   void toPauseOrRoot({
     required final GlobalGameBloc globalGameBloc,
   }) {

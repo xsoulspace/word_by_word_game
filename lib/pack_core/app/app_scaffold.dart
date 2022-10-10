@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
@@ -8,6 +9,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_state_initializer.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_navigator.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
 
@@ -63,32 +65,48 @@ class AppScaffoldBuilder extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = useAppScaffoldBodyState(context.read);
-
-    return MaterialApp.router(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.from(
-        colorScheme: BrandColorSchemes.light,
-        useMaterial3: true,
-      ),
-      darkTheme: ThemeData.from(
-        colorScheme: BrandColorSchemes.dark,
-        useMaterial3: true,
-      ),
-      // themeMode: ThemeMode.dark,
-      routeInformationParser: routeParser,
-      routerDelegate: state.routerDelegate,
-      localizationsDelegates: const [
-        S.delegate,
-      ],
-      supportedLocales: S.delegate.supportedLocales,
+    final settingsNotifier = context.watch<AppSettingsNotifier>();
+    return AnimatedBuilder(
+      animation: settingsNotifier,
       builder: (final context, final child) {
-        return UiTheme(
-          scheme: UiThemeScheme.m3(context),
-          child: StateLoader(
-            initializer: GlobalStateInitializer(),
-            loader: const LoadingScreen(),
-            child: child!,
+        return MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData.from(
+            colorScheme: BrandColorSchemes.light,
+            useMaterial3: true,
           ),
+          darkTheme: ThemeData.from(
+            colorScheme: BrandColorSchemes.dark,
+            useMaterial3: true,
+          ),
+          // themeMode: ThemeMode.dark,
+          routeInformationParser: routeParser,
+          routerDelegate: state.routerDelegate,
+          localizationsDelegates: const [
+            S.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          localeListResolutionCallback:
+              (final locales, final supportedLocales) {
+            final locale = settingsNotifier.locale;
+            if (locale == null) return null;
+            if (S.delegate.isSupported(locale)) return locale;
+
+            return null;
+          },
+          supportedLocales: Locales.values,
+          builder: (final context, final child) {
+            return UiTheme(
+              scheme: UiThemeScheme.m3(context),
+              child: StateLoader(
+                initializer: GlobalStateInitializer(),
+                loader: const LoadingScreen(),
+                child: child!,
+              ),
+            );
+          },
         );
       },
     );

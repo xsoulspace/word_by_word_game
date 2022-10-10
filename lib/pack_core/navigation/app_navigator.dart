@@ -5,6 +5,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
 import 'package:word_by_word_game/pack_game/highscore/highscore_screen.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
+import 'package:word_by_word_game/pack_game/settings/settings_screen.dart';
 
 class AppNavigator extends HookWidget {
   const AppNavigator({
@@ -34,6 +35,7 @@ class AppPageBuilderKeys {
   final pause = const ValueKey('mainMenu');
   final game = const ValueKey('game');
   final highscore = const ValueKey('highscore');
+  final settings = const ValueKey('settings');
   final allLevels = const ValueKey('allLevels');
   final levelOptions = const ValueKey('levelOptions');
 }
@@ -79,6 +81,13 @@ class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
       key: keys.highscore,
     );
   }
+
+  Page settings() {
+    return NavigatorPage(
+      child: const SettingsScreen(),
+      key: keys.settings,
+    );
+  }
 }
 
 class AppLayoutBuilder
@@ -104,6 +113,9 @@ class AppLayoutBuilder
     }
     if (pathTemplate == NavigationRoutes.highscore) {
       pages.add(pageBuilder.highscore());
+    }
+    if (pathTemplate == NavigationRoutes.settings) {
+      pages.add(pageBuilder.settings());
     }
     return pages;
   }

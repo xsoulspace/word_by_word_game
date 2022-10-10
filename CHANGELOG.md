@@ -14,6 +14,10 @@
 
 ## Next
 
+## October 11th 2022
+
+- New: restored an option to switch between languages.
+
 ## October 10th 2022
 
 - Restored an option to add new word to local dictionary.
