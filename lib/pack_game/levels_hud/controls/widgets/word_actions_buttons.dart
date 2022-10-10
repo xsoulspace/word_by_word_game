@@ -33,7 +33,7 @@ class AddWordToDictionaryButton extends StatelessWidget {
       visible: warning == WordWarning.isNotCorrect,
       child: TextButton(
         onPressed: onPressed,
-        child: const Text('Add to dictionary'),
+        child: const Text('Add Word'),
       ),
     );
   }

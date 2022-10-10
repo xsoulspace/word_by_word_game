@@ -50,7 +50,9 @@ class WbwGameWidget extends HookWidget {
                         //Print the error in th dev console
                         debugPrint(ex.toString());
                         return const Center(
-                          child: Text('Sorry, something went wrong. Reload me'),
+                          child: Text(
+                            'Sorry, something went wrong. Reload me',
+                          ),
                         );
                       },
                     ),
@@ -58,6 +60,7 @@ class WbwGameWidget extends HookWidget {
                 ),
               ),
               const ControlsWidget(),
+              const BottomSafeArea()
             ],
           );
         },

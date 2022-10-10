@@ -43,19 +43,24 @@ class _DesktopControlsWidget extends StatelessWidget {
         color: theme.colorScheme.surface,
         borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
       ),
-      height: 190,
       constraints: const BoxConstraints(maxWidth: 700),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const PlayerSwitcher(),
+          const DesktopPlayerSwitcher(),
           Expanded(
             child: Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: spacing.large,
                 vertical: spacing.medium,
               ),
-              child: const WordCompositionRow(),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: const [
+                  LastWordWidget(),
+                  WordCompositionRow(),
+                ],
+              ),
             ),
           ),
         ],
@@ -76,7 +81,7 @@ class _MobileControlsWidget extends StatelessWidget {
     final levelBloc = context.watch<LevelBloc>();
     final levelState = levelBloc.state;
     if (levelState is! LiveLevelBlocState) return const SizedBox();
-
+    // TODO(arenukvern): remove after debugging
     return Container(
       decoration: BoxDecoration(
         color: theme.colorScheme.surface,
@@ -87,14 +92,16 @@ class _MobileControlsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
-            children: const [
-              PlayerSwitcher(),
+            children: [
+              const MobilePlayerSwitcher(),
+              const Spacer(),
+              const LastWordWidget(),
+              uiTheme.horizontalBoxes.large,
             ],
           ),
           Padding(
             padding: EdgeInsets.symmetric(
-              horizontal: spacing.large,
-              vertical: spacing.medium,
+              horizontal: spacing.small,
             ),
             child: const WordCompositionRow(),
           ),

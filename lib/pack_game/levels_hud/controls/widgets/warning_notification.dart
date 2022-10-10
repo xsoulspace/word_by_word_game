@@ -46,7 +46,9 @@ class WarningNotification extends StatelessWidget {
                   return '';
               }
             }();
-            return Text(warningText);
+            return Text(
+              warningText,
+            );
           },
         ),
       ),
