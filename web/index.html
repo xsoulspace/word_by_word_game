@@ -64,6 +64,10 @@
             return appRunner.runApp();
           });
       });
+      YaGames.init().then((ysdk) => {
+        console.log("Yandex SDK initialized");
+        window.ysdk = ysdk;
+      });
     </script>
   </body>
 </html>
