@@ -44,16 +44,6 @@ class WordCompositionRow extends HookWidget {
             children: [
               Builder(
                 builder: (final context) {
-                  Widget rightTextField = WordPartTextField(
-                    keyFocusNode: state.rightWordKeyFocus,
-                    textFieldFocusNode: state.rightWordFocus,
-                    controller: state.rightPartController,
-                    hintText: S.of(context).hintAddEnding,
-                    onSubmitted: state.onSend,
-                  );
-                  if (levelState.latestWord.isEmpty) {
-                    return rightTextField;
-                  }
                   final leftTextField = Expanded(
                     child: WordPartTextField(
                       textFieldFocusNode: state.leftWordFocus,
@@ -64,7 +54,6 @@ class WordCompositionRow extends HookWidget {
                       hintText: S.of(context).hintAddBeginning,
                     ),
                   );
-                  rightTextField = Expanded(child: rightTextField);
 
                   final middleWordPartActions =
                       BlocBuilder<LevelBloc, LevelBlocState>(
@@ -84,11 +73,21 @@ class WordCompositionRow extends HookWidget {
                       );
                     },
                   );
+                  final rightTextField = Expanded(
+                    child: WordPartTextField(
+                      keyFocusNode: state.rightWordKeyFocus,
+                      textFieldFocusNode: state.rightWordFocus,
+                      controller: state.rightPartController,
+                      hintText: S.of(context).hintAddEnding,
+                      onSubmitted: state.onSend,
+                    ),
+                  );
 
                   return Row(
                     children: [
-                      leftTextField,
-                      middleWordPartActions,
+                      if (levelState.latestWord.isNotEmpty) leftTextField,
+                      if (levelState.latestWord.isNotEmpty)
+                        middleWordPartActions,
                       rightTextField,
                       Column(
                         mainAxisSize: MainAxisSize.min,
