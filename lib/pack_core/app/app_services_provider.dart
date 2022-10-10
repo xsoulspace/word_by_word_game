@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc/src/bloc_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/ephemeral/dictionaries_bloc.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
@@ -17,17 +18,22 @@ class AppServicesProvider extends StatelessWidget {
   Widget build(final BuildContext context) {
     return MultiProvider(
       providers: [
+        Provider<ServicesCollection>(
+          create: (final context) => ServicesCollection.v1,
+        ),
         Provider<MechanicsCollection>(
           create: (final context) => MechanicsCollection.v1,
         ),
-        Provider<ServicesCollection>(
-          create: (final context) => ServicesCollection.v1,
-        )
       ],
       child: Builder(
         builder: (final context) {
           late Locator providersContextLocator;
           final initialProviders = <BlocProviderSingleChildWidget>[
+            BlocProvider(
+              create: (final context) => DictionariesBloc(
+                diDto: DictionariesBlocDiDto.use(providersContextLocator),
+              ),
+            ),
             BlocProvider(
               create: (final context) => LevelPlayersBloc(
                 diDto: LevelPlayersBlocDiDto.use(providersContextLocator),

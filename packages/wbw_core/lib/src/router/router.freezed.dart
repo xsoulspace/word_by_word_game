@@ -141,7 +141,7 @@ class __$$_ParsedRouteCopyWithImpl<$Res> extends _$ParsedRouteCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_ParsedRoute extends _ParsedRoute {
+class _$_ParsedRoute extends _ParsedRoute with DiagnosticableTreeMixin {
   const _$_ParsedRoute(
       {required this.path,
       required this.pathTemplate,
@@ -183,8 +183,19 @@ class _$_ParsedRoute extends _ParsedRoute {
   }
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'ParsedRoute(path: $path, pathTemplate: $pathTemplate, parameters: $parameters, queryParameters: $queryParameters)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'ParsedRoute'))
+      ..add(DiagnosticsProperty('path', path))
+      ..add(DiagnosticsProperty('pathTemplate', pathTemplate))
+      ..add(DiagnosticsProperty('parameters', parameters))
+      ..add(DiagnosticsProperty('queryParameters', queryParameters));
   }
 
   @override

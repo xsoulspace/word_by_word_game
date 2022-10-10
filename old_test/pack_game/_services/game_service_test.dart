@@ -85,8 +85,8 @@ void main() {
       final GameModel newGame = await gameService.createGame(
         screenWidth: screenWidth,
       );
-      await gameService.saveGame(playableLevel: newGame);
-      final gameSave = await gameService.loadGame();
+      await gameService.saveDictionary(playableLevel: newGame);
+      final gameSave = await gameService.loadDictionary();
 
       expect(gameSave, equals(newGame));
     });

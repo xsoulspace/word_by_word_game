@@ -1,8 +1,10 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/ephemeral/dictionaries_bloc.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 
@@ -15,11 +17,13 @@ class LevelBlocDiDto {
   LevelBlocDiDto.use(final Locator read)
       : mechanics = read(),
         levelPlayersBloc = read(),
+        dictionaryBloc = read(),
         _read = read;
   final Locator _read;
   GlobalGameBloc get globalGameBloc => _read();
   final MechanicsCollection mechanics;
   final LevelPlayersBloc levelPlayersBloc;
+  final DictionariesBloc dictionaryBloc;
 }
 
 class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
@@ -30,6 +34,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<ConsumeTickEvent>(_consumeTickEvent);
     on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
     on<AcceptNewWordEvent>(_onAcceptNewWord);
+    on<AddNewWordToDictionaryEvent>(_onAddNewWordToDictionary);
     on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
   }
 
@@ -102,11 +107,27 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     if (isWritten) {
       return WordWarning.isWritten;
     }
-    final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(word: word);
+    final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(
+      word: word,
+      localDictionary: diDto.dictionaryBloc.getLiveState().localDictionary,
+    );
     if (!isCorrect) {
       return WordWarning.isNotCorrect;
     }
     return WordWarning.none;
+  }
+
+  void _onAddNewWordToDictionary(
+    final AddNewWordToDictionaryEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    diDto.dictionaryBloc.add(
+      AddWordToDictionaryBlocEvent(word: liveState.currentWord.cleanWord),
+    );
+    WidgetsBinding.instance.addPostFrameCallback((final _) {
+      add(const AcceptNewWordEvent());
+    });
   }
 
   void _onAcceptNewWord(
@@ -115,6 +136,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   ) {
     final liveState = getLiveState();
     final newWord = liveState.currentWord.cleanWord;
+    if (newWord.isEmpty) return;
+
     final wordWarning = _checkNewWord(liveState.currentWord);
     if (wordWarning == WordWarning.none) {
       final levelPlayersBloc = diDto.levelPlayersBloc;

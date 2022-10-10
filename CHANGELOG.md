@@ -1,4 +1,35 @@
+## Ideas & TODO
+
+- show bar with the counter which will shows the decrease counts?
+- show level highscore in the lost dialog & win dialog.
+- Reset navigation path when player is finished a level.
+
+- Add an option to start level fresh and continue if you have a progress (saved lvl).
+
+- Global highscore is:
+- (+) word length \* level modifier (hardness of the level)
+- (-) the score used by a player to decrease middle word part
+- (-) to the player who landing | crashed the character.
+- (+) character modifier (hardness of the character)
+
 ## Next
+
+## October 10th 2022
+
+- Restored an option to add new word to local dictionary.
+- Fixed mobile layout for level options screen.
+- Fixed mobile layout for game.
+
+What's next:
+
+- Add suggest random word option by score.
+
+- Gamify UI.
+- Add Tiled map with obstacles to the game.
+- Create Graphic Set for the Tiled Map.
+- Create Tiled map with obstacles.
+- Add Character descriptions
+- Add Level description.
 
 ## October 2th 2022
 
@@ -29,30 +60,6 @@ What's next:
 ## September 28th 2022
 
 - Linked world and world components states to follow the current level state.
-
-What's next:
-
-- Global highscore is:
-- (+) word length \* level modifier (hardness of the level)
-- (-) the score used by a player to decrease middle word part
-- (-) to the player who landing | crashed the character.
-- (+) character modifier (hardness of the character)
-
-- Add an option to start level fresh and continue if you have a progress (saved lvl).
-
--- Prototype stage
-
-- Add Tiled map with obstacles to the game.
-- Create Graphic Set for the Tiled Map.
-- Create Tiled map with obstacles.
-- Gamify UI:
-- Add Character descriptions
-- Add Level description.
-- Replace solid color by blur background for Pause Screen (?).
-- show bar with the counter which will shows the decrease counts?
-- show level highscore in the lost dialog & win dialog.
-
--- Release a game prototype.
 
 ## September 25th 2022
 

@@ -28,7 +28,9 @@ void main() {
         updatedPlayer.highscore,
         equals(
           PlayerHighscoreModel(
+            totalLettersCount: fullwordLength + 1,
             maxLettersCount: fullwordLength + 1,
+            totalWordsCount: player.highscore.maxWordsCount + 1,
             maxWordsCount: player.highscore.maxWordsCount + 1,
             score: const ScoreModel(value: 30),
           ),
@@ -48,7 +50,9 @@ void main() {
         equals(
           PlayerHighscoreModel(
             maxLettersCount: player.highscore.maxLettersCount,
+            totalLettersCount: player.highscore.maxLettersCount,
             maxWordsCount: player.highscore.maxWordsCount,
+            totalWordsCount: player.highscore.maxWordsCount,
             score: const ScoreModel(value: 3),
           ),
         ),
@@ -96,6 +100,7 @@ void main() {
           levelId: '1',
           landingsCount: 1,
           maxDistance: 200,
+          totalDistance: 200,
         ),
       });
     });
@@ -115,6 +120,7 @@ void main() {
           levelId: '1',
           landingsCount: 0,
           maxDistance: 200,
+          totalDistance: 200,
         ),
       });
     });

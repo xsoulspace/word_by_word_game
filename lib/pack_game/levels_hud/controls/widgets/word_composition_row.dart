@@ -11,8 +11,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/send_action_button.dart';
-import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/warning_notification.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_actions_buttons.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
@@ -26,7 +25,6 @@ class WordCompositionRow extends HookWidget {
   Widget build(final BuildContext context) {
     final state = _useWordCompositionState(read: context.read);
     final uiTheme = UiTheme.of(context);
-    final spacing = uiTheme.spacing;
     final buildAndListenWhenCallback = LevelBloc.useCheckStateEqualityBuilder(
       checkLiveState: (final previous, final current) =>
           previous.latestWord != current.latestWord,
@@ -42,8 +40,8 @@ class WordCompositionRow extends HookWidget {
           if (levelState is! LiveLevelBlocState) return const SizedBox();
 
           return Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              LastWordText(latestWord: levelState.latestWord),
               Builder(
                 builder: (final context) {
                   Widget rightTextField = WordPartTextField(
@@ -92,30 +90,40 @@ class WordCompositionRow extends HookWidget {
                       leftTextField,
                       middleWordPartActions,
                       rightTextField,
+                      Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SendWordButton(
+                            onPressed: state.onSend,
+                          ),
+                          AddWordToDictionaryButton(
+                            onPressed: state.onAddWordToDictionary,
+                          ),
+                        ],
+                      )
                     ],
                   );
                 },
               ),
-              uiTheme.verticalBoxes.medium,
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Flexible(child: WarningNotification()),
-                    Padding(
-                      padding: EdgeInsets.only(left: spacing.extraLarge),
-                      child: SendWordActionButton(
-                        onPressed: state.onSend,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              uiTheme.verticalBoxes.small,
             ],
           );
         },
       ),
     );
+  }
+}
+
+class LastWordWidget extends StatelessWidget {
+  const LastWordWidget({
+    super.key,
+  });
+  @override
+  Widget build(final BuildContext context) {
+    final latestWord = context.select<LevelBloc, String>(
+      (final state) => state.getLiveState().latestWord,
+    );
+    return LastWordText(latestWord: latestWord);
   }
 }
 
@@ -148,6 +156,7 @@ class WordPartTextField extends StatelessWidget {
       child: TextField(
         focusNode: textFieldFocusNode,
         onSubmitted: (final _) => onSubmitted?.call(),
+        onEditingComplete: () {},
         style: const TextStyle(fontSize: 14.0),
         decoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
@@ -249,6 +258,13 @@ class LastWordText extends StatelessWidget {
   final String latestWord;
   @override
   Widget build(final BuildContext context) {
-    return Text(latestWord);
+    if (latestWord.isEmpty) return const SizedBox();
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Text('Previous Word: '),
+        Text(latestWord),
+      ],
+    );
   }
 }

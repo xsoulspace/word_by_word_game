@@ -5,9 +5,76 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
 
-class PlayerSwitcher extends HookWidget {
-  const PlayerSwitcher({super.key});
+class DesktopPlayerSwitcher extends HookWidget {
+  const DesktopPlayerSwitcher({super.key});
 
+  @override
+  Widget build(final BuildContext context) {
+    final uiTheme = UiTheme.of(context);
+    return BlocBuilder<LevelPlayersBloc, LevelPlayersBlocState>(
+      builder: (final context, final state) {
+        final liveState = state;
+        if (liveState is! LiveLevelPlayersBlocState) {
+          return const SizedBox();
+        }
+
+        return Card(
+          child: Padding(
+            padding: EdgeInsets.all(uiTheme.spacing.small),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PlayerProfileAvatar(
+                  player: liveState.currentPlayer,
+                ),
+                uiTheme.verticalBoxes.medium,
+                Text(liveState.currentPlayer.name),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class MobilePlayerSwitcher extends HookWidget {
+  const MobilePlayerSwitcher({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final uiTheme = UiTheme.of(context);
+    return BlocBuilder<LevelPlayersBloc, LevelPlayersBlocState>(
+      builder: (final context, final state) {
+        final liveState = state;
+        if (liveState is! LiveLevelPlayersBlocState) {
+          return const SizedBox();
+        }
+
+        return Card(
+          child: Padding(
+            padding: EdgeInsets.all(uiTheme.spacing.small),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                PlayerProfileAvatar(
+                  player: liveState.currentPlayer,
+                ),
+                uiTheme.horizontalBoxes.medium,
+                Text(liveState.currentPlayer.name),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+class PlayersSideBar extends StatelessWidget {
+  const PlayersSideBar({super.key});
+  static const maxWidth = 50.0;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
@@ -19,50 +86,28 @@ class PlayerSwitcher extends HookWidget {
         }
         final players = liveState.notCurrentPlayers;
 
-        return SizedBox(
-          width: 240,
-          child: Row(
-            children: [
-              Padding(
-                padding:
-                    EdgeInsets.symmetric(horizontal: uiTheme.spacing.medium),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxHeight: 100,
-                    maxWidth: 50,
-                  ),
-                  child: Wrap(
-                    children: [...players]
-                        .map(
-                          (final player) => Material(
-                            elevation: 4,
-                            child: PlayerProfileAvatar(
-                              player: player,
-                            ),
-                          ),
-                        )
-                        .toList(),
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Card(
-                  child: Padding(
-                    padding: EdgeInsets.all(uiTheme.spacing.small),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        PlayerProfileAvatar(
-                          player: liveState.currentPlayer,
-                        ),
-                        uiTheme.verticalBoxes.medium,
-                        Text(liveState.currentPlayer.name),
-                      ],
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: uiTheme.spacing.extraSmall),
+          constraints: const BoxConstraints(
+            maxHeight: 100,
+            maxWidth: maxWidth,
+          ),
+          child: Wrap(
+            children: [...players]
+                .map(
+                  (final player) => Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical: uiTheme.spacing.extraSmall,
+                    ),
+                    child: Material(
+                      elevation: 4,
+                      child: PlayerProfileAvatar(
+                        player: player,
+                      ),
                     ),
                   ),
-                ),
-              ),
-            ],
+                )
+                .toList(),
           ),
         );
       },

@@ -73,13 +73,10 @@ class LevelOptionsScreen extends HookWidget {
                 style: theme.textTheme.headlineMedium,
               ),
               uiTheme.verticalBoxes.large,
-              SizedBox(
-                height: 200,
-                child: PlayerSelectorRow(
-                  onPlayerSelected: state.onPlayerSelected,
-                  checkIsPlayerSelected: state.checkIsPlayerSelected,
-                  onPlayerCreated: state.onPlayerProfileCreated,
-                ),
+              PlayerSelectorRow(
+                onPlayerSelected: state.onPlayerSelected,
+                checkIsPlayerSelected: state.checkIsPlayerSelected,
+                onPlayerCreated: state.onPlayerProfileCreated,
               ),
               uiTheme.verticalBoxes.extraLarge,
               Row(
@@ -95,6 +92,7 @@ class LevelOptionsScreen extends HookWidget {
                   ),
                 ],
               ),
+              const BottomSafeArea(),
             ],
           ),
         ),
@@ -179,17 +177,86 @@ class PlayerSelectorRow extends StatelessWidget {
   final ValueChanged<PlayerProfileModel> onPlayerCreated;
   @override
   Widget build(final BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+    final uiTheme = UiTheme.of(context);
+    final Widget child;
+    switch (uiTheme.persistentFormFactors.width) {
+      case WidthFormFactor.desktop:
+      case WidthFormFactor.tablet:
+        child = _DesktopPlayerSelectorRow(
+          checkIsPlayerSelected: checkIsPlayerSelected,
+          onPlayerCreated: onPlayerCreated,
+          onPlayerSelected: onPlayerSelected,
+        );
+        break;
+
+      case WidthFormFactor.mobile:
+        child = _MobilePlayerSelectorRow(
+          checkIsPlayerSelected: checkIsPlayerSelected,
+          onPlayerCreated: onPlayerCreated,
+          onPlayerSelected: onPlayerSelected,
+        );
+        break;
+    }
+    return child;
+  }
+}
+
+class _DesktopPlayerSelectorRow extends StatelessWidget {
+  const _DesktopPlayerSelectorRow({
+    required this.onPlayerSelected,
+    required this.checkIsPlayerSelected,
+    required this.onPlayerCreated,
+  });
+  final ValueChanged<PlayerProfileModel> onPlayerSelected;
+  final CheckFunction<PlayerProfileModel> checkIsPlayerSelected;
+  final ValueChanged<PlayerProfileModel> onPlayerCreated;
+
+  @override
+  Widget build(final BuildContext context) {
+    return SizedBox(
+      height: 200,
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          PlayerProfileCreator(
+            onPlayerCreated: onPlayerCreated,
+          ),
+          Expanded(
+            child: PlayerProfileList(
+              checkIsPlayerSelected: checkIsPlayerSelected,
+              onSelected: onPlayerSelected,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MobilePlayerSelectorRow extends StatelessWidget {
+  const _MobilePlayerSelectorRow({
+    required this.onPlayerSelected,
+    required this.checkIsPlayerSelected,
+    required this.onPlayerCreated,
+  });
+  final ValueChanged<PlayerProfileModel> onPlayerSelected;
+  final CheckFunction<PlayerProfileModel> checkIsPlayerSelected;
+  final ValueChanged<PlayerProfileModel> onPlayerCreated;
+
+  @override
+  Widget build(final BuildContext context) {
+    final uiTheme = UiTheme.of(context);
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
+        PlayerProfileList(
+          checkIsPlayerSelected: checkIsPlayerSelected,
+          onSelected: onPlayerSelected,
+        ),
+        uiTheme.verticalBoxes.large,
         PlayerProfileCreator(
           onPlayerCreated: onPlayerCreated,
-        ),
-        Expanded(
-          child: PlayerProfileList(
-            checkIsPlayerSelected: checkIsPlayerSelected,
-            onSelected: onPlayerSelected,
-          ),
         ),
       ],
     );

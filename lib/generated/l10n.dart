@@ -70,10 +70,10 @@ class S {
     );
   }
 
-  /// `Whoa, we cannot find a word {word} in our dictionary! Try another word.`
+  /// `We cannot find the word {word} in our dictionary! Try another word or add it.`
   String wordIsNotCorrect(Object word) {
     return Intl.message(
-      'Whoa, we cannot find a word $word in our dictionary! Try another word.',
+      'We cannot find the word $word in our dictionary! Try another word or add it.',
       name: 'wordIsNotCorrect',
       desc: '',
       args: [word],

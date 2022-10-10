@@ -29,12 +29,17 @@ class $AssetsTilesGen {
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
 
+  /// File path: assets/images/tilesets/pixel_black_white_tileset.aseprite
+  String get pixelBlackWhiteTilesetAseprite =>
+      'assets/images/tilesets/pixel_black_white_tileset.aseprite';
+
   /// File path: assets/images/tilesets/pixel_black_white_tileset.png
-  AssetGenImage get pixelBlackWhiteTileset => const AssetGenImage(
+  AssetGenImage get pixelBlackWhiteTilesetPng => const AssetGenImage(
       'assets/images/tilesets/pixel_black_white_tileset.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [pixelBlackWhiteTileset];
+  List<dynamic> get values =>
+      [pixelBlackWhiteTilesetAseprite, pixelBlackWhiteTilesetPng];
 }
 
 class Assets {
