@@ -28,6 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNewWord": MessageLookupByLibrary.simpleMessage("добавить"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Добавить в словарь"),
+        "chooseLandscape":
+            MessageLookupByLibrary.simpleMessage("Choose a Landscape"),
+        "chooseYourCharacter":
+            MessageLookupByLibrary.simpleMessage("Scegli il tuo personaggio"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
         "copyright":
@@ -48,17 +52,32 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuLanguage": MessageLookupByLibrary.simpleMessage("Язык "),
         "menuNewGame": MessageLookupByLibrary.simpleMessage("Заново "),
         "newGame": MessageLookupByLibrary.simpleMessage("Новая игра"),
+        "play": MessageLookupByLibrary.simpleMessage("Play"),
         "player": MessageLookupByLibrary.simpleMessage("игрок"),
         "players": MessageLookupByLibrary.simpleMessage("Игроки "),
+        "playersAndHighscore":
+            MessageLookupByLibrary.simpleMessage("Players & Highscore"),
+        "profileCreator":
+            MessageLookupByLibrary.simpleMessage("Creatore di profili"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Сбросить слово"),
+        "returnToLandscapes":
+            MessageLookupByLibrary.simpleMessage("Return To Landscapes"),
+        "selectPlayers":
+            MessageLookupByLibrary.simpleMessage("Select the Players"),
+        "send": MessageLookupByLibrary.simpleMessage("Inviare"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
             "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на idea@xsoulspace.dev"),
+        "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Заново "),
+        "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
         "thankYou": MessageLookupByLibrary.simpleMessage(
             "Спасибо за игру и хорошего времяпрепровождения!"),
+        "toLandscapes": MessageLookupByLibrary.simpleMessage("To Landscapes"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "This word already written. Try another word."),
         "wordIsNotCorrect": m0,
+        "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
+            "You have landed in the middle of nowhere.."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("В этот раз, результат ")
       };

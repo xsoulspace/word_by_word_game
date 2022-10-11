@@ -9,6 +9,18 @@
     "type": "text",
     "placeholders": {}
   },
+  "play": "Play",
+  "toLandscapes": "To Landscapes",
+  "send": "Inviare",
+  "youHaveLandedInTheNowhere": "You have landed in the middle of nowhere..",
+  "profileCreator": "Creatore di profili",
+  "returnToLandscapes": "Return To Landscapes",
+  "selectPlayers": "Select the Players",
+  "chooseYourCharacter": "Scegli il tuo personaggio",
+  "chooseLandscape": "Choose a Landscape",
+  "settings": "Impostazioni",
+  "playersAndHighscore": "Players & Highscore",
+  "startNewGame": "New Game",
   "congratulations": "Поздравляем!",
   "@congratulations": {
     "type": "text",

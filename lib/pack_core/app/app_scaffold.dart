@@ -88,6 +88,7 @@ class AppScaffoldBuilder extends HookWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
+          locale: settingsNotifier.locale,
           localeListResolutionCallback:
               (final locales, final supportedLocales) {
             final locale = settingsNotifier.locale;

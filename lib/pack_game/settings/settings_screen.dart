@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/settings/widgets/locale_switcher_button.dart';
 
@@ -33,7 +34,7 @@ class SettingsScreen extends HookWidget {
                 ),
                 Expanded(
                   child: Text(
-                    'Settings',
+                    S.of(context).settings,
                     style: theme.textTheme.headlineLarge,
                     textAlign: TextAlign.center,
                   ),

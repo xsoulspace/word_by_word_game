@@ -28,6 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNewWord": MessageLookupByLibrary.simpleMessage("add"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Add to dictionary"),
+        "chooseLandscape":
+            MessageLookupByLibrary.simpleMessage("Choose a Landscape"),
+        "chooseYourCharacter":
+            MessageLookupByLibrary.simpleMessage("Choose Your Character"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
@@ -47,19 +51,35 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
         "menuLanguage": MessageLookupByLibrary.simpleMessage("Lang "),
         "menuNewGame": MessageLookupByLibrary.simpleMessage("New "),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
         "nextPlayer": MessageLookupByLibrary.simpleMessage("Next player"),
+        "play": MessageLookupByLibrary.simpleMessage("Play"),
         "player": MessageLookupByLibrary.simpleMessage("player"),
         "players": MessageLookupByLibrary.simpleMessage("Players "),
+        "playersAndHighscore":
+            MessageLookupByLibrary.simpleMessage("Players & Highscore"),
+        "profileCreator":
+            MessageLookupByLibrary.simpleMessage("Profile Creator"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reset ending"),
+        "returnToLandscapes":
+            MessageLookupByLibrary.simpleMessage("Return To Landscapes"),
+        "selectPlayers":
+            MessageLookupByLibrary.simpleMessage("Select the Players"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
             "For any bugs or ideas please send your feedback to idea@xsoulspace.dev"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Start again "),
+        "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Thank you and happy gaming!"),
+        "toLandscapes": MessageLookupByLibrary.simpleMessage("To Landscapes"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "This word already written. Try another word."),
         "wordIsNotCorrect": m0,
+        "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
+            "You have landed in the middle of nowhere.."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("This time your score is ")
       };
