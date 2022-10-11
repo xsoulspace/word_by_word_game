@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../wbw_core.dart';
 
+part 'app_settings_model.dart';
 part 'current_word_model.dart';
 part 'fuel_model.dart';
 part 'fuel_storage_model.dart';

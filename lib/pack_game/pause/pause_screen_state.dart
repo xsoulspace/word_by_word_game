@@ -43,4 +43,8 @@ class _PauseScreenState extends LifeState {
   void onToPlayersAndHighscore() {
     diDto.appRouterController.toPlayersAndHighscore();
   }
+
+  void onToSettings() {
+    diDto.appRouterController.toSettings();
+  }
 }

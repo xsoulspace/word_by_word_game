@@ -14,6 +14,154 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) {
+  return _AppSettingsModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AppSettingsModel {
+  @JsonKey(fromJson: _localeFromString, toJson: _localeToString)
+  Locale get locale => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AppSettingsModelCopyWith<AppSettingsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AppSettingsModelCopyWith<$Res> {
+  factory $AppSettingsModelCopyWith(
+          AppSettingsModel value, $Res Function(AppSettingsModel) then) =
+      _$AppSettingsModelCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(fromJson: _localeFromString, toJson: _localeToString)
+          Locale locale});
+}
+
+/// @nodoc
+class _$AppSettingsModelCopyWithImpl<$Res>
+    implements $AppSettingsModelCopyWith<$Res> {
+  _$AppSettingsModelCopyWithImpl(this._value, this._then);
+
+  final AppSettingsModel _value;
+  // ignore: unused_field
+  final $Res Function(AppSettingsModel) _then;
+
+  @override
+  $Res call({
+    Object? locale = freezed,
+  }) {
+    return _then(_value.copyWith(
+      locale: locale == freezed
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_AppSettingsModelCopyWith<$Res>
+    implements $AppSettingsModelCopyWith<$Res> {
+  factory _$$_AppSettingsModelCopyWith(
+          _$_AppSettingsModel value, $Res Function(_$_AppSettingsModel) then) =
+      __$$_AppSettingsModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(fromJson: _localeFromString, toJson: _localeToString)
+          Locale locale});
+}
+
+/// @nodoc
+class __$$_AppSettingsModelCopyWithImpl<$Res>
+    extends _$AppSettingsModelCopyWithImpl<$Res>
+    implements _$$_AppSettingsModelCopyWith<$Res> {
+  __$$_AppSettingsModelCopyWithImpl(
+      _$_AppSettingsModel _value, $Res Function(_$_AppSettingsModel) _then)
+      : super(_value, (v) => _then(v as _$_AppSettingsModel));
+
+  @override
+  _$_AppSettingsModel get _value => super._value as _$_AppSettingsModel;
+
+  @override
+  $Res call({
+    Object? locale = freezed,
+  }) {
+    return _then(_$_AppSettingsModel(
+      locale: locale == freezed
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_AppSettingsModel extends _AppSettingsModel {
+  const _$_AppSettingsModel(
+      {@JsonKey(fromJson: _localeFromString, toJson: _localeToString)
+          this.locale = Locales.en})
+      : super._();
+
+  factory _$_AppSettingsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_AppSettingsModelFromJson(json);
+
+  @override
+  @JsonKey(fromJson: _localeFromString, toJson: _localeToString)
+  final Locale locale;
+
+  @override
+  String toString() {
+    return 'AppSettingsModel(locale: $locale)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AppSettingsModel &&
+            const DeepCollectionEquality().equals(other.locale, locale));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(locale));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>
+      __$$_AppSettingsModelCopyWithImpl<_$_AppSettingsModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AppSettingsModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AppSettingsModel extends AppSettingsModel {
+  const factory _AppSettingsModel(
+      {@JsonKey(fromJson: _localeFromString, toJson: _localeToString)
+          final Locale locale}) = _$_AppSettingsModel;
+  const _AppSettingsModel._() : super._();
+
+  factory _AppSettingsModel.fromJson(Map<String, dynamic> json) =
+      _$_AppSettingsModel.fromJson;
+
+  @override
+  @JsonKey(fromJson: _localeFromString, toJson: _localeToString)
+  Locale get locale;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 CurrentWordModel _$CurrentWordModelFromJson(Map<String, dynamic> json) {
   return _CurrentWordModel.fromJson(json);
 }

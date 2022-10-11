@@ -28,6 +28,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNewWord": MessageLookupByLibrary.simpleMessage("aggiungi"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Aggiungi al dizionario"),
+        "chooseLandscape":
+            MessageLookupByLibrary.simpleMessage("Scegli un paesaggio"),
+        "chooseYourCharacter":
+            MessageLookupByLibrary.simpleMessage("Scegli il tuo personaggio"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulazioni!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continua "),
@@ -48,20 +52,36 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
         "menuLanguage": MessageLookupByLibrary.simpleMessage("Lingua "),
         "menuNewGame": MessageLookupByLibrary.simpleMessage("Nuovo "),
+        "name": MessageLookupByLibrary.simpleMessage("Nome"),
         "newGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
         "nextPlayer":
             MessageLookupByLibrary.simpleMessage("Prossimo giocatore"),
+        "play": MessageLookupByLibrary.simpleMessage("Giocare a"),
         "player": MessageLookupByLibrary.simpleMessage("giocatore"),
         "players": MessageLookupByLibrary.simpleMessage("Players "),
+        "playersAndHighscore":
+            MessageLookupByLibrary.simpleMessage("Giocatori e punteggio"),
+        "profileCreator":
+            MessageLookupByLibrary.simpleMessage("Creatore di profili"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reimposta fine"),
+        "returnToLandscapes":
+            MessageLookupByLibrary.simpleMessage("Ritorna ai paesaggi"),
+        "selectPlayers":
+            MessageLookupByLibrary.simpleMessage("Seleziona i giocatori"),
+        "send": MessageLookupByLibrary.simpleMessage("Inviare"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
             "Per qualsiasi bug o idea, invia il tuo feedback a idea@xsoulspace.dev"),
+        "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Ricomincia "),
+        "startNewGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Grazie e buon gioco!"),
+        "toLandscapes": MessageLookupByLibrary.simpleMessage("Ai paesaggi"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Questa parola è già scritta. Prova con un\'altra parola."),
         "wordIsNotCorrect": m0,
+        "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
+            "Sei atterrato in mezzo al nulla.."),
         "yourHighscore": MessageLookupByLibrary.simpleMessage(
             "Questa volta il tuo punteggio è")
       };

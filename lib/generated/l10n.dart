@@ -130,6 +130,136 @@ class S {
     );
   }
 
+  /// `Play`
+  String get play {
+    return Intl.message(
+      'Play',
+      name: 'play',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To Landscapes`
+  String get toLandscapes {
+    return Intl.message(
+      'To Landscapes',
+      name: 'toLandscapes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have landed in the middle of nowhere..`
+  String get youHaveLandedInTheNowhere {
+    return Intl.message(
+      'You have landed in the middle of nowhere..',
+      name: 'youHaveLandedInTheNowhere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Creator`
+  String get profileCreator {
+    return Intl.message(
+      'Profile Creator',
+      name: 'profileCreator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return To Landscapes`
+  String get returnToLandscapes {
+    return Intl.message(
+      'Return To Landscapes',
+      name: 'returnToLandscapes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the Players`
+  String get selectPlayers {
+    return Intl.message(
+      'Select the Players',
+      name: 'selectPlayers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Your Character`
+  String get chooseYourCharacter {
+    return Intl.message(
+      'Choose Your Character',
+      name: 'chooseYourCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a Landscape`
+  String get chooseLandscape {
+    return Intl.message(
+      'Choose a Landscape',
+      name: 'chooseLandscape',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Players & Highscore`
+  String get playersAndHighscore {
+    return Intl.message(
+      'Players & Highscore',
+      name: 'playersAndHighscore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Game`
+  String get startNewGame {
+    return Intl.message(
+      'New Game',
+      name: 'startNewGame',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start again `
   String get startAgain {
     return Intl.message(

@@ -4,6 +4,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
@@ -31,21 +32,25 @@ class PauseScreen extends HookWidget {
             Visibility(
               visible: isLevelRunning,
               child: UiFilledButton.text(
-                text: 'Continue',
+                text: S.of(context).continueGame,
                 onPressed: () => state.onContinue(id: levelId),
               ),
             ),
-            uiTheme.verticalBoxes.large,
+            uiTheme.verticalBoxes.extraLarge,
             UiFilledButton.text(
-              text: 'Start New Game',
+              text: S.of(context).startNewGame,
               onPressed: state.onToAllLevels,
             ),
             uiTheme.verticalBoxes.large,
             UiFilledButton.text(
-              text: 'Players & Highscore',
+              text: S.of(context).playersAndHighscore,
               onPressed: state.onToPlayersAndHighscore,
             ),
             uiTheme.verticalBoxes.large,
+            UiFilledButton.text(
+              text: S.of(context).settings,
+              onPressed: state.onToSettings,
+            ),
           ],
         ),
       ),

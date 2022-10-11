@@ -9,13 +9,25 @@
     "type": "text",
     "placeholders": {}
   },
+  "play": "Играть",
+  "toLandscapes": "В Места",
+  "send": "Отправить",
+  "youHaveLandedInTheNowhere": "Вы приземлились где-то в неизвестность..",
+  "profileCreator": "Создатель профиля",
+  "returnToLandscapes": "Вернуться к Местам",
+  "selectPlayers": "Выбри игроков",
+  "chooseYourCharacter": "Выбери своего персонажа",
+  "chooseLandscape": "Выбери Место",
+  "settings": "Настройки",
+  "playersAndHighscore": "Игроки & Опыт",
+  "startNewGame": "Новая игра",
   "congratulations": "Поздравляем!",
   "@congratulations": {
     "type": "text",
     "placeholders": {}
   },
-  "wordIsNotCorrect": "Whoa, cannot find word {word} in dictionary! Try another word.",
-  "wordAlreadyWritten": "This word already written. Try another word.",
+  "wordIsNotCorrect": "Этого слова {word} нет в словаре! Попробуй другое слово или добавь в словарь.",
+  "wordAlreadyWritten": "Это слово уже было. Попробуй другое слово.",
   "maxHighscoreIs": "Лучший результат ",
   "@maxHighscoreIs": {
     "type": "text",

@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/dictionaries_bloc.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/game/game.dart';
 
@@ -14,6 +13,8 @@ class GlobalStateInitializer extends StateInitializer {
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
     final services = read<ServicesCollection>();
+    final appSettingsNotifier = read<AppSettingsNotifier>();
+    await appSettingsNotifier.onLoad();
     final localDictionary =
         await services.dictionaryPersistence.loadDictionary();
     final initDictionary =

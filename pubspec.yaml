@@ -120,6 +120,7 @@ flutter:
     - assets/images/
     - assets/images/tilesets/
     - assets/tiles/
+    - google_fonts/
     # - assets/icons/
     # - google_fonts/
     # - assets/promo/
