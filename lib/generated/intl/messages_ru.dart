@@ -21,17 +21,16 @@ class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'ru';
 
   static String m0(word) =>
-      "Whoa, cannot find word ${word} in dictionary! Try another word.";
+      "Этого слова ${word} нет в словаре! Попробуй другое слово или добавь в словарь.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "addNewWord": MessageLookupByLibrary.simpleMessage("добавить"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Добавить в словарь"),
-        "chooseLandscape":
-            MessageLookupByLibrary.simpleMessage("Choose a Landscape"),
+        "chooseLandscape": MessageLookupByLibrary.simpleMessage("Выбери Место"),
         "chooseYourCharacter":
-            MessageLookupByLibrary.simpleMessage("Scegli il tuo personaggio"),
+            MessageLookupByLibrary.simpleMessage("Выбери своего персонажа"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
         "copyright":
@@ -52,32 +51,31 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuLanguage": MessageLookupByLibrary.simpleMessage("Язык "),
         "menuNewGame": MessageLookupByLibrary.simpleMessage("Заново "),
         "newGame": MessageLookupByLibrary.simpleMessage("Новая игра"),
-        "play": MessageLookupByLibrary.simpleMessage("Play"),
+        "play": MessageLookupByLibrary.simpleMessage("Играть"),
         "player": MessageLookupByLibrary.simpleMessage("игрок"),
         "players": MessageLookupByLibrary.simpleMessage("Игроки "),
         "playersAndHighscore":
-            MessageLookupByLibrary.simpleMessage("Players & Highscore"),
+            MessageLookupByLibrary.simpleMessage("Игроки & Опыт"),
         "profileCreator":
-            MessageLookupByLibrary.simpleMessage("Creatore di profili"),
+            MessageLookupByLibrary.simpleMessage("Создатель профиля"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Сбросить слово"),
         "returnToLandscapes":
-            MessageLookupByLibrary.simpleMessage("Return To Landscapes"),
-        "selectPlayers":
-            MessageLookupByLibrary.simpleMessage("Select the Players"),
-        "send": MessageLookupByLibrary.simpleMessage("Inviare"),
+            MessageLookupByLibrary.simpleMessage("Вернуться к Местам"),
+        "selectPlayers": MessageLookupByLibrary.simpleMessage("Выбри игроков"),
+        "send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
             "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на idea@xsoulspace.dev"),
-        "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
+        "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Заново "),
-        "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
+        "startNewGame": MessageLookupByLibrary.simpleMessage("Новая игра"),
         "thankYou": MessageLookupByLibrary.simpleMessage(
             "Спасибо за игру и хорошего времяпрепровождения!"),
-        "toLandscapes": MessageLookupByLibrary.simpleMessage("To Landscapes"),
+        "toLandscapes": MessageLookupByLibrary.simpleMessage("В Места"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
-            "This word already written. Try another word."),
+            "Это слово уже было. Попробуй другое слово."),
         "wordIsNotCorrect": m0,
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
-            "You have landed in the middle of nowhere.."),
+            "Вы приземлились где-то в неизвестность.."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("В этот раз, результат ")
       };
