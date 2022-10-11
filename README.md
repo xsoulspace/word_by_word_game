@@ -46,3 +46,7 @@ Have a fun and a great time!
 # Support
 
 Support the Game on https://boosty.to/arenukvern
+
+## Build
+
+flutter build web --csp
