@@ -71,14 +71,8 @@ class AppScaffoldBuilder extends HookWidget {
       builder: (final context, final child) {
         return MaterialApp.router(
           debugShowCheckedModeBanner: false,
-          theme: ThemeData.from(
-            colorScheme: BrandColorSchemes.light,
-            useMaterial3: true,
-          ),
-          darkTheme: ThemeData.from(
-            colorScheme: BrandColorSchemes.dark,
-            useMaterial3: true,
-          ),
+          theme: AppThemeData.brandLight,
+          darkTheme: AppThemeData.brandDark,
           // themeMode: ThemeMode.dark,
           routeInformationParser: routeParser,
           routerDelegate: state.routerDelegate,
