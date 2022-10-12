@@ -42,7 +42,13 @@ class GameInitializer {
           tileMapName: 'pixel_black_white_landscape',
           tileMapIcon: 'pixel_black_white_map_icon',
         ),
-        stringName: 'Black & White Mountains',
+        name: LocalizedMap(
+          value: {
+            Languages.en: 'Black & White Mountains',
+            Languages.ru: 'Черно-белые горы',
+            Languages.it: 'Montagne in bianco e nero',
+          },
+        ),
       ),
     ];
   }
@@ -51,7 +57,13 @@ class GameInitializer {
     return [
       PlayerCharacterModel(
         id: 'hot-air-balloon',
-        name: 'Hot Air Balloon',
+        localizedName: const LocalizedMap(
+          value: {
+            Languages.en: 'Hot Air Balloon',
+            Languages.ru: 'Воздушный шар',
+            Languages.it: 'Mongolfiera',
+          },
+        ),
         asset: CharacterAssetModel(
           srcPosition: SerializedVector2(x: 0, y: kTileDimension * 6),
           srcSizeX: kTileDimension,

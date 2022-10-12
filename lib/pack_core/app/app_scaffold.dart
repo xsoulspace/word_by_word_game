@@ -73,7 +73,7 @@ class AppScaffoldBuilder extends HookWidget {
           debugShowCheckedModeBanner: false,
           theme: AppThemeData.brandLight,
           darkTheme: AppThemeData.brandDark,
-          // themeMode: ThemeMode.dark,
+          themeMode: ThemeMode.light,
           routeInformationParser: routeParser,
           routerDelegate: state.routerDelegate,
           localizationsDelegates: const [

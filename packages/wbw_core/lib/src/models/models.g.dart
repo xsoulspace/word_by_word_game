@@ -10,12 +10,12 @@ _$_AppSettingsModel _$$_AppSettingsModelFromJson(Map<String, dynamic> json) =>
     _$_AppSettingsModel(
       locale: json['locale'] == null
           ? Locales.en
-          : _localeFromString(json['locale'] as String),
+          : localeFromString(json['locale'] as String),
     );
 
 Map<String, dynamic> _$$_AppSettingsModelToJson(_$_AppSettingsModel instance) =>
     <String, dynamic>{
-      'locale': _localeToString(instance.locale),
+      'locale': localeToString(instance.locale),
     };
 
 _$_CurrentWordModel _$$_CurrentWordModelFromJson(Map<String, dynamic> json) =>
@@ -126,13 +126,15 @@ Map<String, dynamic> _$$_LevelCharactersModelToJson(
 _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
     _$_LevelModel(
       id: json['id'] as String,
-      stringName: json['stringName'] as String,
       players:
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
           json['characters'] as Map<String, dynamic>),
       resources:
           ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
+      name: json['name'] == null
+          ? LocalizedMap.empty
+          : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),
       currentWord: json['currentWord'] == null
           ? const CurrentWordModel()
           : CurrentWordModel.fromJson(
@@ -147,10 +149,10 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'stringName': instance.stringName,
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
       'resources': instance.resources.toJson(),
+      'name': instance.name.toJson(),
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
@@ -160,9 +162,11 @@ _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
         Map<String, dynamic> json) =>
     _$_TemplateLevelModel(
       id: json['id'] as String,
-      stringName: json['stringName'] as String,
       resources:
           ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
+      name: json['name'] == null
+          ? LocalizedMap.empty
+          : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),
       fuelStorage: json['fuelStorage'] == null
           ? const FuelStorageModel()
           : FuelStorageModel.fromJson(
@@ -173,8 +177,8 @@ Map<String, dynamic> _$$_TemplateLevelModelToJson(
         _$_TemplateLevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'stringName': instance.stringName,
       'resources': instance.resources.toJson(),
+      'name': instance.name.toJson(),
       'fuelStorage': instance.fuelStorage.toJson(),
     };
 
@@ -211,11 +215,14 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
         Map<String, dynamic> json) =>
     _$_PlayerCharacterModel(
       id: json['id'] as String,
-      name: json['name'] as String,
       description: json['description'] as String,
       color: json['color'] as int,
       asset:
           CharacterAssetModel.fromJson(json['asset'] as Map<String, dynamic>),
+      localizedName: json['localizedName'] == null
+          ? LocalizedMap.empty
+          : LocalizedMap.fromJson(
+              json['localizedName'] as Map<String, dynamic>),
       characterIcon: json['characterIcon'] as String? ?? '',
       position: json['position'] == null
           ? SerializedVector2.zero
@@ -232,10 +239,10 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
         _$_PlayerCharacterModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'name': instance.name,
       'description': instance.description,
       'color': instance.color,
       'asset': instance.asset.toJson(),
+      'localizedName': instance.localizedName.toJson(),
       'characterIcon': instance.characterIcon,
       'position': instance.position.toJson(),
       'fuel': instance.fuel.toJson(),

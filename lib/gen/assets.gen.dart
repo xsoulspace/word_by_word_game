@@ -82,6 +82,8 @@ class $GoogleFontsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  $AssetsImagesCharactersGen get characters =>
+      const $AssetsImagesCharactersGen();
   $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
 }
 
@@ -96,12 +98,31 @@ class $AssetsTilesGen {
   List<String> get values => [pixelBlackWhiteLandscape];
 }
 
+class $AssetsImagesCharactersGen {
+  const $AssetsImagesCharactersGen();
+
+  /// File path: assets/images/characters/char_hot_air_baloon.png
+  AssetGenImage get charHotAirBaloon =>
+      const AssetGenImage('assets/images/characters/char_hot_air_baloon.png');
+
+  /// File path: assets/images/characters/char_hot_air_baloon_highres.png
+  AssetGenImage get charHotAirBaloonHighres => const AssetGenImage(
+      'assets/images/characters/char_hot_air_baloon_highres.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [charHotAirBaloon, charHotAirBaloonHighres];
+}
+
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
 
   /// File path: assets/images/tilesets/pixel_black_white_map_icon.png
   AssetGenImage get pixelBlackWhiteMapIcon => const AssetGenImage(
       'assets/images/tilesets/pixel_black_white_map_icon.png');
+
+  /// File path: assets/images/tilesets/pixel_black_white_map_icon_highres.png
+  AssetGenImage get pixelBlackWhiteMapIconHighres => const AssetGenImage(
+      'assets/images/tilesets/pixel_black_white_map_icon_highres.png');
 
   /// File path: assets/images/tilesets/pixel_black_white_tileset.aseprite
   String get pixelBlackWhiteTilesetAseprite =>
@@ -114,6 +135,7 @@ class $AssetsImagesTilesetsGen {
   /// List of all assets
   List<dynamic> get values => [
         pixelBlackWhiteMapIcon,
+        pixelBlackWhiteMapIconHighres,
         pixelBlackWhiteTilesetAseprite,
         pixelBlackWhiteTilesetPng
       ];

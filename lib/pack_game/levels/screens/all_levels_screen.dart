@@ -111,7 +111,7 @@ class _LevelCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(level.stringName),
+              child: Text(level.name.getValue()),
             ),
           ],
         ),

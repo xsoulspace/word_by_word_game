@@ -273,7 +273,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     final livePlayersState = diDto.levelPlayersBloc.getLiveState();
 
     return LevelModel(
-      stringName: liveLevelState.stringName,
+      name: liveLevelState.name,
       id: liveLevelState.id,
       currentWord: liveLevelState.currentWord,
       latestWord: liveLevelState.latestWord,

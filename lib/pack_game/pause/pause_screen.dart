@@ -43,17 +43,17 @@ class PauseScreen extends HookWidget {
               text: S.of(context).startNewGame,
               onPressed: state.onToAllLevels,
             ),
-            uiTheme.verticalBoxes.large,
+            uiTheme.verticalBoxes.medium,
             UiFilledButton.text(
               text: S.of(context).playersAndHighscore,
               onPressed: state.onToPlayersAndHighscore,
             ),
-            uiTheme.verticalBoxes.large,
+            uiTheme.verticalBoxes.medium,
             UiFilledButton.text(
               text: S.of(context).settings,
               onPressed: state.onToSettings,
             ),
-            uiTheme.verticalBoxes.large,
+            uiTheme.verticalBoxes.medium,
             UiFilledButton.text(
               text: S.of(context).about,
               onPressed: state.onShowAbout,

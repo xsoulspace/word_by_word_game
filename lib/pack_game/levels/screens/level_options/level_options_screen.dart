@@ -47,7 +47,7 @@ class LevelOptionsScreen extends HookWidget {
                   ),
                   Expanded(
                     child: Text(
-                      templateLevel.stringName.toUpperCase(),
+                      templateLevel.name.getValue().toUpperCase(),
                       style: theme.textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                     ),
@@ -170,7 +170,7 @@ class CharacterCard extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(uiTheme.spacing.medium),
-              child: Text(character.name),
+              child: Text(character.localizedName.getValue()),
             ),
           ],
         ),

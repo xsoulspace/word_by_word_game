@@ -16,10 +16,10 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerCharacterModel({
     required final PlayerCharacterModelId id,
-    required final String name,
     required final String description,
     required final int color,
     required final CharacterAssetModel asset,
+    @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 position,
     @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,

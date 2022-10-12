@@ -17,6 +17,7 @@
 ## October 12th 2022
 
 - New: Credits dialog
+- New: Icons for Black & White landscape and character
 
 ## October 11th 2022
 

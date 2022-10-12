@@ -16,8 +16,8 @@ class AppSettingsModel with _$AppSettingsModel {
   )
   const factory AppSettingsModel({
     @JsonKey(
-      fromJson: _localeFromString,
-      toJson: _localeToString,
+      fromJson: localeFromString,
+      toJson: localeToString,
     )
     @Default(Locales.en)
         final Locale locale,
@@ -29,16 +29,3 @@ class AppSettingsModel with _$AppSettingsModel {
       _$AppSettingsModelFromJson(json);
   static const empty = AppSettingsModel();
 }
-
-Locale _localeFromString(final String languageCode) {
-  try {
-    if (languageCode.isEmpty) return Locales.en;
-
-    return Locale.fromSubtags(languageCode: languageCode);
-    // ignore: avoid_catches_without_on_clauses
-  } catch (e) {
-    return Locales.en;
-  }
-}
-
-String _localeToString(final Locale locale) => locale.languageCode;
