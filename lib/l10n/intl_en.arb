@@ -31,6 +31,23 @@
     "type": "text",
     "placeholders": {}
   },
+  "play": "Play",
+  "name": "Name",
+  "send": "Send",
+  "toLandscapes": "To Landscapes",
+  "youHaveLandedInTheNowhere": "You have landed in the middle of nowhere..",
+  "profileCreator": "Profile Creator",
+  "returnToLandscapes": "Return To Landscapes",
+  "about": "Credits",
+  "username": "Username",
+  "createProfile": "Create",
+  "previousWord": "Previous Word:",
+  "settings": "Settings",
+  "selectPlayers": "Select the Players",
+  "chooseYourCharacter": "Choose Your Character",
+  "chooseLandscape": "Choose a Landscape",
+  "playersAndHighscore": "Players & Highscore",
+  "startNewGame": "New Game",
   "startAgain": "Start again ",
   "@startAgain": {
     "type": "text",
@@ -81,13 +98,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "thankYou": "Thank you and happy gaming!",
+  "creatingGame": "Hi, I'm Anton. Thank you for your interest in this game. Hope you like it:)",
+  "supportGame": "You can support the game in https://boosty.to/arenukvern",
+  "thankYou": "Have a great day!",
   "@thankYou": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyright": "2020 © X Soul Space ",
-  "@copyright": {
     "type": "text",
     "placeholders": {}
   },

@@ -9,9 +9,81 @@
 
 import 'package:flutter/widgets.dart';
 
+class $GoogleFontsGen {
+  const $GoogleFontsGen();
+
+  /// File path: google_fonts/OFL.txt
+  String get ofl => 'google_fonts/OFL.txt';
+
+  /// File path: google_fonts/OpenSans-Bold.ttf
+  String get openSansBold => 'google_fonts/OpenSans-Bold.ttf';
+
+  /// File path: google_fonts/OpenSans-BoldItalic.ttf
+  String get openSansBoldItalic => 'google_fonts/OpenSans-BoldItalic.ttf';
+
+  /// File path: google_fonts/OpenSans-ExtraBold.ttf
+  String get openSansExtraBold => 'google_fonts/OpenSans-ExtraBold.ttf';
+
+  /// File path: google_fonts/OpenSans-ExtraBoldItalic.ttf
+  String get openSansExtraBoldItalic =>
+      'google_fonts/OpenSans-ExtraBoldItalic.ttf';
+
+  /// File path: google_fonts/OpenSans-Italic.ttf
+  String get openSansItalic => 'google_fonts/OpenSans-Italic.ttf';
+
+  /// File path: google_fonts/OpenSans-Light.ttf
+  String get openSansLight => 'google_fonts/OpenSans-Light.ttf';
+
+  /// File path: google_fonts/OpenSans-LightItalic.ttf
+  String get openSansLightItalic => 'google_fonts/OpenSans-LightItalic.ttf';
+
+  /// File path: google_fonts/OpenSans-Medium.ttf
+  String get openSansMedium => 'google_fonts/OpenSans-Medium.ttf';
+
+  /// File path: google_fonts/OpenSans-MediumItalic.ttf
+  String get openSansMediumItalic => 'google_fonts/OpenSans-MediumItalic.ttf';
+
+  /// File path: google_fonts/OpenSans-Regular.ttf
+  String get openSansRegular => 'google_fonts/OpenSans-Regular.ttf';
+
+  /// File path: google_fonts/OpenSans-SemiBold.ttf
+  String get openSansSemiBold => 'google_fonts/OpenSans-SemiBold.ttf';
+
+  /// File path: google_fonts/OpenSans-SemiBoldItalic.ttf
+  String get openSansSemiBoldItalic =>
+      'google_fonts/OpenSans-SemiBoldItalic.ttf';
+
+  /// File path: google_fonts/README.md
+  String get rEADMEMd => 'google_fonts/README.md';
+
+  /// File path: google_fonts/README.txt
+  String get rEADMETxt => 'google_fonts/README.txt';
+
+  /// List of all assets
+  List<String> get values => [
+        ofl,
+        openSansBold,
+        openSansBoldItalic,
+        openSansExtraBold,
+        openSansExtraBoldItalic,
+        openSansItalic,
+        openSansLight,
+        openSansLightItalic,
+        openSansMedium,
+        openSansMediumItalic,
+        openSansRegular,
+        openSansSemiBold,
+        openSansSemiBoldItalic,
+        rEADMEMd,
+        rEADMETxt
+      ];
+}
+
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  $AssetsImagesCharactersGen get characters =>
+      const $AssetsImagesCharactersGen();
   $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
 }
 
@@ -26,8 +98,31 @@ class $AssetsTilesGen {
   List<String> get values => [pixelBlackWhiteLandscape];
 }
 
+class $AssetsImagesCharactersGen {
+  const $AssetsImagesCharactersGen();
+
+  /// File path: assets/images/characters/char_hot_air_baloon.png
+  AssetGenImage get charHotAirBaloon =>
+      const AssetGenImage('assets/images/characters/char_hot_air_baloon.png');
+
+  /// File path: assets/images/characters/char_hot_air_baloon_highres.png
+  AssetGenImage get charHotAirBaloonHighres => const AssetGenImage(
+      'assets/images/characters/char_hot_air_baloon_highres.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [charHotAirBaloon, charHotAirBaloonHighres];
+}
+
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
+
+  /// File path: assets/images/tilesets/pixel_black_white_map_icon.png
+  AssetGenImage get pixelBlackWhiteMapIcon => const AssetGenImage(
+      'assets/images/tilesets/pixel_black_white_map_icon.png');
+
+  /// File path: assets/images/tilesets/pixel_black_white_map_icon_highres.png
+  AssetGenImage get pixelBlackWhiteMapIconHighres => const AssetGenImage(
+      'assets/images/tilesets/pixel_black_white_map_icon_highres.png');
 
   /// File path: assets/images/tilesets/pixel_black_white_tileset.aseprite
   String get pixelBlackWhiteTilesetAseprite =>
@@ -38,8 +133,12 @@ class $AssetsImagesTilesetsGen {
       'assets/images/tilesets/pixel_black_white_tileset.png');
 
   /// List of all assets
-  List<dynamic> get values =>
-      [pixelBlackWhiteTilesetAseprite, pixelBlackWhiteTilesetPng];
+  List<dynamic> get values => [
+        pixelBlackWhiteMapIcon,
+        pixelBlackWhiteMapIconHighres,
+        pixelBlackWhiteTilesetAseprite,
+        pixelBlackWhiteTilesetPng
+      ];
 }
 
 class Assets {
@@ -52,6 +151,7 @@ class Assets {
       AssetGenImage('assets/word_by_word_1.png');
   static const AssetGenImage wordByWord2 =
       AssetGenImage('assets/word_by_word_2.png');
+  static const $GoogleFontsGen googleFonts = $GoogleFontsGen();
 
   /// List of all assets
   List<AssetGenImage> get values => [icon, wordByWord1, wordByWord2];

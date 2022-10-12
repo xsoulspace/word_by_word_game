@@ -4,6 +4,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
@@ -46,7 +47,7 @@ class LevelOptionsScreen extends HookWidget {
                   ),
                   Expanded(
                     child: Text(
-                      templateLevel.stringName.toUpperCase(),
+                      templateLevel.name.getValue().toUpperCase(),
                       style: theme.textTheme.bodyLarge,
                       textAlign: TextAlign.center,
                     ),
@@ -55,7 +56,7 @@ class LevelOptionsScreen extends HookWidget {
               ),
               uiTheme.verticalBoxes.extraLarge,
               Text(
-                'Choose Your Character',
+                S.of(context).chooseYourCharacter,
                 style: theme.textTheme.headlineMedium,
               ),
               uiTheme.verticalBoxes.large,
@@ -69,7 +70,7 @@ class LevelOptionsScreen extends HookWidget {
               ),
               uiTheme.verticalBoxes.extraLarge,
               Text(
-                'Select The Players',
+                S.of(context).selectPlayers,
                 style: theme.textTheme.headlineMedium,
               ),
               uiTheme.verticalBoxes.large,
@@ -83,12 +84,12 @@ class LevelOptionsScreen extends HookWidget {
                 children: [
                   TextButton(
                     onPressed: state.onReturnToLevels,
-                    child: const Text('Return to all levels'),
+                    child: Text(S.of(context).returnToLandscapes),
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: state.onPlay,
-                    child: const Text('Play'),
+                    child: Text(S.of(context).play),
                   ),
                 ],
               ),
@@ -149,16 +150,29 @@ class CharacterCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () => onPressed(character),
-        child: Padding(
-          padding: EdgeInsets.all(uiTheme.spacing.medium),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(character.name),
-              const Spacer(),
-              Text(character.description),
-            ],
-          ),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                margin: EdgeInsets.all(uiTheme.spacing.medium).copyWith(
+                  top: 36,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/characters/${character.characterIcon}_highres.png',
+                    ),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(uiTheme.spacing.medium),
+              child: Text(character.localizedName.getValue()),
+            ),
+          ],
         ),
       ),
     );

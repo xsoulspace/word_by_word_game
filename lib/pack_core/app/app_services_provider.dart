@@ -4,7 +4,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_bloc/src/bloc_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/dictionaries_bloc.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
@@ -63,11 +62,20 @@ class AppServicesProvider extends StatelessWidget {
               ...initialProviders,
               ...otherProviders,
             ],
-            child: Builder(
-              builder: (final context) {
-                providersContextLocator = context.read;
-                return child;
-              },
+            child: MultiProvider(
+              providers: [
+                ChangeNotifierProvider(
+                  create: (final context) => AppSettingsNotifier.use(
+                    context.read,
+                  ),
+                ),
+              ],
+              child: Builder(
+                builder: (final context) {
+                  providersContextLocator = context.read;
+                  return child;
+                },
+              ),
             ),
           );
         },

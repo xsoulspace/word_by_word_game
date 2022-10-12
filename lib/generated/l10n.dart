@@ -130,6 +130,176 @@ class S {
     );
   }
 
+  /// `Play`
+  String get play {
+    return Intl.message(
+      'Play',
+      name: 'play',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Name`
+  String get name {
+    return Intl.message(
+      'Name',
+      name: 'name',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Send`
+  String get send {
+    return Intl.message(
+      'Send',
+      name: 'send',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `To Landscapes`
+  String get toLandscapes {
+    return Intl.message(
+      'To Landscapes',
+      name: 'toLandscapes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You have landed in the middle of nowhere..`
+  String get youHaveLandedInTheNowhere {
+    return Intl.message(
+      'You have landed in the middle of nowhere..',
+      name: 'youHaveLandedInTheNowhere',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Profile Creator`
+  String get profileCreator {
+    return Intl.message(
+      'Profile Creator',
+      name: 'profileCreator',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Return To Landscapes`
+  String get returnToLandscapes {
+    return Intl.message(
+      'Return To Landscapes',
+      name: 'returnToLandscapes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Credits`
+  String get about {
+    return Intl.message(
+      'Credits',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get createProfile {
+    return Intl.message(
+      'Create',
+      name: 'createProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Previous Word:`
+  String get previousWord {
+    return Intl.message(
+      'Previous Word:',
+      name: 'previousWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Settings`
+  String get settings {
+    return Intl.message(
+      'Settings',
+      name: 'settings',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Select the Players`
+  String get selectPlayers {
+    return Intl.message(
+      'Select the Players',
+      name: 'selectPlayers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose Your Character`
+  String get chooseYourCharacter {
+    return Intl.message(
+      'Choose Your Character',
+      name: 'chooseYourCharacter',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Choose a Landscape`
+  String get chooseLandscape {
+    return Intl.message(
+      'Choose a Landscape',
+      name: 'chooseLandscape',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Players & Highscore`
+  String get playersAndHighscore {
+    return Intl.message(
+      'Players & Highscore',
+      name: 'playersAndHighscore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `New Game`
+  String get startNewGame {
+    return Intl.message(
+      'New Game',
+      name: 'startNewGame',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Start again `
   String get startAgain {
     return Intl.message(
@@ -230,21 +400,31 @@ class S {
     );
   }
 
-  /// `Thank you and happy gaming!`
-  String get thankYou {
+  /// `Hi, I'm Anton. Thank you for your interest in this game. Hope you like it:)`
+  String get creatingGame {
     return Intl.message(
-      'Thank you and happy gaming!',
-      name: 'thankYou',
+      'Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)',
+      name: 'creatingGame',
       desc: '',
       args: [],
     );
   }
 
-  /// `2020 © X Soul Space `
-  String get copyright {
+  /// `You can support the game in https://boosty.to/arenukvern`
+  String get supportGame {
     return Intl.message(
-      '2020 © X Soul Space ',
-      name: 'copyright',
+      'You can support the game in https://boosty.to/arenukvern',
+      name: 'supportGame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have a great day!`
+  String get thankYou {
+    return Intl.message(
+      'Have a great day!',
+      name: 'thankYou',
       desc: '',
       args: [],
     );

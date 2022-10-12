@@ -18,11 +18,10 @@ class LevelModel with _$LevelModel {
   )
   const factory LevelModel({
     required final LevelModelId id,
-    // TODO(arenukvern): add i18n object
-    required final String stringName,
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
     required final ResourcesModel resources,
+    @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
@@ -44,9 +43,8 @@ class TemplateLevelModel with _$TemplateLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory TemplateLevelModel({
     required final LevelModelId id,
-    // TODO(arenukvern): add i18n object
-    required final String stringName,
     required final ResourcesModel resources,
+    @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _TemplateLevelModel;
   const TemplateLevelModel._();

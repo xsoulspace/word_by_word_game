@@ -33,8 +33,7 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
   @Implements<LevelBlocState>()
   const factory LiveLevelBlocState({
     required final LevelModelId id,
-    // TODO(arenukvern): i18n
-    required final String stringName,
+    @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
@@ -50,7 +49,7 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
 
   factory LiveLevelBlocState.fromModel(final LevelModel levelModel) {
     return LiveLevelBlocState(
-      stringName: levelModel.stringName,
+      name: levelModel.name,
       currentWord: levelModel.currentWord,
       latestWord: levelModel.latestWord,
       words: levelModel.words,

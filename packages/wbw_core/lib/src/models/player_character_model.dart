@@ -16,10 +16,11 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerCharacterModel({
     required final PlayerCharacterModelId id,
-    required final String name,
     required final String description,
     required final int color,
     required final CharacterAssetModel asset,
+    @Default(LocalizedMap.empty) final LocalizedMap localizedName,
+    @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 position,
     @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
     @Default(50.5) final double fuelNormalPower,
@@ -69,5 +70,5 @@ class SerializedVector2 with _$SerializedVector2 {
       _$SerializedVector2FromJson(json);
   static const zero = SerializedVector2();
   bool get isZero => x == 0 && y == 0;
-  Vector2 toVector2() => Vector2(x,y);
+  Vector2 toVector2() => Vector2(x, y);
 }

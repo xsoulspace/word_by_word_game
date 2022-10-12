@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
@@ -41,7 +42,7 @@ class HighscoreScreen extends HookWidget {
                 ),
                 Expanded(
                   child: Text(
-                    'Players & Highscore',
+                    S.of(context).playersAndHighscore,
                     style: theme.textTheme.headlineLarge,
                     textAlign: TextAlign.center,
                   ),
