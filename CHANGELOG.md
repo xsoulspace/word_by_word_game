@@ -20,6 +20,14 @@
 - Added Icons for Black & White landscape and character
 - Completed translation for previous game languages (English, Russian, Italian (very approximate))
 
+What's next:
+
+- Add suggest random word option by score.
+- Add Privacy Policy link to the credits.
+- Add Firebase or AppMetrica for crashlitics
+
+- Gamify UI.
+
 ## October 11th 2022
 
 - New: restored an option to switch between languages.
@@ -29,17 +37,6 @@
 - Restored an option to add new word to local dictionary.
 - Fixed mobile layout for level options screen.
 - Fixed mobile layout for game.
-
-What's next:
-
-- Add suggest random word option by score.
-
-- Gamify UI.
-- Add Tiled map with obstacles to the game.
-- Create Graphic Set for the Tiled Map.
-- Create Tiled map with obstacles.
-- Add Character descriptions
-- Add Level description.
 
 ## October 2th 2022
 
