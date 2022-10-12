@@ -22,6 +22,7 @@ LiveResourcesBlocState _$LiveResourcesBlocStateFromJson(
 /// @nodoc
 mixin _$LiveResourcesBlocState {
   String get tileMapName => throw _privateConstructorUsedError;
+  String get tileMapIcon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,7 @@ abstract class $LiveResourcesBlocStateCopyWith<$Res> {
   factory $LiveResourcesBlocStateCopyWith(LiveResourcesBlocState value,
           $Res Function(LiveResourcesBlocState) then) =
       _$LiveResourcesBlocStateCopyWithImpl<$Res>;
-  $Res call({String tileMapName});
+  $Res call({String tileMapName, String tileMapIcon});
 }
 
 /// @nodoc
@@ -49,11 +50,16 @@ class _$LiveResourcesBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tileMapName = freezed,
+    Object? tileMapIcon = freezed,
   }) {
     return _then(_value.copyWith(
       tileMapName: tileMapName == freezed
           ? _value.tileMapName
           : tileMapName // ignore: cast_nullable_to_non_nullable
+              as String,
+      tileMapIcon: tileMapIcon == freezed
+          ? _value.tileMapIcon
+          : tileMapIcon // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -66,7 +72,7 @@ abstract class _$$_LiveResourcesBlocStateCopyWith<$Res>
           $Res Function(_$_LiveResourcesBlocState) then) =
       __$$_LiveResourcesBlocStateCopyWithImpl<$Res>;
   @override
-  $Res call({String tileMapName});
+  $Res call({String tileMapName, String tileMapIcon});
 }
 
 /// @nodoc
@@ -84,11 +90,16 @@ class __$$_LiveResourcesBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tileMapName = freezed,
+    Object? tileMapIcon = freezed,
   }) {
     return _then(_$_LiveResourcesBlocState(
       tileMapName: tileMapName == freezed
           ? _value.tileMapName
           : tileMapName // ignore: cast_nullable_to_non_nullable
+              as String,
+      tileMapIcon: tileMapIcon == freezed
+          ? _value.tileMapIcon
+          : tileMapIcon // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -98,17 +109,21 @@ class __$$_LiveResourcesBlocStateCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_LiveResourcesBlocState extends _LiveResourcesBlocState {
-  const _$_LiveResourcesBlocState({required this.tileMapName}) : super._();
+  const _$_LiveResourcesBlocState(
+      {required this.tileMapName, required this.tileMapIcon})
+      : super._();
 
   factory _$_LiveResourcesBlocState.fromJson(Map<String, dynamic> json) =>
       _$$_LiveResourcesBlocStateFromJson(json);
 
   @override
   final String tileMapName;
+  @override
+  final String tileMapIcon;
 
   @override
   String toString() {
-    return 'LiveResourcesBlocState(tileMapName: $tileMapName)';
+    return 'LiveResourcesBlocState(tileMapName: $tileMapName, tileMapIcon: $tileMapIcon)';
   }
 
   @override
@@ -117,13 +132,17 @@ class _$_LiveResourcesBlocState extends _LiveResourcesBlocState {
         (other.runtimeType == runtimeType &&
             other is _$_LiveResourcesBlocState &&
             const DeepCollectionEquality()
-                .equals(other.tileMapName, tileMapName));
+                .equals(other.tileMapName, tileMapName) &&
+            const DeepCollectionEquality()
+                .equals(other.tileMapIcon, tileMapIcon));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(tileMapName));
+      runtimeType,
+      const DeepCollectionEquality().hash(tileMapName),
+      const DeepCollectionEquality().hash(tileMapIcon));
 
   @JsonKey(ignore: true)
   @override
@@ -141,8 +160,9 @@ class _$_LiveResourcesBlocState extends _LiveResourcesBlocState {
 
 abstract class _LiveResourcesBlocState extends LiveResourcesBlocState
     implements ResourcesBlocState {
-  const factory _LiveResourcesBlocState({required final String tileMapName}) =
-      _$_LiveResourcesBlocState;
+  const factory _LiveResourcesBlocState(
+      {required final String tileMapName,
+      required final String tileMapIcon}) = _$_LiveResourcesBlocState;
   const _LiveResourcesBlocState._() : super._();
 
   factory _LiveResourcesBlocState.fromJson(Map<String, dynamic> json) =
@@ -150,6 +170,8 @@ abstract class _LiveResourcesBlocState extends LiveResourcesBlocState
 
   @override
   String get tileMapName;
+  @override
+  String get tileMapIcon;
   @override
   @JsonKey(ignore: true)
   _$$_LiveResourcesBlocStateCopyWith<_$_LiveResourcesBlocState> get copyWith =>

@@ -80,7 +80,7 @@ class _LevelOptionsScreenState extends LifeState {
     );
 
     final level = LevelModel(
-      stringName: templateLevel.stringName,
+      name: templateLevel.name,
       resources: templateLevel.resources,
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,

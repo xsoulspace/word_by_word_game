@@ -32,7 +32,8 @@ class _LocaleSwitcherButtonState extends LifeState {
     final languageCode = diDto.appSettingsNotifier.locale?.languageCode;
     final String effectiveLanguageCode =
         languageCode ?? getLanguageCode(intl.Intl.getCurrentLocale());
-    locale = namedLocalesMap[effectiveLanguageCode]?.locale ?? Locales.en;
+    final language = Languages.values.byName(effectiveLanguageCode);
+    locale = namedLocalesMap[language]?.locale ?? Locales.en;
   }
 
   void onUpdateLocale(final Locale? value) {

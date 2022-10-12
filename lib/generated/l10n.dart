@@ -200,6 +200,46 @@ class S {
     );
   }
 
+  /// `Credits`
+  String get about {
+    return Intl.message(
+      'Credits',
+      name: 'about',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Username`
+  String get username {
+    return Intl.message(
+      'Username',
+      name: 'username',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get createProfile {
+    return Intl.message(
+      'Create',
+      name: 'createProfile',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Previous Word:`
+  String get previousWord {
+    return Intl.message(
+      'Previous Word:',
+      name: 'previousWord',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Settings`
   String get settings {
     return Intl.message(
@@ -360,21 +400,31 @@ class S {
     );
   }
 
-  /// `Thank you and happy gaming!`
-  String get thankYou {
+  /// `Hi, I'm Anton. Thank you for your interest in this game. Hope you like it:)`
+  String get creatingGame {
     return Intl.message(
-      'Thank you and happy gaming!',
-      name: 'thankYou',
+      'Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)',
+      name: 'creatingGame',
       desc: '',
       args: [],
     );
   }
 
-  /// `2020 © X Soul Space `
-  String get copyright {
+  /// `You can support the game in https://boosty.to/arenukvern`
+  String get supportGame {
     return Intl.message(
-      '2020 © X Soul Space ',
-      name: 'copyright',
+      'You can support the game in https://boosty.to/arenukvern',
+      name: 'supportGame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have a great day!`
+  String get thankYou {
+    return Intl.message(
+      'Have a great day!',
+      name: 'thankYou',
       desc: '',
       args: [],
     );

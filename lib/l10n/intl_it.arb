@@ -32,7 +32,11 @@
   "chooseLandscape": "Scegli un paesaggio",
   "youHaveLandedInTheNowhere": "Sei atterrato in mezzo al nulla..",
   "settings": "Impostazioni",
+  "username": "Nome utente",
+  "previousWord": "Parola precedente:",
+  "createProfile": "Creare",
   "playersAndHighscore": "Giocatori e punteggio",
+  "about": "Di",
   "startNewGame": "Nuovo gioco",
   "maxHighscoreIs": "Il punteggio massimo è ",
   "@maxHighscoreIs": {
@@ -94,13 +98,10 @@
     "type": "text",
     "placeholders": {}
   },
+  "creatingGame": "Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)",
+  "supportGame": "Puoi supportare il gioco in https://boosty.to/arenukvern",
   "thankYou": "Grazie e buon gioco!",
   "@thankYou": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyright": "2020 © X Soul Space ",
-  "@copyright": {
     "type": "text",
     "placeholders": {}
   },

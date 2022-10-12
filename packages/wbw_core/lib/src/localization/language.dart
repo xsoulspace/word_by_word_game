@@ -1,23 +1,23 @@
-import 'package:flutter/widgets.dart';
-
-import 'named_locale.dart';
+part of 'localization.dart';
 
 class Locales {
   Locales._();
-  static const en = Locale(Languages.en, 'EN');
-  static const ru = Locale(Languages.ru, 'RU');
-  static const it = Locale(Languages.it, 'IT');
+  static const en = Locale('en', 'EN');
+  static const ru = Locale('ru', 'RU');
+  static const it = Locale('it', 'IT');
   // static const ga = Locale(Languages.ga, 'GA');
   static const values = <Locale>[en, ru, it];
 }
 
 typedef LanguageName = String;
 
-class Languages {
-  Languages._();
-  static const ru = 'ru';
-  static const en = 'en';
-  static const it = 'it';
+enum Languages {
+  ru('ru'),
+  en('en'),
+  it('it');
+
+  const Languages(this.value);
+  final String value;
 
   /// Irland Language
   // static const ga = 'ga';
@@ -25,10 +25,10 @@ class Languages {
   /// Turkey Language
   // static const ga = 'ga';
 
-  static const values = <LanguageName>[ru, en, it];
+  static const all = <Languages>[ru, en, it];
 }
 
-final Map<String, NamedLocale> namedLocalesMap = {
+final Map<Languages, NamedLocale> namedLocalesMap = {
   Languages.en: const NamedLocale(
     name: 'English',
     locale: Locales.en,

@@ -20,8 +20,8 @@ LiveLevelBlocState _$LiveLevelBlocStateFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LiveLevelBlocState {
-  String get id => throw _privateConstructorUsedError; // TODO(arenukvern): i18n
-  String get stringName => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  LocalizedMap get name => throw _privateConstructorUsedError;
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
@@ -44,12 +44,13 @@ abstract class $LiveLevelBlocStateCopyWith<$Res> {
       _$LiveLevelBlocStateCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String stringName,
+      LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
       WordWarning wordWarning});
 
+  $LocalizedMapCopyWith<$Res> get name;
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
 
@@ -65,7 +66,7 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? stringName = freezed,
+    Object? name = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -76,10 +77,10 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      stringName: stringName == freezed
-          ? _value.stringName
-          : stringName // ignore: cast_nullable_to_non_nullable
-              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -100,6 +101,13 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
   }
 
   @override
+  $LocalizedMapCopyWith<$Res> get name {
+    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
+      return _then(_value.copyWith(name: value));
+    });
+  }
+
+  @override
   $CurrentWordModelCopyWith<$Res> get currentWord {
     return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
       return _then(_value.copyWith(currentWord: value));
@@ -116,12 +124,14 @@ abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      String stringName,
+      LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
       WordWarning wordWarning});
 
+  @override
+  $LocalizedMapCopyWith<$Res> get name;
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
@@ -140,7 +150,7 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? stringName = freezed,
+    Object? name = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -151,10 +161,10 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      stringName: stringName == freezed
-          ? _value.stringName
-          : stringName // ignore: cast_nullable_to_non_nullable
-              as String,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -181,7 +191,7 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
 class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   const _$_LiveLevelBlocState(
       {required this.id,
-      required this.stringName,
+      this.name = LocalizedMap.empty,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
@@ -194,9 +204,9 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   final String id;
-// TODO(arenukvern): i18n
   @override
-  final String stringName;
+  @JsonKey()
+  final LocalizedMap name;
   @override
   @JsonKey()
   final CurrentWordModel currentWord;
@@ -221,7 +231,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   String toString() {
-    return 'LiveLevelBlocState(id: $id, stringName: $stringName, currentWord: $currentWord, words: $words, latestWord: $latestWord, wordWarning: $wordWarning)';
+    return 'LiveLevelBlocState(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, wordWarning: $wordWarning)';
   }
 
   @override
@@ -230,8 +240,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
         (other.runtimeType == runtimeType &&
             other is _$_LiveLevelBlocState &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.stringName, stringName) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.currentWord, currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
@@ -246,7 +255,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(stringName),
+      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord),
@@ -270,7 +279,7 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
     implements LevelBlocState {
   const factory _LiveLevelBlocState(
       {required final String id,
-      required final String stringName,
+      final LocalizedMap name,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
       final String latestWord,
@@ -282,8 +291,8 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
 
   @override
   String get id;
-  @override // TODO(arenukvern): i18n
-  String get stringName;
+  @override
+  LocalizedMap get name;
   @override
   CurrentWordModel get currentWord;
   @override
