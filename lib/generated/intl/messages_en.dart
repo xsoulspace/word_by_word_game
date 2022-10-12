@@ -25,7 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
-        "about": MessageLookupByLibrary.simpleMessage("About"),
+        "about": MessageLookupByLibrary.simpleMessage("Credits"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("add"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Add to dictionary"),
@@ -36,9 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
-        "copyright":
-            MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
         "createProfile": MessageLookupByLibrary.simpleMessage("Create"),
+        "creatingGame": MessageLookupByLibrary.simpleMessage(
+            "Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("score"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Finish game"),
         "highscore": MessageLookupByLibrary.simpleMessage("highscore"),
@@ -75,8 +75,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Start again "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
-        "thankYou":
-            MessageLookupByLibrary.simpleMessage("Thank you and happy gaming!"),
+        "supportGame": MessageLookupByLibrary.simpleMessage(
+            "You can support the game in https://boosty.to/arenukvern"),
+        "thankYou": MessageLookupByLibrary.simpleMessage("Have a great day!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("To Landscapes"),
         "username": MessageLookupByLibrary.simpleMessage("Username"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(

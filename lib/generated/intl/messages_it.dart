@@ -36,9 +36,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulazioni!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continua "),
-        "copyright":
-            MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
         "createProfile": MessageLookupByLibrary.simpleMessage("Creare"),
+        "creatingGame": MessageLookupByLibrary.simpleMessage(
+            "Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("punteggio"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Gioco finito"),
         "highscore": MessageLookupByLibrary.simpleMessage("Punteggio più alto"),
@@ -78,6 +78,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Ricomincia "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
+        "supportGame": MessageLookupByLibrary.simpleMessage(
+            "Puoi supportare il gioco in https://boosty.to/arenukvern"),
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Grazie e buon gioco!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("Ai paesaggi"),

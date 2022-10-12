@@ -98,13 +98,10 @@
     "type": "text",
     "placeholders": {}
   },
+  "creatingGame": "Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)",
+  "supportGame": "Puoi supportare il gioco in https://boosty.to/arenukvern",
   "thankYou": "Grazie e buon gioco!",
   "@thankYou": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyright": "2020 © X Soul Space ",
-  "@copyright": {
     "type": "text",
     "placeholders": {}
   },

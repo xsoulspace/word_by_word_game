@@ -31,7 +31,7 @@ Any word will be check with internal dictionary (available for two languages: En
 
 You can play with your friends, but more in old school way - to give phone to another player.
 
-For ideas, improvements and bugs please write feedback or send a message to idea@xsoulspace.dev
+For ideas, improvements and bugs please send a message to idea@xsoulspace.dev
 
 Have a fun and a great time!
 

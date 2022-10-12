@@ -14,6 +14,10 @@
 
 ## Next
 
+## October 12th 2022
+
+- New: Credits dialog
+
 ## October 11th 2022
 
 - New: restored an option to switch between languages.

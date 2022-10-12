@@ -34,9 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Выбери своего персонажа"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
-        "copyright":
-            MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
         "createProfile": MessageLookupByLibrary.simpleMessage("Создать"),
+        "creatingGame": MessageLookupByLibrary.simpleMessage(
+            "Привет! Спасибо за интерес к игре и надеюсь она понравилась:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("результат"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Завершить игру"),
         "highscore": MessageLookupByLibrary.simpleMessage("лучший результат"),
@@ -72,8 +72,10 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Заново "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("Новая игра"),
+        "supportGame": MessageLookupByLibrary.simpleMessage(
+            "Создание игры можно дополнительно поддержать здесь https://boosty.to/arenukvern"),
         "thankYou": MessageLookupByLibrary.simpleMessage(
-            "Спасибо за игру и хорошего времяпрепровождения!"),
+            "Спасибо и хорошего времяпрепровождения!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("В Места"),
         "username": MessageLookupByLibrary.simpleMessage("Ник игрока"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(

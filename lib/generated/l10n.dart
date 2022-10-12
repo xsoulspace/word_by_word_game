@@ -200,10 +200,10 @@ class S {
     );
   }
 
-  /// `About`
+  /// `Credits`
   String get about {
     return Intl.message(
-      'About',
+      'Credits',
       name: 'about',
       desc: '',
       args: [],
@@ -400,21 +400,31 @@ class S {
     );
   }
 
-  /// `Thank you and happy gaming!`
-  String get thankYou {
+  /// `Hi, I'm Anton. Thank you for your interest in this game. Hope you like it:)`
+  String get creatingGame {
     return Intl.message(
-      'Thank you and happy gaming!',
-      name: 'thankYou',
+      'Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)',
+      name: 'creatingGame',
       desc: '',
       args: [],
     );
   }
 
-  /// `2020 © X Soul Space `
-  String get copyright {
+  /// `You can support the game in https://boosty.to/arenukvern`
+  String get supportGame {
     return Intl.message(
-      '2020 © X Soul Space ',
-      name: 'copyright',
+      'You can support the game in https://boosty.to/arenukvern',
+      name: 'supportGame',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Have a great day!`
+  String get thankYou {
+    return Intl.message(
+      'Have a great day!',
+      name: 'thankYou',
       desc: '',
       args: [],
     );
