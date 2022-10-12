@@ -62,6 +62,8 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
       currentLevel: json['currentLevel'] == null
           ? null
           : LevelModel.fromJson(json['currentLevel'] as Map<String, dynamic>),
+      version: $enumDecodeNullable(_$GameVersionEnumMap, json['version']) ??
+          kPreviousGameVersion,
       levels: (json['levels'] as Map<String, dynamic>?)?.map(
             (k, e) =>
                 MapEntry(k, LevelModel.fromJson(e as Map<String, dynamic>)),
@@ -93,6 +95,7 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'templateLevels': instance.templateLevels.map((e) => e.toJson()).toList(),
       'currentLevelId': instance.currentLevelId,
       'currentLevel': instance.currentLevel?.toJson(),
+      'version': _$GameVersionEnumMap[instance.version]!,
       'levels': instance.levels.map((k, e) => MapEntry(k, e.toJson())),
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
@@ -101,6 +104,11 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'playersCharacters':
           instance.playersCharacters.map((e) => e.toJson()).toList(),
     };
+
+const _$GameVersionEnumMap = {
+  GameVersion.$1: r'$1',
+  GameVersion.$2: r'$2',
+};
 
 _$_LevelCharactersModel _$$_LevelCharactersModelFromJson(
         Map<String, dynamic> json) =>
@@ -208,6 +216,7 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
       color: json['color'] as int,
       asset:
           CharacterAssetModel.fromJson(json['asset'] as Map<String, dynamic>),
+      characterIcon: json['characterIcon'] as String? ?? '',
       position: json['position'] == null
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
@@ -227,6 +236,7 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'description': instance.description,
       'color': instance.color,
       'asset': instance.asset.toJson(),
+      'characterIcon': instance.characterIcon,
       'position': instance.position.toJson(),
       'fuel': instance.fuel.toJson(),
       'fuelNormalPower': instance.fuelNormalPower,
@@ -337,11 +347,13 @@ Map<String, dynamic> _$$_PlayerLevelHighscoreModelToJson(
 _$_ResourcesModel _$$_ResourcesModelFromJson(Map<String, dynamic> json) =>
     _$_ResourcesModel(
       tileMapName: json['tileMapName'] as String,
+      tileMapIcon: json['tileMapIcon'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_ResourcesModelToJson(_$_ResourcesModel instance) =>
     <String, dynamic>{
       'tileMapName': instance.tileMapName,
+      'tileMapIcon': instance.tileMapIcon,
     };
 
 _$_ScoreModel _$$_ScoreModelFromJson(Map<String, dynamic> json) =>

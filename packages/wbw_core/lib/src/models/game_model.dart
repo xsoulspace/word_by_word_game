@@ -4,6 +4,11 @@ part of 'models.dart';
 
 typedef GameModelId = String;
 
+enum GameVersion { $1, $2 }
+
+const kLatestGameVersion = GameVersion.$2;
+const kPreviousGameVersion = GameVersion.$1;
+
 @immutable
 @Freezed(
   fromJson: true,
@@ -25,6 +30,7 @@ class GameModel with _$GameModel {
 
     /// Saved level configuration to get player an option to restart a level
     final LevelModel? currentLevel,
+    @Default(kPreviousGameVersion) final GameVersion version,
 
     /// Levels that player already started
     @Default({}) final Map<LevelModelId, LevelModel> levels,

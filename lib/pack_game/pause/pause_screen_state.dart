@@ -54,7 +54,6 @@ class _PauseScreenState extends ContextfulLifeState {
     final uiTheme = UiTheme.of(context);
     final s = S.of(context);
     final packageInfo = await PackageInfo.fromPlatform();
-    final bodyMedium = theme.textTheme.bodyMedium;
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 200),

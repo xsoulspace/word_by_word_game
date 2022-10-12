@@ -51,9 +51,12 @@ class AllLevelsScreen extends HookWidget {
                   final levels = blocState.templateLevels;
 
                   return GridView.builder(
-                    gridDelegate:
-                        const SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: uiTheme.persistentFormFactors.width ==
+                              WidthFormFactor.mobile
+                          ? 2
+                          : 3,
+                      childAspectRatio: 0.8,
                     ),
                     itemCount: levels.length,
                     itemBuilder: (final context, final index) {
@@ -90,11 +93,27 @@ class _LevelCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () => onPressed(level),
-        child: Padding(
-          padding: EdgeInsets.all(uiTheme.spacing.medium),
-          child: Center(
-            child: Text(level.stringName, textAlign: TextAlign.center),
-          ),
+        child: Stack(
+          children: [
+            Container(
+              margin: EdgeInsets.all(uiTheme.spacing.medium).copyWith(
+                top: 60,
+              ),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                image: DecorationImage(
+                  fit: BoxFit.fill,
+                  image: AssetImage(
+                    'assets/images/tilesets/${level.resources.tileMapIcon}_highres.png',
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Text(level.stringName),
+            ),
+          ],
         ),
       ),
     );

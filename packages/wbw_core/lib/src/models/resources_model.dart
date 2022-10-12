@@ -13,6 +13,7 @@ part of 'models.dart';
 class ResourcesModel with _$ResourcesModel {
   const factory ResourcesModel({
     required final String tileMapName,
+    @Default('') final String tileMapIcon,
   }) = _ResourcesModel;
 
   const ResourcesModel._();

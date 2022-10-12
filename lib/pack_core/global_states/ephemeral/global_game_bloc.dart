@@ -287,6 +287,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       ),
       resources: ResourcesModel(
         tileMapName: liveResourcesState.tileMapName,
+        tileMapIcon: liveResourcesState.tileMapName,
       ),
     );
   }

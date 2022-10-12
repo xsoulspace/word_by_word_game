@@ -150,16 +150,29 @@ class CharacterCard extends StatelessWidget {
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: () => onPressed(character),
-        child: Padding(
-          padding: EdgeInsets.all(uiTheme.spacing.medium),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(character.name),
-              const Spacer(),
-              Text(character.description),
-            ],
-          ),
+        child: Stack(
+          children: [
+            Positioned.fill(
+              child: Container(
+                margin: EdgeInsets.all(uiTheme.spacing.medium).copyWith(
+                  top: 36,
+                ),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12),
+                  image: DecorationImage(
+                    image: AssetImage(
+                      'assets/images/characters/${character.characterIcon}_highres.png',
+                    ),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.all(uiTheme.spacing.medium),
+              child: Text(character.name),
+            ),
+          ],
         ),
       ),
     );
