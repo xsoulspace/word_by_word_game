@@ -23,9 +23,14 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
   late FlyingObjectsParams params;
   final ObstacleLevelHelper obstacleLevelHelper;
   late Sprite sprite;
-
+  late final TextPaint textPaint;
   @override
   Future<void>? onLoad() async {
+    final theme = gameRef.diDto.theme;
+    textPaint = TextPaint(
+      style: theme.textTheme.bodyMedium
+          ?.copyWith(color: theme.colorScheme.tertiaryContainer),
+    );
     await add(
       FlameBlocListener<LevelPlayersBloc, LevelPlayersBlocState>(
         onNewState: _handleLevelState,
@@ -63,12 +68,6 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
 
   @override
   void render(final Canvas canvas) {
-    final textPaint = TextPaint(
-      style: const TextStyle(
-        fontSize: 18.0,
-        color: Colors.blue,
-      ),
-    );
     sprite.render(canvas, size: size);
     textPaint.render(canvas, '${params.fuel.value.toInt()}', Vector2(16, 8));
 

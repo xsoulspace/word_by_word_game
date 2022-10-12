@@ -9,13 +9,29 @@
     "type": "text",
     "placeholders": {}
   },
+  "play": "Играть",
+  "toLandscapes": "В Места",
+  "send": "Отправить",
+  "youHaveLandedInTheNowhere": "Вы приземлились где-то в неизвестность..",
+  "profileCreator": "Создатель профиля",
+  "returnToLandscapes": "Вернуться к Местам",
+  "selectPlayers": "Выбери игроков",
+  "chooseYourCharacter": "Выбери своего персонажа",
+  "chooseLandscape": "Выбери Место",
+  "settings": "Настройки",
+  "playersAndHighscore": "Игроки & Опыт",
+  "startNewGame": "Новая игра",
   "congratulations": "Поздравляем!",
+  "previousWord": "Предыдущее слово:",
+  "createProfile": "Создать",
+  "username": "Ник игрока",
+  "about": "Об игре",
   "@congratulations": {
     "type": "text",
     "placeholders": {}
   },
-  "wordIsNotCorrect": "Whoa, cannot find word {word} in dictionary! Try another word.",
-  "wordAlreadyWritten": "This word already written. Try another word.",
+  "wordIsNotCorrect": "Этого слова {word} нет в словаре! Попробуй другое слово или добавь в словарь.",
+  "wordAlreadyWritten": "Это слово уже было. Попробуй другое слово.",
   "maxHighscoreIs": "Лучший результат ",
   "@maxHighscoreIs": {
     "type": "text",
@@ -76,13 +92,10 @@
     "type": "text",
     "placeholders": {}
   },
-  "thankYou": "Спасибо за игру и хорошего времяпрепровождения!",
+  "creatingGame": "Привет! Спасибо за интерес к игре и надеюсь она понравилась:)",
+  "supportGame": "Создание игры можно дополнительно поддержать здесь https://boosty.to/arenukvern",
+  "thankYou": "Спасибо и хорошего времяпрепровождения!",
   "@thankYou": {
-    "type": "text",
-    "placeholders": {}
-  },
-  "copyright": "2020 © X Soul Space ",
-  "@copyright": {
     "type": "text",
     "placeholders": {}
   },

@@ -14,6 +14,154 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) {
+  return _AppSettingsModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$AppSettingsModel {
+  @JsonKey(fromJson: localeFromString, toJson: localeToString)
+  Locale get locale => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AppSettingsModelCopyWith<AppSettingsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AppSettingsModelCopyWith<$Res> {
+  factory $AppSettingsModelCopyWith(
+          AppSettingsModel value, $Res Function(AppSettingsModel) then) =
+      _$AppSettingsModelCopyWithImpl<$Res>;
+  $Res call(
+      {@JsonKey(fromJson: localeFromString, toJson: localeToString)
+          Locale locale});
+}
+
+/// @nodoc
+class _$AppSettingsModelCopyWithImpl<$Res>
+    implements $AppSettingsModelCopyWith<$Res> {
+  _$AppSettingsModelCopyWithImpl(this._value, this._then);
+
+  final AppSettingsModel _value;
+  // ignore: unused_field
+  final $Res Function(AppSettingsModel) _then;
+
+  @override
+  $Res call({
+    Object? locale = freezed,
+  }) {
+    return _then(_value.copyWith(
+      locale: locale == freezed
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_AppSettingsModelCopyWith<$Res>
+    implements $AppSettingsModelCopyWith<$Res> {
+  factory _$$_AppSettingsModelCopyWith(
+          _$_AppSettingsModel value, $Res Function(_$_AppSettingsModel) then) =
+      __$$_AppSettingsModelCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {@JsonKey(fromJson: localeFromString, toJson: localeToString)
+          Locale locale});
+}
+
+/// @nodoc
+class __$$_AppSettingsModelCopyWithImpl<$Res>
+    extends _$AppSettingsModelCopyWithImpl<$Res>
+    implements _$$_AppSettingsModelCopyWith<$Res> {
+  __$$_AppSettingsModelCopyWithImpl(
+      _$_AppSettingsModel _value, $Res Function(_$_AppSettingsModel) _then)
+      : super(_value, (v) => _then(v as _$_AppSettingsModel));
+
+  @override
+  _$_AppSettingsModel get _value => super._value as _$_AppSettingsModel;
+
+  @override
+  $Res call({
+    Object? locale = freezed,
+  }) {
+    return _then(_$_AppSettingsModel(
+      locale: locale == freezed
+          ? _value.locale
+          : locale // ignore: cast_nullable_to_non_nullable
+              as Locale,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_AppSettingsModel extends _AppSettingsModel {
+  const _$_AppSettingsModel(
+      {@JsonKey(fromJson: localeFromString, toJson: localeToString)
+          this.locale = Locales.en})
+      : super._();
+
+  factory _$_AppSettingsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_AppSettingsModelFromJson(json);
+
+  @override
+  @JsonKey(fromJson: localeFromString, toJson: localeToString)
+  final Locale locale;
+
+  @override
+  String toString() {
+    return 'AppSettingsModel(locale: $locale)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_AppSettingsModel &&
+            const DeepCollectionEquality().equals(other.locale, locale));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(locale));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>
+      __$$_AppSettingsModelCopyWithImpl<_$_AppSettingsModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_AppSettingsModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _AppSettingsModel extends AppSettingsModel {
+  const factory _AppSettingsModel(
+      {@JsonKey(fromJson: localeFromString, toJson: localeToString)
+          final Locale locale}) = _$_AppSettingsModel;
+  const _AppSettingsModel._() : super._();
+
+  factory _AppSettingsModel.fromJson(Map<String, dynamic> json) =
+      _$_AppSettingsModel.fromJson;
+
+  @override
+  @JsonKey(fromJson: localeFromString, toJson: localeToString)
+  Locale get locale;
+  @override
+  @JsonKey(ignore: true)
+  _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 CurrentWordModel _$CurrentWordModelFromJson(Map<String, dynamic> json) {
   return _CurrentWordModel.fromJson(json);
 }
@@ -502,6 +650,7 @@ mixin _$GameModel {
 
   /// Saved level configuration to get player an option to restart a level
   LevelModel? get currentLevel => throw _privateConstructorUsedError;
+  GameVersion get version => throw _privateConstructorUsedError;
 
   /// Levels that player already started
   Map<String, LevelModel> get levels => throw _privateConstructorUsedError;
@@ -529,6 +678,7 @@ abstract class $GameModelCopyWith<$Res> {
       List<TemplateLevelModel> templateLevels,
       String currentLevelId,
       LevelModel? currentLevel,
+      GameVersion version,
       Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
@@ -554,6 +704,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? templateLevels = freezed,
     Object? currentLevelId = freezed,
     Object? currentLevel = freezed,
+    Object? version = freezed,
     Object? levels = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
@@ -577,6 +728,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.currentLevel
           : currentLevel // ignore: cast_nullable_to_non_nullable
               as LevelModel?,
+      version: version == freezed
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as GameVersion,
       levels: levels == freezed
           ? _value.levels
           : levels // ignore: cast_nullable_to_non_nullable
@@ -637,6 +792,7 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       List<TemplateLevelModel> templateLevels,
       String currentLevelId,
       LevelModel? currentLevel,
+      GameVersion version,
       Map<String, LevelModel> levels,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
@@ -667,6 +823,7 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? templateLevels = freezed,
     Object? currentLevelId = freezed,
     Object? currentLevel = freezed,
+    Object? version = freezed,
     Object? levels = freezed,
     Object? dateTime = freezed,
     Object? lastDateTime = freezed,
@@ -690,6 +847,10 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value.currentLevel
           : currentLevel // ignore: cast_nullable_to_non_nullable
               as LevelModel?,
+      version: version == freezed
+          ? _value.version
+          : version // ignore: cast_nullable_to_non_nullable
+              as GameVersion,
       levels: levels == freezed
           ? _value._levels
           : levels // ignore: cast_nullable_to_non_nullable
@@ -723,6 +884,7 @@ class _$_GameModel extends _GameModel {
       required final List<TemplateLevelModel> templateLevels,
       required this.currentLevelId,
       this.currentLevel,
+      this.version = kPreviousGameVersion,
       final Map<String, LevelModel> levels = const {},
       this.dateTime = const WorldDateTimeModel(),
       this.lastDateTime = const WorldDateTimeModel(),
@@ -756,6 +918,9 @@ class _$_GameModel extends _GameModel {
   /// Saved level configuration to get player an option to restart a level
   @override
   final LevelModel? currentLevel;
+  @override
+  @JsonKey()
+  final GameVersion version;
 
   /// Levels that player already started
   final Map<String, LevelModel> _levels;
@@ -796,7 +961,7 @@ class _$_GameModel extends _GameModel {
 
   @override
   String toString() {
-    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, currentLevel: $currentLevel, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters)';
+    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, currentLevel: $currentLevel, version: $version, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters)';
   }
 
   @override
@@ -811,6 +976,7 @@ class _$_GameModel extends _GameModel {
                 .equals(other.currentLevelId, currentLevelId) &&
             const DeepCollectionEquality()
                 .equals(other.currentLevel, currentLevel) &&
+            const DeepCollectionEquality().equals(other.version, version) &&
             const DeepCollectionEquality().equals(other._levels, _levels) &&
             const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
             const DeepCollectionEquality()
@@ -829,6 +995,7 @@ class _$_GameModel extends _GameModel {
       const DeepCollectionEquality().hash(_templateLevels),
       const DeepCollectionEquality().hash(currentLevelId),
       const DeepCollectionEquality().hash(currentLevel),
+      const DeepCollectionEquality().hash(version),
       const DeepCollectionEquality().hash(_levels),
       const DeepCollectionEquality().hash(dateTime),
       const DeepCollectionEquality().hash(lastDateTime),
@@ -854,6 +1021,7 @@ abstract class _GameModel extends GameModel {
       required final List<TemplateLevelModel> templateLevels,
       required final String currentLevelId,
       final LevelModel? currentLevel,
+      final GameVersion version,
       final Map<String, LevelModel> levels,
       final WorldDateTimeModel dateTime,
       final WorldDateTimeModel lastDateTime,
@@ -876,6 +1044,8 @@ abstract class _GameModel extends GameModel {
 
   /// Saved level configuration to get player an option to restart a level
   LevelModel? get currentLevel;
+  @override
+  GameVersion get version;
   @override
 
   /// Levels that player already started
@@ -1055,12 +1225,11 @@ LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$LevelModel {
-  String get id =>
-      throw _privateConstructorUsedError; // TODO(arenukvern): add i18n object
-  String get stringName => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   LevelPlayersModel get players => throw _privateConstructorUsedError;
   LevelCharactersModel get characters => throw _privateConstructorUsedError;
   ResourcesModel get resources => throw _privateConstructorUsedError;
+  LocalizedMap get name => throw _privateConstructorUsedError;
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
@@ -1078,10 +1247,10 @@ abstract class $LevelModelCopyWith<$Res> {
       _$LevelModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String stringName,
       LevelPlayersModel players,
       LevelCharactersModel characters,
       ResourcesModel resources,
+      LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord});
@@ -1089,6 +1258,7 @@ abstract class $LevelModelCopyWith<$Res> {
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
   $ResourcesModelCopyWith<$Res> get resources;
+  $LocalizedMapCopyWith<$Res> get name;
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
 
@@ -1103,10 +1273,10 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
   @override
   $Res call({
     Object? id = freezed,
-    Object? stringName = freezed,
     Object? players = freezed,
     Object? characters = freezed,
     Object? resources = freezed,
+    Object? name = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -1115,10 +1285,6 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      stringName: stringName == freezed
-          ? _value.stringName
-          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       players: players == freezed
           ? _value.players
@@ -1132,6 +1298,10 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
           ? _value.resources
           : resources // ignore: cast_nullable_to_non_nullable
               as ResourcesModel,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -1169,6 +1339,13 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
   }
 
   @override
+  $LocalizedMapCopyWith<$Res> get name {
+    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
+      return _then(_value.copyWith(name: value));
+    });
+  }
+
+  @override
   $CurrentWordModelCopyWith<$Res> get currentWord {
     return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
       return _then(_value.copyWith(currentWord: value));
@@ -1185,10 +1362,10 @@ abstract class _$$_LevelModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      String stringName,
       LevelPlayersModel players,
       LevelCharactersModel characters,
       ResourcesModel resources,
+      LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord});
@@ -1199,6 +1376,8 @@ abstract class _$$_LevelModelCopyWith<$Res>
   $LevelCharactersModelCopyWith<$Res> get characters;
   @override
   $ResourcesModelCopyWith<$Res> get resources;
+  @override
+  $LocalizedMapCopyWith<$Res> get name;
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
@@ -1216,10 +1395,10 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? stringName = freezed,
     Object? players = freezed,
     Object? characters = freezed,
     Object? resources = freezed,
+    Object? name = freezed,
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
@@ -1228,10 +1407,6 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      stringName: stringName == freezed
-          ? _value.stringName
-          : stringName // ignore: cast_nullable_to_non_nullable
               as String,
       players: players == freezed
           ? _value.players
@@ -1245,6 +1420,10 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
           ? _value.resources
           : resources // ignore: cast_nullable_to_non_nullable
               as ResourcesModel,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       currentWord: currentWord == freezed
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -1267,10 +1446,10 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
 class _$_LevelModel extends _LevelModel {
   const _$_LevelModel(
       {required this.id,
-      required this.stringName,
       required this.players,
       required this.characters,
       required this.resources,
+      this.name = LocalizedMap.empty,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = ''})
@@ -1282,15 +1461,15 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   final String id;
-// TODO(arenukvern): add i18n object
-  @override
-  final String stringName;
   @override
   final LevelPlayersModel players;
   @override
   final LevelCharactersModel characters;
   @override
   final ResourcesModel resources;
+  @override
+  @JsonKey()
+  final LocalizedMap name;
   @override
   @JsonKey()
   final CurrentWordModel currentWord;
@@ -1308,7 +1487,7 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(id: $id, stringName: $stringName, players: $players, characters: $characters, resources: $resources, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
+    return 'LevelModel(id: $id, players: $players, characters: $characters, resources: $resources, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
   }
 
   @override
@@ -1317,12 +1496,11 @@ class _$_LevelModel extends _LevelModel {
         (other.runtimeType == runtimeType &&
             other is _$_LevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.stringName, stringName) &&
             const DeepCollectionEquality().equals(other.players, players) &&
             const DeepCollectionEquality()
                 .equals(other.characters, characters) &&
             const DeepCollectionEquality().equals(other.resources, resources) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.currentWord, currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
@@ -1335,10 +1513,10 @@ class _$_LevelModel extends _LevelModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(stringName),
       const DeepCollectionEquality().hash(players),
       const DeepCollectionEquality().hash(characters),
       const DeepCollectionEquality().hash(resources),
+      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord));
@@ -1359,10 +1537,10 @@ class _$_LevelModel extends _LevelModel {
 abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
       {required final String id,
-      required final String stringName,
       required final LevelPlayersModel players,
       required final LevelCharactersModel characters,
       required final ResourcesModel resources,
+      final LocalizedMap name,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
       final String latestWord}) = _$_LevelModel;
@@ -1373,14 +1551,14 @@ abstract class _LevelModel extends LevelModel {
 
   @override
   String get id;
-  @override // TODO(arenukvern): add i18n object
-  String get stringName;
   @override
   LevelPlayersModel get players;
   @override
   LevelCharactersModel get characters;
   @override
   ResourcesModel get resources;
+  @override
+  LocalizedMap get name;
   @override
   CurrentWordModel get currentWord;
   @override
@@ -1399,10 +1577,9 @@ TemplateLevelModel _$TemplateLevelModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$TemplateLevelModel {
-  String get id =>
-      throw _privateConstructorUsedError; // TODO(arenukvern): add i18n object
-  String get stringName => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
   ResourcesModel get resources => throw _privateConstructorUsedError;
+  LocalizedMap get name => throw _privateConstructorUsedError;
   FuelStorageModel get fuelStorage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -1418,11 +1595,12 @@ abstract class $TemplateLevelModelCopyWith<$Res> {
       _$TemplateLevelModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String stringName,
       ResourcesModel resources,
+      LocalizedMap name,
       FuelStorageModel fuelStorage});
 
   $ResourcesModelCopyWith<$Res> get resources;
+  $LocalizedMapCopyWith<$Res> get name;
   $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
 
@@ -1438,8 +1616,8 @@ class _$TemplateLevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? stringName = freezed,
     Object? resources = freezed,
+    Object? name = freezed,
     Object? fuelStorage = freezed,
   }) {
     return _then(_value.copyWith(
@@ -1447,14 +1625,14 @@ class _$TemplateLevelModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      stringName: stringName == freezed
-          ? _value.stringName
-          : stringName // ignore: cast_nullable_to_non_nullable
-              as String,
       resources: resources == freezed
           ? _value.resources
           : resources // ignore: cast_nullable_to_non_nullable
               as ResourcesModel,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       fuelStorage: fuelStorage == freezed
           ? _value.fuelStorage
           : fuelStorage // ignore: cast_nullable_to_non_nullable
@@ -1466,6 +1644,13 @@ class _$TemplateLevelModelCopyWithImpl<$Res>
   $ResourcesModelCopyWith<$Res> get resources {
     return $ResourcesModelCopyWith<$Res>(_value.resources, (value) {
       return _then(_value.copyWith(resources: value));
+    });
+  }
+
+  @override
+  $LocalizedMapCopyWith<$Res> get name {
+    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
+      return _then(_value.copyWith(name: value));
     });
   }
 
@@ -1486,12 +1671,14 @@ abstract class _$$_TemplateLevelModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      String stringName,
       ResourcesModel resources,
+      LocalizedMap name,
       FuelStorageModel fuelStorage});
 
   @override
   $ResourcesModelCopyWith<$Res> get resources;
+  @override
+  $LocalizedMapCopyWith<$Res> get name;
   @override
   $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
@@ -1510,8 +1697,8 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? stringName = freezed,
     Object? resources = freezed,
+    Object? name = freezed,
     Object? fuelStorage = freezed,
   }) {
     return _then(_$_TemplateLevelModel(
@@ -1519,14 +1706,14 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      stringName: stringName == freezed
-          ? _value.stringName
-          : stringName // ignore: cast_nullable_to_non_nullable
-              as String,
       resources: resources == freezed
           ? _value.resources
           : resources // ignore: cast_nullable_to_non_nullable
               as ResourcesModel,
+      name: name == freezed
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       fuelStorage: fuelStorage == freezed
           ? _value.fuelStorage
           : fuelStorage // ignore: cast_nullable_to_non_nullable
@@ -1541,8 +1728,8 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
 class _$_TemplateLevelModel extends _TemplateLevelModel {
   const _$_TemplateLevelModel(
       {required this.id,
-      required this.stringName,
       required this.resources,
+      this.name = LocalizedMap.empty,
       this.fuelStorage = const FuelStorageModel()})
       : super._();
 
@@ -1551,18 +1738,18 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
 
   @override
   final String id;
-// TODO(arenukvern): add i18n object
-  @override
-  final String stringName;
   @override
   final ResourcesModel resources;
+  @override
+  @JsonKey()
+  final LocalizedMap name;
   @override
   @JsonKey()
   final FuelStorageModel fuelStorage;
 
   @override
   String toString() {
-    return 'TemplateLevelModel(id: $id, stringName: $stringName, resources: $resources, fuelStorage: $fuelStorage)';
+    return 'TemplateLevelModel(id: $id, resources: $resources, name: $name, fuelStorage: $fuelStorage)';
   }
 
   @override
@@ -1571,9 +1758,8 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
         (other.runtimeType == runtimeType &&
             other is _$_TemplateLevelModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.stringName, stringName) &&
             const DeepCollectionEquality().equals(other.resources, resources) &&
+            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.fuelStorage, fuelStorage));
   }
@@ -1583,8 +1769,8 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(stringName),
       const DeepCollectionEquality().hash(resources),
+      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(fuelStorage));
 
   @JsonKey(ignore: true)
@@ -1604,8 +1790,8 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
 abstract class _TemplateLevelModel extends TemplateLevelModel {
   const factory _TemplateLevelModel(
       {required final String id,
-      required final String stringName,
       required final ResourcesModel resources,
+      final LocalizedMap name,
       final FuelStorageModel fuelStorage}) = _$_TemplateLevelModel;
   const _TemplateLevelModel._() : super._();
 
@@ -1614,10 +1800,10 @@ abstract class _TemplateLevelModel extends TemplateLevelModel {
 
   @override
   String get id;
-  @override // TODO(arenukvern): add i18n object
-  String get stringName;
   @override
   ResourcesModel get resources;
+  @override
+  LocalizedMap get name;
   @override
   FuelStorageModel get fuelStorage;
   @override
@@ -1943,10 +2129,11 @@ PlayerCharacterModel _$PlayerCharacterModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$PlayerCharacterModel {
   String get id => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   int get color => throw _privateConstructorUsedError;
   CharacterAssetModel get asset => throw _privateConstructorUsedError;
+  LocalizedMap get localizedName => throw _privateConstructorUsedError;
+  String get characterIcon => throw _privateConstructorUsedError;
   SerializedVector2 get position => throw _privateConstructorUsedError;
   FuelStorageModel get fuel => throw _privateConstructorUsedError;
   double get fuelNormalPower => throw _privateConstructorUsedError;
@@ -1965,16 +2152,18 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       _$PlayerCharacterModelCopyWithImpl<$Res>;
   $Res call(
       {String id,
-      String name,
       String description,
       int color,
       CharacterAssetModel asset,
+      LocalizedMap localizedName,
+      String characterIcon,
       SerializedVector2 position,
       FuelStorageModel fuel,
       double fuelNormalPower,
       double requiredLiftForce});
 
   $CharacterAssetModelCopyWith<$Res> get asset;
+  $LocalizedMapCopyWith<$Res> get localizedName;
   $SerializedVector2CopyWith<$Res> get position;
   $FuelStorageModelCopyWith<$Res> get fuel;
 }
@@ -1991,10 +2180,11 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? description = freezed,
     Object? color = freezed,
     Object? asset = freezed,
+    Object? localizedName = freezed,
+    Object? characterIcon = freezed,
     Object? position = freezed,
     Object? fuel = freezed,
     Object? fuelNormalPower = freezed,
@@ -2004,10 +2194,6 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
       description: description == freezed
           ? _value.description
@@ -2021,6 +2207,14 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.asset
           : asset // ignore: cast_nullable_to_non_nullable
               as CharacterAssetModel,
+      localizedName: localizedName == freezed
+          ? _value.localizedName
+          : localizedName // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
+      characterIcon: characterIcon == freezed
+          ? _value.characterIcon
+          : characterIcon // ignore: cast_nullable_to_non_nullable
+              as String,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -2048,6 +2242,13 @@ class _$PlayerCharacterModelCopyWithImpl<$Res>
   }
 
   @override
+  $LocalizedMapCopyWith<$Res> get localizedName {
+    return $LocalizedMapCopyWith<$Res>(_value.localizedName, (value) {
+      return _then(_value.copyWith(localizedName: value));
+    });
+  }
+
+  @override
   $SerializedVector2CopyWith<$Res> get position {
     return $SerializedVector2CopyWith<$Res>(_value.position, (value) {
       return _then(_value.copyWith(position: value));
@@ -2071,10 +2272,11 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
   @override
   $Res call(
       {String id,
-      String name,
       String description,
       int color,
       CharacterAssetModel asset,
+      LocalizedMap localizedName,
+      String characterIcon,
       SerializedVector2 position,
       FuelStorageModel fuel,
       double fuelNormalPower,
@@ -2082,6 +2284,8 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
 
   @override
   $CharacterAssetModelCopyWith<$Res> get asset;
+  @override
+  $LocalizedMapCopyWith<$Res> get localizedName;
   @override
   $SerializedVector2CopyWith<$Res> get position;
   @override
@@ -2102,10 +2306,11 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = freezed,
-    Object? name = freezed,
     Object? description = freezed,
     Object? color = freezed,
     Object? asset = freezed,
+    Object? localizedName = freezed,
+    Object? characterIcon = freezed,
     Object? position = freezed,
     Object? fuel = freezed,
     Object? fuelNormalPower = freezed,
@@ -2115,10 +2320,6 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: name == freezed
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
               as String,
       description: description == freezed
           ? _value.description
@@ -2132,6 +2333,14 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.asset
           : asset // ignore: cast_nullable_to_non_nullable
               as CharacterAssetModel,
+      localizedName: localizedName == freezed
+          ? _value.localizedName
+          : localizedName // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
+      characterIcon: characterIcon == freezed
+          ? _value.characterIcon
+          : characterIcon // ignore: cast_nullable_to_non_nullable
+              as String,
       position: position == freezed
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -2158,10 +2367,11 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
 class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   const _$_PlayerCharacterModel(
       {required this.id,
-      required this.name,
       required this.description,
       required this.color,
       required this.asset,
+      this.localizedName = LocalizedMap.empty,
+      this.characterIcon = '',
       this.position = SerializedVector2.zero,
       this.fuel = const FuelStorageModel(value: 150),
       this.fuelNormalPower = 50.5,
@@ -2174,13 +2384,17 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   @override
   final String id;
   @override
-  final String name;
-  @override
   final String description;
   @override
   final int color;
   @override
   final CharacterAssetModel asset;
+  @override
+  @JsonKey()
+  final LocalizedMap localizedName;
+  @override
+  @JsonKey()
+  final String characterIcon;
   @override
   @JsonKey()
   final SerializedVector2 position;
@@ -2196,7 +2410,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, name: $name, description: $description, color: $color, asset: $asset, position: $position, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce)';
+    return 'PlayerCharacterModel(id: $id, description: $description, color: $color, asset: $asset, localizedName: $localizedName, characterIcon: $characterIcon, position: $position, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce)';
   }
 
   @override
@@ -2205,11 +2419,14 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
         (other.runtimeType == runtimeType &&
             other is _$_PlayerCharacterModel &&
             const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality().equals(other.asset, asset) &&
+            const DeepCollectionEquality()
+                .equals(other.localizedName, localizedName) &&
+            const DeepCollectionEquality()
+                .equals(other.characterIcon, characterIcon) &&
             const DeepCollectionEquality().equals(other.position, position) &&
             const DeepCollectionEquality().equals(other.fuel, fuel) &&
             const DeepCollectionEquality()
@@ -2223,10 +2440,11 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(asset),
+      const DeepCollectionEquality().hash(localizedName),
+      const DeepCollectionEquality().hash(characterIcon),
       const DeepCollectionEquality().hash(position),
       const DeepCollectionEquality().hash(fuel),
       const DeepCollectionEquality().hash(fuelNormalPower),
@@ -2249,10 +2467,11 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   const factory _PlayerCharacterModel(
       {required final String id,
-      required final String name,
       required final String description,
       required final int color,
       required final CharacterAssetModel asset,
+      final LocalizedMap localizedName,
+      final String characterIcon,
       final SerializedVector2 position,
       final FuelStorageModel fuel,
       final double fuelNormalPower,
@@ -2265,13 +2484,15 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   @override
   String get id;
   @override
-  String get name;
-  @override
   String get description;
   @override
   int get color;
   @override
   CharacterAssetModel get asset;
+  @override
+  LocalizedMap get localizedName;
+  @override
+  String get characterIcon;
   @override
   SerializedVector2 get position;
   @override
@@ -3380,6 +3601,7 @@ ResourcesModel _$ResourcesModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$ResourcesModel {
   String get tileMapName => throw _privateConstructorUsedError;
+  String get tileMapIcon => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3392,7 +3614,7 @@ abstract class $ResourcesModelCopyWith<$Res> {
   factory $ResourcesModelCopyWith(
           ResourcesModel value, $Res Function(ResourcesModel) then) =
       _$ResourcesModelCopyWithImpl<$Res>;
-  $Res call({String tileMapName});
+  $Res call({String tileMapName, String tileMapIcon});
 }
 
 /// @nodoc
@@ -3407,11 +3629,16 @@ class _$ResourcesModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tileMapName = freezed,
+    Object? tileMapIcon = freezed,
   }) {
     return _then(_value.copyWith(
       tileMapName: tileMapName == freezed
           ? _value.tileMapName
           : tileMapName // ignore: cast_nullable_to_non_nullable
+              as String,
+      tileMapIcon: tileMapIcon == freezed
+          ? _value.tileMapIcon
+          : tileMapIcon // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -3424,7 +3651,7 @@ abstract class _$$_ResourcesModelCopyWith<$Res>
           _$_ResourcesModel value, $Res Function(_$_ResourcesModel) then) =
       __$$_ResourcesModelCopyWithImpl<$Res>;
   @override
-  $Res call({String tileMapName});
+  $Res call({String tileMapName, String tileMapIcon});
 }
 
 /// @nodoc
@@ -3441,11 +3668,16 @@ class __$$_ResourcesModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tileMapName = freezed,
+    Object? tileMapIcon = freezed,
   }) {
     return _then(_$_ResourcesModel(
       tileMapName: tileMapName == freezed
           ? _value.tileMapName
           : tileMapName // ignore: cast_nullable_to_non_nullable
+              as String,
+      tileMapIcon: tileMapIcon == freezed
+          ? _value.tileMapIcon
+          : tileMapIcon // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -3454,17 +3686,21 @@ class __$$_ResourcesModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_ResourcesModel extends _ResourcesModel {
-  const _$_ResourcesModel({required this.tileMapName}) : super._();
+  const _$_ResourcesModel({required this.tileMapName, this.tileMapIcon = ''})
+      : super._();
 
   factory _$_ResourcesModel.fromJson(Map<String, dynamic> json) =>
       _$$_ResourcesModelFromJson(json);
 
   @override
   final String tileMapName;
+  @override
+  @JsonKey()
+  final String tileMapIcon;
 
   @override
   String toString() {
-    return 'ResourcesModel(tileMapName: $tileMapName)';
+    return 'ResourcesModel(tileMapName: $tileMapName, tileMapIcon: $tileMapIcon)';
   }
 
   @override
@@ -3473,13 +3709,17 @@ class _$_ResourcesModel extends _ResourcesModel {
         (other.runtimeType == runtimeType &&
             other is _$_ResourcesModel &&
             const DeepCollectionEquality()
-                .equals(other.tileMapName, tileMapName));
+                .equals(other.tileMapName, tileMapName) &&
+            const DeepCollectionEquality()
+                .equals(other.tileMapIcon, tileMapIcon));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(tileMapName));
+      runtimeType,
+      const DeepCollectionEquality().hash(tileMapName),
+      const DeepCollectionEquality().hash(tileMapIcon));
 
   @JsonKey(ignore: true)
   @override
@@ -3495,8 +3735,9 @@ class _$_ResourcesModel extends _ResourcesModel {
 }
 
 abstract class _ResourcesModel extends ResourcesModel {
-  const factory _ResourcesModel({required final String tileMapName}) =
-      _$_ResourcesModel;
+  const factory _ResourcesModel(
+      {required final String tileMapName,
+      final String tileMapIcon}) = _$_ResourcesModel;
   const _ResourcesModel._() : super._();
 
   factory _ResourcesModel.fromJson(Map<String, dynamic> json) =
@@ -3504,6 +3745,8 @@ abstract class _ResourcesModel extends ResourcesModel {
 
   @override
   String get tileMapName;
+  @override
+  String get tileMapIcon;
   @override
   @JsonKey(ignore: true)
   _$$_ResourcesModelCopyWith<_$_ResourcesModel> get copyWith =>

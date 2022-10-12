@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
@@ -38,7 +39,7 @@ class LevelLostDialog extends StatelessWidget {
           padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
           children: [
             Text(
-              'You have landed in the middle of nowhere..',
+              S.of(context).youHaveLandedInTheNowhere,
               style: theme.textTheme.titleLarge,
             ),
             uiTheme.verticalBoxes.extraLarge,
@@ -69,7 +70,7 @@ class LevelLostDialog extends StatelessWidget {
                     AppRouterController.use(context.read).toAllLevel();
                     context.read<DialogController>().closeDialog();
                   },
-                  child: const Text('To Landscapes'),
+                  child: Text(S.of(context).toLandscapes),
                 ),
                 TextButton(
                   onPressed: () {
@@ -80,7 +81,7 @@ class LevelLostDialog extends StatelessWidget {
 
                     context.read<DialogController>().closeDialog();
                   },
-                  child: const Text('Start Again'),
+                  child: Text(S.of(context).startAgain),
                 ),
               ],
             ),

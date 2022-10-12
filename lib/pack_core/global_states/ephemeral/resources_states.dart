@@ -28,6 +28,7 @@ class LiveResourcesBlocState extends ResourcesBlocState
   @Implements<ResourcesBlocState>()
   const factory LiveResourcesBlocState({
     required final String tileMapName,
+    required final String tileMapIcon,
   }) = _LiveResourcesBlocState;
   const LiveResourcesBlocState._();
   factory LiveResourcesBlocState.fromJson(final Map<String, dynamic> json) =>
@@ -38,6 +39,7 @@ class LiveResourcesBlocState extends ResourcesBlocState
   ) {
     return LiveResourcesBlocState(
       tileMapName: resourcesModel.tileMapName,
+      tileMapIcon: resourcesModel.tileMapIcon,
     );
   }
 }

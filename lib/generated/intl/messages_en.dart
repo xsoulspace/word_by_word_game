@@ -25,14 +25,20 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("Credits"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("add"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Add to dictionary"),
+        "chooseLandscape":
+            MessageLookupByLibrary.simpleMessage("Choose a Landscape"),
+        "chooseYourCharacter":
+            MessageLookupByLibrary.simpleMessage("Choose Your Character"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
-        "copyright":
-            MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
+        "createProfile": MessageLookupByLibrary.simpleMessage("Create"),
+        "creatingGame": MessageLookupByLibrary.simpleMessage(
+            "Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("score"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Finish game"),
         "highscore": MessageLookupByLibrary.simpleMessage("highscore"),
@@ -47,19 +53,38 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
         "menuLanguage": MessageLookupByLibrary.simpleMessage("Lang "),
         "menuNewGame": MessageLookupByLibrary.simpleMessage("New "),
+        "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
         "nextPlayer": MessageLookupByLibrary.simpleMessage("Next player"),
+        "play": MessageLookupByLibrary.simpleMessage("Play"),
         "player": MessageLookupByLibrary.simpleMessage("player"),
         "players": MessageLookupByLibrary.simpleMessage("Players "),
+        "playersAndHighscore":
+            MessageLookupByLibrary.simpleMessage("Players & Highscore"),
+        "previousWord": MessageLookupByLibrary.simpleMessage("Previous Word:"),
+        "profileCreator":
+            MessageLookupByLibrary.simpleMessage("Profile Creator"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reset ending"),
+        "returnToLandscapes":
+            MessageLookupByLibrary.simpleMessage("Return To Landscapes"),
+        "selectPlayers":
+            MessageLookupByLibrary.simpleMessage("Select the Players"),
+        "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
             "For any bugs or ideas please send your feedback to idea@xsoulspace.dev"),
+        "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Start again "),
-        "thankYou":
-            MessageLookupByLibrary.simpleMessage("Thank you and happy gaming!"),
+        "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
+        "supportGame": MessageLookupByLibrary.simpleMessage(
+            "You can support the game in https://boosty.to/arenukvern"),
+        "thankYou": MessageLookupByLibrary.simpleMessage("Have a great day!"),
+        "toLandscapes": MessageLookupByLibrary.simpleMessage("To Landscapes"),
+        "username": MessageLookupByLibrary.simpleMessage("Username"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "This word already written. Try another word."),
         "wordIsNotCorrect": m0,
+        "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
+            "You have landed in the middle of nowhere.."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("This time your score is ")
       };

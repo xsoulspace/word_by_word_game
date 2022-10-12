@@ -1,8 +1,10 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 part 'app/colors.dart';
+part 'app/theme_data.dart';
 part 'app/typography.dart';
 part 'brand/color_schemes.dart';
 part 'brand/typography.dart';
