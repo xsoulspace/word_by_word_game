@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("Di"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("aggiungi"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Aggiungi al dizionario"),
@@ -37,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueGame": MessageLookupByLibrary.simpleMessage("Continua "),
         "copyright":
             MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
+        "createProfile": MessageLookupByLibrary.simpleMessage("Creare"),
         "currentScore": MessageLookupByLibrary.simpleMessage("punteggio"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Gioco finito"),
         "highscore": MessageLookupByLibrary.simpleMessage("Punteggio più alto"),
@@ -61,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "players": MessageLookupByLibrary.simpleMessage("Players "),
         "playersAndHighscore":
             MessageLookupByLibrary.simpleMessage("Giocatori e punteggio"),
+        "previousWord":
+            MessageLookupByLibrary.simpleMessage("Parola precedente:"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Creatore di profili"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reimposta fine"),
@@ -77,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Grazie e buon gioco!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("Ai paesaggi"),
+        "username": MessageLookupByLibrary.simpleMessage("Nome utente"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Questa parola è già scritta. Prova con un\'altra parola."),
         "wordIsNotCorrect": m0,

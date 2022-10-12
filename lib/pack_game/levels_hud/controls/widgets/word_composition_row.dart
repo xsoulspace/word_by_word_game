@@ -261,7 +261,7 @@ class LastWordText extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Text('Previous Word: '),
+        Text(S.of(context).previousWord),
         Text(latestWord),
       ],
     );

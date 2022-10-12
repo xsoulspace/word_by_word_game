@@ -15,13 +15,17 @@
   "youHaveLandedInTheNowhere": "Вы приземлились где-то в неизвестность..",
   "profileCreator": "Создатель профиля",
   "returnToLandscapes": "Вернуться к Местам",
-  "selectPlayers": "Выбри игроков",
+  "selectPlayers": "Выбери игроков",
   "chooseYourCharacter": "Выбери своего персонажа",
   "chooseLandscape": "Выбери Место",
   "settings": "Настройки",
   "playersAndHighscore": "Игроки & Опыт",
   "startNewGame": "Новая игра",
   "congratulations": "Поздравляем!",
+  "previousWord": "Предыдущее слово:",
+  "createProfile": "Создать",
+  "username": "Ник игрока",
+  "about": "Об игре",
   "@congratulations": {
     "type": "text",
     "placeholders": {}

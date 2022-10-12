@@ -16,7 +16,7 @@ _PauseScreenState _usePauseScreenState({
   required final Locator read,
 }) =>
     use(
-      LifeHook(
+      ContextfulLifeHook(
         debugLabel: '_PauseScreenState',
         state: _PauseScreenState(
           diDto: _PauseScreenStateDiDto.use(read),
@@ -24,7 +24,7 @@ _PauseScreenState _usePauseScreenState({
       ),
     );
 
-class _PauseScreenState extends LifeState {
+class _PauseScreenState extends ContextfulLifeState {
   _PauseScreenState({
     required this.diDto,
   });
@@ -46,5 +46,12 @@ class _PauseScreenState extends LifeState {
 
   void onToSettings() {
     diDto.appRouterController.toSettings();
+  }
+
+  void onShowAbout() {
+    showAboutDialog(
+      applicationName: 'Word By Word Game',
+      context: getContext(),
+    );
   }
 }

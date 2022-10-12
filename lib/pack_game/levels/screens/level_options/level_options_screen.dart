@@ -4,6 +4,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
@@ -55,7 +56,7 @@ class LevelOptionsScreen extends HookWidget {
               ),
               uiTheme.verticalBoxes.extraLarge,
               Text(
-                'Choose Your Character',
+                S.of(context).chooseYourCharacter,
                 style: theme.textTheme.headlineMedium,
               ),
               uiTheme.verticalBoxes.large,
@@ -69,7 +70,7 @@ class LevelOptionsScreen extends HookWidget {
               ),
               uiTheme.verticalBoxes.extraLarge,
               Text(
-                'Select The Players',
+                S.of(context).selectPlayers,
                 style: theme.textTheme.headlineMedium,
               ),
               uiTheme.verticalBoxes.large,
@@ -83,12 +84,12 @@ class LevelOptionsScreen extends HookWidget {
                 children: [
                   TextButton(
                     onPressed: state.onReturnToLevels,
-                    child: const Text('Return to all levels'),
+                    child: Text(S.of(context).returnToLandscapes),
                   ),
                   const Spacer(),
                   TextButton(
                     onPressed: state.onPlay,
-                    child: const Text('Play'),
+                    child: Text(S.of(context).play),
                   ),
                 ],
               ),

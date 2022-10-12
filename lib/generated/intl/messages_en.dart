@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("About"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("add"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Add to dictionary"),
@@ -37,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
         "copyright":
             MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
+        "createProfile": MessageLookupByLibrary.simpleMessage("Create"),
         "currentScore": MessageLookupByLibrary.simpleMessage("score"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Finish game"),
         "highscore": MessageLookupByLibrary.simpleMessage("highscore"),
@@ -59,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "players": MessageLookupByLibrary.simpleMessage("Players "),
         "playersAndHighscore":
             MessageLookupByLibrary.simpleMessage("Players & Highscore"),
+        "previousWord": MessageLookupByLibrary.simpleMessage("Previous Word:"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Profile Creator"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reset ending"),
@@ -75,6 +78,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Thank you and happy gaming!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("To Landscapes"),
+        "username": MessageLookupByLibrary.simpleMessage("Username"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "This word already written. Try another word."),
         "wordIsNotCorrect": m0,

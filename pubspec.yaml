@@ -121,7 +121,7 @@ flutter:
     - assets/images/tilesets/
     - assets/tiles/
     # - assets/icons/
-    # - google_fonts/
+    - google_fonts/
     # - assets/promo/
   # To add assets to your application, add an assets section, like this:
   # assets:

@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "about": MessageLookupByLibrary.simpleMessage("Об игре"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("добавить"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Добавить в словарь"),
@@ -35,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
         "copyright":
             MessageLookupByLibrary.simpleMessage("2020 © X Soul Space "),
+        "createProfile": MessageLookupByLibrary.simpleMessage("Создать"),
         "currentScore": MessageLookupByLibrary.simpleMessage("результат"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Завершить игру"),
         "highscore": MessageLookupByLibrary.simpleMessage("лучший результат"),
@@ -56,12 +58,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "players": MessageLookupByLibrary.simpleMessage("Игроки "),
         "playersAndHighscore":
             MessageLookupByLibrary.simpleMessage("Игроки & Опыт"),
+        "previousWord":
+            MessageLookupByLibrary.simpleMessage("Предыдущее слово:"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Создатель профиля"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Сбросить слово"),
         "returnToLandscapes":
             MessageLookupByLibrary.simpleMessage("Вернуться к Местам"),
-        "selectPlayers": MessageLookupByLibrary.simpleMessage("Выбри игроков"),
+        "selectPlayers": MessageLookupByLibrary.simpleMessage("Выбери игроков"),
         "send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
             "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на idea@xsoulspace.dev"),
@@ -71,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "thankYou": MessageLookupByLibrary.simpleMessage(
             "Спасибо за игру и хорошего времяпрепровождения!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("В Места"),
+        "username": MessageLookupByLibrary.simpleMessage("Ник игрока"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Это слово уже было. Попробуй другое слово."),
         "wordIsNotCorrect": m0,

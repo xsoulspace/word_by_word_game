@@ -7,7 +7,7 @@ class AppThemeData {
   }) {
     final theme = ThemeData.from(colorScheme: colorScheme, useMaterial3: true);
     return theme.copyWith(
-      textTheme: GoogleFonts.latoTextTheme(theme.textTheme),
+      textTheme: GoogleFonts.openSansTextTheme(theme.textTheme),
     );
   }
 

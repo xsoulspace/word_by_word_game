@@ -4,6 +4,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 
 part 'player_profile_creator_state.dart';
 
@@ -24,7 +25,7 @@ class PlayerProfileCreator extends HookWidget {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Profile Creator'),
+            Text(S.of(context).profileCreator),
             uiTheme.verticalBoxes.large,
             Row(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,8 +48,9 @@ class PlayerProfileCreator extends HookWidget {
                     children: [
                       TextField(
                         controller: state.nameController,
-                        decoration:
-                            const InputDecoration.collapsed(hintText: 'Name'),
+                        decoration: InputDecoration.collapsed(
+                          hintText: S.of(context).username,
+                        ),
                       ),
                       uiTheme.verticalBoxes.large,
                       TextButton(
@@ -57,7 +59,7 @@ class PlayerProfileCreator extends HookWidget {
                           if (profile == null) return;
                           onPlayerCreated(profile);
                         },
-                        child: const Text('Create'),
+                        child: Text(S.of(context).createProfile),
                       )
                     ],
                   ),

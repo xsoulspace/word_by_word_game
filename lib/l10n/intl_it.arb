@@ -32,7 +32,11 @@
   "chooseLandscape": "Scegli un paesaggio",
   "youHaveLandedInTheNowhere": "Sei atterrato in mezzo al nulla..",
   "settings": "Impostazioni",
+  "username": "Nome utente",
+  "previousWord": "Parola precedente:",
+  "createProfile": "Creare",
   "playersAndHighscore": "Giocatori e punteggio",
+  "about": "Di",
   "startNewGame": "Nuovo gioco",
   "maxHighscoreIs": "Il punteggio massimo è ",
   "@maxHighscoreIs": {
