@@ -16,8 +16,9 @@
 
 ## October 12th 2022
 
-- New: Credits dialog
-- New: Icons for Black & White landscape and character
+- Added Credits dialog
+- Added Icons for Black & White landscape and character
+- Completed translation for previous game languages (English, Russian, Italian (very approximate))
 
 ## October 11th 2022
 
