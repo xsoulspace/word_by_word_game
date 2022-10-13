@@ -26,7 +26,6 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(final Widget Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Flame.device.setPortrait();
   await Flame.device.fullScreen();
   final analyticsService = AnalyticsService();
   await analyticsService.onLoad();
