@@ -42,6 +42,12 @@ class WordCompositionRow extends HookWidget {
           return Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              Row(
+                children: const [
+                  UICenterFrame(),
+                  UIActionsFrame(),
+                ],
+              ),
               Builder(
                 builder: (final context) {
                   final leftTextField = Expanded(

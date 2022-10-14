@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 
+import '../utils/utils.dart';
+
 _ButtonState _useButtonState() => use(
       LifeHook(
         debugLabel: '_useButtonState',
@@ -17,14 +19,13 @@ class _ButtonState extends LifeState {
 
   set isPressed(final bool isPressed) {
     _isPressed = isPressed;
+
     setState();
   }
 
-  String useDefaultPath(final String path) =>
-      'assets/images/${path}_highres.png';
   late final pressedIconImagePath =
-      useDefaultPath('buttons/icon_button_pressed');
-  late final iconImagePath = useDefaultPath('buttons/icon_button');
+      UiAssetHelper.useImagePath('buttons/icon_button_pressed');
+  late final iconImagePath = UiAssetHelper.useImagePath('buttons/icon_button');
   final iconImagePixelsHeight = 16.0;
   Future<void> onTap() async {
     isPressed = true;
@@ -95,7 +96,7 @@ class UiIconButton extends HookWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  state.useDefaultPath(icon.path),
+                  UiAssetHelper.useImagePath(icon.path),
                 ),
                 fit: BoxFit.contain,
               ),

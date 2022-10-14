@@ -119,7 +119,7 @@ flutter:
     - assets/
     - assets/images/
     - assets/images/icons/
-    - assets/images/panes/
+    - assets/images/ui_frames/
     - assets/images/buttons/
     - assets/images/characters/
     - assets/images/tilesets/
