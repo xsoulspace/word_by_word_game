@@ -43,6 +43,7 @@ class WordCompositionRow extends HookWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: const [
                   UICenterFrame(),
                   UIActionsFrame(),

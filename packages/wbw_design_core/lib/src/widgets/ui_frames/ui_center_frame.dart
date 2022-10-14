@@ -11,7 +11,7 @@ class UICenterFrame extends StatelessWidget {
       children: [
         const UiFrame(
           height: height,
-          width: 400,
+          width: 315,
           asset: UiFrameAsset.center,
         ),
         Positioned(

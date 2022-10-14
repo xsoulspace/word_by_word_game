@@ -6,7 +6,7 @@ class UIActionsFrame extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    const height = 50.0;
+    const height = 80.0;
     return Stack(
       children: [
         const UiFrame(
@@ -14,19 +14,16 @@ class UIActionsFrame extends StatelessWidget {
           width: 50,
           asset: UiFrameAsset.actions,
         ),
-        Positioned(
-          height: height,
-          top: 3,
-          left: 0,
-          right: 0,
+        Positioned.fill(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const UiIconButton(
-                icon: UiIcons.action_idea,
+                icon: UiIcons.action_fire,
               ),
-              uiTheme.horizontalBoxes.medium,
+              uiTheme.verticalBoxes.small,
               const UiIconButton(
-                icon: UiIcons.action_pause,
+                icon: UiIcons.action_collect,
               ),
             ],
           ),
