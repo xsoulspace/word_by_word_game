@@ -118,6 +118,9 @@ flutter:
   assets:
     - assets/
     - assets/images/
+    - assets/images/icons/
+    - assets/images/ui_frames/
+    - assets/images/buttons/
     - assets/images/characters/
     - assets/images/tilesets/
     - assets/tiles/

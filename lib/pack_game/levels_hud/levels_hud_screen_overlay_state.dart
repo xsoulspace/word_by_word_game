@@ -29,11 +29,4 @@ class _StateState extends LifeState {
   });
 
   final _StateDiDto diDto;
-
-  void onPause() {
-    diDto.mechanics.worldTime.pause();
-    diDto.globalGameBloc.add(const SaveCurrentLevelEvent());
-    final id = diDto.levelBloc.getLiveState().id;
-    diDto.appRouterController.toPause(id: id);
-  }
 }

@@ -37,7 +37,7 @@ String localeToString(final Locale locale) => locale.languageCode;
 Map<Languages, String> localeValueFromMap(final dynamic map) {
   if (map is String) {
     return {};
-  } else if (map is Map<String, String>) {
+  } else if (map is Map) {
     return map.map(
       (final key, final value) => MapEntry(Languages.values.byName(key), value),
     );

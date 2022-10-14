@@ -14,6 +14,11 @@
 
 ## Next
 
+## October 14th 2022
+
+- Added new ui for text fields and action buttons
+- Fixed critical error with saves.
+
 ## October 12th 2022
 
 - Added Credits dialog

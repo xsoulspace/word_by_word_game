@@ -72,7 +72,12 @@ class PlayerProfileTile extends StatelessWidget {
 }
 
 class PlayerProfileAvatar extends StatelessWidget {
-  const PlayerProfileAvatar({required this.player, super.key});
+  const PlayerProfileAvatar({
+    required this.player,
+    this.dimension = 45.0,
+    super.key,
+  });
+  final double dimension;
   final PlayerProfileModel player;
   @override
   Widget build(final BuildContext context) {
@@ -82,8 +87,8 @@ class PlayerProfileAvatar extends StatelessWidget {
         color: player.color,
         borderRadius: BorderRadius.circular(24),
       ),
-      width: 45,
-      height: 45,
+      width: dimension,
+      height: dimension,
       alignment: Alignment.center,
       child: Text('${score.toInt()}'),
     );
