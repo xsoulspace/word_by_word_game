@@ -15,6 +15,7 @@ android/key.properties
 *.iml
 *.ipr
 *.iws
+*.pem
 .idea/
 .fvm/flutter_sdk
 
