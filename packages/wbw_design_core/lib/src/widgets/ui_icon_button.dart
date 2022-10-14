@@ -4,15 +4,21 @@ import 'package:life_hooks/life_hooks.dart';
 
 import '../utils/utils.dart';
 
-_ButtonState _useButtonState() => use(
+_ButtonState _useButtonState({
+  required final VoidCallback? onPressed,
+}) =>
+    use(
       LifeHook(
         debugLabel: '_useButtonState',
-        state: _ButtonState(),
+        state: _ButtonState(onPressed: onPressed),
       ),
     );
 
 class _ButtonState extends LifeState {
-  _ButtonState();
+  _ButtonState({
+    required this.onPressed,
+  });
+  final VoidCallback? onPressed;
   bool _isPressed = false;
 
   bool get isPressed => _isPressed;
@@ -28,7 +34,9 @@ class _ButtonState extends LifeState {
   late final iconImagePath = UiAssetHelper.useImagePath('buttons/icon_button');
   final iconImagePixelsHeight = 16.0;
   Future<void> onTap() async {
+    if (isPressed) return;
     isPressed = true;
+    onPressed?.call();
     await Future.delayed(const Duration(milliseconds: 60));
     isPressed = false;
   }
@@ -37,8 +45,19 @@ class _ButtonState extends LifeState {
     isPressed = true;
   }
 
-  void onLongPressUp() {
+  void onLongPressCancel() {
     isPressed = false;
+  }
+
+  void onLongPressUp(final LongPressEndDetails details) {
+    if (details.velocity.pixelsPerSecond.dx > 0 ||
+        details.velocity.pixelsPerSecond.dy > 0) {
+    } else {
+      onPressed?.call();
+    }
+    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
+      isPressed = false;
+    });
   }
 }
 
@@ -73,15 +92,15 @@ class UiIconButton extends HookWidget {
   bool get isEnabled => onPressed != null;
   @override
   Widget build(final BuildContext context) {
-    final state = _useButtonState();
+    final state = _useButtonState(onPressed: onPressed);
     const dimension = 32.0;
     final theme = Theme.of(context);
 
     return GestureDetector(
       onTap: isEnabled ? state.onTap : null,
+      onLongPressEnd: isEnabled ? state.onLongPressUp : null,
       onLongPressDown: isEnabled ? state.onLongPressDown : null,
-      onLongPressUp: isEnabled ? state.onLongPressUp : null,
-      onLongPressCancel: isEnabled ? state.onLongPressUp : null,
+      onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
       child: FocusableActionDetector(
         mouseCursor: SystemMouseCursors.click,
         child: Container(

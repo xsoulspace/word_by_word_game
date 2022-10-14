@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
@@ -45,15 +44,13 @@ class WordCompositionRow extends HookWidget {
                 onIdea: null,
                 onPause: state.onPause,
                 textFieldBuilder: (final context) {
-                  final leftTextField = Expanded(
-                    child: UiFrameTextField(
-                      textFieldFocusNode: state.leftWordFocus,
-                      onEnterPressed: state.onRequestRightTextFocus,
-                      onSubmitted: state.onRequestRightTextFocus,
-                      keyFocusNode: state.leftWordKeyFocus,
-                      controller: state.leftPartController,
-                      hintText: S.of(context).hintAddBeginning,
-                    ),
+                  final leftTextField = UiFrameTextField(
+                    textFieldFocusNode: state.leftWordFocus,
+                    onEnterPressed: state.onRequestRightTextFocus,
+                    onSubmitted: state.onRequestRightTextFocus,
+                    keyFocusNode: state.leftWordKeyFocus,
+                    controller: state.leftPartController,
+                    hintText: S.of(context).hintAddBeginning,
                   );
 
                   final middleWordPartActions =
@@ -74,17 +71,16 @@ class WordCompositionRow extends HookWidget {
                       );
                     },
                   );
-                  final rightTextField = Expanded(
-                    child: UiFrameTextField(
-                      keyFocusNode: state.rightWordKeyFocus,
-                      textFieldFocusNode: state.rightWordFocus,
-                      controller: state.rightPartController,
-                      hintText: S.of(context).hintAddEnding,
-                      onSubmitted: state.onSend,
-                    ),
+                  final rightTextField = UiFrameTextField(
+                    keyFocusNode: state.rightWordKeyFocus,
+                    textFieldFocusNode: state.rightWordFocus,
+                    controller: state.rightPartController,
+                    hintText: S.of(context).hintAddEnding,
+                    onSubmitted: state.onSend,
                   );
 
                   return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       if (levelState.latestWord.isNotEmpty) leftTextField,
                       if (levelState.latestWord.isNotEmpty)
@@ -129,14 +125,8 @@ class MinusIconButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return IconButton(
-      // disabledColor: Colors.grey,
-      iconSize: 36,
-      // color: playerColor,
-      // splashColor: playerColor.withOpacity(0.4),
-      // hoverColor: playerColor.withOpacity(0.1),
-      // highlightColor: playerColor.withOpacity(0.2),
-      icon: const Icon(Icons.remove),
+    return UiIconButton(
+      icon: UiIcons.minus,
       onPressed: onPressed,
     );
   }
@@ -177,7 +167,9 @@ class MiddleWordPartActions extends StatelessWidget {
           MinusIconButton(
             onPressed: onLeftPressed,
           ),
+          uiTheme.horizontalBoxes.small,
           Text(middlePartOfWord),
+          uiTheme.horizontalBoxes.small,
           MinusIconButton(
             onPressed: onRightPressed,
           )

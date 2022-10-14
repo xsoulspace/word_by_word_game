@@ -25,7 +25,7 @@ class UICenterFrame extends StatelessWidget {
         Positioned(
           height: height,
           top: 3,
-          left: 0,
+          left: 6,
           right: 0,
           child: Column(
             children: [
@@ -43,12 +43,9 @@ class UICenterFrame extends StatelessWidget {
                   ),
                 ],
               ),
-              Center(
-                heightFactor: 2.3,
-                child: textFieldBuilder(
-                  context,
-                ),
-              ),
+              const Spacer(),
+              textFieldBuilder(context),
+              const Spacer(),
             ],
           ),
         ),
