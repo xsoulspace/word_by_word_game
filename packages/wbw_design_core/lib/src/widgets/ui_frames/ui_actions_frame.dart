@@ -13,12 +13,12 @@ class UIActionsFrame extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    const height = 80.0;
+    const height = 108.0;
     return Stack(
       children: [
         const UiFrame(
           height: height,
-          width: 50,
+          width: 45,
           asset: UiFrameAsset.actions,
         ),
         Positioned.fill(
@@ -29,11 +29,12 @@ class UIActionsFrame extends StatelessWidget {
                 onPressed: onAddWordToDictionary,
                 icon: UiIcons.dictionary_add,
               ),
+              uiTheme.verticalBoxes.extraSmall,
               UiIconButton(
                 onPressed: onFire,
                 icon: UiIcons.fire,
               ),
-              uiTheme.verticalBoxes.small,
+              uiTheme.verticalBoxes.extraSmall,
               UiIconButton(
                 onPressed: onCollect,
                 icon: UiIcons.collect,
