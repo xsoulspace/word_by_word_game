@@ -46,23 +46,9 @@ class _DesktopControlsWidget extends StatelessWidget {
       constraints: const BoxConstraints(maxWidth: 700),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const DesktopPlayerSwitcher(),
-          Expanded(
-            child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: spacing.large,
-                vertical: spacing.medium,
-              ),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  LastWordWidget(),
-                  WordCompositionRow(),
-                ],
-              ),
-            ),
-          ),
+        children: const [
+          DesktopPlayerSwitcher(),
+          WordCompositionRow(),
         ],
       ),
     );
@@ -77,35 +63,30 @@ class _MobileControlsWidget extends StatelessWidget {
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
 
-    final spacing = uiTheme.spacing;
+    final levelPlayersBloc = context.watch<LevelPlayersBloc>();
+    final livePlayersBloc = levelPlayersBloc.state;
     final levelBloc = context.watch<LevelBloc>();
     final levelState = levelBloc.state;
-    if (levelState is! LiveLevelBlocState) return const SizedBox();
-    // TODO(arenukvern): remove after debugging
-    return Container(
+    if (levelState is! LiveLevelBlocState ||
+        livePlayersBloc is! LiveLevelPlayersBlocState) return const SizedBox();
+
+    return DecoratedBox(
       decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+        color: theme.backgroundColor.withOpacity(0.95),
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const MobilePlayerSwitcher(),
-              const Spacer(),
-              const LastWordWidget(),
-              uiTheme.horizontalBoxes.large,
-            ],
-          ),
-          Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: spacing.small,
-            ),
-            child: const WordCompositionRow(),
-          ),
-        ],
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: livePlayersBloc.currentPlayer.color.withOpacity(0.03),
+          borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+        ),
+        child: WordCompositionRow(
+          leftTopBuilder: (final context) {
+            return const MobilePlayerName();
+          },
+          rightTopBuilder: (final context) {
+            return const MobilePlayerScore();
+          },
+        ),
       ),
     );
   }

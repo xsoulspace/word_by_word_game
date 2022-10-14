@@ -5,9 +5,13 @@ class UICenterFrame extends StatelessWidget {
     required this.onIdea,
     required this.onPause,
     required this.textFieldBuilder,
+    required this.leftTopBuilder,
+    required this.rightTopBuilder,
     super.key,
   });
   final WidgetBuilder textFieldBuilder;
+  final WidgetBuilder? leftTopBuilder;
+  final WidgetBuilder? rightTopBuilder;
 
   final VoidCallback? onIdea;
   final VoidCallback onPause;
@@ -21,6 +25,33 @@ class UICenterFrame extends StatelessWidget {
           height: height,
           width: 315,
           asset: UiFrameAsset.center,
+        ),
+        Positioned(
+          height: height,
+          top: 8,
+          left: 0,
+          right: 0,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                width: 90,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: leftTopBuilder?.call(context) ?? const SizedBox(),
+                ),
+              ),
+              const SizedBox(width: 120),
+              SizedBox(
+                width: 90,
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: rightTopBuilder?.call(context) ?? const SizedBox(),
+                ),
+              ),
+            ],
+          ),
         ),
         Positioned(
           height: height,

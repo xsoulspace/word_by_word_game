@@ -17,9 +17,12 @@ part 'word_composition_row_state.dart';
 
 class WordCompositionRow extends HookWidget {
   const WordCompositionRow({
+    this.leftTopBuilder,
+    this.rightTopBuilder,
     final Key? key,
   }) : super(key: key);
-
+  final WidgetBuilder? leftTopBuilder;
+  final WidgetBuilder? rightTopBuilder;
   @override
   Widget build(final BuildContext context) {
     final state = _useWordCompositionState(read: context.read);
@@ -45,6 +48,8 @@ class WordCompositionRow extends HookWidget {
               UICenterFrame(
                 onIdea: null,
                 onPause: state.onPause,
+                leftTopBuilder: leftTopBuilder,
+                rightTopBuilder: rightTopBuilder,
                 textFieldBuilder: (final context) {
                   final leftTextField = UiFrameTextField(
                     textFieldFocusNode: state.leftWordFocus,

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
@@ -32,13 +31,6 @@ class PauseScreen extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            if (kDebugMode)
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: UiIcons.values
-                    .map((final e) => UiIconButton(icon: e))
-                    .toList(),
-              ),
             Visibility(
               visible: isLevelRunning,
               child: UiFilledButton.text(
