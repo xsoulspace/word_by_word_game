@@ -25,7 +25,7 @@ class UICenterFrame extends StatelessWidget {
         Positioned(
           height: height,
           top: 3,
-          left: 6,
+          left: 0,
           right: 0,
           child: Column(
             children: [

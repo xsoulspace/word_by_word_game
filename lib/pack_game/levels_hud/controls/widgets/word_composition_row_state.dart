@@ -57,7 +57,7 @@ class _WordCompositionState extends LifeState {
   final rightWordKeyFocus = FocusNode();
   final rightWordFocus = FocusNode();
 
-  void onSend() {
+  void onFire() {
     onRequestLeftTextFocus();
     diDto.levelBloc.add(const AcceptNewWordEvent());
   }

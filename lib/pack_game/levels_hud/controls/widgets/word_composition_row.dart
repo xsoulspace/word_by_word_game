@@ -10,6 +10,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/widgets.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
@@ -39,6 +40,7 @@ class WordCompositionRow extends HookWidget {
 
           return Row(
             crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               UICenterFrame(
                 onIdea: null,
@@ -76,7 +78,7 @@ class WordCompositionRow extends HookWidget {
                     textFieldFocusNode: state.rightWordFocus,
                     controller: state.rightPartController,
                     hintText: S.of(context).hintAddEnding,
-                    onSubmitted: state.onSend,
+                    onSubmitted: state.onFire,
                   );
 
                   return Row(
@@ -90,10 +92,22 @@ class WordCompositionRow extends HookWidget {
                   );
                 },
               ),
+              uiTheme.horizontalBoxes.small,
               UIActionsFrame(
-                onFire: state.onSend,
-                onAddWordToDictionary: state.onAddWordToDictionary,
-                onCollect: null,
+                children: [
+                  AddWordToDictionaryButton(
+                    onPressed: state.onAddWordToDictionary,
+                  ),
+                  uiTheme.verticalBoxes.extraSmall,
+                  UiIconButton(
+                    onPressed: state.onFire,
+                    icon: UiIcons.fire,
+                  ),
+                  uiTheme.verticalBoxes.extraSmall,
+                  const UiIconButton(
+                    icon: UiIcons.collect,
+                  ),
+                ],
               ),
             ],
           );
