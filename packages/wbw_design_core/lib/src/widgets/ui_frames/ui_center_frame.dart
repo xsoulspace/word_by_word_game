@@ -64,7 +64,9 @@ class UICenterFrame extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   UiIconButton(
-                    onPressed: onIdea,
+                    // TODO(arenukvern): enable
+                    onPressed: onIdea ?? () {},
+                    isEnabled: false,
                     icon: UiIcons.idea,
                   ),
                   uiTheme.horizontalBoxes.medium,

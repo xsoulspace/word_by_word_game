@@ -109,7 +109,9 @@ class WordCompositionRow extends HookWidget {
                     icon: UiIcons.fire,
                   ),
                   uiTheme.verticalBoxes.extraSmall,
-                  const UiIconButton(
+                  UiIconButton(
+                    onPressed: () {},
+                    isEnabled: false,
                     icon: UiIcons.collect,
                   ),
                 ],

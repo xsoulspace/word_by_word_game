@@ -83,13 +83,14 @@ enum UiIcons {
 class UiIconButton extends HookWidget {
   const UiIconButton({
     required this.icon,
-    this.onPressed,
+    required this.onPressed,
+    this.isEnabled = true,
     super.key,
   });
   final UiIcons icon;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
 
-  bool get isEnabled => onPressed != null;
+  final bool isEnabled;
   @override
   Widget build(final BuildContext context) {
     final state = _useButtonState(onPressed: onPressed);

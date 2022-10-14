@@ -33,24 +33,29 @@ class _DesktopControlsWidget extends StatelessWidget {
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
 
-    final spacing = uiTheme.spacing;
-    final levelBloc = context.watch<LevelBloc>();
-    final levelState = levelBloc.state;
-    if (levelState is! LiveLevelBlocState) return const SizedBox();
-
-    return Container(
-      decoration: BoxDecoration(
-        color: theme.colorScheme.surface,
-        borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
-      ),
-      constraints: const BoxConstraints(maxWidth: 700),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: const [
-          DesktopPlayerSwitcher(),
-          WordCompositionRow(),
-        ],
-      ),
+    return Stack(
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            WordCompositionBackground(
+              child: Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: uiTheme.spacing.extraLarge,
+                  vertical: uiTheme.spacing.large,
+                ),
+                child: const WordCompositionRow(),
+              ),
+            ),
+          ],
+        ),
+        Positioned(
+          bottom: uiTheme.spacing.medium,
+          left: uiTheme.spacing.medium,
+          child: const DesktopPlayerSwitcher(),
+        )
+      ],
     );
   }
 }
@@ -60,15 +65,33 @@ class _MobileControlsWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
+      child: WordCompositionBackground(
+        child: WordCompositionRow(
+          leftTopBuilder: (final context) {
+            return const MobilePlayerName();
+          },
+          rightTopBuilder: (final context) {
+            return const MobilePlayerScore();
+          },
+        ),
+      ),
+    );
+  }
+}
+
+class WordCompositionBackground extends StatelessWidget {
+  const WordCompositionBackground({required this.child, super.key});
+  final Widget child;
+  @override
+  Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
 
     final levelPlayersBloc = context.watch<LevelPlayersBloc>();
     final livePlayersBloc = levelPlayersBloc.state;
-    final levelBloc = context.watch<LevelBloc>();
-    final levelState = levelBloc.state;
-    if (levelState is! LiveLevelBlocState ||
-        livePlayersBloc is! LiveLevelPlayersBlocState) return const SizedBox();
+    if (livePlayersBloc is! LiveLevelPlayersBlocState) return const SizedBox();
 
     return DecoratedBox(
       decoration: BoxDecoration(
@@ -79,14 +102,7 @@ class _MobileControlsWidget extends StatelessWidget {
           color: livePlayersBloc.currentPlayer.color.withOpacity(0.03),
           borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
         ),
-        child: WordCompositionRow(
-          leftTopBuilder: (final context) {
-            return const MobilePlayerName();
-          },
-          rightTopBuilder: (final context) {
-            return const MobilePlayerScore();
-          },
-        ),
+        child: child,
       ),
     );
   }

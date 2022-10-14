@@ -24,6 +24,7 @@ class UiFrameTextField extends StatelessWidget {
   Widget build(final BuildContext context) {
     const height = 34.0;
     const width = 88.0;
+    final theme = Theme.of(context);
     return RawKeyboardListener(
       focusNode: keyFocusNode,
       onKey: (final event) {
@@ -44,23 +45,20 @@ class UiFrameTextField extends StatelessWidget {
             width: width,
             bottom: 0,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const Spacer(),
                 TextField(
                   focusNode: textFieldFocusNode,
                   onSubmitted: (final _) => onSubmitted?.call(),
                   onEditingComplete: () {},
-                  style: const TextStyle(fontSize: 14.0),
+                  style: theme.textTheme.bodyMedium,
                   textAlignVertical: TextAlignVertical.center,
                   decoration: InputDecoration(
                     focusedBorder: InputBorder.none,
                     border: InputBorder.none,
                     counter: const SizedBox(),
-                    contentPadding: const EdgeInsets.only(
-                      left: 4,
-                      right: 4,
-                      top: 4,
+                    contentPadding: const EdgeInsets.symmetric(
+                      horizontal: 4,
                     ),
                     isDense: true,
                     hintText: hintText,

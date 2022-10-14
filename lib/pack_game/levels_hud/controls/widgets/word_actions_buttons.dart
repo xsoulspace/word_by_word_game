@@ -15,7 +15,8 @@ class AddWordToDictionaryButton extends StatelessWidget {
     });
 
     return UiIconButton(
-      onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
+      isEnabled: warning == WordWarning.isNotCorrect,
+      onPressed: onPressed,
       icon: UiIcons.dictionary_add,
     );
   }
