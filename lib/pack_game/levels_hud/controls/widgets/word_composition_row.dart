@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
@@ -52,7 +51,7 @@ class WordCompositionRow extends HookWidget {
               Builder(
                 builder: (final context) {
                   final leftTextField = Expanded(
-                    child: WordPartTextField(
+                    child: UiFrameTextField(
                       textFieldFocusNode: state.leftWordFocus,
                       onEnterPressed: state.onRequestRightTextFocus,
                       onSubmitted: state.onRequestRightTextFocus,
@@ -81,7 +80,7 @@ class WordCompositionRow extends HookWidget {
                     },
                   );
                   final rightTextField = Expanded(
-                    child: WordPartTextField(
+                    child: UiFrameTextField(
                       keyFocusNode: state.rightWordKeyFocus,
                       textFieldFocusNode: state.rightWordFocus,
                       controller: state.rightPartController,
@@ -130,52 +129,6 @@ class LastWordWidget extends StatelessWidget {
       (final state) => state.getLiveState().latestWord,
     );
     return LastWordText(latestWord: latestWord);
-  }
-}
-
-class WordPartTextField extends StatelessWidget {
-  const WordPartTextField({
-    required this.controller,
-    required this.hintText,
-    required this.onSubmitted,
-    required this.keyFocusNode,
-    this.onEnterPressed,
-    this.textFieldFocusNode,
-    final Key? key,
-  }) : super(key: key);
-  final TextEditingController controller;
-  final String hintText;
-  final VoidCallback? onEnterPressed;
-  final VoidCallback? onSubmitted;
-  final FocusNode keyFocusNode;
-  final FocusNode? textFieldFocusNode;
-
-  @override
-  Widget build(final BuildContext context) {
-    return RawKeyboardListener(
-      focusNode: keyFocusNode,
-      onKey: (final event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
-          onEnterPressed?.call();
-        }
-      },
-      child: TextField(
-        focusNode: textFieldFocusNode,
-        onSubmitted: (final _) => onSubmitted?.call(),
-        onEditingComplete: () {},
-        style: const TextStyle(fontSize: 14.0),
-        decoration: InputDecoration(
-          focusedBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(12),
-          ),
-          hintText: hintText,
-        ),
-        controller: controller,
-      ),
-    );
   }
 }
 

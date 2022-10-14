@@ -16,6 +16,8 @@ class _UiFrameState extends LifeState {
 }
 
 enum UiFrameAsset {
+  // ignore: constant_identifier_names
+  text_field,
   actions,
   center;
 

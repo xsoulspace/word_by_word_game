@@ -3,6 +3,7 @@ export 'game_back_button.dart';
 export 'safe_areas.dart';
 export 'ui_checkbox_list_tile.dart';
 export 'ui_filled_button.dart';
+export 'ui_frame_text_field.dart';
 export 'ui_frames/ui_frames.dart';
 export 'ui_icon_button.dart';
 export 'ui_text_button.dart';
