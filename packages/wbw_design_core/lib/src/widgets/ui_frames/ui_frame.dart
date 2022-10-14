@@ -45,7 +45,7 @@ class UiFrame extends HookWidget {
           image: AssetImage(
             asset.path,
           ),
-          fit: BoxFit.fitHeight,
+          fit: BoxFit.fitWidth,
         ),
       ),
     );

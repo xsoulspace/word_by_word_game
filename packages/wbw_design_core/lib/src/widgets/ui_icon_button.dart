@@ -44,33 +44,44 @@ class _ButtonState extends LifeState {
 
 enum UiIcons {
   // ignore: constant_identifier_names
-  action_minus,
+  minus,
   // ignore: constant_identifier_names
-  action_fire,
+  fire,
   // ignore: constant_identifier_names
-  action_collect,
+  collect,
   // ignore: constant_identifier_names
-  action_pause,
+  dictionary_add,
   // ignore: constant_identifier_names
-  action_idea;
+  pause,
+  // ignore: constant_identifier_names
+  idea;
 
   const UiIcons();
 
-  String get path => 'icons/icon_$name';
+  String get path => 'icons/icon_action_$name';
 }
 
 class UiIconButton extends HookWidget {
-  const UiIconButton({required this.icon, super.key});
+  const UiIconButton({
+    required this.icon,
+    this.onPressed,
+    super.key,
+  });
   final UiIcons icon;
+  final VoidCallback? onPressed;
+
+  bool get isEnabled => onPressed != null;
   @override
   Widget build(final BuildContext context) {
     final state = _useButtonState();
     const dimension = 32.0;
+    final theme = Theme.of(context);
+
     return GestureDetector(
-      onTap: state.onTap,
-      onLongPressDown: state.onLongPressDown,
-      onLongPressUp: state.onLongPressUp,
-      onLongPressCancel: state.onLongPressUp,
+      onTap: isEnabled ? state.onTap : null,
+      onLongPressDown: isEnabled ? state.onLongPressDown : null,
+      onLongPressUp: isEnabled ? state.onLongPressUp : null,
+      onLongPressCancel: isEnabled ? state.onLongPressUp : null,
       child: FocusableActionDetector(
         mouseCursor: SystemMouseCursors.click,
         child: Container(
@@ -86,6 +97,11 @@ class UiIconButton extends HookWidget {
               fit: BoxFit.fill,
             ),
           ),
+          foregroundDecoration: isEnabled
+              ? null
+              : BoxDecoration(
+                  color: theme.colorScheme.shadow.withOpacity(0.2),
+                ),
           child: Container(
             height: dimension - 1,
             width: dimension - 1,

@@ -35,14 +35,6 @@ class LevelsHudScreenOverlay extends HookWidget {
             ],
           ),
         ),
-        Positioned(
-          top: 20,
-          right: 20,
-          child: IconButton(
-            onPressed: state.onPause,
-            icon: const Icon(Icons.motion_photos_pause_outlined),
-          ),
-        ),
         if (kDebugMode)
           Positioned(
             top: 60,

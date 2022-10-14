@@ -1,8 +1,16 @@
 import '../../../wbw_design_core.dart';
 
 class UICenterFrame extends StatelessWidget {
-  const UICenterFrame({super.key});
+  const UICenterFrame({
+    required this.onIdea,
+    required this.onPause,
+    required this.textFieldBuilder,
+    super.key,
+  });
+  final WidgetBuilder textFieldBuilder;
 
+  final VoidCallback? onIdea;
+  final VoidCallback onPause;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
@@ -24,28 +32,21 @@ class UICenterFrame extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const UiIconButton(
-                    icon: UiIcons.action_idea,
+                  UiIconButton(
+                    onPressed: onIdea,
+                    icon: UiIcons.idea,
                   ),
                   uiTheme.horizontalBoxes.medium,
-                  const UiIconButton(
-                    icon: UiIcons.action_pause,
+                  UiIconButton(
+                    onPressed: onPause,
+                    icon: UiIcons.pause,
                   ),
                 ],
               ),
               Center(
                 heightFactor: 2.3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const UiIconButton(
-                      icon: UiIcons.action_minus,
-                    ),
-                    uiTheme.horizontalBoxes.medium,
-                    const UiIconButton(
-                      icon: UiIcons.action_minus,
-                    ),
-                  ],
+                child: textFieldBuilder(
+                  context,
                 ),
               ),
             ],

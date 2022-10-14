@@ -1,8 +1,15 @@
 import '../../../wbw_design_core.dart';
 
 class UIActionsFrame extends StatelessWidget {
-  const UIActionsFrame({super.key});
-
+  const UIActionsFrame({
+    required this.onAddWordToDictionary,
+    required this.onCollect,
+    required this.onFire,
+    super.key,
+  });
+  final VoidCallback onFire;
+  final VoidCallback? onAddWordToDictionary;
+  final VoidCallback? onCollect;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
@@ -18,12 +25,18 @@ class UIActionsFrame extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const UiIconButton(
-                icon: UiIcons.action_fire,
+              UiIconButton(
+                onPressed: onAddWordToDictionary,
+                icon: UiIcons.dictionary_add,
+              ),
+              UiIconButton(
+                onPressed: onFire,
+                icon: UiIcons.fire,
               ),
               uiTheme.verticalBoxes.small,
-              const UiIconButton(
-                icon: UiIcons.action_collect,
+              UiIconButton(
+                onPressed: onCollect,
+                icon: UiIcons.collect,
               ),
             ],
           ),

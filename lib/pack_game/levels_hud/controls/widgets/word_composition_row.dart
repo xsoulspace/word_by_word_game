@@ -10,7 +10,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_actions_buttons.dart';
+import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
@@ -38,18 +38,13 @@ class WordCompositionRow extends HookWidget {
         builder: (final context, final levelState) {
           if (levelState is! LiveLevelBlocState) return const SizedBox();
 
-          return Column(
-            mainAxisSize: MainAxisSize.min,
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: const [
-                  UICenterFrame(),
-                  UIActionsFrame(),
-                ],
-              ),
-              Builder(
-                builder: (final context) {
+              UICenterFrame(
+                onIdea: null,
+                onPause: state.onPause,
+                textFieldBuilder: (final context) {
                   final leftTextField = Expanded(
                     child: UiFrameTextField(
                       textFieldFocusNode: state.leftWordFocus,
@@ -95,22 +90,15 @@ class WordCompositionRow extends HookWidget {
                       if (levelState.latestWord.isNotEmpty)
                         middleWordPartActions,
                       rightTextField,
-                      Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SendWordButton(
-                            onPressed: state.onSend,
-                          ),
-                          AddWordToDictionaryButton(
-                            onPressed: state.onAddWordToDictionary,
-                          ),
-                        ],
-                      )
                     ],
                   );
                 },
               ),
-              uiTheme.verticalBoxes.small,
+              UIActionsFrame(
+                onFire: state.onSend,
+                onAddWordToDictionary: state.onAddWordToDictionary,
+                onCollect: null,
+              ),
             ],
           );
         },

@@ -23,6 +23,7 @@ class UiFrameTextField extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     const height = 34.0;
+    const width = 88.0;
     return RawKeyboardListener(
       focusNode: keyFocusNode,
       onKey: (final event) {
@@ -35,10 +36,15 @@ class UiFrameTextField extends StatelessWidget {
           const UiFrame(
             asset: UiFrameAsset.text_field,
             height: height,
-            width: 88,
+            width: width,
           ),
-          Positioned.fill(
+          Positioned(
+            top: 0,
+            left: 0,
+            width: width,
+            bottom: 0,
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextField(
@@ -50,10 +56,11 @@ class UiFrameTextField extends StatelessWidget {
                   decoration: InputDecoration(
                     focusedBorder: InputBorder.none,
                     border: InputBorder.none,
+                    counter: const SizedBox(),
                     contentPadding: const EdgeInsets.only(
-                      left: 8,
-                      right: 8,
-                      top: 7,
+                      left: 4,
+                      right: 4,
+                      top: 4,
                     ),
                     isDense: true,
                     hintText: hintText,
