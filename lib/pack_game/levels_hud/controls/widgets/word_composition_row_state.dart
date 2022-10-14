@@ -3,10 +3,14 @@ part of 'word_composition_row.dart';
 class _WordCompositionStateDiDto {
   _WordCompositionStateDiDto.use(final Locator read)
       : levelBloc = read(),
-        mechanics = read();
+        mechanics = read(),
+        appRouterController = read(),
+        globalGameBloc = read();
 
   final LevelBloc levelBloc;
   final MechanicsCollection mechanics;
+  final AppRouterController appRouterController;
+  final GlobalGameBloc globalGameBloc;
 }
 
 _WordCompositionState _useWordCompositionState({
@@ -53,9 +57,16 @@ class _WordCompositionState extends LifeState {
   final rightWordKeyFocus = FocusNode();
   final rightWordFocus = FocusNode();
 
-  void onSend() {
+  void onFire() {
     onRequestLeftTextFocus();
     diDto.levelBloc.add(const AcceptNewWordEvent());
+  }
+
+  void onPause() {
+    diDto.mechanics.worldTime.pause();
+    diDto.globalGameBloc.add(const SaveCurrentLevelEvent());
+    final id = diDto.levelBloc.getLiveState().id;
+    diDto.appRouterController.toPause(id: id);
   }
 
   void onAddWordToDictionary() {
