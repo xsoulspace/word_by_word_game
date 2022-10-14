@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/widgets.dart';
@@ -10,19 +11,26 @@ import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'levels_hud_screen_overlay_state.dart';
 
-class LevelsHudScreenOverlay extends HookWidget {
+class LevelsHudScreenOverlay extends StatelessWidget {
   const LevelsHudScreenOverlay({super.key});
 
   @override
   Widget build(final BuildContext context) {
+    final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
-    final state = _useStateState(read: context.read);
     return Stack(
       children: [
-        const Positioned(
+        Positioned(
           left: 0,
           top: 20,
-          child: PlayersSideBar(),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const LastWordWidget(),
+              uiTheme.verticalBoxes.medium,
+              const PlayersSideBar(),
+            ],
+          ),
         ),
         Positioned(
           top: 20,
@@ -33,14 +41,6 @@ class LevelsHudScreenOverlay extends HookWidget {
             children: const [
               Flexible(child: WarningNotification()),
             ],
-          ),
-        ),
-        Positioned(
-          top: 20,
-          right: 20,
-          child: IconButton(
-            onPressed: state.onPause,
-            icon: const Icon(Icons.motion_photos_pause_outlined),
           ),
         ),
         if (kDebugMode)
