@@ -47,10 +47,18 @@ class _DialogState extends LifeState {
   void onRevealWord() {
     isWordRevealed = true;
     setState();
+    final currentPlayerId =
+        diDto.levelPlayersBloc.getLiveState().currentPlayerId;
+    final event = UpdatePlayerHighscoreEvent(
+      playerId: currentPlayerId,
+      score: ScoreModel(value: -costOfWord.toDouble()),
+    );
+    diDto.levelPlayersBloc.add(event);
   }
 
   void onTryAnotherWord() {
     suggestedWord = diDto.levelBloc.getWordSuggestion();
+    _setCostOfWord();
     setState();
   }
 
@@ -64,20 +72,10 @@ class _DialogState extends LifeState {
     return playerScore > costOfWord;
   }
 
-  int get costOfWord {
-    final score = diDto.mechanics.score.getScoreFromWord(word: suggestedWord);
-    return (score.value * 1.1).toInt();
-  }
-
-  void onUseWord() {
-    diDto.levelBloc.add(
-      AcceptNewWordEvent(
-        word: CurrentWordModel(
-          fullWord: suggestedWord,
-        ),
-      ),
-    );
-    diDto.dialogController.closeDialog();
+  int costOfWord = 0;
+  void _setCostOfWord() {
+    final score = diDto.mechanics.score.getRevealScore(word: suggestedWord);
+    costOfWord = score.value.toInt();
   }
 }
 
