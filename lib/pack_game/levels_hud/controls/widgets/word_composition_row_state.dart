@@ -5,12 +5,14 @@ class _WordCompositionStateDiDto {
       : levelBloc = read(),
         mechanics = read(),
         appRouterController = read(),
-        globalGameBloc = read();
+        globalGameBloc = read(),
+        dialogController = read();
 
   final LevelBloc levelBloc;
   final MechanicsCollection mechanics;
   final AppRouterController appRouterController;
   final GlobalGameBloc globalGameBloc;
+  final DialogController dialogController;
 }
 
 _WordCompositionState _useWordCompositionState({
@@ -60,6 +62,10 @@ class _WordCompositionState extends LifeState {
   void onFire() {
     onRequestLeftTextFocus();
     diDto.levelBloc.add(const AcceptNewWordEvent());
+  }
+
+  void onOpenSuggestionDialog() {
+    diDto.dialogController.showLevelWordSuggestionDialog();
   }
 
   void onPause() {

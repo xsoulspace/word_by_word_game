@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/dictionaries_bloc.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/pack_game.dart';
 
@@ -135,10 +134,11 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
-    final newWord = liveState.currentWord.cleanWord;
+    final effectiveCurrentWord = event.word ?? liveState.currentWord;
+    final newWord = effectiveCurrentWord.cleanWord;
     if (newWord.isEmpty) return;
 
-    final wordWarning = _checkNewWord(liveState.currentWord);
+    final wordWarning = _checkNewWord(effectiveCurrentWord);
     if (wordWarning == WordWarning.none) {
       final levelPlayersBloc = diDto.levelPlayersBloc;
       final updatedWords = {
@@ -147,7 +147,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
       final updatedState = liveState.copyWith(
         latestWord: newWord,
         currentWord: diDto.mechanics.wordComposition
-            .createNextCurrentWordFromFullWord(word: liveState.currentWord),
+            .createNextCurrentWordFromFullWord(word: effectiveCurrentWord),
         words: updatedWords,
         wordWarning: wordWarning,
       );
@@ -171,6 +171,14 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
         ),
       );
     }
+  }
+
+  String getWordSuggestion() {
+    final liveState = getLiveState();
+    return diDto.mechanics.dictionary.getWordSuggestion(
+      exceptions: liveState.words.keys,
+      letters: liveState.currentWord.middlePart,
+    );
   }
 
   void _onDecreaseMiddlePart(
