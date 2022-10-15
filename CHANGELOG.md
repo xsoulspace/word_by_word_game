@@ -14,16 +14,22 @@
 
 ## Next
 
-- Added Privacy Policy link.
-- Added basic suggestion dialog
+## October 16th 2022
+
+- Added score cost for word suggestion - and hopefully made it more playable.
 
 What's next:
 
-- Add score cost for word suggestion.
 - Make hot air mechanics depends from the hot air (add temperature modifier).
 
 - Gamify UI.
+- Think about landscapes as per place of words meanings..
 - Add Firebase or AppMetrica for crashlitics
+
+## October 15th 2022
+
+- Added Privacy Policy link.
+- Added basic suggestion dialog
 
 ## October 14th 2022
 
