@@ -4,15 +4,21 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 class _DialogStateDiDto {
   _DialogStateDiDto.use(final Locator read)
       : levelBloc = read(),
-        dialogController = read();
+        levelPlayersBloc = read(),
+        dialogController = read(),
+        mechanics = read();
   final LevelBloc levelBloc;
+  final LevelPlayersBloc levelPlayersBloc;
   final DialogController dialogController;
+  final MechanicsCollection mechanics;
 }
 
 _DialogState _useDialogState({required final Locator read}) => use(
@@ -32,17 +38,35 @@ class _DialogState extends LifeState {
   @override
   void initState() {
     super.initState();
-
-    suggestedWord = diDto.levelBloc.getWordSuggestion();
+    onTryAnotherWord();
   }
 
   String suggestedWord = '';
 
   bool isWordRevealed = false;
-
   void onRevealWord() {
     isWordRevealed = true;
     setState();
+  }
+
+  void onTryAnotherWord() {
+    suggestedWord = diDto.levelBloc.getWordSuggestion();
+    setState();
+  }
+
+  bool get isUsageAvailable {
+    final playerScore = diDto.levelPlayersBloc
+        .getLiveState()
+        .currentPlayer
+        .highscore
+        .score
+        .value;
+    return playerScore > costOfWord;
+  }
+
+  int get costOfWord {
+    final score = diDto.mechanics.score.getScoreFromWord(word: suggestedWord);
+    return (score.value * 1.1).toInt();
   }
 
   void onUseWord() {
@@ -68,56 +92,107 @@ class LevelWordSuggestionDialog extends HookWidget {
     final uiTheme = UiTheme.of(context);
 
     final state = _useDialogState(read: context.read);
-
+    final cancelButton = TextButton(
+      onPressed: () {
+        context.read<DialogController>().closeDialog();
+      },
+      child: Text(S.of(context).back),
+    );
     return ConstrainedBox(
       constraints: const BoxConstraints(
-        maxWidth: 450,
+        maxWidth: 350,
       ),
       child: Card(
         child: Builder(
           builder: (final context) {
             if (state.suggestedWord.isEmpty) {
-              return const Center(
-                child: Text(
-                  'There is no words suggestions..\n Try with diffirent letters time.',
-                ),
+              return ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+                children: [
+                  Text(
+                    S.of(context).noWordsSuggestions,
+                    style: theme.textTheme.headlineLarge,
+                    textAlign: TextAlign.center,
+                  ),
+                  uiTheme.verticalBoxes.extraLarge,
+                  Text(
+                    S.of(context).tryWithDifferentLetters,
+                    textAlign: TextAlign.center,
+                  ),
+                  uiTheme.verticalBoxes.extraLarge,
+                  cancelButton
+                ],
               );
             }
+
+            if (state.isWordRevealed) {
+              return ListView(
+                shrinkWrap: true,
+                padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+                children: [
+                  Text(
+                    S.of(context).suggestedWord,
+                    style: theme.textTheme.titleMedium,
+                    textAlign: TextAlign.center,
+                  ),
+                  uiTheme.verticalBoxes.extraLarge,
+                  Text(
+                    state.suggestedWord,
+                    style: theme.textTheme.headlineSmall?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                  uiTheme.verticalBoxes.extraLarge,
+                  TextButton(
+                    onPressed: () {
+                      context.read<DialogController>().closeDialog();
+                    },
+                    child: Text(S.of(context).ok),
+                  )
+                ],
+              );
+            }
+
             return ListView(
               shrinkWrap: true,
               padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
               children: [
                 Text(
-                  'Use Your Score to reveal suggested word.',
-                  style: theme.textTheme.titleLarge,
+                  S.of(context).revealSuggestedWord,
+                  style: theme.textTheme.titleMedium,
+                  textAlign: TextAlign.center,
                 ),
-                uiTheme.verticalBoxes.extraLarge,
+                uiTheme.verticalBoxes.large,
                 Text(
-                  'Suggested Word is: '
-                  '${state.isWordRevealed ? state.suggestedWord : '***'}',
+                  List.generate(
+                    state.suggestedWord.length,
+                    (final index) => '*',
+                  ).join(),
+                  style: theme.textTheme.headlineSmall?.copyWith(
+                    fontWeight: FontWeight.bold,
+                  ),
+                  textAlign: TextAlign.center,
                 ),
-                uiTheme.verticalBoxes.extraLarge,
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    TextButton(
-                      onPressed: () {
-                        context.read<DialogController>().closeDialog();
-                      },
-                      child: const Text('Cancel'),
-                    ),
-                    if (state.isWordRevealed)
-                      TextButton(
-                        onPressed: state.onUseWord,
-                        child: const Text('Use the word'),
-                      )
-                    else
-                      TextButton(
-                        onPressed: state.onRevealWord,
-                        child: const Text('Reveal the word'),
-                      ),
-                  ],
+                uiTheme.verticalBoxes.medium,
+                TextButton(
+                  onPressed: state.isUsageAvailable ? state.onRevealWord : null,
+                  child: Text(
+                    state.isUsageAvailable
+                        ? S.of(context).useCostKnowledgePoints(state.costOfWord)
+                        : S.of(context).notEnoughKnowledgeToRevealWord,
+                  ),
                 ),
+                if (!state.isUsageAvailable) ...[
+                  uiTheme.verticalBoxes.medium,
+                  TextButton(
+                    onPressed: state.onTryAnotherWord,
+                    child: Text(S.of(context).tryAnotherWord),
+                  ),
+                ],
+                uiTheme.verticalBoxes.small,
+                cancelButton,
               ],
             );
           },

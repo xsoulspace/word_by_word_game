@@ -17,7 +17,7 @@ class PauseScreen extends HookWidget {
   const PauseScreen({
     final Key? key,
   }) : super(key: key);
-  static const isPrivacyPolicyEnabled = true;
+  static const isPrivacyPolicyEnabled = false;
   @override
   Widget build(final BuildContext context) {
     final state = _usePauseScreenState(read: context.read);
