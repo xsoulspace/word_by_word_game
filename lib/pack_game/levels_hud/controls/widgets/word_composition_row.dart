@@ -10,6 +10,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/widgets.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
@@ -46,7 +47,9 @@ class WordCompositionRow extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               UICenterFrame(
-                onIdea: null,
+                onIdea: levelState.currentWord.cleanWord.isEmpty
+                    ? null
+                    : state.onOpenSuggestionDialog,
                 onPause: state.onPause,
                 leftTopBuilder: leftTopBuilder,
                 rightTopBuilder: rightTopBuilder,
@@ -109,9 +112,7 @@ class WordCompositionRow extends HookWidget {
                     icon: UiIcons.fire,
                   ),
                   uiTheme.verticalBoxes.extraSmall,
-                  UiIconButton(
-                    onPressed: () {},
-                    isEnabled: false,
+                  const UiIconButton(
                     icon: UiIcons.collect,
                   ),
                 ],

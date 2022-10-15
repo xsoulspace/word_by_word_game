@@ -61,7 +61,7 @@ class PauseScreen extends HookWidget {
             ),
             uiTheme.verticalBoxes.medium,
             if (isPrivacyPolicyEnabled)
-              UiFilledButton.text(
+              UiTextButton.text(
                 text: S.of(context).privacyPolicy,
                 onPressed: state.onPrivacyPolicy,
               ),

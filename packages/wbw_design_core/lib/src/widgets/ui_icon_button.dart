@@ -4,21 +4,15 @@ import 'package:life_hooks/life_hooks.dart';
 
 import '../utils/utils.dart';
 
-_ButtonState _useButtonState({
-  required final VoidCallback? onPressed,
-}) =>
-    use(
-      LifeHook(
+_ButtonState _useButtonState() => use(
+      ContextfulLifeHook(
         debugLabel: '_useButtonState',
-        state: _ButtonState(onPressed: onPressed),
+        state: _ButtonState(),
       ),
     );
 
-class _ButtonState extends LifeState {
-  _ButtonState({
-    required this.onPressed,
-  });
-  final VoidCallback? onPressed;
+class _ButtonState extends ContextfulLifeState {
+  _ButtonState();
   bool _isPressed = false;
 
   bool get isPressed => _isPressed;
@@ -33,10 +27,14 @@ class _ButtonState extends LifeState {
       UiAssetHelper.useImagePath('buttons/icon_button_pressed');
   late final iconImagePath = UiAssetHelper.useImagePath('buttons/icon_button');
   final iconImagePixelsHeight = 16.0;
+  void _onPressed() {
+    (getContext().widget as UiIconButton).onPressed?.call();
+  }
+
   Future<void> onTap() async {
     if (isPressed) return;
     isPressed = true;
-    onPressed?.call();
+    _onPressed();
     await Future.delayed(const Duration(milliseconds: 60));
     isPressed = false;
   }
@@ -53,7 +51,7 @@ class _ButtonState extends LifeState {
     if (details.velocity.pixelsPerSecond.dx > 0 ||
         details.velocity.pixelsPerSecond.dy > 0) {
     } else {
-      onPressed?.call();
+      _onPressed();
     }
     WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
       isPressed = false;
@@ -83,17 +81,15 @@ enum UiIcons {
 class UiIconButton extends HookWidget {
   const UiIconButton({
     required this.icon,
-    required this.onPressed,
-    this.isEnabled = true,
+    this.onPressed,
     super.key,
   });
   final UiIcons icon;
-  final VoidCallback onPressed;
-
-  final bool isEnabled;
+  final VoidCallback? onPressed;
+  bool get isEnabled => onPressed != null;
   @override
   Widget build(final BuildContext context) {
-    final state = _useButtonState(onPressed: onPressed);
+    final state = _useButtonState();
     const dimension = 32.0;
     final theme = Theme.of(context);
 
