@@ -4,6 +4,7 @@ import 'package:wbw_core/wbw_core.dart';
 
 const int kIncreaseScoreModifier = 65;
 const int kDecreaseScoreModifier = kIncreaseScoreModifier * 3;
+const double kRevealScoreModifier = 2;
 int get kLetterDecreaseCost => 1 * kDecreaseScoreModifier;
 
 class ScoreMechanics {
@@ -13,6 +14,16 @@ class ScoreMechanics {
   }) {
     return ScoreModel(
       value: (word.length * scoreModifier).toDouble(),
+    );
+  }
+
+  ScoreModel getRevealScore({
+    required final String word,
+    final double scoreModifier = kRevealScoreModifier,
+  }) {
+    final score = getScoreFromWord(word: word);
+    return ScoreModel(
+      value: (score.value * kRevealScoreModifier).toInt().toDouble(),
     );
   }
 

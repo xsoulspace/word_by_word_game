@@ -36,7 +36,8 @@ class ChangeCurrentWordEvent extends LevelBlocEvent {
 
 @immutable
 class AcceptNewWordEvent extends LevelBlocEvent {
-  const AcceptNewWordEvent();
+  const AcceptNewWordEvent({this.word});
+  final CurrentWordModel? word;
 }
 
 @immutable
