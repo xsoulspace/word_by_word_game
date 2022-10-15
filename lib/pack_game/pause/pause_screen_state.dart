@@ -48,6 +48,10 @@ class _PauseScreenState extends ContextfulLifeState {
     diDto.appRouterController.toSettings();
   }
 
+  void onPrivacyPolicy() {
+    launchUrlString('https://xsoulspace.dev/app/last-answer/privacy');
+  }
+
   Future<void> onShowAbout() async {
     final context = getContext();
     final theme = Theme.of(context);

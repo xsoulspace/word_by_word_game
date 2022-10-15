@@ -400,6 +400,16 @@ class S {
     );
   }
 
+  /// `Privacy Policy`
+  String get privacyPolicy {
+    return Intl.message(
+      'Privacy Policy',
+      name: 'privacyPolicy',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Hi, I'm Anton. Thank you for your interest in this game. Hope you like it:)`
   String get creatingGame {
     return Intl.message(

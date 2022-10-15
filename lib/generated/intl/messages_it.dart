@@ -65,6 +65,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Giocatori e punteggio"),
         "previousWord":
             MessageLookupByLibrary.simpleMessage("Parola precedente:"),
+        "privacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Politica sulla riservatezza"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Creatore di profili"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reimposta fine"),

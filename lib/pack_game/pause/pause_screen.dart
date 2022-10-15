@@ -58,6 +58,11 @@ class PauseScreen extends HookWidget {
               text: S.of(context).about,
               onPressed: state.onShowAbout,
             ),
+            uiTheme.verticalBoxes.medium,
+            UiFilledButton.text(
+              text: S.of(context).privacyPolicy,
+              onPressed: state.onPrivacyPolicy,
+            ),
           ],
         ),
       ),

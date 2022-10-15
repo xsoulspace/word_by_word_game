@@ -60,6 +60,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Игроки & Опыт"),
         "previousWord":
             MessageLookupByLibrary.simpleMessage("Предыдущее слово:"),
+        "privacyPolicy":
+            MessageLookupByLibrary.simpleMessage("Политика конфиденциальности"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Создатель профиля"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Сбросить слово"),
