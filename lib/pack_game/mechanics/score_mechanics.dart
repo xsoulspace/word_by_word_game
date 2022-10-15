@@ -4,7 +4,7 @@ import 'package:wbw_core/wbw_core.dart';
 
 const int kIncreaseScoreModifier = 65;
 const int kDecreaseScoreModifier = kIncreaseScoreModifier * 3;
-const double kRevealScoreModifier = 2;
+const double kRevealScoreModifier = 1.8;
 int get kLetterDecreaseCost => 1 * kDecreaseScoreModifier;
 
 class ScoreMechanics {
