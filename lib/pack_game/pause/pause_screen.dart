@@ -17,6 +17,7 @@ class PauseScreen extends HookWidget {
   const PauseScreen({
     final Key? key,
   }) : super(key: key);
+  static const isPrivacyPolicyEnabled = true;
   @override
   Widget build(final BuildContext context) {
     final state = _usePauseScreenState(read: context.read);
@@ -59,10 +60,11 @@ class PauseScreen extends HookWidget {
               onPressed: state.onShowAbout,
             ),
             uiTheme.verticalBoxes.medium,
-            UiFilledButton.text(
-              text: S.of(context).privacyPolicy,
-              onPressed: state.onPrivacyPolicy,
-            ),
+            if (isPrivacyPolicyEnabled)
+              UiFilledButton.text(
+                text: S.of(context).privacyPolicy,
+                onPressed: state.onPrivacyPolicy,
+              ),
           ],
         ),
       ),
