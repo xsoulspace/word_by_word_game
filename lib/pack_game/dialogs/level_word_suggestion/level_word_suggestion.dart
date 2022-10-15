@@ -88,7 +88,7 @@ class LevelWordSuggestionDialog extends HookWidget {
               padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
               children: [
                 Text(
-                  'Use Your Score to reveal suggested word',
+                  'Use Your Score to reveal suggested word.',
                   style: theme.textTheme.titleLarge,
                 ),
                 uiTheme.verticalBoxes.extraLarge,

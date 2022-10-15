@@ -15,14 +15,15 @@
 ## Next
 
 - Added Privacy Policy link.
+- Added basic suggestion dialog
 
 What's next:
 
-- Add suggest random word option by score.
-- Add Firebase or AppMetrica for crashlitics
+- Add score cost for word suggestion.
+- Make hot air mechanics depends from the hot air (add temperature modifier).
 
 - Gamify UI.
-- Make hot air mechanics depends from the hot air (add temperature modifier).
+- Add Firebase or AppMetrica for crashlitics
 
 ## October 14th 2022
 
