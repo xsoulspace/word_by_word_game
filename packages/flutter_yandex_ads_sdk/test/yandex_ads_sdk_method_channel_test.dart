@@ -1,15 +1,15 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:flutter_yandex_ads_sdk/flutter_yandex_ads_sdk_method_channel.dart';
+import 'package:yandex_ads_sdk/yandex_ads_sdk_method_channel.dart';
 
 void main() {
-  MethodChannelFlutterYandexAdsSdk platform = MethodChannelFlutterYandexAdsSdk();
-  const MethodChannel channel = MethodChannel('flutter_yandex_ads_sdk');
+  final MethodChannelYandexAdsSdk platform = MethodChannelYandexAdsSdk();
+  const MethodChannel channel = MethodChannel('yandex_ads_sdk');
 
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() {
-    channel.setMockMethodCallHandler((MethodCall methodCall) async {
+    channel.setMockMethodCallHandler((final methodCall) async {
       return '42';
     });
   });

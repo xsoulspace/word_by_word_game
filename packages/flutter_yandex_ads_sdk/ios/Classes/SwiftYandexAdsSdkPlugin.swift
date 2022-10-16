@@ -1,10 +1,10 @@
 import Flutter
 import UIKit
 
-public class SwiftFlutterYandexAdsSdkPlugin: NSObject, FlutterPlugin {
+public class SwiftYandexAdsSdkPlugin: NSObject, FlutterPlugin {
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "flutter_yandex_ads_sdk", binaryMessenger: registrar.messenger())
-    let instance = SwiftFlutterYandexAdsSdkPlugin()
+    let channel = FlutterMethodChannel(name: "yandex_ads_sdk", binaryMessenger: registrar.messenger())
+    let instance = SwiftYandexAdsSdkPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 

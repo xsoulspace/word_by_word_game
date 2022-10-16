@@ -1,4 +1,4 @@
-group 'dev.xsoulspace.flutter_yandex_ads_sdk'
+group 'dev.xsoulspace.yandex_ads_sdk'
 version '1.0-SNAPSHOT'
 
 buildscript {

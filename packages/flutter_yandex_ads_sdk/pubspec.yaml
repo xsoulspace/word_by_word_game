@@ -1,4 +1,4 @@
-name: flutter_yandex_ads_sdk
+name: yandex_ads_sdk
 description: A new Flutter plugin project.
 version: 0.0.1
 publish_to: none
@@ -38,10 +38,10 @@ flutter:
   plugin:
     platforms:
       android:
-        package: dev.xsoulspace.flutter_yandex_ads_sdk
-        pluginClass: FlutterYandexAdsSdkPlugin
+        package: dev.xsoulspace.yandex_ads_sdk
+        pluginClass: YandexAdsSdkPlugin
       ios:
-        pluginClass: FlutterYandexAdsSdkPlugin
+        pluginClass: YandexAdsSdkPlugin
 
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
