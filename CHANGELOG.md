@@ -14,6 +14,23 @@
 
 ## Next
 
+## October 16th 2022
+
+- Added score cost for word suggestion - and hopefully made it more playable.
+
+What's next:
+
+- Make hot air mechanics depends from the hot air (add temperature modifier).
+
+- Gamify UI.
+- Think about landscapes as per place of words meanings..
+- Add Firebase or AppMetrica for crashlitics
+
+## October 15th 2022
+
+- Added Privacy Policy link.
+- Added basic suggestion dialog
+
 ## October 14th 2022
 
 - Added new ui for text fields and action buttons
@@ -24,14 +41,6 @@
 - Added Credits dialog
 - Added Icons for Black & White landscape and character
 - Completed translation for previous game languages (English, Russian, Italian (very approximate))
-
-What's next:
-
-- Add suggest random word option by score.
-- Add Privacy Policy link to the credits.
-- Add Firebase or AppMetrica for crashlitics
-
-- Gamify UI.
 
 ## October 11th 2022
 
