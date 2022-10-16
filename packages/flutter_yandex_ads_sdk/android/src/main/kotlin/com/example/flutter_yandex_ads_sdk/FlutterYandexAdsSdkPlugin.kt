@@ -1,4 +1,4 @@
-package com.example.flutter_yandex_ads_sdk
+package dev.xsoulspace.flutter_yandex_ads_sdk
 
 import androidx.annotation.NonNull
 

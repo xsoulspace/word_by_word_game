@@ -9,7 +9,8 @@
 .history
 .svn/
 migrate_working_dir/
-
+*gradlew
+*gradlew.bat
 # IntelliJ related
 *.iml
 *.ipr
