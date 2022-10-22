@@ -19,6 +19,10 @@
     <meta charset="UTF-8" />
     <meta content="IE=Edge" http-equiv="X-UA-Compatible" />
     <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * self blob: data: gap:; style-src * self 'unsafe-inline' blob: data: gap:; script-src * 'self' 'unsafe-eval' 'unsafe-inline' blob: data: gap:; object-src * 'self' blob: data: gap:; img-src * self 'unsafe-inline' blob: data: gap:; connect-src self * 'unsafe-inline' blob: data: gap:; frame-src * self blob: data: gap:;"
+    />
+    <meta
       name="description"
       content="Simple & fun game to write word based on last 3 letters of last word"
     />
@@ -34,6 +38,11 @@
 
     <title>Word by Word Game</title>
     <link rel="manifest" href="manifest.json" />
+    <script src="https://yandex.ru/games/sdk/v2"></script>
+    <script>
+      window.yaContextCb = window.yaContextCb || [];
+    </script>
+    <script src="https://yandex.ru/ads/system/context.js" async></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script>
       // The value below is injected by flutter build, do not touch.
@@ -104,6 +113,10 @@
             return engineInitializer.initializeEngine();
           })
           .then(function (appRunner) {
+            YaGames.init().then((ysdk) => {
+              console.log("Yandex SDK initialized");
+              window.ysdk = ysdk;
+            });
             return appRunner.runApp();
           });
       });
