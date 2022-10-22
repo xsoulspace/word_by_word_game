@@ -1,6 +1,6 @@
 part of 'pause_screen.dart';
 
-bool get linksAreAllowed => false;
+bool get linksAreAllowed => true;
 
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
