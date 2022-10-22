@@ -20,7 +20,10 @@ typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
 class MessageLookup extends MessageLookupByLibrary {
   String get localeName => 'it';
 
-  static String m0(word) =>
+  static String m0(costOfWord) =>
+      "Utilizzare i punti di conoscenza: ${costOfWord}";
+
+  static String m1(word) =>
       "Non riusciamo a trovare la parola ${word} nel nostro dizionario! Prova un\'altra parola o aggiungila.";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -29,6 +32,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNewWord": MessageLookupByLibrary.simpleMessage("aggiungi"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Aggiungi al dizionario"),
+        "back": MessageLookupByLibrary.simpleMessage("Indietro"),
         "chooseLandscape":
             MessageLookupByLibrary.simpleMessage("Scegli un paesaggio"),
         "chooseYourCharacter":
@@ -58,6 +62,11 @@ class MessageLookup extends MessageLookupByLibrary {
         "newGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
         "nextPlayer":
             MessageLookupByLibrary.simpleMessage("Prossimo giocatore"),
+        "noWordsSuggestions": MessageLookupByLibrary.simpleMessage(
+            "Non ci sono suggerimenti di parole :("),
+        "notEnoughKnowledgeToRevealWord": MessageLookupByLibrary.simpleMessage(
+            "Purtroppo non avete abbastanza punti conoscenza per rivelare questa parola..."),
+        "ok": MessageLookupByLibrary.simpleMessage("Bello"),
         "play": MessageLookupByLibrary.simpleMessage("Giocare a"),
         "player": MessageLookupByLibrary.simpleMessage("giocatore"),
         "players": MessageLookupByLibrary.simpleMessage("Players "),
@@ -72,6 +81,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reimposta fine"),
         "returnToLandscapes":
             MessageLookupByLibrary.simpleMessage("Ritorna ai paesaggi"),
+        "revealSuggestedWord":
+            MessageLookupByLibrary.simpleMessage("Rivela la parola suggerita?"),
         "selectPlayers":
             MessageLookupByLibrary.simpleMessage("Seleziona i giocatori"),
         "send": MessageLookupByLibrary.simpleMessage("Inviare"),
@@ -80,15 +91,22 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Ricomincia "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
+        "suggestedWord":
+            MessageLookupByLibrary.simpleMessage("Parola suggerita"),
         "supportGame": MessageLookupByLibrary.simpleMessage(
             "Puoi supportare il gioco in https://boosty.to/arenukvern"),
         "thankYou":
             MessageLookupByLibrary.simpleMessage("Grazie e buon gioco!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("Ai paesaggi"),
+        "tryAnotherWord":
+            MessageLookupByLibrary.simpleMessage("Prova un\'altra parola"),
+        "tryWithDifferentLetters": MessageLookupByLibrary.simpleMessage(
+            "Provate con lettere diverse.."),
+        "useCostKnowledgePoints": m0,
         "username": MessageLookupByLibrary.simpleMessage("Nome utente"),
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Questa parola è già scritta. Prova con un\'altra parola."),
-        "wordIsNotCorrect": m0,
+        "wordIsNotCorrect": m1,
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "Sei atterrato in mezzo al nulla.."),
         "yourHighscore": MessageLookupByLibrary.simpleMessage(

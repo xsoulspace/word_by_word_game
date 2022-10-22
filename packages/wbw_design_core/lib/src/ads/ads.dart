@@ -1,1 +1,1 @@
-export 'ad_fullscreen.dart';
+export 'ya_ad_content.dart';

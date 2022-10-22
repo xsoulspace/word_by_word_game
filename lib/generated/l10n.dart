@@ -400,6 +400,96 @@ class S {
     );
   }
 
+  /// `Back`
+  String get back {
+    return Intl.message(
+      'Back',
+      name: 'back',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Suggested Word`
+  String get suggestedWord {
+    return Intl.message(
+      'Suggested Word',
+      name: 'suggestedWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try another word`
+  String get tryAnotherWord {
+    return Intl.message(
+      'Try another word',
+      name: 'tryAnotherWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Unfortunately, you have not enough knowledge points to reveal this word..`
+  String get notEnoughKnowledgeToRevealWord {
+    return Intl.message(
+      'Unfortunately, you have not enough knowledge points to reveal this word..',
+      name: 'notEnoughKnowledgeToRevealWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use {costOfWord} knowledge points`
+  String useCostKnowledgePoints(Object costOfWord) {
+    return Intl.message(
+      'Use $costOfWord knowledge points',
+      name: 'useCostKnowledgePoints',
+      desc: '',
+      args: [costOfWord],
+    );
+  }
+
+  /// `Reveal suggested word?`
+  String get revealSuggestedWord {
+    return Intl.message(
+      'Reveal suggested word?',
+      name: 'revealSuggestedWord',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Nice`
+  String get ok {
+    return Intl.message(
+      'Nice',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `There is no words suggestions :(`
+  String get noWordsSuggestions {
+    return Intl.message(
+      'There is no words suggestions :(',
+      name: 'noWordsSuggestions',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Try it with diffirent letters..`
+  String get tryWithDifferentLetters {
+    return Intl.message(
+      'Try it with diffirent letters..',
+      name: 'tryWithDifferentLetters',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Privacy Policy`
   String get privacyPolicy {
     return Intl.message(
