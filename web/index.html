@@ -38,11 +38,6 @@
 
     <title>Word by Word Game</title>
     <link rel="manifest" href="manifest.json" />
-    <script src="https://yandex.ru/games/sdk/v2"></script>
-    <script>
-      window.yaContextCb = window.yaContextCb || [];
-    </script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
     <link rel="stylesheet" type="text/css" href="styles.css" />
     <script>
       // The value below is injected by flutter build, do not touch.
@@ -113,10 +108,6 @@
             return engineInitializer.initializeEngine();
           })
           .then(function (appRunner) {
-            YaGames.init().then((ysdk) => {
-              console.log("Yandex SDK initialized");
-              window.ysdk = ysdk;
-            });
             return appRunner.runApp();
           });
       });
