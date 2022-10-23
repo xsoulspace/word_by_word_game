@@ -12,6 +12,7 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
+import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 
 part 'pause_screen_state.dart';
 
@@ -34,6 +35,10 @@ class PauseScreen extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const SizedBox(
+              height: 100,
+              child: YandexBannerPlatformView(),
+            ),
             Visibility(
               visible: isLevelRunning,
               child: UiFilledButton.text(
