@@ -21,7 +21,7 @@ import java.util.HashMap;
 
 /**Generated class from Pigeon. */
 @SuppressWarnings({"unused", "unchecked", "CodeBlock2Expr", "RedundantSuppression"})
-public class YandexAdsSdkPlugin {
+public class YandexAdsSdkInterface {
 
   public interface Result<T> {
     void success(T result);

@@ -1,7 +1,7 @@
 package dev.xsoulspace.yandex_ads_sdk
 
 import androidx.annotation.NonNull
-
+import dev.xsoulspace.yandex_ads_sdk.YandexAdsSdkPlugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 
 /** YandexAdsSdkPlugin */
