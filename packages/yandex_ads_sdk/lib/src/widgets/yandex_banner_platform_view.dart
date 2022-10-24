@@ -2,25 +2,34 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class YandexBannerPlatformView extends StatelessWidget {
-  const YandexBannerPlatformView({super.key});
-
+  const YandexBannerPlatformView({
+    this.adUnitId = 'R-M-DEMO-320x50',
+    this.height = 100,
+    this.width = 320,
+    super.key,
+  });
+  final String adUnitId;
+  final double height;
+  final double width;
   @override
   Widget build(final BuildContext context) {
     // This is used in the platform side to register the view.
     const String viewType = 'yandex-ads-banner-view';
     // Pass parameters to the platform side.
-    const Map<String, dynamic> creationParams = <String, dynamic>{
-      'adUnitId': 'R-M-DEMO-320x50'
+    final Map<String, dynamic> creationParams = <String, dynamic>{
+      'adUnitId': adUnitId,
+      'width': width.toInt(),
+      'height': height.toInt(),
     };
 
-    return const SizedBox(
-      height: 100,
-      width: 320,
+    return SizedBox(
+      height: height,
+      width: width,
       child: AndroidView(
         viewType: viewType,
         layoutDirection: TextDirection.ltr,
         creationParams: creationParams,
-        creationParamsCodec: StandardMessageCodec(),
+        creationParamsCodec: const StandardMessageCodec(),
       ),
     );
   }

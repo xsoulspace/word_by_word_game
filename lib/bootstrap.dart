@@ -2,7 +2,6 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:flame/flame.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wbw_core/wbw_core.dart';
 
@@ -27,7 +26,7 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(final Widget Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Flame.device.fullScreen();
+  // await Flame.device.fullScreen();
   final analyticsService = AnalyticsService();
   await analyticsService.onLoad();
   Bloc.observer = AppBlocObserver();

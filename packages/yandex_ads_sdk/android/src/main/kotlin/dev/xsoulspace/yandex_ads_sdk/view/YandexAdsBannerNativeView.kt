@@ -16,6 +16,8 @@ import io.flutter.plugin.platform.PlatformView
 internal class YandexAdsBannerNativeView(
 	context: Context,
 	adUnitId: String,
+	width: Int,
+	height: Int,
 	private val yandexApi: YandexAdsApiImpl,
 ) : PlatformView {
 	private val apiEmitter: YandexAdEventHandlerImpl
@@ -33,7 +35,7 @@ internal class YandexAdsBannerNativeView(
 
 	init {
 		banner = BannerAdView(context)
-		banner.setAdSize(AdSize.flexibleSize(320, 100))
+		banner.setAdSize(AdSize.flexibleSize(width, height))
 		banner.setAdUnitId(adUnitId)
 		banner.setBannerAdEventListener(bannerAdEventListener)
 		val request: AdRequest = AdRequest.Builder().build()

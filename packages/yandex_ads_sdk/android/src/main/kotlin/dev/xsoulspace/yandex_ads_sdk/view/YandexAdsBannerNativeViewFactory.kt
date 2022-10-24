@@ -13,11 +13,15 @@ class YandexAdsBannerNativeViewFactory(
 	override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
 		if (args !is Map<*, *>) throw Error()
 		val adUnitId = args["adUnitId"] as String
+		val width: Int = (args["width"] as Int?) ?: 320
+		val height: Int = (args["height"] as Int?) ?: 100
 
 		return YandexAdsBannerNativeView(
 			context = context,
 			adUnitId = adUnitId,
 			yandexApi = yandexApi,
+			width = width,
+			height = height,
 		)
 	}
 }
