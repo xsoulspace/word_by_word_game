@@ -1,5 +1,6 @@
 package dev.xsoulspace.yandex_ads_sdk
 
+import android.util.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodChannel
@@ -8,7 +9,7 @@ class YandexAdEventHandlerImpl :
 	YandexAdEventHandlerInterface.YandexAdEventHandler {
 	private lateinit var flutterBinding: FlutterPlugin.FlutterPluginBinding
 	private val channelName =
-		"dev.flutter.pigeon.YandexAdEventHandler"
+		"dev.flutter.pigeon_attachment.YandexAdEventHandler"
 	private var methodChannel: MethodChannel? = null
 	fun onAttached(flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
 		YandexAdEventHandlerInterface.YandexAdEventHandler.setup(
@@ -34,7 +35,7 @@ class YandexAdEventHandlerImpl :
 		methodChannel?.invokeMethod("notifyListeners", notifyCall.toMap())
 	}
 
-	fun notifyListenersByType(
+	private fun notifyListenersByType(
 		notifyCallType: YandexAdEventHandlerInterface
 		.YandexAdEventNotifyType
 	) {
@@ -48,22 +49,22 @@ class YandexAdEventHandlerImpl :
 	}
 
 	fun notifyOnAdFailedToLoad() {
-		TODO("Not yet implemented")
+		notifyListenersByType(YandexAdEventHandlerInterface.YandexAdEventNotifyType.ON_AD_FAILED_TO_LOAD)
 	}
 
 	fun notifyOnImpression() {
-		TODO("Not yet implemented")
+		notifyListenersByType(YandexAdEventHandlerInterface.YandexAdEventNotifyType.ON_IMPRESSION)
 	}
 
 	fun notifyOnAdClicked() {
-		TODO("Not yet implemented")
+		notifyListenersByType(YandexAdEventHandlerInterface.YandexAdEventNotifyType.ON_AD_CLICKED)
 	}
 
 	fun notifyOnLeftApplication() {
-		TODO("Not yet implemented")
+		notifyListenersByType(YandexAdEventHandlerInterface.YandexAdEventNotifyType.ON_LEFT_APPLICATION)
 	}
 
 	fun notifyOnReturnedToApplication() {
-		TODO("Not yet implemented")
+		notifyListenersByType(YandexAdEventHandlerInterface.YandexAdEventNotifyType.ON_RETURNED_TO_APPLICATION)
 	}
 }

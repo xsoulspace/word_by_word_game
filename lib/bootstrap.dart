@@ -8,9 +8,10 @@ import 'package:wbw_core/wbw_core.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
+  // ignore: unnecessary_overrides
   void onChange(final BlocBase bloc, final Change change) {
     super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
+    // log('onChange(${bloc.runtimeType}, $change)');
   }
 
   @override

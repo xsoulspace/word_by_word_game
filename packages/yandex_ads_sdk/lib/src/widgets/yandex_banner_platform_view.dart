@@ -9,13 +9,19 @@ class YandexBannerPlatformView extends StatelessWidget {
     // This is used in the platform side to register the view.
     const String viewType = 'yandex-ads-banner-view';
     // Pass parameters to the platform side.
-    const Map<String, dynamic> creationParams = <String, dynamic>{};
+    const Map<String, dynamic> creationParams = <String, dynamic>{
+      'adUnitId': 'R-M-DEMO-320x50'
+    };
 
-    return const AndroidView(
-      viewType: viewType,
-      layoutDirection: TextDirection.ltr,
-      creationParams: creationParams,
-      creationParamsCodec: StandardMessageCodec(),
+    return const SizedBox(
+      height: 100,
+      width: 320,
+      child: AndroidView(
+        viewType: viewType,
+        layoutDirection: TextDirection.ltr,
+        creationParams: creationParams,
+        creationParamsCodec: StandardMessageCodec(),
+      ),
     );
   }
 }

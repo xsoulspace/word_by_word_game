@@ -11,10 +11,13 @@ class YandexAdsBannerNativeViewFactory(
 ) : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
 
 	override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
+		if (args !is Map<*, *>) throw Error()
+		val adUnitId = args["adUnitId"] as String
+
 		return YandexAdsBannerNativeView(
-			context,
-			"yandex-ads-banner-view",
-			yandexApi
+			context = context,
+			adUnitId = adUnitId,
+			yandexApi = yandexApi,
 		)
 	}
 }

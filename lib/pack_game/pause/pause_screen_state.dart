@@ -31,6 +31,12 @@ class _PauseScreenState extends ContextfulLifeState {
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
+  @override
+  void initState() {
+    super.initState();
+    YandexAdsSdk().onLoad();
+  }
+
   void onContinue({
     required final LevelModelId id,
   }) {

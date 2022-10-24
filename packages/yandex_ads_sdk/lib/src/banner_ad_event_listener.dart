@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/services.dart';
 
 import 'gen/yandex_ad_event_handler.g.dart';
@@ -11,14 +13,48 @@ abstract class BannerAdEventListener {
   void onReturnedToApplication();
 }
 
+class BannerAdEventLogListener implements BannerAdEventListener {
+  @override
+  void onAdLoaded() {
+    log('yandex_ad: onAdLoaded');
+  }
+
+  @override
+  void onAdFailedToLoad() {
+    log('yandex_ad: onAdFailedToLoad');
+  }
+
+  @override
+  void onImpression() {
+    log('yandex_ad: onImpression');
+  }
+
+  @override
+  void onAdClicked() {
+    log('yandex_ad: onAdClicked');
+  }
+
+  @override
+  void onLeftApplication() {
+    log('yandex_ad: onLeftApplication');
+  }
+
+  @override
+  void onReturnedToApplication() {
+    log('yandex:FF: onReturnedToApplication');
+  }
+}
+
 class YandexAdEventNotifier {
-  final _channelName = 'dev.flutter.pigeon.YandexAdEventHandler';
+  YandexAdEventNotifier();
+  final _channelName = 'dev.flutter.pigeon_attachment.YandexAdEventHandler';
   // ignore: unused_field
   late final _methodChannel = MethodChannel(_channelName)
     ..setMethodCallHandler(_methodCallHandler);
-  final _listeners = <BannerAdEventListener>{};
+  final _listeners = <BannerAdEventListener>{BannerAdEventLogListener()};
 
   Future<void> _methodCallHandler(final MethodCall call) async {
+    log('yandex_ad call ${call.method}');
     if (call.method == 'notifyListeners') {
       final notifyCall = YandexAdEventNotifyCall.decode(call.arguments);
       _notifyListeners(notifyCall);

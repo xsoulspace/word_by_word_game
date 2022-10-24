@@ -1,6 +1,7 @@
 package dev.xsoulspace.yandex_ads_sdk.view
 
 import android.content.Context
+import android.util.Log
 import android.view.View
 import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
@@ -14,8 +15,8 @@ import io.flutter.plugin.platform.PlatformView
 
 internal class YandexAdsBannerNativeView(
 	context: Context,
-	id: String,
-	private val yandexApi: YandexAdsApiImpl
+	adUnitId: String,
+	private val yandexApi: YandexAdsApiImpl,
 ) : PlatformView {
 	private val apiEmitter: YandexAdEventHandlerImpl
 		get() = yandexApi.emitter
@@ -31,9 +32,9 @@ internal class YandexAdsBannerNativeView(
 	}
 
 	init {
-		banner = BannerAdView(context);
+		banner = BannerAdView(context)
 		banner.setAdSize(AdSize.flexibleSize(320, 100))
-		banner.setAdUnitId(id)
+		banner.setAdUnitId(adUnitId)
 		banner.setBannerAdEventListener(bannerAdEventListener)
 		val request: AdRequest = AdRequest.Builder().build()
 		banner.loadAd(request)

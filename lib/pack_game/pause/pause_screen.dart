@@ -35,10 +35,7 @@ class PauseScreen extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const SizedBox(
-              height: 100,
-              child: YandexBannerPlatformView(),
-            ),
+            const YandexBannerPlatformView(),
             Visibility(
               visible: isLevelRunning,
               child: UiFilledButton.text(
