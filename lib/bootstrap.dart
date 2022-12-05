@@ -2,6 +2,8 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:wbw_core/wbw_core.dart';
 
@@ -26,7 +28,12 @@ class AppBlocObserver extends BlocObserver {
 
 Future<void> bootstrap(final Widget Function() builder) async {
   WidgetsFlutterBinding.ensureInitialized();
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
   // await Flame.device.fullScreen();
+
   final analyticsService = AnalyticsService();
   await analyticsService.onLoad();
   Bloc.observer = AppBlocObserver();

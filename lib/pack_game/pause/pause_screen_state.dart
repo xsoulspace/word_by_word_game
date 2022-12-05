@@ -34,7 +34,7 @@ class _PauseScreenState extends ContextfulLifeState {
   @override
   void initState() {
     super.initState();
-    YandexAdsSdk().onLoad();
+    if (Platform.isAndroid) YandexAdsSdk().onLoad();
   }
 
   void onContinue({

@@ -5,6 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -36,10 +37,11 @@ class PauseScreen extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const TopSafeArea(),
-            YandexBannerPlatformView(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
-            ),
+            if (Platform.isAndroid)
+              YandexBannerPlatformView(
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+              ),
             const Spacer(),
             Visibility(
               visible: isLevelRunning,
