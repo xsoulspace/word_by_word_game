@@ -18,9 +18,19 @@ class FirebaseInitializer implements AbstractFirebaseInitializer {
 
 class FirebaseAnalyticsPlugin implements AbstractAnalytics {
   FirebaseAnalyticsWeb analytics = FirebaseAnalyticsWeb();
-  bool isSupported = false;
+  bool isEnabled = false;
   @override
   Future<void> onLoad() async {}
+  @override
+  Future<void> onDelayedLoad() async {
+    isEnabled = kTestingAnalytics || await analytics.isSupported();
+    if (isEnabled) {
+      /// Logs the standard `app_open` event.
+      ///
+      /// See: https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event.html#APP_OPEN
+      await analytics.logEvent(name: 'app_open');
+    }
+  }
 
   @override
   Future<void> recordError(
@@ -31,7 +41,7 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
     final bool fatal = false,
     final bool? printDetails,
   }) async {
-    if (!isSupported) return;
+    if (!isEnabled) return;
     final errorDetailsStr = convertErrorDetailsToString(
       exception,
       stack,
@@ -51,7 +61,7 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
     final FlutterErrorDetails flutterErrorDetails, {
     final bool fatal = false,
   }) async {
-    if (!isSupported) return;
+    if (!isEnabled) return;
     await recordError(
       flutterErrorDetails.exceptionAsString(),
       flutterErrorDetails.stack,
@@ -65,19 +75,35 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
   }
 
   @override
-  Future<void> onDelayedLoad() async {
-    isSupported = await analytics.isSupported();
-    if (isSupported) {
-      /// Logs the standard `app_open` event.
-      ///
-      /// See: https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event.html#APP_OPEN
-      await analytics.logEvent(name: 'app_open');
-    }
-  }
-
-  @override
-  Future<void> logEvent(final AnalyticEvents event) async {
-    if (!isSupported) return;
+  Future<void> logAnalyticEvent(final AnalyticEvents event) async {
+    if (!isEnabled) return;
     await analytics.logEvent(name: event.name);
   }
+}
+
+class FirebaseCrashlyticsPlugin implements AbstractAnalytics {
+  @override
+  Future<void> logAnalyticEvent(final AnalyticEvents event) async {}
+
+  @override
+  Future<void> onDelayedLoad() async {}
+
+  @override
+  Future<void> onLoad() async {}
+
+  @override
+  Future<void> recordError(
+    final dynamic exception,
+    final StackTrace? stack, {
+    final dynamic reason,
+    final Iterable<DiagnosticsNode> information = const [],
+    final bool fatal = false,
+    final bool? printDetails,
+  }) async {}
+
+  @override
+  Future<void> recordFlutterError(
+    final FlutterErrorDetails flutterErrorDetails, {
+    final bool fatal = false,
+  }) async {}
 }

@@ -1,14 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:life_hooks/life_hooks.dart';
+import 'package:logger/logger.dart';
 import 'package:word_by_word_game/analytics/firebase/firebase.dart';
 
 enum AnalyticEvents {
-  usedInExcel,
+  usedInAndroid,
+  usedInIOS,
   usedInWeb,
 }
 
 abstract class AbstractAnalytics implements Loadable {
-  Future<void> logEvent(final AnalyticEvents event);
+  Future<void> logAnalyticEvent(final AnalyticEvents event);
   Future<void> recordError(
     final dynamic exception,
     final StackTrace? stack, {
@@ -28,7 +30,12 @@ abstract class AbstractAnalytics implements Loadable {
 
 class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
   final logsNotifier = ValueNotifier<List<String>>([]);
-  final plugins = <AbstractAnalytics>[FirebaseAnalyticsPlugin()];
+  final plugins = <AbstractAnalytics>[
+    FirebaseAnalyticsPlugin(),
+    FirebaseCrashlyticsPlugin(),
+  ];
+  final logger =
+      Logger(filter: kDebugMode ? DevelopmentFilter() : ProductionFilter());
 
   @override
   void dispose() {
@@ -37,9 +44,9 @@ class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
   }
 
   @override
-  Future<void> logEvent(final AnalyticEvents event) async {
+  Future<void> logAnalyticEvent(final AnalyticEvents event) async {
     for (final plugin in plugins) {
-      await plugin.logEvent(event);
+      await plugin.logAnalyticEvent(event);
     }
   }
 
@@ -50,6 +57,21 @@ class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
       logs.removeLast();
     }
     logs.insert(0, value);
+  }
+
+  void dynamicLog(final dynamic value) {
+    logger.d(value);
+    log(value.toString());
+  }
+
+  void dynamicInfoLog(final dynamic value) {
+    logger.i(value);
+    log(value.toString());
+  }
+
+  void dynamicErrorLog(final dynamic value) {
+    logger.e(value);
+    log(value.toString());
   }
 
   void clearLogs() {
