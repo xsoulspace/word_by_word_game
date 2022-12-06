@@ -6,9 +6,9 @@ import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/analytics/firebase/firebase.dart';
-import 'package:word_by_word_game/analytics/notifiers/analytics_notifier.dart';
 import 'package:word_by_word_game/firebase_options.dart';
+import 'package:word_by_word_game/pack_core/analytics/firebase/firebase.dart';
+import 'package:word_by_word_game/pack_core/analytics/notifiers/analytics_notifier.dart';
 
 class FirebaseInitializer implements AbstractFirebaseInitializer {
   @override
@@ -123,10 +123,7 @@ class FirebaseCrashlyticsPlugin implements AbstractAnalytics {
   }
 
   @override
-  Future<void> onDelayedLoad() {
-    // TODO: implement onDelayedLoad
-    throw UnimplementedError();
-  }
+  Future<void> onDelayedLoad() async {}
 
   @override
   Future<void> recordError(

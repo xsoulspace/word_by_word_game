@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:logger/logger.dart';
-import 'package:word_by_word_game/analytics/firebase/firebase.dart';
+import 'package:word_by_word_game/pack_core/analytics/firebase/firebase.dart';
 
 enum AnalyticEvents {
   usedInAndroid,
