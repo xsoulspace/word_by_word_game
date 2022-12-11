@@ -4,7 +4,7 @@ import 'package:life_hooks/life_hooks.dart';
 
 import '../utils/utils.dart';
 
-_ButtonState _useButtonState() => use(
+_ButtonState useUiIconButtonState() => use(
       ContextfulLifeHook(
         debugLabel: '_useButtonState',
         state: _ButtonState(),
@@ -89,7 +89,7 @@ class UiIconButton extends HookWidget {
   bool get isEnabled => onPressed != null;
   @override
   Widget build(final BuildContext context) {
-    final state = _useButtonState();
+    final state = useUiIconButtonState();
     const dimension = 32.0;
     final theme = Theme.of(context);
 

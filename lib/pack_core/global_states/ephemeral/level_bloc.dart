@@ -188,7 +188,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final liveState = getLiveState();
     final updatedWord =
         diDto.mechanics.wordComposition.applyDecreaseMiddlePartType(
-      type: event.type,
+      index: event.index,
       currentWord: liveState.currentWord,
     );
     final updatedState = liveState.copyWith(

@@ -35,7 +35,7 @@ class _DesktopControlsWidget extends StatelessWidget {
 
     return Stack(
       children: [
-        Row(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -47,6 +47,18 @@ class _DesktopControlsWidget extends StatelessWidget {
                 ),
                 child: const WordCompositionRow(),
               ),
+            ),
+            uiTheme.verticalBoxes.extraLarge,
+            UIMobileActionsFrame(
+              children: [
+                AddWordToDictionaryButton(
+                  onPressed: () {},
+                ),
+                uiTheme.verticalBoxes.extraSmall,
+                ToNextPhaseButton(
+                  onPressed: () {},
+                ),
+              ],
             ),
           ],
         ),
@@ -65,17 +77,35 @@ class _MobileControlsWidget extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final uiTheme = UiTheme.of(context);
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
-      child: WordCompositionBackground(
-        child: WordCompositionRow(
-          leftTopBuilder: (final context) {
-            return const MobilePlayerName();
-          },
-          rightTopBuilder: (final context) {
-            return const MobilePlayerScore();
-          },
-        ),
+      child: Column(
+        children: [
+          WordCompositionBackground(
+            child: WordCompositionRow(
+              leftTopBuilder: (final context) {
+                return const MobilePlayerName();
+              },
+              rightTopBuilder: (final context) {
+                return const MobilePlayerScore();
+              },
+            ),
+          ),
+          uiTheme.verticalBoxes.extraSmall,
+          UIMobileActionsFrame(
+            children: [
+              AddWordToDictionaryButton(
+                onPressed: () {},
+              ),
+              uiTheme.verticalBoxes.medium,
+              ToNextPhaseButton(
+                onPressed: () {},
+              ),
+            ],
+          ),
+          uiTheme.verticalBoxes.medium,
+        ],
       ),
     );
   }

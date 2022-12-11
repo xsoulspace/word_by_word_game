@@ -48,8 +48,8 @@ class AddNewWordToDictionaryEvent extends LevelBlocEvent {
 @immutable
 class DecreaseMiddlePartEvent extends LevelBlocEvent {
   const DecreaseMiddlePartEvent({
-    required this.type,
+    required this.index,
   });
 
-  final DecreaseMiddlePart type;
+  final int index;
 }

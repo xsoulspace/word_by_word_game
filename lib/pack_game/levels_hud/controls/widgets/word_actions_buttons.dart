@@ -14,9 +14,30 @@ class AddWordToDictionaryButton extends StatelessWidget {
       return s.getLiveState().wordWarning;
     });
 
-    return UiIconButton(
+    return UiTextButton.icon(
+      text: 'Add To Dictionary',
       onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
       icon: UiIcons.dictionary_add,
+    );
+  }
+}
+
+class ToNextPhaseButton extends StatelessWidget {
+  const ToNextPhaseButton({
+    required this.onPressed,
+    super.key,
+  });
+  final VoidCallback onPressed;
+  @override
+  Widget build(final BuildContext context) {
+    final warning = context.select<LevelBloc, WordWarning>((final s) {
+      return s.getLiveState().wordWarning;
+    });
+
+    return UiTextButton.icon(
+      text: 'Continue',
+      onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
+      icon: UiIcons.fire,
     );
   }
 }

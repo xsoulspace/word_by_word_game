@@ -108,26 +108,10 @@ class _WordCompositionState extends LifeState {
     diDto.levelBloc.add(event);
   }
 
-  void onDecreaseLeftPart() {
+  void onDecreaseMiddlePart(final int index) {
     diDto.levelBloc.add(
-      const DecreaseMiddlePartEvent(
-        type: DecreaseMiddlePart.leftLetter,
-      ),
-    );
-  }
-
-  void onDecreaseRightPart() {
-    diDto.levelBloc.add(
-      const DecreaseMiddlePartEvent(
-        type: DecreaseMiddlePart.rightLetter,
-      ),
-    );
-  }
-
-  void onResetMiddlePart() {
-    diDto.levelBloc.add(
-      const DecreaseMiddlePartEvent(
-        type: DecreaseMiddlePart.allLetters,
+      DecreaseMiddlePartEvent(
+        index: index,
       ),
     );
   }

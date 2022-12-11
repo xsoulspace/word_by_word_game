@@ -55,7 +55,7 @@ class WordCompositionRow extends StatelessWidget {
 
                 final middleWordPartActions = MiddleWordPartActions(
                   middleWordPartNotifier: wordWriterState.middlePart,
-                  onLeftTap: wordWriterState.onDecreaseLeftPart,
+                  onLeftTap: wordWriterState.onDecreaseMiddlePart,
                   onRightTap: wordWriterState.onDecreaseRightPart,
                 );
 
