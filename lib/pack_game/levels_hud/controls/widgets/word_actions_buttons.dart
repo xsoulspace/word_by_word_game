@@ -15,9 +15,10 @@ class AddWordToDictionaryButton extends StatelessWidget {
     });
 
     return UiTextButton.icon(
-      text: 'Add To Dictionary',
+      text: 'Add to Dictionary',
       onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
       icon: UiIcons.dictionary_add,
+      isLongButton: true,
     );
   }
 }
@@ -36,8 +37,10 @@ class ToNextPhaseButton extends StatelessWidget {
 
     return UiTextButton.icon(
       text: 'Continue',
-      onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
+      onPressed: warning == WordWarning.isNotCorrect ? null : onPressed,
       icon: UiIcons.fire,
+      mainAlignment: MainAxisAlignment.center,
+      isLongButton: true,
     );
   }
 }

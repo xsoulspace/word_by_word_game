@@ -9,16 +9,18 @@ class UiTextButton extends HookWidget {
     required this.icon,
     required this.text,
     this.onPressed,
-    this.width = 180.0,
+    this.width = 157.0,
     this.mainAlignment = MainAxisAlignment.start,
+    this.isLongButton = false,
     super.key,
   });
   const UiTextButton.text({
     required this.text,
+    this.isLongButton = false,
     this.icon,
     this.onPressed,
     this.mainAlignment = MainAxisAlignment.start,
-    this.width = 180.0,
+    this.width = 140.0,
     super.key,
   });
   final UiIcons? icon;
@@ -26,10 +28,13 @@ class UiTextButton extends HookWidget {
   final double? width;
   final VoidCallback? onPressed;
   final MainAxisAlignment mainAlignment;
+  final bool isLongButton;
   bool get isEnabled => onPressed != null;
   @override
   Widget build(final BuildContext context) {
-    final state = useUiIconButtonState();
+    final state = useUiIconButtonState(
+      isLongButton: isLongButton,
+    );
     const height = 32.0;
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
@@ -69,7 +74,6 @@ class UiTextButton extends HookWidget {
               mainAxisAlignment: mainAlignment,
               children: [
                 if (icon != null) ...[
-                  uiTheme.horizontalBoxes.medium,
                   Container(
                     width: height,
                     height: height,

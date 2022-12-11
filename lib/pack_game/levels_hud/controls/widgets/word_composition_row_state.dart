@@ -15,20 +15,20 @@ class _WordCompositionStateDiDto {
   final DialogController dialogController;
 }
 
-_WordCompositionState _useWordCompositionState({
+WordCompositionState useWordCompositionState({
   required final Locator read,
 }) =>
     use(
       LifeHook(
         debugLabel: '_WordCompositionState',
-        state: _WordCompositionState(
+        state: WordCompositionState(
           diDto: _WordCompositionStateDiDto.use(read),
         ),
       ),
     );
 
-class _WordCompositionState extends LifeState {
-  _WordCompositionState({
+class WordCompositionState extends LifeState {
+  WordCompositionState({
     required this.diDto,
   })  : leftPartController = TextEditingController(
           text: diDto.levelBloc.getLiveState().currentWord.leftPart,

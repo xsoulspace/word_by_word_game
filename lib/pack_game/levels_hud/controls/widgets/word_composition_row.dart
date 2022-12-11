@@ -25,7 +25,7 @@ class WordCompositionRow extends HookWidget {
   final WidgetBuilder? rightTopBuilder;
   @override
   Widget build(final BuildContext context) {
-    final state = _useWordCompositionState(read: context.read);
+    final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
     final buildAndListenWhenCallback = LevelBloc.useCheckStateEqualityBuilder(
       checkLiveState: (final previous, final current) =>
@@ -165,6 +165,8 @@ class MiddleWordPartActions extends StatelessWidget {
             .mapIndexed(
               (final index, final letter) => UiLetterButton(
                 onPressed: () {
+                  // TODO(arenukvern): add small dialog window about
+                  // how letter can be deleted and for deletion cost.
                   onLetterPressed(index);
                 },
                 letter: letter,
