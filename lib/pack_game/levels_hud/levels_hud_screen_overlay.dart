@@ -11,7 +11,7 @@ import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'levels_hud_screen_overlay_state.dart';
 
-class LevelsHudScreenOverlay extends StatelessWidget {
+class LevelsHudScreenOverlay extends HookWidget {
   const LevelsHudScreenOverlay({super.key});
 
   @override
