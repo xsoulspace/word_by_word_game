@@ -62,5 +62,26 @@ void main() {
         equals(const CurrentWordModel(fullWord: 'dc', middlePart: 'dc')),
       );
     });
+    test('applyDecreaseMiddlePartType - can reset last middle letter', () {
+      const currentWord = CurrentWordModel(
+        middlePart: 'd',
+        leftPart: 's',
+        rightPart: 'un',
+      );
+      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
+        currentWord: currentWord,
+        index: 0,
+      );
+      expect(
+        result,
+        equals(
+          const CurrentWordModel(
+            fullWord: 'sun',
+            middlePart: '',
+            rightPart: 'sun',
+          ),
+        ),
+      );
+    });
   });
 }

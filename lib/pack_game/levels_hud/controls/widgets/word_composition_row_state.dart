@@ -110,11 +110,7 @@ class WordCompositionState extends LifeState {
   }
 
   void onDecreaseMiddlePart(final int index) {
-    diDto.levelBloc.add(
-      DecreaseMiddlePartEvent(
-        index: index,
-      ),
-    );
+    diDto.levelBloc.add(DecreaseMiddlePartEvent(index: index));
   }
 
   void onLatestWordChanged() {

@@ -227,6 +227,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final updatedState = liveState.copyWith(
       currentWord: updatedWord,
     );
+
     emit(updatedState);
     final playerId = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
     final score = diDto.mechanics.score.getDecreaseScore(lettersCount: 1);

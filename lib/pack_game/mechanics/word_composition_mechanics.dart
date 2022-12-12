@@ -43,9 +43,17 @@ class WordCompositionMechanics {
     if (middlePart.isEmpty) {
       updatedWord = currentWord;
     } else {
+      final newMiddlePart =
+          currentWord.middlePart.replaceRange(index, index + 1, '');
       updatedWord = currentWord.copyWith(
-        middlePart: currentWord.middlePart.replaceRange(index, index + 1, ''),
+        middlePart: newMiddlePart,
       );
+      if (newMiddlePart.isEmpty) {
+        updatedWord = updatedWord.copyWith(
+          leftPart: '',
+          rightPart: '${currentWord.leftPart}${currentWord.rightPart}',
+        );
+      }
     }
 
     return applyPartsChanges(
