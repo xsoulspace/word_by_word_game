@@ -18,6 +18,7 @@ class LevelsHudScreenOverlay extends StatelessWidget {
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
+    final state = _useLevelsHudScreenOverlayState(read: context.read);
     return Stack(
       children: [
         Positioned(

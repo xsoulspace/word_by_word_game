@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flame/game.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:flutter/material.dart';
-import 'package:tiled/tiled.dart';
 import 'package:word_by_word_game/pack_game/game/game.dart';
 
 class ObstacleLevelHelper {
