@@ -55,11 +55,18 @@ class WordCompositionRow extends HookWidget {
                       previous.currentWord.middlePart !=
                       current.currentWord.middlePart,
                 ),
-                builder: (final context, final blocState) {
+                builder: (final context, final levelState) {
+                  if (levelState is! LiveLevelBlocState) {
+                    return const SizedBox();
+                  }
+                  final latestWord = levelState.latestWord;
+                  final currentWord = levelState.currentWord;
+
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (levelState.latestWord.isNotEmpty)
+                      if (latestWord.isNotEmpty &&
+                          currentWord.middlePart.isNotEmpty)
                         UiFrameTextField(
                           textFieldFocusNode: state.leftWordFocus,
                           onEnterPressed: state.onRequestRightTextFocus,
@@ -68,18 +75,10 @@ class WordCompositionRow extends HookWidget {
                           controller: state.leftPartController,
                           hintText: S.of(context).hintAddBeginning,
                         ),
-                      if (levelState.latestWord.isNotEmpty)
-                        Builder(
-                          builder: (final context) {
-                            if (blocState is! LiveLevelBlocState) {
-                              return const SizedBox();
-                            }
-                            return MiddleWordPartActions(
-                              middlePartOfWord:
-                                  blocState.currentWord.middlePart,
-                              onLetterPressed: state.onDecreaseMiddlePart,
-                            );
-                          },
+                      if (latestWord.isNotEmpty)
+                        MiddleWordPartActions(
+                          middlePartOfWord: currentWord.middlePart,
+                          onLetterPressed: state.onDecreaseMiddlePart,
                         ),
                       UiFrameTextField(
                         keyFocusNode: state.rightWordKeyFocus,
