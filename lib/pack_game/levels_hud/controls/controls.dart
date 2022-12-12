@@ -42,41 +42,35 @@ class _DesktopControlsWidget extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final state = context.read<WordCompositionState>();
 
-    return Stack(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            WordCompositionBackground(
-              child: Padding(
-                padding: EdgeInsets.symmetric(
-                  horizontal: uiTheme.spacing.extraLarge,
-                  vertical: uiTheme.spacing.large,
-                ),
-                child: const WordCompositionRow(),
+    return Container(
+      padding: EdgeInsets.symmetric(
+        horizontal: uiTheme.spacing.medium,
+      ).copyWith(
+        bottom: uiTheme.spacing.medium,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const DesktopPlayerSwitcher(),
+          uiTheme.horizontalBoxes.medium,
+          const WordCompositionBackground(
+            child: WordCompositionRow(),
+          ),
+          uiTheme.horizontalBoxes.medium,
+          UIDesktopActionsFrame(
+            children: [
+              AddWordToDictionaryButton(
+                onPressed: state.onAddWordToDictionary,
               ),
-            ),
-            uiTheme.verticalBoxes.extraLarge,
-            UIMobileActionsFrame(
-              children: [
-                AddWordToDictionaryButton(
-                  onPressed: state.onAddWordToDictionary,
-                ),
-                uiTheme.verticalBoxes.extraSmall,
-                ToNextPhaseButton(
-                  onPressed: state.onFire,
-                ),
-              ],
-            ),
-          ],
-        ),
-        Positioned(
-          bottom: uiTheme.spacing.medium,
-          left: uiTheme.spacing.medium,
-          child: const DesktopPlayerSwitcher(),
-        )
-      ],
+              uiTheme.verticalBoxes.extraSmall,
+              ToNextPhaseButton(
+                onPressed: state.onFire,
+              ),
+            ],
+          ),
+        ],
+      ),
     );
   }
 }
