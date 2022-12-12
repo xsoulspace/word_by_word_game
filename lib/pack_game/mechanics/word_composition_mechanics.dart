@@ -51,7 +51,7 @@ class WordCompositionMechanics {
       if (newMiddlePart.isEmpty) {
         updatedWord = updatedWord.copyWith(
           leftPart: '',
-          rightPart: '${currentWord.leftPart}${currentWord.rightPart}',
+          rightPart: '${updatedWord.leftPart}${updatedWord.rightPart}',
         );
       }
     }
