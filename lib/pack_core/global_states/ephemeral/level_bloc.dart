@@ -35,6 +35,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<AcceptNewWordEvent>(_onAcceptNewWord);
     on<AddNewWordToDictionaryEvent>(_onAddNewWordToDictionary);
     on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
+    on<LevelPlayerEndTurnActionEvent>(_onLevelPlayerEndTurnAction);
   }
 
   static bool Function(LevelBlocState previous, LevelBlocState current)
@@ -152,18 +153,15 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
         wordWarning: wordWarning,
       );
       emit(updatedState);
-      final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
-      levelPlayersBloc.add(const SwitchToNextPlayerEvent());
       final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
-      levelPlayersBloc
-        ..add(RefuelStorageEvent(score: score))
-        ..add(
-          UpdatePlayerHighscoreEvent(
-            word: newWord,
-            score: score,
-            playerId: playerId,
-          ),
-        );
+      final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
+      levelPlayersBloc.add(
+        UpdatePlayerHighscoreEvent(
+          word: newWord,
+          score: score,
+          playerId: playerId,
+        ),
+      );
     } else {
       emit(
         liveState.copyWith(
@@ -171,6 +169,41 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
         ),
       );
     }
+  }
+
+  void _onLevelPlayerEndTurnAction(
+    final LevelPlayerEndTurnActionEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final levelPlayersBloc = diDto.levelPlayersBloc;
+    final scoreMechanics = diDto.mechanics.score;
+
+    ScoreModel appliedScore;
+
+    switch (event.type) {
+      case LevelPlayerActionEventType.cookFood:
+        appliedScore = scoreMechanics.getScoreForCookFoodByModifier(
+          multiplier: event.multiplier,
+        );
+        levelPlayersBloc.add(CookFoodEvent(score: appliedScore));
+        break;
+      case LevelPlayerActionEventType.refuelStorage:
+        appliedScore = scoreMechanics.getScoreForRefuelStorageByModifier(
+          multiplier: event.multiplier,
+        );
+        levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));
+        break;
+    }
+
+    final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
+    levelPlayersBloc
+      ..add(
+        UpdatePlayerHighscoreEvent(
+          score: appliedScore * -1,
+          playerId: playerId,
+        ),
+      )
+      ..add(const SwitchToNextPlayerEvent());
   }
 
   String getWordSuggestion() {

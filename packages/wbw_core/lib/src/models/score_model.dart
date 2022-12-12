@@ -18,4 +18,8 @@ class ScoreModel with _$ScoreModel {
   factory ScoreModel.fromJson(final Map<String, dynamic> json) =>
       _$ScoreModelFromJson(json);
   static const zero = ScoreModel(value: 0);
+
+  ScoreModel operator *(final num factor) {
+    return ScoreModel(value: value * factor);
+  }
 }

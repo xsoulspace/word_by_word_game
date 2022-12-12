@@ -38,9 +38,29 @@ class ChangeCharacterPositionEvent extends LevelPlayersEvent {
   final Vector2 position;
 }
 
+enum LevelPlayerActionEventType {
+  refuelStorage,
+  cookFood,
+}
+
+enum LevelActionMultiplierType {
+  m1,
+  m2,
+  m3,
+}
+
 @immutable
 class RefuelStorageEvent extends LevelPlayersEvent {
   const RefuelStorageEvent({
+    required this.score,
+  });
+
+  final ScoreModel score;
+}
+
+@immutable
+class CookFoodEvent extends LevelPlayersEvent {
+  const CookFoodEvent({
     required this.score,
   });
 

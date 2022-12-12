@@ -49,47 +49,48 @@ class WordCompositionRow extends HookWidget {
             leftTopBuilder: leftTopBuilder,
             rightTopBuilder: rightTopBuilder,
             textFieldBuilder: (final context) {
-              final leftTextField = UiFrameTextField(
-                textFieldFocusNode: state.leftWordFocus,
-                onEnterPressed: state.onRequestRightTextFocus,
-                onSubmitted: state.onRequestRightTextFocus,
-                keyFocusNode: state.leftWordKeyFocus,
-                controller: state.leftPartController,
-                hintText: S.of(context).hintAddBeginning,
-              );
-
-              final middleWordPartActions =
-                  BlocBuilder<LevelBloc, LevelBlocState>(
+              return BlocBuilder<LevelBloc, LevelBlocState>(
                 buildWhen: LevelBloc.useCheckStateEqualityBuilder(
                   checkLiveState: (final previous, final current) =>
                       previous.currentWord.middlePart !=
                       current.currentWord.middlePart,
                 ),
                 builder: (final context, final blocState) {
-                  if (blocState is! LiveLevelBlocState) {
-                    return const SizedBox();
-                  }
-                  return MiddleWordPartActions(
-                    middlePartOfWord: blocState.currentWord.middlePart,
-                    onLetterPressed: state.onDecreaseMiddlePart,
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (levelState.latestWord.isNotEmpty)
+                        UiFrameTextField(
+                          textFieldFocusNode: state.leftWordFocus,
+                          onEnterPressed: state.onRequestRightTextFocus,
+                          onSubmitted: state.onRequestRightTextFocus,
+                          keyFocusNode: state.leftWordKeyFocus,
+                          controller: state.leftPartController,
+                          hintText: S.of(context).hintAddBeginning,
+                        ),
+                      if (levelState.latestWord.isNotEmpty)
+                        Builder(
+                          builder: (final context) {
+                            if (blocState is! LiveLevelBlocState) {
+                              return const SizedBox();
+                            }
+                            return MiddleWordPartActions(
+                              middlePartOfWord:
+                                  blocState.currentWord.middlePart,
+                              onLetterPressed: state.onDecreaseMiddlePart,
+                            );
+                          },
+                        ),
+                      UiFrameTextField(
+                        keyFocusNode: state.rightWordKeyFocus,
+                        textFieldFocusNode: state.rightWordFocus,
+                        controller: state.rightPartController,
+                        hintText: S.of(context).hintAddEnding,
+                        onSubmitted: state.onFire,
+                      ),
+                    ],
                   );
                 },
-              );
-              final rightTextField = UiFrameTextField(
-                keyFocusNode: state.rightWordKeyFocus,
-                textFieldFocusNode: state.rightWordFocus,
-                controller: state.rightPartController,
-                hintText: S.of(context).hintAddEnding,
-                onSubmitted: state.onFire,
-              );
-
-              return Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  if (levelState.latestWord.isNotEmpty) leftTextField,
-                  if (levelState.latestWord.isNotEmpty) middleWordPartActions,
-                  rightTextField,
-                ],
               );
             },
           );

@@ -1,11 +1,14 @@
 import 'dart:math' as math;
 
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 const int kIncreaseScoreModifier = 65;
 const int kDecreaseScoreModifier = kIncreaseScoreModifier * 3;
 const double kRevealScoreModifier = 1.8;
-int get kLetterDecreaseCost => 1 * kDecreaseScoreModifier;
+double get kLetterDecreaseCost => 1.0 * kDecreaseScoreModifier;
+double get kRefuelStorageCost => 1.0 * kDecreaseScoreModifier;
+double get kCookFoodCost => 0.9 * kDecreaseScoreModifier;
 
 class ScoreMechanics {
   ScoreModel getScoreFromWord({
@@ -25,6 +28,44 @@ class ScoreMechanics {
     return ScoreModel(
       value: (score.value * kRevealScoreModifier).toInt().toDouble(),
     );
+  }
+
+  ScoreModel getScoreForCookFoodByModifier({
+    required final LevelActionMultiplierType multiplier,
+  }) {
+    final double score;
+    switch (multiplier) {
+      case LevelActionMultiplierType.m1:
+        score = 10.0;
+        break;
+      case LevelActionMultiplierType.m2:
+        score = 15.0;
+        break;
+      case LevelActionMultiplierType.m3:
+        score = 25.0;
+        break;
+    }
+
+    return ScoreModel(value: score * kCookFoodCost);
+  }
+
+  ScoreModel getScoreForRefuelStorageByModifier({
+    required final LevelActionMultiplierType multiplier,
+  }) {
+    final double score;
+    switch (multiplier) {
+      case LevelActionMultiplierType.m1:
+        score = 10.0;
+        break;
+      case LevelActionMultiplierType.m2:
+        score = 30.0;
+        break;
+      case LevelActionMultiplierType.m3:
+        score = 50.0;
+        break;
+    }
+
+    return ScoreModel(value: score * kRefuelStorageCost);
   }
 
   ScoreModel getDecreaseScore({

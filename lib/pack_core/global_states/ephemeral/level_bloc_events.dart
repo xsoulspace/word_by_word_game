@@ -41,6 +41,16 @@ class AcceptNewWordEvent extends LevelBlocEvent {
 }
 
 @immutable
+class LevelPlayerEndTurnActionEvent extends LevelBlocEvent {
+  const LevelPlayerEndTurnActionEvent({
+    required this.type,
+    required this.multiplier,
+  });
+  final LevelPlayerActionEventType type;
+  final LevelActionMultiplierType multiplier;
+}
+
+@immutable
 class AddNewWordToDictionaryEvent extends LevelBlocEvent {
   const AddNewWordToDictionaryEvent();
 }
