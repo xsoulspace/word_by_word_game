@@ -5,7 +5,7 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/pack_core.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
@@ -34,7 +34,7 @@ Future<void> bootstrap(final Widget Function() builder) async {
   });
   // await Flame.device.fullScreen();
 
-  final analyticsService = AnalyticsService();
+  final analyticsService = AnalyticsNotifier();
   await analyticsService.onLoad();
   Bloc.observer = AppBlocObserver();
   runZonedGuarded(
