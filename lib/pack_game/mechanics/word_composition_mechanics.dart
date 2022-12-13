@@ -1,11 +1,5 @@
 import 'package:wbw_core/wbw_core.dart';
 
-enum DecreaseMiddlePart {
-  leftLetter,
-  rightLetter,
-  allLetters,
-}
-
 class WordCompositionMechanics {
   CurrentWordModel applyPartsChanges({
     required final CurrentWordModel word,
@@ -41,7 +35,7 @@ class WordCompositionMechanics {
   }
 
   CurrentWordModel applyDecreaseMiddlePartType({
-    required final DecreaseMiddlePart type,
+    required final int index,
     required final CurrentWordModel currentWord,
   }) {
     CurrentWordModel updatedWord;
@@ -49,26 +43,16 @@ class WordCompositionMechanics {
     if (middlePart.isEmpty) {
       updatedWord = currentWord;
     } else {
-      final middlePartLength = middlePart.length;
-      switch (type) {
-        case DecreaseMiddlePart.allLetters:
-          updatedWord = currentWord.copyWith(
-            middlePart: '',
-          );
-          break;
-        case DecreaseMiddlePart.leftLetter:
-          updatedWord = currentWord.copyWith(
-            middlePart: currentWord.middlePart.substring(1),
-          );
-          break;
-        case DecreaseMiddlePart.rightLetter:
-          updatedWord = currentWord.copyWith(
-            middlePart: currentWord.middlePart.substring(
-              0,
-              middlePartLength - 1,
-            ),
-          );
-          break;
+      final newMiddlePart =
+          currentWord.middlePart.replaceRange(index, index + 1, '');
+      updatedWord = currentWord.copyWith(
+        middlePart: newMiddlePart,
+      );
+      if (newMiddlePart.isEmpty) {
+        updatedWord = updatedWord.copyWith(
+          leftPart: '',
+          rightPart: '${updatedWord.leftPart}${updatedWord.rightPart}',
+        );
       }
     }
 

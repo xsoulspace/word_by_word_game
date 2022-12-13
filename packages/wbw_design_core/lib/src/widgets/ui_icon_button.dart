@@ -3,16 +3,25 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 
 import '../utils/utils.dart';
+import 'ui_text_button.dart';
 
-_ButtonState _useButtonState() => use(
+_ButtonState useUiIconButtonState({
+  final bool isLongButton = false,
+}) =>
+    use(
       ContextfulLifeHook(
         debugLabel: '_useButtonState',
-        state: _ButtonState(),
+        state: _ButtonState(
+          isLongButton: isLongButton,
+        ),
       ),
     );
 
 class _ButtonState extends ContextfulLifeState {
-  _ButtonState();
+  _ButtonState({
+    required this.isLongButton,
+  });
+  final bool isLongButton;
   bool _isPressed = false;
 
   bool get isPressed => _isPressed;
@@ -23,12 +32,23 @@ class _ButtonState extends ContextfulLifeState {
     setState();
   }
 
-  late final pressedIconImagePath =
-      UiAssetHelper.useImagePath('buttons/icon_button_pressed');
-  late final iconImagePath = UiAssetHelper.useImagePath('buttons/icon_button');
+  late final pressedIconImagePath = UiAssetHelper.useImagePath(
+    "buttons/${isLongButton ? 'long_button_pressed' : 'icon_button_pressed'}",
+  );
+  late final iconImagePath = UiAssetHelper.useImagePath(
+    "buttons/${isLongButton ? 'long_button' : 'icon_button'}",
+  );
   final iconImagePixelsHeight = 16.0;
   void _onPressed() {
-    (getContext().widget as UiIconButton).onPressed?.call();
+    final widget = getContext().widget;
+    if (widget is UiIconButton) {
+      widget.onPressed?.call();
+    } else if (widget is UiTextButton) {
+      widget.onPressed?.call();
+    } else {
+      // TODO(arenukvern): description
+      throw UnimplementedError();
+    }
   }
 
   Future<void> onTap() async {
@@ -89,7 +109,7 @@ class UiIconButton extends HookWidget {
   bool get isEnabled => onPressed != null;
   @override
   Widget build(final BuildContext context) {
-    final state = _useButtonState();
+    final state = useUiIconButtonState();
     const dimension = 32.0;
     final theme = Theme.of(context);
 

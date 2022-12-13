@@ -11,13 +11,12 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/widgets.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
 
-class WordCompositionRow extends HookWidget {
-  const WordCompositionRow({
+class UIWordCompositionRow extends HookWidget {
+  const UIWordCompositionRow({
     this.leftTopBuilder,
     this.rightTopBuilder,
     final Key? key,
@@ -26,7 +25,7 @@ class WordCompositionRow extends HookWidget {
   final WidgetBuilder? rightTopBuilder;
   @override
   Widget build(final BuildContext context) {
-    final state = _useWordCompositionState(read: context.read);
+    final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
     final buildAndListenWhenCallback = LevelBloc.useCheckStateEqualityBuilder(
       checkLiveState: (final previous, final current) =>
@@ -42,82 +41,57 @@ class WordCompositionRow extends HookWidget {
         builder: (final context, final levelState) {
           if (levelState is! LiveLevelBlocState) return const SizedBox();
 
-          return Row(
-            crossAxisAlignment: CrossAxisAlignment.end,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              UICenterFrame(
-                onIdea: levelState.currentWord.cleanWord.isEmpty
-                    ? null
-                    : state.onOpenSuggestionDialog,
-                onPause: state.onPause,
-                leftTopBuilder: leftTopBuilder,
-                rightTopBuilder: rightTopBuilder,
-                textFieldBuilder: (final context) {
-                  final leftTextField = UiFrameTextField(
-                    textFieldFocusNode: state.leftWordFocus,
-                    onEnterPressed: state.onRequestRightTextFocus,
-                    onSubmitted: state.onRequestRightTextFocus,
-                    keyFocusNode: state.leftWordKeyFocus,
-                    controller: state.leftPartController,
-                    hintText: S.of(context).hintAddBeginning,
-                  );
-
-                  final middleWordPartActions =
-                      BlocBuilder<LevelBloc, LevelBlocState>(
-                    buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-                      checkLiveState: (final previous, final current) =>
-                          previous.currentWord.middlePart !=
-                          current.currentWord.middlePart,
-                    ),
-                    builder: (final context, final blocState) {
-                      if (blocState is! LiveLevelBlocState) {
-                        return const SizedBox();
-                      }
-                      return MiddleWordPartActions(
-                        middlePartOfWord: blocState.currentWord.middlePart,
-                        onLeftPressed: state.onDecreaseLeftPart,
-                        onRightPressed: state.onDecreaseRightPart,
-                      );
-                    },
-                  );
-                  final rightTextField = UiFrameTextField(
-                    keyFocusNode: state.rightWordKeyFocus,
-                    textFieldFocusNode: state.rightWordFocus,
-                    controller: state.rightPartController,
-                    hintText: S.of(context).hintAddEnding,
-                    onSubmitted: state.onFire,
-                  );
+          return UICenterFrame(
+            onIdea: levelState.currentWord.cleanWord.isEmpty
+                ? null
+                : state.onOpenSuggestionDialog,
+            onPause: state.onPause,
+            leftTopBuilder: leftTopBuilder,
+            rightTopBuilder: rightTopBuilder,
+            textFieldBuilder: (final context) {
+              return BlocBuilder<LevelBloc, LevelBlocState>(
+                buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+                  checkLiveState: (final previous, final current) =>
+                      previous.currentWord.middlePart !=
+                      current.currentWord.middlePart,
+                ),
+                builder: (final context, final levelState) {
+                  if (levelState is! LiveLevelBlocState) {
+                    return const SizedBox();
+                  }
+                  final latestWord = levelState.latestWord;
+                  final currentWord = levelState.currentWord;
 
                   return Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      if (levelState.latestWord.isNotEmpty) leftTextField,
-                      if (levelState.latestWord.isNotEmpty)
-                        middleWordPartActions,
-                      rightTextField,
+                      if (latestWord.isNotEmpty &&
+                          currentWord.middlePart.isNotEmpty)
+                        UiFrameTextField(
+                          textFieldFocusNode: state.leftWordFocus,
+                          onEnterPressed: state.onRequestRightTextFocus,
+                          onSubmitted: state.onRequestRightTextFocus,
+                          keyFocusNode: state.leftWordKeyFocus,
+                          controller: state.leftPartController,
+                          hintText: S.of(context).hintAddBeginning,
+                        ),
+                      if (latestWord.isNotEmpty)
+                        MiddleWordPartActions(
+                          middlePartOfWord: currentWord.middlePart,
+                          onLetterPressed: state.onDecreaseMiddlePart,
+                        ),
+                      UiFrameTextField(
+                        keyFocusNode: state.rightWordKeyFocus,
+                        textFieldFocusNode: state.rightWordFocus,
+                        controller: state.rightPartController,
+                        hintText: S.of(context).hintAddEnding,
+                        onSubmitted: state.onToEndTurn,
+                      ),
                     ],
                   );
                 },
-              ),
-              uiTheme.horizontalBoxes.small,
-              UIActionsFrame(
-                children: [
-                  AddWordToDictionaryButton(
-                    onPressed: state.onAddWordToDictionary,
-                  ),
-                  uiTheme.verticalBoxes.extraSmall,
-                  UiIconButton(
-                    onPressed: state.onFire,
-                    icon: UiIcons.fire,
-                  ),
-                  uiTheme.verticalBoxes.extraSmall,
-                  const UiIconButton(
-                    icon: UiIcons.collect,
-                  ),
-                ],
-              ),
-            ],
+              );
+            },
           );
         },
       ),
@@ -138,18 +112,22 @@ class LastWordWidget extends StatelessWidget {
   }
 }
 
-class MinusIconButton extends StatelessWidget {
-  const MinusIconButton({
+class UiLetterButton extends StatelessWidget {
+  const UiLetterButton({
     required this.onPressed,
+    required this.letter,
     final Key? key,
   }) : super(key: key);
   final VoidCallback onPressed;
+  final String letter;
 
   @override
   Widget build(final BuildContext context) {
-    return UiIconButton(
-      icon: UiIcons.minus,
+    return UiTextButton.text(
+      text: letter,
+      mainAlignment: MainAxisAlignment.center,
       onPressed: onPressed,
+      width: null,
     );
   }
 }
@@ -157,13 +135,11 @@ class MinusIconButton extends StatelessWidget {
 class MiddleWordPartActions extends StatelessWidget {
   const MiddleWordPartActions({
     required this.middlePartOfWord,
-    required this.onLeftPressed,
-    required this.onRightPressed,
+    required this.onLetterPressed,
     final Key? key,
   }) : super(key: key);
   final String middlePartOfWord;
-  final VoidCallback onLeftPressed;
-  final VoidCallback onRightPressed;
+  final ValueChanged<int> onLetterPressed;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
@@ -185,17 +161,18 @@ class MiddleWordPartActions extends StatelessWidget {
     if (isPlayerAbleToDecrease) {
       child = Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          MinusIconButton(
-            onPressed: onLeftPressed,
-          ),
-          uiTheme.horizontalBoxes.small,
-          Text(middlePartOfWord),
-          uiTheme.horizontalBoxes.small,
-          MinusIconButton(
-            onPressed: onRightPressed,
-          )
-        ],
+        children: middlePartOfWord.characters
+            .mapIndexed(
+              (final index, final letter) => UiLetterButton(
+                onPressed: () {
+                  // TODO(arenukvern): add small dialog window about
+                  // how letter can be deleted and for deletion cost.
+                  onLetterPressed(index);
+                },
+                letter: letter,
+              ),
+            )
+            .toList(),
       );
     } else {
       child = Text(middlePartOfWord);

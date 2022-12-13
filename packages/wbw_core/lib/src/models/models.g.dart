@@ -144,6 +144,14 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           ) ??
           const {},
       latestWord: json['latestWord'] as String? ?? '',
+      phaseType: $enumDecodeNullable(
+              _$LevelPlayerPhaseTypeEnumMap, json['phaseType']) ??
+          LevelPlayerPhaseType.entryWord,
+      actionMultiplier: $enumDecodeNullable(
+              _$LevelActionMultiplierTypeEnumMap, json['actionMultiplier']) ??
+          LevelActionMultiplierType.m1,
+      actionType: $enumDecodeNullable(
+          _$LevelPlayerActionTypeEnumMap, json['actionType']),
     );
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
@@ -156,7 +164,27 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
+      'phaseType': _$LevelPlayerPhaseTypeEnumMap[instance.phaseType]!,
+      'actionMultiplier':
+          _$LevelActionMultiplierTypeEnumMap[instance.actionMultiplier]!,
+      'actionType': _$LevelPlayerActionTypeEnumMap[instance.actionType],
     };
+
+const _$LevelPlayerPhaseTypeEnumMap = {
+  LevelPlayerPhaseType.entryWord: 'entryWord',
+  LevelPlayerPhaseType.selectAction: 'selectAction',
+};
+
+const _$LevelActionMultiplierTypeEnumMap = {
+  LevelActionMultiplierType.m1: 'm1',
+  LevelActionMultiplierType.m2: 'm2',
+  LevelActionMultiplierType.m3: 'm3',
+};
+
+const _$LevelPlayerActionTypeEnumMap = {
+  LevelPlayerActionType.refuelStorage: 'refuelStorage',
+  LevelPlayerActionType.cookFood: 'cookFood',
+};
 
 _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
         Map<String, dynamic> json) =>

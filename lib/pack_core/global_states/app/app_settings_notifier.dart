@@ -25,9 +25,10 @@ class AppSettingsNotifier extends ChangeNotifier implements Loadable {
   Locale? get locale => _settings.locale;
   set locale(final Locale? value) {
     if (value == null) return;
-    if (value == locale) return;
-    S.load(value);
-    settings = settings.copyWith(locale: value);
+    if (value.languageCode == locale?.languageCode) return;
+    final newLocale = localeFromString(value.languageCode);
+    S.load(newLocale);
+    settings = settings.copyWith(locale: newLocale);
   }
 
   /// Load the user's settings from the SettingsService. It may load from a

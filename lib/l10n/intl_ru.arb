@@ -10,6 +10,8 @@
     "placeholders": {}
   },
   "play": "Играть",
+  "confirm": "Подтвердить",
+  "applyAndEndTurn": "Завершить ход",
   "toLandscapes": "В Места",
   "send": "Отправить",
   "youHaveLandedInTheNowhere": "Вы приземлились где-то в неизвестность..",
@@ -144,6 +146,9 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectAction": "Выбери действие",
+  "cookFood": "Еда",
+  "refuelStorage": "Топливо",
   "addToDictionary": "Добавить в словарь",
   "@addToDictionary": {
     "type": "text",
