@@ -340,6 +340,26 @@ class S {
     );
   }
 
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply & End Turn`
+  String get applyAndEndTurn {
+    return Intl.message(
+      'Apply & End Turn',
+      name: 'applyAndEndTurn',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `beginning`
   String get hintAddBeginning {
     return Intl.message(
@@ -600,10 +620,10 @@ class S {
     );
   }
 
-  /// `Add to dictionary`
+  /// `Add to Dictionary`
   String get addToDictionary {
     return Intl.message(
-      'Add to dictionary',
+      'Add to Dictionary',
       name: 'addToDictionary',
       desc: '',
       args: [],

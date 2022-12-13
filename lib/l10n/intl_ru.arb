@@ -10,6 +10,8 @@
     "placeholders": {}
   },
   "play": "Играть",
+  "confirm": "Подтвердить",
+  "applyAndEndTurn": "Завершить ход",
   "toLandscapes": "В Места",
   "send": "Отправить",
   "youHaveLandedInTheNowhere": "Вы приземлились где-то в неизвестность..",

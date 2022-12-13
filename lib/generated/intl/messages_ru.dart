@@ -31,10 +31,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "addNewWord": MessageLookupByLibrary.simpleMessage("добавить"),
         "addToDictionary":
             MessageLookupByLibrary.simpleMessage("Добавить в словарь"),
+        "applyAndEndTurn":
+            MessageLookupByLibrary.simpleMessage("Завершить ход"),
         "back": MessageLookupByLibrary.simpleMessage("Назад"),
         "chooseLandscape": MessageLookupByLibrary.simpleMessage("Выбери Место"),
         "chooseYourCharacter":
             MessageLookupByLibrary.simpleMessage("Выбери своего персонажа"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
         "createProfile": MessageLookupByLibrary.simpleMessage("Создать"),

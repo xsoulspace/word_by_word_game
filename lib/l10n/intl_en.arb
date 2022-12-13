@@ -68,6 +68,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "confirm": "Confirm",
+  "applyAndEndTurn": "Apply & End Turn",
   "hintAddBeginning": "beginning",
   "@hintAddBeginning": {
     "type": "text",
@@ -150,7 +152,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToDictionary": "Add to dictionary",
+  "addToDictionary": "Add to Dictionary",
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}

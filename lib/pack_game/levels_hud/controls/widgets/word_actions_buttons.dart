@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_composition_row.dart';
 
@@ -50,17 +51,37 @@ class UIMobileActions extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
+    final phaseType =
+        context.select<LevelBloc, LevelPlayerPhaseType>((final s) {
+      return s.getLiveState().phaseType;
+    });
+    final children = <Widget>[];
+    switch (phaseType) {
+      case LevelPlayerPhaseType.entryWord:
+        children.addAll([
+          AddWordToDictionaryButton(
+            onPressed: state.onAddWordToDictionary,
+          ),
+          if (DeviceRuntimeType.isMobile)
+            uiTheme.verticalBoxes.small
+          else
+            uiTheme.verticalBoxes.medium,
+          ToSelectActionPhaseButton(
+            onPressed: state.onToSelectActionPhase,
+          ),
+        ]);
+        break;
+      case LevelPlayerPhaseType.selectAction:
+        children.addAll([
+          ToEntryWordPahseButton(
+            onPressed: state.onToEntryWordPhase,
+          ),
+        ]);
+        break;
+    }
 
     return UIMobileActionsFrame(
-      children: [
-        AddWordToDictionaryButton(
-          onPressed: state.onAddWordToDictionary,
-        ),
-        uiTheme.verticalBoxes.medium,
-        ToSelectActionPhaseButton(
-          onPressed: state.onToEntryWordPhase,
-        ),
-      ],
+      children: children,
     );
   }
 }
@@ -78,7 +99,7 @@ class AddWordToDictionaryButton extends StatelessWidget {
     });
 
     return UiTextButton.icon(
-      text: 'Add to Dictionary',
+      text: S.of(context).addToDictionary,
       onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
       icon: UiIcons.dictionary_add,
       isLongButton: true,
@@ -99,7 +120,7 @@ class ToSelectActionPhaseButton extends StatelessWidget {
     });
 
     return UiTextButton.icon(
-      text: 'Confirm',
+      text: S.of(context).confirm,
       onPressed: warning == WordWarning.isNotCorrect ? null : onPressed,
       icon: UiIcons.fire,
       mainAlignment: MainAxisAlignment.center,
@@ -117,7 +138,7 @@ class ToEntryWordPahseButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     return UiTextButton.icon(
-      text: 'Apply & End Turn',
+      text: S.of(context).applyAndEndTurn,
       onPressed: onPressed,
       icon: UiIcons.fire,
       mainAlignment: MainAxisAlignment.center,

@@ -68,6 +68,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "confirm": "Confermare",
+  "applyAndEndTurn": "Fine turno",
   "hintAddBeginning": "inizio",
   "@hintAddBeginning": {
     "type": "text",

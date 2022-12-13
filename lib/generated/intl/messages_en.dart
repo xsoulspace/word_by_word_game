@@ -30,12 +30,15 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("Credits"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("add"),
         "addToDictionary":
-            MessageLookupByLibrary.simpleMessage("Add to dictionary"),
+            MessageLookupByLibrary.simpleMessage("Add to Dictionary"),
+        "applyAndEndTurn":
+            MessageLookupByLibrary.simpleMessage("Apply & End Turn"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "chooseLandscape":
             MessageLookupByLibrary.simpleMessage("Choose a Landscape"),
         "chooseYourCharacter":
             MessageLookupByLibrary.simpleMessage("Choose Your Character"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
