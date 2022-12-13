@@ -22,6 +22,9 @@ _$_LiveLevelBlocState _$$_LiveLevelBlocStateFromJson(
           ) ??
           const {},
       latestWord: json['latestWord'] as String? ?? '',
+      phaseType: $enumDecodeNullable(
+              _$LevelPlayerPhaseTypeEnumMap, json['phaseType']) ??
+          LevelPlayerPhaseType.entryWord,
       wordWarning:
           $enumDecodeNullable(_$WordWarningEnumMap, json['wordWarning']) ??
               WordWarning.none,
@@ -35,8 +38,14 @@ Map<String, dynamic> _$$_LiveLevelBlocStateToJson(
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
+      'phaseType': _$LevelPlayerPhaseTypeEnumMap[instance.phaseType]!,
       'wordWarning': _$WordWarningEnumMap[instance.wordWarning]!,
     };
+
+const _$LevelPlayerPhaseTypeEnumMap = {
+  LevelPlayerPhaseType.entryWord: 'entryWord',
+  LevelPlayerPhaseType.selectAction: 'selectAction',
+};
 
 const _$WordWarningEnumMap = {
   WordWarning.none: 'none',

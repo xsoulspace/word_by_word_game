@@ -37,6 +37,8 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
+    @Default(LevelPlayerPhaseType.entryWord)
+        final LevelPlayerPhaseType phaseType,
 
     /// ********************************************
     /// *      NON PERSISTENT

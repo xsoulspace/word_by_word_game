@@ -151,6 +151,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
             .createNextCurrentWordFromFullWord(word: effectiveCurrentWord),
         words: updatedWords,
         wordWarning: wordWarning,
+        phaseType: LevelPlayerPhaseType.selectAction,
       );
       emit(updatedState);
       final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
@@ -175,6 +176,12 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelPlayerEndTurnActionEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
+    final liveState = getLiveState();
+    final updatedState = liveState.copyWith(
+      phaseType: LevelPlayerPhaseType.entryWord,
+    );
+    emit(updatedState);
+
     final levelPlayersBloc = diDto.levelPlayersBloc;
     final scoreMechanics = diDto.mechanics.score;
 

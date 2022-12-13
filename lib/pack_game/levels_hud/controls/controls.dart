@@ -58,17 +58,7 @@ class _DesktopControlsWidget extends StatelessWidget {
             child: WordCompositionRow(),
           ),
           uiTheme.horizontalBoxes.medium,
-          UIDesktopActionsFrame(
-            children: [
-              AddWordToDictionaryButton(
-                onPressed: state.onAddWordToDictionary,
-              ),
-              uiTheme.verticalBoxes.extraSmall,
-              ToNextPhaseButton(
-                onPressed: state.onFire,
-              ),
-            ],
-          ),
+          const UIDesktopActions(),
         ],
       ),
     );
@@ -99,17 +89,7 @@ class _MobileControlsWidget extends StatelessWidget {
               uiTheme.verticalBoxes.extraSmall
             else
               uiTheme.verticalBoxes.medium,
-            UIMobileActionsFrame(
-              children: [
-                AddWordToDictionaryButton(
-                  onPressed: state.onAddWordToDictionary,
-                ),
-                uiTheme.verticalBoxes.medium,
-                ToNextPhaseButton(
-                  onPressed: state.onFire,
-                ),
-              ],
-            ),
+            const UIMobileActions(),
             if (!DeviceRuntimeType.isMobile) uiTheme.verticalBoxes.medium,
           ],
         ),

@@ -25,6 +25,7 @@ mixin _$LiveLevelBlocState {
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
+  LevelPlayerPhaseType get phaseType => throw _privateConstructorUsedError;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -48,6 +49,7 @@ abstract class $LiveLevelBlocStateCopyWith<$Res> {
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
+      LevelPlayerPhaseType phaseType,
       WordWarning wordWarning});
 
   $LocalizedMapCopyWith<$Res> get name;
@@ -70,6 +72,7 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
+    Object? phaseType = freezed,
     Object? wordWarning = freezed,
   }) {
     return _then(_value.copyWith(
@@ -93,6 +96,10 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
+      phaseType: phaseType == freezed
+          ? _value.phaseType
+          : phaseType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerPhaseType,
       wordWarning: wordWarning == freezed
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -128,6 +135,7 @@ abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
+      LevelPlayerPhaseType phaseType,
       WordWarning wordWarning});
 
   @override
@@ -154,6 +162,7 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
+    Object? phaseType = freezed,
     Object? wordWarning = freezed,
   }) {
     return _then(_$_LiveLevelBlocState(
@@ -177,6 +186,10 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
+      phaseType: phaseType == freezed
+          ? _value.phaseType
+          : phaseType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerPhaseType,
       wordWarning: wordWarning == freezed
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -195,6 +208,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
+      this.phaseType = LevelPlayerPhaseType.entryWord,
       this.wordWarning = WordWarning.none})
       : _words = words,
         super._();
@@ -221,6 +235,9 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   @override
   @JsonKey()
   final String latestWord;
+  @override
+  @JsonKey()
+  final LevelPlayerPhaseType phaseType;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -231,7 +248,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   String toString() {
-    return 'LiveLevelBlocState(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, wordWarning: $wordWarning)';
+    return 'LiveLevelBlocState(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, wordWarning: $wordWarning)';
   }
 
   @override
@@ -246,6 +263,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
             const DeepCollectionEquality().equals(other._words, _words) &&
             const DeepCollectionEquality()
                 .equals(other.latestWord, latestWord) &&
+            const DeepCollectionEquality().equals(other.phaseType, phaseType) &&
             const DeepCollectionEquality()
                 .equals(other.wordWarning, wordWarning));
   }
@@ -259,6 +277,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord),
+      const DeepCollectionEquality().hash(phaseType),
       const DeepCollectionEquality().hash(wordWarning));
 
   @JsonKey(ignore: true)
@@ -283,6 +302,7 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
       final CurrentWordModel currentWord,
       final Map<String, String> words,
       final String latestWord,
+      final LevelPlayerPhaseType phaseType,
       final WordWarning wordWarning}) = _$_LiveLevelBlocState;
   const _LiveLevelBlocState._() : super._();
 
@@ -299,6 +319,8 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
   Map<String, String> get words;
   @override
   String get latestWord;
+  @override
+  LevelPlayerPhaseType get phaseType;
   @override
 
   /// ********************************************

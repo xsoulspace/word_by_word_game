@@ -40,6 +40,22 @@ class AcceptNewWordEvent extends LevelBlocEvent {
   final CurrentWordModel? word;
 }
 
+enum LevelPlayerPhaseType {
+  entryWord,
+  selectAction,
+}
+
+enum LevelPlayerActionEventType {
+  refuelStorage,
+  cookFood,
+}
+
+enum LevelActionMultiplierType {
+  m1,
+  m2,
+  m3,
+}
+
 @immutable
 class LevelPlayerEndTurnActionEvent extends LevelBlocEvent {
   const LevelPlayerEndTurnActionEvent({
