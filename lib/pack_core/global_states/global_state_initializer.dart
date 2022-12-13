@@ -1,6 +1,10 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
@@ -14,6 +18,7 @@ class GlobalStateInitializer extends StateInitializer {
     final globalGameBloc = read<GlobalGameBloc>();
     final services = read<ServicesCollection>();
     final appSettingsNotifier = read<AppSettingsNotifier>();
+    final analyticsNotifier = read<AnalyticsNotifier>();
     await appSettingsNotifier.onLoad();
     final localDictionary =
         await services.dictionaryPersistence.loadDictionary();
@@ -24,6 +29,11 @@ class GlobalStateInitializer extends StateInitializer {
     final initGameEvent =
         await GameInitializer().loadGameModel(services: services);
     globalGameBloc.add(initGameEvent);
+    final event = () {
+      if (kIsWeb) return AnalyticEvents.usedInWeb;
+      if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;
+    }();
+    if (event != null) unawaited(analyticsNotifier.logAnalyticEvent(event));
     final currentLevelId = initGameEvent.gameModel.currentLevelId;
     if (currentLevelId.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
