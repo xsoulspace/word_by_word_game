@@ -1,3 +1,4 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
@@ -42,24 +43,26 @@ class _DesktopControlsWidget extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final state = context.read<WordCompositionState>();
 
-    return Container(
+    return WordCompositionBackground(
+      constraints: const BoxConstraints(
+        maxWidth: 650,
+      ),
       padding: EdgeInsets.symmetric(
         horizontal: uiTheme.spacing.medium,
       ).copyWith(
-        bottom: uiTheme.spacing.medium,
+        top: 10,
+        bottom: 12,
       ),
-      child: WordCompositionBackground(
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const DesktopPlayerSwitcher(),
-            uiTheme.horizontalBoxes.medium,
-            const WordCompositionRow(),
-            uiTheme.horizontalBoxes.medium,
-            const UIDesktopActions(),
-          ],
-        ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.end,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const DesktopPlayerSwitcher(),
+          uiTheme.horizontalBoxes.medium,
+          const WordCompositionRow(),
+          uiTheme.horizontalBoxes.medium,
+          const UIDesktopActions(),
+        ],
       ),
     );
   }
@@ -75,6 +78,9 @@ class _MobileControlsWidget extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
       child: WordCompositionBackground(
+        padding: EdgeInsets.symmetric(
+          vertical: DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
+        ),
         child: Column(
           children: [
             WordCompositionRow(
@@ -90,7 +96,6 @@ class _MobileControlsWidget extends StatelessWidget {
             else
               uiTheme.verticalBoxes.medium,
             const UIMobileActions(),
-            if (!DeviceRuntimeType.isMobile) uiTheme.verticalBoxes.medium,
           ],
         ),
       ),
@@ -99,8 +104,15 @@ class _MobileControlsWidget extends StatelessWidget {
 }
 
 class WordCompositionBackground extends StatelessWidget {
-  const WordCompositionBackground({required this.child, super.key});
+  const WordCompositionBackground({
+    required this.child,
+    this.padding,
+    this.constraints,
+    super.key,
+  });
   final Widget child;
+  final EdgeInsets? padding;
+  final BoxConstraints? constraints;
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
@@ -111,15 +123,26 @@ class WordCompositionBackground extends StatelessWidget {
     if (livePlayersBloc is! LiveLevelPlayersBlocState) return const SizedBox();
 
     return Container(
-      decoration: BoxDecoration(
-        color: ElevationOverlay.applySurfaceTint(
-          livePlayersBloc.currentPlayer.color,
-          theme.colorScheme.surfaceTint,
-          3,
-        ).withOpacity(0.1),
-        borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+      constraints: constraints ?? const BoxConstraints(),
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: Container().frosted(),
+          ),
+          Container(
+            padding: padding,
+            decoration: BoxDecoration(
+              color: ElevationOverlay.applySurfaceTint(
+                livePlayersBloc.currentPlayer.color,
+                Colors.white,
+                30,
+              ).withOpacity(0.1),
+              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+            ),
+            child: child,
+          ),
+        ],
       ),
-      child: child,
     );
   }
 }
