@@ -1,5 +1,7 @@
 part of 'pause_screen.dart';
 
+bool get linksAreAllowed => true;
+
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
       : routeState = read(),
@@ -29,6 +31,12 @@ class _PauseScreenState extends ContextfulLifeState {
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
+  @override
+  void initState() {
+    super.initState();
+    if (Platform.isAndroid) YandexAdsSdk().onLoad();
+  }
+
   void onContinue({
     required final LevelModelId id,
   }) {
@@ -61,6 +69,7 @@ class _PauseScreenState extends ContextfulLifeState {
     final uiTheme = UiTheme.of(context);
     final s = S.of(context);
     final packageInfo = await PackageInfo.fromPlatform();
+
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 200),
@@ -72,9 +81,13 @@ class _PauseScreenState extends ContextfulLifeState {
             uiTheme.verticalBoxes.medium,
             Text(s.sendFeedback),
             uiTheme.verticalBoxes.medium,
-            TextButton(
-              child: Text(s.supportGame),
-              onPressed: () => launchUrlString('https://boosty.to/arenukvern'),
+            Visibility(
+              visible: linksAreAllowed,
+              child: TextButton(
+                child: Text(s.supportGame),
+                onPressed: () =>
+                    launchUrlString('https://boosty.to/arenukvern'),
+              ),
             ),
             uiTheme.verticalBoxes.medium,
             Text(s.thankYou),
@@ -82,19 +95,68 @@ class _PauseScreenState extends ContextfulLifeState {
         ),
       )
     ];
+    final applicationLegalese = '\u{a9} 2020-${DateTime.now().year} '
+        'Game by Anton Malofeev, Irina Veter';
 
-    showAboutDialog(
-      applicationName: 'Word By Word',
-      applicationIcon: Image.asset(
-        'assets/icon.png',
-        width: 32,
-        height: 32,
-      ),
-      applicationLegalese: '\u{a9} 2020-${DateTime.now().year} '
-          'Game by Anton Malofeev, Irina Veter',
-      applicationVersion: '${packageInfo.version}+${packageInfo.buildNumber}',
-      children: aboutBoxChildren,
-      context: context,
+    final applicationVersion =
+        '${packageInfo.version}+${packageInfo.buildNumber}';
+    final icon = Image.asset(
+      'assets/icon.png',
+      width: 32,
+      height: 32,
     );
+    if (linksAreAllowed) {
+      showAboutDialog(
+        applicationName: 'Word By Word',
+        applicationIcon: icon,
+        applicationLegalese: applicationLegalese,
+        applicationVersion: applicationVersion,
+        children: aboutBoxChildren,
+        context: context,
+      );
+    } else {
+      unawaited(
+        showDialog(
+          context: context,
+          builder: (final context) {
+            return SimpleDialog(
+              title: const Text('Word By Word'),
+              contentPadding: const EdgeInsets.all(24),
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    icon,
+                    uiTheme.horizontalBoxes.large,
+                    ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 200),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(applicationLegalese),
+                          uiTheme.verticalBoxes.small,
+                          Text(
+                            applicationVersion,
+                            style: theme.textTheme.labelSmall,
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+                uiTheme.verticalBoxes.medium,
+                Text(s.creatingGame),
+                uiTheme.verticalBoxes.large,
+                UiTextButton.text(
+                  onPressed: () => Navigator.maybePop(context),
+                  text: S.of(context).ok,
+                )
+              ],
+            );
+          },
+        ),
+      );
+    }
   }
 }

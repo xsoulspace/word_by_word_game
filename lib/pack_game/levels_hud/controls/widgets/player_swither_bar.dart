@@ -6,8 +6,8 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
 
-class DesktopPlayerSwitcher extends HookWidget {
-  const DesktopPlayerSwitcher({super.key});
+class UIDesktopPlayerSwitcher extends HookWidget {
+  const UIDesktopPlayerSwitcher({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -40,8 +40,8 @@ class DesktopPlayerSwitcher extends HookWidget {
   }
 }
 
-class MobilePlayerSwitcher extends HookWidget {
-  const MobilePlayerSwitcher({super.key});
+class UIMobilePlayerSwitcher extends HookWidget {
+  const UIMobilePlayerSwitcher({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -66,8 +66,8 @@ class MobilePlayerSwitcher extends HookWidget {
   }
 }
 
-class MobilePlayerName extends StatelessWidget {
-  const MobilePlayerName({super.key});
+class UIMobilePlayerName extends StatelessWidget {
+  const UIMobilePlayerName({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -83,8 +83,8 @@ class MobilePlayerName extends StatelessWidget {
   }
 }
 
-class MobilePlayerScore extends StatelessWidget {
-  const MobilePlayerScore({super.key});
+class UIMobilePlayerScore extends StatelessWidget {
+  const UIMobilePlayerScore({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -100,8 +100,8 @@ class MobilePlayerScore extends StatelessWidget {
   }
 }
 
-class PlayersSideBar extends StatelessWidget {
-  const PlayersSideBar({super.key});
+class UIPlayersSideBar extends StatelessWidget {
+  const UIPlayersSideBar({super.key});
   static const maxWidth = 50.0;
   @override
   Widget build(final BuildContext context) {

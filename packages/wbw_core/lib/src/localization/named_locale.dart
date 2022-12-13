@@ -24,8 +24,9 @@ class NamedLocale {
 Locale localeFromString(final String languageCode) {
   try {
     if (languageCode.isEmpty) return Locales.en;
-
-    return Locale.fromSubtags(languageCode: languageCode);
+    final language = Languages.byLanguageCode(languageCode);
+    final locale = Locales.byLanguage(language);
+    return locale;
     // ignore: avoid_catches_without_on_clauses
   } catch (e) {
     return Locales.en;
@@ -75,8 +76,8 @@ class LocalizedMap with _$LocalizedMap {
       _$LocalizedMapFromJson(json);
   static const empty = LocalizedMap(value: {});
   String getValue() {
-    final languageCode = getLanguageCode(Intl.getCurrentLocale());
-    final language = Languages.values.byName(languageCode);
+    final languageCode = getLanguageCodeByStr(Intl.getCurrentLocale());
+    final language = Languages.byLanguageCode(languageCode);
     return value[language]!;
   }
 }

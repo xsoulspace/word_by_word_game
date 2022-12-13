@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -10,6 +13,7 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
+import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 
 part 'pause_screen_state.dart';
 
@@ -32,6 +36,13 @@ class PauseScreen extends HookWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            const TopSafeArea(),
+            if (Platform.isAndroid)
+              YandexBannerPlatformView(
+                height: 50,
+                width: MediaQuery.of(context).size.width,
+              ),
+            const Spacer(),
             Visibility(
               visible: isLevelRunning,
               child: UiFilledButton.text(
@@ -65,6 +76,7 @@ class PauseScreen extends HookWidget {
                 text: S.of(context).privacyPolicy,
                 onPressed: state.onPrivacyPolicy,
               ),
+            const Spacer(),
           ],
         ),
       ),

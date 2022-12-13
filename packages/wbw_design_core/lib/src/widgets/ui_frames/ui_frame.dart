@@ -1,19 +1,7 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
 
 import '../../../wbw_design_core.dart';
 import '../../utils/utils.dart';
-
-_UiFrameState _useUiFrameState() => use(
-      LifeHook(
-        debugLabel: 'State',
-        state: _UiFrameState(),
-      ),
-    );
-
-class _UiFrameState extends LifeState {
-  _UiFrameState();
-}
 
 enum UiFrameAsset {
   // ignore: constant_identifier_names

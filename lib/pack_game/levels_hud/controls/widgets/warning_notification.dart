@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
-class WarningNotification extends StatelessWidget {
-  const WarningNotification({
+class UIWarningNotification extends StatelessWidget {
+  const UIWarningNotification({
     super.key,
   });
   @override

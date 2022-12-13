@@ -41,6 +41,27 @@ class AcceptNewWordEvent extends LevelBlocEvent {
 }
 
 @immutable
+class LevelPlayerEndTurnActionEvent extends LevelBlocEvent {
+  const LevelPlayerEndTurnActionEvent();
+}
+
+@immutable
+class LevelPlayerSelectActionTypeEvent extends LevelBlocEvent {
+  const LevelPlayerSelectActionTypeEvent({
+    required this.type,
+  });
+  final LevelPlayerActionType? type;
+}
+
+@immutable
+class LevelPlayerSelectActionMultiplierEvent extends LevelBlocEvent {
+  const LevelPlayerSelectActionMultiplierEvent({
+    required this.multiplier,
+  });
+  final LevelActionMultiplierType multiplier;
+}
+
+@immutable
 class AddNewWordToDictionaryEvent extends LevelBlocEvent {
   const AddNewWordToDictionaryEvent();
 }
@@ -48,8 +69,8 @@ class AddNewWordToDictionaryEvent extends LevelBlocEvent {
 @immutable
 class DecreaseMiddlePartEvent extends LevelBlocEvent {
   const DecreaseMiddlePartEvent({
-    required this.type,
+    required this.index,
   });
 
-  final DecreaseMiddlePart type;
+  final int index;
 }
