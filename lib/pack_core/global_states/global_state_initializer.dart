@@ -29,11 +29,14 @@ class GlobalStateInitializer extends StateInitializer {
     final initGameEvent =
         await GameInitializer().loadGameModel(services: services);
     globalGameBloc.add(initGameEvent);
+    await FirebaseInitializer().onDelayedLoad();
+    await analyticsNotifier.onDelayedLoad();
     final event = () {
       if (kIsWeb) return AnalyticEvents.usedInWeb;
       if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;
     }();
     if (event != null) unawaited(analyticsNotifier.logAnalyticEvent(event));
+
     final currentLevelId = initGameEvent.gameModel.currentLevelId;
     if (currentLevelId.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
