@@ -11,13 +11,14 @@ import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'levels_hud_screen_overlay_state.dart';
 
-class LevelsHudScreenOverlay extends StatelessWidget {
+class LevelsHudScreenOverlay extends HookWidget {
   const LevelsHudScreenOverlay({super.key});
 
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
+    final state = _useLevelsHudScreenOverlayState(read: context.read);
     return Stack(
       children: [
         Positioned(
@@ -28,18 +29,18 @@ class LevelsHudScreenOverlay extends StatelessWidget {
             children: [
               const LastWordWidget(),
               uiTheme.verticalBoxes.medium,
-              const PlayersSideBar(),
+              const UIPlayersSideBar(),
             ],
           ),
         ),
         Positioned(
           top: 20,
-          right: PlayersSideBar.maxWidth + 20,
-          left: PlayersSideBar.maxWidth + 10,
+          right: UIPlayersSideBar.maxWidth + 20,
+          left: UIPlayersSideBar.maxWidth + 10,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Flexible(child: WarningNotification()),
+              Flexible(child: UIWarningNotification()),
             ],
           ),
         ),

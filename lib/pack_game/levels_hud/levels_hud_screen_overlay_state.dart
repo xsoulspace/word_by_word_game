@@ -1,7 +1,7 @@
 part of 'levels_hud_screen_overlay.dart';
 
-class _StateDiDto {
-  _StateDiDto.use(final Locator read)
+class _LevelsHudScreenOverlayDiDto {
+  _LevelsHudScreenOverlayDiDto.use(final Locator read)
       : globalGameBloc = read(),
         mechanics = read(),
         levelBloc = read(),
@@ -13,20 +13,22 @@ class _StateDiDto {
   final AppRouterController appRouterController;
 }
 
-_StateState _useStateState({
+_LevelsHudScreenOverlayState _useLevelsHudScreenOverlayState({
   required final Locator read,
 }) =>
     use(
       LifeHook(
         debugLabel: '_StateState',
-        state: _StateState(diDto: _StateDiDto.use(read)),
+        state: _LevelsHudScreenOverlayState(
+          diDto: _LevelsHudScreenOverlayDiDto.use(read),
+        ),
       ),
     );
 
-class _StateState extends LifeState {
-  _StateState({
+class _LevelsHudScreenOverlayState extends LifeState {
+  _LevelsHudScreenOverlayState({
     required this.diDto,
   });
 
-  final _StateDiDto diDto;
+  final _LevelsHudScreenOverlayDiDto diDto;
 }

@@ -1,23 +1,29 @@
 name: word-by-word-game
-version: 2.4.0+21
+version: 2.5.0+22
 summary: Word Arcade-> write word based on last 3 letters of last word & pass Landscape
 description: |
-  New version available! 
   Please note: new version is completely rewritten and is in active development.
-  So any part of the gameplay is subject to change.
   Actual DevLog is available on https://arenukvern.itch.io/word-by-word-game and in Discord server https://discord.com/invite/y54DpJwmAn
 
-  --- DESCRIPTION ---
+  You can see also short video updates by the link below:
+  https://youtube.com/playlist?list=PLz4tcEeusgWJeJO6RvOxOkfD3XE1pDKFg
 
-  Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
+  ----- Description -----
 
-  Any word will be check with internal dictionary (available for two languages: English and Russian).
+  Word by word - is a simple, fun, self-educative, and easy to play game to write word after word based on the last 3 letters of the last word.
 
-  You can play with your friends, but more in old school way - to give phone to another player.
+  Features:
 
-  For ideas, improvements and bugs please write feedback or send a message to xsoulspace@gmail.com or in Discord server https://discord.com/invite/y54DpJwmAn.
+  - any word will be checked within internal dictionaries (available for two languages: English and Russian).
+  - you can play with your friends in old school way - to give a turn to another player. (Players count now is unlimited).
+  - works offline - no need internet connection.
+  - UI translated to three languages (English, Russian, Italian).
 
-  Have a fun and a great time!
+  ## Have an idea, improvements, or bugs?
+
+  Join Discord - https://discord.gg/y54DpJwmAn or send a message to idea@xsoulspace.dev.
+
+  Have fun and a great time!
 icon: snap/gui/word-by-word-game.png
 confinement: strict
 base: core18

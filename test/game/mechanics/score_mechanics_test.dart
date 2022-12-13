@@ -73,7 +73,7 @@ void main() {
         player: player.copyWith(
           highscore: player.highscore.copyWith(
             score: ScoreModel(
-              value: kLetterDecreaseCost.toDouble(),
+              value: kLetterDecreaseCost,
             ),
           ),
         ),

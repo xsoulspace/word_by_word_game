@@ -15,20 +15,20 @@ class _WordCompositionStateDiDto {
   final DialogController dialogController;
 }
 
-_WordCompositionState _useWordCompositionState({
+WordCompositionState useWordCompositionState({
   required final Locator read,
 }) =>
     use(
       LifeHook(
         debugLabel: '_WordCompositionState',
-        state: _WordCompositionState(
+        state: WordCompositionState(
           diDto: _WordCompositionStateDiDto.use(read),
         ),
       ),
     );
 
-class _WordCompositionState extends LifeState {
-  _WordCompositionState({
+class WordCompositionState extends LifeState {
+  WordCompositionState({
     required this.diDto,
   })  : leftPartController = TextEditingController(
           text: diDto.levelBloc.getLiveState().currentWord.leftPart,
@@ -59,9 +59,29 @@ class _WordCompositionState extends LifeState {
   final rightWordKeyFocus = FocusNode();
   final rightWordFocus = FocusNode();
 
-  void onFire() {
-    onRequestLeftTextFocus();
+  void onSelectActionType(final LevelPlayerActionType actionType) {
+    diDto.levelBloc.add(
+      LevelPlayerSelectActionTypeEvent(
+        type: actionType,
+      ),
+    );
+  }
+
+  void onSelectActionMultiplier(final LevelActionMultiplierType multiplier) {
+    diDto.levelBloc.add(
+      LevelPlayerSelectActionMultiplierEvent(
+        multiplier: multiplier,
+      ),
+    );
+  }
+
+  void onToSelectActionPhase() {
     diDto.levelBloc.add(const AcceptNewWordEvent());
+  }
+
+  void onToEndTurn() {
+    diDto.levelBloc.add(const LevelPlayerEndTurnActionEvent());
+    onRequestLeftTextFocus();
   }
 
   void onOpenSuggestionDialog() {
@@ -108,28 +128,8 @@ class _WordCompositionState extends LifeState {
     diDto.levelBloc.add(event);
   }
 
-  void onDecreaseLeftPart() {
-    diDto.levelBloc.add(
-      const DecreaseMiddlePartEvent(
-        type: DecreaseMiddlePart.leftLetter,
-      ),
-    );
-  }
-
-  void onDecreaseRightPart() {
-    diDto.levelBloc.add(
-      const DecreaseMiddlePartEvent(
-        type: DecreaseMiddlePart.rightLetter,
-      ),
-    );
-  }
-
-  void onResetMiddlePart() {
-    diDto.levelBloc.add(
-      const DecreaseMiddlePartEvent(
-        type: DecreaseMiddlePart.allLetters,
-      ),
-    );
+  void onDecreaseMiddlePart(final int index) {
+    diDto.levelBloc.add(DecreaseMiddlePartEvent(index: index));
   }
 
   void onLatestWordChanged() {

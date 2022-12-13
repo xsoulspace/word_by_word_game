@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 part of 'models.dart';
 
 /// This DateTime has no specific number to year / month convertion

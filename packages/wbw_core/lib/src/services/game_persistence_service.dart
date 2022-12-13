@@ -19,6 +19,7 @@ class GamePersistenceService {
     try {
       return GameModel.fromJson(jsonMap);
     } catch (e) {
+      // TODO(arenukvern): replace with analytics service
       print(e);
       return null;
     }

@@ -35,6 +35,11 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<AcceptNewWordEvent>(_onAcceptNewWord);
     on<AddNewWordToDictionaryEvent>(_onAddNewWordToDictionary);
     on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
+    on<LevelPlayerEndTurnActionEvent>(_onLevelPlayerEndTurnAction);
+    on<LevelPlayerSelectActionTypeEvent>(_onLevelPlayerSelectActionType);
+    on<LevelPlayerSelectActionMultiplierEvent>(
+      _onLevelPlayerSelectActionMultiplier,
+    );
   }
 
   static bool Function(LevelBlocState previous, LevelBlocState current)
@@ -150,20 +155,18 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
             .createNextCurrentWordFromFullWord(word: effectiveCurrentWord),
         words: updatedWords,
         wordWarning: wordWarning,
+        phaseType: LevelPlayerPhaseType.selectAction,
       );
       emit(updatedState);
-      final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
-      levelPlayersBloc.add(const SwitchToNextPlayerEvent());
       final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
-      levelPlayersBloc
-        ..add(RefuelStorageEvent(score: score))
-        ..add(
-          UpdatePlayerHighscoreEvent(
-            word: newWord,
-            score: score,
-            playerId: playerId,
-          ),
-        );
+      final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
+      levelPlayersBloc.add(
+        UpdatePlayerHighscoreEvent(
+          word: newWord,
+          score: score,
+          playerId: playerId,
+        ),
+      );
     } else {
       emit(
         liveState.copyWith(
@@ -171,6 +174,72 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
         ),
       );
     }
+  }
+
+  void _onLevelPlayerSelectActionMultiplier(
+    final LevelPlayerSelectActionMultiplierEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final updatedState = liveState.copyWith(
+      actionMultiplier: event.multiplier,
+    );
+    emit(updatedState);
+  }
+
+  void _onLevelPlayerSelectActionType(
+    final LevelPlayerSelectActionTypeEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final updatedState = liveState.copyWith(
+      actionType: event.type,
+    );
+    emit(updatedState);
+  }
+
+  void _onLevelPlayerEndTurnAction(
+    final LevelPlayerEndTurnActionEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final liveState = getLiveState();
+    final updatedState = liveState.copyWith(
+      phaseType: LevelPlayerPhaseType.entryWord,
+      actionType: null,
+    );
+    emit(updatedState);
+
+    final levelPlayersBloc = diDto.levelPlayersBloc;
+    final scoreMechanics = diDto.mechanics.score;
+
+    ScoreModel appliedScore;
+
+    switch (liveState.actionType) {
+      case LevelPlayerActionType.cookFood:
+        appliedScore = scoreMechanics.getScoreForCookFoodByModifier(
+          multiplier: liveState.actionMultiplier,
+        );
+        levelPlayersBloc.add(CookFoodEvent(score: appliedScore));
+        break;
+      case LevelPlayerActionType.refuelStorage:
+        appliedScore = scoreMechanics.getScoreForRefuelStorageByModifier(
+          multiplier: liveState.actionMultiplier,
+        );
+        levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));
+        break;
+      case null:
+        throw ArgumentError.notNull('liveState.actionType');
+    }
+
+    final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
+    levelPlayersBloc
+      ..add(
+        UpdatePlayerHighscoreEvent(
+          score: appliedScore * -1,
+          playerId: playerId,
+        ),
+      )
+      ..add(const SwitchToNextPlayerEvent());
   }
 
   String getWordSuggestion() {
@@ -188,12 +257,13 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final liveState = getLiveState();
     final updatedWord =
         diDto.mechanics.wordComposition.applyDecreaseMiddlePartType(
-      type: event.type,
+      index: event.index,
       currentWord: liveState.currentWord,
     );
     final updatedState = liveState.copyWith(
       currentWord: updatedWord,
     );
+
     emit(updatedState);
     final playerId = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
     final score = diDto.mechanics.score.getDecreaseScore(lettersCount: 1);

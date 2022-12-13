@@ -4,6 +4,22 @@ part of 'models.dart';
 
 typedef LevelModelId = String;
 
+enum LevelPlayerPhaseType {
+  entryWord,
+  selectAction,
+}
+
+enum LevelPlayerActionType {
+  refuelStorage,
+  cookFood,
+}
+
+enum LevelActionMultiplierType {
+  m1,
+  m2,
+  m3,
+}
+
 @immutable
 @Freezed(
   fromJson: true,
@@ -25,6 +41,11 @@ class LevelModel with _$LevelModel {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
+    @Default(LevelPlayerPhaseType.entryWord)
+        final LevelPlayerPhaseType phaseType,
+    @Default(LevelActionMultiplierType.m1)
+        final LevelActionMultiplierType actionMultiplier,
+    final LevelPlayerActionType? actionType,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>

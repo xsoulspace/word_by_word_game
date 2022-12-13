@@ -29,22 +29,11 @@ void main() {
         throwsArgumentError,
       );
     });
-    test('applyDecreaseMiddlePartType - can reset allLetters', () {
-      const currentWord = CurrentWordModel(middlePart: 'dic');
-      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
-        currentWord: currentWord,
-        type: DecreaseMiddlePart.allLetters,
-      );
-      expect(
-        result,
-        equals(const CurrentWordModel()),
-      );
-    });
     test('applyDecreaseMiddlePartType - can reset left letter', () {
       const currentWord = CurrentWordModel(middlePart: 'dic');
       final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
         currentWord: currentWord,
-        type: DecreaseMiddlePart.leftLetter,
+        index: 0,
       );
       expect(
         result,
@@ -55,11 +44,43 @@ void main() {
       const currentWord = CurrentWordModel(middlePart: 'dic');
       final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
         currentWord: currentWord,
-        type: DecreaseMiddlePart.rightLetter,
+        index: 2,
       );
       expect(
         result,
         equals(const CurrentWordModel(fullWord: 'di', middlePart: 'di')),
+      );
+    });
+    test('applyDecreaseMiddlePartType - can reset middle letter', () {
+      const currentWord = CurrentWordModel(middlePart: 'dic');
+      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
+        currentWord: currentWord,
+        index: 1,
+      );
+      expect(
+        result,
+        equals(const CurrentWordModel(fullWord: 'dc', middlePart: 'dc')),
+      );
+    });
+    test('applyDecreaseMiddlePartType - can reset last middle letter', () {
+      const currentWord = CurrentWordModel(
+        middlePart: 'd',
+        leftPart: 's',
+        rightPart: 'un',
+      );
+      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
+        currentWord: currentWord,
+        index: 0,
+      );
+      expect(
+        result,
+        equals(
+          const CurrentWordModel(
+            fullWord: 'sun',
+            middlePart: '',
+            rightPart: 'sun',
+          ),
+        ),
       );
     });
   });

@@ -9,44 +9,55 @@
 <img style="margin-bottom: 17px; margin-left: 23px;" alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
 <a style="margin-bottom: 17px; margin-left: 23px;" href='https://play.google.com/store/apps/details?id=dev.xsoulspace.word_by_word_game&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img height="90px"; alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </a>
-
 </p>
 
 # About
 
-New beta version available!
-But please note: new version is completely rewritten and is in active development.
-So any part of the gameplay is subject to change.
+Please note: new version is completely rewritten and is in active development.
 Actual DevLog is available on https://arenukvern.itch.io/word-by-word-game and in Discord server https://discord.com/invite/y54DpJwmAn
 
----
+You can see also short video updates by the link below:
+https://youtube.com/playlist?list=PLz4tcEeusgWJeJO6RvOxOkfD3XE1pDKFg
 
-Word Arcade-> write word based on last 3 letters of last word & pass Landscape.
+----- Description -----
 
----
+Word by word - is a simple, fun, self-educative, and easy to play game to write word after word based on the last 3 letters of the last word.
 
-Word by word - is a simple, fun, self-educative and easy to play game to write word after word based on last 3 letters of last word.
+## Features:
 
-Any word will be check with internal dictionary (available for two languages: English and Russian)
+- any word will be checked within internal dictionaries (available for two languages: English and Russian).
+- you can play with your friends in old school way - to give a turn to another player. (Players count now is unlimited).
+- works offline - no need internet connection.
+- UI translated to three languages (English, Russian, Italian).
 
-You can play with your friends, but more in old school way - to give phone to another player.
+## Have an idea, improvements, or bugs?
 
-For ideas, improvements and bugs please send a message to idea@xsoulspace.dev
+Join Discord - https://discord.gg/y54DpJwmAn
 
-Have a fun and a great time!
+Have fun and a great time!
 
 ---
 
 <br/>
 
-# Huge thank you for contributions!
+## Donations / Sponsor
+
+Please sponsor or donate to the creator on [Boosty](https://boosty.to/arenukvern) or [CloudTips](https://pay.cloudtips.ru/p/1629cd27).
+
+Thank you for your support and have a great day! 🌄
+
+## Contributing
+
+All [comments](https://github.com/xsoulspace/word_by_word_game/issues) and [pull requests](https://github.com/xsoulspace/word_by_word_game/pulls) are welcome.
+
+## Huge thank you for contributions!
 
 [@albanobattistella](https://github.com/albanobattistella)
 
-# Support
+## Getting Help
 
-Support the Game on https://boosty.to/arenukvern
+If you need help getting started with Sheet Manager or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
 
 ## Build
 
-flutter build web --csp
+flutter clean && flutter pub get && flutter build web --csp
