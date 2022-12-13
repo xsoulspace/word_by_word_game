@@ -79,7 +79,7 @@ class WordCompositionState extends LifeState {
     diDto.levelBloc.add(const AcceptNewWordEvent());
   }
 
-  void onToEntryWordPhase() {
+  void onToEndTurn() {
     diDto.levelBloc.add(const LevelPlayerEndTurnActionEvent());
     onRequestLeftTextFocus();
   }

@@ -40,6 +40,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
+        "cookFood": MessageLookupByLibrary.simpleMessage("Еда"),
         "createProfile": MessageLookupByLibrary.simpleMessage("Создать"),
         "creatingGame": MessageLookupByLibrary.simpleMessage(
             "Привет! Спасибо за интерес к игре и надеюсь она понравилась:)"),
@@ -75,11 +76,13 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Политика конфиденциальности"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Создатель профиля"),
+        "refuelStorage": MessageLookupByLibrary.simpleMessage("Топливо"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Сбросить слово"),
         "returnToLandscapes":
             MessageLookupByLibrary.simpleMessage("Вернуться к Местам"),
         "revealSuggestedWord":
             MessageLookupByLibrary.simpleMessage("Открыть слово-подсказку?"),
+        "selectAction": MessageLookupByLibrary.simpleMessage("Выбери действие"),
         "selectPlayers": MessageLookupByLibrary.simpleMessage("Выбери игроков"),
         "send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(

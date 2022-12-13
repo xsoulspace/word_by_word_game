@@ -146,6 +146,9 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectAction": "Выбери действие",
+  "cookFood": "Еда",
+  "refuelStorage": "Топливо",
   "addToDictionary": "Добавить в словарь",
   "@addToDictionary": {
     "type": "text",

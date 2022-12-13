@@ -22,4 +22,8 @@ class ScoreModel with _$ScoreModel {
   ScoreModel operator *(final num factor) {
     return ScoreModel(value: value * factor);
   }
+
+  ScoreModel operator +(final num factor) {
+    return ScoreModel(value: value + factor);
+  }
 }

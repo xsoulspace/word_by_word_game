@@ -15,8 +15,8 @@ import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
 
-class WordCompositionRow extends HookWidget {
-  const WordCompositionRow({
+class UIWordCompositionRow extends HookWidget {
+  const UIWordCompositionRow({
     this.leftTopBuilder,
     this.rightTopBuilder,
     final Key? key,
@@ -85,7 +85,7 @@ class WordCompositionRow extends HookWidget {
                         textFieldFocusNode: state.rightWordFocus,
                         controller: state.rightPartController,
                         hintText: S.of(context).hintAddEnding,
-                        onSubmitted: state.onToEntryWordPhase,
+                        onSubmitted: state.onToEndTurn,
                       ),
                     ],
                   );

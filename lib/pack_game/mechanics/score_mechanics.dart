@@ -1,14 +1,13 @@
 import 'dart:math' as math;
 
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 const int kIncreaseScoreModifier = 65;
 const int kDecreaseScoreModifier = kIncreaseScoreModifier * 3;
 const double kRevealScoreModifier = 1.8;
 double get kLetterDecreaseCost => 1.0 * kDecreaseScoreModifier;
-double get kRefuelStorageCost => 1.0 * kDecreaseScoreModifier;
-double get kCookFoodCost => 0.9 * kDecreaseScoreModifier;
+double get kRefuelStorageCost => 20;
+double get kCookFoodCost => 8;
 
 class ScoreMechanics {
   ScoreModel getScoreFromWord({
@@ -100,13 +99,12 @@ class ScoreMechanics {
       maxLettersCount += word.length;
       maxWordsCount++;
     }
+    final finalHighscore = highscore.score + score.value;
     return player.copyWith(
       highscore: highscore.copyWith(
         maxLettersCount: maxLettersCount,
         maxWordsCount: maxWordsCount,
-        score: highscore.score.copyWith(
-          value: highscore.score.value + score.value,
-        ),
+        score: finalHighscore,
         totalLettersCount: maxLettersCount,
         totalWordsCount: maxWordsCount,
       ),

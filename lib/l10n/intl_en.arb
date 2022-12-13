@@ -152,6 +152,9 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectAction": "Select Action",
+  "cookFood": "Cook Food",
+  "refuelStorage": "Refuel Balloon",
   "addToDictionary": "Add to Dictionary",
   "@addToDictionary": {
     "type": "text",

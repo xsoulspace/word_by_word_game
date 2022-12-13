@@ -42,6 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulazioni!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continua "),
+        "cookFood": MessageLookupByLibrary.simpleMessage("Cucinare"),
         "createProfile": MessageLookupByLibrary.simpleMessage("Creare"),
         "creatingGame": MessageLookupByLibrary.simpleMessage(
             "Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)"),
@@ -80,11 +81,14 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Politica sulla riservatezza"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Creatore di profili"),
+        "refuelStorage": MessageLookupByLibrary.simpleMessage("Rifornirsi"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reimposta fine"),
         "returnToLandscapes":
             MessageLookupByLibrary.simpleMessage("Ritorna ai paesaggi"),
         "revealSuggestedWord":
             MessageLookupByLibrary.simpleMessage("Rivela la parola suggerita?"),
+        "selectAction":
+            MessageLookupByLibrary.simpleMessage("Seleziona Azione"),
         "selectPlayers":
             MessageLookupByLibrary.simpleMessage("Seleziona i giocatori"),
         "send": MessageLookupByLibrary.simpleMessage("Inviare"),

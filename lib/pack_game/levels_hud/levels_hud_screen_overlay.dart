@@ -29,18 +29,18 @@ class LevelsHudScreenOverlay extends HookWidget {
             children: [
               const LastWordWidget(),
               uiTheme.verticalBoxes.medium,
-              const PlayersSideBar(),
+              const UIPlayersSideBar(),
             ],
           ),
         ),
         Positioned(
           top: 20,
-          right: PlayersSideBar.maxWidth + 20,
-          left: PlayersSideBar.maxWidth + 10,
+          right: UIPlayersSideBar.maxWidth + 20,
+          left: UIPlayersSideBar.maxWidth + 10,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-              Flexible(child: WarningNotification()),
+              Flexible(child: UIWarningNotification()),
             ],
           ),
         ),

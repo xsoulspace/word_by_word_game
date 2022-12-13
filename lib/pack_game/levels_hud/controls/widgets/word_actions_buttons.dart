@@ -4,6 +4,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_composition_row.dart';
+import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 class UIDesktopActions extends StatelessWidget {
   const UIDesktopActions({super.key});
@@ -20,19 +21,19 @@ class UIDesktopActions extends StatelessWidget {
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
-          AddWordToDictionaryButton(
+          UIAddWordToDictionaryButton(
             onPressed: state.onAddWordToDictionary,
           ),
           uiTheme.verticalBoxes.extraSmall,
-          ToSelectActionPhaseButton(
+          UIToSelectActionPhaseButton(
             onPressed: state.onToSelectActionPhase,
           ),
         ]);
         break;
       case LevelPlayerPhaseType.selectAction:
         children.addAll([
-          ToEntryWordPahseButton(
-            onPressed: state.onToEntryWordPhase,
+          UIToEndTurnButton(
+            onPressed: state.onToEndTurn,
           ),
         ]);
         break;
@@ -59,22 +60,22 @@ class UIMobileActions extends StatelessWidget {
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
-          AddWordToDictionaryButton(
+          UIAddWordToDictionaryButton(
             onPressed: state.onAddWordToDictionary,
           ),
           if (DeviceRuntimeType.isMobile)
             uiTheme.verticalBoxes.small
           else
             uiTheme.verticalBoxes.medium,
-          ToSelectActionPhaseButton(
+          UIToSelectActionPhaseButton(
             onPressed: state.onToSelectActionPhase,
           ),
         ]);
         break;
       case LevelPlayerPhaseType.selectAction:
         children.addAll([
-          ToEntryWordPahseButton(
-            onPressed: state.onToEntryWordPhase,
+          UIToEndTurnButton(
+            onPressed: state.onToEndTurn,
           ),
         ]);
         break;
@@ -86,8 +87,8 @@ class UIMobileActions extends StatelessWidget {
   }
 }
 
-class AddWordToDictionaryButton extends StatelessWidget {
-  const AddWordToDictionaryButton({
+class UIAddWordToDictionaryButton extends StatelessWidget {
+  const UIAddWordToDictionaryButton({
     required this.onPressed,
     super.key,
   });
@@ -107,8 +108,8 @@ class AddWordToDictionaryButton extends StatelessWidget {
   }
 }
 
-class ToSelectActionPhaseButton extends StatelessWidget {
-  const ToSelectActionPhaseButton({
+class UIToSelectActionPhaseButton extends StatelessWidget {
+  const UIToSelectActionPhaseButton({
     required this.onPressed,
     super.key,
   });
@@ -118,9 +119,13 @@ class ToSelectActionPhaseButton extends StatelessWidget {
     final warning = context.select<LevelBloc, WordWarning>((final s) {
       return s.getLiveState().wordWarning;
     });
-
+    final currentWord = context.select<LevelBloc, String>((final s) {
+      return s.getLiveState().currentWord.fullWord;
+    });
+    final mechanicsCollection = context.read<MechanicsCollection>();
+    final score = mechanicsCollection.score.getScoreFromWord(word: currentWord);
     return UiTextButton.icon(
-      text: S.of(context).confirm,
+      text: '${S.of(context).confirm} +${score.value.toInt()}',
       onPressed: warning == WordWarning.isNotCorrect ? null : onPressed,
       icon: UiIcons.fire,
       mainAlignment: MainAxisAlignment.center,
@@ -129,17 +134,22 @@ class ToSelectActionPhaseButton extends StatelessWidget {
   }
 }
 
-class ToEntryWordPahseButton extends StatelessWidget {
-  const ToEntryWordPahseButton({
+class UIToEndTurnButton extends StatelessWidget {
+  const UIToEndTurnButton({
     required this.onPressed,
     super.key,
   });
   final VoidCallback onPressed;
   @override
   Widget build(final BuildContext context) {
+    final actionType =
+        context.select<LevelBloc, LevelPlayerActionType?>((final s) {
+      return s.getLiveState().actionType;
+    });
+
     return UiTextButton.icon(
       text: S.of(context).applyAndEndTurn,
-      onPressed: onPressed,
+      onPressed: actionType == null ? null : onPressed,
       icon: UiIcons.fire,
       mainAlignment: MainAxisAlignment.center,
       isLongButton: true,

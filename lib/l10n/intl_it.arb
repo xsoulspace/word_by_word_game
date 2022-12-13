@@ -152,6 +152,9 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectAction": "Seleziona Azione",
+  "cookFood": "Cucinare",
+  "refuelStorage": "Rifornirsi",
   "addToDictionary": "Aggiungi al dizionario",
   "@addToDictionary": {
     "type": "text",

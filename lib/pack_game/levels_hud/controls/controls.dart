@@ -57,9 +57,9 @@ class _DesktopControlsWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const DesktopPlayerSwitcher(),
+          const UIDesktopPlayerSwitcher(),
           uiTheme.horizontalBoxes.medium,
-          const WordCompositionRow(),
+          const UILevelCenterRow(),
           uiTheme.horizontalBoxes.medium,
           const UIDesktopActions(),
         ],
@@ -83,12 +83,12 @@ class _MobileControlsWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            WordCompositionRow(
+            UILevelCenterRow(
               leftTopBuilder: (final context) {
-                return const MobilePlayerName();
+                return const UIMobilePlayerName();
               },
               rightTopBuilder: (final context) {
-                return const MobilePlayerScore();
+                return const UIMobilePlayerScore();
               },
             ),
             if (DeviceRuntimeType.isMobile)

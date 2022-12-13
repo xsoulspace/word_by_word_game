@@ -205,6 +205,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final liveState = getLiveState();
     final updatedState = liveState.copyWith(
       phaseType: LevelPlayerPhaseType.entryWord,
+      actionType: null,
     );
     emit(updatedState);
 
