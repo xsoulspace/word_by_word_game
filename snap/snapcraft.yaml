@@ -1,5 +1,5 @@
 name: word-by-word-game
-version: 2.4.0+21
+version: 2.5.0+22
 summary: Word Arcade-> write word based on last 3 letters of last word & pass Landscape
 description: |
   Please note: new version is completely rewritten and is in active development.

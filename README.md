@@ -9,7 +9,6 @@
 <img style="margin-bottom: 17px; margin-left: 23px;" alt="Get it from the Snap Store" src="https://snapcraft.io/static/images/badges/en/snap-store-black.svg" />
 <a style="margin-bottom: 17px; margin-left: 23px;" href='https://play.google.com/store/apps/details?id=dev.xsoulspace.word_by_word_game&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img height="90px"; alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'/></a>
 </a>
-
 </p>
 
 # About
@@ -24,7 +23,7 @@ https://youtube.com/playlist?list=PLz4tcEeusgWJeJO6RvOxOkfD3XE1pDKFg
 
 Word by word - is a simple, fun, self-educative, and easy to play game to write word after word based on the last 3 letters of the last word.
 
-Features:
+## Features:
 
 - any word will be checked within internal dictionaries (available for two languages: English and Russian).
 - you can play with your friends in old school way - to give a turn to another player. (Players count now is unlimited).
@@ -33,7 +32,7 @@ Features:
 
 ## Have an idea, improvements, or bugs?
 
-Join Discord - https://discord.gg/y54DpJwmAn or send a message to idea@xsoulspace.dev.
+Join Discord - https://discord.gg/y54DpJwmAn
 
 Have fun and a great time!
 
@@ -41,13 +40,23 @@ Have fun and a great time!
 
 <br/>
 
-# Huge thank you for contributions!
+## Donations / Sponsor
+
+Please sponsor or donate to the creator on [Boosty](https://boosty.to/arenukvern) or [CloudTips](https://pay.cloudtips.ru/p/1629cd27).
+
+Thank you for your support and have a great day! 🌄
+
+## Contributing
+
+All [comments](https://github.com/xsoulspace/word_by_word_game/issues) and [pull requests](https://github.com/xsoulspace/word_by_word_game/pulls) are welcome.
+
+## Huge thank you for contributions!
 
 [@albanobattistella](https://github.com/albanobattistella)
 
-# Support
+## Getting Help
 
-Any game support is appreciated and available at the link: https://boosty.to/arenukvern
+If you need help getting started with Sheet Manager or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
 
 ## Build
 
