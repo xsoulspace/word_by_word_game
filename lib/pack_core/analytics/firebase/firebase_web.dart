@@ -2,7 +2,7 @@ import 'package:firebase_analytics_web/firebase_analytics_web.dart';
 import 'package:firebase_core_web/firebase_core_web.dart';
 import 'package:flutter/material.dart';
 import 'package:word_by_word_game/firebase_options.dart';
-import 'package:word_by_word_game/pack_core/analytics/firebase/firebase.dart';
+import 'package:word_by_word_game/pack_core/analytics/firebase/abstract_firebase.dart';
 import 'package:word_by_word_game/pack_core/analytics/notifiers/analytics_notifier.dart';
 
 class FirebaseInitializer implements AbstractFirebaseInitializer {

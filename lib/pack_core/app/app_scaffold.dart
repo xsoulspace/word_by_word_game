@@ -10,18 +10,19 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_state_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/navigation/app_navigator.dart';
-import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
+import 'package:word_by_word_game/pack_core/pack_core.dart';
 
 part 'app_scaffold_state.dart';
 
 class AppScaffold extends StatelessWidget {
-  const AppScaffold({final Key? key}) : super(key: key);
-
+  const AppScaffold({required this.servicesDiDto, final Key? key})
+      : super(key: key);
+  final AppServicesProviderDiDto servicesDiDto;
   @override
   Widget build(final BuildContext context) {
     return Portal(
       child: AppServicesProvider(
+        diDto: servicesDiDto,
         child: RouterScaffold(
           builder: (final context, final parser) => AppScaffoldBuilder(
             routeParser: parser,
