@@ -1,8 +1,10 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialog_stack.dart';
 import 'package:word_by_word_game/pack_game/game/wbw_game.dart';
@@ -59,7 +61,18 @@ class WbwGameWidget extends HookWidget {
                   ),
                 ),
               ),
-              const ControlsWidget(),
+              BlocSelector<LevelBloc, LevelBlocState, bool>(
+                selector: (final state) {
+                  return state is LiveLevelBlocState;
+                },
+                builder: (final context, final isLive) {
+                  if (isLive) {
+                    return const ControlsWidget();
+                  } else {
+                    return const SizedBox();
+                  }
+                },
+              ),
               const BottomSafeArea()
             ],
           );
