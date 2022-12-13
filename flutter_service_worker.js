@@ -4,12 +4,13 @@ const TEMP = 'flutter-temp-cache';
 const CACHE_NAME = 'flutter-app-cache';
 const RESOURCES = {
   "version.json": "12939d46c3a8bb3fc1b659978e36c7b1",
-"index.html": "0847fe990b7cd10f70f5d5ce8ac064e2",
-"/": "0847fe990b7cd10f70f5d5ce8ac064e2",
+"index.html": "3a66b6438186ba03ff5453ebcbe0f017",
+"/": "3a66b6438186ba03ff5453ebcbe0f017",
 "styles.css": "d41d8cd98f00b204e9800998ecf8427e",
 "key.pem": "d52839ac893be443dbe6c4c1a9c27df6",
 "main.dart.js": "8e0c315882aa23b682cfe06f300c4aed",
 "cert.pem": "5501349c3eb7cc779fae3a3fb62afd80",
+"flutter.js": "f85e6fb278b0fd20c349186fb46ae36d",
 "favicon.png": "e58e79776834344d9be6f5b6cbe2d7af",
 "icons/Icon-192.png": "e58e79776834344d9be6f5b6cbe2d7af",
 "icons/Icon-512.png": "e58e79776834344d9be6f5b6cbe2d7af",
@@ -67,7 +68,11 @@ const RESOURCES = {
 "assets/google_fonts/README.txt": "7e8cd0c0df2ceb42e5881031329a7de5",
 "assets/google_fonts/OpenSans-ExtraBoldItalic.ttf": "c62aeef30c74135fb49ba79d6f27881d",
 "assets/google_fonts/OpenSans-Regular.ttf": "22ab03a6b890f2f142a137a38bf1d4ae",
-"assets/google_fonts/OpenSans-BoldItalic.ttf": "210de434db54de4a6a73d1cf8604e224"
+"assets/google_fonts/OpenSans-BoldItalic.ttf": "210de434db54de4a6a73d1cf8604e224",
+"canvaskit/canvaskit.js": "2bc454a691c631b07a9307ac4ca47797",
+"canvaskit/profiling/canvaskit.js": "38164e5a72bdad0faa4ce740c9b8e564",
+"canvaskit/profiling/canvaskit.wasm": "95a45378b69e77af5ed2bc72b2209b94",
+"canvaskit/canvaskit.wasm": "bf50631470eb967688cca13ee181af62"
 };
 
 // The application shell files that are downloaded before a service worker can
