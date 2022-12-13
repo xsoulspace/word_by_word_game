@@ -39,6 +39,9 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default('') final String latestWord,
     @Default(LevelPlayerPhaseType.entryWord)
         final LevelPlayerPhaseType phaseType,
+    @Default(LevelActionMultiplierType.m1)
+        final LevelActionMultiplierType actionMultiplier,
+    final LevelPlayerActionType? actionType,
 
     /// ********************************************
     /// *      NON PERSISTENT
@@ -52,6 +55,9 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
   factory LiveLevelBlocState.fromModel(final LevelModel levelModel) {
     return LiveLevelBlocState(
       name: levelModel.name,
+      phaseType: levelModel.phaseType,
+      actionType: levelModel.actionType,
+      actionMultiplier: levelModel.actionMultiplier,
       currentWord: levelModel.currentWord,
       latestWord: levelModel.latestWord,
       words: levelModel.words,

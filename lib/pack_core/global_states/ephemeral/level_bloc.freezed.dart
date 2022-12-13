@@ -26,6 +26,9 @@ mixin _$LiveLevelBlocState {
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
   LevelPlayerPhaseType get phaseType => throw _privateConstructorUsedError;
+  LevelActionMultiplierType get actionMultiplier =>
+      throw _privateConstructorUsedError;
+  LevelPlayerActionType? get actionType => throw _privateConstructorUsedError;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -50,6 +53,8 @@ abstract class $LiveLevelBlocStateCopyWith<$Res> {
       Map<String, String> words,
       String latestWord,
       LevelPlayerPhaseType phaseType,
+      LevelActionMultiplierType actionMultiplier,
+      LevelPlayerActionType? actionType,
       WordWarning wordWarning});
 
   $LocalizedMapCopyWith<$Res> get name;
@@ -73,6 +78,8 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
     Object? words = freezed,
     Object? latestWord = freezed,
     Object? phaseType = freezed,
+    Object? actionMultiplier = freezed,
+    Object? actionType = freezed,
     Object? wordWarning = freezed,
   }) {
     return _then(_value.copyWith(
@@ -100,6 +107,14 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.phaseType
           : phaseType // ignore: cast_nullable_to_non_nullable
               as LevelPlayerPhaseType,
+      actionMultiplier: actionMultiplier == freezed
+          ? _value.actionMultiplier
+          : actionMultiplier // ignore: cast_nullable_to_non_nullable
+              as LevelActionMultiplierType,
+      actionType: actionType == freezed
+          ? _value.actionType
+          : actionType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerActionType?,
       wordWarning: wordWarning == freezed
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -136,6 +151,8 @@ abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
       Map<String, String> words,
       String latestWord,
       LevelPlayerPhaseType phaseType,
+      LevelActionMultiplierType actionMultiplier,
+      LevelPlayerActionType? actionType,
       WordWarning wordWarning});
 
   @override
@@ -163,6 +180,8 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
     Object? words = freezed,
     Object? latestWord = freezed,
     Object? phaseType = freezed,
+    Object? actionMultiplier = freezed,
+    Object? actionType = freezed,
     Object? wordWarning = freezed,
   }) {
     return _then(_$_LiveLevelBlocState(
@@ -190,6 +209,14 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
           ? _value.phaseType
           : phaseType // ignore: cast_nullable_to_non_nullable
               as LevelPlayerPhaseType,
+      actionMultiplier: actionMultiplier == freezed
+          ? _value.actionMultiplier
+          : actionMultiplier // ignore: cast_nullable_to_non_nullable
+              as LevelActionMultiplierType,
+      actionType: actionType == freezed
+          ? _value.actionType
+          : actionType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerActionType?,
       wordWarning: wordWarning == freezed
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -209,6 +236,8 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       final Map<String, String> words = const {},
       this.latestWord = '',
       this.phaseType = LevelPlayerPhaseType.entryWord,
+      this.actionMultiplier = LevelActionMultiplierType.m1,
+      this.actionType,
       this.wordWarning = WordWarning.none})
       : _words = words,
         super._();
@@ -238,6 +267,11 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   @override
   @JsonKey()
   final LevelPlayerPhaseType phaseType;
+  @override
+  @JsonKey()
+  final LevelActionMultiplierType actionMultiplier;
+  @override
+  final LevelPlayerActionType? actionType;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -248,7 +282,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   String toString() {
-    return 'LiveLevelBlocState(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, wordWarning: $wordWarning)';
+    return 'LiveLevelBlocState(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, actionType: $actionType, wordWarning: $wordWarning)';
   }
 
   @override
@@ -265,6 +299,10 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
                 .equals(other.latestWord, latestWord) &&
             const DeepCollectionEquality().equals(other.phaseType, phaseType) &&
             const DeepCollectionEquality()
+                .equals(other.actionMultiplier, actionMultiplier) &&
+            const DeepCollectionEquality()
+                .equals(other.actionType, actionType) &&
+            const DeepCollectionEquality()
                 .equals(other.wordWarning, wordWarning));
   }
 
@@ -278,6 +316,8 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       const DeepCollectionEquality().hash(_words),
       const DeepCollectionEquality().hash(latestWord),
       const DeepCollectionEquality().hash(phaseType),
+      const DeepCollectionEquality().hash(actionMultiplier),
+      const DeepCollectionEquality().hash(actionType),
       const DeepCollectionEquality().hash(wordWarning));
 
   @JsonKey(ignore: true)
@@ -303,6 +343,8 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
       final Map<String, String> words,
       final String latestWord,
       final LevelPlayerPhaseType phaseType,
+      final LevelActionMultiplierType actionMultiplier,
+      final LevelPlayerActionType? actionType,
       final WordWarning wordWarning}) = _$_LiveLevelBlocState;
   const _LiveLevelBlocState._() : super._();
 
@@ -321,6 +363,10 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
   String get latestWord;
   @override
   LevelPlayerPhaseType get phaseType;
+  @override
+  LevelActionMultiplierType get actionMultiplier;
+  @override
+  LevelPlayerActionType? get actionType;
   @override
 
   /// ********************************************

@@ -1233,6 +1233,10 @@ mixin _$LevelModel {
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
+  LevelPlayerPhaseType get phaseType => throw _privateConstructorUsedError;
+  LevelActionMultiplierType get actionMultiplier =>
+      throw _privateConstructorUsedError;
+  LevelPlayerActionType? get actionType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1253,7 +1257,10 @@ abstract class $LevelModelCopyWith<$Res> {
       LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
-      String latestWord});
+      String latestWord,
+      LevelPlayerPhaseType phaseType,
+      LevelActionMultiplierType actionMultiplier,
+      LevelPlayerActionType? actionType});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
@@ -1280,6 +1287,9 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
+    Object? phaseType = freezed,
+    Object? actionMultiplier = freezed,
+    Object? actionType = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -1314,6 +1324,18 @@ class _$LevelModelCopyWithImpl<$Res> implements $LevelModelCopyWith<$Res> {
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
+      phaseType: phaseType == freezed
+          ? _value.phaseType
+          : phaseType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerPhaseType,
+      actionMultiplier: actionMultiplier == freezed
+          ? _value.actionMultiplier
+          : actionMultiplier // ignore: cast_nullable_to_non_nullable
+              as LevelActionMultiplierType,
+      actionType: actionType == freezed
+          ? _value.actionType
+          : actionType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerActionType?,
     ));
   }
 
@@ -1368,7 +1390,10 @@ abstract class _$$_LevelModelCopyWith<$Res>
       LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
-      String latestWord});
+      String latestWord,
+      LevelPlayerPhaseType phaseType,
+      LevelActionMultiplierType actionMultiplier,
+      LevelPlayerActionType? actionType});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1402,6 +1427,9 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
     Object? currentWord = freezed,
     Object? words = freezed,
     Object? latestWord = freezed,
+    Object? phaseType = freezed,
+    Object? actionMultiplier = freezed,
+    Object? actionType = freezed,
   }) {
     return _then(_$_LevelModel(
       id: id == freezed
@@ -1436,6 +1464,18 @@ class __$$_LevelModelCopyWithImpl<$Res> extends _$LevelModelCopyWithImpl<$Res>
           ? _value.latestWord
           : latestWord // ignore: cast_nullable_to_non_nullable
               as String,
+      phaseType: phaseType == freezed
+          ? _value.phaseType
+          : phaseType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerPhaseType,
+      actionMultiplier: actionMultiplier == freezed
+          ? _value.actionMultiplier
+          : actionMultiplier // ignore: cast_nullable_to_non_nullable
+              as LevelActionMultiplierType,
+      actionType: actionType == freezed
+          ? _value.actionType
+          : actionType // ignore: cast_nullable_to_non_nullable
+              as LevelPlayerActionType?,
     ));
   }
 }
@@ -1452,7 +1492,10 @@ class _$_LevelModel extends _LevelModel {
       this.name = LocalizedMap.empty,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
-      this.latestWord = ''})
+      this.latestWord = '',
+      this.phaseType = LevelPlayerPhaseType.entryWord,
+      this.actionMultiplier = LevelActionMultiplierType.m1,
+      this.actionType})
       : _words = words,
         super._();
 
@@ -1484,10 +1527,18 @@ class _$_LevelModel extends _LevelModel {
   @override
   @JsonKey()
   final String latestWord;
+  @override
+  @JsonKey()
+  final LevelPlayerPhaseType phaseType;
+  @override
+  @JsonKey()
+  final LevelActionMultiplierType actionMultiplier;
+  @override
+  final LevelPlayerActionType? actionType;
 
   @override
   String toString() {
-    return 'LevelModel(id: $id, players: $players, characters: $characters, resources: $resources, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord)';
+    return 'LevelModel(id: $id, players: $players, characters: $characters, resources: $resources, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, actionType: $actionType)';
   }
 
   @override
@@ -1505,7 +1556,12 @@ class _$_LevelModel extends _LevelModel {
                 .equals(other.currentWord, currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
             const DeepCollectionEquality()
-                .equals(other.latestWord, latestWord));
+                .equals(other.latestWord, latestWord) &&
+            const DeepCollectionEquality().equals(other.phaseType, phaseType) &&
+            const DeepCollectionEquality()
+                .equals(other.actionMultiplier, actionMultiplier) &&
+            const DeepCollectionEquality()
+                .equals(other.actionType, actionType));
   }
 
   @JsonKey(ignore: true)
@@ -1519,7 +1575,10 @@ class _$_LevelModel extends _LevelModel {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(currentWord),
       const DeepCollectionEquality().hash(_words),
-      const DeepCollectionEquality().hash(latestWord));
+      const DeepCollectionEquality().hash(latestWord),
+      const DeepCollectionEquality().hash(phaseType),
+      const DeepCollectionEquality().hash(actionMultiplier),
+      const DeepCollectionEquality().hash(actionType));
 
   @JsonKey(ignore: true)
   @override
@@ -1543,7 +1602,10 @@ abstract class _LevelModel extends LevelModel {
       final LocalizedMap name,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
-      final String latestWord}) = _$_LevelModel;
+      final String latestWord,
+      final LevelPlayerPhaseType phaseType,
+      final LevelActionMultiplierType actionMultiplier,
+      final LevelPlayerActionType? actionType}) = _$_LevelModel;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1565,6 +1627,12 @@ abstract class _LevelModel extends LevelModel {
   Map<String, String> get words;
   @override
   String get latestWord;
+  @override
+  LevelPlayerPhaseType get phaseType;
+  @override
+  LevelActionMultiplierType get actionMultiplier;
+  @override
+  LevelPlayerActionType? get actionType;
   @override
   @JsonKey(ignore: true)
   _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>

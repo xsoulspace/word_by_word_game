@@ -48,18 +48,18 @@ class _DesktopControlsWidget extends StatelessWidget {
       ).copyWith(
         bottom: uiTheme.spacing.medium,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const DesktopPlayerSwitcher(),
-          uiTheme.horizontalBoxes.medium,
-          const WordCompositionBackground(
-            child: WordCompositionRow(),
-          ),
-          uiTheme.horizontalBoxes.medium,
-          const UIDesktopActions(),
-        ],
+      child: WordCompositionBackground(
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const DesktopPlayerSwitcher(),
+            uiTheme.horizontalBoxes.medium,
+            const WordCompositionRow(),
+            uiTheme.horizontalBoxes.medium,
+            const UIDesktopActions(),
+          ],
+        ),
       ),
     );
   }
@@ -110,17 +110,16 @@ class WordCompositionBackground extends StatelessWidget {
     final livePlayersBloc = levelPlayersBloc.state;
     if (livePlayersBloc is! LiveLevelPlayersBlocState) return const SizedBox();
 
-    return DecoratedBox(
+    return Container(
       decoration: BoxDecoration(
-        color: theme.backgroundColor.withOpacity(0.95),
+        color: ElevationOverlay.applySurfaceTint(
+          livePlayersBloc.currentPlayer.color,
+          theme.colorScheme.surfaceTint,
+          3,
+        ).withOpacity(0.1),
+        borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
       ),
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: livePlayersBloc.currentPlayer.color.withOpacity(0.03),
-          borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
-        ),
-        child: child,
-      ),
+      child: child,
     );
   }
 }
