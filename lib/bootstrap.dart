@@ -33,6 +33,7 @@ Future<void> bootstrap(
   })
       builder,
 ) async {
+  // await Flame.device.fullScreen();
   WidgetsFlutterBinding.ensureInitialized();
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
@@ -40,8 +41,6 @@ Future<void> bootstrap(
   });
   final firebaseIntializer = FirebaseInitializer();
   await firebaseIntializer.onLoad();
-
-  // await Flame.device.fullScreen();
 
   final analyticsNotifier = AnalyticsNotifier();
   await analyticsNotifier.onLoad();
