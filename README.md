@@ -51,4 +51,4 @@ Any game support is appreciated and available at the link: https://boosty.to/are
 
 ## Build
 
-flutter build web --csp
+flutter clean && flutter pub get && flutter build web --csp
