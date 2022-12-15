@@ -14,20 +14,20 @@ class _PauseScreenStateDiDto {
   final MechanicsCollection mechanics;
 }
 
-_PauseScreenState _usePauseScreenState({
+PauseScreenState _usePauseScreenState({
   required final Locator read,
 }) =>
     use(
       ContextfulLifeHook(
         debugLabel: '_PauseScreenState',
-        state: _PauseScreenState(
+        state: PauseScreenState(
           diDto: _PauseScreenStateDiDto.use(read),
         ),
       ),
     );
 
-class _PauseScreenState extends ContextfulLifeState {
-  _PauseScreenState({
+class PauseScreenState extends ContextfulLifeState {
+  PauseScreenState({
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
@@ -44,8 +44,8 @@ class _PauseScreenState extends ContextfulLifeState {
     diDto.mechanics.worldTime.resume();
   }
 
-  void onToAllLevels() {
-    diDto.appRouterController.toAllLevel();
+  void onToLevel(final TemplateLevelModel level) {
+    diDto.appRouterController.toLevelOptions(id: level.id);
   }
 
   void onToPlayersAndHighscore() {

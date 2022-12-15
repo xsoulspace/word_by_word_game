@@ -5,7 +5,6 @@ import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_
 class NavigationRoutes {
   NavigationRoutes._();
   static const root = '/';
-  static const allLevels = '/lvl/all';
   static const highscore = '/highscore';
   static const settings = '/settings';
 
@@ -21,7 +20,6 @@ class NavigationRoutes {
 
   static const routes = [
     root,
-    allLevels,
     playableLevel,
     levelOptions,
     pause,
@@ -57,6 +55,5 @@ class AppRouterController extends RouterController {
     required final LevelModelId id,
   }) =>
       to(NavigationRoutes.getLevelOptions(id: id));
-  void toAllLevel() => to(NavigationRoutes.allLevels);
   void toPlayersAndHighscore() => to(NavigationRoutes.highscore);
 }

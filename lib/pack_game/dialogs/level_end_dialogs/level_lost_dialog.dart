@@ -67,7 +67,7 @@ class LevelLostDialog extends StatelessWidget {
                 TextButton(
                   onPressed: () {
                     onSendEndLevelEvent();
-                    AppRouterController.use(context.read).toAllLevel();
+                    AppRouterController.use(context.read).toRoot();
                     context.read<DialogController>().closeDialog();
                   },
                   child: Text(S.of(context).toLandscapes),
