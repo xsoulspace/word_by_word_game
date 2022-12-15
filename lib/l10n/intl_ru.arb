@@ -89,7 +89,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на idea@xsoulspace.dev",
+  "sendFeedback": "Если у вас есть идея, улучшения или ошибки, присоединяйтесь к серверу Discord.",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}

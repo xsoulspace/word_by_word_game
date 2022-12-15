@@ -21,7 +21,7 @@ class PauseScreen extends HookWidget {
   const PauseScreen({
     final Key? key,
   }) : super(key: key);
-  static const isPrivacyPolicyEnabled = false;
+  static const _kIsPrivacyPolicyEnabled = false;
   @override
   Widget build(final BuildContext context) {
     final state = _usePauseScreenState(read: context.read);
@@ -37,11 +37,6 @@ class PauseScreen extends HookWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const TopSafeArea(),
-            if (Platform.isAndroid)
-              YandexBannerPlatformView(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-              ),
             const Spacer(),
             Visibility(
               visible: isLevelRunning,
@@ -55,28 +50,39 @@ class PauseScreen extends HookWidget {
               text: S.of(context).startNewGame,
               onPressed: state.onToAllLevels,
             ),
-            uiTheme.verticalBoxes.medium,
-            UiFilledButton.text(
-              text: S.of(context).playersAndHighscore,
-              onPressed: state.onToPlayersAndHighscore,
-            ),
-            uiTheme.verticalBoxes.medium,
-            UiFilledButton.text(
-              text: S.of(context).settings,
-              onPressed: state.onToSettings,
-            ),
-            uiTheme.verticalBoxes.medium,
-            UiFilledButton.text(
-              text: S.of(context).about,
-              onPressed: state.onShowAbout,
-            ),
-            uiTheme.verticalBoxes.medium,
-            if (isPrivacyPolicyEnabled)
-              UiTextButton.text(
-                text: S.of(context).privacyPolicy,
-                onPressed: state.onPrivacyPolicy,
-              ),
             const Spacer(),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 2,
+              runSpacing: 12,
+              children: [
+                UiFilledButton.icon(
+                  icon: Icons.scoreboard_rounded,
+                  text: S.of(context).playersAndHighscore,
+                  onPressed: state.onToPlayersAndHighscore,
+                ),
+                uiTheme.horizontalBoxes.medium,
+                UiFilledButton.icon(
+                  icon: Icons.settings,
+                  text: S.of(context).settings,
+                  onPressed: state.onToSettings,
+                ),
+                uiTheme.horizontalBoxes.medium,
+                UiFilledButton.icon(
+                  icon: Icons.question_mark_rounded,
+                  text: S.of(context).about,
+                  onPressed: state.onShowAbout,
+                ),
+                uiTheme.horizontalBoxes.medium,
+                if (_kIsPrivacyPolicyEnabled)
+                  UiTextButton.text(
+                    text: S.of(context).privacyPolicy,
+                    onPressed: state.onPrivacyPolicy,
+                  ),
+              ],
+            ),
+            uiTheme.verticalBoxes.extraLarge,
+            const BottomSafeArea(),
           ],
         ),
       ),

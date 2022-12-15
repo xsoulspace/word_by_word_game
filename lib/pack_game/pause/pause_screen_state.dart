@@ -79,14 +79,28 @@ class _PauseScreenState extends ContextfulLifeState {
             uiTheme.verticalBoxes.medium,
             Text(s.creatingGame),
             uiTheme.verticalBoxes.medium,
-            Text(s.sendFeedback),
+            Visibility(
+              visible: linksAreAllowed,
+              child: TextButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(s.sendFeedback),
+                ),
+                onPressed: () => launchUrlString(
+                  'https://discord.com/invite/y54DpJwmAn',
+                ),
+              ),
+            ),
             uiTheme.verticalBoxes.medium,
             Visibility(
               visible: linksAreAllowed,
               child: TextButton(
-                child: Text(s.supportGame),
                 onPressed: () =>
                     launchUrlString('https://boosty.to/arenukvern'),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(s.supportGame),
+                ),
               ),
             ),
             uiTheme.verticalBoxes.medium,

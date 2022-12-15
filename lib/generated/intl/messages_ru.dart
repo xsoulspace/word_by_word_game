@@ -86,7 +86,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "selectPlayers": MessageLookupByLibrary.simpleMessage("Выбери игроков"),
         "send": MessageLookupByLibrary.simpleMessage("Отправить"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
-            "Если у вас есть идеи как улучшить игру или увидели баг - отправьте письмо на idea@xsoulspace.dev"),
+            "Если у вас есть идея, улучшения или ошибки, присоединяйтесь к серверу Discord."),
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Заново "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("Новая игра"),
