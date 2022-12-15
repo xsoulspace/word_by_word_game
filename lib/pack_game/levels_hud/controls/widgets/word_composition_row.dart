@@ -85,7 +85,7 @@ class UIWordCompositionRow extends HookWidget {
                         textFieldFocusNode: state.rightWordFocus,
                         controller: state.rightPartController,
                         hintText: S.of(context).hintAddEnding,
-                        onSubmitted: state.onToEndTurn,
+                        onSubmitted: state.onToSelectActionPhase,
                       ),
                     ],
                   );
