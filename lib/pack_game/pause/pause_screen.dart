@@ -38,17 +38,15 @@ class PauseScreen extends HookWidget {
           children: [
             const TopSafeArea(),
             const Spacer(),
-            Visibility(
-              visible: isLevelRunning,
-              child: UiFilledButton.text(
-                text: S.of(context).continueGame,
-                onPressed: () => state.onContinue(id: levelId),
-              ),
-            ),
-            uiTheme.verticalBoxes.extraLarge,
             UiFilledButton.text(
               text: S.of(context).startNewGame,
               onPressed: state.onToAllLevels,
+            ),
+            uiTheme.verticalBoxes.large,
+            UiFilledButton.text(
+              text: S.of(context).continueGame,
+              onPressed:
+                  isLevelRunning ? null : () => state.onContinue(id: levelId),
             ),
             const Spacer(),
             Wrap(
