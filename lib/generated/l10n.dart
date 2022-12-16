@@ -410,10 +410,10 @@ class S {
     );
   }
 
-  /// `For any bugs or ideas please send your feedback to idea@xsoulspace.dev`
+  /// `If you have an idea, improvements, or bugs join Discord server.`
   String get sendFeedback {
     return Intl.message(
-      'For any bugs or ideas please send your feedback to idea@xsoulspace.dev',
+      'If you have an idea, improvements, or bugs join Discord server.',
       name: 'sendFeedback',
       desc: '',
       args: [],

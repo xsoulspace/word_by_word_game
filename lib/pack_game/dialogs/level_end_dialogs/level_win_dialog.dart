@@ -41,7 +41,7 @@ class LevelWinDialog extends StatelessWidget {
               children: [
                 TextButton(
                   onPressed: () {
-                    AppRouterController.use(context.read).toAllLevel();
+                    AppRouterController.use(context.read).toRoot();
                     context.read<DialogController>().closeDialog();
                   },
                   child: const Text('To Landscapes'),
