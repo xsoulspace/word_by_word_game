@@ -13,6 +13,7 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
+import 'package:word_by_word_game/pack_game/pause/widgets/start_game_hex.dart';
 import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 
 part 'pause_screen_state.dart';
@@ -21,65 +22,61 @@ class PauseScreen extends HookWidget {
   const PauseScreen({
     final Key? key,
   }) : super(key: key);
-  static const isPrivacyPolicyEnabled = false;
+  static const _kIsPrivacyPolicyEnabled = false;
   @override
   Widget build(final BuildContext context) {
     final state = _usePauseScreenState(read: context.read);
-    final routeState = context.watch<RouteState>();
-    final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
-    final levelId = routeArgs.levelId;
-    final isLevelRunning = levelId.isNotEmpty;
     final uiTheme = UiTheme.of(context);
 
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const TopSafeArea(),
-            if (Platform.isAndroid)
-              YandexBannerPlatformView(
-                height: 50,
-                width: MediaQuery.of(context).size.width,
-              ),
-            const Spacer(),
-            Visibility(
-              visible: isLevelRunning,
-              child: UiFilledButton.text(
-                text: S.of(context).continueGame,
-                onPressed: () => state.onContinue(id: levelId),
-              ),
+    return Provider(
+      create: (final context) => state,
+      builder: (final context, final child) {
+        return Scaffold(
+          body: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const TopSafeArea(),
+                const Spacer(),
+                const StartGameHex(),
+                const Spacer(),
+                Wrap(
+                  alignment: WrapAlignment.center,
+                  spacing: 2,
+                  runSpacing: 12,
+                  children: [
+                    UiFilledButton.icon(
+                      icon: Icons.scoreboard_rounded,
+                      text: S.of(context).playersAndHighscore,
+                      onPressed: state.onToPlayersAndHighscore,
+                    ),
+                    uiTheme.horizontalBoxes.medium,
+                    UiFilledButton.icon(
+                      icon: Icons.settings,
+                      text: S.of(context).settings,
+                      onPressed: state.onToSettings,
+                    ),
+                    uiTheme.horizontalBoxes.medium,
+                    UiFilledButton.icon(
+                      icon: Icons.question_mark_rounded,
+                      text: S.of(context).about,
+                      onPressed: state.onShowAbout,
+                    ),
+                    uiTheme.horizontalBoxes.medium,
+                    if (_kIsPrivacyPolicyEnabled)
+                      UiTextButton.text(
+                        text: S.of(context).privacyPolicy,
+                        onPressed: state.onPrivacyPolicy,
+                      ),
+                  ],
+                ),
+                uiTheme.verticalBoxes.extraLarge,
+                const BottomSafeArea(),
+              ],
             ),
-            uiTheme.verticalBoxes.extraLarge,
-            UiFilledButton.text(
-              text: S.of(context).startNewGame,
-              onPressed: state.onToAllLevels,
-            ),
-            uiTheme.verticalBoxes.medium,
-            UiFilledButton.text(
-              text: S.of(context).playersAndHighscore,
-              onPressed: state.onToPlayersAndHighscore,
-            ),
-            uiTheme.verticalBoxes.medium,
-            UiFilledButton.text(
-              text: S.of(context).settings,
-              onPressed: state.onToSettings,
-            ),
-            uiTheme.verticalBoxes.medium,
-            UiFilledButton.text(
-              text: S.of(context).about,
-              onPressed: state.onShowAbout,
-            ),
-            uiTheme.verticalBoxes.medium,
-            if (isPrivacyPolicyEnabled)
-              UiTextButton.text(
-                text: S.of(context).privacyPolicy,
-                onPressed: state.onPrivacyPolicy,
-              ),
-            const Spacer(),
-          ],
-        ),
-      ),
+          ),
+        );
+      },
     );
   }
 }

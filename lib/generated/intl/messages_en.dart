@@ -88,7 +88,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Select the Players"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
-            "For any bugs or ideas please send your feedback to idea@xsoulspace.dev"),
+            "If you have an idea, improvements, or bugs join Discord server."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Start again "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
