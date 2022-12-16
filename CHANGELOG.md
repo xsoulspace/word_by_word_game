@@ -14,6 +14,12 @@
 
 ## Next
 
+## December 16th 2022
+
+- refactored: all levels screen removed.
+- refactored: home screen buttons position a little changed.
+- refactored: logic for words and actions now devided into two.
+
 ## October 16th 2022
 
 - Added score cost for word suggestion - and hopefully made it more playable.
