@@ -36,7 +36,6 @@ class AppPageBuilderKeys {
   final game = const ValueKey('game');
   final highscore = const ValueKey('highscore');
   final settings = const ValueKey('settings');
-  final allLevels = const ValueKey('allLevels');
   final levelOptions = const ValueKey('levelOptions');
 }
 
@@ -56,11 +55,6 @@ class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
   Page pause() => NavigatorPage(
         child: const PauseScreen(),
         key: keys.pause,
-      );
-
-  Page allLevels() => NavigatorPage(
-        child: const AllLevelsScreen(),
-        key: keys.allLevels,
       );
 
   Page levelOptions() => NavigatorPage(
@@ -101,8 +95,6 @@ class AppLayoutBuilder
     if (pathTemplate.startsWith(NavigationRoutes.levelRoot)) {
       if (pathTemplate == NavigationRoutes.levelOptions) {
         pages.add(pageBuilder.levelOptions());
-      } else if (pathTemplate == NavigationRoutes.allLevels) {
-        pages.add(pageBuilder.allLevels());
       }
     }
 

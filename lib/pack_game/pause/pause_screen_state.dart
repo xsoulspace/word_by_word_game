@@ -14,20 +14,20 @@ class _PauseScreenStateDiDto {
   final MechanicsCollection mechanics;
 }
 
-_PauseScreenState _usePauseScreenState({
+PauseScreenState _usePauseScreenState({
   required final Locator read,
 }) =>
     use(
       ContextfulLifeHook(
         debugLabel: '_PauseScreenState',
-        state: _PauseScreenState(
+        state: PauseScreenState(
           diDto: _PauseScreenStateDiDto.use(read),
         ),
       ),
     );
 
-class _PauseScreenState extends ContextfulLifeState {
-  _PauseScreenState({
+class PauseScreenState extends ContextfulLifeState {
+  PauseScreenState({
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
@@ -44,8 +44,8 @@ class _PauseScreenState extends ContextfulLifeState {
     diDto.mechanics.worldTime.resume();
   }
 
-  void onToAllLevels() {
-    diDto.appRouterController.toAllLevel();
+  void onToLevel(final TemplateLevelModel level) {
+    diDto.appRouterController.toLevelOptions(id: level.id);
   }
 
   void onToPlayersAndHighscore() {
@@ -79,14 +79,28 @@ class _PauseScreenState extends ContextfulLifeState {
             uiTheme.verticalBoxes.medium,
             Text(s.creatingGame),
             uiTheme.verticalBoxes.medium,
-            Text(s.sendFeedback),
+            Visibility(
+              visible: linksAreAllowed,
+              child: TextButton(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(s.sendFeedback),
+                ),
+                onPressed: () => launchUrlString(
+                  'https://discord.com/invite/y54DpJwmAn',
+                ),
+              ),
+            ),
             uiTheme.verticalBoxes.medium,
             Visibility(
               visible: linksAreAllowed,
               child: TextButton(
-                child: Text(s.supportGame),
                 onPressed: () =>
                     launchUrlString('https://boosty.to/arenukvern'),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(s.supportGame),
+                ),
               ),
             ),
             uiTheme.verticalBoxes.medium,

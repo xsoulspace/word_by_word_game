@@ -103,6 +103,6 @@ class _LevelOptionsScreenState extends LifeState {
   }
 
   void onReturnToLevels() {
-    diDto.appRouterController.toAllLevel();
+    diDto.appRouterController.toRoot();
   }
 }

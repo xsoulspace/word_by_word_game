@@ -95,7 +95,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "For any bugs or ideas please send your feedback to idea@xsoulspace.dev",
+  "sendFeedback": "If you have an idea, improvements, or bugs join Discord server.",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
