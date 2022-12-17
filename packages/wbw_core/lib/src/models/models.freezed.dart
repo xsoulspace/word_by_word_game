@@ -21,7 +21,7 @@ AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$AppSettingsModel {
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
-  Locale get locale => throw _privateConstructorUsedError;
+  Locale? get locale => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -36,7 +36,7 @@ abstract class $AppSettingsModelCopyWith<$Res> {
       _$AppSettingsModelCopyWithImpl<$Res>;
   $Res call(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          Locale locale});
+          Locale? locale});
 }
 
 /// @nodoc
@@ -56,7 +56,7 @@ class _$AppSettingsModelCopyWithImpl<$Res>
       locale: locale == freezed
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
-              as Locale,
+              as Locale?,
     ));
   }
 }
@@ -70,7 +70,7 @@ abstract class _$$_AppSettingsModelCopyWith<$Res>
   @override
   $Res call(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          Locale locale});
+          Locale? locale});
 }
 
 /// @nodoc
@@ -92,7 +92,7 @@ class __$$_AppSettingsModelCopyWithImpl<$Res>
       locale: locale == freezed
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
-              as Locale,
+              as Locale?,
     ));
   }
 }
@@ -103,7 +103,7 @@ class __$$_AppSettingsModelCopyWithImpl<$Res>
 class _$_AppSettingsModel extends _AppSettingsModel {
   const _$_AppSettingsModel(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          this.locale = Locales.en})
+          this.locale})
       : super._();
 
   factory _$_AppSettingsModel.fromJson(Map<String, dynamic> json) =>
@@ -111,7 +111,7 @@ class _$_AppSettingsModel extends _AppSettingsModel {
 
   @override
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
-  final Locale locale;
+  final Locale? locale;
 
   @override
   String toString() {
@@ -147,7 +147,7 @@ class _$_AppSettingsModel extends _AppSettingsModel {
 abstract class _AppSettingsModel extends AppSettingsModel {
   const factory _AppSettingsModel(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          final Locale locale}) = _$_AppSettingsModel;
+          final Locale? locale}) = _$_AppSettingsModel;
   const _AppSettingsModel._() : super._();
 
   factory _AppSettingsModel.fromJson(Map<String, dynamic> json) =
@@ -155,7 +155,7 @@ abstract class _AppSettingsModel extends AppSettingsModel {
 
   @override
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
-  Locale get locale;
+  Locale? get locale;
   @override
   @JsonKey(ignore: true)
   _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>

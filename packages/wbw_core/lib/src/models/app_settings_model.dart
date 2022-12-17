@@ -19,8 +19,7 @@ class AppSettingsModel with _$AppSettingsModel {
       fromJson: localeFromString,
       toJson: localeToString,
     )
-    @Default(Locales.en)
-        final Locale locale,
+        final Locale? locale,
   }) = _AppSettingsModel;
 
   const AppSettingsModel._();

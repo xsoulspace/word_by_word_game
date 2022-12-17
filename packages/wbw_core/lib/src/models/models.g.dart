@@ -8,9 +8,7 @@ part of 'models.dart';
 
 _$_AppSettingsModel _$$_AppSettingsModelFromJson(Map<String, dynamic> json) =>
     _$_AppSettingsModel(
-      locale: json['locale'] == null
-          ? Locales.en
-          : localeFromString(json['locale'] as String),
+      locale: localeFromString(json['locale'] as String?),
     );
 
 Map<String, dynamic> _$$_AppSettingsModelToJson(_$_AppSettingsModel instance) =>
