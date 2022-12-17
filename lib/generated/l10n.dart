@@ -659,6 +659,36 @@ class S {
       args: [],
     );
   }
+
+  /// `Click to get random word based on current letters.`
+  String get suggestWordButtonTooltip {
+    return Intl.message(
+      'Click to get random word based on current letters.',
+      name: 'suggestWordButtonTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to open menu (current progress will be saved).`
+  String get mainMenuButtonTooltip {
+    return Intl.message(
+      'Click to open menu (current progress will be saved).',
+      name: 'mainMenuButtonTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your current highscore.`
+  String get yourCurrentHighcoreTooltip {
+    return Intl.message(
+      'Your current highscore.',
+      name: 'yourCurrentHighcoreTooltip',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

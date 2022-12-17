@@ -159,5 +159,8 @@
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "suggestWordButtonTooltip": "Click to get random word based on current letters.",
+  "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
+  "yourCurrentHighcoreTooltip": "Your current highscore."
 }

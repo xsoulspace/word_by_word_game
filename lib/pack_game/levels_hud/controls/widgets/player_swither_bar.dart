@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
 
@@ -96,7 +97,10 @@ class UIMobilePlayerScore extends StatelessWidget {
       }
       return liveState.currentPlayer;
     });
-    return Text('${player.highscore.score.value.toInt()}');
+    return Tooltip(
+      message: S.of(context).yourCurrentHighcoreTooltip,
+      child: Text('${player.highscore.score.value.toInt()}'),
+    );
   }
 }
 

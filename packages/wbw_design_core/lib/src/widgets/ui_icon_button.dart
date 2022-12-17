@@ -102,9 +102,11 @@ class UiIconButton extends HookWidget {
   const UiIconButton({
     required this.icon,
     this.onPressed,
+    this.tooltip = '',
     super.key,
   });
   final UiIcons icon;
+  final String tooltip;
   final VoidCallback? onPressed;
   bool get isEnabled => onPressed != null;
   @override
@@ -113,44 +115,47 @@ class UiIconButton extends HookWidget {
     const dimension = 32.0;
     final theme = Theme.of(context);
 
-    return GestureDetector(
-      onTap: isEnabled ? state.onTap : null,
-      onLongPressEnd: isEnabled ? state.onLongPressUp : null,
-      onLongPressDown: isEnabled ? state.onLongPressDown : null,
-      onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
-      child: FocusableActionDetector(
-        mouseCursor: SystemMouseCursors.click,
-        child: Container(
-          width: dimension,
-          height: dimension,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                state.isPressed
-                    ? state.pressedIconImagePath
-                    : state.iconImagePath,
-              ),
-              fit: BoxFit.fill,
-            ),
-          ),
-          foregroundDecoration: isEnabled
-              ? null
-              : BoxDecoration(
-                  color: theme.colorScheme.shadow.withOpacity(0.2),
-                ),
+    return Tooltip(
+      message: tooltip,
+      child: GestureDetector(
+        onTap: isEnabled ? state.onTap : null,
+        onLongPressEnd: isEnabled ? state.onLongPressUp : null,
+        onLongPressDown: isEnabled ? state.onLongPressDown : null,
+        onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
+        child: FocusableActionDetector(
+          mouseCursor: SystemMouseCursors.click,
           child: Container(
-            height: dimension - 1,
-            width: dimension - 1,
-            margin: EdgeInsets.only(
-              top: state.isPressed ? 2 : 0,
-              bottom: state.isPressed ? 0 : 2,
-            ),
+            width: dimension,
+            height: dimension,
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  UiAssetHelper.useImagePath(icon.path),
+                  state.isPressed
+                      ? state.pressedIconImagePath
+                      : state.iconImagePath,
                 ),
-                fit: BoxFit.contain,
+                fit: BoxFit.fill,
+              ),
+            ),
+            foregroundDecoration: isEnabled
+                ? null
+                : BoxDecoration(
+                    color: theme.colorScheme.shadow.withOpacity(0.2),
+                  ),
+            child: Container(
+              height: dimension - 1,
+              width: dimension - 1,
+              margin: EdgeInsets.only(
+                top: state.isPressed ? 2 : 0,
+                bottom: state.isPressed ? 0 : 2,
+              ),
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    UiAssetHelper.useImagePath(icon.path),
+                  ),
+                  fit: BoxFit.contain,
+                ),
               ),
             ),
           ),

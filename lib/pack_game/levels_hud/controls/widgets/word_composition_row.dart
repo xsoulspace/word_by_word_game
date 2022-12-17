@@ -11,6 +11,7 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_actions_buttons.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
@@ -42,10 +43,12 @@ class UIWordCompositionRow extends HookWidget {
           if (levelState is! LiveLevelBlocState) return const SizedBox();
 
           return UICenterFrame(
-            onIdea: levelState.currentWord.cleanWord.isEmpty
-                ? null
-                : state.onOpenSuggestionDialog,
-            onPause: state.onPause,
+            leftButton: UiRandomWordIconButton(
+              onPressed: levelState.currentWord.cleanWord.isEmpty
+                  ? null
+                  : state.onOpenSuggestionDialog,
+            ),
+            rightButton: UiPauseIconButton(onPressed: state.onPause),
             leftTopBuilder: leftTopBuilder,
             rightTopBuilder: rightTopBuilder,
             textFieldBuilder: (final context) {

@@ -56,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastword": MessageLookupByLibrary.simpleMessage("Ultima parola: "),
         "lettersToRemove":
             MessageLookupByLibrary.simpleMessage("lettere da rimuovere"),
+        "mainMenuButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Fare clic per aprire il menu (i progressi correnti verranno salvati)."),
         "maxHighscoreIs":
             MessageLookupByLibrary.simpleMessage("Il punteggio massimo è "),
         "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
@@ -97,6 +99,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Ricomincia "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
+        "suggestWordButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Fare clic per ottenere una parola casuale in base alle lettere correnti."),
         "suggestedWord":
             MessageLookupByLibrary.simpleMessage("Parola suggerita"),
         "supportGame": MessageLookupByLibrary.simpleMessage(
@@ -115,6 +119,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordIsNotCorrect": m1,
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "Sei atterrato in mezzo al nulla.."),
+        "yourCurrentHighcoreTooltip":
+            MessageLookupByLibrary.simpleMessage("Il tuo record attuale."),
         "yourHighscore": MessageLookupByLibrary.simpleMessage(
             "Questa volta il tuo punteggio è")
       };

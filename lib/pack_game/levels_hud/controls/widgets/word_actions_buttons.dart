@@ -156,3 +156,36 @@ class UIToEndTurnButton extends StatelessWidget {
     );
   }
 }
+
+class UiRandomWordIconButton extends StatelessWidget {
+  const UiRandomWordIconButton({
+    required this.onPressed,
+    super.key,
+  });
+  final VoidCallback? onPressed;
+  @override
+  Widget build(final BuildContext context) {
+    return UiIconButton(
+      tooltip: S.of(context).suggestWordButtonTooltip,
+      onPressed: onPressed,
+      icon: UiIcons.idea,
+    );
+  }
+}
+
+class UiPauseIconButton extends StatelessWidget {
+  const UiPauseIconButton({
+    required this.onPressed,
+    super.key,
+  });
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(final BuildContext context) {
+    return UiIconButton(
+      tooltip: S.of(context).mainMenuButtonTooltip,
+      onPressed: onPressed,
+      icon: UiIcons.pause,
+    );
+  }
+}

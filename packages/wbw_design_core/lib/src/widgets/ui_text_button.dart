@@ -10,6 +10,7 @@ class UiTextButton extends HookWidget {
     required this.text,
     this.onPressed,
     this.width = 157.0,
+    this.tooltip = '',
     this.mainAlignment = MainAxisAlignment.start,
     this.isLongButton = false,
     super.key,
@@ -21,6 +22,7 @@ class UiTextButton extends HookWidget {
     this.onPressed,
     this.mainAlignment = MainAxisAlignment.start,
     this.width = 140.0,
+    this.tooltip = '',
     super.key,
   });
   final UiIcons? icon;
@@ -29,6 +31,7 @@ class UiTextButton extends HookWidget {
   final VoidCallback? onPressed;
   final MainAxisAlignment mainAlignment;
   final bool isLongButton;
+  final String tooltip;
   bool get isEnabled => onPressed != null;
   @override
   Widget build(final BuildContext context) {
@@ -38,57 +41,60 @@ class UiTextButton extends HookWidget {
     const height = 32.0;
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
-    return GestureDetector(
-      onTap: isEnabled ? state.onTap : null,
-      onLongPressEnd: isEnabled ? state.onLongPressUp : null,
-      onLongPressDown: isEnabled ? state.onLongPressDown : null,
-      onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
-      child: FocusableActionDetector(
-        mouseCursor: SystemMouseCursors.click,
-        child: Container(
-          width: width,
-          height: height,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage(
-                state.isPressed
-                    ? state.pressedIconImagePath
-                    : state.iconImagePath,
-              ),
-              fit: BoxFit.fill,
-            ),
-          ),
-          foregroundDecoration: isEnabled
-              ? null
-              : BoxDecoration(
-                  color: theme.colorScheme.shadow.withOpacity(0.2),
-                ),
+    return Tooltip(
+      message: tooltip,
+      child: GestureDetector(
+        onTap: isEnabled ? state.onTap : null,
+        onLongPressEnd: isEnabled ? state.onLongPressUp : null,
+        onLongPressDown: isEnabled ? state.onLongPressDown : null,
+        onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
+        child: FocusableActionDetector(
+          mouseCursor: SystemMouseCursors.click,
           child: Container(
-            height: height - 1,
-            width: height - 1,
-            margin: EdgeInsets.only(
-              top: state.isPressed ? 2 : 0,
-              bottom: state.isPressed ? 0 : 2,
+            width: width,
+            height: height,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  state.isPressed
+                      ? state.pressedIconImagePath
+                      : state.iconImagePath,
+                ),
+                fit: BoxFit.fill,
+              ),
             ),
-            child: Row(
-              mainAxisAlignment: mainAlignment,
-              children: [
-                if (icon != null) ...[
-                  Container(
-                    width: height,
-                    height: height,
-                    decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(
-                          UiAssetHelper.useImagePath(icon!.path),
+            foregroundDecoration: isEnabled
+                ? null
+                : BoxDecoration(
+                    color: theme.colorScheme.shadow.withOpacity(0.2),
+                  ),
+            child: Container(
+              height: height - 1,
+              width: height - 1,
+              margin: EdgeInsets.only(
+                top: state.isPressed ? 2 : 0,
+                bottom: state.isPressed ? 0 : 2,
+              ),
+              child: Row(
+                mainAxisAlignment: mainAlignment,
+                children: [
+                  if (icon != null) ...[
+                    Container(
+                      width: height,
+                      height: height,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: AssetImage(
+                            UiAssetHelper.useImagePath(icon!.path),
+                          ),
+                          fit: BoxFit.contain,
                         ),
-                        fit: BoxFit.contain,
                       ),
                     ),
-                  ),
+                  ],
+                  Text(text),
                 ],
-                Text(text),
-              ],
+              ),
             ),
           ),
         ),

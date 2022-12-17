@@ -55,6 +55,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastword": MessageLookupByLibrary.simpleMessage("Last word: "),
         "lettersToRemove":
             MessageLookupByLibrary.simpleMessage("letters to remove"),
+        "mainMenuButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Click to open menu (current progress will be saved)."),
         "maxHighscoreIs":
             MessageLookupByLibrary.simpleMessage("Max highscore is "),
         "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
@@ -92,6 +94,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Start again "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
+        "suggestWordButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Click to get random word based on current letters."),
         "suggestedWord": MessageLookupByLibrary.simpleMessage("Suggested Word"),
         "supportGame": MessageLookupByLibrary.simpleMessage(
             "You can support the game in https://boosty.to/arenukvern"),
@@ -108,6 +112,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordIsNotCorrect": m1,
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "You have landed in the middle of nowhere.."),
+        "yourCurrentHighcoreTooltip":
+            MessageLookupByLibrary.simpleMessage("Your current highscore."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("This time your score is ")
       };

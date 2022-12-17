@@ -6,6 +6,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_actions_buttons.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_composition_row.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
@@ -24,8 +25,10 @@ class UILevelActionsRow extends HookWidget {
     final uiTheme = UiTheme.of(context);
     final mechanicsCollection = context.read<MechanicsCollection>();
     return UICenterFrame(
-      onIdea: null,
-      onPause: widgetState.onPause,
+      leftButton: const UiRandomWordIconButton(
+        onPressed: null,
+      ),
+      rightButton: UiPauseIconButton(onPressed: widgetState.onPause),
       leftTopBuilder: leftTopBuilder,
       rightTopBuilder: rightTopBuilder,
       textFieldBuilder: (final context) {
