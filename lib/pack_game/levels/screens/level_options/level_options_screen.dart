@@ -130,6 +130,51 @@ class CharactersRow extends StatelessWidget {
   }
 }
 
+class CharacterAvatarButton extends StatelessWidget {
+  /// Displays default character
+  const CharacterAvatarButton.useDefault({super.key}) : isDefault = true;
+  final bool isDefault;
+  @override
+  Widget build(final BuildContext context) {
+    final globalGameBloc = context.watch<GlobalGameBloc>();
+    final liveState = globalGameBloc.getLiveState();
+    final playersCharacters = liveState.playersCharacters;
+    if (!isDefault) throw UnsupportedError('isNotDefault character');
+    // TODO(arenukvern):
+    /// Add deafult character selection
+    final character = playersCharacters.first;
+    const dimension = 48.0;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          width: dimension,
+          height: dimension,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(dimension),
+            border: Border.all(),
+          ),
+          child: Center(
+            child: Container(
+              margin: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                image: DecorationImage(
+                  image: AssetImage(
+                    'assets/images/characters/${character.characterIcon}_highres.png',
+                  ),
+                  fit: BoxFit.fitHeight,
+                ),
+              ),
+            ),
+          ),
+        ),
+        Text(character.localizedName.getValue())
+      ],
+    );
+  }
+}
+
 class CharacterCard extends StatelessWidget {
   const CharacterCard({
     required this.selected,
@@ -163,7 +208,7 @@ class CharacterCard extends StatelessWidget {
                     image: AssetImage(
                       'assets/images/characters/${character.characterIcon}_highres.png',
                     ),
-                    fit: BoxFit.fill,
+                    fit: BoxFit.fitHeight,
                   ),
                 ),
               ),

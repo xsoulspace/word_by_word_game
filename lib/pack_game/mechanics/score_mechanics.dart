@@ -57,10 +57,10 @@ class ScoreMechanics {
         score = 10.0;
         break;
       case LevelActionMultiplierType.m2:
-        score = 30.0;
+        score = 24.0;
         break;
       case LevelActionMultiplierType.m3:
-        score = 50.0;
+        score = 32.0;
         break;
     }
 
@@ -74,10 +74,17 @@ class ScoreMechanics {
     return ScoreModel(value: lettersCount * scoreModifier * -1);
   }
 
-  bool checkPlayerAbilityToDecrease({
+  bool checkPlayerAbilityToDecreaseLetters({
     required final PlayerProfileModel player,
   }) {
     return player.highscore.score.value >= kLetterDecreaseCost;
+  }
+
+  bool checkPlayerAbilityToUseScore({
+    required final PlayerProfileModel player,
+    required final int score,
+  }) {
+    return player.highscore.score >= score;
   }
 
   /// Use this method to inscrease score

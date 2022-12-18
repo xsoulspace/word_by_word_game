@@ -59,7 +59,8 @@ void main() {
       );
     });
     test('checkPlayerAbilityToDecrease - has no ability', () {
-      final isAbleToDecrease = scoreMechanics.checkPlayerAbilityToDecrease(
+      final isAbleToDecrease =
+          scoreMechanics.checkPlayerAbilityToDecreaseLetters(
         player: player,
       );
 
@@ -69,7 +70,8 @@ void main() {
       );
     });
     test('checkPlayerAbilityToDecrease - has ability', () {
-      final isAbleToDecrease = scoreMechanics.checkPlayerAbilityToDecrease(
+      final isAbleToDecrease =
+          scoreMechanics.checkPlayerAbilityToDecreaseLetters(
         player: player.copyWith(
           highscore: player.highscore.copyWith(
             score: ScoreModel(

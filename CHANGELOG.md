@@ -14,6 +14,12 @@
 
 ## Next
 
+## December 18th 2022
+
+- Added effects for an action - now you can choose how many effect points will be applied for selected action.
+- Made different actions layouts for small and desktop widths.
+- Fixed problem with localization - now it has option to choose between system and game localization.
+
 ## December 16th 2022
 
 - refactored: all levels screen removed.

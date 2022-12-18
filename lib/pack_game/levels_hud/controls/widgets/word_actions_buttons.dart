@@ -3,6 +3,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/level_actions_row.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_composition_row.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
@@ -32,6 +33,8 @@ class UIDesktopActions extends StatelessWidget {
         break;
       case LevelPlayerPhaseType.selectAction:
         children.addAll([
+          const UiDesktopEffectFrame(),
+          uiTheme.verticalBoxes.medium,
           UIToEndTurnButton(
             onPressed: state.onToEndTurn,
           ),
@@ -122,8 +125,8 @@ class UIToSelectActionPhaseButton extends StatelessWidget {
     final currentWord = context.select<LevelBloc, String>((final s) {
       return s.getLiveState().currentWord.fullWord;
     });
-    final mechanicsCollection = context.read<MechanicsCollection>();
-    final score = mechanicsCollection.score.getScoreFromWord(word: currentWord);
+    final mechanics = context.read<MechanicsCollection>();
+    final score = mechanics.score.getScoreFromWord(word: currentWord);
     return UiTextButton.icon(
       text: '${S.of(context).confirm} +${score.value.toInt()}',
       onPressed: warning == WordWarning.isNotCorrect ? null : onPressed,
@@ -153,6 +156,42 @@ class UIToEndTurnButton extends StatelessWidget {
       icon: UiIcons.fire,
       mainAlignment: MainAxisAlignment.center,
       isLongButton: true,
+    );
+  }
+}
+
+class UiRandomWordIconButton extends StatelessWidget {
+  const UiRandomWordIconButton({
+    required this.onPressed,
+    super.key,
+  });
+  final VoidCallback? onPressed;
+  @override
+  Widget build(final BuildContext context) {
+    return UiIconButton(
+      tooltip: S.of(context).suggestWordButtonTooltip,
+      onPressed: onPressed,
+      icon: UiIcons.idea,
+    );
+  }
+}
+
+class UiPauseIconButton extends StatelessWidget {
+  const UiPauseIconButton({
+    required this.onPressed,
+    super.key,
+  });
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(final BuildContext context) {
+    return Hero(
+      tag: const ValueKey('UiPauseIconButton'),
+      child: UiIconButton(
+        tooltip: S.of(context).mainMenuButtonTooltip,
+        onPressed: onPressed,
+        icon: UiIcons.pause,
+      ),
     );
   }
 }

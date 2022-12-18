@@ -659,6 +659,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Click to get random word based on current letters.`
+  String get suggestWordButtonTooltip {
+    return Intl.message(
+      'Click to get random word based on current letters.',
+      name: 'suggestWordButtonTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to open menu (current progress will be saved).`
+  String get mainMenuButtonTooltip {
+    return Intl.message(
+      'Click to open menu (current progress will be saved).',
+      name: 'mainMenuButtonTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your current points.`
+  String get yourCurrentHighcoreTooltip {
+    return Intl.message(
+      'Your current points.',
+      name: 'yourCurrentHighcoreTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have enough points to apply.`
+  String get youDontHaveEnoughPoints {
+    return Intl.message(
+      'You don\'t have enough points to apply.',
+      name: 'youDontHaveEnoughPoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Effect`
+  String get effect {
+    return Intl.message(
+      'Effect',
+      name: 'effect',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

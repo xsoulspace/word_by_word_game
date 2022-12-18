@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creatingGame": MessageLookupByLibrary.simpleMessage(
             "Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("punteggio"),
+        "effect": MessageLookupByLibrary.simpleMessage("Effetto"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Gioco finito"),
         "highscore": MessageLookupByLibrary.simpleMessage("Punteggio più alto"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("inizio"),
@@ -56,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastword": MessageLookupByLibrary.simpleMessage("Ultima parola: "),
         "lettersToRemove":
             MessageLookupByLibrary.simpleMessage("lettere da rimuovere"),
+        "mainMenuButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Fare clic per aprire il menu (i progressi correnti verranno salvati)."),
         "maxHighscoreIs":
             MessageLookupByLibrary.simpleMessage("Il punteggio massimo è "),
         "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
@@ -97,6 +100,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Impostazioni"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Ricomincia "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
+        "suggestWordButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Fare clic per ottenere una parola casuale in base alle lettere correnti."),
         "suggestedWord":
             MessageLookupByLibrary.simpleMessage("Parola suggerita"),
         "supportGame": MessageLookupByLibrary.simpleMessage(
@@ -113,8 +118,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Questa parola è già scritta. Prova con un\'altra parola."),
         "wordIsNotCorrect": m1,
+        "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
+            "Pallone non necessario per l\'approssimazione."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "Sei atterrato in mezzo al nulla.."),
+        "yourCurrentHighcoreTooltip":
+            MessageLookupByLibrary.simpleMessage("Il tuo record attuale."),
         "yourHighscore": MessageLookupByLibrary.simpleMessage(
             "Questa volta il tuo punteggio è")
       };

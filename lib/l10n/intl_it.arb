@@ -159,5 +159,10 @@
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "suggestWordButtonTooltip": "Fare clic per ottenere una parola casuale in base alle lettere correnti.",
+  "mainMenuButtonTooltip": "Fare clic per aprire il menu (i progressi correnti verranno salvati).",
+  "yourCurrentHighcoreTooltip": "Il tuo record attuale.",
+  "youDontHaveEnoughPoints": "Pallone non necessario per l'approssimazione.",
+  "effect": "Effetto"
 }

@@ -10,6 +10,15 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/game/game.dart';
 
+class GlobalSettingsInitializer extends StateInitializer {
+  @override
+  Future<void> onLoad(final BuildContext context) async {
+    final read = context.read;
+    final appSettingsNotifier = read<AppSettingsNotifier>();
+    await appSettingsNotifier.onLoad();
+  }
+}
+
 class GlobalStateInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
@@ -17,9 +26,7 @@ class GlobalStateInitializer extends StateInitializer {
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
     final services = read<ServicesCollection>();
-    final appSettingsNotifier = read<AppSettingsNotifier>();
     final analyticsNotifier = read<AnalyticsNotifier>();
-    await appSettingsNotifier.onLoad();
     final localDictionary =
         await services.dictionaryPersistence.loadDictionary();
     final initDictionary =

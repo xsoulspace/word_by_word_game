@@ -23,10 +23,18 @@ class AppScaffold extends StatelessWidget {
     return Portal(
       child: AppServicesProvider(
         diDto: servicesDiDto,
-        child: RouterScaffold(
-          builder: (final context, final parser) => AppScaffoldBuilder(
-            routeParser: parser,
-          ),
+        child: Builder(
+          builder: (final context) {
+            return StateLoader(
+              initializer: GlobalSettingsInitializer(),
+              loader: const LoadingScreen(),
+              child: RouterScaffold(
+                builder: (final context, final parser) => AppScaffoldBuilder(
+                  routeParser: parser,
+                ),
+              ),
+            );
+          },
         ),
       ),
     );
@@ -85,16 +93,22 @@ class AppScaffoldBuilder extends HookWidget {
           ],
           localeListResolutionCallback:
               (final locales, final supportedLocales) {
-            if (locales == null || locales.isEmpty) return null;
-
-            for (final locale in locales) {
-              if (S.delegate.isSupported(locale)) {
-                settingsNotifier.locale = locale;
-                return locale;
+            final defaultLocale = () {
+              if (locales == null || locales.isEmpty) return null;
+              for (final locale in locales) {
+                if (S.delegate.isSupported(locale)) {
+                  return locale;
+                }
               }
-            }
+            }();
 
-            return null;
+            /// in case if we will needed preferrable system locale
+            settingsNotifier.systemLocale = defaultLocale;
+
+            /// if language is set by user, then use it
+            if (settingsNotifier.locale != null) return settingsNotifier.locale;
+
+            return defaultLocale;
           },
           supportedLocales: Locales.values,
           builder: (final context, final child) {

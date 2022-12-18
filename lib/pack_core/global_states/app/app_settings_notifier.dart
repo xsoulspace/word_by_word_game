@@ -6,9 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 
-/// A class that many Widgets can interact with to read user settings, update
-/// user settings, or listen to user settings changes.
-
 class AppSettingsNotifier extends ChangeNotifier implements Loadable {
   AppSettingsNotifier.use(final Locator read)
       : persistenceService = read<ServicesCollection>().appSettingsPersistence;
@@ -22,18 +19,22 @@ class AppSettingsNotifier extends ChangeNotifier implements Loadable {
     persistenceService.saveSettings(settings: value);
   }
 
+  Locale? systemLocale;
   Locale? get locale => _settings.locale;
   set locale(final Locale? value) {
-    if (value == null) return;
-    if (value.languageCode == locale?.languageCode) return;
-    final newLocale = localeFromString(value.languageCode);
-    S.load(newLocale);
-    settings = settings.copyWith(locale: newLocale);
+    if (value?.languageCode == locale?.languageCode) return;
+    if (value == null) {
+      settings = settings.copyWith(locale: null);
+      final defaultLocale = systemLocale ?? Locales.en;
+      S.load(defaultLocale);
+    } else {
+      final language = Languages.byLanguageCode(value.languageCode);
+      final newLocale = Locales.byLanguage(language);
+      S.load(newLocale);
+      settings = settings.copyWith(locale: newLocale);
+    }
   }
 
-  /// Load the user's settings from the SettingsService. It may load from a
-  /// local database or the internet. The controller only knows it can load the
-  /// settings from the service.
   @override
   Future<void> onLoad() async {
     _settings = await persistenceService.loadSettings();

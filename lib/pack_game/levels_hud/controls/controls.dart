@@ -44,9 +44,6 @@ class _DesktopControlsWidget extends StatelessWidget {
     final state = context.read<WordCompositionState>();
 
     return WordCompositionBackground(
-      constraints: const BoxConstraints(
-        maxWidth: 650,
-      ),
       padding: EdgeInsets.symmetric(
         horizontal: uiTheme.spacing.medium,
       ).copyWith(
@@ -54,12 +51,11 @@ class _DesktopControlsWidget extends StatelessWidget {
         bottom: 12,
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.end,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const UIDesktopPlayerSwitcher(),
-          uiTheme.horizontalBoxes.medium,
-          const UILevelCenterRow(),
+          const UIDesktopLevelCenterRow(),
           uiTheme.horizontalBoxes.medium,
           const UIDesktopActions(),
         ],
@@ -83,14 +79,7 @@ class _MobileControlsWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            UILevelCenterRow(
-              leftTopBuilder: (final context) {
-                return const UIMobilePlayerName();
-              },
-              rightTopBuilder: (final context) {
-                return const UIMobilePlayerScore();
-              },
-            ),
+            const UIMobileLevelCenterRow(),
             if (DeviceRuntimeType.isMobile)
               uiTheme.verticalBoxes.extraSmall
             else
