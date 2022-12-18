@@ -198,13 +198,9 @@ class UiDesktopEffectFrame extends StatelessWidget {
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(
-                    S.of(context).effect,
-                    style: textTheme.titleSmall,
-                  ),
-                ],
+              Text(
+                S.of(context).effect,
+                style: textTheme.titleSmall,
               ),
               uiTheme.verticalBoxes.small,
               Row(
@@ -248,13 +244,9 @@ class UiMobileEffectFrame extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  Text(
-                    S.of(context).effect,
-                    style: textTheme.titleSmall,
-                  ),
-                ],
+              Text(
+                S.of(context).effect,
+                style: textTheme.titleSmall,
               ),
               uiTheme.verticalBoxes.small,
               ...LevelActionMultiplierType.values.map(
