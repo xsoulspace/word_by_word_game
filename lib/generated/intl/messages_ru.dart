@@ -37,7 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseLandscape": MessageLookupByLibrary.simpleMessage("Выбери Место"),
         "chooseYourCharacter":
             MessageLookupByLibrary.simpleMessage("Выбери своего персонажа"),
-        "confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Применить"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
         "cookFood": MessageLookupByLibrary.simpleMessage("Еда"),
@@ -45,6 +45,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creatingGame": MessageLookupByLibrary.simpleMessage(
             "Привет! Спасибо за интерес к игре и надеюсь она понравилась:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("результат"),
+        "effect": MessageLookupByLibrary.simpleMessage("Эффект"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Завершить игру"),
         "highscore": MessageLookupByLibrary.simpleMessage("лучший результат"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("начало"),
@@ -110,10 +111,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Это слово уже было. Попробуй другое слово."),
         "wordIsNotCorrect": m1,
+        "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
+            "Недостаточно очков знаний для применения."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "Вы приземлились где-то в неизвестность.."),
-        "yourCurrentHighcoreTooltip":
-            MessageLookupByLibrary.simpleMessage("Твой текущий результат."),
+        "yourCurrentHighcoreTooltip": MessageLookupByLibrary.simpleMessage(
+            "Текущее кол-во очков знаний."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("В этот раз, результат ")
       };

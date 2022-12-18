@@ -162,5 +162,7 @@
   },
   "suggestWordButtonTooltip": "Click to get random word based on current letters.",
   "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
-  "yourCurrentHighcoreTooltip": "Your current highscore."
+  "yourCurrentHighcoreTooltip": "Your current points.",
+  "youDontHaveEnoughPoints": "You don't have enough points to apply.",
+  "effect": "Effect"
 }

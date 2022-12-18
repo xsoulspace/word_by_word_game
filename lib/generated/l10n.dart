@@ -680,11 +680,31 @@ class S {
     );
   }
 
-  /// `Your current highscore.`
+  /// `Your current points.`
   String get yourCurrentHighcoreTooltip {
     return Intl.message(
-      'Your current highscore.',
+      'Your current points.',
       name: 'yourCurrentHighcoreTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have enough points to apply.`
+  String get youDontHaveEnoughPoints {
+    return Intl.message(
+      'You don\'t have enough points to apply.',
+      name: 'youDontHaveEnoughPoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Effect`
+  String get effect {
+    return Intl.message(
+      'Effect',
+      name: 'effect',
       desc: '',
       args: [],
     );

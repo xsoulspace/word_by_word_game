@@ -10,7 +10,7 @@
     "placeholders": {}
   },
   "play": "Играть",
-  "confirm": "Подтвердить",
+  "confirm": "Применить",
   "applyAndEndTurn": "Завершить ход",
   "toLandscapes": "В Места",
   "send": "Отправить",
@@ -156,5 +156,7 @@
   },
   "suggestWordButtonTooltip": "Нажми, чтобы получить случайное слово на основе текущих букв.",
   "mainMenuButtonTooltip": "Нажми, чтобы открыть меню (текущий прогресс будет сохранен).",
-  "yourCurrentHighcoreTooltip": "Твой текущий результат."
+  "yourCurrentHighcoreTooltip": "Текущее кол-во очков знаний.",
+  "youDontHaveEnoughPoints": "Недостаточно очков знаний для применения.",
+  "effect": "Эффект"
 }

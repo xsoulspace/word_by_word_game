@@ -26,4 +26,8 @@ class ScoreModel with _$ScoreModel {
   ScoreModel operator +(final num factor) {
     return ScoreModel(value: value + factor);
   }
+
+  bool operator >=(final num factor) {
+    return value >= factor;
+  }
 }

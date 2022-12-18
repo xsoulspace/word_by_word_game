@@ -11,19 +11,14 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/player_swither_bar.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_actions_buttons.dart';
 import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'word_composition_row_state.dart';
 
 class UIWordCompositionRow extends HookWidget {
-  const UIWordCompositionRow({
-    this.leftTopBuilder,
-    this.rightTopBuilder,
-    final Key? key,
-  }) : super(key: key);
-  final WidgetBuilder? leftTopBuilder;
-  final WidgetBuilder? rightTopBuilder;
+  const UIWordCompositionRow({super.key});
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
@@ -49,8 +44,8 @@ class UIWordCompositionRow extends HookWidget {
                   : state.onOpenSuggestionDialog,
             ),
             rightButton: UiPauseIconButton(onPressed: state.onPause),
-            leftTopBuilder: leftTopBuilder,
-            rightTopBuilder: rightTopBuilder,
+            leftTopBuilder: (final context) => const UIMobilePlayerName(),
+            rightTopBuilder: (final context) => const UIMobilePlayerScore(),
             textFieldBuilder: (final context) {
               return BlocBuilder<LevelBloc, LevelBlocState>(
                 buildWhen: LevelBloc.useCheckStateEqualityBuilder(
@@ -156,7 +151,8 @@ class MiddleWordPartActions extends StatelessWidget {
 
     final mechanics = context.watch<MechanicsCollection>();
 
-    final isPlayerAbleToDecrease = mechanics.score.checkPlayerAbilityToDecrease(
+    final isPlayerAbleToDecrease =
+        mechanics.score.checkPlayerAbilityToDecreaseLetters(
       player: player,
     );
 

@@ -47,6 +47,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "creatingGame": MessageLookupByLibrary.simpleMessage(
             "Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("punteggio"),
+        "effect": MessageLookupByLibrary.simpleMessage("Effetto"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Gioco finito"),
         "highscore": MessageLookupByLibrary.simpleMessage("Punteggio più alto"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("inizio"),
@@ -117,6 +118,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Questa parola è già scritta. Prova con un\'altra parola."),
         "wordIsNotCorrect": m1,
+        "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
+            "Pallone non necessario per l\'approssimazione."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "Sei atterrato in mezzo al nulla.."),
         "yourCurrentHighcoreTooltip":

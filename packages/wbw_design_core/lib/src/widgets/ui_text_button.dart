@@ -9,7 +9,7 @@ class UiTextButton extends HookWidget {
     required this.icon,
     required this.text,
     this.onPressed,
-    this.width = 157.0,
+    this.width = 158.0,
     this.tooltip = '',
     this.mainAlignment = MainAxisAlignment.start,
     this.isLongButton = false,
