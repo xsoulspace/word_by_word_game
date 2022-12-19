@@ -40,7 +40,7 @@
   "returnToLandscapes": "Return To Landscapes",
   "about": "Credits",
   "username": "Username",
-  "createProfile": "Create",
+  "createProfile": "Create Profile",
   "previousWord": "Previous Word:",
   "settings": "Settings",
   "selectPlayers": "Select the Players",
@@ -164,5 +164,7 @@
   "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
   "yourCurrentHighcoreTooltip": "Your current points.",
   "youDontHaveEnoughPoints": "You don't have enough points to apply.",
-  "effect": "Effect"
+  "effect": "Effect",
+  "createNewPlayerTooltip": "Click to create new player profile. You will be able to add this profile to any new game.",
+  "createPlayer": "Create player"
 }

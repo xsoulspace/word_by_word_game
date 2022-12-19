@@ -220,10 +220,10 @@ class S {
     );
   }
 
-  /// `Create`
+  /// `Create Profile`
   String get createProfile {
     return Intl.message(
-      'Create',
+      'Create Profile',
       name: 'createProfile',
       desc: '',
       args: [],
@@ -705,6 +705,26 @@ class S {
     return Intl.message(
       'Effect',
       name: 'effect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to create new player profile. You will be able to add this profile to any new game.`
+  String get createNewPlayerTooltip {
+    return Intl.message(
+      'Click to create new player profile. You will be able to add this profile to any new game.',
+      name: 'createNewPlayerTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create player`
+  String get createPlayer {
+    return Intl.message(
+      'Create player',
+      name: 'createPlayer',
       desc: '',
       args: [],
     );

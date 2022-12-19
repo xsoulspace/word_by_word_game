@@ -20,7 +20,7 @@ class PlayerProfileCreator extends HookWidget {
     final state = _usePlayerProfileCreatorState(read: context.read);
     return Card(
       child: Padding(
-        padding: EdgeInsets.all(uiTheme.spacing.medium),
+        padding: EdgeInsets.all(uiTheme.spacing.small),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,

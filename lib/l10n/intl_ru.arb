@@ -25,7 +25,7 @@
   "startNewGame": "Новая игра",
   "congratulations": "Поздравляем!",
   "previousWord": "Предыдущее слово:",
-  "createProfile": "Создать",
+  "createProfile": "Создать профиль",
   "username": "Ник игрока",
   "about": "Об игре",
   "@congratulations": {
@@ -158,5 +158,7 @@
   "mainMenuButtonTooltip": "Нажми, чтобы открыть меню (текущий прогресс будет сохранен).",
   "yourCurrentHighcoreTooltip": "Текущее кол-во очков знаний.",
   "youDontHaveEnoughPoints": "Недостаточно очков знаний для применения.",
-  "effect": "Эффект"
+  "effect": "Эффект",
+  "createNewPlayerTooltip": "Click to create new player profile. You will be able to add this profile to any new game.",
+  "createPlayer": "Создать игрока"
 }
