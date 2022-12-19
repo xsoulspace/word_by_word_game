@@ -57,11 +57,12 @@ class PlayerProfileCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    return GestureDetector(
-      onTap: () => onSelected!(player),
-      child: FocusableActionDetector(
-        mouseCursor: SystemMouseCursors.click,
-        child: Card(
+    return FocusableActionDetector(
+      mouseCursor: SystemMouseCursors.click,
+      child: Card(
+        clipBehavior: Clip.hardEdge,
+        child: InkWell(
+          onTap: () => onSelected!(player),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: Column(

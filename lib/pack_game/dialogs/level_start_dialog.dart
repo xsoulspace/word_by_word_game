@@ -41,7 +41,9 @@ class LevelStartDialogButton extends HookWidget {
           follower: Alignment.topCenter,
           target: Alignment.bottomCenter,
         ),
-        portalFollower: const _DialogScreen(),
+        portalFollower: _DialogScreen(
+          level: level,
+        ),
         child: UiFilledButton.text(
           text: S.of(context).startNewGame,
           onPressed: state.onSwitchDialogVisiblity,
@@ -52,8 +54,10 @@ class LevelStartDialogButton extends HookWidget {
 }
 
 class _DialogScreen extends StatelessWidget {
-  const _DialogScreen();
-
+  const _DialogScreen({
+    required this.level,
+  });
+  final TemplateLevelModel level;
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
@@ -64,8 +68,10 @@ class _DialogScreen extends StatelessWidget {
     return SizedBox(
       width: math.min(400, screenSize.width),
       height: screenSize.height * 0.45,
-      child: const Card(
-        child: LevelOptionsScreen(),
+      child: Card(
+        child: LevelOptionsScreen(
+          level: level,
+        ),
       ),
     );
   }

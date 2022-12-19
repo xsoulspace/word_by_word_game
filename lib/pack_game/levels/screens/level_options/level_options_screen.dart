@@ -12,8 +12,11 @@ import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets
 part 'level_options_screen_state.dart';
 
 class LevelOptionsScreen extends HookWidget {
-  const LevelOptionsScreen({super.key});
-
+  const LevelOptionsScreen({
+    required this.level,
+    super.key,
+  });
+  final TemplateLevelModel level;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
@@ -21,9 +24,7 @@ class LevelOptionsScreen extends HookWidget {
     final liveState = globalGameBloc.getLiveState();
     final playersCharacters = liveState.playersCharacters;
     final routeState = context.watch<RouteState>();
-    final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
-    final templateLevel =
-        globalGameBloc.getTemplateLevelById(id: routeArgs.levelId);
+    final templateLevel = globalGameBloc.getTemplateLevelById(id: level.id);
     if (templateLevel == null) return const SizedBox();
     final state = _useLevelOptionsScreenState(
       read: context.read,
@@ -58,19 +59,16 @@ class LevelOptionsScreen extends HookWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Tooltip(
-              message: S.of(context).createNewPlayerTooltip,
-              child: TextButton.icon(
-                onPressed: () {},
-                icon: const Icon(Icons.add),
-                label: Text(S.of(context).createPlayer),
-              ),
+            TextButton.icon(
+              onPressed: () {},
+              icon: const Icon(Icons.add),
+              label: Text(S.of(context).createPlayer),
             ),
             UiTextButton.text(
               text: S.of(context).play,
               isLongButton: true,
               mainAlignment: MainAxisAlignment.center,
-              onPressed: () {},
+              onPressed: state.playersIds.isEmpty ? null : state.onPlay,
             ),
           ],
         ),
