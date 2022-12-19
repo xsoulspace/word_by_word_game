@@ -56,20 +56,6 @@ class LevelOptionsScreen extends HookWidget {
               ),
               uiTheme.verticalBoxes.extraLarge,
               Text(
-                S.of(context).chooseYourCharacter,
-                style: theme.textTheme.headlineMedium,
-              ),
-              uiTheme.verticalBoxes.large,
-              SizedBox(
-                height: screenSize.height * 0.3,
-                child: CharactersRow(
-                  characters: playersCharacters,
-                  checkIsCharacterSelected: state.checkIsCharacterSelected,
-                  onCharacterPressed: state.onCharacterPressed,
-                ),
-              ),
-              uiTheme.verticalBoxes.extraLarge,
-              Text(
                 S.of(context).selectPlayers,
                 style: theme.textTheme.headlineMedium,
               ),
@@ -98,6 +84,23 @@ class LevelOptionsScreen extends HookWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class CharactersDialog extends StatelessWidget {
+  const CharactersDialog({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final globalGameBloc = context.watch<GlobalGameBloc>();
+    final liveState = globalGameBloc.getLiveState();
+    final playersCharacters = liveState.playersCharacters;
+
+    return CharactersRow(
+      characters: playersCharacters,
+      checkIsCharacterSelected: (final p0) => false,
+      onCharacterPressed: (final value) {},
     );
   }
 }
