@@ -17,7 +17,7 @@ class PlayerProfileCreator extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    final state = _usePlayerProfileCreatorState(read: context.read);
+    final state = usePlayerProfileCreatorState(read: context.read);
     return Card(
       child: Padding(
         padding: EdgeInsets.all(uiTheme.spacing.small),

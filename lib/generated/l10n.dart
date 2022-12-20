@@ -710,11 +710,31 @@ class S {
     );
   }
 
-  /// `Click to create new player profile. You will be able to add this profile to any new game.`
+  /// `Click to create profile for new player.`
   String get createNewPlayerTooltip {
     return Intl.message(
-      'Click to create new player profile. You will be able to add this profile to any new game.',
+      'Click to create profile for new player.',
       name: 'createNewPlayerTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create profile for new player.`
+  String get createNewPlayerTitle {
+    return Intl.message(
+      'Create profile for new player.',
+      name: 'createNewPlayerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will be able to add this player's profile to any new game.`
+  String get createNewPlayerBody {
+    return Intl.message(
+      'You will be able to add this player\'s profile to any new game.',
+      name: 'createNewPlayerBody',
       desc: '',
       args: [],
     );

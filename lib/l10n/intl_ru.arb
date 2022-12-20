@@ -159,6 +159,8 @@
   "yourCurrentHighcoreTooltip": "Текущее кол-во очков знаний.",
   "youDontHaveEnoughPoints": "Недостаточно очков знаний для применения.",
   "effect": "Эффект",
-  "createNewPlayerTooltip": "Click to create new player profile. You will be able to add this profile to any new game.",
+  "createNewPlayerTooltip": "Нажми, чтобы создать профиль нового игрока.",
+  "createNewPlayerTitle": "Создай профиль нового игрока.",
+  "createNewPlayerBody": "Профиль этого игрока можно будет добавить в любую новую игру.",
   "createPlayer": "Создать игрока"
 }

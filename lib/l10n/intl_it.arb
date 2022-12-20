@@ -165,6 +165,8 @@
   "yourCurrentHighcoreTooltip": "Il tuo record attuale.",
   "youDontHaveEnoughPoints": "Pallone non necessario per l'approssimazione.",
   "effect": "Effetto",
-  "createNewPlayerTooltip": "Fai clic per creare un nuovo profilo giocatore. Potrai aggiungere questo profilo a qualsiasi nuovo gioco.",
+  "createNewPlayerTooltip": "Fare clic per creare il profilo per il nuovo giocatore.",
+  "createNewPlayerTitle": "Crea profilo per nuovo giocatore.",
+  "createNewPlayerBody": "Potrai aggiungere il profilo di questo giocatore a qualsiasi nuova partita.",
   "createPlayer": "Crea giocatore"
 }

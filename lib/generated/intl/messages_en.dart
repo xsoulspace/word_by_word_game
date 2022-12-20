@@ -43,8 +43,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
         "cookFood": MessageLookupByLibrary.simpleMessage("Cook Food"),
+        "createNewPlayerBody": MessageLookupByLibrary.simpleMessage(
+            "You will be able to add this player\'s profile to any new game."),
+        "createNewPlayerTitle": MessageLookupByLibrary.simpleMessage(
+            "Create profile for new player."),
         "createNewPlayerTooltip": MessageLookupByLibrary.simpleMessage(
-            "Click to create new player profile. You will be able to add this profile to any new game."),
+            "Click to create profile for new player."),
         "createPlayer": MessageLookupByLibrary.simpleMessage("Create player"),
         "createProfile": MessageLookupByLibrary.simpleMessage("Create Profile"),
         "creatingGame": MessageLookupByLibrary.simpleMessage(
