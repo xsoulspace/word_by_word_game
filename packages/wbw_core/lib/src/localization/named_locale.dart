@@ -21,19 +21,14 @@ class NamedLocale {
   String get code => locale.languageCode;
 }
 
-Locale localeFromString(final String languageCode) {
-  try {
-    if (languageCode.isEmpty) return Locales.en;
-    final language = Languages.byLanguageCode(languageCode);
-    final locale = Locales.byLanguage(language);
-    return locale;
-    // ignore: avoid_catches_without_on_clauses
-  } catch (e) {
-    return Locales.en;
-  }
+Locale? localeFromString(final String? languageCode) {
+  if (languageCode == null || languageCode.isEmpty) return null;
+  final language = Languages.byLanguageCode(languageCode);
+  final locale = Locales.byLanguage(language);
+  return locale;
 }
 
-String localeToString(final Locale locale) => locale.languageCode;
+String? localeToString(final Locale? locale) => locale?.languageCode;
 
 Map<Languages, String> localeValueFromMap(final dynamic map) {
   if (map is String) {

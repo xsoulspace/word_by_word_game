@@ -30,21 +30,30 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("Об игре"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("добавить"),
         "addToDictionary":
-            MessageLookupByLibrary.simpleMessage("Добавить в словарь"),
+            MessageLookupByLibrary.simpleMessage("Внести в словарь"),
         "applyAndEndTurn":
             MessageLookupByLibrary.simpleMessage("Завершить ход"),
         "back": MessageLookupByLibrary.simpleMessage("Назад"),
         "chooseLandscape": MessageLookupByLibrary.simpleMessage("Выбери Место"),
         "chooseYourCharacter":
             MessageLookupByLibrary.simpleMessage("Выбери своего персонажа"),
-        "confirm": MessageLookupByLibrary.simpleMessage("Подтвердить"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Применить"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
         "cookFood": MessageLookupByLibrary.simpleMessage("Еда"),
-        "createProfile": MessageLookupByLibrary.simpleMessage("Создать"),
+        "createNewPlayerBody": MessageLookupByLibrary.simpleMessage(
+            "Профиль этого игрока можно будет добавить в любую новую игру."),
+        "createNewPlayerTitle": MessageLookupByLibrary.simpleMessage(
+            "Создай профиль нового игрока."),
+        "createNewPlayerTooltip": MessageLookupByLibrary.simpleMessage(
+            "Нажми, чтобы создать профиль нового игрока."),
+        "createPlayer": MessageLookupByLibrary.simpleMessage("Создать игрока"),
+        "createProfile":
+            MessageLookupByLibrary.simpleMessage("Создать профиль"),
         "creatingGame": MessageLookupByLibrary.simpleMessage(
             "Привет! Спасибо за интерес к игре и надеюсь она понравилась:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("результат"),
+        "effect": MessageLookupByLibrary.simpleMessage("Эффект"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Завершить игру"),
         "highscore": MessageLookupByLibrary.simpleMessage("лучший результат"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("начало"),
@@ -54,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastword": MessageLookupByLibrary.simpleMessage("Последнее слово: "),
         "lettersToRemove":
             MessageLookupByLibrary.simpleMessage("букв для удаления"),
+        "mainMenuButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Нажми, чтобы открыть меню (текущий прогресс будет сохранен)."),
         "maxHighscoreIs":
             MessageLookupByLibrary.simpleMessage("Лучший результат "),
         "menuInfo": MessageLookupByLibrary.simpleMessage("Об игре "),
@@ -90,6 +101,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "settings": MessageLookupByLibrary.simpleMessage("Настройки"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Заново "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("Новая игра"),
+        "suggestWordButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Нажми, чтобы получить случайное слово на основе текущих букв."),
         "suggestedWord":
             MessageLookupByLibrary.simpleMessage("Слово-подсказка"),
         "supportGame": MessageLookupByLibrary.simpleMessage(
@@ -98,7 +111,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Спасибо и хорошего времяпрепровождения!"),
         "toLandscapes": MessageLookupByLibrary.simpleMessage("В Места"),
         "tryAnotherWord":
-            MessageLookupByLibrary.simpleMessage("Try another word"),
+            MessageLookupByLibrary.simpleMessage("Попробовать другое слово"),
         "tryWithDifferentLetters": MessageLookupByLibrary.simpleMessage(
             "Попробуй с другими буквами.."),
         "useCostKnowledgePoints": m0,
@@ -106,8 +119,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Это слово уже было. Попробуй другое слово."),
         "wordIsNotCorrect": m1,
+        "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
+            "Недостаточно очков знаний для применения."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "Вы приземлились где-то в неизвестность.."),
+        "yourCurrentHighcoreTooltip": MessageLookupByLibrary.simpleMessage(
+            "Текущее кол-во очков знаний."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("В этот раз, результат ")
       };

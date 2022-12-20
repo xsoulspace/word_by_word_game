@@ -111,9 +111,13 @@ PODS:
   - path_provider_macos (0.0.1):
     - FlutterMacOS
   - PromisesObjC (2.1.1)
+  - screen_retriever (0.0.1):
+    - FlutterMacOS
   - shared_preferences_macos (0.0.1):
     - FlutterMacOS
   - url_launcher_macos (0.0.1):
+    - FlutterMacOS
+  - window_manager (0.2.0):
     - FlutterMacOS
 
 DEPENDENCIES:
@@ -123,8 +127,10 @@ DEPENDENCIES:
   - FlutterMacOS (from `Flutter/ephemeral`)
   - package_info_plus_macos (from `Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos`)
   - path_provider_macos (from `Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos`)
+  - screen_retriever (from `Flutter/ephemeral/.symlinks/plugins/screen_retriever/macos`)
   - shared_preferences_macos (from `Flutter/ephemeral/.symlinks/plugins/shared_preferences_macos/macos`)
   - url_launcher_macos (from `Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos`)
+  - window_manager (from `Flutter/ephemeral/.symlinks/plugins/window_manager/macos`)
 
 SPEC REPOS:
   trunk:
@@ -153,10 +159,14 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/package_info_plus_macos/macos
   path_provider_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/path_provider_macos/macos
+  screen_retriever:
+    :path: Flutter/ephemeral/.symlinks/plugins/screen_retriever/macos
   shared_preferences_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/shared_preferences_macos/macos
   url_launcher_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/url_launcher_macos/macos
+  window_manager:
+    :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
   Firebase: a3ea7eba4382afd83808376edb99acdaff078dcf
@@ -176,8 +186,10 @@ SPEC CHECKSUMS:
   package_info_plus_macos: f010621b07802a241d96d01876d6705f15e77c1c
   path_provider_macos: 3c0c3b4b0d4a76d2bf989a913c2de869c5641a19
   PromisesObjC: ab77feca74fa2823e7af4249b8326368e61014cb
+  screen_retriever: 59634572a57080243dd1bf715e55b6c54f241a38
   shared_preferences_macos: a64dc611287ed6cbe28fd1297898db1336975727
   url_launcher_macos: 597e05b8e514239626bcf4a850fcf9ef5c856ec3
+  window_manager: 3a1844359a6295ab1e47659b1a777e36773cd6e8
 
 PODFILE CHECKSUM: 6b8491f1b36598597c75bca74c2e9edeafaacd1c
 

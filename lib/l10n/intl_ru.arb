@@ -10,7 +10,7 @@
     "placeholders": {}
   },
   "play": "Играть",
-  "confirm": "Подтвердить",
+  "confirm": "Применить",
   "applyAndEndTurn": "Завершить ход",
   "toLandscapes": "В Места",
   "send": "Отправить",
@@ -25,7 +25,7 @@
   "startNewGame": "Новая игра",
   "congratulations": "Поздравляем!",
   "previousWord": "Предыдущее слово:",
-  "createProfile": "Создать",
+  "createProfile": "Создать профиль",
   "username": "Ник игрока",
   "about": "Об игре",
   "@congratulations": {
@@ -94,7 +94,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "tryAnotherWord": "Try another word",
+  "tryAnotherWord": "Попробовать другое слово",
   "notEnoughKnowledgeToRevealWord": "К сожалению, очков знаний недостаточно, чтобы открыть это слово..",
   "useCostKnowledgePoints": "Использовать очки знаний: {costOfWord}",
   "revealSuggestedWord": "Открыть слово-подсказку?",
@@ -149,9 +149,18 @@
   "selectAction": "Выбери действие",
   "cookFood": "Еда",
   "refuelStorage": "Топливо",
-  "addToDictionary": "Добавить в словарь",
+  "addToDictionary": "Внести в словарь",
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "suggestWordButtonTooltip": "Нажми, чтобы получить случайное слово на основе текущих букв.",
+  "mainMenuButtonTooltip": "Нажми, чтобы открыть меню (текущий прогресс будет сохранен).",
+  "yourCurrentHighcoreTooltip": "Текущее кол-во очков знаний.",
+  "youDontHaveEnoughPoints": "Недостаточно очков знаний для применения.",
+  "effect": "Эффект",
+  "createNewPlayerTooltip": "Нажми, чтобы создать профиль нового игрока.",
+  "createNewPlayerTitle": "Создай профиль нового игрока.",
+  "createNewPlayerBody": "Профиль этого игрока можно будет добавить в любую новую игру.",
+  "createPlayer": "Создать игрока"
 }
