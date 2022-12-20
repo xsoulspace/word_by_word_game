@@ -35,6 +35,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     on<InitGlobalGameLevelEvent>(_onInitGlobalGameLevel);
     on<WorldTimeTickEvent>(_onWorldTick);
     on<CreatePlayerProfileEvent>(_onCreatePlayerProfile);
+    on<DeletePlayerProfileEvent>(_onDeletePlayerProfile);
     on<LevelPartLoadedEvent>(_onLevelPartLoaded);
     on<SaveGameEvent>(_onSaveGame);
     on<SaveCurrentLevelEvent>(_onSaveCurrentLevel);
@@ -208,6 +209,20 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     diDto.levelBloc.add(
       ConsumeTickEvent(timeDeltaInSeconds: newState.dateTimeDelta),
     );
+  }
+
+  void _onDeletePlayerProfile(
+    final DeletePlayerProfileEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) {
+    final profile = event.profile;
+    final liveState = getLiveState();
+    final updateState = liveState.copyWith(
+      playersCollection: [...liveState.playersCollection]
+        ..removeWhere((final player) => player.id == profile.id),
+    );
+    emit(updateState);
+    _saveGame();
   }
 
   void _onCreatePlayerProfile(

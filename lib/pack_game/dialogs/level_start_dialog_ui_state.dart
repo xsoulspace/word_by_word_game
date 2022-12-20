@@ -38,6 +38,7 @@ class LevelStartDialogUiState extends LifeState {
   final _LevelStartDialogUiStateDiDto diDto;
   bool isVisible = false;
   void onSwitchDialogVisiblity() {
+    onChoosePlayers();
     isVisible = !isVisible;
     setState();
   }

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -89,12 +90,14 @@ class PlayerProfileCard extends StatelessWidget {
 class PlayerProfileTile extends StatelessWidget {
   const PlayerProfileTile({
     required this.player,
+    this.onDelete,
     this.onSelected,
     this.selected,
     super.key,
   });
   final PlayerProfileModel player;
   final ValueChanged<PlayerProfileModel>? onSelected;
+  final ValueChanged<PlayerProfileModel>? onDelete;
   final bool? selected;
   @override
   Widget build(final BuildContext context) {
@@ -108,6 +111,11 @@ class PlayerProfileTile extends StatelessWidget {
         if (onSelected != null) ...[
           Checkbox(value: selected, onChanged: (final _) => onSelected!(player))
         ],
+        if (kDebugMode)
+          IconButton(
+            onPressed: onDelete == null ? null : () => onDelete!(player),
+            icon: const Icon(Icons.delete),
+          )
       ],
     );
   }

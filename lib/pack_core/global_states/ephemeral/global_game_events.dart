@@ -31,6 +31,14 @@ class InitGlobalGameLevelEvent extends GameEvent {
 }
 
 @immutable
+class DeletePlayerProfileEvent extends GameEvent {
+  const DeletePlayerProfileEvent({
+    required this.profile,
+  });
+  final PlayerProfileModel profile;
+}
+
+@immutable
 class CreatePlayerProfileEvent extends GameEvent {
   const CreatePlayerProfileEvent({
     required this.profile,
