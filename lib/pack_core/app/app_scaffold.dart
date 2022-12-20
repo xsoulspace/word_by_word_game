@@ -148,91 +148,96 @@ class WindowControlsScaffold extends HookWidget {
         child,
         Positioned(
           top: 0,
+          right: 0,
           left: 0,
           child: FocusableActionDetector(
             onShowHoverHighlight: (final value) {
               isHoveredNotifier.value = value;
             },
-            child: Padding(
-              padding: const EdgeInsets.only(top: 7, left: 7),
-              child: ValueListenableBuilder(
-                valueListenable: isHoveredNotifier,
-                builder: (final context, final isHovered, final child) {
-                  return Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: windowManager.close,
-                        icon: isHovered
-                            ? const Icon(CupertinoIcons.clear_circled_solid)
-                            : const Icon(CupertinoIcons.circle_filled),
-                        constraints: const BoxConstraints(
-                          maxWidth: dimension,
-                          maxHeight: dimension,
+            child: DragToMoveArea(
+              child: Container(
+                // color: Colors.amber,
+                padding: const EdgeInsets.only(top: 7, right: 7, bottom: 7),
+                child: ValueListenableBuilder(
+                  valueListenable: isHoveredNotifier,
+                  builder: (final context, final isHovered, final child) {
+                    return Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: windowManager.close,
+                          icon: isHovered
+                              ? const Icon(CupertinoIcons.clear_circled_solid)
+                              : const Icon(CupertinoIcons.circle_filled),
+                          constraints: const BoxConstraints(
+                            maxWidth: dimension,
+                            maxHeight: dimension,
+                          ),
+                          color: Colors.red,
+                          iconSize: dimension,
                         ),
-                        color: Colors.red,
-                        iconSize: dimension,
-                      ),
-                      const SizedBox(width: 7),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () async {
-                          final bool isMinimized =
-                              await windowManager.isMinimized();
-                          if (isMinimized) {
-                            await windowManager.restore();
-                          } else {
-                            await windowManager.minimize();
-                          }
-                        },
-                        color: Colors.amber,
-                        icon: isHovered
-                            ? const Icon(CupertinoIcons.circle_filled)
-                            : const Icon(CupertinoIcons.circle_filled),
-                        constraints: const BoxConstraints(
-                          maxWidth: dimension,
-                          maxHeight: dimension,
+                        const SizedBox(width: 7),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          onPressed: () async {
+                            final bool isMinimized =
+                                await windowManager.isMinimized();
+                            if (isMinimized) {
+                              await windowManager.restore();
+                            } else {
+                              await windowManager.minimize();
+                            }
+                          },
+                          color: Colors.amber,
+                          icon: isHovered
+                              ? const Icon(CupertinoIcons.circle_filled)
+                              : const Icon(CupertinoIcons.circle_filled),
+                          constraints: const BoxConstraints(
+                            maxWidth: dimension,
+                            maxHeight: dimension,
+                          ),
+                          iconSize: dimension,
                         ),
-                        iconSize: dimension,
-                      ),
-                      const SizedBox(width: 7),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        color: Colors.green,
-                        constraints: const BoxConstraints(
-                          maxWidth: dimension,
-                          maxHeight: dimension,
-                        ),
-                        onPressed: () async {
-                          // final isFullScreen = await windowManager.isFullScreen();
-                          // await windowManager.setFullScreen(!isFullScreen);
-                          if (await windowManager.isMaximized()) {
-                            await windowManager.unmaximize();
-                          } else {
-                            await windowManager.maximize();
-                          }
-                        },
-                        icon: Stack(
-                          children: [
-                            const Icon(
-                              CupertinoIcons.circle_filled,
-                            ),
-                            if (isHovered)
-                              const Center(
-                                child: Icon(
-                                  CupertinoIcons.arrow_up_left_arrow_down_right,
-                                  color: Colors.white,
-                                  size: 9,
-                                ),
+                        const SizedBox(width: 7),
+                        IconButton(
+                          padding: EdgeInsets.zero,
+                          color: Colors.green,
+                          constraints: const BoxConstraints(
+                            maxWidth: dimension,
+                            maxHeight: dimension,
+                          ),
+                          onPressed: () async {
+                            // final isFullScreen = await windowManager.isFullScreen();
+                            // await windowManager.setFullScreen(!isFullScreen);
+                            if (await windowManager.isMaximized()) {
+                              await windowManager.unmaximize();
+                            } else {
+                              await windowManager.maximize();
+                            }
+                          },
+                          icon: Stack(
+                            children: [
+                              const Icon(
+                                CupertinoIcons.circle_filled,
                               ),
-                          ],
-                        ),
-                        iconSize: dimension,
-                      )
-                    ],
-                  );
-                },
+                              if (isHovered)
+                                const Center(
+                                  child: Icon(
+                                    CupertinoIcons
+                                        .arrow_up_left_arrow_down_right,
+                                    color: Colors.white,
+                                    size: 9,
+                                  ),
+                                ),
+                            ],
+                          ),
+                          iconSize: dimension,
+                        )
+                      ],
+                    );
+                  },
+                ),
               ),
             ),
           ),

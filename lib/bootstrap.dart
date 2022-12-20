@@ -49,6 +49,7 @@ Future<void> bootstrap(
       titleBarStyle: TitleBarStyle.hidden,
     );
 
+    windowManager.setResizable(true);
     await windowManager.waitUntilReadyToShow(windowOptions, () async {
       await windowManager.show();
       await windowManager.focus();
