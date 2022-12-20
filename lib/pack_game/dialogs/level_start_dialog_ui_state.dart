@@ -2,8 +2,10 @@ part of 'level_start_dialog.dart';
 
 class _LevelStartDialogUiStateDiDto {
   _LevelStartDialogUiStateDiDto.use(final Locator read)
-      : pauseScreenState = read();
+      : pauseScreenState = read(),
+        globalGameBloc = read();
   final PauseScreenState pauseScreenState;
+  final GlobalGameBloc globalGameBloc;
 }
 
 LevelStartDialogUiState _useLevelStartUiState({
@@ -36,9 +38,15 @@ class LevelStartDialogUiState extends LifeState {
   final LevelStartDialogUxState uxState;
   final TemplateLevelModel level;
   final _LevelStartDialogUiStateDiDto diDto;
+
   bool isVisible = false;
   void onSwitchDialogVisiblity() {
-    onChoosePlayers();
+    final liveState = diDto.globalGameBloc.getLiveState();
+    if (liveState.playersCollection.isEmpty) {
+      onCreatePlayer();
+    } else {
+      onChoosePlayers();
+    }
     isVisible = !isVisible;
     setState();
   }

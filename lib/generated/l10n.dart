@@ -720,6 +720,16 @@ class S {
     );
   }
 
+  /// `Create player profile to start a game.`
+  String get createNewFirstPlayerTitle {
+    return Intl.message(
+      'Create player profile to start a game.',
+      name: 'createNewFirstPlayerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create profile for new player.`
   String get createNewPlayerTitle {
     return Intl.message(

@@ -24,8 +24,11 @@ class LevelStartDialogButton extends HookWidget {
   final TemplateLevelModel level;
   @override
   Widget build(final BuildContext context) {
-    final uxState =
-        _useLevelStartDialogUxState(read: context.read, templateLevel: level);
+    final uxState = _useLevelStartDialogUxState(
+      read: context.read,
+      templateLevel: level,
+    );
+
     final uiState = _useLevelStartUiState(
       read: context.read,
       uxState: uxState,
@@ -48,7 +51,8 @@ class LevelStartDialogButton extends HookWidget {
               color: Colors.white60,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap: uiState.onSwitchDialogVisiblity,
+                onTap:
+                    uiState.isVisible ? uiState.onSwitchDialogVisiblity : null,
               ),
             ),
           ),
