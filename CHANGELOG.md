@@ -14,6 +14,12 @@
 
 ## Next
 
+## December 20th 2022
+
+- Simplified players selection to start a game.
+- Simplified new profile player creation.
+- Borderless window for native apps.
+
 ## December 18th 2022
 
 - Added effects for an action - now you can choose how many effect points will be applied for selected action.

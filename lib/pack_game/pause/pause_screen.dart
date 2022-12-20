@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:flutter_portal/flutter_portal.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -34,58 +35,60 @@ class PauseScreen extends HookWidget {
       create: (final context) => state,
       builder: (final context, final child) {
         return Scaffold(
-          body: Stack(
-            children: [
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const TopSafeArea(),
-                    const Spacer(),
-                    const StartGameHex(),
-                    const Spacer(),
-                    Wrap(
-                      alignment: WrapAlignment.center,
-                      spacing: 2,
-                      runSpacing: 12,
-                      children: [
-                        UiFilledButton.icon(
-                          icon: Icons.settings,
-                          text: S.of(context).settings,
-                          onPressed: state.onToSettings,
-                        ),
-                        uiTheme.horizontalBoxes.medium,
-                        UiFilledButton.icon(
-                          icon: Icons.scoreboard_rounded,
-                          text: S.of(context).playersAndHighscore,
-                          onPressed: state.onToPlayersAndHighscore,
-                        ),
-                        uiTheme.horizontalBoxes.medium,
-                        UiFilledButton.icon(
-                          icon: Icons.question_mark_rounded,
-                          text: S.of(context).about,
-                          onPressed: state.onShowAbout,
-                        ),
-                        uiTheme.horizontalBoxes.medium,
-                        if (_kIsPrivacyPolicyEnabled)
-                          UiTextButton.text(
-                            text: S.of(context).privacyPolicy,
-                            onPressed: state.onPrivacyPolicy,
+          body: Portal(
+            child: Stack(
+              children: [
+                Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const TopSafeArea(),
+                      const Spacer(),
+                      const StartGameHex(),
+                      const Spacer(),
+                      Wrap(
+                        alignment: WrapAlignment.center,
+                        spacing: 2,
+                        runSpacing: 12,
+                        children: [
+                          UiFilledButton.icon(
+                            icon: Icons.settings,
+                            text: S.of(context).settings,
+                            onPressed: state.onToSettings,
                           ),
-                      ],
-                    ),
-                    uiTheme.verticalBoxes.extraLarge,
-                    const BottomSafeArea(),
-                  ],
+                          uiTheme.horizontalBoxes.medium,
+                          UiFilledButton.icon(
+                            icon: Icons.scoreboard_rounded,
+                            text: S.of(context).playersAndHighscore,
+                            onPressed: state.onToPlayersAndHighscore,
+                          ),
+                          uiTheme.horizontalBoxes.medium,
+                          UiFilledButton.icon(
+                            icon: Icons.question_mark_rounded,
+                            text: S.of(context).about,
+                            onPressed: state.onShowAbout,
+                          ),
+                          uiTheme.horizontalBoxes.medium,
+                          if (_kIsPrivacyPolicyEnabled)
+                            UiTextButton.text(
+                              text: S.of(context).privacyPolicy,
+                              onPressed: state.onPrivacyPolicy,
+                            ),
+                        ],
+                      ),
+                      uiTheme.verticalBoxes.extraLarge,
+                      const BottomSafeArea(),
+                    ],
+                  ),
                 ),
-              ),
-              if (_kIsCharacterVisible)
-                const Positioned(
-                  right: 24,
-                  top: 24,
-                  child: CharacterAvatarButton.useDefault(),
-                ),
-            ],
+                if (_kIsCharacterVisible)
+                  const Positioned(
+                    right: 24,
+                    top: 24,
+                    child: CharacterAvatarButton.useDefault(),
+                  ),
+              ],
+            ),
           ),
         );
       },

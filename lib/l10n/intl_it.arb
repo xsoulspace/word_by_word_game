@@ -34,7 +34,7 @@
   "settings": "Impostazioni",
   "username": "Nome utente",
   "previousWord": "Parola precedente:",
-  "createProfile": "Creare",
+  "createProfile": "Creare Profili",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",
   "startNewGame": "Nuovo gioco",
@@ -164,5 +164,9 @@
   "mainMenuButtonTooltip": "Fare clic per aprire il menu (i progressi correnti verranno salvati).",
   "yourCurrentHighcoreTooltip": "Il tuo record attuale.",
   "youDontHaveEnoughPoints": "Pallone non necessario per l'approssimazione.",
-  "effect": "Effetto"
+  "effect": "Effetto",
+  "createNewPlayerTooltip": "Fare clic per creare il profilo per il nuovo giocatore.",
+  "createNewPlayerTitle": "Crea profilo per nuovo giocatore.",
+  "createNewPlayerBody": "Potrai aggiungere il profilo di questo giocatore a qualsiasi nuova partita.",
+  "createPlayer": "Crea giocatore"
 }
