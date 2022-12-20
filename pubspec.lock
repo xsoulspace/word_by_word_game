@@ -518,13 +518,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
-  handy_window:
-    dependency: "direct main"
-    description:
-      name: handy_window
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.9"
   hive:
     dependency: "direct main"
     description:
@@ -889,13 +882,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.7"
-  screen_retriever:
-    dependency: transitive
-    description:
-      name: screen_retriever
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.4"
   sembast:
     dependency: "direct main"
     description:
@@ -1202,13 +1188,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.7.0"
-  window_manager:
-    dependency: "direct main"
-    description:
-      name: window_manager
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.8"
   xdg_directories:
     dependency: transitive
     description:
