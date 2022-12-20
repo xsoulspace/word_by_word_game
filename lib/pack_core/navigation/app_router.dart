@@ -14,18 +14,7 @@ class NavigationRoutes {
   static const pause = '/lvl/:levelId/pause';
   static String toPause({required final LevelModelId id}) => '/lvl/$id/pause';
 
-  static const levelOptions = '/lvl/:levelId/options';
-  static String getLevelOptions({required final LevelModelId id}) =>
-      '/lvl/$id/options';
-
-  static const routes = [
-    root,
-    playableLevel,
-    levelOptions,
-    pause,
-    highscore,
-    settings
-  ];
+  static const routes = [root, playableLevel, pause, highscore, settings];
 }
 
 class AppRouterController extends RouterController {
@@ -51,9 +40,5 @@ class AppRouterController extends RouterController {
     required final LevelModelId id,
   }) =>
       to(NavigationRoutes.toPause(id: id));
-  void toLevelOptions({
-    required final LevelModelId id,
-  }) =>
-      to(NavigationRoutes.getLevelOptions(id: id));
   void toPlayersAndHighscore() => to(NavigationRoutes.highscore);
 }

@@ -45,7 +45,7 @@ class PauseScreenState extends ContextfulLifeState {
   }
 
   void onToLevel(final TemplateLevelModel level) {
-    diDto.appRouterController.toLevelOptions(id: level.id);
+    diDto.appRouterController.toPlayableLevel(id: level.id);
   }
 
   void onToPlayersAndHighscore() {

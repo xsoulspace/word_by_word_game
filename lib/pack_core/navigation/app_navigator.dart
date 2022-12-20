@@ -57,11 +57,6 @@ class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
         key: keys.pause,
       );
 
-  Page levelOptions() => NavigatorPage(
-        child: const LevelOptionsScreen(),
-        key: keys.levelOptions,
-      );
-
   Page game() {
     return NavigatorPage(
       child: const WbwGameWidget(),
@@ -92,11 +87,7 @@ class AppLayoutBuilder
     final pages = <Page>[
       pageBuilder.game(),
     ];
-    if (pathTemplate.startsWith(NavigationRoutes.levelRoot)) {
-      if (pathTemplate == NavigationRoutes.levelOptions) {
-        pages.add(pageBuilder.levelOptions());
-      }
-    }
+    if (pathTemplate.startsWith(NavigationRoutes.levelRoot)) {}
 
     /// should be at the end of the layout layers
     if (pathTemplate == NavigationRoutes.pause ||
