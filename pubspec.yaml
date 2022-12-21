@@ -25,6 +25,7 @@ environment:
   sdk: ">=2.18.2 <3.0.0"
 
 dependencies:
+  animate_do: ^3.0.2
   bloc: ^8.1.0
   blur: ^3.1.0
   collection: ^1.16.0
@@ -74,7 +75,6 @@ dependencies:
     path: packages/wbw_core
   wbw_design_core:
     path: packages/wbw_design_core
-  # window_manager: ^0.2.8
   yandex_ads_sdk:
     path: packages/yandex_ads_sdk
 
