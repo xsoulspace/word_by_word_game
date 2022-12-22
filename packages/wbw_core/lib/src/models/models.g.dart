@@ -399,6 +399,66 @@ Map<String, dynamic> _$$_ScoreModelToJson(_$_ScoreModel instance) =>
       'value': instance.value,
     };
 
+_$_TutorialEventModel _$$_TutorialEventModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TutorialEventModel(
+      localizedMap:
+          LocalizedMap.fromJson(json['localizedMap'] as Map<String, dynamic>),
+      gameActions: (json['gameActions'] as List<dynamic>?)
+              ?.map((e) => $enumDecode(_$TutorialGameActionEnumMap, e))
+              .toList() ??
+          const [],
+      uiItem: $enumDecodeNullable(_$TutorialUiItemEnumMap, json['uiItem']),
+    );
+
+Map<String, dynamic> _$$_TutorialEventModelToJson(
+        _$_TutorialEventModel instance) =>
+    <String, dynamic>{
+      'localizedMap': instance.localizedMap,
+      'gameActions': instance.gameActions
+          .map((e) => _$TutorialGameActionEnumMap[e]!)
+          .toList(),
+      'uiItem': _$TutorialUiItemEnumMap[instance.uiItem],
+    };
+
+const _$TutorialGameActionEnumMap = {
+  TutorialGameAction.pauseGame: 'pauseGame',
+  TutorialGameAction.resumeGame: 'resumeGame',
+};
+
+const _$TutorialUiItemEnumMap = {
+  TutorialUiItem.addToDictionaryButton: 'addToDictionaryButton',
+  TutorialUiItem.confirmWordButton: 'confirmWordButton',
+  TutorialUiItem.removeLetterButton: 'removeLetterButton',
+  TutorialUiItem.suggestWordButton: 'suggestWordButton',
+  TutorialUiItem.enterWordLeft: 'enterWordLeft',
+  TutorialUiItem.enterWordRight: 'enterWordRight',
+  TutorialUiItem.actionPhaseFrame: 'actionPhaseFrame',
+  TutorialUiItem.enterWordPhaseFrame: 'enterWordPhaseFrame',
+  TutorialUiItem.selectActionFrame: 'selectActionFrame',
+  TutorialUiItem.selectEffectFrame: 'selectEffectFrame',
+  TutorialUiItem.applyAndEndTurnButton: 'applyAndEndTurnButton',
+  TutorialUiItem.yourNameLabel: 'yourNameLabel',
+  TutorialUiItem.yourScoreLabel: 'yourScoreLabel',
+  TutorialUiItem.gameFuelIndicator: 'gameFuelIndicator',
+};
+
+_$_TutorialEventsCollectionModel _$$_TutorialEventsCollectionModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TutorialEventsCollectionModel(
+      events: (json['events'] as List<dynamic>)
+          .map((e) => TutorialEventModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      currentIndex: json['currentIndex'] as int,
+    );
+
+Map<String, dynamic> _$$_TutorialEventsCollectionModelToJson(
+        _$_TutorialEventsCollectionModel instance) =>
+    <String, dynamic>{
+      'events': instance.events,
+      'currentIndex': instance.currentIndex,
+    };
+
 _$_WorldDateTime _$$_WorldDateTimeFromJson(Map<String, dynamic> json) =>
     _$_WorldDateTime(
       second: json['second'] as int? ?? 0,
