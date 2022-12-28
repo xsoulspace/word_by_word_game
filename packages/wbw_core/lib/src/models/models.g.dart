@@ -449,6 +449,7 @@ _$_TutorialEventsCollectionModel _$$_TutorialEventsCollectionModelFromJson(
       events: (json['events'] as List<dynamic>)
           .map((e) => TutorialEventModel.fromJson(e as Map<String, dynamic>))
           .toList(),
+      name: $enumDecode(_$TutorialCollectionsNameEnumMap, json['name']),
       currentIndex: json['currentIndex'] as int,
     );
 
@@ -456,7 +457,48 @@ Map<String, dynamic> _$$_TutorialEventsCollectionModelToJson(
         _$_TutorialEventsCollectionModel instance) =>
     <String, dynamic>{
       'events': instance.events,
+      'name': _$TutorialCollectionsNameEnumMap[instance.name]!,
       'currentIndex': instance.currentIndex,
+    };
+
+const _$TutorialCollectionsNameEnumMap = {
+  TutorialCollectionsName.levelIntroduction: 'levelIntroduction',
+};
+
+_$_TutorialCollectionsProgressModel
+    _$$_TutorialCollectionsProgressModelFromJson(Map<String, dynamic> json) =>
+        _$_TutorialCollectionsProgressModel(
+          indexes: (json['indexes'] as Map<String, dynamic>).map(
+            (k, e) => MapEntry(
+                $enumDecode(_$TutorialCollectionsNameEnumMap, k), e as int),
+          ),
+        );
+
+Map<String, dynamic> _$$_TutorialCollectionsProgressModelToJson(
+        _$_TutorialCollectionsProgressModel instance) =>
+    <String, dynamic>{
+      'indexes': instance.indexes
+          .map((k, e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e)),
+    };
+
+_$_TutorialCollectionsDataModel _$$_TutorialCollectionsDataModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TutorialCollectionsDataModel(
+      events: (json['events'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            $enumDecode(_$TutorialCollectionsNameEnumMap, k),
+            (e as List<dynamic>)
+                .map((e) =>
+                    TutorialEventModel.fromJson(e as Map<String, dynamic>))
+                .toList()),
+      ),
+    );
+
+Map<String, dynamic> _$$_TutorialCollectionsDataModelToJson(
+        _$_TutorialCollectionsDataModel instance) =>
+    <String, dynamic>{
+      'events': instance.events
+          .map((k, e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e)),
     };
 
 _$_WorldDateTime _$$_WorldDateTimeFromJson(Map<String, dynamic> json) =>
