@@ -2,10 +2,6 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 
-enum HighlightPosition {
-  top,
-}
-
 class HighlightFrame extends StatelessWidget {
   const HighlightFrame({
     required this.highlighted,
