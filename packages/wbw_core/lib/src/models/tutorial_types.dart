@@ -83,12 +83,12 @@ enum TutorialUiItem {
   gameFuelIndicator,
 }
 
-enum TutorialCompleteActions {
+enum TutorialCompleteAction {
   onClick,
   onEdit,
 }
 
-enum TutorialGameAction {
+enum TutorialGameEffect {
   pauseGame,
   resumeGame,
 }

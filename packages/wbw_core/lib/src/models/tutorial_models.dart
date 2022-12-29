@@ -11,9 +11,15 @@ part of 'models.dart';
   copyWith: true,
 )
 class TutorialEventModel with _$TutorialEventModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TutorialEventModel({
     required final LocalizedMap localizedMap,
-    @Default([]) final List<TutorialGameAction> gameActions,
+
+    /// what will switch this event to the next
+    required final List<TutorialUiActionEventModel> completeActions,
+
+    /// what effect this event do with the game
+    @Default([]) final List<TutorialGameEffect> gameEffects,
     final TutorialUiItem? uiItem,
   }) = _TutorialEventModel;
 
@@ -31,7 +37,30 @@ class TutorialEventModel with _$TutorialEventModel {
   addImplicitFinal: true,
   copyWith: true,
 )
+class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
+  @JsonSerializable(explicitToJson: true)
+  const factory TutorialUiActionEventModel({
+    required final TutorialCompleteAction action,
+    final TutorialUiItem? uiItem,
+  }) = _TutorialUiActionEventModel;
+
+  const TutorialUiActionEventModel._();
+
+  factory TutorialUiActionEventModel.fromJson(
+          final Map<String, dynamic> json) =>
+      _$TutorialUiActionEventModelFromJson(json);
+}
+
+@immutable
+@Freezed(
+  fromJson: true,
+  toJson: true,
+  equal: true,
+  addImplicitFinal: true,
+  copyWith: true,
+)
 class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TutorialEventsCollectionModel({
     required final List<TutorialEventModel> events,
     required final TutorialCollectionsName name,
@@ -92,6 +121,7 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
   copyWith: true,
 )
 class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TutorialCollectionsProgressModel({
     /// Key - [TutorialCollectionsName]
     /// Value - int index from [TutorialEventsCollectionModel.events]

@@ -4,6 +4,7 @@ const _tutorialData = TutorialCollectionsDataModel(
   events: {
     TutorialCollectionsName.levelIntroduction: [
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -11,10 +12,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.addToDictionaryButton,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -22,10 +24,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.confirmWordButton,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -33,10 +36,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.removeLetterButton,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -44,10 +48,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.suggestWordButton,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -55,10 +60,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.enterWordLeft,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -66,10 +72,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.enterWordRight,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -77,10 +84,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.enterWordPhaseFrame,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -88,10 +96,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.selectActionFrame,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -99,10 +108,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.selectEffectFrame,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -110,10 +120,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.applyAndEndTurnButton,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -121,10 +132,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.yourNameLabel,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -132,10 +144,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.yourScoreLabel,
       ),
       TutorialEventModel(
+        completeActions: [],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: '',
@@ -143,7 +156,7 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameActions: [],
+        gameEffects: [],
         uiItem: TutorialUiItem.gameFuelIndicator,
       ),
     ],

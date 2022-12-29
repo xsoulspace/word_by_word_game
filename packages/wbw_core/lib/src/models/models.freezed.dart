@@ -3997,7 +3997,13 @@ TutorialEventModel _$TutorialEventModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TutorialEventModel {
   LocalizedMap get localizedMap => throw _privateConstructorUsedError;
-  List<TutorialGameAction> get gameActions =>
+
+  /// what will switch this event to the next
+  List<TutorialUiActionEventModel> get completeActions =>
+      throw _privateConstructorUsedError;
+
+  /// what effect this event do with the game
+  List<TutorialGameEffect> get gameEffects =>
       throw _privateConstructorUsedError;
   TutorialUiItem? get uiItem => throw _privateConstructorUsedError;
 
@@ -4014,7 +4020,8 @@ abstract class $TutorialEventModelCopyWith<$Res> {
       _$TutorialEventModelCopyWithImpl<$Res>;
   $Res call(
       {LocalizedMap localizedMap,
-      List<TutorialGameAction> gameActions,
+      List<TutorialUiActionEventModel> completeActions,
+      List<TutorialGameEffect> gameEffects,
       TutorialUiItem? uiItem});
 
   $LocalizedMapCopyWith<$Res> get localizedMap;
@@ -4032,7 +4039,8 @@ class _$TutorialEventModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? localizedMap = freezed,
-    Object? gameActions = freezed,
+    Object? completeActions = freezed,
+    Object? gameEffects = freezed,
     Object? uiItem = freezed,
   }) {
     return _then(_value.copyWith(
@@ -4040,10 +4048,14 @@ class _$TutorialEventModelCopyWithImpl<$Res>
           ? _value.localizedMap
           : localizedMap // ignore: cast_nullable_to_non_nullable
               as LocalizedMap,
-      gameActions: gameActions == freezed
-          ? _value.gameActions
-          : gameActions // ignore: cast_nullable_to_non_nullable
-              as List<TutorialGameAction>,
+      completeActions: completeActions == freezed
+          ? _value.completeActions
+          : completeActions // ignore: cast_nullable_to_non_nullable
+              as List<TutorialUiActionEventModel>,
+      gameEffects: gameEffects == freezed
+          ? _value.gameEffects
+          : gameEffects // ignore: cast_nullable_to_non_nullable
+              as List<TutorialGameEffect>,
       uiItem: uiItem == freezed
           ? _value.uiItem
           : uiItem // ignore: cast_nullable_to_non_nullable
@@ -4068,7 +4080,8 @@ abstract class _$$_TutorialEventModelCopyWith<$Res>
   @override
   $Res call(
       {LocalizedMap localizedMap,
-      List<TutorialGameAction> gameActions,
+      List<TutorialUiActionEventModel> completeActions,
+      List<TutorialGameEffect> gameEffects,
       TutorialUiItem? uiItem});
 
   @override
@@ -4089,7 +4102,8 @@ class __$$_TutorialEventModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? localizedMap = freezed,
-    Object? gameActions = freezed,
+    Object? completeActions = freezed,
+    Object? gameEffects = freezed,
     Object? uiItem = freezed,
   }) {
     return _then(_$_TutorialEventModel(
@@ -4097,10 +4111,14 @@ class __$$_TutorialEventModelCopyWithImpl<$Res>
           ? _value.localizedMap
           : localizedMap // ignore: cast_nullable_to_non_nullable
               as LocalizedMap,
-      gameActions: gameActions == freezed
-          ? _value._gameActions
-          : gameActions // ignore: cast_nullable_to_non_nullable
-              as List<TutorialGameAction>,
+      completeActions: completeActions == freezed
+          ? _value._completeActions
+          : completeActions // ignore: cast_nullable_to_non_nullable
+              as List<TutorialUiActionEventModel>,
+      gameEffects: gameEffects == freezed
+          ? _value._gameEffects
+          : gameEffects // ignore: cast_nullable_to_non_nullable
+              as List<TutorialGameEffect>,
       uiItem: uiItem == freezed
           ? _value.uiItem
           : uiItem // ignore: cast_nullable_to_non_nullable
@@ -4110,13 +4128,16 @@ class __$$_TutorialEventModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_TutorialEventModel extends _TutorialEventModel {
   const _$_TutorialEventModel(
       {required this.localizedMap,
-      final List<TutorialGameAction> gameActions = const [],
+      required final List<TutorialUiActionEventModel> completeActions,
+      final List<TutorialGameEffect> gameEffects = const [],
       this.uiItem})
-      : _gameActions = gameActions,
+      : _completeActions = completeActions,
+        _gameEffects = gameEffects,
         super._();
 
   factory _$_TutorialEventModel.fromJson(Map<String, dynamic> json) =>
@@ -4124,12 +4145,26 @@ class _$_TutorialEventModel extends _TutorialEventModel {
 
   @override
   final LocalizedMap localizedMap;
-  final List<TutorialGameAction> _gameActions;
+
+  /// what will switch this event to the next
+  final List<TutorialUiActionEventModel> _completeActions;
+
+  /// what will switch this event to the next
+  @override
+  List<TutorialUiActionEventModel> get completeActions {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_completeActions);
+  }
+
+  /// what effect this event do with the game
+  final List<TutorialGameEffect> _gameEffects;
+
+  /// what effect this event do with the game
   @override
   @JsonKey()
-  List<TutorialGameAction> get gameActions {
+  List<TutorialGameEffect> get gameEffects {
     // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_gameActions);
+    return EqualUnmodifiableListView(_gameEffects);
   }
 
   @override
@@ -4137,7 +4172,7 @@ class _$_TutorialEventModel extends _TutorialEventModel {
 
   @override
   String toString() {
-    return 'TutorialEventModel(localizedMap: $localizedMap, gameActions: $gameActions, uiItem: $uiItem)';
+    return 'TutorialEventModel(localizedMap: $localizedMap, completeActions: $completeActions, gameEffects: $gameEffects, uiItem: $uiItem)';
   }
 
   @override
@@ -4148,7 +4183,9 @@ class _$_TutorialEventModel extends _TutorialEventModel {
             const DeepCollectionEquality()
                 .equals(other.localizedMap, localizedMap) &&
             const DeepCollectionEquality()
-                .equals(other._gameActions, _gameActions) &&
+                .equals(other._completeActions, _completeActions) &&
+            const DeepCollectionEquality()
+                .equals(other._gameEffects, _gameEffects) &&
             const DeepCollectionEquality().equals(other.uiItem, uiItem));
   }
 
@@ -4157,7 +4194,8 @@ class _$_TutorialEventModel extends _TutorialEventModel {
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(localizedMap),
-      const DeepCollectionEquality().hash(_gameActions),
+      const DeepCollectionEquality().hash(_completeActions),
+      const DeepCollectionEquality().hash(_gameEffects),
       const DeepCollectionEquality().hash(uiItem));
 
   @JsonKey(ignore: true)
@@ -4177,7 +4215,8 @@ class _$_TutorialEventModel extends _TutorialEventModel {
 abstract class _TutorialEventModel extends TutorialEventModel {
   const factory _TutorialEventModel(
       {required final LocalizedMap localizedMap,
-      final List<TutorialGameAction> gameActions,
+      required final List<TutorialUiActionEventModel> completeActions,
+      final List<TutorialGameEffect> gameEffects,
       final TutorialUiItem? uiItem}) = _$_TutorialEventModel;
   const _TutorialEventModel._() : super._();
 
@@ -4187,13 +4226,181 @@ abstract class _TutorialEventModel extends TutorialEventModel {
   @override
   LocalizedMap get localizedMap;
   @override
-  List<TutorialGameAction> get gameActions;
+
+  /// what will switch this event to the next
+  List<TutorialUiActionEventModel> get completeActions;
+  @override
+
+  /// what effect this event do with the game
+  List<TutorialGameEffect> get gameEffects;
   @override
   TutorialUiItem? get uiItem;
   @override
   @JsonKey(ignore: true)
   _$$_TutorialEventModelCopyWith<_$_TutorialEventModel> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+TutorialUiActionEventModel _$TutorialUiActionEventModelFromJson(
+    Map<String, dynamic> json) {
+  return _TutorialUiActionEventModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TutorialUiActionEventModel {
+  TutorialCompleteAction get action => throw _privateConstructorUsedError;
+  TutorialUiItem? get uiItem => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TutorialUiActionEventModelCopyWith<TutorialUiActionEventModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TutorialUiActionEventModelCopyWith<$Res> {
+  factory $TutorialUiActionEventModelCopyWith(TutorialUiActionEventModel value,
+          $Res Function(TutorialUiActionEventModel) then) =
+      _$TutorialUiActionEventModelCopyWithImpl<$Res>;
+  $Res call({TutorialCompleteAction action, TutorialUiItem? uiItem});
+}
+
+/// @nodoc
+class _$TutorialUiActionEventModelCopyWithImpl<$Res>
+    implements $TutorialUiActionEventModelCopyWith<$Res> {
+  _$TutorialUiActionEventModelCopyWithImpl(this._value, this._then);
+
+  final TutorialUiActionEventModel _value;
+  // ignore: unused_field
+  final $Res Function(TutorialUiActionEventModel) _then;
+
+  @override
+  $Res call({
+    Object? action = freezed,
+    Object? uiItem = freezed,
+  }) {
+    return _then(_value.copyWith(
+      action: action == freezed
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as TutorialCompleteAction,
+      uiItem: uiItem == freezed
+          ? _value.uiItem
+          : uiItem // ignore: cast_nullable_to_non_nullable
+              as TutorialUiItem?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$$_TutorialUiActionEventModelCopyWith<$Res>
+    implements $TutorialUiActionEventModelCopyWith<$Res> {
+  factory _$$_TutorialUiActionEventModelCopyWith(
+          _$_TutorialUiActionEventModel value,
+          $Res Function(_$_TutorialUiActionEventModel) then) =
+      __$$_TutorialUiActionEventModelCopyWithImpl<$Res>;
+  @override
+  $Res call({TutorialCompleteAction action, TutorialUiItem? uiItem});
+}
+
+/// @nodoc
+class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
+    extends _$TutorialUiActionEventModelCopyWithImpl<$Res>
+    implements _$$_TutorialUiActionEventModelCopyWith<$Res> {
+  __$$_TutorialUiActionEventModelCopyWithImpl(
+      _$_TutorialUiActionEventModel _value,
+      $Res Function(_$_TutorialUiActionEventModel) _then)
+      : super(_value, (v) => _then(v as _$_TutorialUiActionEventModel));
+
+  @override
+  _$_TutorialUiActionEventModel get _value =>
+      super._value as _$_TutorialUiActionEventModel;
+
+  @override
+  $Res call({
+    Object? action = freezed,
+    Object? uiItem = freezed,
+  }) {
+    return _then(_$_TutorialUiActionEventModel(
+      action: action == freezed
+          ? _value.action
+          : action // ignore: cast_nullable_to_non_nullable
+              as TutorialCompleteAction,
+      uiItem: uiItem == freezed
+          ? _value.uiItem
+          : uiItem // ignore: cast_nullable_to_non_nullable
+              as TutorialUiItem?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
+  const _$_TutorialUiActionEventModel({required this.action, this.uiItem})
+      : super._();
+
+  factory _$_TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TutorialUiActionEventModelFromJson(json);
+
+  @override
+  final TutorialCompleteAction action;
+  @override
+  final TutorialUiItem? uiItem;
+
+  @override
+  String toString() {
+    return 'TutorialUiActionEventModel(action: $action, uiItem: $uiItem)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TutorialUiActionEventModel &&
+            const DeepCollectionEquality().equals(other.action, action) &&
+            const DeepCollectionEquality().equals(other.uiItem, uiItem));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(action),
+      const DeepCollectionEquality().hash(uiItem));
+
+  @JsonKey(ignore: true)
+  @override
+  _$$_TutorialUiActionEventModelCopyWith<_$_TutorialUiActionEventModel>
+      get copyWith => __$$_TutorialUiActionEventModelCopyWithImpl<
+          _$_TutorialUiActionEventModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TutorialUiActionEventModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
+  const factory _TutorialUiActionEventModel(
+      {required final TutorialCompleteAction action,
+      final TutorialUiItem? uiItem}) = _$_TutorialUiActionEventModel;
+  const _TutorialUiActionEventModel._() : super._();
+
+  factory _TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =
+      _$_TutorialUiActionEventModel.fromJson;
+
+  @override
+  TutorialCompleteAction get action;
+  @override
+  TutorialUiItem? get uiItem;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TutorialUiActionEventModelCopyWith<_$_TutorialUiActionEventModel>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 TutorialEventsCollectionModel _$TutorialEventsCollectionModelFromJson(
@@ -4308,7 +4515,8 @@ class __$$_TutorialEventsCollectionModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_TutorialEventsCollectionModel extends _TutorialEventsCollectionModel {
   const _$_TutorialEventsCollectionModel(
       {required final List<TutorialEventModel> events,
@@ -4481,7 +4689,8 @@ class __$$_TutorialCollectionsProgressModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_TutorialCollectionsProgressModel
     extends _TutorialCollectionsProgressModel {
   const _$_TutorialCollectionsProgressModel(
