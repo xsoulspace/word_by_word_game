@@ -61,6 +61,11 @@ class AppServicesProvider extends StatelessWidget {
                 diDto: ResourcesBlocDiDto.use(providersContextLocator),
               ),
             ),
+            BlocProvider(
+              create: (final context) => TutorialBloc(
+                diDto: TutorialBlocDiDto.use(providersContextLocator),
+              ),
+            ),
             BlocProvider<GlobalGameBloc>(
               create: (final context) => GlobalGameBloc(
                 diDto: GlobalGameBlocDiDto.use(providersContextLocator),

@@ -104,6 +104,9 @@ class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
     final Map<String, dynamic> json,
   ) =>
       _$TutorialCollectionsProgressModelFromJson(json);
+  static const empty = TutorialCollectionsProgressModel(
+    indexes: {},
+  );
 }
 
 /// Actual tutorial events

@@ -19,11 +19,13 @@ class GlobalGameBlocDiDto {
         levelBloc = read(),
         levelPlayersBloc = read(),
         resourcesBloc = read(),
+        tutorialBloc = read(),
         services = read();
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
   final ResourcesBloc resourcesBloc;
+  final TutorialBloc tutorialBloc;
   final ServicesCollection services;
 }
 
@@ -75,6 +77,9 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       add(InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false));
     }
     unawaited(diDto.mechanics.worldTime.onLoad());
+    diDto.tutorialBloc.add(
+      LoadTutorialsProgressEvent(progress: gameModel.tutorialProgress),
+    );
   }
 
   void _restartLevel(
@@ -269,12 +274,15 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   }
 
   GameModel _getGameModel({required final LiveGlobalGameBlocState liveState}) {
+    final tutorialProgress = diDto.tutorialBloc.getLiveProgress();
+
     return GameModel(
       id: liveState.id,
       currentLevel: liveState.currentLevelModel,
       currentLevelId: liveState.currentLevelId,
       templateLevels: liveState.templateLevels,
       dateTime: liveState.dateTime,
+      tutorialProgress: tutorialProgress,
       lastDateTime: liveState.lastDateTime,
       levels: liveState.levels,
       playersCharacters: liveState.playersCharacters,

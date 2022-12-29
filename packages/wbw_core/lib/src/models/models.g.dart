@@ -85,6 +85,10 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
                   PlayerCharacterModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      tutorialProgress: json['tutorialProgress'] == null
+          ? TutorialCollectionsProgressModel.empty
+          : TutorialCollectionsProgressModel.fromJson(
+              json['tutorialProgress'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
@@ -101,6 +105,7 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
           instance.playersCollection.map((e) => e.toJson()).toList(),
       'playersCharacters':
           instance.playersCharacters.map((e) => e.toJson()).toList(),
+      'tutorialProgress': instance.tutorialProgress.toJson(),
     };
 
 const _$GameVersionEnumMap = {

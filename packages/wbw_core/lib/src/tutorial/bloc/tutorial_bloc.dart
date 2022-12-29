@@ -39,7 +39,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     final StartTutorialEvent event,
     final Emitter<TutorialBlocState> emit,
   ) {
-    final progress = _getProgress();
+    final progress = getLiveProgress();
     final updatedState = LiveTutorialBlocState.fromProgressModel(
       data: _tutorialData,
       name: event.name,
@@ -71,7 +71,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     }
   }
 
-  TutorialCollectionsProgressModel _getProgress() {
+  TutorialCollectionsProgressModel getLiveProgress() {
     final effectiveState = state;
     if (effectiveState is LiveTutorialBlocState) {
       return effectiveState.progress;

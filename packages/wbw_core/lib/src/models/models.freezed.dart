@@ -662,6 +662,8 @@ mixin _$GameModel {
       throw _privateConstructorUsedError;
   List<PlayerCharacterModel> get playersCharacters =>
       throw _privateConstructorUsedError;
+  TutorialCollectionsProgressModel get tutorialProgress =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -683,11 +685,13 @@ abstract class $GameModelCopyWith<$Res> {
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
-      List<PlayerCharacterModel> playersCharacters});
+      List<PlayerCharacterModel> playersCharacters,
+      TutorialCollectionsProgressModel tutorialProgress});
 
   $LevelModelCopyWith<$Res>? get currentLevel;
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
+  $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
 }
 
 /// @nodoc
@@ -710,6 +714,7 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
     Object? lastDateTime = freezed,
     Object? playersCollection = freezed,
     Object? playersCharacters = freezed,
+    Object? tutorialProgress = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -752,6 +757,10 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
           ? _value.playersCharacters
           : playersCharacters // ignore: cast_nullable_to_non_nullable
               as List<PlayerCharacterModel>,
+      tutorialProgress: tutorialProgress == freezed
+          ? _value.tutorialProgress
+          : tutorialProgress // ignore: cast_nullable_to_non_nullable
+              as TutorialCollectionsProgressModel,
     ));
   }
 
@@ -779,6 +788,14 @@ class _$GameModelCopyWithImpl<$Res> implements $GameModelCopyWith<$Res> {
       return _then(_value.copyWith(lastDateTime: value));
     });
   }
+
+  @override
+  $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress {
+    return $TutorialCollectionsProgressModelCopyWith<$Res>(
+        _value.tutorialProgress, (value) {
+      return _then(_value.copyWith(tutorialProgress: value));
+    });
+  }
 }
 
 /// @nodoc
@@ -797,7 +814,8 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
-      List<PlayerCharacterModel> playersCharacters});
+      List<PlayerCharacterModel> playersCharacters,
+      TutorialCollectionsProgressModel tutorialProgress});
 
   @override
   $LevelModelCopyWith<$Res>? get currentLevel;
@@ -805,6 +823,8 @@ abstract class _$$_GameModelCopyWith<$Res> implements $GameModelCopyWith<$Res> {
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   @override
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
+  @override
+  $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
 }
 
 /// @nodoc
@@ -829,6 +849,7 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
     Object? lastDateTime = freezed,
     Object? playersCollection = freezed,
     Object? playersCharacters = freezed,
+    Object? tutorialProgress = freezed,
   }) {
     return _then(_$_GameModel(
       id: id == freezed
@@ -871,6 +892,10 @@ class __$$_GameModelCopyWithImpl<$Res> extends _$GameModelCopyWithImpl<$Res>
           ? _value._playersCharacters
           : playersCharacters // ignore: cast_nullable_to_non_nullable
               as List<PlayerCharacterModel>,
+      tutorialProgress: tutorialProgress == freezed
+          ? _value.tutorialProgress
+          : tutorialProgress // ignore: cast_nullable_to_non_nullable
+              as TutorialCollectionsProgressModel,
     ));
   }
 }
@@ -889,7 +914,8 @@ class _$_GameModel extends _GameModel {
       this.dateTime = const WorldDateTimeModel(),
       this.lastDateTime = const WorldDateTimeModel(),
       final List<PlayerProfileModel> playersCollection = const [],
-      final List<PlayerCharacterModel> playersCharacters = const []})
+      final List<PlayerCharacterModel> playersCharacters = const [],
+      this.tutorialProgress = TutorialCollectionsProgressModel.empty})
       : _templateLevels = templateLevels,
         _levels = levels,
         _playersCollection = playersCollection,
@@ -960,8 +986,12 @@ class _$_GameModel extends _GameModel {
   }
 
   @override
+  @JsonKey()
+  final TutorialCollectionsProgressModel tutorialProgress;
+
+  @override
   String toString() {
-    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, currentLevel: $currentLevel, version: $version, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters)';
+    return 'GameModel(id: $id, templateLevels: $templateLevels, currentLevelId: $currentLevelId, currentLevel: $currentLevel, version: $version, levels: $levels, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters, tutorialProgress: $tutorialProgress)';
   }
 
   @override
@@ -984,7 +1014,9 @@ class _$_GameModel extends _GameModel {
             const DeepCollectionEquality()
                 .equals(other._playersCollection, _playersCollection) &&
             const DeepCollectionEquality()
-                .equals(other._playersCharacters, _playersCharacters));
+                .equals(other._playersCharacters, _playersCharacters) &&
+            const DeepCollectionEquality()
+                .equals(other.tutorialProgress, tutorialProgress));
   }
 
   @JsonKey(ignore: true)
@@ -1000,7 +1032,8 @@ class _$_GameModel extends _GameModel {
       const DeepCollectionEquality().hash(dateTime),
       const DeepCollectionEquality().hash(lastDateTime),
       const DeepCollectionEquality().hash(_playersCollection),
-      const DeepCollectionEquality().hash(_playersCharacters));
+      const DeepCollectionEquality().hash(_playersCharacters),
+      const DeepCollectionEquality().hash(tutorialProgress));
 
   @JsonKey(ignore: true)
   @override
@@ -1026,7 +1059,8 @@ abstract class _GameModel extends GameModel {
       final WorldDateTimeModel dateTime,
       final WorldDateTimeModel lastDateTime,
       final List<PlayerProfileModel> playersCollection,
-      final List<PlayerCharacterModel> playersCharacters}) = _$_GameModel;
+      final List<PlayerCharacterModel> playersCharacters,
+      final TutorialCollectionsProgressModel tutorialProgress}) = _$_GameModel;
   const _GameModel._() : super._();
 
   factory _GameModel.fromJson(Map<String, dynamic> json) =
@@ -1060,6 +1094,8 @@ abstract class _GameModel extends GameModel {
   List<PlayerProfileModel> get playersCollection;
   @override
   List<PlayerCharacterModel> get playersCharacters;
+  @override
+  TutorialCollectionsProgressModel get tutorialProgress;
   @override
   @JsonKey(ignore: true)
   _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
