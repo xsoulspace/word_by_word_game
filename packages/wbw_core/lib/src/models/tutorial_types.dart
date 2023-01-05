@@ -5,6 +5,8 @@ part of 'models.dart';
 /// The goal of the game is to reach far end of the level with air balloon.
 
 enum TutorialUiItem {
+  pauseIconButton,
+
   /// If word is not found, then click Add To Dictionary button to add this
   /// word to dictionary.
   /// Be careful with the word, as it will be saved and cannot be removed.
@@ -41,11 +43,14 @@ enum TutorialUiItem {
   /// onEdit: enterWordRight
   enterWordRight,
 
-  actionPhaseFrame,
-
   /// Second phase of the turn is to choose an action and its effect.
   ///
   /// onClick: anywhere else
+  actionPhaseFrame,
+
+  /// First phase is to enter new word.
+  ///
+  /// onClick | onEdit: anywhere else
   enterWordPhaseFrame,
 
   /// Action is something that you do. For example: refueling

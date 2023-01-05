@@ -22,12 +22,20 @@ class UIDesktopActions extends StatelessWidget {
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
-          UIAddWordToDictionaryButton(
-            onPressed: state.onAddWordToDictionary,
+          TutorialFrame(
+            highlightPosition: Alignment.centerRight,
+            uiKey: TutorialUiItem.addToDictionaryButton,
+            child: UIAddWordToDictionaryButton(
+              onPressed: state.onAddWordToDictionary,
+            ),
           ),
           uiTheme.verticalBoxes.extraSmall,
-          UIToSelectActionPhaseButton(
-            onPressed: state.onToSelectActionPhase,
+          TutorialFrame(
+            highlightPosition: Alignment.centerRight,
+            uiKey: TutorialUiItem.confirmWordButton,
+            child: UIToSelectActionPhaseButton(
+              onPressed: state.onToSelectActionPhase,
+            ),
           ),
         ]);
         break;
@@ -35,8 +43,12 @@ class UIDesktopActions extends StatelessWidget {
         children.addAll([
           const UiDesktopEffectFrame(),
           uiTheme.verticalBoxes.medium,
-          UIToEndTurnButton(
-            onPressed: state.onToEndTurn,
+          TutorialFrame(
+            highlightPosition: Alignment.centerRight,
+            uiKey: TutorialUiItem.applyAndEndTurnButton,
+            child: UIToEndTurnButton(
+              onPressed: state.onToEndTurn,
+            ),
           ),
         ]);
         break;
@@ -63,22 +75,34 @@ class UIMobileActions extends StatelessWidget {
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
-          UIAddWordToDictionaryButton(
-            onPressed: state.onAddWordToDictionary,
+          TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.addToDictionaryButton,
+            child: UIAddWordToDictionaryButton(
+              onPressed: state.onAddWordToDictionary,
+            ),
           ),
           if (DeviceRuntimeType.isMobile)
             uiTheme.verticalBoxes.small
           else
             uiTheme.verticalBoxes.medium,
-          UIToSelectActionPhaseButton(
-            onPressed: state.onToSelectActionPhase,
+          TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.confirmWordButton,
+            child: UIToSelectActionPhaseButton(
+              onPressed: state.onToSelectActionPhase,
+            ),
           ),
         ]);
         break;
       case LevelPlayerPhaseType.selectAction:
         children.addAll([
-          UIToEndTurnButton(
-            onPressed: state.onToEndTurn,
+          TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.applyAndEndTurnButton,
+            child: UIToEndTurnButton(
+              onPressed: state.onToEndTurn,
+            ),
           ),
         ]);
         break;
@@ -185,12 +209,16 @@ class UiPauseIconButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Hero(
-      tag: const ValueKey('UiPauseIconButton'),
-      child: UiIconButton(
-        tooltip: S.of(context).mainMenuButtonTooltip,
-        onPressed: onPressed,
-        icon: UiIcons.pause,
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.pauseIconButton,
+      child: Hero(
+        tag: const ValueKey('UiPauseIconButton'),
+        child: UiIconButton(
+          tooltip: S.of(context).mainMenuButtonTooltip,
+          onPressed: onPressed,
+          icon: UiIcons.pause,
+        ),
       ),
     );
   }

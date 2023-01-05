@@ -145,30 +145,34 @@ class UiActionFrame extends StatelessWidget {
         if (levelState is! LiveLevelBlocState) {
           return const SizedBox();
         }
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text(S.of(context).selectAction),
-            uiTheme.verticalBoxes.medium,
-            Wrap(
-              spacing: uiTheme.spacing.medium,
-              runSpacing: uiTheme.spacing.medium,
-              children: [
-                if (kIsCookingEnabled)
+        return TutorialFrame(
+          highlightPosition: Alignment.centerRight,
+          uiKey: TutorialUiItem.selectActionFrame,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(S.of(context).selectAction),
+              uiTheme.verticalBoxes.medium,
+              Wrap(
+                spacing: uiTheme.spacing.medium,
+                runSpacing: uiTheme.spacing.medium,
+                children: [
+                  if (kIsCookingEnabled)
+                    UILevelActionChip(
+                      baseText: S.of(context).cookFood,
+                      levelState: levelState,
+                      type: LevelPlayerActionType.cookFood,
+                    ),
                   UILevelActionChip(
-                    baseText: S.of(context).cookFood,
+                    baseText: S.of(context).refuelStorage,
                     levelState: levelState,
-                    type: LevelPlayerActionType.cookFood,
+                    type: LevelPlayerActionType.refuelStorage,
                   ),
-                UILevelActionChip(
-                  baseText: S.of(context).refuelStorage,
-                  levelState: levelState,
-                  type: LevelPlayerActionType.refuelStorage,
-                ),
-              ],
-            ),
-          ],
+                ],
+              ),
+            ],
+          ),
         );
       },
     );
@@ -239,25 +243,29 @@ class UiMobileEffectFrame extends StatelessWidget {
         if (levelState is! LiveLevelBlocState) {
           return const SizedBox();
         }
-        return ConstrainedBox(
-          constraints: const BoxConstraints(minWidth: 80),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                S.of(context).effect,
-                style: textTheme.titleSmall,
-              ),
-              uiTheme.verticalBoxes.small,
-              ...LevelActionMultiplierType.values.map(
-                (final type) {
-                  return UILevelActionMultiplierChip(
-                    levelState: levelState,
-                    type: type,
-                  );
-                },
-              ),
-            ],
+        return TutorialFrame(
+          highlightPosition: Alignment.centerLeft,
+          uiKey: TutorialUiItem.selectEffectFrame,
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(minWidth: 80),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  S.of(context).effect,
+                  style: textTheme.titleSmall,
+                ),
+                uiTheme.verticalBoxes.small,
+                ...LevelActionMultiplierType.values.map(
+                  (final type) {
+                    return UILevelActionMultiplierChip(
+                      levelState: levelState,
+                      type: type,
+                    );
+                  },
+                ),
+              ],
+            ),
           ),
         );
       },

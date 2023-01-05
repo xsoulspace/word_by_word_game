@@ -80,7 +80,11 @@ class UIMobilePlayerName extends StatelessWidget {
       }
       return liveState.currentPlayer;
     });
-    return Text(player.name);
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.yourNameLabel,
+      child: Text(player.name),
+    );
   }
 }
 
@@ -97,9 +101,13 @@ class UIMobilePlayerScore extends StatelessWidget {
       }
       return liveState.currentPlayer;
     });
-    return Tooltip(
-      message: S.of(context).yourCurrentHighcoreTooltip,
-      child: Text('${player.highscore.score.value.toInt()}'),
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.yourScoreLabel,
+      child: Tooltip(
+        message: S.of(context).yourCurrentHighcoreTooltip,
+        child: Text('${player.highscore.score.value.toInt()}'),
+      ),
     );
   }
 }
