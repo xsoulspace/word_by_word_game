@@ -21,6 +21,11 @@ class WorldTimeTickEvent extends GameEvent {
 }
 
 @immutable
+class StartPlayingLevelEvent extends GameEvent {
+  const StartPlayingLevelEvent();
+}
+
+@immutable
 class InitGlobalGameLevelEvent extends GameEvent {
   const InitGlobalGameLevelEvent({
     required this.levelModel,

@@ -53,7 +53,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Hello Traveller or Travellers! To Help you started, the tutorial you will get freezed balloon. So, first about how is playing.',
+                'Hello Traveller or Travellers! Would you like to start tutorial?',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -65,6 +65,38 @@ const _tutorialData = TutorialCollectionsDataModel(
         ],
         gamePostEffects: [],
         uiItem: TutorialUiItem.enterWordPhaseFrame,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                "Your goal is to reach fly across the landscape. You are alone or with your friends is responsible for the aircarft fuel. During the tutorial the balloon will not move to get comfortable with controls.",
+            Languages.ru: '',
+            Languages.it: '',
+          },
+        ),
+        gamePreEffects: [
+          TutorialGameEffectModel(
+            name: TutorialGameEffectName.pauseGame,
+          )
+        ],
+        gamePostEffects: [],
+        uiItem: TutorialUiItem.enterWordPhaseFrame,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                'If you are playing with the friends - you are in one team, which controls one aircraft, so every player will play after another.',
+            Languages.ru: '',
+            Languages.it: '',
+          },
+        ),
+        gamePreEffects: [],
+        gamePostEffects: [],
+        uiItem: TutorialUiItem.yourNameLabel,
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.onClickAnywhere],
@@ -97,7 +129,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'First phase of a player turn is about entering new word.',
+                'Every player turn consists from two pahses. First phase is to enter new word.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -142,7 +174,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'To start a game enter your first word in this text field.',
+                'To continue, enter your first word in this text field.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -161,7 +193,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'To end the word entering phase click Confirm Word button.\nYou will earn points for the word which will be added to your score and used in the next phase',
+                'You will earn points for the word which will be added to your score and used in the next phase. To continue click Confirm Word button.\n',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -180,7 +212,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Action is something that you do. Choose refueling to refuel Balloon.',
+                'The second phase - Actions & Effects. Action is something that you do. Choose refueling to refuel Balloon.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -199,7 +231,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Effect is how much of the action will be applied. Choose refueling effect 200 - air balloon will receive 200 points of fuel.',
+                'Effect is how much of the action will be applied. Choose any refueling effect - air balloon will receive 200 points of fuel.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -218,7 +250,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'To start new turn for another player (if he exists), or new turn for your player click Apply & End Turn Button. \n\nBe aware: this action will end tutorial and unfreeze the Balloon. \nGood Luck in your adventure!',
+                'To end turn for player click Apply & End Turn Button. \n\nBe aware: this action will end tutorial and unfreeze the Balloon. \nGood Luck in your adventures!',
             Languages.ru: '',
             Languages.it: '',
           },

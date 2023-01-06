@@ -45,6 +45,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     on<CharacterCollisionEvent>(_onCharacterCollision);
     on<RestartLevelEvent>(_restartLevel);
     on<EndLevelEvent>(_onLevelEnd);
+    on<StartPlayingLevelEvent>(_onStartPlayingLevel);
     _tutorialEventsListener = GameTutorialEventListener(read: diDto.read);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
   }
@@ -105,10 +106,20 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     }
   }
 
+  /// This completer exists because we need to wait until the game will be
+  /// loaded completely.
+  /// The inital game level load function is [_onInitGlobalGameLevel]
+  ///
+  /// The [_onLevelPartLoaded] function is completes this completer.
+  ///
+  /// The [_onStartPlayingLevel] is waiting for the completer future
+  Completer? _globalLevelLoadCompleter;
+
   void _onInitGlobalGameLevel(
     final InitGlobalGameLevelEvent event,
     final Emitter<GlobalGameBlocState> emit,
   ) {
+    _globalLevelLoadCompleter = Completer();
     final levelModel = event.levelModel;
     LiveGlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
@@ -130,11 +141,6 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
           resources: levelModel.resources,
         ),
       );
-    const tutorialEvent = StartTutorialEvent(
-      tutorialName: TutorialCollectionsName.levelIntroduction,
-      shouldStartIfPlayed: false,
-    );
-    diDto.tutorialBloc.add(tutorialEvent);
   }
 
   LiveGlobalGameBlocState _getResetedLevelLoad() {
@@ -154,12 +160,25 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     );
 
     if (updateState.isLevelCompletelyLoaded) {
-      diDto.mechanics.worldTime.resume();
+      _globalLevelLoadCompleter!.complete();
       updateState = updateState.copyWith(
         currentLevelId: diDto.levelBloc.getLiveState().id,
       );
     }
     emit(updateState);
+  }
+
+  Future<void> _onStartPlayingLevel(
+    final StartPlayingLevelEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) async {
+    await _globalLevelLoadCompleter!.future;
+    diDto.mechanics.worldTime.resume();
+    const tutorialEvent = StartTutorialEvent(
+      tutorialName: TutorialCollectionsName.levelIntroduction,
+      shouldStartIfPlayed: false,
+    );
+    diDto.tutorialBloc.add(tutorialEvent);
   }
 
   void _onWorldTick(

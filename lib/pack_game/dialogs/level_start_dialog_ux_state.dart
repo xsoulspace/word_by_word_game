@@ -98,7 +98,9 @@ class LevelStartDialogUxState extends LifeState {
       id: templateLevel.id,
     );
 
-    diDto.globalGameBloc.add(InitGlobalGameLevelEvent(levelModel: level));
+    diDto.globalGameBloc
+      ..add(InitGlobalGameLevelEvent(levelModel: level))
+      ..add(const StartPlayingLevelEvent());
     diDto.appRouterController.toPlayableLevel(id: level.id);
   }
 

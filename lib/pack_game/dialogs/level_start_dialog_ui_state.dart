@@ -65,10 +65,6 @@ class LevelStartDialogUiState extends LifeState {
     currentViewNotifier.value = LevelStartDialogView.choosePlayers;
   }
 
-  void onToLevel() {
-    diDto.pauseScreenState.onToLevel(level);
-  }
-
   @override
   void dispose() {
     currentViewNotifier.dispose();
