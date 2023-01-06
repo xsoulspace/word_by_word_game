@@ -58,7 +58,11 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gamePreEffects: [],
+        gamePreEffects: [
+          TutorialGameEffectModel(
+            name: TutorialGameEffectName.pauseGame,
+          )
+        ],
         gamePostEffects: [],
         uiItem: TutorialUiItem.enterWordPhaseFrame,
       ),

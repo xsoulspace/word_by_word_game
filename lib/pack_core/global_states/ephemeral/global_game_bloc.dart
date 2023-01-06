@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_game/tutorial/tutorial_listener.dart';
 
 part 'global_game_bloc.freezed.dart';
 part 'global_game_bloc.g.dart';
@@ -13,13 +14,14 @@ part 'global_game_events.dart';
 part 'global_game_states.dart';
 
 class GlobalGameBlocDiDto {
-  GlobalGameBlocDiDto.use(final Locator read)
+  GlobalGameBlocDiDto.use(this.read)
       : mechanics = read(),
         levelBloc = read(),
         levelPlayersBloc = read(),
         resourcesBloc = read(),
         tutorialBloc = read(),
         services = read();
+  final Locator read;
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
@@ -43,9 +45,10 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     on<CharacterCollisionEvent>(_onCharacterCollision);
     on<RestartLevelEvent>(_restartLevel);
     on<EndLevelEvent>(_onLevelEnd);
+    _tutorialEventsListener = GameTutorialEventListener(read: diDto.read);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
   }
-
+  GameTutorialEventListener? _tutorialEventsListener;
   final GlobalGameBlocDiDto diDto;
   void _addWorldTimeTick(final WorldTimeMechanics time) {
     add(WorldTimeTickEvent(time));
@@ -54,6 +57,10 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   @override
   Future<void> close() {
     diDto.mechanics.worldTime.removeListener(_addWorldTimeTick);
+    if (_tutorialEventsListener != null) {
+      diDto.tutorialBloc.notifier.removeListener(_tutorialEventsListener!);
+    }
+
     return super.close();
   }
 
@@ -79,6 +86,9 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     diDto.tutorialBloc.add(
       LoadTutorialsProgressEvent(progress: gameModel.tutorialProgress),
     );
+    if (_tutorialEventsListener != null) {
+      diDto.tutorialBloc.notifier.addListener(_tutorialEventsListener!);
+    }
   }
 
   void _restartLevel(

@@ -30,11 +30,17 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     on<StartTutorialEvent>(_onStartTutorial);
     on<NextTutorialEvent>(_onNextTutorial);
     on<TutorialUiActionEvent>(_onTutorialUiAction);
-    _notifier = TutorialStateNotifier.listen(bloc: this);
+    notifier = TutorialStateNotifier.listen(bloc: this);
+  }
+  @override
+  Future<void> close() {
+    notifier.dispose();
+    return super.close();
   }
 
   final TutorialBlocDiDto diDto;
-  late final TutorialStateNotifier _notifier;
+  late final TutorialStateNotifier notifier;
+
   void _onLoadTutorialsProgress(
     final LoadTutorialsProgressEvent event,
     final Emitter<TutorialBlocState> emit,
@@ -75,7 +81,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
       emit(PendingTutorialBlocState(progress: liveState.progress));
     } else {
       final tutorial = liveState.tutorial;
-      await _notifier.notifyGamePostEffects(tutorial);
+      await notifier.notifyGamePostEffects(tutorial);
       final nextIndex = tutorial.currentIndex + 1;
       final updatedTutorial = getTutorial().copyWith(
         currentIndex: nextIndex,
