@@ -71,7 +71,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                "Your goal is to reach fly across the landscape. You are alone or with your friends is responsible for the aircarft fuel. During the tutorial the balloon will not move to get comfortable with controls.",
+                'Your goal is to reach fly across the landscape. You are alone or with your friends is responsible for the aircarft fuel. During the tutorial the balloon will not move to get comfortable with controls.',
             Languages.ru: '',
             Languages.it: '',
           },

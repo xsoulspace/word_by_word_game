@@ -127,8 +127,7 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
     final int? currentIndex;
     final List<TutorialEventModel>? events;
 
-    currentIndex = progress.indexes[name];
-    if (currentIndex == null) return null;
+    currentIndex = progress.indexes[name] ?? 0;
 
     events = data.events[name];
     if (events == null) return null;

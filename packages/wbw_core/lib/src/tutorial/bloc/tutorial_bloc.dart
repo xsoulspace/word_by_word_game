@@ -49,10 +49,10 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     emit(newState);
   }
 
-  void _onStartTutorial(
+  Future<void> _onStartTutorial(
     final StartTutorialEvent event,
     final Emitter<TutorialBlocState> emit,
-  ) {
+  ) async {
     final progress = getLiveProgress();
 
     // check is played
