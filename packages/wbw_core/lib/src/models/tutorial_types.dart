@@ -96,7 +96,7 @@ enum TutorialCompleteAction {
   onEdit,
 }
 
-enum TutorialGameEffect {
+enum TutorialGameEffectName {
   pauseGame,
   resumeGame,
 }

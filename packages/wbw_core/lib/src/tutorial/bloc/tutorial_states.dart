@@ -27,6 +27,7 @@ class PendingTutorialBlocState extends TutorialBlocState
   )
   @Implements<TutorialBlocState>()
   const factory PendingTutorialBlocState({
+    /// progress for all tutorials
     required final TutorialCollectionsProgressModel progress,
   }) = _PendingTutorialBlocState;
   const PendingTutorialBlocState._();
@@ -50,6 +51,8 @@ class LiveTutorialBlocState extends TutorialBlocState
   @Implements<TutorialBlocState>()
   const factory LiveTutorialBlocState({
     required final TutorialEventsCollectionModel tutorial,
+
+    /// progress for all tutorials
     required final TutorialCollectionsProgressModel progress,
   }) = _LiveTutorialBlocState;
   const LiveTutorialBlocState._();

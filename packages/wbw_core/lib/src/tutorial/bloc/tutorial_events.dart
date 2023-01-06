@@ -33,8 +33,10 @@ class NextTutorialEvent extends TutorialEvent {
 class TutorialUiActionEvent extends TutorialEvent {
   const TutorialUiActionEvent({
     required this.action,
-    required this.key,
+    this.key,
+    this.value = '',
   });
-  final TutorialUiItem key;
   final TutorialCompleteAction action;
+  final TutorialUiItem? key;
+  final String value;
 }

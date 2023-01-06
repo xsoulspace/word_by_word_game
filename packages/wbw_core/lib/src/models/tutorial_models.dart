@@ -18,8 +18,12 @@ class TutorialEventModel with _$TutorialEventModel {
     /// what will switch this event to the next
     required final List<TutorialUiActionEventModel> completeActions,
 
-    /// what effect this event do with the game
-    @Default([]) final List<TutorialGameEffect> gameEffects,
+    /// Effects for the game which applied when this event fired
+    @Default([]) final List<TutorialGameEffectModel> gamePreEffects,
+
+    /// Effects for the game which applied after this event
+    /// [completeActions] resolved.
+    @Default([]) final List<TutorialGameEffectModel> gamePostEffects,
     final TutorialUiItem? uiItem,
   }) = _TutorialEventModel;
 
@@ -27,6 +31,28 @@ class TutorialEventModel with _$TutorialEventModel {
 
   factory TutorialEventModel.fromJson(final Map<String, dynamic> json) =>
       _$TutorialEventModelFromJson(json);
+}
+
+@immutable
+@Freezed(
+  fromJson: true,
+  toJson: true,
+  equal: true,
+  addImplicitFinal: true,
+  copyWith: true,
+)
+class TutorialGameEffectModel with _$TutorialGameEffectModel {
+  @JsonSerializable(explicitToJson: true)
+  const factory TutorialGameEffectModel({
+    required final TutorialGameEffectName name,
+  }) = _TutorialGameEffectModel;
+
+  const TutorialGameEffectModel._();
+
+  factory TutorialGameEffectModel.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$TutorialGameEffectModelFromJson(json);
 }
 
 @immutable
@@ -46,6 +72,7 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
     /// on screen
     required final TutorialCompleteAction action,
     final TutorialUiItem? uiItem,
+    @Default(false) final bool isCompleted,
   }) = _TutorialUiActionEventModel;
 
   const TutorialUiActionEventModel._();
@@ -114,6 +141,13 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
   }
 
   bool get isCompleted => currentIndex == (events.length - 1);
+
+  TutorialEventModel? get currentEvent {
+    final index = currentIndex;
+    if (events.isEmpty || index > events.length - 1) return null;
+
+    return events[index];
+  }
 }
 
 /// Actual tutorial progress for [TutorialCollectionsDataModel]

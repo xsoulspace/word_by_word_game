@@ -21,6 +21,7 @@ PendingTutorialBlocState _$PendingTutorialBlocStateFromJson(
 
 /// @nodoc
 mixin _$PendingTutorialBlocState {
+  /// progress for all tutorials
   TutorialCollectionsProgressModel get progress =>
       throw _privateConstructorUsedError;
 
@@ -118,6 +119,7 @@ class _$_PendingTutorialBlocState extends _PendingTutorialBlocState {
   factory _$_PendingTutorialBlocState.fromJson(Map<String, dynamic> json) =>
       _$$_PendingTutorialBlocStateFromJson(json);
 
+  /// progress for all tutorials
   @override
   final TutorialCollectionsProgressModel progress;
 
@@ -164,6 +166,8 @@ abstract class _PendingTutorialBlocState extends PendingTutorialBlocState
       _$_PendingTutorialBlocState.fromJson;
 
   @override
+
+  /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
   @override
   @JsonKey(ignore: true)
@@ -180,6 +184,8 @@ LiveTutorialBlocState _$LiveTutorialBlocStateFromJson(
 mixin _$LiveTutorialBlocState {
   TutorialEventsCollectionModel get tutorial =>
       throw _privateConstructorUsedError;
+
+  /// progress for all tutorials
   TutorialCollectionsProgressModel get progress =>
       throw _privateConstructorUsedError;
 
@@ -305,6 +311,8 @@ class _$_LiveTutorialBlocState extends _LiveTutorialBlocState {
 
   @override
   final TutorialEventsCollectionModel tutorial;
+
+  /// progress for all tutorials
   @override
   final TutorialCollectionsProgressModel progress;
 
@@ -357,6 +365,8 @@ abstract class _LiveTutorialBlocState extends LiveTutorialBlocState
   @override
   TutorialEventsCollectionModel get tutorial;
   @override
+
+  /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
   @override
   @JsonKey(ignore: true)

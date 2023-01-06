@@ -1,11 +1,16 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 
-import '../../../wbw_core.dart';
+import '../../localization/localization.dart';
 import '../../mechanics/mechanics.dart';
+import '../../models/models.dart';
 
+part './tutorial_listener.dart';
 part 'tutorial_bloc.freezed.dart';
 part 'tutorial_bloc.g.dart';
 part 'tutorial_data.dart';
@@ -25,10 +30,11 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     on<StartTutorialEvent>(_onStartTutorial);
     on<NextTutorialEvent>(_onNextTutorial);
     on<TutorialUiActionEvent>(_onTutorialUiAction);
+    _notifier = TutorialStateNotifier.listen(bloc: this);
   }
 
   final TutorialBlocDiDto diDto;
-
+  late final TutorialStateNotifier _notifier;
   void _onLoadTutorialsProgress(
     final LoadTutorialsProgressEvent event,
     final Emitter<TutorialBlocState> emit,
@@ -60,15 +66,17 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     }
   }
 
-  void _onNextTutorial(
+  Future<void> _onNextTutorial(
     final NextTutorialEvent event,
     final Emitter<TutorialBlocState> emit,
-  ) {
+  ) async {
     final liveState = getLiveState();
     if (liveState.tutorial.isCompleted) {
       emit(PendingTutorialBlocState(progress: liveState.progress));
     } else {
-      final nextIndex = liveState.tutorial.currentIndex + 1;
+      final tutorial = liveState.tutorial;
+      await _notifier.notifyGamePostEffects(tutorial);
+      final nextIndex = tutorial.currentIndex + 1;
       final updatedTutorial = getTutorial().copyWith(
         currentIndex: nextIndex,
       );
@@ -85,9 +93,14 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     final TutorialUiActionEvent event,
     final Emitter<TutorialBlocState> emit,
   ) {
-    // check current tutorial event conditions
-    // TODO(arenukvern): description
-    throw UnimplementedError();
+    final effectiveState = state;
+    if (effectiveState is! LiveTutorialBlocState) return;
+    final currentEvent = effectiveState.tutorial.currentEvent;
+    if (currentEvent == null) return;
+    diDto.mechanics.tutorial.verifyCompletion(
+      tutorialEvent: currentEvent,
+      uiEvent: event,
+    );
   }
 
   TutorialCollectionsProgressModel getLiveProgress() {

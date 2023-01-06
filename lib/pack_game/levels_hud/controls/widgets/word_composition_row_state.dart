@@ -3,12 +3,14 @@ part of 'word_composition_row.dart';
 class _WordCompositionStateDiDto {
   _WordCompositionStateDiDto.use(final Locator read)
       : levelBloc = read(),
+        tutorialBloc = read(),
         mechanics = read(),
         appRouterController = read(),
         globalGameBloc = read(),
         dialogController = read();
 
   final LevelBloc levelBloc;
+  final TutorialBloc tutorialBloc;
   final MechanicsCollection mechanics;
   final AppRouterController appRouterController;
   final GlobalGameBloc globalGameBloc;
@@ -126,6 +128,11 @@ class WordCompositionState extends LifeState {
   void _changeFullWord(final CurrentWordModel word) {
     final event = ChangeCurrentWordEvent(word: word);
     diDto.levelBloc.add(event);
+    final tutorialEvent = TutorialUiActionEvent(
+      action: TutorialCompleteAction.onEdit,
+      value: event.word.fullWord,
+    );
+    diDto.tutorialBloc.add(tutorialEvent);
   }
 
   void onDecreaseMiddlePart(final int index) {

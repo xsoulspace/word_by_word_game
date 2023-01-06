@@ -15,7 +15,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.removeLetterButton,
       ),
       TutorialEventModel(
@@ -28,7 +29,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.enterWordLeft,
       ),
       TutorialEventModel(
@@ -40,7 +42,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.gameFuelIndicator,
       ),
     ],
@@ -55,7 +58,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.enterWordPhaseFrame,
       ),
       TutorialEventModel(
@@ -67,7 +71,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.yourNameLabel,
       ),
       TutorialEventModel(
@@ -79,7 +84,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.yourScoreLabel,
       ),
       TutorialEventModel(
@@ -92,7 +98,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.enterWordPhaseFrame,
       ),
       TutorialEventModel(
@@ -105,7 +112,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.addToDictionaryButton,
       ),
       TutorialEventModel(
@@ -117,14 +125,14 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.suggestWordButton,
       ),
       TutorialEventModel(
         completeActions: [
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onEdit,
-            uiItem: TutorialUiItem.enterWordRight,
           ),
         ],
         localizedMap: LocalizedMap(
@@ -135,7 +143,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.enterWordRight,
       ),
       TutorialEventModel(
@@ -153,7 +162,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.confirmWordButton,
       ),
       TutorialEventModel(
@@ -171,7 +181,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.selectActionFrame,
       ),
       TutorialEventModel(
@@ -189,7 +200,8 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [],
+        gamePreEffects: [],
+        gamePostEffects: [],
         uiItem: TutorialUiItem.selectEffectFrame,
       ),
       TutorialEventModel(
@@ -207,8 +219,9 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gameEffects: [
-          TutorialGameEffect.resumeGame,
+        gamePreEffects: [],
+        gamePostEffects: [
+          TutorialGameEffectModel(name: TutorialGameEffectName.resumeGame)
         ],
         uiItem: TutorialUiItem.applyAndEndTurnButton,
       ),
