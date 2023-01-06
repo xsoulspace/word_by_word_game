@@ -240,7 +240,7 @@ packages:
     source: hosted
     version: "1.1.0"
   english_words:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: english_words
       url: "https://pub.dartlang.org"
@@ -876,7 +876,7 @@ packages:
     source: hosted
     version: "4.1.0"
   russian_words:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: russian_words
       url: "https://pub.dartlang.org"

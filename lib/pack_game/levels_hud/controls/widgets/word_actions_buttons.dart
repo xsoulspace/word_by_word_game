@@ -5,7 +5,6 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/level_actions_row.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_composition_row.dart';
-import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 class UIDesktopActions extends StatelessWidget {
   const UIDesktopActions({super.key});

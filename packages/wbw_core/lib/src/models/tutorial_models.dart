@@ -40,6 +40,10 @@ class TutorialEventModel with _$TutorialEventModel {
 class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialUiActionEventModel({
+    /// If [uiItem] is set null and the action
+    /// is [TutorialCompleteAction.onClick] then
+    /// it means that the action is click on anything
+    /// on screen
     required final TutorialCompleteAction action,
     final TutorialUiItem? uiItem,
   }) = _TutorialUiActionEventModel;
@@ -47,8 +51,12 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
   const TutorialUiActionEventModel._();
 
   factory TutorialUiActionEventModel.fromJson(
-          final Map<String, dynamic> json) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$TutorialUiActionEventModelFromJson(json);
+  static const onClickAnywhere = TutorialUiActionEventModel(
+    action: TutorialCompleteAction.onClick,
+  );
 }
 
 @immutable
@@ -164,4 +172,5 @@ class TutorialCollectionsDataModel with _$TutorialCollectionsDataModel {
 
 enum TutorialCollectionsName {
   levelIntroduction,
+  archive,
 }

@@ -6,7 +6,6 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 part 'global_game_bloc.freezed.dart';
 part 'global_game_bloc.g.dart';
@@ -121,6 +120,11 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
           resources: levelModel.resources,
         ),
       );
+    const tutorialEvent = StartTutorialEvent(
+      tutorialName: TutorialCollectionsName.levelIntroduction,
+      shouldStartIfPlayed: false,
+    );
+    diDto.tutorialBloc.add(tutorialEvent);
   }
 
   LiveGlobalGameBlocState _getResetedLevelLoad() {

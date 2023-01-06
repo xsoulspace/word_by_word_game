@@ -14,7 +14,6 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/levels/levels.dart';
-import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 import 'package:word_by_word_game/pack_game/pause/widgets/start_game_hex.dart';
 import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 

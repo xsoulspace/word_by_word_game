@@ -4,6 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 
 import '../../../wbw_core.dart';
+import '../../mechanics/mechanics.dart';
 
 part 'tutorial_bloc.freezed.dart';
 part 'tutorial_bloc.g.dart';
@@ -12,8 +13,8 @@ part 'tutorial_events.dart';
 part 'tutorial_states.dart';
 
 class TutorialBlocDiDto {
-  TutorialBlocDiDto.use(final Locator read) : _read = read;
-  final Locator _read;
+  TutorialBlocDiDto.use(final Locator read) : mechanics = read();
+  final MechanicsCollection mechanics;
 }
 
 class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
@@ -23,6 +24,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     on<LoadTutorialsProgressEvent>(_onLoadTutorialsProgress);
     on<StartTutorialEvent>(_onStartTutorial);
     on<NextTutorialEvent>(_onNextTutorial);
+    on<TutorialUiActionEvent>(_onTutorialUiAction);
   }
 
   final TutorialBlocDiDto diDto;
@@ -40,9 +42,17 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     final Emitter<TutorialBlocState> emit,
   ) {
     final progress = getLiveProgress();
+
+    // check is played
+    final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
+      progress: progress,
+      tutorial: event.tutorialName,
+    );
+    if (isTutorialPlayed && !event.shouldStartIfPlayed) return;
+
     final updatedState = LiveTutorialBlocState.fromProgressModel(
       data: _tutorialData,
-      name: event.name,
+      name: event.tutorialName,
       progress: progress,
     );
     if (updatedState != null) {
@@ -69,6 +79,15 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
       final updatedLiveState = newLiveState.applyTutorialProgress();
       emit(updatedLiveState);
     }
+  }
+
+  void _onTutorialUiAction(
+    final TutorialUiActionEvent event,
+    final Emitter<TutorialBlocState> emit,
+  ) {
+    // check current tutorial event conditions
+    // TODO(arenukvern): description
+    throw UnimplementedError();
   }
 
   TutorialCollectionsProgressModel getLiveProgress() {

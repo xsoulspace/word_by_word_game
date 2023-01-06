@@ -22,6 +22,13 @@ class TutorialFrame extends StatelessWidget {
       return tutorialBloc.getTutorialEvent().uiItem == uiKey;
     });
     return HighlightFrame(
+      onPressed: () {
+        final event = TutorialUiActionEvent(
+          action: TutorialCompleteAction.onClick,
+          key: uiKey,
+        );
+        context.read<TutorialBloc>().add(event);
+      },
       highlighted: highlighted,
       highlightPosition: highlightPosition,
       child: child,

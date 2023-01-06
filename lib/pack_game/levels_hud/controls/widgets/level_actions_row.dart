@@ -9,7 +9,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/player_swither_bar.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_actions_buttons.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_composition_row.dart';
-import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 class UIMobileLevelActionsRow extends HookWidget {
   const UIMobileLevelActionsRow({super.key});
@@ -164,10 +163,14 @@ class UiActionFrame extends StatelessWidget {
                       levelState: levelState,
                       type: LevelPlayerActionType.cookFood,
                     ),
-                  UILevelActionChip(
-                    baseText: S.of(context).refuelStorage,
-                    levelState: levelState,
-                    type: LevelPlayerActionType.refuelStorage,
+                  TutorialFrame(
+                    highlightPosition: Alignment.topCenter,
+                    uiKey: TutorialUiItem.refuelActionButton,
+                    child: UILevelActionChip(
+                      baseText: S.of(context).refuelStorage,
+                      levelState: levelState,
+                      type: LevelPlayerActionType.refuelStorage,
+                    ),
                   ),
                 ],
               ),

@@ -7,7 +7,6 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 class _DialogStateDiDto {
   _DialogStateDiDto.use(final Locator read)

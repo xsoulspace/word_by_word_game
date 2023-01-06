@@ -17,12 +17,24 @@ class LoadTutorialsProgressEvent extends TutorialEvent {
 @immutable
 class StartTutorialEvent extends TutorialEvent {
   const StartTutorialEvent({
-    required this.name,
+    required this.tutorialName,
+    required this.shouldStartIfPlayed,
   });
-  final TutorialCollectionsName name;
+  final TutorialCollectionsName tutorialName;
+  final bool shouldStartIfPlayed;
 }
 
 @immutable
 class NextTutorialEvent extends TutorialEvent {
   const NextTutorialEvent();
+}
+
+@immutable
+class TutorialUiActionEvent extends TutorialEvent {
+  const TutorialUiActionEvent({
+    required this.action,
+    required this.key,
+  });
+  final TutorialUiItem key;
+  final TutorialCompleteAction action;
 }

@@ -7,12 +7,13 @@ class HighlightFrame extends StatelessWidget {
     required this.highlighted,
     required this.highlightPosition,
     required this.child,
+    this.onPressed,
     super.key,
   });
   final Alignment highlightPosition;
   final bool highlighted;
   final Widget child;
-
+  final VoidCallback? onPressed;
   Widget get icon {
     if (highlightPosition == Alignment.topLeft) {
       return Transform.translate(
@@ -126,7 +127,10 @@ class HighlightFrame extends StatelessWidget {
         infinite: true,
         child: icon,
       ),
-      child: child,
+      child: GestureDetector(
+        onTap: onPressed,
+        child: child,
+      ),
     );
   }
 }

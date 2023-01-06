@@ -7,8 +7,8 @@ part of 'models.dart';
 enum TutorialUiItem {
   pauseIconButton,
 
-  /// If word is not found, then click Add To Dictionary button to add this
-  /// word to dictionary.
+  /// If written word is not found, then click Add To Dictionary button
+  /// to add this word to dictionary.
   /// Be careful with the word, as it will be saved and cannot be removed.
   ///
   /// onClick: anywhere else
@@ -86,6 +86,9 @@ enum TutorialUiItem {
   ///
   /// onClick: anywhere else
   gameFuelIndicator,
+
+  refuelActionButton,
+  effectButton,
 }
 
 enum TutorialCompleteAction {
