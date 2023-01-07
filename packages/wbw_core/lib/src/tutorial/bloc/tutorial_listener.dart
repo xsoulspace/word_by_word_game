@@ -16,16 +16,28 @@ class TutorialStateNotifier implements Disposable {
 
   Future<void> _onStateChange(final TutorialBlocState state) async {
     if (state is! LiveTutorialBlocState) return;
+    if (state.tutorial.isCompleted) return;
     final event = state.tutorial.currentEvent;
     if (event == null) return;
     await Future.wait(
       _listeners.map((final listener) async {
         await listener.onEvent(event);
-        if (event.gamePreEffects.isNotEmpty) {
-          await listener.onEventPreEffects(event);
-        }
       }),
     );
+  }
+
+  Future<void> notifyGamePreEffects(
+    final TutorialEventsCollectionModel tutorial,
+  ) async {
+    final event = tutorial.currentEvent;
+
+    if (event != null && event.gamePreEffects.isNotEmpty == true) {
+      await Future.wait(
+        _listeners.map((final listener) async {
+          return listener.onEventPreEffects(event);
+        }),
+      );
+    }
   }
 
   Future<void> notifyGamePostEffects(

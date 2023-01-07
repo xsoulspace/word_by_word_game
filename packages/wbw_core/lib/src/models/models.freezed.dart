@@ -4449,8 +4449,6 @@ mixin _$TutorialUiActionEventModel {
   bool get isCompleted => throw _privateConstructorUsedError;
   Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses =>
       throw _privateConstructorUsedError;
-  List<TutorialGameEffectModel> get acceptedPostEffects =>
-      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4467,8 +4465,7 @@ abstract class $TutorialUiActionEventModelCopyWith<$Res> {
       {TutorialCompleteAction action,
       TutorialUiItem? uiItem,
       bool isCompleted,
-      Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
-      List<TutorialGameEffectModel> acceptedPostEffects});
+      Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses});
 }
 
 /// @nodoc
@@ -4486,7 +4483,6 @@ class _$TutorialUiActionEventModelCopyWithImpl<$Res>
     Object? uiItem = freezed,
     Object? isCompleted = freezed,
     Object? boolConsquenses = freezed,
-    Object? acceptedPostEffects = freezed,
   }) {
     return _then(_value.copyWith(
       action: action == freezed
@@ -4505,10 +4501,6 @@ class _$TutorialUiActionEventModelCopyWithImpl<$Res>
           ? _value.boolConsquenses
           : boolConsquenses // ignore: cast_nullable_to_non_nullable
               as Map<PrimitiveBool, List<TutorialGameEffectModel>>,
-      acceptedPostEffects: acceptedPostEffects == freezed
-          ? _value.acceptedPostEffects
-          : acceptedPostEffects // ignore: cast_nullable_to_non_nullable
-              as List<TutorialGameEffectModel>,
     ));
   }
 }
@@ -4525,8 +4517,7 @@ abstract class _$$_TutorialUiActionEventModelCopyWith<$Res>
       {TutorialCompleteAction action,
       TutorialUiItem? uiItem,
       bool isCompleted,
-      Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
-      List<TutorialGameEffectModel> acceptedPostEffects});
+      Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses});
 }
 
 /// @nodoc
@@ -4548,7 +4539,6 @@ class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
     Object? uiItem = freezed,
     Object? isCompleted = freezed,
     Object? boolConsquenses = freezed,
-    Object? acceptedPostEffects = freezed,
   }) {
     return _then(_$_TutorialUiActionEventModel(
       action: action == freezed
@@ -4567,10 +4557,6 @@ class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
           ? _value._boolConsquenses
           : boolConsquenses // ignore: cast_nullable_to_non_nullable
               as Map<PrimitiveBool, List<TutorialGameEffectModel>>,
-      acceptedPostEffects: acceptedPostEffects == freezed
-          ? _value._acceptedPostEffects
-          : acceptedPostEffects // ignore: cast_nullable_to_non_nullable
-              as List<TutorialGameEffectModel>,
     ));
   }
 }
@@ -4584,10 +4570,8 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
       this.uiItem,
       this.isCompleted = false,
       final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses =
-          const {},
-      final List<TutorialGameEffectModel> acceptedPostEffects = const []})
+          const {}})
       : _boolConsquenses = boolConsquenses,
-        _acceptedPostEffects = acceptedPostEffects,
         super._();
 
   factory _$_TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =>
@@ -4612,17 +4596,9 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
     return EqualUnmodifiableMapView(_boolConsquenses);
   }
 
-  final List<TutorialGameEffectModel> _acceptedPostEffects;
-  @override
-  @JsonKey()
-  List<TutorialGameEffectModel> get acceptedPostEffects {
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_acceptedPostEffects);
-  }
-
   @override
   String toString() {
-    return 'TutorialUiActionEventModel(action: $action, uiItem: $uiItem, isCompleted: $isCompleted, boolConsquenses: $boolConsquenses, acceptedPostEffects: $acceptedPostEffects)';
+    return 'TutorialUiActionEventModel(action: $action, uiItem: $uiItem, isCompleted: $isCompleted, boolConsquenses: $boolConsquenses)';
   }
 
   @override
@@ -4635,9 +4611,7 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
             const DeepCollectionEquality()
                 .equals(other.isCompleted, isCompleted) &&
             const DeepCollectionEquality()
-                .equals(other._boolConsquenses, _boolConsquenses) &&
-            const DeepCollectionEquality()
-                .equals(other._acceptedPostEffects, _acceptedPostEffects));
+                .equals(other._boolConsquenses, _boolConsquenses));
   }
 
   @JsonKey(ignore: true)
@@ -4647,8 +4621,7 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
       const DeepCollectionEquality().hash(action),
       const DeepCollectionEquality().hash(uiItem),
       const DeepCollectionEquality().hash(isCompleted),
-      const DeepCollectionEquality().hash(_boolConsquenses),
-      const DeepCollectionEquality().hash(_acceptedPostEffects));
+      const DeepCollectionEquality().hash(_boolConsquenses));
 
   @JsonKey(ignore: true)
   @override
@@ -4669,9 +4642,8 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
       {required final TutorialCompleteAction action,
       final TutorialUiItem? uiItem,
       final bool isCompleted,
-      final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
-      final List<TutorialGameEffectModel>
-          acceptedPostEffects}) = _$_TutorialUiActionEventModel;
+      final Map<PrimitiveBool, List<TutorialGameEffectModel>>
+          boolConsquenses}) = _$_TutorialUiActionEventModel;
   const _TutorialUiActionEventModel._() : super._();
 
   factory _TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =
@@ -4690,8 +4662,6 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
   bool get isCompleted;
   @override
   Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses;
-  @override
-  List<TutorialGameEffectModel> get acceptedPostEffects;
   @override
   @JsonKey(ignore: true)
   _$$_TutorialUiActionEventModelCopyWith<_$_TutorialUiActionEventModel>

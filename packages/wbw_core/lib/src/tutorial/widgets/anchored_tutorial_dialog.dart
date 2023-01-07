@@ -30,11 +30,13 @@ class AnchoredTutorialDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel>(
+    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
       (final bloc) {
+        if (bloc.state is! LiveTutorialBlocState) return null;
         return bloc.getTutorialEvent();
       },
     );
+    if (tutorialEvent == null) return const SizedBox();
     Widget child;
     final dialogType = getDialogType(tutorialEvent);
     switch (dialogType) {

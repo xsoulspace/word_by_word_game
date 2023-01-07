@@ -69,6 +69,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
       progress: progress,
     );
     if (updatedState != null) {
+      await notifier.notifyGamePreEffects(updatedState.tutorial);
       emit(updatedState);
     }
   }
@@ -79,7 +80,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
   ) {
     final effectiveState = state;
     if (effectiveState is! LiveTutorialBlocState) return;
-    add(const NextTutorialEvent(action: NextTutorialEventType.skipToLast));
+    add(const NextTutorialEvent(action: NextTutorialEventType.complete));
   }
 
   Future<void> _onNextTutorial(
@@ -92,7 +93,9 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     } else {
       final tutorial = liveState.tutorial;
       final tutorialEvent = tutorial.currentEvent;
-      if (tutorialEvent == null || !tutorialEvent.isCompleted) return;
+      if (tutorialEvent == null ||
+          (!tutorialEvent.isCompleted &&
+              event.action != NextTutorialEventType.complete)) return;
 
       await notifier.notifyGamePostEffects(tutorial);
       int nextIndex;
@@ -107,7 +110,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
             nextIndex = 0;
           }
           break;
-        case NextTutorialEventType.skipToLast:
+        case NextTutorialEventType.complete:
           nextIndex = tutorial.events.length - 1;
           break;
       }
@@ -121,6 +124,12 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
       );
       final updatedLiveState = newLiveState.applyTutorialProgress();
       emit(updatedLiveState);
+
+      if (updatedLiveState.tutorial.isCompleted) {
+        emit(PendingTutorialBlocState(progress: liveState.progress));
+      } else {
+        await notifier.notifyGamePreEffects(updatedTutorial);
+      }
     }
   }
 

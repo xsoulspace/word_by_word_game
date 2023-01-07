@@ -100,7 +100,6 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
     @Default(false) final bool isCompleted,
     @Default({})
         final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
-    @Default([]) final List<TutorialGameEffectModel> acceptedPostEffects,
   }) = _TutorialUiActionEventModel;
 
   const TutorialUiActionEventModel._();

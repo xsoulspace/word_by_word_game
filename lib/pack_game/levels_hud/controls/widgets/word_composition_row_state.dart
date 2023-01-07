@@ -131,6 +131,7 @@ class WordCompositionState extends LifeState {
     final tutorialEvent = TutorialUiActionEvent(
       action: TutorialCompleteAction.onEdit,
       stringValue: event.word.fullWord,
+      key: TutorialUiItem.enterWordRight,
     );
     diDto.tutorialBloc.add(tutorialEvent);
   }

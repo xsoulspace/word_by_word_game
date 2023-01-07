@@ -145,7 +145,7 @@ class UiActionFrame extends StatelessWidget {
           return const SizedBox();
         }
         return TutorialFrame(
-          highlightPosition: Alignment.centerRight,
+          highlightPosition: Alignment.topCenter,
           uiKey: TutorialUiItem.selectActionFrame,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -167,6 +167,10 @@ class UiActionFrame extends StatelessWidget {
                     highlightPosition: Alignment.topCenter,
                     uiKey: TutorialUiItem.refuelActionButton,
                     child: UILevelActionChip(
+                      onSelected: () => TutorialFrame.sendOnClickEvent(
+                        uiKey: TutorialUiItem.refuelActionButton,
+                        context: context,
+                      ),
                       baseText: S.of(context).refuelStorage,
                       levelState: levelState,
                       type: LevelPlayerActionType.refuelStorage,
@@ -190,39 +194,43 @@ class UiDesktopEffectFrame extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 200),
-      child: BlocBuilder<LevelBloc, LevelBlocState>(
-        buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-          checkLiveState: (final previous, final current) =>
-              previous.actionMultiplier != current.actionMultiplier ||
-              previous.actionType != current.actionType,
+    return TutorialFrame(
+      highlightPosition: Alignment.topLeft,
+      uiKey: TutorialUiItem.selectEffectFrame,
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(minWidth: 200),
+        child: BlocBuilder<LevelBloc, LevelBlocState>(
+          buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+            checkLiveState: (final previous, final current) =>
+                previous.actionMultiplier != current.actionMultiplier ||
+                previous.actionType != current.actionType,
+          ),
+          builder: (final context, final levelState) {
+            if (levelState is! LiveLevelBlocState) {
+              return const SizedBox();
+            }
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  S.of(context).effect,
+                  style: textTheme.titleSmall,
+                ),
+                uiTheme.verticalBoxes.small,
+                Row(
+                  children: LevelActionMultiplierType.values.map(
+                    (final type) {
+                      return UILevelActionMultiplierChip(
+                        levelState: levelState,
+                        type: type,
+                      );
+                    },
+                  ).toList(),
+                ),
+              ],
+            );
+          },
         ),
-        builder: (final context, final levelState) {
-          if (levelState is! LiveLevelBlocState) {
-            return const SizedBox();
-          }
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                S.of(context).effect,
-                style: textTheme.titleSmall,
-              ),
-              uiTheme.verticalBoxes.small,
-              Row(
-                children: LevelActionMultiplierType.values.map(
-                  (final type) {
-                    return UILevelActionMultiplierChip(
-                      levelState: levelState,
-                      type: type,
-                    );
-                  },
-                ).toList(),
-              ),
-            ],
-          );
-        },
       ),
     );
   }
@@ -281,18 +289,23 @@ class UILevelActionChip extends StatelessWidget {
     required this.levelState,
     required this.baseText,
     required this.type,
+    this.onSelected,
     super.key,
   });
   final LevelPlayerActionType type;
   final LiveLevelBlocState levelState;
   final String baseText;
+  final VoidCallback? onSelected;
   @override
   Widget build(final BuildContext context) {
     final widgetState = context.read<WordCompositionState>();
     final isSelected = levelState.actionType == type;
     return ChoiceChip(
       selected: isSelected,
-      onSelected: (final _) => widgetState.onSelectActionType(type),
+      onSelected: (final _) {
+        widgetState.onSelectActionType(type);
+        onSelected?.call();
+      },
       label: Text(
         baseText,
       ),
@@ -335,7 +348,13 @@ class UILevelActionMultiplierChip extends StatelessWidget {
         selected: isSelected,
         onSelected: !isAllowedToUse
             ? null
-            : (final _) => widgetState.onSelectActionMultiplier(type),
+            : (final _) {
+                widgetState.onSelectActionMultiplier(type);
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.effectButton,
+                  context: context,
+                );
+              },
         label: Text('$applyingScore'),
       ),
     );

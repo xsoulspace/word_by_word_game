@@ -25,15 +25,28 @@ class UIDesktopActions extends StatelessWidget {
             highlightPosition: Alignment.topLeft,
             uiKey: TutorialUiItem.addToDictionaryButton,
             child: UIAddWordToDictionaryButton(
-              onPressed: state.onAddWordToDictionary,
+              onPressed: () {
+                state.onAddWordToDictionary();
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.addToDictionaryButton,
+                  context: context,
+                );
+              },
             ),
           ),
           uiTheme.verticalBoxes.extraSmall,
           TutorialFrame(
             highlightPosition: Alignment.topLeft,
             uiKey: TutorialUiItem.confirmWordButton,
-            child: UIToSelectActionPhaseButton(
-              onPressed: state.onToSelectActionPhase,
+            child: UiConfirmWordButton(
+              onPressed: () {
+                state.onToSelectActionPhase();
+
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.confirmWordButton,
+                  context: context,
+                );
+              },
             ),
           ),
         ]);
@@ -43,10 +56,17 @@ class UIDesktopActions extends StatelessWidget {
           const UiDesktopEffectFrame(),
           uiTheme.verticalBoxes.medium,
           TutorialFrame(
-            highlightPosition: Alignment.centerRight,
+            highlightPosition: Alignment.topLeft,
             uiKey: TutorialUiItem.applyAndEndTurnButton,
             child: UIToEndTurnButton(
-              onPressed: state.onToEndTurn,
+              onPressed: () {
+                state.onToEndTurn();
+
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.applyAndEndTurnButton,
+                  context: context,
+                );
+              },
             ),
           ),
         ]);
@@ -88,8 +108,14 @@ class UIMobileActions extends StatelessWidget {
           TutorialFrame(
             highlightPosition: Alignment.topCenter,
             uiKey: TutorialUiItem.confirmWordButton,
-            child: UIToSelectActionPhaseButton(
-              onPressed: state.onToSelectActionPhase,
+            child: UiConfirmWordButton(
+              onPressed: () {
+                state.onToSelectActionPhase();
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.confirmWordButton,
+                  context: context,
+                );
+              },
             ),
           ),
         ]);
@@ -134,8 +160,8 @@ class UIAddWordToDictionaryButton extends StatelessWidget {
   }
 }
 
-class UIToSelectActionPhaseButton extends StatelessWidget {
-  const UIToSelectActionPhaseButton({
+class UiConfirmWordButton extends StatelessWidget {
+  const UiConfirmWordButton({
     required this.onPressed,
     super.key,
   });

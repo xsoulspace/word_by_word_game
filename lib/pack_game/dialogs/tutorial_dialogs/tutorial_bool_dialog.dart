@@ -12,11 +12,13 @@ class TutorialBoolDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel>(
+    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
       (final bloc) {
+        if (bloc.state is! LiveTutorialBlocState) return null;
         return bloc.getTutorialEvent();
       },
     );
+    if (tutorialEvent == null) return const SizedBox();
     return DialogScaffold(
       children: [
         Text(tutorialEvent.localizedMap.getValue()),
@@ -30,6 +32,7 @@ class TutorialBoolDialog extends StatelessWidget {
                 context.read<TutorialBloc>().add(
                       const TutorialUiActionEvent(
                         action: TutorialCompleteAction.onBoolOptionSelected,
+                        key: TutorialUiItem.tutorialBoolDialog,
                       ),
                     );
               },

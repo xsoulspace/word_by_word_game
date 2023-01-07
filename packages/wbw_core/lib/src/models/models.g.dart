@@ -458,6 +458,9 @@ const _$TutorialUiItemEnumMap = {
   TutorialUiItem.refuelActionButton: 'refuelActionButton',
   TutorialUiItem.effectButton: 'effectButton',
   TutorialUiItem.tutorialBoolDialog: 'tutorialBoolDialog',
+  TutorialUiItem.tutorialOkDialog: 'tutorialOkDialog',
+  TutorialUiItem.anchoredIdleDialog: 'anchoredIdleDialog',
+  TutorialUiItem.anchoredOkDialog: 'anchoredOkDialog',
 };
 
 _$_TutorialGameEffectModel _$$_TutorialGameEffectModelFromJson(
@@ -493,11 +496,6 @@ _$_TutorialUiActionEventModel _$$_TutorialUiActionEventModelFromJson(
                     .toList()),
           ) ??
           const {},
-      acceptedPostEffects: (json['acceptedPostEffects'] as List<dynamic>?)
-              ?.map((e) =>
-                  TutorialGameEffectModel.fromJson(e as Map<String, dynamic>))
-              .toList() ??
-          const [],
     );
 
 Map<String, dynamic> _$$_TutorialUiActionEventModelToJson(
@@ -508,13 +506,12 @@ Map<String, dynamic> _$$_TutorialUiActionEventModelToJson(
       'isCompleted': instance.isCompleted,
       'boolConsquenses': instance.boolConsquenses.map((k, e) => MapEntry(
           _$PrimitiveBoolEnumMap[k]!, e.map((e) => e.toJson()).toList())),
-      'acceptedPostEffects':
-          instance.acceptedPostEffects.map((e) => e.toJson()).toList(),
     };
 
 const _$TutorialCompleteActionEnumMap = {
   TutorialCompleteAction.onClick: 'onClick',
   TutorialCompleteAction.onEdit: 'onEdit',
+  TutorialCompleteAction.idle: 'idle',
   TutorialCompleteAction.onBoolOptionSelected: 'onBoolOptionSelected',
 };
 

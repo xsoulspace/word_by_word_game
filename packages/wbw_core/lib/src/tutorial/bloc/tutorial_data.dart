@@ -68,7 +68,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Hello Traveller or Travellers! \nWould you like to start tutorial?',
+                'Hello Traveller or Travellers! \n\nWould you like to start tutorial?',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -137,7 +137,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Every player turn consists from two pahses. \nFirst phase is to enter new word.',
+                'Every player turn consists from two pahses. \n\nFirst phase is to enter new word.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -150,7 +150,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'If written word is not found, you can click Add To Dictionary button to add this word to dictionary. \n\nBe careful with the word, as it will be saved and cannot be removed.',
+                'If written word is not found, you can click Add To Dictionary to add this word to dictionary. \n\nBe careful with the word, as it will be saved and cannot be removed.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -199,6 +199,11 @@ const _tutorialData = TutorialCollectionsDataModel(
       TutorialEventModel(
         completeActions: [
           TutorialUiActionEventModel(
+            action: TutorialCompleteAction.idle,
+            uiItem: TutorialUiItem.anchoredIdleDialog,
+            isCompleted: true,
+          ),
+          TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
             uiItem: TutorialUiItem.confirmWordButton,
           ),
@@ -206,7 +211,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'You will earn points for the word which will be added to your score and used in the next phase. To continue click Confirm Word button.\n',
+                'You will earn points for the word which will be added to your score and used in the next phase. \n\nTo continue click Confirm Word.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -217,6 +222,11 @@ const _tutorialData = TutorialCollectionsDataModel(
       ),
       TutorialEventModel(
         completeActions: [
+          TutorialUiActionEventModel(
+            action: TutorialCompleteAction.idle,
+            uiItem: TutorialUiItem.anchoredIdleDialog,
+            isCompleted: true,
+          ),
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
             uiItem: TutorialUiItem.refuelActionButton,
@@ -237,6 +247,11 @@ const _tutorialData = TutorialCollectionsDataModel(
       TutorialEventModel(
         completeActions: [
           TutorialUiActionEventModel(
+            action: TutorialCompleteAction.idle,
+            uiItem: TutorialUiItem.anchoredIdleDialog,
+            isCompleted: true,
+          ),
+          TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
             uiItem: TutorialUiItem.effectButton,
           )
@@ -256,6 +271,11 @@ const _tutorialData = TutorialCollectionsDataModel(
       TutorialEventModel(
         completeActions: [
           TutorialUiActionEventModel(
+            action: TutorialCompleteAction.idle,
+            uiItem: TutorialUiItem.anchoredIdleDialog,
+            isCompleted: true,
+          ),
+          TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
             uiItem: TutorialUiItem.applyAndEndTurnButton,
           )
@@ -263,7 +283,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'To end turn for player click Apply & End Turn Button. \n\nBe aware: this action will end tutorial and unfreeze the Balloon. \nGood Luck in your adventures!',
+                'To end turn for player click Apply & End Turn. \n\nBe aware: this action will end tutorial and the Balloon will start moving. \n\nGood Luck in your adventures!',
             Languages.ru: '',
             Languages.it: '',
           },

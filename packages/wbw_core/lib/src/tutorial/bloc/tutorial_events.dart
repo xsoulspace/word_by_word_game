@@ -30,7 +30,7 @@ class StartTutorialEvent extends TutorialEvent {
 }
 
 enum NextTutorialEventType {
-  skipToLast,
+  complete,
   next,
   previous,
 }

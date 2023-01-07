@@ -16,6 +16,17 @@ class TutorialFrame extends StatelessWidget {
   final Alignment highlightPosition;
   final TutorialUiItem uiKey;
   final Widget child;
+  static void sendOnClickEvent({
+    required final TutorialUiItem uiKey,
+    required final BuildContext context,
+  }) {
+    final event = TutorialUiActionEvent(
+      action: TutorialCompleteAction.onClick,
+      key: uiKey,
+    );
+    context.read<TutorialBloc>().add(event);
+  }
+
   @override
   Widget build(final BuildContext context) {
     final highlighted =
@@ -30,11 +41,7 @@ class TutorialFrame extends StatelessWidget {
       portalFollower: const AnchoredTutorialDialog(),
       child: HighlightFrame(
         onPressed: () {
-          final event = TutorialUiActionEvent(
-            action: TutorialCompleteAction.onClick,
-            key: uiKey,
-          );
-          context.read<TutorialBloc>().add(event);
+          sendOnClickEvent(context: context, uiKey: uiKey);
         },
         highlighted: highlighted,
         highlightPosition: highlightPosition,

@@ -75,7 +75,13 @@ class _DialogStackState extends LifeState {
   }
 
   void _onTutorialChanged(final TutorialBlocState tutorialState) {
-    if (tutorialState is! LiveTutorialBlocState) return;
+    if (tutorialState is! LiveTutorialBlocState) {
+      if (dialogType.name.contains('tutorial')) {
+        _closeDialog();
+      }
+      return;
+    }
+
     final actions = tutorialState.tutorial.currentEvent?.completeActions;
     if (actions == null) return;
     for (final action in actions) {

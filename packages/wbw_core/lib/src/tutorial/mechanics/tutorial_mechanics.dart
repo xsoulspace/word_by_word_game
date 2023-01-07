@@ -20,17 +20,18 @@ class TutorialMechanics {
     if (tutorialEvent.isCompleted) return tutorialEvent;
 
     final completeActions = [...tutorialEvent.completeActions];
+    final gamePostEffects = [...tutorialEvent.gamePostEffects];
     final index = completeActions.indexWhere(
       (final action) => action.action == uiEvent.action,
     );
 
     if (index >= 0) {
-      final event = completeActions[index];
-      if (event.isCompleted) {
+      final actionEvent = completeActions[index];
+      if (actionEvent.isCompleted) {
         return tutorialEvent;
       }
       void complete() {
-        completeActions[index] = event.copyWith(
+        completeActions[index] = actionEvent.copyWith(
           isCompleted: true,
         );
       }
@@ -39,36 +40,37 @@ class TutorialMechanics {
         case TutorialCompleteAction.idle:
           return tutorialEvent;
         case TutorialCompleteAction.onClick:
-          if (event.uiItem == uiEvent.key) {
+          if (actionEvent.uiItem == uiEvent.key) {
             complete();
           }
           break;
         case TutorialCompleteAction.onBoolOptionSelected:
-          if (event.uiItem == uiEvent.key) {
+          if (actionEvent.uiItem == uiEvent.key) {
             final boolValue = uiEvent.boolValue.toPrimitiveBool();
-            final postEffects = event.boolConsquenses[boolValue];
-            completeActions[index] = event.copyWith(
+            final postEffects = actionEvent.boolConsquenses[boolValue];
+            completeActions[index] = actionEvent.copyWith(
               isCompleted: true,
-              acceptedPostEffects: [
-                ...event.acceptedPostEffects,
-                ...?postEffects
-              ],
             );
+            if (postEffects != null) gamePostEffects.addAll(postEffects);
           }
           break;
         case TutorialCompleteAction.onEdit:
-          if (event.uiItem == null) {
+          if (actionEvent.uiItem == null) {
             if (uiEvent.stringValue.isNotEmpty) {
               complete();
             }
           } else {
-            if (event.uiItem == uiEvent.key && uiEvent.stringValue.isNotEmpty) {
+            if (actionEvent.uiItem == uiEvent.key &&
+                uiEvent.stringValue.isNotEmpty) {
               complete();
             }
           }
           break;
       }
-      return tutorialEvent.copyWith(completeActions: completeActions);
+      return tutorialEvent.copyWith(
+        completeActions: completeActions,
+        gamePostEffects: gamePostEffects,
+      );
     } else {
       return tutorialEvent;
     }
