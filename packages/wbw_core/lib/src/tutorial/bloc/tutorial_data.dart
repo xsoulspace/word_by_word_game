@@ -11,7 +11,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'If you have enough points you can remove letter. Every letter will cost some points.',
-            Languages.ru: '',
+            Languages.ru:
+                'Если у вас достаточно очков, вы можете удалить письмо. Каждая буква будет стоить несколько очков.',
             Languages.it: '',
           },
         ),
@@ -25,7 +26,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'You can enter a part of word in this text field to combine full word.',
-            Languages.ru: '',
+            Languages.ru:
+                'Вы можете ввести часть слова в это текстовое поле, чтобы объединить полное слово.',
             Languages.it: '',
           },
         ),
@@ -69,7 +71,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'Hello Traveller or Travellers! \n\nWould you like to start tutorial?',
-            Languages.ru: '',
+            Languages.ru:
+                'Здравствуй, путешественник или путешественники! \n\nВы хотите пройти обучение?',
             Languages.it: '',
           },
         ),
@@ -86,7 +89,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'Your goal is to reach far end of landscape. \nYou are alone or with your friends is responsible for the aircarft fuel. \n\nDuring the tutorial the balloon will not move to get you comfortable with controls.',
-            Languages.ru: '',
+            Languages.ru:
+                'Ваша цель - достичь дальнего края ландшафта. \nВы один или с друзьями отвечаете за топливо для воздушного шара. \n\nВо время обучения воздушный шар не будет двигаться, чтобы вам было удобнее управлять им.',
             Languages.it: '',
           },
         ),
@@ -99,7 +103,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'If you are playing with the friends - you are in one team, which controls one aircraft, so every player will play after another.',
-            Languages.ru: '',
+            Languages.ru:
+                'Если вы играете с друзьями - вы в одной команде, которая управляет одним воздушным шаром, поэтому каждый игрок будет играть по очереди.',
             Languages.it: '',
           },
         ),
@@ -111,7 +116,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en: 'This is current player name.',
-            Languages.ru: '',
+            Languages.ru: 'Это текущее имя игрока.',
             Languages.it: '',
           },
         ),
@@ -124,7 +129,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en: 'This is current player score.',
-            Languages.ru: '',
+            Languages.ru: 'Это текущие очки игрока.',
             Languages.it: '',
           },
         ),
@@ -138,7 +143,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'Every player turn consists from two pahses. \n\nFirst phase is to enter new word.',
-            Languages.ru: '',
+            Languages.ru:
+                'Каждый ход игрока состоит из двух фаз. \n\n\nВ первой фазе вы должны ввести новое слово.',
             Languages.it: '',
           },
         ),
@@ -151,7 +157,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'If written word is not found, you can click Add To Dictionary to add this word to dictionary. \n\nBe careful with the word, as it will be saved and cannot be removed.',
-            Languages.ru: '',
+            Languages.ru:
+                'Если написанное слово не найдено, вы можете нажать кнопку Добавить в словарь, чтобы добавить это слово в словарь. \n\nБудьте осторожны с этим словом, так как оно будет сохранено и не может быть удалено.',
             Languages.it: '',
           },
         ),
@@ -163,8 +170,9 @@ const _tutorialData = TutorialCollectionsDataModel(
         completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
         localizedMap: LocalizedMap(
           value: {
-            Languages.en: 'If you stuck, you may try word suggestions.',
-            Languages.ru: '',
+            Languages.en: 'If you stuck, you may try to use word suggestions.',
+            Languages.ru:
+                'Если вы застряли, вы можете попробвать использовать случайные слова.',
             Languages.it: '',
           },
         ),
@@ -188,7 +196,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'To continue, enter your first word in this text field.',
-            Languages.ru: '',
+            Languages.ru:
+                'Чтобы продолжить, введите свое первое слово в это текстовое поле.',
             Languages.it: '',
           },
         ),
@@ -212,7 +221,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'You will earn points for the word which will be added to your score and used in the next phase. \n\nTo continue click Confirm Word.',
-            Languages.ru: '',
+            Languages.ru:
+                'За новое слово вы получите очки, которые будут добавлены к вашему счету и использованы в следующем этапе. \n\nДля продолжения нажми кнопку Применить.',
             Languages.it: '',
           },
         ),
@@ -236,7 +246,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'The second phase - Actions & Effects.\n\nAction is something that you do. \n\nChoose Refuel to refuel Balloon.',
-            Languages.ru: '',
+            Languages.ru:
+                'Вторая фаза - Действия и эффекты.\n\nДействие - это то, что вы делаете. \n\nВыбери "Топливо", чтобы заправить воздушный шар.',
             Languages.it: '',
           },
         ),
@@ -259,8 +270,9 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Effect is how much of the action will be applied. \n\n Choose any refueling effect - air balloon will receive points of fuel.',
-            Languages.ru: '',
+                'Effect is how much of the action will be applied.\n\nChoose any refueling effect - air balloon will receive points of fuel.',
+            Languages.ru:
+                'Эффект - это то, насколько сильно будет применено действие.\n\nВыберите любой эффект дозаправки - воздушный шар получит очки топлива.',
             Languages.it: '',
           },
         ),
@@ -284,7 +296,8 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en:
                 'To end turn for player click Apply & End Turn. \n\nBe aware: this action will end tutorial and the Balloon will start moving. \n\nGood Luck in your adventures!',
-            Languages.ru: '',
+            Languages.ru:
+                'Чтобы завершить ход для игрока, нажми "Завершить ход". \n\nБудьте внимательны: это действие завершит туториал и воздушный шар начнет двигаться. \n\n\nНевероятных приключений!',
             Languages.it: '',
           },
         ),
