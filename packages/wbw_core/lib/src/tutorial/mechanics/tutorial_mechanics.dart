@@ -32,21 +32,30 @@ class TutorialMechanics {
 
       switch (uiEvent.action) {
         case TutorialCompleteAction.onClick:
-          if (event.uiItem == null) {
+          if (event.uiItem == uiEvent.key) {
             complete();
-          } else {
-            if (event.uiItem == uiEvent.key) {
-              complete();
-            }
+          }
+          break;
+        case TutorialCompleteAction.onBoolOptionSelected:
+          if (event.uiItem == uiEvent.key) {
+            final boolValue = uiEvent.boolValue.toPrimitiveBool();
+            final postEffects = event.boolConsquenses[boolValue];
+            completedActions[index] = event.copyWith(
+              isCompleted: true,
+              acceptedPostEffects: [
+                ...event.acceptedPostEffects,
+                ...?postEffects
+              ],
+            );
           }
           break;
         case TutorialCompleteAction.onEdit:
           if (event.uiItem == null) {
-            if (uiEvent.value.isNotEmpty) {
+            if (uiEvent.stringValue.isNotEmpty) {
               complete();
             }
           } else {
-            if (event.uiItem == uiEvent.key && uiEvent.value.isNotEmpty) {
+            if (event.uiItem == uiEvent.key && uiEvent.stringValue.isNotEmpty) {
               complete();
             }
           }

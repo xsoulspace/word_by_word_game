@@ -30,6 +30,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     on<StartTutorialEvent>(_onStartTutorial);
     on<NextTutorialEvent>(_onNextTutorial);
     on<TutorialUiActionEvent>(_onTutorialUiAction);
+    on<CompleteTutorialEvent>(_onCompleteTutorial);
     notifier = TutorialStateNotifier.listen(bloc: this);
   }
   @override
@@ -72,6 +73,15 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     }
   }
 
+  void _onCompleteTutorial(
+    final CompleteTutorialEvent event,
+    final Emitter<TutorialBlocState> emit,
+  ) {
+    final effectiveState = state;
+    if (effectiveState is! LiveTutorialBlocState) return;
+    add(const NextTutorialEvent(action: NextTutorialEventType.skipToLast));
+  }
+
   Future<void> _onNextTutorial(
     final NextTutorialEvent event,
     final Emitter<TutorialBlocState> emit,
@@ -82,7 +92,23 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     } else {
       final tutorial = liveState.tutorial;
       await notifier.notifyGamePostEffects(tutorial);
-      final nextIndex = tutorial.currentIndex + 1;
+      int nextIndex;
+      switch (event.action) {
+        case NextTutorialEventType.next:
+          nextIndex = tutorial.currentIndex + 1;
+          break;
+        case NextTutorialEventType.previous:
+          if (tutorial.currentIndex > 0) {
+            nextIndex = tutorial.currentIndex - 1;
+          } else {
+            nextIndex = 0;
+          }
+          break;
+        case NextTutorialEventType.skipToLast:
+          nextIndex = tutorial.events.length - 1;
+          break;
+      }
+
       final updatedTutorial = getTutorial().copyWith(
         currentIndex: nextIndex,
       );

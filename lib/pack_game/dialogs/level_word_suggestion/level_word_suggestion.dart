@@ -7,6 +7,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/pack_game/dialogs/widgets/widgets.dart';
 
 class _DialogStateDiDto {
   _DialogStateDiDto.use(final Locator read)
@@ -95,106 +96,99 @@ class LevelWordSuggestionDialog extends HookWidget {
       },
       child: Text(S.of(context).back),
     );
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 350,
-      ),
-      child: Card(
-        child: Builder(
-          builder: (final context) {
-            if (state.suggestedWord.isEmpty) {
-              return ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                children: [
-                  Text(
-                    S.of(context).noWordsSuggestions,
-                    style: theme.textTheme.headlineLarge,
-                    textAlign: TextAlign.center,
-                  ),
-                  uiTheme.verticalBoxes.extraLarge,
-                  Text(
-                    S.of(context).tryWithDifferentLetters,
-                    textAlign: TextAlign.center,
-                  ),
-                  uiTheme.verticalBoxes.extraLarge,
-                  cancelButton
-                ],
-              );
-            }
+    return DialogScaffold(
+      builder: (final context) {
+        if (state.suggestedWord.isEmpty) {
+          return ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+            children: [
+              Text(
+                S.of(context).noWordsSuggestions,
+                style: theme.textTheme.headlineLarge,
+                textAlign: TextAlign.center,
+              ),
+              uiTheme.verticalBoxes.extraLarge,
+              Text(
+                S.of(context).tryWithDifferentLetters,
+                textAlign: TextAlign.center,
+              ),
+              uiTheme.verticalBoxes.extraLarge,
+              cancelButton
+            ],
+          );
+        }
 
-            if (state.isWordRevealed) {
-              return ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                children: [
-                  Text(
-                    S.of(context).suggestedWord,
-                    style: theme.textTheme.titleMedium,
-                    textAlign: TextAlign.center,
-                  ),
-                  uiTheme.verticalBoxes.extraLarge,
-                  Text(
-                    state.suggestedWord,
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                  uiTheme.verticalBoxes.extraLarge,
-                  TextButton(
-                    onPressed: () {
-                      context.read<DialogController>().closeDialog();
-                    },
-                    child: Text(S.of(context).ok),
-                  )
-                ],
-              );
-            }
+        if (state.isWordRevealed) {
+          return ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+            children: [
+              Text(
+                S.of(context).suggestedWord,
+                style: theme.textTheme.titleMedium,
+                textAlign: TextAlign.center,
+              ),
+              uiTheme.verticalBoxes.extraLarge,
+              Text(
+                state.suggestedWord,
+                style: theme.textTheme.headlineSmall?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+                textAlign: TextAlign.center,
+              ),
+              uiTheme.verticalBoxes.extraLarge,
+              TextButton(
+                onPressed: () {
+                  context.read<DialogController>().closeDialog();
+                },
+                child: Text(S.of(context).ok),
+              )
+            ],
+          );
+        }
 
-            return ListView(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-              children: [
-                Text(
-                  S.of(context).revealSuggestedWord,
-                  style: theme.textTheme.titleMedium,
-                  textAlign: TextAlign.center,
-                ),
-                uiTheme.verticalBoxes.large,
-                Text(
-                  List.generate(
-                    state.suggestedWord.length,
-                    (final index) => '*',
-                  ).join(),
-                  style: theme.textTheme.headlineSmall?.copyWith(
-                    fontWeight: FontWeight.bold,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                uiTheme.verticalBoxes.medium,
-                TextButton(
-                  onPressed: state.isUsageAvailable ? state.onRevealWord : null,
-                  child: Text(
-                    state.isUsageAvailable
-                        ? S.of(context).useCostKnowledgePoints(state.costOfWord)
-                        : S.of(context).notEnoughKnowledgeToRevealWord,
-                  ),
-                ),
-                if (!state.isUsageAvailable) ...[
-                  uiTheme.verticalBoxes.medium,
-                  TextButton(
-                    onPressed: state.onTryAnotherWord,
-                    child: Text(S.of(context).tryAnotherWord),
-                  ),
-                ],
-                uiTheme.verticalBoxes.small,
-                cancelButton,
-              ],
-            );
-          },
-        ),
-      ),
+        return ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+          children: [
+            Text(
+              S.of(context).revealSuggestedWord,
+              style: theme.textTheme.titleMedium,
+              textAlign: TextAlign.center,
+            ),
+            uiTheme.verticalBoxes.large,
+            Text(
+              List.generate(
+                state.suggestedWord.length,
+                (final index) => '*',
+              ).join(),
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            uiTheme.verticalBoxes.medium,
+            TextButton(
+              onPressed: state.isUsageAvailable ? state.onRevealWord : null,
+              child: Text(
+                state.isUsageAvailable
+                    ? S.of(context).useCostKnowledgePoints(state.costOfWord)
+                    : S.of(context).notEnoughKnowledgeToRevealWord,
+              ),
+            ),
+            if (!state.isUsageAvailable) ...[
+              uiTheme.verticalBoxes.medium,
+              TextButton(
+                onPressed: state.onTryAnotherWord,
+                child: Text(S.of(context).tryAnotherWord),
+              ),
+            ],
+            uiTheme.verticalBoxes.small,
+            cancelButton,
+          ],
+        );
+      },
     );
   }
 }

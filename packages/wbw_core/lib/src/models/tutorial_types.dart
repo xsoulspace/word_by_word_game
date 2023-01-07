@@ -89,14 +89,17 @@ enum TutorialUiItem {
 
   refuelActionButton,
   effectButton,
+  tutorialBoolDialog,
 }
 
 enum TutorialCompleteAction {
   onClick,
   onEdit,
+  onBoolOptionSelected,
 }
 
 enum TutorialGameEffectName {
   pauseGame,
   resumeGame,
+  completeCurrentTutorial,
 }

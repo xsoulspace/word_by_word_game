@@ -4010,7 +4010,10 @@ mixin _$TutorialEventModel {
   /// [completeActions] resolved.
   List<TutorialGameEffectModel> get gamePostEffects =>
       throw _privateConstructorUsedError;
-  TutorialUiItem? get uiItem => throw _privateConstructorUsedError;
+
+  /// The ui item for which the event should be attached and
+  /// highlight is shown
+  TutorialUiItem? get anchorUiItem => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4028,7 +4031,7 @@ abstract class $TutorialEventModelCopyWith<$Res> {
       List<TutorialUiActionEventModel> completeActions,
       List<TutorialGameEffectModel> gamePreEffects,
       List<TutorialGameEffectModel> gamePostEffects,
-      TutorialUiItem? uiItem});
+      TutorialUiItem? anchorUiItem});
 
   $LocalizedMapCopyWith<$Res> get localizedMap;
 }
@@ -4048,7 +4051,7 @@ class _$TutorialEventModelCopyWithImpl<$Res>
     Object? completeActions = freezed,
     Object? gamePreEffects = freezed,
     Object? gamePostEffects = freezed,
-    Object? uiItem = freezed,
+    Object? anchorUiItem = freezed,
   }) {
     return _then(_value.copyWith(
       localizedMap: localizedMap == freezed
@@ -4067,9 +4070,9 @@ class _$TutorialEventModelCopyWithImpl<$Res>
           ? _value.gamePostEffects
           : gamePostEffects // ignore: cast_nullable_to_non_nullable
               as List<TutorialGameEffectModel>,
-      uiItem: uiItem == freezed
-          ? _value.uiItem
-          : uiItem // ignore: cast_nullable_to_non_nullable
+      anchorUiItem: anchorUiItem == freezed
+          ? _value.anchorUiItem
+          : anchorUiItem // ignore: cast_nullable_to_non_nullable
               as TutorialUiItem?,
     ));
   }
@@ -4094,7 +4097,7 @@ abstract class _$$_TutorialEventModelCopyWith<$Res>
       List<TutorialUiActionEventModel> completeActions,
       List<TutorialGameEffectModel> gamePreEffects,
       List<TutorialGameEffectModel> gamePostEffects,
-      TutorialUiItem? uiItem});
+      TutorialUiItem? anchorUiItem});
 
   @override
   $LocalizedMapCopyWith<$Res> get localizedMap;
@@ -4117,7 +4120,7 @@ class __$$_TutorialEventModelCopyWithImpl<$Res>
     Object? completeActions = freezed,
     Object? gamePreEffects = freezed,
     Object? gamePostEffects = freezed,
-    Object? uiItem = freezed,
+    Object? anchorUiItem = freezed,
   }) {
     return _then(_$_TutorialEventModel(
       localizedMap: localizedMap == freezed
@@ -4136,9 +4139,9 @@ class __$$_TutorialEventModelCopyWithImpl<$Res>
           ? _value._gamePostEffects
           : gamePostEffects // ignore: cast_nullable_to_non_nullable
               as List<TutorialGameEffectModel>,
-      uiItem: uiItem == freezed
-          ? _value.uiItem
-          : uiItem // ignore: cast_nullable_to_non_nullable
+      anchorUiItem: anchorUiItem == freezed
+          ? _value.anchorUiItem
+          : anchorUiItem // ignore: cast_nullable_to_non_nullable
               as TutorialUiItem?,
     ));
   }
@@ -4153,7 +4156,7 @@ class _$_TutorialEventModel extends _TutorialEventModel {
       required final List<TutorialUiActionEventModel> completeActions,
       final List<TutorialGameEffectModel> gamePreEffects = const [],
       final List<TutorialGameEffectModel> gamePostEffects = const [],
-      this.uiItem})
+      this.anchorUiItem})
       : _completeActions = completeActions,
         _gamePreEffects = gamePreEffects,
         _gamePostEffects = gamePostEffects,
@@ -4199,12 +4202,14 @@ class _$_TutorialEventModel extends _TutorialEventModel {
     return EqualUnmodifiableListView(_gamePostEffects);
   }
 
+  /// The ui item for which the event should be attached and
+  /// highlight is shown
   @override
-  final TutorialUiItem? uiItem;
+  final TutorialUiItem? anchorUiItem;
 
   @override
   String toString() {
-    return 'TutorialEventModel(localizedMap: $localizedMap, completeActions: $completeActions, gamePreEffects: $gamePreEffects, gamePostEffects: $gamePostEffects, uiItem: $uiItem)';
+    return 'TutorialEventModel(localizedMap: $localizedMap, completeActions: $completeActions, gamePreEffects: $gamePreEffects, gamePostEffects: $gamePostEffects, anchorUiItem: $anchorUiItem)';
   }
 
   @override
@@ -4220,7 +4225,8 @@ class _$_TutorialEventModel extends _TutorialEventModel {
                 .equals(other._gamePreEffects, _gamePreEffects) &&
             const DeepCollectionEquality()
                 .equals(other._gamePostEffects, _gamePostEffects) &&
-            const DeepCollectionEquality().equals(other.uiItem, uiItem));
+            const DeepCollectionEquality()
+                .equals(other.anchorUiItem, anchorUiItem));
   }
 
   @JsonKey(ignore: true)
@@ -4231,7 +4237,7 @@ class _$_TutorialEventModel extends _TutorialEventModel {
       const DeepCollectionEquality().hash(_completeActions),
       const DeepCollectionEquality().hash(_gamePreEffects),
       const DeepCollectionEquality().hash(_gamePostEffects),
-      const DeepCollectionEquality().hash(uiItem));
+      const DeepCollectionEquality().hash(anchorUiItem));
 
   @JsonKey(ignore: true)
   @override
@@ -4253,7 +4259,7 @@ abstract class _TutorialEventModel extends TutorialEventModel {
       required final List<TutorialUiActionEventModel> completeActions,
       final List<TutorialGameEffectModel> gamePreEffects,
       final List<TutorialGameEffectModel> gamePostEffects,
-      final TutorialUiItem? uiItem}) = _$_TutorialEventModel;
+      final TutorialUiItem? anchorUiItem}) = _$_TutorialEventModel;
   const _TutorialEventModel._() : super._();
 
   factory _TutorialEventModel.fromJson(Map<String, dynamic> json) =
@@ -4275,7 +4281,10 @@ abstract class _TutorialEventModel extends TutorialEventModel {
   /// [completeActions] resolved.
   List<TutorialGameEffectModel> get gamePostEffects;
   @override
-  TutorialUiItem? get uiItem;
+
+  /// The ui item for which the event should be attached and
+  /// highlight is shown
+  TutorialUiItem? get anchorUiItem;
   @override
   @JsonKey(ignore: true)
   _$$_TutorialEventModelCopyWith<_$_TutorialEventModel> get copyWith =>
@@ -4438,6 +4447,10 @@ mixin _$TutorialUiActionEventModel {
   TutorialCompleteAction get action => throw _privateConstructorUsedError;
   TutorialUiItem? get uiItem => throw _privateConstructorUsedError;
   bool get isCompleted => throw _privateConstructorUsedError;
+  Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses =>
+      throw _privateConstructorUsedError;
+  List<TutorialGameEffectModel> get acceptedPostEffects =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4453,7 +4466,9 @@ abstract class $TutorialUiActionEventModelCopyWith<$Res> {
   $Res call(
       {TutorialCompleteAction action,
       TutorialUiItem? uiItem,
-      bool isCompleted});
+      bool isCompleted,
+      Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
+      List<TutorialGameEffectModel> acceptedPostEffects});
 }
 
 /// @nodoc
@@ -4470,6 +4485,8 @@ class _$TutorialUiActionEventModelCopyWithImpl<$Res>
     Object? action = freezed,
     Object? uiItem = freezed,
     Object? isCompleted = freezed,
+    Object? boolConsquenses = freezed,
+    Object? acceptedPostEffects = freezed,
   }) {
     return _then(_value.copyWith(
       action: action == freezed
@@ -4484,6 +4501,14 @@ class _$TutorialUiActionEventModelCopyWithImpl<$Res>
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      boolConsquenses: boolConsquenses == freezed
+          ? _value.boolConsquenses
+          : boolConsquenses // ignore: cast_nullable_to_non_nullable
+              as Map<PrimitiveBool, List<TutorialGameEffectModel>>,
+      acceptedPostEffects: acceptedPostEffects == freezed
+          ? _value.acceptedPostEffects
+          : acceptedPostEffects // ignore: cast_nullable_to_non_nullable
+              as List<TutorialGameEffectModel>,
     ));
   }
 }
@@ -4499,7 +4524,9 @@ abstract class _$$_TutorialUiActionEventModelCopyWith<$Res>
   $Res call(
       {TutorialCompleteAction action,
       TutorialUiItem? uiItem,
-      bool isCompleted});
+      bool isCompleted,
+      Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
+      List<TutorialGameEffectModel> acceptedPostEffects});
 }
 
 /// @nodoc
@@ -4520,6 +4547,8 @@ class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
     Object? action = freezed,
     Object? uiItem = freezed,
     Object? isCompleted = freezed,
+    Object? boolConsquenses = freezed,
+    Object? acceptedPostEffects = freezed,
   }) {
     return _then(_$_TutorialUiActionEventModel(
       action: action == freezed
@@ -4534,6 +4563,14 @@ class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
           ? _value.isCompleted
           : isCompleted // ignore: cast_nullable_to_non_nullable
               as bool,
+      boolConsquenses: boolConsquenses == freezed
+          ? _value._boolConsquenses
+          : boolConsquenses // ignore: cast_nullable_to_non_nullable
+              as Map<PrimitiveBool, List<TutorialGameEffectModel>>,
+      acceptedPostEffects: acceptedPostEffects == freezed
+          ? _value._acceptedPostEffects
+          : acceptedPostEffects // ignore: cast_nullable_to_non_nullable
+              as List<TutorialGameEffectModel>,
     ));
   }
 }
@@ -4543,8 +4580,15 @@ class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
   const _$_TutorialUiActionEventModel(
-      {required this.action, this.uiItem, this.isCompleted = false})
-      : super._();
+      {required this.action,
+      this.uiItem,
+      this.isCompleted = false,
+      final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses =
+          const {},
+      final List<TutorialGameEffectModel> acceptedPostEffects = const []})
+      : _boolConsquenses = boolConsquenses,
+        _acceptedPostEffects = acceptedPostEffects,
+        super._();
 
   factory _$_TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =>
       _$$_TutorialUiActionEventModelFromJson(json);
@@ -4560,10 +4604,25 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
   @override
   @JsonKey()
   final bool isCompleted;
+  final Map<PrimitiveBool, List<TutorialGameEffectModel>> _boolConsquenses;
+  @override
+  @JsonKey()
+  Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_boolConsquenses);
+  }
+
+  final List<TutorialGameEffectModel> _acceptedPostEffects;
+  @override
+  @JsonKey()
+  List<TutorialGameEffectModel> get acceptedPostEffects {
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_acceptedPostEffects);
+  }
 
   @override
   String toString() {
-    return 'TutorialUiActionEventModel(action: $action, uiItem: $uiItem, isCompleted: $isCompleted)';
+    return 'TutorialUiActionEventModel(action: $action, uiItem: $uiItem, isCompleted: $isCompleted, boolConsquenses: $boolConsquenses, acceptedPostEffects: $acceptedPostEffects)';
   }
 
   @override
@@ -4574,7 +4633,11 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
             const DeepCollectionEquality().equals(other.action, action) &&
             const DeepCollectionEquality().equals(other.uiItem, uiItem) &&
             const DeepCollectionEquality()
-                .equals(other.isCompleted, isCompleted));
+                .equals(other.isCompleted, isCompleted) &&
+            const DeepCollectionEquality()
+                .equals(other._boolConsquenses, _boolConsquenses) &&
+            const DeepCollectionEquality()
+                .equals(other._acceptedPostEffects, _acceptedPostEffects));
   }
 
   @JsonKey(ignore: true)
@@ -4583,7 +4646,9 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
       runtimeType,
       const DeepCollectionEquality().hash(action),
       const DeepCollectionEquality().hash(uiItem),
-      const DeepCollectionEquality().hash(isCompleted));
+      const DeepCollectionEquality().hash(isCompleted),
+      const DeepCollectionEquality().hash(_boolConsquenses),
+      const DeepCollectionEquality().hash(_acceptedPostEffects));
 
   @JsonKey(ignore: true)
   @override
@@ -4603,7 +4668,10 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
   const factory _TutorialUiActionEventModel(
       {required final TutorialCompleteAction action,
       final TutorialUiItem? uiItem,
-      final bool isCompleted}) = _$_TutorialUiActionEventModel;
+      final bool isCompleted,
+      final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
+      final List<TutorialGameEffectModel>
+          acceptedPostEffects}) = _$_TutorialUiActionEventModel;
   const _TutorialUiActionEventModel._() : super._();
 
   factory _TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =
@@ -4620,6 +4688,10 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
   TutorialUiItem? get uiItem;
   @override
   bool get isCompleted;
+  @override
+  Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses;
+  @override
+  List<TutorialGameEffectModel> get acceptedPostEffects;
   @override
   @JsonKey(ignore: true)
   _$$_TutorialUiActionEventModelCopyWith<_$_TutorialUiActionEventModel>

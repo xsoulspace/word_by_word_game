@@ -7,6 +7,11 @@ abstract class TutorialEvent extends Equatable {
 }
 
 @immutable
+class CompleteTutorialEvent extends TutorialEvent {
+  const CompleteTutorialEvent();
+}
+
+@immutable
 class LoadTutorialsProgressEvent extends TutorialEvent {
   const LoadTutorialsProgressEvent({
     required this.progress,
@@ -24,9 +29,18 @@ class StartTutorialEvent extends TutorialEvent {
   final bool shouldStartIfPlayed;
 }
 
+enum NextTutorialEventType {
+  skipToLast,
+  next,
+  previous,
+}
+
 @immutable
 class NextTutorialEvent extends TutorialEvent {
-  const NextTutorialEvent();
+  const NextTutorialEvent({
+    this.action = NextTutorialEventType.next,
+  });
+  final NextTutorialEventType action;
 }
 
 @immutable
@@ -34,9 +48,11 @@ class TutorialUiActionEvent extends TutorialEvent {
   const TutorialUiActionEvent({
     required this.action,
     this.key,
-    this.value = '',
+    this.stringValue = '',
+    this.boolValue = false,
   });
   final TutorialCompleteAction action;
   final TutorialUiItem? key;
-  final String value;
+  final String stringValue;
+  final bool boolValue;
 }

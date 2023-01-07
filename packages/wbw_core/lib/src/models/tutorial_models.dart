@@ -24,7 +24,10 @@ class TutorialEventModel with _$TutorialEventModel {
     /// Effects for the game which applied after this event
     /// [completeActions] resolved.
     @Default([]) final List<TutorialGameEffectModel> gamePostEffects,
-    final TutorialUiItem? uiItem,
+
+    /// The ui item for which the event should be attached and
+    /// highlight is shown
+    final TutorialUiItem? anchorUiItem,
   }) = _TutorialEventModel;
 
   const TutorialEventModel._();
@@ -55,6 +58,21 @@ class TutorialGameEffectModel with _$TutorialGameEffectModel {
       _$TutorialGameEffectModelFromJson(json);
 }
 
+enum PrimitiveBool {
+  kTrue(true),
+  kFalse(false);
+
+  // ignore: avoid_positional_boolean_parameters
+  const PrimitiveBool(this.boolValue);
+  final bool boolValue;
+}
+
+extension BooleanExtension on bool {
+  PrimitiveBool toPrimitiveBool() {
+    return PrimitiveBool.values.firstWhere((final e) => e.boolValue == this);
+  }
+}
+
 @immutable
 @Freezed(
   fromJson: true,
@@ -73,6 +91,9 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
     required final TutorialCompleteAction action,
     final TutorialUiItem? uiItem,
     @Default(false) final bool isCompleted,
+    @Default({})
+        final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
+    @Default([]) final List<TutorialGameEffectModel> acceptedPostEffects,
   }) = _TutorialUiActionEventModel;
 
   const TutorialUiActionEventModel._();

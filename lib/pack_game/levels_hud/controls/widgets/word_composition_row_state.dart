@@ -130,7 +130,7 @@ class WordCompositionState extends LifeState {
     diDto.levelBloc.add(event);
     final tutorialEvent = TutorialUiActionEvent(
       action: TutorialCompleteAction.onEdit,
-      value: event.word.fullWord,
+      stringValue: event.word.fullWord,
     );
     diDto.tutorialBloc.add(tutorialEvent);
   }

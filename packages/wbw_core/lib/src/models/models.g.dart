@@ -423,7 +423,8 @@ _$_TutorialEventModel _$$_TutorialEventModelFromJson(
                   TutorialGameEffectModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      uiItem: $enumDecodeNullable(_$TutorialUiItemEnumMap, json['uiItem']),
+      anchorUiItem:
+          $enumDecodeNullable(_$TutorialUiItemEnumMap, json['anchorUiItem']),
     );
 
 Map<String, dynamic> _$$_TutorialEventModelToJson(
@@ -435,7 +436,7 @@ Map<String, dynamic> _$$_TutorialEventModelToJson(
       'gamePreEffects': instance.gamePreEffects.map((e) => e.toJson()).toList(),
       'gamePostEffects':
           instance.gamePostEffects.map((e) => e.toJson()).toList(),
-      'uiItem': _$TutorialUiItemEnumMap[instance.uiItem],
+      'anchorUiItem': _$TutorialUiItemEnumMap[instance.anchorUiItem],
     };
 
 const _$TutorialUiItemEnumMap = {
@@ -456,6 +457,7 @@ const _$TutorialUiItemEnumMap = {
   TutorialUiItem.gameFuelIndicator: 'gameFuelIndicator',
   TutorialUiItem.refuelActionButton: 'refuelActionButton',
   TutorialUiItem.effectButton: 'effectButton',
+  TutorialUiItem.tutorialBoolDialog: 'tutorialBoolDialog',
 };
 
 _$_TutorialGameEffectModel _$$_TutorialGameEffectModelFromJson(
@@ -473,6 +475,7 @@ Map<String, dynamic> _$$_TutorialGameEffectModelToJson(
 const _$TutorialGameEffectNameEnumMap = {
   TutorialGameEffectName.pauseGame: 'pauseGame',
   TutorialGameEffectName.resumeGame: 'resumeGame',
+  TutorialGameEffectName.completeCurrentTutorial: 'completeCurrentTutorial',
 };
 
 _$_TutorialUiActionEventModel _$$_TutorialUiActionEventModelFromJson(
@@ -481,6 +484,20 @@ _$_TutorialUiActionEventModel _$$_TutorialUiActionEventModelFromJson(
       action: $enumDecode(_$TutorialCompleteActionEnumMap, json['action']),
       uiItem: $enumDecodeNullable(_$TutorialUiItemEnumMap, json['uiItem']),
       isCompleted: json['isCompleted'] as bool? ?? false,
+      boolConsquenses: (json['boolConsquenses'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry(
+                $enumDecode(_$PrimitiveBoolEnumMap, k),
+                (e as List<dynamic>)
+                    .map((e) => TutorialGameEffectModel.fromJson(
+                        e as Map<String, dynamic>))
+                    .toList()),
+          ) ??
+          const {},
+      acceptedPostEffects: (json['acceptedPostEffects'] as List<dynamic>?)
+              ?.map((e) =>
+                  TutorialGameEffectModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_TutorialUiActionEventModelToJson(
@@ -489,11 +506,21 @@ Map<String, dynamic> _$$_TutorialUiActionEventModelToJson(
       'action': _$TutorialCompleteActionEnumMap[instance.action]!,
       'uiItem': _$TutorialUiItemEnumMap[instance.uiItem],
       'isCompleted': instance.isCompleted,
+      'boolConsquenses': instance.boolConsquenses.map((k, e) => MapEntry(
+          _$PrimitiveBoolEnumMap[k]!, e.map((e) => e.toJson()).toList())),
+      'acceptedPostEffects':
+          instance.acceptedPostEffects.map((e) => e.toJson()).toList(),
     };
 
 const _$TutorialCompleteActionEnumMap = {
   TutorialCompleteAction.onClick: 'onClick',
   TutorialCompleteAction.onEdit: 'onEdit',
+  TutorialCompleteAction.onBoolOptionSelected: 'onBoolOptionSelected',
+};
+
+const _$PrimitiveBoolEnumMap = {
+  PrimitiveBool.kTrue: 'kTrue',
+  PrimitiveBool.kFalse: 'kFalse',
 };
 
 _$_TutorialEventsCollectionModel _$$_TutorialEventsCollectionModelFromJson(

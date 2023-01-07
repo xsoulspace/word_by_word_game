@@ -4,6 +4,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/pack_game/dialogs/widgets/widgets.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
 
 class LevelWinDialog extends StatelessWidget {
@@ -18,49 +19,38 @@ class LevelWinDialog extends StatelessWidget {
       (final value) => value.getLiveState(),
     );
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 450,
-      ),
-      child: Card(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+    return DialogScaffold(
+      children: [
+        Text(
+          'Congratulations! You passed this landscape!',
+          style: theme.textTheme.titleLarge,
+        ),
+        uiTheme.verticalBoxes.extraLarge,
+        ...playersState.players.map(
+          (final e) => PlayerProfileTile(player: e),
+        ),
+        uiTheme.verticalBoxes.extraLarge,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              'Congratulations! You passed this landscape!',
-              style: theme.textTheme.titleLarge,
+            TextButton(
+              onPressed: () {
+                AppRouterController.use(context.read).toRoot();
+                context.read<DialogController>().closeDialog();
+              },
+              child: const Text('To Landscapes'),
             ),
-            uiTheme.verticalBoxes.extraLarge,
-            ...playersState.players.map(
-              (final e) => PlayerProfileTile(player: e),
-            ),
-            uiTheme.verticalBoxes.extraLarge,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    AppRouterController.use(context.read).toRoot();
-                    context.read<DialogController>().closeDialog();
-                  },
-                  child: const Text('To Landscapes'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    context
-                        .read<GlobalGameBloc>()
-                        .add(const RestartLevelEvent());
+            TextButton(
+              onPressed: () {
+                context.read<GlobalGameBloc>().add(const RestartLevelEvent());
 
-                    context.read<DialogController>().closeDialog();
-                  },
-                  child: const Text('Start Again'),
-                ),
-              ],
+                context.read<DialogController>().closeDialog();
+              },
+              child: const Text('Start Again'),
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }

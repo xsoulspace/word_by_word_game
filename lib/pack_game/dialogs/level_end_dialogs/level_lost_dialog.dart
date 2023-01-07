@@ -6,6 +6,7 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/pack_game/dialogs/widgets/widgets.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
 
 class LevelLostDialog extends StatelessWidget {
@@ -29,65 +30,54 @@ class LevelLostDialog extends StatelessWidget {
           );
       },
     );
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 450,
-      ),
-      child: Card(
-        child: ListView(
-          shrinkWrap: true,
-          padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+    return DialogScaffold(
+      children: [
+        Text(
+          S.of(context).youHaveLandedInTheNowhere,
+          style: theme.textTheme.titleLarge,
+        ),
+        uiTheme.verticalBoxes.extraLarge,
+        ...players.map(
+          (final e) => Padding(
+            padding: EdgeInsets.only(top: uiTheme.spacing.medium),
+            child: PlayerProfileTile(player: e),
+          ),
+        ),
+        uiTheme.verticalBoxes.extraLarge,
+        if (false)
+          // ignore: dead_code
+          TextButton(
+            onPressed: () {
+              context.read<GlobalGameBloc>().add(const RestartLevelEvent());
+
+              context.read<DialogController>().closeDialog();
+            },
+            child: const Text('Use Score to continue'),
+          ),
+        uiTheme.verticalBoxes.medium,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              S.of(context).youHaveLandedInTheNowhere,
-              style: theme.textTheme.titleLarge,
+            TextButton(
+              onPressed: () {
+                onSendEndLevelEvent();
+                AppRouterController.use(context.read).toRoot();
+                context.read<DialogController>().closeDialog();
+              },
+              child: Text(S.of(context).toLandscapes),
             ),
-            uiTheme.verticalBoxes.extraLarge,
-            ...players.map(
-              (final e) => Padding(
-                padding: EdgeInsets.only(top: uiTheme.spacing.medium),
-                child: PlayerProfileTile(player: e),
-              ),
-            ),
-            uiTheme.verticalBoxes.extraLarge,
-            if (false)
-              // ignore: dead_code
-              TextButton(
-                onPressed: () {
-                  context.read<GlobalGameBloc>().add(const RestartLevelEvent());
+            TextButton(
+              onPressed: () {
+                onSendEndLevelEvent();
+                context.read<GlobalGameBloc>().add(const RestartLevelEvent());
 
-                  context.read<DialogController>().closeDialog();
-                },
-                child: const Text('Use Score to continue'),
-              ),
-            uiTheme.verticalBoxes.medium,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    onSendEndLevelEvent();
-                    AppRouterController.use(context.read).toRoot();
-                    context.read<DialogController>().closeDialog();
-                  },
-                  child: Text(S.of(context).toLandscapes),
-                ),
-                TextButton(
-                  onPressed: () {
-                    onSendEndLevelEvent();
-                    context
-                        .read<GlobalGameBloc>()
-                        .add(const RestartLevelEvent());
-
-                    context.read<DialogController>().closeDialog();
-                  },
-                  child: Text(S.of(context).startAgain),
-                ),
-              ],
+                context.read<DialogController>().closeDialog();
+              },
+              child: Text(S.of(context).startAgain),
             ),
           ],
         ),
-      ),
+      ],
     );
   }
 }
