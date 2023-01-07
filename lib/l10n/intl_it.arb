@@ -169,5 +169,7 @@
   "createNewPlayerTooltip": "Fare clic per creare il profilo per il nuovo giocatore.",
   "createNewPlayerTitle": "Crea profilo per nuovo giocatore.",
   "createNewPlayerBody": "Potrai aggiungere il profilo di questo giocatore a qualsiasi nuova partita.",
-  "createPlayer": "Crea giocatore"
+  "createPlayer": "Crea giocatore",
+  "yes": "Yes",
+  "no": "No"
 }

@@ -10,6 +10,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_end_dialogs.dart';
 import 'package:word_by_word_game/pack_game/dialogs/level_word_suggestion/level_word_suggestion.dart';
+import 'package:word_by_word_game/pack_game/dialogs/tutorial_dialogs/tutorial_dialogs.dart';
 import 'package:word_by_word_game/pack_game/dialogs/widgets/widgets.dart';
 
 part 'dialog_stack_state.dart';
@@ -19,7 +20,8 @@ enum GameDialogType {
   levelLost,
   levelWin,
   levelWordSuggestion,
-  tutorialBool
+  tutorialBool,
+  tutorialOk,
 }
 
 class DialogStack extends HookWidget {
@@ -56,9 +58,10 @@ class DialogStack extends HookWidget {
                   child = const LevelWordSuggestionDialog();
                   break;
                 case GameDialogType.tutorialBool:
-                  // TODO(username): description
-                  throw UnimplementedError();
-                  child = const LevelWordSuggestionDialog();
+                  child = const TutorialBoolDialog();
+                  break;
+                case GameDialogType.tutorialOk:
+                  child = const TutorialOkDialog();
                   break;
               }
 

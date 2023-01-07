@@ -91,6 +91,9 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
       emit(PendingTutorialBlocState(progress: liveState.progress));
     } else {
       final tutorial = liveState.tutorial;
+      final tutorialEvent = tutorial.currentEvent;
+      if (tutorialEvent == null || !tutorialEvent.isCompleted) return;
+
       await notifier.notifyGamePostEffects(tutorial);
       int nextIndex;
       switch (event.action) {
@@ -109,7 +112,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
           break;
       }
 
-      final updatedTutorial = getTutorial().copyWith(
+      final updatedTutorial = tutorial.copyWith(
         currentIndex: nextIndex,
       );
       final newLiveState = LiveTutorialBlocState(
@@ -127,12 +130,25 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
   ) {
     final effectiveState = state;
     if (effectiveState is! LiveTutorialBlocState) return;
-    final currentEvent = effectiveState.tutorial.currentEvent;
+    final tutorial = effectiveState.tutorial;
+    final currentEvent = tutorial.currentEvent;
     if (currentEvent == null) return;
-    diDto.mechanics.tutorial.verifyCompletion(
+    final updatedEvent = diDto.mechanics.tutorial.verifyCompletion(
       tutorialEvent: currentEvent,
       uiEvent: event,
     );
+    final updatedEvents = [...tutorial.events]..[tutorial.currentIndex] =
+        updatedEvent;
+    emit(
+      effectiveState.copyWith(
+        tutorial: tutorial.copyWith(
+          events: updatedEvents,
+        ),
+      ),
+    );
+    if (updatedEvent.isCompleted) {
+      add(const NextTutorialEvent());
+    }
   }
 
   TutorialCollectionsProgressModel getLiveProgress() {

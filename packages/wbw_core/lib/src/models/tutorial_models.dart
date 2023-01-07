@@ -34,6 +34,13 @@ class TutorialEventModel with _$TutorialEventModel {
 
   factory TutorialEventModel.fromJson(final Map<String, dynamic> json) =>
       _$TutorialEventModelFromJson(json);
+
+  bool get isCompleted {
+    for (final action in completeActions) {
+      if (!action.isCompleted) return false;
+    }
+    return true;
+  }
 }
 
 @immutable
@@ -102,6 +109,14 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
     final Map<String, dynamic> json,
   ) =>
       _$TutorialUiActionEventModelFromJson(json);
+  static const tutorialOkDialog = TutorialUiActionEventModel(
+    action: TutorialCompleteAction.onClick,
+    uiItem: TutorialUiItem.tutorialOkDialog,
+  );
+  static const anchoredOkDialog = TutorialUiActionEventModel(
+    action: TutorialCompleteAction.onClick,
+    uiItem: TutorialUiItem.anchoredOkDialog,
+  );
   static const onClickAnywhere = TutorialUiActionEventModel(
     action: TutorialCompleteAction.onClick,
   );

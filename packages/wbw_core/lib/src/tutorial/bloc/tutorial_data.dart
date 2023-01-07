@@ -68,7 +68,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Hello Traveller or Travellers! Would you like to start tutorial?',
+                'Hello Traveller or Travellers! \nWould you like to start tutorial?',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -81,24 +81,20 @@ const _tutorialData = TutorialCollectionsDataModel(
         gamePostEffects: [],
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Your goal is to reach fly across the landscape. You are alone or with your friends is responsible for the aircarft fuel. During the tutorial the balloon will not move to get comfortable with controls.',
+                'Your goal is to reach far end of landscape. \nYou are alone or with your friends is responsible for the aircarft fuel. \n\nDuring the tutorial the balloon will not move to get you comfortable with controls.',
             Languages.ru: '',
             Languages.it: '',
           },
         ),
-        gamePreEffects: [
-          TutorialGameEffectModel(
-            name: TutorialGameEffectName.pauseGame,
-          )
-        ],
+        gamePreEffects: [],
         gamePostEffects: [],
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
@@ -111,7 +107,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         gamePostEffects: [],
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: 'This is current player name.',
@@ -124,7 +120,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         anchorUiItem: TutorialUiItem.yourNameLabel,
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: 'This is current player score.',
@@ -137,25 +133,24 @@ const _tutorialData = TutorialCollectionsDataModel(
         anchorUiItem: TutorialUiItem.yourScoreLabel,
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Every player turn consists from two pahses. First phase is to enter new word.',
+                'Every player turn consists from two pahses. \nFirst phase is to enter new word.',
             Languages.ru: '',
             Languages.it: '',
           },
         ),
         gamePreEffects: [],
         gamePostEffects: [],
-        anchorUiItem: TutorialUiItem.enterWordPhaseFrame,
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'If written word is not found, you can click Add To Dictionary button to add this word to dictionary. Be careful with the word, as it will be saved and cannot be removed.',
+                'If written word is not found, you can click Add To Dictionary button to add this word to dictionary. \n\nBe careful with the word, as it will be saved and cannot be removed.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -165,7 +160,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         anchorUiItem: TutorialUiItem.addToDictionaryButton,
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en: 'If you stuck, you may try word suggestions.',
@@ -180,7 +175,13 @@ const _tutorialData = TutorialCollectionsDataModel(
       TutorialEventModel(
         completeActions: [
           TutorialUiActionEventModel(
+            action: TutorialCompleteAction.idle,
+            uiItem: TutorialUiItem.anchoredIdleDialog,
+            isCompleted: true,
+          ),
+          TutorialUiActionEventModel(
             action: TutorialCompleteAction.onEdit,
+            uiItem: TutorialUiItem.enterWordRight,
           ),
         ],
         localizedMap: LocalizedMap(
@@ -224,7 +225,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'The second phase - Actions & Effects. Action is something that you do. Choose refueling to refuel Balloon.',
+                'The second phase - Actions & Effects. \nAction is something that you do. \n\n Choose refueling to refuel Balloon.',
             Languages.ru: '',
             Languages.it: '',
           },
@@ -243,7 +244,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Effect is how much of the action will be applied. Choose any refueling effect - air balloon will receive 200 points of fuel.',
+                'Effect is how much of the action will be applied. \n\n Choose any refueling effect - air balloon will receive points of fuel.',
             Languages.ru: '',
             Languages.it: '',
           },

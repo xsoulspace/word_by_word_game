@@ -90,11 +90,18 @@ enum TutorialUiItem {
   refuelActionButton,
   effectButton,
   tutorialBoolDialog,
+  tutorialOkDialog,
+
+  /// dialog wihout buttons
+  /// Use this dialog if you expect other action
+  anchoredIdleDialog,
+  anchoredOkDialog
 }
 
 enum TutorialCompleteAction {
   onClick,
   onEdit,
+  idle,
   onBoolOptionSelected,
 }
 

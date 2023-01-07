@@ -22,7 +22,7 @@ class UIDesktopActions extends StatelessWidget {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
           TutorialFrame(
-            highlightPosition: Alignment.centerRight,
+            highlightPosition: Alignment.topLeft,
             uiKey: TutorialUiItem.addToDictionaryButton,
             child: UIAddWordToDictionaryButton(
               onPressed: state.onAddWordToDictionary,
@@ -30,7 +30,7 @@ class UIDesktopActions extends StatelessWidget {
           ),
           uiTheme.verticalBoxes.extraSmall,
           TutorialFrame(
-            highlightPosition: Alignment.centerRight,
+            highlightPosition: Alignment.topLeft,
             uiKey: TutorialUiItem.confirmWordButton,
             child: UIToSelectActionPhaseButton(
               onPressed: state.onToSelectActionPhase,
@@ -75,7 +75,7 @@ class UIMobileActions extends StatelessWidget {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
           TutorialFrame(
-            highlightPosition: Alignment.topCenter,
+            highlightPosition: Alignment.topLeft,
             uiKey: TutorialUiItem.addToDictionaryButton,
             child: UIAddWordToDictionaryButton(
               onPressed: state.onAddWordToDictionary,
@@ -191,10 +191,14 @@ class UiRandomWordIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   @override
   Widget build(final BuildContext context) {
-    return UiIconButton(
-      tooltip: S.of(context).suggestWordButtonTooltip,
-      onPressed: onPressed,
-      icon: UiIcons.idea,
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.suggestWordButton,
+      child: UiIconButton(
+        tooltip: S.of(context).suggestWordButtonTooltip,
+        onPressed: onPressed,
+        icon: UiIcons.idea,
+      ),
     );
   }
 }

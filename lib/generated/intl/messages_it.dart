@@ -77,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "newGame": MessageLookupByLibrary.simpleMessage("Nuovo gioco"),
         "nextPlayer":
             MessageLookupByLibrary.simpleMessage("Prossimo giocatore"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noWordsSuggestions": MessageLookupByLibrary.simpleMessage(
             "Non ci sono suggerimenti di parole :("),
         "notEnoughKnowledgeToRevealWord": MessageLookupByLibrary.simpleMessage(
@@ -127,6 +128,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Questa parola è già scritta. Prova con un\'altra parola."),
         "wordIsNotCorrect": m1,
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
             "Pallone non necessario per l\'approssimazione."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(

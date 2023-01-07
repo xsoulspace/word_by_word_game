@@ -76,16 +76,31 @@ class _DialogStackState extends LifeState {
 
   void _onTutorialChanged(final TutorialBlocState tutorialState) {
     if (tutorialState is! LiveTutorialBlocState) return;
-    final action =
-        tutorialState.tutorial.currentEvent?.completeActions.firstWhereOrNull(
-      (final e) =>
-          e.action == TutorialCompleteAction.onBoolOptionSelected &&
-          e.uiItem == TutorialUiItem.tutorialBoolDialog &&
-          !e.isCompleted,
-    );
-    if (action != null) {
-      _showTutorialBoolDialog();
+    final actions = tutorialState.tutorial.currentEvent?.completeActions;
+    if (actions == null) return;
+    for (final action in actions) {
+      if (action.isCompleted) continue;
+      switch (action.action) {
+        case TutorialCompleteAction.onBoolOptionSelected:
+          if (action.uiItem == TutorialUiItem.tutorialBoolDialog) {
+            _showTutorialBoolDialog();
+            return;
+          }
+          break;
+        case TutorialCompleteAction.onClick:
+          if (action.uiItem == TutorialUiItem.tutorialOkDialog) {
+            _showTutorialOkDialog();
+            return;
+          }
+          break;
+        default:
+          break;
+      }
     }
+  }
+
+  void _showTutorialOkDialog() {
+    dialogType = GameDialogType.tutorialOk;
   }
 
   void _showTutorialBoolDialog() {

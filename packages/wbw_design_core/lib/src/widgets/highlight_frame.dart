@@ -2,6 +2,54 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 
+extension AlignmentPortalExtension on Alignment {
+  Aligned toAnchor() {
+    if (this == Alignment.topLeft) {
+      return const Aligned(
+        follower: Alignment.bottomRight,
+        target: Alignment.topLeft,
+      );
+    } else if (this == Alignment.topRight) {
+      return const Aligned(
+        follower: Alignment.bottomLeft,
+        target: Alignment.topRight,
+      );
+    } else if (this == Alignment.topCenter) {
+      return const Aligned(
+        follower: Alignment.bottomCenter,
+        target: Alignment.topCenter,
+      );
+    } else if (this == Alignment.bottomLeft) {
+      return const Aligned(
+        follower: Alignment.topRight,
+        target: Alignment.bottomLeft,
+      );
+    } else if (this == Alignment.bottomRight) {
+      return const Aligned(
+        follower: Alignment.topLeft,
+        target: Alignment.bottomRight,
+      );
+    } else if (this == Alignment.bottomCenter) {
+      return const Aligned(
+        follower: Alignment.topCenter,
+        target: Alignment.bottomCenter,
+      );
+    } else if (this == Alignment.centerLeft) {
+      return const Aligned(
+        follower: Alignment.centerRight,
+        target: Alignment.centerLeft,
+      );
+    } else if (this == Alignment.centerRight) {
+      return const Aligned(
+        follower: Alignment.centerLeft,
+        target: Alignment.centerRight,
+      );
+    } else {
+      throw UnsupportedError('$this');
+    }
+  }
+}
+
 class HighlightFrame extends StatelessWidget {
   const HighlightFrame({
     required this.highlighted,
@@ -72,59 +120,14 @@ class HighlightFrame extends StatelessWidget {
     }
   }
 
-  Aligned get anchor {
-    if (highlightPosition == Alignment.topLeft) {
-      return const Aligned(
-        follower: Alignment.bottomRight,
-        target: Alignment.topLeft,
-      );
-    } else if (highlightPosition == Alignment.topRight) {
-      return const Aligned(
-        follower: Alignment.bottomLeft,
-        target: Alignment.topRight,
-      );
-    } else if (highlightPosition == Alignment.topCenter) {
-      return const Aligned(
-        follower: Alignment.bottomCenter,
-        target: Alignment.topCenter,
-      );
-    } else if (highlightPosition == Alignment.bottomLeft) {
-      return const Aligned(
-        follower: Alignment.topRight,
-        target: Alignment.bottomLeft,
-      );
-    } else if (highlightPosition == Alignment.bottomRight) {
-      return const Aligned(
-        follower: Alignment.topLeft,
-        target: Alignment.bottomRight,
-      );
-    } else if (highlightPosition == Alignment.bottomCenter) {
-      return const Aligned(
-        follower: Alignment.topCenter,
-        target: Alignment.bottomCenter,
-      );
-    } else if (highlightPosition == Alignment.centerLeft) {
-      return const Aligned(
-        follower: Alignment.centerRight,
-        target: Alignment.centerLeft,
-      );
-    } else if (highlightPosition == Alignment.centerRight) {
-      return const Aligned(
-        follower: Alignment.centerLeft,
-        target: Alignment.centerRight,
-      );
-    } else {
-      throw UnsupportedError('$highlightPosition');
-    }
-  }
-
   @override
   Widget build(final BuildContext context) {
     return PortalTarget(
-      anchor: anchor,
+      anchor: highlightPosition.toAnchor(),
       visible: highlighted,
       portalFollower: Bounce(
         infinite: true,
+        from: 40,
         child: icon,
       ),
       child: GestureDetector(

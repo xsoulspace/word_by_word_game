@@ -17,20 +17,27 @@ class TutorialMechanics {
     required final TutorialEventModel tutorialEvent,
     required final TutorialUiActionEvent uiEvent,
   }) {
-    final completedActions = [...tutorialEvent.completeActions];
-    final index = completedActions.indexWhere(
+    if (tutorialEvent.isCompleted) return tutorialEvent;
+
+    final completeActions = [...tutorialEvent.completeActions];
+    final index = completeActions.indexWhere(
       (final action) => action.action == uiEvent.action,
     );
 
     if (index >= 0) {
-      final event = completedActions[index];
+      final event = completeActions[index];
+      if (event.isCompleted) {
+        return tutorialEvent;
+      }
       void complete() {
-        completedActions[index] = event.copyWith(
+        completeActions[index] = event.copyWith(
           isCompleted: true,
         );
       }
 
       switch (uiEvent.action) {
+        case TutorialCompleteAction.idle:
+          return tutorialEvent;
         case TutorialCompleteAction.onClick:
           if (event.uiItem == uiEvent.key) {
             complete();
@@ -40,7 +47,7 @@ class TutorialMechanics {
           if (event.uiItem == uiEvent.key) {
             final boolValue = uiEvent.boolValue.toPrimitiveBool();
             final postEffects = event.boolConsquenses[boolValue];
-            completedActions[index] = event.copyWith(
+            completeActions[index] = event.copyWith(
               isCompleted: true,
               acceptedPostEffects: [
                 ...event.acceptedPostEffects,
@@ -61,7 +68,7 @@ class TutorialMechanics {
           }
           break;
       }
-      return tutorialEvent.copyWith(completeActions: completedActions);
+      return tutorialEvent.copyWith(completeActions: completeActions);
     } else {
       return tutorialEvent;
     }
