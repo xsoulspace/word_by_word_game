@@ -235,7 +235,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'The second phase - Actions & Effects. \nAction is something that you do. \n\n Choose refueling to refuel Balloon.',
+                'The second phase - Actions & Effects.\n\nAction is something that you do. \n\nChoose Refuel to refuel Balloon.',
             Languages.ru: '',
             Languages.it: '',
           },

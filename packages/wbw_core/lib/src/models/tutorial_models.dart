@@ -174,7 +174,7 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
     );
   }
 
-  bool get isCompleted => currentIndex == (events.length - 1);
+  bool get isCompleted => currentIndex > (events.length - 1);
 
   TutorialEventModel? get currentEvent {
     final index = currentIndex;

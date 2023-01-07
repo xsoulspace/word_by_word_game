@@ -111,7 +111,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
           }
           break;
         case NextTutorialEventType.complete:
-          nextIndex = tutorial.events.length - 1;
+          nextIndex = tutorial.events.length;
           break;
       }
 
@@ -126,7 +126,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
       emit(updatedLiveState);
 
       if (updatedLiveState.tutorial.isCompleted) {
-        emit(PendingTutorialBlocState(progress: liveState.progress));
+        emit(PendingTutorialBlocState(progress: updatedLiveState.progress));
       } else {
         await notifier.notifyGamePreEffects(updatedTutorial);
       }
