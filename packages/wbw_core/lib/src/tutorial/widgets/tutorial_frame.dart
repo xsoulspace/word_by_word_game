@@ -36,18 +36,37 @@ class TutorialFrame extends StatelessWidget {
       final tutorialEvent = tutorialBloc.getTutorialEvent();
       return tutorialEvent.anchorUiItem == uiKey;
     });
-    return PortalTarget(
-      anchor: highlightPosition.toAnchor(),
-      visible: highlighted,
-      portalFollower: const AnchoredTutorialDialog(),
-      child: HighlightFrame(
-        onPressed: () {
-          sendOnClickEvent(context: context, uiKey: uiKey);
-        },
-        highlighted: highlighted,
-        highlightPosition: highlightPosition,
-        child: child,
-      ),
-    );
+    final uiTheme = UiTheme.of(context);
+
+    switch (uiTheme.persistentFormFactors.width) {
+      case WidthFormFactor.desktop:
+      case WidthFormFactor.tablet:
+        return PortalTarget(
+          anchor: highlightPosition.toAnchor(),
+          visible: highlighted,
+          portalFollower: const DesktopAnchoredTutorialDialog(),
+          child: HighlightFrame(
+            onPressed: () {
+              sendOnClickEvent(context: context, uiKey: uiKey);
+            },
+            highlighted: highlighted,
+            highlightPosition: highlightPosition,
+            child: child,
+          ),
+        );
+      case WidthFormFactor.mobile:
+        return PortalTarget(
+          visible: highlighted,
+          portalFollower: const MobileAnchoredTutorialDialog(),
+          child: HighlightFrame(
+            onPressed: () {
+              sendOnClickEvent(context: context, uiKey: uiKey);
+            },
+            highlighted: highlighted,
+            highlightPosition: highlightPosition,
+            child: child,
+          ),
+        );
+    }
   }
 }

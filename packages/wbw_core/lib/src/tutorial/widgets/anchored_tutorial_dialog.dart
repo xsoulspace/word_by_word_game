@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
 import '../../models/models.dart';
@@ -10,12 +11,9 @@ enum AnchoredTutorialDialogType {
   ok,
 }
 
-class AnchoredTutorialDialog extends StatelessWidget {
-  const AnchoredTutorialDialog({super.key});
-  AnchoredTutorialDialogType? getDialogType(
-    final TutorialEventModel tutorialEvent,
-  ) {
-    for (final action in tutorialEvent.completeActions) {
+extension _TutorialEventModelExtension on TutorialEventModel {
+  AnchoredTutorialDialogType? getDialogType() {
+    for (final action in completeActions) {
       switch (action.uiItem) {
         case TutorialUiItem.anchoredIdleDialog:
           return AnchoredTutorialDialogType.idle;
@@ -27,6 +25,10 @@ class AnchoredTutorialDialog extends StatelessWidget {
     }
     return null;
   }
+}
+
+class MobileAnchoredTutorialDialog extends StatelessWidget {
+  const MobileAnchoredTutorialDialog({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -38,13 +40,52 @@ class AnchoredTutorialDialog extends StatelessWidget {
     );
     if (tutorialEvent == null) return const SizedBox();
     Widget child;
-    final dialogType = getDialogType(tutorialEvent);
+    final dialogType = tutorialEvent.getDialogType();
     switch (dialogType) {
       case AnchoredTutorialDialogType.idle:
-        child = AnchoredTutorialIdleDialog(tutorialEvent: tutorialEvent);
+        child = _AnchoredTutorialIdleDialog(tutorialEvent: tutorialEvent);
         break;
       case AnchoredTutorialDialogType.ok:
-        child = AnchoredTutorialOkDialog(tutorialEvent: tutorialEvent);
+        child = _AnchoredTutorialOkDialog(tutorialEvent: tutorialEvent);
+        break;
+      case null:
+        child = const SizedBox();
+    }
+
+    return KeyboardVisibilityBuilder(
+      builder: (final context, final isKeyboardVisible) {
+        if (!isKeyboardVisible) return Center(child: child);
+        return SafeArea(
+          child: Align(
+            alignment: Alignment.topCenter,
+            child: child,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class DesktopAnchoredTutorialDialog extends StatelessWidget {
+  const DesktopAnchoredTutorialDialog({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
+      (final bloc) {
+        if (bloc.state is! LiveTutorialBlocState) return null;
+        return bloc.getTutorialEvent();
+      },
+    );
+    if (tutorialEvent == null) return const SizedBox();
+    Widget child;
+    final dialogType = tutorialEvent.getDialogType();
+    switch (dialogType) {
+      case AnchoredTutorialDialogType.idle:
+        child = _AnchoredTutorialIdleDialog(tutorialEvent: tutorialEvent);
+        break;
+      case AnchoredTutorialDialogType.ok:
+        child = _AnchoredTutorialOkDialog(tutorialEvent: tutorialEvent);
         break;
       case null:
         child = const SizedBox();
@@ -56,10 +97,9 @@ class AnchoredTutorialDialog extends StatelessWidget {
   }
 }
 
-class AnchoredTutorialIdleDialog extends StatelessWidget {
-  const AnchoredTutorialIdleDialog({
+class _AnchoredTutorialIdleDialog extends StatelessWidget {
+  const _AnchoredTutorialIdleDialog({
     required this.tutorialEvent,
-    super.key,
   });
   final TutorialEventModel tutorialEvent;
 
@@ -73,10 +113,9 @@ class AnchoredTutorialIdleDialog extends StatelessWidget {
   }
 }
 
-class AnchoredTutorialOkDialog extends StatelessWidget {
-  const AnchoredTutorialOkDialog({
+class _AnchoredTutorialOkDialog extends StatelessWidget {
+  const _AnchoredTutorialOkDialog({
     required this.tutorialEvent,
-    super.key,
   });
   final TutorialEventModel tutorialEvent;
   @override

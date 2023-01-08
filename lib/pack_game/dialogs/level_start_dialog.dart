@@ -93,7 +93,7 @@ class _DialogScreen extends StatelessWidget {
 
     return SizedBox(
       width: math.min(400, screenSize.width),
-      height: screenSize.height * 0.45,
+      height: math.max(340, screenSize.height * 0.45),
       child: Card(
         child: ValueListenableBuilder(
           valueListenable: widgetUiState.currentViewNotifier,

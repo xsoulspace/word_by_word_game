@@ -68,7 +68,7 @@ class _EasyInState extends State<EasyIn> with SingleTickerProviderStateMixin {
         return Transform.translate(
           offset: Offset(
             0,
-            -10 + animation.value,
+            -15 + animation.value,
           ),
           child: widget.child,
         );
