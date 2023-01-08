@@ -172,5 +172,6 @@
   "createPlayer": "Crea giocatore",
   "yes": "Si",
   "no": "No",
-  "enableTutorial": "Utilizzare il tutorial"
+  "enableTutorial": "Utilizzare il tutorial",
+  "close": "Сhiudere"
 }

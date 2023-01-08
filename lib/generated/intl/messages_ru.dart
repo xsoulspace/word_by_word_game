@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "chooseLandscape": MessageLookupByLibrary.simpleMessage("Выбери Место"),
         "chooseYourCharacter":
             MessageLookupByLibrary.simpleMessage("Выбери своего персонажа"),
+        "close": MessageLookupByLibrary.simpleMessage("Закрыть"),
         "confirm": MessageLookupByLibrary.simpleMessage("Применить"),
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
