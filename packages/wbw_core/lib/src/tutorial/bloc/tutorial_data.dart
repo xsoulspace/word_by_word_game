@@ -172,7 +172,7 @@ const _tutorialData = TutorialCollectionsDataModel(
           value: {
             Languages.en: 'If you stuck, you may try to use word suggestions.',
             Languages.ru:
-                'Если вы застряли, вы можете попробвать использовать случайные слова.',
+                'Если вы застряли, вы можете попробовать использовать случайные слова.',
             Languages.it: '',
           },
         ),

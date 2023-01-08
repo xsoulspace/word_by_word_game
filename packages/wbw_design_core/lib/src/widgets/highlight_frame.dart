@@ -1,6 +1,7 @@
-import 'package:animate_do/animate_do.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+
+import 'animations/easy_in.dart';
 
 extension AlignmentPortalExtension on Alignment {
   Aligned toAnchor() {
@@ -125,9 +126,7 @@ class HighlightFrame extends StatelessWidget {
     return PortalTarget(
       anchor: highlightPosition.toAnchor(),
       visible: highlighted,
-      portalFollower: Bounce(
-        infinite: true,
-        from: 40,
+      portalFollower: EasyIn(
         child: icon,
       ),
       child: GestureDetector(

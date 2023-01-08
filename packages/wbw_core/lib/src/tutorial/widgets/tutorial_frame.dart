@@ -31,6 +31,7 @@ class TutorialFrame extends StatelessWidget {
   Widget build(final BuildContext context) {
     final highlighted =
         context.select<TutorialBloc, bool>((final tutorialBloc) {
+      // return true;
       if (tutorialBloc.state is! LiveTutorialBlocState) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
       return tutorialEvent.anchorUiItem == uiKey;
