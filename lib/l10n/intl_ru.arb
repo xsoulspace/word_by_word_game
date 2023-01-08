@@ -166,5 +166,6 @@
   "createPlayer": "Создать игрока",
   "yes": "Да",
   "no": "Нет",
-  "enableTutorial": "Пройти обучение"
+  "enableTutorial": "Пройти обучение",
+  "close": "Закрыть"
 }
