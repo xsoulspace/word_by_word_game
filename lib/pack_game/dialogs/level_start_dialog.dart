@@ -57,10 +57,10 @@ class LevelStartDialogButton extends HookWidget {
             ),
           ),
           child: PortalTarget(
-            anchor: const Aligned(
-              follower: Alignment.topCenter,
-              target: Alignment.bottomCenter,
-            ),
+            // anchor: const Aligned(
+            //   follower: Alignment.topCenter,
+            //   target: Alignment.bottomCenter,
+            // ),
             portalFollower: Visibility(
               visible: uiState.isVisible,
               child: _DialogScreen(
@@ -90,28 +90,47 @@ class _DialogScreen extends StatelessWidget {
     final colorScheme = theme.colorScheme;
     final screenSize = MediaQuery.of(context).size;
     final widgetUiState = context.read<LevelStartDialogUiState>();
+    final uiState = context.read<LevelStartDialogUiState>();
 
-    return SizedBox(
-      width: math.min(400, screenSize.width),
-      height: math.max(340, screenSize.height * 0.45),
-      child: Card(
-        child: ValueListenableBuilder(
-          valueListenable: widgetUiState.currentViewNotifier,
-          builder: (final context, final currentView, final child) {
-            switch (currentView) {
-              case LevelStartDialogView.choosePlayers:
-                return LevelOptionsScreen(
-                  level: level,
-                  onCreatePlayer: widgetUiState.onCreatePlayer,
-                );
-              case LevelStartDialogView.createPlayer:
-                return CreatePlayerScreen(
-                  onCancel: widgetUiState.onChoosePlayers,
-                  onPlayerCreated: widgetUiState.onPlayerCreated,
-                );
-            }
-          },
-        ),
+    return Center(
+      child: Stack(
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(top: 26.0),
+            child: SizedBox(
+              width: math.min(400, screenSize.width),
+              height: math.max(340, screenSize.height * 0.45),
+              child: Card(
+                child: ValueListenableBuilder(
+                  valueListenable: widgetUiState.currentViewNotifier,
+                  builder: (final context, final currentView, final child) {
+                    switch (currentView) {
+                      case LevelStartDialogView.choosePlayers:
+                        return LevelOptionsScreen(
+                          level: level,
+                          onCreatePlayer: widgetUiState.onCreatePlayer,
+                        );
+                      case LevelStartDialogView.createPlayer:
+                        return CreatePlayerScreen(
+                          onCancel: widgetUiState.onChoosePlayers,
+                          onPlayerCreated: widgetUiState.onPlayerCreated,
+                        );
+                    }
+                  },
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            top: 0,
+            left: 0,
+            child: IconButton(
+              icon: const Icon(Icons.close),
+              tooltip: S.of(context).close,
+              onPressed: uiState.onSwitchDialogVisiblity,
+            ),
+          ),
+        ],
       ),
     );
   }

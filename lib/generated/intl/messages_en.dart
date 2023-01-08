@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Choose a Landscape"),
         "chooseYourCharacter":
             MessageLookupByLibrary.simpleMessage("Choose Your Character"),
+        "close": MessageLookupByLibrary.simpleMessage("Close"),
         "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
