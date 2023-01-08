@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_game/mechanics/score_mechanics.dart';
 
 void main() {
   group('ScoreMechanics', () {

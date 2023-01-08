@@ -5,7 +5,6 @@ import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/level_actions_row.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/word_composition_row.dart';
-import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
 
 class UIDesktopActions extends StatelessWidget {
   const UIDesktopActions({super.key});
@@ -22,12 +21,33 @@ class UIDesktopActions extends StatelessWidget {
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
-          UIAddWordToDictionaryButton(
-            onPressed: state.onAddWordToDictionary,
+          TutorialFrame(
+            highlightPosition: Alignment.topLeft,
+            uiKey: TutorialUiItem.addToDictionaryButton,
+            child: UIAddWordToDictionaryButton(
+              onPressed: () {
+                state.onAddWordToDictionary();
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.addToDictionaryButton,
+                  context: context,
+                );
+              },
+            ),
           ),
           uiTheme.verticalBoxes.extraSmall,
-          UIToSelectActionPhaseButton(
-            onPressed: state.onToSelectActionPhase,
+          TutorialFrame(
+            highlightPosition: Alignment.topLeft,
+            uiKey: TutorialUiItem.confirmWordButton,
+            child: UiConfirmWordButton(
+              onPressed: () {
+                state.onToSelectActionPhase();
+
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.confirmWordButton,
+                  context: context,
+                );
+              },
+            ),
           ),
         ]);
         break;
@@ -35,8 +55,19 @@ class UIDesktopActions extends StatelessWidget {
         children.addAll([
           const UiDesktopEffectFrame(),
           uiTheme.verticalBoxes.medium,
-          UIToEndTurnButton(
-            onPressed: state.onToEndTurn,
+          TutorialFrame(
+            highlightPosition: Alignment.topLeft,
+            uiKey: TutorialUiItem.applyAndEndTurnButton,
+            child: UIToEndTurnButton(
+              onPressed: () {
+                state.onToEndTurn();
+
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.applyAndEndTurnButton,
+                  context: context,
+                );
+              },
+            ),
           ),
         ]);
         break;
@@ -63,22 +94,46 @@ class UIMobileActions extends StatelessWidget {
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
-          UIAddWordToDictionaryButton(
-            onPressed: state.onAddWordToDictionary,
+          TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.addToDictionaryButton,
+            child: UIAddWordToDictionaryButton(
+              onPressed: state.onAddWordToDictionary,
+            ),
           ),
           if (DeviceRuntimeType.isMobile)
             uiTheme.verticalBoxes.small
           else
             uiTheme.verticalBoxes.medium,
-          UIToSelectActionPhaseButton(
-            onPressed: state.onToSelectActionPhase,
+          TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.confirmWordButton,
+            child: UiConfirmWordButton(
+              onPressed: () {
+                state.onToSelectActionPhase();
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.confirmWordButton,
+                  context: context,
+                );
+              },
+            ),
           ),
         ]);
         break;
       case LevelPlayerPhaseType.selectAction:
         children.addAll([
-          UIToEndTurnButton(
-            onPressed: state.onToEndTurn,
+          TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.applyAndEndTurnButton,
+            child: UIToEndTurnButton(
+              onPressed: () {
+                state.onToEndTurn();
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.applyAndEndTurnButton,
+                  context: context,
+                );
+              },
+            ),
           ),
         ]);
         break;
@@ -111,8 +166,8 @@ class UIAddWordToDictionaryButton extends StatelessWidget {
   }
 }
 
-class UIToSelectActionPhaseButton extends StatelessWidget {
-  const UIToSelectActionPhaseButton({
+class UiConfirmWordButton extends StatelessWidget {
+  const UiConfirmWordButton({
     required this.onPressed,
     super.key,
   });
@@ -168,10 +223,14 @@ class UiRandomWordIconButton extends StatelessWidget {
   final VoidCallback? onPressed;
   @override
   Widget build(final BuildContext context) {
-    return UiIconButton(
-      tooltip: S.of(context).suggestWordButtonTooltip,
-      onPressed: onPressed,
-      icon: UiIcons.idea,
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.suggestWordButton,
+      child: UiIconButton(
+        tooltip: S.of(context).suggestWordButtonTooltip,
+        onPressed: onPressed,
+        icon: UiIcons.idea,
+      ),
     );
   }
 }
@@ -185,12 +244,16 @@ class UiPauseIconButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Hero(
-      tag: const ValueKey('UiPauseIconButton'),
-      child: UiIconButton(
-        tooltip: S.of(context).mainMenuButtonTooltip,
-        onPressed: onPressed,
-        icon: UiIcons.pause,
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.pauseIconButton,
+      child: Hero(
+        tag: const ValueKey('UiPauseIconButton'),
+        child: UiIconButton(
+          tooltip: S.of(context).mainMenuButtonTooltip,
+          onPressed: onPressed,
+          icon: UiIcons.pause,
+        ),
       ),
     );
   }

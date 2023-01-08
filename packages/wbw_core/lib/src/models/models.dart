@@ -19,5 +19,7 @@ part 'player_character_model.dart';
 part 'player_profile_model.dart';
 part 'resources_model.dart';
 part 'score_model.dart';
+part 'tutorial_models.dart';
+part 'tutorial_types.dart';
 part 'typedefs.dart';
 part 'world_time.dart';

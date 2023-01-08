@@ -163,5 +163,8 @@
   "createNewPlayerTooltip": "Нажми, чтобы создать профиль нового игрока.",
   "createNewPlayerTitle": "Создай профиль нового игрока.",
   "createNewPlayerBody": "Профиль этого игрока можно будет добавить в любую новую игру.",
-  "createPlayer": "Создать игрока"
+  "createPlayer": "Создать игрока",
+  "yes": "Да",
+  "no": "Нет",
+  "enableTutorial": "Пройти обучение"
 }

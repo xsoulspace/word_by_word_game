@@ -47,6 +47,12 @@ class LevelOptionsScreen extends HookWidget {
           ),
         ),
         uiTheme.verticalBoxes.medium,
+        CheckboxListTile(
+          value: widgetUxState.shouldStartTutorial,
+          onChanged: widgetUxState.changeShouldStartTutorial,
+          title: Text(S.of(context).enableTutorial),
+        ),
+        uiTheme.verticalBoxes.medium,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
