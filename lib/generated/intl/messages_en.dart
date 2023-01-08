@@ -43,6 +43,8 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
         "cookFood": MessageLookupByLibrary.simpleMessage("Cook Food"),
+        "createNewFirstPlayerTitle": MessageLookupByLibrary.simpleMessage(
+            "Create player profile to start a game."),
         "createNewPlayerBody": MessageLookupByLibrary.simpleMessage(
             "You will be able to add this player\'s profile to any new game."),
         "createNewPlayerTitle": MessageLookupByLibrary.simpleMessage(
@@ -55,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("score"),
         "effect": MessageLookupByLibrary.simpleMessage("Effect"),
+        "enableTutorial": MessageLookupByLibrary.simpleMessage("Use Tutorial"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Finish game"),
         "highscore": MessageLookupByLibrary.simpleMessage("highscore"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("beginning"),
@@ -73,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
         "nextPlayer": MessageLookupByLibrary.simpleMessage("Next player"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noWordsSuggestions": MessageLookupByLibrary.simpleMessage(
             "There is no words suggestions :("),
         "notEnoughKnowledgeToRevealWord": MessageLookupByLibrary.simpleMessage(
@@ -118,6 +122,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "This word already written. Try another word."),
         "wordIsNotCorrect": m1,
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
         "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
             "You don\'t have enough points to apply."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(

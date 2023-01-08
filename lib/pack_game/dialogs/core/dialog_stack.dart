@@ -1,17 +1,27 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_lost_dialog.dart';
-import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_win_dialog.dart';
+import 'package:word_by_word_game/pack_game/dialogs/level_end_dialogs/level_end_dialogs.dart';
 import 'package:word_by_word_game/pack_game/dialogs/level_word_suggestion/level_word_suggestion.dart';
-import 'package:word_by_word_game/pack_game/dialogs/widgets/dialog_barrier.dart';
+import 'package:word_by_word_game/pack_game/dialogs/tutorial_dialogs/tutorial_dialogs.dart';
+import 'package:word_by_word_game/pack_game/dialogs/widgets/widgets.dart';
 
 part 'dialog_stack_state.dart';
 
-enum GameDialogType { none, levelLost, levelWin, levelWordSuggestion }
+enum GameDialogType {
+  none,
+  levelLost,
+  levelWin,
+  levelWordSuggestion,
+  tutorialBool,
+  tutorialOk,
+}
 
 class DialogStack extends HookWidget {
   const DialogStack({
@@ -45,6 +55,12 @@ class DialogStack extends HookWidget {
                   break;
                 case GameDialogType.levelWordSuggestion:
                   child = const LevelWordSuggestionDialog();
+                  break;
+                case GameDialogType.tutorialBool:
+                  child = const TutorialBoolDialog();
+                  break;
+                case GameDialogType.tutorialOk:
+                  child = const TutorialOkDialog();
                   break;
               }
 

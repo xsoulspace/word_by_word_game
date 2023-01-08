@@ -2,7 +2,8 @@ import 'dart:math' as math;
 
 import 'package:english_words/english_words.dart' as english_words;
 import 'package:russian_words/russian_words.dart' as russian_words;
-import 'package:wbw_core/wbw_core.dart';
+
+import '../models/models.dart';
 
 extension RandomListItem<T> on List<T> {
   T randomItem() {

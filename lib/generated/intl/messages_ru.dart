@@ -41,6 +41,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "congratulations": MessageLookupByLibrary.simpleMessage("Поздравляем!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Продолжить "),
         "cookFood": MessageLookupByLibrary.simpleMessage("Еда"),
+        "createNewFirstPlayerTitle": MessageLookupByLibrary.simpleMessage(
+            "Создай профиль игрока чтобы начать игру."),
         "createNewPlayerBody": MessageLookupByLibrary.simpleMessage(
             "Профиль этого игрока можно будет добавить в любую новую игру."),
         "createNewPlayerTitle": MessageLookupByLibrary.simpleMessage(
@@ -54,6 +56,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Привет! Спасибо за интерес к игре и надеюсь она понравилась:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("результат"),
         "effect": MessageLookupByLibrary.simpleMessage("Эффект"),
+        "enableTutorial":
+            MessageLookupByLibrary.simpleMessage("Пройти обучение"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Завершить игру"),
         "highscore": MessageLookupByLibrary.simpleMessage("лучший результат"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("начало"),
@@ -71,6 +75,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "menuLanguage": MessageLookupByLibrary.simpleMessage("Язык "),
         "menuNewGame": MessageLookupByLibrary.simpleMessage("Заново "),
         "newGame": MessageLookupByLibrary.simpleMessage("Новая игра"),
+        "no": MessageLookupByLibrary.simpleMessage("Нет"),
         "noWordsSuggestions": MessageLookupByLibrary.simpleMessage(
             "Слов-подсказок не осталось :("),
         "notEnoughKnowledgeToRevealWord": MessageLookupByLibrary.simpleMessage(
@@ -119,6 +124,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Это слово уже было. Попробуй другое слово."),
         "wordIsNotCorrect": m1,
+        "yes": MessageLookupByLibrary.simpleMessage("Да"),
         "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
             "Недостаточно очков знаний для применения."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
