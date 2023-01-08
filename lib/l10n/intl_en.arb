@@ -172,5 +172,6 @@
   "createPlayer": "Create player",
   "yes": "Yes",
   "no": "No",
-  "enableTutorial": "Use Tutorial"
+  "enableTutorial": "Use Tutorial",
+  "close": "Close"
 }
