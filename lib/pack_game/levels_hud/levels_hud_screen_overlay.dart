@@ -50,7 +50,12 @@ class LevelsHudScreenOverlay extends HookWidget {
             right: 20,
             child: IconButton(
               onPressed: () {
-                context.read<MechanicsCollection>().worldTime.pause();
+                final worldTime = context.read<MechanicsCollection>().worldTime;
+                if (worldTime.paused) {
+                  worldTime.resume();
+                } else {
+                  worldTime.pause();
+                }
               },
               color: theme.colorScheme.errorContainer,
               icon: const Icon(Icons.motion_photos_pause_outlined),

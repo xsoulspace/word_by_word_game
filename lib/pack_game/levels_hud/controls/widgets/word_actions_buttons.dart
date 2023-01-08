@@ -95,7 +95,7 @@ class UIMobileActions extends StatelessWidget {
       case LevelPlayerPhaseType.entryWord:
         children.addAll([
           TutorialFrame(
-            highlightPosition: Alignment.topRight,
+            highlightPosition: Alignment.topCenter,
             uiKey: TutorialUiItem.addToDictionaryButton,
             child: UIAddWordToDictionaryButton(
               onPressed: state.onAddWordToDictionary,
@@ -106,7 +106,7 @@ class UIMobileActions extends StatelessWidget {
           else
             uiTheme.verticalBoxes.medium,
           TutorialFrame(
-            highlightPosition: Alignment.topLeft,
+            highlightPosition: Alignment.topCenter,
             uiKey: TutorialUiItem.confirmWordButton,
             child: UiConfirmWordButton(
               onPressed: () {

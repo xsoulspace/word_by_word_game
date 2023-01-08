@@ -12,7 +12,7 @@ class EasyIn extends StatefulWidget {
 }
 
 /// State class, where the magic happens
-class _EasyInState extends State<EasyIn> with TickerProviderStateMixin {
+class _EasyInState extends State<EasyIn> with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _animation;
   static const _kDebugAnimation = false;
@@ -47,8 +47,6 @@ class _EasyInState extends State<EasyIn> with TickerProviderStateMixin {
   }
 
   void disposeController() {
-    _controller = null;
-    _animation = null;
     _controller?.dispose();
   }
 
