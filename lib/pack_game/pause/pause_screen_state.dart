@@ -1,6 +1,6 @@
 part of 'pause_screen.dart';
 
-bool get kLinksAreAllowed => true;
+bool get kLinksAreAllowed => false;
 
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
