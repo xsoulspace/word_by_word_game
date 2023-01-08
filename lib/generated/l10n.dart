@@ -720,6 +720,16 @@ class S {
     );
   }
 
+  /// `Create player profile to start a game.`
+  String get createNewFirstPlayerTitle {
+    return Intl.message(
+      'Create player profile to start a game.',
+      name: 'createNewFirstPlayerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Create profile for new player.`
   String get createNewPlayerTitle {
     return Intl.message(
@@ -745,6 +755,36 @@ class S {
     return Intl.message(
       'Create player',
       name: 'createPlayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Tutorial`
+  String get enableTutorial {
+    return Intl.message(
+      'Use Tutorial',
+      name: 'enableTutorial',
       desc: '',
       args: [],
     );

@@ -22,6 +22,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.7.0"
+  animate_do:
+    dependency: "direct main"
+    description:
+      name: animate_do
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2"
   archive:
     dependency: transitive
     description:
@@ -233,7 +240,7 @@ packages:
     source: hosted
     version: "1.1.0"
   english_words:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: english_words
       url: "https://pub.dartlang.org"
@@ -869,7 +876,7 @@ packages:
     source: hosted
     version: "4.1.0"
   russian_words:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: russian_words
       url: "https://pub.dartlang.org"
@@ -882,13 +889,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.27.7"
-  screen_retriever:
-    dependency: transitive
-    description:
-      name: screen_retriever
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.1.4"
   sembast:
     dependency: "direct main"
     description:
@@ -1195,13 +1195,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.7.0"
-  window_manager:
-    dependency: "direct main"
-    description:
-      name: window_manager
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "0.2.8"
   xdg_directories:
     dependency: transitive
     description:

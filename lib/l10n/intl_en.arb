@@ -166,7 +166,11 @@
   "youDontHaveEnoughPoints": "You don't have enough points to apply.",
   "effect": "Effect",
   "createNewPlayerTooltip": "Click to create profile for new player.",
+  "createNewFirstPlayerTitle": "Create player profile to start a game.",
   "createNewPlayerTitle": "Create profile for new player.",
   "createNewPlayerBody": "You will be able to add this player's profile to any new game.",
-  "createPlayer": "Create player"
+  "createPlayer": "Create player",
+  "yes": "Yes",
+  "no": "No",
+  "enableTutorial": "Use Tutorial"
 }

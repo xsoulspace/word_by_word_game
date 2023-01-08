@@ -19,6 +19,8 @@ class CreatePlayerScreen extends HookWidget {
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final globalGameBloc = context.watch<GlobalGameBloc>();
+    final liveState = globalGameBloc.getLiveState();
+    final isPlayersEmpty = liveState.playersCollection.isEmpty;
     final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     final widgetState = usePlayerProfileCreatorState(read: context.read);
@@ -28,7 +30,9 @@ class CreatePlayerScreen extends HookWidget {
       children: [
         uiTheme.verticalBoxes.medium,
         Text(
-          S.of(context).createNewPlayerTitle,
+          isPlayersEmpty
+              ? S.of(context).createNewFirstPlayerTitle
+              : S.of(context).createNewPlayerTitle,
           style: theme.textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
@@ -57,11 +61,12 @@ class CreatePlayerScreen extends HookWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            TextButton.icon(
-              onPressed: onCancel,
-              icon: const Icon(Icons.arrow_back_rounded),
-              label: Text(S.of(context).back),
-            ),
+            if (!isPlayersEmpty)
+              TextButton.icon(
+                onPressed: onCancel,
+                icon: const Icon(Icons.arrow_back_rounded),
+                label: Text(S.of(context).back),
+              ),
             UiTextButton.text(
               text: S.of(context).createPlayer,
               isLongButton: true,

@@ -1,6 +1,6 @@
 part of 'pause_screen.dart';
 
-bool get linksAreAllowed => true;
+bool get kLinksAreAllowed => true;
 
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
@@ -40,12 +40,8 @@ class PauseScreenState extends ContextfulLifeState {
   void onContinue({
     required final LevelModelId id,
   }) {
+    diDto.globalGameBloc.add(const StartPlayingLevelEvent());
     diDto.appRouterController.toPlayableLevel(id: id);
-    diDto.mechanics.worldTime.resume();
-  }
-
-  void onToLevel(final TemplateLevelModel level) {
-    diDto.appRouterController.toPlayableLevel(id: level.id);
   }
 
   void onToPlayersAndHighscore() {
@@ -80,7 +76,7 @@ class PauseScreenState extends ContextfulLifeState {
             Text(s.creatingGame),
             uiTheme.verticalBoxes.medium,
             Visibility(
-              visible: linksAreAllowed,
+              visible: kLinksAreAllowed,
               child: TextButton(
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -93,7 +89,7 @@ class PauseScreenState extends ContextfulLifeState {
             ),
             uiTheme.verticalBoxes.medium,
             Visibility(
-              visible: linksAreAllowed,
+              visible: kLinksAreAllowed,
               child: TextButton(
                 onPressed: () =>
                     launchUrlString('https://boosty.to/arenukvern'),
@@ -103,7 +99,7 @@ class PauseScreenState extends ContextfulLifeState {
                 ),
               ),
             ),
-            uiTheme.verticalBoxes.medium,
+            uiTheme.verticalBoxes.large,
             Text(s.thankYou),
           ],
         ),
@@ -119,7 +115,7 @@ class PauseScreenState extends ContextfulLifeState {
       width: 32,
       height: 32,
     );
-    if (linksAreAllowed) {
+    if (kLinksAreAllowed) {
       showAboutDialog(
         applicationName: 'Word By Word',
         applicationIcon: icon,
@@ -162,9 +158,11 @@ class PauseScreenState extends ContextfulLifeState {
                 uiTheme.verticalBoxes.medium,
                 Text(s.creatingGame),
                 uiTheme.verticalBoxes.large,
-                UiTextButton.text(
+                const Text('Made with Flutter & Flame Engine.'),
+                uiTheme.verticalBoxes.large,
+                TextButton(
                   onPressed: () => Navigator.maybePop(context),
-                  text: S.of(context).ok,
+                  child: Text(S.of(context).ok),
                 )
               ],
             );

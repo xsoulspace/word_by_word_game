@@ -22,7 +22,6 @@ class ControlsWidget extends HookWidget {
         break;
       case WidthFormFactor.mobile:
         child = const _MobileControlsWidget();
-
         break;
     }
     return Provider(

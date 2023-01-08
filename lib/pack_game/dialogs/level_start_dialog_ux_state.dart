@@ -3,9 +3,13 @@ part of 'level_start_dialog.dart';
 class _LevelStartDialogUxStateDiDto {
   _LevelStartDialogUxStateDiDto.use(final Locator read)
       : appRouterController = AppRouterController.use(read),
-        globalGameBloc = read();
+        globalGameBloc = read(),
+        mechanics = read(),
+        tutorialBloc = read();
   final AppRouterController appRouterController;
   final GlobalGameBloc globalGameBloc;
+  final TutorialBloc tutorialBloc;
+  final MechanicsCollection mechanics;
 }
 
 LevelStartDialogUxState _useLevelStartDialogUxState({
@@ -37,6 +41,11 @@ class LevelStartDialogUxState extends LifeState {
     super.initState();
     final liveState = diDto.globalGameBloc.getLiveState();
     characterId = liveState.playersCharacters.first.id;
+    final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
+      progress: diDto.tutorialBloc.getLiveProgress(),
+      tutorial: TutorialCollectionsName.levelIntroduction,
+    );
+    shouldStartTutorial = !isTutorialPlayed;
   }
 
   bool checkIsCharacterSelected(final PlayerCharacterModel character) =>
@@ -64,6 +73,13 @@ class LevelStartDialogUxState extends LifeState {
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
     diDto.globalGameBloc.add(CreatePlayerProfileEvent(profile: profile));
     onPlayerSelected(profile);
+  }
+
+  bool shouldStartTutorial = false;
+  // ignore: avoid_positional_boolean_parameters
+  void changeShouldStartTutorial(final bool? isTutorialEnabled) {
+    shouldStartTutorial = isTutorialEnabled ?? false;
+    setState();
   }
 
   void onPlay() {
@@ -98,7 +114,9 @@ class LevelStartDialogUxState extends LifeState {
       id: templateLevel.id,
     );
 
-    diDto.globalGameBloc.add(InitGlobalGameLevelEvent(levelModel: level));
+    diDto.globalGameBloc
+      ..add(InitGlobalGameLevelEvent(levelModel: level))
+      ..add(StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial));
     diDto.appRouterController.toPlayableLevel(id: level.id);
   }
 

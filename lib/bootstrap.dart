@@ -5,8 +5,6 @@ import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:window_manager/window_manager.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 
@@ -40,20 +38,6 @@ Future<void> bootstrap(
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
-  if (DeviceRuntimeType.isNativeDesktop) {
-    await windowManager.ensureInitialized();
-
-    const windowOptions = WindowOptions(
-      backgroundColor: Colors.transparent,
-      skipTaskbar: false,
-      titleBarStyle: TitleBarStyle.hidden,
-    );
-
-    await windowManager.waitUntilReadyToShow(windowOptions, () async {
-      await windowManager.show();
-      await windowManager.focus();
-    });
-  }
   final firebaseIntializer = FirebaseInitializer();
   await firebaseIntializer.onLoad();
 
