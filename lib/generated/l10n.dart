@@ -220,10 +220,10 @@ class S {
     );
   }
 
-  /// `Create`
+  /// `Create Profile`
   String get createProfile {
     return Intl.message(
-      'Create',
+      'Create Profile',
       name: 'createProfile',
       desc: '',
       args: [],
@@ -340,6 +340,26 @@ class S {
     );
   }
 
+  /// `Confirm`
+  String get confirm {
+    return Intl.message(
+      'Confirm',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Apply & End Turn`
+  String get applyAndEndTurn {
+    return Intl.message(
+      'Apply & End Turn',
+      name: 'applyAndEndTurn',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `beginning`
   String get hintAddBeginning {
     return Intl.message(
@@ -390,10 +410,10 @@ class S {
     );
   }
 
-  /// `For any bugs or ideas please send your feedback to idea@xsoulspace.dev`
+  /// `If you have an idea, improvements, or bugs join Discord server.`
   String get sendFeedback {
     return Intl.message(
-      'For any bugs or ideas please send your feedback to idea@xsoulspace.dev',
+      'If you have an idea, improvements, or bugs join Discord server.',
       name: 'sendFeedback',
       desc: '',
       args: [],
@@ -600,11 +620,171 @@ class S {
     );
   }
 
-  /// `Add to dictionary`
+  /// `Select Action`
+  String get selectAction {
+    return Intl.message(
+      'Select Action',
+      name: 'selectAction',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cook Food`
+  String get cookFood {
+    return Intl.message(
+      'Cook Food',
+      name: 'cookFood',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refuel Balloon`
+  String get refuelStorage {
+    return Intl.message(
+      'Refuel Balloon',
+      name: 'refuelStorage',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add to Dictionary`
   String get addToDictionary {
     return Intl.message(
-      'Add to dictionary',
+      'Add to Dictionary',
       name: 'addToDictionary',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to get random word based on current letters.`
+  String get suggestWordButtonTooltip {
+    return Intl.message(
+      'Click to get random word based on current letters.',
+      name: 'suggestWordButtonTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to open menu (current progress will be saved).`
+  String get mainMenuButtonTooltip {
+    return Intl.message(
+      'Click to open menu (current progress will be saved).',
+      name: 'mainMenuButtonTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Your current points.`
+  String get yourCurrentHighcoreTooltip {
+    return Intl.message(
+      'Your current points.',
+      name: 'yourCurrentHighcoreTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You don't have enough points to apply.`
+  String get youDontHaveEnoughPoints {
+    return Intl.message(
+      'You don\'t have enough points to apply.',
+      name: 'youDontHaveEnoughPoints',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Effect`
+  String get effect {
+    return Intl.message(
+      'Effect',
+      name: 'effect',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Click to create profile for new player.`
+  String get createNewPlayerTooltip {
+    return Intl.message(
+      'Click to create profile for new player.',
+      name: 'createNewPlayerTooltip',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create player profile to start a game.`
+  String get createNewFirstPlayerTitle {
+    return Intl.message(
+      'Create player profile to start a game.',
+      name: 'createNewFirstPlayerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create profile for new player.`
+  String get createNewPlayerTitle {
+    return Intl.message(
+      'Create profile for new player.',
+      name: 'createNewPlayerTitle',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You will be able to add this player's profile to any new game.`
+  String get createNewPlayerBody {
+    return Intl.message(
+      'You will be able to add this player\'s profile to any new game.',
+      name: 'createNewPlayerBody',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create player`
+  String get createPlayer {
+    return Intl.message(
+      'Create player',
+      name: 'createPlayer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Yes`
+  String get yes {
+    return Intl.message(
+      'Yes',
+      name: 'yes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No`
+  String get no {
+    return Intl.message(
+      'No',
+      name: 'no',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Use Tutorial`
+  String get enableTutorial {
+    return Intl.message(
+      'Use Tutorial',
+      name: 'enableTutorial',
       desc: '',
       args: [],
     );

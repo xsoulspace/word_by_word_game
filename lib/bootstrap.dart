@@ -2,15 +2,18 @@ import 'dart:async';
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
-import 'package:flame/flame.dart';
-import 'package:flutter/widgets.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
+import 'package:word_by_word_game/pack_core/pack_core.dart';
 
 class AppBlocObserver extends BlocObserver {
   @override
+  // ignore: unnecessary_overrides
   void onChange(final BlocBase bloc, final Change change) {
     super.onChange(bloc, change);
-    log('onChange(${bloc.runtimeType}, $change)');
+    // log('onChange(${bloc.runtimeType}, $change)');
   }
 
   @override
@@ -24,14 +27,30 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap(final Widget Function() builder) async {
+Future<void> bootstrap(
+  final Widget Function({
+    required AppServicesProviderDiDto servicesDiDto,
+  })
+      builder,
+) async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Flame.device.fullScreen();
-  final analyticsService = AnalyticsService();
-  await analyticsService.onLoad();
+  LicenseRegistry.addLicense(() async* {
+    final license = await rootBundle.loadString('google_fonts/OFL.txt');
+    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+  });
+  final firebaseIntializer = FirebaseInitializer();
+  await firebaseIntializer.onLoad();
+
+  // await Flame.device.fullScreen();
+
+  final analyticsNotifier = AnalyticsNotifier();
+  await analyticsNotifier.onLoad();
   Bloc.observer = AppBlocObserver();
+  final servicesDiDto = AppServicesProviderDiDto(
+    analyticsNotifier: analyticsNotifier,
+  );
   runZonedGuarded(
-    () => runApp(builder()),
-    analyticsService.recordError,
+    () => runApp(builder(servicesDiDto: servicesDiDto)),
+    analyticsNotifier.recordError,
   );
 }

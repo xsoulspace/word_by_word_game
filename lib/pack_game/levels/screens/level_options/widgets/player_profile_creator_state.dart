@@ -5,7 +5,7 @@ class PlayerProfileCreatorDiDto {
   PlayerProfileCreatorDiDto.use(final Locator read);
 }
 
-PlayerProfileCreatorState _usePlayerProfileCreatorState({
+PlayerProfileCreatorState usePlayerProfileCreatorState({
   required final Locator read,
 }) =>
     use(

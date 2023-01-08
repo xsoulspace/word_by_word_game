@@ -40,7 +40,7 @@
   "returnToLandscapes": "Return To Landscapes",
   "about": "Credits",
   "username": "Username",
-  "createProfile": "Create",
+  "createProfile": "Create Profile",
   "previousWord": "Previous Word:",
   "settings": "Settings",
   "selectPlayers": "Select the Players",
@@ -68,6 +68,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "confirm": "Confirm",
+  "applyAndEndTurn": "Apply & End Turn",
   "hintAddBeginning": "beginning",
   "@hintAddBeginning": {
     "type": "text",
@@ -93,7 +95,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "For any bugs or ideas please send your feedback to idea@xsoulspace.dev",
+  "sendFeedback": "If you have an idea, improvements, or bugs join Discord server.",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
@@ -150,9 +152,25 @@
     "type": "text",
     "placeholders": {}
   },
-  "addToDictionary": "Add to dictionary",
+  "selectAction": "Select Action",
+  "cookFood": "Cook Food",
+  "refuelStorage": "Refuel Balloon",
+  "addToDictionary": "Add to Dictionary",
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "suggestWordButtonTooltip": "Click to get random word based on current letters.",
+  "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
+  "yourCurrentHighcoreTooltip": "Your current points.",
+  "youDontHaveEnoughPoints": "You don't have enough points to apply.",
+  "effect": "Effect",
+  "createNewPlayerTooltip": "Click to create profile for new player.",
+  "createNewFirstPlayerTitle": "Create player profile to start a game.",
+  "createNewPlayerTitle": "Create profile for new player.",
+  "createNewPlayerBody": "You will be able to add this player's profile to any new game.",
+  "createPlayer": "Create player",
+  "yes": "Yes",
+  "no": "No",
+  "enableTutorial": "Use Tutorial"
 }

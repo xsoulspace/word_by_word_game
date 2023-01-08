@@ -3,7 +3,6 @@ import 'dictionary_persistence_service.dart';
 import 'game_persistence_service.dart';
 import 'local_data_service.dart';
 
-export 'analytics_service.dart';
 export 'app_settings_persistence_service.dart';
 export 'game_persistence_service.dart';
 

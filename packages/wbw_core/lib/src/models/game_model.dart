@@ -40,6 +40,8 @@ class GameModel with _$GameModel {
     /// Global players statistics and data.
     @Default([]) final List<PlayerProfileModel> playersCollection,
     @Default([]) final List<PlayerCharacterModel> playersCharacters,
+    @Default(TutorialCollectionsProgressModel.empty)
+        final TutorialCollectionsProgressModel tutorialProgress,
   }) = _GameModel;
   const GameModel._();
   factory GameModel.fromJson(final Map<String, dynamic> json) =>

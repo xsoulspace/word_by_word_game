@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_game/mechanics/score_mechanics.dart';
 
 void main() {
   group('ScoreMechanics', () {
@@ -59,7 +58,8 @@ void main() {
       );
     });
     test('checkPlayerAbilityToDecrease - has no ability', () {
-      final isAbleToDecrease = scoreMechanics.checkPlayerAbilityToDecrease(
+      final isAbleToDecrease =
+          scoreMechanics.checkPlayerAbilityToDecreaseLetters(
         player: player,
       );
 
@@ -69,11 +69,12 @@ void main() {
       );
     });
     test('checkPlayerAbilityToDecrease - has ability', () {
-      final isAbleToDecrease = scoreMechanics.checkPlayerAbilityToDecrease(
+      final isAbleToDecrease =
+          scoreMechanics.checkPlayerAbilityToDecreaseLetters(
         player: player.copyWith(
           highscore: player.highscore.copyWith(
             score: ScoreModel(
-              value: kLetterDecreaseCost.toDouble(),
+              value: kLetterDecreaseCost,
             ),
           ),
         ),

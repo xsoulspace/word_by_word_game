@@ -82,9 +82,12 @@ class $GoogleFontsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  $AssetsImagesButtonsGen get buttons => const $AssetsImagesButtonsGen();
   $AssetsImagesCharactersGen get characters =>
       const $AssetsImagesCharactersGen();
+  $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
   $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
+  $AssetsImagesUiFramesGen get uiFrames => const $AssetsImagesUiFramesGen();
 }
 
 class $AssetsTilesGen {
@@ -98,47 +101,117 @@ class $AssetsTilesGen {
   List<String> get values => [pixelBlackWhiteLandscape];
 }
 
+class $AssetsImagesButtonsGen {
+  const $AssetsImagesButtonsGen();
+
+  /// File path: assets/images/buttons/icon_button_highres.png
+  AssetGenImage get iconButtonHighres =>
+      const AssetGenImage('assets/images/buttons/icon_button_highres.png');
+
+  /// File path: assets/images/buttons/icon_button_pressed_highres.png
+  AssetGenImage get iconButtonPressedHighres => const AssetGenImage(
+      'assets/images/buttons/icon_button_pressed_highres.png');
+
+  /// File path: assets/images/buttons/long_button_highres.png
+  AssetGenImage get longButtonHighres =>
+      const AssetGenImage('assets/images/buttons/long_button_highres.png');
+
+  /// File path: assets/images/buttons/long_button_pressed_highres.png
+  AssetGenImage get longButtonPressedHighres => const AssetGenImage(
+      'assets/images/buttons/long_button_pressed_highres.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        iconButtonHighres,
+        iconButtonPressedHighres,
+        longButtonHighres,
+        longButtonPressedHighres
+      ];
+}
+
 class $AssetsImagesCharactersGen {
   const $AssetsImagesCharactersGen();
-
-  /// File path: assets/images/characters/char_hot_air_baloon.png
-  AssetGenImage get charHotAirBaloon =>
-      const AssetGenImage('assets/images/characters/char_hot_air_baloon.png');
 
   /// File path: assets/images/characters/char_hot_air_baloon_highres.png
   AssetGenImage get charHotAirBaloonHighres => const AssetGenImage(
       'assets/images/characters/char_hot_air_baloon_highres.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [charHotAirBaloon, charHotAirBaloonHighres];
+  List<AssetGenImage> get values => [charHotAirBaloonHighres];
+}
+
+class $AssetsImagesIconsGen {
+  const $AssetsImagesIconsGen();
+
+  /// File path: assets/images/icons/icon_action_collect_highres.png
+  AssetGenImage get iconActionCollectHighres => const AssetGenImage(
+      'assets/images/icons/icon_action_collect_highres.png');
+
+  /// File path: assets/images/icons/icon_action_dictionary_add_highres.png
+  AssetGenImage get iconActionDictionaryAddHighres => const AssetGenImage(
+      'assets/images/icons/icon_action_dictionary_add_highres.png');
+
+  /// File path: assets/images/icons/icon_action_fire_highres.png
+  AssetGenImage get iconActionFireHighres =>
+      const AssetGenImage('assets/images/icons/icon_action_fire_highres.png');
+
+  /// File path: assets/images/icons/icon_action_idea_highres.png
+  AssetGenImage get iconActionIdeaHighres =>
+      const AssetGenImage('assets/images/icons/icon_action_idea_highres.png');
+
+  /// File path: assets/images/icons/icon_action_minus_highres.png
+  AssetGenImage get iconActionMinusHighres =>
+      const AssetGenImage('assets/images/icons/icon_action_minus_highres.png');
+
+  /// File path: assets/images/icons/icon_action_pause_highres.png
+  AssetGenImage get iconActionPauseHighres =>
+      const AssetGenImage('assets/images/icons/icon_action_pause_highres.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        iconActionCollectHighres,
+        iconActionDictionaryAddHighres,
+        iconActionFireHighres,
+        iconActionIdeaHighres,
+        iconActionMinusHighres,
+        iconActionPauseHighres
+      ];
 }
 
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
 
-  /// File path: assets/images/tilesets/pixel_black_white_map_icon.png
-  AssetGenImage get pixelBlackWhiteMapIcon => const AssetGenImage(
-      'assets/images/tilesets/pixel_black_white_map_icon.png');
-
   /// File path: assets/images/tilesets/pixel_black_white_map_icon_highres.png
   AssetGenImage get pixelBlackWhiteMapIconHighres => const AssetGenImage(
       'assets/images/tilesets/pixel_black_white_map_icon_highres.png');
 
-  /// File path: assets/images/tilesets/pixel_black_white_tileset.aseprite
-  String get pixelBlackWhiteTilesetAseprite =>
-      'assets/images/tilesets/pixel_black_white_tileset.aseprite';
-
   /// File path: assets/images/tilesets/pixel_black_white_tileset.png
-  AssetGenImage get pixelBlackWhiteTilesetPng => const AssetGenImage(
+  AssetGenImage get pixelBlackWhiteTileset => const AssetGenImage(
       'assets/images/tilesets/pixel_black_white_tileset.png');
 
   /// List of all assets
-  List<dynamic> get values => [
-        pixelBlackWhiteMapIcon,
-        pixelBlackWhiteMapIconHighres,
-        pixelBlackWhiteTilesetAseprite,
-        pixelBlackWhiteTilesetPng
-      ];
+  List<AssetGenImage> get values =>
+      [pixelBlackWhiteMapIconHighres, pixelBlackWhiteTileset];
+}
+
+class $AssetsImagesUiFramesGen {
+  const $AssetsImagesUiFramesGen();
+
+  /// File path: assets/images/ui_frames/actions_frame_highres.png
+  AssetGenImage get actionsFrameHighres =>
+      const AssetGenImage('assets/images/ui_frames/actions_frame_highres.png');
+
+  /// File path: assets/images/ui_frames/center_frame_highres.png
+  AssetGenImage get centerFrameHighres =>
+      const AssetGenImage('assets/images/ui_frames/center_frame_highres.png');
+
+  /// File path: assets/images/ui_frames/text_field_frame_highres.png
+  AssetGenImage get textFieldFrameHighres => const AssetGenImage(
+      'assets/images/ui_frames/text_field_frame_highres.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [actionsFrameHighres, centerFrameHighres, textFieldFrameHighres];
 }
 
 class Assets {
@@ -147,14 +220,10 @@ class Assets {
   static const AssetGenImage icon = AssetGenImage('assets/icon.png');
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsTilesGen tiles = $AssetsTilesGen();
-  static const AssetGenImage wordByWord1 =
-      AssetGenImage('assets/word_by_word_1.png');
-  static const AssetGenImage wordByWord2 =
-      AssetGenImage('assets/word_by_word_2.png');
   static const $GoogleFontsGen googleFonts = $GoogleFontsGen();
 
   /// List of all assets
-  List<AssetGenImage> get values => [icon, wordByWord1, wordByWord2];
+  List<AssetGenImage> get values => [icon];
 }
 
 class AssetGenImage {

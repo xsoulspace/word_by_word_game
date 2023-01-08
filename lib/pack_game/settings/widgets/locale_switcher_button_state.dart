@@ -24,22 +24,28 @@ class _LocaleSwitcherButtonState extends LifeState {
   });
 
   final _LocaleSwitcherButtonDiDto diDto;
-  late Locale locale;
+  Locale? locale;
 
   @override
   void initState() {
     super.initState();
     final languageCode = diDto.appSettingsNotifier.locale?.languageCode;
-    final String effectiveLanguageCode =
-        languageCode ?? getLanguageCode(intl.Intl.getCurrentLocale());
-    final language = Languages.values.byName(effectiveLanguageCode);
-    locale = namedLocalesMap[language]?.locale ?? Locales.en;
+    if (languageCode == null) return;
+    final language = Languages.byLanguageCode(languageCode);
+    locale = Locales.byLanguage(language);
   }
 
   void onUpdateLocale(final Locale? value) {
-    if (value == null) return;
     diDto.appSettingsNotifier.locale = value;
     locale = value;
     setState();
   }
+
+  final systemLocale = const LocalizedMap(
+    value: {
+      Languages.en: 'System',
+      Languages.ru: 'Как в системе',
+      Languages.it: 'Sistema',
+    },
+  );
 }

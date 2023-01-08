@@ -1,6 +1,6 @@
 part of 'pause_screen.dart';
 
-bool get linksAreAllowed => false;
+bool get kLinksAreAllowed => true;
 
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
@@ -14,32 +14,34 @@ class _PauseScreenStateDiDto {
   final MechanicsCollection mechanics;
 }
 
-_PauseScreenState _usePauseScreenState({
+PauseScreenState _usePauseScreenState({
   required final Locator read,
 }) =>
     use(
       ContextfulLifeHook(
         debugLabel: '_PauseScreenState',
-        state: _PauseScreenState(
+        state: PauseScreenState(
           diDto: _PauseScreenStateDiDto.use(read),
         ),
       ),
     );
 
-class _PauseScreenState extends ContextfulLifeState {
-  _PauseScreenState({
+class PauseScreenState extends ContextfulLifeState {
+  PauseScreenState({
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
+  @override
+  void initState() {
+    super.initState();
+    if (Platform.isAndroid) YandexAdsSdk().onLoad();
+  }
+
   void onContinue({
     required final LevelModelId id,
   }) {
+    diDto.globalGameBloc.add(const StartPlayingLevelEvent());
     diDto.appRouterController.toPlayableLevel(id: id);
-    diDto.mechanics.worldTime.resume();
-  }
-
-  void onToAllLevels() {
-    diDto.appRouterController.toAllLevel();
   }
 
   void onToPlayersAndHighscore() {
@@ -73,17 +75,31 @@ class _PauseScreenState extends ContextfulLifeState {
             uiTheme.verticalBoxes.medium,
             Text(s.creatingGame),
             uiTheme.verticalBoxes.medium,
-            Text(s.sendFeedback),
-            uiTheme.verticalBoxes.medium,
             Visibility(
-              visible: linksAreAllowed,
+              visible: kLinksAreAllowed,
               child: TextButton(
-                child: Text(s.supportGame),
-                onPressed: () =>
-                    launchUrlString('https://boosty.to/arenukvern'),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(s.sendFeedback),
+                ),
+                onPressed: () => launchUrlString(
+                  'https://discord.com/invite/y54DpJwmAn',
+                ),
               ),
             ),
             uiTheme.verticalBoxes.medium,
+            Visibility(
+              visible: kLinksAreAllowed,
+              child: TextButton(
+                onPressed: () =>
+                    launchUrlString('https://boosty.to/arenukvern'),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(s.supportGame),
+                ),
+              ),
+            ),
+            uiTheme.verticalBoxes.large,
             Text(s.thankYou),
           ],
         ),
@@ -99,7 +115,7 @@ class _PauseScreenState extends ContextfulLifeState {
       width: 32,
       height: 32,
     );
-    if (linksAreAllowed) {
+    if (kLinksAreAllowed) {
       showAboutDialog(
         applicationName: 'Word By Word',
         applicationIcon: icon,
@@ -142,9 +158,11 @@ class _PauseScreenState extends ContextfulLifeState {
                 uiTheme.verticalBoxes.medium,
                 Text(s.creatingGame),
                 uiTheme.verticalBoxes.large,
-                UiTextButton.text(
+                const Text('Made with Flutter & Flame Engine.'),
+                uiTheme.verticalBoxes.large,
+                TextButton(
                   onPressed: () => Navigator.maybePop(context),
-                  text: S.of(context).ok,
+                  child: Text(S.of(context).ok),
                 )
               ],
             );

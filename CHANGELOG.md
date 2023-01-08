@@ -1,11 +1,5 @@
 ## Ideas & TODO
 
-- show bar with the counter which will shows the decrease counts?
-- show level highscore in the lost dialog & win dialog.
-- Reset navigation path when player is finished a level.
-
-- Add an option to start level fresh and continue if you have a progress (saved lvl).
-
 - Global highscore is:
 - (+) word length \* level modifier (hardness of the level)
 - (-) the score used by a player to decrease middle word part
@@ -13,6 +7,28 @@
 - (+) character modifier (hardness of the character)
 
 ## Next
+
+## January 8th 2022
+
+- Tutorial for mobile & desktop versions.
+
+## December 20th 2022
+
+- Simplified players selection to start a game.
+- Simplified new profile player creation.
+- Borderless window for native apps.
+
+## December 18th 2022
+
+- Added effects for an action - now you can choose how many effect points will be applied for selected action.
+- Made different actions layouts for small and desktop widths.
+- Fixed problem with localization - now it has option to choose between system and game localization.
+
+## December 16th 2022
+
+- refactored: all levels screen removed.
+- refactored: home screen buttons position a little changed.
+- refactored: logic for words and actions now devided into two.
 
 ## October 16th 2022
 

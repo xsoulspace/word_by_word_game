@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_game/mechanics/mechanics.dart';
+import 'package:word_by_word_game/pack_game/tutorial/tutorial_listener.dart';
 
 part 'global_game_bloc.freezed.dart';
 part 'global_game_bloc.g.dart';
@@ -14,16 +14,19 @@ part 'global_game_events.dart';
 part 'global_game_states.dart';
 
 class GlobalGameBlocDiDto {
-  GlobalGameBlocDiDto.use(final Locator read)
+  GlobalGameBlocDiDto.use(this.read)
       : mechanics = read(),
         levelBloc = read(),
         levelPlayersBloc = read(),
         resourcesBloc = read(),
+        tutorialBloc = read(),
         services = read();
+  final Locator read;
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
   final ResourcesBloc resourcesBloc;
+  final TutorialBloc tutorialBloc;
   final ServicesCollection services;
 }
 
@@ -35,15 +38,18 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     on<InitGlobalGameLevelEvent>(_onInitGlobalGameLevel);
     on<WorldTimeTickEvent>(_onWorldTick);
     on<CreatePlayerProfileEvent>(_onCreatePlayerProfile);
+    on<DeletePlayerProfileEvent>(_onDeletePlayerProfile);
     on<LevelPartLoadedEvent>(_onLevelPartLoaded);
     on<SaveGameEvent>(_onSaveGame);
     on<SaveCurrentLevelEvent>(_onSaveCurrentLevel);
     on<CharacterCollisionEvent>(_onCharacterCollision);
     on<RestartLevelEvent>(_restartLevel);
     on<EndLevelEvent>(_onLevelEnd);
+    on<StartPlayingLevelEvent>(_onStartPlayingLevel);
+    _tutorialEventsListener = GameTutorialEventListener(read: diDto.read);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
   }
-
+  GameTutorialEventListener? _tutorialEventsListener;
   final GlobalGameBlocDiDto diDto;
   void _addWorldTimeTick(final WorldTimeMechanics time) {
     add(WorldTimeTickEvent(time));
@@ -52,6 +58,10 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   @override
   Future<void> close() {
     diDto.mechanics.worldTime.removeListener(_addWorldTimeTick);
+    if (_tutorialEventsListener != null) {
+      diDto.tutorialBloc.notifier.removeListener(_tutorialEventsListener!);
+    }
+
     return super.close();
   }
 
@@ -74,6 +84,12 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       add(InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false));
     }
     unawaited(diDto.mechanics.worldTime.onLoad());
+    diDto.tutorialBloc.add(
+      LoadTutorialsProgressEvent(progress: gameModel.tutorialProgress),
+    );
+    if (_tutorialEventsListener != null) {
+      diDto.tutorialBloc.notifier.addListener(_tutorialEventsListener!);
+    }
   }
 
   void _restartLevel(
@@ -90,10 +106,20 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     }
   }
 
+  /// This completer exists because we need to wait until the game will be
+  /// loaded completely.
+  /// The inital game level load function is [_onInitGlobalGameLevel]
+  ///
+  /// The [_onLevelPartLoaded] function is completes this completer.
+  ///
+  /// The [_onStartPlayingLevel] is waiting for the completer future
+  Completer? _globalLevelLoadCompleter;
+
   void _onInitGlobalGameLevel(
     final InitGlobalGameLevelEvent event,
     final Emitter<GlobalGameBlocState> emit,
   ) {
+    _globalLevelLoadCompleter = Completer();
     final levelModel = event.levelModel;
     LiveGlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
@@ -134,12 +160,26 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     );
 
     if (updateState.isLevelCompletelyLoaded) {
-      diDto.mechanics.worldTime.resume();
+      _globalLevelLoadCompleter!.complete();
       updateState = updateState.copyWith(
         currentLevelId: diDto.levelBloc.getLiveState().id,
       );
     }
     emit(updateState);
+  }
+
+  Future<void> _onStartPlayingLevel(
+    final StartPlayingLevelEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) async {
+    await _globalLevelLoadCompleter!.future;
+    diDto.mechanics.worldTime.resume();
+    final tutorialEvent = StartTutorialEvent(
+      tutorialName: TutorialCollectionsName.levelIntroduction,
+      shouldContinueIfPlayed: false,
+      shouldStartFromBeginning: event.shouldRestartTutorial,
+    );
+    diDto.tutorialBloc.add(tutorialEvent);
   }
 
   void _onWorldTick(
@@ -210,6 +250,20 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     );
   }
 
+  void _onDeletePlayerProfile(
+    final DeletePlayerProfileEvent event,
+    final Emitter<GlobalGameBlocState> emit,
+  ) {
+    final profile = event.profile;
+    final liveState = getLiveState();
+    final updateState = liveState.copyWith(
+      playersCollection: [...liveState.playersCollection]
+        ..removeWhere((final player) => player.id == profile.id),
+    );
+    emit(updateState);
+    _saveGame();
+  }
+
   void _onCreatePlayerProfile(
     final CreatePlayerProfileEvent event,
     final Emitter<GlobalGameBlocState> emit,
@@ -254,12 +308,15 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   }
 
   GameModel _getGameModel({required final LiveGlobalGameBlocState liveState}) {
+    final tutorialProgress = diDto.tutorialBloc.getLiveProgress();
+
     return GameModel(
       id: liveState.id,
       currentLevel: liveState.currentLevelModel,
       currentLevelId: liveState.currentLevelId,
       templateLevels: liveState.templateLevels,
       dateTime: liveState.dateTime,
+      tutorialProgress: tutorialProgress,
       lastDateTime: liveState.lastDateTime,
       levels: liveState.levels,
       playersCharacters: liveState.playersCharacters,

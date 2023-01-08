@@ -1,10 +1,23 @@
+import 'dart:async';
+
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/game/game.dart';
+
+class GlobalSettingsInitializer extends StateInitializer {
+  @override
+  Future<void> onLoad(final BuildContext context) async {
+    final read = context.read;
+    final appSettingsNotifier = read<AppSettingsNotifier>();
+    await appSettingsNotifier.onLoad();
+  }
+}
 
 class GlobalStateInitializer extends StateInitializer {
   @override
@@ -13,8 +26,7 @@ class GlobalStateInitializer extends StateInitializer {
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
     final services = read<ServicesCollection>();
-    final appSettingsNotifier = read<AppSettingsNotifier>();
-    await appSettingsNotifier.onLoad();
+    final analyticsNotifier = read<AnalyticsNotifier>();
     final localDictionary =
         await services.dictionaryPersistence.loadDictionary();
     final initDictionary =
@@ -24,6 +36,14 @@ class GlobalStateInitializer extends StateInitializer {
     final initGameEvent =
         await GameInitializer().loadGameModel(services: services);
     globalGameBloc.add(initGameEvent);
+    await FirebaseInitializer().onDelayedLoad();
+    await analyticsNotifier.onDelayedLoad();
+    final event = () {
+      if (kIsWeb) return AnalyticEvents.usedInWeb;
+      if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;
+    }();
+    if (event != null) unawaited(analyticsNotifier.logAnalyticEvent(event));
+
     final currentLevelId = initGameEvent.gameModel.currentLevelId;
     if (currentLevelId.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {

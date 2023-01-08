@@ -21,6 +21,14 @@ class WorldTimeTickEvent extends GameEvent {
 }
 
 @immutable
+class StartPlayingLevelEvent extends GameEvent {
+  const StartPlayingLevelEvent({
+    this.shouldRestartTutorial = false,
+  });
+  final bool shouldRestartTutorial;
+}
+
+@immutable
 class InitGlobalGameLevelEvent extends GameEvent {
   const InitGlobalGameLevelEvent({
     required this.levelModel,
@@ -28,6 +36,14 @@ class InitGlobalGameLevelEvent extends GameEvent {
   });
   final LevelModel levelModel;
   final bool isNewStart;
+}
+
+@immutable
+class DeletePlayerProfileEvent extends GameEvent {
+  const DeletePlayerProfileEvent({
+    required this.profile,
+  });
+  final PlayerProfileModel profile;
 }
 
 @immutable

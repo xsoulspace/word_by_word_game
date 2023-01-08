@@ -30,19 +30,34 @@ class MessageLookup extends MessageLookupByLibrary {
         "about": MessageLookupByLibrary.simpleMessage("Credits"),
         "addNewWord": MessageLookupByLibrary.simpleMessage("add"),
         "addToDictionary":
-            MessageLookupByLibrary.simpleMessage("Add to dictionary"),
+            MessageLookupByLibrary.simpleMessage("Add to Dictionary"),
+        "applyAndEndTurn":
+            MessageLookupByLibrary.simpleMessage("Apply & End Turn"),
         "back": MessageLookupByLibrary.simpleMessage("Back"),
         "chooseLandscape":
             MessageLookupByLibrary.simpleMessage("Choose a Landscape"),
         "chooseYourCharacter":
             MessageLookupByLibrary.simpleMessage("Choose Your Character"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
         "congratulations":
             MessageLookupByLibrary.simpleMessage("Congratulations!"),
         "continueGame": MessageLookupByLibrary.simpleMessage("Continue "),
-        "createProfile": MessageLookupByLibrary.simpleMessage("Create"),
+        "cookFood": MessageLookupByLibrary.simpleMessage("Cook Food"),
+        "createNewFirstPlayerTitle": MessageLookupByLibrary.simpleMessage(
+            "Create player profile to start a game."),
+        "createNewPlayerBody": MessageLookupByLibrary.simpleMessage(
+            "You will be able to add this player\'s profile to any new game."),
+        "createNewPlayerTitle": MessageLookupByLibrary.simpleMessage(
+            "Create profile for new player."),
+        "createNewPlayerTooltip": MessageLookupByLibrary.simpleMessage(
+            "Click to create profile for new player."),
+        "createPlayer": MessageLookupByLibrary.simpleMessage("Create player"),
+        "createProfile": MessageLookupByLibrary.simpleMessage("Create Profile"),
         "creatingGame": MessageLookupByLibrary.simpleMessage(
             "Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("score"),
+        "effect": MessageLookupByLibrary.simpleMessage("Effect"),
+        "enableTutorial": MessageLookupByLibrary.simpleMessage("Use Tutorial"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Finish game"),
         "highscore": MessageLookupByLibrary.simpleMessage("highscore"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("beginning"),
@@ -51,6 +66,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "lastword": MessageLookupByLibrary.simpleMessage("Last word: "),
         "lettersToRemove":
             MessageLookupByLibrary.simpleMessage("letters to remove"),
+        "mainMenuButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Click to open menu (current progress will be saved)."),
         "maxHighscoreIs":
             MessageLookupByLibrary.simpleMessage("Max highscore is "),
         "menuInfo": MessageLookupByLibrary.simpleMessage("Info "),
@@ -59,6 +76,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "name": MessageLookupByLibrary.simpleMessage("Name"),
         "newGame": MessageLookupByLibrary.simpleMessage("New Game"),
         "nextPlayer": MessageLookupByLibrary.simpleMessage("Next player"),
+        "no": MessageLookupByLibrary.simpleMessage("No"),
         "noWordsSuggestions": MessageLookupByLibrary.simpleMessage(
             "There is no words suggestions :("),
         "notEnoughKnowledgeToRevealWord": MessageLookupByLibrary.simpleMessage(
@@ -73,19 +91,23 @@ class MessageLookup extends MessageLookupByLibrary {
         "privacyPolicy": MessageLookupByLibrary.simpleMessage("Privacy Policy"),
         "profileCreator":
             MessageLookupByLibrary.simpleMessage("Profile Creator"),
+        "refuelStorage": MessageLookupByLibrary.simpleMessage("Refuel Balloon"),
         "resetEnding": MessageLookupByLibrary.simpleMessage("Reset ending"),
         "returnToLandscapes":
             MessageLookupByLibrary.simpleMessage("Return To Landscapes"),
         "revealSuggestedWord":
             MessageLookupByLibrary.simpleMessage("Reveal suggested word?"),
+        "selectAction": MessageLookupByLibrary.simpleMessage("Select Action"),
         "selectPlayers":
             MessageLookupByLibrary.simpleMessage("Select the Players"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
         "sendFeedback": MessageLookupByLibrary.simpleMessage(
-            "For any bugs or ideas please send your feedback to idea@xsoulspace.dev"),
+            "If you have an idea, improvements, or bugs join Discord server."),
         "settings": MessageLookupByLibrary.simpleMessage("Settings"),
         "startAgain": MessageLookupByLibrary.simpleMessage("Start again "),
         "startNewGame": MessageLookupByLibrary.simpleMessage("New Game"),
+        "suggestWordButtonTooltip": MessageLookupByLibrary.simpleMessage(
+            "Click to get random word based on current letters."),
         "suggestedWord": MessageLookupByLibrary.simpleMessage("Suggested Word"),
         "supportGame": MessageLookupByLibrary.simpleMessage(
             "You can support the game in https://boosty.to/arenukvern"),
@@ -100,8 +122,13 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "This word already written. Try another word."),
         "wordIsNotCorrect": m1,
+        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+        "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
+            "You don\'t have enough points to apply."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(
             "You have landed in the middle of nowhere.."),
+        "yourCurrentHighcoreTooltip":
+            MessageLookupByLibrary.simpleMessage("Your current points."),
         "yourHighscore":
             MessageLookupByLibrary.simpleMessage("This time your score is ")
       };

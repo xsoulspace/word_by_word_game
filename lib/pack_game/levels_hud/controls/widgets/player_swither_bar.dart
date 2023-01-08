@@ -3,11 +3,12 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets/widgets.dart';
 
-class DesktopPlayerSwitcher extends HookWidget {
-  const DesktopPlayerSwitcher({super.key});
+class UIDesktopPlayerSwitcher extends HookWidget {
+  const UIDesktopPlayerSwitcher({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -40,8 +41,8 @@ class DesktopPlayerSwitcher extends HookWidget {
   }
 }
 
-class MobilePlayerSwitcher extends HookWidget {
-  const MobilePlayerSwitcher({super.key});
+class UIMobilePlayerSwitcher extends HookWidget {
+  const UIMobilePlayerSwitcher({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -66,8 +67,8 @@ class MobilePlayerSwitcher extends HookWidget {
   }
 }
 
-class MobilePlayerName extends StatelessWidget {
-  const MobilePlayerName({super.key});
+class UIMobilePlayerName extends StatelessWidget {
+  const UIMobilePlayerName({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -79,12 +80,16 @@ class MobilePlayerName extends StatelessWidget {
       }
       return liveState.currentPlayer;
     });
-    return Text(player.name);
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.yourNameLabel,
+      child: Text(player.name),
+    );
   }
 }
 
-class MobilePlayerScore extends StatelessWidget {
-  const MobilePlayerScore({super.key});
+class UIMobilePlayerScore extends StatelessWidget {
+  const UIMobilePlayerScore({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -96,12 +101,19 @@ class MobilePlayerScore extends StatelessWidget {
       }
       return liveState.currentPlayer;
     });
-    return Text('${player.highscore.score.value.toInt()}');
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.yourScoreLabel,
+      child: Tooltip(
+        message: S.of(context).yourCurrentHighcoreTooltip,
+        child: Text('${player.highscore.score.value.toInt()}'),
+      ),
+    );
   }
 }
 
-class PlayersSideBar extends StatelessWidget {
-  const PlayersSideBar({super.key});
+class UIPlayersSideBar extends StatelessWidget {
+  const UIPlayersSideBar({super.key});
   static const maxWidth = 50.0;
   @override
   Widget build(final BuildContext context) {

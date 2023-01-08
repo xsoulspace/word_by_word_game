@@ -3,13 +3,19 @@ part of '../theme.dart';
 class AppColorSchemes {
   AppColorSchemes._({
     required this.dark,
+    required this.darkSurface,
     required this.light,
+    required this.lightSurface,
   });
 
-  factory AppColorSchemes.brand() => AppColorSchemes._(
-        dark: BrandColorSchemes.dark,
-        light: BrandColorSchemes.light,
-      );
+  factory AppColorSchemes.brand() {
+    return AppColorSchemes._(
+      darkSurface: BrandColorSchemes.darkSurface,
+      dark: BrandColorSchemes.dark,
+      lightSurface: BrandColorSchemes.lightSurface,
+      light: BrandColorSchemes.light,
+    );
+  }
 
   /// Use this factory to create a new AppColorSchemes based on
   /// Material You token generation principle.
@@ -19,5 +25,7 @@ class AppColorSchemes {
       throw UnimplementedError();
 
   final ColorScheme light;
+  final SurfaceColorScheme lightSurface;
   final ColorScheme dark;
+  final SurfaceColorScheme darkSurface;
 }

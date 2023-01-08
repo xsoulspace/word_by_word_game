@@ -34,7 +34,7 @@
   "settings": "Impostazioni",
   "username": "Nome utente",
   "previousWord": "Parola precedente:",
-  "createProfile": "Creare",
+  "createProfile": "Creare Profili",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",
   "startNewGame": "Nuovo gioco",
@@ -68,6 +68,8 @@
     "type": "text",
     "placeholders": {}
   },
+  "confirm": "Confermare",
+  "applyAndEndTurn": "Fine turno",
   "hintAddBeginning": "inizio",
   "@hintAddBeginning": {
     "type": "text",
@@ -93,7 +95,7 @@
     "type": "text",
     "placeholders": {}
   },
-  "sendFeedback": "Per qualsiasi bug o idea, invia il tuo feedback a idea@xsoulspace.dev",
+  "sendFeedback": "Se hai un'idea, miglioramenti o bug unisciti al server Discord.",
   "@sendFeedback": {
     "type": "text",
     "placeholders": {}
@@ -150,9 +152,25 @@
     "type": "text",
     "placeholders": {}
   },
+  "selectAction": "Seleziona Azione",
+  "cookFood": "Cucinare",
+  "refuelStorage": "Rifornirsi",
   "addToDictionary": "Aggiungi al dizionario",
   "@addToDictionary": {
     "type": "text",
     "placeholders": {}
-  }
+  },
+  "suggestWordButtonTooltip": "Fare clic per ottenere una parola casuale in base alle lettere correnti.",
+  "mainMenuButtonTooltip": "Fare clic per aprire il menu (i progressi correnti verranno salvati).",
+  "yourCurrentHighcoreTooltip": "Il tuo record attuale.",
+  "youDontHaveEnoughPoints": "Pallone non necessario per l'approssimazione.",
+  "effect": "Effetto",
+  "createNewFirstPlayerTitle": "Crea un profilo giocatore per iniziare una partita.",
+  "createNewPlayerTooltip": "Fare clic per creare il profilo per il nuovo giocatore.",
+  "createNewPlayerTitle": "Crea profilo per nuovo giocatore.",
+  "createNewPlayerBody": "Potrai aggiungere il profilo di questo giocatore a qualsiasi nuova partita.",
+  "createPlayer": "Crea giocatore",
+  "yes": "Si",
+  "no": "No",
+  "enableTutorial": "Utilizzare il tutorial"
 }
