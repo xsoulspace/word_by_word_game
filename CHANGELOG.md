@@ -1,11 +1,5 @@
 ## Ideas & TODO
 
-- show bar with the counter which will shows the decrease counts?
-- show level highscore in the lost dialog & win dialog.
-- Reset navigation path when player is finished a level.
-
-- Add an option to start level fresh and continue if you have a progress (saved lvl).
-
 - Global highscore is:
 - (+) word length \* level modifier (hardness of the level)
 - (-) the score used by a player to decrease middle word part
@@ -13,6 +7,10 @@
 - (+) character modifier (hardness of the character)
 
 ## Next
+
+## January 8th 2022
+
+- Tutorial for mobile & desktop versions.
 
 ## December 20th 2022
 
