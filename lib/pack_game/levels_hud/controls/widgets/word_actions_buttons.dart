@@ -126,7 +126,13 @@ class UIMobileActions extends StatelessWidget {
             highlightPosition: Alignment.topCenter,
             uiKey: TutorialUiItem.applyAndEndTurnButton,
             child: UIToEndTurnButton(
-              onPressed: state.onToEndTurn,
+              onPressed: () {
+                state.onToEndTurn();
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.applyAndEndTurnButton,
+                  context: context,
+                );
+              },
             ),
           ),
         ]);
