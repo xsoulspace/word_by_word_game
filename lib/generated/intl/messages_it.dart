@@ -57,6 +57,8 @@ class MessageLookup extends MessageLookupByLibrary {
             "Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("punteggio"),
         "effect": MessageLookupByLibrary.simpleMessage("Effetto"),
+        "enableTutorial":
+            MessageLookupByLibrary.simpleMessage("Utilizzare il tutorial"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Gioco finito"),
         "highscore": MessageLookupByLibrary.simpleMessage("Punteggio più alto"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("inizio"),
@@ -128,7 +130,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wordAlreadyWritten": MessageLookupByLibrary.simpleMessage(
             "Questa parola è già scritta. Prova con un\'altra parola."),
         "wordIsNotCorrect": m1,
-        "yes": MessageLookupByLibrary.simpleMessage("Yes"),
+        "yes": MessageLookupByLibrary.simpleMessage("Si"),
         "youDontHaveEnoughPoints": MessageLookupByLibrary.simpleMessage(
             "Pallone non necessario per l\'approssimazione."),
         "youHaveLandedInTheNowhere": MessageLookupByLibrary.simpleMessage(

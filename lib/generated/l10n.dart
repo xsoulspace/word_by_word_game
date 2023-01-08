@@ -779,6 +779,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Use Tutorial`
+  String get enableTutorial {
+    return Intl.message(
+      'Use Tutorial',
+      name: 'enableTutorial',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

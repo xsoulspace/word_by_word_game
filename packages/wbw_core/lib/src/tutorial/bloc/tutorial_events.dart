@@ -23,10 +23,12 @@ class LoadTutorialsProgressEvent extends TutorialEvent {
 class StartTutorialEvent extends TutorialEvent {
   const StartTutorialEvent({
     required this.tutorialName,
-    required this.shouldStartIfPlayed,
+    required this.shouldContinueIfPlayed,
+    required this.shouldStartFromBeginning,
   });
   final TutorialCollectionsName tutorialName;
-  final bool shouldStartIfPlayed;
+  final bool shouldContinueIfPlayed;
+  final bool shouldStartFromBeginning;
 }
 
 enum NextTutorialEventType {

@@ -54,14 +54,23 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     final StartTutorialEvent event,
     final Emitter<TutorialBlocState> emit,
   ) async {
-    final progress = getLiveProgress();
-
-    // check is played
-    final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
-      progress: progress,
-      tutorial: event.tutorialName,
-    );
-    if (isTutorialPlayed && !event.shouldStartIfPlayed) return;
+    TutorialCollectionsProgressModel progress = getLiveProgress();
+    if (event.shouldStartFromBeginning) {
+      progress = diDto.mechanics.tutorial.resetProgress(
+        progress: progress,
+        tutorial: event.tutorialName,
+      );
+    } else {
+      // check is played
+      final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
+        progress: progress,
+        tutorial: event.tutorialName,
+      );
+      if (isTutorialPlayed && !event.shouldContinueIfPlayed) {
+        emit(PendingTutorialBlocState(progress: progress));
+        return;
+      }
+    }
 
     final updatedState = LiveTutorialBlocState.fromProgressModel(
       data: _tutorialData,

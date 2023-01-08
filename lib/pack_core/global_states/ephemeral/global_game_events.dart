@@ -22,7 +22,10 @@ class WorldTimeTickEvent extends GameEvent {
 
 @immutable
 class StartPlayingLevelEvent extends GameEvent {
-  const StartPlayingLevelEvent();
+  const StartPlayingLevelEvent({
+    this.shouldRestartTutorial = false,
+  });
+  final bool shouldRestartTutorial;
 }
 
 @immutable

@@ -174,9 +174,10 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   ) async {
     await _globalLevelLoadCompleter!.future;
     diDto.mechanics.worldTime.resume();
-    const tutorialEvent = StartTutorialEvent(
+    final tutorialEvent = StartTutorialEvent(
       tutorialName: TutorialCollectionsName.levelIntroduction,
-      shouldStartIfPlayed: false,
+      shouldContinueIfPlayed: false,
+      shouldStartFromBeginning: event.shouldRestartTutorial,
     );
     diDto.tutorialBloc.add(tutorialEvent);
   }

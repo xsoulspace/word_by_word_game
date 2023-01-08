@@ -57,6 +57,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)"),
         "currentScore": MessageLookupByLibrary.simpleMessage("score"),
         "effect": MessageLookupByLibrary.simpleMessage("Effect"),
+        "enableTutorial": MessageLookupByLibrary.simpleMessage("Use Tutorial"),
         "finishGame": MessageLookupByLibrary.simpleMessage("Finish game"),
         "highscore": MessageLookupByLibrary.simpleMessage("highscore"),
         "hintAddBeginning": MessageLookupByLibrary.simpleMessage("beginning"),

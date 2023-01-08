@@ -171,5 +171,6 @@
   "createNewPlayerBody": "You will be able to add this player's profile to any new game.",
   "createPlayer": "Create player",
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+  "enableTutorial": "Use Tutorial"
 }

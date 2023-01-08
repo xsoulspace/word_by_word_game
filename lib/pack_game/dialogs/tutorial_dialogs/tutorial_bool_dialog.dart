@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
-import 'package:word_by_word_game/pack_game/dialogs/dialog_controller.dart';
+import 'package:word_by_word_game/pack_game/dialogs/core/core.dart';
 import 'package:word_by_word_game/pack_game/dialogs/widgets/widgets.dart';
 
 class TutorialBoolDialog extends StatelessWidget {

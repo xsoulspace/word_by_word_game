@@ -15,7 +15,7 @@ class EasyIn extends StatefulWidget {
 class _EasyInState extends State<EasyIn> with TickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _animation;
-  static const _kDebugAnimation = true;
+  static const _kDebugAnimation = false;
   @override
   void initState() {
     super.initState();
@@ -80,15 +80,14 @@ class _EasyInState extends State<EasyIn> with TickerProviderStateMixin {
     if (_kDebugAnimation) {
       return Stack(
         children: [
-          if (_kDebugAnimation)
-            TextButton(
-              onPressed: () {
-                disposeController();
-                initController();
-                setState(() {});
-              },
-              child: const Text('Restart'),
-            ),
+          TextButton(
+            onPressed: () {
+              disposeController();
+              initController();
+              setState(() {});
+            },
+            child: const Text('Restart'),
+          ),
           child
         ],
       );

@@ -2,6 +2,18 @@ import '../../models/models.dart';
 import '../bloc/tutorial_bloc.dart';
 
 class TutorialMechanics {
+  TutorialCollectionsProgressModel resetProgress({
+    required final TutorialCollectionsProgressModel progress,
+    required final TutorialCollectionsName tutorial,
+  }) {
+    if (progress.indexes.containsKey(tutorial)) {
+      final newIndexes = {...progress.indexes}..remove(tutorial);
+      return progress.copyWith(indexes: newIndexes);
+    } else {
+      return progress;
+    }
+  }
+
   bool checkIsTutorialPlayed({
     required final TutorialCollectionsProgressModel progress,
     required final TutorialCollectionsName tutorial,

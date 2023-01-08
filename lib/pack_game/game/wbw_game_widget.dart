@@ -6,7 +6,7 @@ import 'package:flutter_portal/flutter_portal.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
-import 'package:word_by_word_game/pack_game/dialogs/dialog_stack.dart';
+import 'package:word_by_word_game/pack_game/dialogs/core/dialog_stack.dart';
 import 'package:word_by_word_game/pack_game/game/wbw_game.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/levels_hud.dart';
 
