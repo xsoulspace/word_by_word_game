@@ -1,3 +1,5 @@
+bool get kMarketingMode => false;
+
 class Envs {
   Envs._();
 
