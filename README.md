@@ -21,14 +21,14 @@ https://youtube.com/playlist?list=PLz4tcEeusgWJeJO6RvOxOkfD3XE1pDKFg
 
 ----- Description -----
 
-Word by word - is a simple, fun, self-educative, and easy to play game to write word after word based on the last 3 letters of the last word.
+Control the hot air balloon by entering unique words (within the level) based on the last 3 letters of the last word and bring it as far as you can!
 
-## Features:
+Features:
 
-- any word will be checked within internal dictionaries (available for two languages: English and Russian).
-- you can play with your friends in old school way - to give a turn to another player. (Players count now is unlimited).
-- works offline - no need internet connection.
-- UI translated to three languages (English, Russian, Italian).
+- There is support for checking words in two languages (Russian and English). But if the word is not in the dictionary - you can add it.
+- You can play together with friends on the same device.
+- The game remembers the progress - if you press the menu (pause button in the center), the current game will be saved and you can continue later.
+- You can learn new words:)
 
 ## Have an idea, improvements, or bugs?
 
