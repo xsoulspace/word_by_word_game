@@ -103,6 +103,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       throw UnimplementedError();
     } else {
       add(InitGlobalGameLevelEvent(levelModel: levelModel));
+      add(const StartPlayingLevelEvent());
     }
   }
 
