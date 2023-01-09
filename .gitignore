@@ -19,7 +19,6 @@ android/key.properties
 *.pem
 .idea/
 .fvm/flutter_sdk
-
 # The .vscode folder contains launch configuration and tasks you configure in
 # VS Code which you may wish to be included in version control, so this line
 # is commented out by default.
@@ -54,3 +53,4 @@ ios/Runner/GoogleService-Info.plist
 lib/firebase_options.dart
 macos/firebase_app_id_file.json
 macos/Runner/GoogleService-Info.plist
+.vscode/launch.json

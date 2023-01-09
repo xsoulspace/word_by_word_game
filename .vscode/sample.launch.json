@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "program": "lib/main.dart",
+      "request": "launch",
+      "type": "dart",
+      "toolArgs": [
+        "--dart-define",
+        "yandex-banner-rm=VALUE",
+        "--dart-define",
+        "revenue-cat-api-key-apple=VALUE",
+        "--dart-define",
+        "revenue-cat-api-key-google=VALUE",
+        "--web-port=3000"
+      ]
+    }
+  ]
+}

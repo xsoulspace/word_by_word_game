@@ -36,6 +36,15 @@ class _DialogStackState extends LifeState {
   GameDialogType _dialogType = GameDialogType.none;
 
   GameDialogType get dialogType => _dialogType;
+  bool get isWinLoseDialog {
+    switch (dialogType) {
+      case GameDialogType.levelLost:
+      case GameDialogType.levelWin:
+        return true;
+      default:
+        return false;
+    }
+  }
 
   set dialogType(final GameDialogType dialogType) {
     _dialogType = dialogType;
