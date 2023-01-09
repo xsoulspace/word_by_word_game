@@ -60,4 +60,9 @@ If you need help getting started with Sheet Manager or have any questions, check
 
 ## Build
 
+web:
 flutter clean && flutter pub get && flutter build web --csp
+
+android:
+flutter build appbundle --dart-define=""
+flutter build apk --dart-define=""
