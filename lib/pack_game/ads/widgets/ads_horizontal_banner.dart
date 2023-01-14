@@ -9,7 +9,7 @@ class AdsHorizontalBanner extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     if (!kIsAdsEnabled) return const SizedBox();
-    return YandexBannerPlatformView(
+    return YandexFlexibleBanner(
       height: 50,
       width: MediaQuery.of(context).size.width,
       adUnitId: Envs.yandexBannerRM,
