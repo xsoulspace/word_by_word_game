@@ -826,6 +826,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.3"
+  pointer_interceptor:
+    dependency: transitive
+    description:
+      name: pointer_interceptor
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.3+3"
   pool:
     dependency: transitive
     description:
@@ -1230,6 +1237,13 @@ packages:
       relative: true
     source: path
     version: "0.0.1"
+  yandex_mobileads:
+    dependency: transitive
+    description:
+      name: yandex_mobileads
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
 sdks:
   dart: ">=2.18.2 <3.0.0"
   flutter: ">=3.3.0"

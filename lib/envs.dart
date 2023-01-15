@@ -1,5 +1,3 @@
-bool get kMarketingMode => false;
-
 class Envs {
   Envs._();
 
@@ -32,5 +30,17 @@ class Envs {
   /// *      ADS START
   /// ********************************************
 
-  static const yandexBannerRM = String.fromEnvironment('yandex-banner-rm');
+  static const yandexFlexibleMobile =
+      String.fromEnvironment('yandex-flexible-mobile');
+  static const yandexFlexibleMobileWeb =
+      String.fromEnvironment('yandex-flexible-mobile-web');
+  static const yandexFlexibleDesktopWeb =
+      String.fromEnvironment('yandex-flexible-desktop-web');
+  static const yandexFullscreenYGMobileWeb =
+      String.fromEnvironment('yandex-fullscreen-yg-mobile-web');
+  static const yandexFullscreenYGDesktopWeb =
+      String.fromEnvironment('yandex-fullscreen-yg-desktop-web');
+
+  static const isYandexGames = bool.fromEnvironment('is-yandex-games');
+  static const isMarketingMode = bool.fromEnvironment('is-marketing-mode');
 }

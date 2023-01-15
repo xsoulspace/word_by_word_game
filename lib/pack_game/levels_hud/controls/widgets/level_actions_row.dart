@@ -128,7 +128,7 @@ class UIDesktopLevelActionsRow extends HookWidget {
 
 class UiActionFrame extends StatelessWidget {
   const UiActionFrame({super.key});
-  static bool get kIsCookingEnabled => kDebugMode && !kMarketingMode;
+  static bool get kIsCookingEnabled => kDebugMode && !Envs.isMarketingMode;
 
   @override
   Widget build(final BuildContext context) {

@@ -1,0 +1,28 @@
+import 'package:flutter/foundation.dart';
+import 'package:life_hooks/life_hooks.dart';
+import 'package:universal_io/io.dart';
+import 'package:word_by_word_game/envs.dart';
+import 'package:word_by_word_game/pack_game/ads/models/models.dart';
+
+class AdManager implements Loadable, Disposable {
+  AdPermissions permissions = AdPermissions.noAds;
+  @override
+  Future<void> onLoad() async {
+    if (Envs.isMarketingMode) return;
+
+    if (kIsWeb) {
+      if (Envs.isYandexGames) {
+        permissions = AdPermissions.yandexGamesAds;
+      } else {
+        permissions = AdPermissions.webAndroidAds;
+      }
+    } else if (Platform.isAndroid) {
+      permissions = AdPermissions.webAndroidAds;
+    }
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+  }
+}
