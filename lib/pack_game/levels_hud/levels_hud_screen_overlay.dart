@@ -45,7 +45,7 @@ class LevelsHudScreenOverlay extends HookWidget {
             ],
           ),
         ),
-        if (kDebugMode && !kMarketingMode)
+        if (kDebugMode && !Envs.isMarketingMode)
           Positioned(
             top: 60,
             right: 20,

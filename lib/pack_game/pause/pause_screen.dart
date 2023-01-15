@@ -43,7 +43,7 @@ class PauseScreen extends HookWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const TopSafeArea(),
-                      const AdsHorizontalBanner(),
+                      const AdPauseScreenBanner(),
                       const Spacer(),
                       const StartGameHex(),
                       const Spacer(),
@@ -88,6 +88,7 @@ class PauseScreen extends HookWidget {
                     top: 24,
                     child: CharacterAvatarButton.useDefault(),
                   ),
+                const AdOnGameStartFullScreen(),
               ],
             ),
           ),
