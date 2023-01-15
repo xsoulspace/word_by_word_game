@@ -21,10 +21,13 @@ class AdFullScreenDialog extends HookWidget {
         return Stack(
           children: [
             Positioned.fill(
-              child: GestureDetector(
-                behavior: HitTestBehavior.translucent,
-                onTap: () => isVisibleNotifier.value = false,
-                child: const SizedBox.expand(),
+              child: Container(
+                color: theme.backgroundColor.withOpacity(0.85),
+                child: GestureDetector(
+                  behavior: HitTestBehavior.translucent,
+                  onTap: () => isVisibleNotifier.value = false,
+                  child: const SizedBox.expand(),
+                ),
               ),
             ),
             Positioned(
