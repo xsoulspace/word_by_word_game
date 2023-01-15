@@ -34,8 +34,8 @@ class AdOnGameStartFullScreen extends AdWidget {
     return Positioned.fill(
       child: AdFullScreenDialog(
         child: Placeholder(
-          fallbackWidth: size.width,
-          fallbackHeight: size.height,
+          fallbackWidth: size.width * 0.8,
+          fallbackHeight: size.height * 0.8,
           child: const Text('Fullscreen Ad onGameOpenEnabled'),
         ),
       ),
@@ -48,8 +48,8 @@ class AdOnGameStartFullScreen extends AdWidget {
     return Positioned.fill(
       child: AdFullScreenDialog(
         child: YandexFlexibleBanner(
-          height: size.height,
-          width: MediaQuery.of(context).size.width,
+          height: size.height * 0.8,
+          width: size.width * 0.8,
           adUnitId: adUnitId,
         ),
       ),
@@ -83,8 +83,8 @@ class AdOnLevelEndFullScreen extends AdWidget {
     return Positioned.fill(
       child: AdFullScreenDialog(
         child: Placeholder(
-          fallbackWidth: size.width,
-          fallbackHeight: size.height,
+          fallbackWidth: size.width * 0.8,
+          fallbackHeight: size.height * 0.8,
           child: const Text('Fullscreen Ad onLevelEndEnabled'),
         ),
       ),
@@ -97,8 +97,8 @@ class AdOnLevelEndFullScreen extends AdWidget {
     return Positioned.fill(
       child: AdFullScreenDialog(
         child: YandexFlexibleBanner(
-          height: size.height,
-          width: MediaQuery.of(context).size.width,
+          height: size.height * 0.8,
+          width: size.width * 0.8,
           adUnitId: adUnitId,
         ),
       ),

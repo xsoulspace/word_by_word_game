@@ -10,6 +10,7 @@ class AdFullScreenDialog extends HookWidget {
   final Widget child;
   @override
   Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
     final isVisibleNotifier = useIsBool(initial: true);
     final size = MediaQuery.of(context).size;
     return ValueListenableBuilder(
@@ -20,16 +21,29 @@ class AdFullScreenDialog extends HookWidget {
         return Stack(
           children: [
             Positioned.fill(
-              child: Card(
-                margin: EdgeInsets.all(size.width * 0.1),
-                child: child,
+              child: GestureDetector(
+                behavior: HitTestBehavior.translucent,
+                onTap: () => isVisibleNotifier.value = false,
+                child: const SizedBox.expand(),
               ),
             ),
             Positioned(
-              right: 24,
+              left: size.width * 0.1,
+              right: size.width * 0.1,
+              top: size.width * 0.1,
+              bottom: size.width * 0.1,
+              child: child,
+            ),
+            Positioned(
+              right: 0,
+              left: 0,
               top: 24,
-              child: CloseButton(
-                onPressed: () => isVisibleNotifier.value = false,
+              child: Center(
+                child: Card(
+                  child: CloseButton(
+                    onPressed: () => isVisibleNotifier.value = false,
+                  ),
+                ),
               ),
             ),
           ],

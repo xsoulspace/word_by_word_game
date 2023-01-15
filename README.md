@@ -61,7 +61,7 @@ If you need help getting started or have any questions, check out our [Discord C
 ## Build
 
 web:
-flutter clean && flutter pub get && flutter build web --csp --dart-define="yandex-fullscreen-yg-mobile-web=R-A-1966126-2" --dart-define="yandex-fullscreen-yg-desktop-web=R-A-1966126-12" --dart-define="is-yandex-games=true"
+flutter clean && flutter pub get && flutter build web --csp --dart-define="yandex-fullscreen-yg-mobile-web=R-A-1966126-8" --dart-define="yandex-fullscreen-yg-desktop-web=R-A-1966126-19" --dart-define="is-yandex-games=true"
 
 android:
 flutter build appbundle --dart-define=""
