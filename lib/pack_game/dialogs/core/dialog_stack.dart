@@ -76,10 +76,11 @@ class DialogStack extends HookWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: const [
                   TopSafeArea(),
-                  AdsHorizontalBanner(),
+                  AdLevelEndScreenBanner(),
                 ],
               ),
             ),
+          if (state.isWinLoseDialog) const AdOnLevelEndFullScreen(),
         ],
       ),
     );

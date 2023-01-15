@@ -8,6 +8,7 @@ import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/pack_game/ads/states/ad_manager.dart';
 import 'package:word_by_word_game/pack_game/game/game.dart';
 
 class GlobalSettingsInitializer extends StateInitializer {
@@ -23,6 +24,7 @@ class GlobalStateInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
+    final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
     final services = read<ServicesCollection>();
@@ -38,6 +40,7 @@ class GlobalStateInitializer extends StateInitializer {
     globalGameBloc.add(initGameEvent);
     await FirebaseInitializer().onDelayedLoad();
     await analyticsNotifier.onDelayedLoad();
+    await adManager.onLoad();
     final event = () {
       if (kIsWeb) return AnalyticEvents.usedInWeb;
       if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;

@@ -56,7 +56,7 @@ All [comments](https://github.com/xsoulspace/word_by_word_game/issues) and [pull
 
 ## Getting Help
 
-If you need help getting started with Sheet Manager or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
+If you need help getting started or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
 
 ## Build
 

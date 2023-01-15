@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class YandexBannerPlatformView extends StatelessWidget {
-  const YandexBannerPlatformView({
+class YandexFlexiblePlatformBanner extends StatelessWidget {
+  const YandexFlexiblePlatformBanner({
     this.adUnitId = 'R-M-DEMO-320x50',
     this.height = 100,
     this.width = 320,
