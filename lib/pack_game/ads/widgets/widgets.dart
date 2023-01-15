@@ -1,1 +1,2 @@
-export 'ads_horizontal_banner.dart';
+export 'ad_widget.dart';
+export 'ads_widgets.dart';

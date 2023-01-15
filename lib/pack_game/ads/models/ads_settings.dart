@@ -23,7 +23,7 @@ class AdPermissions with _$AdPermissions {
   static const noAds = AdPermissions();
   static const yandexGamesAds = AdPermissions(
     adsAllowed: true,
-    onContinueLevelVideoEnabled: true,
+    onContinueLevelVideoEnabled: false,
     onGameOpenEnabled: true,
     onLevelEndEnabled: true,
     pauseGameScreenBannerEnabled: false,
@@ -31,10 +31,18 @@ class AdPermissions with _$AdPermissions {
   );
   static const webAndroidAds = AdPermissions(
     adsAllowed: true,
-    onContinueLevelVideoEnabled: true,
+    onContinueLevelVideoEnabled: false,
     pauseGameScreenBannerEnabled: true,
     levelEndScreenBannerEnabled: true,
     onGameOpenEnabled: false,
     onLevelEndEnabled: false,
+  );
+  static const allAdEnabled = AdPermissions(
+    adsAllowed: true,
+    onContinueLevelVideoEnabled: true,
+    pauseGameScreenBannerEnabled: true,
+    levelEndScreenBannerEnabled: true,
+    onGameOpenEnabled: true,
+    onLevelEndEnabled: true,
   );
 }

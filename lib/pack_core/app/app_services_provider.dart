@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/pack_game/ads/states/ad_manager.dart';
 
 class AppServicesProviderDiDto {
   AppServicesProviderDiDto({
@@ -35,6 +36,7 @@ class AppServicesProvider extends StatelessWidget {
         Provider<MechanicsCollection>(
           create: (final context) => MechanicsCollection.v1,
         ),
+        Provider(create: (final context) => AdManager())
       ],
       child: Builder(
         builder: (final context) {

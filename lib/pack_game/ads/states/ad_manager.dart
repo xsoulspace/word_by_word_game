@@ -9,7 +9,10 @@ class AdManager implements Loadable, Disposable {
   @override
   Future<void> onLoad() async {
     if (Envs.isMarketingMode) return;
-
+    if (Envs.isDebugAds) {
+      permissions = AdPermissions.allAdEnabled;
+      return;
+    }
     if (kIsWeb) {
       if (Envs.isYandexGames) {
         permissions = AdPermissions.yandexGamesAds;

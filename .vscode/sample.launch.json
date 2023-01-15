@@ -18,6 +18,8 @@
         "--dart-define",
         "is-yandex-games=false",
         "--dart-define",
+        "is-debug-ads=false",
+        "--dart-define",
         "is-marketing-mode=false",
         "--dart-define",
         "revenue-cat-api-key-apple=VALUE",
