@@ -88,7 +88,6 @@ class PauseScreen extends HookWidget {
                     top: 24,
                     child: CharacterAvatarButton.useDefault(),
                   ),
-                const AdOnGameStartFullScreen(),
               ],
             ),
           ),
