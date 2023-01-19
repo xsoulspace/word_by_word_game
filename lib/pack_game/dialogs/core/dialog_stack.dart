@@ -80,7 +80,6 @@ class DialogStack extends HookWidget {
                 ],
               ),
             ),
-          if (state.isWinLoseDialog) const AdOnLevelEndFullScreen(),
         ],
       ),
     );

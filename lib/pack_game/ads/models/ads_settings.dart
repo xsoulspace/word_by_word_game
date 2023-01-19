@@ -11,10 +11,8 @@ part of 'models.dart';
 class AdPermissions with _$AdPermissions {
   const factory AdPermissions({
     @Default(false) final bool adsAllowed,
-    @Default(false) final bool onGameOpenEnabled,
     @Default(false) final bool pauseGameScreenBannerEnabled,
     @Default(false) final bool levelEndScreenBannerEnabled,
-    @Default(false) final bool onLevelEndEnabled,
     @Default(false) final bool onContinueLevelVideoEnabled,
   }) = _AdPermissions;
 
@@ -24,8 +22,6 @@ class AdPermissions with _$AdPermissions {
   static const yandexGamesAds = AdPermissions(
     adsAllowed: true,
     onContinueLevelVideoEnabled: false,
-    onGameOpenEnabled: true,
-    onLevelEndEnabled: true,
     pauseGameScreenBannerEnabled: false,
     levelEndScreenBannerEnabled: false,
   );
@@ -34,15 +30,11 @@ class AdPermissions with _$AdPermissions {
     onContinueLevelVideoEnabled: false,
     pauseGameScreenBannerEnabled: true,
     levelEndScreenBannerEnabled: true,
-    onGameOpenEnabled: false,
-    onLevelEndEnabled: false,
   );
   static const allAdEnabled = AdPermissions(
     adsAllowed: true,
     onContinueLevelVideoEnabled: true,
     pauseGameScreenBannerEnabled: true,
     levelEndScreenBannerEnabled: true,
-    onGameOpenEnabled: true,
-    onLevelEndEnabled: true,
   );
 }
