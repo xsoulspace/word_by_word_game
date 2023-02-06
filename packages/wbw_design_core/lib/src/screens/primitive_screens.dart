@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class EmptyScreen extends StatelessWidget {
-  const EmptyScreen({final Key? key}) : super(key: key);
+  const EmptyScreen({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -15,7 +15,7 @@ class EmptyScreen extends StatelessWidget {
 }
 
 class LoadingScreen extends StatelessWidget {
-  const LoadingScreen({final Key? key}) : super(key: key);
+  const LoadingScreen({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -31,7 +31,7 @@ class LoadingScreen extends StatelessWidget {
 }
 
 class CircularProgress extends StatelessWidget {
-  const CircularProgress({final Key? key}) : super(key: key);
+  const CircularProgress({super.key});
 
   @override
   Widget build(final BuildContext context) {

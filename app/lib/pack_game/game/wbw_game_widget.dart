@@ -11,7 +11,7 @@ import 'package:word_by_word_game/pack_game/game/wbw_game.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/levels_hud.dart';
 
 class WbwGameWidget extends HookWidget {
-  const WbwGameWidget({final Key? key}) : super(key: key);
+  const WbwGameWidget({super.key});
 
   @override
   Widget build(final BuildContext context) {

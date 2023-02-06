@@ -27,8 +27,8 @@ enum GameDialogType {
 class DialogStack extends HookWidget {
   const DialogStack({
     required this.builder,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final Widget Function(BuildContext context, DialogController dialogController)
       builder;
   @override

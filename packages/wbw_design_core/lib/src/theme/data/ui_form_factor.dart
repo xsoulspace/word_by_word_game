@@ -103,13 +103,11 @@ const maxMediumWidth = 1000.0;
 
 enum DeviceWindowFormFactor {
   android(
-    hasTransparencySupport: false,
     hasWindowClose: false,
     hasWindowExpand: false,
     hasWindowHide: false,
   ),
   iOS(
-    hasTransparencySupport: false,
     hasWindowClose: false,
     hasWindowExpand: false,
     hasWindowHide: false,
@@ -118,7 +116,6 @@ enum DeviceWindowFormFactor {
   windows(),
   linux(),
   web(
-    hasTransparencySupport: false,
     hasWindowClose: false,
     hasWindowExpand: false,
     hasWindowHide: false,
@@ -128,6 +125,7 @@ enum DeviceWindowFormFactor {
     this.hasWindowClose = true,
     this.hasWindowExpand = true,
     this.hasWindowHide = true,
+    // ignore: unused_element
     this.hasTransparencySupport = false,
   });
   final bool hasWindowClose;

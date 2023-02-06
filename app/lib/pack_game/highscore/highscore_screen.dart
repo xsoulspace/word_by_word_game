@@ -11,8 +11,8 @@ import 'package:word_by_word_game/pack_game/levels/screens/level_options/widgets
 
 class HighscoreScreen extends HookWidget {
   const HighscoreScreen({
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);

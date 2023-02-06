@@ -1,5 +1,6 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wbw_core/wbw_core.dart';
+
+import '../../../wbw_core.dart';
 
 part 'character_mechanics.freezed.dart';
 

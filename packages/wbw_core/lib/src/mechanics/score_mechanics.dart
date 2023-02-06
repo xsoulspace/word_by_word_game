@@ -1,6 +1,6 @@
 import 'dart:math' as math;
 
-import 'package:wbw_core/wbw_core.dart';
+import '../../wbw_core.dart';
 
 const int kIncreaseScoreModifier = 65;
 const int kDecreaseScoreModifier = kIncreaseScoreModifier * 3;

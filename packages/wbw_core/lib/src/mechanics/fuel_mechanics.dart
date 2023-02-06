@@ -1,4 +1,4 @@
-import 'package:wbw_core/wbw_core.dart';
+import '../../wbw_core.dart';
 
 /// 1. turn word into score
 /// 2. turn score into fuel

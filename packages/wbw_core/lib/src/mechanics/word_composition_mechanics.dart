@@ -1,4 +1,4 @@
-import 'package:wbw_core/wbw_core.dart';
+import '../../wbw_core.dart';
 
 class WordCompositionMechanics {
   CurrentWordModel applyPartsChanges({

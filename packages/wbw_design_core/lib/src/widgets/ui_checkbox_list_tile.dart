@@ -5,8 +5,8 @@ class UiCheckboxListTile extends StatelessWidget {
     required this.onChanged,
     required this.value,
     this.title,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   final bool value;
   final ValueChanged<bool?> onChanged;

@@ -22,8 +22,8 @@ part 'pause_screen_state.dart';
 
 class PauseScreen extends HookWidget {
   const PauseScreen({
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   static const _kIsPrivacyPolicyEnabled = false;
   static const _kIsCharacterVisible = false;
   @override

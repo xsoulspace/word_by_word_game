@@ -19,8 +19,8 @@ class AppServicesProvider extends StatelessWidget {
   const AppServicesProvider({
     required this.diDto,
     required this.child,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final Widget child;
   final AppServicesProviderDiDto diDto;
   @override

@@ -10,8 +10,8 @@ import 'package:word_by_word_game/pack_game/settings/settings_screen.dart';
 class AppNavigator extends HookWidget {
   const AppNavigator({
     required this.navigatorKey,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final GlobalKey<NavigatorState> navigatorKey;
 
   @override
