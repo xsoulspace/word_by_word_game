@@ -70,11 +70,11 @@ dependencies:
   universal_io: ^2.0.4
   url_launcher: ^6.1.6
   wbw_core:
-    path: ../packages/wbw_core
+    path: packages/wbw_core
   wbw_design_core:
-    path: ../packages/wbw_design_core
+    path: packages/wbw_design_core
   yandex_ads_sdk:
-    path: ../packages/yandex_ads_sdk
+    path: packages/yandex_ads_sdk
 
 dev_dependencies:
   build_runner: ^2.2.1

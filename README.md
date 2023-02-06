@@ -66,3 +66,6 @@ flutter clean && flutter pub get && flutter build web --csp
 android:
 flutter build appbundle --dart-define=""
 flutter build apk --dart-define=""
+
+This project uses
+melos to manage packages
