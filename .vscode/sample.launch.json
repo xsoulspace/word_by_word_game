@@ -1,7 +1,7 @@
 {
   "configurations": [
     {
-      "program": "lib/main.dart",
+      "program": "app/lib/main.dart",
       "request": "launch",
       "type": "dart",
       "toolArgs": [
