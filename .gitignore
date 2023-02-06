@@ -33,7 +33,9 @@ android/key.properties
 .packages
 .pub-cache/
 .pub/
-/build/
+build/
+app/build
+app/build/
 
 # Web related
 
