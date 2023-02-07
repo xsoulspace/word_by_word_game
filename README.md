@@ -67,5 +67,12 @@ android:
 flutter build appbundle --dart-define=""
 flutter build apk --dart-define=""
 
-This project uses
+This project uses:
+
 melos to manage packages
+https://melos.invertase.dev
+dart pub global activate melos
+
+Widgetbook:
+https://docs.widgetbook.io/widgetbook/overview
+dart pub global activate mason_cli
