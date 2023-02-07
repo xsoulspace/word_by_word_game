@@ -1,0 +1,22 @@
+---
+description: Control the hot air balloon by entering unique words (within the level) based on the last 3 letters of the last word and bring it as far as you can!
+---
+
+## Build
+
+web:
+flutter clean && flutter pub get && flutter build web --csp
+
+android:
+flutter build appbundle --dart-define=""
+flutter build apk --dart-define=""
+
+This project uses:
+
+melos to manage packages
+https://melos.invertase.dev
+dart pub global activate melos
+
+Widgetbook:
+https://docs.widgetbook.io/widgetbook/overview
+dart pub global activate mason_cli
