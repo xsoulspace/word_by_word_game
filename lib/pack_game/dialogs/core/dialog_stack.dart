@@ -27,8 +27,8 @@ enum GameDialogType {
 class DialogStack extends HookWidget {
   const DialogStack({
     required this.builder,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final Widget Function(BuildContext context, DialogController dialogController)
       builder;
   @override
@@ -76,7 +76,7 @@ class DialogStack extends HookWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: const [
                   TopSafeArea(),
-                  AdsHorizontalBanner(),
+                  AdLevelEndScreenBanner(),
                 ],
               ),
             ),

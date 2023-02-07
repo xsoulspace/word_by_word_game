@@ -16,10 +16,10 @@ dependencies:
   flutter_bloc: ^8.1.1
   flutter_hooks: ^0.18.5+1
   flutter_keyboard_visibility: ^5.2.0
-  freezed_annotation: ^2.1.0
+  freezed_annotation: ^2.2.0
   intl: ^0.17.0
   json_annotation: ^4.7.0
-  life_hooks: ^0.0.14
+  life_hooks: ^0.0.18
   path_to_regexp: ^0.4.0
   provider: ^6.0.4
   quiver: ^3.1.0
@@ -35,9 +35,9 @@ dev_dependencies:
   flutter_lints: ^2.0.1
   flutter_test:
     sdk: flutter
-  freezed: ^2.1.0+1
-  json_serializable: ^6.3.1
-  xsoulspace_lints: ^0.0.1
+  freezed: ^2.3.2
+  json_serializable: ^6.5.4
+  xsoulspace_lints: ^0.0.5
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

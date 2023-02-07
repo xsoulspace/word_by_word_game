@@ -15,8 +15,8 @@ class RouterPopScope extends StatelessWidget {
   const RouterPopScope({
     required this.child,
     this.popper = const RouterPopper(),
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final RouterPopper popper;
   final Widget child;
   @override

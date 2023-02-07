@@ -11,8 +11,8 @@ class UiFrameTextField extends StatelessWidget {
     required this.keyFocusNode,
     this.onEnterPressed,
     this.textFieldFocusNode,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final TextEditingController controller;
   final String hintText;
   final VoidCallback? onEnterPressed;

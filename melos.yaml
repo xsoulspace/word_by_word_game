@@ -1,0 +1,5 @@
+name: word_by_word_game
+
+packages:
+  - ./*
+  - packages/*

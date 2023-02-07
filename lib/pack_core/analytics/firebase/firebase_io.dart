@@ -55,7 +55,7 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
       printDetails: printDetails,
     );
     await analytics.logEvent(
-      name: 'error',
+      name: 'flutter_error',
       parameters: {'details': errorDetailsStr},
     );
   }

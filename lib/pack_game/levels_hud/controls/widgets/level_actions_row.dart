@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/generated/l10n.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_game/levels_hud/controls/widgets/player_swither_bar.dart';
@@ -127,7 +128,7 @@ class UIDesktopLevelActionsRow extends HookWidget {
 
 class UiActionFrame extends StatelessWidget {
   const UiActionFrame({super.key});
-  static const kIsCookingEnabled = kDebugMode;
+  static bool get kIsCookingEnabled => kDebugMode && !Envs.isMarketingMode;
 
   @override
   Widget build(final BuildContext context) {

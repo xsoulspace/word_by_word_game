@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BottomSafeArea extends StatelessWidget {
-  const BottomSafeArea({final Key? key}) : super(key: key);
+  const BottomSafeArea({super.key});
   @override
   Widget build(final BuildContext context) {
     return const SafeArea(top: false, child: SizedBox(height: 1));
@@ -10,7 +10,7 @@ class BottomSafeArea extends StatelessWidget {
 }
 
 class TopSafeArea extends StatelessWidget {
-  const TopSafeArea({final Key? key}) : super(key: key);
+  const TopSafeArea({super.key});
 
   @override
   Widget build(final BuildContext context) {

@@ -47,7 +47,7 @@ class WbwGame extends FlameGame with HasCollisionDetection {
 
   @override
   Future<void> onLoad() async {
-    debugMode = kDebugMode && !kMarketingMode;
+    debugMode = kDebugMode && !Envs.isMarketingMode;
 
     children.register<CameraComponent>();
     world = World();

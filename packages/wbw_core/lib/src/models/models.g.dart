@@ -6,17 +6,17 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_AppSettingsModel _$$_AppSettingsModelFromJson(Map<String, dynamic> json) =>
+_$_AppSettingsModel _$$_AppSettingsModelFromJson(final Map<String, dynamic> json) =>
     _$_AppSettingsModel(
       locale: localeFromString(json['locale'] as String?),
     );
 
-Map<String, dynamic> _$$_AppSettingsModelToJson(_$_AppSettingsModel instance) =>
+Map<String, dynamic> _$$_AppSettingsModelToJson(final _$_AppSettingsModel instance) =>
     <String, dynamic>{
       'locale': localeToString(instance.locale),
     };
 
-_$_CurrentWordModel _$$_CurrentWordModelFromJson(Map<String, dynamic> json) =>
+_$_CurrentWordModel _$$_CurrentWordModelFromJson(final Map<String, dynamic> json) =>
     _$_CurrentWordModel(
       leftPart: json['leftPart'] as String? ?? '',
       middlePart: json['middlePart'] as String? ?? '',
@@ -24,7 +24,7 @@ _$_CurrentWordModel _$$_CurrentWordModelFromJson(Map<String, dynamic> json) =>
       fullWord: json['fullWord'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_CurrentWordModelToJson(_$_CurrentWordModel instance) =>
+Map<String, dynamic> _$$_CurrentWordModelToJson(final _$_CurrentWordModel instance) =>
     <String, dynamic>{
       'leftPart': instance.leftPart,
       'middlePart': instance.middlePart,
@@ -32,29 +32,29 @@ Map<String, dynamic> _$$_CurrentWordModelToJson(_$_CurrentWordModel instance) =>
       'fullWord': instance.fullWord,
     };
 
-_$_FuelModel _$$_FuelModelFromJson(Map<String, dynamic> json) => _$_FuelModel(
+_$_FuelModel _$$_FuelModelFromJson(final Map<String, dynamic> json) => _$_FuelModel(
       value: (json['value'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_FuelModelToJson(_$_FuelModel instance) =>
+Map<String, dynamic> _$$_FuelModelToJson(final _$_FuelModel instance) =>
     <String, dynamic>{
       'value': instance.value,
     };
 
-_$_FuelStorageModel _$$_FuelStorageModelFromJson(Map<String, dynamic> json) =>
+_$_FuelStorageModel _$$_FuelStorageModelFromJson(final Map<String, dynamic> json) =>
     _$_FuelStorageModel(
       value: (json['value'] as num?)?.toDouble() ?? 100,
     );
 
-Map<String, dynamic> _$$_FuelStorageModelToJson(_$_FuelStorageModel instance) =>
+Map<String, dynamic> _$$_FuelStorageModelToJson(final _$_FuelStorageModel instance) =>
     <String, dynamic>{
       'value': instance.value,
     };
 
-_$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
+_$_GameModel _$$_GameModelFromJson(final Map<String, dynamic> json) => _$_GameModel(
       id: json['id'] as String,
       templateLevels: (json['templateLevels'] as List<dynamic>)
-          .map((e) => TemplateLevelModel.fromJson(e as Map<String, dynamic>))
+          .map((final e) => TemplateLevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentLevelId: json['currentLevelId'] as String,
       currentLevel: json['currentLevel'] == null
@@ -63,48 +63,48 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
       version: $enumDecodeNullable(_$GameVersionEnumMap, json['version']) ??
           kPreviousGameVersion,
       levels: (json['levels'] as Map<String, dynamic>?)?.map(
-            (k, e) =>
+            (final k, final e) =>
                 MapEntry(k, LevelModel.fromJson(e as Map<String, dynamic>)),
           ) ??
           const {},
       dateTime: json['dateTime'] == null
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
-              json['dateTime'] as Map<String, dynamic>),
+              json['dateTime'] as Map<String, dynamic>,),
       lastDateTime: json['lastDateTime'] == null
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
-              json['lastDateTime'] as Map<String, dynamic>),
+              json['lastDateTime'] as Map<String, dynamic>,),
       playersCollection: (json['playersCollection'] as List<dynamic>?)
               ?.map(
-                  (e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
+                  (final e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>),)
               .toList() ??
           const [],
       playersCharacters: (json['playersCharacters'] as List<dynamic>?)
-              ?.map((e) =>
-                  PlayerCharacterModel.fromJson(e as Map<String, dynamic>))
+              ?.map((final e) =>
+                  PlayerCharacterModel.fromJson(e as Map<String, dynamic>),)
               .toList() ??
           const [],
       tutorialProgress: json['tutorialProgress'] == null
           ? TutorialCollectionsProgressModel.empty
           : TutorialCollectionsProgressModel.fromJson(
-              json['tutorialProgress'] as Map<String, dynamic>),
+              json['tutorialProgress'] as Map<String, dynamic>,),
     );
 
-Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
+Map<String, dynamic> _$$_GameModelToJson(final _$_GameModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'templateLevels': instance.templateLevels.map((e) => e.toJson()).toList(),
+      'templateLevels': instance.templateLevels.map((final e) => e.toJson()).toList(),
       'currentLevelId': instance.currentLevelId,
       'currentLevel': instance.currentLevel?.toJson(),
       'version': _$GameVersionEnumMap[instance.version]!,
-      'levels': instance.levels.map((k, e) => MapEntry(k, e.toJson())),
+      'levels': instance.levels.map((final k, final e) => MapEntry(k, e.toJson())),
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
       'playersCollection':
-          instance.playersCollection.map((e) => e.toJson()).toList(),
+          instance.playersCollection.map((final e) => e.toJson()).toList(),
       'playersCharacters':
-          instance.playersCharacters.map((e) => e.toJson()).toList(),
+          instance.playersCharacters.map((final e) => e.toJson()).toList(),
       'tutorialProgress': instance.tutorialProgress.toJson(),
     };
 
@@ -114,25 +114,25 @@ const _$GameVersionEnumMap = {
 };
 
 _$_LevelCharactersModel _$$_LevelCharactersModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_LevelCharactersModel(
       playerCharacter: PlayerCharacterModel.fromJson(
-          json['playerCharacter'] as Map<String, dynamic>),
+          json['playerCharacter'] as Map<String, dynamic>,),
     );
 
 Map<String, dynamic> _$$_LevelCharactersModelToJson(
-        _$_LevelCharactersModel instance) =>
+        final _$_LevelCharactersModel instance,) =>
     <String, dynamic>{
       'playerCharacter': instance.playerCharacter.toJson(),
     };
 
-_$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
+_$_LevelModel _$$_LevelModelFromJson(final Map<String, dynamic> json) =>
     _$_LevelModel(
       id: json['id'] as String,
       players:
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
-          json['characters'] as Map<String, dynamic>),
+          json['characters'] as Map<String, dynamic>,),
       resources:
           ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
       name: json['name'] == null
@@ -141,23 +141,23 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
       currentWord: json['currentWord'] == null
           ? const CurrentWordModel()
           : CurrentWordModel.fromJson(
-              json['currentWord'] as Map<String, dynamic>),
+              json['currentWord'] as Map<String, dynamic>,),
       words: (json['words'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(k, e as String),
+            (final k, final e) => MapEntry(k, e as String),
           ) ??
           const {},
       latestWord: json['latestWord'] as String? ?? '',
       phaseType: $enumDecodeNullable(
-              _$LevelPlayerPhaseTypeEnumMap, json['phaseType']) ??
+              _$LevelPlayerPhaseTypeEnumMap, json['phaseType'],) ??
           LevelPlayerPhaseType.entryWord,
       actionMultiplier: $enumDecodeNullable(
-              _$LevelActionMultiplierTypeEnumMap, json['actionMultiplier']) ??
+              _$LevelActionMultiplierTypeEnumMap, json['actionMultiplier'],) ??
           LevelActionMultiplierType.m1,
       actionType: $enumDecodeNullable(
-          _$LevelPlayerActionTypeEnumMap, json['actionType']),
+          _$LevelPlayerActionTypeEnumMap, json['actionType'],),
     );
 
-Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
+Map<String, dynamic> _$$_LevelModelToJson(final _$_LevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'players': instance.players.toJson(),
@@ -190,7 +190,7 @@ const _$LevelPlayerActionTypeEnumMap = {
 };
 
 _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_TemplateLevelModel(
       id: json['id'] as String,
       resources:
@@ -201,11 +201,11 @@ _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
       fuelStorage: json['fuelStorage'] == null
           ? const FuelStorageModel()
           : FuelStorageModel.fromJson(
-              json['fuelStorage'] as Map<String, dynamic>),
+              json['fuelStorage'] as Map<String, dynamic>,),
     );
 
 Map<String, dynamic> _$$_TemplateLevelModelToJson(
-        _$_TemplateLevelModel instance) =>
+        final _$_TemplateLevelModel instance,) =>
     <String, dynamic>{
       'id': instance.id,
       'resources': instance.resources.toJson(),
@@ -213,37 +213,37 @@ Map<String, dynamic> _$$_TemplateLevelModelToJson(
       'fuelStorage': instance.fuelStorage.toJson(),
     };
 
-_$_LevelPlayersModel _$$_LevelPlayersModelFromJson(Map<String, dynamic> json) =>
+_$_LevelPlayersModel _$$_LevelPlayersModelFromJson(final Map<String, dynamic> json) =>
     _$_LevelPlayersModel(
       players: (json['players'] as List<dynamic>)
-          .map((e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
+          .map((final e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       currentPlayerId: json['currentPlayerId'] as String,
     );
 
 Map<String, dynamic> _$$_LevelPlayersModelToJson(
-        _$_LevelPlayersModel instance) =>
+        final _$_LevelPlayersModel instance,) =>
     <String, dynamic>{
-      'players': instance.players.map((e) => e.toJson()).toList(),
+      'players': instance.players.map((final e) => e.toJson()).toList(),
       'currentPlayerId': instance.currentPlayerId,
     };
 
 _$_LocalDictionaryModel _$$_LocalDictionaryModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_LocalDictionaryModel(
       words:
-          (json['words'] as List<dynamic>?)?.map((e) => e as String).toSet() ??
+          (json['words'] as List<dynamic>?)?.map((final e) => e as String).toSet() ??
               const {},
     );
 
 Map<String, dynamic> _$$_LocalDictionaryModelToJson(
-        _$_LocalDictionaryModel instance) =>
+        final _$_LocalDictionaryModel instance,) =>
     <String, dynamic>{
       'words': instance.words.toList(),
     };
 
 _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_PlayerCharacterModel(
       id: json['id'] as String,
       description: json['description'] as String,
@@ -253,12 +253,12 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
       localizedName: json['localizedName'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(
-              json['localizedName'] as Map<String, dynamic>),
+              json['localizedName'] as Map<String, dynamic>,),
       characterIcon: json['characterIcon'] as String? ?? '',
       position: json['position'] == null
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
-              json['position'] as Map<String, dynamic>),
+              json['position'] as Map<String, dynamic>,),
       fuel: json['fuel'] == null
           ? const FuelStorageModel(value: 150)
           : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
@@ -267,7 +267,7 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
     );
 
 Map<String, dynamic> _$$_PlayerCharacterModelToJson(
-        _$_PlayerCharacterModel instance) =>
+        final _$_PlayerCharacterModel instance,) =>
     <String, dynamic>{
       'id': instance.id,
       'description': instance.description,
@@ -282,66 +282,66 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
     };
 
 _$_CharacterAssetModel _$$_CharacterAssetModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_CharacterAssetModel(
       srcPosition: SerializedVector2.fromJson(
-          json['srcPosition'] as Map<String, dynamic>),
+          json['srcPosition'] as Map<String, dynamic>,),
       srcSizeX: json['srcSizeX'] as int,
       srcSizeY: json['srcSizeY'] as int,
     );
 
 Map<String, dynamic> _$$_CharacterAssetModelToJson(
-        _$_CharacterAssetModel instance) =>
+        final _$_CharacterAssetModel instance,) =>
     <String, dynamic>{
       'srcPosition': instance.srcPosition.toJson(),
       'srcSizeX': instance.srcSizeX,
       'srcSizeY': instance.srcSizeY,
     };
 
-_$_SerializedVector2 _$$_SerializedVector2FromJson(Map<String, dynamic> json) =>
+_$_SerializedVector2 _$$_SerializedVector2FromJson(final Map<String, dynamic> json) =>
     _$_SerializedVector2(
       x: (json['x'] as num?)?.toDouble() ?? 0,
       y: (json['y'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$_SerializedVector2ToJson(
-        _$_SerializedVector2 instance) =>
+        final _$_SerializedVector2 instance,) =>
     <String, dynamic>{
       'x': instance.x,
       'y': instance.y,
     };
 
 _$_PlayerProfileModel _$$_PlayerProfileModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_PlayerProfileModel(
       id: json['id'] as String,
       colorValue: json['colorValue'] as int,
       name: json['name'] as String,
       levelsHighscores: (json['levelsHighscores'] as Map<String, dynamic>?)
               ?.map(
-            (k, e) => MapEntry(k,
-                PlayerLevelHighscoreModel.fromJson(e as Map<String, dynamic>)),
+            (final k, final e) => MapEntry(k,
+                PlayerLevelHighscoreModel.fromJson(e as Map<String, dynamic>),),
           ) ??
           const {},
       highscore: json['highscore'] == null
           ? PlayerHighscoreModel.empty
           : PlayerHighscoreModel.fromJson(
-              json['highscore'] as Map<String, dynamic>),
+              json['highscore'] as Map<String, dynamic>,),
     );
 
 Map<String, dynamic> _$$_PlayerProfileModelToJson(
-        _$_PlayerProfileModel instance) =>
+        final _$_PlayerProfileModel instance,) =>
     <String, dynamic>{
       'id': instance.id,
       'colorValue': instance.colorValue,
       'name': instance.name,
       'levelsHighscores':
-          instance.levelsHighscores.map((k, e) => MapEntry(k, e.toJson())),
+          instance.levelsHighscores.map((final k, final e) => MapEntry(k, e.toJson())),
       'highscore': instance.highscore.toJson(),
     };
 
 _$_PlayerHighscoreModel _$$_PlayerHighscoreModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_PlayerHighscoreModel(
       maxWordsCount: json['maxWordsCount'] as int? ?? 0,
       maxLettersCount: json['maxLettersCount'] as int? ?? 0,
@@ -353,7 +353,7 @@ _$_PlayerHighscoreModel _$$_PlayerHighscoreModelFromJson(
     );
 
 Map<String, dynamic> _$$_PlayerHighscoreModelToJson(
-        _$_PlayerHighscoreModel instance) =>
+        final _$_PlayerHighscoreModel instance,) =>
     <String, dynamic>{
       'maxWordsCount': instance.maxWordsCount,
       'maxLettersCount': instance.maxLettersCount,
@@ -363,7 +363,7 @@ Map<String, dynamic> _$$_PlayerHighscoreModelToJson(
     };
 
 _$_PlayerLevelHighscoreModel _$$_PlayerLevelHighscoreModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_PlayerLevelHighscoreModel(
       levelId: json['levelId'] as String,
       maxDistance: (json['maxDistance'] as num?)?.toDouble() ?? 0,
@@ -373,7 +373,7 @@ _$_PlayerLevelHighscoreModel _$$_PlayerLevelHighscoreModelFromJson(
     );
 
 Map<String, dynamic> _$$_PlayerLevelHighscoreModelToJson(
-        _$_PlayerLevelHighscoreModel instance) =>
+        final _$_PlayerLevelHighscoreModel instance,) =>
     <String, dynamic>{
       'levelId': instance.levelId,
       'maxDistance': instance.maxDistance,
@@ -382,45 +382,45 @@ Map<String, dynamic> _$$_PlayerLevelHighscoreModelToJson(
       'flightTime': instance.flightTime,
     };
 
-_$_ResourcesModel _$$_ResourcesModelFromJson(Map<String, dynamic> json) =>
+_$_ResourcesModel _$$_ResourcesModelFromJson(final Map<String, dynamic> json) =>
     _$_ResourcesModel(
       tileMapName: json['tileMapName'] as String,
       tileMapIcon: json['tileMapIcon'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_ResourcesModelToJson(_$_ResourcesModel instance) =>
+Map<String, dynamic> _$$_ResourcesModelToJson(final _$_ResourcesModel instance) =>
     <String, dynamic>{
       'tileMapName': instance.tileMapName,
       'tileMapIcon': instance.tileMapIcon,
     };
 
-_$_ScoreModel _$$_ScoreModelFromJson(Map<String, dynamic> json) =>
+_$_ScoreModel _$$_ScoreModelFromJson(final Map<String, dynamic> json) =>
     _$_ScoreModel(
       value: (json['value'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_ScoreModelToJson(_$_ScoreModel instance) =>
+Map<String, dynamic> _$$_ScoreModelToJson(final _$_ScoreModel instance) =>
     <String, dynamic>{
       'value': instance.value,
     };
 
 _$_TutorialEventModel _$$_TutorialEventModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_TutorialEventModel(
       localizedMap:
           LocalizedMap.fromJson(json['localizedMap'] as Map<String, dynamic>),
       completeActions: (json['completeActions'] as List<dynamic>)
-          .map((e) =>
-              TutorialUiActionEventModel.fromJson(e as Map<String, dynamic>))
+          .map((final e) =>
+              TutorialUiActionEventModel.fromJson(e as Map<String, dynamic>),)
           .toList(),
       gamePreEffects: (json['gamePreEffects'] as List<dynamic>?)
-              ?.map((e) =>
-                  TutorialGameEffectModel.fromJson(e as Map<String, dynamic>))
+              ?.map((final e) =>
+                  TutorialGameEffectModel.fromJson(e as Map<String, dynamic>),)
               .toList() ??
           const [],
       gamePostEffects: (json['gamePostEffects'] as List<dynamic>?)
-              ?.map((e) =>
-                  TutorialGameEffectModel.fromJson(e as Map<String, dynamic>))
+              ?.map((final e) =>
+                  TutorialGameEffectModel.fromJson(e as Map<String, dynamic>),)
               .toList() ??
           const [],
       anchorUiItem:
@@ -428,14 +428,14 @@ _$_TutorialEventModel _$$_TutorialEventModelFromJson(
     );
 
 Map<String, dynamic> _$$_TutorialEventModelToJson(
-        _$_TutorialEventModel instance) =>
+        final _$_TutorialEventModel instance,) =>
     <String, dynamic>{
       'localizedMap': instance.localizedMap.toJson(),
       'completeActions':
-          instance.completeActions.map((e) => e.toJson()).toList(),
-      'gamePreEffects': instance.gamePreEffects.map((e) => e.toJson()).toList(),
+          instance.completeActions.map((final e) => e.toJson()).toList(),
+      'gamePreEffects': instance.gamePreEffects.map((final e) => e.toJson()).toList(),
       'gamePostEffects':
-          instance.gamePostEffects.map((e) => e.toJson()).toList(),
+          instance.gamePostEffects.map((final e) => e.toJson()).toList(),
       'anchorUiItem': _$TutorialUiItemEnumMap[instance.anchorUiItem],
     };
 
@@ -464,13 +464,13 @@ const _$TutorialUiItemEnumMap = {
 };
 
 _$_TutorialGameEffectModel _$$_TutorialGameEffectModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_TutorialGameEffectModel(
       name: $enumDecode(_$TutorialGameEffectNameEnumMap, json['name']),
     );
 
 Map<String, dynamic> _$$_TutorialGameEffectModelToJson(
-        _$_TutorialGameEffectModel instance) =>
+        final _$_TutorialGameEffectModel instance,) =>
     <String, dynamic>{
       'name': _$TutorialGameEffectNameEnumMap[instance.name]!,
     };
@@ -482,30 +482,30 @@ const _$TutorialGameEffectNameEnumMap = {
 };
 
 _$_TutorialUiActionEventModel _$$_TutorialUiActionEventModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_TutorialUiActionEventModel(
       action: $enumDecode(_$TutorialCompleteActionEnumMap, json['action']),
       uiItem: $enumDecodeNullable(_$TutorialUiItemEnumMap, json['uiItem']),
       isCompleted: json['isCompleted'] as bool? ?? false,
       boolConsquenses: (json['boolConsquenses'] as Map<String, dynamic>?)?.map(
-            (k, e) => MapEntry(
+            (final k, final e) => MapEntry(
                 $enumDecode(_$PrimitiveBoolEnumMap, k),
                 (e as List<dynamic>)
-                    .map((e) => TutorialGameEffectModel.fromJson(
-                        e as Map<String, dynamic>))
-                    .toList()),
+                    .map((final e) => TutorialGameEffectModel.fromJson(
+                        e as Map<String, dynamic>,),)
+                    .toList(),),
           ) ??
           const {},
     );
 
 Map<String, dynamic> _$$_TutorialUiActionEventModelToJson(
-        _$_TutorialUiActionEventModel instance) =>
+        final _$_TutorialUiActionEventModel instance,) =>
     <String, dynamic>{
       'action': _$TutorialCompleteActionEnumMap[instance.action]!,
       'uiItem': _$TutorialUiItemEnumMap[instance.uiItem],
       'isCompleted': instance.isCompleted,
-      'boolConsquenses': instance.boolConsquenses.map((k, e) => MapEntry(
-          _$PrimitiveBoolEnumMap[k]!, e.map((e) => e.toJson()).toList())),
+      'boolConsquenses': instance.boolConsquenses.map((final k, final e) => MapEntry(
+          _$PrimitiveBoolEnumMap[k]!, e.map((final e) => e.toJson()).toList(),),),
     };
 
 const _$TutorialCompleteActionEnumMap = {
@@ -521,19 +521,19 @@ const _$PrimitiveBoolEnumMap = {
 };
 
 _$_TutorialEventsCollectionModel _$$_TutorialEventsCollectionModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_TutorialEventsCollectionModel(
       events: (json['events'] as List<dynamic>)
-          .map((e) => TutorialEventModel.fromJson(e as Map<String, dynamic>))
+          .map((final e) => TutorialEventModel.fromJson(e as Map<String, dynamic>))
           .toList(),
       name: $enumDecode(_$TutorialCollectionsNameEnumMap, json['name']),
       currentIndex: json['currentIndex'] as int,
     );
 
 Map<String, dynamic> _$$_TutorialEventsCollectionModelToJson(
-        _$_TutorialEventsCollectionModel instance) =>
+        final _$_TutorialEventsCollectionModel instance,) =>
     <String, dynamic>{
-      'events': instance.events.map((e) => e.toJson()).toList(),
+      'events': instance.events.map((final e) => e.toJson()).toList(),
       'name': _$TutorialCollectionsNameEnumMap[instance.name]!,
       'currentIndex': instance.currentIndex,
     };
@@ -544,47 +544,47 @@ const _$TutorialCollectionsNameEnumMap = {
 };
 
 _$_TutorialCollectionsProgressModel
-    _$$_TutorialCollectionsProgressModelFromJson(Map<String, dynamic> json) =>
+    _$$_TutorialCollectionsProgressModelFromJson(final Map<String, dynamic> json) =>
         _$_TutorialCollectionsProgressModel(
           indexes: (json['indexes'] as Map<String, dynamic>).map(
-            (k, e) => MapEntry(
-                $enumDecode(_$TutorialCollectionsNameEnumMap, k), e as int),
+            (final k, final e) => MapEntry(
+                $enumDecode(_$TutorialCollectionsNameEnumMap, k), e as int,),
           ),
         );
 
 Map<String, dynamic> _$$_TutorialCollectionsProgressModelToJson(
-        _$_TutorialCollectionsProgressModel instance) =>
+        final _$_TutorialCollectionsProgressModel instance,) =>
     <String, dynamic>{
       'indexes': instance.indexes
-          .map((k, e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e)),
+          .map((final k, final e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e)),
     };
 
 _$_TutorialCollectionsDataModel _$$_TutorialCollectionsDataModelFromJson(
-        Map<String, dynamic> json) =>
+        final Map<String, dynamic> json,) =>
     _$_TutorialCollectionsDataModel(
       events: (json['events'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(
+        (final k, final e) => MapEntry(
             $enumDecode(_$TutorialCollectionsNameEnumMap, k),
             (e as List<dynamic>)
-                .map((e) =>
-                    TutorialEventModel.fromJson(e as Map<String, dynamic>))
-                .toList()),
+                .map((final e) =>
+                    TutorialEventModel.fromJson(e as Map<String, dynamic>),)
+                .toList(),),
       ),
     );
 
 Map<String, dynamic> _$$_TutorialCollectionsDataModelToJson(
-        _$_TutorialCollectionsDataModel instance) =>
+        final _$_TutorialCollectionsDataModel instance,) =>
     <String, dynamic>{
       'events': instance.events
-          .map((k, e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e)),
+          .map((final k, final e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e)),
     };
 
-_$_WorldDateTime _$$_WorldDateTimeFromJson(Map<String, dynamic> json) =>
+_$_WorldDateTime _$$_WorldDateTimeFromJson(final Map<String, dynamic> json) =>
     _$_WorldDateTime(
       second: json['second'] as int? ?? 0,
     );
 
-Map<String, dynamic> _$$_WorldDateTimeToJson(_$_WorldDateTime instance) =>
+Map<String, dynamic> _$$_WorldDateTimeToJson(final _$_WorldDateTime instance) =>
     <String, dynamic>{
       'second': instance.second,
     };

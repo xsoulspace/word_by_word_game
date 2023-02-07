@@ -56,8 +56,23 @@ All [comments](https://github.com/xsoulspace/word_by_word_game/issues) and [pull
 
 ## Getting Help
 
-If you need help getting started with Sheet Manager or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
+If you need help getting started or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
 
 ## Build
 
+web:
 flutter clean && flutter pub get && flutter build web --csp
+
+android:
+flutter build appbundle --dart-define=""
+flutter build apk --dart-define=""
+
+This project uses:
+
+melos to manage packages
+https://melos.invertase.dev
+dart pub global activate melos
+
+Widgetbook:
+https://docs.widgetbook.io/widgetbook/overview
+dart pub global activate mason_cli

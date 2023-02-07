@@ -10,7 +10,7 @@ import 'package:word_by_word_game/pack_game/settings/widgets/locale_switcher_but
 part 'settings_screen_state.dart';
 
 class SettingsScreen extends HookWidget {
-  const SettingsScreen({final Key? key}) : super(key: key);
+  const SettingsScreen({super.key});
 
   @override
   Widget build(final BuildContext context) {

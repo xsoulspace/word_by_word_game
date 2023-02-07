@@ -129,8 +129,8 @@ class UiLetterButton extends StatelessWidget {
   const UiLetterButton({
     required this.onPressed,
     required this.letter,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final VoidCallback onPressed;
   final String letter;
 
@@ -149,8 +149,8 @@ class MiddleWordPartActions extends StatelessWidget {
   const MiddleWordPartActions({
     required this.middlePartOfWord,
     required this.onLetterPressed,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String middlePartOfWord;
   final ValueChanged<int> onLetterPressed;
   @override
@@ -205,8 +205,8 @@ class MiddleWordPartActions extends StatelessWidget {
 class LastWordText extends StatelessWidget {
   const LastWordText({
     required this.latestWord,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final String latestWord;
   @override
   Widget build(final BuildContext context) {

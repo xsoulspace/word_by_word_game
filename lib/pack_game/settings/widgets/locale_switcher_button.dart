@@ -9,8 +9,8 @@ part 'locale_switcher_button_state.dart';
 
 class LocaleSwitcherButton extends HookWidget {
   const LocaleSwitcherButton({
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(final BuildContext context) {
