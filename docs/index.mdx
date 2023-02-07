@@ -1,22 +1,16 @@
 ---
-description: Control the hot air balloon by entering unique words (within the level) based on the last 3 letters of the last word and bring it as far as you can!
+description: Word By Word Game
 ---
 
-## Build
+# Word By Word Game
 
-web:
-flutter clean && flutter pub get && flutter build web --csp
+## About
 
-android:
-flutter build appbundle --dart-define=""
-flutter build apk --dart-define=""
+Control the hot air balloon by entering unique words (within the level) based on the last 3 letters of the last word and bring it as far as you can!
 
-This project uses:
+Features:
 
-melos to manage packages
-https://melos.invertase.dev
-dart pub global activate melos
-
-Widgetbook:
-https://docs.widgetbook.io/widgetbook/overview
-dart pub global activate mason_cli
+- There is support for checking words in two languages (Russian and English). But if the word is not in the dictionary - you can add it.
+- You can play together with friends on the same device.
+- The game remembers the progress - if you press the menu (pause button in the center), the current game will be saved and you can continue later.
+- You can learn new words:)
