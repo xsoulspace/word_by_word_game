@@ -19,14 +19,22 @@ class WidgetbookHotReload extends StatelessWidget {
           name: 'Game UI',
           widgets: [
             WidgetbookComponent(
-              name: 'FAB',
+              name: 'GuiIconButton',
               useCases: [
                 WidgetbookUseCase(
-                  name: 'IconButton - Apple',
+                  name: 'Basic',
                   builder: (final context) {
-                    return GuiIconButton(
-                      icon: GuiArtboard.iconButton,
-                      onPressed: () {},
+                    return Wrap(
+                      children: [
+                        GuiIconButton(
+                          icon: GuiArtboard.iconButton,
+                          onPressed: () {},
+                        ),
+                        GuiIconButton(
+                          icon: GuiArtboard.iconButtonApple,
+                          onPressed: () {},
+                        ),
+                      ],
                     );
                   },
                 ),

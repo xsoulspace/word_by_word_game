@@ -99,6 +99,7 @@ class UiIconButton extends HookWidget {
 
 enum GuiArtboard {
   iconButton,
+  iconButtonApple,
 }
 
 class GuiIconButton extends HookWidget {
@@ -137,7 +138,9 @@ class GuiIconButton extends HookWidget {
                     color: theme.colorScheme.shadow.withOpacity(0.2),
                   ),
             child: RiveAnimation.asset(
-              'assets/wordbyword_v3.riv',
+              // TODO(arenukvern): correct path
+              /// https://stackoverflow.com/questions/63914819/how-to-access-assets-in-package
+              'packages/wbw_design_core/assets/wordbyword_v3.riv',
               artboard: artboard,
               fit: BoxFit.contain,
               stateMachines: const ['IconButtonMachine'],
