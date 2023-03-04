@@ -44,4 +44,8 @@ class Envs {
   static const isYandexGames = bool.fromEnvironment('is-yandex-games');
   static const isMarketingMode = bool.fromEnvironment('is-marketing-mode');
   static const isDebugAds = bool.fromEnvironment('is-debug-ads');
+  static const isAnalyticsEnabled =
+      bool.fromEnvironment('is-analytics-enabled');
+  static const isCrashlyticsEnabled =
+      bool.fromEnvironment('is-crashlytics-enabled');
 }

@@ -1,8 +1,16 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:word_by_word_game/pack_core/analytics/firebase/abstract_firebase.dart';
-import 'package:word_by_word_game/pack_core/analytics/notifiers/analytics_notifier.dart';
 
-class FirebaseInitializer implements AbstractFirebaseInitializer {
+import '../interfaces/interfaces.dart';
+import 'firebase_initializer.dart';
+
+class FirebaseInitializerImpl implements FirebaseInitializer {
+  FirebaseInitializerImpl({
+    required this.firebaseOptions,
+  });
+  @override
+  final FirebaseOptions firebaseOptions;
+
   @override
   Future<void> onLoad() async {}
 
@@ -12,7 +20,7 @@ class FirebaseInitializer implements AbstractFirebaseInitializer {
   }
 }
 
-class FirebaseAnalyticsPlugin implements AbstractAnalytics {
+class FirebaseAnalyticsPlugin extends AnalyticsService {
   bool isSupported = false;
   @override
   Future<void> onLoad() async {}
@@ -40,9 +48,12 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
 
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {}
+
+  @override
+  void dispose() {}
 }
 
-class FirebaseCrashlyticsPlugin implements AbstractAnalytics {
+class FirebaseCrashlyticsPlugin extends AnalyticsService {
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {}
 
@@ -67,4 +78,7 @@ class FirebaseCrashlyticsPlugin implements AbstractAnalytics {
     final FlutterErrorDetails flutterErrorDetails, {
     final bool fatal = false,
   }) async {}
+
+  @override
+  void dispose() {}
 }

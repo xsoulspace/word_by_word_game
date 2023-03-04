@@ -5,16 +5,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/firebase_options.dart';
-import 'package:word_by_word_game/pack_core/analytics/firebase/abstract_firebase.dart';
-import 'package:word_by_word_game/pack_core/analytics/notifiers/analytics_notifier.dart';
 
-class FirebaseInitializer implements AbstractFirebaseInitializer {
+import '../../../utils/utils.dart';
+import '../interfaces/interfaces.dart';
+import '../utils/utils.dart';
+import 'firebase_initializer.dart';
+
+class FirebaseInitializerImpl implements FirebaseInitializer {
+  FirebaseInitializerImpl({
+    required this.firebaseOptions,
+  });
+  @override
+  final FirebaseOptions firebaseOptions;
   @override
   Future<void> onLoad() async {
     await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
+      options: firebaseOptions,
     );
   }
 
@@ -24,14 +30,16 @@ class FirebaseInitializer implements AbstractFirebaseInitializer {
   }
 }
 
-class FirebaseAnalyticsPlugin implements AbstractAnalytics {
+class FirebaseAnalyticsPlugin extends AnalyticsService {
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  bool isEnabled = false;
+  bool _isEnabled = false;
+  bool _shouldRecordErrors = false;
   @override
   Future<void> onLoad() async {
-    isEnabled = kTestingAnalytics ||
+    _isEnabled = kTestingAnalytics ||
         (!Platform.isLinux && await analytics.isSupported());
-    if (isEnabled) {
+    if (_isEnabled) {
+      _shouldRecordErrors = kTestingAnalytics || kDebugMode;
       await analytics.logAppOpen();
     }
   }
@@ -45,7 +53,7 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
     final bool fatal = false,
     final bool? printDetails,
   }) async {
-    if (!isEnabled) return;
+    if (!_isEnabled || !_shouldRecordErrors) return;
     final errorDetailsStr = convertErrorDetailsToString(
       exception,
       stack,
@@ -65,7 +73,7 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
     final FlutterErrorDetails flutterErrorDetails, {
     final bool fatal = false,
   }) async {
-    if (!isEnabled) return;
+    if (!_isEnabled || !_shouldRecordErrors) return;
     await recordError(
       flutterErrorDetails.exceptionAsString(),
       flutterErrorDetails.stack,
@@ -85,12 +93,15 @@ class FirebaseAnalyticsPlugin implements AbstractAnalytics {
 
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {
-    if (!isEnabled) return;
+    if (!_isEnabled) return;
     await analytics.logEvent(name: event.name);
   }
+
+  @override
+  void dispose() {}
 }
 
-class FirebaseCrashlyticsPlugin implements AbstractAnalytics {
+class FirebaseCrashlyticsPlugin extends AnalyticsService {
   FirebaseCrashlytics crashlitics = FirebaseCrashlytics.instance;
   bool isEnabled = false;
   @override
@@ -117,6 +128,7 @@ class FirebaseCrashlyticsPlugin implements AbstractAnalytics {
       // Flutter framework to Crashlytics
       PlatformDispatcher.instance.onError = (final error, final stack) {
         FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+
         return true;
       };
     }
@@ -167,4 +179,7 @@ class FirebaseCrashlyticsPlugin implements AbstractAnalytics {
       print(list[100]);
     });
   }
+
+  @override
+  void dispose() {}
 }

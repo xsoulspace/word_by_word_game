@@ -16,12 +16,12 @@ import 'package:word_by_word_game/pack_core/pack_core.dart';
 part 'app_scaffold_state.dart';
 
 class AppScaffold extends StatelessWidget {
-  const AppScaffold({required this.servicesDiDto, super.key});
-  final AppServicesProviderDiDto servicesDiDto;
+  const AppScaffold({required this.servicesDto, super.key});
+  final AppServicesProviderDto servicesDto;
   @override
   Widget build(final BuildContext context) {
     return AppServicesProvider(
-      diDto: servicesDiDto,
+      diDto: servicesDto,
       child: Builder(
         builder: (final context) {
           return StateLoader(
@@ -30,6 +30,7 @@ class AppScaffold extends StatelessWidget {
             child: RouterScaffold(
               builder: (final context, final parser) => AppScaffoldBuilder(
                 routeParser: parser,
+                servicesDto: servicesDto,
               ),
             ),
           );
@@ -66,8 +67,13 @@ class RouterScaffold extends HookWidget {
 }
 
 class AppScaffoldBuilder extends HookWidget {
-  const AppScaffoldBuilder({required this.routeParser, super.key});
+  const AppScaffoldBuilder({
+    required this.routeParser,
+    required this.servicesDto,
+    super.key,
+  });
   final TemplateRouteParser routeParser;
+  final AppServicesProviderDto servicesDto;
   @override
   Widget build(final BuildContext context) {
     final state = useAppScaffoldBodyState(context.read);
@@ -112,7 +118,9 @@ class AppScaffoldBuilder extends HookWidget {
             return UiTheme(
               scheme: UiThemeScheme.m3(context),
               child: StateLoader(
-                initializer: GlobalStateInitializer(),
+                initializer: GlobalStateInitializer(
+                  servicesDto: servicesDto,
+                ),
                 loader: const LoadingScreen(),
                 child: child!,
               ),

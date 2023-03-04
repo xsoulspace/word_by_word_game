@@ -5,30 +5,43 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/pack_game/ads/states/ad_manager.dart';
 
-class AppServicesProviderDiDto {
-  AppServicesProviderDiDto({
-    required this.analyticsNotifier,
+class AppServicesProviderDto {
+  AppServicesProviderDto({
+    required this.analyticsService,
+    required this.firebaseInitializer,
   });
-  final AnalyticsNotifier analyticsNotifier;
+  final AnalyticsService analyticsService;
+  final FirebaseInitializer? firebaseInitializer;
 }
 
-class AppServicesProvider extends StatelessWidget {
+class AppServicesProvider extends StatefulWidget {
   const AppServicesProvider({
     required this.diDto,
     required this.child,
     super.key,
   });
   final Widget child;
-  final AppServicesProviderDiDto diDto;
+  final AppServicesProviderDto diDto;
+
+  @override
+  State<AppServicesProvider> createState() => _AppServicesProviderState();
+}
+
+class _AppServicesProviderState extends State<AppServicesProvider> {
+  @override
+  void dispose() {
+    widget.diDto.analyticsService.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(final BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (final context) => diDto.analyticsNotifier,
+        Provider(
+          create: (final context) => widget.diDto.analyticsService,
         ),
         Provider<ServicesCollection>(
           create: (final context) => ServicesCollection.v1,
@@ -92,7 +105,7 @@ class AppServicesProvider extends StatelessWidget {
               child: Builder(
                 builder: (final context) {
                   providersContextLocator = context.read;
-                  return child;
+                  return widget.child;
                 },
               ),
             ),

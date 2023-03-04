@@ -1,45 +1,20 @@
 import 'package:flutter/foundation.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:logger/logger.dart';
-import 'package:word_by_word_game/pack_core/analytics/firebase/firebase.dart';
 
-enum AnalyticEvents {
-  usedInAndroid,
-  usedInIOS,
-  usedInWeb,
-}
+import '../interfaces/interfaces.dart';
+import '../utils/utils.dart';
 
-abstract class AbstractAnalytics implements Loadable {
-  Future<void> logAnalyticEvent(final AnalyticEvents event);
-  Future<void> recordError(
-    final dynamic exception,
-    final StackTrace? stack, {
-    final dynamic reason,
-    final Iterable<DiagnosticsNode> information = const [],
-    final bool fatal = false,
-    final bool? printDetails,
+class AnalyticsServiceImpl extends AnalyticsService {
+  AnalyticsServiceImpl({
+    required this.plugins,
   });
-  Future<void> recordFlutterError(
-    final FlutterErrorDetails flutterErrorDetails, {
-    final bool fatal = false,
-  });
-  @override
-  Future<void> onLoad();
-  Future<void> onDelayedLoad();
-}
-
-class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
   final logsNotifier = ValueNotifier<List<String>>([]);
-  final plugins = <AbstractAnalytics>[
-    FirebaseAnalyticsPlugin(),
-    FirebaseCrashlyticsPlugin(),
-  ];
+  final List<AnalyticsService> plugins;
   final logger =
       Logger(filter: kDebugMode ? DevelopmentFilter() : ProductionFilter());
 
   @override
   void dispose() {
-    super.dispose();
     logsNotifier.dispose();
   }
 
@@ -51,6 +26,7 @@ class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
   }
 
   List<String> get logs => logsNotifier.value;
+  @override
   void log(final String value) {
     if (!kDebugMode) return;
     if (logs.length == 15) {
@@ -59,16 +35,19 @@ class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
     logs.insert(0, value);
   }
 
+  @override
   void dynamicLog(final dynamic value) {
     logger.d(value);
     log(value.toString());
   }
 
+  @override
   void dynamicInfoLog(final dynamic value) {
     logger.i(value);
     log(value.toString());
   }
 
+  @override
   void dynamicErrorLog(final dynamic value) {
     logger.e(value);
     log(value.toString());
@@ -79,6 +58,7 @@ class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
   }
 
   @override
+  // ignore: long-parameter-list
   Future<void> recordError(
     final dynamic exception,
     final StackTrace? stack, {
@@ -123,6 +103,7 @@ class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
     for (final plugin in plugins) {
       await plugin.recordFlutterError(flutterErrorDetails, fatal: fatal);
     }
+    // ignore: newline-before-return
     return recordError(
       flutterErrorDetails.exceptionAsString(),
       flutterErrorDetails.stack,
@@ -154,44 +135,4 @@ class AnalyticsNotifier extends ChangeNotifier implements AbstractAnalytics {
       await plugin.onDelayedLoad();
     }
   }
-}
-
-String convertErrorDetailsToString(
-  final dynamic exception,
-  final StackTrace? stack, {
-  final dynamic reason,
-  final Iterable<DiagnosticsNode> information = const [],
-  final bool fatal = false,
-  final bool? printDetails,
-}) {
-  final errorDetails = StringBuffer();
-  final String info = information.isEmpty
-      ? ''
-      : (StringBuffer()..writeAll(information, '\n')).toString();
-
-  errorDetails
-    ..writeln('----------------ANALYTICS CRASH----------------')
-    ..writeln('----------------${DateTime.now()}----------------');
-  if (fatal) {
-    errorDetails.writeln('----------------FATAL----------------');
-  }
-  // If available, give a reason to the exception.
-  if (reason != null) {
-    errorDetails.writeln('The following exception was thrown $reason:');
-  }
-
-  // Need to print the exception to explain why the exception was thrown.
-  errorDetails.writeln(exception.toString());
-
-  // Print information provided by the Flutter framework about the exception
-
-  if (info.isNotEmpty) errorDetails.writeln(info);
-
-  // Not using Trace.format here to stick to the default stack trace format
-  // that Flutter developers are used to seeing.
-
-  if (stack != null) errorDetails.writeln('\n$stack');
-
-  errorDetails.writeln('----------------------------------------------------');
-  return errorDetails.toString();
 }
