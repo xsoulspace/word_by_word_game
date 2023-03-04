@@ -26,6 +26,10 @@ environment:
 
 dependencies:
   widgetbook: ^2.4.1
+  wbw_design_core:
+    path: "../wbw_design_core"
+  flutter_localizations:
+    sdk: flutter
   flutter:
     sdk: flutter
 

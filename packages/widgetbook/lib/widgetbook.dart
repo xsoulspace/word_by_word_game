@@ -1,4 +1,5 @@
-import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {
@@ -6,20 +7,26 @@ class WidgetbookHotReload extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    return Widgetbook(
+    return Widgetbook.material(
+      localizationsDelegates: const [
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [const Locale('en')],
       categories: [
         WidgetbookCategory(
-          name: 'material',
+          name: 'Game UI',
           widgets: [
             WidgetbookComponent(
               name: 'FAB',
               useCases: [
                 WidgetbookUseCase(
-                  name: 'Icon',
+                  name: 'IconButton - Apple',
                   builder: (final context) {
-                    return FloatingActionButton(
+                    return GuiIconButton(
+                      icon: GuiArtboard.iconButton,
                       onPressed: () {},
-                      child: const Icon(Icons.add),
                     );
                   },
                 ),
@@ -32,11 +39,11 @@ class WidgetbookHotReload extends StatelessWidget {
       themes: [
         WidgetbookTheme(
           name: 'Light',
-          data: ThemeData.light(),
+          data: AppThemeData.brandLight,
         ),
         WidgetbookTheme(
           name: 'Dark',
-          data: ThemeData.dark(),
+          data: AppThemeData.brandDark,
         ),
       ],
     );
