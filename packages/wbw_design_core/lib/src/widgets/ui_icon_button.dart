@@ -100,6 +100,11 @@ class UiIconButton extends HookWidget {
 enum GuiArtboard {
   iconButton,
   iconButtonApple,
+  iconButtonWordEnergy,
+  iconButtonEnergyFire,
+  iconButtonIdea,
+  iconButtonArrow,
+  iconButtonArrowSkip,
 }
 
 class GuiIconButton extends HookWidget {
