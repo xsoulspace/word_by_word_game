@@ -120,31 +120,31 @@ class GuiIconButton extends HookWidget {
     const dimension = 32.0;
     final theme = Theme.of(context);
     final artboard = icon.name.snakeCase;
-    return Tooltip(
-      message: tooltip,
-      child: GestureDetector(
-        onTap: isEnabled ? state.onTap : null,
-        onLongPressEnd: isEnabled ? state.onLongPressUp : null,
-        onLongPressDown: isEnabled ? state.onLongPressDown : null,
-        onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
-        child: FocusableActionDetector(
-          mouseCursor: SystemMouseCursors.click,
-          child: Container(
-            width: dimension,
-            height: dimension,
-            foregroundDecoration: isEnabled
-                ? null
-                : BoxDecoration(
-                    color: theme.colorScheme.shadow.withOpacity(0.2),
-                  ),
-            child: RiveAnimation.asset(
-              // TODO(arenukvern): correct path
-              /// https://stackoverflow.com/questions/63914819/how-to-access-assets-in-package
-              'packages/wbw_design_core/assets/wordbyword_v3.riv',
-              artboard: artboard,
-              fit: BoxFit.contain,
-              stateMachines: const ['IconButtonMachine'],
-            ),
+
+    // [Tooltip] is causing blinking, when in the tree.
+    // TODO(arenukvern): add tooltip
+    return GestureDetector(
+      onTap: isEnabled ? state.onTap : null,
+      onLongPressEnd: isEnabled ? state.onLongPressUp : null,
+      onLongPressDown: isEnabled ? state.onLongPressDown : null,
+      onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
+      child: FocusableActionDetector(
+        mouseCursor: SystemMouseCursors.click,
+        child: Container(
+          width: dimension,
+          height: dimension,
+          foregroundDecoration: isEnabled
+              ? null
+              : BoxDecoration(
+                  color: theme.colorScheme.shadow.withOpacity(0.2),
+                ),
+          child: RiveAnimation.asset(
+            // TODO(arenukvern): correct path
+            /// https://stackoverflow.com/questions/63914819/how-to-access-assets-in-package
+            'packages/wbw_design_core/assets/wordbyword_v3.riv',
+            artboard: artboard,
+            fit: BoxFit.contain,
+            stateMachines: const ['IconButtonMachine'],
           ),
         ),
       ),

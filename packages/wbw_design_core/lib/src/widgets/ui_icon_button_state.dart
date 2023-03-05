@@ -41,7 +41,7 @@ class _ButtonState extends ContextfulLifeState {
     } else if (widget is UiTextButton) {
       widget.onPressed?.call();
     } else if (widget is GuiIconButton) {
-      widget.onPressed?.call();
+      // widget.onPressed?.call();
     } else {
       // TODO(arenukvern): description
       throw UnimplementedError();
