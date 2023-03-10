@@ -12,9 +12,9 @@ class UIWarningNotification extends StatelessWidget {
     final theme = Theme.of(context);
     final colorTheme = theme.colorScheme;
 
-    final warning = context.select<LevelBloc, WordWarning>((final s) {
-      return s.getLiveState().wordWarning;
-    });
+    final warning = context.select<LevelBloc, WordWarning>(
+      (final s) => s.getLiveState().wordWarning,
+    );
 
     return Visibility(
       visible: warning != WordWarning.none,

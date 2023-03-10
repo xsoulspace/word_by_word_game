@@ -39,13 +39,12 @@ class AdLevelEndScreenBanner extends AdWidget {
   }
 
   @override
-  Widget builder(final BuildContext context, final String adUnitId) {
-    return YandexFlexibleBanner(
-      height: 50,
-      width: MediaQuery.of(context).size.width,
-      adUnitId: adUnitId,
-    );
-  }
+  Widget builder(final BuildContext context, final String adUnitId) =>
+      YandexFlexibleBanner(
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        adUnitId: adUnitId,
+      );
 }
 
 class AdPauseScreenBanner extends AdWidget {
@@ -81,11 +80,10 @@ class AdPauseScreenBanner extends AdWidget {
   }
 
   @override
-  Widget builder(final BuildContext context, final String adUnitId) {
-    return YandexFlexibleBanner(
-      height: 50,
-      width: MediaQuery.of(context).size.width,
-      adUnitId: adUnitId,
-    );
-  }
+  Widget builder(final BuildContext context, final String adUnitId) =>
+      YandexFlexibleBanner(
+        height: 50,
+        width: MediaQuery.of(context).size.width,
+        adUnitId: adUnitId,
+      );
 }

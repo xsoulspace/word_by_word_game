@@ -98,9 +98,8 @@ class ObstacleLevelHelper {
   //   return tiles[gid];
   // }
 
-  int roundToTileDimension(final double n) {
-    return _roundToMultiple(n.toInt(), tileDimension) ~/ tileDimension;
-  }
+  int roundToTileDimension(final double n) =>
+      _roundToMultiple(n.toInt(), tileDimension) ~/ tileDimension;
 
   /// Rounds [n] to the nearest multiple of [multiple].
   /// https://stackoverflow.com/questions/64548983/round-a-number-to-nearest-100-in-flutter

@@ -41,28 +41,29 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     );
   }
 
-  static bool Function(LevelBlocState previous, LevelBlocState current)
-      useCheckStateEqualityBuilder({
+  static bool Function(
+    LevelBlocState previous,
+    LevelBlocState current,
+  ) useCheckStateEqualityBuilder({
     required final bool Function(
       LiveLevelBlocState previous,
       LiveLevelBlocState current,
     )
         checkLiveState,
-  }) {
-    return (final previous, final current) {
-      if (previous is LiveLevelBlocState && current is! LiveLevelBlocState) {
-        return true;
-      }
-      if (previous is! LiveLevelBlocState && current is LiveLevelBlocState) {
-        return true;
-      }
-      if (current is LiveLevelBlocState && previous is LiveLevelBlocState) {
-        return checkLiveState(current, previous);
-      }
+  }) =>
+      (final previous, final current) {
+        if (previous is LiveLevelBlocState && current is! LiveLevelBlocState) {
+          return true;
+        }
+        if (previous is! LiveLevelBlocState && current is LiveLevelBlocState) {
+          return true;
+        }
+        if (current is LiveLevelBlocState && previous is LiveLevelBlocState) {
+          return checkLiveState(current, previous);
+        }
 
-      return false;
-    };
-  }
+        return false;
+      };
 
   final LevelBlocDiDto diDto;
 

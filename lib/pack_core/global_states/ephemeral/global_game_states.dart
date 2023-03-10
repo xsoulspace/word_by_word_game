@@ -58,19 +58,18 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
   factory LiveGlobalGameBlocState.fromJson(final Map<String, dynamic> json) =>
       _$LiveGlobalGameBlocStateFromJson(json);
 
-  factory LiveGlobalGameBlocState.fromModel(final GameModel gameModel) {
-    return LiveGlobalGameBlocState(
-      currentLevelId: gameModel.currentLevelId,
-      currentLevelModel: gameModel.currentLevel,
-      id: gameModel.id,
-      dateTime: gameModel.dateTime,
-      lastDateTime: gameModel.lastDateTime,
-      levels: gameModel.levels,
-      templateLevels: gameModel.templateLevels,
-      playersCollection: gameModel.playersCollection,
-      playersCharacters: gameModel.playersCharacters,
-    );
-  }
+  factory LiveGlobalGameBlocState.fromModel(final GameModel gameModel) =>
+      LiveGlobalGameBlocState(
+        currentLevelId: gameModel.currentLevelId,
+        currentLevelModel: gameModel.currentLevel,
+        id: gameModel.id,
+        dateTime: gameModel.dateTime,
+        lastDateTime: gameModel.lastDateTime,
+        levels: gameModel.levels,
+        templateLevels: gameModel.templateLevels,
+        playersCollection: gameModel.playersCollection,
+        playersCharacters: gameModel.playersCharacters,
+      );
 
   bool get isLevelCompletelyLoaded =>
       LevelPartStates.containsAll(loadedLevelParts);

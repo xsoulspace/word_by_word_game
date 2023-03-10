@@ -38,13 +38,12 @@ class LiveLevelPlayersBlocState extends LevelPlayersBlocState
   factory LiveLevelPlayersBlocState.fromModel({
     required final LevelPlayersModel levelPlayersModel,
     required final LevelCharactersModel levelCharactersModel,
-  }) {
-    return LiveLevelPlayersBlocState(
-      currentPlayerId: levelPlayersModel.currentPlayerId,
-      players: levelPlayersModel.players,
-      playerCharacter: levelCharactersModel.playerCharacter,
-    );
-  }
+  }) =>
+      LiveLevelPlayersBlocState(
+        currentPlayerId: levelPlayersModel.currentPlayerId,
+        players: levelPlayersModel.players,
+        playerCharacter: levelCharactersModel.playerCharacter,
+      );
 
   Iterable<PlayerProfileModel> get notCurrentPlayers =>
       players.where((final player) => player.id != currentPlayerId);

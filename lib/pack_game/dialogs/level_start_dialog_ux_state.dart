@@ -66,9 +66,8 @@ class LevelStartDialogUxState extends LifeState {
     setState();
   }
 
-  bool checkIsPlayerSelected(final PlayerProfileModel player) {
-    return playersIds.contains(player.id);
-  }
+  bool checkIsPlayerSelected(final PlayerProfileModel player) =>
+      playersIds.contains(player.id);
 
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
     diDto.globalGameBloc.add(CreatePlayerProfileEvent(profile: profile));

@@ -22,53 +22,54 @@ class StartGameHex extends StatelessWidget {
 
     return Provider(
       create: (final context) => state,
-      builder: (final context, final child) {
-        return BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
-          builder: (final context, final blocState) {
-            if (blocState is! LiveGlobalGameBlocState) {
-              return const SizedBox();
-            }
-            final levels = blocState.templateLevels;
+      builder: (final context, final child) =>
+          BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
+        builder: (final context, final blocState) {
+          if (blocState is! LiveGlobalGameBlocState) {
+            return const SizedBox();
+          }
+          final levels = blocState.templateLevels;
 
-            return Center(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: levels.map((final level) {
-                  return Column(
-                    key: ValueKey(level),
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        height: 80,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          image: DecorationImage(
-                            fit: BoxFit.fitHeight,
-                            image: AssetImage(
-                              'assets/images/tilesets/${level.resources.tileMapIcon}_highres.png',
+          return Center(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: levels
+                  .map(
+                    (final level) => Column(
+                      key: ValueKey(level),
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          height: 80,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(12),
+                            image: DecorationImage(
+                              fit: BoxFit.fitHeight,
+                              image: AssetImage(
+                                'assets/images/tilesets/${level.resources.tileMapIcon}_highres.png',
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                      uiTheme.verticalBoxes.large,
-                      LevelStartDialogButton(
-                        level: level,
-                      ),
-                      uiTheme.verticalBoxes.large,
-                      UiFilledButton.text(
-                        text: S.of(context).continueGame,
-                        onPressed: isLevelRunning
-                            ? () => state.onContinue(id: levelId)
-                            : null,
-                      ),
-                    ],
-                  );
-                }).toList(),
-              ),
-            );
-          },
-        );
-      },
+                        uiTheme.verticalBoxes.large,
+                        LevelStartDialogButton(
+                          level: level,
+                        ),
+                        uiTheme.verticalBoxes.large,
+                        UiFilledButton.text(
+                          text: S.of(context).continueGame,
+                          onPressed: isLevelRunning
+                              ? () => state.onContinue(id: levelId)
+                              : null,
+                        ),
+                      ],
+                    ),
+                  )
+                  .toList(),
+            ),
+          );
+        },
+      ),
     );
   }
 }

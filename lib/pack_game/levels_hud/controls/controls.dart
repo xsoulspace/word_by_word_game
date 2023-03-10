@@ -26,9 +26,7 @@ class ControlsWidget extends HookWidget {
     }
     return Provider(
       create: (final context) => state,
-      builder: (final context, final cacheChild) {
-        return child;
-      },
+      builder: (final context, final cacheChild) => child,
     );
   }
 }

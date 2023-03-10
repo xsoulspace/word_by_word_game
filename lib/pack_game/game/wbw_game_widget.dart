@@ -22,62 +22,58 @@ class WbwGameWidget extends HookWidget {
     return Scaffold(
       body: Portal(
         child: DialogStack(
-          builder: (final context, final dialogController) {
-            return Column(
-              children: [
-                Expanded(
-                  child: Padding(
-                    padding: EdgeInsets.all(spacing.medium),
-                    child: MouseRegion(
-                      onHover: (final _) {
-                        // TODO(arenukvern): do we need this or not?
-                        if (!gameFocusNode.hasFocus) {
-                          gameFocusNode.requestFocus();
-                        }
-                      },
-                      child: GameWidget<WbwGame>.controlled(
-                        focusNode: gameFocusNode,
-                        gameFactory: () => WbwGame.use(
-                          read: context.read,
-                          dialogController: dialogController,
-                          theme: Theme.of(context),
-                        ),
-                        //Work in progress loading screen on game start
-                        loadingBuilder: (final context) => const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                        overlayBuilderMap:
-                            const GameOverlayBuilderMapRouter().build(),
-                        //Work in progress error handling
-                        errorBuilder: (final context, final ex) {
-                          //Print the error in th dev console
-                          debugPrint(ex.toString());
-                          return const Center(
-                            child: Text(
-                              'Sorry, something went wrong. Reload me',
-                            ),
-                          );
-                        },
+          builder: (final context, final dialogController) => Column(
+            children: [
+              Expanded(
+                child: Padding(
+                  padding: EdgeInsets.all(spacing.medium),
+                  child: MouseRegion(
+                    onHover: (final _) {
+                      // TODO(arenukvern): do we need this or not?
+                      if (!gameFocusNode.hasFocus) {
+                        gameFocusNode.requestFocus();
+                      }
+                    },
+                    child: GameWidget<WbwGame>.controlled(
+                      focusNode: gameFocusNode,
+                      gameFactory: () => WbwGame.use(
+                        read: context.read,
+                        dialogController: dialogController,
+                        theme: Theme.of(context),
                       ),
+                      //Work in progress loading screen on game start
+                      loadingBuilder: (final context) => const Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                      overlayBuilderMap:
+                          const GameOverlayBuilderMapRouter().build(),
+                      //Work in progress error handling
+                      errorBuilder: (final context, final ex) {
+                        //Print the error in th dev console
+                        debugPrint(ex.toString());
+                        return const Center(
+                          child: Text(
+                            'Sorry, something went wrong. Reload me',
+                          ),
+                        );
+                      },
                     ),
                   ),
                 ),
-                BlocSelector<LevelBloc, LevelBlocState, bool>(
-                  selector: (final state) {
-                    return state is LiveLevelBlocState;
-                  },
-                  builder: (final context, final isLive) {
-                    if (isLive) {
-                      return const ControlsWidget();
-                    } else {
-                      return const SizedBox();
-                    }
-                  },
-                ),
-                const BottomSafeArea()
-              ],
-            );
-          },
+              ),
+              BlocSelector<LevelBloc, LevelBlocState, bool>(
+                selector: (final state) => state is LiveLevelBlocState,
+                builder: (final context, final isLive) {
+                  if (isLive) {
+                    return const ControlsWidget();
+                  } else {
+                    return const SizedBox();
+                  }
+                },
+              ),
+              const BottomSafeArea()
+            ],
+          ),
         ),
       ),
     );

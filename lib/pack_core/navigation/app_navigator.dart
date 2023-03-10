@@ -57,26 +57,20 @@ class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
         key: keys.pause,
       );
 
-  Page game() {
-    return NavigatorPage(
-      child: const WbwGameWidget(),
-      key: keys.game,
-    );
-  }
+  Page game() => NavigatorPage(
+        child: const WbwGameWidget(),
+        key: keys.game,
+      );
 
-  Page highscore() {
-    return NavigatorPage(
-      child: const HighscoreScreen(),
-      key: keys.highscore,
-    );
-  }
+  Page highscore() => NavigatorPage(
+        child: const HighscoreScreen(),
+        key: keys.highscore,
+      );
 
-  Page settings() {
-    return NavigatorPage(
-      child: const SettingsScreen(),
-      key: keys.settings,
-    );
-  }
+  Page settings() => NavigatorPage(
+        child: const SettingsScreen(),
+        key: keys.settings,
+      );
 }
 
 class AppLayoutBuilder

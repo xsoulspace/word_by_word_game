@@ -30,6 +30,7 @@ Locale? localeFromString(final String? languageCode) {
 
 String? localeToString(final Locale? locale) => locale?.languageCode;
 
+// ignore: avoid_annotating_with_dynamic
 Map<Languages, String> localeValueFromMap(final dynamic map) {
   if (map is String) {
     return {};

@@ -43,7 +43,5 @@ class SettingsText extends StatelessWidget {
   });
   final String text;
   @override
-  Widget build(final BuildContext context) {
-    return Text(text);
-  }
+  Widget build(final BuildContext context) => Text(text);
 }

@@ -26,19 +26,21 @@ class WidgetbookHotReload extends StatelessWidget {
                 WidgetbookUseCase(
                   name: 'Basic',
                   builder: (final context) {
-                    return Wrap(
-                      children: GuiArtboard.values
-                          .where(
-                            (final e) =>
-                                e.name.startsWith(GuiArtboard.iconButtonLabel),
-                          )
-                          .map(
-                            (final e) => GuiIconButton(
-                              icon: e,
-                              onPressed: () {},
-                            ),
-                          )
-                          .toList(),
+                    return Center(
+                      child: Wrap(
+                        children: GuiArtboard.values
+                            .where(
+                              (final e) => e.name
+                                  .startsWith(GuiArtboard.iconButtonLabel),
+                            )
+                            .map(
+                              (final e) => GuiIconButton(
+                                icon: e,
+                                onPressed: () {},
+                              ),
+                            )
+                            .toList(),
+                      ),
                     );
                   },
                 ),

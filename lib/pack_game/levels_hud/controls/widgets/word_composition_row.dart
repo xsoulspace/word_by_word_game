@@ -48,62 +48,61 @@ class UIWordCompositionRow extends HookWidget {
               rightButton: UiPauseIconButton(onPressed: state.onPause),
               leftTopBuilder: (final context) => const UIMobilePlayerName(),
               rightTopBuilder: (final context) => const UIMobilePlayerScore(),
-              textFieldBuilder: (final context) {
-                return BlocBuilder<LevelBloc, LevelBlocState>(
-                  buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-                    checkLiveState: (final previous, final current) =>
-                        previous.currentWord.middlePart !=
-                        current.currentWord.middlePart,
-                  ),
-                  builder: (final context, final levelState) {
-                    if (levelState is! LiveLevelBlocState) {
-                      return const SizedBox();
-                    }
-                    final latestWord = levelState.latestWord;
-                    final currentWord = levelState.currentWord;
+              textFieldBuilder: (final context) =>
+                  BlocBuilder<LevelBloc, LevelBlocState>(
+                buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+                  checkLiveState: (final previous, final current) =>
+                      previous.currentWord.middlePart !=
+                      current.currentWord.middlePart,
+                ),
+                builder: (final context, final levelState) {
+                  if (levelState is! LiveLevelBlocState) {
+                    return const SizedBox();
+                  }
+                  final latestWord = levelState.latestWord;
+                  final currentWord = levelState.currentWord;
 
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (latestWord.isNotEmpty &&
-                            currentWord.middlePart.isNotEmpty)
-                          TutorialFrame(
-                            highlightPosition: Alignment.topCenter,
-                            uiKey: TutorialUiItem.enterWordLeft,
-                            child: UiFrameTextField(
-                              textFieldFocusNode: state.leftWordFocus,
-                              onEnterPressed: state.onRequestRightTextFocus,
-                              onSubmitted: state.onRequestRightTextFocus,
-                              keyFocusNode: state.leftWordKeyFocus,
-                              controller: state.leftPartController,
-                              hintText: S.of(context).hintAddBeginning,
-                            ),
-                          ),
-                        if (latestWord.isNotEmpty)
-                          TutorialFrame(
-                            highlightPosition: Alignment.topCenter,
-                            uiKey: TutorialUiItem.removeLetterButton,
-                            child: MiddleWordPartActions(
-                              middlePartOfWord: currentWord.middlePart,
-                              onLetterPressed: state.onDecreaseMiddlePart,
-                            ),
-                          ),
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      if (latestWord.isNotEmpty &&
+                          currentWord.middlePart.isNotEmpty)
                         TutorialFrame(
                           highlightPosition: Alignment.topCenter,
-                          uiKey: TutorialUiItem.enterWordRight,
+                          uiKey: TutorialUiItem.enterWordLeft,
                           child: UiFrameTextField(
-                            keyFocusNode: state.rightWordKeyFocus,
-                            textFieldFocusNode: state.rightWordFocus,
-                            controller: state.rightPartController,
-                            hintText: S.of(context).hintAddEnding,
-                            onSubmitted: state.onToSelectActionPhase,
+                            textFieldFocusNode: state.leftWordFocus,
+                            onEnterPressed: state.onRequestRightTextFocus,
+                            onSubmitted: state.onRequestRightTextFocus,
+                            keyFocusNode: state.leftWordKeyFocus,
+                            controller: state.leftPartController,
+                            hintText: S.of(context).hintAddBeginning,
                           ),
                         ),
-                      ],
-                    );
-                  },
-                );
-              },
+                      if (latestWord.isNotEmpty)
+                        TutorialFrame(
+                          highlightPosition: Alignment.topCenter,
+                          uiKey: TutorialUiItem.removeLetterButton,
+                          child: MiddleWordPartActions(
+                            middlePartOfWord: currentWord.middlePart,
+                            onLetterPressed: state.onDecreaseMiddlePart,
+                          ),
+                        ),
+                      TutorialFrame(
+                        highlightPosition: Alignment.topCenter,
+                        uiKey: TutorialUiItem.enterWordRight,
+                        child: UiFrameTextField(
+                          keyFocusNode: state.rightWordKeyFocus,
+                          textFieldFocusNode: state.rightWordFocus,
+                          controller: state.rightPartController,
+                          hintText: S.of(context).hintAddEnding,
+                          onSubmitted: state.onToSelectActionPhase,
+                        ),
+                      ),
+                    ],
+                  );
+                },
+              ),
             ),
           );
         },
@@ -135,14 +134,12 @@ class UiLetterButton extends StatelessWidget {
   final String letter;
 
   @override
-  Widget build(final BuildContext context) {
-    return UiTextButton.text(
-      text: letter,
-      mainAlignment: MainAxisAlignment.center,
-      onPressed: onPressed,
-      width: null,
-    );
-  }
+  Widget build(final BuildContext context) => UiTextButton.text(
+        text: letter,
+        mainAlignment: MainAxisAlignment.center,
+        onPressed: onPressed,
+        width: null,
+      );
 }
 
 class MiddleWordPartActions extends StatelessWidget {

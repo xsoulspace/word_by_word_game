@@ -37,81 +37,79 @@ class _AppServicesProviderState extends State<AppServicesProvider> {
   }
 
   @override
-  Widget build(final BuildContext context) {
-    return MultiProvider(
-      providers: [
-        Provider(
-          create: (final context) => widget.diDto.analyticsService,
-        ),
-        Provider<ServicesCollection>(
-          create: (final context) => ServicesCollection.v1,
-        ),
-        Provider<MechanicsCollection>(
-          create: (final context) => MechanicsCollection.v1,
-        ),
-        Provider(create: (final context) => AdManager())
-      ],
-      child: Builder(
-        builder: (final context) {
-          late Locator providersContextLocator;
-          final initialProviders = <SingleChildWidget>[
-            BlocProvider(
-              create: (final context) => DictionariesBloc(
-                diDto: DictionariesBlocDiDto.use(providersContextLocator),
-              ),
-            ),
-            BlocProvider(
-              create: (final context) => LevelPlayersBloc(
-                diDto: LevelPlayersBlocDiDto.use(providersContextLocator),
-              ),
-            ),
-            BlocProvider<LevelBloc>(
-              create: (final context) => LevelBloc(
-                diDto: LevelBlocDiDto.use(providersContextLocator),
-              ),
-            ),
-            BlocProvider<ResourcesBloc>(
-              create: (final context) => ResourcesBloc(
-                diDto: ResourcesBlocDiDto.use(providersContextLocator),
-              ),
-            ),
-            BlocProvider(
-              create: (final context) => TutorialBloc(
-                diDto: TutorialBlocDiDto.use(providersContextLocator),
-              ),
-            ),
-            BlocProvider<GlobalGameBloc>(
-              create: (final context) => GlobalGameBloc(
-                diDto: GlobalGameBlocDiDto.use(providersContextLocator),
-              ),
-            ),
-          ];
-
-          final otherProviders = <SingleChildWidget>[];
-
-          return MultiBlocProvider(
-            providers: [
-              ...initialProviders,
-              ...otherProviders,
-            ],
-            child: MultiProvider(
-              providers: [
-                ChangeNotifierProvider(
-                  create: (final context) => AppSettingsNotifier.use(
-                    context.read,
-                  ),
+  Widget build(final BuildContext context) => MultiProvider(
+        providers: [
+          Provider(
+            create: (final context) => widget.diDto.analyticsService,
+          ),
+          Provider<ServicesCollection>(
+            create: (final context) => ServicesCollection.v1,
+          ),
+          Provider<MechanicsCollection>(
+            create: (final context) => MechanicsCollection.v1,
+          ),
+          Provider(create: (final context) => AdManager())
+        ],
+        child: Builder(
+          builder: (final context) {
+            late Locator providersContextLocator;
+            final initialProviders = <SingleChildWidget>[
+              BlocProvider(
+                create: (final context) => DictionariesBloc(
+                  diDto: DictionariesBlocDiDto.use(providersContextLocator),
                 ),
-              ],
-              child: Builder(
-                builder: (final context) {
-                  providersContextLocator = context.read;
-                  return widget.child;
-                },
               ),
-            ),
-          );
-        },
-      ),
-    );
-  }
+              BlocProvider(
+                create: (final context) => LevelPlayersBloc(
+                  diDto: LevelPlayersBlocDiDto.use(providersContextLocator),
+                ),
+              ),
+              BlocProvider<LevelBloc>(
+                create: (final context) => LevelBloc(
+                  diDto: LevelBlocDiDto.use(providersContextLocator),
+                ),
+              ),
+              BlocProvider<ResourcesBloc>(
+                create: (final context) => ResourcesBloc(
+                  diDto: ResourcesBlocDiDto.use(providersContextLocator),
+                ),
+              ),
+              BlocProvider(
+                create: (final context) => TutorialBloc(
+                  diDto: TutorialBlocDiDto.use(providersContextLocator),
+                ),
+              ),
+              BlocProvider<GlobalGameBloc>(
+                create: (final context) => GlobalGameBloc(
+                  diDto: GlobalGameBlocDiDto.use(providersContextLocator),
+                ),
+              ),
+            ];
+
+            final otherProviders = <SingleChildWidget>[];
+
+            return MultiBlocProvider(
+              providers: [
+                ...initialProviders,
+                ...otherProviders,
+              ],
+              child: MultiProvider(
+                providers: [
+                  ChangeNotifierProvider(
+                    create: (final context) => AppSettingsNotifier.use(
+                      context.read,
+                    ),
+                  ),
+                ],
+                child: Builder(
+                  builder: (final context) {
+                    providersContextLocator = context.read;
+                    return widget.child;
+                  },
+                ),
+              ),
+            );
+          },
+        ),
+      );
 }

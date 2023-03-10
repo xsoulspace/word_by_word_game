@@ -36,10 +36,9 @@ class LiveResourcesBlocState extends ResourcesBlocState
 
   factory LiveResourcesBlocState.fromModel(
     final ResourcesModel resourcesModel,
-  ) {
-    return LiveResourcesBlocState(
-      tileMapName: resourcesModel.tileMapName,
-      tileMapIcon: resourcesModel.tileMapIcon,
-    );
-  }
+  ) =>
+      LiveResourcesBlocState(
+        tileMapName: resourcesModel.tileMapName,
+        tileMapIcon: resourcesModel.tileMapIcon,
+      );
 }

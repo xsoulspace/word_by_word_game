@@ -13,10 +13,9 @@ class UIDesktopActions extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
-    final phaseType =
-        context.select<LevelBloc, LevelPlayerPhaseType>((final s) {
-      return s.getLiveState().phaseType;
-    });
+    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
+      (final s) => s.getLiveState().phaseType,
+    );
     final children = <Widget>[];
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
@@ -86,10 +85,9 @@ class UIMobileActions extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
-    final phaseType =
-        context.select<LevelBloc, LevelPlayerPhaseType>((final s) {
-      return s.getLiveState().phaseType;
-    });
+    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
+      (final s) => s.getLiveState().phaseType,
+    );
     final children = <Widget>[];
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
@@ -153,9 +151,9 @@ class UIAddWordToDictionaryButton extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(final BuildContext context) {
-    final warning = context.select<LevelBloc, WordWarning>((final s) {
-      return s.getLiveState().wordWarning;
-    });
+    final warning = context.select<LevelBloc, WordWarning>(
+      (final s) => s.getLiveState().wordWarning,
+    );
 
     return UiTextButton.icon(
       text: S.of(context).addToDictionary,
@@ -174,12 +172,12 @@ class UiConfirmWordButton extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(final BuildContext context) {
-    final warning = context.select<LevelBloc, WordWarning>((final s) {
-      return s.getLiveState().wordWarning;
-    });
-    final currentWord = context.select<LevelBloc, String>((final s) {
-      return s.getLiveState().currentWord.fullWord;
-    });
+    final warning = context.select<LevelBloc, WordWarning>(
+      (final s) => s.getLiveState().wordWarning,
+    );
+    final currentWord = context.select<LevelBloc, String>(
+      (final s) => s.getLiveState().currentWord.fullWord,
+    );
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
     return UiTextButton.icon(
@@ -200,10 +198,9 @@ class UIToEndTurnButton extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(final BuildContext context) {
-    final actionType =
-        context.select<LevelBloc, LevelPlayerActionType?>((final s) {
-      return s.getLiveState().actionType;
-    });
+    final actionType = context.select<LevelBloc, LevelPlayerActionType?>(
+      (final s) => s.getLiveState().actionType,
+    );
 
     return UiTextButton.icon(
       text: S.of(context).applyAndEndTurn,
@@ -222,17 +219,15 @@ class UiRandomWordIconButton extends StatelessWidget {
   });
   final VoidCallback? onPressed;
   @override
-  Widget build(final BuildContext context) {
-    return TutorialFrame(
-      highlightPosition: Alignment.topCenter,
-      uiKey: TutorialUiItem.suggestWordButton,
-      child: UiIconButton(
-        tooltip: S.of(context).suggestWordButtonTooltip,
-        onPressed: onPressed,
-        icon: UiIcons.idea,
-      ),
-    );
-  }
+  Widget build(final BuildContext context) => TutorialFrame(
+        highlightPosition: Alignment.topCenter,
+        uiKey: TutorialUiItem.suggestWordButton,
+        child: UiIconButton(
+          tooltip: S.of(context).suggestWordButtonTooltip,
+          onPressed: onPressed,
+          icon: UiIcons.idea,
+        ),
+      );
 }
 
 class UiPauseIconButton extends StatelessWidget {
@@ -243,18 +238,16 @@ class UiPauseIconButton extends StatelessWidget {
   final VoidCallback onPressed;
 
   @override
-  Widget build(final BuildContext context) {
-    return TutorialFrame(
-      highlightPosition: Alignment.topCenter,
-      uiKey: TutorialUiItem.pauseIconButton,
-      child: Hero(
-        tag: const ValueKey('UiPauseIconButton'),
-        child: UiIconButton(
-          tooltip: S.of(context).mainMenuButtonTooltip,
-          onPressed: onPressed,
-          icon: UiIcons.pause,
+  Widget build(final BuildContext context) => TutorialFrame(
+        highlightPosition: Alignment.topCenter,
+        uiKey: TutorialUiItem.pauseIconButton,
+        child: Hero(
+          tag: const ValueKey('UiPauseIconButton'),
+          child: UiIconButton(
+            tooltip: S.of(context).mainMenuButtonTooltip,
+            onPressed: onPressed,
+            icon: UiIcons.pause,
+          ),
         ),
-      ),
-    );
-  }
+      );
 }

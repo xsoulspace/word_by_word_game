@@ -62,47 +62,43 @@ class GlobalStateInitializer extends StateInitializer {
 }
 
 class GameInitializer {
-  List<TemplateLevelModel> get templateLevels {
-    return [
-      const TemplateLevelModel(
-        id: 'black_white_mountains_1',
-        resources: ResourcesModel(
-          tileMapName: 'pixel_black_white_landscape',
-          tileMapIcon: 'pixel_black_white_map_icon',
+  List<TemplateLevelModel> get templateLevels => [
+        const TemplateLevelModel(
+          id: 'black_white_mountains_1',
+          resources: ResourcesModel(
+            tileMapName: 'pixel_black_white_landscape',
+            tileMapIcon: 'pixel_black_white_map_icon',
+          ),
+          name: LocalizedMap(
+            value: {
+              Languages.en: 'Black & White Mountains',
+              Languages.ru: 'Черно-белые горы',
+              Languages.it: 'Montagne in bianco e nero',
+            },
+          ),
         ),
-        name: LocalizedMap(
-          value: {
-            Languages.en: 'Black & White Mountains',
-            Languages.ru: 'Черно-белые горы',
-            Languages.it: 'Montagne in bianco e nero',
-          },
-        ),
-      ),
-    ];
-  }
+      ];
 
-  List<PlayerCharacterModel> get characters {
-    return [
-      PlayerCharacterModel(
-        id: 'hot-air-balloon',
-        localizedName: const LocalizedMap(
-          value: {
-            Languages.en: 'Hot Air Balloon',
-            Languages.ru: 'Воздушный шар',
-            Languages.it: 'Mongolfiera',
-          },
+  List<PlayerCharacterModel> get characters => [
+        PlayerCharacterModel(
+          id: 'hot-air-balloon',
+          localizedName: const LocalizedMap(
+            value: {
+              Languages.en: 'Hot Air Balloon',
+              Languages.ru: 'Воздушный шар',
+              Languages.it: 'Mongolfiera',
+            },
+          ),
+          asset: CharacterAssetModel(
+            srcPosition: SerializedVector2(x: 0, y: kTileDimension * 6),
+            srcSizeX: kTileDimension,
+            srcSizeY: kTileDimension,
+          ),
+          characterIcon: 'char_hot_air_baloon',
+          description: 'Moves with the wind..',
+          color: Colors.green.value,
         ),
-        asset: CharacterAssetModel(
-          srcPosition: SerializedVector2(x: 0, y: kTileDimension * 6),
-          srcSizeX: kTileDimension,
-          srcSizeY: kTileDimension,
-        ),
-        characterIcon: 'char_hot_air_baloon',
-        description: 'Moves with the wind..',
-        color: Colors.green.value,
-      ),
-    ];
-  }
+      ];
 
   /// the logic is to migrate from the version to to the next version
   GameModel migrateSave(final GameModel savedGame) {
