@@ -82,7 +82,6 @@ class LiveTutorialBlocState extends TutorialBlocState
     return copyWith(progress: updatedProgress);
   }
 
-  TutorialCollectionsProgressModel toProgressModel() {
-    return tutorial.saveProgress(progress: progress);
-  }
+  TutorialCollectionsProgressModel toProgressModel() =>
+      tutorial.saveProgress(progress: progress);
 }

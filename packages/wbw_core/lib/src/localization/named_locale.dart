@@ -44,11 +44,10 @@ Map<Languages, String> localeValueFromMap(final dynamic map) {
   }
 }
 
-Map<String, String> localeValueToMap(final Map<Languages, String> locales) {
-  return locales.map(
-    (final key, final value) => MapEntry(key.name, value),
-  );
-}
+Map<String, String> localeValueToMap(final Map<Languages, String> locales) =>
+    locales.map(
+      (final key, final value) => MapEntry(key.name, value),
+    );
 
 @immutable
 @Freezed(

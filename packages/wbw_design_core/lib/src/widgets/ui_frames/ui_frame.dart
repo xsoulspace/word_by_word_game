@@ -24,18 +24,16 @@ class UiFrame extends HookWidget {
   final double width;
   final double height;
   @override
-  Widget build(final BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(
-            asset.path,
+  Widget build(final BuildContext context) => Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              asset.path,
+            ),
+            fit: BoxFit.fitWidth,
           ),
-          fit: BoxFit.fitWidth,
         ),
-      ),
-    );
-  }
+      );
 }

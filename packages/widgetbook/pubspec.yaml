@@ -25,15 +25,15 @@ environment:
   sdk: ">=2.19.0 <3.0.0"
 
 dependencies:
-  widgetbook: ^2.4.1
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
   wbw_design_core:
     path: "../wbw_design_core"
   wbw_locale:
     path: "../wbw_locale"
-  flutter_localizations:
-    sdk: flutter
-  flutter:
-    sdk: flutter
+  widgetbook: ^2.4.1
 
 dev_dependencies:
   flutter_lints: ^2.0.1

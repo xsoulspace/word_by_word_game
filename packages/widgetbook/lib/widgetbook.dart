@@ -7,26 +7,24 @@ class WidgetbookHotReload extends StatelessWidget {
   const WidgetbookHotReload({super.key});
 
   @override
-  Widget build(final BuildContext context) {
-    return Widgetbook.material(
-      localizationsDelegates: const [
-        ...S.localizationsDelegates,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ],
-      supportedLocales: S.supportedLocales,
-      categories: [
-        WidgetbookCategory(
-          name: 'Game UI',
-          widgets: [
-            WidgetbookComponent(
-              name: 'GuiIconButton',
-              useCases: [
-                WidgetbookUseCase(
-                  name: 'Basic',
-                  builder: (final context) {
-                    return Center(
+  Widget build(final BuildContext context) => Widgetbook.material(
+        localizationsDelegates: const [
+          ...S.localizationsDelegates,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.supportedLocales,
+        categories: [
+          WidgetbookCategory(
+            name: 'Game UI',
+            widgets: [
+              WidgetbookComponent(
+                name: 'GuiIconButton',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Basic',
+                    builder: (final context) => Center(
                       child: Wrap(
                         children: GuiArtboard.values
                             .where(
@@ -41,25 +39,23 @@ class WidgetbookHotReload extends StatelessWidget {
                             )
                             .toList(),
                       ),
-                    );
-                  },
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-      appInfo: AppInfo(name: 'Word by Word Game'),
-      themes: [
-        WidgetbookTheme(
-          name: 'Light',
-          data: AppThemeData.brandLight,
-        ),
-        WidgetbookTheme(
-          name: 'Dark',
-          data: AppThemeData.brandDark,
-        ),
-      ],
-    );
-  }
+                    ),
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
+        appInfo: AppInfo(name: 'Word by Word Game'),
+        themes: [
+          WidgetbookTheme(
+            name: 'Light',
+            data: AppThemeData.brandLight,
+          ),
+          WidgetbookTheme(
+            name: 'Dark',
+            data: AppThemeData.brandDark,
+          ),
+        ],
+      );
 }

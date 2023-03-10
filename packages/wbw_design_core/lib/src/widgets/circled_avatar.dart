@@ -8,11 +8,9 @@ class CircledTextAvatar extends StatelessWidget {
   });
   final String text;
   @override
-  Widget build(final BuildContext context) {
-    return CircleAvatar(
-      child: Text(text),
-    );
-  }
+  Widget build(final BuildContext context) => CircleAvatar(
+        child: Text(text),
+      );
 }
 
 class CircledAvatarButton extends StatelessWidget {
@@ -24,12 +22,10 @@ class CircledAvatarButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String text;
   @override
-  Widget build(final BuildContext context) {
-    return CupertinoButton(
-      onPressed: onPressed,
-      padding: EdgeInsets.zero,
-      minSize: 0,
-      child: CircledTextAvatar(text: text),
-    );
-  }
+  Widget build(final BuildContext context) => CupertinoButton(
+        onPressed: onPressed,
+        padding: EdgeInsets.zero,
+        minSize: 0,
+        child: CircledTextAvatar(text: text),
+      );
 }
