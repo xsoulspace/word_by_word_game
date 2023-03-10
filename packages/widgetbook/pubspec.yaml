@@ -28,6 +28,8 @@ dependencies:
   widgetbook: ^2.4.1
   wbw_design_core:
     path: "../wbw_design_core"
+  wbw_locale:
+    path: "../wbw_locale"
   flutter_localizations:
     sdk: flutter
   flutter:

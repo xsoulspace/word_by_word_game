@@ -105,15 +105,34 @@ enum GuiArtboard {
   iconButtonIdea,
   iconButtonArrow,
   iconButtonArrowSkip,
+  iconButtonSearch,
+  markRed,
+  markOrange,
+  markPurple,
+  markGreen,
+  tab,
+  paneLeft,
+  paneCenter,
+  paneRight,
+  barHorizontalPurple,
+  barHorizontalGreen,
+  barHorizontalRed,
+  barHorizontalBlue,
+  barVerticalBlue;
+
+  static const iconButtonLabel = 'iconButton';
 }
 
 class GuiIconButton extends HookWidget {
-  const GuiIconButton({
+  GuiIconButton({
     required this.icon,
     this.onPressed,
     this.tooltip = '',
     super.key,
-  });
+  }) : assert(
+          icon.name.startsWith(GuiArtboard.iconButtonLabel),
+          'pass iconButton Artboard',
+        );
   final GuiArtboard icon;
   final String tooltip;
   final VoidCallback? onPressed;

@@ -1,5 +1,6 @@
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 import 'package:widgetbook/widgetbook.dart';
 
 class WidgetbookHotReload extends StatelessWidget {
@@ -9,11 +10,12 @@ class WidgetbookHotReload extends StatelessWidget {
   Widget build(final BuildContext context) {
     return Widgetbook.material(
       localizationsDelegates: const [
+        ...S.localizationsDelegates,
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
       ],
-      supportedLocales: [const Locale('en')],
+      supportedLocales: S.supportedLocales,
       categories: [
         WidgetbookCategory(
           name: 'Game UI',
@@ -25,16 +27,18 @@ class WidgetbookHotReload extends StatelessWidget {
                   name: 'Basic',
                   builder: (final context) {
                     return Wrap(
-                      children: [
-                        GuiIconButton(
-                          icon: GuiArtboard.iconButton,
-                          onPressed: () {},
-                        ),
-                        GuiIconButton(
-                          icon: GuiArtboard.iconButtonApple,
-                          onPressed: () {},
-                        ),
-                      ],
+                      children: GuiArtboard.values
+                          .where(
+                            (final e) =>
+                                e.name.startsWith(GuiArtboard.iconButtonLabel),
+                          )
+                          .map(
+                            (final e) => GuiIconButton(
+                              icon: e,
+                              onPressed: () {},
+                            ),
+                          )
+                          .toList(),
                     );
                   },
                 ),
