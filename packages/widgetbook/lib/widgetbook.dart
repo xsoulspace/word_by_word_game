@@ -43,6 +43,19 @@ class WidgetbookHotReload extends StatelessWidget {
                   ),
                 ],
               ),
+              WidgetbookComponent(
+                name: 'Panes',
+                useCases: [
+                  WidgetbookUseCase(
+                    name: 'Basic Desktop',
+                    builder: (final context) => Center(
+                      child: Row(
+                        children: const [],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
         ],

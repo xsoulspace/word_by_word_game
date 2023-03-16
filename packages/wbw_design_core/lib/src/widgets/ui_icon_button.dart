@@ -106,6 +106,8 @@ enum GuiArtboard {
   iconButtonArrow,
   iconButtonArrowSkip,
   iconButtonSearch,
+  iconButtonMenu,
+  iconButtonSave,
   markRed,
   markOrange,
   markPurple,
