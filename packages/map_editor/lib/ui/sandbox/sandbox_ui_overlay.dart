@@ -20,6 +20,7 @@ class TileButtons extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Row(
+        mainAxisSize: MainAxisSize.min,
         children: [
           TextButton(onPressed: () {}, child: const Text('Grass')),
           TextButton(onPressed: () {}, child: const Text('Water')),

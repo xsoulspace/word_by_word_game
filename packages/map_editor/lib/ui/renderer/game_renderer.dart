@@ -42,12 +42,12 @@ class GameRenderer extends FlameGame with HasCollisionDetection {
     providersComponent = diDto.getBlocsProviderComponent(
       children: [
         world,
-        router,
+        // router,
       ],
     );
 
     worldCamera = await _initCamera();
-    await providersComponent.add(worldCamera);
+    // await providersComponent.add(worldCamera);
     await add(providersComponent);
     await world.add(
       FlameBlocListener<MapEditorBloc, MapEditorBlocState>(
