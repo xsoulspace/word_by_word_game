@@ -12,7 +12,7 @@ class GameRendererDiDto {
   /// ********************************************
   final MapEditorBloc mapEditorBloc;
   final MechanicsCollection mechanics;
-  final ThemeData theme;
+  final material.ThemeData theme;
 
   FlameMultiBlocProvider getBlocsProviderComponent({
     required final List<Component>? children,
