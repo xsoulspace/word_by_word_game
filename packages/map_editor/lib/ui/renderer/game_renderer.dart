@@ -17,19 +17,19 @@ part 'renderer_di.dart';
 
 class Palette {
   static const white = BasicPalette.white;
-
   static const toastBackground = PaletteEntry(Color(0xFFAC3232));
   static const toastText = PaletteEntry(Color(0xFFDA9A00));
-
   static const grey = PaletteEntry(Color(0xFF404040));
   static const green = PaletteEntry(Color(0xFF54a286));
 }
 
 int get kTileDimension => 16;
-int get kMapTilesPlayableHeight => 20;
-int get kVisibleTilesHeight => 12;
-int get kVisibleTilesCount => 30;
-int get kLevelSideTileWidth => 16;
+
+int get kVisibleTilesColumns => 30;
+int get kVisibleTilesRows => 16;
+
+int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
+int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
 class GameRenderer extends FlameGame
     with
@@ -111,6 +111,11 @@ class GameRenderer extends FlameGame
 class EditorRenderer extends Component with Draggable, HasGameRef {
   Vector2 origin = Vector2.zero();
   Vector2 dragOffset = Vector2.zero();
+  Vector2 get gameSize => game.camera.gameSize;
+  double get windowHeight => gameSize.y;
+  double get windowWidth => gameSize.x;
+  double get tileColumns => windowWidth / kTileDimension;
+  double get tileRows => windowHeight / kTileDimension;
 
   @override
   bool onDragStart(final DragStartInfo info) {
@@ -124,15 +129,32 @@ class EditorRenderer extends Component with Draggable, HasGameRef {
     return super.onDragUpdate(info);
   }
 
-  final paint = Palette.green.paint();
-  @override
-  void render(final material.Canvas canvas) {
-    super.render(canvas);
+  final paint = Palette.grey.paint();
+
+  void _renderLines(final material.Canvas canvas) {
+    final originOffset = Vector2(
+      origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
+      origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
+    );
+    for (var col = 0; col < tileColumns; col++) {
+      final double x = originOffset.x + (col * kTileDimension).toDouble();
+      canvas.drawLine(Offset(x, 0), Offset(x, windowHeight), paint);
+    }
+  }
+
+  void _renderOrigin(final material.Canvas canvas) {
     canvas.drawCircle(
       origin.toOffset(),
       5,
       paint,
     );
+  }
+
+  @override
+  void render(final material.Canvas canvas) {
+    super.render(canvas);
+    _renderOrigin(canvas);
+    _renderLines(canvas);
   }
 
   @override
