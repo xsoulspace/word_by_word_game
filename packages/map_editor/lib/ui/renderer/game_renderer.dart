@@ -9,6 +9,7 @@ import 'package:flame/src/gestures/events.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:provider/provider.dart';
@@ -17,13 +18,14 @@ part 'renderer_di.dart';
 
 class Palette {
   static const white = BasicPalette.white;
+  static const red = PaletteEntry(Color(0xFFAC3232));
   static const toastBackground = PaletteEntry(Color(0xFFAC3232));
   static const toastText = PaletteEntry(Color(0xFFDA9A00));
   static const grey = PaletteEntry(Color(0xFF404040));
   static const green = PaletteEntry(Color(0xFF54a286));
 }
 
-int get kTileDimension => 16;
+int get kTileDimension => 64;
 
 int get kVisibleTilesColumns => 30;
 int get kVisibleTilesRows => 16;
@@ -36,7 +38,8 @@ class GameRenderer extends FlameGame
         HasCollisionDetection,
         HasDraggableComponents,
         HasDraggablesBridge,
-        SingleGameInstance {
+        SingleGameInstance,
+        HasHoverables {
   GameRenderer.use({
     required final Locator read,
     required final material.ThemeData theme,
@@ -54,7 +57,7 @@ class GameRenderer extends FlameGame
   @override
   Future<void> onLoad() async {
     // debugMode = kDebugMode ;
-
+    mouseCursor = material.SystemMouseCursors.none;
     children
       ..register<CameraComponent>()
       ..register<World>()
@@ -105,17 +108,26 @@ class GameRenderer extends FlameGame
   ) async {}
 
   @override
-  material.Color backgroundColor() => diDto.theme.colorScheme.background;
+  material.Color backgroundColor() => Palette.white.color;
 }
 
-class EditorRenderer extends Component with Draggable, HasGameRef {
+class EditorRenderer extends Component
+    with Draggable, HasGameRef<GameRenderer>, Hoverable {
   Vector2 origin = Vector2.zero();
   Vector2 dragOffset = Vector2.zero();
   Vector2 get gameSize => game.camera.gameSize;
   double get windowHeight => gameSize.y;
   double get windowWidth => gameSize.x;
-  double get tileColumns => windowWidth / kTileDimension;
-  double get tileRows => windowHeight / kTileDimension;
+  double get tileColumns => (windowWidth / kTileDimension) + 1;
+  double get tileRows => (windowHeight / kTileDimension) + 1;
+  final debugSurface = DebugSurface();
+  final cursor = CursorRenderer();
+
+  @override
+  FutureOr<void> onLoad() {
+    addAll([debugSurface, cursor]);
+    return super.onLoad();
+  }
 
   @override
   bool onDragStart(final DragStartInfo info) {
@@ -125,11 +137,67 @@ class EditorRenderer extends Component with Draggable, HasGameRef {
 
   @override
   bool onDragUpdate(final DragUpdateInfo info) {
-    origin = info.eventPosition.viewport - dragOffset;
+    final eventPosition = info.eventPosition.viewport;
+    origin = eventPosition - dragOffset;
+    hoveredPosition = eventPosition;
     return super.onDragUpdate(info);
   }
 
-  final paint = Palette.grey.paint();
+  material.Paint get paint => Palette.red.paint();
+
+  void _renderOrigin(final material.Canvas canvas) {
+    canvas.drawCircle(
+      origin.toOffset(),
+      15,
+      paint,
+    );
+  }
+
+  Vector2 hoveredPosition = Vector2.zero();
+  @override
+  // ignore: invalid_override_of_non_virtual_member
+  bool handleMouseMovement(final PointerHoverInfo info) {
+    hoveredPosition = info.eventPosition.viewport;
+    return super.handleMouseMovement(info);
+  }
+
+  @override
+  void render(final material.Canvas canvas) {
+    super.render(canvas);
+
+    _renderOrigin(canvas);
+  }
+
+  @override
+  bool containsLocalPoint(final Vector2 point) => true;
+}
+
+class CursorRenderer extends Component with HasGameReference<GameRenderer> {
+  EditorRenderer get editor => game.editor;
+  Image? image;
+  @override
+  FutureOr<void> onLoad() async {
+    image = await game.images.load(Assets.images.cursor.path.split('/').last);
+    return super.onLoad();
+  }
+
+  final paint = material.Paint();
+  @override
+  void render(final Canvas canvas) {
+    if (image != null && editor.isHovered) {
+      canvas.drawImage(image!, editor.hoveredPosition.toOffset(), paint);
+    }
+  }
+}
+
+class DebugSurface extends Component with Draggable, HasGameRef<GameRenderer> {
+  EditorRenderer get editor => game.editor;
+  Vector2 get origin => game.editor.origin;
+  double get windowHeight => editor.windowHeight;
+  double get windowWidth => editor.windowWidth;
+  double get tileColumns => editor.tileColumns;
+  double get tileRows => editor.tileRows;
+  material.Paint get paint => Palette.grey.withAlpha(60).paint();
 
   void _renderLines(final material.Canvas canvas) {
     final originOffset = Vector2(
@@ -140,23 +208,16 @@ class EditorRenderer extends Component with Draggable, HasGameRef {
       final double x = originOffset.x + (col * kTileDimension).toDouble();
       canvas.drawLine(Offset(x, 0), Offset(x, windowHeight), paint);
     }
-  }
 
-  void _renderOrigin(final material.Canvas canvas) {
-    canvas.drawCircle(
-      origin.toOffset(),
-      5,
-      paint,
-    );
+    for (var row = 0; row < tileRows; row++) {
+      final double y = originOffset.y + (row * kTileDimension).toDouble();
+      canvas.drawLine(Offset(0, y), Offset(windowWidth, y), paint);
+    }
   }
 
   @override
   void render(final material.Canvas canvas) {
     super.render(canvas);
-    _renderOrigin(canvas);
     _renderLines(canvas);
   }
-
-  @override
-  bool containsLocalPoint(final Vector2 point) => true;
 }
