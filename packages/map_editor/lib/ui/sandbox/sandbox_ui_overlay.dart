@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/renderer.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
   const SandboxUiOverlay({super.key});
@@ -25,41 +27,54 @@ class TileButtons extends StatelessWidget {
     final drawerCubit = context.watch<DrawerCubit>();
 
     return Material(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Wrap(
-            children: [
-              TextButton(onPressed: () {}, child: const Text('Grass')),
-              TextButton(onPressed: () {}, child: const Text('Water')),
-              TextButton(onPressed: () {}, child: const Text('Trees')),
-              TextButton(onPressed: () {}, child: const Text('Trees')),
-            ],
-          ),
-          Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text('Selection Index ${drawerCubit.state.selectionIndex}'),
-              Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.add),
-                    onPressed: () {
-                      drawerCubit.selectionIndex++;
-                    },
-                  ),
-                  IconButton(
-                    icon: const Icon(Icons.remove),
-                    onPressed: () {
-                      drawerCubit.selectionIndex--;
-                    },
-                  ),
-                ],
-              )
-            ],
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            const TileSpriteButton(),
+            const Gap(8),
+            const TileSpriteButton(),
+            const Gap(8),
+            const TileSpriteButton(),
+            const Gap(8),
+            const TileSpriteButton(),
+            const Gap(8),
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Selection Index ${drawerCubit.state.selectionIndex}'),
+                Row(
+                  children: [
+                    IconButton(
+                      icon: const Icon(Icons.add),
+                      onPressed: () {
+                        drawerCubit.selectionIndex++;
+                      },
+                    ),
+                    IconButton(
+                      icon: const Icon(Icons.remove),
+                      onPressed: () {
+                        drawerCubit.selectionIndex--;
+                      },
+                    ),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
+}
+
+class TileSpriteButton extends StatelessWidget {
+  const TileSpriteButton({super.key});
+
+  @override
+  Widget build(final BuildContext context) => SizedBox.square(
+        dimension: kTileDimension.toDouble(),
+        child: const Placeholder(),
+      );
 }
