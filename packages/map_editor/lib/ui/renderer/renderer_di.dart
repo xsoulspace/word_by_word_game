@@ -5,12 +5,14 @@ class GameRendererDiDto {
     required final Locator read,
     required this.theme,
   })  : mapEditorBloc = read(),
-        mechanics = read();
+        mechanics = read(),
+        drawerCubit = read();
 
   /// ********************************************
   /// *      Ephemeral
   /// ********************************************
   final MapEditorBloc mapEditorBloc;
+  final DrawerCubit drawerCubit;
   final MechanicsCollection mechanics;
   final material.ThemeData theme;
 
@@ -21,6 +23,7 @@ class GameRendererDiDto {
       FlameBlocProvider<MapEditorBloc, MapEditorBlocState>.value(
         value: mapEditorBloc,
       ),
+      FlameBlocProvider.value(value: drawerCubit)
     ];
 
     return FlameMultiBlocProvider(

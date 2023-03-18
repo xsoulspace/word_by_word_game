@@ -15,13 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DrawerCubitState {}
+mixin _$DrawerCubitState {
+  int get selectionIndex => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $DrawerCubitStateCopyWith<DrawerCubitState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $DrawerCubitStateCopyWith<$Res> {
   factory $DrawerCubitStateCopyWith(
           DrawerCubitState value, $Res Function(DrawerCubitState) then) =
       _$DrawerCubitStateCopyWithImpl<$Res, DrawerCubitState>;
+  @useResult
+  $Res call({int selectionIndex});
 }
 
 /// @nodoc
@@ -33,13 +41,30 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectionIndex = null,
+  }) {
+    return _then(_value.copyWith(
+      selectionIndex: null == selectionIndex
+          ? _value.selectionIndex
+          : selectionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_DrawerCubitStateCopyWith<$Res> {
+abstract class _$$_DrawerCubitStateCopyWith<$Res>
+    implements $DrawerCubitStateCopyWith<$Res> {
   factory _$$_DrawerCubitStateCopyWith(
           _$_DrawerCubitState value, $Res Function(_$_DrawerCubitState) then) =
       __$$_DrawerCubitStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int selectionIndex});
 }
 
 /// @nodoc
@@ -49,30 +74,64 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
   __$$_DrawerCubitStateCopyWithImpl(
       _$_DrawerCubitState _value, $Res Function(_$_DrawerCubitState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? selectionIndex = null,
+  }) {
+    return _then(_$_DrawerCubitState(
+      selectionIndex: null == selectionIndex
+          ? _value.selectionIndex
+          : selectionIndex // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_DrawerCubitState implements _DrawerCubitState {
-  const _$_DrawerCubitState();
+  const _$_DrawerCubitState({this.selectionIndex = kMinSelectionIndex});
+
+  @override
+  @JsonKey()
+  final int selectionIndex;
 
   @override
   String toString() {
-    return 'DrawerCubitState()';
+    return 'DrawerCubitState(selectionIndex: $selectionIndex)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DrawerCubitState);
+        (other.runtimeType == runtimeType &&
+            other is _$_DrawerCubitState &&
+            (identical(other.selectionIndex, selectionIndex) ||
+                other.selectionIndex == selectionIndex));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, selectionIndex);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>
+      __$$_DrawerCubitStateCopyWithImpl<_$_DrawerCubitState>(this, _$identity);
 }
 
 abstract class _DrawerCubitState implements DrawerCubitState {
-  const factory _DrawerCubitState() = _$_DrawerCubitState;
+  const factory _DrawerCubitState({final int selectionIndex}) =
+      _$_DrawerCubitState;
+
+  @override
+  int get selectionIndex;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

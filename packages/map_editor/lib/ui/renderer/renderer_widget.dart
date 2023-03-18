@@ -5,6 +5,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:map_editor/ui/renderer/game_renderer.dart';
 
+enum GameOverlays {
+  sandboxUi,
+}
+
 class GameRendererWidget extends HookWidget {
   const GameRendererWidget({super.key});
 
