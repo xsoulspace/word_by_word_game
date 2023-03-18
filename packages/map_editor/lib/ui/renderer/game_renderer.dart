@@ -177,7 +177,9 @@ class CursorRenderer extends Component with HasGameReference<GameRenderer> {
   Image? image;
   @override
   FutureOr<void> onLoad() async {
-    image = await game.images.load(Assets.images.cursor.path.split('/').last);
+    image = await game.images.load(
+      Assets.images.cursors.cursor.path.replaceAll('assets/images/', ''),
+    );
     return super.onLoad();
   }
 

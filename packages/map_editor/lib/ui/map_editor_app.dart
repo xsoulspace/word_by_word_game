@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:map_editor/state/di/state_di_provider.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:life_hooks/life_hooks.dart';
+import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/sandbox/sandbox.dart';
 
 class MapEditorApp extends StatelessWidget {
@@ -7,8 +9,19 @@ class MapEditorApp extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => StateDiProvider(
-        builder: (final context) => const MaterialApp(
-          home: SandboxScreen(),
+        builder: (final context) => StateLoader(
+          initializer: EditorStateInitializer(),
+          loader: const Center(),
+          child: BlocBuilder<MapEditorBloc, MapEditorBlocState>(
+            buildWhen: (final previous, final current) =>
+                previous.runtimeType != current.runtimeType,
+            builder: (final context, final state) => state.map(
+              empty: (final value) => const Center(),
+              loaded: (final state) => const MaterialApp(
+                home: SandboxScreen(),
+              ),
+            ),
+          ),
         ),
       );
 }

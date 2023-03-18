@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:life_hooks/life_hooks.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:provider/provider.dart';
+
+class EditorStateInitializer extends StateInitializer {
+  @override
+  Future<void> onLoad(final BuildContext context) async {
+    final read = context.read;
+    read<MapEditorBloc>().add(const LoadMapEditorBlocEvent());
+  }
+}
 
 class StateDiProvider extends StatelessWidget {
   const StateDiProvider({

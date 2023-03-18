@@ -285,7 +285,46 @@ abstract class LoadMapEditorBlocEvent implements MapEditorBlocEvent {
 }
 
 /// @nodoc
-mixin _$MapEditorBlocState {}
+mixin _$MapEditorBlocState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(Map<String, TileDataModel> tileData) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(Map<String, TileDataModel> tileData)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(Map<String, TileDataModel> tileData)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyMapEditorBlocState value) empty,
+    required TResult Function(LoadedMapEditorBlocState value) loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyMapEditorBlocState value)? empty,
+    TResult? Function(LoadedMapEditorBlocState value)? loaded,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyMapEditorBlocState value)? empty,
+    TResult Function(LoadedMapEditorBlocState value)? loaded,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $MapEditorBlocStateCopyWith<$Res> {
@@ -306,41 +345,249 @@ class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
 }
 
 /// @nodoc
-abstract class _$$_MapEditorBlocStateCopyWith<$Res> {
-  factory _$$_MapEditorBlocStateCopyWith(_$_MapEditorBlocState value,
-          $Res Function(_$_MapEditorBlocState) then) =
-      __$$_MapEditorBlocStateCopyWithImpl<$Res>;
+abstract class _$$EmptyMapEditorBlocStateCopyWith<$Res> {
+  factory _$$EmptyMapEditorBlocStateCopyWith(_$EmptyMapEditorBlocState value,
+          $Res Function(_$EmptyMapEditorBlocState) then) =
+      __$$EmptyMapEditorBlocStateCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_MapEditorBlocStateCopyWithImpl<$Res>
-    extends _$MapEditorBlocStateCopyWithImpl<$Res, _$_MapEditorBlocState>
-    implements _$$_MapEditorBlocStateCopyWith<$Res> {
-  __$$_MapEditorBlocStateCopyWithImpl(
-      _$_MapEditorBlocState _value, $Res Function(_$_MapEditorBlocState) _then)
+class __$$EmptyMapEditorBlocStateCopyWithImpl<$Res>
+    extends _$MapEditorBlocStateCopyWithImpl<$Res, _$EmptyMapEditorBlocState>
+    implements _$$EmptyMapEditorBlocStateCopyWith<$Res> {
+  __$$EmptyMapEditorBlocStateCopyWithImpl(_$EmptyMapEditorBlocState _value,
+      $Res Function(_$EmptyMapEditorBlocState) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$_MapEditorBlocState implements _MapEditorBlocState {
-  const _$_MapEditorBlocState();
+class _$EmptyMapEditorBlocState implements EmptyMapEditorBlocState {
+  const _$EmptyMapEditorBlocState();
 
   @override
   String toString() {
-    return 'MapEditorBlocState()';
+    return 'MapEditorBlocState.empty()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_MapEditorBlocState);
+        (other.runtimeType == runtimeType &&
+            other is _$EmptyMapEditorBlocState);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(Map<String, TileDataModel> tileData) loaded,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(Map<String, TileDataModel> tileData)? loaded,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(Map<String, TileDataModel> tileData)? loaded,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyMapEditorBlocState value) empty,
+    required TResult Function(LoadedMapEditorBlocState value) loaded,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyMapEditorBlocState value)? empty,
+    TResult? Function(LoadedMapEditorBlocState value)? loaded,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyMapEditorBlocState value)? empty,
+    TResult Function(LoadedMapEditorBlocState value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _MapEditorBlocState implements MapEditorBlocState {
-  const factory _MapEditorBlocState() = _$_MapEditorBlocState;
+abstract class EmptyMapEditorBlocState implements MapEditorBlocState {
+  const factory EmptyMapEditorBlocState() = _$EmptyMapEditorBlocState;
+}
+
+/// @nodoc
+abstract class _$$LoadedMapEditorBlocStateCopyWith<$Res> {
+  factory _$$LoadedMapEditorBlocStateCopyWith(_$LoadedMapEditorBlocState value,
+          $Res Function(_$LoadedMapEditorBlocState) then) =
+      __$$LoadedMapEditorBlocStateCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Map<String, TileDataModel> tileData});
+}
+
+/// @nodoc
+class __$$LoadedMapEditorBlocStateCopyWithImpl<$Res>
+    extends _$MapEditorBlocStateCopyWithImpl<$Res, _$LoadedMapEditorBlocState>
+    implements _$$LoadedMapEditorBlocStateCopyWith<$Res> {
+  __$$LoadedMapEditorBlocStateCopyWithImpl(_$LoadedMapEditorBlocState _value,
+      $Res Function(_$LoadedMapEditorBlocState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tileData = null,
+  }) {
+    return _then(_$LoadedMapEditorBlocState(
+      tileData: null == tileData
+          ? _value._tileData
+          : tileData // ignore: cast_nullable_to_non_nullable
+              as Map<String, TileDataModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$LoadedMapEditorBlocState implements LoadedMapEditorBlocState {
+  const _$LoadedMapEditorBlocState(
+      {required final Map<String, TileDataModel> tileData})
+      : _tileData = tileData;
+
+  final Map<String, TileDataModel> _tileData;
+  @override
+  Map<String, TileDataModel> get tileData {
+    if (_tileData is EqualUnmodifiableMapView) return _tileData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_tileData);
+  }
+
+  @override
+  String toString() {
+    return 'MapEditorBlocState.loaded(tileData: $tileData)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LoadedMapEditorBlocState &&
+            const DeepCollectionEquality().equals(other._tileData, _tileData));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tileData));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LoadedMapEditorBlocStateCopyWith<_$LoadedMapEditorBlocState>
+      get copyWith =>
+          __$$LoadedMapEditorBlocStateCopyWithImpl<_$LoadedMapEditorBlocState>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(Map<String, TileDataModel> tileData) loaded,
+  }) {
+    return loaded(tileData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(Map<String, TileDataModel> tileData)? loaded,
+  }) {
+    return loaded?.call(tileData);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(Map<String, TileDataModel> tileData)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(tileData);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyMapEditorBlocState value) empty,
+    required TResult Function(LoadedMapEditorBlocState value) loaded,
+  }) {
+    return loaded(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyMapEditorBlocState value)? empty,
+    TResult? Function(LoadedMapEditorBlocState value)? loaded,
+  }) {
+    return loaded?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyMapEditorBlocState value)? empty,
+    TResult Function(LoadedMapEditorBlocState value)? loaded,
+    required TResult orElse(),
+  }) {
+    if (loaded != null) {
+      return loaded(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class LoadedMapEditorBlocState implements MapEditorBlocState {
+  const factory LoadedMapEditorBlocState(
+          {required final Map<String, TileDataModel> tileData}) =
+      _$LoadedMapEditorBlocState;
+
+  Map<String, TileDataModel> get tileData;
+  @JsonKey(ignore: true)
+  _$$LoadedMapEditorBlocStateCopyWith<_$LoadedMapEditorBlocState>
+      get copyWith => throw _privateConstructorUsedError;
 }

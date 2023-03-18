@@ -91,6 +91,13 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/clouds/
+    - assets/images/cursors/
+    - assets/images/enemies/
+    - assets/images/items/
+    - assets/images/menu/
+    - assets/images/player/
+    - assets/images/preview/
     - assets/images/terrain/
     - assets/images/terrain/land/
     - assets/images/terrain/palm/large_bg/
@@ -103,6 +110,7 @@ flutter:
     - assets/images/terrain/palm/small_fg/
     - assets/images/terrain/water/
     - assets/images/terrain/water/animation/
+    - assets/json/
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg
