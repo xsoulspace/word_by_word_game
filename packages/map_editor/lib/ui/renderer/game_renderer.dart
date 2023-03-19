@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/logic/logic.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:provider/provider.dart';
 
@@ -206,6 +207,10 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   double get windowWidth => editor.windowWidth;
   double get tileColumns => editor.tileColumns;
   double get tileRows => editor.tileRows;
+  Map<CellPointModel, dynamic> get canvasData =>
+      game.diDto.drawerCubit.canvasData;
+  set canvasData(final Map<CellPointModel, dynamic> value) =>
+      game.diDto.drawerCubit.canvasData = value;
 }
 
 class CursorRenderer extends Component
@@ -260,7 +265,7 @@ class TilesRenderer extends Component
     return super.onTapUp(info);
   }
 
-  void getCurrentCell(final EventPosition eventPosition) {
+  math.Point<int> getCurrentCell(final EventPosition eventPosition) {
     final distanceToOrigin = eventPosition.viewport - origin;
 
     int row = distanceToOrigin.y ~/ kTileDimension;
@@ -271,14 +276,52 @@ class TilesRenderer extends Component
     if (distanceToOrigin.x < 0) {
       column--;
     }
-    final point = math.Point(row, column);
-    print(point);
+    return math.Point(row, column);
   }
 
+  math.Point<int>? _lastSelectedCell;
   void _onTap(final EventPosition eventPosition) {
-    getCurrentCell(eventPosition);
+    final cell = getCurrentCell(eventPosition);
+    if (_lastSelectedCell == cell) return;
+
+    final cellPoint = cell.toCellPoint();
+    if (canvasData.containsKey(cellPoint)) {
+    } else {
+      canvasData = {...canvasData}..[cellPoint] = 'test';
+    }
+    _lastSelectedCell = cell;
   }
 
   @override
   bool containsLocalPoint(final Vector2 point) => true;
+}
+
+class CanvasTile extends Component {
+  CanvasTile({
+    required this.tileId,
+    this.hasTerrain = false,
+    this.terrainNeighbours = const [],
+    this.hasWater = true,
+    this.isTopWater = true,
+    this.coin,
+    this.enemy,
+    this.objects = const [],
+  });
+  final String tileId;
+
+  /// Terrain
+  final bool hasTerrain;
+  final List<String> terrainNeighbours;
+
+  /// Water
+  final bool hasWater;
+  final bool isTopWater;
+
+  /// Coin
+  final coin;
+
+  /// Enemy
+  final enemy;
+
+  final List objects;
 }

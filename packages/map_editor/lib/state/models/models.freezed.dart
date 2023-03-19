@@ -162,6 +162,240 @@ abstract class _TileMenuItem implements TileMenuItem {
       throw _privateConstructorUsedError;
 }
 
+CellDataModel _$CellDataModelFromJson(Map<String, dynamic> json) {
+  return _CellDataModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CellDataModel {
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CellDataModelCopyWith<$Res> {
+  factory $CellDataModelCopyWith(
+          CellDataModel value, $Res Function(CellDataModel) then) =
+      _$CellDataModelCopyWithImpl<$Res, CellDataModel>;
+}
+
+/// @nodoc
+class _$CellDataModelCopyWithImpl<$Res, $Val extends CellDataModel>
+    implements $CellDataModelCopyWith<$Res> {
+  _$CellDataModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$_CellDataModelCopyWith<$Res> {
+  factory _$$_CellDataModelCopyWith(
+          _$_CellDataModel value, $Res Function(_$_CellDataModel) then) =
+      __$$_CellDataModelCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$_CellDataModelCopyWithImpl<$Res>
+    extends _$CellDataModelCopyWithImpl<$Res, _$_CellDataModel>
+    implements _$$_CellDataModelCopyWith<$Res> {
+  __$$_CellDataModelCopyWithImpl(
+      _$_CellDataModel _value, $Res Function(_$_CellDataModel) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CellDataModel implements _CellDataModel {
+  const _$_CellDataModel();
+
+  factory _$_CellDataModel.fromJson(Map<String, dynamic> json) =>
+      _$$_CellDataModelFromJson(json);
+
+  @override
+  String toString() {
+    return 'CellDataModel()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$_CellDataModel);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CellDataModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CellDataModel implements CellDataModel {
+  const factory _CellDataModel() = _$_CellDataModel;
+
+  factory _CellDataModel.fromJson(Map<String, dynamic> json) =
+      _$_CellDataModel.fromJson;
+}
+
+CellPointModel _$CellPointModelFromJson(Map<String, dynamic> json) {
+  return _CellPointModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$CellPointModel {
+  int get row => throw _privateConstructorUsedError;
+  int get column => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $CellPointModelCopyWith<CellPointModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CellPointModelCopyWith<$Res> {
+  factory $CellPointModelCopyWith(
+          CellPointModel value, $Res Function(CellPointModel) then) =
+      _$CellPointModelCopyWithImpl<$Res, CellPointModel>;
+  @useResult
+  $Res call({int row, int column});
+}
+
+/// @nodoc
+class _$CellPointModelCopyWithImpl<$Res, $Val extends CellPointModel>
+    implements $CellPointModelCopyWith<$Res> {
+  _$CellPointModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? row = null,
+    Object? column = null,
+  }) {
+    return _then(_value.copyWith(
+      row: null == row
+          ? _value.row
+          : row // ignore: cast_nullable_to_non_nullable
+              as int,
+      column: null == column
+          ? _value.column
+          : column // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CellPointModelCopyWith<$Res>
+    implements $CellPointModelCopyWith<$Res> {
+  factory _$$_CellPointModelCopyWith(
+          _$_CellPointModel value, $Res Function(_$_CellPointModel) then) =
+      __$$_CellPointModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int row, int column});
+}
+
+/// @nodoc
+class __$$_CellPointModelCopyWithImpl<$Res>
+    extends _$CellPointModelCopyWithImpl<$Res, _$_CellPointModel>
+    implements _$$_CellPointModelCopyWith<$Res> {
+  __$$_CellPointModelCopyWithImpl(
+      _$_CellPointModel _value, $Res Function(_$_CellPointModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? row = null,
+    Object? column = null,
+  }) {
+    return _then(_$_CellPointModel(
+      null == row
+          ? _value.row
+          : row // ignore: cast_nullable_to_non_nullable
+              as int,
+      null == column
+          ? _value.column
+          : column // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_CellPointModel implements _CellPointModel {
+  const _$_CellPointModel(this.row, this.column);
+
+  factory _$_CellPointModel.fromJson(Map<String, dynamic> json) =>
+      _$$_CellPointModelFromJson(json);
+
+  @override
+  final int row;
+  @override
+  final int column;
+
+  @override
+  String toString() {
+    return 'CellPointModel(row: $row, column: $column)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_CellPointModel &&
+            (identical(other.row, row) || other.row == row) &&
+            (identical(other.column, column) || other.column == column));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, row, column);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CellPointModelCopyWith<_$_CellPointModel> get copyWith =>
+      __$$_CellPointModelCopyWithImpl<_$_CellPointModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_CellPointModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _CellPointModel implements CellPointModel {
+  const factory _CellPointModel(final int row, final int column) =
+      _$_CellPointModel;
+
+  factory _CellPointModel.fromJson(Map<String, dynamic> json) =
+      _$_CellPointModel.fromJson;
+
+  @override
+  int get row;
+  @override
+  int get column;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CellPointModelCopyWith<_$_CellPointModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 TileDataModel _$TileDataModelFromJson(Map<String, dynamic> json) {
   return _TileDataModel.fromJson(json);
 }

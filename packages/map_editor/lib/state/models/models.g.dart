@@ -6,6 +6,24 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+_$_CellDataModel _$$_CellDataModelFromJson(Map<String, dynamic> json) =>
+    _$_CellDataModel();
+
+Map<String, dynamic> _$$_CellDataModelToJson(_$_CellDataModel instance) =>
+    <String, dynamic>{};
+
+_$_CellPointModel _$$_CellPointModelFromJson(Map<String, dynamic> json) =>
+    _$_CellPointModel(
+      json['row'] as int,
+      json['column'] as int,
+    );
+
+Map<String, dynamic> _$$_CellPointModelToJson(_$_CellPointModel instance) =>
+    <String, dynamic>{
+      'row': instance.row,
+      'column': instance.column,
+    };
+
 _$_TileDataModel _$$_TileDataModelFromJson(Map<String, dynamic> json) =>
     _$_TileDataModel(
       style: $enumDecode(_$TileStyleEnumMap, json['style']),

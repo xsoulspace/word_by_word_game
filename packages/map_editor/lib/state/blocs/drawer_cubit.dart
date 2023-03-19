@@ -14,4 +14,10 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     );
     emit(state.copyWith(selectionIndex: resultValue));
   }
+
+  Map<CellPointModel, dynamic> get canvasData => state.canvasData;
+
+  set canvasData(final Map<CellPointModel, dynamic> value) {
+    emit(state.copyWith(canvasData: value));
+  }
 }
