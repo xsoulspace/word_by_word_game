@@ -9,6 +9,7 @@ import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/state.dart';
@@ -39,7 +40,8 @@ class GameRenderer extends FlameGame
         HasDraggableComponents,
         HasDraggablesBridge,
         SingleGameInstance,
-        HasHoverables {
+        HasHoverables,
+        HasTappables {
   GameRenderer.use({
     required final Locator read,
     required final material.ThemeData theme,
@@ -114,7 +116,11 @@ class GameRenderer extends FlameGame
 class EditorRenderer extends Component
     with Draggable, HasGameRef<GameRenderer>, Hoverable {
   Vector2 origin = Vector2.zero();
-  Vector2 dragOffset = Vector2.zero();
+  @useResult
+  Vector2 getOriginOffset() => Vector2(
+        origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
+        origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
+      );
   Vector2 get gameSize => game.camera.gameSize;
   double get windowHeight => gameSize.y;
   double get windowWidth => gameSize.x;
@@ -122,23 +128,25 @@ class EditorRenderer extends Component
   double get tileRows => (windowHeight / kTileDimension) + 1;
   final debugSurface = DebugSurface();
   final cursor = CursorRenderer();
+  final tilesRenderer = TilesRenderer();
+  Vector2 _dragOffset = Vector2.zero();
 
   @override
   FutureOr<void> onLoad() {
-    addAll([debugSurface, cursor]);
+    addAll([debugSurface, cursor, tilesRenderer]);
     return super.onLoad();
   }
 
   @override
   bool onDragStart(final DragStartInfo info) {
-    dragOffset = info.eventPosition.viewport - origin;
+    _dragOffset = info.eventPosition.viewport - origin;
     return super.onDragStart(info);
   }
 
   @override
   bool onDragUpdate(final DragUpdateInfo info) {
     final eventPosition = info.eventPosition.viewport;
-    origin = eventPosition - dragOffset;
+    origin = eventPosition - _dragOffset;
     hoveredPosition = eventPosition;
     return super.onDragUpdate(info);
   }
@@ -172,8 +180,21 @@ class EditorRenderer extends Component
   bool containsLocalPoint(final Vector2 point) => true;
 }
 
-class CursorRenderer extends Component with HasGameReference<GameRenderer> {
-  EditorRenderer get editor => game.editor;
+mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
+  EditorRenderer? _editor;
+  EditorRenderer get editor => _editor ??= game.editor;
+  Vector2 get origin => editor.origin;
+  @useResult
+  Vector2 getOriginOffset() => editor.getOriginOffset();
+  set origin(final Vector2 value) => editor.origin = value;
+  double get windowHeight => editor.windowHeight;
+  double get windowWidth => editor.windowWidth;
+  double get tileColumns => editor.tileColumns;
+  double get tileRows => editor.tileRows;
+}
+
+class CursorRenderer extends Component
+    with HasGameRef<GameRenderer>, HasEditorRef {
   Image? image;
   @override
   FutureOr<void> onLoad() async {
@@ -192,20 +213,12 @@ class CursorRenderer extends Component with HasGameReference<GameRenderer> {
   }
 }
 
-class DebugSurface extends Component with Draggable, HasGameRef<GameRenderer> {
-  EditorRenderer get editor => game.editor;
-  Vector2 get origin => game.editor.origin;
-  double get windowHeight => editor.windowHeight;
-  double get windowWidth => editor.windowWidth;
-  double get tileColumns => editor.tileColumns;
-  double get tileRows => editor.tileRows;
+class DebugSurface extends Component
+    with Draggable, HasGameRef<GameRenderer>, HasEditorRef {
   material.Paint get paint => Palette.grey.withAlpha(60).paint();
 
   void _renderLines(final material.Canvas canvas) {
-    final originOffset = Vector2(
-      origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
-      origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
-    );
+    final originOffset = getOriginOffset();
     for (var col = 0; col < tileColumns; col++) {
       final double x = originOffset.x + (col * kTileDimension).toDouble();
       canvas.drawLine(Offset(x, 0), Offset(x, windowHeight), paint);
@@ -222,4 +235,15 @@ class DebugSurface extends Component with Draggable, HasGameRef<GameRenderer> {
     super.render(canvas);
     _renderLines(canvas);
   }
+}
+
+class TilesRenderer extends Component
+    with Tappable, HasGameRef<GameRenderer>, HasEditorRef {
+  @override
+  bool onTapUp(final TapUpInfo info) {
+    _onTap(info.eventPosition);
+    return super.onTapUp(info);
+  }
+
+  void _onTap(final EventPosition eventPosition) {}
 }
