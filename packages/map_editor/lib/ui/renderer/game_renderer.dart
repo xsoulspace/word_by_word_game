@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
@@ -34,6 +35,8 @@ int get kVisibleTilesRows => 16;
 int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
+// Made with awesome Tutorial:
+// https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
 class GameRenderer extends FlameGame
     with
         HasCollisionDetection,
@@ -116,8 +119,10 @@ class GameRenderer extends FlameGame
 class EditorRenderer extends Component
     with Draggable, HasGameRef<GameRenderer>, Hoverable {
   Vector2 origin = Vector2.zero();
+
+  /// First cell position to calculate the grid and positions
   @useResult
-  Vector2 getOriginOffset() => Vector2(
+  Vector2 getOffsetOrigin() => Vector2(
         origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
         origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
       );
@@ -151,13 +156,22 @@ class EditorRenderer extends Component
     return super.onDragUpdate(info);
   }
 
-  material.Paint get paint => Palette.red.paint();
+  material.Paint get _redPaint => Palette.red.paint();
+  material.Paint get _greenPaint => Palette.green.paint();
 
   void _renderOrigin(final material.Canvas canvas) {
     canvas.drawCircle(
       origin.toOffset(),
       15,
-      paint,
+      _redPaint,
+    );
+  }
+
+  void _renderOffsetOrigin(final material.Canvas canvas) {
+    canvas.drawCircle(
+      getOffsetOrigin().toOffset(),
+      15,
+      _greenPaint,
     );
   }
 
@@ -174,6 +188,7 @@ class EditorRenderer extends Component
     super.render(canvas);
 
     _renderOrigin(canvas);
+    _renderOffsetOrigin(canvas);
   }
 
   @override
@@ -185,7 +200,7 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   EditorRenderer get editor => _editor ??= game.editor;
   Vector2 get origin => editor.origin;
   @useResult
-  Vector2 getOriginOffset() => editor.getOriginOffset();
+  Vector2 getOffsetOrigin() => editor.getOffsetOrigin();
   set origin(final Vector2 value) => editor.origin = value;
   double get windowHeight => editor.windowHeight;
   double get windowWidth => editor.windowWidth;
@@ -195,38 +210,38 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
 
 class CursorRenderer extends Component
     with HasGameRef<GameRenderer>, HasEditorRef {
-  Image? image;
+  Image? _image;
   @override
   FutureOr<void> onLoad() async {
-    image = await game.images.load(
+    _image = await game.images.load(
       Assets.images.cursors.cursor.path.replaceAll('assets/images/', ''),
     );
     return super.onLoad();
   }
 
-  final paint = material.Paint();
+  final _paint = material.Paint();
   @override
   void render(final Canvas canvas) {
-    if (image != null && editor.isHovered) {
-      canvas.drawImage(image!, editor.hoveredPosition.toOffset(), paint);
+    if (_image != null && editor.isHovered) {
+      canvas.drawImage(_image!, editor.hoveredPosition.toOffset(), _paint);
     }
   }
 }
 
 class DebugSurface extends Component
     with Draggable, HasGameRef<GameRenderer>, HasEditorRef {
-  material.Paint get paint => Palette.grey.withAlpha(60).paint();
+  material.Paint get _paint => Palette.grey.withAlpha(60).paint();
 
   void _renderLines(final material.Canvas canvas) {
-    final originOffset = getOriginOffset();
+    final offsetOrigin = getOffsetOrigin();
     for (var col = 0; col < tileColumns; col++) {
-      final double x = originOffset.x + (col * kTileDimension).toDouble();
-      canvas.drawLine(Offset(x, 0), Offset(x, windowHeight), paint);
+      final double x = offsetOrigin.x + (col * kTileDimension).toDouble();
+      canvas.drawLine(Offset(x, 0), Offset(x, windowHeight), _paint);
     }
 
     for (var row = 0; row < tileRows; row++) {
-      final double y = originOffset.y + (row * kTileDimension).toDouble();
-      canvas.drawLine(Offset(0, y), Offset(windowWidth, y), paint);
+      final double y = offsetOrigin.y + (row * kTileDimension).toDouble();
+      canvas.drawLine(Offset(0, y), Offset(windowWidth, y), _paint);
     }
   }
 
@@ -245,5 +260,25 @@ class TilesRenderer extends Component
     return super.onTapUp(info);
   }
 
-  void _onTap(final EventPosition eventPosition) {}
+  void getCurrentCell(final EventPosition eventPosition) {
+    final distanceToOrigin = eventPosition.viewport - origin;
+
+    int row = distanceToOrigin.y ~/ kTileDimension;
+    if (distanceToOrigin.y < 0) {
+      row--;
+    }
+    int column = distanceToOrigin.x ~/ kTileDimension;
+    if (distanceToOrigin.x < 0) {
+      column--;
+    }
+    final point = math.Point(row, column);
+    print(point);
+  }
+
+  void _onTap(final EventPosition eventPosition) {
+    getCurrentCell(eventPosition);
+  }
+
+  @override
+  bool containsLocalPoint(final Vector2 point) => true;
 }
