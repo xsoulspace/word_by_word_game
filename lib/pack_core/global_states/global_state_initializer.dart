@@ -6,11 +6,11 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
-import 'package:word_by_word_game/pack_game/ads/states/ad_manager.dart';
-import 'package:word_by_word_game/pack_game/game/game.dart';
+import 'package:word_by_word_game/subgames/quick_game/game/game.dart';
 
 class GlobalSettingsInitializer extends StateInitializer {
   @override
