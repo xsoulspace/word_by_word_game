@@ -3,9 +3,16 @@ part of '../state.dart';
 const int kMinSelectionIndex = 2;
 int get kMaxSelectionIndex => 18;
 
-class DrawerCubit extends Cubit<DrawerCubitState> {
-  DrawerCubit() : super(const DrawerCubitState());
+class DrawerCubitDto {
+  DrawerCubitDto(final Locator read) : mapEditorBloc = read();
+  final MapEditorBloc mapEditorBloc;
+}
 
+class DrawerCubit extends Cubit<DrawerCubitState> {
+  DrawerCubit({
+    required this.dto,
+  }) : super(const DrawerCubitState());
+  final DrawerCubitDto dto;
   int get selectionIndex => state.selectionIndex;
   set selectionIndex(final int value) {
     final resultValue = math.max(
@@ -15,9 +22,12 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     emit(state.copyWith(selectionIndex: resultValue));
   }
 
-  Map<CellPointModel, dynamic> get canvasData => state.canvasData;
+  TileDataModel get selectionData =>
+      dto.mapEditorBloc.loadedState.tileData['$selectionIndex']!;
 
-  set canvasData(final Map<CellPointModel, dynamic> value) {
+  Map<CellPointModel, CanvasTile> get canvasData => state.canvasData;
+
+  set canvasData(final Map<CellPointModel, CanvasTile> value) {
     emit(state.copyWith(canvasData: value));
   }
 }

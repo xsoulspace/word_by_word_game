@@ -199,6 +199,7 @@ class EditorRenderer extends Component
 mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   EditorRenderer? _editor;
   EditorRenderer get editor => _editor ??= game.editor;
+  DrawerCubit get drawerCubit => game.diDto.drawerCubit;
   Vector2 get origin => editor.origin;
   @useResult
   Vector2 getOffsetOrigin() => editor.getOffsetOrigin();
@@ -207,9 +208,9 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   double get windowWidth => editor.windowWidth;
   double get tileColumns => editor.tileColumns;
   double get tileRows => editor.tileRows;
-  Map<CellPointModel, dynamic> get canvasData =>
+  Map<CellPointModel, CanvasTile> get canvasData =>
       game.diDto.drawerCubit.canvasData;
-  set canvasData(final Map<CellPointModel, dynamic> value) =>
+  set canvasData(final Map<CellPointModel, CanvasTile> value) =>
       game.diDto.drawerCubit.canvasData = value;
 }
 
@@ -286,42 +287,28 @@ class TilesRenderer extends Component
 
     final cellPoint = cell.toCellPoint();
     if (canvasData.containsKey(cellPoint)) {
+      /// Maybe better to override existing data, but not sure for now,
+      /// because it will break object immutability..
+      ///
+      /// But maybe if this will be runtime class - then it definitely
+      /// should be updated, not replaced.
+      canvasData = {...canvasData}..update(
+          cellPoint,
+          (final canvasTile) => CanvasTile.fromEditorSettingsData(
+            data: drawerCubit.selectionData,
+            tileId: drawerCubit.selectionIndex.toString(),
+          ),
+        );
     } else {
-      canvasData = {...canvasData}..[cellPoint] = 'test';
+      canvasData = {...canvasData}..[cellPoint] =
+            CanvasTile.fromEditorSettingsData(
+          data: drawerCubit.selectionData,
+          tileId: drawerCubit.selectionIndex.toString(),
+        );
     }
     _lastSelectedCell = cell;
   }
 
   @override
   bool containsLocalPoint(final Vector2 point) => true;
-}
-
-class CanvasTile extends Component {
-  CanvasTile({
-    required this.tileId,
-    this.hasTerrain = false,
-    this.terrainNeighbours = const [],
-    this.hasWater = true,
-    this.isTopWater = true,
-    this.coin,
-    this.enemy,
-    this.objects = const [],
-  });
-  final String tileId;
-
-  /// Terrain
-  final bool hasTerrain;
-  final List<String> terrainNeighbours;
-
-  /// Water
-  final bool hasWater;
-  final bool isTopWater;
-
-  /// Coin
-  final coin;
-
-  /// Enemy
-  final enemy;
-
-  final List objects;
 }

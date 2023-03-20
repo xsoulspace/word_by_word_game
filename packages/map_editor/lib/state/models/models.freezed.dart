@@ -15,6 +15,324 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
+mixin _$CanvasTile {
+  String get tileId => throw _privateConstructorUsedError;
+
+  /// Terrain
+  bool get hasTerrain => throw _privateConstructorUsedError;
+  List<String> get terrainNeighbours => throw _privateConstructorUsedError;
+
+  /// Water
+  bool get hasWater => throw _privateConstructorUsedError;
+  bool get isTopWater => throw _privateConstructorUsedError;
+
+  /// Coin
+  String get coin => throw _privateConstructorUsedError;
+
+  /// Enemy
+  String get enemy => throw _privateConstructorUsedError;
+  List<dynamic> get objects => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CanvasTileCopyWith<CanvasTile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CanvasTileCopyWith<$Res> {
+  factory $CanvasTileCopyWith(
+          CanvasTile value, $Res Function(CanvasTile) then) =
+      _$CanvasTileCopyWithImpl<$Res, CanvasTile>;
+  @useResult
+  $Res call(
+      {String tileId,
+      bool hasTerrain,
+      List<String> terrainNeighbours,
+      bool hasWater,
+      bool isTopWater,
+      String coin,
+      String enemy,
+      List<dynamic> objects});
+}
+
+/// @nodoc
+class _$CanvasTileCopyWithImpl<$Res, $Val extends CanvasTile>
+    implements $CanvasTileCopyWith<$Res> {
+  _$CanvasTileCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tileId = null,
+    Object? hasTerrain = null,
+    Object? terrainNeighbours = null,
+    Object? hasWater = null,
+    Object? isTopWater = null,
+    Object? coin = null,
+    Object? enemy = null,
+    Object? objects = null,
+  }) {
+    return _then(_value.copyWith(
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasTerrain: null == hasTerrain
+          ? _value.hasTerrain
+          : hasTerrain // ignore: cast_nullable_to_non_nullable
+              as bool,
+      terrainNeighbours: null == terrainNeighbours
+          ? _value.terrainNeighbours
+          : terrainNeighbours // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      hasWater: null == hasWater
+          ? _value.hasWater
+          : hasWater // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTopWater: null == isTopWater
+          ? _value.isTopWater
+          : isTopWater // ignore: cast_nullable_to_non_nullable
+              as bool,
+      coin: null == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String,
+      enemy: null == enemy
+          ? _value.enemy
+          : enemy // ignore: cast_nullable_to_non_nullable
+              as String,
+      objects: null == objects
+          ? _value.objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_SecureCanvasTileCopyWith<$Res>
+    implements $CanvasTileCopyWith<$Res> {
+  factory _$$_SecureCanvasTileCopyWith(
+          _$_SecureCanvasTile value, $Res Function(_$_SecureCanvasTile) then) =
+      __$$_SecureCanvasTileCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {String tileId,
+      bool hasTerrain,
+      List<String> terrainNeighbours,
+      bool hasWater,
+      bool isTopWater,
+      String coin,
+      String enemy,
+      List<dynamic> objects});
+}
+
+/// @nodoc
+class __$$_SecureCanvasTileCopyWithImpl<$Res>
+    extends _$CanvasTileCopyWithImpl<$Res, _$_SecureCanvasTile>
+    implements _$$_SecureCanvasTileCopyWith<$Res> {
+  __$$_SecureCanvasTileCopyWithImpl(
+      _$_SecureCanvasTile _value, $Res Function(_$_SecureCanvasTile) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tileId = null,
+    Object? hasTerrain = null,
+    Object? terrainNeighbours = null,
+    Object? hasWater = null,
+    Object? isTopWater = null,
+    Object? coin = null,
+    Object? enemy = null,
+    Object? objects = null,
+  }) {
+    return _then(_$_SecureCanvasTile(
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasTerrain: null == hasTerrain
+          ? _value.hasTerrain
+          : hasTerrain // ignore: cast_nullable_to_non_nullable
+              as bool,
+      terrainNeighbours: null == terrainNeighbours
+          ? _value._terrainNeighbours
+          : terrainNeighbours // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      hasWater: null == hasWater
+          ? _value.hasWater
+          : hasWater // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isTopWater: null == isTopWater
+          ? _value.isTopWater
+          : isTopWater // ignore: cast_nullable_to_non_nullable
+              as bool,
+      coin: null == coin
+          ? _value.coin
+          : coin // ignore: cast_nullable_to_non_nullable
+              as String,
+      enemy: null == enemy
+          ? _value.enemy
+          : enemy // ignore: cast_nullable_to_non_nullable
+              as String,
+      objects: null == objects
+          ? _value._objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as List<dynamic>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SecureCanvasTile implements _SecureCanvasTile {
+  const _$_SecureCanvasTile(
+      {required this.tileId,
+      this.hasTerrain = false,
+      final List<String> terrainNeighbours = const [],
+      this.hasWater = false,
+      this.isTopWater = false,
+      this.coin = '',
+      this.enemy = '',
+      final List<dynamic> objects = const []})
+      : _terrainNeighbours = terrainNeighbours,
+        _objects = objects;
+
+  @override
+  final String tileId;
+
+  /// Terrain
+  @override
+  @JsonKey()
+  final bool hasTerrain;
+  final List<String> _terrainNeighbours;
+  @override
+  @JsonKey()
+  List<String> get terrainNeighbours {
+    if (_terrainNeighbours is EqualUnmodifiableListView)
+      return _terrainNeighbours;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_terrainNeighbours);
+  }
+
+  /// Water
+  @override
+  @JsonKey()
+  final bool hasWater;
+  @override
+  @JsonKey()
+  final bool isTopWater;
+
+  /// Coin
+  @override
+  @JsonKey()
+  final String coin;
+
+  /// Enemy
+  @override
+  @JsonKey()
+  final String enemy;
+  final List<dynamic> _objects;
+  @override
+  @JsonKey()
+  List<dynamic> get objects {
+    if (_objects is EqualUnmodifiableListView) return _objects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_objects);
+  }
+
+  @override
+  String toString() {
+    return 'CanvasTile._(tileId: $tileId, hasTerrain: $hasTerrain, terrainNeighbours: $terrainNeighbours, hasWater: $hasWater, isTopWater: $isTopWater, coin: $coin, enemy: $enemy, objects: $objects)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_SecureCanvasTile &&
+            (identical(other.tileId, tileId) || other.tileId == tileId) &&
+            (identical(other.hasTerrain, hasTerrain) ||
+                other.hasTerrain == hasTerrain) &&
+            const DeepCollectionEquality()
+                .equals(other._terrainNeighbours, _terrainNeighbours) &&
+            (identical(other.hasWater, hasWater) ||
+                other.hasWater == hasWater) &&
+            (identical(other.isTopWater, isTopWater) ||
+                other.isTopWater == isTopWater) &&
+            (identical(other.coin, coin) || other.coin == coin) &&
+            (identical(other.enemy, enemy) || other.enemy == enemy) &&
+            const DeepCollectionEquality().equals(other._objects, _objects));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      tileId,
+      hasTerrain,
+      const DeepCollectionEquality().hash(_terrainNeighbours),
+      hasWater,
+      isTopWater,
+      coin,
+      enemy,
+      const DeepCollectionEquality().hash(_objects));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_SecureCanvasTileCopyWith<_$_SecureCanvasTile> get copyWith =>
+      __$$_SecureCanvasTileCopyWithImpl<_$_SecureCanvasTile>(this, _$identity);
+}
+
+abstract class _SecureCanvasTile implements CanvasTile {
+  const factory _SecureCanvasTile(
+      {required final String tileId,
+      final bool hasTerrain,
+      final List<String> terrainNeighbours,
+      final bool hasWater,
+      final bool isTopWater,
+      final String coin,
+      final String enemy,
+      final List<dynamic> objects}) = _$_SecureCanvasTile;
+
+  @override
+  String get tileId;
+  @override
+
+  /// Terrain
+  bool get hasTerrain;
+  @override
+  List<String> get terrainNeighbours;
+  @override
+
+  /// Water
+  bool get hasWater;
+  @override
+  bool get isTopWater;
+  @override
+
+  /// Coin
+  String get coin;
+  @override
+
+  /// Enemy
+  String get enemy;
+  @override
+  List<dynamic> get objects;
+  @override
+  @JsonKey(ignore: true)
+  _$$_SecureCanvasTileCopyWith<_$_SecureCanvasTile> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
 mixin _$TileMenuItem {
   int get index => throw _privateConstructorUsedError;
   TileDataModel get data => throw _privateConstructorUsedError;

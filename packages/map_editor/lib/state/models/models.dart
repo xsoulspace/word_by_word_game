@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flame/game.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
+part 'canvas_tile.dart';
 part 'menu_item.dart';
 part 'models.freezed.dart';
 part 'models.g.dart';

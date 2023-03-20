@@ -2,6 +2,8 @@
 
 part of 'models.dart';
 
+typedef TileId = String;
+
 @freezed
 class TileDataModel with _$TileDataModel {
   @JsonSerializable(explicitToJson: true)
