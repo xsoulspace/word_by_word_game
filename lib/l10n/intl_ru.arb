@@ -1,13 +1,11 @@
 {
   "finishGame": "Завершить игру",
   "@finishGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "resetEnding": "Сбросить слово",
   "@resetEnding": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "play": "Играть",
   "confirm": "Применить",
@@ -22,77 +20,64 @@
   "chooseLandscape": "Выбери Место",
   "settings": "Настройки",
   "playersAndHighscore": "Игроки & Опыт",
-  "startNewGame": "Новая игра",
+  "startNewGame": "Быстрая игра",
   "congratulations": "Поздравляем!",
   "previousWord": "Предыдущее слово:",
   "createProfile": "Создать профиль",
   "username": "Ник игрока",
   "about": "Об игре",
   "@congratulations": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "wordIsNotCorrect": "Этого слова {word} нет в словаре! Попробуй другое слово или добавь в словарь.",
   "wordAlreadyWritten": "Это слово уже было. Попробуй другое слово.",
   "maxHighscoreIs": "Лучший результат ",
   "@maxHighscoreIs": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "continueGame": "Продолжить ",
   "@continueGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "startAgain": "Заново ",
   "@startAgain": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "yourHighscore": "В этот раз, результат ",
   "@yourHighscore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "player": "игрок",
   "@player": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lastword": "Последнее слово: ",
   "@lastword": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "hintAddBeginning": "начало",
   "@hintAddBeginning": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "hintAddNewWord": "ввести новое слово",
   "@hintAddNewWord": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "hintAddEnding": "окончание",
   "@hintAddEnding": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "addNewWord": "добавить",
   "@addNewWord": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "newGame": "Новая игра",
   "@newGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sendFeedback": "Если у вас есть идея, улучшения или ошибки, присоединяйтесь к серверу Discord.",
   "@sendFeedback": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "tryAnotherWord": "Попробовать другое слово",
   "notEnoughKnowledgeToRevealWord": "К сожалению, очков знаний недостаточно, чтобы открыть это слово..",
@@ -108,51 +93,42 @@
   "supportGame": "Создание игры можно дополнительно поддержать здесь https://boosty.to/arenukvern",
   "thankYou": "Спасибо и хорошего времяпрепровождения!",
   "@thankYou": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "currentScore": "результат",
   "@currentScore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "highscore": "лучший результат",
   "@highscore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lettersToRemove": "букв для удаления",
   "@lettersToRemove": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "players": "Игроки ",
   "@players": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuLanguage": "Язык ",
   "@menuLanguage": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuInfo": "Об игре ",
   "@menuInfo": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuNewGame": "Заново ",
   "@menuNewGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "selectAction": "Выбери действие",
   "cookFood": "Еда",
   "refuelStorage": "Топливо",
   "addToDictionary": "Внести в словарь",
   "@addToDictionary": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "suggestWordButtonTooltip": "Нажми, чтобы получить случайное слово на основе текущих букв.",
   "mainMenuButtonTooltip": "Нажми, чтобы открыть меню (текущий прогресс будет сохранен).",
@@ -167,5 +143,7 @@
   "yes": "Да",
   "no": "Нет",
   "enableTutorial": "Пройти обучение",
-  "close": "Закрыть"
+  "close": "Закрыть",
+  "name": "Имя",
+  "nextPlayer": "Следующий игрок"
 }

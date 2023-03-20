@@ -1,25 +1,21 @@
 {
   "finishGame": "Gioco finito",
   "@finishGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "nextPlayer": "Prossimo giocatore",
   "@nextPlayer": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "resetEnding": "Reimposta fine",
   "@resetEnding": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "wordIsNotCorrect": "Non riusciamo a trovare la parola {word} nel nostro dizionario! Prova un'altra parola o aggiungila.",
   "wordAlreadyWritten": "Questa parola è già scritta. Prova con un'altra parola.",
   "congratulations": "Congratulazioni!",
   "@congratulations": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "play": "Giocare a",
   "name": "Nome",
@@ -37,68 +33,56 @@
   "createProfile": "Creare Profili",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",
-  "startNewGame": "Nuovo gioco",
+  "startNewGame": "Avvio Rapido",
   "maxHighscoreIs": "Il punteggio massimo è ",
   "@maxHighscoreIs": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "continueGame": "Continua ",
   "@continueGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "startAgain": "Ricomincia ",
   "@startAgain": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "yourHighscore": "Questa volta il tuo punteggio è",
   "@yourHighscore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "player": "giocatore",
   "@player": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lastword": "Ultima parola: ",
   "@lastword": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "confirm": "Confermare",
   "applyAndEndTurn": "Fine turno",
   "hintAddBeginning": "inizio",
   "@hintAddBeginning": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "hintAddNewWord": "aggiungi nuova parola",
   "@hintAddNewWord": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "hintAddEnding": "fine",
   "@hintAddEnding": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "addNewWord": "aggiungi",
   "@addNewWord": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "newGame": "Nuovo gioco",
   "@newGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sendFeedback": "Se hai un'idea, miglioramenti o bug unisciti al server Discord.",
   "@sendFeedback": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "back": "Indietro",
   "ok": "Bello",
@@ -114,51 +98,42 @@
   "supportGame": "Puoi supportare il gioco in https://boosty.to/arenukvern",
   "thankYou": "Grazie e buon gioco!",
   "@thankYou": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "currentScore": "punteggio",
   "@currentScore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "highscore": "Punteggio più alto",
   "@highscore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lettersToRemove": "lettere da rimuovere",
   "@lettersToRemove": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "players": "Players ",
   "@players": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuLanguage": "Lingua ",
   "@menuLanguage": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuInfo": "Info ",
   "@menuInfo": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuNewGame": "Nuovo ",
   "@menuNewGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "selectAction": "Seleziona Azione",
   "cookFood": "Cucinare",
   "refuelStorage": "Rifornirsi",
   "addToDictionary": "Aggiungi al dizionario",
   "@addToDictionary": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "suggestWordButtonTooltip": "Fare clic per ottenere una parola casuale in base alle lettere correnti.",
   "mainMenuButtonTooltip": "Fare clic per aprire il menu (i progressi correnti verranno salvati).",

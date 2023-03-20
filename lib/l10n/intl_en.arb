@@ -1,35 +1,29 @@
 {
   "finishGame": "Finish game",
   "@finishGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "nextPlayer": "Next player",
   "@nextPlayer": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "wordIsNotCorrect": "We cannot find the word {word} in our dictionary! Try another word or add it.",
   "wordAlreadyWritten": "This word already written. Try another word.",
   "resetEnding": "Reset ending",
   "@resetEnding": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "congratulations": "Congratulations!",
   "@congratulations": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "maxHighscoreIs": "Max highscore is ",
   "@maxHighscoreIs": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "continueGame": "Continue ",
   "@continueGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "play": "Play",
   "name": "Name",
@@ -47,58 +41,48 @@
   "chooseYourCharacter": "Choose Your Character",
   "chooseLandscape": "Choose a Landscape",
   "playersAndHighscore": "Players & Highscore",
-  "startNewGame": "New Game",
+  "startNewGame": "Quick Start",
   "startAgain": "Start again ",
   "@startAgain": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "yourHighscore": "This time your score is ",
   "@yourHighscore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "player": "player",
   "@player": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lastword": "Last word: ",
   "@lastword": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "confirm": "Confirm",
   "applyAndEndTurn": "Apply & End Turn",
   "hintAddBeginning": "beginning",
   "@hintAddBeginning": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "hintAddNewWord": "add new word",
   "@hintAddNewWord": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "hintAddEnding": "ending",
   "@hintAddEnding": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "addNewWord": "add",
   "@addNewWord": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "newGame": "New Game",
   "@newGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "sendFeedback": "If you have an idea, improvements, or bugs join Discord server.",
   "@sendFeedback": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "back": "Back",
   "suggestedWord": "Suggested Word",
@@ -114,51 +98,42 @@
   "supportGame": "You can support the game in https://boosty.to/arenukvern",
   "thankYou": "Have a great day!",
   "@thankYou": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "currentScore": "score",
   "@currentScore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "highscore": "highscore",
   "@highscore": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "lettersToRemove": "letters to remove",
   "@lettersToRemove": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "players": "Players ",
   "@players": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuLanguage": "Lang ",
   "@menuLanguage": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuInfo": "Info ",
   "@menuInfo": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "menuNewGame": "New ",
   "@menuNewGame": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "selectAction": "Select Action",
   "cookFood": "Cook Food",
   "refuelStorage": "Refuel Balloon",
   "addToDictionary": "Add to Dictionary",
   "@addToDictionary": {
-    "type": "text",
-    "placeholders": {}
+    "type": "text"
   },
   "suggestWordButtonTooltip": "Click to get random word based on current letters.",
   "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",

@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/generated/l10n.dart';
+import 'package:word_by_word_game/gen/gen.dart';
 
 class AppSettingsNotifier extends ChangeNotifier implements Loadable {
   AppSettingsNotifier.use(final Locator read)
@@ -26,11 +26,11 @@ class AppSettingsNotifier extends ChangeNotifier implements Loadable {
     if (value == null) {
       settings = settings.copyWith(locale: null);
       final defaultLocale = systemLocale ?? Locales.en;
-      unawaited(S.load(defaultLocale));
+      unawaited(S.delegate.load(defaultLocale));
     } else {
       final language = Languages.byLanguageCode(value.languageCode);
       final newLocale = Locales.byLanguage(language);
-      unawaited(S.load(newLocale));
+      unawaited(S.delegate.load(newLocale));
       settings = settings.copyWith(locale: newLocale);
     }
   }

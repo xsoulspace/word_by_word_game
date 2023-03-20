@@ -5,7 +5,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:word_by_word_game/_abstract/abstract.dart';
 import 'package:word_by_word_game/_utils/utils.dart';
-import 'package:word_by_word_game/generated/l10n.dart';
+import 'package:word_by_word_game/gen/gen.dart';
 
 part '_migration/a_migration_service.dart';
 part '_migration/migration_service_i.dart';
