@@ -1,8 +1,8 @@
 part of 'models.dart';
 
 @freezed
-class CanvasTile with _$CanvasTile {
-  const factory CanvasTile._({
+class CanvasTileModel with _$CanvasTileModel {
+  const factory CanvasTileModel._({
     required final TileId tileId,
 
     /// Terrain
@@ -19,8 +19,8 @@ class CanvasTile with _$CanvasTile {
     /// Enemy
     @Default('') final TileId enemy,
     @Default([]) final List objects,
-  }) = _SecureCanvasTile;
-  factory CanvasTile.fromEditorSettingsData({
+  }) = _SecureCanvasTileModel;
+  factory CanvasTileModel.fromEditorSettingsData({
     required final TileId tileId,
     required final TileDataModel data,
   }) {
@@ -47,7 +47,7 @@ class CanvasTile with _$CanvasTile {
         break;
     }
 
-    return CanvasTile._(
+    return CanvasTileModel._(
       tileId: tileId,
       coin: coin,
       enemy: enemy,

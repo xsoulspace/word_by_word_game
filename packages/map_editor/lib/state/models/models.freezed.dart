@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$CanvasTile {
+mixin _$CanvasTileModel {
   String get tileId => throw _privateConstructorUsedError;
 
   /// Terrain
@@ -34,15 +34,15 @@ mixin _$CanvasTile {
   List<dynamic> get objects => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $CanvasTileCopyWith<CanvasTile> get copyWith =>
+  $CanvasTileModelCopyWith<CanvasTileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $CanvasTileCopyWith<$Res> {
-  factory $CanvasTileCopyWith(
-          CanvasTile value, $Res Function(CanvasTile) then) =
-      _$CanvasTileCopyWithImpl<$Res, CanvasTile>;
+abstract class $CanvasTileModelCopyWith<$Res> {
+  factory $CanvasTileModelCopyWith(
+          CanvasTileModel value, $Res Function(CanvasTileModel) then) =
+      _$CanvasTileModelCopyWithImpl<$Res, CanvasTileModel>;
   @useResult
   $Res call(
       {String tileId,
@@ -56,9 +56,9 @@ abstract class $CanvasTileCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$CanvasTileCopyWithImpl<$Res, $Val extends CanvasTile>
-    implements $CanvasTileCopyWith<$Res> {
-  _$CanvasTileCopyWithImpl(this._value, this._then);
+class _$CanvasTileModelCopyWithImpl<$Res, $Val extends CanvasTileModel>
+    implements $CanvasTileModelCopyWith<$Res> {
+  _$CanvasTileModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -115,11 +115,11 @@ class _$CanvasTileCopyWithImpl<$Res, $Val extends CanvasTile>
 }
 
 /// @nodoc
-abstract class _$$_SecureCanvasTileCopyWith<$Res>
-    implements $CanvasTileCopyWith<$Res> {
-  factory _$$_SecureCanvasTileCopyWith(
-          _$_SecureCanvasTile value, $Res Function(_$_SecureCanvasTile) then) =
-      __$$_SecureCanvasTileCopyWithImpl<$Res>;
+abstract class _$$_SecureCanvasTileModelCopyWith<$Res>
+    implements $CanvasTileModelCopyWith<$Res> {
+  factory _$$_SecureCanvasTileModelCopyWith(_$_SecureCanvasTileModel value,
+          $Res Function(_$_SecureCanvasTileModel) then) =
+      __$$_SecureCanvasTileModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -134,11 +134,11 @@ abstract class _$$_SecureCanvasTileCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_SecureCanvasTileCopyWithImpl<$Res>
-    extends _$CanvasTileCopyWithImpl<$Res, _$_SecureCanvasTile>
-    implements _$$_SecureCanvasTileCopyWith<$Res> {
-  __$$_SecureCanvasTileCopyWithImpl(
-      _$_SecureCanvasTile _value, $Res Function(_$_SecureCanvasTile) _then)
+class __$$_SecureCanvasTileModelCopyWithImpl<$Res>
+    extends _$CanvasTileModelCopyWithImpl<$Res, _$_SecureCanvasTileModel>
+    implements _$$_SecureCanvasTileModelCopyWith<$Res> {
+  __$$_SecureCanvasTileModelCopyWithImpl(_$_SecureCanvasTileModel _value,
+      $Res Function(_$_SecureCanvasTileModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -153,7 +153,7 @@ class __$$_SecureCanvasTileCopyWithImpl<$Res>
     Object? enemy = null,
     Object? objects = null,
   }) {
-    return _then(_$_SecureCanvasTile(
+    return _then(_$_SecureCanvasTileModel(
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
@@ -192,8 +192,8 @@ class __$$_SecureCanvasTileCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SecureCanvasTile implements _SecureCanvasTile {
-  const _$_SecureCanvasTile(
+class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
+  const _$_SecureCanvasTileModel(
       {required this.tileId,
       this.hasTerrain = false,
       final List<String> terrainNeighbours = const [],
@@ -250,14 +250,14 @@ class _$_SecureCanvasTile implements _SecureCanvasTile {
 
   @override
   String toString() {
-    return 'CanvasTile._(tileId: $tileId, hasTerrain: $hasTerrain, terrainNeighbours: $terrainNeighbours, hasWater: $hasWater, isTopWater: $isTopWater, coin: $coin, enemy: $enemy, objects: $objects)';
+    return 'CanvasTileModel._(tileId: $tileId, hasTerrain: $hasTerrain, terrainNeighbours: $terrainNeighbours, hasWater: $hasWater, isTopWater: $isTopWater, coin: $coin, enemy: $enemy, objects: $objects)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SecureCanvasTile &&
+            other is _$_SecureCanvasTileModel &&
             (identical(other.tileId, tileId) || other.tileId == tileId) &&
             (identical(other.hasTerrain, hasTerrain) ||
                 other.hasTerrain == hasTerrain) &&
@@ -287,12 +287,13 @@ class _$_SecureCanvasTile implements _SecureCanvasTile {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SecureCanvasTileCopyWith<_$_SecureCanvasTile> get copyWith =>
-      __$$_SecureCanvasTileCopyWithImpl<_$_SecureCanvasTile>(this, _$identity);
+  _$$_SecureCanvasTileModelCopyWith<_$_SecureCanvasTileModel> get copyWith =>
+      __$$_SecureCanvasTileModelCopyWithImpl<_$_SecureCanvasTileModel>(
+          this, _$identity);
 }
 
-abstract class _SecureCanvasTile implements CanvasTile {
-  const factory _SecureCanvasTile(
+abstract class _SecureCanvasTileModel implements CanvasTileModel {
+  const factory _SecureCanvasTileModel(
       {required final String tileId,
       final bool hasTerrain,
       final List<String> terrainNeighbours,
@@ -300,7 +301,7 @@ abstract class _SecureCanvasTile implements CanvasTile {
       final bool isTopWater,
       final String coin,
       final String enemy,
-      final List<dynamic> objects}) = _$_SecureCanvasTile;
+      final List<dynamic> objects}) = _$_SecureCanvasTileModel;
 
   @override
   String get tileId;
@@ -328,7 +329,7 @@ abstract class _SecureCanvasTile implements CanvasTile {
   List<dynamic> get objects;
   @override
   @JsonKey(ignore: true)
-  _$$_SecureCanvasTileCopyWith<_$_SecureCanvasTile> get copyWith =>
+  _$$_SecureCanvasTileModelCopyWith<_$_SecureCanvasTileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -654,8 +655,8 @@ class __$$_CellPointModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CellPointModel implements _CellPointModel {
-  const _$_CellPointModel(this.row, this.column);
+class _$_CellPointModel extends _CellPointModel {
+  const _$_CellPointModel(this.row, this.column) : super._();
 
   factory _$_CellPointModel.fromJson(Map<String, dynamic> json) =>
       _$$_CellPointModelFromJson(json);
@@ -697,9 +698,10 @@ class _$_CellPointModel implements _CellPointModel {
   }
 }
 
-abstract class _CellPointModel implements CellPointModel {
+abstract class _CellPointModel extends CellPointModel {
   const factory _CellPointModel(final int row, final int column) =
       _$_CellPointModel;
+  const _CellPointModel._() : super._();
 
   factory _CellPointModel.fromJson(Map<String, dynamic> json) =
       _$_CellPointModel.fromJson;

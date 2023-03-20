@@ -25,9 +25,9 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   TileDataModel get selectionData =>
       dto.mapEditorBloc.loadedState.tileData['$selectionIndex']!;
 
-  Map<CellPointModel, CanvasTile> get canvasData => state.canvasData;
+  Map<CellPointModel, CanvasTileModel> get canvasData => state.canvasData;
 
-  set canvasData(final Map<CellPointModel, CanvasTile> value) {
+  set canvasData(final Map<CellPointModel, CanvasTileModel> value) {
     emit(state.copyWith(canvasData: value));
   }
 }

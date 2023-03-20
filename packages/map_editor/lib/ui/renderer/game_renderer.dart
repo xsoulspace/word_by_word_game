@@ -22,10 +22,11 @@ part 'renderer_di.dart';
 class Palette {
   static const white = BasicPalette.white;
   static const red = PaletteEntry(Color(0xFFAC3232));
-  static const toastBackground = PaletteEntry(Color(0xFFAC3232));
-  static const toastText = PaletteEntry(Color(0xFFDA9A00));
   static const grey = PaletteEntry(Color(0xFF404040));
   static const green = PaletteEntry(Color(0xFF54a286));
+  static const blue = PaletteEntry(Color.fromARGB(255, 33, 176, 201));
+  static const brown = PaletteEntry(Color.fromARGB(255, 131, 67, 11));
+  static const yellow = PaletteEntry(Color.fromARGB(255, 241, 221, 5));
 }
 
 int get kTileDimension => 64;
@@ -134,12 +135,18 @@ class EditorRenderer extends Component
   double get tileRows => (windowHeight / kTileDimension) + 1;
   final debugSurface = DebugSurface();
   final cursor = CursorRenderer();
+  final tilesDrawer = TilesDrawer();
   final tilesRenderer = TilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
 
   @override
   FutureOr<void> onLoad() {
-    addAll([debugSurface, cursor, tilesRenderer]);
+    addAll([
+      tilesRenderer,
+      debugSurface,
+      tilesDrawer,
+      cursor,
+    ]);
     return super.onLoad();
   }
 
@@ -208,9 +215,9 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   double get windowWidth => editor.windowWidth;
   double get tileColumns => editor.tileColumns;
   double get tileRows => editor.tileRows;
-  Map<CellPointModel, CanvasTile> get canvasData =>
+  Map<CellPointModel, CanvasTileModel> get canvasData =>
       game.diDto.drawerCubit.canvasData;
-  set canvasData(final Map<CellPointModel, CanvasTile> value) =>
+  set canvasData(final Map<CellPointModel, CanvasTileModel> value) =>
       game.diDto.drawerCubit.canvasData = value;
 }
 
@@ -228,6 +235,7 @@ class CursorRenderer extends Component
   final _paint = material.Paint();
   @override
   void render(final Canvas canvas) {
+    super.render(canvas);
     if (_image != null && editor.isHovered) {
       canvas.drawImage(_image!, editor.hoveredPosition.toOffset(), _paint);
     }
@@ -258,7 +266,7 @@ class DebugSurface extends Component
   }
 }
 
-class TilesRenderer extends Component
+class TilesDrawer extends Component
     with Tappable, HasGameRef<GameRenderer>, HasEditorRef {
   @override
   bool onTapUp(final TapUpInfo info) {
@@ -294,14 +302,14 @@ class TilesRenderer extends Component
       /// should be updated, not replaced.
       canvasData = {...canvasData}..update(
           cellPoint,
-          (final canvasTile) => CanvasTile.fromEditorSettingsData(
+          (final canvasTile) => CanvasTileModel.fromEditorSettingsData(
             data: drawerCubit.selectionData,
             tileId: drawerCubit.selectionIndex.toString(),
           ),
         );
     } else {
       canvasData = {...canvasData}..[cellPoint] =
-            CanvasTile.fromEditorSettingsData(
+            CanvasTileModel.fromEditorSettingsData(
           data: drawerCubit.selectionData,
           tileId: drawerCubit.selectionIndex.toString(),
         );
@@ -311,4 +319,86 @@ class TilesRenderer extends Component
 
   @override
   bool containsLocalPoint(final Vector2 point) => true;
+}
+
+class TilesRenderer extends Component
+    with HasGameRef<GameRenderer>, HasEditorRef {
+  // final _canvasTilesComponents = <>{};
+  @override
+  FutureOr<void> onLoad() {
+    add(
+      FlameBlocListener<DrawerCubit, DrawerCubitState>(
+        onNewState: _onNewDrawerState,
+      ),
+    );
+    return super.onLoad();
+  }
+
+  void _onNewDrawerState(final DrawerCubitState state) {}
+
+  final brownPaint = Palette.brown.paint();
+  final bluePaint = Palette.blue.paint();
+  final redPaint = Palette.red.paint();
+  final yellowPaint = Palette.yellow.paint();
+
+  @override
+  void render(final Canvas canvas) {
+    super.render(canvas);
+    for (final entry in drawerCubit.canvasData.entries) {
+      final position =
+          origin + entry.key.toVector2() * kTileDimension.toDouble();
+      final tile = entry.value;
+      if (tile.hasTerrain) {
+        canvas.drawRect(
+          Rect.fromLTWH(
+            position.x,
+            position.y,
+            kTileDimension.toDouble(),
+            kTileDimension.toDouble(),
+          ),
+          brownPaint,
+        );
+      } else if (tile.hasWater) {
+        canvas.drawRect(
+          Rect.fromLTWH(
+            position.x,
+            position.y,
+            kTileDimension.toDouble(),
+            kTileDimension.toDouble(),
+          ),
+          bluePaint,
+        );
+      } else if (tile.isTopWater) {
+        canvas.drawRect(
+          Rect.fromLTWH(
+            position.x,
+            position.y,
+            kTileDimension.toDouble(),
+            kTileDimension.toDouble(),
+          ),
+          bluePaint,
+        );
+      } else if (tile.coin.isNotEmpty) {
+        canvas.drawRect(
+          Rect.fromLTWH(
+            position.x,
+            position.y,
+            kTileDimension.toDouble(),
+            kTileDimension.toDouble(),
+          ),
+          yellowPaint,
+        );
+      } else if (tile.enemy.isNotEmpty) {
+        canvas.drawRect(
+          Rect.fromLTWH(
+            position.x,
+            position.y,
+            kTileDimension.toDouble(),
+            kTileDimension.toDouble(),
+          ),
+          redPaint,
+        );
+      }
+    }
+  }
 }

@@ -17,7 +17,7 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DrawerCubitState {
   int get selectionIndex => throw _privateConstructorUsedError;
-  Map<CellPointModel, CanvasTile> get canvasData =>
+  Map<CellPointModel, CanvasTileModel> get canvasData =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -31,7 +31,8 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
           DrawerCubitState value, $Res Function(DrawerCubitState) then) =
       _$DrawerCubitStateCopyWithImpl<$Res, DrawerCubitState>;
   @useResult
-  $Res call({int selectionIndex, Map<CellPointModel, CanvasTile> canvasData});
+  $Res call(
+      {int selectionIndex, Map<CellPointModel, CanvasTileModel> canvasData});
 }
 
 /// @nodoc
@@ -58,7 +59,7 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
       canvasData: null == canvasData
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
-              as Map<CellPointModel, CanvasTile>,
+              as Map<CellPointModel, CanvasTileModel>,
     ) as $Val);
   }
 }
@@ -71,7 +72,8 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
       __$$_DrawerCubitStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int selectionIndex, Map<CellPointModel, CanvasTile> canvasData});
+  $Res call(
+      {int selectionIndex, Map<CellPointModel, CanvasTileModel> canvasData});
 }
 
 /// @nodoc
@@ -96,7 +98,7 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
       canvasData: null == canvasData
           ? _value._canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
-              as Map<CellPointModel, CanvasTile>,
+              as Map<CellPointModel, CanvasTileModel>,
     ));
   }
 }
@@ -106,16 +108,16 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
 class _$_DrawerCubitState implements _DrawerCubitState {
   const _$_DrawerCubitState(
       {this.selectionIndex = kMinSelectionIndex,
-      final Map<CellPointModel, CanvasTile> canvasData = const {}})
+      final Map<CellPointModel, CanvasTileModel> canvasData = const {}})
       : _canvasData = canvasData;
 
   @override
   @JsonKey()
   final int selectionIndex;
-  final Map<CellPointModel, CanvasTile> _canvasData;
+  final Map<CellPointModel, CanvasTileModel> _canvasData;
   @override
   @JsonKey()
-  Map<CellPointModel, CanvasTile> get canvasData {
+  Map<CellPointModel, CanvasTileModel> get canvasData {
     if (_canvasData is EqualUnmodifiableMapView) return _canvasData;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_canvasData);
@@ -150,13 +152,14 @@ class _$_DrawerCubitState implements _DrawerCubitState {
 
 abstract class _DrawerCubitState implements DrawerCubitState {
   const factory _DrawerCubitState(
-      {final int selectionIndex,
-      final Map<CellPointModel, CanvasTile> canvasData}) = _$_DrawerCubitState;
+          {final int selectionIndex,
+          final Map<CellPointModel, CanvasTileModel> canvasData}) =
+      _$_DrawerCubitState;
 
   @override
   int get selectionIndex;
   @override
-  Map<CellPointModel, CanvasTile> get canvasData;
+  Map<CellPointModel, CanvasTileModel> get canvasData;
   @override
   @JsonKey(ignore: true)
   _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>
