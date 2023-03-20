@@ -76,3 +76,9 @@ dart pub global activate melos
 Widgetbook:
 https://docs.widgetbook.io/widgetbook/overview
 dart pub global activate mason_cli
+
+## Additional Licenses and Insipration Sources:
+
+- color palette - https://lospec.com/palette-list/na16
+- temporary tilemap source - https://pixelfrog-assets.itch.io/treasure-hunters
+- extremly useful info of procedural map generation - https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s

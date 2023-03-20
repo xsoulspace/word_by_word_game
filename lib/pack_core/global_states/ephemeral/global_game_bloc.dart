@@ -201,10 +201,10 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     _shareNewDateTime(newState);
   }
 
-  void _onLevelEnd(
+  Future<void> _onLevelEnd(
     final EndLevelEvent event,
     final Emitter<GlobalGameBlocState> emit,
-  ) {
+  ) async {
     final currentLevelModel = _getCurrentLevelModel();
     final players = currentLevelModel.players;
     final liveState = getLiveState();
@@ -235,7 +235,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       playersCollection: updatedPlayers,
     );
     emit(updatedState);
-    _saveGame(liveState: updatedState);
+    await _saveGame(liveState: updatedState);
   }
 
   void _onCharacterCollision(
@@ -251,10 +251,10 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     );
   }
 
-  void _onDeletePlayerProfile(
+  Future<void> _onDeletePlayerProfile(
     final DeletePlayerProfileEvent event,
     final Emitter<GlobalGameBlocState> emit,
-  ) {
+  ) async {
     final profile = event.profile;
     final liveState = getLiveState();
     final updateState = liveState.copyWith(
@@ -262,20 +262,20 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
         ..removeWhere((final player) => player.id == profile.id),
     );
     emit(updateState);
-    _saveGame();
+    await _saveGame();
   }
 
-  void _onCreatePlayerProfile(
+  Future<void> _onCreatePlayerProfile(
     final CreatePlayerProfileEvent event,
     final Emitter<GlobalGameBlocState> emit,
-  ) {
+  ) async {
     final profile = event.profile;
     final liveState = getLiveState();
     final updateState = liveState.copyWith(
       playersCollection: [...liveState.playersCollection, profile],
     );
     emit(updateState);
-    _saveGame();
+    await _saveGame();
   }
 
   /// before to save game, make sure to add [SaveCurrentLevelEvent]

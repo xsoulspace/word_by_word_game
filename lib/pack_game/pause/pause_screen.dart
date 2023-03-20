@@ -33,66 +33,64 @@ class PauseScreen extends HookWidget {
 
     return Provider(
       create: (final context) => state,
-      builder: (final context, final child) {
-        return Scaffold(
-          body: Portal(
-            child: Stack(
-              children: [
-                Center(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const TopSafeArea(),
-                      const AdPauseScreenBanner(),
-                      const Spacer(),
-                      const StartGameHex(),
-                      const Spacer(),
-                      Wrap(
-                        alignment: WrapAlignment.center,
-                        spacing: 2,
-                        runSpacing: 12,
-                        children: [
-                          UiFilledButton.icon(
-                            icon: Icons.settings,
-                            text: S.of(context).settings,
-                            onPressed: state.onToSettings,
+      builder: (final context, final child) => Scaffold(
+        body: Portal(
+          child: Stack(
+            children: [
+              Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const TopSafeArea(),
+                    const AdPauseScreenBanner(),
+                    const Spacer(),
+                    const StartGameHex(),
+                    const Spacer(),
+                    Wrap(
+                      alignment: WrapAlignment.center,
+                      spacing: 2,
+                      runSpacing: 12,
+                      children: [
+                        UiFilledButton.icon(
+                          icon: Icons.settings,
+                          text: S.of(context).settings,
+                          onPressed: state.onToSettings,
+                        ),
+                        uiTheme.horizontalBoxes.medium,
+                        UiFilledButton.icon(
+                          icon: Icons.scoreboard_rounded,
+                          text: S.of(context).playersAndHighscore,
+                          onPressed: state.onToPlayersAndHighscore,
+                        ),
+                        uiTheme.horizontalBoxes.medium,
+                        UiFilledButton.icon(
+                          icon: Icons.question_mark_rounded,
+                          text: S.of(context).about,
+                          onPressed: state.onShowAbout,
+                        ),
+                        uiTheme.horizontalBoxes.medium,
+                        if (_kIsPrivacyPolicyEnabled)
+                          UiTextButton.text(
+                            text: S.of(context).privacyPolicy,
+                            onPressed: state.onPrivacyPolicy,
                           ),
-                          uiTheme.horizontalBoxes.medium,
-                          UiFilledButton.icon(
-                            icon: Icons.scoreboard_rounded,
-                            text: S.of(context).playersAndHighscore,
-                            onPressed: state.onToPlayersAndHighscore,
-                          ),
-                          uiTheme.horizontalBoxes.medium,
-                          UiFilledButton.icon(
-                            icon: Icons.question_mark_rounded,
-                            text: S.of(context).about,
-                            onPressed: state.onShowAbout,
-                          ),
-                          uiTheme.horizontalBoxes.medium,
-                          if (_kIsPrivacyPolicyEnabled)
-                            UiTextButton.text(
-                              text: S.of(context).privacyPolicy,
-                              onPressed: state.onPrivacyPolicy,
-                            ),
-                        ],
-                      ),
-                      uiTheme.verticalBoxes.extraLarge,
-                      const BottomSafeArea(),
-                    ],
-                  ),
+                      ],
+                    ),
+                    uiTheme.verticalBoxes.extraLarge,
+                    const BottomSafeArea(),
+                  ],
                 ),
-                if (_kIsCharacterVisible)
-                  const Positioned(
-                    right: 24,
-                    top: 24,
-                    child: CharacterAvatarButton.useDefault(),
-                  ),
-              ],
-            ),
+              ),
+              if (_kIsCharacterVisible)
+                const Positioned(
+                  right: 24,
+                  top: 24,
+                  child: CharacterAvatarButton.useDefault(),
+                ),
+            ],
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

@@ -52,16 +52,15 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
   factory LiveLevelBlocState.fromJson(final Map<String, dynamic> json) =>
       _$LiveLevelBlocStateFromJson(json);
 
-  factory LiveLevelBlocState.fromModel(final LevelModel levelModel) {
-    return LiveLevelBlocState(
-      name: levelModel.name,
-      phaseType: levelModel.phaseType,
-      actionType: levelModel.actionType,
-      actionMultiplier: levelModel.actionMultiplier,
-      currentWord: levelModel.currentWord,
-      latestWord: levelModel.latestWord,
-      words: levelModel.words,
-      id: levelModel.id,
-    );
-  }
+  factory LiveLevelBlocState.fromModel(final LevelModel levelModel) =>
+      LiveLevelBlocState(
+        name: levelModel.name,
+        phaseType: levelModel.phaseType,
+        actionType: levelModel.actionType,
+        actionMultiplier: levelModel.actionMultiplier,
+        currentWord: levelModel.currentWord,
+        latestWord: levelModel.latestWord,
+        words: levelModel.words,
+        id: levelModel.id,
+      );
 }

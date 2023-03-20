@@ -49,11 +49,13 @@ class WordCompositionState extends LifeState {
     super.initState();
     leftPartController.addListener(_onPartChanged);
     rightPartController.addListener(_onPartChanged);
-    _wordUpdatesController.stream
-        .sampleTime(
-          const Duration(milliseconds: 300),
-        )
-        .forEach(_changeFullWord);
+    unawaited(
+      _wordUpdatesController.stream
+          .sampleTime(
+            const Duration(milliseconds: 300),
+          )
+          .forEach(_changeFullWord),
+    );
   }
 
   final leftWordKeyFocus = FocusNode();
@@ -146,14 +148,14 @@ class WordCompositionState extends LifeState {
   }
 
   @override
-  void dispose() {
+  Future<void> dispose() async {
     leftPartController
       ..removeListener(_onPartChanged)
       ..dispose();
     rightPartController
       ..removeListener(_onPartChanged)
       ..dispose();
-    _wordUpdatesController.close();
+    await _wordUpdatesController.close();
     leftWordKeyFocus.dispose();
     rightWordKeyFocus.dispose();
     rightWordFocus.dispose();

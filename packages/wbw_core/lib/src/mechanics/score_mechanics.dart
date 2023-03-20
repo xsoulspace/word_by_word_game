@@ -13,11 +13,10 @@ class ScoreMechanics {
   ScoreModel getScoreFromWord({
     required final String word,
     final int scoreModifier = kIncreaseScoreModifier,
-  }) {
-    return ScoreModel(
-      value: (word.length * scoreModifier).toDouble(),
-    );
-  }
+  }) =>
+      ScoreModel(
+        value: (word.length * scoreModifier).toDouble(),
+      );
 
   ScoreModel getRevealScore({
     required final String word,
@@ -70,22 +69,19 @@ class ScoreMechanics {
   ScoreModel getDecreaseScore({
     required final int lettersCount,
     final int scoreModifier = kDecreaseScoreModifier,
-  }) {
-    return ScoreModel(value: lettersCount * scoreModifier * -1);
-  }
+  }) =>
+      ScoreModel(value: lettersCount * scoreModifier * -1);
 
   bool checkPlayerAbilityToDecreaseLetters({
     required final PlayerProfileModel player,
-  }) {
-    return player.highscore.score.value >= kLetterDecreaseCost;
-  }
+  }) =>
+      player.highscore.score.value >= kLetterDecreaseCost;
 
   bool checkPlayerAbilityToUseScore({
     required final PlayerProfileModel player,
     required final int score,
-  }) {
-    return player.highscore.score >= score;
-  }
+  }) =>
+      player.highscore.score >= score;
 
   /// Use this method to inscrease score
   /// when the new word is added to the stack

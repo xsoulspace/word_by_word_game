@@ -34,7 +34,7 @@ class PauseScreenState extends ContextfulLifeState {
   @override
   void initState() {
     super.initState();
-    if (Platform.isAndroid) YandexAdsSdk().onLoad();
+    if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
   }
 
   void onContinue({
@@ -52,9 +52,9 @@ class PauseScreenState extends ContextfulLifeState {
     diDto.appRouterController.toSettings();
   }
 
-  void onPrivacyPolicy() {
+  Future<void> onPrivacyPolicy() async {
     // launchUrlString('https://xsoulspace.dev/game/wbw/privacy');
-    launchUrlString(
+    await launchUrlString(
       'https://github.com/xsoulspace/word_by_word_game/blob/master/PRIVACY_POLICY.md',
     );
   }
@@ -79,7 +79,7 @@ class PauseScreenState extends ContextfulLifeState {
               visible: kLinksAreAllowed,
               child: TextButton(
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Text(s.sendFeedback),
                 ),
                 onPressed: () => launchUrlString(
@@ -94,7 +94,7 @@ class PauseScreenState extends ContextfulLifeState {
                 onPressed: () =>
                     launchUrlString('https://boosty.to/arenukvern'),
                 child: Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.all(8),
                   child: Text(s.supportGame),
                 ),
               ),
@@ -115,6 +115,7 @@ class PauseScreenState extends ContextfulLifeState {
       width: 32,
       height: 32,
     );
+    if (!mounted) return;
     if (kLinksAreAllowed) {
       showAboutDialog(
         applicationName: 'Word By Word',
@@ -128,45 +129,43 @@ class PauseScreenState extends ContextfulLifeState {
       unawaited(
         showDialog(
           context: context,
-          builder: (final context) {
-            return SimpleDialog(
-              title: const Text('Word By Word'),
-              contentPadding: const EdgeInsets.all(24),
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    icon,
-                    uiTheme.horizontalBoxes.large,
-                    ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 200),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(applicationLegalese),
-                          uiTheme.verticalBoxes.small,
-                          Text(
-                            applicationVersion,
-                            style: theme.textTheme.labelSmall,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                uiTheme.verticalBoxes.medium,
-                Text(s.creatingGame),
-                uiTheme.verticalBoxes.large,
-                const Text('Made with Flutter & Flame Engine.'),
-                uiTheme.verticalBoxes.large,
-                TextButton(
-                  onPressed: () => Navigator.maybePop(context),
-                  child: Text(S.of(context).ok),
-                )
-              ],
-            );
-          },
+          builder: (final context) => SimpleDialog(
+            title: const Text('Word By Word'),
+            contentPadding: const EdgeInsets.all(24),
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  icon,
+                  uiTheme.horizontalBoxes.large,
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(applicationLegalese),
+                        uiTheme.verticalBoxes.small,
+                        Text(
+                          applicationVersion,
+                          style: theme.textTheme.labelSmall,
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+              uiTheme.verticalBoxes.medium,
+              Text(s.creatingGame),
+              uiTheme.verticalBoxes.large,
+              const Text('Made with Flutter & Flame Engine.'),
+              uiTheme.verticalBoxes.large,
+              TextButton(
+                onPressed: () => Navigator.maybePop(context),
+                child: Text(S.of(context).ok),
+              )
+            ],
+          ),
         ),
       );
     }

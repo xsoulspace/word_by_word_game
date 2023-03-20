@@ -65,7 +65,7 @@ class PlayerProfileCard extends StatelessWidget {
         child: InkWell(
           onTap: () => onSelected!(player),
           child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [

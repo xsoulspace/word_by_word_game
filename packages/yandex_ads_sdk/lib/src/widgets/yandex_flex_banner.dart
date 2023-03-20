@@ -15,11 +15,9 @@ class YandexFlexibleBanner extends StatelessWidget {
   final double height;
   final double width;
   @override
-  Widget build(final BuildContext context) {
-    return YandexFlexiblePlatformBanner(
-      adUnitId: adUnitId,
-      height: height,
-      width: width,
-    );
-  }
+  Widget build(final BuildContext context) => YandexFlexiblePlatformBanner(
+        adUnitId: adUnitId,
+        height: height,
+        width: width,
+      );
 }

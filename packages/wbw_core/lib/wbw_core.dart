@@ -1,5 +1,3 @@
-library wbw_core;
-
 export 'src/extensions/extensions.dart';
 export 'src/hooks/hooks.dart';
 export 'src/localization/localization.dart';

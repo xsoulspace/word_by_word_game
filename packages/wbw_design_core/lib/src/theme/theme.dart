@@ -59,7 +59,6 @@ class UiTheme extends InheritedWidget {
   }
 
   @override
-  bool updateShouldNotify(covariant final UiTheme oldWidget) {
-    return scheme != oldWidget.scheme;
-  }
+  bool updateShouldNotify(covariant final UiTheme oldWidget) =>
+      scheme != oldWidget.scheme;
 }

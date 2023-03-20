@@ -43,37 +43,34 @@ class LevelStartDialogButton extends HookWidget {
         Provider(create: (final context) => uiState),
         Provider(create: (final context) => uxState),
       ],
-      builder: (final context, final child) {
-        return PortalTarget(
+      builder: (final context, final child) => PortalTarget(
+        portalFollower: Visibility(
+          visible: uiState.isVisible,
+          child: ColoredBox(
+            color: Colors.white60,
+            child: GestureDetector(
+              behavior: HitTestBehavior.opaque,
+              onTap: uiState.isVisible ? uiState.onSwitchDialogVisiblity : null,
+            ),
+          ),
+        ),
+        child: PortalTarget(
+          // anchor: const Aligned(
+          //   follower: Alignment.topCenter,
+          //   target: Alignment.bottomCenter,
+          // ),
           portalFollower: Visibility(
             visible: uiState.isVisible,
-            child: ColoredBox(
-              color: Colors.white60,
-              child: GestureDetector(
-                behavior: HitTestBehavior.opaque,
-                onTap:
-                    uiState.isVisible ? uiState.onSwitchDialogVisiblity : null,
-              ),
+            child: _DialogScreen(
+              level: level,
             ),
           ),
-          child: PortalTarget(
-            // anchor: const Aligned(
-            //   follower: Alignment.topCenter,
-            //   target: Alignment.bottomCenter,
-            // ),
-            portalFollower: Visibility(
-              visible: uiState.isVisible,
-              child: _DialogScreen(
-                level: level,
-              ),
-            ),
-            child: UiFilledButton.text(
-              text: S.of(context).startNewGame,
-              onPressed: uiState.onSwitchDialogVisiblity,
-            ),
+          child: UiFilledButton.text(
+            text: S.of(context).startNewGame,
+            onPressed: uiState.onSwitchDialogVisiblity,
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
@@ -96,7 +93,7 @@ class _DialogScreen extends StatelessWidget {
       child: Stack(
         children: [
           Padding(
-            padding: const EdgeInsets.only(top: 26.0),
+            padding: const EdgeInsets.only(top: 26),
             child: SizedBox(
               width: math.min(400, screenSize.width),
               height: math.max(340, screenSize.height * 0.45),

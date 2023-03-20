@@ -46,7 +46,7 @@ class CreatePlayerScreen extends HookWidget {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                horizontal: 24.0,
+                horizontal: 24,
               ),
               child: TextField(
                 controller: widgetState.nameController,

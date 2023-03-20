@@ -1,83 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
+import 'package:recase/recase.dart';
+import 'package:rive/rive.dart';
 
 import '../utils/utils.dart';
 import 'ui_text_button.dart';
 
-_ButtonState useUiIconButtonState({
-  final bool isLongButton = false,
-}) =>
-    use(
-      ContextfulLifeHook(
-        debugLabel: '_useButtonState',
-        state: _ButtonState(
-          isLongButton: isLongButton,
-        ),
-      ),
-    );
-
-class _ButtonState extends ContextfulLifeState {
-  _ButtonState({
-    required this.isLongButton,
-  });
-  final bool isLongButton;
-  bool _isPressed = false;
-
-  bool get isPressed => _isPressed;
-
-  set isPressed(final bool isPressed) {
-    _isPressed = isPressed;
-
-    setState();
-  }
-
-  late final pressedIconImagePath = UiAssetHelper.useImagePath(
-    "buttons/${isLongButton ? 'long_button_pressed' : 'icon_button_pressed'}",
-  );
-  late final iconImagePath = UiAssetHelper.useImagePath(
-    "buttons/${isLongButton ? 'long_button' : 'icon_button'}",
-  );
-  final iconImagePixelsHeight = 16.0;
-  void _onPressed() {
-    final widget = getContext().widget;
-    if (widget is UiIconButton) {
-      widget.onPressed?.call();
-    } else if (widget is UiTextButton) {
-      widget.onPressed?.call();
-    } else {
-      // TODO(arenukvern): description
-      throw UnimplementedError();
-    }
-  }
-
-  Future<void> onTap() async {
-    if (isPressed) return;
-    isPressed = true;
-    _onPressed();
-    await Future.delayed(const Duration(milliseconds: 60));
-    isPressed = false;
-  }
-
-  void onLongPressDown(final _) {
-    isPressed = true;
-  }
-
-  void onLongPressCancel() {
-    isPressed = false;
-  }
-
-  void onLongPressUp(final LongPressEndDetails details) {
-    if (details.velocity.pixelsPerSecond.dx > 0 ||
-        details.velocity.pixelsPerSecond.dy > 0) {
-    } else {
-      _onPressed();
-    }
-    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
-      isPressed = false;
-    });
-  }
-}
+part 'ui_icon_button_state.dart';
 
 enum UiIcons {
   // ignore: constant_identifier_names
@@ -98,7 +28,9 @@ enum UiIcons {
   String get path => 'icons/icon_action_$name';
 }
 
+@Deprecated('use GuiIconButton instead')
 class UiIconButton extends HookWidget {
+  @Deprecated('use GuiIconButton instead')
   const UiIconButton({
     required this.icon,
     this.onPressed,
@@ -158,6 +90,87 @@ class UiIconButton extends HookWidget {
                 ),
               ),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+enum GuiArtboard {
+  iconButton,
+  iconButtonApple,
+  iconButtonWordEnergy,
+  iconButtonEnergyFire,
+  iconButtonIdea,
+  iconButtonArrow,
+  iconButtonArrowSkip,
+  iconButtonSearch,
+  iconButtonMenu,
+  iconButtonSave,
+  markRed,
+  markOrange,
+  markPurple,
+  markGreen,
+  tab,
+  paneLeft,
+  paneCenter,
+  paneRight,
+  barHorizontalPurple,
+  barHorizontalGreen,
+  barHorizontalRed,
+  barHorizontalBlue,
+  barVerticalBlue;
+
+  static const iconButtonLabel = 'iconButton';
+}
+
+class GuiIconButton extends HookWidget {
+  GuiIconButton({
+    required this.icon,
+    this.onPressed,
+    this.tooltip = '',
+    super.key,
+  }) : assert(
+          icon.name.startsWith(GuiArtboard.iconButtonLabel),
+          'pass iconButton Artboard',
+        );
+  final GuiArtboard icon;
+  final String tooltip;
+  final VoidCallback? onPressed;
+  bool get isEnabled => onPressed != null;
+
+  @override
+  Widget build(final BuildContext context) {
+    final state = useUiIconButtonState();
+    const dimension = 32.0;
+    final theme = Theme.of(context);
+    final artboard = icon.name.snakeCase;
+
+    // [Tooltip] is causing blinking, when in the tree.
+    // TODO(arenukvern): add tooltip
+    return GestureDetector(
+      onTap: isEnabled ? state.onTap : null,
+      onLongPressEnd: isEnabled ? state.onLongPressUp : null,
+      onLongPressDown: isEnabled ? state.onLongPressDown : null,
+      onLongPressCancel: isEnabled ? state.onLongPressCancel : null,
+      child: FocusableActionDetector(
+        mouseCursor: SystemMouseCursors.click,
+        child: Container(
+          width: dimension,
+          height: dimension,
+          foregroundDecoration: isEnabled
+              ? null
+              : BoxDecoration(
+                  color: theme.colorScheme.shadow.withOpacity(0.2),
+                ),
+          child: RiveAnimation.asset(
+            // TODO(arenukvern): correct path
+            /// https://stackoverflow.com/questions/63914819/how-to-access-assets-in-package
+            'packages/wbw_design_core/assets/wordbyword_v3.riv',
+            artboard: artboard,
+            fit: BoxFit.contain,
+            stateMachines: const ['IconButtonMachine'],
           ),
         ),
       ),

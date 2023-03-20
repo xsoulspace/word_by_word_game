@@ -19,12 +19,10 @@ class AppScaffold extends StatelessWidget {
   const AppScaffold({required this.servicesDto, super.key});
   final AppServicesProviderDto servicesDto;
   @override
-  Widget build(final BuildContext context) {
-    return AppServicesProvider(
-      diDto: servicesDto,
-      child: Builder(
-        builder: (final context) {
-          return StateLoader(
+  Widget build(final BuildContext context) => AppServicesProvider(
+        diDto: servicesDto,
+        child: Builder(
+          builder: (final context) => StateLoader(
             initializer: GlobalSettingsInitializer(),
             loader: const LoadingScreen(),
             child: RouterScaffold(
@@ -33,11 +31,9 @@ class AppScaffold extends StatelessWidget {
                 servicesDto: servicesDto,
               ),
             ),
-          );
-        },
-      ),
-    );
-  }
+          ),
+        ),
+      );
 }
 
 class RouterScaffold extends HookWidget {
@@ -80,54 +76,49 @@ class AppScaffoldBuilder extends HookWidget {
     final settingsNotifier = context.watch<AppSettingsNotifier>();
     return AnimatedBuilder(
       animation: settingsNotifier,
-      builder: (final context, final child) {
-        return MaterialApp.router(
-          debugShowCheckedModeBanner: false,
-          theme: AppThemeData.brandLight,
-          darkTheme: AppThemeData.brandDark,
-          themeMode: ThemeMode.light,
-          routeInformationParser: routeParser,
-          routerDelegate: state.routerDelegate,
-          localizationsDelegates: const [
-            S.delegate,
-            GlobalMaterialLocalizations.delegate,
-            GlobalWidgetsLocalizations.delegate,
-            GlobalCupertinoLocalizations.delegate,
-          ],
-          localeListResolutionCallback:
-              (final locales, final supportedLocales) {
-            final defaultLocale = () {
-              if (locales == null || locales.isEmpty) return null;
-              for (final locale in locales) {
-                if (S.delegate.isSupported(locale)) {
-                  return locale;
-                }
+      builder: (final context, final child) => MaterialApp.router(
+        debugShowCheckedModeBanner: false,
+        theme: AppThemeData.brandLight,
+        darkTheme: AppThemeData.brandDark,
+        themeMode: ThemeMode.light,
+        routeInformationParser: routeParser,
+        routerDelegate: state.routerDelegate,
+        localizationsDelegates: const [
+          S.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalWidgetsLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        localeListResolutionCallback: (final locales, final supportedLocales) {
+          final defaultLocale = () {
+            if (locales == null || locales.isEmpty) return null;
+            for (final locale in locales) {
+              if (S.delegate.isSupported(locale)) {
+                return locale;
               }
-            }();
+            }
+          }();
 
-            /// in case if we will needed preferrable system locale
-            settingsNotifier.systemLocale = defaultLocale;
+          /// in case if we will needed preferrable system locale
+          settingsNotifier.systemLocale = defaultLocale;
 
-            /// if language is set by user, then use it
-            if (settingsNotifier.locale != null) return settingsNotifier.locale;
+          /// if language is set by user, then use it
+          if (settingsNotifier.locale != null) return settingsNotifier.locale;
 
-            return defaultLocale;
-          },
-          supportedLocales: Locales.values,
-          builder: (final context, final child) {
-            return UiTheme(
-              scheme: UiThemeScheme.m3(context),
-              child: StateLoader(
-                initializer: GlobalStateInitializer(
-                  servicesDto: servicesDto,
-                ),
-                loader: const LoadingScreen(),
-                child: child!,
-              ),
-            );
-          },
-        );
-      },
+          return defaultLocale;
+        },
+        supportedLocales: Locales.values,
+        builder: (final context, final child) => UiTheme(
+          scheme: UiThemeScheme.m3(context),
+          child: StateLoader(
+            initializer: GlobalStateInitializer(
+              servicesDto: servicesDto,
+            ),
+            loader: const LoadingScreen(),
+            child: child!,
+          ),
+        ),
+      ),
     );
   }
 }
@@ -163,82 +154,80 @@ class WindowControlsScaffold extends HookWidget {
               padding: const EdgeInsets.only(top: 7, right: 7, bottom: 7),
               child: ValueListenableBuilder(
                 valueListenable: isHoveredNotifier,
-                builder: (final context, final isHovered, final child) {
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () {},
-                        icon: isHovered
-                            ? const Icon(CupertinoIcons.clear_circled_solid)
-                            : const Icon(CupertinoIcons.circle_filled),
-                        constraints: const BoxConstraints(
-                          maxWidth: dimension,
-                          maxHeight: dimension,
-                        ),
-                        color: Colors.red,
-                        iconSize: dimension,
+                builder: (final context, final isHovered, final child) => Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () {},
+                      icon: isHovered
+                          ? const Icon(CupertinoIcons.clear_circled_solid)
+                          : const Icon(CupertinoIcons.circle_filled),
+                      constraints: const BoxConstraints(
+                        maxWidth: dimension,
+                        maxHeight: dimension,
                       ),
-                      const SizedBox(width: 7),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        onPressed: () async {
-                          // final bool isMinimized =
-                          //     await windowManager.isMinimized();
-                          // if (isMinimized) {
-                          //   await windowManager.restore();
-                          // } else {
-                          //   await windowManager.minimize();
-                          // }
-                        },
-                        color: Colors.amber,
-                        icon: isHovered
-                            ? const Icon(CupertinoIcons.circle_filled)
-                            : const Icon(CupertinoIcons.circle_filled),
-                        constraints: const BoxConstraints(
-                          maxWidth: dimension,
-                          maxHeight: dimension,
-                        ),
-                        iconSize: dimension,
+                      color: Colors.red,
+                      iconSize: dimension,
+                    ),
+                    const SizedBox(width: 7),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      onPressed: () async {
+                        // final bool isMinimized =
+                        //     await windowManager.isMinimized();
+                        // if (isMinimized) {
+                        //   await windowManager.restore();
+                        // } else {
+                        //   await windowManager.minimize();
+                        // }
+                      },
+                      color: Colors.amber,
+                      icon: isHovered
+                          ? const Icon(CupertinoIcons.circle_filled)
+                          : const Icon(CupertinoIcons.circle_filled),
+                      constraints: const BoxConstraints(
+                        maxWidth: dimension,
+                        maxHeight: dimension,
                       ),
-                      const SizedBox(width: 7),
-                      IconButton(
-                        padding: EdgeInsets.zero,
-                        color: Colors.green,
-                        constraints: const BoxConstraints(
-                          maxWidth: dimension,
-                          maxHeight: dimension,
-                        ),
-                        onPressed: () async {
-                          // final isFullScreen = await windowManager.isFullScreen();
-                          // await windowManager.setFullScreen(!isFullScreen);
-                          // if (await windowManager.isMaximized()) {
-                          //   await windowManager.unmaximize();
-                          // } else {
-                          //   await windowManager.maximize();
-                          // }
-                        },
-                        icon: Stack(
-                          children: [
-                            const Icon(
-                              CupertinoIcons.circle_filled,
-                            ),
-                            if (isHovered)
-                              const Center(
-                                child: Icon(
-                                  CupertinoIcons.arrow_up_left_arrow_down_right,
-                                  color: Colors.white,
-                                  size: 9,
-                                ),
+                      iconSize: dimension,
+                    ),
+                    const SizedBox(width: 7),
+                    IconButton(
+                      padding: EdgeInsets.zero,
+                      color: Colors.green,
+                      constraints: const BoxConstraints(
+                        maxWidth: dimension,
+                        maxHeight: dimension,
+                      ),
+                      onPressed: () async {
+                        // final isFullScreen = await windowManager.isFullScreen();
+                        // await windowManager.setFullScreen(!isFullScreen);
+                        // if (await windowManager.isMaximized()) {
+                        //   await windowManager.unmaximize();
+                        // } else {
+                        //   await windowManager.maximize();
+                        // }
+                      },
+                      icon: Stack(
+                        children: [
+                          const Icon(
+                            CupertinoIcons.circle_filled,
+                          ),
+                          if (isHovered)
+                            const Center(
+                              child: Icon(
+                                CupertinoIcons.arrow_up_left_arrow_down_right,
+                                color: Colors.white,
+                                size: 9,
                               ),
-                          ],
-                        ),
-                        iconSize: dimension,
-                      )
-                    ],
-                  );
-                },
+                            ),
+                        ],
+                      ),
+                      iconSize: dimension,
+                    )
+                  ],
+                ),
               ),
             ),
           ),

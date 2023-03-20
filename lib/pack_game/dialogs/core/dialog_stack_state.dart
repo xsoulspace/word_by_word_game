@@ -41,9 +41,12 @@ class _DialogStackState extends LifeState {
       case GameDialogType.levelLost:
       case GameDialogType.levelWin:
         return true;
-      default:
-        return false;
+      case GameDialogType.none:
+      case GameDialogType.levelWordSuggestion:
+      case GameDialogType.tutorialBool:
+      case GameDialogType.tutorialOk:
     }
+    return false;
   }
 
   set dialogType(final GameDialogType dialogType) {
@@ -54,12 +57,12 @@ class _DialogStackState extends LifeState {
   @override
   void initState() {
     super.initState();
-    _tutorialSubscriber.onLoad();
+    unawaited(_tutorialSubscriber.onLoad());
   }
 
   @override
-  void dispose() {
-    _tutorialSubscriber.dispose();
+  Future<void> dispose() async {
+    await _tutorialSubscriber.dispose();
     super.dispose();
   }
 
@@ -108,8 +111,8 @@ class _DialogStackState extends LifeState {
             return;
           }
           break;
-        default:
-          break;
+        case TutorialCompleteAction.onEdit:
+        case TutorialCompleteAction.idle:
       }
     }
   }
@@ -147,7 +150,7 @@ class _TutorialSubscriber implements Loadable, Disposable {
   }
 
   @override
-  void dispose() {
-    _tutorialSubscription?.cancel();
+  Future<void> dispose() async {
+    await _tutorialSubscription?.cancel();
   }
 }

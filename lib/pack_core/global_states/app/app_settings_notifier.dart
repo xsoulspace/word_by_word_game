@@ -16,7 +16,7 @@ class AppSettingsNotifier extends ChangeNotifier implements Loadable {
   set settings(final AppSettingsModel value) {
     _settings = value;
     notify();
-    persistenceService.saveSettings(settings: value);
+    unawaited(persistenceService.saveSettings(settings: value));
   }
 
   Locale? systemLocale;
@@ -26,11 +26,11 @@ class AppSettingsNotifier extends ChangeNotifier implements Loadable {
     if (value == null) {
       settings = settings.copyWith(locale: null);
       final defaultLocale = systemLocale ?? Locales.en;
-      S.load(defaultLocale);
+      unawaited(S.load(defaultLocale));
     } else {
       final language = Languages.byLanguageCode(value.languageCode);
       final newLocale = Locales.byLanguage(language);
-      S.load(newLocale);
+      unawaited(S.load(newLocale));
       settings = settings.copyWith(locale: newLocale);
     }
   }

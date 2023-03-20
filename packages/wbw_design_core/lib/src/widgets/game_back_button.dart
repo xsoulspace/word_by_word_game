@@ -7,10 +7,8 @@ class GameBackButton extends StatelessWidget {
   });
   final VoidCallback onPressed;
   @override
-  Widget build(final BuildContext context) {
-    return IconButton(
-      onPressed: onPressed,
-      icon: const Icon(Icons.arrow_back_ios_new),
-    );
-  }
+  Widget build(final BuildContext context) => IconButton(
+        onPressed: onPressed,
+        icon: const Icon(Icons.arrow_back_ios_new),
+      );
 }

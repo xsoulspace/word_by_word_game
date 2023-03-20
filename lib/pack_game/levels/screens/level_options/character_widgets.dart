@@ -32,21 +32,19 @@ class CharactersRow extends StatelessWidget {
   final CheckFunction<PlayerCharacterModel> checkIsCharacterSelected;
   final List<PlayerCharacterModel> characters;
   @override
-  Widget build(final BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.horizontal,
-      itemCount: characters.length,
-      itemBuilder: (final context, final index) {
-        final character = characters[index];
-        return CharacterCard(
-          selected: checkIsCharacterSelected(character),
-          onPressed: onCharacterPressed,
-          character: character,
-          key: ValueKey(character),
-        );
-      },
-    );
-  }
+  Widget build(final BuildContext context) => ListView.builder(
+        scrollDirection: Axis.horizontal,
+        itemCount: characters.length,
+        itemBuilder: (final context, final index) {
+          final character = characters[index];
+          return CharacterCard(
+            selected: checkIsCharacterSelected(character),
+            onPressed: onCharacterPressed,
+            character: character,
+            key: ValueKey(character),
+          );
+        },
+      );
 }
 
 class CharacterAvatarButton extends StatelessWidget {

@@ -219,14 +219,14 @@ class UiDesktopEffectFrame extends StatelessWidget {
                 ),
                 uiTheme.verticalBoxes.small,
                 Row(
-                  children: LevelActionMultiplierType.values.map(
-                    (final type) {
-                      return UILevelActionMultiplierChip(
-                        levelState: levelState,
-                        type: type,
-                      );
-                    },
-                  ).toList(),
+                  children: LevelActionMultiplierType.values
+                      .map(
+                        (final type) => UILevelActionMultiplierChip(
+                          levelState: levelState,
+                          type: type,
+                        ),
+                      )
+                      .toList(),
                 ),
               ],
             );
@@ -269,12 +269,10 @@ class UiMobileEffectFrame extends StatelessWidget {
                 ),
                 uiTheme.verticalBoxes.small,
                 ...LevelActionMultiplierType.values.map(
-                  (final type) {
-                    return UILevelActionMultiplierChip(
-                      levelState: levelState,
-                      type: type,
-                    );
-                  },
+                  (final type) => UILevelActionMultiplierChip(
+                    levelState: levelState,
+                    type: type,
+                  ),
                 ),
               ],
             ),

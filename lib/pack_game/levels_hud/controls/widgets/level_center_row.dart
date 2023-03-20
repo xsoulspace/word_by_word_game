@@ -12,10 +12,9 @@ class UIDesktopLevelCenterRow extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
-    final phaseType =
-        context.select<LevelBloc, LevelPlayerPhaseType>((final s) {
-      return s.getLiveState().phaseType;
-    });
+    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
+      (final s) => s.getLiveState().phaseType,
+    );
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         return const UIWordCompositionRow();
@@ -32,10 +31,9 @@ class UIMobileLevelCenterRow extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
-    final phaseType =
-        context.select<LevelBloc, LevelPlayerPhaseType>((final s) {
-      return s.getLiveState().phaseType;
-    });
+    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
+      (final s) => s.getLiveState().phaseType,
+    );
     switch (phaseType) {
       case LevelPlayerPhaseType.entryWord:
         return const UIWordCompositionRow();
