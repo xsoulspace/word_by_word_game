@@ -10,16 +10,20 @@ class CellDataModel with _$CellDataModel {
 @freezed
 class CellPointModel with _$CellPointModel {
   const factory CellPointModel(
-    final int row,
-    final int column,
+    final int x,
+    final int y,
   ) = _CellPointModel;
   const CellPointModel._();
   factory CellPointModel.fromJson(final Map<String, dynamic> json) =>
       _$CellPointModelFromJson(json);
   Vector2 toVector2() => Vector2(
-        column.toDouble(),
-        row.toDouble(),
+        x.toDouble(),
+        y.toDouble(),
       );
+  CellPointModel operator -(final CellPointModel other) =>
+      CellPointModel(x - other.x, y - other.y);
+  CellPointModel operator +(final CellPointModel other) =>
+      CellPointModel(x + other.x, y + other.y);
 }
 
 extension PointExtension on math.Point {

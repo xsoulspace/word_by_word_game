@@ -23,11 +23,12 @@ class CanvasTileModel with _$CanvasTileModel {
   factory CanvasTileModel.fromEditorSettingsData({
     required final TileId tileId,
     required final TileDataModel data,
+    final CanvasTileModel? oldData,
   }) {
-    bool hasTerrain = false;
-    bool hasWater = false;
-    TileId coin = '';
-    TileId enemy = '';
+    bool hasTerrain = oldData?.hasTerrain ?? false;
+    bool hasWater = oldData?.hasWater ?? false;
+    TileId coin = oldData?.coin ?? '';
+    TileId enemy = oldData?.enemy ?? '';
 
     switch (data.style) {
       case TileStyle.terrain:
@@ -53,9 +54,9 @@ class CanvasTileModel with _$CanvasTileModel {
       enemy: enemy,
       hasTerrain: hasTerrain,
       hasWater: hasWater,
-      isTopWater: false,
-      objects: [],
-      terrainNeighbours: [],
+      isTopWater: oldData?.isTopWater ?? false,
+      objects: oldData?.objects ?? [],
+      terrainNeighbours: oldData?.terrainNeighbours ?? [],
     );
   }
 }

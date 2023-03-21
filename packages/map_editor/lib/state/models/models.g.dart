@@ -14,14 +14,14 @@ Map<String, dynamic> _$$_CellDataModelToJson(_$_CellDataModel instance) =>
 
 _$_CellPointModel _$$_CellPointModelFromJson(Map<String, dynamic> json) =>
     _$_CellPointModel(
-      json['row'] as int,
-      json['column'] as int,
+      json['x'] as int,
+      json['y'] as int,
     );
 
 Map<String, dynamic> _$$_CellPointModelToJson(_$_CellPointModel instance) =>
     <String, dynamic>{
-      'row': instance.row,
-      'column': instance.column,
+      'x': instance.x,
+      'y': instance.y,
     };
 
 _$_TileDataModel _$$_TileDataModelFromJson(Map<String, dynamic> json) =>

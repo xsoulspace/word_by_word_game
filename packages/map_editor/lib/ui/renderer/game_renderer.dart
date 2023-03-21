@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:math' as math;
 
+import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/extensions.dart';
@@ -61,6 +62,7 @@ class GameRenderer extends FlameGame
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final editor = EditorRenderer();
+  final resourcesLoader = ResourcesLoader();
   @override
   Future<void> onLoad() async {
     // debugMode = kDebugMode ;
@@ -68,7 +70,8 @@ class GameRenderer extends FlameGame
     children
       ..register<CameraComponent>()
       ..register<World>()
-      ..register<FlameMultiBlocProvider>();
+      ..register<FlameMultiBlocProvider>()
+      ..register<EditorRenderer>();
     world = World();
     worldCamera = await _initCamera();
 
@@ -77,6 +80,7 @@ class GameRenderer extends FlameGame
         world,
         // router,
         worldCamera,
+        resourcesLoader,
       ],
     );
 
@@ -86,7 +90,7 @@ class GameRenderer extends FlameGame
       FlameBlocListener<MapEditorBloc, MapEditorBlocState>(
         onNewState: _handleMapEditorBlocStateChanges,
       ),
-      editor
+      editor,
     ]);
 
     // await images.load(kDefaultTilesetPath);
@@ -277,43 +281,93 @@ class TilesDrawer extends Component
   math.Point<int> getCurrentCell(final EventPosition eventPosition) {
     final distanceToOrigin = eventPosition.viewport - origin;
 
-    int row = distanceToOrigin.y ~/ kTileDimension;
+    int y = distanceToOrigin.y ~/ kTileDimension;
     if (distanceToOrigin.y < 0) {
-      row--;
+      y--;
     }
-    int column = distanceToOrigin.x ~/ kTileDimension;
+    int x = distanceToOrigin.x ~/ kTileDimension;
     if (distanceToOrigin.x < 0) {
-      column--;
+      x--;
     }
-    return math.Point(row, column);
+    return math.Point(x, y);
+  }
+
+  Map<CellPointModel, CanvasTileModel> checkNeighbours({
+    required final Map<CellPointModel, CanvasTileModel> effectiveCanvasData,
+    required final CellPointModel cellPoint,
+  }) {
+    // create a local cluster (3 rows and 3 columns)
+    const clusterSize = 3;
+    const clusterOffset = CellPointModel(clusterSize ~/ 2, clusterSize ~/ 2);
+    final localCluster = [
+      for (int x = 0; x < clusterSize; x++)
+        for (int y = 0; y < clusterSize; y++)
+          //
+          CellPointModel(
+            x + cellPoint.x - clusterOffset.x,
+            y + cellPoint.y - clusterOffset.y,
+          )
+    ];
+    for (final cell in localCluster) {
+      if (effectiveCanvasData.containsKey(cell)) {
+        effectiveCanvasData.update(
+          cell,
+          (final value) => value.copyWith(
+            terrainNeighbours: [],
+          ),
+        );
+        for (final neighbourEntry in tilesNeighbourDirections.entries) {
+          final name = neighbourEntry.key;
+          final side = neighbourEntry.value;
+          final neighbourCell = CellPointModel(
+            cell.x + side.x,
+            cell.y + side.y,
+          );
+          final subNeighbourCell = effectiveCanvasData[neighbourCell];
+          if (subNeighbourCell != null && subNeighbourCell.hasTerrain) {
+            effectiveCanvasData.update(
+              cell,
+              (final value) => value.copyWith(
+                terrainNeighbours: [...value.terrainNeighbours, name],
+              ),
+            );
+          }
+        }
+      }
+    }
+    return effectiveCanvasData;
   }
 
   math.Point<int>? _lastSelectedCell;
   void _onTap(final EventPosition eventPosition) {
     final cell = getCurrentCell(eventPosition);
     if (_lastSelectedCell == cell) return;
-
+    final effectiveCanvasData = {...canvasData};
     final cellPoint = cell.toCellPoint();
-    if (canvasData.containsKey(cellPoint)) {
+    if (effectiveCanvasData.containsKey(cellPoint)) {
       /// Maybe better to override existing data, but not sure for now,
       /// because it will break object immutability..
       ///
       /// But maybe if this will be runtime class - then it definitely
       /// should be updated, not replaced.
-      canvasData = {...canvasData}..update(
-          cellPoint,
-          (final canvasTile) => CanvasTileModel.fromEditorSettingsData(
-            data: drawerCubit.selectionData,
-            tileId: drawerCubit.selectionIndex.toString(),
-          ),
-        );
-    } else {
-      canvasData = {...canvasData}..[cellPoint] =
-            CanvasTileModel.fromEditorSettingsData(
+      effectiveCanvasData.update(
+        cellPoint,
+        (final value) => CanvasTileModel.fromEditorSettingsData(
           data: drawerCubit.selectionData,
           tileId: drawerCubit.selectionIndex.toString(),
-        );
+          oldData: value,
+        ),
+      );
+    } else {
+      effectiveCanvasData[cellPoint] = CanvasTileModel.fromEditorSettingsData(
+        data: drawerCubit.selectionData,
+        tileId: drawerCubit.selectionIndex.toString(),
+      );
     }
+    canvasData = checkNeighbours(
+      effectiveCanvasData: effectiveCanvasData,
+      cellPoint: cellPoint,
+    );
     _lastSelectedCell = cell;
   }
 
@@ -340,24 +394,29 @@ class TilesRenderer extends Component
   final bluePaint = Palette.blue.paint();
   final redPaint = Palette.red.paint();
   final yellowPaint = Palette.yellow.paint();
+  final whitePaint = Palette.white.paint();
 
   @override
   void render(final Canvas canvas) {
     super.render(canvas);
+    final resourceLoader = game.resourcesLoader;
+    // TODO(antmalofeev): rewrite to drawAtlas
     for (final entry in drawerCubit.canvasData.entries) {
       final position =
           origin + entry.key.toVector2() * kTileDimension.toDouble();
       final tile = entry.value;
       if (tile.hasTerrain) {
-        canvas.drawRect(
-          Rect.fromLTWH(
-            position.x,
-            position.y,
-            kTileDimension.toDouble(),
-            kTileDimension.toDouble(),
-          ),
-          brownPaint,
-        );
+        // i.e. merging Tile Directions, ABC or DC, etc
+        final terrainString = tile.terrainNeighbours.join();
+        final terrainStyle = resourceLoader.checkTerrainTileExistence(
+          terrainString,
+        )
+            ? terrainString
+            // simple tile in case if style is not found in images
+            : 'X';
+
+        final img = resourceLoader.getTerrainTile(terrainStyle);
+        canvas.drawImage(img, position.toOffset(), whitePaint);
       } else if (tile.hasWater) {
         canvas.drawRect(
           Rect.fromLTWH(
@@ -401,4 +460,40 @@ class TilesRenderer extends Component
       }
     }
   }
+}
+
+mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
+  Image getTerrainImage(final String fileName) =>
+      game.resourcesLoader.getTerrainTile(fileName);
+}
+
+class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
+  static String get terrainPath {
+    final pathList = Assets.images.terrain.land.a.path
+        .replaceAll('assets/images/', '')
+        .split('/')
+      ..removeLast();
+    return pathList.join('/');
+  }
+
+  @override
+  FutureOr<void> onLoad() async {
+    await _loadTerrainTiles();
+    return super.onLoad();
+  }
+
+  Images get _images => game.images;
+  Future<void> _loadTerrainTiles() async {
+    await _images.loadAll(
+      Assets.images.terrain.land.values
+          .map((final e) => e.path.replaceAll('assets/images/', ''))
+          .toList(),
+    );
+  }
+
+  bool checkTerrainTileExistence(final String fileName) =>
+      _images.containsKey('$terrainPath/$fileName.png');
+
+  Image getTerrainTile(final String fileName) =>
+      _images.fromCache('$terrainPath/$fileName.png');
 }

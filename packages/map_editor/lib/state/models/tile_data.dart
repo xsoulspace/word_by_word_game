@@ -39,15 +39,15 @@ enum GameObjectType {
   tile,
 }
 
-final tilesNeighborDirections = {
-  'A': Vector2(0, -1),
-  'B': Vector2(1, -1),
-  'C': Vector2(1, 0),
-  'D': Vector2(1, 1),
-  'E': Vector2(0, 1),
-  'F': Vector2(-1, 1),
-  'G': Vector2(-1, 0),
-  'H': Vector2(-1, -1)
+const tilesNeighbourDirections = {
+  'A': CellPointModel(0, -1),
+  'B': CellPointModel(1, -1),
+  'C': CellPointModel(1, 0),
+  'D': CellPointModel(1, 1),
+  'E': CellPointModel(0, 1),
+  'F': CellPointModel(-1, 1),
+  'G': CellPointModel(-1, 0),
+  'H': CellPointModel(-1, -1)
 };
 
-final levelLayers = {'clouds': 1, 'ocean': 2, 'bg': 3, 'water': 4, 'main': 5};
+const levelLayers = {'clouds': 1, 'ocean': 2, 'bg': 3, 'water': 4, 'main': 5};

@@ -568,8 +568,8 @@ CellPointModel _$CellPointModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CellPointModel {
-  int get row => throw _privateConstructorUsedError;
-  int get column => throw _privateConstructorUsedError;
+  int get x => throw _privateConstructorUsedError;
+  int get y => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -583,7 +583,7 @@ abstract class $CellPointModelCopyWith<$Res> {
           CellPointModel value, $Res Function(CellPointModel) then) =
       _$CellPointModelCopyWithImpl<$Res, CellPointModel>;
   @useResult
-  $Res call({int row, int column});
+  $Res call({int x, int y});
 }
 
 /// @nodoc
@@ -599,17 +599,17 @@ class _$CellPointModelCopyWithImpl<$Res, $Val extends CellPointModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? row = null,
-    Object? column = null,
+    Object? x = null,
+    Object? y = null,
   }) {
     return _then(_value.copyWith(
-      row: null == row
-          ? _value.row
-          : row // ignore: cast_nullable_to_non_nullable
+      x: null == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
               as int,
-      column: null == column
-          ? _value.column
-          : column // ignore: cast_nullable_to_non_nullable
+      y: null == y
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -623,7 +623,7 @@ abstract class _$$_CellPointModelCopyWith<$Res>
       __$$_CellPointModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int row, int column});
+  $Res call({int x, int y});
 }
 
 /// @nodoc
@@ -637,17 +637,17 @@ class __$$_CellPointModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? row = null,
-    Object? column = null,
+    Object? x = null,
+    Object? y = null,
   }) {
     return _then(_$_CellPointModel(
-      null == row
-          ? _value.row
-          : row // ignore: cast_nullable_to_non_nullable
+      null == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
               as int,
-      null == column
-          ? _value.column
-          : column // ignore: cast_nullable_to_non_nullable
+      null == y
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -656,19 +656,19 @@ class __$$_CellPointModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CellPointModel extends _CellPointModel {
-  const _$_CellPointModel(this.row, this.column) : super._();
+  const _$_CellPointModel(this.x, this.y) : super._();
 
   factory _$_CellPointModel.fromJson(Map<String, dynamic> json) =>
       _$$_CellPointModelFromJson(json);
 
   @override
-  final int row;
+  final int x;
   @override
-  final int column;
+  final int y;
 
   @override
   String toString() {
-    return 'CellPointModel(row: $row, column: $column)';
+    return 'CellPointModel(x: $x, y: $y)';
   }
 
   @override
@@ -676,13 +676,13 @@ class _$_CellPointModel extends _CellPointModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CellPointModel &&
-            (identical(other.row, row) || other.row == row) &&
-            (identical(other.column, column) || other.column == column));
+            (identical(other.x, x) || other.x == x) &&
+            (identical(other.y, y) || other.y == y));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, row, column);
+  int get hashCode => Object.hash(runtimeType, x, y);
 
   @JsonKey(ignore: true)
   @override
@@ -699,17 +699,16 @@ class _$_CellPointModel extends _CellPointModel {
 }
 
 abstract class _CellPointModel extends CellPointModel {
-  const factory _CellPointModel(final int row, final int column) =
-      _$_CellPointModel;
+  const factory _CellPointModel(final int x, final int y) = _$_CellPointModel;
   const _CellPointModel._() : super._();
 
   factory _CellPointModel.fromJson(Map<String, dynamic> json) =
       _$_CellPointModel.fromJson;
 
   @override
-  int get row;
+  int get x;
   @override
-  int get column;
+  int get y;
   @override
   @JsonKey(ignore: true)
   _$$_CellPointModelCopyWith<_$_CellPointModel> get copyWith =>
