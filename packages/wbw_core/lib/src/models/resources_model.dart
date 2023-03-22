@@ -3,13 +3,7 @@
 part of 'models.dart';
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class ResourcesModel with _$ResourcesModel {
   const factory ResourcesModel({
     required final String tileMapName,

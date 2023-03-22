@@ -13,13 +13,7 @@ class EmptyResourcesBlocState extends ResourcesBlocState {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveResourcesBlocState extends ResourcesBlocState
     with _$LiveResourcesBlocState {
   @JsonSerializable(

@@ -5,13 +5,7 @@ part of 'models.dart';
 typedef PlayerCharacterModelId = String;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class PlayerCharacterModel with _$PlayerCharacterModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerCharacterModel({
@@ -32,13 +26,7 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class CharacterAssetModel with _$CharacterAssetModel {
   @JsonSerializable(explicitToJson: true)
   const factory CharacterAssetModel({
@@ -52,13 +40,7 @@ class CharacterAssetModel with _$CharacterAssetModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class SerializedVector2 with _$SerializedVector2 {
   @JsonSerializable(explicitToJson: true)
   const factory SerializedVector2({

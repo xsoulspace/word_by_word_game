@@ -1,13 +1,7 @@
 part of 'models.dart';
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class ScoreModel with _$ScoreModel {
   const factory ScoreModel({
     required final double value,

@@ -19,13 +19,7 @@ enum WordWarning {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
   @JsonSerializable(
     explicitToJson: true,

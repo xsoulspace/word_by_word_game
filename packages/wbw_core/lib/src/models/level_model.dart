@@ -21,13 +21,7 @@ enum LevelActionMultiplierType {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LevelModel with _$LevelModel {
   @JsonSerializable(
     explicitToJson: true,
@@ -53,13 +47,7 @@ class LevelModel with _$LevelModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TemplateLevelModel with _$TemplateLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory TemplateLevelModel({

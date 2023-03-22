@@ -13,13 +13,7 @@ class EmptyLevelPlayersBlocState extends LevelPlayersBlocState {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveLevelPlayersBlocState extends LevelPlayersBlocState
     with _$LiveLevelPlayersBlocState {
   @JsonSerializable(

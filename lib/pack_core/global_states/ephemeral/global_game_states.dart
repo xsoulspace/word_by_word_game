@@ -13,13 +13,7 @@ class EmptyGlobalGameBlocState extends GlobalGameBlocState {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveGlobalGameBlocState extends GlobalGameBlocState
     with _$LiveGlobalGameBlocState {
   @JsonSerializable(explicitToJson: true)
