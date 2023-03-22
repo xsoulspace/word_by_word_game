@@ -1,1 +1,1 @@
-export './generated/l10n.dart';
+export 'src/gen/gen.dart';

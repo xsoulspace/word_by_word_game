@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/gen/gen.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 class AppSettingsNotifier extends ChangeNotifier implements Loadable {
   AppSettingsNotifier.use(final Locator read)

@@ -7,7 +7,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/gen/gen.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_state_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
