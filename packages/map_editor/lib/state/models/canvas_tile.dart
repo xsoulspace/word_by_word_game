@@ -11,7 +11,7 @@ class CanvasTileModel with _$CanvasTileModel {
 
     /// Water
     @Default(false) final bool hasWater,
-    @Default(false) final bool isTopWater,
+    @Default(false) final bool isWaterTop,
 
     /// Coin
     @Default('') final TileId coin,
@@ -54,7 +54,7 @@ class CanvasTileModel with _$CanvasTileModel {
       enemy: enemy,
       hasTerrain: hasTerrain,
       hasWater: hasWater,
-      isTopWater: oldData?.isTopWater ?? false,
+      isWaterTop: oldData?.isWaterTop ?? false,
       objects: oldData?.objects ?? [],
       terrainNeighbours: oldData?.terrainNeighbours ?? [],
     );

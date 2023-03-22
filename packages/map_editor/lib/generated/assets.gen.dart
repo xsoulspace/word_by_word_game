@@ -1459,15 +1459,15 @@ class $AssetsImagesTerrainPalmGen {
 class $AssetsImagesTerrainWaterGen {
   const $AssetsImagesTerrainWaterGen();
 
+  /// File path: assets/images/terrain/water/X.png
+  AssetGenImage get x =>
+      const AssetGenImage('assets/images/terrain/water/X.png');
+
   $AssetsImagesTerrainWaterAnimationGen get animation =>
       const $AssetsImagesTerrainWaterAnimationGen();
 
-  /// File path: assets/images/terrain/water/water_bottom.png
-  AssetGenImage get waterBottom =>
-      const AssetGenImage('assets/images/terrain/water/water_bottom.png');
-
   /// List of all assets
-  List<AssetGenImage> get values => [waterBottom];
+  List<AssetGenImage> get values => [x];
 }
 
 class $AssetsImagesTerrainPalmLargeBgGen {

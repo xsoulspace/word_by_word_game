@@ -39,15 +39,18 @@ enum GameObjectType {
   tile,
 }
 
-const tilesNeighbourDirections = {
-  'A': CellPointModel(0, -1),
-  'B': CellPointModel(1, -1),
-  'C': CellPointModel(1, 0),
-  'D': CellPointModel(1, 1),
-  'E': CellPointModel(0, 1),
-  'F': CellPointModel(-1, 1),
-  'G': CellPointModel(-1, 0),
-  'H': CellPointModel(-1, -1)
+enum TileNeighbourDirection { a, b, c, d, e, f, g, h }
+
+const tilesNeighbourDirections = <TileNeighbourDirection, CellPointModel>{
+  TileNeighbourDirection.a: CellPointModel(0, -1),
+  TileNeighbourDirection.b: CellPointModel(1, -1),
+  TileNeighbourDirection.c: CellPointModel(1, 0),
+  TileNeighbourDirection.d: CellPointModel(1, 1),
+  TileNeighbourDirection.e: CellPointModel(0, 1),
+  TileNeighbourDirection.f: CellPointModel(-1, 1),
+  TileNeighbourDirection.g: CellPointModel(-1, 0),
+  TileNeighbourDirection.h: CellPointModel(-1, -1)
 };
 
+// TODO(antmalofeev): transform to enum
 const levelLayers = {'clouds': 1, 'ocean': 2, 'bg': 3, 'water': 4, 'main': 5};

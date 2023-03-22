@@ -314,6 +314,7 @@ class TilesDrawer extends Component
           cell,
           (final value) => value.copyWith(
             terrainNeighbours: [],
+            isWaterTop: false,
           ),
         );
         for (final neighbourEntry in tilesNeighbourDirections.entries) {
@@ -323,12 +324,26 @@ class TilesDrawer extends Component
             cell.x + side.x,
             cell.y + side.y,
           );
-          final subNeighbourCell = effectiveCanvasData[neighbourCell];
-          if (subNeighbourCell != null && subNeighbourCell.hasTerrain) {
+
+          final neighbourTile = effectiveCanvasData[neighbourCell];
+          if (neighbourTile == null) continue;
+
+          if (neighbourTile.hasTerrain) {
             effectiveCanvasData.update(
               cell,
               (final value) => value.copyWith(
-                terrainNeighbours: [...value.terrainNeighbours, name],
+                terrainNeighbours: [
+                  ...value.terrainNeighbours,
+                  name.name.toUpperCase(),
+                ],
+              ),
+            );
+          }
+          if (neighbourTile.hasWater && name == TileNeighbourDirection.a) {
+            effectiveCanvasData.update(
+              cell,
+              (final value) => value.copyWith(
+                isWaterTop: true,
               ),
             );
           }
@@ -402,56 +417,56 @@ class TilesRenderer extends Component
     final resourceLoader = game.resourcesLoader;
     // TODO(antmalofeev): rewrite to drawAtlas
     for (final entry in drawerCubit.canvasData.entries) {
-      final position =
+      final vectorPosition =
           origin + entry.key.toVector2() * kTileDimension.toDouble();
+      final position = vectorPosition.toOffset();
       final tile = entry.value;
+      if (tile.hasWater) {
+        if (tile.isWaterTop) {
+          final img = resourceLoader.getTile('X', tileStyle: TileStyle.water);
+          canvas.drawImage(img, position, whitePaint);
+        } else {
+          canvas.drawRect(
+            Rect.fromLTWH(
+              position.dx,
+              position.dy,
+              kTileDimension.toDouble(),
+              kTileDimension.toDouble(),
+            ),
+            redPaint,
+          );
+        }
+      }
       if (tile.hasTerrain) {
         // i.e. merging Tile Directions, ABC or DC, etc
         final terrainString = tile.terrainNeighbours.join();
-        final terrainStyle = resourceLoader.checkTerrainTileExistence(
+        final terrainStyle = resourceLoader.checkTileExistence(
           terrainString,
         )
             ? terrainString
             // simple tile in case if style is not found in images
             : 'X';
 
-        final img = resourceLoader.getTerrainTile(terrainStyle);
-        canvas.drawImage(img, position.toOffset(), whitePaint);
-      } else if (tile.hasWater) {
+        final img = resourceLoader.getTile(terrainStyle);
+        canvas.drawImage(img, position, whitePaint);
+      }
+
+      if (tile.coin.isNotEmpty) {
         canvas.drawRect(
           Rect.fromLTWH(
-            position.x,
-            position.y,
-            kTileDimension.toDouble(),
-            kTileDimension.toDouble(),
-          ),
-          bluePaint,
-        );
-      } else if (tile.isTopWater) {
-        canvas.drawRect(
-          Rect.fromLTWH(
-            position.x,
-            position.y,
-            kTileDimension.toDouble(),
-            kTileDimension.toDouble(),
-          ),
-          bluePaint,
-        );
-      } else if (tile.coin.isNotEmpty) {
-        canvas.drawRect(
-          Rect.fromLTWH(
-            position.x,
-            position.y,
+            position.dx,
+            position.dy,
             kTileDimension.toDouble(),
             kTileDimension.toDouble(),
           ),
           yellowPaint,
         );
-      } else if (tile.enemy.isNotEmpty) {
+      }
+      if (tile.enemy.isNotEmpty) {
         canvas.drawRect(
           Rect.fromLTWH(
-            position.x,
-            position.y,
+            position.dx,
+            position.dy,
             kTileDimension.toDouble(),
             kTileDimension.toDouble(),
           ),
@@ -464,36 +479,73 @@ class TilesRenderer extends Component
 
 mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
   Image getTerrainImage(final String fileName) =>
-      game.resourcesLoader.getTerrainTile(fileName);
+      game.resourcesLoader.getTile(fileName);
 }
 
 class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
-  static String get terrainPath {
-    final pathList = Assets.images.terrain.land.a.path
-        .replaceAll('assets/images/', '')
-        .split('/')
-      ..removeLast();
+  static String _getAssetsFolderPath(final AssetGenImage assetGenImage) {
+    final pathList =
+        assetGenImage.path.replaceAll('assets/images/', '').split('/')
+
+          /// removing filename from path
+          ..removeLast();
     return pathList.join('/');
   }
 
+  static String get terrainLandPath =>
+      _getAssetsFolderPath(Assets.images.terrain.land.a);
+
+  static String get terrainWaterPath =>
+      _getAssetsFolderPath(Assets.images.terrain.water.x);
+
   @override
   FutureOr<void> onLoad() async {
-    await _loadTerrainTiles();
+    await Future.wait([_loadWaterTiles(), _loadTerrainTiles()]);
     return super.onLoad();
   }
 
   Images get _images => game.images;
-  Future<void> _loadTerrainTiles() async {
+  Future<void> _loadAssets(final List<AssetGenImage> assets) async {
     await _images.loadAll(
-      Assets.images.terrain.land.values
-          .map((final e) => e.path.replaceAll('assets/images/', ''))
-          .toList(),
+      assets.map((final e) => e.path.replaceAll('assets/images/', '')).toList(),
     );
   }
 
-  bool checkTerrainTileExistence(final String fileName) =>
-      _images.containsKey('$terrainPath/$fileName.png');
+  Future<void> _loadTerrainTiles() async =>
+      _loadAssets(Assets.images.terrain.land.values);
 
-  Image getTerrainTile(final String fileName) =>
-      _images.fromCache('$terrainPath/$fileName.png');
+  Future<void> _loadWaterTiles() async =>
+      _loadAssets(Assets.images.terrain.water.values);
+
+  String _getTilePath({
+    final TileStyle tileStyle = TileStyle.terrain,
+  }) {
+    switch (tileStyle) {
+      case TileStyle.terrain:
+        return terrainLandPath;
+      case TileStyle.water:
+        return terrainWaterPath;
+      // ignore: no_default_cases
+      default:
+        return '';
+    }
+  }
+
+  bool checkTileExistence(
+    final String fileName, {
+    final TileStyle tileStyle = TileStyle.terrain,
+  }) =>
+      _images.containsKey(
+        '${_getTilePath(tileStyle: tileStyle)}'
+        '/$fileName.png',
+      );
+
+  Image getTile(
+    final String fileName, {
+    final TileStyle tileStyle = TileStyle.terrain,
+  }) =>
+      _images.fromCache(
+        '${_getTilePath(tileStyle: tileStyle)}'
+        '/$fileName.png',
+      );
 }
