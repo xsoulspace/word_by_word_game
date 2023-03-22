@@ -1,7 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game/game.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels/level/level.dart';
 import 'package:word_by_word_game/subgames/quick_game/levels_hud/levels_hud.dart';
 
 enum GameRoutes { level }
@@ -31,9 +30,7 @@ class GameOverlayBuilderMapRouter {
 
 class GameRoutesBuilder {
   const GameRoutesBuilder();
-  Map<GameRoutes, Route> _build() => {
-        GameRoutes.level: Route(LevelComponent.new),
-      };
+  Map<GameRoutes, Route> _build() => {};
 
   Map<String, Route> build() =>
       _build().map((final key, final value) => MapEntry(key.name, value));
