@@ -7,7 +7,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 part 'level_bloc.freezed.dart';
-part 'level_bloc.g.dart';
 part 'level_bloc_events.dart';
 part 'level_bloc_states.dart';
 

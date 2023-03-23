@@ -7,7 +7,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_bloc.dart';
 
 part 'level_players_bloc.freezed.dart';
-part 'level_players_bloc.g.dart';
 part 'level_players_events.dart';
 part 'level_players_states.dart';
 

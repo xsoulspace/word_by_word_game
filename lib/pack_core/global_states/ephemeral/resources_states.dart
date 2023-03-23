@@ -16,17 +16,12 @@ class EmptyResourcesBlocState extends ResourcesBlocState {
 @freezed
 class LiveResourcesBlocState extends ResourcesBlocState
     with _$LiveResourcesBlocState {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
   @Implements<ResourcesBlocState>()
   const factory LiveResourcesBlocState({
     required final String tileMapName,
     required final String tileMapIcon,
   }) = _LiveResourcesBlocState;
   const LiveResourcesBlocState._();
-  factory LiveResourcesBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LiveResourcesBlocStateFromJson(json);
 
   factory LiveResourcesBlocState.fromModel(
     final ResourcesModel resourcesModel,

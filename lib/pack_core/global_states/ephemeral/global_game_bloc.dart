@@ -9,7 +9,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/tutorial/tutorial_listener.dart';
 
 part 'global_game_bloc.freezed.dart';
-part 'global_game_bloc.g.dart';
 part 'global_game_events.dart';
 part 'global_game_states.dart';
 

@@ -16,9 +16,6 @@ class EmptyLevelPlayersBlocState extends LevelPlayersBlocState {
 @freezed
 class LiveLevelPlayersBlocState extends LevelPlayersBlocState
     with _$LiveLevelPlayersBlocState {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
   @Implements<LevelPlayersBlocState>()
   const factory LiveLevelPlayersBlocState({
     required final List<PlayerProfileModel> players,
@@ -26,8 +23,6 @@ class LiveLevelPlayersBlocState extends LevelPlayersBlocState
     required final PlayerCharacterModel playerCharacter,
   }) = _LiveLevelPlayersBlocState;
   const LiveLevelPlayersBlocState._();
-  factory LiveLevelPlayersBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LiveLevelPlayersBlocStateFromJson(json);
 
   factory LiveLevelPlayersBlocState.fromModel({
     required final LevelPlayersModel levelPlayersModel,

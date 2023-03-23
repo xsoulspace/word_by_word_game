@@ -21,9 +21,6 @@ enum WordWarning {
 @immutable
 @freezed
 class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
   @Implements<LevelBlocState>()
   const factory LiveLevelBlocState({
     required final LevelModelId id,
@@ -43,8 +40,6 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default(WordWarning.none) final WordWarning wordWarning,
   }) = _LiveLevelBlocState;
   const LiveLevelBlocState._();
-  factory LiveLevelBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LiveLevelBlocStateFromJson(json);
 
   factory LiveLevelBlocState.fromModel(final LevelModel levelModel) =>
       LiveLevelBlocState(
