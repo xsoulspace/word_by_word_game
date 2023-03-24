@@ -34,7 +34,6 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<AddNewWordToDictionaryEvent>(_onAddNewWordToDictionary);
     on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
     on<LevelPlayerEndTurnActionEvent>(_onLevelPlayerEndTurnAction);
-    on<LevelPlayerSelectActionTypeEvent>(_onLevelPlayerSelectActionType);
     on<LevelPlayerSelectActionMultiplierEvent>(
       _onLevelPlayerSelectActionMultiplier,
     );
@@ -154,7 +153,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
             .createNextCurrentWordFromFullWord(word: effectiveCurrentWord),
         words: updatedWords,
         wordWarning: wordWarning,
-        phaseType: LevelPlayerPhaseType.selectAction,
+        phaseType: GamePhaseType.selectFuel,
       );
       emit(updatedState);
       final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
@@ -186,49 +185,23 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     emit(updatedState);
   }
 
-  void _onLevelPlayerSelectActionType(
-    final LevelPlayerSelectActionTypeEvent event,
-    final Emitter<LevelBlocState> emit,
-  ) {
-    final liveState = getLiveState();
-    final updatedState = liveState.copyWith(
-      actionType: event.type,
-    );
-    emit(updatedState);
-  }
-
   void _onLevelPlayerEndTurnAction(
     final LevelPlayerEndTurnActionEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
     final updatedState = liveState.copyWith(
-      phaseType: LevelPlayerPhaseType.entryWord,
-      actionType: null,
+      phaseType: GamePhaseType.entryWord,
     );
     emit(updatedState);
 
     final levelPlayersBloc = diDto.levelPlayersBloc;
     final scoreMechanics = diDto.mechanics.score;
 
-    ScoreModel appliedScore;
-
-    switch (liveState.actionType) {
-      case LevelPlayerActionType.cookFood:
-        appliedScore = scoreMechanics.getScoreForCookFoodByModifier(
-          multiplier: liveState.actionMultiplier,
-        );
-        levelPlayersBloc.add(CookFoodEvent(score: appliedScore));
-        break;
-      case LevelPlayerActionType.refuelStorage:
-        appliedScore = scoreMechanics.getScoreForRefuelStorageByModifier(
-          multiplier: liveState.actionMultiplier,
-        );
-        levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));
-        break;
-      case null:
-        throw ArgumentError.notNull('liveState.actionType');
-    }
+    final appliedScore = scoreMechanics.getScoreForRefuelStorageByModifier(
+      multiplier: liveState.actionMultiplier,
+    );
+    levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));
 
     final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
     levelPlayersBloc

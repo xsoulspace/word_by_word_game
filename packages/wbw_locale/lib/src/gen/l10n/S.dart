@@ -485,11 +485,11 @@ abstract class S {
   /// **'You don\'t have enough points to apply.'**
   String get youDontHaveEnoughPoints;
 
-  /// No description provided for @effect.
+  /// No description provided for @applyRefuelOption.
   ///
   /// In en, this message translates to:
-  /// **'Effect'**
-  String get effect;
+  /// **'Apply fuel option'**
+  String get applyRefuelOption;
 
   /// No description provided for @createNewPlayerTooltip.
   ///

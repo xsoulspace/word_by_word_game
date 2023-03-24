@@ -204,7 +204,7 @@ class SEn extends S {
   String get youDontHaveEnoughPoints => 'You don\'t have enough points to apply.';
 
   @override
-  String get effect => 'Effect';
+  String get applyRefuelOption => 'Apply fuel option';
 
   @override
   String get createNewPlayerTooltip => 'Click to create profile for new player.';

@@ -27,7 +27,6 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     on<SwitchToNextPlayerEvent>(_onSwitchToNextPlayer);
     on<ConsumeFuelEvent>(_consumeCharacterFuel);
     on<RefuelStorageEvent>(_onRefuelStorage);
-    on<CookFoodEvent>(_onCookFood);
 
     on<UpdatePlayerHighscoreEvent>(_onUpdatePlayerHighscore);
     on<ChangeCharacterPositionEvent>(_onChangeCharacterPosition);
@@ -101,14 +100,6 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     );
 
     emit(updatedState);
-  }
-
-  void _onCookFood(
-    final CookFoodEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
-  ) {
-// TODO(arenukvern): description
-    throw UnimplementedError();
   }
 
   void _onRefuelStorage(

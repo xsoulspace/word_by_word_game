@@ -38,7 +38,6 @@ class WbwGame extends FlameGame with HasCollisionDetection {
           dialogController: dialogController,
         );
   final WbwGameDiDto diDto;
-  late final RouterComponent router;
 
   late CameraComponent worldCamera;
   late final World world;
@@ -51,12 +50,10 @@ class WbwGame extends FlameGame with HasCollisionDetection {
 
     children.register<CameraComponent>();
     world = World();
-    router = const GameRouter().init();
     diDto.mechanics.worldTime.addListener(_onWorldTimeChange);
     providersComponent = diDto.getBlocsProviderComponent(
       children: [
         world,
-        router,
       ],
     );
 

@@ -134,7 +134,7 @@
   "mainMenuButtonTooltip": "Нажми, чтобы открыть меню (текущий прогресс будет сохранен).",
   "yourCurrentHighcoreTooltip": "Текущее кол-во очков знаний.",
   "youDontHaveEnoughPoints": "Недостаточно очков знаний для применения.",
-  "effect": "Эффект",
+  "applyRefuelOption": "Примени топливо",
   "createNewFirstPlayerTitle": "Создай профиль игрока чтобы начать игру.",
   "createNewPlayerTooltip": "Нажми, чтобы создать профиль нового игрока.",
   "createNewPlayerTitle": "Создай профиль нового игрока.",

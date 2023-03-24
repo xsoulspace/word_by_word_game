@@ -4,21 +4,9 @@ part of 'models.dart';
 
 typedef LevelModelId = String;
 
-enum LevelPlayerPhaseType {
-  entryWord,
-  selectAction,
-}
+enum GamePhaseType { entryWord, selectFuel }
 
-enum LevelPlayerActionType {
-  refuelStorage,
-  cookFood,
-}
-
-enum LevelActionMultiplierType {
-  m1,
-  m2,
-  m3,
-}
+enum FuelMultiplierType { m1, m2, m3 }
 
 @immutable
 @freezed
@@ -35,11 +23,8 @@ class LevelModel with _$LevelModel {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
-    @Default(LevelPlayerPhaseType.entryWord)
-        final LevelPlayerPhaseType phaseType,
-    @Default(LevelActionMultiplierType.m1)
-        final LevelActionMultiplierType actionMultiplier,
-    final LevelPlayerActionType? actionType,
+    @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
+    @Default(FuelMultiplierType.m1) final FuelMultiplierType actionMultiplier,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>

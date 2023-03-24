@@ -3,7 +3,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class UIDesktopActions extends StatelessWidget {
@@ -13,12 +12,12 @@ class UIDesktopActions extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
-    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
+    final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.getLiveState().phaseType,
     );
     final children = <Widget>[];
     switch (phaseType) {
-      case LevelPlayerPhaseType.entryWord:
+      case GamePhaseType.entryWord:
         children.addAll([
           TutorialFrame(
             highlightPosition: Alignment.topLeft,
@@ -50,10 +49,8 @@ class UIDesktopActions extends StatelessWidget {
           ),
         ]);
         break;
-      case LevelPlayerPhaseType.selectAction:
+      case GamePhaseType.selectFuel:
         children.addAll([
-          const UiDesktopEffectFrame(),
-          uiTheme.verticalBoxes.medium,
           TutorialFrame(
             highlightPosition: Alignment.topLeft,
             uiKey: TutorialUiItem.applyAndEndTurnButton,
@@ -85,12 +82,12 @@ class UIMobileActions extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
-    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
+    final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.getLiveState().phaseType,
     );
     final children = <Widget>[];
     switch (phaseType) {
-      case LevelPlayerPhaseType.entryWord:
+      case GamePhaseType.entryWord:
         children.addAll([
           TutorialFrame(
             highlightPosition: Alignment.topCenter,
@@ -118,7 +115,7 @@ class UIMobileActions extends StatelessWidget {
           ),
         ]);
         break;
-      case LevelPlayerPhaseType.selectAction:
+      case GamePhaseType.selectFuel:
         children.addAll([
           TutorialFrame(
             highlightPosition: Alignment.topCenter,
@@ -197,19 +194,13 @@ class UIToEndTurnButton extends StatelessWidget {
   });
   final VoidCallback onPressed;
   @override
-  Widget build(final BuildContext context) {
-    final actionType = context.select<LevelBloc, LevelPlayerActionType?>(
-      (final s) => s.getLiveState().actionType,
-    );
-
-    return UiTextButton.icon(
-      text: S.of(context).applyAndEndTurn,
-      onPressed: actionType == null ? null : onPressed,
-      icon: UiIcons.fire,
-      mainAlignment: MainAxisAlignment.center,
-      isLongButton: true,
-    );
-  }
+  Widget build(final BuildContext context) => UiTextButton.icon(
+        text: S.of(context).applyAndEndTurn,
+        onPressed: onPressed,
+        icon: UiIcons.fire,
+        mainAlignment: MainAxisAlignment.center,
+        isLongButton: true,
+      );
 }
 
 class UiRandomWordIconButton extends StatelessWidget {

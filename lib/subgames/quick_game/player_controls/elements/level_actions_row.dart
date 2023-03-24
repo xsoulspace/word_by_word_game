@@ -1,18 +1,16 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/player_swither_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_actions_buttons.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-class UIMobileLevelActionsRow extends HookWidget {
-  const UIMobileLevelActionsRow({super.key});
+class UIFuelBar extends HookWidget {
+  const UIFuelBar({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -24,15 +22,15 @@ class UIMobileLevelActionsRow extends HookWidget {
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
         checkLiveState: (final previous, final current) =>
-            previous.actionMultiplier != current.actionMultiplier ||
-            previous.actionType != current.actionType,
+            previous.actionMultiplier != current.actionMultiplier,
       ),
       builder: (final context, final levelState) {
         if (levelState is! LiveLevelBlocState) {
           return const SizedBox();
         }
-        return Padding(
+        return Container(
           padding: EdgeInsets.symmetric(horizontal: uiTheme.spacing.medium),
+          constraints: const BoxConstraints(maxWidth: 300),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -50,16 +48,7 @@ class UIMobileLevelActionsRow extends HookWidget {
                 ],
               ),
               uiTheme.verticalBoxes.large,
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const Expanded(
-                    child: UiActionFrame(),
-                  ),
-                  uiTheme.horizontalBoxes.large,
-                  const UiMobileEffectFrame()
-                ],
-              )
+              const UiFuelFrame(),
             ],
           ),
         );
@@ -68,67 +57,8 @@ class UIMobileLevelActionsRow extends HookWidget {
   }
 }
 
-class UIDesktopLevelActionsRow extends HookWidget {
-  const UIDesktopLevelActionsRow({super.key});
-  @override
-  Widget build(final BuildContext context) {
-    final widgetState = context.read<WordCompositionState>();
-    final uiTheme = UiTheme.of(context);
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    return BlocBuilder<LevelBloc, LevelBlocState>(
-      buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-        checkLiveState: (final previous, final current) =>
-            previous.actionMultiplier != current.actionMultiplier ||
-            previous.actionType != current.actionType,
-      ),
-      builder: (final context, final levelState) {
-        if (levelState is! LiveLevelBlocState) {
-          return const SizedBox();
-        }
-        return Container(
-          width: 300,
-          padding: EdgeInsets.symmetric(horizontal: uiTheme.spacing.medium),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const UIMobilePlayerName(),
-                  UiPauseIconButton(onPressed: widgetState.onPause),
-                  const UIMobilePlayerScore(),
-                ],
-              ),
-              uiTheme.verticalBoxes.medium,
-              Container(
-                padding: EdgeInsets.all(uiTheme.spacing.medium),
-                decoration: BoxDecoration(
-                  border: Border.all(),
-                  borderRadius: BorderRadius.all(uiTheme.circularRadius.small),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Flexible(
-                      child: UiActionFrame(),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-class UiActionFrame extends StatelessWidget {
-  const UiActionFrame({super.key});
-  static bool get kIsCookingEnabled => kDebugMode && !Envs.isMarketingMode;
+class UiFuelFrame extends StatelessWidget {
+  const UiFuelFrame({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -138,118 +68,7 @@ class UiActionFrame extends StatelessWidget {
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
         checkLiveState: (final previous, final current) =>
-            previous.actionMultiplier != current.actionMultiplier ||
-            previous.actionType != current.actionType,
-      ),
-      builder: (final context, final levelState) {
-        if (levelState is! LiveLevelBlocState) {
-          return const SizedBox();
-        }
-        return TutorialFrame(
-          highlightPosition: Alignment.topCenter,
-          uiKey: TutorialUiItem.selectActionFrame,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(S.of(context).selectAction),
-              uiTheme.verticalBoxes.medium,
-              Wrap(
-                spacing: uiTheme.spacing.medium,
-                runSpacing: uiTheme.spacing.medium,
-                children: [
-                  if (kIsCookingEnabled)
-                    UILevelActionChip(
-                      baseText: S.of(context).cookFood,
-                      levelState: levelState,
-                      type: LevelPlayerActionType.cookFood,
-                    ),
-                  TutorialFrame(
-                    highlightPosition: Alignment.topCenter,
-                    uiKey: TutorialUiItem.refuelActionButton,
-                    child: UILevelActionChip(
-                      onSelected: () => TutorialFrame.sendOnClickEvent(
-                        uiKey: TutorialUiItem.refuelActionButton,
-                        context: context,
-                      ),
-                      baseText: S.of(context).refuelStorage,
-                      levelState: levelState,
-                      type: LevelPlayerActionType.refuelStorage,
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
-        );
-      },
-    );
-  }
-}
-
-class UiDesktopEffectFrame extends StatelessWidget {
-  const UiDesktopEffectFrame({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    return TutorialFrame(
-      highlightPosition: Alignment.topLeft,
-      uiKey: TutorialUiItem.selectEffectFrame,
-      child: ConstrainedBox(
-        constraints: const BoxConstraints(minWidth: 200),
-        child: BlocBuilder<LevelBloc, LevelBlocState>(
-          buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-            checkLiveState: (final previous, final current) =>
-                previous.actionMultiplier != current.actionMultiplier ||
-                previous.actionType != current.actionType,
-          ),
-          builder: (final context, final levelState) {
-            if (levelState is! LiveLevelBlocState) {
-              return const SizedBox();
-            }
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).effect,
-                  style: textTheme.titleSmall,
-                ),
-                uiTheme.verticalBoxes.small,
-                Row(
-                  children: LevelActionMultiplierType.values
-                      .map(
-                        (final type) => UILevelActionMultiplierChip(
-                          levelState: levelState,
-                          type: type,
-                        ),
-                      )
-                      .toList(),
-                ),
-              ],
-            );
-          },
-        ),
-      ),
-    );
-  }
-}
-
-class UiMobileEffectFrame extends StatelessWidget {
-  const UiMobileEffectFrame({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-    return BlocBuilder<LevelBloc, LevelBlocState>(
-      buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-        checkLiveState: (final previous, final current) =>
-            previous.actionMultiplier != current.actionMultiplier ||
-            previous.actionType != current.actionType,
+            previous.actionMultiplier != current.actionMultiplier,
       ),
       builder: (final context, final levelState) {
         if (levelState is! LiveLevelBlocState) {
@@ -257,25 +76,33 @@ class UiMobileEffectFrame extends StatelessWidget {
         }
         return TutorialFrame(
           highlightPosition: Alignment.centerLeft,
-          uiKey: TutorialUiItem.selectEffectFrame,
-          child: ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 80),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  S.of(context).effect,
-                  style: textTheme.titleSmall,
+          uiKey: TutorialUiItem.selectRefuelOption,
+          child: Column(
+            children: [
+              Text(
+                S.of(context).applyRefuelOption,
+                style: textTheme.titleSmall,
+              ),
+              uiTheme.verticalBoxes.small,
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxHeight: 100),
+                child: ListView.separated(
+                  shrinkWrap: true,
+                  itemBuilder: (final context, final index) {
+                    final type = FuelMultiplierType.values[index];
+
+                    return UIFuelOptionCard(
+                      levelState: levelState,
+                      type: type,
+                    );
+                  },
+                  separatorBuilder: (final context, final index) =>
+                      uiTheme.horizontalBoxes.medium,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: FuelMultiplierType.values.length,
                 ),
-                uiTheme.verticalBoxes.small,
-                ...LevelActionMultiplierType.values.map(
-                  (final type) => UILevelActionMultiplierChip(
-                    levelState: levelState,
-                    type: type,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
         );
       },
@@ -283,46 +110,17 @@ class UiMobileEffectFrame extends StatelessWidget {
   }
 }
 
-class UILevelActionChip extends StatelessWidget {
-  const UILevelActionChip({
+class UIFuelOptionCard extends StatelessWidget {
+  const UIFuelOptionCard({
     required this.levelState,
-    required this.baseText,
     required this.type,
-    this.onSelected,
     super.key,
   });
-  final LevelPlayerActionType type;
+  final FuelMultiplierType type;
   final LiveLevelBlocState levelState;
-  final String baseText;
-  final VoidCallback? onSelected;
-  @override
-  Widget build(final BuildContext context) {
-    final widgetState = context.read<WordCompositionState>();
-    final isSelected = levelState.actionType == type;
-    return ChoiceChip(
-      selected: isSelected,
-      onSelected: (final _) {
-        widgetState.onSelectActionType(type);
-        onSelected?.call();
-      },
-      label: Text(
-        baseText,
-      ),
-    );
-  }
-}
 
-class UILevelActionMultiplierChip extends StatelessWidget {
-  const UILevelActionMultiplierChip({
-    required this.levelState,
-    required this.type,
-    super.key,
-  });
-  final LevelActionMultiplierType type;
-  final LiveLevelBlocState levelState;
   @override
   Widget build(final BuildContext context) {
-    final widgetState = context.read<WordCompositionState>();
     final mechanics = context.read<MechanicsCollection>();
 
     final player =
@@ -338,23 +136,23 @@ class UILevelActionMultiplierChip extends StatelessWidget {
       player: player,
       score: applyingScore,
     );
-
     final bool isSelected =
         isAllowedToUse && levelState.actionMultiplier == type;
+
+    final widgetState = context.read<WordCompositionState>();
     return Tooltip(
       message: isAllowedToUse ? '' : S.of(context).youDontHaveEnoughPoints,
-      child: ChoiceChip(
-        selected: isSelected,
-        onSelected: !isAllowedToUse
-            ? null
-            : (final _) {
-                widgetState.onSelectActionMultiplier(type);
-                TutorialFrame.sendOnClickEvent(
-                  uiKey: TutorialUiItem.effectButton,
-                  context: context,
-                );
-              },
-        label: Text('$applyingScore'),
+      child: Card(
+        child: InkWell(
+          onTap: () {
+            widgetState.onSelectActionMultiplier(type);
+            TutorialFrame.sendOnClickEvent(
+              uiKey: TutorialUiItem.applyAndEndTurnButton,
+              context: context,
+            );
+          },
+          child: Text('$applyingScore'),
+        ),
       ),
     );
   }

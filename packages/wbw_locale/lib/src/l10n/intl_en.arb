@@ -139,7 +139,7 @@
   "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
   "yourCurrentHighcoreTooltip": "Your current points.",
   "youDontHaveEnoughPoints": "You don't have enough points to apply.",
-  "effect": "Effect",
+  "applyRefuelOption": "Apply fuel option",
   "createNewPlayerTooltip": "Click to create profile for new player.",
   "createNewFirstPlayerTitle": "Create player profile to start a game.",
   "createNewPlayerTitle": "Create profile for new player.",

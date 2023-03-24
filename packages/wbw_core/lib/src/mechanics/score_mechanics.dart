@@ -28,37 +28,18 @@ class ScoreMechanics {
     );
   }
 
-  ScoreModel getScoreForCookFoodByModifier({
-    required final LevelActionMultiplierType multiplier,
-  }) {
-    final double score;
-    switch (multiplier) {
-      case LevelActionMultiplierType.m1:
-        score = 10.0;
-        break;
-      case LevelActionMultiplierType.m2:
-        score = 15.0;
-        break;
-      case LevelActionMultiplierType.m3:
-        score = 25.0;
-        break;
-    }
-
-    return ScoreModel(value: score * kCookFoodCost);
-  }
-
   ScoreModel getScoreForRefuelStorageByModifier({
-    required final LevelActionMultiplierType multiplier,
+    required final FuelMultiplierType multiplier,
   }) {
     final double score;
     switch (multiplier) {
-      case LevelActionMultiplierType.m1:
+      case FuelMultiplierType.m1:
         score = 10.0;
         break;
-      case LevelActionMultiplierType.m2:
+      case FuelMultiplierType.m2:
         score = 24.0;
         break;
-      case LevelActionMultiplierType.m3:
+      case FuelMultiplierType.m3:
         score = 32.0;
         break;
     }

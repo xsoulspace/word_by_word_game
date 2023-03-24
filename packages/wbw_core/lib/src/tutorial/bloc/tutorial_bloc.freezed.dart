@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'tutorial_bloc.dart';
 
@@ -35,38 +35,43 @@ mixin _$PendingTutorialBlocState {
 abstract class $PendingTutorialBlocStateCopyWith<$Res> {
   factory $PendingTutorialBlocStateCopyWith(PendingTutorialBlocState value,
           $Res Function(PendingTutorialBlocState) then) =
-      _$PendingTutorialBlocStateCopyWithImpl<$Res>;
+      _$PendingTutorialBlocStateCopyWithImpl<$Res, PendingTutorialBlocState>;
+  @useResult
   $Res call({TutorialCollectionsProgressModel progress});
 
   $TutorialCollectionsProgressModelCopyWith<$Res> get progress;
 }
 
 /// @nodoc
-class _$PendingTutorialBlocStateCopyWithImpl<$Res>
+class _$PendingTutorialBlocStateCopyWithImpl<$Res,
+        $Val extends PendingTutorialBlocState>
     implements $PendingTutorialBlocStateCopyWith<$Res> {
   _$PendingTutorialBlocStateCopyWithImpl(this._value, this._then);
 
-  final PendingTutorialBlocState _value;
   // ignore: unused_field
-  final $Res Function(PendingTutorialBlocState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? progress = freezed,
+    Object? progress = null,
   }) {
     return _then(_value.copyWith(
-      progress: progress == freezed
+      progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as TutorialCollectionsProgressModel,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
     return $TutorialCollectionsProgressModelCopyWith<$Res>(_value.progress,
         (value) {
-      return _then(_value.copyWith(progress: value));
+      return _then(_value.copyWith(progress: value) as $Val);
     });
   }
 }
@@ -79,6 +84,7 @@ abstract class _$$_PendingTutorialBlocStateCopyWith<$Res>
           $Res Function(_$_PendingTutorialBlocState) then) =
       __$$_PendingTutorialBlocStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({TutorialCollectionsProgressModel progress});
 
   @override
@@ -87,22 +93,20 @@ abstract class _$$_PendingTutorialBlocStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_PendingTutorialBlocStateCopyWithImpl<$Res>
-    extends _$PendingTutorialBlocStateCopyWithImpl<$Res>
+    extends _$PendingTutorialBlocStateCopyWithImpl<$Res,
+        _$_PendingTutorialBlocState>
     implements _$$_PendingTutorialBlocStateCopyWith<$Res> {
   __$$_PendingTutorialBlocStateCopyWithImpl(_$_PendingTutorialBlocState _value,
       $Res Function(_$_PendingTutorialBlocState) _then)
-      : super(_value, (v) => _then(v as _$_PendingTutorialBlocState));
+      : super(_value, _then);
 
-  @override
-  _$_PendingTutorialBlocState get _value =>
-      super._value as _$_PendingTutorialBlocState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? progress = freezed,
+    Object? progress = null,
   }) {
     return _then(_$_PendingTutorialBlocState(
-      progress: progress == freezed
+      progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as TutorialCollectionsProgressModel,
@@ -133,16 +137,17 @@ class _$_PendingTutorialBlocState extends _PendingTutorialBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_PendingTutorialBlocState &&
-            const DeepCollectionEquality().equals(other.progress, progress));
+            (identical(other.progress, progress) ||
+                other.progress == progress));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(progress));
+  int get hashCode => Object.hash(runtimeType, progress);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_PendingTutorialBlocStateCopyWith<_$_PendingTutorialBlocState>
       get copyWith => __$$_PendingTutorialBlocStateCopyWithImpl<
           _$_PendingTutorialBlocState>(this, _$identity);
@@ -199,7 +204,8 @@ mixin _$LiveTutorialBlocState {
 abstract class $LiveTutorialBlocStateCopyWith<$Res> {
   factory $LiveTutorialBlocStateCopyWith(LiveTutorialBlocState value,
           $Res Function(LiveTutorialBlocState) then) =
-      _$LiveTutorialBlocStateCopyWithImpl<$Res>;
+      _$LiveTutorialBlocStateCopyWithImpl<$Res, LiveTutorialBlocState>;
+  @useResult
   $Res call(
       {TutorialEventsCollectionModel tutorial,
       TutorialCollectionsProgressModel progress});
@@ -209,44 +215,49 @@ abstract class $LiveTutorialBlocStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LiveTutorialBlocStateCopyWithImpl<$Res>
+class _$LiveTutorialBlocStateCopyWithImpl<$Res,
+        $Val extends LiveTutorialBlocState>
     implements $LiveTutorialBlocStateCopyWith<$Res> {
   _$LiveTutorialBlocStateCopyWithImpl(this._value, this._then);
 
-  final LiveTutorialBlocState _value;
   // ignore: unused_field
-  final $Res Function(LiveTutorialBlocState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tutorial = freezed,
-    Object? progress = freezed,
+    Object? tutorial = null,
+    Object? progress = null,
   }) {
     return _then(_value.copyWith(
-      tutorial: tutorial == freezed
+      tutorial: null == tutorial
           ? _value.tutorial
           : tutorial // ignore: cast_nullable_to_non_nullable
               as TutorialEventsCollectionModel,
-      progress: progress == freezed
+      progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as TutorialCollectionsProgressModel,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TutorialEventsCollectionModelCopyWith<$Res> get tutorial {
     return $TutorialEventsCollectionModelCopyWith<$Res>(_value.tutorial,
         (value) {
-      return _then(_value.copyWith(tutorial: value));
+      return _then(_value.copyWith(tutorial: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
     return $TutorialCollectionsProgressModelCopyWith<$Res>(_value.progress,
         (value) {
-      return _then(_value.copyWith(progress: value));
+      return _then(_value.copyWith(progress: value) as $Val);
     });
   }
 }
@@ -258,6 +269,7 @@ abstract class _$$_LiveTutorialBlocStateCopyWith<$Res>
           $Res Function(_$_LiveTutorialBlocState) then) =
       __$$_LiveTutorialBlocStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {TutorialEventsCollectionModel tutorial,
       TutorialCollectionsProgressModel progress});
@@ -270,27 +282,24 @@ abstract class _$$_LiveTutorialBlocStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_LiveTutorialBlocStateCopyWithImpl<$Res>
-    extends _$LiveTutorialBlocStateCopyWithImpl<$Res>
+    extends _$LiveTutorialBlocStateCopyWithImpl<$Res, _$_LiveTutorialBlocState>
     implements _$$_LiveTutorialBlocStateCopyWith<$Res> {
   __$$_LiveTutorialBlocStateCopyWithImpl(_$_LiveTutorialBlocState _value,
       $Res Function(_$_LiveTutorialBlocState) _then)
-      : super(_value, (v) => _then(v as _$_LiveTutorialBlocState));
+      : super(_value, _then);
 
-  @override
-  _$_LiveTutorialBlocState get _value =>
-      super._value as _$_LiveTutorialBlocState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? tutorial = freezed,
-    Object? progress = freezed,
+    Object? tutorial = null,
+    Object? progress = null,
   }) {
     return _then(_$_LiveTutorialBlocState(
-      tutorial: tutorial == freezed
+      tutorial: null == tutorial
           ? _value.tutorial
           : tutorial // ignore: cast_nullable_to_non_nullable
               as TutorialEventsCollectionModel,
-      progress: progress == freezed
+      progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as TutorialCollectionsProgressModel,
@@ -326,19 +335,19 @@ class _$_LiveTutorialBlocState extends _LiveTutorialBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LiveTutorialBlocState &&
-            const DeepCollectionEquality().equals(other.tutorial, tutorial) &&
-            const DeepCollectionEquality().equals(other.progress, progress));
+            (identical(other.tutorial, tutorial) ||
+                other.tutorial == tutorial) &&
+            (identical(other.progress, progress) ||
+                other.progress == progress));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(tutorial),
-      const DeepCollectionEquality().hash(progress));
+  int get hashCode => Object.hash(runtimeType, tutorial, progress);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LiveTutorialBlocStateCopyWith<_$_LiveTutorialBlocState> get copyWith =>
       __$$_LiveTutorialBlocStateCopyWithImpl<_$_LiveTutorialBlocState>(
           this, _$identity);

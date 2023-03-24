@@ -204,7 +204,7 @@ class SRu extends S {
   String get youDontHaveEnoughPoints => 'Недостаточно очков знаний для применения.';
 
   @override
-  String get effect => 'Эффект';
+  String get applyRefuelOption => 'Примени топливо';
 
   @override
   String get createNewPlayerTooltip => 'Нажми, чтобы создать профиль нового игрока.';

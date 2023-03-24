@@ -139,7 +139,7 @@
   "mainMenuButtonTooltip": "Fare clic per aprire il menu (i progressi correnti verranno salvati).",
   "yourCurrentHighcoreTooltip": "Il tuo record attuale.",
   "youDontHaveEnoughPoints": "Pallone non necessario per l'approssimazione.",
-  "effect": "Effetto",
+  "applyRefuelOption": "Applicare l'opzione carburante",
   "createNewFirstPlayerTitle": "Crea un profilo giocatore per iniziare una partita.",
   "createNewPlayerTooltip": "Fare clic per creare il profilo per il nuovo giocatore.",
   "createNewPlayerTitle": "Crea profilo per nuovo giocatore.",

@@ -46,19 +46,11 @@ class LevelPlayerEndTurnActionEvent extends LevelBlocEvent {
 }
 
 @immutable
-class LevelPlayerSelectActionTypeEvent extends LevelBlocEvent {
-  const LevelPlayerSelectActionTypeEvent({
-    required this.type,
-  });
-  final LevelPlayerActionType? type;
-}
-
-@immutable
 class LevelPlayerSelectActionMultiplierEvent extends LevelBlocEvent {
   const LevelPlayerSelectActionMultiplierEvent({
     required this.multiplier,
   });
-  final LevelActionMultiplierType multiplier;
+  final FuelMultiplierType multiplier;
 }
 
 @immutable

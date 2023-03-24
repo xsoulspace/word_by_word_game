@@ -204,7 +204,7 @@ class SIt extends S {
   String get youDontHaveEnoughPoints => 'Pallone non necessario per l\'approssimazione.';
 
   @override
-  String get effect => 'Effetto';
+  String get applyRefuelOption => 'Applicare l\'opzione carburante';
 
   @override
   String get createNewPlayerTooltip => 'Fare clic per creare il profilo per il nuovo giocatore.';

@@ -6,7 +6,6 @@ class MobileGameBottomBarWidget extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    final state = context.read<WordCompositionState>();
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
       child: GameBottomBarBackground(
@@ -15,7 +14,7 @@ class MobileGameBottomBarWidget extends StatelessWidget {
         ),
         child: Column(
           children: [
-            const UIMobileLevelCenterRow(),
+            const UILevelCenterBar(),
             if (DeviceRuntimeType.isMobile)
               uiTheme.verticalBoxes.extraSmall
             else

@@ -9,22 +9,25 @@ class DesktopGameBottomBarWidget extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final state = context.read<WordCompositionState>();
 
-    return GameBottomBarBackground(
-      padding: EdgeInsets.symmetric(
-        horizontal: uiTheme.spacing.medium,
-      ).copyWith(
-        top: 10,
-        bottom: 12,
-      ),
-      child: Row(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.end,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const UIDesktopLevelCenterRow(),
-          uiTheme.horizontalBoxes.medium,
-          const UIDesktopActions(),
-        ],
+    return MediaQuery(
+      data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
+      child: GameBottomBarBackground(
+        padding: EdgeInsets.symmetric(
+          horizontal: uiTheme.spacing.medium,
+        ).copyWith(
+          top: 10,
+          bottom: 12,
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const UILevelCenterBar(),
+            uiTheme.horizontalBoxes.medium,
+            const UIDesktopActions(),
+          ],
+        ),
       ),
     );
   }

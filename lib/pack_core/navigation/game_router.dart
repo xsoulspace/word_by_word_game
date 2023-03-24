@@ -7,14 +7,6 @@ enum GameRoutes { level }
 
 enum GameOverlaysRoutes { levelsHud, debug }
 
-class GameRouter {
-  const GameRouter();
-  RouterComponent init() => RouterComponent(
-        initialRoute: GameRoutes.level.name,
-        routes: const GameRoutesBuilder().build(),
-      );
-}
-
 class GameOverlayBuilderMapRouter {
   const GameOverlayBuilderMapRouter();
   Map<String, OverlayWidgetBuilder<WbwGame>> build() =>

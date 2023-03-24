@@ -5,40 +5,21 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-class UIDesktopLevelCenterRow extends StatelessWidget {
-  const UIDesktopLevelCenterRow({super.key});
+class UILevelCenterBar extends StatelessWidget {
+  const UILevelCenterBar({super.key});
 
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
-    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
+    final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.getLiveState().phaseType,
     );
     switch (phaseType) {
-      case LevelPlayerPhaseType.entryWord:
+      case GamePhaseType.entryWord:
         return const UIWordCompositionBar();
-      case LevelPlayerPhaseType.selectAction:
-        return const UIDesktopLevelActionsRow();
-    }
-  }
-}
-
-class UIMobileLevelCenterRow extends StatelessWidget {
-  const UIMobileLevelCenterRow({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    final state = context.read<WordCompositionState>();
-    final uiTheme = UiTheme.of(context);
-    final phaseType = context.select<LevelBloc, LevelPlayerPhaseType>(
-      (final s) => s.getLiveState().phaseType,
-    );
-    switch (phaseType) {
-      case LevelPlayerPhaseType.entryWord:
-        return const UIWordCompositionBar();
-      case LevelPlayerPhaseType.selectAction:
-        return const UIMobileLevelActionsRow();
+      case GamePhaseType.selectFuel:
+        return const UIFuelBar();
     }
   }
 }
