@@ -1,5 +1,4 @@
-
-part of 'levels_hud_screen_overlay.dart';
+part of 'game_renderer_overlay.dart';
 
 class _LevelsHudScreenOverlayDiDto {
   _LevelsHudScreenOverlayDiDto.use(final Locator read)

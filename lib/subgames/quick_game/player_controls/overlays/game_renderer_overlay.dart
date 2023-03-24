@@ -10,8 +10,9 @@ import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/level_bloc.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/overlays/warning_notification.dart';
 
-part 'levels_hud_screen_overlay_state.dart';
+part 'game_renderer_overlay_state.dart';
 
 class LevelsHudScreenOverlay extends HookWidget {
   const LevelsHudScreenOverlay({super.key});

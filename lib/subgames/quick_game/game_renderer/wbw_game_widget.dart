@@ -65,7 +65,7 @@ class WbwGameWidget extends HookWidget {
                 selector: (final state) => state is LiveLevelBlocState,
                 builder: (final context, final isLive) {
                   if (isLive) {
-                    return const ControlsWidget();
+                    return const GameBottomBar();
                   } else {
                     return const SizedBox();
                   }

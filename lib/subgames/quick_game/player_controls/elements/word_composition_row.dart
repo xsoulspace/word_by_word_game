@@ -111,19 +111,6 @@ class UIWordCompositionRow extends HookWidget {
   }
 }
 
-class LastWordWidget extends StatelessWidget {
-  const LastWordWidget({
-    super.key,
-  });
-  @override
-  Widget build(final BuildContext context) {
-    final latestWord = context.select<LevelBloc, String>(
-      (final state) => state.getLiveState().latestWord,
-    );
-    return LastWordText(latestWord: latestWord);
-  }
-}
-
 class UiLetterButton extends StatelessWidget {
   const UiLetterButton({
     required this.onPressed,
@@ -195,27 +182,6 @@ class MiddleWordPartActions extends StatelessWidget {
         padding: EdgeInsets.symmetric(horizontal: spacing.medium),
         child: child,
       ),
-    );
-  }
-}
-
-class LastWordText extends StatelessWidget {
-  const LastWordText({
-    required this.latestWord,
-    super.key,
-  });
-  final String latestWord;
-  @override
-  Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
-    if (latestWord.isEmpty) return const SizedBox();
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Text(S.of(context).previousWord),
-        uiTheme.horizontalBoxes.small,
-        Text(latestWord),
-      ],
     );
   }
 }
