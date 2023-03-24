@@ -7,9 +7,9 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels_hud/controls/widgets/player_swither_bar.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels_hud/controls/widgets/word_actions_buttons.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels_hud/controls/widgets/word_composition_row.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/player_swither_bar.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_actions_buttons.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_row.dart';
 
 class UIMobileLevelActionsRow extends HookWidget {
   const UIMobileLevelActionsRow({super.key});

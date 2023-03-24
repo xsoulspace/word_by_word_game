@@ -1,3 +1,3 @@
-export 'game/game.dart';
-export 'levels_hud/levels_hud.dart';
+export 'game_renderer/game_renderer.dart';
 export 'pause/pause.dart';
+export 'player_controls/player_controls.dart';

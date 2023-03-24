@@ -5,7 +5,7 @@ import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/game/wbw_game.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/wbw_game.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
 
 class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {

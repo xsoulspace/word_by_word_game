@@ -7,8 +7,8 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/core/dialog_stack.dart';
-import 'package:word_by_word_game/subgames/quick_game/game/wbw_game.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels_hud/levels_hud.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/wbw_game.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/player_controls.dart';
 
 class WbwGameWidget extends HookWidget {
   const WbwGameWidget({super.key});

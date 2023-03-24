@@ -10,7 +10,7 @@ import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
-import 'package:word_by_word_game/subgames/quick_game/game/game.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 
 class GlobalSettingsInitializer extends StateInitializer {
   @override

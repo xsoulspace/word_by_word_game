@@ -1,5 +1,5 @@
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/subgames/quick_game/game/game.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 
 class WbwGameProvider extends Provider<WbwGame> {
   WbwGameProvider({

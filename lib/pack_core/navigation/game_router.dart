@@ -1,7 +1,7 @@
 import 'package:flame/game.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/game/game.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels_hud/levels_hud.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/player_controls.dart';
 
 enum GameRoutes { level }
 

@@ -13,7 +13,7 @@ import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/game/components/components.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
 
 part 'wbw_game_di.dart';

@@ -11,8 +11,8 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels_hud/controls/widgets/player_swither_bar.dart';
-import 'package:word_by_word_game/subgames/quick_game/levels_hud/controls/widgets/word_actions_buttons.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/player_swither_bar.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_actions_buttons.dart';
 
 part 'word_composition_row_state.dart';
 
