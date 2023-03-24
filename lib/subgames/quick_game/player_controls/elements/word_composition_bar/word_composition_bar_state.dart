@@ -1,4 +1,4 @@
-part of 'word_composition_row.dart';
+part of 'word_composition_bar.dart';
 
 class _WordCompositionStateDiDto {
   _WordCompositionStateDiDto.use(final Locator read)
