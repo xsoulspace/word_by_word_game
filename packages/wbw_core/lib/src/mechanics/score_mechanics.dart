@@ -28,18 +28,18 @@ class ScoreMechanics {
     );
   }
 
-  ScoreModel getScoreForRefuelStorageByModifier({
-    required final FuelMultiplierType multiplier,
+  ScoreModel getScoreForStorageEnergyByModifier({
+    required final EnergyMultiplierType multiplier,
   }) {
     final double score;
     switch (multiplier) {
-      case FuelMultiplierType.m1:
+      case EnergyMultiplierType.m1:
         score = 10.0;
         break;
-      case FuelMultiplierType.m2:
+      case EnergyMultiplierType.m2:
         score = 24.0;
         break;
-      case FuelMultiplierType.m3:
+      case EnergyMultiplierType.m3:
         score = 32.0;
         break;
     }

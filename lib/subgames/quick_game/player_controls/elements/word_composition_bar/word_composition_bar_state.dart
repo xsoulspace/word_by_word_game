@@ -63,7 +63,7 @@ class WordCompositionState extends LifeState {
   final rightWordKeyFocus = FocusNode();
   final rightWordFocus = FocusNode();
 
-  void onSelectActionMultiplier(final FuelMultiplierType multiplier) {
+  void onSelectActionMultiplier(final EnergyMultiplierType multiplier) {
     diDto.levelBloc.add(
       LevelPlayerSelectActionMultiplierEvent(
         multiplier: multiplier,

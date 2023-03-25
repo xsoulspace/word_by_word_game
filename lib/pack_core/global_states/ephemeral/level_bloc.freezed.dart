@@ -22,7 +22,8 @@ mixin _$LiveLevelBlocState {
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
   GamePhaseType get phaseType => throw _privateConstructorUsedError;
-  FuelMultiplierType get actionMultiplier => throw _privateConstructorUsedError;
+  EnergyMultiplierType get actionMultiplier =>
+      throw _privateConstructorUsedError;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -47,7 +48,7 @@ abstract class $LiveLevelBlocStateCopyWith<$Res> {
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      FuelMultiplierType actionMultiplier,
+      EnergyMultiplierType actionMultiplier,
       WordWarning wordWarning});
 
   $LocalizedMapCopyWith<$Res> get name;
@@ -104,7 +105,7 @@ class _$LiveLevelBlocStateCopyWithImpl<$Res, $Val extends LiveLevelBlocState>
       actionMultiplier: null == actionMultiplier
           ? _value.actionMultiplier
           : actionMultiplier // ignore: cast_nullable_to_non_nullable
-              as FuelMultiplierType,
+              as EnergyMultiplierType,
       wordWarning: null == wordWarning
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -144,7 +145,7 @@ abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      FuelMultiplierType actionMultiplier,
+      EnergyMultiplierType actionMultiplier,
       WordWarning wordWarning});
 
   @override
@@ -201,7 +202,7 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
       actionMultiplier: null == actionMultiplier
           ? _value.actionMultiplier
           : actionMultiplier // ignore: cast_nullable_to_non_nullable
-              as FuelMultiplierType,
+              as EnergyMultiplierType,
       wordWarning: null == wordWarning
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
@@ -220,7 +221,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       final Map<String, String> words = const {},
       this.latestWord = '',
       this.phaseType = GamePhaseType.entryWord,
-      this.actionMultiplier = FuelMultiplierType.m1,
+      this.actionMultiplier = EnergyMultiplierType.m1,
       this.wordWarning = WordWarning.none})
       : _words = words,
         super._();
@@ -250,7 +251,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   final GamePhaseType phaseType;
   @override
   @JsonKey()
-  final FuelMultiplierType actionMultiplier;
+  final EnergyMultiplierType actionMultiplier;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -313,7 +314,7 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
       final Map<String, String> words,
       final String latestWord,
       final GamePhaseType phaseType,
-      final FuelMultiplierType actionMultiplier,
+      final EnergyMultiplierType actionMultiplier,
       final WordWarning wordWarning}) = _$_LiveLevelBlocState;
   const _LiveLevelBlocState._() : super._();
 
@@ -330,7 +331,7 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
   @override
   GamePhaseType get phaseType;
   @override
-  FuelMultiplierType get actionMultiplier;
+  EnergyMultiplierType get actionMultiplier;
   @override
 
   /// ********************************************

@@ -80,7 +80,7 @@ class UiFuelFrame extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                S.of(context).applyRefuelOption,
+                S.of(context).applyFuelOption,
                 style: textTheme.titleSmall,
               ),
               uiTheme.verticalBoxes.small,
@@ -89,9 +89,9 @@ class UiFuelFrame extends StatelessWidget {
                 child: ListView.separated(
                   shrinkWrap: true,
                   itemBuilder: (final context, final index) {
-                    final type = FuelMultiplierType.values[index];
+                    final type = EnergyMultiplierType.values[index];
 
-                    return UIFuelOptionCard(
+                    return UIEnergyOptionCard(
                       levelState: levelState,
                       type: type,
                     );
@@ -99,7 +99,7 @@ class UiFuelFrame extends StatelessWidget {
                   separatorBuilder: (final context, final index) =>
                       uiTheme.horizontalBoxes.medium,
                   scrollDirection: Axis.horizontal,
-                  itemCount: FuelMultiplierType.values.length,
+                  itemCount: EnergyMultiplierType.values.length,
                 ),
               ),
             ],
@@ -110,13 +110,13 @@ class UiFuelFrame extends StatelessWidget {
   }
 }
 
-class UIFuelOptionCard extends StatelessWidget {
-  const UIFuelOptionCard({
+class UIEnergyOptionCard extends StatelessWidget {
+  const UIEnergyOptionCard({
     required this.levelState,
     required this.type,
     super.key,
   });
-  final FuelMultiplierType type;
+  final EnergyMultiplierType type;
   final LiveLevelBlocState levelState;
 
   @override
@@ -129,7 +129,7 @@ class UIFuelOptionCard extends StatelessWidget {
       return liveState.currentPlayer;
     });
     final applyingScore = mechanics.score
-        .getScoreForRefuelStorageByModifier(multiplier: type)
+        .getScoreForStorageEnergyByModifier(multiplier: type)
         .value
         .toInt();
     final isAllowedToUse = mechanics.score.checkPlayerAbilityToUseScore(
@@ -144,14 +144,23 @@ class UIFuelOptionCard extends StatelessWidget {
       message: isAllowedToUse ? '' : S.of(context).youDontHaveEnoughPoints,
       child: Card(
         child: InkWell(
-          onTap: () {
-            widgetState.onSelectActionMultiplier(type);
-            TutorialFrame.sendOnClickEvent(
-              uiKey: TutorialUiItem.applyAndEndTurnButton,
-              context: context,
-            );
-          },
-          child: Text('$applyingScore'),
+          onTap: isAllowedToUse
+              ? () {
+                  widgetState.onSelectActionMultiplier(type);
+                  TutorialFrame.sendOnClickEvent(
+                    uiKey: TutorialUiItem.applyAndEndTurnButton,
+                    context: context,
+                  );
+                }
+              : null,
+          child: Padding(
+            padding: const EdgeInsets.all(24),
+            child: Center(
+              child: Text(
+                '$applyingScore',
+              ),
+            ),
+          ),
         ),
       ),
     );

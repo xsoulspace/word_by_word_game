@@ -50,7 +50,7 @@ class LevelPlayerSelectActionMultiplierEvent extends LevelBlocEvent {
   const LevelPlayerSelectActionMultiplierEvent({
     required this.multiplier,
   });
-  final FuelMultiplierType multiplier;
+  final EnergyMultiplierType multiplier;
 }
 
 @immutable

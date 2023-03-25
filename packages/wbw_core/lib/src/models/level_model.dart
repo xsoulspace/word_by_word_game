@@ -6,7 +6,7 @@ typedef LevelModelId = String;
 
 enum GamePhaseType { entryWord, selectFuel }
 
-enum FuelMultiplierType { m1, m2, m3 }
+enum EnergyMultiplierType { m1, m2, m3 }
 
 @immutable
 @freezed
@@ -24,7 +24,8 @@ class LevelModel with _$LevelModel {
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
     @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
-    @Default(FuelMultiplierType.m1) final FuelMultiplierType actionMultiplier,
+    @Default(EnergyMultiplierType.m1)
+        final EnergyMultiplierType actionMultiplier,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>

@@ -198,7 +198,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final levelPlayersBloc = diDto.levelPlayersBloc;
     final scoreMechanics = diDto.mechanics.score;
 
-    final appliedScore = scoreMechanics.getScoreForRefuelStorageByModifier(
+    final appliedScore = scoreMechanics.getScoreForStorageEnergyByModifier(
       multiplier: liveState.actionMultiplier,
     );
     levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));

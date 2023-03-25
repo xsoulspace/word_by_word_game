@@ -1300,7 +1300,8 @@ mixin _$LevelModel {
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
   GamePhaseType get phaseType => throw _privateConstructorUsedError;
-  FuelMultiplierType get actionMultiplier => throw _privateConstructorUsedError;
+  EnergyMultiplierType get actionMultiplier =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1324,7 +1325,7 @@ abstract class $LevelModelCopyWith<$Res> {
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      FuelMultiplierType actionMultiplier});
+      EnergyMultiplierType actionMultiplier});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
@@ -1397,7 +1398,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
       actionMultiplier: null == actionMultiplier
           ? _value.actionMultiplier
           : actionMultiplier // ignore: cast_nullable_to_non_nullable
-              as FuelMultiplierType,
+              as EnergyMultiplierType,
     ) as $Val);
   }
 
@@ -1460,7 +1461,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      FuelMultiplierType actionMultiplier});
+      EnergyMultiplierType actionMultiplier});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1536,7 +1537,7 @@ class __$$_LevelModelCopyWithImpl<$Res>
       actionMultiplier: null == actionMultiplier
           ? _value.actionMultiplier
           : actionMultiplier // ignore: cast_nullable_to_non_nullable
-              as FuelMultiplierType,
+              as EnergyMultiplierType,
     ));
   }
 }
@@ -1555,7 +1556,7 @@ class _$_LevelModel extends _LevelModel {
       final Map<String, String> words = const {},
       this.latestWord = '',
       this.phaseType = GamePhaseType.entryWord,
-      this.actionMultiplier = FuelMultiplierType.m1})
+      this.actionMultiplier = EnergyMultiplierType.m1})
       : _words = words,
         super._();
 
@@ -1593,7 +1594,7 @@ class _$_LevelModel extends _LevelModel {
   final GamePhaseType phaseType;
   @override
   @JsonKey()
-  final FuelMultiplierType actionMultiplier;
+  final EnergyMultiplierType actionMultiplier;
 
   @override
   String toString() {
@@ -1663,7 +1664,7 @@ abstract class _LevelModel extends LevelModel {
       final Map<String, String> words,
       final String latestWord,
       final GamePhaseType phaseType,
-      final FuelMultiplierType actionMultiplier}) = _$_LevelModel;
+      final EnergyMultiplierType actionMultiplier}) = _$_LevelModel;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1688,7 +1689,7 @@ abstract class _LevelModel extends LevelModel {
   @override
   GamePhaseType get phaseType;
   @override
-  FuelMultiplierType get actionMultiplier;
+  EnergyMultiplierType get actionMultiplier;
   @override
   @JsonKey(ignore: true)
   _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>

@@ -29,7 +29,8 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
     @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
-    @Default(FuelMultiplierType.m1) final FuelMultiplierType actionMultiplier,
+    @Default(EnergyMultiplierType.m1)
+        final EnergyMultiplierType actionMultiplier,
 
     /// ********************************************
     /// *      NON PERSISTENT

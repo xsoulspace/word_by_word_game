@@ -151,8 +151,8 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           $enumDecodeNullable(_$GamePhaseTypeEnumMap, json['phaseType']) ??
               GamePhaseType.entryWord,
       actionMultiplier: $enumDecodeNullable(
-              _$FuelMultiplierTypeEnumMap, json['actionMultiplier']) ??
-          FuelMultiplierType.m1,
+              _$EnergyMultiplierTypeEnumMap, json['actionMultiplier']) ??
+          EnergyMultiplierType.m1,
     );
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
@@ -167,7 +167,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'latestWord': instance.latestWord,
       'phaseType': _$GamePhaseTypeEnumMap[instance.phaseType]!,
       'actionMultiplier':
-          _$FuelMultiplierTypeEnumMap[instance.actionMultiplier]!,
+          _$EnergyMultiplierTypeEnumMap[instance.actionMultiplier]!,
     };
 
 const _$GamePhaseTypeEnumMap = {
@@ -175,10 +175,10 @@ const _$GamePhaseTypeEnumMap = {
   GamePhaseType.selectFuel: 'selectFuel',
 };
 
-const _$FuelMultiplierTypeEnumMap = {
-  FuelMultiplierType.m1: 'm1',
-  FuelMultiplierType.m2: 'm2',
-  FuelMultiplierType.m3: 'm3',
+const _$EnergyMultiplierTypeEnumMap = {
+  EnergyMultiplierType.m1: 'm1',
+  EnergyMultiplierType.m2: 'm2',
+  EnergyMultiplierType.m3: 'm3',
 };
 
 _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
