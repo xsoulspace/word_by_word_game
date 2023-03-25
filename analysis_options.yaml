@@ -11,9 +11,9 @@ include: package:xsoulspace_lints/app.yaml
 
 analyzer:
   exclude:
-    # - "**.g.dart"
-    - "**.gen.dart"
-    - "**.g.dart"
+    - lib/**/**.gen.dart
+    - lib/**/**.g.dart
+    - lib/**/**.freezed.dart
     - old/
     - old_2/
     - old_test/
