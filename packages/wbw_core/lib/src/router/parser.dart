@@ -22,9 +22,7 @@ class TemplateRouteParser extends RouteInformationParser<ParsedRoute> {
     ///  [RouteGuard] used to redirect.
     this.guards,
   }) : initialRoute = ParsedRoute.fromPathTemplate(initialRoute ?? '/') {
-    for (final template in allowedPaths) {
-      _addRoute(template);
-    }
+    allowedPaths.forEach(_addRoute);
   }
   final List<String> _pathTemplates = [];
   List<RouteGuard<ParsedRoute>>? guards;
