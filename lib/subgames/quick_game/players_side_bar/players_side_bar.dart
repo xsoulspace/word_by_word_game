@@ -156,7 +156,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
             colorScheme.tertiaryContainer.withOpacity(0.2),
             colorScheme.tertiaryContainer.withOpacity(0.6),
             colorScheme.tertiaryContainer.withOpacity(0.6),
-            const Color(0x0fffffff),
+            const Color(0x00FFFFFF),
           ],
           stops: const [0.08, 0.1, 0.4, 1],
         ),
@@ -222,6 +222,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final radius = uiTheme.circularRadius;
+
     return AnimatedContainer(
       duration: 50.milliseconds,
       decoration: BoxDecoration(
@@ -245,10 +246,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
             onInit: (final controller) =>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
-            child: Text(
-              '$_score',
-              style: widget.textStyle,
-            )
+            child: Text('$_score', style: widget.textStyle)
                 .animate(
                   key: ValueKey(_score),
                   autoPlay: true,
