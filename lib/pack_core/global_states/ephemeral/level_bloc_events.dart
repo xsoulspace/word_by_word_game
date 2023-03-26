@@ -25,6 +25,11 @@ class ConsumeTickEvent extends LevelBlocEvent {
 }
 
 @immutable
+class HideWarningEvent extends LevelBlocEvent {
+  const HideWarningEvent();
+}
+
+@immutable
 class ChangeCurrentWordEvent extends LevelBlocEvent {
   const ChangeCurrentWordEvent({
     required this.word,

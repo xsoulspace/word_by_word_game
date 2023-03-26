@@ -69,7 +69,7 @@ class PlayerProfileCard extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                PlayerProfileAvatar(player: player),
+                UiPlayerProfileAvatar(player: player),
                 uiTheme.horizontalBoxes.medium,
                 Text(player.name),
                 if (onSelected != null) ...[
@@ -105,7 +105,7 @@ class PlayerProfileTile extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        PlayerProfileAvatar(player: player),
+        UiPlayerProfileAvatar(player: player),
         uiTheme.horizontalBoxes.medium,
         Text(player.name),
         if (onSelected != null) ...[
@@ -121,8 +121,8 @@ class PlayerProfileTile extends StatelessWidget {
   }
 }
 
-class PlayerProfileAvatar extends StatelessWidget {
-  const PlayerProfileAvatar({
+class UiPlayerProfileAvatar extends StatelessWidget {
+  const UiPlayerProfileAvatar({
     required this.player,
     this.dimension = 45.0,
     super.key,

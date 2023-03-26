@@ -3,6 +3,13 @@ import 'dart:math';
 typedef IterableConverter<TOld, TNew> = Future<TNew> Function(TOld item);
 
 extension IterableExtension<E> on Iterable<E> {
+  Map<TId, int> toIndexedMap<TId>(final TId Function(E e) toId) {
+    final iterableEntries =
+        mapIndexed((final index, final e) => MapEntry(toId(e), index));
+
+    return Map.fromEntries(iterableEntries);
+  }
+
   E? randomElement() {
     if (isEmpty) return null;
 

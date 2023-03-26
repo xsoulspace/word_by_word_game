@@ -27,7 +27,7 @@ class UIDesktopPlayerSwitcher extends HookWidget {
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PlayerProfileAvatar(
+                UiPlayerProfileAvatar(
                   player: liveState.currentPlayer,
                 ),
                 uiTheme.verticalBoxes.medium,
@@ -108,49 +108,6 @@ class UIMobilePlayerScore extends StatelessWidget {
         message: S.of(context).yourCurrentHighcoreTooltip,
         child: Text('${player.highscore.score.value.toInt()}'),
       ),
-    );
-  }
-}
-
-class UIPlayersSideBar extends StatelessWidget {
-  const UIPlayersSideBar({super.key});
-  static const maxWidth = 50.0;
-  @override
-  Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
-    return BlocBuilder<LevelPlayersBloc, LevelPlayersBlocState>(
-      builder: (final context, final state) {
-        final liveState = state;
-        if (liveState is! LiveLevelPlayersBlocState) {
-          return const SizedBox();
-        }
-        final players = liveState.notCurrentPlayers;
-
-        return Container(
-          padding: EdgeInsets.symmetric(horizontal: uiTheme.spacing.extraSmall),
-          constraints: const BoxConstraints(
-            maxHeight: 100,
-            maxWidth: maxWidth,
-          ),
-          child: Wrap(
-            children: [...players]
-                .map(
-                  (final player) => Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical: uiTheme.spacing.extraSmall,
-                    ),
-                    child: Material(
-                      elevation: 4,
-                      child: PlayerProfileAvatar(
-                        player: player,
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-        );
-      },
     );
   }
 }

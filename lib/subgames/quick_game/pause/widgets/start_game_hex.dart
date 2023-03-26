@@ -1,3 +1,4 @@
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -54,14 +55,22 @@ class StartGameHex extends StatelessWidget {
                         uiTheme.verticalBoxes.large,
                         LevelStartDialogButton(
                           level: level,
-                        ),
+                        )
+                            .animate()
+                            .then(duration: 150.milliseconds)
+                            .fadeIn()
+                            .slideY(begin: -0.1),
                         uiTheme.verticalBoxes.large,
                         UiFilledButton.text(
                           text: S.of(context).continueGame,
                           onPressed: isLevelRunning
                               ? () => state.onContinue(id: levelId)
                               : null,
-                        ),
+                        )
+                            .animate()
+                            .then(duration: 450.milliseconds)
+                            .fadeIn()
+                            .slideY(begin: -0.1),
                       ],
                     ),
                   )

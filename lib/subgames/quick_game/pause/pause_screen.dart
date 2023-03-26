@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:life_hooks/life_hooks.dart';
@@ -55,25 +56,37 @@ class PauseScreen extends HookWidget {
                           icon: Icons.settings,
                           text: S.of(context).settings,
                           onPressed: state.onToSettings,
-                        ),
+                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                              curve: Curves.easeIn,
+                              duration: 450.milliseconds,
+                            ),
                         uiTheme.horizontalBoxes.medium,
                         UiFilledButton.icon(
                           icon: Icons.scoreboard_rounded,
                           text: S.of(context).playersAndHighscore,
                           onPressed: state.onToPlayersAndHighscore,
-                        ),
+                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                              curve: Curves.easeIn,
+                              duration: 450.milliseconds,
+                            ),
                         uiTheme.horizontalBoxes.medium,
                         UiFilledButton.icon(
                           icon: Icons.question_mark_rounded,
                           text: S.of(context).about,
                           onPressed: state.onShowAbout,
-                        ),
+                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                              curve: Curves.easeIn,
+                              duration: 450.milliseconds,
+                            ),
                         uiTheme.horizontalBoxes.medium,
                         if (_kIsPrivacyPolicyEnabled)
                           UiTextButton.text(
                             text: S.of(context).privacyPolicy,
                             onPressed: state.onPrivacyPolicy,
-                          ),
+                          ).animate().then(delay: 500.milliseconds).fadeIn(
+                                curve: Curves.easeIn,
+                                duration: 450.milliseconds,
+                              ),
                       ],
                     ),
                     uiTheme.verticalBoxes.extraLarge,

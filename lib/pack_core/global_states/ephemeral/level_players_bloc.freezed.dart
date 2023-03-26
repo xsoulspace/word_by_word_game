@@ -15,100 +15,206 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LiveLevelPlayersBlocState {
-  List<PlayerProfileModel> get players => throw _privateConstructorUsedError;
-  String get currentPlayerId => throw _privateConstructorUsedError;
-  PlayerCharacterModel get playerCharacter =>
+mixin _$LevelPlayersBlocState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(List<PlayerProfileModel> players,
+            String currentPlayerId, PlayerCharacterModel playerCharacter)
+        live,
+  }) =>
       throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LiveLevelPlayersBlocStateCopyWith<LiveLevelPlayersBlocState> get copyWith =>
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(List<PlayerProfileModel> players, String currentPlayerId,
+            PlayerCharacterModel playerCharacter)?
+        live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<PlayerProfileModel> players, String currentPlayerId,
+            PlayerCharacterModel playerCharacter)?
+        live,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyLevelPlayersBlocState value) empty,
+    required TResult Function(LiveLevelPlayersBlocState value) live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyLevelPlayersBlocState value)? empty,
+    TResult? Function(LiveLevelPlayersBlocState value)? live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyLevelPlayersBlocState value)? empty,
+    TResult Function(LiveLevelPlayersBlocState value)? live,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LiveLevelPlayersBlocStateCopyWith<$Res> {
-  factory $LiveLevelPlayersBlocStateCopyWith(LiveLevelPlayersBlocState value,
-          $Res Function(LiveLevelPlayersBlocState) then) =
-      _$LiveLevelPlayersBlocStateCopyWithImpl<$Res, LiveLevelPlayersBlocState>;
-  @useResult
-  $Res call(
-      {List<PlayerProfileModel> players,
-      String currentPlayerId,
-      PlayerCharacterModel playerCharacter});
-
-  $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+abstract class $LevelPlayersBlocStateCopyWith<$Res> {
+  factory $LevelPlayersBlocStateCopyWith(LevelPlayersBlocState value,
+          $Res Function(LevelPlayersBlocState) then) =
+      _$LevelPlayersBlocStateCopyWithImpl<$Res, LevelPlayersBlocState>;
 }
 
 /// @nodoc
-class _$LiveLevelPlayersBlocStateCopyWithImpl<$Res,
-        $Val extends LiveLevelPlayersBlocState>
-    implements $LiveLevelPlayersBlocStateCopyWith<$Res> {
-  _$LiveLevelPlayersBlocStateCopyWithImpl(this._value, this._then);
+class _$LevelPlayersBlocStateCopyWithImpl<$Res,
+        $Val extends LevelPlayersBlocState>
+    implements $LevelPlayersBlocStateCopyWith<$Res> {
+  _$LevelPlayersBlocStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? players = null,
-    Object? currentPlayerId = null,
-    Object? playerCharacter = null,
-  }) {
-    return _then(_value.copyWith(
-      players: null == players
-          ? _value.players
-          : players // ignore: cast_nullable_to_non_nullable
-              as List<PlayerProfileModel>,
-      currentPlayerId: null == currentPlayerId
-          ? _value.currentPlayerId
-          : currentPlayerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      playerCharacter: null == playerCharacter
-          ? _value.playerCharacter
-          : playerCharacter // ignore: cast_nullable_to_non_nullable
-              as PlayerCharacterModel,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
-    return $PlayerCharacterModelCopyWith<$Res>(_value.playerCharacter, (value) {
-      return _then(_value.copyWith(playerCharacter: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_LiveLevelPlayersBlocStateCopyWith<$Res>
-    implements $LiveLevelPlayersBlocStateCopyWith<$Res> {
-  factory _$$_LiveLevelPlayersBlocStateCopyWith(
-          _$_LiveLevelPlayersBlocState value,
-          $Res Function(_$_LiveLevelPlayersBlocState) then) =
-      __$$_LiveLevelPlayersBlocStateCopyWithImpl<$Res>;
+abstract class _$$EmptyLevelPlayersBlocStateCopyWith<$Res> {
+  factory _$$EmptyLevelPlayersBlocStateCopyWith(
+          _$EmptyLevelPlayersBlocState value,
+          $Res Function(_$EmptyLevelPlayersBlocState) then) =
+      __$$EmptyLevelPlayersBlocStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmptyLevelPlayersBlocStateCopyWithImpl<$Res>
+    extends _$LevelPlayersBlocStateCopyWithImpl<$Res,
+        _$EmptyLevelPlayersBlocState>
+    implements _$$EmptyLevelPlayersBlocStateCopyWith<$Res> {
+  __$$EmptyLevelPlayersBlocStateCopyWithImpl(
+      _$EmptyLevelPlayersBlocState _value,
+      $Res Function(_$EmptyLevelPlayersBlocState) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EmptyLevelPlayersBlocState implements EmptyLevelPlayersBlocState {
+  const _$EmptyLevelPlayersBlocState();
+
   @override
+  String toString() {
+    return 'LevelPlayersBlocState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$EmptyLevelPlayersBlocState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(List<PlayerProfileModel> players,
+            String currentPlayerId, PlayerCharacterModel playerCharacter)
+        live,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(List<PlayerProfileModel> players, String currentPlayerId,
+            PlayerCharacterModel playerCharacter)?
+        live,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<PlayerProfileModel> players, String currentPlayerId,
+            PlayerCharacterModel playerCharacter)?
+        live,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyLevelPlayersBlocState value) empty,
+    required TResult Function(LiveLevelPlayersBlocState value) live,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyLevelPlayersBlocState value)? empty,
+    TResult? Function(LiveLevelPlayersBlocState value)? live,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyLevelPlayersBlocState value)? empty,
+    TResult Function(LiveLevelPlayersBlocState value)? live,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyLevelPlayersBlocState implements LevelPlayersBlocState {
+  const factory EmptyLevelPlayersBlocState() = _$EmptyLevelPlayersBlocState;
+}
+
+/// @nodoc
+abstract class _$$LiveLevelPlayersBlocStateCopyWith<$Res> {
+  factory _$$LiveLevelPlayersBlocStateCopyWith(
+          _$LiveLevelPlayersBlocState value,
+          $Res Function(_$LiveLevelPlayersBlocState) then) =
+      __$$LiveLevelPlayersBlocStateCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {List<PlayerProfileModel> players,
       String currentPlayerId,
       PlayerCharacterModel playerCharacter});
 
-  @override
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
 }
 
 /// @nodoc
-class __$$_LiveLevelPlayersBlocStateCopyWithImpl<$Res>
-    extends _$LiveLevelPlayersBlocStateCopyWithImpl<$Res,
-        _$_LiveLevelPlayersBlocState>
-    implements _$$_LiveLevelPlayersBlocStateCopyWith<$Res> {
-  __$$_LiveLevelPlayersBlocStateCopyWithImpl(
-      _$_LiveLevelPlayersBlocState _value,
-      $Res Function(_$_LiveLevelPlayersBlocState) _then)
+class __$$LiveLevelPlayersBlocStateCopyWithImpl<$Res>
+    extends _$LevelPlayersBlocStateCopyWithImpl<$Res,
+        _$LiveLevelPlayersBlocState>
+    implements _$$LiveLevelPlayersBlocStateCopyWith<$Res> {
+  __$$LiveLevelPlayersBlocStateCopyWithImpl(_$LiveLevelPlayersBlocState _value,
+      $Res Function(_$LiveLevelPlayersBlocState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -118,7 +224,7 @@ class __$$_LiveLevelPlayersBlocStateCopyWithImpl<$Res>
     Object? currentPlayerId = null,
     Object? playerCharacter = null,
   }) {
-    return _then(_$_LiveLevelPlayersBlocState(
+    return _then(_$LiveLevelPlayersBlocState(
       players: null == players
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
@@ -133,17 +239,24 @@ class __$$_LiveLevelPlayersBlocStateCopyWithImpl<$Res>
               as PlayerCharacterModel,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
+    return $PlayerCharacterModelCopyWith<$Res>(_value.playerCharacter, (value) {
+      return _then(_value.copyWith(playerCharacter: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$_LiveLevelPlayersBlocState extends _LiveLevelPlayersBlocState {
-  const _$_LiveLevelPlayersBlocState(
+class _$LiveLevelPlayersBlocState implements LiveLevelPlayersBlocState {
+  const _$LiveLevelPlayersBlocState(
       {required final List<PlayerProfileModel> players,
       required this.currentPlayerId,
       required this.playerCharacter})
-      : _players = players,
-        super._();
+      : _players = players;
 
   final List<PlayerProfileModel> _players;
   @override
@@ -160,14 +273,14 @@ class _$_LiveLevelPlayersBlocState extends _LiveLevelPlayersBlocState {
 
   @override
   String toString() {
-    return 'LiveLevelPlayersBlocState(players: $players, currentPlayerId: $currentPlayerId, playerCharacter: $playerCharacter)';
+    return 'LevelPlayersBlocState.live(players: $players, currentPlayerId: $currentPlayerId, playerCharacter: $playerCharacter)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LiveLevelPlayersBlocState &&
+            other is _$LiveLevelPlayersBlocState &&
             const DeepCollectionEquality().equals(other._players, _players) &&
             (identical(other.currentPlayerId, currentPlayerId) ||
                 other.currentPlayerId == currentPlayerId) &&
@@ -185,28 +298,90 @@ class _$_LiveLevelPlayersBlocState extends _LiveLevelPlayersBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LiveLevelPlayersBlocStateCopyWith<_$_LiveLevelPlayersBlocState>
-      get copyWith => __$$_LiveLevelPlayersBlocStateCopyWithImpl<
-          _$_LiveLevelPlayersBlocState>(this, _$identity);
+  _$$LiveLevelPlayersBlocStateCopyWith<_$LiveLevelPlayersBlocState>
+      get copyWith => __$$LiveLevelPlayersBlocStateCopyWithImpl<
+          _$LiveLevelPlayersBlocState>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(List<PlayerProfileModel> players,
+            String currentPlayerId, PlayerCharacterModel playerCharacter)
+        live,
+  }) {
+    return live(players, currentPlayerId, playerCharacter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(List<PlayerProfileModel> players, String currentPlayerId,
+            PlayerCharacterModel playerCharacter)?
+        live,
+  }) {
+    return live?.call(players, currentPlayerId, playerCharacter);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(List<PlayerProfileModel> players, String currentPlayerId,
+            PlayerCharacterModel playerCharacter)?
+        live,
+    required TResult orElse(),
+  }) {
+    if (live != null) {
+      return live(players, currentPlayerId, playerCharacter);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyLevelPlayersBlocState value) empty,
+    required TResult Function(LiveLevelPlayersBlocState value) live,
+  }) {
+    return live(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyLevelPlayersBlocState value)? empty,
+    TResult? Function(LiveLevelPlayersBlocState value)? live,
+  }) {
+    return live?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyLevelPlayersBlocState value)? empty,
+    TResult Function(LiveLevelPlayersBlocState value)? live,
+    required TResult orElse(),
+  }) {
+    if (live != null) {
+      return live(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _LiveLevelPlayersBlocState extends LiveLevelPlayersBlocState
-    implements LevelPlayersBlocState {
-  const factory _LiveLevelPlayersBlocState(
+abstract class LiveLevelPlayersBlocState implements LevelPlayersBlocState {
+  const factory LiveLevelPlayersBlocState(
           {required final List<PlayerProfileModel> players,
           required final String currentPlayerId,
           required final PlayerCharacterModel playerCharacter}) =
-      _$_LiveLevelPlayersBlocState;
-  const _LiveLevelPlayersBlocState._() : super._();
+      _$LiveLevelPlayersBlocState;
 
-  @override
   List<PlayerProfileModel> get players;
-  @override
   String get currentPlayerId;
-  @override
   PlayerCharacterModel get playerCharacter;
-  @override
   @JsonKey(ignore: true)
-  _$$_LiveLevelPlayersBlocStateCopyWith<_$_LiveLevelPlayersBlocState>
+  _$$LiveLevelPlayersBlocStateCopyWith<_$LiveLevelPlayersBlocState>
       get copyWith => throw _privateConstructorUsedError;
 }

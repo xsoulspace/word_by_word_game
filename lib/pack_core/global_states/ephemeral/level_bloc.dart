@@ -37,6 +37,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<LevelPlayerSelectActionMultiplierEvent>(
       _onLevelPlayerSelectActionMultiplier,
     );
+    on<HideWarningEvent>(_onHideWarning);
   }
 
   static bool Function(
@@ -81,6 +82,16 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final Emitter<LevelBlocState> emit,
   ) {
     // noop
+  }
+
+  void _onHideWarning(
+    final HideWarningEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final newState = getLiveState().copyWith(
+      wordWarning: WordWarning.none,
+    );
+    emit(newState);
   }
 
   void _onChangeCurrentWord(

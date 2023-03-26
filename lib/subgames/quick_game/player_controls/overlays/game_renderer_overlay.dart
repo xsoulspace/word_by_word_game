@@ -9,9 +9,9 @@ import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_bloc.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/level_bloc.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/overlays/warning_notification.dart';
+import 'package:word_by_word_game/subgames/quick_game/players_side_bar/players_side_bar.dart';
 
 part 'game_renderer_overlay_state.dart';
 
@@ -25,22 +25,44 @@ class LevelsHudScreenOverlay extends HookWidget {
     final state = _useLevelsHudScreenOverlayState(read: context.read);
     return Stack(
       children: [
-        Positioned(
-          left: 0,
-          top: 20,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const LastWordWidget(),
-              uiTheme.verticalBoxes.medium,
-              const UIPlayersSideBar(),
-            ],
-          ),
+        Stack(
+          children: [
+            Positioned(
+              left: 0,
+              top: 20,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const LastWordWidget(),
+                  uiTheme.verticalBoxes.medium,
+                  const UIPlayersSideBar(),
+                ],
+              ),
+            ),
+            if (kDebugMode && !Envs.isMarketingMode)
+              Positioned(
+                top: 60,
+                right: 20,
+                child: IconButton(
+                  onPressed: () {
+                    final worldTime =
+                        context.read<MechanicsCollection>().worldTime;
+                    if (worldTime.paused) {
+                      worldTime.resume();
+                    } else {
+                      worldTime.pause();
+                    }
+                  },
+                  color: theme.colorScheme.errorContainer,
+                  icon: const Icon(Icons.motion_photos_pause_outlined),
+                ),
+              ),
+          ],
         ),
         Positioned(
           top: 20,
-          right: UIPlayersSideBar.maxWidth + 20,
-          left: UIPlayersSideBar.maxWidth + 10,
+          right: 20,
+          left: 20,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: const [
@@ -48,23 +70,6 @@ class LevelsHudScreenOverlay extends HookWidget {
             ],
           ),
         ),
-        if (kDebugMode && !Envs.isMarketingMode)
-          Positioned(
-            top: 60,
-            right: 20,
-            child: IconButton(
-              onPressed: () {
-                final worldTime = context.read<MechanicsCollection>().worldTime;
-                if (worldTime.paused) {
-                  worldTime.resume();
-                } else {
-                  worldTime.pause();
-                }
-              },
-              color: theme.colorScheme.errorContainer,
-              icon: const Icon(Icons.motion_photos_pause_outlined),
-            ),
-          ),
       ],
     );
   }

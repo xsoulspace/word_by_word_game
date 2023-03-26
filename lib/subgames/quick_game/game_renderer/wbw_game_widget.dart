@@ -25,39 +25,36 @@ class WbwGameWidget extends HookWidget {
           builder: (final context, final dialogController) => Column(
             children: [
               Expanded(
-                child: Padding(
-                  padding: EdgeInsets.all(spacing.medium),
-                  child: MouseRegion(
-                    onHover: (final _) {
-                      // TODO(arenukvern): do we need this or not?
-                      if (!gameFocusNode.hasFocus) {
-                        gameFocusNode.requestFocus();
-                      }
-                    },
-                    child: GameWidget<WbwGame>.controlled(
-                      focusNode: gameFocusNode,
-                      gameFactory: () => WbwGame.use(
-                        read: context.read,
-                        dialogController: dialogController,
-                        theme: Theme.of(context),
-                      ),
-                      //Work in progress loading screen on game start
-                      loadingBuilder: (final context) => const Center(
-                        child: CircularProgressIndicator(),
-                      ),
-                      overlayBuilderMap:
-                          const GameOverlayBuilderMapRouter().build(),
-                      //Work in progress error handling
-                      errorBuilder: (final context, final ex) {
-                        //Print the error in th dev console
-                        debugPrint(ex.toString());
-                        return const Center(
-                          child: Text(
-                            'Sorry, something went wrong. Reload me',
-                          ),
-                        );
-                      },
+                child: MouseRegion(
+                  onHover: (final _) {
+                    // TODO(arenukvern): do we need this or not?
+                    if (!gameFocusNode.hasFocus) {
+                      gameFocusNode.requestFocus();
+                    }
+                  },
+                  child: GameWidget<WbwGame>.controlled(
+                    focusNode: gameFocusNode,
+                    gameFactory: () => WbwGame.use(
+                      read: context.read,
+                      dialogController: dialogController,
+                      theme: Theme.of(context),
                     ),
+                    //Work in progress loading screen on game start
+                    loadingBuilder: (final context) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    overlayBuilderMap:
+                        const GameOverlayBuilderMapRouter().build(),
+                    //Work in progress error handling
+                    errorBuilder: (final context, final ex) {
+                      //Print the error in th dev console
+                      debugPrint(ex.toString());
+                      return const Center(
+                        child: Text(
+                          'Sorry, something went wrong. Reload me',
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
