@@ -19,17 +19,8 @@ enum WordWarning {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
   @Implements<LevelBlocState>()
   const factory LiveLevelBlocState({
     required final LevelModelId id,
@@ -37,11 +28,9 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
-    @Default(LevelPlayerPhaseType.entryWord)
-        final LevelPlayerPhaseType phaseType,
-    @Default(LevelActionMultiplierType.m1)
-        final LevelActionMultiplierType actionMultiplier,
-    final LevelPlayerActionType? actionType,
+    @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
+    @Default(EnergyMultiplierType.m1)
+        final EnergyMultiplierType actionMultiplier,
 
     /// ********************************************
     /// *      NON PERSISTENT
@@ -49,19 +38,15 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     @Default(WordWarning.none) final WordWarning wordWarning,
   }) = _LiveLevelBlocState;
   const LiveLevelBlocState._();
-  factory LiveLevelBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LiveLevelBlocStateFromJson(json);
 
-  factory LiveLevelBlocState.fromModel(final LevelModel levelModel) {
-    return LiveLevelBlocState(
-      name: levelModel.name,
-      phaseType: levelModel.phaseType,
-      actionType: levelModel.actionType,
-      actionMultiplier: levelModel.actionMultiplier,
-      currentWord: levelModel.currentWord,
-      latestWord: levelModel.latestWord,
-      words: levelModel.words,
-      id: levelModel.id,
-    );
-  }
+  factory LiveLevelBlocState.fromModel(final LevelModel levelModel) =>
+      LiveLevelBlocState(
+        name: levelModel.name,
+        phaseType: levelModel.phaseType,
+        actionMultiplier: levelModel.actionMultiplier,
+        currentWord: levelModel.currentWord,
+        latestWord: levelModel.latestWord,
+        words: levelModel.words,
+        id: levelModel.id,
+      );
 }

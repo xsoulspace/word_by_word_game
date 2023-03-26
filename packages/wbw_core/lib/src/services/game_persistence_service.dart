@@ -18,6 +18,7 @@ class GamePersistenceService {
     if (jsonMap.isEmpty) return null;
     try {
       return GameModel.fromJson(jsonMap);
+      // TODO(arenukvern): add correct exception
     } catch (e) {
       // TODO(arenukvern): replace with analytics service
       print(e);

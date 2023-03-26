@@ -13,16 +13,9 @@ class EmptyDictionariesBlocState extends DictionariesBlocState {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveDictionariesBlocState extends DictionariesBlocState
     with _$LiveDictionariesBlocState {
-  @JsonSerializable(explicitToJson: true)
   @Implements<DictionariesBlocState>()
   const factory LiveDictionariesBlocState({
     required final LocalDictionaryModel localDictionary,

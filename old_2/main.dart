@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:word_by_word_game/_utils/utils.dart';
-import 'package:word_by_word_game/pack_game/pack_game.dart';
+import 'package:word_by_word_game/subgames/quick_game/subgames/quick_game.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

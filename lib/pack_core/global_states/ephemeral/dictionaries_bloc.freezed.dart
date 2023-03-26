@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'dictionaries_bloc.dart';
 
@@ -14,17 +14,11 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-LiveDictionariesBlocState _$LiveDictionariesBlocStateFromJson(
-    Map<String, dynamic> json) {
-  return _LiveDictionariesBlocState.fromJson(json);
-}
-
 /// @nodoc
 mixin _$LiveDictionariesBlocState {
   LocalDictionaryModel get localDictionary =>
       throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LiveDictionariesBlocStateCopyWith<LiveDictionariesBlocState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -34,37 +28,42 @@ mixin _$LiveDictionariesBlocState {
 abstract class $LiveDictionariesBlocStateCopyWith<$Res> {
   factory $LiveDictionariesBlocStateCopyWith(LiveDictionariesBlocState value,
           $Res Function(LiveDictionariesBlocState) then) =
-      _$LiveDictionariesBlocStateCopyWithImpl<$Res>;
+      _$LiveDictionariesBlocStateCopyWithImpl<$Res, LiveDictionariesBlocState>;
+  @useResult
   $Res call({LocalDictionaryModel localDictionary});
 
   $LocalDictionaryModelCopyWith<$Res> get localDictionary;
 }
 
 /// @nodoc
-class _$LiveDictionariesBlocStateCopyWithImpl<$Res>
+class _$LiveDictionariesBlocStateCopyWithImpl<$Res,
+        $Val extends LiveDictionariesBlocState>
     implements $LiveDictionariesBlocStateCopyWith<$Res> {
   _$LiveDictionariesBlocStateCopyWithImpl(this._value, this._then);
 
-  final LiveDictionariesBlocState _value;
   // ignore: unused_field
-  final $Res Function(LiveDictionariesBlocState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? localDictionary = freezed,
+    Object? localDictionary = null,
   }) {
     return _then(_value.copyWith(
-      localDictionary: localDictionary == freezed
+      localDictionary: null == localDictionary
           ? _value.localDictionary
           : localDictionary // ignore: cast_nullable_to_non_nullable
               as LocalDictionaryModel,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LocalDictionaryModelCopyWith<$Res> get localDictionary {
     return $LocalDictionaryModelCopyWith<$Res>(_value.localDictionary, (value) {
-      return _then(_value.copyWith(localDictionary: value));
+      return _then(_value.copyWith(localDictionary: value) as $Val);
     });
   }
 }
@@ -77,6 +76,7 @@ abstract class _$$_LiveDictionariesBlocStateCopyWith<$Res>
           $Res Function(_$_LiveDictionariesBlocState) then) =
       __$$_LiveDictionariesBlocStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({LocalDictionaryModel localDictionary});
 
   @override
@@ -85,23 +85,21 @@ abstract class _$$_LiveDictionariesBlocStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_LiveDictionariesBlocStateCopyWithImpl<$Res>
-    extends _$LiveDictionariesBlocStateCopyWithImpl<$Res>
+    extends _$LiveDictionariesBlocStateCopyWithImpl<$Res,
+        _$_LiveDictionariesBlocState>
     implements _$$_LiveDictionariesBlocStateCopyWith<$Res> {
   __$$_LiveDictionariesBlocStateCopyWithImpl(
       _$_LiveDictionariesBlocState _value,
       $Res Function(_$_LiveDictionariesBlocState) _then)
-      : super(_value, (v) => _then(v as _$_LiveDictionariesBlocState));
+      : super(_value, _then);
 
-  @override
-  _$_LiveDictionariesBlocState get _value =>
-      super._value as _$_LiveDictionariesBlocState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? localDictionary = freezed,
+    Object? localDictionary = null,
   }) {
     return _then(_$_LiveDictionariesBlocState(
-      localDictionary: localDictionary == freezed
+      localDictionary: null == localDictionary
           ? _value.localDictionary
           : localDictionary // ignore: cast_nullable_to_non_nullable
               as LocalDictionaryModel,
@@ -111,12 +109,8 @@ class __$$_LiveDictionariesBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(explicitToJson: true)
 class _$_LiveDictionariesBlocState implements _LiveDictionariesBlocState {
   const _$_LiveDictionariesBlocState({required this.localDictionary});
-
-  factory _$_LiveDictionariesBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$_LiveDictionariesBlocStateFromJson(json);
 
   @override
   final LocalDictionaryModel localDictionary;
@@ -131,27 +125,19 @@ class _$_LiveDictionariesBlocState implements _LiveDictionariesBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LiveDictionariesBlocState &&
-            const DeepCollectionEquality()
-                .equals(other.localDictionary, localDictionary));
+            (identical(other.localDictionary, localDictionary) ||
+                other.localDictionary == localDictionary));
   }
 
-  @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(localDictionary));
+  int get hashCode => Object.hash(runtimeType, localDictionary);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LiveDictionariesBlocStateCopyWith<_$_LiveDictionariesBlocState>
       get copyWith => __$$_LiveDictionariesBlocStateCopyWithImpl<
           _$_LiveDictionariesBlocState>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_LiveDictionariesBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class _LiveDictionariesBlocState
@@ -159,9 +145,6 @@ abstract class _LiveDictionariesBlocState
   const factory _LiveDictionariesBlocState(
           {required final LocalDictionaryModel localDictionary}) =
       _$_LiveDictionariesBlocState;
-
-  factory _LiveDictionariesBlocState.fromJson(Map<String, dynamic> json) =
-      _$_LiveDictionariesBlocState.fromJson;
 
   @override
   LocalDictionaryModel get localDictionary;

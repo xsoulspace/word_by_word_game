@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'models.dart';
 
@@ -32,29 +32,32 @@ mixin _$LevelRouteArgs {
 abstract class $LevelRouteArgsCopyWith<$Res> {
   factory $LevelRouteArgsCopyWith(
           LevelRouteArgs value, $Res Function(LevelRouteArgs) then) =
-      _$LevelRouteArgsCopyWithImpl<$Res>;
+      _$LevelRouteArgsCopyWithImpl<$Res, LevelRouteArgs>;
+  @useResult
   $Res call({String levelId});
 }
 
 /// @nodoc
-class _$LevelRouteArgsCopyWithImpl<$Res>
+class _$LevelRouteArgsCopyWithImpl<$Res, $Val extends LevelRouteArgs>
     implements $LevelRouteArgsCopyWith<$Res> {
   _$LevelRouteArgsCopyWithImpl(this._value, this._then);
 
-  final LevelRouteArgs _value;
   // ignore: unused_field
-  final $Res Function(LevelRouteArgs) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? levelId = freezed,
+    Object? levelId = null,
   }) {
     return _then(_value.copyWith(
-      levelId: levelId == freezed
+      levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
               as String,
-    ));
+    ) as $Val);
   }
 }
 
@@ -65,26 +68,25 @@ abstract class _$$_LevelRouteArgsCopyWith<$Res>
           _$_LevelRouteArgs value, $Res Function(_$_LevelRouteArgs) then) =
       __$$_LevelRouteArgsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({String levelId});
 }
 
 /// @nodoc
 class __$$_LevelRouteArgsCopyWithImpl<$Res>
-    extends _$LevelRouteArgsCopyWithImpl<$Res>
+    extends _$LevelRouteArgsCopyWithImpl<$Res, _$_LevelRouteArgs>
     implements _$$_LevelRouteArgsCopyWith<$Res> {
   __$$_LevelRouteArgsCopyWithImpl(
       _$_LevelRouteArgs _value, $Res Function(_$_LevelRouteArgs) _then)
-      : super(_value, (v) => _then(v as _$_LevelRouteArgs));
+      : super(_value, _then);
 
-  @override
-  _$_LevelRouteArgs get _value => super._value as _$_LevelRouteArgs;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? levelId = freezed,
+    Object? levelId = null,
   }) {
     return _then(_$_LevelRouteArgs(
-      levelId: levelId == freezed
+      levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
               as String,
@@ -115,16 +117,16 @@ class _$_LevelRouteArgs extends _LevelRouteArgs {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LevelRouteArgs &&
-            const DeepCollectionEquality().equals(other.levelId, levelId));
+            (identical(other.levelId, levelId) || other.levelId == levelId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(levelId));
+  int get hashCode => Object.hash(runtimeType, levelId);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LevelRouteArgsCopyWith<_$_LevelRouteArgs> get copyWith =>
       __$$_LevelRouteArgsCopyWithImpl<_$_LevelRouteArgs>(this, _$identity);
 

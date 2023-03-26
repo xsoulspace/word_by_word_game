@@ -18,12 +18,12 @@ class UiSpacing with _$UiSpacing {
   }) = _UiSpacing;
   const UiSpacing._();
   static const m3 = UiSpacing(
-    none: 0.0,
-    extraSmall: 2.0,
-    small: 4.0,
-    medium: 12.0,
-    large: 24.0,
-    extraLarge: 36.0,
+    none: 0,
+    extraSmall: 2,
+    small: 4,
+    medium: 12,
+    large: 24,
+    extraLarge: 36,
     full: double.infinity,
   );
 }
@@ -49,17 +49,16 @@ class UiRadius with _$UiRadius {
   // ignore: prefer_constructors_over_static_methods
   static UiRadius circularBySpacing({
     required final UiSpacing spacing,
-  }) {
-    return UiRadius(
-      extraLarge: Radius.circular(spacing.extraLarge),
-      extraSmall: Radius.circular(spacing.extraSmall),
-      full: Radius.circular(spacing.full),
-      large: Radius.circular(spacing.large),
-      medium: Radius.circular(spacing.medium),
-      none: Radius.circular(spacing.none),
-      small: Radius.circular(spacing.small),
-    );
-  }
+  }) =>
+      UiRadius(
+        extraLarge: Radius.circular(spacing.extraLarge),
+        extraSmall: Radius.circular(spacing.extraSmall),
+        full: Radius.circular(spacing.full),
+        large: Radius.circular(spacing.large),
+        medium: Radius.circular(spacing.medium),
+        none: Radius.circular(spacing.none),
+        small: Radius.circular(spacing.small),
+      );
 }
 
 @immutable

@@ -7,13 +7,11 @@ class UIMobileActionsFrame extends StatelessWidget {
   });
   final List<Widget> children;
   @override
-  Widget build(final BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
-    );
-  }
+  Widget build(final BuildContext context) => Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
 }
 
 class UIDesktopActionsFrame extends StatelessWidget {
@@ -23,11 +21,9 @@ class UIDesktopActionsFrame extends StatelessWidget {
   });
   final List<Widget> children;
   @override
-  Widget build(final BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
-    );
-  }
+  Widget build(final BuildContext context) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
 }

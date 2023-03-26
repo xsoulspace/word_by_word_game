@@ -13,16 +13,9 @@ class EmptyGlobalGameBlocState extends GlobalGameBlocState {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveGlobalGameBlocState extends GlobalGameBlocState
     with _$LiveGlobalGameBlocState {
-  @JsonSerializable(explicitToJson: true)
   @Implements<GlobalGameBlocState>()
   const factory LiveGlobalGameBlocState({
     /// ********************************************
@@ -55,22 +48,19 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
     @Default({}) final Set<LevelPartStates> loadedLevelParts,
   }) = _LiveGlobalGameBlocState;
   const LiveGlobalGameBlocState._();
-  factory LiveGlobalGameBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LiveGlobalGameBlocStateFromJson(json);
 
-  factory LiveGlobalGameBlocState.fromModel(final GameModel gameModel) {
-    return LiveGlobalGameBlocState(
-      currentLevelId: gameModel.currentLevelId,
-      currentLevelModel: gameModel.currentLevel,
-      id: gameModel.id,
-      dateTime: gameModel.dateTime,
-      lastDateTime: gameModel.lastDateTime,
-      levels: gameModel.levels,
-      templateLevels: gameModel.templateLevels,
-      playersCollection: gameModel.playersCollection,
-      playersCharacters: gameModel.playersCharacters,
-    );
-  }
+  factory LiveGlobalGameBlocState.fromModel(final GameModel gameModel) =>
+      LiveGlobalGameBlocState(
+        currentLevelId: gameModel.currentLevelId,
+        currentLevelModel: gameModel.currentLevel,
+        id: gameModel.id,
+        dateTime: gameModel.dateTime,
+        lastDateTime: gameModel.lastDateTime,
+        levels: gameModel.levels,
+        templateLevels: gameModel.templateLevels,
+        playersCollection: gameModel.playersCollection,
+        playersCharacters: gameModel.playersCharacters,
+      );
 
   bool get isLevelCompletelyLoaded =>
       LevelPartStates.containsAll(loadedLevelParts);

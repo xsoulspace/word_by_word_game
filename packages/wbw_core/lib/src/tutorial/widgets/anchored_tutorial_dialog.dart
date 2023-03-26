@@ -19,8 +19,8 @@ extension _TutorialEventModelExtension on TutorialEventModel {
           return AnchoredTutorialDialogType.idle;
         case TutorialUiItem.anchoredOkDialog:
           return AnchoredTutorialDialogType.ok;
+        // ignore: no_default_cases
         default:
-          break;
       }
     }
     return null;
@@ -104,13 +104,11 @@ class _AnchoredTutorialIdleDialog extends StatelessWidget {
   final TutorialEventModel tutorialEvent;
 
   @override
-  Widget build(final BuildContext context) {
-    return AnchoredTutorialDialogScaffold(
-      children: [
-        Text(tutorialEvent.localizedMap.getValue()),
-      ],
-    );
-  }
+  Widget build(final BuildContext context) => AnchoredTutorialDialogScaffold(
+        children: [
+          Text(tutorialEvent.localizedMap.getValue()),
+        ],
+      );
 }
 
 class _AnchoredTutorialOkDialog extends StatelessWidget {

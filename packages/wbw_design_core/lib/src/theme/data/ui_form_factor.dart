@@ -153,12 +153,11 @@ class UiCustomizableFormFactors with _$UiCustomizableFormFactors {
     required final ControlsFormFactor controls,
   }) = _UiCustomizableFormFactors;
   const UiCustomizableFormFactors._();
-  factory UiCustomizableFormFactors.ofTargetPlatform() {
-    return UiCustomizableFormFactors(
-      performance: PerformanceFormFactor.regular,
-      controls: _getControlsByTargetPlatform(),
-    );
-  }
+  factory UiCustomizableFormFactors.ofTargetPlatform() =>
+      UiCustomizableFormFactors(
+        performance: PerformanceFormFactor.regular,
+        controls: _getControlsByTargetPlatform(),
+      );
 
   static ControlsFormFactor _getControlsByTargetPlatform() {
     switch (defaultTargetPlatform) {

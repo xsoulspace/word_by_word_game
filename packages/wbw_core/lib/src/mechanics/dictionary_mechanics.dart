@@ -6,18 +6,15 @@ import 'package:russian_words/russian_words.dart' as russian_words;
 import '../models/models.dart';
 
 extension RandomListItem<T> on List<T> {
-  T randomItem() {
-    return this[math.Random().nextInt(length)];
-  }
+  T randomItem() => this[math.Random().nextInt(length)];
 }
 
 class DictionaryMechanics {
   bool checkIsWordIsWritten({
     required final CurrentWordModel word,
     required final Map<FullWordString, PlayerProfileModelId> words,
-  }) {
-    return words.containsKey(word.cleanWord);
-  }
+  }) =>
+      words.containsKey(word.cleanWord);
 
   String getWordSuggestion({
     required final String letters,

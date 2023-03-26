@@ -1,13 +1,7 @@
 part of abstract;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class WordWriterStateModel with _$WordWriterStateModel {
   @JsonSerializable(explicitToJson: true)
   const factory WordWriterStateModel({

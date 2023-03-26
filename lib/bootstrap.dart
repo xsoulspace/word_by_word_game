@@ -1,19 +1,26 @@
 import 'dart:async';
-import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/envs.dart';
+import 'package:word_by_word_game/firebase_options.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
-import 'package:word_by_word_game/pack_core/pack_core.dart';
 
 class AppBlocObserver extends BlocObserver {
+  AppBlocObserver({
+    required this.analyticsService,
+  });
+  final AnalyticsService analyticsService;
   @override
   // ignore: unnecessary_overrides
   void onChange(final BlocBase bloc, final Change change) {
     super.onChange(bloc, change);
-    // log('onChange(${bloc.runtimeType}, $change)');
+    // analyticsService.dynamicInfoLog(
+    //   'onChange(${bloc.runtimeType}, $change)',
+    // );
   }
 
   @override
@@ -22,35 +29,49 @@ class AppBlocObserver extends BlocObserver {
     final Object error,
     final StackTrace stackTrace,
   ) {
-    log('onError(${bloc.runtimeType}, $error, $stackTrace)');
+    // analyticsService.dynamicErrorLog(
+    //   'onError(${bloc.runtimeType}, $error, $stackTrace)',
+    // );
     super.onError(bloc, error, stackTrace);
   }
 }
 
 Future<void> bootstrap(
-  final Widget Function({
-    required AppServicesProviderDiDto servicesDiDto,
-  })
-      builder,
+  final Widget Function({required AppServicesProviderDto servicesDto}) builder,
 ) async {
   WidgetsFlutterBinding.ensureInitialized();
   LicenseRegistry.addLicense(() async* {
     final license = await rootBundle.loadString('google_fonts/OFL.txt');
     yield LicenseEntryWithLineBreaks(['google_fonts'], license);
   });
-  final firebaseIntializer = FirebaseInitializer();
-  await firebaseIntializer.onLoad();
+  final plugins = <AnalyticsService>[];
+  final FirebaseInitializer? firebaseIntializer;
+  if (Envs.isAnalyticsEnabled) {
+    firebaseIntializer = FirebaseInitializerImpl(
+      firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+    );
+    await firebaseIntializer.onLoad();
+    plugins.addAll([
+      FirebaseAnalyticsPlugin(),
+      if (Envs.isCrashlyticsEnabled) FirebaseCrashlyticsPlugin(),
+    ]);
+  } else {
+    firebaseIntializer = null;
+  }
 
   // await Flame.device.fullScreen();
 
-  final analyticsNotifier = AnalyticsNotifier();
-  await analyticsNotifier.onLoad();
-  Bloc.observer = AppBlocObserver();
-  final servicesDiDto = AppServicesProviderDiDto(
-    analyticsNotifier: analyticsNotifier,
+  final AnalyticsService analyticsService = AnalyticsServiceImpl(
+    plugins: plugins,
+  );
+  await analyticsService.onLoad();
+  Bloc.observer = AppBlocObserver(analyticsService: analyticsService);
+  final servicesDto = AppServicesProviderDto(
+    analyticsService: analyticsService,
+    firebaseInitializer: firebaseIntializer,
   );
   runZonedGuarded(
-    () => runApp(builder(servicesDiDto: servicesDiDto)),
-    analyticsNotifier.recordError,
+    () => runApp(builder(servicesDto: servicesDto)),
+    analyticsService.recordError,
   );
 }

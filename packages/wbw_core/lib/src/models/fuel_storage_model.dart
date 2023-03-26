@@ -3,23 +3,18 @@
 part of 'models.dart';
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class FuelStorageModel with _$FuelStorageModel {
   @JsonSerializable(
     explicitToJson: true,
   )
   const factory FuelStorageModel({
-    @Default(100) final double value,
+    @Default(FuelStorageModel.defaultValue) final double value,
   }) = _FuelStorageModel;
 
   const FuelStorageModel._();
 
   factory FuelStorageModel.fromJson(final Map<String, dynamic> json) =>
       _$FuelStorageModelFromJson(json);
+  static const defaultValue = 400.0;
 }

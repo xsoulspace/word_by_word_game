@@ -7,7 +7,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 part 'level_bloc.freezed.dart';
-part 'level_bloc.g.dart';
 part 'level_bloc_events.dart';
 part 'level_bloc_states.dart';
 
@@ -35,34 +34,35 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     on<AddNewWordToDictionaryEvent>(_onAddNewWordToDictionary);
     on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
     on<LevelPlayerEndTurnActionEvent>(_onLevelPlayerEndTurnAction);
-    on<LevelPlayerSelectActionTypeEvent>(_onLevelPlayerSelectActionType);
     on<LevelPlayerSelectActionMultiplierEvent>(
       _onLevelPlayerSelectActionMultiplier,
     );
+    on<HideWarningEvent>(_onHideWarning);
   }
 
-  static bool Function(LevelBlocState previous, LevelBlocState current)
-      useCheckStateEqualityBuilder({
+  static bool Function(
+    LevelBlocState previous,
+    LevelBlocState current,
+  ) useCheckStateEqualityBuilder({
     required final bool Function(
       LiveLevelBlocState previous,
       LiveLevelBlocState current,
     )
         checkLiveState,
-  }) {
-    return (final previous, final current) {
-      if (previous is LiveLevelBlocState && current is! LiveLevelBlocState) {
-        return true;
-      }
-      if (previous is! LiveLevelBlocState && current is LiveLevelBlocState) {
-        return true;
-      }
-      if (current is LiveLevelBlocState && previous is LiveLevelBlocState) {
-        return checkLiveState(current, previous);
-      }
+  }) =>
+      (final previous, final current) {
+        if (previous is LiveLevelBlocState && current is! LiveLevelBlocState) {
+          return true;
+        }
+        if (previous is! LiveLevelBlocState && current is LiveLevelBlocState) {
+          return true;
+        }
+        if (current is LiveLevelBlocState && previous is LiveLevelBlocState) {
+          return checkLiveState(current, previous);
+        }
 
-      return false;
-    };
-  }
+        return false;
+      };
 
   final LevelBlocDiDto diDto;
 
@@ -82,6 +82,16 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final Emitter<LevelBlocState> emit,
   ) {
     // noop
+  }
+
+  void _onHideWarning(
+    final HideWarningEvent event,
+    final Emitter<LevelBlocState> emit,
+  ) {
+    final newState = getLiveState().copyWith(
+      wordWarning: WordWarning.none,
+    );
+    emit(newState);
   }
 
   void _onChangeCurrentWord(
@@ -154,7 +164,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
             .createNextCurrentWordFromFullWord(word: effectiveCurrentWord),
         words: updatedWords,
         wordWarning: wordWarning,
-        phaseType: LevelPlayerPhaseType.selectAction,
+        phaseType: GamePhaseType.selectFuel,
       );
       emit(updatedState);
       final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
@@ -186,49 +196,25 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     emit(updatedState);
   }
 
-  void _onLevelPlayerSelectActionType(
-    final LevelPlayerSelectActionTypeEvent event,
-    final Emitter<LevelBlocState> emit,
-  ) {
-    final liveState = getLiveState();
-    final updatedState = liveState.copyWith(
-      actionType: event.type,
-    );
-    emit(updatedState);
-  }
-
   void _onLevelPlayerEndTurnAction(
     final LevelPlayerEndTurnActionEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
     final updatedState = liveState.copyWith(
-      phaseType: LevelPlayerPhaseType.entryWord,
-      actionType: null,
+      phaseType: GamePhaseType.entryWord,
     );
     emit(updatedState);
 
     final levelPlayersBloc = diDto.levelPlayersBloc;
+    final liveLevelPlayerState = levelPlayersBloc.getLiveState();
     final scoreMechanics = diDto.mechanics.score;
 
-    ScoreModel appliedScore;
-
-    switch (liveState.actionType) {
-      case LevelPlayerActionType.cookFood:
-        appliedScore = scoreMechanics.getScoreForCookFoodByModifier(
-          multiplier: liveState.actionMultiplier,
-        );
-        levelPlayersBloc.add(CookFoodEvent(score: appliedScore));
-        break;
-      case LevelPlayerActionType.refuelStorage:
-        appliedScore = scoreMechanics.getScoreForRefuelStorageByModifier(
-          multiplier: liveState.actionMultiplier,
-        );
-        levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));
-        break;
-      case null:
-        throw ArgumentError.notNull('liveState.actionType');
-    }
+    final appliedScore = scoreMechanics.getScoreForStorageEnergyByModifier(
+      multiplier: liveState.actionMultiplier,
+      availableScore: liveLevelPlayerState.currentPlayer.highscore.score,
+    );
+    levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));
 
     final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
     levelPlayersBloc

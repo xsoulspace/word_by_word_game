@@ -10,13 +10,7 @@ const kLatestGameVersion = GameVersion.$2;
 const kPreviousGameVersion = GameVersion.$1;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class GameModel with _$GameModel {
   @JsonSerializable(
     explicitToJson: true,

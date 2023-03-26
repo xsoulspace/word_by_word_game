@@ -53,18 +53,6 @@ enum TutorialUiItem {
   /// onClick | onEdit: anywhere else
   enterWordPhaseFrame,
 
-  /// Action is something that you do. For example: refueling
-  ///
-  /// onClick: anywhere else
-  selectActionFrame,
-
-  /// Effect is how much of the action will be applied. For example:
-  /// If you choose refueling and effect 200 - air balloon will
-  /// receive 200 points of fuel.
-  ///
-  /// onClick: anywhere else
-  selectEffectFrame,
-
   /// After choosing the action and effect, click Apply & End Turn Button.
   /// It will start new turn for another player (if he exists),
   /// or new turn for your player.
@@ -87,8 +75,20 @@ enum TutorialUiItem {
   /// onClick: anywhere else
   gameFuelIndicator,
 
-  refuelActionButton,
-  effectButton,
+  /// New meaning:
+  /// Just refueling.
+  ///
+  /// Old meaning:
+  ///
+  /// Action is something that you do. For example: refueling
+  ///
+  /// onClick: anywhere else
+  /// Effect is how much of the action will be applied. For example:
+  /// If you choose refueling and effect 200 - air balloon will
+  /// receive 200 points of fuel.
+  ///
+  /// onClick: anywhere else
+  selectRefuelOption,
   tutorialBoolDialog,
   tutorialOkDialog,
 

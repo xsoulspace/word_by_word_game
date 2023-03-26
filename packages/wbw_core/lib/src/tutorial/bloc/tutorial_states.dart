@@ -13,13 +13,7 @@ class EmptyTutorialBlocState extends TutorialBlocState {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class PendingTutorialBlocState extends TutorialBlocState
     with _$PendingTutorialBlocState {
   @JsonSerializable(
@@ -36,13 +30,7 @@ class PendingTutorialBlocState extends TutorialBlocState
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveTutorialBlocState extends TutorialBlocState
     with _$LiveTutorialBlocState {
   @JsonSerializable(
@@ -82,7 +70,6 @@ class LiveTutorialBlocState extends TutorialBlocState
     return copyWith(progress: updatedProgress);
   }
 
-  TutorialCollectionsProgressModel toProgressModel() {
-    return tutorial.saveProgress(progress: progress);
-  }
+  TutorialCollectionsProgressModel toProgressModel() =>
+      tutorial.saveProgress(progress: progress);
 }

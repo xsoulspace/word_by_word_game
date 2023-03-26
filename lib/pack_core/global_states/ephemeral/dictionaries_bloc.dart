@@ -5,7 +5,6 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 part 'dictionaries_bloc.freezed.dart';
-part 'dictionaries_bloc.g.dart';
 part 'dictionaries_events.dart';
 part 'dictionaries_states.dart';
 

@@ -61,14 +61,14 @@ class YandexFlexiblePlatformBanner extends StatelessWidget {
   final String? adUnitId;
 
   @override
-  Widget build(final BuildContext context) {
-    /// We create a SizedBox with the size of the ad
-    return SizedBox(
-      height: height,
-      width: width,
-      child: HtmlElementView(
-        viewType: renderTo,
-      ),
-    );
-  }
+  Widget build(final BuildContext context) =>
+
+      /// We create a SizedBox with the size of the ad
+      SizedBox(
+        height: height,
+        width: width,
+        child: HtmlElementView(
+          viewType: renderTo,
+        ),
+      );
 }

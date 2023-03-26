@@ -14,7 +14,7 @@ part 'character_mechanics.freezed.dart';
 )
 class FlyingObjectsParams with _$FlyingObjectsParams {
   const factory FlyingObjectsParams({
-    @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
+    @Default(FuelStorageModel()) final FuelStorageModel fuel,
 
     /// it can be changed and can be dependent from the character.
     @Default(2.0) final double fuelNormalPower,
@@ -36,13 +36,12 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
 
   factory FlyingObjectsParams.fromCharacterModel(
     final PlayerCharacterModel character,
-  ) {
-    return FlyingObjectsParams(
-      fuel: character.fuel,
-      fuelNormalPower: character.fuelNormalPower,
-      requiredLiftForce: character.requiredLiftForce,
-    );
-  }
+  ) =>
+      FlyingObjectsParams(
+        fuel: character.fuel,
+        fuelNormalPower: character.fuelNormalPower,
+        requiredLiftForce: character.requiredLiftForce,
+      );
 
   /// immutable
   /// Is the power if the character trying to move above the highest line
@@ -60,8 +59,8 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
 
   /// -1 or +1 - can be changed, nature force
   int get windSign => -1;
-  double get minXBoundry => 250.0;
-  double get minYBoundry => 100.0;
+  double get minXBoundry => 250;
+  double get minYBoundry => 100;
 }
 
 class ForceResult {
@@ -131,7 +130,5 @@ class BasicFlyingObjectMechanics {
     );
   }
 
-  double get xVelocity {
-    return params.windSign * params.windForce;
-  }
+  double get xVelocity => params.windSign * params.windForce;
 }
