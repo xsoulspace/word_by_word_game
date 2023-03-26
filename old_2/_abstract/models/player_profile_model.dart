@@ -3,13 +3,7 @@ part of abstract;
 typedef PlayerProfileModelId = String;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class PlayerProfileModel with _$PlayerProfileModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerProfileModel({

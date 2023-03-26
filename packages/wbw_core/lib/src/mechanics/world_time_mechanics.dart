@@ -3,7 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
-import 'package:wbw_core/wbw_core.dart';
+import '../../wbw_core.dart';
 
 class WorldTimeMechanics implements Loadable {
   WorldTimeMechanics();

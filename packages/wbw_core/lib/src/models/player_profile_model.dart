@@ -5,13 +5,7 @@ part of 'models.dart';
 typedef PlayerProfileModelId = String;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class PlayerProfileModel with _$PlayerProfileModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerProfileModel({
@@ -43,13 +37,7 @@ class PlayerProfileModel with _$PlayerProfileModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class PlayerHighscoreModel with _$PlayerHighscoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerHighscoreModel({
@@ -67,13 +55,7 @@ class PlayerHighscoreModel with _$PlayerHighscoreModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class PlayerLevelHighscoreModel with _$PlayerLevelHighscoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerLevelHighscoreModel({

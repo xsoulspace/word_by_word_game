@@ -4,13 +4,7 @@ typedef GameModelId = String;
 typedef LevelPlayers = List<GamePlayerModel>;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class GameModel with _$GameModel {
   @JsonSerializable(explicitToJson: true)
   const factory GameModel({

@@ -5,13 +5,7 @@ part of 'models.dart';
 /// This DateTime has no specific number to year / month convertion
 /// as it will be depends from the planet now on
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class WorldDateTimeModel with _$WorldDateTimeModel {
   @JsonSerializable(
     explicitToJson: true,

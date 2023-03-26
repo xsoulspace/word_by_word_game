@@ -13,33 +13,21 @@ class EmptyResourcesBlocState extends ResourcesBlocState {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LiveResourcesBlocState extends ResourcesBlocState
     with _$LiveResourcesBlocState {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
   @Implements<ResourcesBlocState>()
   const factory LiveResourcesBlocState({
     required final String tileMapName,
     required final String tileMapIcon,
   }) = _LiveResourcesBlocState;
   const LiveResourcesBlocState._();
-  factory LiveResourcesBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LiveResourcesBlocStateFromJson(json);
 
   factory LiveResourcesBlocState.fromModel(
     final ResourcesModel resourcesModel,
-  ) {
-    return LiveResourcesBlocState(
-      tileMapName: resourcesModel.tileMapName,
-      tileMapIcon: resourcesModel.tileMapIcon,
-    );
-  }
+  ) =>
+      LiveResourcesBlocState(
+        tileMapName: resourcesModel.tileMapName,
+        tileMapIcon: resourcesModel.tileMapIcon,
+      );
 }

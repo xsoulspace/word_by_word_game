@@ -6,9 +6,11 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/ads/states/states.dart';
+import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
-import 'package:word_by_word_game/pack_game/game/game.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 
 class GlobalSettingsInitializer extends StateInitializer {
   @override
@@ -20,13 +22,18 @@ class GlobalSettingsInitializer extends StateInitializer {
 }
 
 class GlobalStateInitializer extends StateInitializer {
+  GlobalStateInitializer({
+    required this.servicesDto,
+  });
+  final AppServicesProviderDto servicesDto;
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
+    final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
     final services = read<ServicesCollection>();
-    final analyticsNotifier = read<AnalyticsNotifier>();
+    final analyticsService = read<AnalyticsService>();
     final localDictionary =
         await services.dictionaryPersistence.loadDictionary();
     final initDictionary =
@@ -36,13 +43,14 @@ class GlobalStateInitializer extends StateInitializer {
     final initGameEvent =
         await GameInitializer().loadGameModel(services: services);
     globalGameBloc.add(initGameEvent);
-    await FirebaseInitializer().onDelayedLoad();
-    await analyticsNotifier.onDelayedLoad();
+    await servicesDto.firebaseInitializer?.onDelayedLoad();
+    await analyticsService.onDelayedLoad();
+    await adManager.onLoad();
     final event = () {
       if (kIsWeb) return AnalyticEvents.usedInWeb;
       if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;
     }();
-    if (event != null) unawaited(analyticsNotifier.logAnalyticEvent(event));
+    if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
 
     final currentLevelId = initGameEvent.gameModel.currentLevelId;
     if (currentLevelId.isNotEmpty) {
@@ -54,47 +62,43 @@ class GlobalStateInitializer extends StateInitializer {
 }
 
 class GameInitializer {
-  List<TemplateLevelModel> get templateLevels {
-    return [
-      const TemplateLevelModel(
-        id: 'black_white_mountains_1',
-        resources: ResourcesModel(
-          tileMapName: 'pixel_black_white_landscape',
-          tileMapIcon: 'pixel_black_white_map_icon',
+  List<TemplateLevelModel> get templateLevels => [
+        const TemplateLevelModel(
+          id: 'black_white_mountains_1',
+          resources: ResourcesModel(
+            tileMapName: 'pixel_black_white_landscape',
+            tileMapIcon: 'pixel_black_white_map_icon',
+          ),
+          name: LocalizedMap(
+            value: {
+              Languages.en: 'Black & White Mountains',
+              Languages.ru: 'Черно-белые горы',
+              Languages.it: 'Montagne in bianco e nero',
+            },
+          ),
         ),
-        name: LocalizedMap(
-          value: {
-            Languages.en: 'Black & White Mountains',
-            Languages.ru: 'Черно-белые горы',
-            Languages.it: 'Montagne in bianco e nero',
-          },
-        ),
-      ),
-    ];
-  }
+      ];
 
-  List<PlayerCharacterModel> get characters {
-    return [
-      PlayerCharacterModel(
-        id: 'hot-air-balloon',
-        localizedName: const LocalizedMap(
-          value: {
-            Languages.en: 'Hot Air Balloon',
-            Languages.ru: 'Воздушный шар',
-            Languages.it: 'Mongolfiera',
-          },
+  List<PlayerCharacterModel> get characters => [
+        PlayerCharacterModel(
+          id: 'hot-air-balloon',
+          localizedName: const LocalizedMap(
+            value: {
+              Languages.en: 'Hot Air Balloon',
+              Languages.ru: 'Воздушный шар',
+              Languages.it: 'Mongolfiera',
+            },
+          ),
+          asset: CharacterAssetModel(
+            srcPosition: SerializedVector2(x: 0, y: kTileDimension * 6),
+            srcSizeX: kTileDimension,
+            srcSizeY: kTileDimension,
+          ),
+          characterIcon: 'char_hot_air_baloon',
+          description: 'Moves with the wind..',
+          color: Colors.green.value,
         ),
-        asset: CharacterAssetModel(
-          srcPosition: SerializedVector2(x: 0, y: kTileDimension * 6),
-          srcSizeX: kTileDimension,
-          srcSizeY: kTileDimension,
-        ),
-        characterIcon: 'char_hot_air_baloon',
-        description: 'Moves with the wind..',
-        color: Colors.green.value,
-      ),
-    ];
-  }
+      ];
 
   /// the logic is to migrate from the version to to the next version
   GameModel migrateSave(final GameModel savedGame) {

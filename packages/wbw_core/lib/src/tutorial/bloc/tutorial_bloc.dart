@@ -185,9 +185,7 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
     return tutorial.events[index];
   }
 
-  TutorialEventsCollectionModel getTutorial() {
-    return getLiveState().tutorial;
-  }
+  TutorialEventsCollectionModel getTutorial() => getLiveState().tutorial;
 
   LiveTutorialBlocState getLiveState() {
     final effectiveState = state;

@@ -5,13 +5,7 @@ part of 'models.dart';
 typedef FullWordString = String;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class CurrentWordModel with _$CurrentWordModel {
   @JsonSerializable(
     explicitToJson: true,

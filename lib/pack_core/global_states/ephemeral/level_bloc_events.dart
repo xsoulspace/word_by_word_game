@@ -25,6 +25,11 @@ class ConsumeTickEvent extends LevelBlocEvent {
 }
 
 @immutable
+class HideWarningEvent extends LevelBlocEvent {
+  const HideWarningEvent();
+}
+
+@immutable
 class ChangeCurrentWordEvent extends LevelBlocEvent {
   const ChangeCurrentWordEvent({
     required this.word,
@@ -46,19 +51,11 @@ class LevelPlayerEndTurnActionEvent extends LevelBlocEvent {
 }
 
 @immutable
-class LevelPlayerSelectActionTypeEvent extends LevelBlocEvent {
-  const LevelPlayerSelectActionTypeEvent({
-    required this.type,
-  });
-  final LevelPlayerActionType? type;
-}
-
-@immutable
 class LevelPlayerSelectActionMultiplierEvent extends LevelBlocEvent {
   const LevelPlayerSelectActionMultiplierEvent({
     required this.multiplier,
   });
-  final LevelActionMultiplierType multiplier;
+  final EnergyMultiplierType multiplier;
 }
 
 @immutable

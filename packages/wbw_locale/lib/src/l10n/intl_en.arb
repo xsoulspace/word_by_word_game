@@ -1,0 +1,152 @@
+{
+  "finishGame": "Finish game",
+  "@finishGame": {
+    "type": "text"
+  },
+  "nextPlayer": "Next player",
+  "@nextPlayer": {
+    "type": "text"
+  },
+  "wordIsNotCorrect": "We cannot find the word {word} in our dictionary! Try another word or add it.",
+  "wordAlreadyWritten": "This word already written. Try another word.",
+  "resetEnding": "Reset ending",
+  "@resetEnding": {
+    "type": "text"
+  },
+  "congratulations": "Congratulations!",
+  "@congratulations": {
+    "type": "text"
+  },
+  "maxHighscoreIs": "Max highscore is ",
+  "@maxHighscoreIs": {
+    "type": "text"
+  },
+  "continueGame": "Continue ",
+  "@continueGame": {
+    "type": "text"
+  },
+  "play": "Play",
+  "name": "Name",
+  "send": "Send",
+  "toLandscapes": "To Landscapes",
+  "youHaveLandedInTheNowhere": "You have landed in the middle of nowhere..",
+  "profileCreator": "Profile Creator",
+  "returnToLandscapes": "Return To Landscapes",
+  "about": "Credits",
+  "username": "Username",
+  "createProfile": "Create Profile",
+  "previousWord": "Previous Word",
+  "settings": "Settings",
+  "selectPlayers": "Select the Players",
+  "chooseYourCharacter": "Choose Your Character",
+  "chooseLandscape": "Choose a Landscape",
+  "playersAndHighscore": "Players & Highscore",
+  "startNewGame": "Quick Start",
+  "startAgain": "Start again ",
+  "@startAgain": {
+    "type": "text"
+  },
+  "yourHighscore": "This time your score is ",
+  "@yourHighscore": {
+    "type": "text"
+  },
+  "player": "player",
+  "@player": {
+    "type": "text"
+  },
+  "lastword": "Last word: ",
+  "@lastword": {
+    "type": "text"
+  },
+  "confirm": "Confirm",
+  "applyAndEndTurn": "Apply & End Turn",
+  "hintAddBeginning": "beginning",
+  "@hintAddBeginning": {
+    "type": "text"
+  },
+  "hintAddNewWord": "add new word",
+  "@hintAddNewWord": {
+    "type": "text"
+  },
+  "hintAddEnding": "ending",
+  "@hintAddEnding": {
+    "type": "text"
+  },
+  "addNewWord": "add",
+  "@addNewWord": {
+    "type": "text"
+  },
+  "newGame": "New Game",
+  "@newGame": {
+    "type": "text"
+  },
+  "sendFeedback": "If you have an idea, improvements, or bugs join Discord server.",
+  "@sendFeedback": {
+    "type": "text"
+  },
+  "back": "Back",
+  "suggestedWord": "Suggested Word",
+  "tryAnotherWord": "Try another word",
+  "notEnoughKnowledgeToRevealWord": "Unfortunately, you have not enough knowledge points to reveal this word..",
+  "useCostKnowledgePoints": "Use {costOfWord} knowledge points",
+  "revealSuggestedWord": "Reveal suggested word?",
+  "ok": "Nice",
+  "noWordsSuggestions": "There is no words suggestions :(",
+  "tryWithDifferentLetters": "Try it with diffirent letters..",
+  "privacyPolicy": "Privacy Policy",
+  "creatingGame": "Hi, I'm Anton. Thank you for your interest in this game. Hope you like it:)",
+  "supportGame": "You can support the game in https://boosty.to/arenukvern",
+  "thankYou": "Have a great day!",
+  "@thankYou": {
+    "type": "text"
+  },
+  "currentScore": "score",
+  "@currentScore": {
+    "type": "text"
+  },
+  "highscore": "highscore",
+  "@highscore": {
+    "type": "text"
+  },
+  "lettersToRemove": "letters to remove",
+  "@lettersToRemove": {
+    "type": "text"
+  },
+  "players": "Players ",
+  "@players": {
+    "type": "text"
+  },
+  "menuLanguage": "Lang ",
+  "@menuLanguage": {
+    "type": "text"
+  },
+  "menuInfo": "Info ",
+  "@menuInfo": {
+    "type": "text"
+  },
+  "menuNewGame": "New ",
+  "@menuNewGame": {
+    "type": "text"
+  },
+  "selectAction": "Select Action",
+  "cookFood": "Cook Food",
+  "refuelStorage": "Refuel Balloon",
+  "addToDictionary": "Add to Dictionary",
+  "@addToDictionary": {
+    "type": "text"
+  },
+  "suggestWordButtonTooltip": "Click to get random word based on current letters.",
+  "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
+  "yourCurrentHighcoreTooltip": "Your current points.",
+  "youDontHaveEnoughPoints": "You don't have enough points to apply.",
+  "applyFuelOption": "Convert score to energy",
+  "createNewPlayerTooltip": "Click to create profile for new player.",
+  "createNewFirstPlayerTitle": "Create player profile to start a game.",
+  "createNewPlayerTitle": "Create profile for new player.",
+  "createNewPlayerBody": "You will be able to add this player's profile to any new game.",
+  "createPlayer": "Create player",
+  "yes": "Yes",
+  "no": "No",
+  "enableTutorial": "Use Tutorial",
+  "close": "Close"
+}

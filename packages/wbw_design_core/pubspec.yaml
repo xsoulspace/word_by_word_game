@@ -18,7 +18,9 @@ dependencies:
   freezed_annotation: ^2.1.0
   gap: ^2.0.0
   google_fonts: ^3.0.1
-  life_hooks: ^0.0.14
+  life_hooks: ^0.0.18
+  recase: ^4.1.0
+  rive: ^0.10.2
   sliver_tools: ^0.2.5
   tap_builder: ^0.3.4
 
@@ -28,7 +30,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.1.0+1
-  xsoulspace_lints: ^0.0.1
+  xsoulspace_lints: ^0.0.8
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -39,6 +41,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - google_fonts/
+    - assets/
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
   # An image asset can refer to one or more resolution-specific "variants", see
