@@ -144,21 +144,29 @@ class UiPlayerAndScoreTile extends StatelessWidget {
     final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
     final textStyle =
         isCurrent ? theme.textTheme.labelLarge : theme.textTheme.labelMedium;
-    return Container(
+    final backgroundColor = isCurrent
+        ? colorScheme.tertiaryContainer.withOpacity(0.7)
+        : colorScheme.scrim.withOpacity(0.2);
+    final radius = uiTheme.circularRadius.medium;
+
+    return AnimatedContainer(
+      duration: 350.milliseconds,
       padding: const EdgeInsets.only(
         top: 2,
         bottom: 2,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+        borderRadius: BorderRadius.only(
+          topRight: radius,
+          bottomRight: radius,
+        ),
+        color: backgroundColor,
         gradient: LinearGradient(
           colors: [
-            colorScheme.tertiaryContainer.withOpacity(0.2),
-            colorScheme.tertiaryContainer.withOpacity(0.6),
             colorScheme.tertiaryContainer.withOpacity(0.6),
             const Color(0x00FFFFFF),
           ],
-          stops: const [0.08, 0.1, 0.4, 1],
+          stops: const [0.4, 1],
         ),
       ),
       child: Row(
@@ -173,7 +181,15 @@ class UiPlayerAndScoreTile extends StatelessWidget {
             duration: 50.milliseconds,
             width: isCurrent ? 6 : 12,
           ),
-          Text(player.name, style: textStyle),
+          Text(
+            player.name,
+            style: theme.textTheme.labelMedium?.copyWith(
+              color:
+                  isCurrent ? null : colorScheme.onBackground.withOpacity(0.6),
+            ),
+
+            /// textStyle,
+          ),
         ],
       ),
     );
@@ -222,19 +238,23 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final radius = uiTheme.circularRadius;
-
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final selected = widget.selected;
     return AnimatedContainer(
       duration: 50.milliseconds,
       decoration: BoxDecoration(
-        color: widget.player.color.withOpacity(0.8),
+        color: selected
+            ? widget.player.color.withOpacity(0.8)
+            : colorScheme.scrim.withOpacity(0.05),
         borderRadius: BorderRadius.only(
           topRight: radius.medium,
           bottomRight: radius.medium,
         ),
       ),
       padding: EdgeInsets.only(
-        left: 2,
-        right: widget.selected ? 4 : 8,
+        left: 4,
+        right: selected ? 4 : 8,
         top: 2,
         bottom: 2,
       ),
@@ -246,7 +266,16 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
             onInit: (final controller) =>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
-            child: Text('$_score', style: widget.textStyle)
+            child: Text(
+              '${_score.toInt()}',
+              style: theme.textTheme.labelMedium?.copyWith(
+                color: selected
+                    ? colorScheme.onPrimary
+                    : colorScheme.onBackground.withOpacity(0.6),
+              ),
+
+              // style: widget.textStyle,
+            )
                 .animate(
                   key: ValueKey(_score),
                   autoPlay: true,
@@ -260,8 +289,12 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
                 )
                 .scale(begin: const Offset(1.1, 1.1)),
           ),
-          if (widget.selected)
-            const Icon(Icons.arrow_right_outlined).animate().fadeIn().slideX(
+          if (selected)
+            Icon(
+              Icons.arrow_right_outlined,
+              size: theme.textTheme.labelMedium?.fontSize,
+              color: colorScheme.onPrimary,
+            ).animate().fadeIn().slideX(
                   begin: -0.1,
                   end: 0,
                 ),

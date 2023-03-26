@@ -55,21 +55,17 @@ class _LastWordTextState extends State<LastWordText> {
     final uiTheme = UiTheme.of(context);
     final radius = uiTheme.circularRadius;
     final theme = Theme.of(context);
+    final textStyle = theme.textTheme.labelMedium;
     final colorScheme = theme.colorScheme;
     if (widget.latestWord.isEmpty) return const SizedBox();
-    return AnimatedContainer(
-      duration: 350.milliseconds,
+    return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.only(
           topRight: radius.medium,
           bottomRight: radius.medium,
         ),
-        gradient: LinearGradient(
-          colors: [
-            colorScheme.tertiaryContainer.withOpacity(0.4),
-            colorScheme.tertiaryContainer.withOpacity(0.1),
-            const Color(0x00FFFFFF),
-          ],
+        border: Border.all(
+          color: colorScheme.tertiaryContainer.withOpacity(0.4),
         ),
       ),
       padding: const EdgeInsets.only(
@@ -81,17 +77,37 @@ class _LastWordTextState extends State<LastWordText> {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(S.of(context).previousWord),
+          Text(
+            S.of(context).previousWord,
+            style: textStyle?.copyWith(
+              color: colorScheme.onBackground.withOpacity(0.8),
+            ),
+          ),
           uiTheme.horizontalBoxes.small,
-          Text(_lastWord)
-              .animate(
-                onInit: (final controller) => _controller = controller,
-              )
-              .slideY(
-                begin: -0.1,
-                end: 0,
-              )
-              .scale(begin: const Offset(1.1, 1.1)),
+          Container(
+            padding: const EdgeInsets.only(
+              top: 2,
+              bottom: 2,
+              left: 8,
+              right: 8,
+            ),
+            decoration: BoxDecoration(
+              color: colorScheme.tertiaryContainer.withOpacity(0.3),
+              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+            ),
+            child: Text(
+              _lastWord,
+              style: textStyle,
+            )
+                .animate(
+                  onInit: (final controller) => _controller = controller,
+                )
+                .slideY(
+                  begin: -0.1,
+                  end: 0,
+                )
+                .scale(begin: const Offset(1.1, 1.1)),
+          ),
         ],
       ),
     );

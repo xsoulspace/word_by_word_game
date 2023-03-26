@@ -1,5 +1,6 @@
 export './player_swither_bar.dart';
 export 'game_bottom_bar/game_bottom_bar.dart';
+export 'last_word.dart';
 export 'level_actions_row.dart';
 export 'level_center_row.dart';
 export 'word_actions_buttons.dart';

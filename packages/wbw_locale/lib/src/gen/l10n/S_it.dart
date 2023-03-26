@@ -16,8 +16,7 @@ class SIt extends S {
   }
 
   @override
-  String get wordAlreadyWritten =>
-      'Questa parola è già scritta. Prova con un\'altra parola.';
+  String get wordAlreadyWritten => 'Questa parola è già scritta. Prova con un\'altra parola.';
 
   @override
   String get resetEnding => 'Reimposta fine';
@@ -62,7 +61,7 @@ class SIt extends S {
   String get createProfile => 'Creare Profili';
 
   @override
-  String get previousWord => 'Parola precedente:';
+  String get previousWord => 'Parola precedente';
 
   @override
   String get settings => 'Impostazioni';
@@ -116,8 +115,7 @@ class SIt extends S {
   String get newGame => 'Nuovo gioco';
 
   @override
-  String get sendFeedback =>
-      'Se hai un\'idea, miglioramenti o bug unisciti al server Discord.';
+  String get sendFeedback => 'Se hai un\'idea, miglioramenti o bug unisciti al server Discord.';
 
   @override
   String get back => 'Indietro';
@@ -129,8 +127,7 @@ class SIt extends S {
   String get tryAnotherWord => 'Prova un\'altra parola';
 
   @override
-  String get notEnoughKnowledgeToRevealWord =>
-      'Purtroppo non avete abbastanza punti conoscenza per rivelare questa parola...';
+  String get notEnoughKnowledgeToRevealWord => 'Purtroppo non avete abbastanza punti conoscenza per rivelare questa parola...';
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {
@@ -153,12 +150,10 @@ class SIt extends S {
   String get privacyPolicy => 'Politica sulla riservatezza';
 
   @override
-  String get creatingGame =>
-      'Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)';
+  String get creatingGame => 'Ciao, sono Anton. Grazie per il tuo interesse per questo gioco. Spero ti piaccia:)';
 
   @override
-  String get supportGame =>
-      'Puoi supportare il gioco in https://boosty.to/arenukvern';
+  String get supportGame => 'Puoi supportare il gioco in https://boosty.to/arenukvern';
 
   @override
   String get thankYou => 'Grazie e buon gioco!';
@@ -197,37 +192,31 @@ class SIt extends S {
   String get addToDictionary => 'Aggiungi al dizionario';
 
   @override
-  String get suggestWordButtonTooltip =>
-      'Fare clic per ottenere una parola casuale in base alle lettere correnti.';
+  String get suggestWordButtonTooltip => 'Fare clic per ottenere una parola casuale in base alle lettere correnti.';
 
   @override
-  String get mainMenuButtonTooltip =>
-      'Fare clic per aprire il menu (i progressi correnti verranno salvati).';
+  String get mainMenuButtonTooltip => 'Fare clic per aprire il menu (i progressi correnti verranno salvati).';
 
   @override
   String get yourCurrentHighcoreTooltip => 'Il tuo record attuale.';
 
   @override
-  String get youDontHaveEnoughPoints =>
-      'Pallone non necessario per l\'approssimazione.';
+  String get youDontHaveEnoughPoints => 'Pallone non necessario per l\'approssimazione.';
 
   @override
   String get applyFuelOption => 'Applicare l\'opzione carburante';
 
   @override
-  String get createNewPlayerTooltip =>
-      'Fare clic per creare il profilo per il nuovo giocatore.';
+  String get createNewPlayerTooltip => 'Fare clic per creare il profilo per il nuovo giocatore.';
 
   @override
-  String get createNewFirstPlayerTitle =>
-      'Crea un profilo giocatore per iniziare una partita.';
+  String get createNewFirstPlayerTitle => 'Crea un profilo giocatore per iniziare una partita.';
 
   @override
   String get createNewPlayerTitle => 'Crea profilo per nuovo giocatore.';
 
   @override
-  String get createNewPlayerBody =>
-      'Potrai aggiungere il profilo di questo giocatore a qualsiasi nuova partita.';
+  String get createNewPlayerBody => 'Potrai aggiungere il profilo di questo giocatore a qualsiasi nuova partita.';
 
   @override
   String get createPlayer => 'Crea giocatore';
