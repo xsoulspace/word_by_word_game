@@ -9,11 +9,12 @@ class FuelStorageModel with _$FuelStorageModel {
     explicitToJson: true,
   )
   const factory FuelStorageModel({
-    @Default(100) final double value,
+    @Default(FuelStorageModel.defaultValue) final double value,
   }) = _FuelStorageModel;
 
   const FuelStorageModel._();
 
   factory FuelStorageModel.fromJson(final Map<String, dynamic> json) =>
       _$FuelStorageModelFromJson(json);
+  static const defaultValue = 400.0;
 }

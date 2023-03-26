@@ -590,7 +590,8 @@ class __$$_FuelStorageModelCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_FuelStorageModel extends _FuelStorageModel {
-  const _$_FuelStorageModel({this.value = 100}) : super._();
+  const _$_FuelStorageModel({this.value = FuelStorageModel.defaultValue})
+      : super._();
 
   factory _$_FuelStorageModel.fromJson(Map<String, dynamic> json) =>
       _$$_FuelStorageModelFromJson(json);
@@ -2515,7 +2516,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       this.localizedName = LocalizedMap.empty,
       this.characterIcon = '',
       this.position = SerializedVector2.zero,
-      this.fuel = const FuelStorageModel(value: 150),
+      this.fuel = const FuelStorageModel(),
       this.fuelNormalPower = 50.5,
       this.requiredLiftForce = 0.5})
       : super._();

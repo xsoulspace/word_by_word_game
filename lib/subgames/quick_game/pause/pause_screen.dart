@@ -15,8 +15,8 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/ads/ads.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
-import 'package:word_by_word_game/subgames/quick_game/start_options/level_options.dart';
 import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 
 part 'pause_screen_state.dart';

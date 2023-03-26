@@ -43,7 +43,8 @@ Map<String, dynamic> _$$_FuelModelToJson(_$_FuelModel instance) =>
 
 _$_FuelStorageModel _$$_FuelStorageModelFromJson(Map<String, dynamic> json) =>
     _$_FuelStorageModel(
-      value: (json['value'] as num?)?.toDouble() ?? 100,
+      value:
+          (json['value'] as num?)?.toDouble() ?? FuelStorageModel.defaultValue,
     );
 
 Map<String, dynamic> _$$_FuelStorageModelToJson(_$_FuelStorageModel instance) =>
@@ -252,7 +253,7 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
           : SerializedVector2.fromJson(
               json['position'] as Map<String, dynamic>),
       fuel: json['fuel'] == null
-          ? const FuelStorageModel(value: 150)
+          ? const FuelStorageModel()
           : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
       fuelNormalPower: (json['fuelNormalPower'] as num?)?.toDouble() ?? 50.5,
       requiredLiftForce: (json['requiredLiftForce'] as num?)?.toDouble() ?? 0.5,

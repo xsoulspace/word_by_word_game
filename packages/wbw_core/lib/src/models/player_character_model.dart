@@ -16,7 +16,7 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 position,
-    @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
+    @Default(FuelStorageModel()) final FuelStorageModel fuel,
     @Default(50.5) final double fuelNormalPower,
     @Default(0.5) final double requiredLiftForce,
   }) = _PlayerCharacterModel;

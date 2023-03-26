@@ -4,8 +4,8 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
-import 'package:word_by_word_game/subgames/quick_game/start_options/widgets/widgets.dart';
 
 class LevelWinDialog extends StatelessWidget {
   const LevelWinDialog({super.key});
