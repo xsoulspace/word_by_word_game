@@ -488,7 +488,7 @@ abstract class S {
   /// No description provided for @applyFuelOption.
   ///
   /// In en, this message translates to:
-  /// **'Apply fuel option'**
+  /// **'Convert score to energy'**
   String get applyFuelOption;
 
   /// No description provided for @createNewPlayerTooltip.

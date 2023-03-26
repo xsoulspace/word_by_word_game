@@ -63,9 +63,8 @@ enum PrimitiveBool {
 }
 
 extension BooleanExtension on bool {
-  PrimitiveBool toPrimitiveBool() {
-    return PrimitiveBool.values.firstWhere((final e) => e.boolValue == this);
-  }
+  PrimitiveBool toPrimitiveBool() =>
+      PrimitiveBool.values.firstWhere((final e) => e.boolValue == this);
 }
 
 @immutable

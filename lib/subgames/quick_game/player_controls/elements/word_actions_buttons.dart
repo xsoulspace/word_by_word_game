@@ -50,22 +50,6 @@ class UIDesktopActions extends StatelessWidget {
         ]);
         break;
       case GamePhaseType.selectFuel:
-        children.addAll([
-          TutorialFrame(
-            highlightPosition: Alignment.topLeft,
-            uiKey: TutorialUiItem.applyAndEndTurnButton,
-            child: UIToEndTurnButton(
-              onPressed: () {
-                state.onToEndTurn();
-
-                TutorialFrame.sendOnClickEvent(
-                  uiKey: TutorialUiItem.applyAndEndTurnButton,
-                  context: context,
-                );
-              },
-            ),
-          ),
-        ]);
         break;
     }
 
@@ -116,21 +100,6 @@ class UIMobileActions extends StatelessWidget {
         ]);
         break;
       case GamePhaseType.selectFuel:
-        children.addAll([
-          TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.applyAndEndTurnButton,
-            child: UIToEndTurnButton(
-              onPressed: () {
-                state.onToEndTurn();
-                TutorialFrame.sendOnClickEvent(
-                  uiKey: TutorialUiItem.applyAndEndTurnButton,
-                  context: context,
-                );
-              },
-            ),
-          ),
-        ]);
         break;
     }
 

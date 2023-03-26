@@ -69,14 +69,19 @@ class WordCompositionState extends LifeState {
         multiplier: multiplier,
       ),
     );
+    onToEndTurn();
   }
 
+  bool _isSelectActionLocked = false;
   void onToSelectActionPhase() {
+    if (_isSelectActionLocked) return;
+    _isSelectActionLocked = true;
     diDto.levelBloc.add(const AcceptNewWordEvent());
   }
 
   void onToEndTurn() {
     diDto.levelBloc.add(const LevelPlayerEndTurnActionEvent());
+    _isSelectActionLocked = false;
     onRequestLeftTextFocus();
   }
 

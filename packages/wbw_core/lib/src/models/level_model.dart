@@ -6,7 +6,14 @@ typedef LevelModelId = String;
 
 enum GamePhaseType { entryWord, selectFuel }
 
-enum EnergyMultiplierType { m1, m2, m3 }
+enum EnergyMultiplierType {
+  m1(namedPart: '1/3'),
+  m2(namedPart: '2/3'),
+  m3(namedPart: '3/3');
+
+  const EnergyMultiplierType({required this.namedPart});
+  final String namedPart;
+}
 
 @immutable
 @freezed

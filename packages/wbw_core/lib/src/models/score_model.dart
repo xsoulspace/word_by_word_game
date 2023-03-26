@@ -13,15 +13,9 @@ class ScoreModel with _$ScoreModel {
       _$ScoreModelFromJson(json);
   static const zero = ScoreModel(value: 0);
 
-  ScoreModel operator *(final num factor) {
-    return ScoreModel(value: value * factor);
-  }
+  ScoreModel operator *(final num factor) => ScoreModel(value: value * factor);
 
-  ScoreModel operator +(final num factor) {
-    return ScoreModel(value: value + factor);
-  }
+  ScoreModel operator +(final num factor) => ScoreModel(value: value + factor);
 
-  bool operator >=(final num factor) {
-    return value >= factor;
-  }
+  bool operator >=(final num factor) => value >= factor;
 }

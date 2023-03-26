@@ -204,7 +204,7 @@ class SIt extends S {
   String get youDontHaveEnoughPoints => 'Pallone non necessario per l\'approssimazione.';
 
   @override
-  String get applyFuelOption => 'Applicare l\'opzione carburante';
+  String get applyFuelOption => 'Convertire il punteggio in energia';
 
   @override
   String get createNewPlayerTooltip => 'Fare clic per creare il profilo per il nuovo giocatore.';

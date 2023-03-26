@@ -15,10 +15,7 @@ class LastWordWidget extends StatelessWidget {
     final latestWord = context.select<LevelBloc, String>(
       (final state) => state.getLiveState().latestWord,
     );
-    return LastWordText(latestWord: latestWord)
-        .animate()
-        .fadeIn()
-        .slideX(begin: -0.1);
+    return LastWordText(latestWord: latestWord);
   }
 }
 
