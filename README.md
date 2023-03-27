@@ -61,7 +61,7 @@ If you need help getting started or have any questions, check out our [Discord C
 ## Build
 
 web:
-flutter clean && flutter pub get && flutter build web --csp
+flutter clean && flutter pub get && flutter build web --csp -t lib/main_prod.dart
 
 android:
 flutter build appbundle --dart-define=""
