@@ -2,7 +2,7 @@ group 'dev.xsoulspace.yandex_ads_sdk'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.7.20'
+    ext.kotlin_version = '1.8.0'
     repositories {
         google()
         mavenCentral()
@@ -25,7 +25,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    compileSdkVersion 31
+    compileSdkVersion 33
+    // ndkVersion flutter.ndkVersion
+    // ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -47,5 +49,5 @@ android {
 
 
 dependencies {
-    implementation 'com.yandex.android:mobileads:5.5.0'
+    implementation 'com.yandex.android:mobileads:5.6.0'
 }
