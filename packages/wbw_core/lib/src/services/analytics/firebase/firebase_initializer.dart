@@ -11,7 +11,7 @@ abstract class FirebaseInitializer implements Loadable {
   FirebaseInitializer({
     required this.firebaseOptions,
   });
-  final FirebaseOptions firebaseOptions;
+  final FirebaseOptions? firebaseOptions;
 
   @override
   Future<void> onLoad();
