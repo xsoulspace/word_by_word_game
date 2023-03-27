@@ -16,9 +16,10 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
     required this.firebaseOptions,
   });
   @override
-  final FirebaseOptions firebaseOptions;
+  final FirebaseOptions? firebaseOptions;
   @override
   Future<void> onLoad() async {
+    if (firebaseOptions == null) return;
     await Firebase.initializeApp(
       options: firebaseOptions,
     );
