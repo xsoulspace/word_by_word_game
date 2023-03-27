@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_annotating_with_dynamic
 
-import 'package:firebase_core/firebase_core.dart';
+// ignore: depend_on_referenced_packages
+import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
 import 'package:flutter/material.dart';
 
 import '../interfaces/interfaces.dart';
@@ -8,10 +9,10 @@ import 'firebase_initializer.dart';
 
 class FirebaseInitializerImpl implements FirebaseInitializer {
   FirebaseInitializerImpl({
-    required this.firebaseOptions,
+    this.firebaseOptions,
   });
   @override
-  final FirebaseOptions firebaseOptions;
+  final FirebaseOptions? firebaseOptions;
 
   @override
   Future<void> onLoad() async {}
