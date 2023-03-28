@@ -15,128 +15,226 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LiveLevelBlocState {
-  String get id => throw _privateConstructorUsedError;
-  LocalizedMap get name => throw _privateConstructorUsedError;
-  CurrentWordModel get currentWord => throw _privateConstructorUsedError;
-  Map<String, String> get words => throw _privateConstructorUsedError;
-  String get latestWord => throw _privateConstructorUsedError;
-  GamePhaseType get phaseType => throw _privateConstructorUsedError;
-  EnergyMultiplierType get actionMultiplier =>
+mixin _$LevelBlocState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)
+        live,
+  }) =>
       throw _privateConstructorUsedError;
-
-  /// ********************************************
-  /// *      NON PERSISTENT
-  /// ********************************************
-  WordWarning get wordWarning => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LiveLevelBlocStateCopyWith<LiveLevelBlocState> get copyWith =>
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)?
+        live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)?
+        live,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyLevelBlocState value) empty,
+    required TResult Function(LiveLevelBlocState value) live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyLevelBlocState value)? empty,
+    TResult? Function(LiveLevelBlocState value)? live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyLevelBlocState value)? empty,
+    TResult Function(LiveLevelBlocState value)? live,
+    required TResult orElse(),
+  }) =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LiveLevelBlocStateCopyWith<$Res> {
-  factory $LiveLevelBlocStateCopyWith(
-          LiveLevelBlocState value, $Res Function(LiveLevelBlocState) then) =
-      _$LiveLevelBlocStateCopyWithImpl<$Res, LiveLevelBlocState>;
-  @useResult
-  $Res call(
-      {String id,
-      LocalizedMap name,
-      CurrentWordModel currentWord,
-      Map<String, String> words,
-      String latestWord,
-      GamePhaseType phaseType,
-      EnergyMultiplierType actionMultiplier,
-      WordWarning wordWarning});
-
-  $LocalizedMapCopyWith<$Res> get name;
-  $CurrentWordModelCopyWith<$Res> get currentWord;
+abstract class $LevelBlocStateCopyWith<$Res> {
+  factory $LevelBlocStateCopyWith(
+          LevelBlocState value, $Res Function(LevelBlocState) then) =
+      _$LevelBlocStateCopyWithImpl<$Res, LevelBlocState>;
 }
 
 /// @nodoc
-class _$LiveLevelBlocStateCopyWithImpl<$Res, $Val extends LiveLevelBlocState>
-    implements $LiveLevelBlocStateCopyWith<$Res> {
-  _$LiveLevelBlocStateCopyWithImpl(this._value, this._then);
+class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
+    implements $LevelBlocStateCopyWith<$Res> {
+  _$LevelBlocStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-    Object? currentWord = null,
-    Object? words = null,
-    Object? latestWord = null,
-    Object? phaseType = null,
-    Object? actionMultiplier = null,
-    Object? wordWarning = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as LocalizedMap,
-      currentWord: null == currentWord
-          ? _value.currentWord
-          : currentWord // ignore: cast_nullable_to_non_nullable
-              as CurrentWordModel,
-      words: null == words
-          ? _value.words
-          : words // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-      latestWord: null == latestWord
-          ? _value.latestWord
-          : latestWord // ignore: cast_nullable_to_non_nullable
-              as String,
-      phaseType: null == phaseType
-          ? _value.phaseType
-          : phaseType // ignore: cast_nullable_to_non_nullable
-              as GamePhaseType,
-      actionMultiplier: null == actionMultiplier
-          ? _value.actionMultiplier
-          : actionMultiplier // ignore: cast_nullable_to_non_nullable
-              as EnergyMultiplierType,
-      wordWarning: null == wordWarning
-          ? _value.wordWarning
-          : wordWarning // ignore: cast_nullable_to_non_nullable
-              as WordWarning,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LocalizedMapCopyWith<$Res> get name {
-    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
-      return _then(_value.copyWith(name: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CurrentWordModelCopyWith<$Res> get currentWord {
-    return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
-      return _then(_value.copyWith(currentWord: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
-    implements $LiveLevelBlocStateCopyWith<$Res> {
-  factory _$$_LiveLevelBlocStateCopyWith(_$_LiveLevelBlocState value,
-          $Res Function(_$_LiveLevelBlocState) then) =
-      __$$_LiveLevelBlocStateCopyWithImpl<$Res>;
+abstract class _$$EmptyLevelBlocStateCopyWith<$Res> {
+  factory _$$EmptyLevelBlocStateCopyWith(_$EmptyLevelBlocState value,
+          $Res Function(_$EmptyLevelBlocState) then) =
+      __$$EmptyLevelBlocStateCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$EmptyLevelBlocStateCopyWithImpl<$Res>
+    extends _$LevelBlocStateCopyWithImpl<$Res, _$EmptyLevelBlocState>
+    implements _$$EmptyLevelBlocStateCopyWith<$Res> {
+  __$$EmptyLevelBlocStateCopyWithImpl(
+      _$EmptyLevelBlocState _value, $Res Function(_$EmptyLevelBlocState) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$EmptyLevelBlocState implements EmptyLevelBlocState {
+  const _$EmptyLevelBlocState();
+
   @override
+  String toString() {
+    return 'LevelBlocState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$EmptyLevelBlocState);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)
+        live,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)?
+        live,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)?
+        live,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyLevelBlocState value) empty,
+    required TResult Function(LiveLevelBlocState value) live,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyLevelBlocState value)? empty,
+    TResult? Function(LiveLevelBlocState value)? live,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyLevelBlocState value)? empty,
+    TResult Function(LiveLevelBlocState value)? live,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class EmptyLevelBlocState implements LevelBlocState {
+  const factory EmptyLevelBlocState() = _$EmptyLevelBlocState;
+}
+
+/// @nodoc
+abstract class _$$LiveLevelBlocStateCopyWith<$Res> {
+  factory _$$LiveLevelBlocStateCopyWith(_$LiveLevelBlocState value,
+          $Res Function(_$LiveLevelBlocState) then) =
+      __$$LiveLevelBlocStateCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {String id,
@@ -148,18 +246,16 @@ abstract class _$$_LiveLevelBlocStateCopyWith<$Res>
       EnergyMultiplierType actionMultiplier,
       WordWarning wordWarning});
 
-  @override
   $LocalizedMapCopyWith<$Res> get name;
-  @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
 
 /// @nodoc
-class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
-    extends _$LiveLevelBlocStateCopyWithImpl<$Res, _$_LiveLevelBlocState>
-    implements _$$_LiveLevelBlocStateCopyWith<$Res> {
-  __$$_LiveLevelBlocStateCopyWithImpl(
-      _$_LiveLevelBlocState _value, $Res Function(_$_LiveLevelBlocState) _then)
+class __$$LiveLevelBlocStateCopyWithImpl<$Res>
+    extends _$LevelBlocStateCopyWithImpl<$Res, _$LiveLevelBlocState>
+    implements _$$LiveLevelBlocStateCopyWith<$Res> {
+  __$$LiveLevelBlocStateCopyWithImpl(
+      _$LiveLevelBlocState _value, $Res Function(_$LiveLevelBlocState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -174,7 +270,7 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
     Object? actionMultiplier = null,
     Object? wordWarning = null,
   }) {
-    return _then(_$_LiveLevelBlocState(
+    return _then(_$LiveLevelBlocState(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -209,12 +305,28 @@ class __$$_LiveLevelBlocStateCopyWithImpl<$Res>
               as WordWarning,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocalizedMapCopyWith<$Res> get name {
+    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
+      return _then(_value.copyWith(name: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CurrentWordModelCopyWith<$Res> get currentWord {
+    return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
+      return _then(_value.copyWith(currentWord: value));
+    });
+  }
 }
 
 /// @nodoc
 
-class _$_LiveLevelBlocState extends _LiveLevelBlocState {
-  const _$_LiveLevelBlocState(
+class _$LiveLevelBlocState implements LiveLevelBlocState {
+  const _$LiveLevelBlocState(
       {required this.id,
       this.name = LocalizedMap.empty,
       this.currentWord = const CurrentWordModel(),
@@ -223,8 +335,7 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
       this.phaseType = GamePhaseType.entryWord,
       this.actionMultiplier = EnergyMultiplierType.m1,
       this.wordWarning = WordWarning.none})
-      : _words = words,
-        super._();
+      : _words = words;
 
   @override
   final String id;
@@ -262,14 +373,14 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
 
   @override
   String toString() {
-    return 'LiveLevelBlocState(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, wordWarning: $wordWarning)';
+    return 'LevelBlocState.live(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, wordWarning: $wordWarning)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LiveLevelBlocState &&
+            other is _$LiveLevelBlocState &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.currentWord, currentWord) ||
@@ -300,14 +411,105 @@ class _$_LiveLevelBlocState extends _LiveLevelBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LiveLevelBlocStateCopyWith<_$_LiveLevelBlocState> get copyWith =>
-      __$$_LiveLevelBlocStateCopyWithImpl<_$_LiveLevelBlocState>(
+  _$$LiveLevelBlocStateCopyWith<_$LiveLevelBlocState> get copyWith =>
+      __$$LiveLevelBlocStateCopyWithImpl<_$LiveLevelBlocState>(
           this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)
+        live,
+  }) {
+    return live(id, name, currentWord, words, latestWord, phaseType,
+        actionMultiplier, wordWarning);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)?
+        live,
+  }) {
+    return live?.call(id, name, currentWord, words, latestWord, phaseType,
+        actionMultiplier, wordWarning);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(
+            String id,
+            LocalizedMap name,
+            CurrentWordModel currentWord,
+            Map<String, String> words,
+            String latestWord,
+            GamePhaseType phaseType,
+            EnergyMultiplierType actionMultiplier,
+            WordWarning wordWarning)?
+        live,
+    required TResult orElse(),
+  }) {
+    if (live != null) {
+      return live(id, name, currentWord, words, latestWord, phaseType,
+          actionMultiplier, wordWarning);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(EmptyLevelBlocState value) empty,
+    required TResult Function(LiveLevelBlocState value) live,
+  }) {
+    return live(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(EmptyLevelBlocState value)? empty,
+    TResult? Function(LiveLevelBlocState value)? live,
+  }) {
+    return live?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(EmptyLevelBlocState value)? empty,
+    TResult Function(LiveLevelBlocState value)? live,
+    required TResult orElse(),
+  }) {
+    if (live != null) {
+      return live(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _LiveLevelBlocState extends LiveLevelBlocState
-    implements LevelBlocState {
-  const factory _LiveLevelBlocState(
+abstract class LiveLevelBlocState implements LevelBlocState {
+  const factory LiveLevelBlocState(
       {required final String id,
       final LocalizedMap name,
       final CurrentWordModel currentWord,
@@ -315,31 +517,21 @@ abstract class _LiveLevelBlocState extends LiveLevelBlocState
       final String latestWord,
       final GamePhaseType phaseType,
       final EnergyMultiplierType actionMultiplier,
-      final WordWarning wordWarning}) = _$_LiveLevelBlocState;
-  const _LiveLevelBlocState._() : super._();
+      final WordWarning wordWarning}) = _$LiveLevelBlocState;
 
-  @override
   String get id;
-  @override
   LocalizedMap get name;
-  @override
   CurrentWordModel get currentWord;
-  @override
   Map<String, String> get words;
-  @override
   String get latestWord;
-  @override
   GamePhaseType get phaseType;
-  @override
   EnergyMultiplierType get actionMultiplier;
-  @override
 
   /// ********************************************
   /// *      NON PERSISTENT
   /// ********************************************
   WordWarning get wordWarning;
-  @override
   @JsonKey(ignore: true)
-  _$$_LiveLevelBlocStateCopyWith<_$_LiveLevelBlocState> get copyWith =>
+  _$$LiveLevelBlocStateCopyWith<_$LiveLevelBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }

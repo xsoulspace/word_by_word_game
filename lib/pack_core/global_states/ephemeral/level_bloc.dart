@@ -70,7 +70,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final InitLevelEvent event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final liveLevel = LiveLevelBlocState.fromModel(event.levelModel);
+    final liveLevel = LevelBlocState.liveFromModel(event.levelModel);
     emit(liveLevel);
     diDto.globalGameBloc.add(
       const LevelPartLoadedEvent(loadedState: LevelPartStates.level),

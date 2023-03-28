@@ -6,56 +6,20 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/player_swither_bar.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_actions_buttons.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-class UIFuelBar extends HookWidget {
-  const UIFuelBar({super.key});
+class UiFuelBar extends HookWidget {
+  const UiFuelBar({super.key});
 
   @override
-  Widget build(final BuildContext context) {
-    final widgetState = context.read<WordCompositionState>();
-    final uiTheme = UiTheme.of(context);
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
-
-    return BlocBuilder<LevelBloc, LevelBlocState>(
-      buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-        checkLiveState: (final previous, final current) =>
-            previous.actionMultiplier != current.actionMultiplier,
-      ),
-      builder: (final context, final levelState) {
-        if (levelState is! LiveLevelBlocState) {
-          return const SizedBox();
-        }
-        return Container(
-          padding: EdgeInsets.symmetric(horizontal: uiTheme.spacing.medium),
-          constraints: const BoxConstraints(maxWidth: 350),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Expanded(child: UIMobilePlayerName()),
-                  UiPauseIconButton(onPressed: widgetState.onPause),
-                  const Expanded(
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: UIMobilePlayerScore(),
-                    ),
-                  ),
-                ],
-              ),
-              uiTheme.verticalBoxes.large,
-              const UiFuelFrame(),
-            ],
-          ),
-        );
-      },
-    );
-  }
+  Widget build(final BuildContext context) =>
+      BlocBuilder<LevelBloc, LevelBlocState>(
+        buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+          checkLiveState: (final previous, final current) =>
+              previous.actionMultiplier != current.actionMultiplier,
+        ),
+        builder: (final context, final levelState) => const UiFuelFrame(),
+      );
 }
 
 class UiFuelFrame extends StatelessWidget {
@@ -66,6 +30,7 @@ class UiFuelFrame extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
+
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
         checkLiveState: (final previous, final current) =>
@@ -103,10 +68,10 @@ class UiFuelFrame extends StatelessWidget {
                   scrollDirection: Axis.horizontal,
                   itemCount: EnergyMultiplierType.values.length,
                 ),
-              ),
+              ).animate().fadeIn().slideY(begin: 0.1),
             ],
           ),
-        );
+        ).animate().fadeIn().slideY(begin: 0.1);
       },
     );
   }

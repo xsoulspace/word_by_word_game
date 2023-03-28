@@ -10,9 +10,8 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
-import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
-
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
+import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
 
 part 'level_start_dialog_ui_state.dart';
 part 'level_start_dialog_ux_state.dart';

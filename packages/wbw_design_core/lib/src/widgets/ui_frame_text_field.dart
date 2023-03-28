@@ -28,7 +28,7 @@ class UiFrameTextField extends StatelessWidget {
     return RawKeyboardListener(
       focusNode: keyFocusNode,
       onKey: (final event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+        if (event.logicalKey == LogicalKeyboardKey.enter) {
           onEnterPressed?.call();
         }
       },
