@@ -2,7 +2,7 @@ group 'dev.xsoulspace.yandex_ads_sdk'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.8.0'
+    ext.kotlin_version = '1.7.10'
     repositories {
         google()
         mavenCentral()
@@ -27,7 +27,7 @@ apply plugin: 'kotlin-android'
 android {
     compileSdkVersion 33
     // ndkVersion flutter.ndkVersion
-    // ndkVersion "25.1.8937393"
+    ndkVersion "25.1.8937393"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
