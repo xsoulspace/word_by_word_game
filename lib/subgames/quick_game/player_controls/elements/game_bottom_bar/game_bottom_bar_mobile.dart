@@ -11,7 +11,7 @@ class MobileGameBottomBarWidget extends StatelessWidget {
 
     return Column(
       children: [
-        UILevelCenterBar(),
+        const UILevelCenterBar(),
         if (DeviceRuntimeType.isMobile)
           uiTheme.verticalBoxes.extraSmall
         else

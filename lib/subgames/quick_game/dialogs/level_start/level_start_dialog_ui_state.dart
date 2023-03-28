@@ -14,7 +14,7 @@ LevelStartDialogUiState _useLevelStartUiState({
   required final LevelStartDialogUxState uxState,
 }) =>
     use(
-      LifeHook(
+      ContextfulLifeHook(
         debugLabel: '_LevelStartStateState',
         state: LevelStartDialogUiState(
           uxState: uxState,
@@ -29,7 +29,7 @@ enum LevelStartDialogView {
   createPlayer,
 }
 
-class LevelStartDialogUiState extends LifeState {
+class LevelStartDialogUiState extends ContextfulLifeState {
   LevelStartDialogUiState({
     required this.diDto,
     required this.level,
@@ -54,15 +54,18 @@ class LevelStartDialogUiState extends LifeState {
   final currentViewNotifier = ValueNotifier(LevelStartDialogView.choosePlayers);
   void onCreatePlayer() {
     currentViewNotifier.value = LevelStartDialogView.createPlayer;
+    unawaited(SoftKeyboard.open());
   }
 
   void onPlayerCreated(final PlayerProfileModel profile) {
     onChoosePlayers();
     uxState.onPlayerProfileCreated(profile);
+    unawaited(SoftKeyboard.close());
   }
 
   void onChoosePlayers() {
     currentViewNotifier.value = LevelStartDialogView.choosePlayers;
+    closeKeyboard(context: getContext());
   }
 
   @override

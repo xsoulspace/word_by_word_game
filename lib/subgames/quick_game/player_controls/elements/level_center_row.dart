@@ -31,9 +31,10 @@ class UILevelCenterBar extends StatelessWidget {
         break;
       case GamePhaseType.selectFuel:
         body = Column(
-          children: const [
-            SizedBox(height: 48),
-            UiFuelBar(),
+          children: [
+            const SizedBox(height: 48),
+            const UiFuelBar(),
+            if (DeviceRuntimeType.isMobile) const SizedBox(height: 36),
           ],
         );
         centerBarChildren = [
