@@ -1,20 +1,21 @@
 {
   "configurations": [
     {
-      "program": "lib/main.dart",
+      "name": "flutter",
+      "program": "lib/main_prod.dart",
       "request": "launch",
       "type": "dart",
       "toolArgs": [
         "--dart-define",
-        "yandex-flexible-mobile=VALUE",
+        "yandex-flexible-mobile=",
         "--dart-define",
-        "yandex-flexible-mobile-web=VALUE",
+        "yandex-flexible-mobile-web=",
         "--dart-define",
-        "yandex-flexible-desktop-web=VALUE",
+        "yandex-flexible-desktop-web=",
         "--dart-define",
-        "yandex-fullscreen-yg-mobile-web=VALUE",
+        "yandex-fullscreen-yg-mobile-web=",
         "--dart-define",
-        "yandex-fullscreen-yg-desktop-web=VALUE",
+        "yandex-fullscreen-yg-desktop-web=",
         "--dart-define",
         "is-yandex-games=false",
         "--dart-define",
