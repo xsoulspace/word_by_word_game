@@ -30,6 +30,10 @@ Features:
 - The game remembers the progress - if you press the menu (pause button in the center), the current game will be saved and you can continue later.
 - You can learn new words:)
 
+## Privacy Policy & Terms and Conditions:
+
+https://docs.page/xsoulspace/word_by_word_game
+
 ## Have an idea, improvements, or bugs?
 
 Join Discord - https://discord.gg/y54DpJwmAn
