@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
@@ -9,19 +10,18 @@ class UIMobilePlayerName extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final player =
-        context.select<LevelPlayersBloc, PlayerProfileModel>((final bloc) {
+    final playerName = context.select<LevelPlayersBloc, String>((final bloc) {
       final liveState = bloc.state;
       if (liveState is! LiveLevelPlayersBlocState) {
-        return PlayerProfileModel.empty;
+        return PlayerProfileModel.empty.name;
       }
-      return liveState.currentPlayer;
+      return liveState.currentPlayer.name;
     });
     return TutorialFrame(
       highlightPosition: Alignment.topCenter,
       uiKey: TutorialUiItem.yourNameLabel,
-      child: Text(player.name),
-    );
+      child: Text(playerName),
+    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
   }
 }
 
@@ -30,21 +30,20 @@ class UIMobilePlayerScore extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final player =
-        context.select<LevelPlayersBloc, PlayerProfileModel>((final bloc) {
-      final liveState = bloc.state;
-      if (liveState is! LiveLevelPlayersBlocState) {
-        return PlayerProfileModel.empty;
-      }
-      return liveState.currentPlayer;
-    });
+    final score = context.select<LevelPlayersBloc, int>(
+      (final bloc) => bloc.state.maybeMap(
+        orElse: () => 0,
+        live: (final value) =>
+            value.currentPlayer.highscore.score.value.toInt(),
+      ),
+    );
     return TutorialFrame(
       highlightPosition: Alignment.topCenter,
       uiKey: TutorialUiItem.yourScoreLabel,
       child: Tooltip(
         message: S.of(context).yourCurrentHighcoreTooltip,
-        child: Text('${player.highscore.score.value.toInt()}'),
+        child: Text('$score'),
       ),
-    );
+    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
   }
 }

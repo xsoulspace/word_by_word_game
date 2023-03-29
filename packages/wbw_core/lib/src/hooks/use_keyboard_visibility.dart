@@ -45,9 +45,7 @@ class _KeyboardVisiblityHookState
   @override
   ValueNotifier<bool> build(final BuildContext context) => _state;
 
-  void _listener() {
-    setState(() {});
-  }
+  void _listener() => setState(() {});
 
   @override
   bool? get debugValue => _state.value;
