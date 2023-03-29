@@ -8,6 +8,11 @@
 
 ## Next
 
+## PRIVACY POLICY & TERMS AND CONDITIONS
+
+Now docs available here:
+https://docs.page/xsoulspace/word_by_word_game
+
 ## January 8th 2022
 
 - Tutorial for mobile & desktop versions.
