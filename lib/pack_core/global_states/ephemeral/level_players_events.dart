@@ -48,15 +48,6 @@ class RefuelStorageEvent extends LevelPlayersEvent {
 }
 
 @immutable
-class CookFoodEvent extends LevelPlayersEvent {
-  const CookFoodEvent({
-    required this.score,
-  });
-
-  final ScoreModel score;
-}
-
-@immutable
 class UpdatePlayerHighscoreEvent extends LevelPlayersEvent {
   const UpdatePlayerHighscoreEvent({
     required this.score,

@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'localization.dart';
 
@@ -33,30 +33,34 @@ mixin _$LocalizedMap {
 abstract class $LocalizedMapCopyWith<$Res> {
   factory $LocalizedMapCopyWith(
           LocalizedMap value, $Res Function(LocalizedMap) then) =
-      _$LocalizedMapCopyWithImpl<$Res>;
+      _$LocalizedMapCopyWithImpl<$Res, LocalizedMap>;
+  @useResult
   $Res call(
       {@JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
           Map<Languages, String> value});
 }
 
 /// @nodoc
-class _$LocalizedMapCopyWithImpl<$Res> implements $LocalizedMapCopyWith<$Res> {
+class _$LocalizedMapCopyWithImpl<$Res, $Val extends LocalizedMap>
+    implements $LocalizedMapCopyWith<$Res> {
   _$LocalizedMapCopyWithImpl(this._value, this._then);
 
-  final LocalizedMap _value;
   // ignore: unused_field
-  final $Res Function(LocalizedMap) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = freezed,
+    Object? value = null,
   }) {
     return _then(_value.copyWith(
-      value: value == freezed
+      value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
               as Map<Languages, String>,
-    ));
+    ) as $Val);
   }
 }
 
@@ -67,6 +71,7 @@ abstract class _$$_LocalizedMapCopyWith<$Res>
           _$_LocalizedMap value, $Res Function(_$_LocalizedMap) then) =
       __$$_LocalizedMapCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {@JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
           Map<Languages, String> value});
@@ -74,21 +79,19 @@ abstract class _$$_LocalizedMapCopyWith<$Res>
 
 /// @nodoc
 class __$$_LocalizedMapCopyWithImpl<$Res>
-    extends _$LocalizedMapCopyWithImpl<$Res>
+    extends _$LocalizedMapCopyWithImpl<$Res, _$_LocalizedMap>
     implements _$$_LocalizedMapCopyWith<$Res> {
   __$$_LocalizedMapCopyWithImpl(
       _$_LocalizedMap _value, $Res Function(_$_LocalizedMap) _then)
-      : super(_value, (v) => _then(v as _$_LocalizedMap));
+      : super(_value, _then);
 
-  @override
-  _$_LocalizedMap get _value => super._value as _$_LocalizedMap;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? value = freezed,
+    Object? value = null,
   }) {
     return _then(_$_LocalizedMap(
-      value: value == freezed
+      value: null == value
           ? _value._value
           : value // ignore: cast_nullable_to_non_nullable
               as Map<Languages, String>,
@@ -113,6 +116,7 @@ class _$_LocalizedMap extends _LocalizedMap {
   @override
   @JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
   Map<Languages, String> get value {
+    if (_value is EqualUnmodifiableMapView) return _value;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_value);
   }
@@ -137,6 +141,7 @@ class _$_LocalizedMap extends _LocalizedMap {
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LocalizedMapCopyWith<_$_LocalizedMap> get copyWith =>
       __$$_LocalizedMapCopyWithImpl<_$_LocalizedMap>(this, _$identity);
 

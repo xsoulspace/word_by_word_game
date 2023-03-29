@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'global_game_bloc.dart';
 
@@ -13,11 +13,6 @@ T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-LiveGlobalGameBlocState _$LiveGlobalGameBlocStateFromJson(
-    Map<String, dynamic> json) {
-  return _LiveGlobalGameBlocState.fromJson(json);
-}
 
 /// @nodoc
 mixin _$LiveGlobalGameBlocState {
@@ -53,7 +48,6 @@ mixin _$LiveGlobalGameBlocState {
   Set<LevelPartStates> get loadedLevelParts =>
       throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LiveGlobalGameBlocStateCopyWith<LiveGlobalGameBlocState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -63,7 +57,8 @@ mixin _$LiveGlobalGameBlocState {
 abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
   factory $LiveGlobalGameBlocStateCopyWith(LiveGlobalGameBlocState value,
           $Res Function(LiveGlobalGameBlocState) then) =
-      _$LiveGlobalGameBlocStateCopyWithImpl<$Res>;
+      _$LiveGlobalGameBlocStateCopyWithImpl<$Res, LiveGlobalGameBlocState>;
+  @useResult
   $Res call(
       {String id,
       String currentLevelId,
@@ -83,98 +78,104 @@ abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
+class _$LiveGlobalGameBlocStateCopyWithImpl<$Res,
+        $Val extends LiveGlobalGameBlocState>
     implements $LiveGlobalGameBlocStateCopyWith<$Res> {
   _$LiveGlobalGameBlocStateCopyWithImpl(this._value, this._then);
 
-  final LiveGlobalGameBlocState _value;
   // ignore: unused_field
-  final $Res Function(LiveGlobalGameBlocState) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? currentLevelId = freezed,
+    Object? id = null,
+    Object? currentLevelId = null,
     Object? currentLevelModel = freezed,
-    Object? dateTime = freezed,
-    Object? lastDateTime = freezed,
-    Object? levels = freezed,
-    Object? templateLevels = freezed,
-    Object? playersCollection = freezed,
-    Object? playersCharacters = freezed,
-    Object? dateTimeDelta = freezed,
-    Object? loadedLevelParts = freezed,
+    Object? dateTime = null,
+    Object? lastDateTime = null,
+    Object? levels = null,
+    Object? templateLevels = null,
+    Object? playersCollection = null,
+    Object? playersCharacters = null,
+    Object? dateTimeDelta = null,
+    Object? loadedLevelParts = null,
   }) {
     return _then(_value.copyWith(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      currentLevelId: currentLevelId == freezed
+      currentLevelId: null == currentLevelId
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
-      currentLevelModel: currentLevelModel == freezed
+      currentLevelModel: freezed == currentLevelModel
           ? _value.currentLevelModel
           : currentLevelModel // ignore: cast_nullable_to_non_nullable
               as LevelModel?,
-      dateTime: dateTime == freezed
+      dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
-      lastDateTime: lastDateTime == freezed
+      lastDateTime: null == lastDateTime
           ? _value.lastDateTime
           : lastDateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
-      levels: levels == freezed
+      levels: null == levels
           ? _value.levels
           : levels // ignore: cast_nullable_to_non_nullable
               as Map<String, LevelModel>,
-      templateLevels: templateLevels == freezed
+      templateLevels: null == templateLevels
           ? _value.templateLevels
           : templateLevels // ignore: cast_nullable_to_non_nullable
               as List<TemplateLevelModel>,
-      playersCollection: playersCollection == freezed
+      playersCollection: null == playersCollection
           ? _value.playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
               as List<PlayerProfileModel>,
-      playersCharacters: playersCharacters == freezed
+      playersCharacters: null == playersCharacters
           ? _value.playersCharacters
           : playersCharacters // ignore: cast_nullable_to_non_nullable
               as List<PlayerCharacterModel>,
-      dateTimeDelta: dateTimeDelta == freezed
+      dateTimeDelta: null == dateTimeDelta
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
               as int,
-      loadedLevelParts: loadedLevelParts == freezed
+      loadedLevelParts: null == loadedLevelParts
           ? _value.loadedLevelParts
           : loadedLevelParts // ignore: cast_nullable_to_non_nullable
               as Set<LevelPartStates>,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $LevelModelCopyWith<$Res>? get currentLevelModel {
     if (_value.currentLevelModel == null) {
       return null;
     }
 
     return $LevelModelCopyWith<$Res>(_value.currentLevelModel!, (value) {
-      return _then(_value.copyWith(currentLevelModel: value));
+      return _then(_value.copyWith(currentLevelModel: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get dateTime {
     return $WorldDateTimeModelCopyWith<$Res>(_value.dateTime, (value) {
-      return _then(_value.copyWith(dateTime: value));
+      return _then(_value.copyWith(dateTime: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
     return $WorldDateTimeModelCopyWith<$Res>(_value.lastDateTime, (value) {
-      return _then(_value.copyWith(lastDateTime: value));
+      return _then(_value.copyWith(lastDateTime: value) as $Val);
     });
   }
 }
@@ -186,6 +187,7 @@ abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
           $Res Function(_$_LiveGlobalGameBlocState) then) =
       __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {String id,
       String currentLevelId,
@@ -209,72 +211,70 @@ abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
 
 /// @nodoc
 class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
-    extends _$LiveGlobalGameBlocStateCopyWithImpl<$Res>
+    extends _$LiveGlobalGameBlocStateCopyWithImpl<$Res,
+        _$_LiveGlobalGameBlocState>
     implements _$$_LiveGlobalGameBlocStateCopyWith<$Res> {
   __$$_LiveGlobalGameBlocStateCopyWithImpl(_$_LiveGlobalGameBlocState _value,
       $Res Function(_$_LiveGlobalGameBlocState) _then)
-      : super(_value, (v) => _then(v as _$_LiveGlobalGameBlocState));
+      : super(_value, _then);
 
-  @override
-  _$_LiveGlobalGameBlocState get _value =>
-      super._value as _$_LiveGlobalGameBlocState;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = freezed,
-    Object? currentLevelId = freezed,
+    Object? id = null,
+    Object? currentLevelId = null,
     Object? currentLevelModel = freezed,
-    Object? dateTime = freezed,
-    Object? lastDateTime = freezed,
-    Object? levels = freezed,
-    Object? templateLevels = freezed,
-    Object? playersCollection = freezed,
-    Object? playersCharacters = freezed,
-    Object? dateTimeDelta = freezed,
-    Object? loadedLevelParts = freezed,
+    Object? dateTime = null,
+    Object? lastDateTime = null,
+    Object? levels = null,
+    Object? templateLevels = null,
+    Object? playersCollection = null,
+    Object? playersCharacters = null,
+    Object? dateTimeDelta = null,
+    Object? loadedLevelParts = null,
   }) {
     return _then(_$_LiveGlobalGameBlocState(
-      id: id == freezed
+      id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      currentLevelId: currentLevelId == freezed
+      currentLevelId: null == currentLevelId
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as String,
-      currentLevelModel: currentLevelModel == freezed
+      currentLevelModel: freezed == currentLevelModel
           ? _value.currentLevelModel
           : currentLevelModel // ignore: cast_nullable_to_non_nullable
               as LevelModel?,
-      dateTime: dateTime == freezed
+      dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
-      lastDateTime: lastDateTime == freezed
+      lastDateTime: null == lastDateTime
           ? _value.lastDateTime
           : lastDateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
-      levels: levels == freezed
+      levels: null == levels
           ? _value._levels
           : levels // ignore: cast_nullable_to_non_nullable
               as Map<String, LevelModel>,
-      templateLevels: templateLevels == freezed
+      templateLevels: null == templateLevels
           ? _value._templateLevels
           : templateLevels // ignore: cast_nullable_to_non_nullable
               as List<TemplateLevelModel>,
-      playersCollection: playersCollection == freezed
+      playersCollection: null == playersCollection
           ? _value._playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
               as List<PlayerProfileModel>,
-      playersCharacters: playersCharacters == freezed
+      playersCharacters: null == playersCharacters
           ? _value._playersCharacters
           : playersCharacters // ignore: cast_nullable_to_non_nullable
               as List<PlayerCharacterModel>,
-      dateTimeDelta: dateTimeDelta == freezed
+      dateTimeDelta: null == dateTimeDelta
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
               as int,
-      loadedLevelParts: loadedLevelParts == freezed
+      loadedLevelParts: null == loadedLevelParts
           ? _value._loadedLevelParts
           : loadedLevelParts // ignore: cast_nullable_to_non_nullable
               as Set<LevelPartStates>,
@@ -284,7 +284,6 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-@JsonSerializable(explicitToJson: true)
 class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   const _$_LiveGlobalGameBlocState(
       {required this.id,
@@ -304,9 +303,6 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
         _playersCharacters = playersCharacters,
         _loadedLevelParts = loadedLevelParts,
         super._();
-
-  factory _$_LiveGlobalGameBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$_LiveGlobalGameBlocStateFromJson(json);
 
   /// ********************************************
   /// *      RESTORABLE FROM MODEL
@@ -334,6 +330,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   @override
   @JsonKey()
   Map<String, LevelModel> get levels {
+    if (_levels is EqualUnmodifiableMapView) return _levels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableMapView(_levels);
   }
@@ -342,6 +339,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   @override
   @JsonKey()
   List<TemplateLevelModel> get templateLevels {
+    if (_templateLevels is EqualUnmodifiableListView) return _templateLevels;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_templateLevels);
   }
@@ -355,6 +353,8 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   @override
   @JsonKey()
   List<PlayerProfileModel> get playersCollection {
+    if (_playersCollection is EqualUnmodifiableListView)
+      return _playersCollection;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_playersCollection);
   }
@@ -363,6 +363,8 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   @override
   @JsonKey()
   List<PlayerCharacterModel> get playersCharacters {
+    if (_playersCharacters is EqualUnmodifiableListView)
+      return _playersCharacters;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_playersCharacters);
   }
@@ -377,6 +379,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   @override
   @JsonKey()
   Set<LevelPartStates> get loadedLevelParts {
+    if (_loadedLevelParts is EqualUnmodifiableSetView) return _loadedLevelParts;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_loadedLevelParts);
   }
@@ -391,14 +394,15 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LiveGlobalGameBlocState &&
-            const DeepCollectionEquality().equals(other.id, id) &&
-            const DeepCollectionEquality()
-                .equals(other.currentLevelId, currentLevelId) &&
-            const DeepCollectionEquality()
-                .equals(other.currentLevelModel, currentLevelModel) &&
-            const DeepCollectionEquality().equals(other.dateTime, dateTime) &&
-            const DeepCollectionEquality()
-                .equals(other.lastDateTime, lastDateTime) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.currentLevelId, currentLevelId) ||
+                other.currentLevelId == currentLevelId) &&
+            (identical(other.currentLevelModel, currentLevelModel) ||
+                other.currentLevelModel == currentLevelModel) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime) &&
+            (identical(other.lastDateTime, lastDateTime) ||
+                other.lastDateTime == lastDateTime) &&
             const DeepCollectionEquality().equals(other._levels, _levels) &&
             const DeepCollectionEquality()
                 .equals(other._templateLevels, _templateLevels) &&
@@ -406,41 +410,34 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
                 .equals(other._playersCollection, _playersCollection) &&
             const DeepCollectionEquality()
                 .equals(other._playersCharacters, _playersCharacters) &&
-            const DeepCollectionEquality()
-                .equals(other.dateTimeDelta, dateTimeDelta) &&
+            (identical(other.dateTimeDelta, dateTimeDelta) ||
+                other.dateTimeDelta == dateTimeDelta) &&
             const DeepCollectionEquality()
                 .equals(other._loadedLevelParts, _loadedLevelParts));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
-      const DeepCollectionEquality().hash(id),
-      const DeepCollectionEquality().hash(currentLevelId),
-      const DeepCollectionEquality().hash(currentLevelModel),
-      const DeepCollectionEquality().hash(dateTime),
-      const DeepCollectionEquality().hash(lastDateTime),
+      id,
+      currentLevelId,
+      currentLevelModel,
+      dateTime,
+      lastDateTime,
       const DeepCollectionEquality().hash(_levels),
       const DeepCollectionEquality().hash(_templateLevels),
       const DeepCollectionEquality().hash(_playersCollection),
       const DeepCollectionEquality().hash(_playersCharacters),
-      const DeepCollectionEquality().hash(dateTimeDelta),
+      dateTimeDelta,
       const DeepCollectionEquality().hash(_loadedLevelParts));
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_LiveGlobalGameBlocStateCopyWith<_$_LiveGlobalGameBlocState>
       get copyWith =>
           __$$_LiveGlobalGameBlocStateCopyWithImpl<_$_LiveGlobalGameBlocState>(
               this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_LiveGlobalGameBlocStateToJson(
-      this,
-    );
-  }
 }
 
 abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
@@ -459,9 +456,6 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
           final Set<LevelPartStates> loadedLevelParts}) =
       _$_LiveGlobalGameBlocState;
   const _LiveGlobalGameBlocState._() : super._();
-
-  factory _LiveGlobalGameBlocState.fromJson(Map<String, dynamic> json) =
-      _$_LiveGlobalGameBlocState.fromJson;
 
   @override
 

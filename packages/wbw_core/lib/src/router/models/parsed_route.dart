@@ -4,13 +4,7 @@ part of '../router.dart';
 
 /// A route path that has been parsed by [TemplateRouteParser].
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class ParsedRoute with _$ParsedRoute {
   @JsonSerializable(
     explicitToJson: true,

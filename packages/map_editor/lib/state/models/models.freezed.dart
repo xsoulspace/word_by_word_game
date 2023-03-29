@@ -24,7 +24,7 @@ mixin _$CanvasTileModel {
 
   /// Water
   bool get hasWater => throw _privateConstructorUsedError;
-  bool get isTopWater => throw _privateConstructorUsedError;
+  bool get isWaterTop => throw _privateConstructorUsedError;
 
   /// Coin
   String get coin => throw _privateConstructorUsedError;
@@ -49,7 +49,7 @@ abstract class $CanvasTileModelCopyWith<$Res> {
       bool hasTerrain,
       List<String> terrainNeighbours,
       bool hasWater,
-      bool isTopWater,
+      bool isWaterTop,
       String coin,
       String enemy,
       List<dynamic> objects});
@@ -72,7 +72,7 @@ class _$CanvasTileModelCopyWithImpl<$Res, $Val extends CanvasTileModel>
     Object? hasTerrain = null,
     Object? terrainNeighbours = null,
     Object? hasWater = null,
-    Object? isTopWater = null,
+    Object? isWaterTop = null,
     Object? coin = null,
     Object? enemy = null,
     Object? objects = null,
@@ -94,9 +94,9 @@ class _$CanvasTileModelCopyWithImpl<$Res, $Val extends CanvasTileModel>
           ? _value.hasWater
           : hasWater // ignore: cast_nullable_to_non_nullable
               as bool,
-      isTopWater: null == isTopWater
-          ? _value.isTopWater
-          : isTopWater // ignore: cast_nullable_to_non_nullable
+      isWaterTop: null == isWaterTop
+          ? _value.isWaterTop
+          : isWaterTop // ignore: cast_nullable_to_non_nullable
               as bool,
       coin: null == coin
           ? _value.coin
@@ -127,7 +127,7 @@ abstract class _$$_SecureCanvasTileModelCopyWith<$Res>
       bool hasTerrain,
       List<String> terrainNeighbours,
       bool hasWater,
-      bool isTopWater,
+      bool isWaterTop,
       String coin,
       String enemy,
       List<dynamic> objects});
@@ -148,7 +148,7 @@ class __$$_SecureCanvasTileModelCopyWithImpl<$Res>
     Object? hasTerrain = null,
     Object? terrainNeighbours = null,
     Object? hasWater = null,
-    Object? isTopWater = null,
+    Object? isWaterTop = null,
     Object? coin = null,
     Object? enemy = null,
     Object? objects = null,
@@ -170,9 +170,9 @@ class __$$_SecureCanvasTileModelCopyWithImpl<$Res>
           ? _value.hasWater
           : hasWater // ignore: cast_nullable_to_non_nullable
               as bool,
-      isTopWater: null == isTopWater
-          ? _value.isTopWater
-          : isTopWater // ignore: cast_nullable_to_non_nullable
+      isWaterTop: null == isWaterTop
+          ? _value.isWaterTop
+          : isWaterTop // ignore: cast_nullable_to_non_nullable
               as bool,
       coin: null == coin
           ? _value.coin
@@ -198,7 +198,7 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
       this.hasTerrain = false,
       final List<String> terrainNeighbours = const [],
       this.hasWater = false,
-      this.isTopWater = false,
+      this.isWaterTop = false,
       this.coin = '',
       this.enemy = '',
       final List<dynamic> objects = const []})
@@ -228,7 +228,7 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
   final bool hasWater;
   @override
   @JsonKey()
-  final bool isTopWater;
+  final bool isWaterTop;
 
   /// Coin
   @override
@@ -250,7 +250,7 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
 
   @override
   String toString() {
-    return 'CanvasTileModel._(tileId: $tileId, hasTerrain: $hasTerrain, terrainNeighbours: $terrainNeighbours, hasWater: $hasWater, isTopWater: $isTopWater, coin: $coin, enemy: $enemy, objects: $objects)';
+    return 'CanvasTileModel._(tileId: $tileId, hasTerrain: $hasTerrain, terrainNeighbours: $terrainNeighbours, hasWater: $hasWater, isWaterTop: $isWaterTop, coin: $coin, enemy: $enemy, objects: $objects)';
   }
 
   @override
@@ -265,8 +265,8 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
                 .equals(other._terrainNeighbours, _terrainNeighbours) &&
             (identical(other.hasWater, hasWater) ||
                 other.hasWater == hasWater) &&
-            (identical(other.isTopWater, isTopWater) ||
-                other.isTopWater == isTopWater) &&
+            (identical(other.isWaterTop, isWaterTop) ||
+                other.isWaterTop == isWaterTop) &&
             (identical(other.coin, coin) || other.coin == coin) &&
             (identical(other.enemy, enemy) || other.enemy == enemy) &&
             const DeepCollectionEquality().equals(other._objects, _objects));
@@ -279,7 +279,7 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
       hasTerrain,
       const DeepCollectionEquality().hash(_terrainNeighbours),
       hasWater,
-      isTopWater,
+      isWaterTop,
       coin,
       enemy,
       const DeepCollectionEquality().hash(_objects));
@@ -298,7 +298,7 @@ abstract class _SecureCanvasTileModel implements CanvasTileModel {
       final bool hasTerrain,
       final List<String> terrainNeighbours,
       final bool hasWater,
-      final bool isTopWater,
+      final bool isWaterTop,
       final String coin,
       final String enemy,
       final List<dynamic> objects}) = _$_SecureCanvasTileModel;
@@ -316,7 +316,7 @@ abstract class _SecureCanvasTileModel implements CanvasTileModel {
   /// Water
   bool get hasWater;
   @override
-  bool get isTopWater;
+  bool get isWaterTop;
   @override
 
   /// Coin
@@ -568,8 +568,8 @@ CellPointModel _$CellPointModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CellPointModel {
-  int get row => throw _privateConstructorUsedError;
-  int get column => throw _privateConstructorUsedError;
+  int get x => throw _privateConstructorUsedError;
+  int get y => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -583,7 +583,7 @@ abstract class $CellPointModelCopyWith<$Res> {
           CellPointModel value, $Res Function(CellPointModel) then) =
       _$CellPointModelCopyWithImpl<$Res, CellPointModel>;
   @useResult
-  $Res call({int row, int column});
+  $Res call({int x, int y});
 }
 
 /// @nodoc
@@ -599,17 +599,17 @@ class _$CellPointModelCopyWithImpl<$Res, $Val extends CellPointModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? row = null,
-    Object? column = null,
+    Object? x = null,
+    Object? y = null,
   }) {
     return _then(_value.copyWith(
-      row: null == row
-          ? _value.row
-          : row // ignore: cast_nullable_to_non_nullable
+      x: null == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
               as int,
-      column: null == column
-          ? _value.column
-          : column // ignore: cast_nullable_to_non_nullable
+      y: null == y
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -623,7 +623,7 @@ abstract class _$$_CellPointModelCopyWith<$Res>
       __$$_CellPointModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int row, int column});
+  $Res call({int x, int y});
 }
 
 /// @nodoc
@@ -637,17 +637,17 @@ class __$$_CellPointModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? row = null,
-    Object? column = null,
+    Object? x = null,
+    Object? y = null,
   }) {
     return _then(_$_CellPointModel(
-      null == row
-          ? _value.row
-          : row // ignore: cast_nullable_to_non_nullable
+      null == x
+          ? _value.x
+          : x // ignore: cast_nullable_to_non_nullable
               as int,
-      null == column
-          ? _value.column
-          : column // ignore: cast_nullable_to_non_nullable
+      null == y
+          ? _value.y
+          : y // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -656,19 +656,19 @@ class __$$_CellPointModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_CellPointModel extends _CellPointModel {
-  const _$_CellPointModel(this.row, this.column) : super._();
+  const _$_CellPointModel(this.x, this.y) : super._();
 
   factory _$_CellPointModel.fromJson(Map<String, dynamic> json) =>
       _$$_CellPointModelFromJson(json);
 
   @override
-  final int row;
+  final int x;
   @override
-  final int column;
+  final int y;
 
   @override
   String toString() {
-    return 'CellPointModel(row: $row, column: $column)';
+    return 'CellPointModel(x: $x, y: $y)';
   }
 
   @override
@@ -676,13 +676,13 @@ class _$_CellPointModel extends _CellPointModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CellPointModel &&
-            (identical(other.row, row) || other.row == row) &&
-            (identical(other.column, column) || other.column == column));
+            (identical(other.x, x) || other.x == x) &&
+            (identical(other.y, y) || other.y == y));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, row, column);
+  int get hashCode => Object.hash(runtimeType, x, y);
 
   @JsonKey(ignore: true)
   @override
@@ -699,17 +699,16 @@ class _$_CellPointModel extends _CellPointModel {
 }
 
 abstract class _CellPointModel extends CellPointModel {
-  const factory _CellPointModel(final int row, final int column) =
-      _$_CellPointModel;
+  const factory _CellPointModel(final int x, final int y) = _$_CellPointModel;
   const _CellPointModel._() : super._();
 
   factory _CellPointModel.fromJson(Map<String, dynamic> json) =
       _$_CellPointModel.fromJson;
 
   @override
-  int get row;
+  int get x;
   @override
-  int get column;
+  int get y;
   @override
   @JsonKey(ignore: true)
   _$$_CellPointModelCopyWith<_$_CellPointModel> get copyWith =>

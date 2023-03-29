@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_annotating_with_dynamic
+
 import 'package:flutter/foundation.dart';
 
 // ignore: long-parameter-list

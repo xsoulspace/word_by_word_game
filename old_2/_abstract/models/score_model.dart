@@ -4,13 +4,7 @@ typedef GameLetterCount = int;
 typedef GameKnowledge = int;
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class ScoreModel with _$ScoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory ScoreModel({

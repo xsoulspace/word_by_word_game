@@ -2,13 +2,7 @@ part of abstract;
 
 typedef BookShelfModelId = String;
 
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class BookShelfModel with _$BookShelfModel {
   @JsonSerializable(explicitToJson: true)
   const factory BookShelfModel({

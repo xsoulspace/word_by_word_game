@@ -6,7 +6,8 @@ class RouterPopper {
   Future<bool> handleWillPop() async => true;
   bool onPopPage(
     final Route<dynamic> route,
-    final result,
+    // ignore: avoid_annotating_with_dynamic
+    final dynamic result,
   ) =>
       route.didPop(result);
 }

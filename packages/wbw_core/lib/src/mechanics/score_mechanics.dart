@@ -6,8 +6,6 @@ const int kIncreaseScoreModifier = 65;
 const int kDecreaseScoreModifier = kIncreaseScoreModifier * 3;
 const double kRevealScoreModifier = 1.8;
 double get kLetterDecreaseCost => 1.0 * kDecreaseScoreModifier;
-double get kRefuelStorageCost => 20;
-double get kCookFoodCost => 8;
 
 class ScoreMechanics {
   ScoreModel getScoreFromWord({
@@ -28,42 +26,25 @@ class ScoreMechanics {
     );
   }
 
-  ScoreModel getScoreForCookFoodByModifier({
-    required final LevelActionMultiplierType multiplier,
+  ScoreModel getScoreForStorageEnergyByModifier({
+    required final EnergyMultiplierType multiplier,
+    required final ScoreModel availableScore,
   }) {
-    final double score;
+    final int score;
+    final scorePart = availableScore.value ~/ 3;
     switch (multiplier) {
-      case LevelActionMultiplierType.m1:
-        score = 10.0;
+      case EnergyMultiplierType.m1:
+        score = scorePart;
         break;
-      case LevelActionMultiplierType.m2:
-        score = 15.0;
+      case EnergyMultiplierType.m2:
+        score = scorePart * 2;
         break;
-      case LevelActionMultiplierType.m3:
-        score = 25.0;
+      case EnergyMultiplierType.m3:
+        score = availableScore.value.toInt();
         break;
     }
 
-    return ScoreModel(value: score * kCookFoodCost);
-  }
-
-  ScoreModel getScoreForRefuelStorageByModifier({
-    required final LevelActionMultiplierType multiplier,
-  }) {
-    final double score;
-    switch (multiplier) {
-      case LevelActionMultiplierType.m1:
-        score = 10.0;
-        break;
-      case LevelActionMultiplierType.m2:
-        score = 24.0;
-        break;
-      case LevelActionMultiplierType.m3:
-        score = 32.0;
-        break;
-    }
-
-    return ScoreModel(value: score * kRefuelStorageCost);
+    return ScoreModel(value: score.toDouble());
   }
 
   ScoreModel getDecreaseScore({

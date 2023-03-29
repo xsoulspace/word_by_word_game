@@ -14,7 +14,7 @@ part 'character_mechanics.freezed.dart';
 )
 class FlyingObjectsParams with _$FlyingObjectsParams {
   const factory FlyingObjectsParams({
-    @Default(FuelStorageModel(value: 150)) final FuelStorageModel fuel,
+    @Default(FuelStorageModel()) final FuelStorageModel fuel,
 
     /// it can be changed and can be dependent from the character.
     @Default(2.0) final double fuelNormalPower,

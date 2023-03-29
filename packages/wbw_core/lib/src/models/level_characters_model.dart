@@ -3,13 +3,7 @@
 part of 'models.dart';
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LevelCharactersModel with _$LevelCharactersModel {
   @JsonSerializable(explicitToJson: true)
   const factory LevelCharactersModel({

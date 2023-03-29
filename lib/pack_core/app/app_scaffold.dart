@@ -2,12 +2,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/generated/l10n.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_state_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -84,11 +83,9 @@ class AppScaffoldBuilder extends HookWidget {
         routeInformationParser: routeParser,
         routerDelegate: state.routerDelegate,
         localizationsDelegates: const [
-          S.delegate,
-          GlobalMaterialLocalizations.delegate,
-          GlobalWidgetsLocalizations.delegate,
-          GlobalCupertinoLocalizations.delegate,
+          ...S.localizationsDelegates,
         ],
+        locale: settingsNotifier.locale,
         localeListResolutionCallback: (final locales, final supportedLocales) {
           final defaultLocale = () {
             if (locales == null || locales.isEmpty) return null;
@@ -99,8 +96,10 @@ class AppScaffoldBuilder extends HookWidget {
             }
           }();
 
-          /// in case if we will needed preferrable system locale
-          settingsNotifier.systemLocale = defaultLocale;
+          // /// in case if we will needed preferrable system locale
+          // settingsNotifier.systemLocale = Locale.fromSubtags(
+          //   languageCode: defaultLocale?.languageCode ?? 'en',
+          // );
 
           /// if language is set by user, then use it
           if (settingsNotifier.locale != null) return settingsNotifier.locale;

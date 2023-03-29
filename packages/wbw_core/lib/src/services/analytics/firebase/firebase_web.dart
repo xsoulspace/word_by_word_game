@@ -1,5 +1,7 @@
+// ignore_for_file: avoid_annotating_with_dynamic
+
 import 'package:firebase_analytics_web/firebase_analytics_web.dart';
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_core_web/firebase_core_web.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +14,7 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
     required this.firebaseOptions,
   });
   @override
-  final FirebaseOptions firebaseOptions;
+  final FirebaseOptions? firebaseOptions;
 
   @override
   Future<void> onLoad() async {}

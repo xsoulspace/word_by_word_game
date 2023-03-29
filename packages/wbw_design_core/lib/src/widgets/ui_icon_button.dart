@@ -28,9 +28,7 @@ enum UiIcons {
   String get path => 'icons/icon_action_$name';
 }
 
-@Deprecated('use GuiIconButton instead')
 class UiIconButton extends HookWidget {
-  @Deprecated('use GuiIconButton instead')
   const UiIconButton({
     required this.icon,
     this.onPressed,

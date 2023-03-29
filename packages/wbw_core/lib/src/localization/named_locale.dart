@@ -50,13 +50,7 @@ Map<String, String> localeValueToMap(final Map<Languages, String> locales) =>
     );
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LocalizedMap with _$LocalizedMap {
   @JsonSerializable(explicitToJson: true)
   const factory LocalizedMap({

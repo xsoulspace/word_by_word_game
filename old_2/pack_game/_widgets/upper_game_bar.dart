@@ -1,4 +1,4 @@
-part of pack_game;
+part of subgames/quick_game;
 
 class UpperGameBar extends StatelessWidget implements PreferredSizeWidget {
   const UpperGameBar({final Key? key}) : super(key: key);

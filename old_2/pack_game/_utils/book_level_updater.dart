@@ -1,4 +1,4 @@
-part of pack_game;
+part of subgames/quick_game;
 
 class BookLevelUpdater {
   BookLevelUpdater({

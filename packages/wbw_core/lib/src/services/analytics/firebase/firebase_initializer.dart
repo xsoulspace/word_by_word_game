@@ -1,4 +1,4 @@
-import 'package:firebase_core_platform_interface/firebase_core_platform_interface.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:life_hooks/life_hooks.dart';
 
 /// Toggle this for testing Crashlytics in your app locally.
@@ -11,7 +11,7 @@ abstract class FirebaseInitializer implements Loadable {
   FirebaseInitializer({
     required this.firebaseOptions,
   });
-  final FirebaseOptions firebaseOptions;
+  final FirebaseOptions? firebaseOptions;
 
   @override
   Future<void> onLoad();
