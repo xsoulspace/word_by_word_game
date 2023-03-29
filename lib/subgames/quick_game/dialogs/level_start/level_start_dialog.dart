@@ -150,11 +150,9 @@ class _DialogScreen extends HookWidget {
               : 0,
         ),
         child: Center(
-          child: Builder(
-            builder: (final context) => SafeArea(
-              child: SingleChildScrollView(
-                child: child,
-              ),
+          child: SafeArea(
+            child: SingleChildScrollView(
+              child: child,
             ),
           ),
         ),
