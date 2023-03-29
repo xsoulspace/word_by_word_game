@@ -34,6 +34,7 @@ class LevelsHudScreenOverlay extends HookWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  if (DeviceRuntimeType.isMobile) const SizedBox(height: 24),
                   const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
                   uiTheme.verticalBoxes.medium,
                   const UIPlayersSideBar(),

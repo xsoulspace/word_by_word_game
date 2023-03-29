@@ -5,63 +5,12 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-class UIDesktopActions extends StatelessWidget {
-  const UIDesktopActions({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    final state = context.read<WordCompositionState>();
-    final uiTheme = UiTheme.of(context);
-    final phaseType = context.select<LevelBloc, GamePhaseType>(
-      (final s) => s.getLiveState().phaseType,
-    );
-    final children = <Widget>[];
-    switch (phaseType) {
-      case GamePhaseType.entryWord:
-        children.addAll([
-          TutorialFrame(
-            highlightPosition: Alignment.topLeft,
-            uiKey: TutorialUiItem.addToDictionaryButton,
-            child: UIAddWordToDictionaryButton(
-              onPressed: () {
-                state.onAddWordToDictionary();
-                TutorialFrame.sendOnClickEvent(
-                  uiKey: TutorialUiItem.addToDictionaryButton,
-                  context: context,
-                );
-              },
-            ),
-          ),
-          uiTheme.verticalBoxes.extraSmall,
-          TutorialFrame(
-            highlightPosition: Alignment.topLeft,
-            uiKey: TutorialUiItem.confirmWordButton,
-            child: UiConfirmWordButton(
-              onPressed: () {
-                state.onToSelectActionPhase();
-
-                TutorialFrame.sendOnClickEvent(
-                  uiKey: TutorialUiItem.confirmWordButton,
-                  context: context,
-                );
-              },
-            ),
-          ),
-        ]);
-        break;
-      case GamePhaseType.selectFuel:
-        break;
-    }
-
-    return UIDesktopActionsFrame(
-      children: children,
-    );
-  }
-}
-
-class UIMobileActions extends StatelessWidget {
-  const UIMobileActions({super.key});
-
+class UiWordActions extends StatelessWidget {
+  const UiWordActions({
+    this.alignAsRow = false,
+    super.key,
+  });
+  final bool alignAsRow;
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
@@ -103,9 +52,19 @@ class UIMobileActions extends StatelessWidget {
         break;
     }
 
-    return UIMobileActionsFrame(
-      children: children,
-    );
+    if (alignAsRow) {
+      return Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
+    } else {
+      return Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      );
+    }
   }
 }
 
@@ -179,15 +138,25 @@ class UiRandomWordIconButton extends StatelessWidget {
   });
   final VoidCallback? onPressed;
   @override
-  Widget build(final BuildContext context) => TutorialFrame(
-        highlightPosition: Alignment.topCenter,
-        uiKey: TutorialUiItem.suggestWordButton,
-        child: UiIconButton(
-          tooltip: S.of(context).suggestWordButtonTooltip,
-          onPressed: onPressed,
-          icon: UiIcons.idea,
-        ),
-      );
+  Widget build(final BuildContext context) {
+    final cleanWord = context.select<LevelBloc, String>(
+      (final bloc) =>
+          bloc.state.mapOrNull(
+            live: (final value) => value.currentWord.cleanWord,
+          ) ??
+          '',
+    );
+
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.suggestWordButton,
+      child: UiIconButton(
+        tooltip: S.of(context).suggestWordButtonTooltip,
+        onPressed: cleanWord.isEmpty ? null : onPressed,
+        icon: UiIcons.idea,
+      ),
+    );
+  }
 }
 
 class UiPauseIconButton extends StatelessWidget {

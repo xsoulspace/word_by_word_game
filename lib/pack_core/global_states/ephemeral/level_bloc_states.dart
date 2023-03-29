@@ -3,26 +3,10 @@
 part of 'level_bloc.dart';
 
 @immutable
-abstract class LevelBlocState {
-  const LevelBlocState();
-}
-
-@immutable
-class EmptyLevelBlocState extends LevelBlocState {
-  const EmptyLevelBlocState();
-}
-
-enum WordWarning {
-  none,
-  isWritten,
-  isNotCorrect,
-}
-
-@immutable
 @freezed
-class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
-  @Implements<LevelBlocState>()
-  const factory LiveLevelBlocState({
+class LevelBlocState with _$LevelBlocState {
+  const factory LevelBlocState.empty() = EmptyLevelBlocState;
+  const factory LevelBlocState.live({
     required final LevelModelId id,
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
@@ -36,10 +20,9 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
     /// *      NON PERSISTENT
     /// ********************************************
     @Default(WordWarning.none) final WordWarning wordWarning,
-  }) = _LiveLevelBlocState;
-  const LiveLevelBlocState._();
-
-  factory LiveLevelBlocState.fromModel(final LevelModel levelModel) =>
+  }) = LiveLevelBlocState;
+  // ignore: prefer_constructors_over_static_methods
+  static LiveLevelBlocState liveFromModel(final LevelModel levelModel) =>
       LiveLevelBlocState(
         name: levelModel.name,
         phaseType: levelModel.phaseType,
@@ -49,4 +32,10 @@ class LiveLevelBlocState extends LevelBlocState with _$LiveLevelBlocState {
         words: levelModel.words,
         id: levelModel.id,
       );
+}
+
+enum WordWarning {
+  none,
+  isWritten,
+  isNotCorrect,
 }

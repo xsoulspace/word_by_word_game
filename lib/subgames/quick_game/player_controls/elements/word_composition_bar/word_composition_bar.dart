@@ -11,7 +11,6 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/player_swither_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_actions_buttons.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_widgets/middle_word_part_actions.dart';
 
@@ -19,8 +18,8 @@ export 'word_widgets/word_widgets.dart';
 
 part 'word_composition_bar_state.dart';
 
-class UIWordCompositionBar extends HookWidget {
-  const UIWordCompositionBar({super.key});
+class UiWordCompositionBar extends HookWidget {
+  const UiWordCompositionBar({super.key});
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
@@ -49,8 +48,6 @@ class UIWordCompositionBar extends HookWidget {
                     : state.onOpenSuggestionDialog,
               ),
               rightButton: UiPauseIconButton(onPressed: state.onPause),
-              leftTopBuilder: (final context) => const UIMobilePlayerName(),
-              rightTopBuilder: (final context) => const UIMobilePlayerScore(),
               textFieldBuilder: (final context) =>
                   BlocBuilder<LevelBloc, LevelBlocState>(
                 buildWhen: LevelBloc.useCheckStateEqualityBuilder(

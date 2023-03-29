@@ -9,6 +9,7 @@ class GameBottomBarBackground extends StatelessWidget {
   });
   final Widget child;
   final EdgeInsets? padding;
+
   final BoxConstraints? constraints;
   @override
   Widget build(final BuildContext context) {
@@ -16,30 +17,32 @@ class GameBottomBarBackground extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
 
     final levelPlayersBloc = context.watch<LevelPlayersBloc>();
-    final livePlayersBloc = levelPlayersBloc.state;
-    if (livePlayersBloc is! LiveLevelPlayersBlocState) return const SizedBox();
+    final livePlayerColor = levelPlayersBloc.state.mapOrNull(
+      live: (final value) => value.currentPlayer.color,
+    );
 
-    return Container(
-      constraints: constraints ?? const BoxConstraints(),
-      child: Stack(
-        children: [
-          Positioned.fill(
-            child: Container().frosted(),
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: AnimatedContainer(
+            duration: 80.milliseconds,
+          ).frosted(),
+        ),
+        AnimatedContainer(
+          duration: 80.milliseconds,
+          padding: padding,
+          constraints: constraints,
+          decoration: BoxDecoration(
+            color: ElevationOverlay.applySurfaceTint(
+              livePlayerColor ?? theme.colorScheme.surfaceTint,
+              Colors.white,
+              30,
+            ).withOpacity(0.1),
+            borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
           ),
-          Container(
-            padding: padding,
-            decoration: BoxDecoration(
-              color: ElevationOverlay.applySurfaceTint(
-                livePlayersBloc.currentPlayer.color,
-                Colors.white,
-                30,
-              ).withOpacity(0.1),
-              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
-            ),
-            child: child,
-          ),
-        ],
-      ),
+          child: child,
+        ),
+      ],
     );
   }
 }

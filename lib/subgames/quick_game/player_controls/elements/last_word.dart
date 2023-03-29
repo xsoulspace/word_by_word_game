@@ -39,9 +39,15 @@ class _LastWordTextState extends State<LastWordText> {
     super.didUpdateWidget(oldWidget);
     if (_lastWord != widget.latestWord) {
       if (mounted) {
-        _controller
-          ?..reset()
-          ..forward();
+        try {
+          _controller
+            ?..reset()
+            ..forward();
+          // ignore: empty_catches, avoid_catches_without_on_clauses
+        } catch (e) {
+          // TODO(arenukvern): the problem seems to be in animation library..
+          // need to figure out how to fix this and send PR
+        }
       }
       _lastWord = widget.latestWord;
     }
