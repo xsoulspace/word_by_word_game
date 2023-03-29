@@ -3,8 +3,9 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
+import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/generated/l10n.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 class AppSettingsNotifier extends ChangeNotifier implements Loadable {
   AppSettingsNotifier.use(final Locator read)
@@ -16,21 +17,27 @@ class AppSettingsNotifier extends ChangeNotifier implements Loadable {
   set settings(final AppSettingsModel value) {
     _settings = value;
     notify();
-    persistenceService.saveSettings(settings: value);
+    unawaited(persistenceService.saveSettings(settings: value));
   }
 
-  Locale? systemLocale;
+  Locale? get systemLocale => Locale.fromSubtags(
+        languageCode: Platform.localeName.substring(0, 2),
+      );
+
   Locale? get locale => _settings.locale;
   set locale(final Locale? value) {
     if (value?.languageCode == locale?.languageCode) return;
     if (value == null) {
-      settings = settings.copyWith(locale: null);
+      final savedSettings = settings.copyWith(locale: null);
+      unawaited(persistenceService.saveSettings(settings: savedSettings));
       final defaultLocale = systemLocale ?? Locales.en;
-      S.load(defaultLocale);
+      _settings = settings.copyWith(locale: defaultLocale);
+      unawaited(S.delegate.load(defaultLocale));
+      notify();
     } else {
       final language = Languages.byLanguageCode(value.languageCode);
       final newLocale = Locales.byLanguage(language);
-      S.load(newLocale);
+      unawaited(S.delegate.load(newLocale));
       settings = settings.copyWith(locale: newLocale);
     }
   }

@@ -1,13 +1,7 @@
 part of 'models.dart';
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class ScoreModel with _$ScoreModel {
   const factory ScoreModel({
     required final double value,
@@ -19,15 +13,9 @@ class ScoreModel with _$ScoreModel {
       _$ScoreModelFromJson(json);
   static const zero = ScoreModel(value: 0);
 
-  ScoreModel operator *(final num factor) {
-    return ScoreModel(value: value * factor);
-  }
+  ScoreModel operator *(final num factor) => ScoreModel(value: value * factor);
 
-  ScoreModel operator +(final num factor) {
-    return ScoreModel(value: value + factor);
-  }
+  ScoreModel operator +(final num factor) => ScoreModel(value: value + factor);
 
-  bool operator >=(final num factor) {
-    return value >= factor;
-  }
+  bool operator >=(final num factor) => value >= factor;
 }

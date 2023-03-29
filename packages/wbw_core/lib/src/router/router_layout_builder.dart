@@ -8,7 +8,5 @@ class RouterLayoutBuilder<TRouterController extends RouterController,
   final TBuilder pageBuilder;
   String get pathTemplate => pageBuilder.pathTemplate;
 
-  List<Page> buildPages() {
-    return [];
-  }
+  List<Page> buildPages() => [];
 }

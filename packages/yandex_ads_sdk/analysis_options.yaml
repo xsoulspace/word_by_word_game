@@ -8,3 +8,9 @@
 # The following line activates a set of recommended lints for Flutter apps,
 # packages, and plugins designed to encourage good coding practices.
 include: package:xsoulspace_lints/library.yaml
+
+analyzer:
+  exclude:
+    - lib/**/**.gen.dart
+    - lib/**/**.g.dart
+    - lib/**/**.freezed.dart

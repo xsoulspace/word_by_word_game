@@ -3,15 +3,16 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
-import 'package:word_by_word_game/pack_game/highscore/highscore_screen.dart';
-import 'package:word_by_word_game/pack_game/pack_game.dart';
-import 'package:word_by_word_game/pack_game/settings/settings_screen.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/wbw_game_widget.dart';
+import 'package:word_by_word_game/subgames/quick_game/highscore/highscore_screen.dart';
+import 'package:word_by_word_game/subgames/quick_game/pause/pause_screen.dart';
+import 'package:word_by_word_game/subgames/quick_game/settings/settings_screen.dart';
 
 class AppNavigator extends HookWidget {
   const AppNavigator({
     required this.navigatorKey,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final GlobalKey<NavigatorState> navigatorKey;
 
   @override
@@ -57,26 +58,20 @@ class AppPageBuilder extends RouterPageBuilder<AppRouterController> {
         key: keys.pause,
       );
 
-  Page game() {
-    return NavigatorPage(
-      child: const WbwGameWidget(),
-      key: keys.game,
-    );
-  }
+  Page game() => NavigatorPage(
+        child: const WbwGameWidget(),
+        key: keys.game,
+      );
 
-  Page highscore() {
-    return NavigatorPage(
-      child: const HighscoreScreen(),
-      key: keys.highscore,
-    );
-  }
+  Page highscore() => NavigatorPage(
+        child: const HighscoreScreen(),
+        key: keys.highscore,
+      );
 
-  Page settings() {
-    return NavigatorPage(
-      child: const SettingsScreen(),
-      key: keys.settings,
-    );
-  }
+  Page settings() => NavigatorPage(
+        child: const SettingsScreen(),
+        key: keys.settings,
+      );
 }
 
 class AppLayoutBuilder

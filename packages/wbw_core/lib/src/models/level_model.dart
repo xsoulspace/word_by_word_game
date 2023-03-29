@@ -4,30 +4,19 @@ part of 'models.dart';
 
 typedef LevelModelId = String;
 
-enum LevelPlayerPhaseType {
-  entryWord,
-  selectAction,
-}
+enum GamePhaseType { entryWord, selectFuel }
 
-enum LevelPlayerActionType {
-  refuelStorage,
-  cookFood,
-}
+enum EnergyMultiplierType {
+  m1(namedPart: '1/3'),
+  m2(namedPart: '2/3'),
+  m3(namedPart: '3/3');
 
-enum LevelActionMultiplierType {
-  m1,
-  m2,
-  m3,
+  const EnergyMultiplierType({required this.namedPart});
+  final String namedPart;
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class LevelModel with _$LevelModel {
   @JsonSerializable(
     explicitToJson: true,
@@ -41,11 +30,9 @@ class LevelModel with _$LevelModel {
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
-    @Default(LevelPlayerPhaseType.entryWord)
-        final LevelPlayerPhaseType phaseType,
-    @Default(LevelActionMultiplierType.m1)
-        final LevelActionMultiplierType actionMultiplier,
-    final LevelPlayerActionType? actionType,
+    @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
+    @Default(EnergyMultiplierType.m1)
+        final EnergyMultiplierType actionMultiplier,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
@@ -53,13 +40,7 @@ class LevelModel with _$LevelModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TemplateLevelModel with _$TemplateLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory TemplateLevelModel({

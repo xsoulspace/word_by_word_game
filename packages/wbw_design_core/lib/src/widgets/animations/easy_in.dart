@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class EasyIn extends StatefulWidget {
   const EasyIn({
     required this.child,
-    final key,
-  }) : super(key: key);
+    super.key,
+  });
   final Widget child;
 
   @override
@@ -64,15 +64,13 @@ class _EasyInState extends State<EasyIn> with SingleTickerProviderStateMixin {
 
     final child = AnimatedBuilder(
       animation: controller,
-      builder: (final context, final child) {
-        return Transform.translate(
-          offset: Offset(
-            0,
-            -15 + animation.value,
-          ),
-          child: widget.child,
-        );
-      },
+      builder: (final context, final child) => Transform.translate(
+        offset: Offset(
+          0,
+          -15 + animation.value,
+        ),
+        child: widget.child,
+      ),
     );
 
     if (_kDebugAnimation) {

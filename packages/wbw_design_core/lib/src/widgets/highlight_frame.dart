@@ -122,17 +122,15 @@ class HighlightFrame extends StatelessWidget {
   }
 
   @override
-  Widget build(final BuildContext context) {
-    return PortalTarget(
-      anchor: highlightPosition.toAnchor(),
-      visible: highlighted,
-      portalFollower: EasyIn(
-        child: icon,
-      ),
-      child: GestureDetector(
-        onTap: onPressed,
-        child: child,
-      ),
-    );
-  }
+  Widget build(final BuildContext context) => PortalTarget(
+        anchor: highlightPosition.toAnchor(),
+        visible: highlighted,
+        portalFollower: EasyIn(
+          child: icon,
+        ),
+        child: GestureDetector(
+          onTap: onPressed,
+          child: child,
+        ),
+      );
 }

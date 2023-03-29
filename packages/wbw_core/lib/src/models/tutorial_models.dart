@@ -3,13 +3,7 @@
 part of 'models.dart';
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TutorialEventModel with _$TutorialEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialEventModel({
@@ -44,13 +38,7 @@ class TutorialEventModel with _$TutorialEventModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TutorialGameEffectModel with _$TutorialGameEffectModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialGameEffectModel({
@@ -75,19 +63,12 @@ enum PrimitiveBool {
 }
 
 extension BooleanExtension on bool {
-  PrimitiveBool toPrimitiveBool() {
-    return PrimitiveBool.values.firstWhere((final e) => e.boolValue == this);
-  }
+  PrimitiveBool toPrimitiveBool() =>
+      PrimitiveBool.values.firstWhere((final e) => e.boolValue == this);
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialUiActionEventModel({
@@ -122,13 +103,7 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
 }
 
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialEventsCollectionModel({
@@ -189,13 +164,7 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
 /// To get the progress and the events
 /// use [TutorialEventsCollectionModel.fromData]
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialCollectionsProgressModel({
@@ -217,13 +186,7 @@ class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
 
 /// Actual tutorial events
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class TutorialCollectionsDataModel with _$TutorialCollectionsDataModel {
   const factory TutorialCollectionsDataModel({
     required final Map<TutorialCollectionsName, List<TutorialEventModel>>

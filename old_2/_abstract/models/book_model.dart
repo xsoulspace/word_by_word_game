@@ -28,13 +28,7 @@ typedef BookModelId = String;
 /// only if [GamePlayerModel] has [GameLetterCount] equals to
 /// [letterCount]
 @immutable
-@Freezed(
-  fromJson: true,
-  toJson: true,
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@freezed
 class BookModel with _$BookModel {
   @JsonSerializable(
     explicitToJson: true,

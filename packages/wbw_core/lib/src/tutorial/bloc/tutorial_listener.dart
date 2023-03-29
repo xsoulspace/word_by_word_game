@@ -9,9 +9,9 @@ class TutorialStateNotifier implements Disposable {
   late final StreamSubscription<TutorialBlocState> _subscription;
   final _listeners = <TutorialEventListener>{};
   @override
-  void dispose() {
+  Future<void> dispose() async {
     _listeners.clear();
-    _subscription.cancel();
+    await _subscription.cancel();
   }
 
   Future<void> _onStateChange(final TutorialBlocState state) async {
@@ -33,9 +33,8 @@ class TutorialStateNotifier implements Disposable {
 
     if (event != null && event.gamePreEffects.isNotEmpty == true) {
       await Future.wait(
-        _listeners.map((final listener) async {
-          return listener.onEventPreEffects(event);
-        }),
+        _listeners
+            .map((final listener) async => listener.onEventPreEffects(event)),
       );
     }
   }
@@ -47,9 +46,8 @@ class TutorialStateNotifier implements Disposable {
 
     if (event != null && event.gamePostEffects.isNotEmpty == true) {
       await Future.wait(
-        _listeners.map((final listener) async {
-          return listener.onEventPostEffects(event);
-        }),
+        _listeners
+            .map((final listener) async => listener.onEventPostEffects(event)),
       );
     }
   }

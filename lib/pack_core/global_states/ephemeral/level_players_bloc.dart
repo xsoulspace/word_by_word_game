@@ -7,7 +7,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_bloc.dart';
 
 part 'level_players_bloc.freezed.dart';
-part 'level_players_bloc.g.dart';
 part 'level_players_events.dart';
 part 'level_players_states.dart';
 
@@ -28,7 +27,6 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     on<SwitchToNextPlayerEvent>(_onSwitchToNextPlayer);
     on<ConsumeFuelEvent>(_consumeCharacterFuel);
     on<RefuelStorageEvent>(_onRefuelStorage);
-    on<CookFoodEvent>(_onCookFood);
 
     on<UpdatePlayerHighscoreEvent>(_onUpdatePlayerHighscore);
     on<ChangeCharacterPositionEvent>(_onChangeCharacterPosition);
@@ -39,7 +37,7 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     final InitLevelPlayersEvent event,
     final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = LiveLevelPlayersBlocState.fromModel(
+    final liveState = LevelPlayersBlocState.liveFromModel(
       levelPlayersModel: event.playersModel,
       levelCharactersModel: event.charactersModel,
     );
@@ -102,14 +100,6 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
     );
 
     emit(updatedState);
-  }
-
-  void _onCookFood(
-    final CookFoodEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
-  ) {
-// TODO(arenukvern): description
-    throw UnimplementedError();
   }
 
   void _onRefuelStorage(

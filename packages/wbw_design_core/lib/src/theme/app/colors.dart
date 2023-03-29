@@ -8,14 +8,12 @@ class AppColorSchemes {
     required this.lightSurface,
   });
 
-  factory AppColorSchemes.brand() {
-    return AppColorSchemes._(
-      darkSurface: BrandColorSchemes.darkSurface,
-      dark: BrandColorSchemes.dark,
-      lightSurface: BrandColorSchemes.lightSurface,
-      light: BrandColorSchemes.light,
-    );
-  }
+  factory AppColorSchemes.brand() => AppColorSchemes._(
+        darkSurface: BrandColorSchemes.darkSurface,
+        dark: BrandColorSchemes.dark,
+        lightSurface: BrandColorSchemes.lightSurface,
+        light: BrandColorSchemes.light,
+      );
 
   /// Use this factory to create a new AppColorSchemes based on
   /// Material You token generation principle.

@@ -61,8 +61,24 @@ If you need help getting started or have any questions, check out our [Discord C
 ## Build
 
 web:
-flutter clean && flutter pub get && flutter build web --csp --dart-define="yandex-fullscreen-yg-mobile-web=R-A-1966126-8" --dart-define="yandex-fullscreen-yg-desktop-web=R-A-1966126-19" --dart-define="is-yandex-games=true"
+flutter clean && flutter pub get && flutter build web --csp -t lib/main_prod.dart --dart-define="yandex-fullscreen-yg-mobile-web=R-A-1966126-8" --dart-define="yandex-fullscreen-yg-desktop-web=R-A-1966126-19" --dart-define="is-yandex-games=true"
 
 android:
 flutter build appbundle --dart-define=""
 flutter build apk --dart-define=""
+
+This project uses:
+
+melos to manage packages
+https://melos.invertase.dev
+dart pub global activate melos
+
+Widgetbook:
+https://docs.widgetbook.io/widgetbook/overview
+dart pub global activate mason_cli
+
+## Additional Licenses and Insipration Sources:
+
+- color palette - https://lospec.com/palette-list/na16
+- temporary tilemap source - https://pixelfrog-assets.itch.io/treasure-hunters
+- extremly useful info of procedural map generation - https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s

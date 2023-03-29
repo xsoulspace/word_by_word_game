@@ -249,7 +249,7 @@ const _tutorialData = TutorialCollectionsDataModel(
           ),
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
-            uiItem: TutorialUiItem.refuelActionButton,
+            uiItem: TutorialUiItem.selectRefuelOption,
           )
         ],
         localizedMap: LocalizedMap(
@@ -264,33 +264,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         ),
         gamePreEffects: [],
         gamePostEffects: [],
-        anchorUiItem: TutorialUiItem.selectActionFrame,
-      ),
-      TutorialEventModel(
-        completeActions: [
-          TutorialUiActionEventModel(
-            action: TutorialCompleteAction.idle,
-            uiItem: TutorialUiItem.anchoredIdleDialog,
-            isCompleted: true,
-          ),
-          TutorialUiActionEventModel(
-            action: TutorialCompleteAction.onClick,
-            uiItem: TutorialUiItem.effectButton,
-          )
-        ],
-        localizedMap: LocalizedMap(
-          value: {
-            Languages.en:
-                'Effect is how much of the action will be applied.\n\nChoose any effect - air balloon will receive points of fuel.',
-            Languages.ru:
-                'Эффект - это то, насколько сильно будет применено действие.\n\nВыберите любой эффект - воздушный шар получит очки топлива.',
-            Languages.it:
-                "L'effetto è la quantità di azione che verrà applicata.\n\nScegliere qualsiasi effetto - il pallone aerostatico riceverà punti di carburante.",
-          },
-        ),
-        gamePreEffects: [],
-        gamePostEffects: [],
-        anchorUiItem: TutorialUiItem.selectEffectFrame,
+        anchorUiItem: TutorialUiItem.selectRefuelOption,
       ),
       TutorialEventModel(
         completeActions: [

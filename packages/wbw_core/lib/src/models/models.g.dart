@@ -43,7 +43,8 @@ Map<String, dynamic> _$$_FuelModelToJson(_$_FuelModel instance) =>
 
 _$_FuelStorageModel _$$_FuelStorageModelFromJson(Map<String, dynamic> json) =>
     _$_FuelStorageModel(
-      value: (json['value'] as num?)?.toDouble() ?? 100,
+      value:
+          (json['value'] as num?)?.toDouble() ?? FuelStorageModel.defaultValue,
     );
 
 Map<String, dynamic> _$$_FuelStorageModelToJson(_$_FuelStorageModel instance) =>
@@ -147,14 +148,12 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           ) ??
           const {},
       latestWord: json['latestWord'] as String? ?? '',
-      phaseType: $enumDecodeNullable(
-              _$LevelPlayerPhaseTypeEnumMap, json['phaseType']) ??
-          LevelPlayerPhaseType.entryWord,
+      phaseType:
+          $enumDecodeNullable(_$GamePhaseTypeEnumMap, json['phaseType']) ??
+              GamePhaseType.entryWord,
       actionMultiplier: $enumDecodeNullable(
-              _$LevelActionMultiplierTypeEnumMap, json['actionMultiplier']) ??
-          LevelActionMultiplierType.m1,
-      actionType: $enumDecodeNullable(
-          _$LevelPlayerActionTypeEnumMap, json['actionType']),
+              _$EnergyMultiplierTypeEnumMap, json['actionMultiplier']) ??
+          EnergyMultiplierType.m1,
     );
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
@@ -167,26 +166,20 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
       'latestWord': instance.latestWord,
-      'phaseType': _$LevelPlayerPhaseTypeEnumMap[instance.phaseType]!,
+      'phaseType': _$GamePhaseTypeEnumMap[instance.phaseType]!,
       'actionMultiplier':
-          _$LevelActionMultiplierTypeEnumMap[instance.actionMultiplier]!,
-      'actionType': _$LevelPlayerActionTypeEnumMap[instance.actionType],
+          _$EnergyMultiplierTypeEnumMap[instance.actionMultiplier]!,
     };
 
-const _$LevelPlayerPhaseTypeEnumMap = {
-  LevelPlayerPhaseType.entryWord: 'entryWord',
-  LevelPlayerPhaseType.selectAction: 'selectAction',
+const _$GamePhaseTypeEnumMap = {
+  GamePhaseType.entryWord: 'entryWord',
+  GamePhaseType.selectFuel: 'selectFuel',
 };
 
-const _$LevelActionMultiplierTypeEnumMap = {
-  LevelActionMultiplierType.m1: 'm1',
-  LevelActionMultiplierType.m2: 'm2',
-  LevelActionMultiplierType.m3: 'm3',
-};
-
-const _$LevelPlayerActionTypeEnumMap = {
-  LevelPlayerActionType.refuelStorage: 'refuelStorage',
-  LevelPlayerActionType.cookFood: 'cookFood',
+const _$EnergyMultiplierTypeEnumMap = {
+  EnergyMultiplierType.m1: 'm1',
+  EnergyMultiplierType.m2: 'm2',
+  EnergyMultiplierType.m3: 'm3',
 };
 
 _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
@@ -260,7 +253,7 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
           : SerializedVector2.fromJson(
               json['position'] as Map<String, dynamic>),
       fuel: json['fuel'] == null
-          ? const FuelStorageModel(value: 150)
+          ? const FuelStorageModel()
           : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
       fuelNormalPower: (json['fuelNormalPower'] as num?)?.toDouble() ?? 50.5,
       requiredLiftForce: (json['requiredLiftForce'] as num?)?.toDouble() ?? 0.5,
@@ -449,14 +442,11 @@ const _$TutorialUiItemEnumMap = {
   TutorialUiItem.enterWordRight: 'enterWordRight',
   TutorialUiItem.actionPhaseFrame: 'actionPhaseFrame',
   TutorialUiItem.enterWordPhaseFrame: 'enterWordPhaseFrame',
-  TutorialUiItem.selectActionFrame: 'selectActionFrame',
-  TutorialUiItem.selectEffectFrame: 'selectEffectFrame',
   TutorialUiItem.applyAndEndTurnButton: 'applyAndEndTurnButton',
   TutorialUiItem.yourNameLabel: 'yourNameLabel',
   TutorialUiItem.yourScoreLabel: 'yourScoreLabel',
   TutorialUiItem.gameFuelIndicator: 'gameFuelIndicator',
-  TutorialUiItem.refuelActionButton: 'refuelActionButton',
-  TutorialUiItem.effectButton: 'effectButton',
+  TutorialUiItem.selectRefuelOption: 'selectRefuelOption',
   TutorialUiItem.tutorialBoolDialog: 'tutorialBoolDialog',
   TutorialUiItem.tutorialOkDialog: 'tutorialOkDialog',
   TutorialUiItem.anchoredIdleDialog: 'anchoredIdleDialog',

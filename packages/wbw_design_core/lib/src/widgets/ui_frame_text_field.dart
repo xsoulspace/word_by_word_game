@@ -11,8 +11,8 @@ class UiFrameTextField extends StatelessWidget {
     required this.keyFocusNode,
     this.onEnterPressed,
     this.textFieldFocusNode,
-    final Key? key,
-  }) : super(key: key);
+    super.key,
+  });
   final TextEditingController controller;
   final String hintText;
   final VoidCallback? onEnterPressed;
@@ -28,7 +28,7 @@ class UiFrameTextField extends StatelessWidget {
     return RawKeyboardListener(
       focusNode: keyFocusNode,
       onKey: (final event) {
-        if (event.isKeyPressed(LogicalKeyboardKey.enter)) {
+        if (event.logicalKey == LogicalKeyboardKey.enter) {
           onEnterPressed?.call();
         }
       },

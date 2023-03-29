@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'character_mechanics.dart';
 
@@ -43,7 +43,8 @@ mixin _$FlyingObjectsParams {
 abstract class $FlyingObjectsParamsCopyWith<$Res> {
   factory $FlyingObjectsParamsCopyWith(
           FlyingObjectsParams value, $Res Function(FlyingObjectsParams) then) =
-      _$FlyingObjectsParamsCopyWithImpl<$Res>;
+      _$FlyingObjectsParamsCopyWithImpl<$Res, FlyingObjectsParams>;
+  @useResult
   $Res call(
       {FuelStorageModel fuel,
       double fuelNormalPower,
@@ -53,40 +54,43 @@ abstract class $FlyingObjectsParamsCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FlyingObjectsParamsCopyWithImpl<$Res>
+class _$FlyingObjectsParamsCopyWithImpl<$Res, $Val extends FlyingObjectsParams>
     implements $FlyingObjectsParamsCopyWith<$Res> {
   _$FlyingObjectsParamsCopyWithImpl(this._value, this._then);
 
-  final FlyingObjectsParams _value;
   // ignore: unused_field
-  final $Res Function(FlyingObjectsParams) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fuel = freezed,
-    Object? fuelNormalPower = freezed,
-    Object? requiredLiftForce = freezed,
+    Object? fuel = null,
+    Object? fuelNormalPower = null,
+    Object? requiredLiftForce = null,
   }) {
     return _then(_value.copyWith(
-      fuel: fuel == freezed
+      fuel: null == fuel
           ? _value.fuel
           : fuel // ignore: cast_nullable_to_non_nullable
               as FuelStorageModel,
-      fuelNormalPower: fuelNormalPower == freezed
+      fuelNormalPower: null == fuelNormalPower
           ? _value.fuelNormalPower
           : fuelNormalPower // ignore: cast_nullable_to_non_nullable
               as double,
-      requiredLiftForce: requiredLiftForce == freezed
+      requiredLiftForce: null == requiredLiftForce
           ? _value.requiredLiftForce
           : requiredLiftForce // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $FuelStorageModelCopyWith<$Res> get fuel {
     return $FuelStorageModelCopyWith<$Res>(_value.fuel, (value) {
-      return _then(_value.copyWith(fuel: value));
+      return _then(_value.copyWith(fuel: value) as $Val);
     });
   }
 }
@@ -98,6 +102,7 @@ abstract class _$$_FlyingObjectsParamsCopyWith<$Res>
           $Res Function(_$_FlyingObjectsParams) then) =
       __$$_FlyingObjectsParamsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {FuelStorageModel fuel,
       double fuelNormalPower,
@@ -109,31 +114,29 @@ abstract class _$$_FlyingObjectsParamsCopyWith<$Res>
 
 /// @nodoc
 class __$$_FlyingObjectsParamsCopyWithImpl<$Res>
-    extends _$FlyingObjectsParamsCopyWithImpl<$Res>
+    extends _$FlyingObjectsParamsCopyWithImpl<$Res, _$_FlyingObjectsParams>
     implements _$$_FlyingObjectsParamsCopyWith<$Res> {
   __$$_FlyingObjectsParamsCopyWithImpl(_$_FlyingObjectsParams _value,
       $Res Function(_$_FlyingObjectsParams) _then)
-      : super(_value, (v) => _then(v as _$_FlyingObjectsParams));
+      : super(_value, _then);
 
-  @override
-  _$_FlyingObjectsParams get _value => super._value as _$_FlyingObjectsParams;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? fuel = freezed,
-    Object? fuelNormalPower = freezed,
-    Object? requiredLiftForce = freezed,
+    Object? fuel = null,
+    Object? fuelNormalPower = null,
+    Object? requiredLiftForce = null,
   }) {
     return _then(_$_FlyingObjectsParams(
-      fuel: fuel == freezed
+      fuel: null == fuel
           ? _value.fuel
           : fuel // ignore: cast_nullable_to_non_nullable
               as FuelStorageModel,
-      fuelNormalPower: fuelNormalPower == freezed
+      fuelNormalPower: null == fuelNormalPower
           ? _value.fuelNormalPower
           : fuelNormalPower // ignore: cast_nullable_to_non_nullable
               as double,
-      requiredLiftForce: requiredLiftForce == freezed
+      requiredLiftForce: null == requiredLiftForce
           ? _value.requiredLiftForce
           : requiredLiftForce // ignore: cast_nullable_to_non_nullable
               as double,
@@ -145,7 +148,7 @@ class __$$_FlyingObjectsParamsCopyWithImpl<$Res>
 
 class _$_FlyingObjectsParams extends _FlyingObjectsParams {
   const _$_FlyingObjectsParams(
-      {this.fuel = const FuelStorageModel(value: 150),
+      {this.fuel = const FuelStorageModel(),
       this.fuelNormalPower = 2.0,
       this.requiredLiftForce = 0.5})
       : super._();
@@ -184,22 +187,20 @@ class _$_FlyingObjectsParams extends _FlyingObjectsParams {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_FlyingObjectsParams &&
-            const DeepCollectionEquality().equals(other.fuel, fuel) &&
-            const DeepCollectionEquality()
-                .equals(other.fuelNormalPower, fuelNormalPower) &&
-            const DeepCollectionEquality()
-                .equals(other.requiredLiftForce, requiredLiftForce));
+            (identical(other.fuel, fuel) || other.fuel == fuel) &&
+            (identical(other.fuelNormalPower, fuelNormalPower) ||
+                other.fuelNormalPower == fuelNormalPower) &&
+            (identical(other.requiredLiftForce, requiredLiftForce) ||
+                other.requiredLiftForce == requiredLiftForce));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(fuel),
-      const DeepCollectionEquality().hash(fuelNormalPower),
-      const DeepCollectionEquality().hash(requiredLiftForce));
+  int get hashCode =>
+      Object.hash(runtimeType, fuel, fuelNormalPower, requiredLiftForce);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_FlyingObjectsParamsCopyWith<_$_FlyingObjectsParams> get copyWith =>
       __$$_FlyingObjectsParamsCopyWithImpl<_$_FlyingObjectsParams>(
           this, _$identity);
