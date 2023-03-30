@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flame/cache.dart';
@@ -10,6 +11,7 @@ import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
@@ -38,6 +40,8 @@ int get kVisibleTilesRows => 16;
 int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
+String get kWaterTileId => '3';
+
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
 class GameRenderer extends FlameGame
@@ -51,10 +55,12 @@ class GameRenderer extends FlameGame
   GameRenderer.use({
     required final Locator read,
     required final material.ThemeData theme,
+    this.config = const GameRendererConfig(),
   }) : diDto = GameRendererDiDto.use(
           read: read,
           theme: theme,
         );
+  final GameRendererConfig config;
   final GameRendererDiDto diDto;
   late final RouterComponent router;
 
@@ -142,6 +148,7 @@ class EditorRenderer extends Component
   final tilesDrawer = TilesDrawer();
   final tilesRenderer = TilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
+  final animationUpdater = AnimationUpdater();
 
   @override
   FutureOr<void> onLoad() {
@@ -150,6 +157,7 @@ class EditorRenderer extends Component
       debugSurface,
       tilesDrawer,
       cursor,
+      animationUpdater,
     ]);
     return super.onLoad();
   }
@@ -391,7 +399,7 @@ class TilesDrawer extends Component
 }
 
 class TilesRenderer extends Component
-    with HasGameRef<GameRenderer>, HasEditorRef {
+    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
   // final _canvasTilesComponents = <>{};
   @override
   FutureOr<void> onLoad() {
@@ -405,11 +413,7 @@ class TilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final brownPaint = Palette.brown.paint();
-  final bluePaint = Palette.blue.paint();
-  final redPaint = Palette.red.paint();
-  final yellowPaint = Palette.yellow.paint();
-  final whitePaint = Palette.white.paint();
+  final paint = material.Paint();
 
   @override
   void render(final Canvas canvas) {
@@ -424,17 +428,11 @@ class TilesRenderer extends Component
       if (tile.hasWater) {
         if (tile.isWaterTop) {
           final img = resourceLoader.getTile('X', tileStyle: TileStyle.water);
-          canvas.drawImage(img, position, whitePaint);
+          canvas.drawImage(img, position, paint);
         } else {
-          canvas.drawRect(
-            Rect.fromLTWH(
-              position.dx,
-              position.dy,
-              kTileDimension.toDouble(),
-              kTileDimension.toDouble(),
-            ),
-            redPaint,
-          );
+          final tilePath = animations[kWaterTileId]!.currentFrame;
+          final tileImage = getImage(tilePath);
+          canvas.drawImage(tileImage, position, paint);
         }
       }
       if (tile.hasTerrain) {
@@ -448,29 +446,33 @@ class TilesRenderer extends Component
             : 'X';
 
         final img = resourceLoader.getTile(terrainStyle);
-        canvas.drawImage(img, position, whitePaint);
+        canvas.drawImage(img, position, paint);
       }
 
       if (tile.coin.isNotEmpty) {
-        canvas.drawRect(
-          Rect.fromLTWH(
-            position.dx,
-            position.dy,
-            kTileDimension.toDouble(),
-            kTileDimension.toDouble(),
-          ),
-          yellowPaint,
+        final tilePath = animations[tile.coin]!.currentFrame;
+        final tileImage = getImage(tilePath);
+        final effectivePosition = position +
+            Offset(kTileDimension / 2, kTileDimension / 2) -
+            (tileImage.size / 2).toOffset();
+        canvas.drawImage(
+          tileImage,
+          effectivePosition,
+          paint,
         );
       }
       if (tile.enemy.isNotEmpty) {
-        canvas.drawRect(
-          Rect.fromLTWH(
-            position.dx,
-            position.dy,
-            kTileDimension.toDouble(),
-            kTileDimension.toDouble(),
-          ),
-          redPaint,
+        final tilePath = animations[tile.enemy]!.currentFrame;
+        final tileImage = getImage(tilePath);
+        final effectivePosition = position +
+            Offset(
+              kTileDimension.toDouble() / 2 - tileImage.width / 2,
+              (kTileDimension - tileImage.height).toDouble(),
+            );
+        canvas.drawImage(
+          tileImage,
+          effectivePosition,
+          paint,
         );
       }
     }
@@ -480,15 +482,21 @@ class TilesRenderer extends Component
 mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
   Image getTerrainImage(final String fileName) =>
       game.resourcesLoader.getTile(fileName);
+  Map<String, AnimationEntryModel> get animations =>
+      game.resourcesLoader.animations;
+
+  /// Make sure you have cleared the path by [ResourcesLoader.fixAssetsPath]
+  Image getImage(final String path) => game.images.fromCache(path);
 }
 
 class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
+  static String fixAssetsPath(final String path) =>
+      path.replaceAll('assets/images/', '');
   static String _getAssetsFolderPath(final AssetGenImage assetGenImage) {
-    final pathList =
-        assetGenImage.path.replaceAll('assets/images/', '').split('/')
+    final pathList = fixAssetsPath(assetGenImage.path).split('/')
 
-          /// removing filename from path
-          ..removeLast();
+      /// removing filename from path
+      ..removeLast();
     return pathList.join('/');
   }
 
@@ -500,14 +508,55 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
 
   @override
   FutureOr<void> onLoad() async {
-    await Future.wait([_loadWaterTiles(), _loadTerrainTiles()]);
+    await Future.wait(
+      [_loadWaterTiles(), _loadTerrainTiles(), _loadAnimations()],
+    );
+
     return super.onLoad();
   }
 
   Images get _images => game.images;
-  Future<void> _loadAssets(final List<AssetGenImage> assets) async {
+
+  Future<void> _loadAssetsByPaths(final Iterable<String> values) async {
     await _images.loadAll(
-      assets.map((final e) => e.path.replaceAll('assets/images/', '')).toList(),
+      values.map(fixAssetsPath).toList(),
+    );
+  }
+
+  Future<void> _loadAssets(final Iterable<AssetGenImage> assets) async {
+    await _loadAssetsByPaths(assets.map((final e) => e.path));
+  }
+
+  /// Key - id
+  final animations = <String, AnimationEntryModel>{};
+
+  Future<void> _loadAnimations() async {
+    final manifestContent = await rootBundle.loadString('AssetManifest.json');
+
+    /// List of all asset files like:
+    /// 'assets/images/clouds/Small Cloud 1.png'
+    ///
+    /// Always starts with assets keyword.
+    final Map<String, dynamic> manifestMap = jsonDecode(manifestContent);
+    Future<void> loadTileGraphics(
+      final MapEntry<String, TileDataModel> tileEntry,
+    ) async {
+      final graphicsPath = tileEntry.value.graphics;
+      if (graphicsPath.isNotEmpty) {
+        final graphicsPaths =
+            manifestMap.keys.where((final e) => e.startsWith(graphicsPath));
+        if (graphicsPaths.isNotEmpty) {
+          animations[tileEntry.key] = AnimationEntryModel(
+            framesLength: graphicsPaths.length,
+            framesPaths: graphicsPaths.map(fixAssetsPath).toList(),
+          );
+          await _loadAssetsByPaths(graphicsPaths);
+        }
+      }
+    }
+
+    await Future.wait(
+      game.diDto.mapEditorBloc.tilesData.entries.map(loadTileGraphics),
     );
   }
 
@@ -548,4 +597,22 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
         '${_getTilePath(tileStyle: tileStyle)}'
         '/$fileName.png',
       );
+}
+
+class AnimationUpdater extends Component
+    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
+  @override
+  void update(final double dt) {
+    for (final animationEntry in animations.entries) {
+      final value = animationEntry.value;
+      double frameIndex = value.frameIndex + (game.config.animationSpeed * dt);
+      if (frameIndex > value.framesLength - 1) {
+        frameIndex = 0;
+      }
+      animations[animationEntry.key] = animationEntry.value.copyWith(
+        frameIndex: frameIndex,
+      );
+    }
+    super.update(dt);
+  }
 }

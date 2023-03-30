@@ -94,7 +94,23 @@ flutter:
     - assets/images/clouds/
     - assets/images/cursors/
     - assets/images/enemies/
+    - assets/images/enemies/pearl/
+    - assets/images/enemies/shell_left/
+    - assets/images/enemies/shell_left/attack/
+    - assets/images/enemies/shell_left/idle/
+    - assets/images/enemies/shell_right/
+    - assets/images/enemies/shell_right/attack/
+    - assets/images/enemies/shell_right/idle/
+    - assets/images/enemies/spikes/
+    - assets/images/enemies/tooth/
+    - assets/images/enemies/tooth/idle/
+    - assets/images/enemies/tooth/run_left/
+    - assets/images/enemies/tooth/run_right/
     - assets/images/items/
+    - assets/images/items/diamond/
+    - assets/images/items/gold/
+    - assets/images/items/particle/
+    - assets/images/items/silver/
     - assets/images/menu/
     - assets/images/player/
     - assets/images/preview/
