@@ -80,7 +80,19 @@ class TileButtons extends StatelessWidget {
                       },
                     ),
                   ],
-                )
+                ),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 150),
+                  child: CheckboxListTile(
+                    value: drawerCubit.state.isDeleteSelection,
+                    onChanged: (final isDeleteSelection) {
+                      drawerCubit.onChangeIsDeleteSelection(
+                        isDeleteSelection ?? false,
+                      );
+                    },
+                    title: const Text('Delete Tile'),
+                  ),
+                ),
               ],
             ),
           ),

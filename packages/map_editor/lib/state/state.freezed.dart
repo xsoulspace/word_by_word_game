@@ -17,6 +17,8 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$DrawerCubitState {
   int get selectionIndex => throw _privateConstructorUsedError;
+  bool get isDeleteSelection => throw _privateConstructorUsedError;
+  bool get isDeleteSelectionCompletely => throw _privateConstructorUsedError;
   Map<CellPointModel, CanvasTileModel> get canvasData =>
       throw _privateConstructorUsedError;
 
@@ -32,7 +34,10 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
       _$DrawerCubitStateCopyWithImpl<$Res, DrawerCubitState>;
   @useResult
   $Res call(
-      {int selectionIndex, Map<CellPointModel, CanvasTileModel> canvasData});
+      {int selectionIndex,
+      bool isDeleteSelection,
+      bool isDeleteSelectionCompletely,
+      Map<CellPointModel, CanvasTileModel> canvasData});
 }
 
 /// @nodoc
@@ -49,6 +54,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
   @override
   $Res call({
     Object? selectionIndex = null,
+    Object? isDeleteSelection = null,
+    Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
   }) {
     return _then(_value.copyWith(
@@ -56,6 +63,14 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           ? _value.selectionIndex
           : selectionIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isDeleteSelection: null == isDeleteSelection
+          ? _value.isDeleteSelection
+          : isDeleteSelection // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDeleteSelectionCompletely: null == isDeleteSelectionCompletely
+          ? _value.isDeleteSelectionCompletely
+          : isDeleteSelectionCompletely // ignore: cast_nullable_to_non_nullable
+              as bool,
       canvasData: null == canvasData
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
@@ -73,7 +88,10 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int selectionIndex, Map<CellPointModel, CanvasTileModel> canvasData});
+      {int selectionIndex,
+      bool isDeleteSelection,
+      bool isDeleteSelectionCompletely,
+      Map<CellPointModel, CanvasTileModel> canvasData});
 }
 
 /// @nodoc
@@ -88,6 +106,8 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? selectionIndex = null,
+    Object? isDeleteSelection = null,
+    Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
   }) {
     return _then(_$_DrawerCubitState(
@@ -95,6 +115,14 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           ? _value.selectionIndex
           : selectionIndex // ignore: cast_nullable_to_non_nullable
               as int,
+      isDeleteSelection: null == isDeleteSelection
+          ? _value.isDeleteSelection
+          : isDeleteSelection // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isDeleteSelectionCompletely: null == isDeleteSelectionCompletely
+          ? _value.isDeleteSelectionCompletely
+          : isDeleteSelectionCompletely // ignore: cast_nullable_to_non_nullable
+              as bool,
       canvasData: null == canvasData
           ? _value._canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
@@ -108,12 +136,20 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
 class _$_DrawerCubitState implements _DrawerCubitState {
   const _$_DrawerCubitState(
       {this.selectionIndex = kMinSelectionIndex,
+      this.isDeleteSelection = false,
+      this.isDeleteSelectionCompletely = false,
       final Map<CellPointModel, CanvasTileModel> canvasData = const {}})
       : _canvasData = canvasData;
 
   @override
   @JsonKey()
   final int selectionIndex;
+  @override
+  @JsonKey()
+  final bool isDeleteSelection;
+  @override
+  @JsonKey()
+  final bool isDeleteSelectionCompletely;
   final Map<CellPointModel, CanvasTileModel> _canvasData;
   @override
   @JsonKey()
@@ -125,7 +161,7 @@ class _$_DrawerCubitState implements _DrawerCubitState {
 
   @override
   String toString() {
-    return 'DrawerCubitState(selectionIndex: $selectionIndex, canvasData: $canvasData)';
+    return 'DrawerCubitState(selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData)';
   }
 
   @override
@@ -135,12 +171,22 @@ class _$_DrawerCubitState implements _DrawerCubitState {
             other is _$_DrawerCubitState &&
             (identical(other.selectionIndex, selectionIndex) ||
                 other.selectionIndex == selectionIndex) &&
+            (identical(other.isDeleteSelection, isDeleteSelection) ||
+                other.isDeleteSelection == isDeleteSelection) &&
+            (identical(other.isDeleteSelectionCompletely,
+                    isDeleteSelectionCompletely) ||
+                other.isDeleteSelectionCompletely ==
+                    isDeleteSelectionCompletely) &&
             const DeepCollectionEquality()
                 .equals(other._canvasData, _canvasData));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, selectionIndex,
+  int get hashCode => Object.hash(
+      runtimeType,
+      selectionIndex,
+      isDeleteSelection,
+      isDeleteSelectionCompletely,
       const DeepCollectionEquality().hash(_canvasData));
 
   @JsonKey(ignore: true)
@@ -153,11 +199,17 @@ class _$_DrawerCubitState implements _DrawerCubitState {
 abstract class _DrawerCubitState implements DrawerCubitState {
   const factory _DrawerCubitState(
           {final int selectionIndex,
+          final bool isDeleteSelection,
+          final bool isDeleteSelectionCompletely,
           final Map<CellPointModel, CanvasTileModel> canvasData}) =
       _$_DrawerCubitState;
 
   @override
   int get selectionIndex;
+  @override
+  bool get isDeleteSelection;
+  @override
+  bool get isDeleteSelectionCompletely;
   @override
   Map<CellPointModel, CanvasTileModel> get canvasData;
   @override

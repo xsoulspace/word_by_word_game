@@ -2,7 +2,7 @@ part of 'models.dart';
 
 @freezed
 class CanvasTileModel with _$CanvasTileModel {
-  const factory CanvasTileModel._({
+  const factory CanvasTileModel.secure({
     required final TileId tileId,
 
     /// Terrain
@@ -20,7 +20,8 @@ class CanvasTileModel with _$CanvasTileModel {
     @Default('') final TileId enemy,
     @Default([]) final List objects,
   }) = _SecureCanvasTileModel;
-  factory CanvasTileModel.fromEditorSettingsData({
+  const CanvasTileModel._();
+  factory CanvasTileModel.fromEditorSettingsDataToAdd({
     required final TileId tileId,
     required final TileDataModel data,
     final CanvasTileModel? oldData,
@@ -48,7 +49,7 @@ class CanvasTileModel with _$CanvasTileModel {
         break;
     }
 
-    return CanvasTileModel._(
+    return CanvasTileModel.secure(
       tileId: tileId,
       coin: coin,
       enemy: enemy,
@@ -59,4 +60,51 @@ class CanvasTileModel with _$CanvasTileModel {
       terrainNeighbours: oldData?.terrainNeighbours ?? [],
     );
   }
+  CanvasTileModel removeSelection({
+    required final TileId tileId,
+    required final TileDataModel data,
+  }) {
+    bool hasTerrain = this.hasTerrain;
+    bool hasWater = this.hasWater;
+    TileId coin = this.coin;
+    TileId enemy = this.enemy;
+
+    switch (data.style) {
+      case TileStyle.terrain:
+        hasTerrain = false;
+        break;
+      case TileStyle.water:
+        hasWater = false;
+        break;
+      case TileStyle.coin:
+        coin = '';
+        break;
+      case TileStyle.enemy:
+        enemy = '';
+        break;
+      // ignore: no_default_cases
+      default:
+        break;
+    }
+
+    return CanvasTileModel.secure(
+      tileId: '',
+      coin: coin,
+      enemy: enemy,
+      hasTerrain: hasTerrain,
+      hasWater: hasWater,
+      isWaterTop: isWaterTop,
+      objects: objects,
+      terrainNeighbours: terrainNeighbours,
+    );
+  }
+
+  static const empty = CanvasTileModel.secure(tileId: '');
+  bool get isEmpty =>
+      tileId.isEmpty &&
+      coin.isEmpty &&
+      enemy.isEmpty &&
+      !hasTerrain &&
+      !hasWater &&
+      !isWaterTop;
 }

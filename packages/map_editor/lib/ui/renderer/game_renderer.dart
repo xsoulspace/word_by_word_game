@@ -364,28 +364,44 @@ class TilesDrawer extends Component
   math.Point<int>? _lastSelectedCell;
   void _onTap(final EventPosition eventPosition) {
     final cell = getCurrentCell(eventPosition);
-    if (_lastSelectedCell == cell) return;
     final effectiveCanvasData = {...canvasData};
     final cellPoint = cell.toCellPoint();
-    if (effectiveCanvasData.containsKey(cellPoint)) {
-      /// Maybe better to override existing data, but not sure for now,
-      /// because it will break object immutability..
-      ///
-      /// But maybe if this will be runtime class - then it definitely
-      /// should be updated, not replaced.
-      effectiveCanvasData.update(
-        cellPoint,
-        (final value) => CanvasTileModel.fromEditorSettingsData(
+
+    /// remove selection
+    if (drawerCubit.state.isDeleteSelection) {
+      if (effectiveCanvasData.containsKey(cellPoint)) {
+        final updatedValue = effectiveCanvasData.update(
+          cellPoint,
+          (final value) => value.removeSelection(
+            data: drawerCubit.selectionData,
+            tileId: drawerCubit.selectionIndex.toString(),
+          ),
+        );
+        if (updatedValue.isEmpty) effectiveCanvasData.remove(cellPoint);
+      }
+    } else {
+      if (_lastSelectedCell == cell) return;
+      if (effectiveCanvasData.containsKey(cellPoint)) {
+        /// Maybe better to override existing data, but not sure for now,
+        /// because it will break object immutability..
+        ///
+        /// But maybe if this will be runtime class - then it definitely
+        /// should be updated, not replaced.
+        effectiveCanvasData.update(
+          cellPoint,
+          (final value) => CanvasTileModel.fromEditorSettingsDataToAdd(
+            data: drawerCubit.selectionData,
+            tileId: drawerCubit.selectionIndex.toString(),
+            oldData: value,
+          ),
+        );
+      } else {
+        effectiveCanvasData[cellPoint] =
+            CanvasTileModel.fromEditorSettingsDataToAdd(
           data: drawerCubit.selectionData,
           tileId: drawerCubit.selectionIndex.toString(),
-          oldData: value,
-        ),
-      );
-    } else {
-      effectiveCanvasData[cellPoint] = CanvasTileModel.fromEditorSettingsData(
-        data: drawerCubit.selectionData,
-        tileId: drawerCubit.selectionIndex.toString(),
-      );
+        );
+      }
     }
     canvasData = checkNeighbours(
       effectiveCanvasData: effectiveCanvasData,
@@ -413,7 +429,7 @@ class TilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final paint = material.Paint();
+  final _paint = material.Paint();
 
   @override
   void render(final Canvas canvas) {
@@ -428,11 +444,11 @@ class TilesRenderer extends Component
       if (tile.hasWater) {
         if (tile.isWaterTop) {
           final img = resourceLoader.getTile('X', tileStyle: TileStyle.water);
-          canvas.drawImage(img, position, paint);
+          canvas.drawImage(img, position, _paint);
         } else {
           final tilePath = animations[kWaterTileId]!.currentFrame;
           final tileImage = getImage(tilePath);
-          canvas.drawImage(tileImage, position, paint);
+          canvas.drawImage(tileImage, position, _paint);
         }
       }
       if (tile.hasTerrain) {
@@ -446,7 +462,7 @@ class TilesRenderer extends Component
             : 'X';
 
         final img = resourceLoader.getTile(terrainStyle);
-        canvas.drawImage(img, position, paint);
+        canvas.drawImage(img, position, _paint);
       }
 
       if (tile.coin.isNotEmpty) {
@@ -458,7 +474,7 @@ class TilesRenderer extends Component
         canvas.drawImage(
           tileImage,
           effectivePosition,
-          paint,
+          _paint,
         );
       }
       if (tile.enemy.isNotEmpty) {
@@ -472,7 +488,7 @@ class TilesRenderer extends Component
         canvas.drawImage(
           tileImage,
           effectivePosition,
-          paint,
+          _paint,
         );
       }
     }

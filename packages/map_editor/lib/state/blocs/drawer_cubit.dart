@@ -30,4 +30,9 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   set canvasData(final Map<CellPointModel, CanvasTileModel> value) {
     emit(state.copyWith(canvasData: value));
   }
+
+  // ignore: avoid_positional_boolean_parameters
+  void onChangeIsDeleteSelection(final bool isDeleteSelection) {
+    emit(state.copyWith(isDeleteSelection: isDeleteSelection));
+  }
 }

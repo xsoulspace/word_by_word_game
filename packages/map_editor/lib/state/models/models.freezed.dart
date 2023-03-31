@@ -203,6 +203,65 @@ mixin _$CanvasTileModel {
   /// Enemy
   String get enemy => throw _privateConstructorUsedError;
   List<dynamic> get objects => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String tileId,
+            bool hasTerrain,
+            List<String> terrainNeighbours,
+            bool hasWater,
+            bool isWaterTop,
+            String coin,
+            String enemy,
+            List<dynamic> objects)
+        secure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String tileId,
+            bool hasTerrain,
+            List<String> terrainNeighbours,
+            bool hasWater,
+            bool isWaterTop,
+            String coin,
+            String enemy,
+            List<dynamic> objects)?
+        secure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String tileId,
+            bool hasTerrain,
+            List<String> terrainNeighbours,
+            bool hasWater,
+            bool isWaterTop,
+            String coin,
+            String enemy,
+            List<dynamic> objects)?
+        secure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SecureCanvasTileModel value) secure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SecureCanvasTileModel value)? secure,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SecureCanvasTileModel value)? secure,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CanvasTileModelCopyWith<CanvasTileModel> get copyWith =>
@@ -363,7 +422,7 @@ class __$$_SecureCanvasTileModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
+class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
   const _$_SecureCanvasTileModel(
       {required this.tileId,
       this.hasTerrain = false,
@@ -374,7 +433,8 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
       this.enemy = '',
       final List<dynamic> objects = const []})
       : _terrainNeighbours = terrainNeighbours,
-        _objects = objects;
+        _objects = objects,
+        super._();
 
   @override
   final String tileId;
@@ -421,7 +481,7 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
 
   @override
   String toString() {
-    return 'CanvasTileModel._(tileId: $tileId, hasTerrain: $hasTerrain, terrainNeighbours: $terrainNeighbours, hasWater: $hasWater, isWaterTop: $isWaterTop, coin: $coin, enemy: $enemy, objects: $objects)';
+    return 'CanvasTileModel.secure(tileId: $tileId, hasTerrain: $hasTerrain, terrainNeighbours: $terrainNeighbours, hasWater: $hasWater, isWaterTop: $isWaterTop, coin: $coin, enemy: $enemy, objects: $objects)';
   }
 
   @override
@@ -461,9 +521,95 @@ class _$_SecureCanvasTileModel implements _SecureCanvasTileModel {
   _$$_SecureCanvasTileModelCopyWith<_$_SecureCanvasTileModel> get copyWith =>
       __$$_SecureCanvasTileModelCopyWithImpl<_$_SecureCanvasTileModel>(
           this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String tileId,
+            bool hasTerrain,
+            List<String> terrainNeighbours,
+            bool hasWater,
+            bool isWaterTop,
+            String coin,
+            String enemy,
+            List<dynamic> objects)
+        secure,
+  }) {
+    return secure(tileId, hasTerrain, terrainNeighbours, hasWater, isWaterTop,
+        coin, enemy, objects);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String tileId,
+            bool hasTerrain,
+            List<String> terrainNeighbours,
+            bool hasWater,
+            bool isWaterTop,
+            String coin,
+            String enemy,
+            List<dynamic> objects)?
+        secure,
+  }) {
+    return secure?.call(tileId, hasTerrain, terrainNeighbours, hasWater,
+        isWaterTop, coin, enemy, objects);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String tileId,
+            bool hasTerrain,
+            List<String> terrainNeighbours,
+            bool hasWater,
+            bool isWaterTop,
+            String coin,
+            String enemy,
+            List<dynamic> objects)?
+        secure,
+    required TResult orElse(),
+  }) {
+    if (secure != null) {
+      return secure(tileId, hasTerrain, terrainNeighbours, hasWater, isWaterTop,
+          coin, enemy, objects);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_SecureCanvasTileModel value) secure,
+  }) {
+    return secure(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_SecureCanvasTileModel value)? secure,
+  }) {
+    return secure?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_SecureCanvasTileModel value)? secure,
+    required TResult orElse(),
+  }) {
+    if (secure != null) {
+      return secure(this);
+    }
+    return orElse();
+  }
 }
 
-abstract class _SecureCanvasTileModel implements CanvasTileModel {
+abstract class _SecureCanvasTileModel extends CanvasTileModel {
   const factory _SecureCanvasTileModel(
       {required final String tileId,
       final bool hasTerrain,
@@ -473,6 +619,7 @@ abstract class _SecureCanvasTileModel implements CanvasTileModel {
       final String coin,
       final String enemy,
       final List<dynamic> objects}) = _$_SecureCanvasTileModel;
+  const _SecureCanvasTileModel._() : super._();
 
   @override
   String get tileId;
