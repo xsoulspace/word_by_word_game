@@ -113,6 +113,14 @@ flutter:
     - assets/images/items/silver/
     - assets/images/menu/
     - assets/images/player/
+    - assets/images/player/fall_left/
+    - assets/images/player/fall_right/
+    - assets/images/player/idle_left/
+    - assets/images/player/idle_right/
+    - assets/images/player/jump_left/
+    - assets/images/player/jump_right/
+    - assets/images/player/run_left/
+    - assets/images/player/run_right/
     - assets/images/preview/
     - assets/images/terrain/
     - assets/images/terrain/land/

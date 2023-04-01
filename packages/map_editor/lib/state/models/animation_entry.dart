@@ -8,5 +8,5 @@ class AnimationEntryModel with _$AnimationEntryModel {
     @Default([]) final List<String> framesPaths,
   }) = _AnimationEntryModel;
   const AnimationEntryModel._();
-  String get currentFrame => framesPaths[frameIndex.toInt()];
+  String get currentFramePath => framesPaths[frameIndex.toInt()];
 }

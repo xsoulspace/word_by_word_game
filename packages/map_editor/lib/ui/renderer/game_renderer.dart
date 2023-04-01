@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:collection';
 import 'dart:convert';
 import 'dart:math' as math;
 
@@ -23,6 +24,7 @@ import 'package:provider/provider.dart';
 part 'renderer_di.dart';
 
 class Palette {
+  Palette._();
   static const white = BasicPalette.white;
   static const red = PaletteEntry(Color(0xFFAC3232));
   static const grey = PaletteEntry(Color(0xFF404040));
@@ -41,6 +43,7 @@ int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
 String get kWaterTileId => '3';
+String get kPlayerTileId => '0';
 
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
@@ -69,6 +72,7 @@ class GameRenderer extends FlameGame
   late FlameMultiBlocProvider providersComponent;
   final editor = EditorRenderer();
   final resourcesLoader = ResourcesLoader();
+
   @override
   Future<void> onLoad() async {
     // debugMode = kDebugMode ;
@@ -149,16 +153,20 @@ class EditorRenderer extends Component
   final tilesRenderer = TilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
   final animationUpdater = AnimationUpdater();
-
+  final canvasObjectsDrawer = CanvasObjectsDrawer();
   @override
   FutureOr<void> onLoad() {
     addAll([
+      // RENDER
       tilesRenderer,
       debugSurface,
       tilesDrawer,
+      canvasObjectsDrawer,
       cursor,
+      // LOGIC
       animationUpdater,
     ]);
+
     return super.onLoad();
   }
 
@@ -173,6 +181,7 @@ class EditorRenderer extends Component
     final eventPosition = info.eventPosition.viewport;
     origin = eventPosition - _dragOffset;
     hoveredPosition = eventPosition;
+    canvasObjectsDrawer.onOriginUpdate();
     return super.onDragUpdate(info);
   }
 
@@ -446,7 +455,7 @@ class TilesRenderer extends Component
           final img = resourceLoader.getTile('X', tileStyle: TileStyle.water);
           canvas.drawImage(img, position, _paint);
         } else {
-          final tilePath = animations[kWaterTileId]!.currentFrame;
+          final tilePath = animations[kWaterTileId]!.currentFramePath;
           final tileImage = getImage(tilePath);
           canvas.drawImage(tileImage, position, _paint);
         }
@@ -466,7 +475,7 @@ class TilesRenderer extends Component
       }
 
       if (tile.coin.isNotEmpty) {
-        final tilePath = animations[tile.coin]!.currentFrame;
+        final tilePath = animations[tile.coin]!.currentFramePath;
         final tileImage = getImage(tilePath);
         final effectivePosition = position +
             Offset(kTileDimension / 2, kTileDimension / 2) -
@@ -478,7 +487,7 @@ class TilesRenderer extends Component
         );
       }
       if (tile.enemy.isNotEmpty) {
-        final tilePath = animations[tile.enemy]!.currentFrame;
+        final tilePath = animations[tile.enemy]!.currentFramePath;
         final tileImage = getImage(tilePath);
         final effectivePosition = position +
             Offset(
@@ -617,18 +626,133 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
 
 class AnimationUpdater extends Component
     with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
+  static AnimationEntryModel updateAnimationFrame({
+    required final AnimationEntryModel entry,
+    required final GameRendererConfig config,
+    required final double dt,
+  }) {
+    double frameIndex = entry.frameIndex + (config.animationSpeed * dt);
+    if (frameIndex > entry.framesLength - 1) {
+      frameIndex = 0;
+    }
+    return entry.copyWith(
+      frameIndex: frameIndex,
+    );
+  }
+
   @override
   void update(final double dt) {
     for (final animationEntry in animations.entries) {
-      final value = animationEntry.value;
-      double frameIndex = value.frameIndex + (game.config.animationSpeed * dt);
-      if (frameIndex > value.framesLength - 1) {
-        frameIndex = 0;
-      }
-      animations[animationEntry.key] = animationEntry.value.copyWith(
-        frameIndex: frameIndex,
+      animations[animationEntry.key] = updateAnimationFrame(
+        config: game.config,
+        dt: dt,
+        entry: animationEntry.value,
       );
     }
     super.update(dt);
   }
+}
+
+class CanvasObject extends Component
+    with
+        Tappable,
+        HasGameRef<GameRenderer>,
+        HasEditorRef,
+        HasResourcesLoaderRef {
+  CanvasObject({
+    required this.animationEntry,
+    required this.group,
+    required this.position,
+    required this.tileId,
+  });
+  final String tileId;
+  final List<CanvasObject> group;
+  Offset position;
+  AnimationEntryModel animationEntry;
+  Rect _rect = Rect.zero;
+  Offset _distanceToOrigin = Offset.zero;
+
+  @override
+  FutureOr<void> onLoad() {
+    _rect = Rect.fromCenter(
+      center: position,
+      height: 20,
+      width: 20,
+    );
+    _distanceToOrigin = position - origin.toOffset();
+    return super.onLoad();
+  }
+
+  @override
+  void render(final Canvas canvas) {
+    final tilePath = animationEntry.currentFramePath;
+    final tileImage = getImage(tilePath);
+
+    canvas.drawImage(
+      tileImage,
+      position,
+      Palette.white.paint(),
+    );
+    super.render(canvas);
+  }
+
+  @override
+  void update(final double dt) {
+    super.update(dt);
+    animationEntry = AnimationUpdater.updateAnimationFrame(
+      entry: animationEntry,
+      config: game.config,
+      dt: dt,
+    );
+  }
+
+  void onOriginUpdate() {
+    _updatePosition();
+  }
+
+  void _updatePosition() {
+    position = origin.toOffset() + _distanceToOrigin;
+    _rect = Rect.fromLTWH(
+      position.dx,
+      position.dy,
+      _rect.width,
+      _rect.height,
+    );
+  }
+}
+
+class CanvasObjectsDrawer extends Component
+    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
+  final _canvasObjects = <CanvasObject>[];
+  UnmodifiableListView<CanvasObject> get canvasObjects =>
+      UnmodifiableListView(_canvasObjects);
+  Future<void> addCanvasObject(final CanvasObject object) async {
+    _canvasObjects.add(object);
+    add(object);
+  }
+
+  void onOriginUpdate() {
+    for (final canvasObject in canvasObjects) {
+      canvasObject.onOriginUpdate();
+    }
+  }
+
+  Future<void> removeCanvasObject(final CanvasObject object) async {
+    _canvasObjects.remove(object);
+    object.removeFromParent();
+  }
+
+  @override
+  FutureOr<void> onLoad() async {
+    final player = createPlayer();
+    await addCanvasObject(player);
+    return super.onLoad();
+  }
+
+  CanvasObject createPlayer() => CanvasObject(
+        animationEntry: animations[kPlayerTileId]!,
+        tileId: kPlayerTileId,
+        position: (game.size / 2).toOffset(),
+        group: canvasObjects,
+      );
 }
