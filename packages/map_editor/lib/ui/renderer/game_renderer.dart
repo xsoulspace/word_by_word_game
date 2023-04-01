@@ -51,10 +51,10 @@ class GameRenderer extends FlameGame
     with
         HasCollisionDetection,
         HasDraggableComponents,
+        HasTappableComponents,
         HasDraggablesBridge,
         SingleGameInstance,
-        HasHoverables,
-        HasTappables {
+        HasHoverables {
   GameRenderer.use({
     required final Locator read,
     required final material.ThemeData theme,
@@ -133,7 +133,7 @@ class GameRenderer extends FlameGame
 }
 
 class EditorRenderer extends Component
-    with Draggable, HasGameRef<GameRenderer>, Hoverable {
+    with DragCallbacks, HasGameRef<GameRenderer>, Hoverable {
   Vector2 origin = Vector2.zero();
 
   /// First cell position to calculate the grid and positions
@@ -154,6 +154,7 @@ class EditorRenderer extends Component
   Vector2 _dragOffset = Vector2.zero();
   final animationUpdater = AnimationUpdater();
   final canvasObjectsDrawer = CanvasObjectsDrawer();
+
   @override
   FutureOr<void> onLoad() {
     addAll([
@@ -171,18 +172,18 @@ class EditorRenderer extends Component
   }
 
   @override
-  bool onDragStart(final DragStartInfo info) {
-    _dragOffset = info.eventPosition.viewport - origin;
-    return super.onDragStart(info);
+  void onDragStart(final DragStartEvent event) {
+    _dragOffset = event.canvasPosition - origin;
+    return super.onDragStart(event);
   }
 
   @override
-  bool onDragUpdate(final DragUpdateInfo info) {
-    final eventPosition = info.eventPosition.viewport;
+  void onDragUpdate(final DragUpdateEvent event) {
+    final eventPosition = event.canvasPosition;
     origin = eventPosition - _dragOffset;
     hoveredPosition = eventPosition;
     canvasObjectsDrawer.onOriginUpdate();
-    return super.onDragUpdate(info);
+    super.onDragUpdate(event);
   }
 
   material.Paint get _redPaint => Palette.red.paint();
@@ -264,7 +265,7 @@ class CursorRenderer extends Component
 }
 
 class DebugSurface extends Component
-    with Draggable, HasGameRef<GameRenderer>, HasEditorRef {
+    with HasGameRef<GameRenderer>, HasEditorRef {
   material.Paint get _paint => Palette.grey.withAlpha(60).paint();
 
   void _renderLines(final material.Canvas canvas) {
@@ -288,15 +289,15 @@ class DebugSurface extends Component
 }
 
 class TilesDrawer extends Component
-    with Tappable, HasGameRef<GameRenderer>, HasEditorRef {
+    with TapCallbacks, HasGameRef<GameRenderer>, HasEditorRef {
   @override
-  bool onTapUp(final TapUpInfo info) {
-    _onTap(info.eventPosition);
-    return super.onTapUp(info);
+  void onTapUp(final TapUpEvent event) {
+    _onTap(event);
+    return super.onTapUp(event);
   }
 
-  math.Point<int> getCurrentCell(final EventPosition eventPosition) {
-    final distanceToOrigin = eventPosition.viewport - origin;
+  math.Point<int> getCurrentCell(final TapUpEvent eventPosition) {
+    final distanceToOrigin = eventPosition.canvasPosition - origin;
 
     int y = distanceToOrigin.y ~/ kTileDimension;
     if (distanceToOrigin.y < 0) {
@@ -371,8 +372,8 @@ class TilesDrawer extends Component
   }
 
   math.Point<int>? _lastSelectedCell;
-  void _onTap(final EventPosition eventPosition) {
-    final cell = getCurrentCell(eventPosition);
+  void _onTap(final TapUpEvent event) {
+    final cell = getCurrentCell(event);
     final effectiveCanvasData = {...canvasData};
     final cellPoint = cell.toCellPoint();
 
@@ -655,7 +656,8 @@ class AnimationUpdater extends Component
 
 class CanvasObject extends Component
     with
-        Tappable,
+        TapCallbacks,
+        DragCallbacks,
         HasGameRef<GameRenderer>,
         HasEditorRef,
         HasResourcesLoaderRef {
@@ -668,32 +670,69 @@ class CanvasObject extends Component
   final String tileId;
   final List<CanvasObject> group;
   Offset position;
+
   AnimationEntryModel animationEntry;
-  Rect _rect = Rect.zero;
   Offset _distanceToOrigin = Offset.zero;
 
   @override
   FutureOr<void> onLoad() {
-    _rect = Rect.fromCenter(
-      center: position,
-      height: 20,
-      width: 20,
-    );
     _distanceToOrigin = position - origin.toOffset();
     return super.onLoad();
   }
+
+  Rect? _imageRect;
+  Rect? get _positionedImageRect => _imageRect?.shift(position);
 
   @override
   void render(final Canvas canvas) {
     final tilePath = animationEntry.currentFramePath;
     final tileImage = getImage(tilePath);
-
+    _imageRect ??= Rect.fromLTWH(
+      0,
+      0,
+      tileImage.width.toDouble(),
+      tileImage.height.toDouble(),
+    );
     canvas.drawImage(
       tileImage,
       position,
       Palette.white.paint(),
     );
     super.render(canvas);
+  }
+
+  bool _selected = false;
+  Vector2 _dragOffset = Vector2.zero();
+
+  @override
+  void onDragStart(final DragStartEvent event) {
+    _selected = true;
+    _dragOffset = event.canvasPosition - position.toVector2();
+
+    return super.onDragStart(event);
+  }
+
+  @override
+  void onDragUpdate(final DragUpdateEvent event) {
+    if (event.canvasPosition.isNaN) return super.onDragUpdate(event);
+    if (_selected) {
+      position = (event.canvasPosition - _dragOffset).toOffset();
+      _distanceToOrigin = position - origin.toOffset();
+    }
+
+    return super.onDragUpdate(event);
+  }
+
+  @override
+  void onDragCancel(final DragCancelEvent event) {
+    _selected = false;
+    return super.onDragCancel(event);
+  }
+
+  @override
+  void onDragEnd(final DragEndEvent event) {
+    _selected = false;
+    return super.onDragEnd(event);
   }
 
   @override
@@ -712,13 +751,11 @@ class CanvasObject extends Component
 
   void _updatePosition() {
     position = origin.toOffset() + _distanceToOrigin;
-    _rect = Rect.fromLTWH(
-      position.dx,
-      position.dy,
-      _rect.width,
-      _rect.height,
-    );
   }
+
+  @override
+  bool containsLocalPoint(final Vector2 point) =>
+      _positionedImageRect?.containsPoint(point) ?? false;
 }
 
 class CanvasObjectsDrawer extends Component
