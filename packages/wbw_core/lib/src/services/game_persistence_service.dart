@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 import '../../wbw_core.dart';
 import 'local_data_service.dart';
 
@@ -21,7 +23,9 @@ class GamePersistenceService {
       // TODO(arenukvern): add correct exception
     } catch (e) {
       // TODO(arenukvern): replace with analytics service
-      print(e);
+      if (kDebugMode) {
+        print(e);
+      }
       return null;
     }
   }
