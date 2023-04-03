@@ -1,0 +1,4 @@
+# melos_managed_dependency_overrides: wbw_design_core
+dependency_overrides:
+  wbw_design_core:
+    path: ../wbw_design_core

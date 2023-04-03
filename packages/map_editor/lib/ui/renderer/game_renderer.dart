@@ -44,6 +44,7 @@ int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
 String get kWaterTileId => '3';
 String get kPlayerTileId => '0';
+String get kSkyTileId => '0';
 
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
@@ -532,10 +533,19 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
   static String get terrainWaterPath =>
       _getAssetsFolderPath(Assets.images.terrain.water.x);
 
+  static String get cursorHandlePath =>
+      _getAssetsFolderPath(Assets.images.cursors.handle);
+
   @override
   FutureOr<void> onLoad() async {
     await Future.wait(
-      [_loadWaterTiles(), _loadTerrainTiles(), _loadAnimations()],
+      [
+        _loadWaterTiles(),
+        _loadTerrainTiles(),
+        _loadCloudTiles(),
+        _loadCursorTiles(),
+        _loadAnimations(),
+      ],
     );
 
     return super.onLoad();
@@ -592,6 +602,12 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
   Future<void> _loadWaterTiles() async =>
       _loadAssets(Assets.images.terrain.water.values);
 
+  Future<void> _loadCursorTiles() async =>
+      _loadAssets(Assets.images.cursors.values);
+
+  Future<void> _loadCloudTiles() async =>
+      _loadAssets(Assets.images.clouds.values);
+
   String _getTilePath({
     final TileStyle tileStyle = TileStyle.terrain,
   }) {
@@ -599,6 +615,8 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
       case TileStyle.terrain:
         return terrainLandPath;
       case TileStyle.water:
+        return terrainWaterPath;
+      case TileStyle.sky:
         return terrainWaterPath;
       // ignore: no_default_cases
       default:
@@ -673,10 +691,13 @@ class CanvasObject extends Component
 
   AnimationEntryModel animationEntry;
   Offset _distanceToOrigin = Offset.zero;
+  void _updateDistanceToOrigin() {
+    _distanceToOrigin = position - origin.toOffset();
+  }
 
   @override
   FutureOr<void> onLoad() {
-    _distanceToOrigin = position - origin.toOffset();
+    _updateDistanceToOrigin();
     return super.onLoad();
   }
 
@@ -717,7 +738,7 @@ class CanvasObject extends Component
     if (event.canvasPosition.isNaN) return super.onDragUpdate(event);
     if (_selected) {
       position = (event.canvasPosition - _dragOffset).toOffset();
-      _distanceToOrigin = position - origin.toOffset();
+      _updateDistanceToOrigin();
     }
 
     return super.onDragUpdate(event);
@@ -763,9 +784,14 @@ class CanvasObjectsDrawer extends Component
   final _canvasObjects = <CanvasObject>[];
   UnmodifiableListView<CanvasObject> get canvasObjects =>
       UnmodifiableListView(_canvasObjects);
-  Future<void> addCanvasObject(final CanvasObject object) async {
+  Future<void> _addCanvasObject(final CanvasObject object) async {
     _canvasObjects.add(object);
     add(object);
+  }
+
+  Future<void> _addCanvasObjects(final Iterable<CanvasObject> objects) async {
+    _canvasObjects.addAll(objects);
+    await addAll(objects);
   }
 
   void onOriginUpdate() {
@@ -774,21 +800,36 @@ class CanvasObjectsDrawer extends Component
     }
   }
 
-  Future<void> removeCanvasObject(final CanvasObject object) async {
+  Future<void> _removeCanvasObject(final CanvasObject object) async {
     _canvasObjects.remove(object);
     object.removeFromParent();
   }
 
+  Future<void> _removeCanvasObjects(
+    final Iterable<CanvasObject> objects,
+  ) async {
+    _canvasObjects.forEach(_canvasObjects.remove);
+    removeAll(objects);
+  }
+
   @override
   FutureOr<void> onLoad() async {
-    final player = createPlayer();
-    await addCanvasObject(player);
+    final player = _createPlayer();
+    final sky = _createSky();
+    await _addCanvasObjects([sky, player]);
     return super.onLoad();
   }
 
-  CanvasObject createPlayer() => CanvasObject(
+  CanvasObject _createPlayer() => CanvasObject(
         animationEntry: animations[kPlayerTileId]!,
         tileId: kPlayerTileId,
+        position: (game.size / 2).toOffset(),
+        group: canvasObjects,
+      );
+
+  CanvasObject _createSky() => CanvasObject(
+        animationEntry: animations[kSkyTileId]!,
+        tileId: kSkyTileId,
         position: (game.size / 2).toOffset(),
         group: canvasObjects,
       );

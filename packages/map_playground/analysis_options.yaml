@@ -1,0 +1,7 @@
+include: package:xsoulspace_lints/app.yaml
+
+analyzer:
+  exclude:
+    - lib/**/**.gen.dart
+    - lib/**/**.g.dart
+    - lib/**/**.freezed.dart
