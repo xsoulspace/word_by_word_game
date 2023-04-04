@@ -43,8 +43,8 @@ int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
 String get kWaterTileId => '3';
-String get kPlayerTileId => '0';
-String get kSkyTileId => '0';
+String get kPlayerObjectId => '0';
+String get kCursorHandleObjectId => '19';
 
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
@@ -527,14 +527,14 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
     return pathList.join('/');
   }
 
-  static String get terrainLandPath =>
+  String get terrainLandPath =>
       _getAssetsFolderPath(Assets.images.terrain.land.a);
 
-  static String get terrainWaterPath =>
+  String get terrainWaterPath =>
       _getAssetsFolderPath(Assets.images.terrain.water.x);
 
-  static String get cursorHandlePath =>
-      _getAssetsFolderPath(Assets.images.cursors.handle);
+  String get cursorHandlePath =>
+      fixAssetsPath(Assets.images.cursors.handle.path);
 
   @override
   FutureOr<void> onLoad() async {
@@ -616,8 +616,8 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
         return terrainLandPath;
       case TileStyle.water:
         return terrainWaterPath;
-      case TileStyle.sky:
-        return terrainWaterPath;
+      case TileStyle.cursorHandle:
+        return cursorHandlePath;
       // ignore: no_default_cases
       default:
         return '';
@@ -812,25 +812,63 @@ class CanvasObjectsDrawer extends Component
     removeAll(objects);
   }
 
+  late final _player = _createPlayer();
+  late final _gravitationHandle = _createGravitationHandle();
+  late final _skyHandle = _createSkyHandle();
+
   @override
   FutureOr<void> onLoad() async {
-    final player = _createPlayer();
-    final sky = _createSky();
-    await _addCanvasObjects([sky, player]);
+    await _addCanvasObjects([_skyHandle, _gravitationHandle, _player]);
     return super.onLoad();
   }
 
   CanvasObject _createPlayer() => CanvasObject(
-        animationEntry: animations[kPlayerTileId]!,
-        tileId: kPlayerTileId,
+        animationEntry: animations[kPlayerObjectId]!,
+        tileId: kPlayerObjectId,
         position: (game.size / 2).toOffset(),
         group: canvasObjects,
       );
 
-  CanvasObject _createSky() => CanvasObject(
-        animationEntry: animations[kSkyTileId]!,
-        tileId: kSkyTileId,
+  CanvasObject _createSkyHandle() => CanvasObject(
+        animationEntry: AnimationEntryModel.singleFrame(
+          game.resourcesLoader.cursorHandlePath,
+        ),
+        tileId: kCursorHandleObjectId,
         position: (game.size / 2).toOffset(),
         group: canvasObjects,
       );
+
+  CanvasObject _createGravitationHandle() => CanvasObject(
+        animationEntry: AnimationEntryModel.singleFrame(
+          game.resourcesLoader.cursorHandlePath,
+        ),
+        tileId: kCursorHandleObjectId,
+        position: (game.size / 2).toOffset(),
+        group: canvasObjects,
+      );
+
+  @override
+  void render(final Canvas canvas) {
+    _renderGravitationLine(canvas);
+    _renderSkyHorizon(canvas);
+    super.render(canvas);
+  }
+
+  final _gravitationLinePaint = Palette.brown.paint()..strokeWidth = 2;
+  void _renderGravitationLine(final Canvas canvas) {
+    canvas.drawLine(
+      Offset(0, _gravitationHandle.position.dy + 20),
+      Offset(editor.gameSize.x, _gravitationHandle.position.dy + 20),
+      _gravitationLinePaint,
+    );
+  }
+
+  final _skyHorizonPaint = Palette.blue.paint()..strokeWidth = 2;
+  void _renderSkyHorizon(final Canvas canvas) {
+    canvas.drawLine(
+      Offset(0, _skyHandle.position.dy + 20),
+      Offset(editor.gameSize.x, _skyHandle.position.dy + 20),
+      _skyHorizonPaint,
+    );
+  }
 }

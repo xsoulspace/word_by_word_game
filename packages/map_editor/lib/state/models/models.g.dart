@@ -47,11 +47,12 @@ Map<String, dynamic> _$$_TileDataModelToJson(_$_TileDataModel instance) =>
 
 const _$TileStyleEnumMap = {
   TileStyle.player: 'player',
-  TileStyle.sky: 'sky',
+  TileStyle.cursorHandle: 'cursorHandle',
   TileStyle.terrain: 'terrain',
   TileStyle.water: 'water',
   TileStyle.coin: 'coin',
   TileStyle.enemy: 'enemy',
+  TileStyle.sky: 'sky',
   TileStyle.palmForeground: 'palm_fg',
   TileStyle.palmBackground: 'palm_bg',
 };

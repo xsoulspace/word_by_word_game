@@ -23,11 +23,12 @@ typedef TileDataModelMap = Map<String, TileDataModel>;
 
 enum TileStyle {
   player,
-  sky,
+  cursorHandle,
   terrain,
   water,
   coin,
   enemy,
+  sky,
   @JsonValue('palm_fg')
   palmForeground,
   @JsonValue('palm_bg')
