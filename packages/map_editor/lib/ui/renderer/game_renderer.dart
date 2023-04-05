@@ -684,7 +684,9 @@ class CanvasObject extends Component
     required this.group,
     required this.position,
     required this.tileId,
+    this.onPositionChanged,
   });
+  final material.ValueChanged<Offset>? onPositionChanged;
   final String tileId;
   final List<CanvasObject> group;
   Offset position;
@@ -738,6 +740,7 @@ class CanvasObject extends Component
     if (event.canvasPosition.isNaN) return super.onDragUpdate(event);
     if (_selected) {
       position = (event.canvasPosition - _dragOffset).toOffset();
+      onPositionChanged?.call(position);
       _updateDistanceToOrigin();
     }
 
@@ -836,6 +839,13 @@ class CanvasObjectsDrawer extends Component
         tileId: kCursorHandleObjectId,
         position: (game.size / 2).toOffset(),
         group: canvasObjects,
+        onPositionChanged: (final position) {
+          drawerCubit.changeState(
+            drawerCubit.state.copyWith(
+              skyYPosition: position.dy,
+            ),
+          );
+        },
       );
 
   CanvasObject _createGravitationHandle() => CanvasObject(
@@ -845,6 +855,13 @@ class CanvasObjectsDrawer extends Component
         tileId: kCursorHandleObjectId,
         position: (game.size / 2).toOffset(),
         group: canvasObjects,
+        onPositionChanged: (final position) {
+          drawerCubit.changeState(
+            drawerCubit.state.copyWith(
+              gravityYPosition: position.dy,
+            ),
+          );
+        },
       );
 
   @override

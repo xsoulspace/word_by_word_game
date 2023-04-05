@@ -22,6 +22,12 @@ mixin _$DrawerCubitState {
   Map<CellPointModel, CanvasTileModel> get canvasData =>
       throw _privateConstructorUsedError;
 
+  /// can be negative and positive
+  double get gravityYPosition => throw _privateConstructorUsedError;
+
+  /// can be negative and positive
+  double get skyYPosition => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $DrawerCubitStateCopyWith<DrawerCubitState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -37,7 +43,9 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
       {int selectionIndex,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
-      Map<CellPointModel, CanvasTileModel> canvasData});
+      Map<CellPointModel, CanvasTileModel> canvasData,
+      double gravityYPosition,
+      double skyYPosition});
 }
 
 /// @nodoc
@@ -57,6 +65,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
+    Object? gravityYPosition = null,
+    Object? skyYPosition = null,
   }) {
     return _then(_value.copyWith(
       selectionIndex: null == selectionIndex
@@ -75,6 +85,14 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CanvasTileModel>,
+      gravityYPosition: null == gravityYPosition
+          ? _value.gravityYPosition
+          : gravityYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
+      skyYPosition: null == skyYPosition
+          ? _value.skyYPosition
+          : skyYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -91,7 +109,9 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
       {int selectionIndex,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
-      Map<CellPointModel, CanvasTileModel> canvasData});
+      Map<CellPointModel, CanvasTileModel> canvasData,
+      double gravityYPosition,
+      double skyYPosition});
 }
 
 /// @nodoc
@@ -109,6 +129,8 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
+    Object? gravityYPosition = null,
+    Object? skyYPosition = null,
   }) {
     return _then(_$_DrawerCubitState(
       selectionIndex: null == selectionIndex
@@ -127,6 +149,14 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           ? _value._canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CanvasTileModel>,
+      gravityYPosition: null == gravityYPosition
+          ? _value.gravityYPosition
+          : gravityYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
+      skyYPosition: null == skyYPosition
+          ? _value.skyYPosition
+          : skyYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -138,7 +168,9 @@ class _$_DrawerCubitState implements _DrawerCubitState {
       {this.selectionIndex = kMinSelectionIndex,
       this.isDeleteSelection = false,
       this.isDeleteSelectionCompletely = false,
-      final Map<CellPointModel, CanvasTileModel> canvasData = const {}})
+      final Map<CellPointModel, CanvasTileModel> canvasData = const {},
+      this.gravityYPosition = 0,
+      this.skyYPosition = 0})
       : _canvasData = canvasData;
 
   @override
@@ -159,9 +191,19 @@ class _$_DrawerCubitState implements _DrawerCubitState {
     return EqualUnmodifiableMapView(_canvasData);
   }
 
+  /// can be negative and positive
+  @override
+  @JsonKey()
+  final double gravityYPosition;
+
+  /// can be negative and positive
+  @override
+  @JsonKey()
+  final double skyYPosition;
+
   @override
   String toString() {
-    return 'DrawerCubitState(selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData)';
+    return 'DrawerCubitState(selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
   }
 
   @override
@@ -178,7 +220,11 @@ class _$_DrawerCubitState implements _DrawerCubitState {
                 other.isDeleteSelectionCompletely ==
                     isDeleteSelectionCompletely) &&
             const DeepCollectionEquality()
-                .equals(other._canvasData, _canvasData));
+                .equals(other._canvasData, _canvasData) &&
+            (identical(other.gravityYPosition, gravityYPosition) ||
+                other.gravityYPosition == gravityYPosition) &&
+            (identical(other.skyYPosition, skyYPosition) ||
+                other.skyYPosition == skyYPosition));
   }
 
   @override
@@ -187,7 +233,9 @@ class _$_DrawerCubitState implements _DrawerCubitState {
       selectionIndex,
       isDeleteSelection,
       isDeleteSelectionCompletely,
-      const DeepCollectionEquality().hash(_canvasData));
+      const DeepCollectionEquality().hash(_canvasData),
+      gravityYPosition,
+      skyYPosition);
 
   @JsonKey(ignore: true)
   @override
@@ -198,11 +246,12 @@ class _$_DrawerCubitState implements _DrawerCubitState {
 
 abstract class _DrawerCubitState implements DrawerCubitState {
   const factory _DrawerCubitState(
-          {final int selectionIndex,
-          final bool isDeleteSelection,
-          final bool isDeleteSelectionCompletely,
-          final Map<CellPointModel, CanvasTileModel> canvasData}) =
-      _$_DrawerCubitState;
+      {final int selectionIndex,
+      final bool isDeleteSelection,
+      final bool isDeleteSelectionCompletely,
+      final Map<CellPointModel, CanvasTileModel> canvasData,
+      final double gravityYPosition,
+      final double skyYPosition}) = _$_DrawerCubitState;
 
   @override
   int get selectionIndex;
@@ -212,6 +261,14 @@ abstract class _DrawerCubitState implements DrawerCubitState {
   bool get isDeleteSelectionCompletely;
   @override
   Map<CellPointModel, CanvasTileModel> get canvasData;
+  @override
+
+  /// can be negative and positive
+  double get gravityYPosition;
+  @override
+
+  /// can be negative and positive
+  double get skyYPosition;
   @override
   @JsonKey(ignore: true)
   _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>

@@ -22,6 +22,8 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     emit(state.copyWith(selectionIndex: resultValue));
   }
 
+  void changeState(final DrawerCubitState newState) => emit(newState);
+
   TileDataModel get selectionData =>
       dto.mapEditorBloc.loadedState.tileData['$selectionIndex']!;
 
