@@ -276,173 +276,27 @@ abstract class _DrawerCubitState implements DrawerCubitState {
 }
 
 /// @nodoc
-mixin _$MapEditorBlocEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoadMapEditorBlocEvent value) load,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadMapEditorBlocEvent value)? load,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadMapEditorBlocEvent value)? load,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $MapEditorBlocEventCopyWith<$Res> {
-  factory $MapEditorBlocEventCopyWith(
-          MapEditorBlocEvent value, $Res Function(MapEditorBlocEvent) then) =
-      _$MapEditorBlocEventCopyWithImpl<$Res, MapEditorBlocEvent>;
-}
-
-/// @nodoc
-class _$MapEditorBlocEventCopyWithImpl<$Res, $Val extends MapEditorBlocEvent>
-    implements $MapEditorBlocEventCopyWith<$Res> {
-  _$MapEditorBlocEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-}
-
-/// @nodoc
-abstract class _$$LoadMapEditorBlocEventCopyWith<$Res> {
-  factory _$$LoadMapEditorBlocEventCopyWith(_$LoadMapEditorBlocEvent value,
-          $Res Function(_$LoadMapEditorBlocEvent) then) =
-      __$$LoadMapEditorBlocEventCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadMapEditorBlocEventCopyWithImpl<$Res>
-    extends _$MapEditorBlocEventCopyWithImpl<$Res, _$LoadMapEditorBlocEvent>
-    implements _$$LoadMapEditorBlocEventCopyWith<$Res> {
-  __$$LoadMapEditorBlocEventCopyWithImpl(_$LoadMapEditorBlocEvent _value,
-      $Res Function(_$LoadMapEditorBlocEvent) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LoadMapEditorBlocEvent implements LoadMapEditorBlocEvent {
-  const _$LoadMapEditorBlocEvent();
-
-  @override
-  String toString() {
-    return 'MapEditorBlocEvent.load()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadMapEditorBlocEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() load,
-  }) {
-    return load();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? load,
-  }) {
-    return load?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? load,
-    required TResult orElse(),
-  }) {
-    if (load != null) {
-      return load();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LoadMapEditorBlocEvent value) load,
-  }) {
-    return load(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LoadMapEditorBlocEvent value)? load,
-  }) {
-    return load?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LoadMapEditorBlocEvent value)? load,
-    required TResult orElse(),
-  }) {
-    if (load != null) {
-      return load(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LoadMapEditorBlocEvent implements MapEditorBlocEvent {
-  const factory LoadMapEditorBlocEvent() = _$LoadMapEditorBlocEvent;
-}
-
-/// @nodoc
 mixin _$MapEditorBlocState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
-    required TResult Function(Map<String, TileDataModel> tileData) loaded,
+    required TResult Function(
+            Map<String, TileDataModel> tileData, bool isEditing)
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
-    TResult? Function(Map<String, TileDataModel> tileData)? loaded,
+    TResult? Function(Map<String, TileDataModel> tileData, bool isEditing)?
+        loaded,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
-    TResult Function(Map<String, TileDataModel> tileData)? loaded,
+    TResult Function(Map<String, TileDataModel> tileData, bool isEditing)?
+        loaded,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -525,7 +379,9 @@ class _$EmptyMapEditorBlocState implements EmptyMapEditorBlocState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
-    required TResult Function(Map<String, TileDataModel> tileData) loaded,
+    required TResult Function(
+            Map<String, TileDataModel> tileData, bool isEditing)
+        loaded,
   }) {
     return empty();
   }
@@ -534,7 +390,8 @@ class _$EmptyMapEditorBlocState implements EmptyMapEditorBlocState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
-    TResult? Function(Map<String, TileDataModel> tileData)? loaded,
+    TResult? Function(Map<String, TileDataModel> tileData, bool isEditing)?
+        loaded,
   }) {
     return empty?.call();
   }
@@ -543,7 +400,8 @@ class _$EmptyMapEditorBlocState implements EmptyMapEditorBlocState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
-    TResult Function(Map<String, TileDataModel> tileData)? loaded,
+    TResult Function(Map<String, TileDataModel> tileData, bool isEditing)?
+        loaded,
     required TResult orElse(),
   }) {
     if (empty != null) {
@@ -594,7 +452,7 @@ abstract class _$$LoadedMapEditorBlocStateCopyWith<$Res> {
           $Res Function(_$LoadedMapEditorBlocState) then) =
       __$$LoadedMapEditorBlocStateCopyWithImpl<$Res>;
   @useResult
-  $Res call({Map<String, TileDataModel> tileData});
+  $Res call({Map<String, TileDataModel> tileData, bool isEditing});
 }
 
 /// @nodoc
@@ -609,12 +467,17 @@ class __$$LoadedMapEditorBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? tileData = null,
+    Object? isEditing = null,
   }) {
     return _then(_$LoadedMapEditorBlocState(
       tileData: null == tileData
           ? _value._tileData
           : tileData // ignore: cast_nullable_to_non_nullable
               as Map<String, TileDataModel>,
+      isEditing: null == isEditing
+          ? _value.isEditing
+          : isEditing // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -623,7 +486,8 @@ class __$$LoadedMapEditorBlocStateCopyWithImpl<$Res>
 
 class _$LoadedMapEditorBlocState implements LoadedMapEditorBlocState {
   const _$LoadedMapEditorBlocState(
-      {required final Map<String, TileDataModel> tileData})
+      {required final Map<String, TileDataModel> tileData,
+      this.isEditing = true})
       : _tileData = tileData;
 
   final Map<String, TileDataModel> _tileData;
@@ -635,8 +499,12 @@ class _$LoadedMapEditorBlocState implements LoadedMapEditorBlocState {
   }
 
   @override
+  @JsonKey()
+  final bool isEditing;
+
+  @override
   String toString() {
-    return 'MapEditorBlocState.loaded(tileData: $tileData)';
+    return 'MapEditorBlocState.loaded(tileData: $tileData, isEditing: $isEditing)';
   }
 
   @override
@@ -644,12 +512,14 @@ class _$LoadedMapEditorBlocState implements LoadedMapEditorBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadedMapEditorBlocState &&
-            const DeepCollectionEquality().equals(other._tileData, _tileData));
+            const DeepCollectionEquality().equals(other._tileData, _tileData) &&
+            (identical(other.isEditing, isEditing) ||
+                other.isEditing == isEditing));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_tileData));
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_tileData), isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -663,29 +533,33 @@ class _$LoadedMapEditorBlocState implements LoadedMapEditorBlocState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
-    required TResult Function(Map<String, TileDataModel> tileData) loaded,
+    required TResult Function(
+            Map<String, TileDataModel> tileData, bool isEditing)
+        loaded,
   }) {
-    return loaded(tileData);
+    return loaded(tileData, isEditing);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
-    TResult? Function(Map<String, TileDataModel> tileData)? loaded,
+    TResult? Function(Map<String, TileDataModel> tileData, bool isEditing)?
+        loaded,
   }) {
-    return loaded?.call(tileData);
+    return loaded?.call(tileData, isEditing);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
-    TResult Function(Map<String, TileDataModel> tileData)? loaded,
+    TResult Function(Map<String, TileDataModel> tileData, bool isEditing)?
+        loaded,
     required TResult orElse(),
   }) {
     if (loaded != null) {
-      return loaded(tileData);
+      return loaded(tileData, isEditing);
     }
     return orElse();
   }
@@ -724,11 +598,505 @@ class _$LoadedMapEditorBlocState implements LoadedMapEditorBlocState {
 
 abstract class LoadedMapEditorBlocState implements MapEditorBlocState {
   const factory LoadedMapEditorBlocState(
-          {required final Map<String, TileDataModel> tileData}) =
-      _$LoadedMapEditorBlocState;
+      {required final Map<String, TileDataModel> tileData,
+      final bool isEditing}) = _$LoadedMapEditorBlocState;
 
   Map<String, TileDataModel> get tileData;
+  bool get isEditing;
   @JsonKey(ignore: true)
   _$$LoadedMapEditorBlocStateCopyWith<_$LoadedMapEditorBlocState>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$WorldEvent {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(WorldTimeMechanics worldTimeManager) timeTick,
+    required TResult Function() init,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(WorldTimeMechanics worldTimeManager)? timeTick,
+    TResult? Function()? init,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WorldTimeMechanics worldTimeManager)? timeTick,
+    TResult Function()? init,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WorldTimeTickEvent value) timeTick,
+    required TResult Function(InitWorldEvent value) init,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WorldTimeTickEvent value)? timeTick,
+    TResult? Function(InitWorldEvent value)? init,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WorldTimeTickEvent value)? timeTick,
+    TResult Function(InitWorldEvent value)? init,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorldEventCopyWith<$Res> {
+  factory $WorldEventCopyWith(
+          WorldEvent value, $Res Function(WorldEvent) then) =
+      _$WorldEventCopyWithImpl<$Res, WorldEvent>;
+}
+
+/// @nodoc
+class _$WorldEventCopyWithImpl<$Res, $Val extends WorldEvent>
+    implements $WorldEventCopyWith<$Res> {
+  _$WorldEventCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+}
+
+/// @nodoc
+abstract class _$$WorldTimeTickEventCopyWith<$Res> {
+  factory _$$WorldTimeTickEventCopyWith(_$WorldTimeTickEvent value,
+          $Res Function(_$WorldTimeTickEvent) then) =
+      __$$WorldTimeTickEventCopyWithImpl<$Res>;
+  @useResult
+  $Res call({WorldTimeMechanics worldTimeManager});
+}
+
+/// @nodoc
+class __$$WorldTimeTickEventCopyWithImpl<$Res>
+    extends _$WorldEventCopyWithImpl<$Res, _$WorldTimeTickEvent>
+    implements _$$WorldTimeTickEventCopyWith<$Res> {
+  __$$WorldTimeTickEventCopyWithImpl(
+      _$WorldTimeTickEvent _value, $Res Function(_$WorldTimeTickEvent) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? worldTimeManager = null,
+  }) {
+    return _then(_$WorldTimeTickEvent(
+      worldTimeManager: null == worldTimeManager
+          ? _value.worldTimeManager
+          : worldTimeManager // ignore: cast_nullable_to_non_nullable
+              as WorldTimeMechanics,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$WorldTimeTickEvent implements WorldTimeTickEvent {
+  const _$WorldTimeTickEvent({required this.worldTimeManager});
+
+  @override
+  final WorldTimeMechanics worldTimeManager;
+
+  @override
+  String toString() {
+    return 'WorldEvent.timeTick(worldTimeManager: $worldTimeManager)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$WorldTimeTickEvent &&
+            (identical(other.worldTimeManager, worldTimeManager) ||
+                other.worldTimeManager == worldTimeManager));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, worldTimeManager);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$WorldTimeTickEventCopyWith<_$WorldTimeTickEvent> get copyWith =>
+      __$$WorldTimeTickEventCopyWithImpl<_$WorldTimeTickEvent>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(WorldTimeMechanics worldTimeManager) timeTick,
+    required TResult Function() init,
+  }) {
+    return timeTick(worldTimeManager);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(WorldTimeMechanics worldTimeManager)? timeTick,
+    TResult? Function()? init,
+  }) {
+    return timeTick?.call(worldTimeManager);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WorldTimeMechanics worldTimeManager)? timeTick,
+    TResult Function()? init,
+    required TResult orElse(),
+  }) {
+    if (timeTick != null) {
+      return timeTick(worldTimeManager);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WorldTimeTickEvent value) timeTick,
+    required TResult Function(InitWorldEvent value) init,
+  }) {
+    return timeTick(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WorldTimeTickEvent value)? timeTick,
+    TResult? Function(InitWorldEvent value)? init,
+  }) {
+    return timeTick?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WorldTimeTickEvent value)? timeTick,
+    TResult Function(InitWorldEvent value)? init,
+    required TResult orElse(),
+  }) {
+    if (timeTick != null) {
+      return timeTick(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class WorldTimeTickEvent implements WorldEvent {
+  const factory WorldTimeTickEvent(
+          {required final WorldTimeMechanics worldTimeManager}) =
+      _$WorldTimeTickEvent;
+
+  WorldTimeMechanics get worldTimeManager;
+  @JsonKey(ignore: true)
+  _$$WorldTimeTickEventCopyWith<_$WorldTimeTickEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$InitWorldEventCopyWith<$Res> {
+  factory _$$InitWorldEventCopyWith(
+          _$InitWorldEvent value, $Res Function(_$InitWorldEvent) then) =
+      __$$InitWorldEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$InitWorldEventCopyWithImpl<$Res>
+    extends _$WorldEventCopyWithImpl<$Res, _$InitWorldEvent>
+    implements _$$InitWorldEventCopyWith<$Res> {
+  __$$InitWorldEventCopyWithImpl(
+      _$InitWorldEvent _value, $Res Function(_$InitWorldEvent) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$InitWorldEvent implements InitWorldEvent {
+  const _$InitWorldEvent();
+
+  @override
+  String toString() {
+    return 'WorldEvent.init()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$InitWorldEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(WorldTimeMechanics worldTimeManager) timeTick,
+    required TResult Function() init,
+  }) {
+    return init();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(WorldTimeMechanics worldTimeManager)? timeTick,
+    TResult? Function()? init,
+  }) {
+    return init?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(WorldTimeMechanics worldTimeManager)? timeTick,
+    TResult Function()? init,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(WorldTimeTickEvent value) timeTick,
+    required TResult Function(InitWorldEvent value) init,
+  }) {
+    return init(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(WorldTimeTickEvent value)? timeTick,
+    TResult? Function(InitWorldEvent value)? init,
+  }) {
+    return init?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(WorldTimeTickEvent value)? timeTick,
+    TResult Function(InitWorldEvent value)? init,
+    required TResult orElse(),
+  }) {
+    if (init != null) {
+      return init(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitWorldEvent implements WorldEvent {
+  const factory InitWorldEvent() = _$InitWorldEvent;
+}
+
+/// @nodoc
+mixin _$WorldState {
+  WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
+  WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
+  int get dateTimeDelta => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $WorldStateCopyWith<WorldState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $WorldStateCopyWith<$Res> {
+  factory $WorldStateCopyWith(
+          WorldState value, $Res Function(WorldState) then) =
+      _$WorldStateCopyWithImpl<$Res, WorldState>;
+  @useResult
+  $Res call(
+      {WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime,
+      int dateTimeDelta});
+
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
+}
+
+/// @nodoc
+class _$WorldStateCopyWithImpl<$Res, $Val extends WorldState>
+    implements $WorldStateCopyWith<$Res> {
+  _$WorldStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateTime = null,
+    Object? lastDateTime = null,
+    Object? dateTimeDelta = null,
+  }) {
+    return _then(_value.copyWith(
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: null == lastDateTime
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      dateTimeDelta: null == dateTimeDelta
+          ? _value.dateTimeDelta
+          : dateTimeDelta // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WorldDateTimeModelCopyWith<$Res> get dateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.dateTime, (value) {
+      return _then(_value.copyWith(dateTime: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.lastDateTime, (value) {
+      return _then(_value.copyWith(lastDateTime: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_WorldStateCopyWith<$Res>
+    implements $WorldStateCopyWith<$Res> {
+  factory _$$_WorldStateCopyWith(
+          _$_WorldState value, $Res Function(_$_WorldState) then) =
+      __$$_WorldStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime,
+      int dateTimeDelta});
+
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
+}
+
+/// @nodoc
+class __$$_WorldStateCopyWithImpl<$Res>
+    extends _$WorldStateCopyWithImpl<$Res, _$_WorldState>
+    implements _$$_WorldStateCopyWith<$Res> {
+  __$$_WorldStateCopyWithImpl(
+      _$_WorldState _value, $Res Function(_$_WorldState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? dateTime = null,
+    Object? lastDateTime = null,
+    Object? dateTimeDelta = null,
+  }) {
+    return _then(_$_WorldState(
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: null == lastDateTime
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      dateTimeDelta: null == dateTimeDelta
+          ? _value.dateTimeDelta
+          : dateTimeDelta // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_WorldState extends _WorldState {
+  const _$_WorldState(
+      {this.dateTime = const WorldDateTimeModel(),
+      this.lastDateTime = const WorldDateTimeModel(),
+      this.dateTimeDelta = 0})
+      : super._();
+
+  @override
+  @JsonKey()
+  final WorldDateTimeModel dateTime;
+  @override
+  @JsonKey()
+  final WorldDateTimeModel lastDateTime;
+  @override
+  @JsonKey()
+  final int dateTimeDelta;
+
+  @override
+  String toString() {
+    return 'WorldState(dateTime: $dateTime, lastDateTime: $lastDateTime, dateTimeDelta: $dateTimeDelta)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_WorldState &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime) &&
+            (identical(other.lastDateTime, lastDateTime) ||
+                other.lastDateTime == lastDateTime) &&
+            (identical(other.dateTimeDelta, dateTimeDelta) ||
+                other.dateTimeDelta == dateTimeDelta));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, dateTime, lastDateTime, dateTimeDelta);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_WorldStateCopyWith<_$_WorldState> get copyWith =>
+      __$$_WorldStateCopyWithImpl<_$_WorldState>(this, _$identity);
+}
+
+abstract class _WorldState extends WorldState {
+  const factory _WorldState(
+      {final WorldDateTimeModel dateTime,
+      final WorldDateTimeModel lastDateTime,
+      final int dateTimeDelta}) = _$_WorldState;
+  const _WorldState._() : super._();
+
+  @override
+  WorldDateTimeModel get dateTime;
+  @override
+  WorldDateTimeModel get lastDateTime;
+  @override
+  int get dateTimeDelta;
+  @override
+  @JsonKey(ignore: true)
+  _$$_WorldStateCopyWith<_$_WorldState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

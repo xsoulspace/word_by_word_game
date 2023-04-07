@@ -23,6 +23,7 @@ typedef TileDataModelMap = Map<String, TileDataModel>;
 
 enum TileStyle {
   player,
+  @JsonValue('cursor_handle')
   cursorHandle,
   terrain,
   water,

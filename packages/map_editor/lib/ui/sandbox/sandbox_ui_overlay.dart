@@ -1,6 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
@@ -29,6 +30,9 @@ class TileButtons extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final drawerCubit = context.watch<DrawerCubit>();
+    final mapEditorBloc = context.watch<MapEditorBloc>();
+    final worldBloc = context.watch<WorldBloc>();
+    final worldTime = context.read<EditorMechanicsCollection>().worldTime;
     final menuTiles = context.watch<MapEditorBloc>().menuTiles;
 
     return Material(
@@ -37,6 +41,37 @@ class TileButtons extends StatelessWidget {
         padding: const EdgeInsets.all(8),
         shrinkWrap: true,
         children: [
+          Column(
+            children: [
+              ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 150),
+                child: CheckboxListTile(
+                  value: mapEditorBloc.loadedState.isEditing,
+                  onChanged: (final isEditing) async {
+                    await mapEditorBloc.onChangeIsEditing(
+                      isEditing ?? false,
+                    );
+                  },
+                  title: const Text('Is Editing'),
+                ),
+              ),
+              Text('Time ${worldBloc.state.dateTime.second}'),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  TextButton(
+                    onPressed:
+                        worldTime.paused ? worldTime.resume : worldTime.pause,
+                    child: Text(worldTime.paused ? '>' : '||'),
+                  ),
+                  TextButton(
+                    onPressed: worldTime.speedX2,
+                    child: Text(worldTime.isSpeed2 ? '(>>)' : '>>'),
+                  ),
+                ],
+              ),
+            ],
+          ),
           ...[
             TileSpriteButton(
               tiles: menuTiles[TileStyle.terrain]!,

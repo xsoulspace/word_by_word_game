@@ -9,7 +9,7 @@ class EditorStateInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
-    read<MapEditorBloc>().add(const LoadMapEditorBlocEvent());
+    await read<MapEditorBloc>().load();
   }
 }
 
@@ -23,11 +23,16 @@ class StateDiProvider extends StatelessWidget {
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
           Provider(
-            create: (final context) => MechanicsCollection(),
+            create: (final context) => EditorMechanicsCollection.v1(),
           ),
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [
+            BlocProvider(
+              create: (final context) => WorldBloc(
+                read: context.read,
+              ),
+            ),
             BlocProvider(
               create: (final context) => MapEditorBloc(),
             ),

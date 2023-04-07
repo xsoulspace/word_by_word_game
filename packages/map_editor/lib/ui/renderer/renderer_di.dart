@@ -6,14 +6,16 @@ class GameRendererDiDto {
     required this.theme,
   })  : mapEditorBloc = read(),
         mechanics = read(),
-        drawerCubit = read();
+        drawerCubit = read(),
+        worldBloc = read();
 
   /// ********************************************
   /// *      Ephemeral
   /// ********************************************
   final MapEditorBloc mapEditorBloc;
+  final WorldBloc worldBloc;
   final DrawerCubit drawerCubit;
-  final MechanicsCollection mechanics;
+  final EditorMechanicsCollection mechanics;
   final material.ThemeData theme;
 
   FlameMultiBlocProvider getBlocsProviderComponent({

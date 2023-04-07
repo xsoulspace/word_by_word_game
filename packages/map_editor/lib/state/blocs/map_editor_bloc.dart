@@ -1,14 +1,13 @@
 part of '../state.dart';
 
-class MapEditorBloc extends Bloc<MapEditorBlocEvent, MapEditorBlocState> {
-  MapEditorBloc() : super(const EmptyMapEditorBlocState()) {
-    on<LoadMapEditorBlocEvent>(_onLoad);
+class MapEditorBloc extends Cubit<MapEditorBlocState> {
+  MapEditorBloc() : super(const EmptyMapEditorBlocState());
+  // ignore: avoid_positional_boolean_parameters
+  Future<void> onChangeIsEditing(final bool isEditing) async {
+    emit(loadedState.copyWith(isEditing: isEditing));
   }
 
-  Future<void> _onLoad(
-    final LoadMapEditorBlocEvent event,
-    final Emitter<MapEditorBlocState> emit,
-  ) async {
+  Future<void> load() async {
     final jsonStr = await rootBundle.loadString(Assets.json.tilesSettingsData);
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
     final tileData = json.map(
