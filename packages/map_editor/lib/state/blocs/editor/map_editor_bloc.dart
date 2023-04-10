@@ -1,4 +1,4 @@
-part of '../state.dart';
+part of '../../state.dart';
 
 class MapEditorBloc extends Cubit<MapEditorBlocState> {
   MapEditorBloc() : super(const EmptyMapEditorBlocState());

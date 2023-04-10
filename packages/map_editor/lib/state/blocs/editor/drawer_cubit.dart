@@ -1,4 +1,4 @@
-part of '../state.dart';
+part of '../../state.dart';
 
 const int kMinSelectionIndex = 2;
 int get kMaxSelectionIndex => 18;

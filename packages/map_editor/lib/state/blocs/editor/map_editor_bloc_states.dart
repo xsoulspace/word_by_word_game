@@ -1,4 +1,4 @@
-part of '../state.dart';
+part of '../../state.dart';
 
 @freezed
 class MapEditorBlocState with _$MapEditorBlocState {

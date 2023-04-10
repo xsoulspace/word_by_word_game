@@ -12,10 +12,12 @@ import 'package:wbw_core/wbw_core.dart';
 
 export 'di/di.dart';
 
-part 'blocs/drawer_cubit.dart';
-part 'blocs/drawer_cubit_states.dart';
-part 'blocs/map_editor_bloc.dart';
-part 'blocs/map_editor_bloc_states.dart';
+part 'blocs/editor/drawer_cubit.dart';
+part 'blocs/editor/drawer_cubit_states.dart';
+part 'blocs/editor/map_editor_bloc.dart';
+part 'blocs/editor/map_editor_bloc_states.dart';
+part 'blocs/live/live_world_bloc.dart';
+part 'blocs/live/live_world_bloc_states.dart';
 part 'blocs/world_bloc.dart';
 part 'blocs/world_events.dart';
 part 'blocs/world_states.dart';
