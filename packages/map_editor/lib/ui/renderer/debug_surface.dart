@@ -1,4 +1,4 @@
-part of 'game_renderer.dart';
+part of 'editor_renderer.dart';
 
 class DebugSurface extends Component
     with HasGameRef<GameRenderer>, HasEditorRef {

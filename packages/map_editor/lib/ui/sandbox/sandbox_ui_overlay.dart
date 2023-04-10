@@ -55,7 +55,9 @@ class TileButtons extends StatelessWidget {
                   title: const Text('Is Editing'),
                 ),
               ),
+              const SizedBox(height: 14),
               Text('Time ${worldBloc.state.dateTime.second}'),
+              const SizedBox(height: 4),
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [

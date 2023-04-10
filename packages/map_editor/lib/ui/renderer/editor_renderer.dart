@@ -1,4 +1,23 @@
-part of 'game_renderer.dart';
+import 'dart:async';
+import 'dart:collection';
+import 'dart:math' as math;
+
+import 'package:flame/components.dart';
+import 'package:flame/experimental.dart';
+import 'package:flame/extensions.dart';
+import 'package:flame/input.dart';
+import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flutter/material.dart' as material;
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:map_editor/generated/assets.gen.dart';
+import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/game_renderer.dart';
+import 'package:map_editor/ui/renderer/resources_loader.dart';
+
+part 'canvas_object.dart';
+part 'debug_surface.dart';
+part 'tiles_render_drawer.dart';
 
 class EditorRenderer extends Component
     with DragCallbacks, HasGameRef<GameRenderer>, Hoverable {

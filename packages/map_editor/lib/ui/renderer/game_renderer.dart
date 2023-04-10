@@ -1,32 +1,20 @@
 import 'dart:async';
-import 'dart:collection';
-import 'dart:convert';
-import 'dart:math' as math;
 
-import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
-import 'package:flame/extensions.dart';
 import 'package:flame/game.dart';
-import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
-import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart';
+import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 
-part 'canvas_object.dart';
-part 'debug_surface.dart';
-part 'editor_renderer.dart';
 part 'renderer_di.dart';
-part 'resources_loader.dart';
-part 'tiles_render_drawer.dart';
 
 class Palette {
   Palette._();
@@ -54,13 +42,7 @@ String get kCursorHandleObjectId => '19';
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
 class GameRenderer extends FlameGame
-    with
-        HasCollisionDetection,
-        HasDraggableComponents,
-        HasTappableComponents,
-        HasDraggablesBridge,
-        SingleGameInstance,
-        HasHoverables {
+    with HasCollisionDetection, SingleGameInstance, HasHoverables {
   GameRenderer.use({
     required final Locator read,
     required final material.ThemeData theme,

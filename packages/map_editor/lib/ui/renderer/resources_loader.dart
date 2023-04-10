@@ -1,4 +1,13 @@
-part of 'game_renderer.dart';
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:flame/cache.dart';
+import 'package:flame/components.dart';
+import 'package:flame/extensions.dart';
+import 'package:flutter/services.dart' show rootBundle;
+import 'package:map_editor/generated/assets.gen.dart';
+import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/ui/renderer/game_renderer.dart';
 
 mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
   Image getTerrainImage(final String fileName) =>
@@ -138,7 +147,7 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
 }
 
 class AnimationUpdater extends Component
-    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
+    with HasGameRef<GameRenderer>, HasResourcesLoaderRef {
   static AnimationEntryModel updateAnimationFrame({
     required final AnimationEntryModel entry,
     required final GameRendererConfig config,

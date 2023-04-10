@@ -1,4 +1,4 @@
-part of 'game_renderer.dart';
+part of 'editor_renderer.dart';
 
 class TilesDrawer extends Component
     with TapCallbacks, HasGameRef<GameRenderer>, HasEditorRef {
