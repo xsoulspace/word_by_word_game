@@ -21,14 +21,11 @@ part 'tiles_render_drawer.dart';
 
 class EditorRenderer extends Component
     with DragCallbacks, HasGameRef<GameRenderer>, Hoverable {
-  Vector2 origin = Vector2.zero();
-
-  /// First cell position to calculate the grid and positions
-  @useResult
-  Vector2 getOffsetOrigin() => Vector2(
-        origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
-        origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
-      );
+  DrawerCubit get drawerCubit => game.diDto.drawerCubit;
+  DrawerCubitState get drawerCubitState => drawerCubit.state;
+  Vector2 get origin => drawerCubitState.origin;
+  set origin(final Vector2 value) => drawerCubit.changeOrigin(value);
+  Vector2 getOffsetOrigin() => drawerCubitState.getOffsetOrigin();
   Vector2 get gameSize => game.camera.gameSize;
   double get windowHeight => gameSize.y;
   double get windowWidth => gameSize.x;
@@ -68,7 +65,7 @@ class EditorRenderer extends Component
   void onDragUpdate(final DragUpdateEvent event) {
     final eventPosition = event.canvasPosition;
     origin = eventPosition - _dragOffset;
-    hoveredPosition = eventPosition;
+    mousePosition = eventPosition;
     canvasObjectsDrawer.onOriginUpdate();
     super.onDragUpdate(event);
   }
@@ -92,11 +89,13 @@ class EditorRenderer extends Component
     );
   }
 
-  Vector2 hoveredPosition = Vector2.zero();
+  /// For cursor rendering
+  Vector2 mousePosition = Vector2.zero();
+
   @override
   // ignore: invalid_override_of_non_virtual_member
   bool handleMouseMovement(final PointerHoverInfo info) {
-    hoveredPosition = info.eventPosition.viewport;
+    mousePosition = info.eventPosition.viewport;
     return super.handleMouseMovement(info);
   }
 
@@ -124,10 +123,9 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   double get windowWidth => editor.windowWidth;
   double get tileColumns => editor.tileColumns;
   double get tileRows => editor.tileRows;
-  Map<CellPointModel, CanvasTileModel> get canvasData =>
-      game.diDto.drawerCubit.canvasData;
+  Map<CellPointModel, CanvasTileModel> get canvasData => drawerCubit.canvasData;
   set canvasData(final Map<CellPointModel, CanvasTileModel> value) =>
-      game.diDto.drawerCubit.canvasData = value;
+      drawerCubit.canvasData = value;
 }
 
 class CursorRenderer extends Component
@@ -146,7 +144,7 @@ class CursorRenderer extends Component
   void render(final Canvas canvas) {
     super.render(canvas);
     if (_image != null && editor.isHovered) {
-      canvas.drawImage(_image!, editor.hoveredPosition.toOffset(), _paint);
+      canvas.drawImage(_image!, editor.mousePosition.toOffset(), _paint);
     }
   }
 }

@@ -1,10 +1,30 @@
 part of '../../state.dart';
 
+class MapEditorBlocDto {
+  MapEditorBlocDto.use(final Locator read) : drawerCubit = read();
+  final DrawerCubit drawerCubit;
+}
+
 class MapEditorBloc extends Cubit<MapEditorBlocState> {
-  MapEditorBloc() : super(const EmptyMapEditorBlocState());
+  MapEditorBloc({
+    required final Locator read,
+  })  : dto = MapEditorBlocDto.use(read),
+        super(const EmptyMapEditorBlocState());
+  final MapEditorBlocDto dto;
   // ignore: avoid_positional_boolean_parameters
   Future<void> onChangeIsEditing(final bool isEditing) async {
     emit(loadedState.copyWith(isEditing: isEditing));
+  }
+
+  Future<void> onSaveAndPlay() async {
+    /// add objects to tiles
+    final originUtils = OriginVectorUtils.use(dto.drawerCubit.state.origin);
+    for (final canvasEntry in dto.drawerCubit.canvasData.entries) {
+      final currentCell = canvasEntry.key;
+      // final currentCell = originUtils.getCurrentCellByObject();
+    }
+
+    /// create a Grid
   }
 
   Future<void> load() async {

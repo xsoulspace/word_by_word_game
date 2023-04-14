@@ -8,20 +8,6 @@ class TilesDrawer extends Component
     return super.onTapUp(event);
   }
 
-  math.Point<int> getCurrentCell(final TapUpEvent eventPosition) {
-    final distanceToOrigin = eventPosition.canvasPosition - origin;
-
-    int y = distanceToOrigin.y ~/ kTileDimension;
-    if (distanceToOrigin.y < 0) {
-      y--;
-    }
-    int x = distanceToOrigin.x ~/ kTileDimension;
-    if (distanceToOrigin.x < 0) {
-      x--;
-    }
-    return math.Point(x, y);
-  }
-
   Map<CellPointModel, CanvasTileModel> checkNeighbours({
     required final Map<CellPointModel, CanvasTileModel> effectiveCanvasData,
     required final CellPointModel cellPoint,
@@ -85,7 +71,8 @@ class TilesDrawer extends Component
 
   math.Point<int>? _lastSelectedCell;
   void _onTap(final TapUpEvent event) {
-    final cell = getCurrentCell(event);
+    final originUtils = OriginVectorUtils.use(origin);
+    final cell = originUtils.getCurrentCellByTap(event);
     final effectiveCanvasData = {...canvasData};
     final cellPoint = cell.toCellPoint();
 

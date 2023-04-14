@@ -61,3 +61,27 @@ const _$GameObjectTypeEnumMap = {
   GameObjectType.object: 'object',
   GameObjectType.tile: 'tile',
 };
+
+_$_GameObjectId _$$_GameObjectIdFromJson(Map<String, dynamic> json) =>
+    _$_GameObjectId(
+      value: json['value'] as String,
+    );
+
+Map<String, dynamic> _$$_GameObjectIdToJson(_$_GameObjectId instance) =>
+    <String, dynamic>{
+      'value': instance.value,
+    };
+
+_$ControlledGameObjectModel _$$ControlledGameObjectModelFromJson(
+        Map<String, dynamic> json) =>
+    _$ControlledGameObjectModel(
+      id: GameObjectId.fromJson(json['id'] as Map<String, dynamic>),
+      canvasObjectProperties: json['canvasObjectProperties'] as String,
+    );
+
+Map<String, dynamic> _$$ControlledGameObjectModelToJson(
+        _$ControlledGameObjectModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'canvasObjectProperties': instance.canvasObjectProperties,
+    };

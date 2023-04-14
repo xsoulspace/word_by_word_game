@@ -15,14 +15,22 @@ class CanvasObject extends Component
     this.onPositionChanged,
   });
   final material.ValueChanged<Offset>? onPositionChanged;
+
   final String tileId;
   final List<CanvasObject> group;
   Offset position;
-
   AnimationEntryModel animationEntry;
-  Offset _distanceToOrigin = Offset.zero;
+  Offset distanceToOrigin = Offset.zero;
+  Offset distanceToTileLeftTopCorner = Offset.zero;
+
   void _updateDistanceToOrigin() {
-    _distanceToOrigin = position - origin.toOffset();
+    distanceToOrigin = position - origin.toOffset();
+    final cell = OriginVectorUtils.use(origin).getCurrentCellByObject(this);
+    final cellTopLeftPosition = Offset(
+      (cell.x * kTileDimension).toDouble(),
+      (cell.y * kTileDimension).toDouble(),
+    );
+    distanceToTileLeftTopCorner = distanceToOrigin - cellTopLeftPosition;
   }
 
   @override
@@ -102,7 +110,7 @@ class CanvasObject extends Component
   }
 
   void _updatePosition() {
-    position = origin.toOffset() + _distanceToOrigin;
+    position = origin.toOffset() + distanceToOrigin;
   }
 
   @override

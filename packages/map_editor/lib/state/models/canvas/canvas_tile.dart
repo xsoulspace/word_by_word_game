@@ -1,7 +1,8 @@
-part of 'models.dart';
+part of '../models.dart';
 
 @freezed
 class CanvasTileModel with _$CanvasTileModel {
+  /// Use [fromEditorSettingsDataToAdd] instead
   const factory CanvasTileModel.secure({
     required final TileId tileId,
 

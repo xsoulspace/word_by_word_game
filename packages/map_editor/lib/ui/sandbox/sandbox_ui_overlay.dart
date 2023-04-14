@@ -130,6 +130,11 @@ class TileButtons extends StatelessWidget {
                     title: const Text('Delete Tile'),
                   ),
                 ),
+                TextButton.icon(
+                  onPressed: mapEditorBloc.onSaveAndPlay,
+                  icon: const Icon(Icons.save),
+                  label: const Text('Save & Play'),
+                ),
               ],
             ),
           ),

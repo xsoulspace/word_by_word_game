@@ -16,6 +16,8 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DrawerCubitState {
+  /// Real origin for all elements
+  Vector2 get origin => throw _privateConstructorUsedError;
   int get selectionIndex => throw _privateConstructorUsedError;
   bool get isDeleteSelection => throw _privateConstructorUsedError;
   bool get isDeleteSelectionCompletely => throw _privateConstructorUsedError;
@@ -40,7 +42,8 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
       _$DrawerCubitStateCopyWithImpl<$Res, DrawerCubitState>;
   @useResult
   $Res call(
-      {int selectionIndex,
+      {Vector2 origin,
+      int selectionIndex,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       Map<CellPointModel, CanvasTileModel> canvasData,
@@ -61,6 +64,7 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? origin = null,
     Object? selectionIndex = null,
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
@@ -69,6 +73,10 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     Object? skyYPosition = null,
   }) {
     return _then(_value.copyWith(
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as Vector2,
       selectionIndex: null == selectionIndex
           ? _value.selectionIndex
           : selectionIndex // ignore: cast_nullable_to_non_nullable
@@ -106,7 +114,8 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {int selectionIndex,
+      {Vector2 origin,
+      int selectionIndex,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       Map<CellPointModel, CanvasTileModel> canvasData,
@@ -125,6 +134,7 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? origin = null,
     Object? selectionIndex = null,
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
@@ -133,6 +143,10 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
     Object? skyYPosition = null,
   }) {
     return _then(_$_DrawerCubitState(
+      origin: null == origin
+          ? _value.origin
+          : origin // ignore: cast_nullable_to_non_nullable
+              as Vector2,
       selectionIndex: null == selectionIndex
           ? _value.selectionIndex
           : selectionIndex // ignore: cast_nullable_to_non_nullable
@@ -163,16 +177,21 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DrawerCubitState implements _DrawerCubitState {
+class _$_DrawerCubitState extends _DrawerCubitState {
   const _$_DrawerCubitState(
-      {this.selectionIndex = kMinSelectionIndex,
+      {required this.origin,
+      this.selectionIndex = kMinSelectionIndex,
       this.isDeleteSelection = false,
       this.isDeleteSelectionCompletely = false,
       final Map<CellPointModel, CanvasTileModel> canvasData = const {},
       this.gravityYPosition = 0,
       this.skyYPosition = 0})
-      : _canvasData = canvasData;
+      : _canvasData = canvasData,
+        super._();
 
+  /// Real origin for all elements
+  @override
+  final Vector2 origin;
   @override
   @JsonKey()
   final int selectionIndex;
@@ -203,7 +222,7 @@ class _$_DrawerCubitState implements _DrawerCubitState {
 
   @override
   String toString() {
-    return 'DrawerCubitState(selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
+    return 'DrawerCubitState(origin: $origin, selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
   }
 
   @override
@@ -211,6 +230,7 @@ class _$_DrawerCubitState implements _DrawerCubitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_DrawerCubitState &&
+            (identical(other.origin, origin) || other.origin == origin) &&
             (identical(other.selectionIndex, selectionIndex) ||
                 other.selectionIndex == selectionIndex) &&
             (identical(other.isDeleteSelection, isDeleteSelection) ||
@@ -230,6 +250,7 @@ class _$_DrawerCubitState implements _DrawerCubitState {
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      origin,
       selectionIndex,
       isDeleteSelection,
       isDeleteSelectionCompletely,
@@ -244,15 +265,21 @@ class _$_DrawerCubitState implements _DrawerCubitState {
       __$$_DrawerCubitStateCopyWithImpl<_$_DrawerCubitState>(this, _$identity);
 }
 
-abstract class _DrawerCubitState implements DrawerCubitState {
+abstract class _DrawerCubitState extends DrawerCubitState {
   const factory _DrawerCubitState(
-      {final int selectionIndex,
+      {required final Vector2 origin,
+      final int selectionIndex,
       final bool isDeleteSelection,
       final bool isDeleteSelectionCompletely,
       final Map<CellPointModel, CanvasTileModel> canvasData,
       final double gravityYPosition,
       final double skyYPosition}) = _$_DrawerCubitState;
+  const _DrawerCubitState._() : super._();
 
+  @override
+
+  /// Real origin for all elements
+  Vector2 get origin;
   @override
   int get selectionIndex;
   @override
@@ -606,6 +633,127 @@ abstract class LoadedMapEditorBlocState implements MapEditorBlocState {
   @JsonKey(ignore: true)
   _$$LoadedMapEditorBlocStateCopyWith<_$LoadedMapEditorBlocState>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$LiveWorldBlocState {
+// TODO(arenukvern):
+  String get player => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LiveWorldBlocStateCopyWith<LiveWorldBlocState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LiveWorldBlocStateCopyWith<$Res> {
+  factory $LiveWorldBlocStateCopyWith(
+          LiveWorldBlocState value, $Res Function(LiveWorldBlocState) then) =
+      _$LiveWorldBlocStateCopyWithImpl<$Res, LiveWorldBlocState>;
+  @useResult
+  $Res call({String player});
+}
+
+/// @nodoc
+class _$LiveWorldBlocStateCopyWithImpl<$Res, $Val extends LiveWorldBlocState>
+    implements $LiveWorldBlocStateCopyWith<$Res> {
+  _$LiveWorldBlocStateCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? player = null,
+  }) {
+    return _then(_value.copyWith(
+      player: null == player
+          ? _value.player
+          : player // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_LiveWorldBlocStateCopyWith<$Res>
+    implements $LiveWorldBlocStateCopyWith<$Res> {
+  factory _$$_LiveWorldBlocStateCopyWith(_$_LiveWorldBlocState value,
+          $Res Function(_$_LiveWorldBlocState) then) =
+      __$$_LiveWorldBlocStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String player});
+}
+
+/// @nodoc
+class __$$_LiveWorldBlocStateCopyWithImpl<$Res>
+    extends _$LiveWorldBlocStateCopyWithImpl<$Res, _$_LiveWorldBlocState>
+    implements _$$_LiveWorldBlocStateCopyWith<$Res> {
+  __$$_LiveWorldBlocStateCopyWithImpl(
+      _$_LiveWorldBlocState _value, $Res Function(_$_LiveWorldBlocState) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? player = null,
+  }) {
+    return _then(_$_LiveWorldBlocState(
+      player: null == player
+          ? _value.player
+          : player // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LiveWorldBlocState implements _LiveWorldBlocState {
+  const _$_LiveWorldBlocState({required this.player});
+
+// TODO(arenukvern):
+  @override
+  final String player;
+
+  @override
+  String toString() {
+    return 'LiveWorldBlocState(player: $player)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_LiveWorldBlocState &&
+            (identical(other.player, player) || other.player == player));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, player);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LiveWorldBlocStateCopyWith<_$_LiveWorldBlocState> get copyWith =>
+      __$$_LiveWorldBlocStateCopyWithImpl<_$_LiveWorldBlocState>(
+          this, _$identity);
+}
+
+abstract class _LiveWorldBlocState implements LiveWorldBlocState {
+  const factory _LiveWorldBlocState({required final String player}) =
+      _$_LiveWorldBlocState;
+
+  @override // TODO(arenukvern):
+  String get player;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LiveWorldBlocStateCopyWith<_$_LiveWorldBlocState> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

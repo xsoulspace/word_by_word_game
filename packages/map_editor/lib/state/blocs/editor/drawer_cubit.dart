@@ -4,14 +4,15 @@ const int kMinSelectionIndex = 2;
 int get kMaxSelectionIndex => 18;
 
 class DrawerCubitDto {
-  DrawerCubitDto(final Locator read) : mapEditorBloc = read();
+  DrawerCubitDto.use(final Locator read) : mapEditorBloc = read();
   final MapEditorBloc mapEditorBloc;
 }
 
 class DrawerCubit extends Cubit<DrawerCubitState> {
   DrawerCubit({
-    required this.dto,
-  }) : super(const DrawerCubitState());
+    required final Locator read,
+  })  : dto = DrawerCubitDto.use(read),
+        super(DrawerCubitState.empty);
   final DrawerCubitDto dto;
   int get selectionIndex => state.selectionIndex;
   set selectionIndex(final int value) {
@@ -21,6 +22,8 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     );
     emit(state.copyWith(selectionIndex: resultValue));
   }
+
+  void changeOrigin(final Vector2 value) => emit(state.copyWith(origin: value));
 
   void changeState(final DrawerCubitState newState) => emit(newState);
 

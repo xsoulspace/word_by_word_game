@@ -1,4 +1,4 @@
-part of 'models.dart';
+part of '../models.dart';
 
 @freezed
 class TileMenuItem with _$TileMenuItem {

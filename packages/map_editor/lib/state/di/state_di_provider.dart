@@ -34,11 +34,13 @@ class StateDiProvider extends StatelessWidget {
               ),
             ),
             BlocProvider(
-              create: (final context) => MapEditorBloc(),
+              create: (final context) => DrawerCubit(
+                read: context.read,
+              ),
             ),
             BlocProvider(
-              create: (final context) => DrawerCubit(
-                dto: DrawerCubitDto(context.read),
+              create: (final context) => MapEditorBloc(
+                read: context.read,
               ),
             ),
           ],
