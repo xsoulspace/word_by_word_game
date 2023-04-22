@@ -62,26 +62,69 @@ const _$GameObjectTypeEnumMap = {
   GameObjectType.tile: 'tile',
 };
 
-_$_GameObjectId _$$_GameObjectIdFromJson(Map<String, dynamic> json) =>
-    _$_GameObjectId(
+_$_Gid _$$_GidFromJson(Map<String, dynamic> json) => _$_Gid(
       value: json['value'] as String,
     );
 
-Map<String, dynamic> _$$_GameObjectIdToJson(_$_GameObjectId instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$$_GidToJson(_$_Gid instance) => <String, dynamic>{
       'value': instance.value,
     };
 
-_$ControlledGameObjectModel _$$ControlledGameObjectModelFromJson(
-        Map<String, dynamic> json) =>
-    _$ControlledGameObjectModel(
-      id: GameObjectId.fromJson(json['id'] as Map<String, dynamic>),
-      canvasObjectProperties: json['canvasObjectProperties'] as String,
+_$_PlayerObjectModel _$$_PlayerObjectModelFromJson(Map<String, dynamic> json) =>
+    _$_PlayerObjectModel(
+      canvasObject: RenderCanvasObjectModel.fromJson(
+          json['canvasObject'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$ControlledGameObjectModelToJson(
-        _$ControlledGameObjectModel instance) =>
+Map<String, dynamic> _$$_PlayerObjectModelToJson(
+        _$_PlayerObjectModel instance) =>
+    <String, dynamic>{
+      'canvasObject': instance.canvasObject,
+    };
+
+_$_RenderCanvasObjectModel _$$_RenderCanvasObjectModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_RenderCanvasObjectModel(
+      id: Gid.fromJson(json['id'] as Map<String, dynamic>),
+      tileId: json['tileId'] as String,
+      position: json['position'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['position'] as Map<String, dynamic>),
+      distanceToOrigin: json['distanceToOrigin'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['distanceToOrigin'] as Map<String, dynamic>),
+      distanceToTileLeftTopCorner: json['distanceToTileLeftTopCorner'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['distanceToTileLeftTopCorner'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_RenderCanvasObjectModelToJson(
+        _$_RenderCanvasObjectModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'canvasObjectProperties': instance.canvasObjectProperties,
+      'tileId': instance.tileId,
+      'position': instance.position,
+      'distanceToOrigin': instance.distanceToOrigin,
+      'distanceToTileLeftTopCorner': instance.distanceToTileLeftTopCorner,
+    };
+
+_$_RenderCanvasTileModel _$$_RenderCanvasTileModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_RenderCanvasTileModel(
+      tileId: json['tileId'] as String,
+      hasTerrain: json['hasTerrain'] as bool? ?? false,
+      hasWater: json['hasWater'] as bool? ?? false,
+      isWaterTop: json['isWaterTop'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$_RenderCanvasTileModelToJson(
+        _$_RenderCanvasTileModel instance) =>
+    <String, dynamic>{
+      'tileId': instance.tileId,
+      'hasTerrain': instance.hasTerrain,
+      'hasWater': instance.hasWater,
+      'isWaterTop': instance.isWaterTop,
     };

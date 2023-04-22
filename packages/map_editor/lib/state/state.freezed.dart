@@ -637,8 +637,17 @@ abstract class LoadedMapEditorBlocState implements MapEditorBlocState {
 
 /// @nodoc
 mixin _$LiveWorldBlocState {
-// TODO(arenukvern):
-  String get player => throw _privateConstructorUsedError;
+  /// The player object
+  PlayerObjectModel get player => throw _privateConstructorUsedError;
+
+  /// Never changable tileset, like grass, water
+  Map<Gid, RenderCanvasTileModel> get tiles =>
+      throw _privateConstructorUsedError;
+
+  /// Moving or idle obstacle - objects,
+  /// like the birds, trees etc.
+  Map<Gid, RenderCanvasObjectModel> get dynamicObjects =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LiveWorldBlocStateCopyWith<LiveWorldBlocState> get copyWith =>
@@ -651,7 +660,12 @@ abstract class $LiveWorldBlocStateCopyWith<$Res> {
           LiveWorldBlocState value, $Res Function(LiveWorldBlocState) then) =
       _$LiveWorldBlocStateCopyWithImpl<$Res, LiveWorldBlocState>;
   @useResult
-  $Res call({String player});
+  $Res call(
+      {PlayerObjectModel player,
+      Map<Gid, RenderCanvasTileModel> tiles,
+      Map<Gid, RenderCanvasObjectModel> dynamicObjects});
+
+  $PlayerObjectModelCopyWith<$Res> get player;
 }
 
 /// @nodoc
@@ -668,13 +682,31 @@ class _$LiveWorldBlocStateCopyWithImpl<$Res, $Val extends LiveWorldBlocState>
   @override
   $Res call({
     Object? player = null,
+    Object? tiles = null,
+    Object? dynamicObjects = null,
   }) {
     return _then(_value.copyWith(
       player: null == player
           ? _value.player
           : player // ignore: cast_nullable_to_non_nullable
-              as String,
+              as PlayerObjectModel,
+      tiles: null == tiles
+          ? _value.tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderCanvasTileModel>,
+      dynamicObjects: null == dynamicObjects
+          ? _value.dynamicObjects
+          : dynamicObjects // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderCanvasObjectModel>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PlayerObjectModelCopyWith<$Res> get player {
+    return $PlayerObjectModelCopyWith<$Res>(_value.player, (value) {
+      return _then(_value.copyWith(player: value) as $Val);
+    });
   }
 }
 
@@ -686,7 +718,13 @@ abstract class _$$_LiveWorldBlocStateCopyWith<$Res>
       __$$_LiveWorldBlocStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String player});
+  $Res call(
+      {PlayerObjectModel player,
+      Map<Gid, RenderCanvasTileModel> tiles,
+      Map<Gid, RenderCanvasObjectModel> dynamicObjects});
+
+  @override
+  $PlayerObjectModelCopyWith<$Res> get player;
 }
 
 /// @nodoc
@@ -701,28 +739,70 @@ class __$$_LiveWorldBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? player = null,
+    Object? tiles = null,
+    Object? dynamicObjects = null,
   }) {
     return _then(_$_LiveWorldBlocState(
       player: null == player
           ? _value.player
           : player // ignore: cast_nullable_to_non_nullable
-              as String,
+              as PlayerObjectModel,
+      tiles: null == tiles
+          ? _value._tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderCanvasTileModel>,
+      dynamicObjects: null == dynamicObjects
+          ? _value._dynamicObjects
+          : dynamicObjects // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderCanvasObjectModel>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$_LiveWorldBlocState implements _LiveWorldBlocState {
-  const _$_LiveWorldBlocState({required this.player});
+class _$_LiveWorldBlocState extends _LiveWorldBlocState {
+  const _$_LiveWorldBlocState(
+      {required this.player,
+      final Map<Gid, RenderCanvasTileModel> tiles = const {},
+      final Map<Gid, RenderCanvasObjectModel> dynamicObjects = const {}})
+      : _tiles = tiles,
+        _dynamicObjects = dynamicObjects,
+        super._();
 
-// TODO(arenukvern):
+  /// The player object
   @override
-  final String player;
+  final PlayerObjectModel player;
+
+  /// Never changable tileset, like grass, water
+  final Map<Gid, RenderCanvasTileModel> _tiles;
+
+  /// Never changable tileset, like grass, water
+  @override
+  @JsonKey()
+  Map<Gid, RenderCanvasTileModel> get tiles {
+    if (_tiles is EqualUnmodifiableMapView) return _tiles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_tiles);
+  }
+
+  /// Moving or idle obstacle - objects,
+  /// like the birds, trees etc.
+  final Map<Gid, RenderCanvasObjectModel> _dynamicObjects;
+
+  /// Moving or idle obstacle - objects,
+  /// like the birds, trees etc.
+  @override
+  @JsonKey()
+  Map<Gid, RenderCanvasObjectModel> get dynamicObjects {
+    if (_dynamicObjects is EqualUnmodifiableMapView) return _dynamicObjects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_dynamicObjects);
+  }
 
   @override
   String toString() {
-    return 'LiveWorldBlocState(player: $player)';
+    return 'LiveWorldBlocState(player: $player, tiles: $tiles, dynamicObjects: $dynamicObjects)';
   }
 
   @override
@@ -730,11 +810,18 @@ class _$_LiveWorldBlocState implements _LiveWorldBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LiveWorldBlocState &&
-            (identical(other.player, player) || other.player == player));
+            (identical(other.player, player) || other.player == player) &&
+            const DeepCollectionEquality().equals(other._tiles, _tiles) &&
+            const DeepCollectionEquality()
+                .equals(other._dynamicObjects, _dynamicObjects));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, player);
+  int get hashCode => Object.hash(
+      runtimeType,
+      player,
+      const DeepCollectionEquality().hash(_tiles),
+      const DeepCollectionEquality().hash(_dynamicObjects));
 
   @JsonKey(ignore: true)
   @override
@@ -744,12 +831,27 @@ class _$_LiveWorldBlocState implements _LiveWorldBlocState {
           this, _$identity);
 }
 
-abstract class _LiveWorldBlocState implements LiveWorldBlocState {
-  const factory _LiveWorldBlocState({required final String player}) =
+abstract class _LiveWorldBlocState extends LiveWorldBlocState {
+  const factory _LiveWorldBlocState(
+          {required final PlayerObjectModel player,
+          final Map<Gid, RenderCanvasTileModel> tiles,
+          final Map<Gid, RenderCanvasObjectModel> dynamicObjects}) =
       _$_LiveWorldBlocState;
+  const _LiveWorldBlocState._() : super._();
 
-  @override // TODO(arenukvern):
-  String get player;
+  @override
+
+  /// The player object
+  PlayerObjectModel get player;
+  @override
+
+  /// Never changable tileset, like grass, water
+  Map<Gid, RenderCanvasTileModel> get tiles;
+  @override
+
+  /// Moving or idle obstacle - objects,
+  /// like the birds, trees etc.
+  Map<Gid, RenderCanvasObjectModel> get dynamicObjects;
   @override
   @JsonKey(ignore: true)
   _$$_LiveWorldBlocStateCopyWith<_$_LiveWorldBlocState> get copyWith =>

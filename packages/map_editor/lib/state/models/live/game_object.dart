@@ -3,23 +3,11 @@
 part of '../models.dart';
 
 @freezed
-class GameObjectId with _$GameObjectId {
+class Gid with _$Gid {
   @JsonSerializable()
-  const factory GameObjectId({
+  const factory Gid({
     required final String value,
-  }) = _GameObjectId;
-  factory GameObjectId.fromJson(final Map<String, dynamic> json) =>
-      _$GameObjectIdFromJson(json);
-}
-
-@freezed
-class GameObjectModel with _$GameObjectModel {
-  const factory GameObjectModel.controlled({
-    required final GameObjectId id,
-    // TODO(arenukvern): add player settings
-    // TODO(arenukvern): add canvas object
-    required final String canvasObjectProperties,
-  }) = ControlledGameObjectModel;
-  factory GameObjectModel.fromJson(final Map<String, dynamic> json) =>
-      _$GameObjectModelFromJson(json);
+  }) = _Gid;
+  factory Gid.fromJson(final Map<String, dynamic> json) => _$GidFromJson(json);
+  static const zero = Gid(value: '');
 }

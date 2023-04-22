@@ -1404,33 +1404,30 @@ abstract class _TileMenuItem implements TileMenuItem {
       throw _privateConstructorUsedError;
 }
 
-GameObjectId _$GameObjectIdFromJson(Map<String, dynamic> json) {
-  return _GameObjectId.fromJson(json);
+Gid _$GidFromJson(Map<String, dynamic> json) {
+  return _Gid.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GameObjectId {
+mixin _$Gid {
   String get value => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameObjectIdCopyWith<GameObjectId> get copyWith =>
-      throw _privateConstructorUsedError;
+  $GidCopyWith<Gid> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameObjectIdCopyWith<$Res> {
-  factory $GameObjectIdCopyWith(
-          GameObjectId value, $Res Function(GameObjectId) then) =
-      _$GameObjectIdCopyWithImpl<$Res, GameObjectId>;
+abstract class $GidCopyWith<$Res> {
+  factory $GidCopyWith(Gid value, $Res Function(Gid) then) =
+      _$GidCopyWithImpl<$Res, Gid>;
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class _$GameObjectIdCopyWithImpl<$Res, $Val extends GameObjectId>
-    implements $GameObjectIdCopyWith<$Res> {
-  _$GameObjectIdCopyWithImpl(this._value, this._then);
+class _$GidCopyWithImpl<$Res, $Val extends Gid> implements $GidCopyWith<$Res> {
+  _$GidCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1452,22 +1449,18 @@ class _$GameObjectIdCopyWithImpl<$Res, $Val extends GameObjectId>
 }
 
 /// @nodoc
-abstract class _$$_GameObjectIdCopyWith<$Res>
-    implements $GameObjectIdCopyWith<$Res> {
-  factory _$$_GameObjectIdCopyWith(
-          _$_GameObjectId value, $Res Function(_$_GameObjectId) then) =
-      __$$_GameObjectIdCopyWithImpl<$Res>;
+abstract class _$$_GidCopyWith<$Res> implements $GidCopyWith<$Res> {
+  factory _$$_GidCopyWith(_$_Gid value, $Res Function(_$_Gid) then) =
+      __$$_GidCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$_GameObjectIdCopyWithImpl<$Res>
-    extends _$GameObjectIdCopyWithImpl<$Res, _$_GameObjectId>
-    implements _$$_GameObjectIdCopyWith<$Res> {
-  __$$_GameObjectIdCopyWithImpl(
-      _$_GameObjectId _value, $Res Function(_$_GameObjectId) _then)
+class __$$_GidCopyWithImpl<$Res> extends _$GidCopyWithImpl<$Res, _$_Gid>
+    implements _$$_GidCopyWith<$Res> {
+  __$$_GidCopyWithImpl(_$_Gid _value, $Res Function(_$_Gid) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1475,7 +1468,7 @@ class __$$_GameObjectIdCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_GameObjectId(
+    return _then(_$_Gid(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -1487,25 +1480,24 @@ class __$$_GameObjectIdCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable()
-class _$_GameObjectId implements _GameObjectId {
-  const _$_GameObjectId({required this.value});
+class _$_Gid implements _Gid {
+  const _$_Gid({required this.value});
 
-  factory _$_GameObjectId.fromJson(Map<String, dynamic> json) =>
-      _$$_GameObjectIdFromJson(json);
+  factory _$_Gid.fromJson(Map<String, dynamic> json) => _$$_GidFromJson(json);
 
   @override
   final String value;
 
   @override
   String toString() {
-    return 'GameObjectId(value: $value)';
+    return 'Gid(value: $value)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GameObjectId &&
+            other is _$_Gid &&
             (identical(other.value, value) || other.value == value));
   }
 
@@ -1516,97 +1508,233 @@ class _$_GameObjectId implements _GameObjectId {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GameObjectIdCopyWith<_$_GameObjectId> get copyWith =>
-      __$$_GameObjectIdCopyWithImpl<_$_GameObjectId>(this, _$identity);
+  _$$_GidCopyWith<_$_Gid> get copyWith =>
+      __$$_GidCopyWithImpl<_$_Gid>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GameObjectIdToJson(
+    return _$$_GidToJson(
       this,
     );
   }
 }
 
-abstract class _GameObjectId implements GameObjectId {
-  const factory _GameObjectId({required final String value}) = _$_GameObjectId;
+abstract class _Gid implements Gid {
+  const factory _Gid({required final String value}) = _$_Gid;
 
-  factory _GameObjectId.fromJson(Map<String, dynamic> json) =
-      _$_GameObjectId.fromJson;
+  factory _Gid.fromJson(Map<String, dynamic> json) = _$_Gid.fromJson;
 
   @override
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$_GameObjectIdCopyWith<_$_GameObjectId> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$_GidCopyWith<_$_Gid> get copyWith => throw _privateConstructorUsedError;
 }
 
-GameObjectModel _$GameObjectModelFromJson(Map<String, dynamic> json) {
-  return ControlledGameObjectModel.fromJson(json);
+PlayerObjectModel _$PlayerObjectModelFromJson(Map<String, dynamic> json) {
+  return _PlayerObjectModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GameObjectModel {
-  GameObjectId get id =>
-      throw _privateConstructorUsedError; // TODO(arenukvern): add player settings
-// TODO(arenukvern): add canvas object
-  String get canvasObjectProperties => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GameObjectId id, String canvasObjectProperties)
-        controlled,
-  }) =>
+mixin _$PlayerObjectModel {
+  RenderCanvasObjectModel get canvasObject =>
       throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GameObjectId id, String canvasObjectProperties)?
-        controlled,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameObjectId id, String canvasObjectProperties)?
-        controlled,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ControlledGameObjectModel value) controlled,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ControlledGameObjectModel value)? controlled,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ControlledGameObjectModel value)? controlled,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameObjectModelCopyWith<GameObjectModel> get copyWith =>
+  $PlayerObjectModelCopyWith<PlayerObjectModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameObjectModelCopyWith<$Res> {
-  factory $GameObjectModelCopyWith(
-          GameObjectModel value, $Res Function(GameObjectModel) then) =
-      _$GameObjectModelCopyWithImpl<$Res, GameObjectModel>;
+abstract class $PlayerObjectModelCopyWith<$Res> {
+  factory $PlayerObjectModelCopyWith(
+          PlayerObjectModel value, $Res Function(PlayerObjectModel) then) =
+      _$PlayerObjectModelCopyWithImpl<$Res, PlayerObjectModel>;
   @useResult
-  $Res call({GameObjectId id, String canvasObjectProperties});
+  $Res call({RenderCanvasObjectModel canvasObject});
 
-  $GameObjectIdCopyWith<$Res> get id;
+  $RenderCanvasObjectModelCopyWith<$Res> get canvasObject;
 }
 
 /// @nodoc
-class _$GameObjectModelCopyWithImpl<$Res, $Val extends GameObjectModel>
-    implements $GameObjectModelCopyWith<$Res> {
-  _$GameObjectModelCopyWithImpl(this._value, this._then);
+class _$PlayerObjectModelCopyWithImpl<$Res, $Val extends PlayerObjectModel>
+    implements $PlayerObjectModelCopyWith<$Res> {
+  _$PlayerObjectModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? canvasObject = null,
+  }) {
+    return _then(_value.copyWith(
+      canvasObject: null == canvasObject
+          ? _value.canvasObject
+          : canvasObject // ignore: cast_nullable_to_non_nullable
+              as RenderCanvasObjectModel,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RenderCanvasObjectModelCopyWith<$Res> get canvasObject {
+    return $RenderCanvasObjectModelCopyWith<$Res>(_value.canvasObject, (value) {
+      return _then(_value.copyWith(canvasObject: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_PlayerObjectModelCopyWith<$Res>
+    implements $PlayerObjectModelCopyWith<$Res> {
+  factory _$$_PlayerObjectModelCopyWith(_$_PlayerObjectModel value,
+          $Res Function(_$_PlayerObjectModel) then) =
+      __$$_PlayerObjectModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({RenderCanvasObjectModel canvasObject});
+
+  @override
+  $RenderCanvasObjectModelCopyWith<$Res> get canvasObject;
+}
+
+/// @nodoc
+class __$$_PlayerObjectModelCopyWithImpl<$Res>
+    extends _$PlayerObjectModelCopyWithImpl<$Res, _$_PlayerObjectModel>
+    implements _$$_PlayerObjectModelCopyWith<$Res> {
+  __$$_PlayerObjectModelCopyWithImpl(
+      _$_PlayerObjectModel _value, $Res Function(_$_PlayerObjectModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? canvasObject = null,
+  }) {
+    return _then(_$_PlayerObjectModel(
+      canvasObject: null == canvasObject
+          ? _value.canvasObject
+          : canvasObject // ignore: cast_nullable_to_non_nullable
+              as RenderCanvasObjectModel,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_PlayerObjectModel extends _PlayerObjectModel {
+  const _$_PlayerObjectModel({required this.canvasObject}) : super._();
+
+  factory _$_PlayerObjectModel.fromJson(Map<String, dynamic> json) =>
+      _$$_PlayerObjectModelFromJson(json);
+
+  @override
+  final RenderCanvasObjectModel canvasObject;
+
+  @override
+  String toString() {
+    return 'PlayerObjectModel(canvasObject: $canvasObject)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_PlayerObjectModel &&
+            (identical(other.canvasObject, canvasObject) ||
+                other.canvasObject == canvasObject));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, canvasObject);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_PlayerObjectModelCopyWith<_$_PlayerObjectModel> get copyWith =>
+      __$$_PlayerObjectModelCopyWithImpl<_$_PlayerObjectModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_PlayerObjectModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _PlayerObjectModel extends PlayerObjectModel {
+  const factory _PlayerObjectModel(
+          {required final RenderCanvasObjectModel canvasObject}) =
+      _$_PlayerObjectModel;
+  const _PlayerObjectModel._() : super._();
+
+  factory _PlayerObjectModel.fromJson(Map<String, dynamic> json) =
+      _$_PlayerObjectModel.fromJson;
+
+  @override
+  RenderCanvasObjectModel get canvasObject;
+  @override
+  @JsonKey(ignore: true)
+  _$$_PlayerObjectModelCopyWith<_$_PlayerObjectModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+RenderCanvasObjectModel _$RenderCanvasObjectModelFromJson(
+    Map<String, dynamic> json) {
+  return _RenderCanvasObjectModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RenderCanvasObjectModel {
+  /// Since tileId can be used several times
+  /// It cannot be used as gid.
+  ///
+  /// Instead, the new gid should be created
+  /// for every new [RenderCanvasObjectModel].
+  Gid get id => throw _privateConstructorUsedError;
+  String get tileId => throw _privateConstructorUsedError;
+  SerializedVector2 get position => throw _privateConstructorUsedError;
+  SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
+  SerializedVector2 get distanceToTileLeftTopCorner =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RenderCanvasObjectModelCopyWith<RenderCanvasObjectModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RenderCanvasObjectModelCopyWith<$Res> {
+  factory $RenderCanvasObjectModelCopyWith(RenderCanvasObjectModel value,
+          $Res Function(RenderCanvasObjectModel) then) =
+      _$RenderCanvasObjectModelCopyWithImpl<$Res, RenderCanvasObjectModel>;
+  @useResult
+  $Res call(
+      {Gid id,
+      String tileId,
+      SerializedVector2 position,
+      SerializedVector2 distanceToOrigin,
+      SerializedVector2 distanceToTileLeftTopCorner});
+
+  $GidCopyWith<$Res> get id;
+  $SerializedVector2CopyWith<$Res> get position;
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner;
+}
+
+/// @nodoc
+class _$RenderCanvasObjectModelCopyWithImpl<$Res,
+        $Val extends RenderCanvasObjectModel>
+    implements $RenderCanvasObjectModelCopyWith<$Res> {
+  _$RenderCanvasObjectModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1617,196 +1745,462 @@ class _$GameObjectModelCopyWithImpl<$Res, $Val extends GameObjectModel>
   @override
   $Res call({
     Object? id = null,
-    Object? canvasObjectProperties = null,
+    Object? tileId = null,
+    Object? position = null,
+    Object? distanceToOrigin = null,
+    Object? distanceToTileLeftTopCorner = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as GameObjectId,
-      canvasObjectProperties: null == canvasObjectProperties
-          ? _value.canvasObjectProperties
-          : canvasObjectProperties // ignore: cast_nullable_to_non_nullable
+              as Gid,
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
               as String,
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToTileLeftTopCorner: null == distanceToTileLeftTopCorner
+          ? _value.distanceToTileLeftTopCorner
+          : distanceToTileLeftTopCorner // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $GameObjectIdCopyWith<$Res> get id {
-    return $GameObjectIdCopyWith<$Res>(_value.id, (value) {
+  $GidCopyWith<$Res> get id {
+    return $GidCopyWith<$Res>(_value.id, (value) {
       return _then(_value.copyWith(id: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get position {
+    return $SerializedVector2CopyWith<$Res>(_value.position, (value) {
+      return _then(_value.copyWith(position: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin {
+    return $SerializedVector2CopyWith<$Res>(_value.distanceToOrigin, (value) {
+      return _then(_value.copyWith(distanceToOrigin: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner {
+    return $SerializedVector2CopyWith<$Res>(_value.distanceToTileLeftTopCorner,
+        (value) {
+      return _then(_value.copyWith(distanceToTileLeftTopCorner: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$ControlledGameObjectModelCopyWith<$Res>
-    implements $GameObjectModelCopyWith<$Res> {
-  factory _$$ControlledGameObjectModelCopyWith(
-          _$ControlledGameObjectModel value,
-          $Res Function(_$ControlledGameObjectModel) then) =
-      __$$ControlledGameObjectModelCopyWithImpl<$Res>;
+abstract class _$$_RenderCanvasObjectModelCopyWith<$Res>
+    implements $RenderCanvasObjectModelCopyWith<$Res> {
+  factory _$$_RenderCanvasObjectModelCopyWith(_$_RenderCanvasObjectModel value,
+          $Res Function(_$_RenderCanvasObjectModel) then) =
+      __$$_RenderCanvasObjectModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({GameObjectId id, String canvasObjectProperties});
+  $Res call(
+      {Gid id,
+      String tileId,
+      SerializedVector2 position,
+      SerializedVector2 distanceToOrigin,
+      SerializedVector2 distanceToTileLeftTopCorner});
 
   @override
-  $GameObjectIdCopyWith<$Res> get id;
+  $GidCopyWith<$Res> get id;
+  @override
+  $SerializedVector2CopyWith<$Res> get position;
+  @override
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  @override
+  $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner;
 }
 
 /// @nodoc
-class __$$ControlledGameObjectModelCopyWithImpl<$Res>
-    extends _$GameObjectModelCopyWithImpl<$Res, _$ControlledGameObjectModel>
-    implements _$$ControlledGameObjectModelCopyWith<$Res> {
-  __$$ControlledGameObjectModelCopyWithImpl(_$ControlledGameObjectModel _value,
-      $Res Function(_$ControlledGameObjectModel) _then)
+class __$$_RenderCanvasObjectModelCopyWithImpl<$Res>
+    extends _$RenderCanvasObjectModelCopyWithImpl<$Res,
+        _$_RenderCanvasObjectModel>
+    implements _$$_RenderCanvasObjectModelCopyWith<$Res> {
+  __$$_RenderCanvasObjectModelCopyWithImpl(_$_RenderCanvasObjectModel _value,
+      $Res Function(_$_RenderCanvasObjectModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? id = null,
-    Object? canvasObjectProperties = null,
+    Object? tileId = null,
+    Object? position = null,
+    Object? distanceToOrigin = null,
+    Object? distanceToTileLeftTopCorner = null,
   }) {
-    return _then(_$ControlledGameObjectModel(
+    return _then(_$_RenderCanvasObjectModel(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as GameObjectId,
-      canvasObjectProperties: null == canvasObjectProperties
-          ? _value.canvasObjectProperties
-          : canvasObjectProperties // ignore: cast_nullable_to_non_nullable
+              as Gid,
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
               as String,
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToTileLeftTopCorner: null == distanceToTileLeftTopCorner
+          ? _value.distanceToTileLeftTopCorner
+          : distanceToTileLeftTopCorner // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$ControlledGameObjectModel implements ControlledGameObjectModel {
-  const _$ControlledGameObjectModel(
-      {required this.id, required this.canvasObjectProperties});
+class _$_RenderCanvasObjectModel implements _RenderCanvasObjectModel {
+  const _$_RenderCanvasObjectModel(
+      {required this.id,
+      required this.tileId,
+      this.position = SerializedVector2.zero,
+      this.distanceToOrigin = SerializedVector2.zero,
+      this.distanceToTileLeftTopCorner = SerializedVector2.zero});
 
-  factory _$ControlledGameObjectModel.fromJson(Map<String, dynamic> json) =>
-      _$$ControlledGameObjectModelFromJson(json);
+  factory _$_RenderCanvasObjectModel.fromJson(Map<String, dynamic> json) =>
+      _$$_RenderCanvasObjectModelFromJson(json);
 
+  /// Since tileId can be used several times
+  /// It cannot be used as gid.
+  ///
+  /// Instead, the new gid should be created
+  /// for every new [RenderCanvasObjectModel].
   @override
-  final GameObjectId id;
-// TODO(arenukvern): add player settings
-// TODO(arenukvern): add canvas object
+  final Gid id;
   @override
-  final String canvasObjectProperties;
+  final String tileId;
+  @override
+  @JsonKey()
+  final SerializedVector2 position;
+  @override
+  @JsonKey()
+  final SerializedVector2 distanceToOrigin;
+  @override
+  @JsonKey()
+  final SerializedVector2 distanceToTileLeftTopCorner;
 
   @override
   String toString() {
-    return 'GameObjectModel.controlled(id: $id, canvasObjectProperties: $canvasObjectProperties)';
+    return 'RenderCanvasObjectModel(id: $id, tileId: $tileId, position: $position, distanceToOrigin: $distanceToOrigin, distanceToTileLeftTopCorner: $distanceToTileLeftTopCorner)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ControlledGameObjectModel &&
+            other is _$_RenderCanvasObjectModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.canvasObjectProperties, canvasObjectProperties) ||
-                other.canvasObjectProperties == canvasObjectProperties));
+            (identical(other.tileId, tileId) || other.tileId == tileId) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.distanceToOrigin, distanceToOrigin) ||
+                other.distanceToOrigin == distanceToOrigin) &&
+            (identical(other.distanceToTileLeftTopCorner,
+                    distanceToTileLeftTopCorner) ||
+                other.distanceToTileLeftTopCorner ==
+                    distanceToTileLeftTopCorner));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, canvasObjectProperties);
+  int get hashCode => Object.hash(runtimeType, id, tileId, position,
+      distanceToOrigin, distanceToTileLeftTopCorner);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ControlledGameObjectModelCopyWith<_$ControlledGameObjectModel>
-      get copyWith => __$$ControlledGameObjectModelCopyWithImpl<
-          _$ControlledGameObjectModel>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(GameObjectId id, String canvasObjectProperties)
-        controlled,
-  }) {
-    return controlled(id, canvasObjectProperties);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(GameObjectId id, String canvasObjectProperties)?
-        controlled,
-  }) {
-    return controlled?.call(id, canvasObjectProperties);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(GameObjectId id, String canvasObjectProperties)?
-        controlled,
-    required TResult orElse(),
-  }) {
-    if (controlled != null) {
-      return controlled(id, canvasObjectProperties);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ControlledGameObjectModel value) controlled,
-  }) {
-    return controlled(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ControlledGameObjectModel value)? controlled,
-  }) {
-    return controlled?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ControlledGameObjectModel value)? controlled,
-    required TResult orElse(),
-  }) {
-    if (controlled != null) {
-      return controlled(this);
-    }
-    return orElse();
-  }
+  _$$_RenderCanvasObjectModelCopyWith<_$_RenderCanvasObjectModel>
+      get copyWith =>
+          __$$_RenderCanvasObjectModelCopyWithImpl<_$_RenderCanvasObjectModel>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$ControlledGameObjectModelToJson(
+    return _$$_RenderCanvasObjectModelToJson(
       this,
     );
   }
 }
 
-abstract class ControlledGameObjectModel implements GameObjectModel {
-  const factory ControlledGameObjectModel(
-          {required final GameObjectId id,
-          required final String canvasObjectProperties}) =
-      _$ControlledGameObjectModel;
+abstract class _RenderCanvasObjectModel implements RenderCanvasObjectModel {
+  const factory _RenderCanvasObjectModel(
+          {required final Gid id,
+          required final String tileId,
+          final SerializedVector2 position,
+          final SerializedVector2 distanceToOrigin,
+          final SerializedVector2 distanceToTileLeftTopCorner}) =
+      _$_RenderCanvasObjectModel;
 
-  factory ControlledGameObjectModel.fromJson(Map<String, dynamic> json) =
-      _$ControlledGameObjectModel.fromJson;
+  factory _RenderCanvasObjectModel.fromJson(Map<String, dynamic> json) =
+      _$_RenderCanvasObjectModel.fromJson;
 
   @override
-  GameObjectId get id;
-  @override // TODO(arenukvern): add player settings
-// TODO(arenukvern): add canvas object
-  String get canvasObjectProperties;
+
+  /// Since tileId can be used several times
+  /// It cannot be used as gid.
+  ///
+  /// Instead, the new gid should be created
+  /// for every new [RenderCanvasObjectModel].
+  Gid get id;
+  @override
+  String get tileId;
+  @override
+  SerializedVector2 get position;
+  @override
+  SerializedVector2 get distanceToOrigin;
+  @override
+  SerializedVector2 get distanceToTileLeftTopCorner;
   @override
   @JsonKey(ignore: true)
-  _$$ControlledGameObjectModelCopyWith<_$ControlledGameObjectModel>
+  _$$_RenderCanvasObjectModelCopyWith<_$_RenderCanvasObjectModel>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+RenderCanvasTileModel _$RenderCanvasTileModelFromJson(
+    Map<String, dynamic> json) {
+  return _RenderCanvasTileModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$RenderCanvasTileModel {
+  /// Since the [tileId] is always unqiue, it will be used as GID
+  String get tileId => throw _privateConstructorUsedError;
+
+  /// Terrain
+  bool get hasTerrain => throw _privateConstructorUsedError;
+
+  /// Water
+  bool get hasWater => throw _privateConstructorUsedError;
+  bool get isWaterTop => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RenderCanvasTileModelCopyWith<RenderCanvasTileModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RenderCanvasTileModelCopyWith<$Res> {
+  factory $RenderCanvasTileModelCopyWith(RenderCanvasTileModel value,
+          $Res Function(RenderCanvasTileModel) then) =
+      _$RenderCanvasTileModelCopyWithImpl<$Res, RenderCanvasTileModel>;
+  @useResult
+  $Res call({String tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+}
+
+/// @nodoc
+class _$RenderCanvasTileModelCopyWithImpl<$Res,
+        $Val extends RenderCanvasTileModel>
+    implements $RenderCanvasTileModelCopyWith<$Res> {
+  _$RenderCanvasTileModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tileId = null,
+    Object? hasTerrain = null,
+    Object? hasWater = null,
+    Object? isWaterTop = null,
+  }) {
+    return _then(_value.copyWith(
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasTerrain: null == hasTerrain
+          ? _value.hasTerrain
+          : hasTerrain // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasWater: null == hasWater
+          ? _value.hasWater
+          : hasWater // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isWaterTop: null == isWaterTop
+          ? _value.isWaterTop
+          : isWaterTop // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_RenderCanvasTileModelCopyWith<$Res>
+    implements $RenderCanvasTileModelCopyWith<$Res> {
+  factory _$$_RenderCanvasTileModelCopyWith(_$_RenderCanvasTileModel value,
+          $Res Function(_$_RenderCanvasTileModel) then) =
+      __$$_RenderCanvasTileModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+}
+
+/// @nodoc
+class __$$_RenderCanvasTileModelCopyWithImpl<$Res>
+    extends _$RenderCanvasTileModelCopyWithImpl<$Res, _$_RenderCanvasTileModel>
+    implements _$$_RenderCanvasTileModelCopyWith<$Res> {
+  __$$_RenderCanvasTileModelCopyWithImpl(_$_RenderCanvasTileModel _value,
+      $Res Function(_$_RenderCanvasTileModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tileId = null,
+    Object? hasTerrain = null,
+    Object? hasWater = null,
+    Object? isWaterTop = null,
+  }) {
+    return _then(_$_RenderCanvasTileModel(
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      hasTerrain: null == hasTerrain
+          ? _value.hasTerrain
+          : hasTerrain // ignore: cast_nullable_to_non_nullable
+              as bool,
+      hasWater: null == hasWater
+          ? _value.hasWater
+          : hasWater // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isWaterTop: null == isWaterTop
+          ? _value.isWaterTop
+          : isWaterTop // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_RenderCanvasTileModel extends _RenderCanvasTileModel {
+  const _$_RenderCanvasTileModel(
+      {required this.tileId,
+      this.hasTerrain = false,
+      this.hasWater = false,
+      this.isWaterTop = false})
+      : super._();
+
+  factory _$_RenderCanvasTileModel.fromJson(Map<String, dynamic> json) =>
+      _$$_RenderCanvasTileModelFromJson(json);
+
+  /// Since the [tileId] is always unqiue, it will be used as GID
+  @override
+  final String tileId;
+
+  /// Terrain
+  @override
+  @JsonKey()
+  final bool hasTerrain;
+
+  /// Water
+  @override
+  @JsonKey()
+  final bool hasWater;
+  @override
+  @JsonKey()
+  final bool isWaterTop;
+
+  @override
+  String toString() {
+    return 'RenderCanvasTileModel(tileId: $tileId, hasTerrain: $hasTerrain, hasWater: $hasWater, isWaterTop: $isWaterTop)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_RenderCanvasTileModel &&
+            (identical(other.tileId, tileId) || other.tileId == tileId) &&
+            (identical(other.hasTerrain, hasTerrain) ||
+                other.hasTerrain == hasTerrain) &&
+            (identical(other.hasWater, hasWater) ||
+                other.hasWater == hasWater) &&
+            (identical(other.isWaterTop, isWaterTop) ||
+                other.isWaterTop == isWaterTop));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, tileId, hasTerrain, hasWater, isWaterTop);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RenderCanvasTileModelCopyWith<_$_RenderCanvasTileModel> get copyWith =>
+      __$$_RenderCanvasTileModelCopyWithImpl<_$_RenderCanvasTileModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RenderCanvasTileModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _RenderCanvasTileModel extends RenderCanvasTileModel {
+  const factory _RenderCanvasTileModel(
+      {required final String tileId,
+      final bool hasTerrain,
+      final bool hasWater,
+      final bool isWaterTop}) = _$_RenderCanvasTileModel;
+  const _RenderCanvasTileModel._() : super._();
+
+  factory _RenderCanvasTileModel.fromJson(Map<String, dynamic> json) =
+      _$_RenderCanvasTileModel.fromJson;
+
+  @override
+
+  /// Since the [tileId] is always unqiue, it will be used as GID
+  String get tileId;
+  @override
+
+  /// Terrain
+  bool get hasTerrain;
+  @override
+
+  /// Water
+  bool get hasWater;
+  @override
+  bool get isWaterTop;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RenderCanvasTileModelCopyWith<_$_RenderCanvasTileModel> get copyWith =>
+      throw _privateConstructorUsedError;
 }
