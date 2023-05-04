@@ -53,4 +53,5 @@ class SerializedVector2 with _$SerializedVector2 {
   static const zero = SerializedVector2();
   bool get isZero => x == 0 && y == 0;
   Vector2 toVector2() => Vector2(x, y);
+  Offset toOffset() => Offset(x, y);
 }

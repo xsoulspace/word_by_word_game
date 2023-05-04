@@ -85,7 +85,7 @@ class GameRenderer extends FlameGame
     // await providersComponent.add(worldCamera);
     await add(providersComponent);
     await world.addAll([
-      FlameBlocListener<MapEditorBloc, MapEditorBlocState>(
+      FlameBlocListener<MapEditorCubit, MapEditorBlocState>(
         onNewState: _handleMapEditorBlocStateChanges,
       ),
       editor,

@@ -62,6 +62,35 @@ const _$GameObjectTypeEnumMap = {
   GameObjectType.tile: 'tile',
 };
 
+_$_EditorGameObjectModel _$$_EditorGameObjectModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_EditorGameObjectModel(
+      id: Gid.fromJson(json['id'] as Map<String, dynamic>),
+      tileId: json['tileId'] as String,
+      position: json['position'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['position'] as Map<String, dynamic>),
+      distanceToOrigin: json['distanceToOrigin'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['distanceToOrigin'] as Map<String, dynamic>),
+      distanceToTileLeftTopCorner: json['distanceToTileLeftTopCorner'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['distanceToTileLeftTopCorner'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_EditorGameObjectModelToJson(
+        _$_EditorGameObjectModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'tileId': instance.tileId,
+      'position': instance.position,
+      'distanceToOrigin': instance.distanceToOrigin,
+      'distanceToTileLeftTopCorner': instance.distanceToTileLeftTopCorner,
+    };
+
 _$_Gid _$$_GidFromJson(Map<String, dynamic> json) => _$_Gid(
       value: json['value'] as String,
     );

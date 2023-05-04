@@ -9,7 +9,7 @@ class EditorStateInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
-    await read<MapEditorBloc>().load();
+    await read<MapEditorCubit>().load();
   }
 }
 
@@ -39,7 +39,7 @@ class StateDiProvider extends StatelessWidget {
               ),
             ),
             BlocProvider(
-              create: (final context) => MapEditorBloc(
+              create: (final context) => MapEditorCubit(
                 read: context.read,
               ),
             ),

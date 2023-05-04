@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:collection';
 import 'dart:math' as math;
 
+import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame/experimental.dart';
 import 'package:flame/extensions.dart';
@@ -15,8 +16,8 @@ import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/game_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 
-part 'canvas_object.dart';
 part 'debug_surface.dart';
+part 'editor_canvas_object.dart';
 part 'tiles_render_drawer.dart';
 
 class EditorRenderer extends Component
@@ -37,7 +38,7 @@ class EditorRenderer extends Component
   final tilesRenderer = TilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
   final animationUpdater = AnimationUpdater();
-  final canvasObjectsDrawer = CanvasObjectsDrawer();
+  final canvasObjectsDrawer = EditorCanvasObjectsDrawer();
 
   @override
   FutureOr<void> onLoad() {

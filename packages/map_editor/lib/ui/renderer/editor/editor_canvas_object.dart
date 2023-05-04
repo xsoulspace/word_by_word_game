@@ -1,23 +1,36 @@
 part of 'editor_renderer.dart';
 
-class CanvasObject extends Component
+class EditorCanvasObject extends Component
     with
         TapCallbacks,
         DragCallbacks,
         HasGameRef<GameRenderer>,
         HasEditorRef,
         HasResourcesLoaderRef {
-  CanvasObject({
+  EditorCanvasObject({
+    required this.gid,
     required this.animationEntry,
-    required this.group,
     required this.position,
     required this.tileId,
     this.onPositionChanged,
   });
-  final material.ValueChanged<Offset>? onPositionChanged;
+  factory EditorCanvasObject.fromModel({
+    required final material.ValueChanged<Offset> onPositionChanged,
+    required final EditorCanvasObjectsDrawer drawer,
+    required final EditorGameObjectModel data,
+  }) =>
+      EditorCanvasObject(
+        animationEntry: drawer.animations[data.id.value]!,
+        gid: data.id,
+        position: data.position.toOffset(),
+        tileId: data.tileId,
+        onPositionChanged: onPositionChanged,
+      );
 
+  final material.ValueChanged<Offset>? onPositionChanged;
+  final Gid gid;
   final String tileId;
-  final List<CanvasObject> group;
+
   Offset position;
   AnimationEntryModel animationEntry;
   Offset distanceToOrigin = Offset.zero;
@@ -118,19 +131,14 @@ class CanvasObject extends Component
       _positionedImageRect?.containsPoint(point) ?? false;
 }
 
-class CanvasObjectsDrawer extends Component
+class EditorCanvasObjectsDrawer extends Component
     with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
-  final _canvasObjects = <CanvasObject>[];
-  UnmodifiableListView<CanvasObject> get canvasObjects =>
-      UnmodifiableListView(_canvasObjects);
-  Future<void> _addCanvasObject(final CanvasObject object) async {
-    _canvasObjects.add(object);
-    add(object);
-  }
+  MapEditorCubit get _mapEditorBloc => game.diDto.mapEditorBloc;
 
-  Future<void> _addCanvasObjects(final Iterable<CanvasObject> objects) async {
-    _canvasObjects.addAll(objects);
-    await addAll(objects);
+  Future<void> _addCanvasObjects(
+    final Iterable<EditorCanvasObject?> objects,
+  ) async {
+    await addAll(objects.whereNotNull());
   }
 
   void onOriginUpdate() {
@@ -139,66 +147,63 @@ class CanvasObjectsDrawer extends Component
     }
   }
 
-  Future<void> _removeCanvasObject(final CanvasObject object) async {
-    _canvasObjects.remove(object);
-    object.removeFromParent();
-  }
-
-  Future<void> _removeCanvasObjects(
-    final Iterable<CanvasObject> objects,
-  ) async {
-    _canvasObjects.forEach(_canvasObjects.remove);
-    removeAll(objects);
-  }
-
-  late final _player = _createPlayer();
-  late final _gravitationHandle = _createGravitationHandle();
-  late final _skyHandle = _createSkyHandle();
+  EditorCanvasObject? _player;
+  EditorCanvasObject? _gravitationHandle;
+  EditorCanvasObject? _skyHandle;
 
   @override
   FutureOr<void> onLoad() async {
+    _loadPlayer();
+    _loadGravitationHandle();
+    _loadSkyHandle();
+
     await _addCanvasObjects([_skyHandle, _gravitationHandle, _player]);
     return super.onLoad();
   }
 
-  CanvasObject _createPlayer() => CanvasObject(
-        animationEntry: animations[kPlayerObjectId]!,
-        tileId: kPlayerObjectId,
-        position: (game.size / 2).toOffset(),
-        group: canvasObjects,
-      );
+  void _loadPlayer() {
+    final gid = Gid(value: kPlayerObjectId);
+    _mapEditorBloc.loadedState;
+    EditorCanvasObject.fromModel(
+      animationEntry: animations[kPlayerObjectId]!,
+      tileId: kPlayerObjectId,
+      position: (game.size / 2).toOffset(),
+    );
+  }
 
-  CanvasObject _createSkyHandle() => CanvasObject(
-        animationEntry: AnimationEntryModel.singleFrame(
-          game.resourcesLoader.cursorHandlePath,
-        ),
-        tileId: kCursorHandleObjectId,
-        position: (game.size / 2).toOffset(),
-        group: canvasObjects,
-        onPositionChanged: (final position) {
-          drawerCubit.changeState(
-            drawerCubit.state.copyWith(
-              skyYPosition: position.dy,
-            ),
-          );
-        },
-      );
+  void _loadSkyHandle() {
+    EditorCanvasObject.fromModel(
+      animationEntry: AnimationEntryModel.singleFrame(
+        game.resourcesLoader.cursorHandlePath,
+      ),
+      tileId: kCursorHandleObjectId,
+      position: (game.size / 2).toOffset(),
+      onPositionChanged: (final position) {
+        drawerCubit.changeState(
+          drawerCubit.state.copyWith(
+            skyYPosition: position.dy,
+          ),
+        );
+      },
+    );
+  }
 
-  CanvasObject _createGravitationHandle() => CanvasObject(
-        animationEntry: AnimationEntryModel.singleFrame(
-          game.resourcesLoader.cursorHandlePath,
-        ),
-        tileId: kCursorHandleObjectId,
-        position: (game.size / 2).toOffset(),
-        group: canvasObjects,
-        onPositionChanged: (final position) {
-          drawerCubit.changeState(
-            drawerCubit.state.copyWith(
-              gravityYPosition: position.dy,
-            ),
-          );
-        },
-      );
+  void _loadGravitationHandle() {
+    EditorCanvasObject.fromModel(
+      animationEntry: AnimationEntryModel.singleFrame(
+        game.resourcesLoader.cursorHandlePath,
+      ),
+      tileId: kCursorHandleObjectId,
+      position: (game.size / 2).toOffset(),
+      onPositionChanged: (final position) {
+        drawerCubit.changeState(
+          drawerCubit.state.copyWith(
+            gravityYPosition: position.dy,
+          ),
+        );
+      },
+    );
+  }
 
   @override
   void render(final Canvas canvas) {

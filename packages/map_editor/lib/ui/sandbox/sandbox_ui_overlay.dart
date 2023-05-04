@@ -30,10 +30,10 @@ class TileButtons extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final drawerCubit = context.watch<DrawerCubit>();
-    final mapEditorBloc = context.watch<MapEditorBloc>();
+    final mapEditorBloc = context.watch<MapEditorCubit>();
     final worldBloc = context.watch<WorldBloc>();
     final worldTime = context.read<EditorMechanicsCollection>().worldTime;
-    final menuTiles = context.watch<MapEditorBloc>().menuTiles;
+    final menuTiles = context.watch<MapEditorCubit>().menuTiles;
 
     return Material(
       child: ListView(

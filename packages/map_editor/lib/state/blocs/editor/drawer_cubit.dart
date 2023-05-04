@@ -5,7 +5,7 @@ int get kMaxSelectionIndex => 18;
 
 class DrawerCubitDto {
   DrawerCubitDto.use(final Locator read) : mapEditorBloc = read();
-  final MapEditorBloc mapEditorBloc;
+  final MapEditorCubit mapEditorBloc;
 }
 
 class DrawerCubit extends Cubit<DrawerCubitState> {

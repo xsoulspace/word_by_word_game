@@ -11,6 +11,7 @@ class DrawerCubitState with _$DrawerCubitState {
     @Default({}) final Map<CellPointModel, CanvasTileModel> canvasData,
 
     /// can be negative and positive
+    /// !maybe need to remove this
     @Default(0) final double gravityYPosition,
 
     /// can be negative and positive
@@ -43,7 +44,7 @@ class OriginVectorUtils {
     return math.Point(x, y);
   }
 
-  math.Point<int> getCurrentCellByObject(final CanvasObject object) {
+  math.Point<int> getCurrentCellByObject(final EditorCanvasObject object) {
     final distanceToOrigin = object.distanceToOrigin.toVector2() - origin;
     return getCellByDistance(distanceToOrigin);
   }

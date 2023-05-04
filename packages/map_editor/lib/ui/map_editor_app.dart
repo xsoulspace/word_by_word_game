@@ -12,7 +12,7 @@ class MapEditorApp extends StatelessWidget {
         builder: (final context) => StateLoader(
           initializer: EditorStateInitializer(),
           loader: const Center(),
-          child: BlocBuilder<MapEditorBloc, MapEditorBlocState>(
+          child: BlocBuilder<MapEditorCubit, MapEditorBlocState>(
             buildWhen: (final previous, final current) =>
                 previous.runtimeType != current.runtimeType,
             builder: (final context, final state) => state.map(

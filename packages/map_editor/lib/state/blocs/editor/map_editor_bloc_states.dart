@@ -2,9 +2,9 @@ part of '../../state.dart';
 
 @freezed
 class MapEditorBlocState with _$MapEditorBlocState {
-  const factory MapEditorBlocState.empty() = EmptyMapEditorBlocState;
-  const factory MapEditorBlocState.loaded({
+  const factory MapEditorBlocState({
+    required final GameObjectsMap gameObjects,
     required final TileDataModelMap tileData,
     @Default(true) final bool isEditing,
-  }) = LoadedMapEditorBlocState;
+  }) = _MapEditorBlocState;
 }

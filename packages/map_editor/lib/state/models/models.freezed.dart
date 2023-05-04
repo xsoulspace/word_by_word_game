@@ -197,10 +197,10 @@ mixin _$CanvasTileModel {
   bool get hasWater => throw _privateConstructorUsedError;
   bool get isWaterTop => throw _privateConstructorUsedError;
 
-  /// Coin
+  /// Coin TileId
   String get coin => throw _privateConstructorUsedError;
 
-  /// Enemy
+  /// Enemy TileId
   String get enemy => throw _privateConstructorUsedError;
   List<dynamic> get objects => throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -461,12 +461,12 @@ class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
   @JsonKey()
   final bool isWaterTop;
 
-  /// Coin
+  /// Coin TileId
   @override
   @JsonKey()
   final String coin;
 
-  /// Enemy
+  /// Enemy TileId
   @override
   @JsonKey()
   final String enemy;
@@ -637,11 +637,11 @@ abstract class _SecureCanvasTileModel extends CanvasTileModel {
   bool get isWaterTop;
   @override
 
-  /// Coin
+  /// Coin TileId
   String get coin;
   @override
 
-  /// Enemy
+  /// Enemy TileId
   String get enemy;
   @override
   List<dynamic> get objects;
@@ -1253,6 +1253,287 @@ abstract class _TileDataModel implements TileDataModel {
   @override
   @JsonKey(ignore: true)
   _$$_TileDataModelCopyWith<_$_TileDataModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+EditorGameObjectModel _$EditorGameObjectModelFromJson(
+    Map<String, dynamic> json) {
+  return _EditorGameObjectModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$EditorGameObjectModel {
+  Gid get id => throw _privateConstructorUsedError;
+  String get tileId => throw _privateConstructorUsedError;
+  SerializedVector2 get position => throw _privateConstructorUsedError;
+  SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
+  SerializedVector2 get distanceToTileLeftTopCorner =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $EditorGameObjectModelCopyWith<EditorGameObjectModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $EditorGameObjectModelCopyWith<$Res> {
+  factory $EditorGameObjectModelCopyWith(EditorGameObjectModel value,
+          $Res Function(EditorGameObjectModel) then) =
+      _$EditorGameObjectModelCopyWithImpl<$Res, EditorGameObjectModel>;
+  @useResult
+  $Res call(
+      {Gid id,
+      String tileId,
+      SerializedVector2 position,
+      SerializedVector2 distanceToOrigin,
+      SerializedVector2 distanceToTileLeftTopCorner});
+
+  $GidCopyWith<$Res> get id;
+  $SerializedVector2CopyWith<$Res> get position;
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner;
+}
+
+/// @nodoc
+class _$EditorGameObjectModelCopyWithImpl<$Res,
+        $Val extends EditorGameObjectModel>
+    implements $EditorGameObjectModelCopyWith<$Res> {
+  _$EditorGameObjectModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? tileId = null,
+    Object? position = null,
+    Object? distanceToOrigin = null,
+    Object? distanceToTileLeftTopCorner = null,
+  }) {
+    return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as Gid,
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToTileLeftTopCorner: null == distanceToTileLeftTopCorner
+          ? _value.distanceToTileLeftTopCorner
+          : distanceToTileLeftTopCorner // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+    ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GidCopyWith<$Res> get id {
+    return $GidCopyWith<$Res>(_value.id, (value) {
+      return _then(_value.copyWith(id: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get position {
+    return $SerializedVector2CopyWith<$Res>(_value.position, (value) {
+      return _then(_value.copyWith(position: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin {
+    return $SerializedVector2CopyWith<$Res>(_value.distanceToOrigin, (value) {
+      return _then(_value.copyWith(distanceToOrigin: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner {
+    return $SerializedVector2CopyWith<$Res>(_value.distanceToTileLeftTopCorner,
+        (value) {
+      return _then(_value.copyWith(distanceToTileLeftTopCorner: value) as $Val);
+    });
+  }
+}
+
+/// @nodoc
+abstract class _$$_EditorGameObjectModelCopyWith<$Res>
+    implements $EditorGameObjectModelCopyWith<$Res> {
+  factory _$$_EditorGameObjectModelCopyWith(_$_EditorGameObjectModel value,
+          $Res Function(_$_EditorGameObjectModel) then) =
+      __$$_EditorGameObjectModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {Gid id,
+      String tileId,
+      SerializedVector2 position,
+      SerializedVector2 distanceToOrigin,
+      SerializedVector2 distanceToTileLeftTopCorner});
+
+  @override
+  $GidCopyWith<$Res> get id;
+  @override
+  $SerializedVector2CopyWith<$Res> get position;
+  @override
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  @override
+  $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner;
+}
+
+/// @nodoc
+class __$$_EditorGameObjectModelCopyWithImpl<$Res>
+    extends _$EditorGameObjectModelCopyWithImpl<$Res, _$_EditorGameObjectModel>
+    implements _$$_EditorGameObjectModelCopyWith<$Res> {
+  __$$_EditorGameObjectModelCopyWithImpl(_$_EditorGameObjectModel _value,
+      $Res Function(_$_EditorGameObjectModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? id = null,
+    Object? tileId = null,
+    Object? position = null,
+    Object? distanceToOrigin = null,
+    Object? distanceToTileLeftTopCorner = null,
+  }) {
+    return _then(_$_EditorGameObjectModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as Gid,
+      tileId: null == tileId
+          ? _value.tileId
+          : tileId // ignore: cast_nullable_to_non_nullable
+              as String,
+      position: null == position
+          ? _value.position
+          : position // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      distanceToTileLeftTopCorner: null == distanceToTileLeftTopCorner
+          ? _value.distanceToTileLeftTopCorner
+          : distanceToTileLeftTopCorner // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_EditorGameObjectModel implements _EditorGameObjectModel {
+  const _$_EditorGameObjectModel(
+      {required this.id,
+      required this.tileId,
+      this.position = SerializedVector2.zero,
+      this.distanceToOrigin = SerializedVector2.zero,
+      this.distanceToTileLeftTopCorner = SerializedVector2.zero});
+
+  factory _$_EditorGameObjectModel.fromJson(Map<String, dynamic> json) =>
+      _$$_EditorGameObjectModelFromJson(json);
+
+  @override
+  final Gid id;
+  @override
+  final String tileId;
+  @override
+  @JsonKey()
+  final SerializedVector2 position;
+  @override
+  @JsonKey()
+  final SerializedVector2 distanceToOrigin;
+  @override
+  @JsonKey()
+  final SerializedVector2 distanceToTileLeftTopCorner;
+
+  @override
+  String toString() {
+    return 'EditorGameObjectModel(id: $id, tileId: $tileId, position: $position, distanceToOrigin: $distanceToOrigin, distanceToTileLeftTopCorner: $distanceToTileLeftTopCorner)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_EditorGameObjectModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.tileId, tileId) || other.tileId == tileId) &&
+            (identical(other.position, position) ||
+                other.position == position) &&
+            (identical(other.distanceToOrigin, distanceToOrigin) ||
+                other.distanceToOrigin == distanceToOrigin) &&
+            (identical(other.distanceToTileLeftTopCorner,
+                    distanceToTileLeftTopCorner) ||
+                other.distanceToTileLeftTopCorner ==
+                    distanceToTileLeftTopCorner));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, id, tileId, position,
+      distanceToOrigin, distanceToTileLeftTopCorner);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_EditorGameObjectModelCopyWith<_$_EditorGameObjectModel> get copyWith =>
+      __$$_EditorGameObjectModelCopyWithImpl<_$_EditorGameObjectModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_EditorGameObjectModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _EditorGameObjectModel implements EditorGameObjectModel {
+  const factory _EditorGameObjectModel(
+          {required final Gid id,
+          required final String tileId,
+          final SerializedVector2 position,
+          final SerializedVector2 distanceToOrigin,
+          final SerializedVector2 distanceToTileLeftTopCorner}) =
+      _$_EditorGameObjectModel;
+
+  factory _EditorGameObjectModel.fromJson(Map<String, dynamic> json) =
+      _$_EditorGameObjectModel.fromJson;
+
+  @override
+  Gid get id;
+  @override
+  String get tileId;
+  @override
+  SerializedVector2 get position;
+  @override
+  SerializedVector2 get distanceToOrigin;
+  @override
+  SerializedVector2 get distanceToTileLeftTopCorner;
+  @override
+  @JsonKey(ignore: true)
+  _$$_EditorGameObjectModelCopyWith<_$_EditorGameObjectModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

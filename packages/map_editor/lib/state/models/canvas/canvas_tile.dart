@@ -14,10 +14,10 @@ class CanvasTileModel with _$CanvasTileModel {
     @Default(false) final bool hasWater,
     @Default(false) final bool isWaterTop,
 
-    /// Coin
+    /// Coin TileId
     @Default('') final TileId coin,
 
-    /// Enemy
+    /// Enemy TileId
     @Default('') final TileId enemy,
     @Default([]) final List objects,
   }) = _SecureCanvasTileModel;

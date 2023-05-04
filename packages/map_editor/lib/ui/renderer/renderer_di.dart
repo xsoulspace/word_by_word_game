@@ -12,7 +12,7 @@ class GameRendererDiDto {
   /// ********************************************
   /// *      Ephemeral
   /// ********************************************
-  final MapEditorBloc mapEditorBloc;
+  final MapEditorCubit mapEditorBloc;
   final WorldBloc worldBloc;
   final DrawerCubit drawerCubit;
   final EditorMechanicsCollection mechanics;
@@ -22,7 +22,7 @@ class GameRendererDiDto {
     required final List<Component>? children,
   }) {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
-      FlameBlocProvider<MapEditorBloc, MapEditorBlocState>.value(
+      FlameBlocProvider<MapEditorCubit, MapEditorBlocState>.value(
         value: mapEditorBloc,
       ),
       FlameBlocProvider<DrawerCubit, DrawerCubitState>.value(value: drawerCubit)
