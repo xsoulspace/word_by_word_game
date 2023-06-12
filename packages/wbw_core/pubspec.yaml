@@ -22,7 +22,7 @@ dependencies:
   flutter_hooks: ^0.18.5+1
   flutter_keyboard_visibility: ^5.2.0
   freezed_annotation: ^2.2.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   json_annotation: ^4.7.0
   life_hooks: ^0.0.18
   logger: ^1.2.2

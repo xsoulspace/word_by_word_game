@@ -22,7 +22,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 2.8.7+38
 
 environment:
-  sdk: ">=2.19.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   animate_do: ^3.0.2
@@ -54,7 +54,7 @@ dependencies:
   google_fonts: ^3.0.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
-  intl: ^0.17.0
+  intl: ^0.18.0
   json_annotation: ^4.7.0
   life_hooks: ^0.0.18
   logger: ^1.1.0
