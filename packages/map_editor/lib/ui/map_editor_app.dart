@@ -15,11 +15,8 @@ class MapEditorApp extends StatelessWidget {
           child: BlocBuilder<MapEditorCubit, MapEditorBlocState>(
             buildWhen: (final previous, final current) =>
                 previous.runtimeType != current.runtimeType,
-            builder: (final context, final state) => state.map(
-              empty: (final value) => const Center(),
-              loaded: (final state) => const MaterialApp(
-                home: SandboxScreen(),
-              ),
+            builder: (final context, final state) => const MaterialApp(
+              home: SandboxScreen(),
             ),
           ),
         ),

@@ -141,6 +141,9 @@ class EditorCanvasObjectsDrawer extends Component
     await addAll(objects.whereNotNull());
   }
 
+  List<EditorCanvasObject> get canvasObjects =>
+      [_skyHandle, _gravitationHandle, _player].whereNotNull().toList();
+
   void onOriginUpdate() {
     for (final canvasObject in canvasObjects) {
       canvasObject.onOriginUpdate();
@@ -157,14 +160,15 @@ class EditorCanvasObjectsDrawer extends Component
     _loadGravitationHandle();
     _loadSkyHandle();
 
-    await _addCanvasObjects([_skyHandle, _gravitationHandle, _player]);
+    await _addCanvasObjects(canvasObjects);
     return super.onLoad();
   }
 
   void _loadPlayer() {
     final gid = Gid(value: kPlayerObjectId);
-    _mapEditorBloc.loadedState;
-    EditorCanvasObject.fromModel(
+    // _mapEditorBloc.loadedState;
+    EditorCanvasObject(
+      gid: gid,
       animationEntry: animations[kPlayerObjectId]!,
       tileId: kPlayerObjectId,
       position: (game.size / 2).toOffset(),
@@ -172,7 +176,8 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadSkyHandle() {
-    EditorCanvasObject.fromModel(
+    EditorCanvasObject(
+      gid: Gid(value: kCursorHandleObjectId),
       animationEntry: AnimationEntryModel.singleFrame(
         game.resourcesLoader.cursorHandlePath,
       ),
@@ -189,10 +194,11 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadGravitationHandle() {
-    EditorCanvasObject.fromModel(
+    EditorCanvasObject(
       animationEntry: AnimationEntryModel.singleFrame(
         game.resourcesLoader.cursorHandlePath,
       ),
+      gid: Gid(value: kCursorHandleObjectId),
       tileId: kCursorHandleObjectId,
       position: (game.size / 2).toOffset(),
       onPositionChanged: (final position) {
@@ -214,18 +220,21 @@ class EditorCanvasObjectsDrawer extends Component
 
   final _gravitationLinePaint = Palette.brown.paint()..strokeWidth = 2;
   void _renderGravitationLine(final Canvas canvas) {
+    final dy = (_gravitationHandle?.position.dy ?? 0) + 20;
     canvas.drawLine(
-      Offset(0, _gravitationHandle.position.dy + 20),
-      Offset(editor.gameSize.x, _gravitationHandle.position.dy + 20),
+      Offset(0, dy),
+      Offset(editor.gameSize.x, dy),
       _gravitationLinePaint,
     );
   }
 
   final _skyHorizonPaint = Palette.blue.paint()..strokeWidth = 2;
   void _renderSkyHorizon(final Canvas canvas) {
+    final dy = (_skyHandle?.position.dy ?? 0) + 20;
+
     canvas.drawLine(
-      Offset(0, _skyHandle.position.dy + 20),
-      Offset(editor.gameSize.x, _skyHandle.position.dy + 20),
+      Offset(0, dy),
+      Offset(editor.gameSize.x, dy),
       _skyHorizonPaint,
     );
   }

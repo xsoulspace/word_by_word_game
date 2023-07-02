@@ -38,7 +38,7 @@ class MapEditorCubit extends Cubit<MapEditorBlocState> {
 
     /// Export game objects
 
-    for (final gameObjectEntry in dto.drawerCubit.gameObjects.entries) {
+    for (final gameObjectEntry in state.gameObjects.entries) {
       final gid = gameObjectEntry.key;
       final gameObject = gameObjectEntry.value;
       gameObjects[gid] = RenderCanvasObjectModel(
@@ -46,7 +46,7 @@ class MapEditorCubit extends Cubit<MapEditorBlocState> {
         tileId: gameObject.tileId,
         distanceToOrigin: gameObject.distanceToOrigin,
         distanceToTileLeftTopCorner: gameObject.distanceToTileLeftTopCorner,
-        position: ,
+        position: gameObject.position,
       );
     }
 

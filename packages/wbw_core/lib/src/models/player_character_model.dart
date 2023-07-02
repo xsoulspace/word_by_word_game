@@ -55,3 +55,11 @@ class SerializedVector2 with _$SerializedVector2 {
   Vector2 toVector2() => Vector2(x, y);
   Offset toOffset() => Offset(x, y);
 }
+
+extension OffsetExtension on Offset {
+  SerializedVector2 toSerializedVector2() => SerializedVector2(x: dx, y: dy);
+}
+
+extension Vector2Extension on Vector2 {
+  SerializedVector2 toSerializedVector2() => SerializedVector2(x: x, y: y);
+}
