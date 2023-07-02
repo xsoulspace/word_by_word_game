@@ -1,5 +1,6 @@
-# melos_managed_dependency_overrides: wbw_design_core,wbw_locale
+# melos_managed_dependency_overrides: wbw_design_core,wbw_locale,http
 dependency_overrides:
+  http: 1.0.0
   wbw_design_core:
     path: ../wbw_design_core
   wbw_locale:
