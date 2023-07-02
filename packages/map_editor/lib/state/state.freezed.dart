@@ -23,6 +23,7 @@ mixin _$DrawerCubitState {
   bool get isDeleteSelectionCompletely => throw _privateConstructorUsedError;
   Map<CellPointModel, CanvasTileModel> get canvasData =>
       throw _privateConstructorUsedError;
+  Map<String, TileDataModel> get tileData => throw _privateConstructorUsedError;
 
   /// can be negative and positive
   /// !maybe need to remove this
@@ -48,6 +49,7 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       Map<CellPointModel, CanvasTileModel> canvasData,
+      Map<String, TileDataModel> tileData,
       double gravityYPosition,
       double skyYPosition});
 }
@@ -70,6 +72,7 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
+    Object? tileData = null,
     Object? gravityYPosition = null,
     Object? skyYPosition = null,
   }) {
@@ -94,6 +97,10 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CanvasTileModel>,
+      tileData: null == tileData
+          ? _value.tileData
+          : tileData // ignore: cast_nullable_to_non_nullable
+              as Map<String, TileDataModel>,
       gravityYPosition: null == gravityYPosition
           ? _value.gravityYPosition
           : gravityYPosition // ignore: cast_nullable_to_non_nullable
@@ -120,6 +127,7 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       Map<CellPointModel, CanvasTileModel> canvasData,
+      Map<String, TileDataModel> tileData,
       double gravityYPosition,
       double skyYPosition});
 }
@@ -140,6 +148,7 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
+    Object? tileData = null,
     Object? gravityYPosition = null,
     Object? skyYPosition = null,
   }) {
@@ -164,6 +173,10 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           ? _value._canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CanvasTileModel>,
+      tileData: null == tileData
+          ? _value._tileData
+          : tileData // ignore: cast_nullable_to_non_nullable
+              as Map<String, TileDataModel>,
       gravityYPosition: null == gravityYPosition
           ? _value.gravityYPosition
           : gravityYPosition // ignore: cast_nullable_to_non_nullable
@@ -185,9 +198,11 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       this.isDeleteSelection = false,
       this.isDeleteSelectionCompletely = false,
       final Map<CellPointModel, CanvasTileModel> canvasData = const {},
+      final Map<String, TileDataModel> tileData = const {},
       this.gravityYPosition = 0,
       this.skyYPosition = 0})
       : _canvasData = canvasData,
+        _tileData = tileData,
         super._();
 
   /// Real origin for all elements
@@ -211,6 +226,15 @@ class _$_DrawerCubitState extends _DrawerCubitState {
     return EqualUnmodifiableMapView(_canvasData);
   }
 
+  final Map<String, TileDataModel> _tileData;
+  @override
+  @JsonKey()
+  Map<String, TileDataModel> get tileData {
+    if (_tileData is EqualUnmodifiableMapView) return _tileData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_tileData);
+  }
+
   /// can be negative and positive
   /// !maybe need to remove this
   @override
@@ -224,7 +248,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
 
   @override
   String toString() {
-    return 'DrawerCubitState(origin: $origin, selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
+    return 'DrawerCubitState(origin: $origin, selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, tileData: $tileData, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
   }
 
   @override
@@ -243,6 +267,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
                     isDeleteSelectionCompletely) &&
             const DeepCollectionEquality()
                 .equals(other._canvasData, _canvasData) &&
+            const DeepCollectionEquality().equals(other._tileData, _tileData) &&
             (identical(other.gravityYPosition, gravityYPosition) ||
                 other.gravityYPosition == gravityYPosition) &&
             (identical(other.skyYPosition, skyYPosition) ||
@@ -257,6 +282,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       isDeleteSelection,
       isDeleteSelectionCompletely,
       const DeepCollectionEquality().hash(_canvasData),
+      const DeepCollectionEquality().hash(_tileData),
       gravityYPosition,
       skyYPosition);
 
@@ -274,6 +300,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
       final bool isDeleteSelection,
       final bool isDeleteSelectionCompletely,
       final Map<CellPointModel, CanvasTileModel> canvasData,
+      final Map<String, TileDataModel> tileData,
       final double gravityYPosition,
       final double skyYPosition}) = _$_DrawerCubitState;
   const _DrawerCubitState._() : super._();
@@ -290,6 +317,8 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   bool get isDeleteSelectionCompletely;
   @override
   Map<CellPointModel, CanvasTileModel> get canvasData;
+  @override
+  Map<String, TileDataModel> get tileData;
   @override
 
   /// can be negative and positive
@@ -309,7 +338,6 @@ abstract class _DrawerCubitState extends DrawerCubitState {
 mixin _$MapEditorBlocState {
   Map<Gid, EditorGameObjectModel> get gameObjects =>
       throw _privateConstructorUsedError;
-  Map<String, TileDataModel> get tileData => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -323,10 +351,7 @@ abstract class $MapEditorBlocStateCopyWith<$Res> {
           MapEditorBlocState value, $Res Function(MapEditorBlocState) then) =
       _$MapEditorBlocStateCopyWithImpl<$Res, MapEditorBlocState>;
   @useResult
-  $Res call(
-      {Map<Gid, EditorGameObjectModel> gameObjects,
-      Map<String, TileDataModel> tileData,
-      bool isEditing});
+  $Res call({Map<Gid, EditorGameObjectModel> gameObjects, bool isEditing});
 }
 
 /// @nodoc
@@ -343,7 +368,6 @@ class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
   @override
   $Res call({
     Object? gameObjects = null,
-    Object? tileData = null,
     Object? isEditing = null,
   }) {
     return _then(_value.copyWith(
@@ -351,10 +375,6 @@ class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
           ? _value.gameObjects
           : gameObjects // ignore: cast_nullable_to_non_nullable
               as Map<Gid, EditorGameObjectModel>,
-      tileData: null == tileData
-          ? _value.tileData
-          : tileData // ignore: cast_nullable_to_non_nullable
-              as Map<String, TileDataModel>,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -371,10 +391,7 @@ abstract class _$$_MapEditorBlocStateCopyWith<$Res>
       __$$_MapEditorBlocStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Map<Gid, EditorGameObjectModel> gameObjects,
-      Map<String, TileDataModel> tileData,
-      bool isEditing});
+  $Res call({Map<Gid, EditorGameObjectModel> gameObjects, bool isEditing});
 }
 
 /// @nodoc
@@ -389,7 +406,6 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? gameObjects = null,
-    Object? tileData = null,
     Object? isEditing = null,
   }) {
     return _then(_$_MapEditorBlocState(
@@ -397,10 +413,6 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
           ? _value._gameObjects
           : gameObjects // ignore: cast_nullable_to_non_nullable
               as Map<Gid, EditorGameObjectModel>,
-      tileData: null == tileData
-          ? _value._tileData
-          : tileData // ignore: cast_nullable_to_non_nullable
-              as Map<String, TileDataModel>,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -414,10 +426,8 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
 class _$_MapEditorBlocState implements _MapEditorBlocState {
   const _$_MapEditorBlocState(
       {final Map<Gid, EditorGameObjectModel> gameObjects = const {},
-      final Map<String, TileDataModel> tileData = const {},
       this.isEditing = true})
-      : _gameObjects = gameObjects,
-        _tileData = tileData;
+      : _gameObjects = gameObjects;
 
   final Map<Gid, EditorGameObjectModel> _gameObjects;
   @override
@@ -428,22 +438,13 @@ class _$_MapEditorBlocState implements _MapEditorBlocState {
     return EqualUnmodifiableMapView(_gameObjects);
   }
 
-  final Map<String, TileDataModel> _tileData;
-  @override
-  @JsonKey()
-  Map<String, TileDataModel> get tileData {
-    if (_tileData is EqualUnmodifiableMapView) return _tileData;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_tileData);
-  }
-
   @override
   @JsonKey()
   final bool isEditing;
 
   @override
   String toString() {
-    return 'MapEditorBlocState(gameObjects: $gameObjects, tileData: $tileData, isEditing: $isEditing)';
+    return 'MapEditorBlocState(gameObjects: $gameObjects, isEditing: $isEditing)';
   }
 
   @override
@@ -453,17 +454,13 @@ class _$_MapEditorBlocState implements _MapEditorBlocState {
             other is _$_MapEditorBlocState &&
             const DeepCollectionEquality()
                 .equals(other._gameObjects, _gameObjects) &&
-            const DeepCollectionEquality().equals(other._tileData, _tileData) &&
             (identical(other.isEditing, isEditing) ||
                 other.isEditing == isEditing));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_gameObjects),
-      const DeepCollectionEquality().hash(_tileData),
-      isEditing);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_gameObjects), isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -476,13 +473,10 @@ class _$_MapEditorBlocState implements _MapEditorBlocState {
 abstract class _MapEditorBlocState implements MapEditorBlocState {
   const factory _MapEditorBlocState(
       {final Map<Gid, EditorGameObjectModel> gameObjects,
-      final Map<String, TileDataModel> tileData,
       final bool isEditing}) = _$_MapEditorBlocState;
 
   @override
   Map<Gid, EditorGameObjectModel> get gameObjects;
-  @override
-  Map<String, TileDataModel> get tileData;
   @override
   bool get isEditing;
   @override

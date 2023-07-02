@@ -9,6 +9,7 @@ class DrawerCubitState with _$DrawerCubitState {
     @Default(false) final bool isDeleteSelection,
     @Default(false) final bool isDeleteSelectionCompletely,
     @Default({}) final Map<CellPointModel, CanvasTileModel> canvasData,
+    @Default({}) final TileDataModelMap tileData,
 
     /// can be negative and positive
     /// !maybe need to remove this

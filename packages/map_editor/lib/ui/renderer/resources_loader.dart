@@ -95,7 +95,7 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
     }
 
     await Future.wait(
-      game.diDto.mapEditorBloc.tilesData.entries.map(loadTileGraphics),
+      game.diDto.drawerCubit.tilesData.entries.map(loadTileGraphics),
     );
   }
 

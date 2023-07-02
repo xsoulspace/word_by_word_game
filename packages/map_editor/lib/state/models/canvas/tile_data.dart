@@ -19,6 +19,7 @@ class TileDataModel with _$TileDataModel {
       _$TileDataModelFromJson(json);
 }
 
+/// Key is stringified int index
 typedef TileDataModelMap = Map<String, TileDataModel>;
 
 enum TileStyle {
