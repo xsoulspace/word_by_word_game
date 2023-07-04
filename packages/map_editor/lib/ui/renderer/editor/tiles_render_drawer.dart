@@ -155,7 +155,7 @@ class TilesRenderer extends Component
           final img = resourceLoader.getTile('X', tileStyle: TileStyle.water);
           canvas.drawImage(img, position, _paint);
         } else {
-          final tilePath = animations[kWaterTileId]!.currentFramePath;
+          final tilePath = animations[kWaterTileId.value]!.currentFramePath;
           final tileImage = getImage(tilePath);
           canvas.drawImage(tileImage, position, _paint);
         }
@@ -175,7 +175,7 @@ class TilesRenderer extends Component
       }
 
       if (tile.coin.isNotEmpty) {
-        final tilePath = animations[tile.coin]!.currentFramePath;
+        final tilePath = animations[tile.coin.value]!.currentFramePath;
         final tileImage = getImage(tilePath);
         final effectivePosition = position +
             Offset(kTileDimension / 2, kTileDimension / 2) -
@@ -187,7 +187,7 @@ class TilesRenderer extends Component
         );
       }
       if (tile.enemy.isNotEmpty) {
-        final tilePath = animations[tile.enemy]!.currentFramePath;
+        final tilePath = animations[tile.enemy.value]!.currentFramePath;
         final tileImage = getImage(tilePath);
         final effectivePosition = position +
             Offset(

@@ -169,7 +169,7 @@ class EditorCanvasObjectsDrawer extends Component
     // _mapEditorBloc.loadedState;
     EditorCanvasObject(
       gid: gid,
-      animationEntry: animations[kPlayerObjectId]!,
+      animationEntry: animations[kPlayerObjectId.value]!,
       tileId: kPlayerObjectId,
       position: (game.size / 2).toOffset(),
     );
