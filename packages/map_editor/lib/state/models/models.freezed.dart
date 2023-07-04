@@ -992,24 +992,6 @@ class _$_CellPointModel extends _CellPointModel {
   @override
   final int y;
 
-  @override
-  String toString() {
-    return 'CellPointModel(x: $x, y: $y)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CellPointModel &&
-            (identical(other.x, x) || other.x == x) &&
-            (identical(other.y, y) || other.y == y));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, x, y);
-
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
@@ -1904,30 +1886,13 @@ class __$$_GidCopyWithImpl<$Res> extends _$GidCopyWithImpl<$Res, _$_Gid>
 /// @nodoc
 
 @JsonSerializable()
-class _$_Gid implements _Gid {
-  const _$_Gid({required this.value});
+class _$_Gid extends _Gid {
+  const _$_Gid({required this.value}) : super._();
 
   factory _$_Gid.fromJson(Map<String, dynamic> json) => _$$_GidFromJson(json);
 
   @override
   final String value;
-
-  @override
-  String toString() {
-    return 'Gid(value: $value)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_Gid &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
 
   @JsonKey(ignore: true)
   @override
@@ -1943,8 +1908,9 @@ class _$_Gid implements _Gid {
   }
 }
 
-abstract class _Gid implements Gid {
+abstract class _Gid extends Gid {
   const factory _Gid({required final String value}) = _$_Gid;
+  const _Gid._() : super._();
 
   factory _Gid.fromJson(Map<String, dynamic> json) = _$_Gid.fromJson;
 

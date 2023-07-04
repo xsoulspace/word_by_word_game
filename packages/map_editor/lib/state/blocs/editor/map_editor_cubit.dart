@@ -23,11 +23,11 @@ class MapEditorCubit extends Cubit<MapEditorBlocState> {
 
     /// Export static tiles.
     /// Every tile has distance to origin equals to zero.
-    for (final MapEntry(key: currentCell, value: editorTile)
+    for (final MapEntry(key: cellPoint, value: editorTile)
         in dto.drawerCubit.canvasData.entries) {
       if (editorTile.isEmpty) continue;
 
-      tiles[currentCell] = RenderCanvasTileModel(
+      tiles[cellPoint] = RenderCanvasTileModel(
         tileId: editorTile.tileId,
         hasTerrain: editorTile.hasTerrain,
         hasWater: editorTile.hasWater,

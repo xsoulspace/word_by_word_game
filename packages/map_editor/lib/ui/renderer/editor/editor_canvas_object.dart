@@ -167,7 +167,7 @@ class EditorCanvasObjectsDrawer extends Component
   void _loadPlayer() {
     final gid = kPlayerObjectId.toGid();
     // _mapEditorBloc.loadedState;
-    EditorCanvasObject(
+    _player = EditorCanvasObject(
       gid: gid,
       animationEntry: animations[kPlayerObjectId.value]!,
       tileId: kPlayerObjectId,
@@ -176,7 +176,7 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadSkyHandle() {
-    EditorCanvasObject(
+    _skyHandle = EditorCanvasObject(
       gid: kCursorHandleObjectId.toGid(),
       animationEntry: AnimationEntryModel.singleFrame(
         game.resourcesLoader.cursorHandlePath,
@@ -194,7 +194,7 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadGravitationHandle() {
-    EditorCanvasObject(
+    _gravitationHandle = EditorCanvasObject(
       animationEntry: AnimationEntryModel.singleFrame(
         game.resourcesLoader.cursorHandlePath,
       ),

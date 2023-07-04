@@ -7,8 +7,8 @@ class CellDataModel with _$CellDataModel {
       _$CellDataModelFromJson(json);
 }
 
-@freezed
-class CellPointModel with _$CellPointModel {
+@Freezed(equal: false)
+class CellPointModel with _$CellPointModel, EquatableMixin {
   const factory CellPointModel(
     final int x,
     final int y,
@@ -24,6 +24,9 @@ class CellPointModel with _$CellPointModel {
       CellPointModel(x - other.x, y - other.y);
   CellPointModel operator +(final CellPointModel other) =>
       CellPointModel(x + other.x, y + other.y);
+
+  @override
+  List<Object?> get props => [x, y];
 }
 
 extension PointExtension on math.Point {
