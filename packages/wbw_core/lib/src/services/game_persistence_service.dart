@@ -15,6 +15,7 @@ class GamePersistenceService {
     await localDataService.setMap(_persistenceKey, game.toJson());
   }
 
+// https://isar.dev/recipes/data_migration.html
   Future<GameModel?> loadGame() async {
     final jsonMap = await localDataService.getMap(_persistenceKey);
     if (jsonMap.isEmpty) return null;

@@ -15,18 +15,29 @@
   // 	],
   // 	"description": "Log output to console"
   // }
-
-  "add-todo-arenukvern": {
-    "prefix": "tdar",
-    "body": "// TODO(arenukvern): "
+  "todo(username):description": {
+    "prefix": "todo",
+    "body": "// TODO(${1:username}): ${2:description}"
+  },
+  "todo(arenukvern):description": {
+    "prefix": "todo",
+    "body": "// TODO(arenukvern): ${1:description}"
+  },
+  "fixme(username):description": {
+    "prefix": "fixme",
+    "body": "// FIXME(${1:username}): ${2:description}"
+  },
+  "fixme(arenukvern):description": {
+    "prefix": "fixme",
+    "body": "// FIXME(arenukvern): ${1:description}"
   },
   "use-life-hook": {
     "prefix": "uselifehook",
-    "body": "import 'package:provider/provider.dart';\nclass ${1}DiDto{\n  ${1}DiDto.use(final Locator read);\n} \n ${1}State use${1}State({\nrequired final Locator read\n}) => use(\n      LifeHook(\n        debugLabel: '${1}State',\n        state: ${1}State(diDto: ${1}DiDto.use(read)),\n      ),\n    );\n\nclass ${1}State extends LifeState {\n  ${1}State({\nrequired this.diDto,\n}\n);\n\n final ${1}DiDto diDto;\n\n@override\n void initState() {\n    // TODO: implement initState\n    super.initState();\n  }\n\n  @override\n  void dispose() {\n    // TODO: implement dispose\n    super.dispose();\n  }\n}"
+    "body": "${1}State use${1}State() => use(\n      LifeHook(\n        debugLabel: '${1}State',\n        state: ${1}State(),\n      ),\n    );\n\nclass ${1}State extends LifeState {\n  ${1}State();\n\n  @override\n  void initState() {\n    // TODO: implement initState\n    super.initState();\n  }\n\n  @override\n  void dispose() {\n    // TODO: implement dispose\n    super.dispose();\n  }\n}"
   },
   "use-contextlife-hook": {
     "prefix": "usectxlifehook",
-    "body": "import 'package:provider/provider.dart';\nclass ${1}DiDto{\n  ${1}DiDto.use(final Locator read);\n} \n ${1}State use${1}State({\nrequired final Locator read\n}) => use(\n      ContextfulLifeHook(\n        debugLabel: '${1}State',\n        state: ${1}State(diDto: ${1}DiDto.use(read)),\n      ),\n    );\n\nclass ${1}State extends ContextfulLifeState {\n  ${1}State({\nrequired this.diDto,\n}\n);\nfinal ${1}DiDto diDto;\n\n  @override\n  void initState() {\n    // TODO: implement initState\n    super.initState();\n  }\n\n  @override\n  void dispose() {\n    // TODO: implement dispose\n    super.dispose();\n  }\n}"
+    "body": "${1}State use${1}State() => use(\n      ContextfulLifeHook(\n        debugLabel: '${1}State',\n        state: ${1}State(),\n      ),\n    );\n\nclass ${1}State extends ContextfulLifeState {\n  ${1}State();\n\n  @override\n  void initState() {\n    // TODO: implement initState\n    super.initState();\n  }\n\n  @override\n  void dispose() {\n    // TODO: implement dispose\n    super.dispose();\n  }\n}"
   },
   "hook-widget": {
     "prefix": "hookwidget",
@@ -34,7 +45,11 @@
   },
   "unimplemented": {
     "prefix": "unimplemented",
-    "body": "// TODO(${1:username}): ${2:description}\nthrow UnimplementedError();"
+    "body": "// TODO(${1:username}): ${2:unimplemented}\nthrow UnimplementedError('${3:unimplemented error}');"
+  },
+  "unimplemented(arenukvern)": {
+    "prefix": "unar",
+    "body": "// TODO(arenukvern): ${1:unimplemented}\nthrow UnimplementedError('${2:unimplemented error}');"
   },
   "section-start": {
     "prefix": "section start",
@@ -43,9 +58,5 @@
   "section-end": {
     "prefix": "section end",
     "body": "/// ********************************************\n/// *      ${1:TITLE} END\n/// ********************************************"
-  },
-  "main-test": {
-    "prefix": "mtest",
-    "body": "import 'package:flutter_test/flutter_test.dart';\n\nvoid main() {\n  group('${1}', () {});\n}"
   }
 }
