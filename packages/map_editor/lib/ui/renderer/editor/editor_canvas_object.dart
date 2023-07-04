@@ -223,7 +223,7 @@ class EditorCanvasObjectsDrawer extends Component
     final dy = (_gravitationHandle?.position.dy ?? 0) + 20;
     canvas.drawLine(
       Offset(0, dy),
-      Offset(editor.gameSize.x, dy),
+      Offset(editor.windowWidth, dy),
       _gravitationLinePaint,
     );
   }
@@ -234,7 +234,7 @@ class EditorCanvasObjectsDrawer extends Component
 
     canvas.drawLine(
       Offset(0, dy),
-      Offset(editor.gameSize.x, dy),
+      Offset(editor.windowWidth, dy),
       _skyHorizonPaint,
     );
   }

@@ -127,6 +127,7 @@ class TileButtons extends StatelessWidget {
                         isDeleteSelection ?? false,
                       );
                     },
+                    dense: true,
                     title: const Text('Delete Tile'),
                   ),
                 ),

@@ -51,9 +51,8 @@ String get kSkyTileId => '0';
 class GameRenderer extends FlameGame
     with
         HasCollisionDetection,
-        HasDraggableComponents,
-        HasTappableComponents,
-        HasDraggablesBridge,
+        DragCallbacks,
+        TapCallbacks,
         SingleGameInstance,
         HasHoverables {
   GameRenderer.use({

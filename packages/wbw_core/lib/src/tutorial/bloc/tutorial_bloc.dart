@@ -111,17 +111,14 @@ class TutorialBloc extends Bloc<TutorialEvent, TutorialBlocState> {
       switch (event.action) {
         case NextTutorialEventType.next:
           nextIndex = tutorial.currentIndex + 1;
-          break;
         case NextTutorialEventType.previous:
           if (tutorial.currentIndex > 0) {
             nextIndex = tutorial.currentIndex - 1;
           } else {
             nextIndex = 0;
           }
-          break;
         case NextTutorialEventType.complete:
           nextIndex = tutorial.events.length;
-          break;
       }
 
       final updatedTutorial = tutorial.copyWith(

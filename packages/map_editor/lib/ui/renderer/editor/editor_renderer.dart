@@ -26,9 +26,10 @@ class EditorRenderer extends Component
   Vector2 get origin => drawerCubitState.origin;
   set origin(final Vector2 value) => drawerCubit.changeOrigin(value);
   Vector2 getOffsetOrigin() => drawerCubitState.getOffsetOrigin();
-  Vector2 get gameSize => game.camera.gameSize;
-  double get windowHeight => gameSize.y;
-  double get windowWidth => gameSize.x;
+  // Vector2 get gameSize => game.camera.gameSize;
+  Rect get gameSize => game.worldCamera.visibleWorldRect;
+  double get windowHeight => gameSize.height;
+  double get windowWidth => gameSize.width;
   double get tileColumns => (windowWidth / kTileDimension) + 1;
   double get tileRows => (windowHeight / kTileDimension) + 1;
   final debugSurface = DebugSurface();

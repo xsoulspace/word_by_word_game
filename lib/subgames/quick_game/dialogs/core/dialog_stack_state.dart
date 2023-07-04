@@ -104,13 +104,11 @@ class _DialogStackState extends LifeState {
             _showTutorialBoolDialog();
             return;
           }
-          break;
         case TutorialCompleteAction.onClick:
           if (action.uiItem == TutorialUiItem.tutorialOkDialog) {
             _showTutorialOkDialog();
             return;
           }
-          break;
         case TutorialCompleteAction.onEdit:
         case TutorialCompleteAction.idle:
       }

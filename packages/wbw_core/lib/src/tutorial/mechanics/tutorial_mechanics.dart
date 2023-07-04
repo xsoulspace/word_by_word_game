@@ -55,7 +55,6 @@ class TutorialMechanics {
           if (actionEvent.uiItem == uiEvent.key) {
             complete();
           }
-          break;
         case TutorialCompleteAction.onBoolOptionSelected:
           if (actionEvent.uiItem == uiEvent.key) {
             final boolValue = uiEvent.boolValue.toPrimitiveBool();
@@ -65,7 +64,6 @@ class TutorialMechanics {
             );
             if (postEffects != null) gamePostEffects.addAll(postEffects);
           }
-          break;
         case TutorialCompleteAction.onEdit:
           if (actionEvent.uiItem == null) {
             if (uiEvent.stringValue.isNotEmpty) {
@@ -77,7 +75,6 @@ class TutorialMechanics {
               complete();
             }
           }
-          break;
       }
       return tutorialEvent.copyWith(
         completeActions: completeActions,

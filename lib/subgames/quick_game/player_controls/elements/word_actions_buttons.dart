@@ -47,7 +47,6 @@ class UiWordActions extends StatelessWidget {
             ),
           ),
         ]);
-        break;
       case GamePhaseType.selectFuel:
         break;
     }

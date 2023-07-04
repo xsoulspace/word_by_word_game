@@ -27,12 +27,10 @@ class UIWarningNotification extends StatelessWidget {
         backgroundColor = colorTheme.errorContainer;
         borderColor = colorTheme.error;
         shakingHz = 10;
-        break;
       case WordWarning.isNotCorrect:
         backgroundColor = colorTheme.tertiaryContainer;
         borderColor = colorTheme.onTertiaryContainer;
         shakingHz = 4;
-        break;
     }
 
     return Visibility(

@@ -34,16 +34,12 @@ class CanvasTileModel with _$CanvasTileModel {
     switch (data.style) {
       case TileStyle.terrain:
         hasTerrain = true;
-        break;
       case TileStyle.water:
         hasWater = true;
-        break;
       case TileStyle.coin:
         coin = tileId;
-        break;
       case TileStyle.enemy:
         enemy = tileId;
-        break;
       // ignore: no_default_cases
       default:
         break;
@@ -72,16 +68,12 @@ class CanvasTileModel with _$CanvasTileModel {
     switch (data.style) {
       case TileStyle.terrain:
         hasTerrain = false;
-        break;
       case TileStyle.water:
         hasWater = false;
-        break;
       case TileStyle.coin:
         coin = '';
-        break;
       case TileStyle.enemy:
         enemy = '';
-        break;
       // ignore: no_default_cases
       default:
         break;

@@ -50,19 +50,14 @@ class DialogStack extends HookWidget {
                   child = LevelLostDialog(
                     onSendEndLevelEvent: state.onSendEndLevelEvent,
                   );
-                  break;
                 case GameDialogType.levelWin:
                   child = const LevelWinDialog();
-                  break;
                 case GameDialogType.levelWordSuggestion:
                   child = const LevelWordSuggestionDialog();
-                  break;
                 case GameDialogType.tutorialBool:
                   child = const TutorialBoolDialog();
-                  break;
                 case GameDialogType.tutorialOk:
                   child = const TutorialOkDialog();
-                  break;
               }
 
               return DialogBarrier(
@@ -71,10 +66,10 @@ class DialogStack extends HookWidget {
             },
           ),
           if (state.isWinLoseDialog)
-            Positioned(
+            const Positioned(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
-                children: const [
+                children: [
                   TopSafeArea(),
                   AdLevelEndScreenBanner(),
                 ],

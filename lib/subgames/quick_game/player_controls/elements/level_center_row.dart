@@ -28,7 +28,6 @@ class UILevelCenterBar extends StatelessWidget {
           const SizedBox(width: 10),
           UiPauseIconButton(onPressed: wordCompositionState.onPause),
         ];
-        break;
       case GamePhaseType.selectFuel:
         body = Column(
           children: [
@@ -40,7 +39,6 @@ class UILevelCenterBar extends StatelessWidget {
         centerBarChildren = [
           UiPauseIconButton(onPressed: wordCompositionState.onPause),
         ];
-        break;
     }
 
     return Stack(

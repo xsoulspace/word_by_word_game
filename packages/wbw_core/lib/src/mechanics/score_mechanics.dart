@@ -35,13 +35,10 @@ class ScoreMechanics {
     switch (multiplier) {
       case EnergyMultiplierType.m1:
         score = scorePart;
-        break;
       case EnergyMultiplierType.m2:
         score = scorePart * 2;
-        break;
       case EnergyMultiplierType.m3:
         score = availableScore.value.toInt();
-        break;
     }
 
     return ScoreModel(value: score.toDouble());

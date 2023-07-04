@@ -6,10 +6,10 @@ class SandboxScreen extends StatelessWidget {
   const SandboxScreen({super.key});
 
   @override
-  Widget build(final BuildContext context) => Scaffold(
+  Widget build(final BuildContext context) => const Scaffold(
         body: Stack(
           fit: StackFit.expand,
-          children: const [
+          children: [
             GameRendererWidget(),
             SandboxUiOverlay(),
           ],

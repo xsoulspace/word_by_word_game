@@ -90,7 +90,7 @@ class GameInitializer {
             },
           ),
           asset: CharacterAssetModel(
-            srcPosition: SerializedVector2(x: 0, y: kTileDimension * 6),
+            srcPosition: SerializedVector2(y: kTileDimension * 6),
             srcSizeX: kTileDimension,
             srcSizeY: kTileDimension,
           ),
@@ -111,7 +111,6 @@ class GameInitializer {
             playersCharacters: characters,
             templateLevels: templateLevels,
           );
-          break;
         case GameVersion.$2:
           break;
       }
@@ -136,7 +135,6 @@ class GameInitializer {
         templateLevels: templateLevels,
         playersCharacters: characters,
         currentLevelId: '',
-        playersCollection: const [],
       ),
     );
   }

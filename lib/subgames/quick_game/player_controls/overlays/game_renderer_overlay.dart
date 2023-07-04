@@ -61,13 +61,13 @@ class LevelsHudScreenOverlay extends HookWidget {
               ),
           ],
         ),
-        Positioned(
+        const Positioned(
           top: 20,
           right: 20,
           left: 20,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
+            children: [
               Flexible(child: UIWarningNotification()),
             ],
           ),
