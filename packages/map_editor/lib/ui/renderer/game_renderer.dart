@@ -35,14 +35,18 @@ int get kVisibleTilesRows => 16;
 int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
-String get kWaterTileId => '3';
-String get kPlayerObjectId => '0';
-String get kCursorHandleObjectId => '19';
+TileId get kWaterTileId => const TileId(value: '3');
+TileId get kPlayerObjectId => const TileId(value: '0');
+TileId get kCursorHandleObjectId => const TileId(value: '19');
 
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
 class GameRenderer extends FlameGame
-    with HasCollisionDetection, SingleGameInstance, HasHoverables {
+    with
+        HasCollisionDetection,
+        SingleGameInstance,
+        // replace to MouseMovementDetector (?)
+        HasHoverables {
   GameRenderer.use({
     required final Locator read,
     required final material.ThemeData theme,

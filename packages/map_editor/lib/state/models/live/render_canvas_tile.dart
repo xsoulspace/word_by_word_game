@@ -20,5 +20,5 @@ class RenderCanvasTileModel with _$RenderCanvasTileModel {
   factory RenderCanvasTileModel.fromJson(final Map<String, dynamic> json) =>
       _$RenderCanvasTileModelFromJson(json);
 
-  Gid get id => Gid(value: tileId);
+  Gid get id => tileId.toGid();
 }

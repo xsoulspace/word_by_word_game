@@ -15,10 +15,10 @@ class CanvasTileModel with _$CanvasTileModel {
     @Default(false) final bool isWaterTop,
 
     /// Coin TileId
-    @Default('') final TileId coin,
+    @Default(TileId.empty) final TileId coin,
 
     /// Enemy TileId
-    @Default('') final TileId enemy,
+    @Default(TileId.empty) final TileId enemy,
     @Default([]) final List objects,
   }) = _SecureCanvasTileModel;
   const CanvasTileModel._();
@@ -29,8 +29,8 @@ class CanvasTileModel with _$CanvasTileModel {
   }) {
     bool hasTerrain = oldData?.hasTerrain ?? false;
     bool hasWater = oldData?.hasWater ?? false;
-    TileId coin = oldData?.coin ?? '';
-    TileId enemy = oldData?.enemy ?? '';
+    TileId coin = oldData?.coin ?? TileId.empty;
+    TileId enemy = oldData?.enemy ?? TileId.empty;
 
     switch (data.style) {
       case TileStyle.terrain:
@@ -72,16 +72,16 @@ class CanvasTileModel with _$CanvasTileModel {
       case TileStyle.water:
         hasWater = false;
       case TileStyle.coin:
-        coin = '';
+        coin = TileId.empty;
       case TileStyle.enemy:
-        enemy = '';
+        enemy = TileId.empty;
       // ignore: no_default_cases
       default:
         break;
     }
 
     return CanvasTileModel.secure(
-      tileId: '',
+      tileId: TileId.empty,
       coin: coin,
       enemy: enemy,
       hasTerrain: hasTerrain,
@@ -92,7 +92,7 @@ class CanvasTileModel with _$CanvasTileModel {
     );
   }
 
-  static const empty = CanvasTileModel.secure(tileId: '');
+  static const empty = CanvasTileModel.secure(tileId: TileId.empty);
   bool get isEmpty =>
       tileId.isEmpty &&
       coin.isEmpty &&

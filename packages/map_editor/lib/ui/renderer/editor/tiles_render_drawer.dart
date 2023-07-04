@@ -83,7 +83,7 @@ class TilesDrawer extends Component
           cellPoint,
           (final value) => value.removeSelection(
             data: drawerCubit.selectionData,
-            tileId: drawerCubit.selectionIndex.toString(),
+            tileId: TileId.fromIndex(drawerCubit.selectionIndex),
           ),
         );
         if (updatedValue.isEmpty) effectiveCanvasData.remove(cellPoint);
@@ -100,7 +100,7 @@ class TilesDrawer extends Component
           cellPoint,
           (final value) => CanvasTileModel.fromEditorSettingsDataToAdd(
             data: drawerCubit.selectionData,
-            tileId: drawerCubit.selectionIndex.toString(),
+            tileId: TileId.fromIndex(drawerCubit.selectionIndex),
             oldData: value,
           ),
         );
@@ -108,7 +108,7 @@ class TilesDrawer extends Component
         effectiveCanvasData[cellPoint] =
             CanvasTileModel.fromEditorSettingsDataToAdd(
           data: drawerCubit.selectionData,
-          tileId: drawerCubit.selectionIndex.toString(),
+          tileId: TileId.fromIndex(drawerCubit.selectionIndex),
         );
       }
     }

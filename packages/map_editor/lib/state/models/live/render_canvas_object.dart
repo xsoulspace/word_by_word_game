@@ -12,16 +12,16 @@ class RenderCanvasObjectModel with _$RenderCanvasObjectModel {
     /// Instead, the new gid should be created
     /// for every new [RenderCanvasObjectModel].
     required final Gid id,
-    required final String tileId,
+    required final TileId tileId,
     @Default(SerializedVector2.zero) final SerializedVector2 position,
     @Default(SerializedVector2.zero) final SerializedVector2 distanceToOrigin,
     @Default(SerializedVector2.zero)
-        final SerializedVector2 distanceToTileLeftTopCorner,
+    final SerializedVector2 distanceToTileLeftTopCorner,
   }) = _RenderCanvasObjectModel;
   factory RenderCanvasObjectModel.fromJson(final Map<String, dynamic> json) =>
       _$RenderCanvasObjectModelFromJson(json);
   static const empty = RenderCanvasObjectModel(
     id: Gid.zero,
-    tileId: '',
+    tileId: TileId.empty,
   );
 }

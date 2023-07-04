@@ -187,7 +187,7 @@ abstract class _AnimationEntryModel extends AnimationEntryModel {
 
 /// @nodoc
 mixin _$CanvasTileModel {
-  String get tileId => throw _privateConstructorUsedError;
+  TileId get tileId => throw _privateConstructorUsedError;
 
   /// Terrain
   bool get hasTerrain => throw _privateConstructorUsedError;
@@ -198,21 +198,21 @@ mixin _$CanvasTileModel {
   bool get isWaterTop => throw _privateConstructorUsedError;
 
   /// Coin TileId
-  String get coin => throw _privateConstructorUsedError;
+  TileId get coin => throw _privateConstructorUsedError;
 
   /// Enemy TileId
-  String get enemy => throw _privateConstructorUsedError;
+  TileId get enemy => throw _privateConstructorUsedError;
   List<dynamic> get objects => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String tileId,
+            TileId tileId,
             bool hasTerrain,
             List<String> terrainNeighbours,
             bool hasWater,
             bool isWaterTop,
-            String coin,
-            String enemy,
+            TileId coin,
+            TileId enemy,
             List<dynamic> objects)
         secure,
   }) =>
@@ -220,13 +220,13 @@ mixin _$CanvasTileModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String tileId,
+            TileId tileId,
             bool hasTerrain,
             List<String> terrainNeighbours,
             bool hasWater,
             bool isWaterTop,
-            String coin,
-            String enemy,
+            TileId coin,
+            TileId enemy,
             List<dynamic> objects)?
         secure,
   }) =>
@@ -234,13 +234,13 @@ mixin _$CanvasTileModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String tileId,
+            TileId tileId,
             bool hasTerrain,
             List<String> terrainNeighbours,
             bool hasWater,
             bool isWaterTop,
-            String coin,
-            String enemy,
+            TileId coin,
+            TileId enemy,
             List<dynamic> objects)?
         secure,
     required TResult orElse(),
@@ -275,14 +275,18 @@ abstract class $CanvasTileModelCopyWith<$Res> {
       _$CanvasTileModelCopyWithImpl<$Res, CanvasTileModel>;
   @useResult
   $Res call(
-      {String tileId,
+      {TileId tileId,
       bool hasTerrain,
       List<String> terrainNeighbours,
       bool hasWater,
       bool isWaterTop,
-      String coin,
-      String enemy,
+      TileId coin,
+      TileId enemy,
       List<dynamic> objects});
+
+  $TileIdCopyWith<$Res> get tileId;
+  $TileIdCopyWith<$Res> get coin;
+  $TileIdCopyWith<$Res> get enemy;
 }
 
 /// @nodoc
@@ -311,7 +315,7 @@ class _$CanvasTileModelCopyWithImpl<$Res, $Val extends CanvasTileModel>
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       hasTerrain: null == hasTerrain
           ? _value.hasTerrain
           : hasTerrain // ignore: cast_nullable_to_non_nullable
@@ -331,16 +335,40 @@ class _$CanvasTileModelCopyWithImpl<$Res, $Val extends CanvasTileModel>
       coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       enemy: null == enemy
           ? _value.enemy
           : enemy // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       objects: null == objects
           ? _value.objects
           : objects // ignore: cast_nullable_to_non_nullable
               as List<dynamic>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TileIdCopyWith<$Res> get tileId {
+    return $TileIdCopyWith<$Res>(_value.tileId, (value) {
+      return _then(_value.copyWith(tileId: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TileIdCopyWith<$Res> get coin {
+    return $TileIdCopyWith<$Res>(_value.coin, (value) {
+      return _then(_value.copyWith(coin: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TileIdCopyWith<$Res> get enemy {
+    return $TileIdCopyWith<$Res>(_value.enemy, (value) {
+      return _then(_value.copyWith(enemy: value) as $Val);
+    });
   }
 }
 
@@ -353,14 +381,21 @@ abstract class _$$_SecureCanvasTileModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String tileId,
+      {TileId tileId,
       bool hasTerrain,
       List<String> terrainNeighbours,
       bool hasWater,
       bool isWaterTop,
-      String coin,
-      String enemy,
+      TileId coin,
+      TileId enemy,
       List<dynamic> objects});
+
+  @override
+  $TileIdCopyWith<$Res> get tileId;
+  @override
+  $TileIdCopyWith<$Res> get coin;
+  @override
+  $TileIdCopyWith<$Res> get enemy;
 }
 
 /// @nodoc
@@ -387,7 +422,7 @@ class __$$_SecureCanvasTileModelCopyWithImpl<$Res>
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       hasTerrain: null == hasTerrain
           ? _value.hasTerrain
           : hasTerrain // ignore: cast_nullable_to_non_nullable
@@ -407,11 +442,11 @@ class __$$_SecureCanvasTileModelCopyWithImpl<$Res>
       coin: null == coin
           ? _value.coin
           : coin // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       enemy: null == enemy
           ? _value.enemy
           : enemy // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       objects: null == objects
           ? _value._objects
           : objects // ignore: cast_nullable_to_non_nullable
@@ -429,15 +464,15 @@ class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
       final List<String> terrainNeighbours = const [],
       this.hasWater = false,
       this.isWaterTop = false,
-      this.coin = '',
-      this.enemy = '',
+      this.coin = TileId.empty,
+      this.enemy = TileId.empty,
       final List<dynamic> objects = const []})
       : _terrainNeighbours = terrainNeighbours,
         _objects = objects,
         super._();
 
   @override
-  final String tileId;
+  final TileId tileId;
 
   /// Terrain
   @override
@@ -464,12 +499,12 @@ class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
   /// Coin TileId
   @override
   @JsonKey()
-  final String coin;
+  final TileId coin;
 
   /// Enemy TileId
   @override
   @JsonKey()
-  final String enemy;
+  final TileId enemy;
   final List<dynamic> _objects;
   @override
   @JsonKey()
@@ -526,13 +561,13 @@ class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
-            String tileId,
+            TileId tileId,
             bool hasTerrain,
             List<String> terrainNeighbours,
             bool hasWater,
             bool isWaterTop,
-            String coin,
-            String enemy,
+            TileId coin,
+            TileId enemy,
             List<dynamic> objects)
         secure,
   }) {
@@ -544,13 +579,13 @@ class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(
-            String tileId,
+            TileId tileId,
             bool hasTerrain,
             List<String> terrainNeighbours,
             bool hasWater,
             bool isWaterTop,
-            String coin,
-            String enemy,
+            TileId coin,
+            TileId enemy,
             List<dynamic> objects)?
         secure,
   }) {
@@ -562,13 +597,13 @@ class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
-            String tileId,
+            TileId tileId,
             bool hasTerrain,
             List<String> terrainNeighbours,
             bool hasWater,
             bool isWaterTop,
-            String coin,
-            String enemy,
+            TileId coin,
+            TileId enemy,
             List<dynamic> objects)?
         secure,
     required TResult orElse(),
@@ -611,18 +646,18 @@ class _$_SecureCanvasTileModel extends _SecureCanvasTileModel {
 
 abstract class _SecureCanvasTileModel extends CanvasTileModel {
   const factory _SecureCanvasTileModel(
-      {required final String tileId,
+      {required final TileId tileId,
       final bool hasTerrain,
       final List<String> terrainNeighbours,
       final bool hasWater,
       final bool isWaterTop,
-      final String coin,
-      final String enemy,
+      final TileId coin,
+      final TileId enemy,
       final List<dynamic> objects}) = _$_SecureCanvasTileModel;
   const _SecureCanvasTileModel._() : super._();
 
   @override
-  String get tileId;
+  TileId get tileId;
   @override
 
   /// Terrain
@@ -638,11 +673,11 @@ abstract class _SecureCanvasTileModel extends CanvasTileModel {
   @override
 
   /// Coin TileId
-  String get coin;
+  TileId get coin;
   @override
 
   /// Enemy TileId
-  String get enemy;
+  TileId get enemy;
   @override
   List<dynamic> get objects;
   @override
@@ -1006,6 +1041,103 @@ abstract class _CellPointModel extends CellPointModel {
       throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+mixin _$TileId {
+  String get value => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TileIdCopyWith<TileId> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TileIdCopyWith<$Res> {
+  factory $TileIdCopyWith(TileId value, $Res Function(TileId) then) =
+      _$TileIdCopyWithImpl<$Res, TileId>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$TileIdCopyWithImpl<$Res, $Val extends TileId>
+    implements $TileIdCopyWith<$Res> {
+  _$TileIdCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TileIdCopyWith<$Res> implements $TileIdCopyWith<$Res> {
+  factory _$$_TileIdCopyWith(_$_TileId value, $Res Function(_$_TileId) then) =
+      __$$_TileIdCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$_TileIdCopyWithImpl<$Res>
+    extends _$TileIdCopyWithImpl<$Res, _$_TileId>
+    implements _$$_TileIdCopyWith<$Res> {
+  __$$_TileIdCopyWithImpl(_$_TileId _value, $Res Function(_$_TileId) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_TileId(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_TileId extends _TileId {
+  const _$_TileId({required this.value}) : super._();
+
+  @override
+  final String value;
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TileIdCopyWith<_$_TileId> get copyWith =>
+      __$$_TileIdCopyWithImpl<_$_TileId>(this, _$identity);
+}
+
+abstract class _TileId extends TileId {
+  const factory _TileId({required final String value}) = _$_TileId;
+  const _TileId._() : super._();
+
+  @override
+  String get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TileIdCopyWith<_$_TileId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 TileDataModel _$TileDataModelFromJson(Map<String, dynamic> json) {
   return _TileDataModel.fromJson(json);
 }
@@ -1264,7 +1396,7 @@ EditorGameObjectModel _$EditorGameObjectModelFromJson(
 /// @nodoc
 mixin _$EditorGameObjectModel {
   Gid get id => throw _privateConstructorUsedError;
-  String get tileId => throw _privateConstructorUsedError;
+  TileId get tileId => throw _privateConstructorUsedError;
   SerializedVector2 get position => throw _privateConstructorUsedError;
   SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
   SerializedVector2 get distanceToTileLeftTopCorner =>
@@ -1284,12 +1416,13 @@ abstract class $EditorGameObjectModelCopyWith<$Res> {
   @useResult
   $Res call(
       {Gid id,
-      String tileId,
+      TileId tileId,
       SerializedVector2 position,
       SerializedVector2 distanceToOrigin,
       SerializedVector2 distanceToTileLeftTopCorner});
 
   $GidCopyWith<$Res> get id;
+  $TileIdCopyWith<$Res> get tileId;
   $SerializedVector2CopyWith<$Res> get position;
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
   $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner;
@@ -1323,7 +1456,7 @@ class _$EditorGameObjectModelCopyWithImpl<$Res,
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -1344,6 +1477,14 @@ class _$EditorGameObjectModelCopyWithImpl<$Res,
   $GidCopyWith<$Res> get id {
     return $GidCopyWith<$Res>(_value.id, (value) {
       return _then(_value.copyWith(id: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TileIdCopyWith<$Res> get tileId {
+    return $TileIdCopyWith<$Res>(_value.tileId, (value) {
+      return _then(_value.copyWith(tileId: value) as $Val);
     });
   }
 
@@ -1383,13 +1524,15 @@ abstract class _$$_EditorGameObjectModelCopyWith<$Res>
   @useResult
   $Res call(
       {Gid id,
-      String tileId,
+      TileId tileId,
       SerializedVector2 position,
       SerializedVector2 distanceToOrigin,
       SerializedVector2 distanceToTileLeftTopCorner});
 
   @override
   $GidCopyWith<$Res> get id;
+  @override
+  $TileIdCopyWith<$Res> get tileId;
   @override
   $SerializedVector2CopyWith<$Res> get position;
   @override
@@ -1423,7 +1566,7 @@ class __$$_EditorGameObjectModelCopyWithImpl<$Res>
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -1456,7 +1599,7 @@ class _$_EditorGameObjectModel implements _EditorGameObjectModel {
   @override
   final Gid id;
   @override
-  final String tileId;
+  final TileId tileId;
   @override
   @JsonKey()
   final SerializedVector2 position;
@@ -1512,7 +1655,7 @@ class _$_EditorGameObjectModel implements _EditorGameObjectModel {
 abstract class _EditorGameObjectModel implements EditorGameObjectModel {
   const factory _EditorGameObjectModel(
           {required final Gid id,
-          required final String tileId,
+          required final TileId tileId,
           final SerializedVector2 position,
           final SerializedVector2 distanceToOrigin,
           final SerializedVector2 distanceToTileLeftTopCorner}) =
@@ -1524,7 +1667,7 @@ abstract class _EditorGameObjectModel implements EditorGameObjectModel {
   @override
   Gid get id;
   @override
-  String get tileId;
+  TileId get tileId;
   @override
   SerializedVector2 get position;
   @override
@@ -1980,7 +2123,7 @@ mixin _$RenderCanvasObjectModel {
   /// Instead, the new gid should be created
   /// for every new [RenderCanvasObjectModel].
   Gid get id => throw _privateConstructorUsedError;
-  String get tileId => throw _privateConstructorUsedError;
+  TileId get tileId => throw _privateConstructorUsedError;
   SerializedVector2 get position => throw _privateConstructorUsedError;
   SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
   SerializedVector2 get distanceToTileLeftTopCorner =>
@@ -2000,12 +2143,13 @@ abstract class $RenderCanvasObjectModelCopyWith<$Res> {
   @useResult
   $Res call(
       {Gid id,
-      String tileId,
+      TileId tileId,
       SerializedVector2 position,
       SerializedVector2 distanceToOrigin,
       SerializedVector2 distanceToTileLeftTopCorner});
 
   $GidCopyWith<$Res> get id;
+  $TileIdCopyWith<$Res> get tileId;
   $SerializedVector2CopyWith<$Res> get position;
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
   $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner;
@@ -2039,7 +2183,7 @@ class _$RenderCanvasObjectModelCopyWithImpl<$Res,
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -2060,6 +2204,14 @@ class _$RenderCanvasObjectModelCopyWithImpl<$Res,
   $GidCopyWith<$Res> get id {
     return $GidCopyWith<$Res>(_value.id, (value) {
       return _then(_value.copyWith(id: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TileIdCopyWith<$Res> get tileId {
+    return $TileIdCopyWith<$Res>(_value.tileId, (value) {
+      return _then(_value.copyWith(tileId: value) as $Val);
     });
   }
 
@@ -2099,13 +2251,15 @@ abstract class _$$_RenderCanvasObjectModelCopyWith<$Res>
   @useResult
   $Res call(
       {Gid id,
-      String tileId,
+      TileId tileId,
       SerializedVector2 position,
       SerializedVector2 distanceToOrigin,
       SerializedVector2 distanceToTileLeftTopCorner});
 
   @override
   $GidCopyWith<$Res> get id;
+  @override
+  $TileIdCopyWith<$Res> get tileId;
   @override
   $SerializedVector2CopyWith<$Res> get position;
   @override
@@ -2140,7 +2294,7 @@ class __$$_RenderCanvasObjectModelCopyWithImpl<$Res>
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -2178,7 +2332,7 @@ class _$_RenderCanvasObjectModel implements _RenderCanvasObjectModel {
   @override
   final Gid id;
   @override
-  final String tileId;
+  final TileId tileId;
   @override
   @JsonKey()
   final SerializedVector2 position;
@@ -2235,7 +2389,7 @@ class _$_RenderCanvasObjectModel implements _RenderCanvasObjectModel {
 abstract class _RenderCanvasObjectModel implements RenderCanvasObjectModel {
   const factory _RenderCanvasObjectModel(
           {required final Gid id,
-          required final String tileId,
+          required final TileId tileId,
           final SerializedVector2 position,
           final SerializedVector2 distanceToOrigin,
           final SerializedVector2 distanceToTileLeftTopCorner}) =
@@ -2253,7 +2407,7 @@ abstract class _RenderCanvasObjectModel implements RenderCanvasObjectModel {
   /// for every new [RenderCanvasObjectModel].
   Gid get id;
   @override
-  String get tileId;
+  TileId get tileId;
   @override
   SerializedVector2 get position;
   @override
@@ -2274,7 +2428,7 @@ RenderCanvasTileModel _$RenderCanvasTileModelFromJson(
 /// @nodoc
 mixin _$RenderCanvasTileModel {
   /// Since the [tileId] is always unqiue, it will be used as GID
-  String get tileId => throw _privateConstructorUsedError;
+  TileId get tileId => throw _privateConstructorUsedError;
 
   /// Terrain
   bool get hasTerrain => throw _privateConstructorUsedError;
@@ -2295,7 +2449,9 @@ abstract class $RenderCanvasTileModelCopyWith<$Res> {
           $Res Function(RenderCanvasTileModel) then) =
       _$RenderCanvasTileModelCopyWithImpl<$Res, RenderCanvasTileModel>;
   @useResult
-  $Res call({String tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+  $Res call({TileId tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+
+  $TileIdCopyWith<$Res> get tileId;
 }
 
 /// @nodoc
@@ -2321,7 +2477,7 @@ class _$RenderCanvasTileModelCopyWithImpl<$Res,
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       hasTerrain: null == hasTerrain
           ? _value.hasTerrain
           : hasTerrain // ignore: cast_nullable_to_non_nullable
@@ -2336,6 +2492,14 @@ class _$RenderCanvasTileModelCopyWithImpl<$Res,
               as bool,
     ) as $Val);
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TileIdCopyWith<$Res> get tileId {
+    return $TileIdCopyWith<$Res>(_value.tileId, (value) {
+      return _then(_value.copyWith(tileId: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -2346,7 +2510,10 @@ abstract class _$$_RenderCanvasTileModelCopyWith<$Res>
       __$$_RenderCanvasTileModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+  $Res call({TileId tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+
+  @override
+  $TileIdCopyWith<$Res> get tileId;
 }
 
 /// @nodoc
@@ -2369,7 +2536,7 @@ class __$$_RenderCanvasTileModelCopyWithImpl<$Res>
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
-              as String,
+              as TileId,
       hasTerrain: null == hasTerrain
           ? _value.hasTerrain
           : hasTerrain // ignore: cast_nullable_to_non_nullable
@@ -2401,7 +2568,7 @@ class _$_RenderCanvasTileModel extends _RenderCanvasTileModel {
 
   /// Since the [tileId] is always unqiue, it will be used as GID
   @override
-  final String tileId;
+  final TileId tileId;
 
   /// Terrain
   @override
@@ -2457,7 +2624,7 @@ class _$_RenderCanvasTileModel extends _RenderCanvasTileModel {
 
 abstract class _RenderCanvasTileModel extends RenderCanvasTileModel {
   const factory _RenderCanvasTileModel(
-      {required final String tileId,
+      {required final TileId tileId,
       final bool hasTerrain,
       final bool hasWater,
       final bool isWaterTop}) = _$_RenderCanvasTileModel;
@@ -2469,7 +2636,7 @@ abstract class _RenderCanvasTileModel extends RenderCanvasTileModel {
   @override
 
   /// Since the [tileId] is always unqiue, it will be used as GID
-  String get tileId;
+  TileId get tileId;
   @override
 
   /// Terrain

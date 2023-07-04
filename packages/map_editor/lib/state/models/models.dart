@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:equatable/equatable.dart';
 import 'package:flame/game.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:wbw_core/wbw_core.dart';

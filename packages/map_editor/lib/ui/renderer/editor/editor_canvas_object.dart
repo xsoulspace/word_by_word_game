@@ -29,7 +29,7 @@ class EditorCanvasObject extends Component
 
   final material.ValueChanged<Offset>? onPositionChanged;
   final Gid gid;
-  final String tileId;
+  final TileId tileId;
 
   Offset position;
   AnimationEntryModel animationEntry;
@@ -165,7 +165,7 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadPlayer() {
-    final gid = Gid(value: kPlayerObjectId);
+    final gid = kPlayerObjectId.toGid();
     // _mapEditorBloc.loadedState;
     EditorCanvasObject(
       gid: gid,
@@ -177,7 +177,7 @@ class EditorCanvasObjectsDrawer extends Component
 
   void _loadSkyHandle() {
     EditorCanvasObject(
-      gid: Gid(value: kCursorHandleObjectId),
+      gid: kCursorHandleObjectId.toGid(),
       animationEntry: AnimationEntryModel.singleFrame(
         game.resourcesLoader.cursorHandlePath,
       ),
@@ -198,7 +198,7 @@ class EditorCanvasObjectsDrawer extends Component
       animationEntry: AnimationEntryModel.singleFrame(
         game.resourcesLoader.cursorHandlePath,
       ),
-      gid: Gid(value: kCursorHandleObjectId),
+      gid: kCursorHandleObjectId.toGid(),
       tileId: kCursorHandleObjectId,
       position: (game.size / 2).toOffset(),
       onPositionChanged: (final position) {

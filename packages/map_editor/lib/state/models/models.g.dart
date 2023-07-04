@@ -66,7 +66,7 @@ _$_EditorGameObjectModel _$$_EditorGameObjectModelFromJson(
         Map<String, dynamic> json) =>
     _$_EditorGameObjectModel(
       id: Gid.fromJson(json['id'] as Map<String, dynamic>),
-      tileId: json['tileId'] as String,
+      tileId: TileId.fromJson(json['tileId'] as String),
       position: json['position'] == null
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
@@ -115,7 +115,7 @@ _$_RenderCanvasObjectModel _$$_RenderCanvasObjectModelFromJson(
         Map<String, dynamic> json) =>
     _$_RenderCanvasObjectModel(
       id: Gid.fromJson(json['id'] as Map<String, dynamic>),
-      tileId: json['tileId'] as String,
+      tileId: TileId.fromJson(json['tileId'] as String),
       position: json['position'] == null
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
@@ -143,7 +143,7 @@ Map<String, dynamic> _$$_RenderCanvasObjectModelToJson(
 _$_RenderCanvasTileModel _$$_RenderCanvasTileModelFromJson(
         Map<String, dynamic> json) =>
     _$_RenderCanvasTileModel(
-      tileId: json['tileId'] as String,
+      tileId: TileId.fromJson(json['tileId'] as String),
       hasTerrain: json['hasTerrain'] as bool? ?? false,
       hasWater: json['hasWater'] as bool? ?? false,
       isWaterTop: json['isWaterTop'] as bool? ?? false,
