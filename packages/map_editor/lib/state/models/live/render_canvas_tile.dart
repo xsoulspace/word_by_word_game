@@ -15,6 +15,9 @@ class RenderCanvasTileModel with _$RenderCanvasTileModel {
     /// Water
     @Default(false) final bool hasWater,
     @Default(false) final bool isWaterTop,
+
+    /// The [Gid] in common is [RenderCanvasObjectModel.id]
+    @Default([]) final List<Gid> objects,
   }) = _RenderCanvasTileModel;
   const RenderCanvasTileModel._();
   factory RenderCanvasTileModel.fromJson(final Map<String, dynamic> json) =>

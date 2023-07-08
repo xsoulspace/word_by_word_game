@@ -45,7 +45,16 @@ class OriginVectorUtils {
     return math.Point(x, y);
   }
 
-  math.Point<int> getCurrentCellByObject(final EditorCanvasObject object) {
+  math.Point<int> getCurrentCellByGameObject(
+    final EditorGameObjectModel object,
+  ) {
+    final distanceToOrigin = object.distanceToOrigin.toVector2() - origin;
+    return getCellByDistance(distanceToOrigin);
+  }
+
+  math.Point<int> getCurrentCellByCanvasObject(
+    final EditorCanvasObject object,
+  ) {
     final distanceToOrigin = object.distanceToOrigin.toVector2() - origin;
     return getCellByDistance(distanceToOrigin);
   }

@@ -38,7 +38,8 @@ class EditorCanvasObject extends Component
 
   void _updateDistanceToOrigin() {
     distanceToOrigin = position - origin.toOffset();
-    final cell = OriginVectorUtils.use(origin).getCurrentCellByObject(this);
+    final cell =
+        OriginVectorUtils.use(origin).getCurrentCellByCanvasObject(this);
     final cellTopLeftPosition = Offset(
       (cell.x * kTileDimension).toDouble(),
       (cell.y * kTileDimension).toDouble(),

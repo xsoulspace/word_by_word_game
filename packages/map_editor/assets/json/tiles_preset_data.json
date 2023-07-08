@@ -1,0 +1,91 @@
+{
+  "tiles": {
+    "tropical_land": {
+      "id": "tropical_land",
+      "type": "autotile",
+      "category": "terrain",
+      "properties": {
+        "title": "Tropical Land",
+        "thumbnail_path": "assets/images/preview/land.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "path": "assets/images/terrain/land",
+        "animated": false
+      }
+    },
+    "tropical_water": {
+      "id": "tropical_water",
+      "type": "autotile",
+      "category": "water",
+      "properties": {
+        "title": "Tropical Water",
+        "thumbnail_path": "assets/images/preview/water.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "path": "assets/images/terrain/water",
+        "neighbors_associative_map": {
+          "CDEFG": {
+            "use_when_not_filled": ["A", "B", "H"]
+          },
+          "ABCDEFGH": {
+            "use_when_filled": ["A", "B", "H"]
+          }
+        },
+        "animated": true
+      }
+    }
+  },
+  "objects": {
+    "palm_small_fg": {
+      "id": "palm_small_fg",
+      "category": "palms",
+      "type": "object",
+      "properties": {
+        "title": "Foreground Palm Small",
+        "thumbnail_path": "assets/images/preview/small_fg.png"
+      },
+      "graphics": {
+        "type": "character",
+        "path": "assets/images/terrain/palm/small_fg",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "palm_large_bg": {
+      "id": "palm_large_bg",
+      "category": "palms",
+      "type": "object",
+      "properties": {
+        "title": "Foreground Palm Large",
+        "thumbnail_path": "assets/images/preview/large_bg.png"
+      },
+      "graphics": {
+        "type": "character",
+        "path": "assets/images/terrain/palm/large_bg",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    }
+  },
+  "npcs": {},
+  "players": {
+    "tester": {
+      "id": "tester",
+      "category": "players",
+      "type": "object",
+      "properties": {
+        "title": "Tester",
+        "description": { "en": "Test description" },
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "path": "assets/images/player",
+        "behaviours": ["idle_left", "idle_right", "fly_left", "fly_right"],
+        "animated": true
+      }
+    }
+  }
+}

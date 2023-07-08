@@ -10,8 +10,6 @@ import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/ui/renderer/game_renderer.dart';
 
 mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
-  Image getTerrainImage(final String fileName) =>
-      game.resourcesLoader.getTile(fileName);
   Map<String, AnimationEntryModel> get animations =>
       game.resourcesLoader.animations;
 
@@ -34,7 +32,7 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
       _getAssetsFolderPath(Assets.images.terrain.land.a);
 
   String get terrainWaterPath =>
-      _getAssetsFolderPath(Assets.images.terrain.water.x);
+      _getAssetsFolderPath(Assets.images.terrain.water.);
 
   String get cursorHandlePath =>
       fixAssetsPath(Assets.images.cursors.handle.path);
@@ -103,7 +101,7 @@ class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
       _loadAssets(Assets.images.terrain.land.values);
 
   Future<void> _loadWaterTiles() async =>
-      _loadAssets(Assets.images.terrain.water.values);
+      _loadAssets(Assets.images.terrain.water.abcdefgh.values+ Assets.images.terrain.water.cdefg.values );
 
   Future<void> _loadCursorTiles() async =>
       _loadAssets(Assets.images.cursors.values);

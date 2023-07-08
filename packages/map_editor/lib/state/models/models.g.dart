@@ -147,6 +147,10 @@ _$_RenderCanvasTileModel _$$_RenderCanvasTileModelFromJson(
       hasTerrain: json['hasTerrain'] as bool? ?? false,
       hasWater: json['hasWater'] as bool? ?? false,
       isWaterTop: json['isWaterTop'] as bool? ?? false,
+      objects: (json['objects'] as List<dynamic>?)
+              ?.map((e) => Gid.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$_RenderCanvasTileModelToJson(
@@ -156,4 +160,5 @@ Map<String, dynamic> _$$_RenderCanvasTileModelToJson(
       'hasTerrain': instance.hasTerrain,
       'hasWater': instance.hasWater,
       'isWaterTop': instance.isWaterTop,
+      'objects': instance.objects,
     };

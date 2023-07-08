@@ -37,9 +37,8 @@ class MapEditorCubit extends Cubit<MapEditorBlocState> {
 
     /// Export game objects
 
-    for (final gameObjectEntry in state.gameObjects.entries) {
-      final gid = gameObjectEntry.key;
-      final gameObject = gameObjectEntry.value;
+    for (final MapEntry(key: gid, value: gameObject)
+        in state.gameObjects.entries) {
       gameObjects[gid] = RenderCanvasObjectModel(
         id: gameObject.id,
         tileId: gameObject.tileId,
@@ -47,12 +46,26 @@ class MapEditorCubit extends Cubit<MapEditorBlocState> {
         distanceToTileLeftTopCorner: gameObject.distanceToTileLeftTopCorner,
         position: gameObject.position,
       );
+
+      /// add objects to tiles
+      final originUtils = OriginVectorUtils.use(dto.drawerCubit.state.origin);
+
+      final maybeCellPoint = originUtils.getCurrentCellByGameObject(gameObject);
+      final cell = maybeCellPoint.toCellPoint();
+      final tile = tiles[cell];
+      if (tile == null) {
+        // create tile
+        tiles[cell] = RenderCanvasTileModel(
+          tileId: TileId.empty,
+          objects: [gameObject.id],
+        );
+      } else {
+        // update tile
+        tiles[cell] = tile.copyWith(
+          objects: tile.objects + [gameObject.id],
+        );
+      }
     }
-
-    /// add objects to tiles
-    final originUtils = OriginVectorUtils.use(dto.drawerCubit.state.origin);
-
-    // final currentCell = originUtils.getCurrentCellByObject();
 
     /// create a Grid
   }

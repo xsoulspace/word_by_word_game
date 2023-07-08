@@ -1023,103 +1023,6 @@ abstract class _CellPointModel extends CellPointModel {
       throw _privateConstructorUsedError;
 }
 
-/// @nodoc
-mixin _$TileId {
-  String get value => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $TileIdCopyWith<TileId> get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TileIdCopyWith<$Res> {
-  factory $TileIdCopyWith(TileId value, $Res Function(TileId) then) =
-      _$TileIdCopyWithImpl<$Res, TileId>;
-  @useResult
-  $Res call({String value});
-}
-
-/// @nodoc
-class _$TileIdCopyWithImpl<$Res, $Val extends TileId>
-    implements $TileIdCopyWith<$Res> {
-  _$TileIdCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_TileIdCopyWith<$Res> implements $TileIdCopyWith<$Res> {
-  factory _$$_TileIdCopyWith(_$_TileId value, $Res Function(_$_TileId) then) =
-      __$$_TileIdCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String value});
-}
-
-/// @nodoc
-class __$$_TileIdCopyWithImpl<$Res>
-    extends _$TileIdCopyWithImpl<$Res, _$_TileId>
-    implements _$$_TileIdCopyWith<$Res> {
-  __$$_TileIdCopyWithImpl(_$_TileId _value, $Res Function(_$_TileId) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$_TileId(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_TileId extends _TileId {
-  const _$_TileId({required this.value}) : super._();
-
-  @override
-  final String value;
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_TileIdCopyWith<_$_TileId> get copyWith =>
-      __$$_TileIdCopyWithImpl<_$_TileId>(this, _$identity);
-}
-
-abstract class _TileId extends TileId {
-  const factory _TileId({required final String value}) = _$_TileId;
-  const _TileId._() : super._();
-
-  @override
-  String get value;
-  @override
-  @JsonKey(ignore: true)
-  _$$_TileIdCopyWith<_$_TileId> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 TileDataModel _$TileDataModelFromJson(Map<String, dynamic> json) {
   return _TileDataModel.fromJson(json);
 }
@@ -2403,6 +2306,9 @@ mixin _$RenderCanvasTileModel {
   bool get hasWater => throw _privateConstructorUsedError;
   bool get isWaterTop => throw _privateConstructorUsedError;
 
+  /// The [Gid] in common is [RenderCanvasObjectModel.id]
+  List<Gid> get objects => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RenderCanvasTileModelCopyWith<RenderCanvasTileModel> get copyWith =>
@@ -2415,7 +2321,12 @@ abstract class $RenderCanvasTileModelCopyWith<$Res> {
           $Res Function(RenderCanvasTileModel) then) =
       _$RenderCanvasTileModelCopyWithImpl<$Res, RenderCanvasTileModel>;
   @useResult
-  $Res call({TileId tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+  $Res call(
+      {TileId tileId,
+      bool hasTerrain,
+      bool hasWater,
+      bool isWaterTop,
+      List<Gid> objects});
 
   $TileIdCopyWith<$Res> get tileId;
 }
@@ -2438,6 +2349,7 @@ class _$RenderCanvasTileModelCopyWithImpl<$Res,
     Object? hasTerrain = null,
     Object? hasWater = null,
     Object? isWaterTop = null,
+    Object? objects = null,
   }) {
     return _then(_value.copyWith(
       tileId: null == tileId
@@ -2456,6 +2368,10 @@ class _$RenderCanvasTileModelCopyWithImpl<$Res,
           ? _value.isWaterTop
           : isWaterTop // ignore: cast_nullable_to_non_nullable
               as bool,
+      objects: null == objects
+          ? _value.objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as List<Gid>,
     ) as $Val);
   }
 
@@ -2476,7 +2392,12 @@ abstract class _$$_RenderCanvasTileModelCopyWith<$Res>
       __$$_RenderCanvasTileModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({TileId tileId, bool hasTerrain, bool hasWater, bool isWaterTop});
+  $Res call(
+      {TileId tileId,
+      bool hasTerrain,
+      bool hasWater,
+      bool isWaterTop,
+      List<Gid> objects});
 
   @override
   $TileIdCopyWith<$Res> get tileId;
@@ -2497,6 +2418,7 @@ class __$$_RenderCanvasTileModelCopyWithImpl<$Res>
     Object? hasTerrain = null,
     Object? hasWater = null,
     Object? isWaterTop = null,
+    Object? objects = null,
   }) {
     return _then(_$_RenderCanvasTileModel(
       tileId: null == tileId
@@ -2515,6 +2437,10 @@ class __$$_RenderCanvasTileModelCopyWithImpl<$Res>
           ? _value.isWaterTop
           : isWaterTop // ignore: cast_nullable_to_non_nullable
               as bool,
+      objects: null == objects
+          ? _value._objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as List<Gid>,
     ));
   }
 }
@@ -2526,8 +2452,10 @@ class _$_RenderCanvasTileModel extends _RenderCanvasTileModel {
       {required this.tileId,
       this.hasTerrain = false,
       this.hasWater = false,
-      this.isWaterTop = false})
-      : super._();
+      this.isWaterTop = false,
+      final List<Gid> objects = const []})
+      : _objects = objects,
+        super._();
 
   factory _$_RenderCanvasTileModel.fromJson(Map<String, dynamic> json) =>
       _$$_RenderCanvasTileModelFromJson(json);
@@ -2549,9 +2477,21 @@ class _$_RenderCanvasTileModel extends _RenderCanvasTileModel {
   @JsonKey()
   final bool isWaterTop;
 
+  /// The [Gid] in common is [RenderCanvasObjectModel.id]
+  final List<Gid> _objects;
+
+  /// The [Gid] in common is [RenderCanvasObjectModel.id]
+  @override
+  @JsonKey()
+  List<Gid> get objects {
+    if (_objects is EqualUnmodifiableListView) return _objects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_objects);
+  }
+
   @override
   String toString() {
-    return 'RenderCanvasTileModel(tileId: $tileId, hasTerrain: $hasTerrain, hasWater: $hasWater, isWaterTop: $isWaterTop)';
+    return 'RenderCanvasTileModel(tileId: $tileId, hasTerrain: $hasTerrain, hasWater: $hasWater, isWaterTop: $isWaterTop, objects: $objects)';
   }
 
   @override
@@ -2565,13 +2505,14 @@ class _$_RenderCanvasTileModel extends _RenderCanvasTileModel {
             (identical(other.hasWater, hasWater) ||
                 other.hasWater == hasWater) &&
             (identical(other.isWaterTop, isWaterTop) ||
-                other.isWaterTop == isWaterTop));
+                other.isWaterTop == isWaterTop) &&
+            const DeepCollectionEquality().equals(other._objects, _objects));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, tileId, hasTerrain, hasWater, isWaterTop);
+  int get hashCode => Object.hash(runtimeType, tileId, hasTerrain, hasWater,
+      isWaterTop, const DeepCollectionEquality().hash(_objects));
 
   @JsonKey(ignore: true)
   @override
@@ -2593,7 +2534,8 @@ abstract class _RenderCanvasTileModel extends RenderCanvasTileModel {
       {required final TileId tileId,
       final bool hasTerrain,
       final bool hasWater,
-      final bool isWaterTop}) = _$_RenderCanvasTileModel;
+      final bool isWaterTop,
+      final List<Gid> objects}) = _$_RenderCanvasTileModel;
   const _RenderCanvasTileModel._() : super._();
 
   factory _RenderCanvasTileModel.fromJson(Map<String, dynamic> json) =
@@ -2613,6 +2555,10 @@ abstract class _RenderCanvasTileModel extends RenderCanvasTileModel {
   bool get hasWater;
   @override
   bool get isWaterTop;
+  @override
+
+  /// The [Gid] in common is [RenderCanvasObjectModel.id]
+  List<Gid> get objects;
   @override
   @JsonKey(ignore: true)
   _$$_RenderCanvasTileModelCopyWith<_$_RenderCanvasTileModel> get copyWith =>
