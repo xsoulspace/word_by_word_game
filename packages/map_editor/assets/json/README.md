@@ -1,3 +1,7 @@
+## Important
+
+All images should be placed in assets/images folder
+
 ## Graphics property
 
 - path - is set of paths to static files

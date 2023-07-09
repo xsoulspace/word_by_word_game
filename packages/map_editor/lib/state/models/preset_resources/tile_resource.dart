@@ -18,21 +18,21 @@ class PresetTileResource with _$PresetTileResource {
   const PresetTileResource._();
   static Future<PresetTileResource> fromTile({
     required final PresetTileModel tile,
-    required final Map<String, dynamic> manifestMap,
+    required final ResourcesLoader resourcesLoader,
   }) async {
-    final behaviourAnimations = <TileBehaviourType, AnimationEntryModel>{};
-    for (final behaviour in tile.graphics.behaviours) {
-      behaviourAnimations[behaviour] = AnimationEntryModel(
-        
-      );
-    }
-
-    final directionalAnimations = {};
+    final behaviourPaths = resourcesLoader.getPathsForPresetCharacterGraphics(
+      tileGraphics: tile.graphics,
+    );
+    final directionalPaths =
+        resourcesLoader.getPathsForPresetDirectionalGraphics(
+      tileGraphics: tile.graphics,
+    );
     return PresetTileResource(
-        tile: tile,
-        behaviourAnimations: ,
-        directionalAnimations: ,
-      );
+      tile: tile,
+      behaviourPaths: behaviourPaths,
+      directionalPaths: directionalPaths,
+    );
   }
+
   TileId get id => tile.id;
 }

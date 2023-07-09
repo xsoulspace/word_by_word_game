@@ -6,11 +6,11 @@
       "category": "terrain",
       "properties": {
         "title": "Tropical Land",
-        "thumbnail_path": "assets/images/preview/land.png"
+        "thumbnail_path": "preview/land.png"
       },
       "graphics": {
         "type": "directional",
-        "path": "assets/images/terrain/land",
+        "path": "terrain/land",
         "animated": false
       }
     },
@@ -20,11 +20,11 @@
       "category": "water",
       "properties": {
         "title": "Tropical Water",
-        "thumbnail_path": "assets/images/preview/water.png"
+        "thumbnail_path": "preview/water.png"
       },
       "graphics": {
         "type": "directional",
-        "path": "assets/images/terrain/water",
+        "path": "terrain/water",
         "neighbors_associative_map": {
           "CDEFG": {
             "use_when_not_filled": ["A", "B", "H"]
@@ -44,11 +44,11 @@
       "type": "object",
       "properties": {
         "title": "Foreground Palm Small",
-        "thumbnail_path": "assets/images/preview/small_fg.png"
+        "thumbnail_path": "preview/small_fg.png"
       },
       "graphics": {
         "type": "character",
-        "path": "assets/images/terrain/palm/small_fg",
+        "path": "terrain/palm/small_fg",
         "behaviours": ["idle"],
         "animated": true
       }
@@ -59,11 +59,11 @@
       "type": "object",
       "properties": {
         "title": "Foreground Palm Large",
-        "thumbnail_path": "assets/images/preview/large_bg.png"
+        "thumbnail_path": "preview/large_bg.png"
       },
       "graphics": {
         "type": "character",
-        "path": "assets/images/terrain/palm/large_bg",
+        "path": "terrain/palm/large_bg",
         "behaviours": ["idle"],
         "animated": true
       }
@@ -82,7 +82,7 @@
       },
       "graphics": {
         "type": "character",
-        "path": "assets/images/player",
+        "path": "player",
         "behaviours": ["idle_left", "idle_right", "fly_left", "fly_right"],
         "animated": true
       }
