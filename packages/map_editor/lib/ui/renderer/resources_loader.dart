@@ -13,11 +13,57 @@ mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
   Map<String, AnimationEntryModel> get animations =>
       game.resourcesLoader.animations;
 
-  /// Make sure you have cleared the path by [ResourcesLoader.fixAssetsPath]
+  /// Make sure you have cleared the path by 
+  /// [ResourcesComponent.fixAssetsPath]
   Image getImage(final String path) => game.images.fromCache(path);
 }
 
-class ResourcesLoader extends Component with HasGameRef<GameRenderer> {
+class ResourcesLoader{
+  ResourcesLoader();
+  Map<String, dynamic> _manifestMap ={};
+  /// List of all asset files like:
+  /// 'assets/images/clouds/Small Cloud 1.png'
+  ///
+  /// Always starts with assets keyword.
+  Map<String, dynamic> get manifestMap => _manifestMap;
+  bool _isLoaded = false;
+  bool get isLoaded => _isLoaded;
+
+  Future<void> onLoad() async {
+    if(_isLoaded) return;
+    _isLoaded = true;
+    await _loadImagesManifest() ;
+  }
+  Future<void> _loadImagesManifest() async {
+    final manifestContent = await rootBundle.loadString('AssetManifest.json');
+    _manifestMap = jsonDecode(manifestContent);
+  }
+
+  List<String> getPathsForPresetStaticGraphics({
+    required final PresetTileGraphicsModel tileGraphics,
+  }){
+    assert(!tileGraphics.animated,'');
+    
+  }
+  List<String> getPathsForPresetAnimatedGraphics({
+    required final PresetTileGraphicsModel tileGraphics,
+  }){
+    assert(tileGraphics.animated,'');
+    switch (tileGraphics.type) {
+      case TileGraphicsType.character:
+        final d = tileGraphics.behaviours;
+      case TileGraphicsType.directional:
+        
+        break;
+    }
+
+  }
+
+  static String _fixAssetsPath(final String path) => 
+    path.replaceAll('assets/images/', '');
+}
+
+class ResourcesComponent extends Component with HasGameRef<GameRenderer> {
   static String fixAssetsPath(final String path) =>
       path.replaceAll('assets/images/', '');
   static String _getAssetsFolderPath(final AssetGenImage assetGenImage) {

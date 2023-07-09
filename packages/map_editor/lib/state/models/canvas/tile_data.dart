@@ -11,13 +11,14 @@ class TileDataModel with _$TileDataModel {
     @JsonKey(name: 'menu_surf') @Default('') final String menuSurface,
     @Default('') final String preview,
     @Default('') final String graphics,
-    @Default(GameObjectType.tile) final GameObjectType type,
+    @Default(TileType.autotile) final TileType type,
   }) = _TileDataModel;
   factory TileDataModel.fromJson(final Map<String, dynamic> json) =>
       _$TileDataModelFromJson(json);
 }
 
-/// Key is stringified int index
+/// Key is stringified int index, i.e. in new scheme
+/// it is a [TileId]
 typedef TileDataModelMap = Map<String, TileDataModel>;
 
 enum TileStyle {
@@ -33,11 +34,6 @@ enum TileStyle {
   palmForeground,
   @JsonValue('palm_bg')
   palmBackground,
-}
-
-enum GameObjectType {
-  object,
-  tile,
 }
 
 enum TileNeighbourDirection { a, b, c, d, e, f, g, h }

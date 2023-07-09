@@ -63,7 +63,7 @@ class GameRenderer extends FlameGame
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final editor = EditorRenderer();
-  final resourcesLoader = ResourcesLoader();
+  final resourcesLoader = ResourcesComponent();
 
   @override
   Future<void> onLoad() async {
