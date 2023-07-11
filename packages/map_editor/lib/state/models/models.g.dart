@@ -31,8 +31,8 @@ _$_TileDataModel _$$_TileDataModelFromJson(Map<String, dynamic> json) =>
       menuSurface: json['menu_surf'] as String? ?? '',
       preview: json['preview'] as String? ?? '',
       graphics: json['graphics'] as String? ?? '',
-      type: $enumDecodeNullable(_$GameObjectTypeEnumMap, json['type']) ??
-          GameObjectType.tile,
+      type: $enumDecodeNullable(_$TileTypeEnumMap, json['type']) ??
+          TileType.autotile,
     );
 
 Map<String, dynamic> _$$_TileDataModelToJson(_$_TileDataModel instance) =>
@@ -42,7 +42,7 @@ Map<String, dynamic> _$$_TileDataModelToJson(_$_TileDataModel instance) =>
       'menu_surf': instance.menuSurface,
       'preview': instance.preview,
       'graphics': instance.graphics,
-      'type': _$GameObjectTypeEnumMap[instance.type]!,
+      'type': _$TileTypeEnumMap[instance.type]!,
     };
 
 const _$TileStyleEnumMap = {
@@ -57,9 +57,9 @@ const _$TileStyleEnumMap = {
   TileStyle.palmBackground: 'palm_bg',
 };
 
-const _$GameObjectTypeEnumMap = {
-  GameObjectType.object: 'object',
-  GameObjectType.tile: 'tile',
+const _$TileTypeEnumMap = {
+  TileType.autotile: 'autotile',
+  TileType.object: 'object',
 };
 
 _$_EditorGameObjectModel _$$_EditorGameObjectModelFromJson(

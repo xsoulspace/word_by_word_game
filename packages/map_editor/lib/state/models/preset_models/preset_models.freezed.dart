@@ -1038,3 +1038,515 @@ abstract class _NeighborsAssociationModel extends NeighborsAssociationModel {
   _$$_NeighborsAssociationModelCopyWith<_$_NeighborsAssociationModel>
       get copyWith => throw _privateConstructorUsedError;
 }
+
+TilesPresetDataModel _$TilesPresetDataModelFromJson(Map<String, dynamic> json) {
+  return _TilesPresetDataModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TilesPresetDataModel {
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get tiles => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get objects =>
+      throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get npcs => throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get players =>
+      throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TilesPresetDataModelCopyWith<TilesPresetDataModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TilesPresetDataModelCopyWith<$Res> {
+  factory $TilesPresetDataModelCopyWith(TilesPresetDataModel value,
+          $Res Function(TilesPresetDataModel) then) =
+      _$TilesPresetDataModelCopyWithImpl<$Res, TilesPresetDataModel>;
+  @useResult
+  $Res call(
+      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> tiles,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> objects,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> npcs,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> players});
+}
+
+/// @nodoc
+class _$TilesPresetDataModelCopyWithImpl<$Res,
+        $Val extends TilesPresetDataModel>
+    implements $TilesPresetDataModelCopyWith<$Res> {
+  _$TilesPresetDataModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tiles = null,
+    Object? objects = null,
+    Object? npcs = null,
+    Object? players = null,
+  }) {
+    return _then(_value.copyWith(
+      tiles: null == tiles
+          ? _value.tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+      objects: null == objects
+          ? _value.objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+      npcs: null == npcs
+          ? _value.npcs
+          : npcs // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+      players: null == players
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TilesPresetDataModelCopyWith<$Res>
+    implements $TilesPresetDataModelCopyWith<$Res> {
+  factory _$$_TilesPresetDataModelCopyWith(_$_TilesPresetDataModel value,
+          $Res Function(_$_TilesPresetDataModel) then) =
+      __$$_TilesPresetDataModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> tiles,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> objects,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> npcs,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> players});
+}
+
+/// @nodoc
+class __$$_TilesPresetDataModelCopyWithImpl<$Res>
+    extends _$TilesPresetDataModelCopyWithImpl<$Res, _$_TilesPresetDataModel>
+    implements _$$_TilesPresetDataModelCopyWith<$Res> {
+  __$$_TilesPresetDataModelCopyWithImpl(_$_TilesPresetDataModel _value,
+      $Res Function(_$_TilesPresetDataModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tiles = null,
+    Object? objects = null,
+    Object? npcs = null,
+    Object? players = null,
+  }) {
+    return _then(_$_TilesPresetDataModel(
+      tiles: null == tiles
+          ? _value._tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+      objects: null == objects
+          ? _value._objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+      npcs: null == npcs
+          ? _value._npcs
+          : npcs // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+      players: null == players
+          ? _value._players
+          : players // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(fieldRename: FieldRename.snake)
+class _$_TilesPresetDataModel implements _TilesPresetDataModel {
+  const _$_TilesPresetDataModel(
+      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> tiles = const {},
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> objects = const {},
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> npcs = const {},
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> players = const {}})
+      : _tiles = tiles,
+        _objects = objects,
+        _npcs = npcs,
+        _players = players;
+
+  factory _$_TilesPresetDataModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TilesPresetDataModelFromJson(json);
+
+  final Map<TileId, PresetTileModel> _tiles;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get tiles {
+    if (_tiles is EqualUnmodifiableMapView) return _tiles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_tiles);
+  }
+
+  final Map<TileId, PresetTileModel> _objects;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get objects {
+    if (_objects is EqualUnmodifiableMapView) return _objects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_objects);
+  }
+
+  final Map<TileId, PresetTileModel> _npcs;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get npcs {
+    if (_npcs is EqualUnmodifiableMapView) return _npcs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_npcs);
+  }
+
+  final Map<TileId, PresetTileModel> _players;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get players {
+    if (_players is EqualUnmodifiableMapView) return _players;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_players);
+  }
+
+  @override
+  String toString() {
+    return 'TilesPresetDataModel(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TilesPresetDataModel &&
+            const DeepCollectionEquality().equals(other._tiles, _tiles) &&
+            const DeepCollectionEquality().equals(other._objects, _objects) &&
+            const DeepCollectionEquality().equals(other._npcs, _npcs) &&
+            const DeepCollectionEquality().equals(other._players, _players));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tiles),
+      const DeepCollectionEquality().hash(_objects),
+      const DeepCollectionEquality().hash(_npcs),
+      const DeepCollectionEquality().hash(_players));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TilesPresetDataModelCopyWith<_$_TilesPresetDataModel> get copyWith =>
+      __$$_TilesPresetDataModelCopyWithImpl<_$_TilesPresetDataModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TilesPresetDataModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TilesPresetDataModel implements TilesPresetDataModel {
+  const factory _TilesPresetDataModel(
+      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> tiles,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> objects,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> npcs,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> players}) = _$_TilesPresetDataModel;
+
+  factory _TilesPresetDataModel.fromJson(Map<String, dynamic> json) =
+      _$_TilesPresetDataModel.fromJson;
+
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get tiles;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get objects;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get npcs;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get players;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TilesPresetDataModelCopyWith<_$_TilesPresetDataModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+mixin _$TilesPresetResources {
+  Map<TileId, PresetTileResource> get tiles =>
+      throw _privateConstructorUsedError;
+  Map<TileId, PresetTileResource> get objects =>
+      throw _privateConstructorUsedError;
+  Map<TileId, PresetTileResource> get npcs =>
+      throw _privateConstructorUsedError;
+  Map<TileId, PresetTileResource> get players =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $TilesPresetResourcesCopyWith<TilesPresetResources> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TilesPresetResourcesCopyWith<$Res> {
+  factory $TilesPresetResourcesCopyWith(TilesPresetResources value,
+          $Res Function(TilesPresetResources) then) =
+      _$TilesPresetResourcesCopyWithImpl<$Res, TilesPresetResources>;
+  @useResult
+  $Res call(
+      {Map<TileId, PresetTileResource> tiles,
+      Map<TileId, PresetTileResource> objects,
+      Map<TileId, PresetTileResource> npcs,
+      Map<TileId, PresetTileResource> players});
+}
+
+/// @nodoc
+class _$TilesPresetResourcesCopyWithImpl<$Res,
+        $Val extends TilesPresetResources>
+    implements $TilesPresetResourcesCopyWith<$Res> {
+  _$TilesPresetResourcesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tiles = null,
+    Object? objects = null,
+    Object? npcs = null,
+    Object? players = null,
+  }) {
+    return _then(_value.copyWith(
+      tiles: null == tiles
+          ? _value.tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+      objects: null == objects
+          ? _value.objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+      npcs: null == npcs
+          ? _value.npcs
+          : npcs // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+      players: null == players
+          ? _value.players
+          : players // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TilesPresetResourcesCopyWith<$Res>
+    implements $TilesPresetResourcesCopyWith<$Res> {
+  factory _$$_TilesPresetResourcesCopyWith(_$_TilesPresetResources value,
+          $Res Function(_$_TilesPresetResources) then) =
+      __$$_TilesPresetResourcesCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call(
+      {Map<TileId, PresetTileResource> tiles,
+      Map<TileId, PresetTileResource> objects,
+      Map<TileId, PresetTileResource> npcs,
+      Map<TileId, PresetTileResource> players});
+}
+
+/// @nodoc
+class __$$_TilesPresetResourcesCopyWithImpl<$Res>
+    extends _$TilesPresetResourcesCopyWithImpl<$Res, _$_TilesPresetResources>
+    implements _$$_TilesPresetResourcesCopyWith<$Res> {
+  __$$_TilesPresetResourcesCopyWithImpl(_$_TilesPresetResources _value,
+      $Res Function(_$_TilesPresetResources) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? tiles = null,
+    Object? objects = null,
+    Object? npcs = null,
+    Object? players = null,
+  }) {
+    return _then(_$_TilesPresetResources(
+      tiles: null == tiles
+          ? _value._tiles
+          : tiles // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+      objects: null == objects
+          ? _value._objects
+          : objects // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+      npcs: null == npcs
+          ? _value._npcs
+          : npcs // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+      players: null == players
+          ? _value._players
+          : players // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_TilesPresetResources implements _TilesPresetResources {
+  const _$_TilesPresetResources(
+      {final Map<TileId, PresetTileResource> tiles = const {},
+      final Map<TileId, PresetTileResource> objects = const {},
+      final Map<TileId, PresetTileResource> npcs = const {},
+      final Map<TileId, PresetTileResource> players = const {}})
+      : _tiles = tiles,
+        _objects = objects,
+        _npcs = npcs,
+        _players = players;
+
+  final Map<TileId, PresetTileResource> _tiles;
+  @override
+  @JsonKey()
+  Map<TileId, PresetTileResource> get tiles {
+    if (_tiles is EqualUnmodifiableMapView) return _tiles;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_tiles);
+  }
+
+  final Map<TileId, PresetTileResource> _objects;
+  @override
+  @JsonKey()
+  Map<TileId, PresetTileResource> get objects {
+    if (_objects is EqualUnmodifiableMapView) return _objects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_objects);
+  }
+
+  final Map<TileId, PresetTileResource> _npcs;
+  @override
+  @JsonKey()
+  Map<TileId, PresetTileResource> get npcs {
+    if (_npcs is EqualUnmodifiableMapView) return _npcs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_npcs);
+  }
+
+  final Map<TileId, PresetTileResource> _players;
+  @override
+  @JsonKey()
+  Map<TileId, PresetTileResource> get players {
+    if (_players is EqualUnmodifiableMapView) return _players;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_players);
+  }
+
+  @override
+  String toString() {
+    return 'TilesPresetResources(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TilesPresetResources &&
+            const DeepCollectionEquality().equals(other._tiles, _tiles) &&
+            const DeepCollectionEquality().equals(other._objects, _objects) &&
+            const DeepCollectionEquality().equals(other._npcs, _npcs) &&
+            const DeepCollectionEquality().equals(other._players, _players));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_tiles),
+      const DeepCollectionEquality().hash(_objects),
+      const DeepCollectionEquality().hash(_npcs),
+      const DeepCollectionEquality().hash(_players));
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TilesPresetResourcesCopyWith<_$_TilesPresetResources> get copyWith =>
+      __$$_TilesPresetResourcesCopyWithImpl<_$_TilesPresetResources>(
+          this, _$identity);
+}
+
+abstract class _TilesPresetResources implements TilesPresetResources {
+  const factory _TilesPresetResources(
+      {final Map<TileId, PresetTileResource> tiles,
+      final Map<TileId, PresetTileResource> objects,
+      final Map<TileId, PresetTileResource> npcs,
+      final Map<TileId, PresetTileResource> players}) = _$_TilesPresetResources;
+
+  @override
+  Map<TileId, PresetTileResource> get tiles;
+  @override
+  Map<TileId, PresetTileResource> get objects;
+  @override
+  Map<TileId, PresetTileResource> get npcs;
+  @override
+  Map<TileId, PresetTileResource> get players;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TilesPresetResourcesCopyWith<_$_TilesPresetResources> get copyWith =>
+      throw _privateConstructorUsedError;
+}

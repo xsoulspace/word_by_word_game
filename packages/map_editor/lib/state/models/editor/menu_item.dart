@@ -4,6 +4,6 @@ part of '../models.dart';
 class TileMenuItem with _$TileMenuItem {
   const factory TileMenuItem({
     required final int index,
-    required final TileDataModel data,
+    required final PresetTileResource data,
   }) = _TileMenuItem;
 }

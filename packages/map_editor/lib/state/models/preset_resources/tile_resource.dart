@@ -16,10 +16,10 @@ class PresetTileResource with _$PresetTileResource {
     final Map<NeighbourTileTitle, AnimationEntryModel> directionalPaths,
   }) = _PresetTileResource;
   const PresetTileResource._();
-  static Future<PresetTileResource> fromTile({
+  factory PresetTileResource.fromTile({
     required final PresetTileModel tile,
     required final ResourcesLoader resourcesLoader,
-  }) async {
+  }) {
     final behaviourPaths = resourcesLoader.getPathsForPresetCharacterGraphics(
       tileGraphics: tile.graphics,
     );
@@ -33,6 +33,16 @@ class PresetTileResource with _$PresetTileResource {
       directionalPaths: directionalPaths,
     );
   }
+
+  Future<void> loadToCache({required final Images images}) async =>
+      Future.wait([
+        images.loadAll(
+          behaviourPaths.values.expand((final e) => e.framesPaths).toList(),
+        ),
+        images.loadAll(
+          directionalPaths.values.expand((final e) => e.framesPaths).toList(),
+        ),
+      ]);
 
   TileId get id => tile.id;
 }

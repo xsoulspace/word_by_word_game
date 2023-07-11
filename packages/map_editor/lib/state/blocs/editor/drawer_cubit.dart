@@ -4,6 +4,7 @@ const int kMinSelectionIndex = 2;
 int get kMaxSelectionIndex => 18;
 
 class DrawerCubitDto {
+  // ignore: avoid_unused_constructor_parameters
   DrawerCubitDto.use(final Locator read);
 }
 
@@ -13,48 +14,40 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   })  : dto = DrawerCubitDto.use(read),
         super(DrawerCubitState.empty);
   final DrawerCubitDto dto;
-  int get selectionIndex => state.selectionIndex;
-  set selectionIndex(final int value) {
-    final resultValue = math.max(
-      kMinSelectionIndex,
-      math.min(kMaxSelectionIndex, value),
-    );
-    emit(state.copyWith(selectionIndex: resultValue));
-  }
+  PresetTileResource? get selectedTile => state.selectedTile;
 
+  final ResourcesLoader resourcesLoader = ResourcesLoader();
   void changeOrigin(final Vector2 value) => emit(state.copyWith(origin: value));
 
   void changeState(final DrawerCubitState newState) => emit(newState);
 
-  Future<void> load() async {
-    final jsonStr = await rootBundle.loadString(Assets.json.tilesSettingsData);
+  /// This function should be triggered before game is started to renderc
+  Future<void> loadInitialData() async {
+    final jsonStr = await rootBundle.loadString(Assets.json.tilesPresetData);
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
-    final tileData = json.map(
-      (final key, final value) => MapEntry(key, TileDataModel.fromJson(value)),
+    final tileData = TilesPresetDataModel.fromJson(json);
+    final tileResources = TilesPresetResources.fromModel(
+      data: tileData,
+      resourcesLoader: resourcesLoader,
     );
-    emit(DrawerCubitState.empty.copyWith(tileData: tileData));
+    emit(DrawerCubitState.empty.copyWith(tileData: tileResources));
   }
 
-  TileDataModelMap get tilesData => state.tileData;
-
-  Map<TileStyle, List<TileMenuItem>> get menuTiles {
-    final tiles = <TileStyle, List<TileMenuItem>>{};
-    for (var i = 0; i < tilesData.values.length; i++) {
-      final tileData = tilesData['$i']!;
-      final menuTitle = tileData.menu;
-      if (menuTitle == null) continue;
-      final item = TileMenuItem(data: tileData, index: i);
-      tiles.update(
-        menuTitle,
-        (final value) => [...value, item],
-        ifAbsent: () => [item],
-      );
-    }
-
-    return tiles;
+  /// This function should be triggered when game.onLoad happening
+  Future<void> loadCache({
+    required final Images images,
+  }) async {
+    Future<void> load(final PresetTileResource resource) =>
+        resource.loadToCache(images: images);
+    await Future.wait([
+      ...state.tileData.tiles.values.map(load),
+      ...state.tileData.objects.values.map(load),
+      ...state.tileData.npcs.values.map(load),
+      ...state.tileData.players.values.map(load),
+    ]);
   }
 
-  TileDataModel get selectionData => tilesData['$selectionIndex']!;
+  TilesPresetResources get tilesData => state.tileData;
 
   Map<CellPointModel, CanvasTileModel> get canvasData => state.canvasData;
 
@@ -66,4 +59,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   void onChangeIsDeleteSelection(final bool isDeleteSelection) {
     emit(state.copyWith(isDeleteSelection: isDeleteSelection));
   }
+
+  List<PresetTileResource> get objectsMenuTiles =>
+      tilesData.objects.values.toList();
 }

@@ -18,12 +18,12 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DrawerCubitState {
   /// Real origin for all elements
   Vector2 get origin => throw _privateConstructorUsedError;
-  int get selectionIndex => throw _privateConstructorUsedError;
+  PresetTileResource? get selectedTile => throw _privateConstructorUsedError;
   bool get isDeleteSelection => throw _privateConstructorUsedError;
   bool get isDeleteSelectionCompletely => throw _privateConstructorUsedError;
   Map<CellPointModel, CanvasTileModel> get canvasData =>
       throw _privateConstructorUsedError;
-  Map<String, TileDataModel> get tileData => throw _privateConstructorUsedError;
+  TilesPresetResources get tileData => throw _privateConstructorUsedError;
 
   /// can be negative and positive
   /// !maybe need to remove this
@@ -45,13 +45,16 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Vector2 origin,
-      int selectionIndex,
+      PresetTileResource? selectedTile,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       Map<CellPointModel, CanvasTileModel> canvasData,
-      Map<String, TileDataModel> tileData,
+      TilesPresetResources tileData,
       double gravityYPosition,
       double skyYPosition});
+
+  $PresetTileResourceCopyWith<$Res>? get selectedTile;
+  $TilesPresetResourcesCopyWith<$Res> get tileData;
 }
 
 /// @nodoc
@@ -68,7 +71,7 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
   @override
   $Res call({
     Object? origin = null,
-    Object? selectionIndex = null,
+    Object? selectedTile = freezed,
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
@@ -81,10 +84,10 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as Vector2,
-      selectionIndex: null == selectionIndex
-          ? _value.selectionIndex
-          : selectionIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      selectedTile: freezed == selectedTile
+          ? _value.selectedTile
+          : selectedTile // ignore: cast_nullable_to_non_nullable
+              as PresetTileResource?,
       isDeleteSelection: null == isDeleteSelection
           ? _value.isDeleteSelection
           : isDeleteSelection // ignore: cast_nullable_to_non_nullable
@@ -100,7 +103,7 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
       tileData: null == tileData
           ? _value.tileData
           : tileData // ignore: cast_nullable_to_non_nullable
-              as Map<String, TileDataModel>,
+              as TilesPresetResources,
       gravityYPosition: null == gravityYPosition
           ? _value.gravityYPosition
           : gravityYPosition // ignore: cast_nullable_to_non_nullable
@@ -110,6 +113,26 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           : skyYPosition // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $PresetTileResourceCopyWith<$Res>? get selectedTile {
+    if (_value.selectedTile == null) {
+      return null;
+    }
+
+    return $PresetTileResourceCopyWith<$Res>(_value.selectedTile!, (value) {
+      return _then(_value.copyWith(selectedTile: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TilesPresetResourcesCopyWith<$Res> get tileData {
+    return $TilesPresetResourcesCopyWith<$Res>(_value.tileData, (value) {
+      return _then(_value.copyWith(tileData: value) as $Val);
+    });
   }
 }
 
@@ -123,13 +146,18 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
   @useResult
   $Res call(
       {Vector2 origin,
-      int selectionIndex,
+      PresetTileResource? selectedTile,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       Map<CellPointModel, CanvasTileModel> canvasData,
-      Map<String, TileDataModel> tileData,
+      TilesPresetResources tileData,
       double gravityYPosition,
       double skyYPosition});
+
+  @override
+  $PresetTileResourceCopyWith<$Res>? get selectedTile;
+  @override
+  $TilesPresetResourcesCopyWith<$Res> get tileData;
 }
 
 /// @nodoc
@@ -144,7 +172,7 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? origin = null,
-    Object? selectionIndex = null,
+    Object? selectedTile = freezed,
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
@@ -157,10 +185,10 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as Vector2,
-      selectionIndex: null == selectionIndex
-          ? _value.selectionIndex
-          : selectionIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      selectedTile: freezed == selectedTile
+          ? _value.selectedTile
+          : selectedTile // ignore: cast_nullable_to_non_nullable
+              as PresetTileResource?,
       isDeleteSelection: null == isDeleteSelection
           ? _value.isDeleteSelection
           : isDeleteSelection // ignore: cast_nullable_to_non_nullable
@@ -174,9 +202,9 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           : canvasData // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CanvasTileModel>,
       tileData: null == tileData
-          ? _value._tileData
+          ? _value.tileData
           : tileData // ignore: cast_nullable_to_non_nullable
-              as Map<String, TileDataModel>,
+              as TilesPresetResources,
       gravityYPosition: null == gravityYPosition
           ? _value.gravityYPosition
           : gravityYPosition // ignore: cast_nullable_to_non_nullable
@@ -194,23 +222,21 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
 class _$_DrawerCubitState extends _DrawerCubitState {
   const _$_DrawerCubitState(
       {required this.origin,
-      this.selectionIndex = kMinSelectionIndex,
+      this.selectedTile,
       this.isDeleteSelection = false,
       this.isDeleteSelectionCompletely = false,
       final Map<CellPointModel, CanvasTileModel> canvasData = const {},
-      final Map<String, TileDataModel> tileData = const {},
+      this.tileData = TilesPresetResources.empty,
       this.gravityYPosition = 0,
       this.skyYPosition = 0})
       : _canvasData = canvasData,
-        _tileData = tileData,
         super._();
 
   /// Real origin for all elements
   @override
   final Vector2 origin;
   @override
-  @JsonKey()
-  final int selectionIndex;
+  final PresetTileResource? selectedTile;
   @override
   @JsonKey()
   final bool isDeleteSelection;
@@ -226,14 +252,9 @@ class _$_DrawerCubitState extends _DrawerCubitState {
     return EqualUnmodifiableMapView(_canvasData);
   }
 
-  final Map<String, TileDataModel> _tileData;
   @override
   @JsonKey()
-  Map<String, TileDataModel> get tileData {
-    if (_tileData is EqualUnmodifiableMapView) return _tileData;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_tileData);
-  }
+  final TilesPresetResources tileData;
 
   /// can be negative and positive
   /// !maybe need to remove this
@@ -248,7 +269,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
 
   @override
   String toString() {
-    return 'DrawerCubitState(origin: $origin, selectionIndex: $selectionIndex, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, tileData: $tileData, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
+    return 'DrawerCubitState(origin: $origin, selectedTile: $selectedTile, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, tileData: $tileData, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
   }
 
   @override
@@ -257,8 +278,8 @@ class _$_DrawerCubitState extends _DrawerCubitState {
         (other.runtimeType == runtimeType &&
             other is _$_DrawerCubitState &&
             (identical(other.origin, origin) || other.origin == origin) &&
-            (identical(other.selectionIndex, selectionIndex) ||
-                other.selectionIndex == selectionIndex) &&
+            (identical(other.selectedTile, selectedTile) ||
+                other.selectedTile == selectedTile) &&
             (identical(other.isDeleteSelection, isDeleteSelection) ||
                 other.isDeleteSelection == isDeleteSelection) &&
             (identical(other.isDeleteSelectionCompletely,
@@ -267,7 +288,8 @@ class _$_DrawerCubitState extends _DrawerCubitState {
                     isDeleteSelectionCompletely) &&
             const DeepCollectionEquality()
                 .equals(other._canvasData, _canvasData) &&
-            const DeepCollectionEquality().equals(other._tileData, _tileData) &&
+            (identical(other.tileData, tileData) ||
+                other.tileData == tileData) &&
             (identical(other.gravityYPosition, gravityYPosition) ||
                 other.gravityYPosition == gravityYPosition) &&
             (identical(other.skyYPosition, skyYPosition) ||
@@ -278,11 +300,11 @@ class _$_DrawerCubitState extends _DrawerCubitState {
   int get hashCode => Object.hash(
       runtimeType,
       origin,
-      selectionIndex,
+      selectedTile,
       isDeleteSelection,
       isDeleteSelectionCompletely,
       const DeepCollectionEquality().hash(_canvasData),
-      const DeepCollectionEquality().hash(_tileData),
+      tileData,
       gravityYPosition,
       skyYPosition);
 
@@ -296,11 +318,11 @@ class _$_DrawerCubitState extends _DrawerCubitState {
 abstract class _DrawerCubitState extends DrawerCubitState {
   const factory _DrawerCubitState(
       {required final Vector2 origin,
-      final int selectionIndex,
+      final PresetTileResource? selectedTile,
       final bool isDeleteSelection,
       final bool isDeleteSelectionCompletely,
       final Map<CellPointModel, CanvasTileModel> canvasData,
-      final Map<String, TileDataModel> tileData,
+      final TilesPresetResources tileData,
       final double gravityYPosition,
       final double skyYPosition}) = _$_DrawerCubitState;
   const _DrawerCubitState._() : super._();
@@ -310,7 +332,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   /// Real origin for all elements
   Vector2 get origin;
   @override
-  int get selectionIndex;
+  PresetTileResource? get selectedTile;
   @override
   bool get isDeleteSelection;
   @override
@@ -318,7 +340,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   @override
   Map<CellPointModel, CanvasTileModel> get canvasData;
   @override
-  Map<String, TileDataModel> get tileData;
+  TilesPresetResources get tileData;
   @override
 
   /// can be negative and positive

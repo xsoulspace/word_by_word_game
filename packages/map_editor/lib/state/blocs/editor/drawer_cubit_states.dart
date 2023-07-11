@@ -5,11 +5,11 @@ class DrawerCubitState with _$DrawerCubitState {
   const factory DrawerCubitState({
     /// Real origin for all elements
     required final Vector2 origin,
-    @Default(kMinSelectionIndex) final int selectionIndex,
+    final PresetTileResource? selectedTile,
     @Default(false) final bool isDeleteSelection,
     @Default(false) final bool isDeleteSelectionCompletely,
     @Default({}) final Map<CellPointModel, CanvasTileModel> canvasData,
-    @Default({}) final TileDataModelMap tileData,
+    @Default(TilesPresetResources.empty) final TilesPresetResources tileData,
 
     /// can be negative and positive
     /// !maybe need to remove this

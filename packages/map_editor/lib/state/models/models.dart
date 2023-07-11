@@ -4,6 +4,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flame/game.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/state/models/preset_models/preset_models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 export 'network_models/network_models.dart';

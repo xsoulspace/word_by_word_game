@@ -1035,7 +1035,7 @@ mixin _$TileDataModel {
   String get menuSurface => throw _privateConstructorUsedError;
   String get preview => throw _privateConstructorUsedError;
   String get graphics => throw _privateConstructorUsedError;
-  GameObjectType get type => throw _privateConstructorUsedError;
+  TileType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1055,7 +1055,7 @@ abstract class $TileDataModelCopyWith<$Res> {
       @JsonKey(name: 'menu_surf') String menuSurface,
       String preview,
       String graphics,
-      GameObjectType type});
+      TileType type});
 }
 
 /// @nodoc
@@ -1102,7 +1102,7 @@ class _$TileDataModelCopyWithImpl<$Res, $Val extends TileDataModel>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as GameObjectType,
+              as TileType,
     ) as $Val);
   }
 }
@@ -1121,7 +1121,7 @@ abstract class _$$_TileDataModelCopyWith<$Res>
       @JsonKey(name: 'menu_surf') String menuSurface,
       String preview,
       String graphics,
-      GameObjectType type});
+      TileType type});
 }
 
 /// @nodoc
@@ -1166,7 +1166,7 @@ class __$$_TileDataModelCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as GameObjectType,
+              as TileType,
     ));
   }
 }
@@ -1181,7 +1181,7 @@ class _$_TileDataModel implements _TileDataModel {
       @JsonKey(name: 'menu_surf') this.menuSurface = '',
       this.preview = '',
       this.graphics = '',
-      this.type = GameObjectType.tile});
+      this.type = TileType.autotile});
 
   factory _$_TileDataModel.fromJson(Map<String, dynamic> json) =>
       _$$_TileDataModelFromJson(json);
@@ -1201,7 +1201,7 @@ class _$_TileDataModel implements _TileDataModel {
   final String graphics;
   @override
   @JsonKey()
-  final GameObjectType type;
+  final TileType type;
 
   @override
   String toString() {
@@ -1249,7 +1249,7 @@ abstract class _TileDataModel implements TileDataModel {
       @JsonKey(name: 'menu_surf') final String menuSurface,
       final String preview,
       final String graphics,
-      final GameObjectType type}) = _$_TileDataModel;
+      final TileType type}) = _$_TileDataModel;
 
   factory _TileDataModel.fromJson(Map<String, dynamic> json) =
       _$_TileDataModel.fromJson;
@@ -1266,7 +1266,7 @@ abstract class _TileDataModel implements TileDataModel {
   @override
   String get graphics;
   @override
-  GameObjectType get type;
+  TileType get type;
   @override
   @JsonKey(ignore: true)
   _$$_TileDataModelCopyWith<_$_TileDataModel> get copyWith =>
@@ -1568,7 +1568,7 @@ abstract class _EditorGameObjectModel implements EditorGameObjectModel {
 /// @nodoc
 mixin _$TileMenuItem {
   int get index => throw _privateConstructorUsedError;
-  TileDataModel get data => throw _privateConstructorUsedError;
+  PresetTileResource get data => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TileMenuItemCopyWith<TileMenuItem> get copyWith =>
@@ -1581,9 +1581,9 @@ abstract class $TileMenuItemCopyWith<$Res> {
           TileMenuItem value, $Res Function(TileMenuItem) then) =
       _$TileMenuItemCopyWithImpl<$Res, TileMenuItem>;
   @useResult
-  $Res call({int index, TileDataModel data});
+  $Res call({int index, PresetTileResource data});
 
-  $TileDataModelCopyWith<$Res> get data;
+  $PresetTileResourceCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -1610,14 +1610,14 @@ class _$TileMenuItemCopyWithImpl<$Res, $Val extends TileMenuItem>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TileDataModel,
+              as PresetTileResource,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $TileDataModelCopyWith<$Res> get data {
-    return $TileDataModelCopyWith<$Res>(_value.data, (value) {
+  $PresetTileResourceCopyWith<$Res> get data {
+    return $PresetTileResourceCopyWith<$Res>(_value.data, (value) {
       return _then(_value.copyWith(data: value) as $Val);
     });
   }
@@ -1631,10 +1631,10 @@ abstract class _$$_TileMenuItemCopyWith<$Res>
       __$$_TileMenuItemCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int index, TileDataModel data});
+  $Res call({int index, PresetTileResource data});
 
   @override
-  $TileDataModelCopyWith<$Res> get data;
+  $PresetTileResourceCopyWith<$Res> get data;
 }
 
 /// @nodoc
@@ -1659,7 +1659,7 @@ class __$$_TileMenuItemCopyWithImpl<$Res>
       data: null == data
           ? _value.data
           : data // ignore: cast_nullable_to_non_nullable
-              as TileDataModel,
+              as PresetTileResource,
     ));
   }
 }
@@ -1672,7 +1672,7 @@ class _$_TileMenuItem implements _TileMenuItem {
   @override
   final int index;
   @override
-  final TileDataModel data;
+  final PresetTileResource data;
 
   @override
   String toString() {
@@ -1701,12 +1701,12 @@ class _$_TileMenuItem implements _TileMenuItem {
 abstract class _TileMenuItem implements TileMenuItem {
   const factory _TileMenuItem(
       {required final int index,
-      required final TileDataModel data}) = _$_TileMenuItem;
+      required final PresetTileResource data}) = _$_TileMenuItem;
 
   @override
   int get index;
   @override
-  TileDataModel get data;
+  PresetTileResource get data;
   @override
   @JsonKey(ignore: true)
   _$$_TileMenuItemCopyWith<_$_TileMenuItem> get copyWith =>

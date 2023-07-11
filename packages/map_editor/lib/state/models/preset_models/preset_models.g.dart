@@ -122,3 +122,33 @@ Map<String, dynamic> _$$_NeighborsAssociationModelToJson(
       'use_when_filled': instance.useWhenFilled,
       'use_when_not_filled': instance.useWhenNotFilled,
     };
+
+_$_TilesPresetDataModel _$$_TilesPresetDataModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TilesPresetDataModel(
+      tiles: json['tiles'] == null
+          ? const {}
+          : TilesPresetDataModel._tilesFromJson(
+              json['tiles'] as Map<String, dynamic>),
+      objects: json['objects'] == null
+          ? const {}
+          : TilesPresetDataModel._tilesFromJson(
+              json['objects'] as Map<String, dynamic>),
+      npcs: json['npcs'] == null
+          ? const {}
+          : TilesPresetDataModel._tilesFromJson(
+              json['npcs'] as Map<String, dynamic>),
+      players: json['players'] == null
+          ? const {}
+          : TilesPresetDataModel._tilesFromJson(
+              json['players'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_TilesPresetDataModelToJson(
+        _$_TilesPresetDataModel instance) =>
+    <String, dynamic>{
+      'tiles': TilesPresetDataModel._tilesToJson(instance.tiles),
+      'objects': TilesPresetDataModel._tilesToJson(instance.objects),
+      'npcs': TilesPresetDataModel._tilesToJson(instance.npcs),
+      'players': TilesPresetDataModel._tilesToJson(instance.players),
+    };
