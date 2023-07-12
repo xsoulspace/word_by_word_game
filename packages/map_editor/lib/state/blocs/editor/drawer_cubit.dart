@@ -15,6 +15,8 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
         super(DrawerCubitState.empty);
   final DrawerCubitDto dto;
   PresetTileResource? get selectedTile => state.selectedTile;
+  set selectedTile(final PresetTileResource? data) =>
+      emit(state.copyWith(selectedTile: data));
 
   final ResourcesLoader resourcesLoader = ResourcesLoader();
   void changeOrigin(final Vector2 value) => emit(state.copyWith(origin: value));
@@ -30,7 +32,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
       data: tileData,
       resourcesLoader: resourcesLoader,
     );
-    emit(DrawerCubitState.empty.copyWith(tileData: tileResources));
+    emit(DrawerCubitState.empty.copyWith(tileResources: tileResources));
   }
 
   /// This function should be triggered when game.onLoad happening
@@ -40,18 +42,18 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     Future<void> load(final PresetTileResource resource) =>
         resource.loadToCache(images: images);
     await Future.wait([
-      ...state.tileData.tiles.values.map(load),
-      ...state.tileData.objects.values.map(load),
-      ...state.tileData.npcs.values.map(load),
-      ...state.tileData.players.values.map(load),
+      ...state.tileResources.tiles.values.map(load),
+      ...state.tileResources.objects.values.map(load),
+      ...state.tileResources.npcs.values.map(load),
+      ...state.tileResources.players.values.map(load),
     ]);
   }
 
-  TilesPresetResources get tilesData => state.tileData;
+  TilesPresetResources get tilesResources => state.tileResources;
 
-  Map<CellPointModel, CanvasTileModel> get canvasData => state.canvasData;
+  Map<CellPointModel, CellTileModel> get canvasData => state.canvasData;
 
-  set canvasData(final Map<CellPointModel, CanvasTileModel> value) {
+  set canvasData(final Map<CellPointModel, CellTileModel> value) {
     emit(state.copyWith(canvasData: value));
   }
 
@@ -61,5 +63,5 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   List<PresetTileResource> get objectsMenuTiles =>
-      tilesData.objects.values.toList();
+      tilesResources.objects.values.toList();
 }

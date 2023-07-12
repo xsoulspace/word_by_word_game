@@ -8,8 +8,9 @@ class DrawerCubitState with _$DrawerCubitState {
     final PresetTileResource? selectedTile,
     @Default(false) final bool isDeleteSelection,
     @Default(false) final bool isDeleteSelectionCompletely,
-    @Default({}) final Map<CellPointModel, CanvasTileModel> canvasData,
-    @Default(TilesPresetResources.empty) final TilesPresetResources tileData,
+    @Default({}) final Map<CellPointModel, CellTileModel> canvasData,
+    @Default(TilesPresetResources.empty)
+    final TilesPresetResources tileResources,
 
     /// can be negative and positive
     /// !maybe need to remove this

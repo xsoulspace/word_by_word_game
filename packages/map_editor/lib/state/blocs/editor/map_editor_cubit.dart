@@ -18,7 +18,7 @@ class MapEditorCubit extends Cubit<MapEditorBlocState> {
 
   Future<void> onSaveAndPlay() async {
     final tiles = <CellPointModel, RenderCanvasTileModel>{};
-    final gameObjects = <Gid, RenderCanvasObjectModel>{};
+    final gameObjects = <Gid, RenderObjectModel>{};
     final skyYPosition = dto.drawerCubit.state.skyYPosition;
 
     /// Export static tiles.
@@ -39,7 +39,7 @@ class MapEditorCubit extends Cubit<MapEditorBlocState> {
 
     for (final MapEntry(key: gid, value: gameObject)
         in state.gameObjects.entries) {
-      gameObjects[gid] = RenderCanvasObjectModel(
+      gameObjects[gid] = RenderObjectModel(
         id: gameObject.id,
         tileId: gameObject.tileId,
         distanceToOrigin: gameObject.distanceToOrigin,

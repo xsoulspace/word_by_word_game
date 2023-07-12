@@ -2,8 +2,10 @@
 
 part of '../models.dart';
 
+@Deprecated('')
 @freezed
 class TileDataModel with _$TileDataModel {
+  @Deprecated('')
   @JsonSerializable(explicitToJson: true)
   const factory TileDataModel({
     required final TileStyle style,
@@ -17,10 +19,13 @@ class TileDataModel with _$TileDataModel {
       _$TileDataModelFromJson(json);
 }
 
+@Deprecated('')
+
 /// Key is stringified int index, i.e. in new scheme
 /// it is a [TileId]
 typedef TileDataModelMap = Map<String, TileDataModel>;
 
+@Deprecated('')
 enum TileStyle {
   player,
   @JsonValue('cursor_handle')
@@ -36,18 +41,6 @@ enum TileStyle {
   palmBackground,
 }
 
-enum TileNeighbourDirection { a, b, c, d, e, f, g, h }
-
-const tilesNeighbourDirections = <TileNeighbourDirection, CellPointModel>{
-  TileNeighbourDirection.a: CellPointModel(0, -1),
-  TileNeighbourDirection.b: CellPointModel(1, -1),
-  TileNeighbourDirection.c: CellPointModel(1, 0),
-  TileNeighbourDirection.d: CellPointModel(1, 1),
-  TileNeighbourDirection.e: CellPointModel(0, 1),
-  TileNeighbourDirection.f: CellPointModel(-1, 1),
-  TileNeighbourDirection.g: CellPointModel(-1, 0),
-  TileNeighbourDirection.h: CellPointModel(-1, -1)
-};
-
+@Deprecated('')
 // TODO(antmalofeev): transform to enum
 const levelLayers = {'clouds': 1, 'ocean': 2, 'bg': 3, 'water': 4, 'main': 5};

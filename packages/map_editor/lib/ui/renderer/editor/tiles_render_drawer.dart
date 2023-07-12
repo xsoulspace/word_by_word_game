@@ -8,8 +8,8 @@ class TilesDrawer extends Component
     return super.onTapUp(event);
   }
 
-  Map<CellPointModel, CanvasTileModel> checkNeighbours({
-    required final Map<CellPointModel, CanvasTileModel> effectiveCanvasData,
+  Map<CellPointModel, CellTileModel> checkNeighbours({
+    required final Map<CellPointModel, CellTileModel> effectiveCanvasData,
     required final CellPointModel cellPoint,
   }) {
     // create a local cluster (3 rows and 3 columns)
@@ -75,6 +75,7 @@ class TilesDrawer extends Component
     final cell = originUtils.getCurrentCellByTap(event);
     final effectiveCanvasData = {...canvasData};
     final cellPoint = cell.toCellPoint();
+    final selectedTile = drawerCubit.selectedTile;
 
     /// remove selection
     if (drawerCubit.state.isDeleteSelection) {
@@ -82,7 +83,7 @@ class TilesDrawer extends Component
         final updatedValue = effectiveCanvasData.update(
           cellPoint,
           (final value) => value.removeSelection(
-            data: drawerCubit.selectionData,
+            data: selectedTile,
             tileId: TileId.fromIndex(drawerCubit.selectionIndex),
           ),
         );
@@ -98,15 +99,14 @@ class TilesDrawer extends Component
         /// should be updated, not replaced.
         effectiveCanvasData.update(
           cellPoint,
-          (final value) => CanvasTileModel.fromEditorSettingsDataToAdd(
+          (final value) => CellTileModel.fromSaveableData(
             data: drawerCubit.selectionData,
             tileId: TileId.fromIndex(drawerCubit.selectionIndex),
             oldData: value,
           ),
         );
       } else {
-        effectiveCanvasData[cellPoint] =
-            CanvasTileModel.fromEditorSettingsDataToAdd(
+        effectiveCanvasData[cellPoint] = CellTileModel.fromSaveableData(
           data: drawerCubit.selectionData,
           tileId: TileId.fromIndex(drawerCubit.selectionIndex),
         );

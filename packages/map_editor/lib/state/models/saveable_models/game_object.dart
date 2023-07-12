@@ -1,16 +1,17 @@
 // ignore_for_file: invalid_annotation_target
 
-part of '../models.dart';
+part of 'saveable_models.dart';
 
-@Freezed(equal: false)
+@Freezed(equal: false, fromJson: false, toJson: false)
 class Gid with _$Gid, EquatableMixin {
   @JsonSerializable()
   const factory Gid({
     required final String value,
   }) = _Gid;
   const Gid._();
-  factory Gid.fromJson(final Map<String, dynamic> json) => _$GidFromJson(json);
-  static const zero = Gid(value: '');
+  factory Gid.fromJson(final String json) => Gid(value: json);
+  static const empty = Gid(value: '');
+  String toJson() => value;
   @override
   List<Object?> get props => [value];
 }

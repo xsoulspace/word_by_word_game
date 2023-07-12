@@ -125,8 +125,8 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   double get windowWidth => editor.windowWidth;
   double get tileColumns => editor.tileColumns;
   double get tileRows => editor.tileRows;
-  Map<CellPointModel, CanvasTileModel> get canvasData => drawerCubit.canvasData;
-  set canvasData(final Map<CellPointModel, CanvasTileModel> value) =>
+  Map<CellPointModel, CellTileModel> get canvasData => drawerCubit.canvasData;
+  set canvasData(final Map<CellPointModel, CellTileModel> value) =>
       drawerCubit.canvasData = value;
 }
 

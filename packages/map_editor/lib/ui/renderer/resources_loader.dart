@@ -149,7 +149,7 @@ class ResourcesComponent extends Component with HasGameRef<GameRenderer> {
 
   Future<void> _loadAnimations() async {
     await Future.wait(
-      game.diDto.drawerCubit.tilesData.entries.map(loadTileGraphics),
+      game.diDto.drawerCubit.tilesResources.entries.map(loadTileGraphics),
     );
   }
 

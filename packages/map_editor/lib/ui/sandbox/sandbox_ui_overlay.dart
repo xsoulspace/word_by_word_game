@@ -1,8 +1,7 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/logic/logic.dart';
-import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 
@@ -33,7 +32,7 @@ class TileButtons extends StatelessWidget {
     final mapEditorBloc = context.watch<MapEditorCubit>();
     final worldBloc = context.watch<WorldBloc>();
     final worldTime = context.read<EditorMechanicsCollection>().worldTime;
-    final menuTiles = context.watch<DrawerCubit>().menuTiles;
+    final tilesResources = context.watch<DrawerCubit>().tilesResources;
 
     return Material(
       child: ListView(
@@ -75,21 +74,11 @@ class TileButtons extends StatelessWidget {
             ],
           ),
           ...[
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.terrain]!,
+            ...tilesResources.tiles.values.map(
+              (final e) => TileSpriteButton(
+                tileResource: e,
+              ),
             ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.coin]!,
-            ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.enemy]!,
-            ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.palmForeground]!,
-            ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.palmBackground]!,
-            )
           ].map(
             (final e) => Padding(
               padding: const EdgeInsets.only(right: 8),
@@ -101,22 +90,9 @@ class TileButtons extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Tile Index ${drawerCubit.state.selectionIndex}'),
-                Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: () {
-                        drawerCubit.selectionIndex++;
-                      },
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.remove),
-                      onPressed: () {
-                        drawerCubit.selectionIndex--;
-                      },
-                    ),
-                  ],
+                Text(
+                  // ignore: lines_longer_than_80_chars
+                  'Selected Tile ${drawerCubit.state.selectedTile?.tile.properties.title}',
                 ),
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 150),
@@ -145,33 +121,12 @@ class TileButtons extends StatelessWidget {
   }
 }
 
-class TileSpriteButton extends StatefulWidget {
+class TileSpriteButton extends StatelessWidget {
   const TileSpriteButton({
-    required this.tiles,
+    required this.tileResource,
     super.key,
   });
-  final List<TileMenuItem> tiles;
-
-  @override
-  State<TileSpriteButton> createState() => _TileSpriteButtonState();
-}
-
-class _TileSpriteButtonState extends State<TileSpriteButton> {
-  // ignore: prefer_final_fields
-  int _index = 0;
-  TileMenuItem get _item => widget.tiles[_index];
-  void _onPressed() {
-    if (mounted) context.read<DrawerCubit>().selectionIndex = _item.index;
-  }
-
-  void _onNext() {
-    _index++;
-    if (_index > (widget.tiles.length - 1)) {
-      _index = 0;
-    }
-    setState(() {});
-    _onPressed();
-  }
+  final PresetTileResource tileResource;
 
   @override
   Widget build(final BuildContext context) {
@@ -180,10 +135,7 @@ class _TileSpriteButtonState extends State<TileSpriteButton> {
     final dimension = kTileDimension.toDouble();
     final drawerCubit = context.watch<DrawerCubit>();
 
-    final isActive = widget.tiles.firstWhereOrNull(
-          (final e) => e.index == drawerCubit.selectionIndex,
-        ) !=
-        null;
+    final isActive = drawerCubit.selectedTile?.id == tileResource.id;
 
     return Container(
       decoration: BoxDecoration(
@@ -195,17 +147,23 @@ class _TileSpriteButtonState extends State<TileSpriteButton> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          TextButton(onPressed: _onNext, child: const Text('next')),
-          const Spacer(),
           InkWell(
-            onTap: _onPressed,
+            onTap: () {
+              drawerCubit.selectedTile = tileResource;
+            },
             child: Container(
               width: dimension,
               height: dimension,
               decoration: BoxDecoration(
                 color: colorSheme.secondaryContainer,
+                image: DecorationImage(
+                  image: Image.asset(tileResource.tile.properties.thumbnailPath)
+                      .image,
+                ),
               ),
-              child: Image.asset(_item.data.menuSurface),
+              child: Text(
+                tileResource.tile.properties.title,
+              ),
             ),
           ),
         ],

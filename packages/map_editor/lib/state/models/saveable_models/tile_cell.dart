@@ -1,4 +1,17 @@
-part of '../models.dart';
+part of 'saveable_models.dart';
+
+enum TileNeighbourDirection { a, b, c, d, e, f, g, h }
+
+const tilesNeighbourDirections = <TileNeighbourDirection, CellPointModel>{
+  TileNeighbourDirection.a: CellPointModel(0, -1),
+  TileNeighbourDirection.b: CellPointModel(1, -1),
+  TileNeighbourDirection.c: CellPointModel(1, 0),
+  TileNeighbourDirection.d: CellPointModel(1, 1),
+  TileNeighbourDirection.e: CellPointModel(0, 1),
+  TileNeighbourDirection.f: CellPointModel(-1, 1),
+  TileNeighbourDirection.g: CellPointModel(-1, 0),
+  TileNeighbourDirection.h: CellPointModel(-1, -1)
+};
 
 @freezed
 class CellDataModel with _$CellDataModel {
