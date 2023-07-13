@@ -22,6 +22,9 @@ CanvasDataModel _$CanvasDataModelFromJson(Map<String, dynamic> json) {
 mixin _$CanvasDataModel {
   List<LayerModel> get layers => throw _privateConstructorUsedError;
 
+  /// Moving or idle obstacle, decoration - objects,
+  /// like the birds, trees etc.
+  ///
   /// The main idea, that any objet should be accessed from top to bottom
   /// This way there will be easy way to loop all objects or change just
   /// one object.
@@ -170,11 +173,17 @@ class _$_CanvasDataModel extends _CanvasDataModel {
     return EqualUnmodifiableListView(_layers);
   }
 
+  /// Moving or idle obstacle, decoration - objects,
+  /// like the birds, trees etc.
+  ///
   /// The main idea, that any objet should be accessed from top to bottom
   /// This way there will be easy way to loop all objects or change just
   /// one object.
   final Map<Gid, RenderObjectModel> _objects;
 
+  /// Moving or idle obstacle, decoration - objects,
+  /// like the birds, trees etc.
+  ///
   /// The main idea, that any objet should be accessed from top to bottom
   /// This way there will be easy way to loop all objects or change just
   /// one object.
@@ -246,6 +255,9 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   List<LayerModel> get layers;
   @override
 
+  /// Moving or idle obstacle, decoration - objects,
+  /// like the birds, trees etc.
+  ///
   /// The main idea, that any objet should be accessed from top to bottom
   /// This way there will be easy way to loop all objects or change just
   /// one object.
@@ -1091,26 +1103,26 @@ abstract class _Gid extends Gid {
   _$$_GidCopyWith<_$_Gid> get copyWith => throw _privateConstructorUsedError;
 }
 
-GameSaveModel _$GameSaveModelFromJson(Map<String, dynamic> json) {
-  return _GameSaveModel.fromJson(json);
+LevelSaveModel _$LevelSaveModelFromJson(Map<String, dynamic> json) {
+  return _LevelSaveModel.fromJson(json);
 }
 
 /// @nodoc
-mixin _$GameSaveModel {
+mixin _$LevelSaveModel {
   CanvasDataModel get canvasData => throw _privateConstructorUsedError;
   PlayerModel get player => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $GameSaveModelCopyWith<GameSaveModel> get copyWith =>
+  $LevelSaveModelCopyWith<LevelSaveModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $GameSaveModelCopyWith<$Res> {
-  factory $GameSaveModelCopyWith(
-          GameSaveModel value, $Res Function(GameSaveModel) then) =
-      _$GameSaveModelCopyWithImpl<$Res, GameSaveModel>;
+abstract class $LevelSaveModelCopyWith<$Res> {
+  factory $LevelSaveModelCopyWith(
+          LevelSaveModel value, $Res Function(LevelSaveModel) then) =
+      _$LevelSaveModelCopyWithImpl<$Res, LevelSaveModel>;
   @useResult
   $Res call({CanvasDataModel canvasData, PlayerModel player});
 
@@ -1119,9 +1131,9 @@ abstract class $GameSaveModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
-    implements $GameSaveModelCopyWith<$Res> {
-  _$GameSaveModelCopyWithImpl(this._value, this._then);
+class _$LevelSaveModelCopyWithImpl<$Res, $Val extends LevelSaveModel>
+    implements $LevelSaveModelCopyWith<$Res> {
+  _$LevelSaveModelCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -1164,11 +1176,11 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
 }
 
 /// @nodoc
-abstract class _$$_GameSaveModelCopyWith<$Res>
-    implements $GameSaveModelCopyWith<$Res> {
-  factory _$$_GameSaveModelCopyWith(
-          _$_GameSaveModel value, $Res Function(_$_GameSaveModel) then) =
-      __$$_GameSaveModelCopyWithImpl<$Res>;
+abstract class _$$_LevelSaveModelCopyWith<$Res>
+    implements $LevelSaveModelCopyWith<$Res> {
+  factory _$$_LevelSaveModelCopyWith(
+          _$_LevelSaveModel value, $Res Function(_$_LevelSaveModel) then) =
+      __$$_LevelSaveModelCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({CanvasDataModel canvasData, PlayerModel player});
@@ -1180,11 +1192,11 @@ abstract class _$$_GameSaveModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GameSaveModelCopyWithImpl<$Res>
-    extends _$GameSaveModelCopyWithImpl<$Res, _$_GameSaveModel>
-    implements _$$_GameSaveModelCopyWith<$Res> {
-  __$$_GameSaveModelCopyWithImpl(
-      _$_GameSaveModel _value, $Res Function(_$_GameSaveModel) _then)
+class __$$_LevelSaveModelCopyWithImpl<$Res>
+    extends _$LevelSaveModelCopyWithImpl<$Res, _$_LevelSaveModel>
+    implements _$$_LevelSaveModelCopyWith<$Res> {
+  __$$_LevelSaveModelCopyWithImpl(
+      _$_LevelSaveModel _value, $Res Function(_$_LevelSaveModel) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1193,7 +1205,7 @@ class __$$_GameSaveModelCopyWithImpl<$Res>
     Object? canvasData = null,
     Object? player = null,
   }) {
-    return _then(_$_GameSaveModel(
+    return _then(_$_LevelSaveModel(
       canvasData: null == canvasData
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
@@ -1208,13 +1220,13 @@ class __$$_GameSaveModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GameSaveModel implements _GameSaveModel {
-  const _$_GameSaveModel(
+class _$_LevelSaveModel implements _LevelSaveModel {
+  const _$_LevelSaveModel(
       {this.canvasData = CanvasDataModel.empty,
       this.player = PlayerModel.empty});
 
-  factory _$_GameSaveModel.fromJson(Map<String, dynamic> json) =>
-      _$$_GameSaveModelFromJson(json);
+  factory _$_LevelSaveModel.fromJson(Map<String, dynamic> json) =>
+      _$$_LevelSaveModelFromJson(json);
 
   @override
   @JsonKey()
@@ -1225,14 +1237,14 @@ class _$_GameSaveModel implements _GameSaveModel {
 
   @override
   String toString() {
-    return 'GameSaveModel(canvasData: $canvasData, player: $player)';
+    return 'LevelSaveModel(canvasData: $canvasData, player: $player)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GameSaveModel &&
+            other is _$_LevelSaveModel &&
             (identical(other.canvasData, canvasData) ||
                 other.canvasData == canvasData) &&
             (identical(other.player, player) || other.player == player));
@@ -1245,24 +1257,24 @@ class _$_GameSaveModel implements _GameSaveModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GameSaveModelCopyWith<_$_GameSaveModel> get copyWith =>
-      __$$_GameSaveModelCopyWithImpl<_$_GameSaveModel>(this, _$identity);
+  _$$_LevelSaveModelCopyWith<_$_LevelSaveModel> get copyWith =>
+      __$$_LevelSaveModelCopyWithImpl<_$_LevelSaveModel>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GameSaveModelToJson(
+    return _$$_LevelSaveModelToJson(
       this,
     );
   }
 }
 
-abstract class _GameSaveModel implements GameSaveModel {
-  const factory _GameSaveModel(
+abstract class _LevelSaveModel implements LevelSaveModel {
+  const factory _LevelSaveModel(
       {final CanvasDataModel canvasData,
-      final PlayerModel player}) = _$_GameSaveModel;
+      final PlayerModel player}) = _$_LevelSaveModel;
 
-  factory _GameSaveModel.fromJson(Map<String, dynamic> json) =
-      _$_GameSaveModel.fromJson;
+  factory _LevelSaveModel.fromJson(Map<String, dynamic> json) =
+      _$_LevelSaveModel.fromJson;
 
   @override
   CanvasDataModel get canvasData;
@@ -1270,7 +1282,7 @@ abstract class _GameSaveModel implements GameSaveModel {
   PlayerModel get player;
   @override
   @JsonKey(ignore: true)
-  _$$_GameSaveModelCopyWith<_$_GameSaveModel> get copyWith =>
+  _$$_LevelSaveModelCopyWith<_$_LevelSaveModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

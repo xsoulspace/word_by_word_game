@@ -75,7 +75,7 @@ class TilesDrawer extends Component
     final cell = originUtils.getCurrentCellByTap(event);
     final effectiveCanvasData = {...canvasData};
     final cellPoint = cell.toCellPoint();
-    final selectedTile = drawerCubit.selectedTile;
+    final selectedTile = drawerCubit.tileToDraw;
 
     /// remove selection
     if (drawerCubit.state.isDeleteSelection) {

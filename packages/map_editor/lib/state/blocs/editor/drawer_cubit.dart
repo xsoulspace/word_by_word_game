@@ -1,8 +1,5 @@
 part of '../../state.dart';
 
-const int kMinSelectionIndex = 2;
-int get kMaxSelectionIndex => 18;
-
 class DrawerCubitDto {
   // ignore: avoid_unused_constructor_parameters
   DrawerCubitDto.use(final Locator read);
@@ -14,9 +11,9 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   })  : dto = DrawerCubitDto.use(read),
         super(DrawerCubitState.empty);
   final DrawerCubitDto dto;
-  PresetTileResource? get selectedTile => state.selectedTile;
-  set selectedTile(final PresetTileResource? data) =>
-      emit(state.copyWith(selectedTile: data));
+  PresetTileResource? get tileToDraw => state.tileToDraw;
+  set tileToDraw(final PresetTileResource? data) =>
+      emit(state.copyWith(tileToDraw: data));
 
   final ResourcesLoader resourcesLoader = ResourcesLoader();
   void changeOrigin(final Vector2 value) => emit(state.copyWith(origin: value));
@@ -51,10 +48,36 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
 
   TilesPresetResources get tilesResources => state.tileResources;
 
-  Map<CellPointModel, CellTileModel> get canvasData => state.canvasData;
+  CanvasDataModel get canvasData => state.canvasData;
 
-  set canvasData(final Map<CellPointModel, CellTileModel> value) {
+  set canvasData(final CanvasDataModel value) {
     emit(state.copyWith(canvasData: value));
+  }
+
+  void selectLayer({required final int index}) {
+    emit(state.copyWith(drawLayerIndex: index));
+  }
+
+  LayerModel get drawLayer => state.drawLayer;
+  set drawLayer(final LayerModel layer) => emit(
+        state.copyWith(
+          canvasData: state.canvasData.copyWith(
+            layers: [...state.canvasData.layers]..[state.drawLayerIndex] =
+                layer,
+          ),
+        ),
+      );
+
+  void addTile({required final CellPointModel cell}) {
+    final resourceTile = state.tileToDraw;
+    if (resourceTile == null) return;
+    final updatedTileCell =
+        (drawLayer.tiles[cell] ?? CellTileModel.empty).copyWith(
+      tileId: resourceTile.id,
+    );
+    drawLayer = drawLayer.copyWith(
+      tiles: {...drawLayer.tiles, cell: updatedTileCell},
+    );
   }
 
   // ignore: avoid_positional_boolean_parameters

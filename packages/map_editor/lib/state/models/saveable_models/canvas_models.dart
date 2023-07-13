@@ -7,6 +7,9 @@ class CanvasDataModel with _$CanvasDataModel {
   const factory CanvasDataModel({
     @Default([]) final List<LayerModel> layers,
 
+    /// Moving or idle obstacle, decoration - objects,
+    /// like the birds, trees etc.
+    ///
     /// The main idea, that any objet should be accessed from top to bottom
     /// This way there will be easy way to loop all objects or change just
     /// one object.
@@ -61,7 +64,7 @@ class LayerModel with _$LayerModel {
   const LayerModel._();
   factory LayerModel.fromJson(final Map<String, dynamic> json) =>
       _$LayerModelFromJson(json);
-
+  static const empty = LayerModel();
   static Map<CellPointModel, CellTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
   ) =>

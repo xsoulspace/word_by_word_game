@@ -92,8 +92,9 @@ class TileButtons extends StatelessWidget {
               children: [
                 Text(
                   // ignore: lines_longer_than_80_chars
-                  'Selected Tile ${drawerCubit.state.selectedTile?.tile.properties.title}',
+                  'Selected Tile ${drawerCubit.state.tileToDraw?.tile.properties.title}',
                 ),
+                // TODO(arenukvern): add layer crud
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 150),
                   child: CheckboxListTile(
@@ -135,7 +136,7 @@ class TileSpriteButton extends StatelessWidget {
     final dimension = kTileDimension.toDouble();
     final drawerCubit = context.watch<DrawerCubit>();
 
-    final isActive = drawerCubit.selectedTile?.id == tileResource.id;
+    final isActive = drawerCubit.tileToDraw?.id == tileResource.id;
 
     return Container(
       decoration: BoxDecoration(
@@ -149,7 +150,7 @@ class TileSpriteButton extends StatelessWidget {
         children: [
           InkWell(
             onTap: () {
-              drawerCubit.selectedTile = tileResource;
+              drawerCubit.tileToDraw = tileResource;
             },
             child: Container(
               width: dimension,

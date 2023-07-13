@@ -147,12 +147,6 @@ class ResourcesComponent extends Component with HasGameRef<GameRenderer> {
   /// Key - id
   final animations = <String, AnimationEntryModel>{};
 
-  Future<void> _loadAnimations() async {
-    await Future.wait(
-      game.diDto.drawerCubit.tilesResources.entries.map(loadTileGraphics),
-    );
-  }
-
   String _getTilePath({
     final TileStyle tileStyle = TileStyle.terrain,
   }) {

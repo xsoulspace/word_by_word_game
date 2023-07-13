@@ -1,11 +1,11 @@
 part of 'saveable_models.dart';
 
 @freezed
-class GameSaveModel with _$GameSaveModel {
-  const factory GameSaveModel({
+class LevelSaveModel with _$LevelSaveModel {
+  const factory LevelSaveModel({
     @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
     @Default(PlayerModel.empty) final PlayerModel player,
-  }) = _GameSaveModel;
-  factory GameSaveModel.fromJson(final Map<String, dynamic> json) =>
-      _$GameSaveModelFromJson(json);
+  }) = _LevelSaveModel;
+  factory LevelSaveModel.fromJson(final Map<String, dynamic> json) =>
+      _$LevelSaveModelFromJson(json);
 }

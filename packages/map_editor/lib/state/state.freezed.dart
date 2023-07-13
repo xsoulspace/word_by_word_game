@@ -18,11 +18,18 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$DrawerCubitState {
   /// Real origin for all elements
   Vector2 get origin => throw _privateConstructorUsedError;
-  PresetTileResource? get selectedTile => throw _privateConstructorUsedError;
+  PresetTileResource? get tileToDraw => throw _privateConstructorUsedError;
   bool get isDeleteSelection => throw _privateConstructorUsedError;
   bool get isDeleteSelectionCompletely => throw _privateConstructorUsedError;
-  Map<CellPointModel, CellTileModel> get canvasData =>
-      throw _privateConstructorUsedError;
+  CanvasDataModel get canvasData => throw _privateConstructorUsedError;
+
+  /// use to get or update layer [canvasData]
+  ///
+  /// shortcut - [drawLayer]
+  int get drawLayerIndex => throw _privateConstructorUsedError;
+
+  /// Never changable in runtime tileset, like grass, water and data
+  /// to instantiate objects
   TilesPresetResources get tileResources => throw _privateConstructorUsedError;
 
   /// can be negative and positive
@@ -45,15 +52,17 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Vector2 origin,
-      PresetTileResource? selectedTile,
+      PresetTileResource? tileToDraw,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
-      Map<CellPointModel, CellTileModel> canvasData,
+      CanvasDataModel canvasData,
+      int drawLayerIndex,
       TilesPresetResources tileResources,
       double gravityYPosition,
       double skyYPosition});
 
-  $PresetTileResourceCopyWith<$Res>? get selectedTile;
+  $PresetTileResourceCopyWith<$Res>? get tileToDraw;
+  $CanvasDataModelCopyWith<$Res> get canvasData;
   $TilesPresetResourcesCopyWith<$Res> get tileResources;
 }
 
@@ -71,10 +80,11 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
   @override
   $Res call({
     Object? origin = null,
-    Object? selectedTile = freezed,
+    Object? tileToDraw = freezed,
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
+    Object? drawLayerIndex = null,
     Object? tileResources = null,
     Object? gravityYPosition = null,
     Object? skyYPosition = null,
@@ -84,9 +94,9 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as Vector2,
-      selectedTile: freezed == selectedTile
-          ? _value.selectedTile
-          : selectedTile // ignore: cast_nullable_to_non_nullable
+      tileToDraw: freezed == tileToDraw
+          ? _value.tileToDraw
+          : tileToDraw // ignore: cast_nullable_to_non_nullable
               as PresetTileResource?,
       isDeleteSelection: null == isDeleteSelection
           ? _value.isDeleteSelection
@@ -99,7 +109,11 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
       canvasData: null == canvasData
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
-              as Map<CellPointModel, CellTileModel>,
+              as CanvasDataModel,
+      drawLayerIndex: null == drawLayerIndex
+          ? _value.drawLayerIndex
+          : drawLayerIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       tileResources: null == tileResources
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
@@ -117,13 +131,21 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
 
   @override
   @pragma('vm:prefer-inline')
-  $PresetTileResourceCopyWith<$Res>? get selectedTile {
-    if (_value.selectedTile == null) {
+  $PresetTileResourceCopyWith<$Res>? get tileToDraw {
+    if (_value.tileToDraw == null) {
       return null;
     }
 
-    return $PresetTileResourceCopyWith<$Res>(_value.selectedTile!, (value) {
-      return _then(_value.copyWith(selectedTile: value) as $Val);
+    return $PresetTileResourceCopyWith<$Res>(_value.tileToDraw!, (value) {
+      return _then(_value.copyWith(tileToDraw: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CanvasDataModelCopyWith<$Res> get canvasData {
+    return $CanvasDataModelCopyWith<$Res>(_value.canvasData, (value) {
+      return _then(_value.copyWith(canvasData: value) as $Val);
     });
   }
 
@@ -146,16 +168,19 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
   @useResult
   $Res call(
       {Vector2 origin,
-      PresetTileResource? selectedTile,
+      PresetTileResource? tileToDraw,
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
-      Map<CellPointModel, CellTileModel> canvasData,
+      CanvasDataModel canvasData,
+      int drawLayerIndex,
       TilesPresetResources tileResources,
       double gravityYPosition,
       double skyYPosition});
 
   @override
-  $PresetTileResourceCopyWith<$Res>? get selectedTile;
+  $PresetTileResourceCopyWith<$Res>? get tileToDraw;
+  @override
+  $CanvasDataModelCopyWith<$Res> get canvasData;
   @override
   $TilesPresetResourcesCopyWith<$Res> get tileResources;
 }
@@ -172,10 +197,11 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? origin = null,
-    Object? selectedTile = freezed,
+    Object? tileToDraw = freezed,
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
+    Object? drawLayerIndex = null,
     Object? tileResources = null,
     Object? gravityYPosition = null,
     Object? skyYPosition = null,
@@ -185,9 +211,9 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
               as Vector2,
-      selectedTile: freezed == selectedTile
-          ? _value.selectedTile
-          : selectedTile // ignore: cast_nullable_to_non_nullable
+      tileToDraw: freezed == tileToDraw
+          ? _value.tileToDraw
+          : tileToDraw // ignore: cast_nullable_to_non_nullable
               as PresetTileResource?,
       isDeleteSelection: null == isDeleteSelection
           ? _value.isDeleteSelection
@@ -198,9 +224,13 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           : isDeleteSelectionCompletely // ignore: cast_nullable_to_non_nullable
               as bool,
       canvasData: null == canvasData
-          ? _value._canvasData
+          ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
-              as Map<CellPointModel, CellTileModel>,
+              as CanvasDataModel,
+      drawLayerIndex: null == drawLayerIndex
+          ? _value.drawLayerIndex
+          : drawLayerIndex // ignore: cast_nullable_to_non_nullable
+              as int,
       tileResources: null == tileResources
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
@@ -222,36 +252,40 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
 class _$_DrawerCubitState extends _DrawerCubitState {
   const _$_DrawerCubitState(
       {required this.origin,
-      this.selectedTile,
+      this.tileToDraw,
       this.isDeleteSelection = false,
       this.isDeleteSelectionCompletely = false,
-      final Map<CellPointModel, CellTileModel> canvasData = const {},
+      this.canvasData = CanvasDataModel.empty,
+      this.drawLayerIndex = 0,
       this.tileResources = TilesPresetResources.empty,
       this.gravityYPosition = 0,
       this.skyYPosition = 0})
-      : _canvasData = canvasData,
-        super._();
+      : super._();
 
   /// Real origin for all elements
   @override
   final Vector2 origin;
   @override
-  final PresetTileResource? selectedTile;
+  final PresetTileResource? tileToDraw;
   @override
   @JsonKey()
   final bool isDeleteSelection;
   @override
   @JsonKey()
   final bool isDeleteSelectionCompletely;
-  final Map<CellPointModel, CellTileModel> _canvasData;
   @override
   @JsonKey()
-  Map<CellPointModel, CellTileModel> get canvasData {
-    if (_canvasData is EqualUnmodifiableMapView) return _canvasData;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_canvasData);
-  }
+  final CanvasDataModel canvasData;
 
+  /// use to get or update layer [canvasData]
+  ///
+  /// shortcut - [drawLayer]
+  @override
+  @JsonKey()
+  final int drawLayerIndex;
+
+  /// Never changable in runtime tileset, like grass, water and data
+  /// to instantiate objects
   @override
   @JsonKey()
   final TilesPresetResources tileResources;
@@ -269,7 +303,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
 
   @override
   String toString() {
-    return 'DrawerCubitState(origin: $origin, selectedTile: $selectedTile, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, tileResources: $tileResources, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
+    return 'DrawerCubitState(origin: $origin, tileToDraw: $tileToDraw, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, drawLayerIndex: $drawLayerIndex, tileResources: $tileResources, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
   }
 
   @override
@@ -278,16 +312,18 @@ class _$_DrawerCubitState extends _DrawerCubitState {
         (other.runtimeType == runtimeType &&
             other is _$_DrawerCubitState &&
             (identical(other.origin, origin) || other.origin == origin) &&
-            (identical(other.selectedTile, selectedTile) ||
-                other.selectedTile == selectedTile) &&
+            (identical(other.tileToDraw, tileToDraw) ||
+                other.tileToDraw == tileToDraw) &&
             (identical(other.isDeleteSelection, isDeleteSelection) ||
                 other.isDeleteSelection == isDeleteSelection) &&
             (identical(other.isDeleteSelectionCompletely,
                     isDeleteSelectionCompletely) ||
                 other.isDeleteSelectionCompletely ==
                     isDeleteSelectionCompletely) &&
-            const DeepCollectionEquality()
-                .equals(other._canvasData, _canvasData) &&
+            (identical(other.canvasData, canvasData) ||
+                other.canvasData == canvasData) &&
+            (identical(other.drawLayerIndex, drawLayerIndex) ||
+                other.drawLayerIndex == drawLayerIndex) &&
             (identical(other.tileResources, tileResources) ||
                 other.tileResources == tileResources) &&
             (identical(other.gravityYPosition, gravityYPosition) ||
@@ -300,10 +336,11 @@ class _$_DrawerCubitState extends _DrawerCubitState {
   int get hashCode => Object.hash(
       runtimeType,
       origin,
-      selectedTile,
+      tileToDraw,
       isDeleteSelection,
       isDeleteSelectionCompletely,
-      const DeepCollectionEquality().hash(_canvasData),
+      canvasData,
+      drawLayerIndex,
       tileResources,
       gravityYPosition,
       skyYPosition);
@@ -318,10 +355,11 @@ class _$_DrawerCubitState extends _DrawerCubitState {
 abstract class _DrawerCubitState extends DrawerCubitState {
   const factory _DrawerCubitState(
       {required final Vector2 origin,
-      final PresetTileResource? selectedTile,
+      final PresetTileResource? tileToDraw,
       final bool isDeleteSelection,
       final bool isDeleteSelectionCompletely,
-      final Map<CellPointModel, CellTileModel> canvasData,
+      final CanvasDataModel canvasData,
+      final int drawLayerIndex,
       final TilesPresetResources tileResources,
       final double gravityYPosition,
       final double skyYPosition}) = _$_DrawerCubitState;
@@ -332,14 +370,23 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   /// Real origin for all elements
   Vector2 get origin;
   @override
-  PresetTileResource? get selectedTile;
+  PresetTileResource? get tileToDraw;
   @override
   bool get isDeleteSelection;
   @override
   bool get isDeleteSelectionCompletely;
   @override
-  Map<CellPointModel, CellTileModel> get canvasData;
+  CanvasDataModel get canvasData;
   @override
+
+  /// use to get or update layer [canvasData]
+  ///
+  /// shortcut - [drawLayer]
+  int get drawLayerIndex;
+  @override
+
+  /// Never changable in runtime tileset, like grass, water and data
+  /// to instantiate objects
   TilesPresetResources get tileResources;
   @override
 
@@ -358,7 +405,6 @@ abstract class _DrawerCubitState extends DrawerCubitState {
 
 /// @nodoc
 mixin _$MapEditorBlocState {
-  GameObjectsMap get gameObjects => throw _privateConstructorUsedError;
   bool get isEditing => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -372,7 +418,7 @@ abstract class $MapEditorBlocStateCopyWith<$Res> {
           MapEditorBlocState value, $Res Function(MapEditorBlocState) then) =
       _$MapEditorBlocStateCopyWithImpl<$Res, MapEditorBlocState>;
   @useResult
-  $Res call({GameObjectsMap gameObjects, bool isEditing});
+  $Res call({bool isEditing});
 }
 
 /// @nodoc
@@ -388,14 +434,9 @@ class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gameObjects = freezed,
     Object? isEditing = null,
   }) {
     return _then(_value.copyWith(
-      gameObjects: freezed == gameObjects
-          ? _value.gameObjects
-          : gameObjects // ignore: cast_nullable_to_non_nullable
-              as GameObjectsMap,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -412,7 +453,7 @@ abstract class _$$_MapEditorBlocStateCopyWith<$Res>
       __$$_MapEditorBlocStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({GameObjectsMap gameObjects, bool isEditing});
+  $Res call({bool isEditing});
 }
 
 /// @nodoc
@@ -426,14 +467,9 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? gameObjects = freezed,
     Object? isEditing = null,
   }) {
     return _then(_$_MapEditorBlocState(
-      gameObjects: freezed == gameObjects
-          ? _value.gameObjects
-          : gameObjects // ignore: cast_nullable_to_non_nullable
-              as GameObjectsMap,
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -445,19 +481,15 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MapEditorBlocState implements _MapEditorBlocState {
-  const _$_MapEditorBlocState(
-      {this.gameObjects = const {}, this.isEditing = true});
+  const _$_MapEditorBlocState({this.isEditing = true});
 
-  @override
-  @JsonKey()
-  final GameObjectsMap gameObjects;
   @override
   @JsonKey()
   final bool isEditing;
 
   @override
   String toString() {
-    return 'MapEditorBlocState(gameObjects: $gameObjects, isEditing: $isEditing)';
+    return 'MapEditorBlocState(isEditing: $isEditing)';
   }
 
   @override
@@ -465,15 +497,12 @@ class _$_MapEditorBlocState implements _MapEditorBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_MapEditorBlocState &&
-            const DeepCollectionEquality()
-                .equals(other.gameObjects, gameObjects) &&
             (identical(other.isEditing, isEditing) ||
                 other.isEditing == isEditing));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(gameObjects), isEditing);
+  int get hashCode => Object.hash(runtimeType, isEditing);
 
   @JsonKey(ignore: true)
   @override
@@ -484,12 +513,9 @@ class _$_MapEditorBlocState implements _MapEditorBlocState {
 }
 
 abstract class _MapEditorBlocState implements MapEditorBlocState {
-  const factory _MapEditorBlocState(
-      {final GameObjectsMap gameObjects,
-      final bool isEditing}) = _$_MapEditorBlocState;
+  const factory _MapEditorBlocState({final bool isEditing}) =
+      _$_MapEditorBlocState;
 
-  @override
-  GameObjectsMap get gameObjects;
   @override
   bool get isEditing;
   @override
@@ -503,15 +529,6 @@ mixin _$LiveWorldBlocState {
   /// The player object
   PlayerModel get player => throw _privateConstructorUsedError;
 
-  /// Never changable tileset, like grass, water
-  Map<Gid, RenderCanvasTileModel> get tiles =>
-      throw _privateConstructorUsedError;
-
-  /// Moving or idle obstacle - objects,
-  /// like the birds, trees etc.
-  Map<Gid, RenderObjectModel> get dynamicObjects =>
-      throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $LiveWorldBlocStateCopyWith<LiveWorldBlocState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -523,10 +540,7 @@ abstract class $LiveWorldBlocStateCopyWith<$Res> {
           LiveWorldBlocState value, $Res Function(LiveWorldBlocState) then) =
       _$LiveWorldBlocStateCopyWithImpl<$Res, LiveWorldBlocState>;
   @useResult
-  $Res call(
-      {PlayerModel player,
-      Map<Gid, RenderCanvasTileModel> tiles,
-      Map<Gid, RenderObjectModel> dynamicObjects});
+  $Res call({PlayerModel player});
 
   $PlayerModelCopyWith<$Res> get player;
 }
@@ -545,22 +559,12 @@ class _$LiveWorldBlocStateCopyWithImpl<$Res, $Val extends LiveWorldBlocState>
   @override
   $Res call({
     Object? player = null,
-    Object? tiles = null,
-    Object? dynamicObjects = null,
   }) {
     return _then(_value.copyWith(
       player: null == player
           ? _value.player
           : player // ignore: cast_nullable_to_non_nullable
               as PlayerModel,
-      tiles: null == tiles
-          ? _value.tiles
-          : tiles // ignore: cast_nullable_to_non_nullable
-              as Map<Gid, RenderCanvasTileModel>,
-      dynamicObjects: null == dynamicObjects
-          ? _value.dynamicObjects
-          : dynamicObjects // ignore: cast_nullable_to_non_nullable
-              as Map<Gid, RenderObjectModel>,
     ) as $Val);
   }
 
@@ -581,10 +585,7 @@ abstract class _$$_LiveWorldBlocStateCopyWith<$Res>
       __$$_LiveWorldBlocStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {PlayerModel player,
-      Map<Gid, RenderCanvasTileModel> tiles,
-      Map<Gid, RenderObjectModel> dynamicObjects});
+  $Res call({PlayerModel player});
 
   @override
   $PlayerModelCopyWith<$Res> get player;
@@ -602,22 +603,12 @@ class __$$_LiveWorldBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? player = null,
-    Object? tiles = null,
-    Object? dynamicObjects = null,
   }) {
     return _then(_$_LiveWorldBlocState(
       player: null == player
           ? _value.player
           : player // ignore: cast_nullable_to_non_nullable
               as PlayerModel,
-      tiles: null == tiles
-          ? _value._tiles
-          : tiles // ignore: cast_nullable_to_non_nullable
-              as Map<Gid, RenderCanvasTileModel>,
-      dynamicObjects: null == dynamicObjects
-          ? _value._dynamicObjects
-          : dynamicObjects // ignore: cast_nullable_to_non_nullable
-              as Map<Gid, RenderObjectModel>,
     ));
   }
 }
@@ -625,47 +616,15 @@ class __$$_LiveWorldBlocStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_LiveWorldBlocState extends _LiveWorldBlocState {
-  const _$_LiveWorldBlocState(
-      {required this.player,
-      final Map<Gid, RenderCanvasTileModel> tiles = const {},
-      final Map<Gid, RenderObjectModel> dynamicObjects = const {}})
-      : _tiles = tiles,
-        _dynamicObjects = dynamicObjects,
-        super._();
+  const _$_LiveWorldBlocState({required this.player}) : super._();
 
   /// The player object
   @override
   final PlayerModel player;
 
-  /// Never changable tileset, like grass, water
-  final Map<Gid, RenderCanvasTileModel> _tiles;
-
-  /// Never changable tileset, like grass, water
-  @override
-  @JsonKey()
-  Map<Gid, RenderCanvasTileModel> get tiles {
-    if (_tiles is EqualUnmodifiableMapView) return _tiles;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_tiles);
-  }
-
-  /// Moving or idle obstacle - objects,
-  /// like the birds, trees etc.
-  final Map<Gid, RenderObjectModel> _dynamicObjects;
-
-  /// Moving or idle obstacle - objects,
-  /// like the birds, trees etc.
-  @override
-  @JsonKey()
-  Map<Gid, RenderObjectModel> get dynamicObjects {
-    if (_dynamicObjects is EqualUnmodifiableMapView) return _dynamicObjects;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_dynamicObjects);
-  }
-
   @override
   String toString() {
-    return 'LiveWorldBlocState(player: $player, tiles: $tiles, dynamicObjects: $dynamicObjects)';
+    return 'LiveWorldBlocState(player: $player)';
   }
 
   @override
@@ -673,18 +632,11 @@ class _$_LiveWorldBlocState extends _LiveWorldBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LiveWorldBlocState &&
-            (identical(other.player, player) || other.player == player) &&
-            const DeepCollectionEquality().equals(other._tiles, _tiles) &&
-            const DeepCollectionEquality()
-                .equals(other._dynamicObjects, _dynamicObjects));
+            (identical(other.player, player) || other.player == player));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      player,
-      const DeepCollectionEquality().hash(_tiles),
-      const DeepCollectionEquality().hash(_dynamicObjects));
+  int get hashCode => Object.hash(runtimeType, player);
 
   @JsonKey(ignore: true)
   @override
@@ -695,10 +647,7 @@ class _$_LiveWorldBlocState extends _LiveWorldBlocState {
 }
 
 abstract class _LiveWorldBlocState extends LiveWorldBlocState {
-  const factory _LiveWorldBlocState(
-          {required final PlayerModel player,
-          final Map<Gid, RenderCanvasTileModel> tiles,
-          final Map<Gid, RenderObjectModel> dynamicObjects}) =
+  const factory _LiveWorldBlocState({required final PlayerModel player}) =
       _$_LiveWorldBlocState;
   const _LiveWorldBlocState._() : super._();
 
@@ -706,15 +655,6 @@ abstract class _LiveWorldBlocState extends LiveWorldBlocState {
 
   /// The player object
   PlayerModel get player;
-  @override
-
-  /// Never changable tileset, like grass, water
-  Map<Gid, RenderCanvasTileModel> get tiles;
-  @override
-
-  /// Moving or idle obstacle - objects,
-  /// like the birds, trees etc.
-  Map<Gid, RenderObjectModel> get dynamicObjects;
   @override
   @JsonKey(ignore: true)
   _$$_LiveWorldBlocStateCopyWith<_$_LiveWorldBlocState> get copyWith =>

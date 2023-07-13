@@ -125,9 +125,8 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   double get windowWidth => editor.windowWidth;
   double get tileColumns => editor.tileColumns;
   double get tileRows => editor.tileRows;
-  Map<CellPointModel, CellTileModel> get canvasData => drawerCubit.canvasData;
-  set canvasData(final Map<CellPointModel, CellTileModel> value) =>
-      drawerCubit.canvasData = value;
+  CanvasDataModel get canvasData => drawerCubit.canvasData;
+  set canvasData(final CanvasDataModel value) => drawerCubit.canvasData = value;
 }
 
 class CursorRenderer extends Component

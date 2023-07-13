@@ -17,7 +17,7 @@ class EditorCanvasObject extends Component
   factory EditorCanvasObject.fromModel({
     required final material.ValueChanged<Offset> onPositionChanged,
     required final EditorCanvasObjectsDrawer drawer,
-    required final EditorGameObjectModel data,
+    required final RenderObjectModel data,
   }) =>
       EditorCanvasObject(
         animationEntry: drawer.animations[data.id.value]!,

@@ -20,7 +20,7 @@
     "body": "// TODO(${1:username}): ${2:description}"
   },
   "todo(arenukvern):description": {
-    "prefix": "todo",
+    "prefix": "tdar",
     "body": "// TODO(arenukvern): ${1:description}"
   },
   "fixme(username):description": {
@@ -28,7 +28,7 @@
     "body": "// FIXME(${1:username}): ${2:description}"
   },
   "fixme(arenukvern):description": {
-    "prefix": "fixme",
+    "prefix": "fxar",
     "body": "// FIXME(arenukvern): ${1:description}"
   },
   "use-life-hook": {

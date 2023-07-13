@@ -76,7 +76,7 @@ class GameRenderer extends FlameGame
       ..register<EditorRenderer>();
     world = World();
     worldCamera = await _initCamera();
-
+    await diDto.drawerCubit.loadCache(images: images);
     providersComponent = diDto.getBlocsProviderComponent(
       children: [
         world,
