@@ -461,7 +461,8 @@ CellTileModel _$CellTileModelFromJson(Map<String, dynamic> json) {
 mixin _$CellTileModel {
   /// to remove tile just set [TileId.empty] and recalculate [tileNeighbours]
   TileId get tileId => throw _privateConstructorUsedError;
-  List<TileId> get tileNeighbours => throw _privateConstructorUsedError;
+  List<TileNeighbourTitle> get tileNeighbours =>
+      throw _privateConstructorUsedError;
   List<Gid> get objects => throw _privateConstructorUsedError;
   List<Gid> get npcs => throw _privateConstructorUsedError;
 
@@ -479,7 +480,7 @@ abstract class $CellTileModelCopyWith<$Res> {
   @useResult
   $Res call(
       {TileId tileId,
-      List<TileId> tileNeighbours,
+      List<TileNeighbourTitle> tileNeighbours,
       List<Gid> objects,
       List<Gid> npcs});
 
@@ -512,7 +513,7 @@ class _$CellTileModelCopyWithImpl<$Res, $Val extends CellTileModel>
       tileNeighbours: null == tileNeighbours
           ? _value.tileNeighbours
           : tileNeighbours // ignore: cast_nullable_to_non_nullable
-              as List<TileId>,
+              as List<TileNeighbourTitle>,
       objects: null == objects
           ? _value.objects
           : objects // ignore: cast_nullable_to_non_nullable
@@ -543,7 +544,7 @@ abstract class _$$_CellTileModelCopyWith<$Res>
   @useResult
   $Res call(
       {TileId tileId,
-      List<TileId> tileNeighbours,
+      List<TileNeighbourTitle> tileNeighbours,
       List<Gid> objects,
       List<Gid> npcs});
 
@@ -575,7 +576,7 @@ class __$$_CellTileModelCopyWithImpl<$Res>
       tileNeighbours: null == tileNeighbours
           ? _value._tileNeighbours
           : tileNeighbours // ignore: cast_nullable_to_non_nullable
-              as List<TileId>,
+              as List<TileNeighbourTitle>,
       objects: null == objects
           ? _value._objects
           : objects // ignore: cast_nullable_to_non_nullable
@@ -593,7 +594,7 @@ class __$$_CellTileModelCopyWithImpl<$Res>
 class _$_CellTileModel extends _CellTileModel {
   const _$_CellTileModel(
       {this.tileId = TileId.empty,
-      final List<TileId> tileNeighbours = const [],
+      final List<TileNeighbourTitle> tileNeighbours = const [],
       final List<Gid> objects = const [],
       final List<Gid> npcs = const []})
       : _tileNeighbours = tileNeighbours,
@@ -608,10 +609,10 @@ class _$_CellTileModel extends _CellTileModel {
   @override
   @JsonKey()
   final TileId tileId;
-  final List<TileId> _tileNeighbours;
+  final List<TileNeighbourTitle> _tileNeighbours;
   @override
   @JsonKey()
-  List<TileId> get tileNeighbours {
+  List<TileNeighbourTitle> get tileNeighbours {
     if (_tileNeighbours is EqualUnmodifiableListView) return _tileNeighbours;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_tileNeighbours);
@@ -678,7 +679,7 @@ class _$_CellTileModel extends _CellTileModel {
 abstract class _CellTileModel extends CellTileModel {
   const factory _CellTileModel(
       {final TileId tileId,
-      final List<TileId> tileNeighbours,
+      final List<TileNeighbourTitle> tileNeighbours,
       final List<Gid> objects,
       final List<Gid> npcs}) = _$_CellTileModel;
   const _CellTileModel._() : super._();
@@ -691,7 +692,7 @@ abstract class _CellTileModel extends CellTileModel {
   /// to remove tile just set [TileId.empty] and recalculate [tileNeighbours]
   TileId get tileId;
   @override
-  List<TileId> get tileNeighbours;
+  List<TileNeighbourTitle> get tileNeighbours;
   @override
   List<Gid> get objects;
   @override
@@ -720,6 +721,12 @@ mixin _$RenderObjectModel {
   SerializedVector2 get distanceToTileLeftTopCorner =>
       throw _privateConstructorUsedError;
 
+  /// To get/set correct animation use this property.
+  ///
+  /// For example, for flying objects use [TileBehaviourType.flyRight]
+  TileBehaviourType get animationBehaviour =>
+      throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $RenderObjectModelCopyWith<RenderObjectModel> get copyWith =>
@@ -737,7 +744,8 @@ abstract class $RenderObjectModelCopyWith<$Res> {
       TileId tileId,
       SerializedVector2 position,
       SerializedVector2 distanceToOrigin,
-      SerializedVector2 distanceToTileLeftTopCorner});
+      SerializedVector2 distanceToTileLeftTopCorner,
+      TileBehaviourType animationBehaviour});
 
   $GidCopyWith<$Res> get id;
   $TileIdCopyWith<$Res> get tileId;
@@ -764,6 +772,7 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
     Object? position = null,
     Object? distanceToOrigin = null,
     Object? distanceToTileLeftTopCorner = null,
+    Object? animationBehaviour = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -786,6 +795,10 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
           ? _value.distanceToTileLeftTopCorner
           : distanceToTileLeftTopCorner // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
+      animationBehaviour: null == animationBehaviour
+          ? _value.animationBehaviour
+          : animationBehaviour // ignore: cast_nullable_to_non_nullable
+              as TileBehaviourType,
     ) as $Val);
   }
 
@@ -844,7 +857,8 @@ abstract class _$$_RenderObjectModelCopyWith<$Res>
       TileId tileId,
       SerializedVector2 position,
       SerializedVector2 distanceToOrigin,
-      SerializedVector2 distanceToTileLeftTopCorner});
+      SerializedVector2 distanceToTileLeftTopCorner,
+      TileBehaviourType animationBehaviour});
 
   @override
   $GidCopyWith<$Res> get id;
@@ -874,6 +888,7 @@ class __$$_RenderObjectModelCopyWithImpl<$Res>
     Object? position = null,
     Object? distanceToOrigin = null,
     Object? distanceToTileLeftTopCorner = null,
+    Object? animationBehaviour = null,
   }) {
     return _then(_$_RenderObjectModel(
       id: null == id
@@ -896,6 +911,10 @@ class __$$_RenderObjectModelCopyWithImpl<$Res>
           ? _value.distanceToTileLeftTopCorner
           : distanceToTileLeftTopCorner // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
+      animationBehaviour: null == animationBehaviour
+          ? _value.animationBehaviour
+          : animationBehaviour // ignore: cast_nullable_to_non_nullable
+              as TileBehaviourType,
     ));
   }
 }
@@ -908,7 +927,8 @@ class _$_RenderObjectModel implements _RenderObjectModel {
       required this.tileId,
       this.position = SerializedVector2.zero,
       this.distanceToOrigin = SerializedVector2.zero,
-      this.distanceToTileLeftTopCorner = SerializedVector2.zero});
+      this.distanceToTileLeftTopCorner = SerializedVector2.zero,
+      this.animationBehaviour = TileBehaviourType.idle});
 
   factory _$_RenderObjectModel.fromJson(Map<String, dynamic> json) =>
       _$$_RenderObjectModelFromJson(json);
@@ -932,9 +952,16 @@ class _$_RenderObjectModel implements _RenderObjectModel {
   @JsonKey()
   final SerializedVector2 distanceToTileLeftTopCorner;
 
+  /// To get/set correct animation use this property.
+  ///
+  /// For example, for flying objects use [TileBehaviourType.flyRight]
+  @override
+  @JsonKey()
+  final TileBehaviourType animationBehaviour;
+
   @override
   String toString() {
-    return 'RenderObjectModel(id: $id, tileId: $tileId, position: $position, distanceToOrigin: $distanceToOrigin, distanceToTileLeftTopCorner: $distanceToTileLeftTopCorner)';
+    return 'RenderObjectModel(id: $id, tileId: $tileId, position: $position, distanceToOrigin: $distanceToOrigin, distanceToTileLeftTopCorner: $distanceToTileLeftTopCorner, animationBehaviour: $animationBehaviour)';
   }
 
   @override
@@ -951,13 +978,15 @@ class _$_RenderObjectModel implements _RenderObjectModel {
             (identical(other.distanceToTileLeftTopCorner,
                     distanceToTileLeftTopCorner) ||
                 other.distanceToTileLeftTopCorner ==
-                    distanceToTileLeftTopCorner));
+                    distanceToTileLeftTopCorner) &&
+            (identical(other.animationBehaviour, animationBehaviour) ||
+                other.animationBehaviour == animationBehaviour));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, tileId, position,
-      distanceToOrigin, distanceToTileLeftTopCorner);
+      distanceToOrigin, distanceToTileLeftTopCorner, animationBehaviour);
 
   @JsonKey(ignore: true)
   @override
@@ -976,12 +1005,12 @@ class _$_RenderObjectModel implements _RenderObjectModel {
 
 abstract class _RenderObjectModel implements RenderObjectModel {
   const factory _RenderObjectModel(
-          {required final Gid id,
-          required final TileId tileId,
-          final SerializedVector2 position,
-          final SerializedVector2 distanceToOrigin,
-          final SerializedVector2 distanceToTileLeftTopCorner}) =
-      _$_RenderObjectModel;
+      {required final Gid id,
+      required final TileId tileId,
+      final SerializedVector2 position,
+      final SerializedVector2 distanceToOrigin,
+      final SerializedVector2 distanceToTileLeftTopCorner,
+      final TileBehaviourType animationBehaviour}) = _$_RenderObjectModel;
 
   factory _RenderObjectModel.fromJson(Map<String, dynamic> json) =
       _$_RenderObjectModel.fromJson;
@@ -1002,6 +1031,12 @@ abstract class _RenderObjectModel implements RenderObjectModel {
   SerializedVector2 get distanceToOrigin;
   @override
   SerializedVector2 get distanceToTileLeftTopCorner;
+  @override
+
+  /// To get/set correct animation use this property.
+  ///
+  /// For example, for flying objects use [TileBehaviourType.flyRight]
+  TileBehaviourType get animationBehaviour;
   @override
   @JsonKey(ignore: true)
   _$$_RenderObjectModelCopyWith<_$_RenderObjectModel> get copyWith =>
@@ -1440,6 +1475,215 @@ abstract class _PlayerModel extends PlayerModel {
   @override
   @JsonKey(ignore: true)
   _$$_PlayerModelCopyWith<_$_PlayerModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+TileNeighbourTitle _$TileNeighbourTitleFromJson(Map<String, dynamic> json) {
+  return _TileNeighbourTitle.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TileNeighbourTitle {
+  String get value => throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String value) secured,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String value)? secured,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String value)? secured,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TileNeighbourTitle value) secured,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TileNeighbourTitle value)? secured,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TileNeighbourTitle value)? secured,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TileNeighbourTitleCopyWith<TileNeighbourTitle> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TileNeighbourTitleCopyWith<$Res> {
+  factory $TileNeighbourTitleCopyWith(
+          TileNeighbourTitle value, $Res Function(TileNeighbourTitle) then) =
+      _$TileNeighbourTitleCopyWithImpl<$Res, TileNeighbourTitle>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$TileNeighbourTitleCopyWithImpl<$Res, $Val extends TileNeighbourTitle>
+    implements $TileNeighbourTitleCopyWith<$Res> {
+  _$TileNeighbourTitleCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TileNeighbourTitleCopyWith<$Res>
+    implements $TileNeighbourTitleCopyWith<$Res> {
+  factory _$$_TileNeighbourTitleCopyWith(_$_TileNeighbourTitle value,
+          $Res Function(_$_TileNeighbourTitle) then) =
+      __$$_TileNeighbourTitleCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$_TileNeighbourTitleCopyWithImpl<$Res>
+    extends _$TileNeighbourTitleCopyWithImpl<$Res, _$_TileNeighbourTitle>
+    implements _$$_TileNeighbourTitleCopyWith<$Res> {
+  __$$_TileNeighbourTitleCopyWithImpl(
+      _$_TileNeighbourTitle _value, $Res Function(_$_TileNeighbourTitle) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_TileNeighbourTitle(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TileNeighbourTitle extends _TileNeighbourTitle {
+  const _$_TileNeighbourTitle({required this.value}) : super._();
+
+  factory _$_TileNeighbourTitle.fromJson(Map<String, dynamic> json) =>
+      _$$_TileNeighbourTitleFromJson(json);
+
+  @override
+  final String value;
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TileNeighbourTitleCopyWith<_$_TileNeighbourTitle> get copyWith =>
+      __$$_TileNeighbourTitleCopyWithImpl<_$_TileNeighbourTitle>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String value) secured,
+  }) {
+    return secured(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String value)? secured,
+  }) {
+    return secured?.call(value);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String value)? secured,
+    required TResult orElse(),
+  }) {
+    if (secured != null) {
+      return secured(value);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_TileNeighbourTitle value) secured,
+  }) {
+    return secured(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_TileNeighbourTitle value)? secured,
+  }) {
+    return secured?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_TileNeighbourTitle value)? secured,
+    required TResult orElse(),
+  }) {
+    if (secured != null) {
+      return secured(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TileNeighbourTitleToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TileNeighbourTitle extends TileNeighbourTitle {
+  const factory _TileNeighbourTitle({required final String value}) =
+      _$_TileNeighbourTitle;
+  const _TileNeighbourTitle._() : super._();
+
+  factory _TileNeighbourTitle.fromJson(Map<String, dynamic> json) =
+      _$_TileNeighbourTitle.fromJson;
+
+  @override
+  String get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TileNeighbourTitleCopyWith<_$_TileNeighbourTitle> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

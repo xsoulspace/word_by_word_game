@@ -3,7 +3,8 @@ part of 'preset_resources.dart';
 /// Can be name of file or name of folder with animation
 /// Fot example: ABC or DC, etc
 ///
-/// Usually this string created by [CanvasTileMap.terrainNeighbours.join()]
+/// Usually this string created by
+/// [CellTileModel.tileNeighbours.map((final e) => e.value).join()]
 typedef NeighbourTileTitle = String;
 
 @freezed

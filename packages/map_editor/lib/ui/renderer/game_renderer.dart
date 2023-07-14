@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
-import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 
 part 'renderer_di.dart';
@@ -63,7 +61,6 @@ class GameRenderer extends FlameGame
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final editor = EditorRenderer();
-  final resourcesLoader = ResourcesComponent();
 
   @override
   Future<void> onLoad() async {
@@ -82,7 +79,6 @@ class GameRenderer extends FlameGame
         world,
         // router,
         worldCamera,
-        resourcesLoader,
       ],
     );
 
@@ -101,7 +97,7 @@ class GameRenderer extends FlameGame
   }
 
   Future<CameraComponent> _initCamera() async {
-    final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
+    // final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
     final camera = CameraComponent(
       world: world,
     ); //..setBounds(bounds);

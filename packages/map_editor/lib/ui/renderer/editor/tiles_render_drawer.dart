@@ -9,7 +9,7 @@ class TilesDrawer extends Component
   }
 
   Map<CellPointModel, CellTileModel> checkNeighbours({
-    required final Map<CellPointModel, CellTileModel> effectiveCanvasData,
+    required final Map<CellPointModel, CellTileModel> effectiveLayerTiles,
     required final CellPointModel cellPoint,
   }) {
     // create a local cluster (3 rows and 3 columns)
@@ -25,95 +25,71 @@ class TilesDrawer extends Component
           )
     ];
     for (final cell in localCluster) {
-      if (effectiveCanvasData.containsKey(cell)) {
-        effectiveCanvasData.update(
+      if (effectiveLayerTiles.containsKey(cell)) {
+        effectiveLayerTiles.update(
           cell,
           (final value) => value.copyWith(
-            terrainNeighbours: [],
-            isWaterTop: false,
+            tileNeighbours: [],
           ),
         );
-        for (final neighbourEntry in tilesNeighbourDirections.entries) {
-          final name = neighbourEntry.key;
-          final side = neighbourEntry.value;
+        for (final MapEntry(key: direction, value: side)
+            in tilesNeighbourDirections.entries) {
           final neighbourCell = CellPointModel(
             cell.x + side.x,
             cell.y + side.y,
           );
 
-          final neighbourTile = effectiveCanvasData[neighbourCell];
+          final neighbourTile = effectiveLayerTiles[neighbourCell];
           if (neighbourTile == null) continue;
 
-          if (neighbourTile.hasTerrain) {
-            effectiveCanvasData.update(
-              cell,
-              (final value) => value.copyWith(
-                terrainNeighbours: [
-                  ...value.terrainNeighbours,
-                  name.name.toUpperCase(),
-                ],
-              ),
-            );
-          }
-          if (neighbourTile.hasWater && name == TileNeighbourDirection.a) {
-            effectiveCanvasData.update(
-              cell,
-              (final value) => value.copyWith(
-                isWaterTop: true,
-              ),
-            );
-          }
+          effectiveLayerTiles.update(
+            cell,
+            (final value) => value.copyWith(
+              tileNeighbours: {
+                ...value.tileNeighbours,
+                TileNeighbourTitle.fromDirection(direction),
+              }.toList(),
+            ),
+          );
         }
       }
     }
-    return effectiveCanvasData;
+    return effectiveLayerTiles;
   }
 
   math.Point<int>? _lastSelectedCell;
   void _onTap(final TapUpEvent event) {
     final originUtils = OriginVectorUtils.use(origin);
     final cell = originUtils.getCurrentCellByTap(event);
-    final effectiveCanvasData = {...canvasData};
+    final effectiveLayerTiles = {...layerTiles};
     final cellPoint = cell.toCellPoint();
-    final selectedTile = drawerCubit.tileToDraw;
+    final tileToDraw = drawerCubit.tileToDraw;
 
     /// remove selection
     if (drawerCubit.state.isDeleteSelection) {
-      if (effectiveCanvasData.containsKey(cellPoint)) {
-        final updatedValue = effectiveCanvasData.update(
+      if (effectiveLayerTiles.containsKey(cellPoint)) {
+        final updatedValue = effectiveLayerTiles.update(
           cellPoint,
-          (final value) => value.removeSelection(
-            data: selectedTile,
-            tileId: TileId.fromIndex(drawerCubit.selectionIndex),
+          (final value) => value.copyWith(
+            tileId: TileId.empty,
           ),
         );
-        if (updatedValue.isEmpty) effectiveCanvasData.remove(cellPoint);
+        if (updatedValue.isEmpty) effectiveLayerTiles.remove(cellPoint);
       }
     } else {
-      if (_lastSelectedCell == cell) return;
-      if (effectiveCanvasData.containsKey(cellPoint)) {
-        /// Maybe better to override existing data, but not sure for now,
-        /// because it will break object immutability..
-        ///
-        /// But maybe if this will be runtime class - then it definitely
-        /// should be updated, not replaced.
-        effectiveCanvasData.update(
-          cellPoint,
-          (final value) => CellTileModel.fromSaveableData(
-            data: drawerCubit.selectionData,
-            tileId: TileId.fromIndex(drawerCubit.selectionIndex),
-            oldData: value,
-          ),
-        );
-      } else {
-        effectiveCanvasData[cellPoint] = CellTileModel.fromSaveableData(
-          data: drawerCubit.selectionData,
-          tileId: TileId.fromIndex(drawerCubit.selectionIndex),
-        );
-      }
+      if (_lastSelectedCell == cell || tileToDraw == null) return;
+      effectiveLayerTiles.update(
+        cellPoint,
+        (final value) => value.copyWith(
+          tileId: tileToDraw.id,
+        ),
+        ifAbsent: () => CellTileModel(
+          tileId: tileToDraw.id,
+        ),
+      );
     }
-    canvasData = checkNeighbours(
-      effectiveCanvasData: effectiveCanvasData,
+    layerTiles = checkNeighbours(
+      effectiveLayerTiles: effectiveLayerTiles,
       cellPoint: cellPoint,
     );
     _lastSelectedCell = cell;
@@ -143,62 +119,51 @@ class TilesRenderer extends Component
   @override
   void render(final Canvas canvas) {
     super.render(canvas);
-    final resourceLoader = game.resourcesLoader;
-    // TODO(antmalofeev): rewrite to drawAtlas
-    for (final entry in drawerCubit.canvasData.entries) {
-      final vectorPosition =
-          origin + entry.key.toVector2() * kTileDimension.toDouble();
-      final position = vectorPosition.toOffset();
-      final tile = entry.value;
-      if (tile.hasWater) {
-        if (tile.isWaterTop) {
-          final img = resourceLoader.getTile('X', tileStyle: TileStyle.water);
-          canvas.drawImage(img, position, _paint);
-        } else {
-          final tilePath = animations[kWaterTileId.value]!.currentFramePath;
-          final tileImage = getImage(tilePath);
-          canvas.drawImage(tileImage, position, _paint);
+
+    /// Drawing layers
+    for (final tileLayer in drawerCubit.canvasData.layers) {
+      /// Drawing cell tiles
+      // TODO(antmalofeev): maybe rewrite to drawAtlas
+      for (final MapEntry(key: cellPoint, value: cellTile)
+          in tileLayer.tiles.entries) {
+        final vectorPosition =
+            origin + cellPoint.toVector2() * kTileDimension.toDouble();
+        final position = vectorPosition.toOffset();
+        final resourceTile = tilesResources[cellTile.tileId];
+        if (resourceTile == null) continue;
+        final graphics = resourceTile.tile.graphics;
+
+        /// Drawing tile
+        switch (graphics.type) {
+          case TileGraphicsType.character:
+            assert(false, 'Character graphics type cannot be used in tile');
+          case TileGraphicsType.directional:
+            final animationEntry = resourceTile
+                .directionalPaths[cellTile.tileMergedDirectionsTitle]!;
+            final img = getImage(animationEntry.currentFramePath);
+            canvas.drawImage(img, position, _paint);
         }
-      }
-      if (tile.hasTerrain) {
-        // i.e. merging Tile Directions, ABC or DC, etc
-        final terrainString = tile.terrainNeighbours.join();
-        final terrainStyle = resourceLoader.checkTileExistence(
-          terrainString,
-        )
-            ? terrainString
-            // simple tile in case if style is not found in images
-            : 'X';
 
-        final img = resourceLoader.getTile(terrainStyle);
-        canvas.drawImage(img, position, _paint);
-      }
+        /// Drawing objects
+        for (final gid in cellTile.objects) {
+          final renderObject = canvasData.objects[gid];
+          if (renderObject == null) continue;
 
-      if (tile.coin.isNotEmpty) {
-        final tilePath = animations[tile.coin.value]!.currentFramePath;
-        final tileImage = getImage(tilePath);
-        final effectivePosition = position +
-            Offset(kTileDimension / 2, kTileDimension / 2) -
-            (tileImage.size / 2).toOffset();
-        canvas.drawImage(
-          tileImage,
-          effectivePosition,
-          _paint,
-        );
-      }
-      if (tile.enemy.isNotEmpty) {
-        final tilePath = animations[tile.enemy.value]!.currentFramePath;
-        final tileImage = getImage(tilePath);
-        final effectivePosition = position +
-            Offset(
-              kTileDimension.toDouble() / 2 - tileImage.width / 2,
-              (kTileDimension - tileImage.height).toDouble(),
-            );
-        canvas.drawImage(
-          tileImage,
-          effectivePosition,
-          _paint,
-        );
+          /// Drawing tile
+          switch (graphics.type) {
+            case TileGraphicsType.character:
+              final animationEntry =
+                  resourceTile.behaviourPaths[renderObject.animationBehaviour];
+              if (animationEntry == null) continue;
+              final img = getImage(animationEntry.currentFramePath);
+              canvas.drawImage(img, renderObject.position.toOffset(), _paint);
+            case TileGraphicsType.directional:
+              assert(
+                false,
+                'Directional graphics type cannot be used with object',
+              );
+          }
+        }
       }
     }
   }

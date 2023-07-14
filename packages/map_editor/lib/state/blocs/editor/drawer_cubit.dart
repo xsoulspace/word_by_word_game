@@ -22,9 +22,11 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
 
   /// This function should be triggered before game is started to renderc
   Future<void> loadInitialData() async {
+    await resourcesLoader.onLoad();
     final jsonStr = await rootBundle.loadString(Assets.json.tilesPresetData);
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
     final tileData = TilesPresetDataModel.fromJson(json);
+
     final tileResources = TilesPresetResources.fromModel(
       data: tileData,
       resourcesLoader: resourcesLoader,

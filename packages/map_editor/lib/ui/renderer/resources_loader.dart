@@ -1,27 +1,20 @@
 import 'dart:async';
 import 'dart:convert';
 
-import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
+import 'package:map_editor/ui/renderer/editor/editor.dart';
 import 'package:map_editor/ui/renderer/game_renderer.dart';
 import 'package:path/path.dart' as path;
 
 mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
-  Map<String, AnimationEntryModel> get animations =>
-      game.resourcesLoader.animations;
-
-  /// Make sure you have cleared the path by
-  /// [ResourcesComponent.fixAssetsPath]
   Image getImage(final String path) => game.images.fromCache(path);
 }
 
 class ResourcesLoader {
-  ResourcesLoader();
-
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
   ///
@@ -118,7 +111,7 @@ class ResourcesLoader {
           ),
         );
       }
-      // TODO(antmalofeev): add behaviour accosiations
+      // TODO(antmalofeev): add accosiations
     } else {
       for (final filePathWithExtension in paths) {
         final filePathWithoutExtension =
@@ -132,58 +125,8 @@ class ResourcesLoader {
   }
 }
 
-class ResourcesComponent extends Component with HasGameRef<GameRenderer> {
-  String get terrainLandPath => '';
-  String get terrainWaterPath => '';
-  String get cursorHandlePath => '';
-
-  Images get _images => game.images;
-
-  @override
-  Future<void> onLoad() async {
-    await super.onLoad();
-  }
-
-  /// Key - id
-  final animations = <String, AnimationEntryModel>{};
-
-  String _getTilePath({
-    final TileStyle tileStyle = TileStyle.terrain,
-  }) {
-    switch (tileStyle) {
-      case TileStyle.terrain:
-        return terrainLandPath;
-      case TileStyle.water:
-        return terrainWaterPath;
-      case TileStyle.cursorHandle:
-        return cursorHandlePath;
-      // ignore: no_default_cases
-      default:
-        return '';
-    }
-  }
-
-  bool checkTileExistence(
-    final String fileName, {
-    final TileStyle tileStyle = TileStyle.terrain,
-  }) =>
-      _images.containsKey(
-        '${_getTilePath(tileStyle: tileStyle)}'
-        '/$fileName.png',
-      );
-
-  Image getTile(
-    final String fileName, {
-    final TileStyle tileStyle = TileStyle.terrain,
-  }) =>
-      _images.fromCache(
-        '${_getTilePath(tileStyle: tileStyle)}'
-        '/$fileName.png',
-      );
-}
-
 class AnimationUpdater extends Component
-    with HasGameRef<GameRenderer>, HasResourcesLoaderRef {
+    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
   static AnimationEntryModel updateAnimationFrame({
     required final AnimationEntryModel entry,
     required final GameRendererConfig config,
@@ -200,13 +143,44 @@ class AnimationUpdater extends Component
 
   @override
   void update(final double dt) {
-    for (final animationEntry in animations.entries) {
-      animations[animationEntry.key] = updateAnimationFrame(
-        config: game.config,
-        dt: dt,
-        entry: animationEntry.value,
-      );
+    final Map<TileId, PresetTileResource> tiles = {};
+    for (final MapEntry(key: cellPoint, value: cellTile)
+        in drawerCubit.tilesResources.tiles.entries) {
+      final graphics = cellTile.tile.graphics;
+      final isAnimated = graphics.animated;
+
+      switch (graphics.type) {
+        case TileGraphicsType.character when isAnimated:
+          for (final behaviour in graphics.behaviours) {
+            final animationEntry = cellTile.behaviourPaths[behaviour];
+            if (animationEntry == null) continue;
+            tiles[cellPoint]?.behaviourPaths[behaviour] = updateAnimationFrame(
+              config: game.config,
+              dt: dt,
+              entry: animationEntry,
+            );
+          }
+        case TileGraphicsType.character:
+
+          /// skipping update as non animated tiles should not be updated
+          break;
+        case TileGraphicsType.directional when isAnimated:
+          for (final MapEntry(key: path, value: animationEntry)
+              in cellTile.directionalPaths.entries) {
+            tiles[cellPoint]?.directionalPaths[path] = updateAnimationFrame(
+              config: game.config,
+              dt: dt,
+              entry: animationEntry,
+            );
+          }
+
+        case TileGraphicsType.directional:
+
+          /// skipping update as non animated tiles should not be updated
+          break;
+      }
     }
+
     super.update(dt);
   }
 }

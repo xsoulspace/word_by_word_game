@@ -49,7 +49,8 @@ _$_CellTileModel _$$_CellTileModelFromJson(Map<String, dynamic> json) =>
           ? TileId.empty
           : TileId.fromJson(json['tileId'] as String),
       tileNeighbours: (json['tileNeighbours'] as List<dynamic>?)
-              ?.map((e) => TileId.fromJson(e as String))
+              ?.map(
+                  (e) => TileNeighbourTitle.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
       objects: (json['objects'] as List<dynamic>?)
@@ -86,6 +87,9 @@ _$_RenderObjectModel _$$_RenderObjectModelFromJson(Map<String, dynamic> json) =>
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
               json['distanceToTileLeftTopCorner'] as Map<String, dynamic>),
+      animationBehaviour: $enumDecodeNullable(
+              _$TileBehaviourTypeEnumMap, json['animationBehaviour']) ??
+          TileBehaviourType.idle,
     );
 
 Map<String, dynamic> _$$_RenderObjectModelToJson(
@@ -96,7 +100,17 @@ Map<String, dynamic> _$$_RenderObjectModelToJson(
       'position': instance.position,
       'distanceToOrigin': instance.distanceToOrigin,
       'distanceToTileLeftTopCorner': instance.distanceToTileLeftTopCorner,
+      'animationBehaviour':
+          _$TileBehaviourTypeEnumMap[instance.animationBehaviour]!,
     };
+
+const _$TileBehaviourTypeEnumMap = {
+  TileBehaviourType.idle: 'idle',
+  TileBehaviourType.idleLeft: 'idleLeft',
+  TileBehaviourType.idleRight: 'idleRight',
+  TileBehaviourType.flyLeft: 'flyLeft',
+  TileBehaviourType.flyRight: 'flyRight',
+};
 
 _$_Gid _$$_GidFromJson(Map<String, dynamic> json) => _$_Gid(
       value: json['value'] as String,
@@ -131,6 +145,18 @@ _$_PlayerModel _$$_PlayerModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_PlayerModelToJson(_$_PlayerModel instance) =>
     <String, dynamic>{
       'id': instance.id,
+    };
+
+_$_TileNeighbourTitle _$$_TileNeighbourTitleFromJson(
+        Map<String, dynamic> json) =>
+    _$_TileNeighbourTitle(
+      value: json['value'] as String,
+    );
+
+Map<String, dynamic> _$$_TileNeighbourTitleToJson(
+        _$_TileNeighbourTitle instance) =>
+    <String, dynamic>{
+      'value': instance.value,
     };
 
 _$_CellDataModel _$$_CellDataModelFromJson(Map<String, dynamic> json) =>

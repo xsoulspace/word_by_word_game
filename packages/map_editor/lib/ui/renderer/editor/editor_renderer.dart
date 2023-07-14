@@ -11,6 +11,7 @@ import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/game_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
@@ -125,8 +126,16 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   double get windowWidth => editor.windowWidth;
   double get tileColumns => editor.tileColumns;
   double get tileRows => editor.tileRows;
+  Map<CellPointModel, CellTileModel> get layerTiles =>
+      drawerCubit.drawLayer.tiles;
+  set layerTiles(final Map<CellPointModel, CellTileModel> value) =>
+      drawerCubit.drawLayer = drawerCubit.drawLayer.copyWith(
+        tiles: value,
+      );
   CanvasDataModel get canvasData => drawerCubit.canvasData;
   set canvasData(final CanvasDataModel value) => drawerCubit.canvasData = value;
+  TilesPresetResources get presetResources => drawerCubit.tilesResources;
+  Map<TileId, PresetTileResource> get tilesResources => presetResources.tiles;
 }
 
 class CursorRenderer extends Component

@@ -91,7 +91,7 @@ class CellTileModel with _$CellTileModel {
   const factory CellTileModel({
     /// to remove tile just set [TileId.empty] and recalculate [tileNeighbours]
     @Default(TileId.empty) final TileId tileId,
-    @Default([]) final List<TileId> tileNeighbours,
+    @Default([]) final List<TileNeighbourTitle> tileNeighbours,
     @Default([]) final List<Gid> objects,
     @Default([]) final List<Gid> npcs,
   }) = _CellTileModel;
@@ -105,6 +105,8 @@ class CellTileModel with _$CellTileModel {
       tileNeighbours.isEmpty &&
       objects.isEmpty &&
       npcs.isEmpty;
+  String get tileMergedDirectionsTitle =>
+      tileNeighbours.map((final e) => e.value).join();
 }
 
 /// Keeps information about how to render canvas object.
@@ -124,6 +126,11 @@ class RenderObjectModel with _$RenderObjectModel {
     @Default(SerializedVector2.zero) final SerializedVector2 distanceToOrigin,
     @Default(SerializedVector2.zero)
     final SerializedVector2 distanceToTileLeftTopCorner,
+
+    /// To get/set correct animation use this property.
+    ///
+    /// For example, for flying objects use [TileBehaviourType.flyRight]
+    @Default(TileBehaviourType.idle) final TileBehaviourType animationBehaviour,
   }) = _RenderObjectModel;
   factory RenderObjectModel.fromJson(final Map<String, dynamic> json) =>
       _$RenderObjectModelFromJson(json);
