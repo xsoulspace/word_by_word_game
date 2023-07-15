@@ -26,7 +26,7 @@ mixin _$DrawerCubitState {
   /// use to get or update layer [canvasData]
   ///
   /// shortcut - [drawLayer]
-  int get drawLayerIndex => throw _privateConstructorUsedError;
+  LayerModelId get drawLayerId => throw _privateConstructorUsedError;
 
   /// Never changable in runtime tileset, like grass, water and data
   /// to instantiate objects
@@ -56,13 +56,14 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       CanvasDataModel canvasData,
-      int drawLayerIndex,
+      LayerModelId drawLayerId,
       TilesPresetResources tileResources,
       double gravityYPosition,
       double skyYPosition});
 
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
   $CanvasDataModelCopyWith<$Res> get canvasData;
+  $LayerModelIdCopyWith<$Res> get drawLayerId;
   $TilesPresetResourcesCopyWith<$Res> get tileResources;
 }
 
@@ -84,7 +85,7 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
-    Object? drawLayerIndex = null,
+    Object? drawLayerId = null,
     Object? tileResources = null,
     Object? gravityYPosition = null,
     Object? skyYPosition = null,
@@ -110,10 +111,10 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
               as CanvasDataModel,
-      drawLayerIndex: null == drawLayerIndex
-          ? _value.drawLayerIndex
-          : drawLayerIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      drawLayerId: null == drawLayerId
+          ? _value.drawLayerId
+          : drawLayerId // ignore: cast_nullable_to_non_nullable
+              as LayerModelId,
       tileResources: null == tileResources
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
@@ -151,6 +152,14 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
 
   @override
   @pragma('vm:prefer-inline')
+  $LayerModelIdCopyWith<$Res> get drawLayerId {
+    return $LayerModelIdCopyWith<$Res>(_value.drawLayerId, (value) {
+      return _then(_value.copyWith(drawLayerId: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $TilesPresetResourcesCopyWith<$Res> get tileResources {
     return $TilesPresetResourcesCopyWith<$Res>(_value.tileResources, (value) {
       return _then(_value.copyWith(tileResources: value) as $Val);
@@ -172,7 +181,7 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
       bool isDeleteSelection,
       bool isDeleteSelectionCompletely,
       CanvasDataModel canvasData,
-      int drawLayerIndex,
+      LayerModelId drawLayerId,
       TilesPresetResources tileResources,
       double gravityYPosition,
       double skyYPosition});
@@ -181,6 +190,8 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
   @override
   $CanvasDataModelCopyWith<$Res> get canvasData;
+  @override
+  $LayerModelIdCopyWith<$Res> get drawLayerId;
   @override
   $TilesPresetResourcesCopyWith<$Res> get tileResources;
 }
@@ -201,7 +212,7 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
     Object? isDeleteSelection = null,
     Object? isDeleteSelectionCompletely = null,
     Object? canvasData = null,
-    Object? drawLayerIndex = null,
+    Object? drawLayerId = null,
     Object? tileResources = null,
     Object? gravityYPosition = null,
     Object? skyYPosition = null,
@@ -227,10 +238,10 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           ? _value.canvasData
           : canvasData // ignore: cast_nullable_to_non_nullable
               as CanvasDataModel,
-      drawLayerIndex: null == drawLayerIndex
-          ? _value.drawLayerIndex
-          : drawLayerIndex // ignore: cast_nullable_to_non_nullable
-              as int,
+      drawLayerId: null == drawLayerId
+          ? _value.drawLayerId
+          : drawLayerId // ignore: cast_nullable_to_non_nullable
+              as LayerModelId,
       tileResources: null == tileResources
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
@@ -256,7 +267,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       this.isDeleteSelection = false,
       this.isDeleteSelectionCompletely = false,
       this.canvasData = CanvasDataModel.empty,
-      this.drawLayerIndex = 0,
+      this.drawLayerId = LayerModelId.empty,
       this.tileResources = TilesPresetResources.empty,
       this.gravityYPosition = 0,
       this.skyYPosition = 0})
@@ -282,7 +293,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
   /// shortcut - [drawLayer]
   @override
   @JsonKey()
-  final int drawLayerIndex;
+  final LayerModelId drawLayerId;
 
   /// Never changable in runtime tileset, like grass, water and data
   /// to instantiate objects
@@ -303,7 +314,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
 
   @override
   String toString() {
-    return 'DrawerCubitState(origin: $origin, tileToDraw: $tileToDraw, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, drawLayerIndex: $drawLayerIndex, tileResources: $tileResources, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
+    return 'DrawerCubitState(origin: $origin, tileToDraw: $tileToDraw, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, drawLayerId: $drawLayerId, tileResources: $tileResources, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
   }
 
   @override
@@ -322,8 +333,8 @@ class _$_DrawerCubitState extends _DrawerCubitState {
                     isDeleteSelectionCompletely) &&
             (identical(other.canvasData, canvasData) ||
                 other.canvasData == canvasData) &&
-            (identical(other.drawLayerIndex, drawLayerIndex) ||
-                other.drawLayerIndex == drawLayerIndex) &&
+            (identical(other.drawLayerId, drawLayerId) ||
+                other.drawLayerId == drawLayerId) &&
             (identical(other.tileResources, tileResources) ||
                 other.tileResources == tileResources) &&
             (identical(other.gravityYPosition, gravityYPosition) ||
@@ -340,7 +351,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       isDeleteSelection,
       isDeleteSelectionCompletely,
       canvasData,
-      drawLayerIndex,
+      drawLayerId,
       tileResources,
       gravityYPosition,
       skyYPosition);
@@ -359,7 +370,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
       final bool isDeleteSelection,
       final bool isDeleteSelectionCompletely,
       final CanvasDataModel canvasData,
-      final int drawLayerIndex,
+      final LayerModelId drawLayerId,
       final TilesPresetResources tileResources,
       final double gravityYPosition,
       final double skyYPosition}) = _$_DrawerCubitState;
@@ -382,7 +393,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   /// use to get or update layer [canvasData]
   ///
   /// shortcut - [drawLayer]
-  int get drawLayerIndex;
+  LayerModelId get drawLayerId;
   @override
 
   /// Never changable in runtime tileset, like grass, water and data

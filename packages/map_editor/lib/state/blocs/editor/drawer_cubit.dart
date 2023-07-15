@@ -49,6 +49,8 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   TilesPresetResources get tilesResources => state.tileResources;
+  set tilesResources(final TilesPresetResources presetResources) =>
+      emit(state.copyWith(tileResources: presetResources));
 
   CanvasDataModel get canvasData => state.canvasData;
 
@@ -56,13 +58,15 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     emit(state.copyWith(canvasData: value));
   }
 
-  void selectLayer({required final int index}) {
-    emit(state.copyWith(drawLayerIndex: index));
+  void selectLayer({required final LayerModelId? id}) {
+    if (id == null) return;
+    emit(state.copyWith(drawLayerId: id));
   }
 
   LayerModel get drawLayer => state.drawLayer;
   set drawLayer(final LayerModel layer) {
-    layers = [...state.canvasData.layers]..[state.drawLayerIndex] = layer;
+    final index = layers.indexWhere((final e) => e.id == layer.id);
+    layers = [...state.canvasData.layers]..[index] = layer;
   }
 
   List<LayerModel> get layers => state.canvasData.layers;

@@ -13,7 +13,7 @@ class DrawerCubitState with _$DrawerCubitState {
     /// use to get or update layer [canvasData]
     ///
     /// shortcut - [drawLayer]
-    @Default(0) final int drawLayerIndex,
+    @Default(LayerModelId.empty) final LayerModelId drawLayerId,
 
     /// Never changable in runtime tileset, like grass, water and data
     /// to instantiate objects
@@ -39,10 +39,10 @@ class DrawerCubitState with _$DrawerCubitState {
       );
   LayerModel get drawLayer {
     final layers = canvasData.layers;
-    if (layers.isEmpty || ((layers.length - 1) < drawLayerIndex)) {
+    if (layers.isEmpty || (drawLayerId.isEmpty)) {
       return LayerModel.empty;
     }
-    return layers[drawLayerIndex];
+    return layers.firstWhere((final e) => e.id == drawLayerId);
   }
 }
 

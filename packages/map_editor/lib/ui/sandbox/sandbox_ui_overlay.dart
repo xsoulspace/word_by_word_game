@@ -75,7 +75,7 @@ class TileButtons extends StatelessWidget {
             ],
           ),
           TextButton(
-            onPressed: () async => showLevelsDialog(context: context),
+            onPressed: () async => showLayersDialog(context: context),
             child: Text('Layers - ${drawerCubit.drawLayer.title}'),
           ),
           ...[
@@ -180,7 +180,7 @@ class TileSpriteButton extends StatelessWidget {
   }
 }
 
-Future<void> showLevelsDialog({
+Future<void> showLayersDialog({
   required final BuildContext context,
 }) async {
   await showDialog(
@@ -214,7 +214,7 @@ class _LevelsDialogState extends State<LevelsDialog> {
         children: [
           AppBar(
             leading: const CloseButton(),
-            title: const Text('Levels'),
+            title: const Text('Layers'),
           ),
           Expanded(
             child: Padding(
@@ -251,8 +251,8 @@ class _LevelsDialogState extends State<LevelsDialog> {
                         leading: Radio.adaptive(
                           value: layer.id,
                           groupValue: drawerCubit.drawLayer.id,
-                          onChanged: (final _) => drawerCubit.selectLayer(
-                            index: index,
+                          onChanged: (final id) => drawerCubit.selectLayer(
+                            id: id,
                           ),
                         ),
                         trailing: ReorderableDragStartListener(

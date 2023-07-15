@@ -1,5 +1,3 @@
-import 'package:collection/collection.dart';
-
 extension ListExtension<E> on List<E> {
   void reorder(final int oldIndex, int newIndex) {
     if (oldIndex < newIndex) {
@@ -7,6 +5,9 @@ extension ListExtension<E> on List<E> {
       // ignore: parameter_assignments
       newIndex -= 1;
     }
-    swap(oldIndex, newIndex);
+    final element = removeAt(oldIndex);
+    insert(newIndex, element);
+
+    // swap(oldIndex, newIndex);
   }
 }

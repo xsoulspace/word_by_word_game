@@ -146,9 +146,10 @@ class AnimationUpdater extends Component
 
   @override
   void update(final double dt) {
-    final Map<TileId, PresetTileResource> tiles = {};
-    for (final MapEntry(key: cellPoint, value: cellTile)
-        in drawerCubit.tilesResources.tiles.entries) {
+    final Map<TileId, PresetTileResource> tiles = {
+      ...drawerCubit.tilesResources.tiles
+    };
+    for (final MapEntry(key: cellPoint, value: cellTile) in tiles.entries) {
       final graphics = cellTile.tile.graphics;
       final isAnimated = graphics.animated;
 
@@ -157,10 +158,17 @@ class AnimationUpdater extends Component
           for (final behaviour in graphics.behaviours) {
             final animationEntry = cellTile.behaviourPaths[behaviour];
             if (animationEntry == null) continue;
-            tiles[cellPoint]?.behaviourPaths[behaviour] = updateAnimationFrame(
-              config: game.config,
-              dt: dt,
-              entry: animationEntry,
+
+            final tile = tiles[cellPoint]!;
+            tiles[cellPoint] = tile.copyWith(
+              behaviourPaths: {
+                ...tile.behaviourPaths,
+                behaviour: updateAnimationFrame(
+                  config: game.config,
+                  dt: dt,
+                  entry: animationEntry,
+                )
+              },
             );
           }
         case TileGraphicsType.character:
@@ -170,10 +178,16 @@ class AnimationUpdater extends Component
         case TileGraphicsType.directional when isAnimated:
           for (final MapEntry(key: path, value: animationEntry)
               in cellTile.directionalPaths.entries) {
-            tiles[cellPoint]?.directionalPaths[path] = updateAnimationFrame(
-              config: game.config,
-              dt: dt,
-              entry: animationEntry,
+            final tile = tiles[cellPoint]!;
+            tiles[cellPoint] = tile.copyWith(
+              directionalPaths: {
+                ...tile.directionalPaths,
+                path: updateAnimationFrame(
+                  config: game.config,
+                  dt: dt,
+                  entry: animationEntry,
+                )
+              },
             );
           }
 
@@ -183,6 +197,9 @@ class AnimationUpdater extends Component
           break;
       }
     }
+    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+      tiles: tiles,
+    );
 
     super.update(dt);
   }
