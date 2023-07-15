@@ -1811,6 +1811,7 @@ class $AssetsImagesTerrainWaterGen {
       const $AssetsImagesTerrainWaterABCDEFGHGen();
   $AssetsImagesTerrainWaterCDEFGGen get cdefg =>
       const $AssetsImagesTerrainWaterCDEFGGen();
+  $AssetsImagesTerrainWaterXGen get x => const $AssetsImagesTerrainWaterXGen();
 }
 
 class $AssetsImagesEnemiesShellLeftAttackGen {
@@ -2175,6 +2176,17 @@ class $AssetsImagesTerrainWaterCDEFGGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [cdefg0, cdefg1, cdefg2];
+}
+
+class $AssetsImagesTerrainWaterXGen {
+  const $AssetsImagesTerrainWaterXGen();
+
+  /// File path: assets/images/terrain/water/X/X_0.png
+  AssetGenImage get x0 =>
+      const AssetGenImage('assets/images/terrain/water/X/X_0.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [x0];
 }
 
 class $AssetsImagesTerrainPalmLargeBgIdleGen {

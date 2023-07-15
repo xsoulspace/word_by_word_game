@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
@@ -167,10 +168,11 @@ class TileSpriteButton extends StatelessWidget {
                   ).image,
                 ),
               ),
-              child: Text(
-                tileResource.tile.properties.title,
-              ),
             ),
+          ),
+          const Gap(16),
+          Text(
+            tileResource.tile.properties.title,
           ),
         ],
       ),
@@ -246,6 +248,17 @@ class _LevelsDialogState extends State<LevelsDialog> {
                       final layer = layers[index];
                       return ListTile(
                         key: ValueKey(layer.id),
+                        leading: Radio.adaptive(
+                          value: layer.id,
+                          groupValue: drawerCubit.drawLayer.id,
+                          onChanged: (final _) => drawerCubit.selectLayer(
+                            index: index,
+                          ),
+                        ),
+                        trailing: ReorderableDragStartListener(
+                          index: index,
+                          child: const Icon(Icons.drag_handle),
+                        ),
                         title: TextFormField(
                           initialValue: layer.title,
                           onChanged: (final value) {

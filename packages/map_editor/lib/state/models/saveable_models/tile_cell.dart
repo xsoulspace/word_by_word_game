@@ -18,7 +18,7 @@ class TileNeighbourTitle with _$TileNeighbourTitle, EquatableMixin {
   factory TileNeighbourTitle.fromJson(final Map<String, dynamic> json) =>
       _$TileNeighbourTitleFromJson(json);
   @override
-  List<Object?> get props => [];
+  List<Object?> get props => [value];
 }
 
 const tilesNeighbourDirections = <TileNeighbourDirection, CellPointModel>{
