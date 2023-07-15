@@ -73,6 +73,10 @@ class TileButtons extends StatelessWidget {
               ),
             ],
           ),
+          TextButton(
+            onPressed: () async => showLevelsDialog(context: context),
+            child: Text('Layers - ${drawerCubit.drawLayer.title}'),
+          ),
           ...[
             ...tilesResources.tiles.values.map(
               (final e) => TileSpriteButton(
@@ -158,8 +162,9 @@ class TileSpriteButton extends StatelessWidget {
               decoration: BoxDecoration(
                 color: colorSheme.secondaryContainer,
                 image: DecorationImage(
-                  image: Image.asset(tileResource.tile.properties.thumbnailPath)
-                      .image,
+                  image: Image.asset(
+                    'assets/images/${tileResource.tile.properties.thumbnailPath}',
+                  ).image,
                 ),
               ),
               child: Text(
@@ -167,6 +172,100 @@ class TileSpriteButton extends StatelessWidget {
               ),
             ),
           ),
+        ],
+      ),
+    );
+  }
+}
+
+Future<void> showLevelsDialog({
+  required final BuildContext context,
+}) async {
+  await showDialog(
+    context: context,
+    builder: (final context) => const LevelsDialog(),
+  );
+}
+
+class LevelsDialog extends StatefulWidget {
+  const LevelsDialog({super.key});
+
+  @override
+  State<LevelsDialog> createState() => _LevelsDialogState();
+}
+
+class _LevelsDialogState extends State<LevelsDialog> {
+  final _textController = TextEditingController();
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    final drawerCubit = context.watch<DrawerCubit>();
+    final layers = drawerCubit.layers;
+    return Dialog.fullscreen(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppBar(
+            leading: const CloseButton(),
+            title: const Text('Levels'),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: 240,
+                        ),
+                        child: TextFormField(controller: _textController),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.save),
+                        onPressed: () {
+                          final text = _textController.text;
+                          if (text.isEmpty) return;
+                          drawerCubit.createNewLayer(title: text);
+                          _textController.clear();
+                        },
+                      ),
+                    ],
+                  ),
+                  ReorderableListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: (final context, final index) {
+                      final layer = layers[index];
+                      return ListTile(
+                        key: ValueKey(layer.id),
+                        title: TextFormField(
+                          initialValue: layer.title,
+                          onChanged: (final value) {
+                            drawerCubit.changeLayer(
+                              layer: layer.copyWith(
+                                title: value,
+                              ),
+                              index: index,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    itemCount: layers.length,
+                    onReorder: drawerCubit.reorderLayers,
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

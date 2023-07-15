@@ -87,5 +87,22 @@
         "animated": true
       }
     }
+  },
+  "other": {
+    "cursor": {
+      "id": "cursor",
+      "category": "other",
+      "type": "object",
+      "properties": {
+        "title": "Cursor",
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "path": "cursor",
+        "behaviours": ["idle"],
+        "animated": false
+      }
+    }
   }
 }

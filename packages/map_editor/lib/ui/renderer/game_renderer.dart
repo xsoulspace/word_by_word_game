@@ -33,9 +33,8 @@ int get kVisibleTilesRows => 16;
 int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
-TileId get kWaterTileId => const TileId(value: '3');
-TileId get kPlayerObjectId => const TileId(value: '0');
-TileId get kCursorHandleObjectId => const TileId(value: '19');
+TileId get kPlayerObjectId => const TileId(value: 'tester');
+TileId get kCursorHandleObjectId => const TileId(value: 'cursor');
 
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s

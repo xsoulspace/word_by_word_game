@@ -162,7 +162,7 @@ class _TileSpriteButtonState extends State<TileSpriteButton> {
               decoration: BoxDecoration(
                 color: colorSheme.secondaryContainer,
               ),
-              child: Image.asset(_item.data.menuSurface),
+              child: Image.asset('assets/images/${_item.data.menuSurface}'),
             ),
           ),
         ],

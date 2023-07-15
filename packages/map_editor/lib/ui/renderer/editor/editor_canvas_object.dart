@@ -158,43 +158,43 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadPlayer() {
-    final gid = kPlayerObjectId.toGid();
-    // _mapEditorBloc.loadedState;
-    _player = EditorCanvasObject(
-      gid: gid,
-      tileId: kPlayerObjectId,
-      position: (game.size / 2).toOffset(),
-    );
+    // final gid = kPlayerObjectId.toGid();
+    // // _mapEditorBloc.loadedState;
+    // _player = EditorCanvasObject(
+    //   gid: gid,
+    //   tileId: kPlayerObjectId,
+    //   position: (game.size / 2).toOffset(),
+    // );
   }
 
   void _loadSkyHandle() {
-    _skyHandle = EditorCanvasObject(
-      gid: kCursorHandleObjectId.toGid(),
-      tileId: kCursorHandleObjectId,
-      position: (game.size / 2).toOffset(),
-      onPositionChanged: (final position) {
-        drawerCubit.changeState(
-          drawerCubit.state.copyWith(
-            skyYPosition: position.dy,
-          ),
-        );
-      },
-    );
+    // _skyHandle = EditorCanvasObject(
+    //   gid: kCursorHandleObjectId.toGid(),
+    //   tileId: kCursorHandleObjectId,
+    //   position: (game.size / 2).toOffset(),
+    //   onPositionChanged: (final position) {
+    //     drawerCubit.changeState(
+    //       drawerCubit.state.copyWith(
+    //         skyYPosition: position.dy,
+    //       ),
+    //     );
+    //   },
+    // );
   }
 
   void _loadGravitationHandle() {
-    _gravitationHandle = EditorCanvasObject(
-      gid: kCursorHandleObjectId.toGid(),
-      tileId: kCursorHandleObjectId,
-      position: (game.size / 2).toOffset(),
-      onPositionChanged: (final position) {
-        drawerCubit.changeState(
-          drawerCubit.state.copyWith(
-            gravityYPosition: position.dy,
-          ),
-        );
-      },
-    );
+    // _gravitationHandle = EditorCanvasObject(
+    //   gid: kCursorHandleObjectId.toGid(),
+    //   tileId: kCursorHandleObjectId,
+    //   position: (game.size / 2).toOffset(),
+    //   onPositionChanged: (final position) {
+    //     drawerCubit.changeState(
+    //       drawerCubit.state.copyWith(
+    //         gravityYPosition: position.dy,
+    //       ),
+    //     );
+    //   },
+    // );
   }
 
   @override

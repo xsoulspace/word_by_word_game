@@ -44,7 +44,7 @@ class ResourcesLoader {
       getPathsForPresetCharacterGraphics({
     required final PresetTileGraphicsModel tileGraphics,
   }) {
-    assert(tileGraphics.type == TileGraphicsType.character, '');
+    // assert(tileGraphics.type == TileGraphicsType.character, '');
     final map = <TileBehaviourType, AnimationEntryModel>{};
     final folderPath = tileGraphics.path;
     if (folderPath.isEmpty) return map;
@@ -84,7 +84,7 @@ class ResourcesLoader {
       getPathsForPresetDirectionalGraphics({
     required final PresetTileGraphicsModel tileGraphics,
   }) {
-    assert(tileGraphics.type == TileGraphicsType.directional, '');
+    // assert(tileGraphics.type == TileGraphicsType.directional, '');
     final map = <NeighbourTileTitle, AnimationEntryModel>{};
     final rootFolderPath = tileGraphics.path;
     if (rootFolderPath.isEmpty) return map;
@@ -99,8 +99,9 @@ class ResourcesLoader {
         final folderPaths = _manifestMap.keys
             .where((final e) => e.startsWith(folderPath))
             .toList();
+        if (folderPaths.isEmpty) continue;
         map.update(
-          folderPath,
+          folderTitle,
           (final value) => value.copyWith(
             framesLength: folderPaths.length,
             framesPaths: folderPaths,
@@ -116,8 +117,10 @@ class ResourcesLoader {
       for (final filePathWithExtension in paths) {
         final filePathWithoutExtension =
             path.withoutExtension(filePathWithExtension);
-        map[filePathWithoutExtension] =
-            AnimationEntryModel.singleFrame(filePathWithExtension);
+
+        final [..., fileTitle] = filePathWithoutExtension.split('/');
+
+        map[fileTitle] = AnimationEntryModel.singleFrame(filePathWithExtension);
       }
     }
 

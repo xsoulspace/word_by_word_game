@@ -64,6 +64,7 @@ class TilesPresetResources with _$TilesPresetResources {
     @Default({}) final Map<TileId, PresetTileResource> objects,
     @Default({}) final Map<TileId, PresetTileResource> npcs,
     @Default({}) final Map<TileId, PresetTileResource> players,
+    @Default({}) final Map<TileId, PresetTileResource> other,
   }) = _TilesPresetResources;
 
   factory TilesPresetResources.fromModel({

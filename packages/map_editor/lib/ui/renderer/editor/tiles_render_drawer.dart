@@ -138,8 +138,13 @@ class TilesRenderer extends Component
           case TileGraphicsType.character:
             assert(false, 'Character graphics type cannot be used in tile');
           case TileGraphicsType.directional:
-            final animationEntry = resourceTile
-                .directionalPaths[cellTile.tileMergedDirectionsTitle]!;
+            final directionTitle = cellTile.tileMergedDirectionsTitle;
+            final x = resourceTile.directionalPaths['X']!;
+            final animationEntry = directionTitle.isEmpty
+                ? x
+                : resourceTile
+                        .directionalPaths[cellTile.tileMergedDirectionsTitle] ??
+                    x;
             final img = getImage(animationEntry.currentFramePath);
             canvas.drawImage(img, position, _paint);
         }

@@ -73,7 +73,17 @@ enum TileGraphicsType {
   character,
 }
 
-enum TileBehaviourType { idle, idleLeft, idleRight, flyLeft, flyRight }
+enum TileBehaviourType {
+  idle,
+  @JsonValue('idle_left')
+  idleLeft,
+  @JsonValue('idle_right')
+  idleRight,
+  @JsonValue('fly_left')
+  flyLeft,
+  @JsonValue('fly_right')
+  flyRight
+}
 
 @freezed
 class PresetTileGraphicsModel with _$PresetTileGraphicsModel {

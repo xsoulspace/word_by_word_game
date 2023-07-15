@@ -97,10 +97,10 @@ const _$TileGraphicsTypeEnumMap = {
 
 const _$TileBehaviourTypeEnumMap = {
   TileBehaviourType.idle: 'idle',
-  TileBehaviourType.idleLeft: 'idleLeft',
-  TileBehaviourType.idleRight: 'idleRight',
-  TileBehaviourType.flyLeft: 'flyLeft',
-  TileBehaviourType.flyRight: 'flyRight',
+  TileBehaviourType.idleLeft: 'idle_left',
+  TileBehaviourType.idleRight: 'idle_right',
+  TileBehaviourType.flyLeft: 'fly_left',
+  TileBehaviourType.flyRight: 'fly_right',
 };
 
 _$_NeighborsAssociationModel _$$_NeighborsAssociationModelFromJson(

@@ -31,6 +31,7 @@ Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
 
 _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>
     _$_LayerModel(
+      id: LayerModelId.fromJson(json['id'] as String),
       title: json['title'] as String? ?? '',
       tiles: json['tiles'] == null
           ? const {}
@@ -39,6 +40,7 @@ _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_LayerModelToJson(_$_LayerModel instance) =>
     <String, dynamic>{
+      'id': LayerModelId.toJsonString(instance.id),
       'title': instance.title,
       'tiles': LayerModel._tilesToJson(instance.tiles),
     };
@@ -106,10 +108,10 @@ Map<String, dynamic> _$$_RenderObjectModelToJson(
 
 const _$TileBehaviourTypeEnumMap = {
   TileBehaviourType.idle: 'idle',
-  TileBehaviourType.idleLeft: 'idleLeft',
-  TileBehaviourType.idleRight: 'idleRight',
-  TileBehaviourType.flyLeft: 'flyLeft',
-  TileBehaviourType.flyRight: 'flyRight',
+  TileBehaviourType.idleLeft: 'idle_left',
+  TileBehaviourType.idleRight: 'idle_right',
+  TileBehaviourType.flyLeft: 'fly_left',
+  TileBehaviourType.flyRight: 'fly_right',
 };
 
 _$_Gid _$$_GidFromJson(Map<String, dynamic> json) => _$_Gid(

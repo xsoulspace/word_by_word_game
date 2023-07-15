@@ -140,6 +140,7 @@ flutter:
     - assets/images/terrain/water/
     - assets/images/terrain/water/ABCDEFGH/
     - assets/images/terrain/water/CDEFG/
+    - assets/images/terrain/water/X/
     - assets/json/
 # To add assets to your package, add an assets section, like this:
 # assets:

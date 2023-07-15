@@ -275,12 +275,116 @@ abstract class _CanvasDataModel extends CanvasDataModel {
       throw _privateConstructorUsedError;
 }
 
+/// @nodoc
+mixin _$LayerModelId {
+  String get value => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $LayerModelIdCopyWith<LayerModelId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LayerModelIdCopyWith<$Res> {
+  factory $LayerModelIdCopyWith(
+          LayerModelId value, $Res Function(LayerModelId) then) =
+      _$LayerModelIdCopyWithImpl<$Res, LayerModelId>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$LayerModelIdCopyWithImpl<$Res, $Val extends LayerModelId>
+    implements $LayerModelIdCopyWith<$Res> {
+  _$LayerModelIdCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_LayerModelIdCopyWith<$Res>
+    implements $LayerModelIdCopyWith<$Res> {
+  factory _$$_LayerModelIdCopyWith(
+          _$_LayerModelId value, $Res Function(_$_LayerModelId) then) =
+      __$$_LayerModelIdCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$_LayerModelIdCopyWithImpl<$Res>
+    extends _$LayerModelIdCopyWithImpl<$Res, _$_LayerModelId>
+    implements _$$_LayerModelIdCopyWith<$Res> {
+  __$$_LayerModelIdCopyWithImpl(
+      _$_LayerModelId _value, $Res Function(_$_LayerModelId) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_LayerModelId(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_LayerModelId extends _LayerModelId {
+  const _$_LayerModelId({required this.value}) : super._();
+
+  @override
+  final String value;
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_LayerModelIdCopyWith<_$_LayerModelId> get copyWith =>
+      __$$_LayerModelIdCopyWithImpl<_$_LayerModelId>(this, _$identity);
+}
+
+abstract class _LayerModelId extends LayerModelId {
+  const factory _LayerModelId({required final String value}) = _$_LayerModelId;
+  const _LayerModelId._() : super._();
+
+  @override
+  String get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$_LayerModelIdCopyWith<_$_LayerModelId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 LayerModel _$LayerModelFromJson(Map<String, dynamic> json) {
   return _LayerModel.fromJson(json);
 }
 
 /// @nodoc
 mixin _$LayerModel {
+  @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+  LayerModelId get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
   Map<CellPointModel, CellTileModel> get tiles =>
@@ -299,9 +403,13 @@ abstract class $LayerModelCopyWith<$Res> {
       _$LayerModelCopyWithImpl<$Res, LayerModel>;
   @useResult
   $Res call(
-      {String title,
+      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+          LayerModelId id,
+      String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           Map<CellPointModel, CellTileModel> tiles});
+
+  $LayerModelIdCopyWith<$Res> get id;
 }
 
 /// @nodoc
@@ -317,10 +425,15 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? tiles = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as LayerModelId,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -330,6 +443,14 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
           : tiles // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CellTileModel>,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LayerModelIdCopyWith<$Res> get id {
+    return $LayerModelIdCopyWith<$Res>(_value.id, (value) {
+      return _then(_value.copyWith(id: value) as $Val);
+    });
   }
 }
 
@@ -342,9 +463,14 @@ abstract class _$$_LayerModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {String title,
+      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+          LayerModelId id,
+      String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           Map<CellPointModel, CellTileModel> tiles});
+
+  @override
+  $LayerModelIdCopyWith<$Res> get id;
 }
 
 /// @nodoc
@@ -358,10 +484,15 @@ class __$$_LayerModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
     Object? title = null,
     Object? tiles = null,
   }) {
     return _then(_$_LayerModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as LayerModelId,
       title: null == title
           ? _value.title
           : title // ignore: cast_nullable_to_non_nullable
@@ -378,7 +509,9 @@ class __$$_LayerModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LayerModel extends _LayerModel {
   const _$_LayerModel(
-      {this.title = '',
+      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+          required this.id,
+      this.title = '',
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           final Map<CellPointModel, CellTileModel> tiles = const {}})
       : _tiles = tiles,
@@ -387,6 +520,9 @@ class _$_LayerModel extends _LayerModel {
   factory _$_LayerModel.fromJson(Map<String, dynamic> json) =>
       _$$_LayerModelFromJson(json);
 
+  @override
+  @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+  final LayerModelId id;
   @override
   @JsonKey()
   final String title;
@@ -401,7 +537,7 @@ class _$_LayerModel extends _LayerModel {
 
   @override
   String toString() {
-    return 'LayerModel(title: $title, tiles: $tiles)';
+    return 'LayerModel(id: $id, title: $title, tiles: $tiles)';
   }
 
   @override
@@ -409,6 +545,7 @@ class _$_LayerModel extends _LayerModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_LayerModel &&
+            (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tiles, _tiles));
   }
@@ -416,7 +553,7 @@ class _$_LayerModel extends _LayerModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, title, const DeepCollectionEquality().hash(_tiles));
+      runtimeType, id, title, const DeepCollectionEquality().hash(_tiles));
 
   @JsonKey(ignore: true)
   @override
@@ -434,7 +571,9 @@ class _$_LayerModel extends _LayerModel {
 
 abstract class _LayerModel extends LayerModel {
   const factory _LayerModel(
-      {final String title,
+      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+          required final LayerModelId id,
+      final String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           final Map<CellPointModel, CellTileModel> tiles}) = _$_LayerModel;
   const _LayerModel._() : super._();
@@ -442,6 +581,9 @@ abstract class _LayerModel extends LayerModel {
   factory _LayerModel.fromJson(Map<String, dynamic> json) =
       _$_LayerModel.fromJson;
 
+  @override
+  @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+  LayerModelId get id;
   @override
   String get title;
   @override

@@ -50,9 +50,34 @@ class CanvasDataModel with _$CanvasDataModel {
       );
 }
 
+@immutable
+@Freezed(fromJson: false, toJson: false, equal: false)
+class LayerModelId with _$LayerModelId, EquatableMixin {
+  const factory LayerModelId({
+    required final String value,
+  }) = _LayerModelId;
+  const LayerModelId._();
+  factory LayerModelId.fromJson(final String value) =>
+      LayerModelId(value: value);
+  factory LayerModelId.create() => LayerModelId(value: IdCreator.create());
+  static const empty = LayerModelId(value: '');
+
+  bool get isEmpty => value.isEmpty;
+  bool get isNotEmpty => value.isNotEmpty;
+  String toJson() => value;
+  static String toJsonString(final LayerModelId id) => id.value;
+  @override
+  List<Object?> get props => [value];
+}
+
 @freezed
 class LayerModel with _$LayerModel {
   const factory LayerModel({
+    @JsonKey(
+      fromJson: LayerModelId.fromJson,
+      toJson: LayerModelId.toJsonString,
+    )
+    required final LayerModelId id,
     @Default('') final String title,
     @JsonKey(
       fromJson: LayerModel._tilesFromJson,
@@ -64,7 +89,7 @@ class LayerModel with _$LayerModel {
   const LayerModel._();
   factory LayerModel.fromJson(final Map<String, dynamic> json) =>
       _$LayerModelFromJson(json);
-  static const empty = LayerModel();
+  static const empty = LayerModel(id: LayerModelId.empty);
   static Map<CellPointModel, CellTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
   ) =>

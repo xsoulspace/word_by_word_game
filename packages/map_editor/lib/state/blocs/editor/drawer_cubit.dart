@@ -61,14 +61,34 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   LayerModel get drawLayer => state.drawLayer;
-  set drawLayer(final LayerModel layer) => emit(
+  set drawLayer(final LayerModel layer) {
+    layers = [...state.canvasData.layers]..[state.drawLayerIndex] = layer;
+  }
+
+  List<LayerModel> get layers => state.canvasData.layers;
+  set layers(final List<LayerModel> layers) => emit(
         state.copyWith(
-          canvasData: state.canvasData.copyWith(
-            layers: [...state.canvasData.layers]..[state.drawLayerIndex] =
-                layer,
-          ),
+          canvasData: state.canvasData.copyWith(layers: layers),
         ),
       );
+
+  void createNewLayer({
+    required final String title,
+  }) {
+    final layer = LayerModel(title: title, id: LayerModelId.create());
+    layers = [...state.canvasData.layers, layer];
+  }
+
+  void reorderLayers(final int oldIndex, final int newIndex) {
+    layers = [...layers]..reorder(oldIndex, newIndex);
+  }
+
+  void changeLayer({
+    required final LayerModel layer,
+    required final int index,
+  }) {
+    layers = [...state.canvasData.layers]..[index] = layer;
+  }
 
   void addTile({required final CellPointModel cell}) {
     final resourceTile = state.tileToDraw;

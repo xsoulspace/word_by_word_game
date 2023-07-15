@@ -1338,6 +1338,8 @@ mixin _$TilesPresetResources {
       throw _privateConstructorUsedError;
   Map<TileId, PresetTileResource> get players =>
       throw _privateConstructorUsedError;
+  Map<TileId, PresetTileResource> get other =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $TilesPresetResourcesCopyWith<TilesPresetResources> get copyWith =>
@@ -1354,7 +1356,8 @@ abstract class $TilesPresetResourcesCopyWith<$Res> {
       {Map<TileId, PresetTileResource> tiles,
       Map<TileId, PresetTileResource> objects,
       Map<TileId, PresetTileResource> npcs,
-      Map<TileId, PresetTileResource> players});
+      Map<TileId, PresetTileResource> players,
+      Map<TileId, PresetTileResource> other});
 }
 
 /// @nodoc
@@ -1375,6 +1378,7 @@ class _$TilesPresetResourcesCopyWithImpl<$Res,
     Object? objects = null,
     Object? npcs = null,
     Object? players = null,
+    Object? other = null,
   }) {
     return _then(_value.copyWith(
       tiles: null == tiles
@@ -1393,6 +1397,10 @@ class _$TilesPresetResourcesCopyWithImpl<$Res,
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
               as Map<TileId, PresetTileResource>,
+      other: null == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
     ) as $Val);
   }
 }
@@ -1409,7 +1417,8 @@ abstract class _$$_TilesPresetResourcesCopyWith<$Res>
       {Map<TileId, PresetTileResource> tiles,
       Map<TileId, PresetTileResource> objects,
       Map<TileId, PresetTileResource> npcs,
-      Map<TileId, PresetTileResource> players});
+      Map<TileId, PresetTileResource> players,
+      Map<TileId, PresetTileResource> other});
 }
 
 /// @nodoc
@@ -1427,6 +1436,7 @@ class __$$_TilesPresetResourcesCopyWithImpl<$Res>
     Object? objects = null,
     Object? npcs = null,
     Object? players = null,
+    Object? other = null,
   }) {
     return _then(_$_TilesPresetResources(
       tiles: null == tiles
@@ -1445,6 +1455,10 @@ class __$$_TilesPresetResourcesCopyWithImpl<$Res>
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
               as Map<TileId, PresetTileResource>,
+      other: null == other
+          ? _value._other
+          : other // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileResource>,
     ));
   }
 }
@@ -1456,11 +1470,13 @@ class _$_TilesPresetResources implements _TilesPresetResources {
       {final Map<TileId, PresetTileResource> tiles = const {},
       final Map<TileId, PresetTileResource> objects = const {},
       final Map<TileId, PresetTileResource> npcs = const {},
-      final Map<TileId, PresetTileResource> players = const {}})
+      final Map<TileId, PresetTileResource> players = const {},
+      final Map<TileId, PresetTileResource> other = const {}})
       : _tiles = tiles,
         _objects = objects,
         _npcs = npcs,
-        _players = players;
+        _players = players,
+        _other = other;
 
   final Map<TileId, PresetTileResource> _tiles;
   @override
@@ -1498,9 +1514,18 @@ class _$_TilesPresetResources implements _TilesPresetResources {
     return EqualUnmodifiableMapView(_players);
   }
 
+  final Map<TileId, PresetTileResource> _other;
+  @override
+  @JsonKey()
+  Map<TileId, PresetTileResource> get other {
+    if (_other is EqualUnmodifiableMapView) return _other;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_other);
+  }
+
   @override
   String toString() {
-    return 'TilesPresetResources(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players)';
+    return 'TilesPresetResources(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other)';
   }
 
   @override
@@ -1511,7 +1536,8 @@ class _$_TilesPresetResources implements _TilesPresetResources {
             const DeepCollectionEquality().equals(other._tiles, _tiles) &&
             const DeepCollectionEquality().equals(other._objects, _objects) &&
             const DeepCollectionEquality().equals(other._npcs, _npcs) &&
-            const DeepCollectionEquality().equals(other._players, _players));
+            const DeepCollectionEquality().equals(other._players, _players) &&
+            const DeepCollectionEquality().equals(other._other, this._other));
   }
 
   @override
@@ -1520,7 +1546,8 @@ class _$_TilesPresetResources implements _TilesPresetResources {
       const DeepCollectionEquality().hash(_tiles),
       const DeepCollectionEquality().hash(_objects),
       const DeepCollectionEquality().hash(_npcs),
-      const DeepCollectionEquality().hash(_players));
+      const DeepCollectionEquality().hash(_players),
+      const DeepCollectionEquality().hash(_other));
 
   @JsonKey(ignore: true)
   @override
@@ -1535,7 +1562,8 @@ abstract class _TilesPresetResources implements TilesPresetResources {
       {final Map<TileId, PresetTileResource> tiles,
       final Map<TileId, PresetTileResource> objects,
       final Map<TileId, PresetTileResource> npcs,
-      final Map<TileId, PresetTileResource> players}) = _$_TilesPresetResources;
+      final Map<TileId, PresetTileResource> players,
+      final Map<TileId, PresetTileResource> other}) = _$_TilesPresetResources;
 
   @override
   Map<TileId, PresetTileResource> get tiles;
@@ -1545,6 +1573,8 @@ abstract class _TilesPresetResources implements TilesPresetResources {
   Map<TileId, PresetTileResource> get npcs;
   @override
   Map<TileId, PresetTileResource> get players;
+  @override
+  Map<TileId, PresetTileResource> get other;
   @override
   @JsonKey(ignore: true)
   _$$_TilesPresetResourcesCopyWith<_$_TilesPresetResources> get copyWith =>
