@@ -40,7 +40,7 @@ class TilesDrawer extends Component
           );
 
           final neighbourTile = effectiveLayerTiles[neighbourCell];
-          if (neighbourTile == null) continue;
+          if (neighbourTile == null || neighbourTile.tileId.isEmpty) continue;
 
           effectiveLayerTiles.update(
             cell,
