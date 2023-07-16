@@ -1,8 +1,8 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:gap/gap.dart';
 import 'package:map_editor/logic/logic.dart';
-import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 
@@ -33,7 +33,7 @@ class TileButtons extends StatelessWidget {
     final mapEditorBloc = context.watch<MapEditorCubit>();
     final worldBloc = context.watch<WorldBloc>();
     final worldTime = context.read<EditorMechanicsCollection>().worldTime;
-    final menuTiles = context.watch<DrawerCubit>().menuTiles;
+    final tilesResources = context.watch<DrawerCubit>().tilesResources;
 
     return Material(
       child: ListView(
@@ -74,22 +74,16 @@ class TileButtons extends StatelessWidget {
               ),
             ],
           ),
+          TextButton(
+            onPressed: () async => showLayersDialog(context: context),
+            child: Text('Layers - ${drawerCubit.drawLayer.title}'),
+          ),
           ...[
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.terrain]!,
+            ...tilesResources.tiles.values.map(
+              (final e) => TileSpriteButton(
+                tileResource: e,
+              ),
             ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.coin]!,
-            ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.enemy]!,
-            ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.palmForeground]!,
-            ),
-            TileSpriteButton(
-              tiles: menuTiles[TileStyle.palmBackground]!,
-            )
           ].map(
             (final e) => Padding(
               padding: const EdgeInsets.only(right: 8),
@@ -101,23 +95,11 @@ class TileButtons extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text('Tile Index ${drawerCubit.state.selectionIndex}'),
-                Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.add),
-                      onPressed: () {
-                        drawerCubit.selectionIndex++;
-                      },
-                    ),
-                    IconButton(
-                      icon: const Icon(Icons.remove),
-                      onPressed: () {
-                        drawerCubit.selectionIndex--;
-                      },
-                    ),
-                  ],
+                Text(
+                  // ignore: lines_longer_than_80_chars
+                  'Selected Tile ${drawerCubit.state.tileToDraw?.tile.properties.title}',
                 ),
+                // TODO(arenukvern): add layer crud
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 150),
                   child: CheckboxListTile(
@@ -132,8 +114,13 @@ class TileButtons extends StatelessWidget {
                   ),
                 ),
                 TextButton.icon(
-                  onPressed: mapEditorBloc.onSaveAndPlay,
+                  onPressed: drawerCubit.saveData,
                   icon: const Icon(Icons.save),
+                  label: const Text('Save'),
+                ),
+                TextButton.icon(
+                  onPressed: mapEditorBloc.onSaveAndPlay,
+                  icon: const Icon(Icons.play_arrow),
                   label: const Text('Save & Play'),
                 ),
               ],
@@ -145,33 +132,12 @@ class TileButtons extends StatelessWidget {
   }
 }
 
-class TileSpriteButton extends StatefulWidget {
+class TileSpriteButton extends StatelessWidget {
   const TileSpriteButton({
-    required this.tiles,
+    required this.tileResource,
     super.key,
   });
-  final List<TileMenuItem> tiles;
-
-  @override
-  State<TileSpriteButton> createState() => _TileSpriteButtonState();
-}
-
-class _TileSpriteButtonState extends State<TileSpriteButton> {
-  // ignore: prefer_final_fields
-  int _index = 0;
-  TileMenuItem get _item => widget.tiles[_index];
-  void _onPressed() {
-    if (mounted) context.read<DrawerCubit>().selectionIndex = _item.index;
-  }
-
-  void _onNext() {
-    _index++;
-    if (_index > (widget.tiles.length - 1)) {
-      _index = 0;
-    }
-    setState(() {});
-    _onPressed();
-  }
+  final PresetTileResource tileResource;
 
   @override
   Widget build(final BuildContext context) {
@@ -180,10 +146,7 @@ class _TileSpriteButtonState extends State<TileSpriteButton> {
     final dimension = kTileDimension.toDouble();
     final drawerCubit = context.watch<DrawerCubit>();
 
-    final isActive = widget.tiles.firstWhereOrNull(
-          (final e) => e.index == drawerCubit.selectionIndex,
-        ) !=
-        null;
+    final isActive = drawerCubit.tileToDraw?.id == tileResource.id;
 
     return Container(
       decoration: BoxDecoration(
@@ -195,19 +158,132 @@ class _TileSpriteButtonState extends State<TileSpriteButton> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          TextButton(onPressed: _onNext, child: const Text('next')),
-          const Spacer(),
           InkWell(
-            onTap: _onPressed,
+            onTap: () {
+              drawerCubit.tileToDraw = tileResource;
+            },
             child: Container(
               width: dimension,
               height: dimension,
               decoration: BoxDecoration(
                 color: colorSheme.secondaryContainer,
+                image: DecorationImage(
+                  image: Image.asset(
+                    'assets/images/${tileResource.tile.properties.thumbnailPath}',
+                  ).image,
+                ),
               ),
-              child: Image.asset(_item.data.menuSurface),
             ),
           ),
+          const Gap(16),
+          Text(
+            tileResource.tile.properties.title,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+Future<void> showLayersDialog({
+  required final BuildContext context,
+}) async {
+  await showDialog(
+    context: context,
+    builder: (final context) => const LevelsDialog(),
+  );
+}
+
+class LevelsDialog extends StatefulWidget {
+  const LevelsDialog({super.key});
+
+  @override
+  State<LevelsDialog> createState() => _LevelsDialogState();
+}
+
+class _LevelsDialogState extends State<LevelsDialog> {
+  final _textController = TextEditingController();
+  @override
+  void dispose() {
+    _textController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    final drawerCubit = context.watch<DrawerCubit>();
+    final layers = drawerCubit.layers;
+    return Dialog.fullscreen(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          AppBar(
+            leading: const CloseButton(),
+            title: const Text('Layers'),
+          ),
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(24),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: 240,
+                        ),
+                        child: TextFormField(controller: _textController),
+                      ),
+                      IconButton(
+                        icon: const Icon(Icons.save),
+                        onPressed: () {
+                          final text = _textController.text;
+                          if (text.isEmpty) return;
+                          drawerCubit.createNewLayer(title: text);
+                          _textController.clear();
+                        },
+                      ),
+                    ],
+                  ),
+                  ReorderableListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: (final context, final index) {
+                      final layer = layers[index];
+                      return ListTile(
+                        key: ValueKey(layer.id),
+                        leading: Radio.adaptive(
+                          value: layer.id,
+                          groupValue: drawerCubit.drawLayer.id,
+                          onChanged: (final id) => drawerCubit.selectLayer(
+                            id: id,
+                          ),
+                        ),
+                        trailing: ReorderableDragStartListener(
+                          index: index,
+                          child: const Icon(Icons.drag_handle),
+                        ),
+                        title: TextFormField(
+                          initialValue: layer.title,
+                          onChanged: (final value) {
+                            drawerCubit.changeLayer(
+                              layer: layer.copyWith(
+                                title: value,
+                              ),
+                              index: index,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    itemCount: layers.length,
+                    onReorder: drawerCubit.reorderLayers,
+                  ),
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:math' as math;
 
+import 'package:flame/cache.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart';
@@ -9,8 +10,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
+import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 

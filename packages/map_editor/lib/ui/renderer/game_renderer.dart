@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
@@ -11,7 +10,6 @@ import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
-import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 
 part 'renderer_di.dart';
@@ -35,9 +33,8 @@ int get kVisibleTilesRows => 16;
 int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
-TileId get kWaterTileId => const TileId(value: '3');
-TileId get kPlayerObjectId => const TileId(value: '0');
-TileId get kCursorHandleObjectId => const TileId(value: '19');
+TileId get kPlayerObjectId => const TileId(value: 'tester');
+TileId get kCursorHandleObjectId => const TileId(value: 'cursor');
 
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
@@ -63,7 +60,6 @@ class GameRenderer extends FlameGame
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final editor = EditorRenderer();
-  final resourcesLoader = ResourcesLoader();
 
   @override
   Future<void> onLoad() async {
@@ -76,13 +72,12 @@ class GameRenderer extends FlameGame
       ..register<EditorRenderer>();
     world = World();
     worldCamera = await _initCamera();
-
+    await diDto.drawerCubit.loadCache(images: images);
     providersComponent = diDto.getBlocsProviderComponent(
       children: [
         world,
         // router,
         worldCamera,
-        resourcesLoader,
       ],
     );
 
@@ -101,7 +96,7 @@ class GameRenderer extends FlameGame
   }
 
   Future<CameraComponent> _initCamera() async {
-    final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
+    // final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
     final camera = CameraComponent(
       world: world,
     ); //..setBounds(bounds);

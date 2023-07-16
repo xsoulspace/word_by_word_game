@@ -5,11 +5,20 @@ class DrawerCubitState with _$DrawerCubitState {
   const factory DrawerCubitState({
     /// Real origin for all elements
     required final Vector2 origin,
-    @Default(kMinSelectionIndex) final int selectionIndex,
+    final PresetTileResource? tileToDraw,
     @Default(false) final bool isDeleteSelection,
     @Default(false) final bool isDeleteSelectionCompletely,
-    @Default({}) final Map<CellPointModel, CanvasTileModel> canvasData,
-    @Default({}) final TileDataModelMap tileData,
+    @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
+
+    /// use to get or update layer [canvasData]
+    ///
+    /// shortcut - [drawLayer]
+    @Default(LayerModelId.empty) final LayerModelId drawLayerId,
+
+    /// Never changable in runtime tileset, like grass, water and data
+    /// to instantiate objects
+    @Default(TilesPresetResources.empty)
+    final TilesPresetResources tileResources,
 
     /// can be negative and positive
     /// !maybe need to remove this
@@ -28,6 +37,13 @@ class DrawerCubitState with _$DrawerCubitState {
         origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
         origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
       );
+  LayerModel get drawLayer {
+    final layers = canvasData.layers;
+    if (layers.isEmpty || (drawLayerId.isEmpty)) {
+      return LayerModel.empty;
+    }
+    return layers.firstWhere((final e) => e.id == drawLayerId);
+  }
 }
 
 class OriginVectorUtils {
@@ -45,7 +61,16 @@ class OriginVectorUtils {
     return math.Point(x, y);
   }
 
-  math.Point<int> getCurrentCellByObject(final EditorCanvasObject object) {
+  math.Point<int> getCurrentCellByGameObject(
+    final RenderObjectModel object,
+  ) {
+    final distanceToOrigin = object.distanceToOrigin.toVector2() - origin;
+    return getCellByDistance(distanceToOrigin);
+  }
+
+  math.Point<int> getCurrentCellByCanvasObject(
+    final EditorCanvasObject object,
+  ) {
     final distanceToOrigin = object.distanceToOrigin.toVector2() - origin;
     return getCellByDistance(distanceToOrigin);
   }

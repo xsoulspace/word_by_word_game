@@ -25,11 +25,17 @@ class $AssetsImagesGen {
 class $AssetsJsonGen {
   const $AssetsJsonGen();
 
+  /// File path: assets/json/README.md
+  String get readme => 'assets/json/README.md';
+
+  /// File path: assets/json/tiles_preset_data.json
+  String get tilesPresetData => 'assets/json/tiles_preset_data.json';
+
   /// File path: assets/json/tiles_settings_data.json
   String get tilesSettingsData => 'assets/json/tiles_settings_data.json';
 
   /// List of all assets
-  List<String> get values => [tilesSettingsData];
+  List<String> get values => [readme, tilesPresetData, tilesSettingsData];
 }
 
 class $AssetsImagesCloudsGen {
@@ -190,6 +196,10 @@ class $AssetsImagesPlayerGen {
       const $AssetsImagesPlayerFallLeftGen();
   $AssetsImagesPlayerFallRightGen get fallRight =>
       const $AssetsImagesPlayerFallRightGen();
+  $AssetsImagesPlayerFlyLeftGen get flyLeft =>
+      const $AssetsImagesPlayerFlyLeftGen();
+  $AssetsImagesPlayerFlyRightGen get flyRight =>
+      const $AssetsImagesPlayerFlyRightGen();
   $AssetsImagesPlayerIdleLeftGen get idleLeft =>
       const $AssetsImagesPlayerIdleLeftGen();
   $AssetsImagesPlayerIdleRightGen get idleRight =>
@@ -198,10 +208,6 @@ class $AssetsImagesPlayerGen {
       const $AssetsImagesPlayerJumpLeftGen();
   $AssetsImagesPlayerJumpRightGen get jumpRight =>
       const $AssetsImagesPlayerJumpRightGen();
-  $AssetsImagesPlayerRunLeftGen get runLeft =>
-      const $AssetsImagesPlayerRunLeftGen();
-  $AssetsImagesPlayerRunRightGen get runRight =>
-      const $AssetsImagesPlayerRunRightGen();
 }
 
 class $AssetsImagesPreviewGen {
@@ -467,8 +473,76 @@ class $AssetsImagesPlayerFallRightGen {
   List<AssetGenImage> get values => [fallRight1];
 }
 
+class $AssetsImagesPlayerFlyLeftGen {
+  const $AssetsImagesPlayerFlyLeftGen();
+
+  /// File path: assets/images/player/fly_left/fly_left_0.png
+  AssetGenImage get flyLeft0 =>
+      const AssetGenImage('assets/images/player/fly_left/fly_left_0.png');
+
+  /// File path: assets/images/player/fly_left/fly_left_1.png
+  AssetGenImage get flyLeft1 =>
+      const AssetGenImage('assets/images/player/fly_left/fly_left_1.png');
+
+  /// File path: assets/images/player/fly_left/fly_left_2.png
+  AssetGenImage get flyLeft2 =>
+      const AssetGenImage('assets/images/player/fly_left/fly_left_2.png');
+
+  /// File path: assets/images/player/fly_left/fly_left_3.png
+  AssetGenImage get flyLeft3 =>
+      const AssetGenImage('assets/images/player/fly_left/fly_left_3.png');
+
+  /// File path: assets/images/player/fly_left/fly_left_4.png
+  AssetGenImage get flyLeft4 =>
+      const AssetGenImage('assets/images/player/fly_left/fly_left_4.png');
+
+  /// File path: assets/images/player/fly_left/fly_left_5.png
+  AssetGenImage get flyLeft5 =>
+      const AssetGenImage('assets/images/player/fly_left/fly_left_5.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [flyLeft0, flyLeft1, flyLeft2, flyLeft3, flyLeft4, flyLeft5];
+}
+
+class $AssetsImagesPlayerFlyRightGen {
+  const $AssetsImagesPlayerFlyRightGen();
+
+  /// File path: assets/images/player/fly_right/fly_right_0.png
+  AssetGenImage get flyRight0 =>
+      const AssetGenImage('assets/images/player/fly_right/fly_right_0.png');
+
+  /// File path: assets/images/player/fly_right/fly_right_1.png
+  AssetGenImage get flyRight1 =>
+      const AssetGenImage('assets/images/player/fly_right/fly_right_1.png');
+
+  /// File path: assets/images/player/fly_right/fly_right_2.png
+  AssetGenImage get flyRight2 =>
+      const AssetGenImage('assets/images/player/fly_right/fly_right_2.png');
+
+  /// File path: assets/images/player/fly_right/fly_right_3.png
+  AssetGenImage get flyRight3 =>
+      const AssetGenImage('assets/images/player/fly_right/fly_right_3.png');
+
+  /// File path: assets/images/player/fly_right/fly_right_4.png
+  AssetGenImage get flyRight4 =>
+      const AssetGenImage('assets/images/player/fly_right/fly_right_4.png');
+
+  /// File path: assets/images/player/fly_right/fly_right_5.png
+  AssetGenImage get flyRight5 =>
+      const AssetGenImage('assets/images/player/fly_right/fly_right_5.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [flyRight0, flyRight1, flyRight2, flyRight3, flyRight4, flyRight5];
+}
+
 class $AssetsImagesPlayerIdleLeftGen {
   const $AssetsImagesPlayerIdleLeftGen();
+
+  /// File path: assets/images/player/idle_left/idle_left_0.png
+  AssetGenImage get idleLeft0 =>
+      const AssetGenImage('assets/images/player/idle_left/idle_left_0.png');
 
   /// File path: assets/images/player/idle_left/idle_left_1.png
   AssetGenImage get idleLeft1 =>
@@ -486,17 +560,17 @@ class $AssetsImagesPlayerIdleLeftGen {
   AssetGenImage get idleLeft4 =>
       const AssetGenImage('assets/images/player/idle_left/idle_left_4.png');
 
-  /// File path: assets/images/player/idle_left/idle_left_5.png
-  AssetGenImage get idleLeft5 =>
-      const AssetGenImage('assets/images/player/idle_left/idle_left_5.png');
-
   /// List of all assets
   List<AssetGenImage> get values =>
-      [idleLeft1, idleLeft2, idleLeft3, idleLeft4, idleLeft5];
+      [idleLeft0, idleLeft1, idleLeft2, idleLeft3, idleLeft4];
 }
 
 class $AssetsImagesPlayerIdleRightGen {
   const $AssetsImagesPlayerIdleRightGen();
+
+  /// File path: assets/images/player/idle_right/idle_right_0.png
+  AssetGenImage get idleRight0 =>
+      const AssetGenImage('assets/images/player/idle_right/idle_right_0.png');
 
   /// File path: assets/images/player/idle_right/idle_right_1.png
   AssetGenImage get idleRight1 =>
@@ -514,13 +588,9 @@ class $AssetsImagesPlayerIdleRightGen {
   AssetGenImage get idleRight4 =>
       const AssetGenImage('assets/images/player/idle_right/idle_right_4.png');
 
-  /// File path: assets/images/player/idle_right/idle_right_5.png
-  AssetGenImage get idleRight5 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_5.png');
-
   /// List of all assets
   List<AssetGenImage> get values =>
-      [idleRight1, idleRight2, idleRight3, idleRight4, idleRight5];
+      [idleRight0, idleRight1, idleRight2, idleRight3, idleRight4];
 }
 
 class $AssetsImagesPlayerJumpLeftGen {
@@ -543,70 +613,6 @@ class $AssetsImagesPlayerJumpRightGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [jumpRight1];
-}
-
-class $AssetsImagesPlayerRunLeftGen {
-  const $AssetsImagesPlayerRunLeftGen();
-
-  /// File path: assets/images/player/run_left/run_left_1.png
-  AssetGenImage get runLeft1 =>
-      const AssetGenImage('assets/images/player/run_left/run_left_1.png');
-
-  /// File path: assets/images/player/run_left/run_left_2.png
-  AssetGenImage get runLeft2 =>
-      const AssetGenImage('assets/images/player/run_left/run_left_2.png');
-
-  /// File path: assets/images/player/run_left/run_left_3.png
-  AssetGenImage get runLeft3 =>
-      const AssetGenImage('assets/images/player/run_left/run_left_3.png');
-
-  /// File path: assets/images/player/run_left/run_left_4.png
-  AssetGenImage get runLeft4 =>
-      const AssetGenImage('assets/images/player/run_left/run_left_4.png');
-
-  /// File path: assets/images/player/run_left/run_left_5.png
-  AssetGenImage get runLeft5 =>
-      const AssetGenImage('assets/images/player/run_left/run_left_5.png');
-
-  /// File path: assets/images/player/run_left/run_left_6.png
-  AssetGenImage get runLeft6 =>
-      const AssetGenImage('assets/images/player/run_left/run_left_6.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [runLeft1, runLeft2, runLeft3, runLeft4, runLeft5, runLeft6];
-}
-
-class $AssetsImagesPlayerRunRightGen {
-  const $AssetsImagesPlayerRunRightGen();
-
-  /// File path: assets/images/player/run_right/run_right_1.png
-  AssetGenImage get runRight1 =>
-      const AssetGenImage('assets/images/player/run_right/run_right_1.png');
-
-  /// File path: assets/images/player/run_right/run_right_2.png
-  AssetGenImage get runRight2 =>
-      const AssetGenImage('assets/images/player/run_right/run_right_2.png');
-
-  /// File path: assets/images/player/run_right/run_right_3.png
-  AssetGenImage get runRight3 =>
-      const AssetGenImage('assets/images/player/run_right/run_right_3.png');
-
-  /// File path: assets/images/player/run_right/run_right_4.png
-  AssetGenImage get runRight4 =>
-      const AssetGenImage('assets/images/player/run_right/run_right_4.png');
-
-  /// File path: assets/images/player/run_right/run_right_5.png
-  AssetGenImage get runRight5 =>
-      const AssetGenImage('assets/images/player/run_right/run_right_5.png');
-
-  /// File path: assets/images/player/run_right/run_right_6.png
-  AssetGenImage get runRight6 =>
-      const AssetGenImage('assets/images/player/run_right/run_right_6.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [runRight1, runRight2, runRight3, runRight4, runRight5, runRight6];
 }
 
 class $AssetsImagesTerrainLandGen {
@@ -1801,15 +1807,11 @@ class $AssetsImagesTerrainPalmGen {
 class $AssetsImagesTerrainWaterGen {
   const $AssetsImagesTerrainWaterGen();
 
-  /// File path: assets/images/terrain/water/X.png
-  AssetGenImage get x =>
-      const AssetGenImage('assets/images/terrain/water/X.png');
-
-  $AssetsImagesTerrainWaterAnimationGen get animation =>
-      const $AssetsImagesTerrainWaterAnimationGen();
-
-  /// List of all assets
-  List<AssetGenImage> get values => [x];
+  $AssetsImagesTerrainWaterABCDEFGHGen get abcdefgh =>
+      const $AssetsImagesTerrainWaterABCDEFGHGen();
+  $AssetsImagesTerrainWaterCDEFGGen get cdefg =>
+      const $AssetsImagesTerrainWaterCDEFGGen();
+  $AssetsImagesTerrainWaterXGen get x => const $AssetsImagesTerrainWaterXGen();
 }
 
 class $AssetsImagesEnemiesShellLeftAttackGen {
@@ -1997,24 +1999,8 @@ class $AssetsImagesEnemiesToothRunRightGen {
 class $AssetsImagesTerrainPalmLargeBgGen {
   const $AssetsImagesTerrainPalmLargeBgGen();
 
-  /// File path: assets/images/terrain/palm/large_bg/large_bg_0.png
-  AssetGenImage get largeBg0 =>
-      const AssetGenImage('assets/images/terrain/palm/large_bg/large_bg_0.png');
-
-  /// File path: assets/images/terrain/palm/large_bg/large_bg_1.png
-  AssetGenImage get largeBg1 =>
-      const AssetGenImage('assets/images/terrain/palm/large_bg/large_bg_1.png');
-
-  /// File path: assets/images/terrain/palm/large_bg/large_bg_2.png
-  AssetGenImage get largeBg2 =>
-      const AssetGenImage('assets/images/terrain/palm/large_bg/large_bg_2.png');
-
-  /// File path: assets/images/terrain/palm/large_bg/large_bg_3.png
-  AssetGenImage get largeBg3 =>
-      const AssetGenImage('assets/images/terrain/palm/large_bg/large_bg_3.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [largeBg0, largeBg1, largeBg2, largeBg3];
+  $AssetsImagesTerrainPalmLargeBgIdleGen get idle =>
+      const $AssetsImagesTerrainPalmLargeBgIdleGen();
 }
 
 class $AssetsImagesTerrainPalmLargeFgGen {
@@ -2158,43 +2144,95 @@ class $AssetsImagesTerrainPalmSmallBgGen {
 class $AssetsImagesTerrainPalmSmallFgGen {
   const $AssetsImagesTerrainPalmSmallFgGen();
 
-  /// File path: assets/images/terrain/palm/small_fg/small_fg_1.png
-  AssetGenImage get smallFg1 =>
-      const AssetGenImage('assets/images/terrain/palm/small_fg/small_fg_1.png');
-
-  /// File path: assets/images/terrain/palm/small_fg/small_fg_2.png
-  AssetGenImage get smallFg2 =>
-      const AssetGenImage('assets/images/terrain/palm/small_fg/small_fg_2.png');
-
-  /// File path: assets/images/terrain/palm/small_fg/small_fg_3.png
-  AssetGenImage get smallFg3 =>
-      const AssetGenImage('assets/images/terrain/palm/small_fg/small_fg_3.png');
-
-  /// File path: assets/images/terrain/palm/small_fg/small_fg_4.png
-  AssetGenImage get smallFg4 =>
-      const AssetGenImage('assets/images/terrain/palm/small_fg/small_fg_4.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [smallFg1, smallFg2, smallFg3, smallFg4];
+  $AssetsImagesTerrainPalmSmallFgIdleGen get idle =>
+      const $AssetsImagesTerrainPalmSmallFgIdleGen();
 }
 
-class $AssetsImagesTerrainWaterAnimationGen {
-  const $AssetsImagesTerrainWaterAnimationGen();
+class $AssetsImagesTerrainWaterABCDEFGHGen {
+  const $AssetsImagesTerrainWaterABCDEFGHGen();
 
-  /// File path: assets/images/terrain/water/animation/water_0.png
-  AssetGenImage get water0 =>
-      const AssetGenImage('assets/images/terrain/water/animation/water_0.png');
-
-  /// File path: assets/images/terrain/water/animation/water_1.png
-  AssetGenImage get water1 =>
-      const AssetGenImage('assets/images/terrain/water/animation/water_1.png');
-
-  /// File path: assets/images/terrain/water/animation/water_2.png
-  AssetGenImage get water2 =>
-      const AssetGenImage('assets/images/terrain/water/animation/water_2.png');
+  /// File path: assets/images/terrain/water/ABCDEFGH/ABCDEFGH_0.png
+  AssetGenImage get abcdefgh0 => const AssetGenImage(
+      'assets/images/terrain/water/ABCDEFGH/ABCDEFGH_0.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [water0, water1, water2];
+  List<AssetGenImage> get values => [abcdefgh0];
+}
+
+class $AssetsImagesTerrainWaterCDEFGGen {
+  const $AssetsImagesTerrainWaterCDEFGGen();
+
+  /// File path: assets/images/terrain/water/CDEFG/CDEFG_0.png
+  AssetGenImage get cdefg0 =>
+      const AssetGenImage('assets/images/terrain/water/CDEFG/CDEFG_0.png');
+
+  /// File path: assets/images/terrain/water/CDEFG/CDEFG_1.png
+  AssetGenImage get cdefg1 =>
+      const AssetGenImage('assets/images/terrain/water/CDEFG/CDEFG_1.png');
+
+  /// File path: assets/images/terrain/water/CDEFG/CDEFG_2.png
+  AssetGenImage get cdefg2 =>
+      const AssetGenImage('assets/images/terrain/water/CDEFG/CDEFG_2.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [cdefg0, cdefg1, cdefg2];
+}
+
+class $AssetsImagesTerrainWaterXGen {
+  const $AssetsImagesTerrainWaterXGen();
+
+  /// File path: assets/images/terrain/water/X/X_0.png
+  AssetGenImage get x0 =>
+      const AssetGenImage('assets/images/terrain/water/X/X_0.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [x0];
+}
+
+class $AssetsImagesTerrainPalmLargeBgIdleGen {
+  const $AssetsImagesTerrainPalmLargeBgIdleGen();
+
+  /// File path: assets/images/terrain/palm/large_bg/idle/idle_0.png
+  AssetGenImage get idle0 => const AssetGenImage(
+      'assets/images/terrain/palm/large_bg/idle/idle_0.png');
+
+  /// File path: assets/images/terrain/palm/large_bg/idle/idle_1.png
+  AssetGenImage get idle1 => const AssetGenImage(
+      'assets/images/terrain/palm/large_bg/idle/idle_1.png');
+
+  /// File path: assets/images/terrain/palm/large_bg/idle/idle_2.png
+  AssetGenImage get idle2 => const AssetGenImage(
+      'assets/images/terrain/palm/large_bg/idle/idle_2.png');
+
+  /// File path: assets/images/terrain/palm/large_bg/idle/idle_3.png
+  AssetGenImage get idle3 => const AssetGenImage(
+      'assets/images/terrain/palm/large_bg/idle/idle_3.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [idle0, idle1, idle2, idle3];
+}
+
+class $AssetsImagesTerrainPalmSmallFgIdleGen {
+  const $AssetsImagesTerrainPalmSmallFgIdleGen();
+
+  /// File path: assets/images/terrain/palm/small_fg/idle/idle_0.png
+  AssetGenImage get idle0 => const AssetGenImage(
+      'assets/images/terrain/palm/small_fg/idle/idle_0.png');
+
+  /// File path: assets/images/terrain/palm/small_fg/idle/idle_1.png
+  AssetGenImage get idle1 => const AssetGenImage(
+      'assets/images/terrain/palm/small_fg/idle/idle_1.png');
+
+  /// File path: assets/images/terrain/palm/small_fg/idle/idle_2.png
+  AssetGenImage get idle2 => const AssetGenImage(
+      'assets/images/terrain/palm/small_fg/idle/idle_2.png');
+
+  /// File path: assets/images/terrain/palm/small_fg/idle/idle_3.png
+  AssetGenImage get idle3 => const AssetGenImage(
+      'assets/images/terrain/palm/small_fg/idle/idle_3.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [idle0, idle1, idle2, idle3];
 }
 
 class Assets {

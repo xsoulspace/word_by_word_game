@@ -124,21 +124,23 @@ flutter:
     - assets/images/player/idle_right/
     - assets/images/player/jump_left/
     - assets/images/player/jump_right/
-    - assets/images/player/run_left/
-    - assets/images/player/run_right/
+    - assets/images/player/fly_left/
+    - assets/images/player/fly_right/
     - assets/images/preview/
     - assets/images/terrain/
     - assets/images/terrain/land/
-    - assets/images/terrain/palm/large_bg/
+    - assets/images/terrain/palm/large_bg/idle/
     - assets/images/terrain/palm/large_fg/
     - assets/images/terrain/palm/left_bg/
     - assets/images/terrain/palm/left_fg/
     - assets/images/terrain/palm/right_bg/
     - assets/images/terrain/palm/right_fg/
     - assets/images/terrain/palm/small_bg/
-    - assets/images/terrain/palm/small_fg/
+    - assets/images/terrain/palm/small_fg/idle/
     - assets/images/terrain/water/
-    - assets/images/terrain/water/animation/
+    - assets/images/terrain/water/ABCDEFGH/
+    - assets/images/terrain/water/CDEFG/
+    - assets/images/terrain/water/X/
     - assets/json/
 # To add assets to your package, add an assets section, like this:
 # assets:
