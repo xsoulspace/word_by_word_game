@@ -40,7 +40,7 @@ class StateDiProvider extends StatelessWidget {
             ),
             BlocProvider(
               create: (final context) => DrawerCubit(
-                read: context.read,
+                dto: DrawerCubitDto.use(context: context),
               ),
             ),
             BlocProvider(

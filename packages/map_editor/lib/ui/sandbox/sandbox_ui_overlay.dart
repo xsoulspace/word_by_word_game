@@ -127,6 +127,20 @@ class TileButtons extends StatelessWidget {
               ],
             ),
           ),
+          Column(
+            children: [
+              TextButton.icon(
+                onPressed: () async => drawerCubit.copy(context: context),
+                icon: const Icon(Icons.copy),
+                label: const Text('Copy'),
+              ),
+              TextButton.icon(
+                onPressed: () async => drawerCubit.paste(context: context),
+                icon: const Icon(Icons.paste),
+                label: const Text('Paste'),
+              ),
+            ],
+          )
         ],
       ),
     );

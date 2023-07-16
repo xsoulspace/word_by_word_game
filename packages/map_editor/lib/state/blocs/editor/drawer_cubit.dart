@@ -1,8 +1,9 @@
 part of '../../state.dart';
 
 class DrawerCubitDto {
-  // ignore: avoid_unused_constructor_parameters
-  DrawerCubitDto.use(final Locator read) : localDataService = read();
+  DrawerCubitDto.use({
+    required final BuildContext context,
+  }) : localDataService = context.read();
   final LocalDataService localDataService;
 }
 
@@ -10,9 +11,8 @@ String get _tempPersistanceKey => 'map_editor_save';
 
 class DrawerCubit extends Cubit<DrawerCubitState> {
   DrawerCubit({
-    required final Locator read,
-  })  : dto = DrawerCubitDto.use(read),
-        super(DrawerCubitState.empty);
+    required this.dto,
+  }) : super(DrawerCubitState.empty);
   final DrawerCubitDto dto;
   PresetTileResource? get tileToDraw => state.tileToDraw;
   set tileToDraw(final PresetTileResource? data) =>
@@ -44,6 +44,48 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
         tileResources: tileResources,
         canvasData: canvasData,
         drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
+      ),
+    );
+  }
+
+  Future<void> copy({
+    required final BuildContext context,
+  }) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final jsonMap = canvasData.toJson();
+    final text = jsonEncode(jsonMap);
+    await Clipboard.setData(ClipboardData(text: text));
+    messenger.showMaterialBanner(
+      MaterialBanner(
+        content: const Text('Copied'),
+        actions: [
+          TextButton(
+            onPressed: messenger.clearMaterialBanners,
+            child: const Text('Close'),
+          )
+        ],
+      ),
+    );
+  }
+
+  Future<void> paste({
+    required final BuildContext context,
+  }) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final data = await Clipboard.getData('text/plain');
+    final text = data?.text ?? '';
+    if (text.isEmpty) return;
+    final jsonMap = jsonDecode(text);
+    canvasData = CanvasDataModel.fromJson(jsonMap);
+    messenger.showMaterialBanner(
+      MaterialBanner(
+        content: const Text('Copied'),
+        actions: [
+          TextButton(
+            onPressed: messenger.clearMaterialBanners,
+            child: const Text('Close'),
+          )
+        ],
       ),
     );
   }
