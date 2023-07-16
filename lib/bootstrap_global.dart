@@ -41,39 +41,40 @@ Future<void> bootstrapGlobal(
       builder, {
   final FirebaseOptions? firebaseOptions,
 }) async {
-  WidgetsFlutterBinding.ensureInitialized();
-  LicenseRegistry.addLicense(() async* {
-    final license = await rootBundle.loadString('google_fonts/OFL.txt');
-    yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-  });
-  final plugins = <AnalyticsService>[];
-  final FirebaseInitializer? firebaseIntializer;
-  if (Envs.isAnalyticsEnabled) {
-    firebaseIntializer = FirebaseInitializerImpl(
-      firebaseOptions: firebaseOptions,
-    );
-    await firebaseIntializer.onLoad();
-    plugins.addAll([
-      FirebaseAnalyticsPlugin(),
-      if (Envs.isCrashlyticsEnabled) FirebaseCrashlyticsPlugin(),
-    ]);
-  } else {
-    firebaseIntializer = null;
-  }
-
   // await Flame.device.fullScreen();
 
-  final AnalyticsService analyticsService = AnalyticsServiceImpl(
-    plugins: plugins,
-  );
-  await analyticsService.onLoad();
-  Bloc.observer = AppBlocObserver(analyticsService: analyticsService);
-  final servicesDto = AppServicesProviderDto(
-    analyticsService: analyticsService,
-    firebaseInitializer: firebaseIntializer,
-  );
-  runZonedGuarded(
-    () => runApp(builder(servicesDto: servicesDto)),
+  final analyticsService = AnalyticsServiceImpl();
+
+  await runZonedGuarded(
+    () async {
+      WidgetsFlutterBinding.ensureInitialized();
+      LicenseRegistry.addLicense(() async* {
+        final license = await rootBundle.loadString('google_fonts/OFL.txt');
+        yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+      });
+      final plugins = <AnalyticsService>[];
+      final FirebaseInitializer? firebaseIntializer;
+      if (Envs.isAnalyticsEnabled) {
+        firebaseIntializer = FirebaseInitializerImpl(
+          firebaseOptions: firebaseOptions,
+        );
+        await firebaseIntializer.onLoad();
+        plugins.addAll([
+          FirebaseAnalyticsPlugin(),
+          if (Envs.isCrashlyticsEnabled) FirebaseCrashlyticsPlugin(),
+        ]);
+      } else {
+        firebaseIntializer = null;
+      }
+      await analyticsService.attachPlugins(plugins: plugins);
+      await analyticsService.onLoad();
+      Bloc.observer = AppBlocObserver(analyticsService: analyticsService);
+      final servicesDto = AppServicesProviderDto(
+        analyticsService: analyticsService,
+        firebaseInitializer: firebaseIntializer,
+      );
+      runApp(builder(servicesDto: servicesDto));
+    },
     analyticsService.recordError,
   );
 }
