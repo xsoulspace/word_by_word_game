@@ -1295,7 +1295,7 @@ mixin _$LevelModel {
   String get id => throw _privateConstructorUsedError;
   LevelPlayersModel get players => throw _privateConstructorUsedError;
   LevelCharactersModel get characters => throw _privateConstructorUsedError;
-  ResourcesModel get resources => throw _privateConstructorUsedError;
+  CanvasDataModel get canvasData => throw _privateConstructorUsedError;
   LocalizedMap get name => throw _privateConstructorUsedError;
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
@@ -1320,7 +1320,7 @@ abstract class $LevelModelCopyWith<$Res> {
       {String id,
       LevelPlayersModel players,
       LevelCharactersModel characters,
-      ResourcesModel resources,
+      CanvasDataModel canvasData,
       LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
@@ -1330,7 +1330,7 @@ abstract class $LevelModelCopyWith<$Res> {
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
-  $ResourcesModelCopyWith<$Res> get resources;
+  $CanvasDataModelCopyWith<$Res> get canvasData;
   $LocalizedMapCopyWith<$Res> get name;
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
@@ -1351,7 +1351,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? id = null,
     Object? players = null,
     Object? characters = null,
-    Object? resources = null,
+    Object? canvasData = null,
     Object? name = null,
     Object? currentWord = null,
     Object? words = null,
@@ -1372,10 +1372,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
-      resources: null == resources
-          ? _value.resources
-          : resources // ignore: cast_nullable_to_non_nullable
-              as ResourcesModel,
+      canvasData: null == canvasData
+          ? _value.canvasData
+          : canvasData // ignore: cast_nullable_to_non_nullable
+              as CanvasDataModel,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1421,9 +1421,9 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ResourcesModelCopyWith<$Res> get resources {
-    return $ResourcesModelCopyWith<$Res>(_value.resources, (value) {
-      return _then(_value.copyWith(resources: value) as $Val);
+  $CanvasDataModelCopyWith<$Res> get canvasData {
+    return $CanvasDataModelCopyWith<$Res>(_value.canvasData, (value) {
+      return _then(_value.copyWith(canvasData: value) as $Val);
     });
   }
 
@@ -1456,7 +1456,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
       {String id,
       LevelPlayersModel players,
       LevelCharactersModel characters,
-      ResourcesModel resources,
+      CanvasDataModel canvasData,
       LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
@@ -1469,7 +1469,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
   @override
   $LevelCharactersModelCopyWith<$Res> get characters;
   @override
-  $ResourcesModelCopyWith<$Res> get resources;
+  $CanvasDataModelCopyWith<$Res> get canvasData;
   @override
   $LocalizedMapCopyWith<$Res> get name;
   @override
@@ -1490,7 +1490,7 @@ class __$$_LevelModelCopyWithImpl<$Res>
     Object? id = null,
     Object? players = null,
     Object? characters = null,
-    Object? resources = null,
+    Object? canvasData = null,
     Object? name = null,
     Object? currentWord = null,
     Object? words = null,
@@ -1511,10 +1511,10 @@ class __$$_LevelModelCopyWithImpl<$Res>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
-      resources: null == resources
-          ? _value.resources
-          : resources // ignore: cast_nullable_to_non_nullable
-              as ResourcesModel,
+      canvasData: null == canvasData
+          ? _value.canvasData
+          : canvasData // ignore: cast_nullable_to_non_nullable
+              as CanvasDataModel,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1551,7 +1551,7 @@ class _$_LevelModel extends _LevelModel {
       {required this.id,
       required this.players,
       required this.characters,
-      required this.resources,
+      this.canvasData = CanvasDataModel.empty,
       this.name = LocalizedMap.empty,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
@@ -1571,7 +1571,8 @@ class _$_LevelModel extends _LevelModel {
   @override
   final LevelCharactersModel characters;
   @override
-  final ResourcesModel resources;
+  @JsonKey()
+  final CanvasDataModel canvasData;
   @override
   @JsonKey()
   final LocalizedMap name;
@@ -1599,7 +1600,7 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(id: $id, players: $players, characters: $characters, resources: $resources, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier)';
+    return 'LevelModel(id: $id, players: $players, characters: $characters, canvasData: $canvasData, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier)';
   }
 
   @override
@@ -1611,8 +1612,8 @@ class _$_LevelModel extends _LevelModel {
             (identical(other.players, players) || other.players == players) &&
             (identical(other.characters, characters) ||
                 other.characters == characters) &&
-            (identical(other.resources, resources) ||
-                other.resources == resources) &&
+            (identical(other.canvasData, canvasData) ||
+                other.canvasData == canvasData) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.currentWord, currentWord) ||
                 other.currentWord == currentWord) &&
@@ -1632,7 +1633,7 @@ class _$_LevelModel extends _LevelModel {
       id,
       players,
       characters,
-      resources,
+      canvasData,
       name,
       currentWord,
       const DeepCollectionEquality().hash(_words),
@@ -1659,7 +1660,7 @@ abstract class _LevelModel extends LevelModel {
       {required final String id,
       required final LevelPlayersModel players,
       required final LevelCharactersModel characters,
-      required final ResourcesModel resources,
+      final CanvasDataModel canvasData,
       final LocalizedMap name,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
@@ -1678,7 +1679,7 @@ abstract class _LevelModel extends LevelModel {
   @override
   LevelCharactersModel get characters;
   @override
-  ResourcesModel get resources;
+  CanvasDataModel get canvasData;
   @override
   LocalizedMap get name;
   @override
@@ -1704,7 +1705,7 @@ TemplateLevelModel _$TemplateLevelModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$TemplateLevelModel {
   String get id => throw _privateConstructorUsedError;
-  ResourcesModel get resources => throw _privateConstructorUsedError;
+  CanvasDataModel get canvasData => throw _privateConstructorUsedError;
   LocalizedMap get name => throw _privateConstructorUsedError;
   FuelStorageModel get fuelStorage => throw _privateConstructorUsedError;
 
@@ -1722,11 +1723,11 @@ abstract class $TemplateLevelModelCopyWith<$Res> {
   @useResult
   $Res call(
       {String id,
-      ResourcesModel resources,
+      CanvasDataModel canvasData,
       LocalizedMap name,
       FuelStorageModel fuelStorage});
 
-  $ResourcesModelCopyWith<$Res> get resources;
+  $CanvasDataModelCopyWith<$Res> get canvasData;
   $LocalizedMapCopyWith<$Res> get name;
   $FuelStorageModelCopyWith<$Res> get fuelStorage;
 }
@@ -1745,7 +1746,7 @@ class _$TemplateLevelModelCopyWithImpl<$Res, $Val extends TemplateLevelModel>
   @override
   $Res call({
     Object? id = null,
-    Object? resources = null,
+    Object? canvasData = null,
     Object? name = null,
     Object? fuelStorage = null,
   }) {
@@ -1754,10 +1755,10 @@ class _$TemplateLevelModelCopyWithImpl<$Res, $Val extends TemplateLevelModel>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      resources: null == resources
-          ? _value.resources
-          : resources // ignore: cast_nullable_to_non_nullable
-              as ResourcesModel,
+      canvasData: null == canvasData
+          ? _value.canvasData
+          : canvasData // ignore: cast_nullable_to_non_nullable
+              as CanvasDataModel,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1771,9 +1772,9 @@ class _$TemplateLevelModelCopyWithImpl<$Res, $Val extends TemplateLevelModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $ResourcesModelCopyWith<$Res> get resources {
-    return $ResourcesModelCopyWith<$Res>(_value.resources, (value) {
-      return _then(_value.copyWith(resources: value) as $Val);
+  $CanvasDataModelCopyWith<$Res> get canvasData {
+    return $CanvasDataModelCopyWith<$Res>(_value.canvasData, (value) {
+      return _then(_value.copyWith(canvasData: value) as $Val);
     });
   }
 
@@ -1804,12 +1805,12 @@ abstract class _$$_TemplateLevelModelCopyWith<$Res>
   @useResult
   $Res call(
       {String id,
-      ResourcesModel resources,
+      CanvasDataModel canvasData,
       LocalizedMap name,
       FuelStorageModel fuelStorage});
 
   @override
-  $ResourcesModelCopyWith<$Res> get resources;
+  $CanvasDataModelCopyWith<$Res> get canvasData;
   @override
   $LocalizedMapCopyWith<$Res> get name;
   @override
@@ -1828,7 +1829,7 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? resources = null,
+    Object? canvasData = null,
     Object? name = null,
     Object? fuelStorage = null,
   }) {
@@ -1837,10 +1838,10 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
-      resources: null == resources
-          ? _value.resources
-          : resources // ignore: cast_nullable_to_non_nullable
-              as ResourcesModel,
+      canvasData: null == canvasData
+          ? _value.canvasData
+          : canvasData // ignore: cast_nullable_to_non_nullable
+              as CanvasDataModel,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -1859,7 +1860,7 @@ class __$$_TemplateLevelModelCopyWithImpl<$Res>
 class _$_TemplateLevelModel extends _TemplateLevelModel {
   const _$_TemplateLevelModel(
       {required this.id,
-      required this.resources,
+      this.canvasData = CanvasDataModel.empty,
       this.name = LocalizedMap.empty,
       this.fuelStorage = const FuelStorageModel()})
       : super._();
@@ -1870,7 +1871,8 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
   @override
   final String id;
   @override
-  final ResourcesModel resources;
+  @JsonKey()
+  final CanvasDataModel canvasData;
   @override
   @JsonKey()
   final LocalizedMap name;
@@ -1880,7 +1882,7 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
 
   @override
   String toString() {
-    return 'TemplateLevelModel(id: $id, resources: $resources, name: $name, fuelStorage: $fuelStorage)';
+    return 'TemplateLevelModel(id: $id, canvasData: $canvasData, name: $name, fuelStorage: $fuelStorage)';
   }
 
   @override
@@ -1889,8 +1891,8 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
         (other.runtimeType == runtimeType &&
             other is _$_TemplateLevelModel &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.resources, resources) ||
-                other.resources == resources) &&
+            (identical(other.canvasData, canvasData) ||
+                other.canvasData == canvasData) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.fuelStorage, fuelStorage) ||
                 other.fuelStorage == fuelStorage));
@@ -1899,7 +1901,7 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
   @JsonKey(ignore: true)
   @override
   int get hashCode =>
-      Object.hash(runtimeType, id, resources, name, fuelStorage);
+      Object.hash(runtimeType, id, canvasData, name, fuelStorage);
 
   @JsonKey(ignore: true)
   @override
@@ -1919,7 +1921,7 @@ class _$_TemplateLevelModel extends _TemplateLevelModel {
 abstract class _TemplateLevelModel extends TemplateLevelModel {
   const factory _TemplateLevelModel(
       {required final String id,
-      required final ResourcesModel resources,
+      final CanvasDataModel canvasData,
       final LocalizedMap name,
       final FuelStorageModel fuelStorage}) = _$_TemplateLevelModel;
   const _TemplateLevelModel._() : super._();
@@ -1930,7 +1932,7 @@ abstract class _TemplateLevelModel extends TemplateLevelModel {
   @override
   String get id;
   @override
-  ResourcesModel get resources;
+  CanvasDataModel get canvasData;
   @override
   LocalizedMap get name;
   @override
@@ -3739,165 +3741,6 @@ abstract class _PlayerLevelHighscoreModel extends PlayerLevelHighscoreModel {
   @JsonKey(ignore: true)
   _$$_PlayerLevelHighscoreModelCopyWith<_$_PlayerLevelHighscoreModel>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-ResourcesModel _$ResourcesModelFromJson(Map<String, dynamic> json) {
-  return _ResourcesModel.fromJson(json);
-}
-
-/// @nodoc
-mixin _$ResourcesModel {
-  String get tileMapName => throw _privateConstructorUsedError;
-  String get tileMapIcon => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $ResourcesModelCopyWith<ResourcesModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ResourcesModelCopyWith<$Res> {
-  factory $ResourcesModelCopyWith(
-          ResourcesModel value, $Res Function(ResourcesModel) then) =
-      _$ResourcesModelCopyWithImpl<$Res, ResourcesModel>;
-  @useResult
-  $Res call({String tileMapName, String tileMapIcon});
-}
-
-/// @nodoc
-class _$ResourcesModelCopyWithImpl<$Res, $Val extends ResourcesModel>
-    implements $ResourcesModelCopyWith<$Res> {
-  _$ResourcesModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tileMapName = null,
-    Object? tileMapIcon = null,
-  }) {
-    return _then(_value.copyWith(
-      tileMapName: null == tileMapName
-          ? _value.tileMapName
-          : tileMapName // ignore: cast_nullable_to_non_nullable
-              as String,
-      tileMapIcon: null == tileMapIcon
-          ? _value.tileMapIcon
-          : tileMapIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_ResourcesModelCopyWith<$Res>
-    implements $ResourcesModelCopyWith<$Res> {
-  factory _$$_ResourcesModelCopyWith(
-          _$_ResourcesModel value, $Res Function(_$_ResourcesModel) then) =
-      __$$_ResourcesModelCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String tileMapName, String tileMapIcon});
-}
-
-/// @nodoc
-class __$$_ResourcesModelCopyWithImpl<$Res>
-    extends _$ResourcesModelCopyWithImpl<$Res, _$_ResourcesModel>
-    implements _$$_ResourcesModelCopyWith<$Res> {
-  __$$_ResourcesModelCopyWithImpl(
-      _$_ResourcesModel _value, $Res Function(_$_ResourcesModel) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tileMapName = null,
-    Object? tileMapIcon = null,
-  }) {
-    return _then(_$_ResourcesModel(
-      tileMapName: null == tileMapName
-          ? _value.tileMapName
-          : tileMapName // ignore: cast_nullable_to_non_nullable
-              as String,
-      tileMapIcon: null == tileMapIcon
-          ? _value.tileMapIcon
-          : tileMapIcon // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_ResourcesModel extends _ResourcesModel {
-  const _$_ResourcesModel({required this.tileMapName, this.tileMapIcon = ''})
-      : super._();
-
-  factory _$_ResourcesModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ResourcesModelFromJson(json);
-
-  @override
-  final String tileMapName;
-  @override
-  @JsonKey()
-  final String tileMapIcon;
-
-  @override
-  String toString() {
-    return 'ResourcesModel(tileMapName: $tileMapName, tileMapIcon: $tileMapIcon)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_ResourcesModel &&
-            (identical(other.tileMapName, tileMapName) ||
-                other.tileMapName == tileMapName) &&
-            (identical(other.tileMapIcon, tileMapIcon) ||
-                other.tileMapIcon == tileMapIcon));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, tileMapName, tileMapIcon);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_ResourcesModelCopyWith<_$_ResourcesModel> get copyWith =>
-      __$$_ResourcesModelCopyWithImpl<_$_ResourcesModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_ResourcesModelToJson(
-      this,
-    );
-  }
-}
-
-abstract class _ResourcesModel extends ResourcesModel {
-  const factory _ResourcesModel(
-      {required final String tileMapName,
-      final String tileMapIcon}) = _$_ResourcesModel;
-  const _ResourcesModel._() : super._();
-
-  factory _ResourcesModel.fromJson(Map<String, dynamic> json) =
-      _$_ResourcesModel.fromJson;
-
-  @override
-  String get tileMapName;
-  @override
-  String get tileMapIcon;
-  @override
-  @JsonKey(ignore: true)
-  _$$_ResourcesModelCopyWith<_$_ResourcesModel> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 ScoreModel _$ScoreModelFromJson(Map<String, dynamic> json) {

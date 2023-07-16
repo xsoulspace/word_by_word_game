@@ -25,14 +25,14 @@ class LevelModel with _$LevelModel {
     required final LevelModelId id,
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
-    required final ResourcesModel resources,
+    @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
     @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
     @Default(EnergyMultiplierType.m1)
-        final EnergyMultiplierType actionMultiplier,
+    final EnergyMultiplierType actionMultiplier,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
@@ -45,7 +45,7 @@ class TemplateLevelModel with _$TemplateLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory TemplateLevelModel({
     required final LevelModelId id,
-    required final ResourcesModel resources,
+    @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _TemplateLevelModel;

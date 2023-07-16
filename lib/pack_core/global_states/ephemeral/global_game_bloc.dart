@@ -17,14 +17,12 @@ class GlobalGameBlocDiDto {
       : mechanics = read(),
         levelBloc = read(),
         levelPlayersBloc = read(),
-        resourcesBloc = read(),
         tutorialBloc = read(),
         services = read();
   final Locator read;
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
-  final ResourcesBloc resourcesBloc;
   final TutorialBloc tutorialBloc;
   final ServicesCollection services;
 }
@@ -129,16 +127,11 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       emit(updatedState);
     }
     diDto
-      ..levelBloc.add(InitLevelEvent(levelModel: levelModel))
+      ..levelBloc.add(LevelBlocEventInit(levelModel: levelModel))
       ..levelPlayersBloc.add(
         InitLevelPlayersEvent(
           playersModel: levelModel.players,
           charactersModel: levelModel.characters,
-        ),
-      )
-      ..resourcesBloc.add(
-        InitResourcesEvent(
-          resources: levelModel.resources,
         ),
       );
   }
@@ -246,7 +239,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
 
   void _shareNewDateTime(final LiveGlobalGameBlocState newState) {
     diDto.levelBloc.add(
-      ConsumeTickEvent(timeDeltaInSeconds: newState.dateTimeDelta),
+      LevelBlocEventConsumeTick(timeDeltaInSeconds: newState.dateTimeDelta),
     );
   }
 
@@ -326,7 +319,6 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
 
   LevelModel _getCurrentLevelModel() {
     final liveLevelState = diDto.levelBloc.getLiveState();
-    final liveResourcesState = diDto.resourcesBloc.getLiveState();
     final livePlayersState = diDto.levelPlayersBloc.getLiveState();
 
     return LevelModel(
@@ -341,10 +333,6 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       players: LevelPlayersModel(
         currentPlayerId: livePlayersState.currentPlayerId,
         players: livePlayersState.players,
-      ),
-      resources: ResourcesModel(
-        tileMapName: liveResourcesState.tileMapName,
-        tileMapIcon: liveResourcesState.tileMapName,
       ),
     );
   }

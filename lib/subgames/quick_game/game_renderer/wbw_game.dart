@@ -116,42 +116,37 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   }
 
   CharacterComponent? character;
-  LevelLayoutComponent? currentLevelLayout;
-  bool get isLevelLoaded =>
-      character != null && currentLevelLayout != null && !isLevelLoading;
+  bool get isLevelLoaded => character != null && !isLevelLoading;
   bool isLevelLoading = false;
   Future<void> onLoadLevel() async {
     if (isLevelLoading) return;
     isLevelLoading = true;
-    final resourcesState = diDto.resourcesBloc.getLiveState();
     final playersState = diDto.levelPlayersBloc.getLiveState();
+// final obstacleLevelHelper = ObstacleLevelHelper.fromMapComponent(
+//           tiledMapComponent: map,
+//           tileDimension: kTileDimension,
+//         )..onLoad();
 
-    final levelLayout = LevelLayoutComponent(
-      tileMapName: resourcesState.tileMapName,
-      tileDimension: kTileDimension,
-      onLoadBuilder: (final map) async {
-        final obstacleLevelHelper = ObstacleLevelHelper.fromMapComponent(
-          tiledMapComponent: map,
-          tileDimension: kTileDimension,
-        )..onLoad();
+//         const groundHeight = 30.0;
 
-        const groundHeight = 30.0;
+//         final newCharacter = CharacterComponent(
+//           levelHeight: map.tileMap.map.height.toDouble() + groundHeight,
+//           obstacleLevelHelper: obstacleLevelHelper,
+//           characterModel: playersState.playerCharacter,
+//         );
+//         await world.add(newCharacter);
 
-        final newCharacter = CharacterComponent(
-          levelHeight: map.tileMap.map.height.toDouble() + groundHeight,
-          obstacleLevelHelper: obstacleLevelHelper,
-          characterModel: playersState.playerCharacter,
-        );
-        await world.add(newCharacter);
+//         worldCamera.follow(newCharacter);
+//         character = newCharacter;
+    // final levelLayout = LevelLayoutComponent(
+    //   tileMapName: resourcesState.tileMapName,
+    //   tileDimension: kTileDimension,
+    //   onLoadBuilder: (final map) async {
 
-        worldCamera.follow(newCharacter);
-        character = newCharacter;
-      },
-    );
-
-    currentLevelLayout = levelLayout;
-
-    await world.addAll([levelLayout]);
+    //   },
+    // );
+    // currentLevelLayout = levelLayout;
+    // await world.addAll([levelLayout]);
     isLevelLoading = false;
   }
 
@@ -162,10 +157,10 @@ class WbwGame extends FlameGame with HasCollisionDetection {
       character?.removeFromParent();
       character = null;
     }
-    if (currentLevelLayout != null) {
-      currentLevelLayout?.removeFromParent();
-      currentLevelLayout = null;
-    }
+    // if (currentLevelLayout != null) {
+    //   currentLevelLayout?.removeFromParent();
+    //   currentLevelLayout = null;
+    // }
   }
 
   @override

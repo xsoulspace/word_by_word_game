@@ -134,8 +134,10 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
           json['characters'] as Map<String, dynamic>),
-      resources:
-          ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
+      canvasData: json['canvasData'] == null
+          ? CanvasDataModel.empty
+          : CanvasDataModel.fromJson(
+              json['canvasData'] as Map<String, dynamic>),
       name: json['name'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),
@@ -161,7 +163,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'id': instance.id,
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
-      'resources': instance.resources.toJson(),
+      'canvasData': instance.canvasData.toJson(),
       'name': instance.name.toJson(),
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
@@ -186,8 +188,10 @@ _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
         Map<String, dynamic> json) =>
     _$_TemplateLevelModel(
       id: json['id'] as String,
-      resources:
-          ResourcesModel.fromJson(json['resources'] as Map<String, dynamic>),
+      canvasData: json['canvasData'] == null
+          ? CanvasDataModel.empty
+          : CanvasDataModel.fromJson(
+              json['canvasData'] as Map<String, dynamic>),
       name: json['name'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),
@@ -201,7 +205,7 @@ Map<String, dynamic> _$$_TemplateLevelModelToJson(
         _$_TemplateLevelModel instance) =>
     <String, dynamic>{
       'id': instance.id,
-      'resources': instance.resources.toJson(),
+      'canvasData': instance.canvasData.toJson(),
       'name': instance.name.toJson(),
       'fuelStorage': instance.fuelStorage.toJson(),
     };
@@ -373,18 +377,6 @@ Map<String, dynamic> _$$_PlayerLevelHighscoreModelToJson(
       'totalDistance': instance.totalDistance,
       'landingsCount': instance.landingsCount,
       'flightTime': instance.flightTime,
-    };
-
-_$_ResourcesModel _$$_ResourcesModelFromJson(Map<String, dynamic> json) =>
-    _$_ResourcesModel(
-      tileMapName: json['tileMapName'] as String,
-      tileMapIcon: json['tileMapIcon'] as String? ?? '',
-    );
-
-Map<String, dynamic> _$$_ResourcesModelToJson(_$_ResourcesModel instance) =>
-    <String, dynamic>{
-      'tileMapName': instance.tileMapName,
-      'tileMapIcon': instance.tileMapIcon,
     };
 
 _$_ScoreModel _$$_ScoreModelFromJson(Map<String, dynamic> json) =>

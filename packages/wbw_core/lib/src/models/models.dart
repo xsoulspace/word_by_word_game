@@ -1,6 +1,7 @@
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:map_editor/state/models/models.dart';
 
 import '../../wbw_core.dart';
 
@@ -17,7 +18,6 @@ part 'models.freezed.dart';
 part 'models.g.dart';
 part 'player_character_model.dart';
 part 'player_profile_model.dart';
-part 'resources_model.dart';
 part 'score_model.dart';
 part 'tutorial_models.dart';
 part 'tutorial_types.dart';

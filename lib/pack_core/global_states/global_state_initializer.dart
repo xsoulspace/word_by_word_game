@@ -65,10 +65,6 @@ class GameInitializer {
   List<TemplateLevelModel> get templateLevels => [
         const TemplateLevelModel(
           id: 'black_white_mountains_1',
-          resources: ResourcesModel(
-            tileMapName: 'pixel_black_white_landscape',
-            tileMapIcon: 'pixel_black_white_map_icon',
-          ),
           name: LocalizedMap(
             value: {
               Languages.en: 'Black & White Mountains',

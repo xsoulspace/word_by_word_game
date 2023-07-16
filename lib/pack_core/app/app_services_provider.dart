@@ -69,11 +69,6 @@ class _AppServicesProviderState extends State<AppServicesProvider> {
                   diDto: LevelBlocDiDto.use(providersContextLocator),
                 ),
               ),
-              BlocProvider<ResourcesBloc>(
-                create: (final context) => ResourcesBloc(
-                  diDto: ResourcesBlocDiDto.use(providersContextLocator),
-                ),
-              ),
               BlocProvider(
                 create: (final context) => TutorialBloc(
                   diDto: TutorialBlocDiDto.use(providersContextLocator),

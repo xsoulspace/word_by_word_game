@@ -7,7 +7,6 @@ class WbwGameDiDto {
     required this.dialogController,
   })  : levelBloc = read(),
         levelPlayersBloc = read(),
-        resourcesBloc = read(),
         globalGameBloc = read(),
         mechanics = read();
 
@@ -17,7 +16,6 @@ class WbwGameDiDto {
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
   final GlobalGameBloc globalGameBloc;
-  final ResourcesBloc resourcesBloc;
   final MechanicsCollection mechanics;
   final ThemeData theme;
   final DialogController dialogController;
@@ -26,9 +24,6 @@ class WbwGameDiDto {
     required final List<Component>? children,
   }) {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
-      FlameBlocProvider<ResourcesBloc, ResourcesBlocState>.value(
-        value: resourcesBloc,
-      ),
       FlameBlocProvider<LevelBloc, LevelBlocState>.value(
         value: levelBloc,
       ),

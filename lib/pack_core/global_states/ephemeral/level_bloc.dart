@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
@@ -27,17 +26,17 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   LevelBloc({
     required this.diDto,
   }) : super(const EmptyLevelBlocState()) {
-    on<InitLevelEvent>(_onInitLevel);
-    on<ConsumeTickEvent>(_consumeTickEvent);
-    on<ChangeCurrentWordEvent>(_onChangeCurrentWord);
-    on<AcceptNewWordEvent>(_onAcceptNewWord);
-    on<AddNewWordToDictionaryEvent>(_onAddNewWordToDictionary);
-    on<DecreaseMiddlePartEvent>(_onDecreaseMiddlePart);
-    on<LevelPlayerEndTurnActionEvent>(_onLevelPlayerEndTurnAction);
-    on<LevelPlayerSelectActionMultiplierEvent>(
+    on<LevelBlocEventInit>(_onInitLevel);
+    on<LevelBlocEventConsumeTick>(_consumeTickEvent);
+    on<LevelBlocEventChangeCurrentWord>(_onChangeCurrentWord);
+    on<LevelBlocEventAcceptNewWord>(_onAcceptNewWord);
+    on<LevelBlocEventAddNewWordToDictionary>(_onAddNewWordToDictionary);
+    on<LevelBlocEventDecreaseMiddlePart>(_onDecreaseMiddlePart);
+    on<LevelBlocEventEndTurn>(_onLevelPlayerEndTurnAction);
+    on<LevelBlocEventSelectActionMultiplier>(
       _onLevelPlayerSelectActionMultiplier,
     );
-    on<HideWarningEvent>(_onHideWarning);
+    on<LevelBlocEventHideWarning>(_onHideWarning);
   }
 
   static bool Function(
@@ -47,8 +46,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     required final bool Function(
       LiveLevelBlocState previous,
       LiveLevelBlocState current,
-    )
-        checkLiveState,
+    ) checkLiveState,
   }) =>
       (final previous, final current) {
         if (previous is LiveLevelBlocState && current is! LiveLevelBlocState) {
@@ -67,7 +65,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   final LevelBlocDiDto diDto;
 
   void _onInitLevel(
-    final InitLevelEvent event,
+    final LevelBlocEventInit event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveLevel = LevelBlocState.liveFromModel(event.levelModel);
@@ -78,14 +76,14 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   }
 
   void _consumeTickEvent(
-    final ConsumeTickEvent event,
+    final LevelBlocEventConsumeTick event,
     final Emitter<LevelBlocState> emit,
   ) {
     // noop
   }
 
   void _onHideWarning(
-    final HideWarningEvent event,
+    final LevelBlocEventHideWarning event,
     final Emitter<LevelBlocState> emit,
   ) {
     final newState = getLiveState().copyWith(
@@ -95,7 +93,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   }
 
   void _onChangeCurrentWord(
-    final ChangeCurrentWordEvent event,
+    final LevelBlocEventChangeCurrentWord event,
     final Emitter<LevelBlocState> emit,
   ) {
     final newState = getLiveState().copyWith(
@@ -131,7 +129,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   }
 
   void _onAddNewWordToDictionary(
-    final AddNewWordToDictionaryEvent event,
+    final LevelBlocEventAddNewWordToDictionary event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
@@ -139,12 +137,12 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
       AddWordToDictionaryBlocEvent(word: liveState.currentWord.cleanWord),
     );
     WidgetsBinding.instance.addPostFrameCallback((final _) {
-      add(const AcceptNewWordEvent());
+      add(const LevelBlocEventAcceptNewWord(word: null));
     });
   }
 
   void _onAcceptNewWord(
-    final AcceptNewWordEvent event,
+    final LevelBlocEventAcceptNewWord event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
@@ -186,7 +184,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   }
 
   void _onLevelPlayerSelectActionMultiplier(
-    final LevelPlayerSelectActionMultiplierEvent event,
+    final LevelBlocEventSelectActionMultiplier event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
@@ -197,7 +195,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   }
 
   void _onLevelPlayerEndTurnAction(
-    final LevelPlayerEndTurnActionEvent event,
+    final LevelBlocEventEndTurn event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
@@ -236,7 +234,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   }
 
   void _onDecreaseMiddlePart(
-    final DecreaseMiddlePartEvent event,
+    final LevelBlocEventDecreaseMiddlePart event,
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();

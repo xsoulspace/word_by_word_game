@@ -96,7 +96,6 @@ class LevelStartDialogUxState extends LifeState {
 
     final level = LevelModel(
       name: templateLevel.name,
-      resources: templateLevel.resources,
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),

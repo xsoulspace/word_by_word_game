@@ -40,18 +40,6 @@ class StartGameHex extends StatelessWidget {
                       key: ValueKey(level),
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(
-                          height: 80,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            image: DecorationImage(
-                              fit: BoxFit.fitHeight,
-                              image: AssetImage(
-                                'assets/images/tilesets/${level.resources.tileMapIcon}_highres.png',
-                              ),
-                            ),
-                          ),
-                        ),
                         uiTheme.verticalBoxes.large,
                         LevelStartDialogButton(
                           level: level,

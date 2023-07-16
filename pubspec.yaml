@@ -58,6 +58,8 @@ dependencies:
   json_annotation: ^4.8.1
   life_hooks: ^0.0.18
   logger: ^1.4.0
+  map_editor:
+    path: packages/map_editor
   package_info_plus: ^4.0.2
   path: ^1.8.3
   path_provider: ^2.0.15
@@ -137,7 +139,7 @@ flutter:
     - assets/images/buttons/
     - assets/images/characters/
     - assets/images/tilesets/
-    - assets/tiles/
+    # - assets/tiles/
     # - assets/icons/
     - google_fonts/
     # - assets/promo/
