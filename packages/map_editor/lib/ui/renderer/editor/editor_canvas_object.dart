@@ -1,5 +1,35 @@
 part of 'editor_renderer.dart';
 
+class PlayerCanvasObject extends EditorCanvasObject {
+  PlayerCanvasObject.fromRenderObject({
+    required super.onPositionChanged,
+    required super.data,
+  }) : super.fromRenderObject();
+  factory PlayerCanvasObject.fromDrawerCubit({
+    required final GameRenderer game,
+    required final DrawerCubit drawerCubit,
+  }) {
+    RenderObjectModel player = drawerCubit.player;
+    if (player.id.isEmpty) {
+      final updatedPlayer = RenderObjectModel(
+        id: const Gid(value: 'Tester'),
+        animationBehaviour: TileBehaviourType.idleRight,
+        tileId: kPlayerTileId,
+        position: (game.size / 2).toSerializedVector2(),
+      );
+      drawerCubit.player = updatedPlayer;
+      player = updatedPlayer;
+    }
+
+    return PlayerCanvasObject.fromRenderObject(
+      data: player,
+      onPositionChanged: (final value) {
+        drawerCubit.player = value;
+      },
+    );
+  }
+}
+
 class EditorCanvasObject extends Component
     with
         TapCallbacks,
@@ -14,18 +44,14 @@ class EditorCanvasObject extends Component
     required this.onChanged,
     required this.data,
   });
-  factory EditorCanvasObject.fromRenderObject({
+  EditorCanvasObject.fromRenderObject({
     required final material.ValueChanged<RenderObjectModel> onPositionChanged,
-    required final RenderObjectModel data,
-  }) =>
-      EditorCanvasObject(
-        position: data.position.toOffset(),
-        distanceToOrigin: data.distanceToOrigin.toOffset(),
-        distanceToTileLeftTopCorner:
+    required final this.data,
+  })  : position = data.position.toOffset(),
+        distanceToOrigin = data.distanceToOrigin.toOffset(),
+        distanceToTileLeftTopCorner =
             data.distanceToTileLeftTopCorner.toOffset(),
-        onChanged: onPositionChanged,
-        data: data,
-      );
+        onChanged = onPositionChanged;
 
   final material.ValueChanged<RenderObjectModel>? onChanged;
   Gid get gid => data.id;
@@ -159,7 +185,7 @@ class EditorCanvasObjectsDrawer extends Component
     }
   }
 
-  EditorCanvasObject? _player;
+  PlayerCanvasObject? _player;
   EditorCanvasObject? _gravitationHandle;
   EditorCanvasObject? _skyHandle;
 
@@ -174,22 +200,9 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadPlayer() {
-    RenderObjectModel player = drawerCubit.player;
-    if (player.id.isEmpty) {
-      final updatedPlayer = RenderObjectModel(
-        id: const Gid(value: 'Tester'),
-        animationBehaviour: TileBehaviourType.idleRight,
-        tileId: kPlayerTileId,
-        position: (game.size / 2).toSerializedVector2(),
-      );
-      drawerCubit.player = updatedPlayer;
-      player = updatedPlayer;
-    }
-    _player = EditorCanvasObject.fromRenderObject(
-      data: player,
-      onPositionChanged: (final value) {
-        drawerCubit.player = value;
-      },
+    _player = PlayerCanvasObject.fromDrawerCubit(
+      game: game,
+      drawerCubit: drawerCubit,
     );
   }
 
