@@ -1,10 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:map_editor/state/state.dart';
 // ignore: implementation_imports
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
+import 'package:word_by_word_game/pack_core/global_states/app/canvas_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class AppServicesProviderDto {
@@ -45,6 +47,10 @@ class _AppServicesProviderState extends State<AppServicesProvider> {
           Provider<ServicesCollection>(
             create: (final context) => ServicesCollection.v1,
           ),
+          Provider<LocalDataService>(
+            create: (final context) =>
+                context.read<ServicesCollection>().localDataService,
+          ),
           Provider<MechanicsCollection>(
             create: (final context) => MechanicsCollection.v1,
           ),
@@ -54,6 +60,12 @@ class _AppServicesProviderState extends State<AppServicesProvider> {
           builder: (final context) {
             late Locator providersContextLocator;
             final initialProviders = <SingleChildWidget>[
+              BlocProvider(
+                create: (final context) => CanvasCubit(
+                  canvasDto: CanvasCubitDto(),
+                  drawerCubit: DrawerCubitDto.use(context: context),
+                ),
+              ),
               BlocProvider(
                 create: (final context) => DictionariesBloc(
                   diDto: DictionariesBlocDiDto.use(providersContextLocator),

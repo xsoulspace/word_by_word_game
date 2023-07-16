@@ -24,8 +24,6 @@ part 'blocs/editor/drawer_cubit.dart';
 part 'blocs/editor/drawer_cubit_states.dart';
 part 'blocs/editor/map_editor_bloc_states.dart';
 part 'blocs/editor/map_editor_cubit.dart';
-part 'blocs/live/live_world_bloc.dart';
-part 'blocs/live/live_world_bloc_states.dart';
 part 'blocs/world_bloc.dart';
 part 'blocs/world_events.dart';
 part 'blocs/world_states.dart';

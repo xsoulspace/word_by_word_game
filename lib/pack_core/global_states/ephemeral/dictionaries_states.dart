@@ -3,21 +3,9 @@
 part of 'dictionaries_bloc.dart';
 
 @immutable
-abstract class DictionariesBlocState {
-  const DictionariesBlocState();
-}
-
-@immutable
-class EmptyDictionariesBlocState extends DictionariesBlocState {
-  const EmptyDictionariesBlocState();
-}
-
-@immutable
 @freezed
-class LiveDictionariesBlocState extends DictionariesBlocState
-    with _$LiveDictionariesBlocState {
-  @Implements<DictionariesBlocState>()
-  const factory LiveDictionariesBlocState({
-    required final LocalDictionaryModel localDictionary,
-  }) = _LiveDictionariesBlocState;
+class DictionariesBlocState with _$DictionariesBlocState {
+  const factory DictionariesBlocState({
+    @Default(LocalDictionaryModel()) final LocalDictionaryModel localDictionary,
+  }) = _DictionariesBlocState;
 }

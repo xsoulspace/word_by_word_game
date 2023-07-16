@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:map_editor/state/models/models.dart';
+
 import '../../wbw_core.dart';
 
 const int kIncreaseScoreModifier = 65;
@@ -99,7 +101,7 @@ class ScoreMechanics {
   /// [isLevelFinished] = true
   PlayerProfileModel countPlayerLevelHighscore({
     required final PlayerProfileModel player,
-    required final LevelModelId levelId,
+    required final CanvasDataModelId levelId,
     required final bool isLevelFinished,
     required final double maxDistance,
   }) {

@@ -7,14 +7,14 @@ part of 'level_bloc.dart';
 class LevelBlocState with _$LevelBlocState {
   const factory LevelBlocState.empty() = EmptyLevelBlocState;
   const factory LevelBlocState.live({
-    required final LevelModelId id,
+    required final CanvasDataModelId id,
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
     @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
     @Default(EnergyMultiplierType.m1)
-        final EnergyMultiplierType actionMultiplier,
+    final EnergyMultiplierType actionMultiplier,
 
     /// ********************************************
     /// *      NON PERSISTENT

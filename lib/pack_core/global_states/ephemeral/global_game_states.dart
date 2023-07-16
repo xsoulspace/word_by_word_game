@@ -23,7 +23,7 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
     /// ********************************************
 
     required final GameModelId id,
-    @Default('') final LevelModelId currentLevelId,
+    @Default('') final CanvasDataModelId currentLevelId,
 
     /// Current Level Model is a model with all level configurations
     /// chosen by the user (players, characters, etc).
@@ -33,7 +33,7 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
     final LevelModel? currentLevelModel,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
-    @Default({}) final Map<LevelModelId, LevelModel> levels,
+    @Default({}) final Map<CanvasDataModelId, LevelModel> levels,
     @Default([]) final List<TemplateLevelModel> templateLevels,
 
     /// The [playersCollection] is the collection of players characters,

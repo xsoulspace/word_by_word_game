@@ -57,17 +57,16 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
       templateLevels: (json['templateLevels'] as List<dynamic>)
           .map((e) => TemplateLevelModel.fromJson(e as Map<String, dynamic>))
           .toList(),
-      currentLevelId: json['currentLevelId'] as String,
+      currentLevelId:
+          CanvasDataModelId.fromJson(json['currentLevelId'] as String),
       currentLevel: json['currentLevel'] == null
           ? null
           : LevelModel.fromJson(json['currentLevel'] as Map<String, dynamic>),
       version: $enumDecodeNullable(_$GameVersionEnumMap, json['version']) ??
           kPreviousGameVersion,
-      levels: (json['levels'] as Map<String, dynamic>?)?.map(
-            (k, e) =>
-                MapEntry(k, LevelModel.fromJson(e as Map<String, dynamic>)),
-          ) ??
-          const {},
+      levels: json['levels'] == null
+          ? const {}
+          : GameModel._levelsFromJson(json['levels'] as Map<String, dynamic>),
       dateTime: json['dateTime'] == null
           ? const WorldDateTimeModel()
           : WorldDateTimeModel.fromJson(
@@ -96,10 +95,10 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'templateLevels': instance.templateLevels.map((e) => e.toJson()).toList(),
-      'currentLevelId': instance.currentLevelId,
+      'currentLevelId': instance.currentLevelId.toJson(),
       'currentLevel': instance.currentLevel?.toJson(),
       'version': _$GameVersionEnumMap[instance.version]!,
-      'levels': instance.levels.map((k, e) => MapEntry(k, e.toJson())),
+      'levels': GameModel._levelsToJson(instance.levels),
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
       'playersCollection':
@@ -129,7 +128,7 @@ Map<String, dynamic> _$$_LevelCharactersModelToJson(
 
 _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
     _$_LevelModel(
-      id: json['id'] as String,
+      id: CanvasDataModelId.fromJson(json['id'] as String),
       players:
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
@@ -160,7 +159,7 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'id': instance.id.toJson(),
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
       'canvasData': instance.canvasData.toJson(),
@@ -187,14 +186,10 @@ const _$EnergyMultiplierTypeEnumMap = {
 _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
         Map<String, dynamic> json) =>
     _$_TemplateLevelModel(
-      id: json['id'] as String,
       canvasData: json['canvasData'] == null
           ? CanvasDataModel.empty
           : CanvasDataModel.fromJson(
               json['canvasData'] as Map<String, dynamic>),
-      name: json['name'] == null
-          ? LocalizedMap.empty
-          : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),
       fuelStorage: json['fuelStorage'] == null
           ? const FuelStorageModel()
           : FuelStorageModel.fromJson(
@@ -204,9 +199,7 @@ _$_TemplateLevelModel _$$_TemplateLevelModelFromJson(
 Map<String, dynamic> _$$_TemplateLevelModelToJson(
         _$_TemplateLevelModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
       'canvasData': instance.canvasData.toJson(),
-      'name': instance.name.toJson(),
       'fuelStorage': instance.fuelStorage.toJson(),
     };
 
@@ -314,12 +307,10 @@ _$_PlayerProfileModel _$$_PlayerProfileModelFromJson(
       id: json['id'] as String,
       colorValue: json['colorValue'] as int,
       name: json['name'] as String,
-      levelsHighscores: (json['levelsHighscores'] as Map<String, dynamic>?)
-              ?.map(
-            (k, e) => MapEntry(k,
-                PlayerLevelHighscoreModel.fromJson(e as Map<String, dynamic>)),
-          ) ??
-          const {},
+      levelsHighscores: json['levelsHighscores'] == null
+          ? const {}
+          : PlayerProfileModel._highscoreFromJson(
+              json['levelsHighscores'] as Map<String, dynamic>),
       highscore: json['highscore'] == null
           ? PlayerHighscoreModel.empty
           : PlayerHighscoreModel.fromJson(
@@ -333,7 +324,7 @@ Map<String, dynamic> _$$_PlayerProfileModelToJson(
       'colorValue': instance.colorValue,
       'name': instance.name,
       'levelsHighscores':
-          instance.levelsHighscores.map((k, e) => MapEntry(k, e.toJson())),
+          PlayerProfileModel._highscoreToJson(instance.levelsHighscores),
       'highscore': instance.highscore.toJson(),
     };
 
@@ -362,7 +353,7 @@ Map<String, dynamic> _$$_PlayerHighscoreModelToJson(
 _$_PlayerLevelHighscoreModel _$$_PlayerLevelHighscoreModelFromJson(
         Map<String, dynamic> json) =>
     _$_PlayerLevelHighscoreModel(
-      levelId: json['levelId'] as String,
+      levelId: CanvasDataModelId.fromJson(json['levelId'] as String),
       maxDistance: (json['maxDistance'] as num?)?.toDouble() ?? 0,
       totalDistance: (json['totalDistance'] as num?)?.toDouble() ?? 0,
       landingsCount: (json['landingsCount'] as num?)?.toDouble() ?? 0,
@@ -372,7 +363,7 @@ _$_PlayerLevelHighscoreModel _$$_PlayerLevelHighscoreModelFromJson(
 Map<String, dynamic> _$$_PlayerLevelHighscoreModelToJson(
         _$_PlayerLevelHighscoreModel instance) =>
     <String, dynamic>{
-      'levelId': instance.levelId,
+      'levelId': instance.levelId.toJson(),
       'maxDistance': instance.maxDistance,
       'totalDistance': instance.totalDistance,
       'landingsCount': instance.landingsCount,

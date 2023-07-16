@@ -29,7 +29,7 @@ class LevelOptionsScreen extends HookWidget {
       children: [
         uiTheme.verticalBoxes.medium,
         Text(
-          widgetUxState.templateLevel.name.getValue().toUpperCase(),
+          widgetUxState.templateLevel.canvasData.name.getValue().toUpperCase(),
           style: theme.textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),

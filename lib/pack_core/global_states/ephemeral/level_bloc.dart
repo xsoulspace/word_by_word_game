@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -120,7 +123,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     }
     final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(
       word: word,
-      localDictionary: diDto.dictionaryBloc.getLiveState().localDictionary,
+      localDictionary: diDto.dictionaryBloc.state.localDictionary,
     );
     if (!isCorrect) {
       return WordWarning.isNotCorrect;
@@ -133,8 +136,10 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final Emitter<LevelBlocState> emit,
   ) {
     final liveState = getLiveState();
-    diDto.dictionaryBloc.add(
-      AddWordToDictionaryBlocEvent(word: liveState.currentWord.cleanWord),
+    unawaited(
+      diDto.dictionaryBloc.onAddWord(
+        word: liveState.currentWord.cleanWord,
+      ),
     );
     WidgetsBinding.instance.addPostFrameCallback((final _) {
       add(const LevelBlocEventAcceptNewWord(word: null));

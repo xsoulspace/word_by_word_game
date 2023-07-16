@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -345,11 +346,14 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     return effectiveState;
   }
 
-  TemplateLevelModel? getTemplateLevelById({required final LevelModelId id}) {
+  TemplateLevelModel? getTemplateLevelById({
+    required final CanvasDataModelId id,
+  }) {
     if (id.isEmpty) return null;
 
     final liveState = getLiveState();
     // TODO(arenukvern): handle null error
-    return liveState.templateLevels.firstWhere((final level) => level.id == id);
+    return liveState.templateLevels
+        .firstWhere((final level) => level.canvasData.id == id);
   }
 }

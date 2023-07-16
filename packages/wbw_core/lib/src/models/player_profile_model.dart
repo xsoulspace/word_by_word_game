@@ -12,8 +12,12 @@ class PlayerProfileModel with _$PlayerProfileModel {
     required final PlayerProfileModelId id,
     required final int colorValue,
     required final String name,
+    @JsonKey(
+      fromJson: PlayerProfileModel._highscoreFromJson,
+      toJson: PlayerProfileModel._highscoreToJson,
+    )
     @Default({})
-        final Map<LevelModelId, PlayerLevelHighscoreModel> levelsHighscores,
+    final Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores,
     @Default(PlayerHighscoreModel.empty) final PlayerHighscoreModel highscore,
   }) = _PlayerProfileModel;
   const PlayerProfileModel._();
@@ -34,6 +38,21 @@ class PlayerProfileModel with _$PlayerProfileModel {
     name: '',
   );
   Color get color => Color(colorValue);
+
+  static Map<CanvasDataModelId, PlayerLevelHighscoreModel> _highscoreFromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      json.map(
+        (final key, final value) => MapEntry(
+          CanvasDataModelId.fromJson(key),
+          PlayerLevelHighscoreModel.fromJson(value),
+        ),
+      );
+
+  static Map<String, dynamic> _highscoreToJson(
+    final Map<CanvasDataModelId, PlayerLevelHighscoreModel> map,
+  ) =>
+      map.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
 
 @immutable
@@ -59,7 +78,7 @@ class PlayerHighscoreModel with _$PlayerHighscoreModel {
 class PlayerLevelHighscoreModel with _$PlayerLevelHighscoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerLevelHighscoreModel({
-    required final LevelModelId levelId,
+    required final CanvasDataModelId levelId,
     @Default(0) final double maxDistance,
     @Default(0) final double totalDistance,
     @Default(0) final double landingsCount,

@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
+import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -34,14 +35,15 @@ class GlobalStateInitializer extends StateInitializer {
     final globalGameBloc = read<GlobalGameBloc>();
     final services = read<ServicesCollection>();
     final analyticsService = read<AnalyticsService>();
+    final canvasCubit = read<CanvasCubit>();
     final localDictionary =
         await services.dictionaryPersistence.loadDictionary();
-    final initDictionary =
-        InitDictionariesBlocEvent(localDictionary: localDictionary);
-    dictionariesBloc.add(initDictionary);
+    await dictionariesBloc.onLoad(localDictionary: localDictionary);
+    await canvasCubit.loadInitialData();
     final appRouterController = AppRouterController.use(read);
-    final initGameEvent =
-        await GameInitializer().loadGameModel(services: services);
+    final initGameEvent = await GameInitializer().loadGameModel(
+      services: services,
+    );
     globalGameBloc.add(initGameEvent);
     await servicesDto.firebaseInitializer?.onDelayedLoad();
     await analyticsService.onDelayedLoad();
@@ -62,19 +64,8 @@ class GlobalStateInitializer extends StateInitializer {
 }
 
 class GameInitializer {
-  List<TemplateLevelModel> get templateLevels => [
-        const TemplateLevelModel(
-          id: 'black_white_mountains_1',
-          name: LocalizedMap(
-            value: {
-              Languages.en: 'Black & White Mountains',
-              Languages.ru: 'Черно-белые горы',
-              Languages.it: 'Montagne in bianco e nero',
-            },
-          ),
-        ),
-      ];
-
+  // TODO(arenukvern): add template levels
+  List<TemplateLevelModel> get templateLevels => [];
   List<PlayerCharacterModel> get characters => [
         PlayerCharacterModel(
           id: 'hot-air-balloon',
@@ -130,7 +121,7 @@ class GameInitializer {
         version: kLatestGameVersion,
         templateLevels: templateLevels,
         playersCharacters: characters,
-        currentLevelId: '',
+        currentLevelId: CanvasDataModelId.empty,
       ),
     );
   }

@@ -1,3 +1,4 @@
+import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_bloc.dart';
 
@@ -10,16 +11,18 @@ class NavigationRoutes {
 
   static const levelRoot = '/lvl';
   static const playableLevel = '/lvl/:levelId';
-  static String toPlayableLevel({required final LevelModelId id}) => '/lvl/$id';
+  static String toPlayableLevel({required final CanvasDataModelId id}) =>
+      '/lvl/${id.value}';
   static const pause = '/lvl/:levelId/pause';
-  static String toPause({required final LevelModelId id}) => '/lvl/$id/pause';
+  static String toPause({required final CanvasDataModelId id}) =>
+      '/lvl/${id.value}/pause';
 
   static const routes = [root, playableLevel, pause, highscore, settings];
 }
 
 class AppRouterController extends RouterController {
   AppRouterController.use(super.read) : super.use();
-  void toPlayableLevel({required final LevelModelId id}) =>
+  void toPlayableLevel({required final CanvasDataModelId id}) =>
       to(NavigationRoutes.toPlayableLevel(id: id));
 
   void toRoot() => to(NavigationRoutes.root);
@@ -37,7 +40,7 @@ class AppRouterController extends RouterController {
   }
 
   void toPause({
-    required final LevelModelId id,
+    required final CanvasDataModelId id,
   }) =>
       to(NavigationRoutes.toPause(id: id));
   void toPlayersAndHighscore() => to(NavigationRoutes.highscore);

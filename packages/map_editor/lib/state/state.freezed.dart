@@ -32,13 +32,6 @@ mixin _$DrawerCubitState {
   /// to instantiate objects
   TilesPresetResources get tileResources => throw _privateConstructorUsedError;
 
-  /// can be negative and positive
-  /// !maybe need to remove this
-  double get gravityYPosition => throw _privateConstructorUsedError;
-
-  /// can be negative and positive
-  double get skyYPosition => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $DrawerCubitStateCopyWith<DrawerCubitState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -57,9 +50,7 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
       bool isDeleteSelectionCompletely,
       CanvasDataModel canvasData,
       LayerModelId drawLayerId,
-      TilesPresetResources tileResources,
-      double gravityYPosition,
-      double skyYPosition});
+      TilesPresetResources tileResources});
 
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
   $CanvasDataModelCopyWith<$Res> get canvasData;
@@ -87,8 +78,6 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     Object? canvasData = null,
     Object? drawLayerId = null,
     Object? tileResources = null,
-    Object? gravityYPosition = null,
-    Object? skyYPosition = null,
   }) {
     return _then(_value.copyWith(
       origin: null == origin
@@ -119,14 +108,6 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
               as TilesPresetResources,
-      gravityYPosition: null == gravityYPosition
-          ? _value.gravityYPosition
-          : gravityYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
-      skyYPosition: null == skyYPosition
-          ? _value.skyYPosition
-          : skyYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
     ) as $Val);
   }
 
@@ -182,9 +163,7 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
       bool isDeleteSelectionCompletely,
       CanvasDataModel canvasData,
       LayerModelId drawLayerId,
-      TilesPresetResources tileResources,
-      double gravityYPosition,
-      double skyYPosition});
+      TilesPresetResources tileResources});
 
   @override
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
@@ -214,8 +193,6 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
     Object? canvasData = null,
     Object? drawLayerId = null,
     Object? tileResources = null,
-    Object? gravityYPosition = null,
-    Object? skyYPosition = null,
   }) {
     return _then(_$_DrawerCubitState(
       origin: null == origin
@@ -246,14 +223,6 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
               as TilesPresetResources,
-      gravityYPosition: null == gravityYPosition
-          ? _value.gravityYPosition
-          : gravityYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
-      skyYPosition: null == skyYPosition
-          ? _value.skyYPosition
-          : skyYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
     ));
   }
 }
@@ -268,9 +237,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       this.isDeleteSelectionCompletely = false,
       this.canvasData = CanvasDataModel.empty,
       this.drawLayerId = LayerModelId.empty,
-      this.tileResources = TilesPresetResources.empty,
-      this.gravityYPosition = 0,
-      this.skyYPosition = 0})
+      this.tileResources = TilesPresetResources.empty})
       : super._();
 
   /// Real origin for all elements
@@ -301,20 +268,9 @@ class _$_DrawerCubitState extends _DrawerCubitState {
   @JsonKey()
   final TilesPresetResources tileResources;
 
-  /// can be negative and positive
-  /// !maybe need to remove this
-  @override
-  @JsonKey()
-  final double gravityYPosition;
-
-  /// can be negative and positive
-  @override
-  @JsonKey()
-  final double skyYPosition;
-
   @override
   String toString() {
-    return 'DrawerCubitState(origin: $origin, tileToDraw: $tileToDraw, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, drawLayerId: $drawLayerId, tileResources: $tileResources, gravityYPosition: $gravityYPosition, skyYPosition: $skyYPosition)';
+    return 'DrawerCubitState(origin: $origin, tileToDraw: $tileToDraw, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, drawLayerId: $drawLayerId, tileResources: $tileResources)';
   }
 
   @override
@@ -336,11 +292,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
             (identical(other.drawLayerId, drawLayerId) ||
                 other.drawLayerId == drawLayerId) &&
             (identical(other.tileResources, tileResources) ||
-                other.tileResources == tileResources) &&
-            (identical(other.gravityYPosition, gravityYPosition) ||
-                other.gravityYPosition == gravityYPosition) &&
-            (identical(other.skyYPosition, skyYPosition) ||
-                other.skyYPosition == skyYPosition));
+                other.tileResources == tileResources));
   }
 
   @override
@@ -352,9 +304,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       isDeleteSelectionCompletely,
       canvasData,
       drawLayerId,
-      tileResources,
-      gravityYPosition,
-      skyYPosition);
+      tileResources);
 
   @JsonKey(ignore: true)
   @override
@@ -371,9 +321,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
       final bool isDeleteSelectionCompletely,
       final CanvasDataModel canvasData,
       final LayerModelId drawLayerId,
-      final TilesPresetResources tileResources,
-      final double gravityYPosition,
-      final double skyYPosition}) = _$_DrawerCubitState;
+      final TilesPresetResources tileResources}) = _$_DrawerCubitState;
   const _DrawerCubitState._() : super._();
 
   @override
@@ -399,15 +347,6 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   /// Never changable in runtime tileset, like grass, water and data
   /// to instantiate objects
   TilesPresetResources get tileResources;
-  @override
-
-  /// can be negative and positive
-  /// !maybe need to remove this
-  double get gravityYPosition;
-  @override
-
-  /// can be negative and positive
-  double get skyYPosition;
   @override
   @JsonKey(ignore: true)
   _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>
@@ -532,143 +471,6 @@ abstract class _MapEditorBlocState implements MapEditorBlocState {
   @override
   @JsonKey(ignore: true)
   _$$_MapEditorBlocStateCopyWith<_$_MapEditorBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$LiveWorldBlocState {
-  /// The player object
-  PlayerModel get player => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $LiveWorldBlocStateCopyWith<LiveWorldBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LiveWorldBlocStateCopyWith<$Res> {
-  factory $LiveWorldBlocStateCopyWith(
-          LiveWorldBlocState value, $Res Function(LiveWorldBlocState) then) =
-      _$LiveWorldBlocStateCopyWithImpl<$Res, LiveWorldBlocState>;
-  @useResult
-  $Res call({PlayerModel player});
-
-  $PlayerModelCopyWith<$Res> get player;
-}
-
-/// @nodoc
-class _$LiveWorldBlocStateCopyWithImpl<$Res, $Val extends LiveWorldBlocState>
-    implements $LiveWorldBlocStateCopyWith<$Res> {
-  _$LiveWorldBlocStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? player = null,
-  }) {
-    return _then(_value.copyWith(
-      player: null == player
-          ? _value.player
-          : player // ignore: cast_nullable_to_non_nullable
-              as PlayerModel,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $PlayerModelCopyWith<$Res> get player {
-    return $PlayerModelCopyWith<$Res>(_value.player, (value) {
-      return _then(_value.copyWith(player: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_LiveWorldBlocStateCopyWith<$Res>
-    implements $LiveWorldBlocStateCopyWith<$Res> {
-  factory _$$_LiveWorldBlocStateCopyWith(_$_LiveWorldBlocState value,
-          $Res Function(_$_LiveWorldBlocState) then) =
-      __$$_LiveWorldBlocStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({PlayerModel player});
-
-  @override
-  $PlayerModelCopyWith<$Res> get player;
-}
-
-/// @nodoc
-class __$$_LiveWorldBlocStateCopyWithImpl<$Res>
-    extends _$LiveWorldBlocStateCopyWithImpl<$Res, _$_LiveWorldBlocState>
-    implements _$$_LiveWorldBlocStateCopyWith<$Res> {
-  __$$_LiveWorldBlocStateCopyWithImpl(
-      _$_LiveWorldBlocState _value, $Res Function(_$_LiveWorldBlocState) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? player = null,
-  }) {
-    return _then(_$_LiveWorldBlocState(
-      player: null == player
-          ? _value.player
-          : player // ignore: cast_nullable_to_non_nullable
-              as PlayerModel,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_LiveWorldBlocState extends _LiveWorldBlocState {
-  const _$_LiveWorldBlocState({required this.player}) : super._();
-
-  /// The player object
-  @override
-  final PlayerModel player;
-
-  @override
-  String toString() {
-    return 'LiveWorldBlocState(player: $player)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_LiveWorldBlocState &&
-            (identical(other.player, player) || other.player == player));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, player);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_LiveWorldBlocStateCopyWith<_$_LiveWorldBlocState> get copyWith =>
-      __$$_LiveWorldBlocStateCopyWithImpl<_$_LiveWorldBlocState>(
-          this, _$identity);
-}
-
-abstract class _LiveWorldBlocState extends LiveWorldBlocState {
-  const factory _LiveWorldBlocState({required final PlayerModel player}) =
-      _$_LiveWorldBlocState;
-  const _LiveWorldBlocState._() : super._();
-
-  @override
-
-  /// The player object
-  PlayerModel get player;
-  @override
-  @JsonKey(ignore: true)
-  _$$_LiveWorldBlocStateCopyWith<_$_LiveWorldBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

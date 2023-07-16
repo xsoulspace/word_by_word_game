@@ -95,7 +95,7 @@ class LevelStartDialogUxState extends LifeState {
     );
 
     final level = LevelModel(
-      name: templateLevel.name,
+      name: templateLevel.canvasData.name,
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),
@@ -109,7 +109,7 @@ class LevelStartDialogUxState extends LifeState {
             )
             .toList(),
       ),
-      id: templateLevel.id,
+      id: templateLevel.canvasData.id,
     );
 
     diDto.globalGameBloc

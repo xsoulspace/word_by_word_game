@@ -2,9 +2,33 @@
 
 part of 'saveable_models.dart';
 
+@immutable
+@Freezed(fromJson: false, toJson: false, equal: false)
+class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
+  const factory CanvasDataModelId({
+    required final String value,
+  }) = _CanvasDataModelId;
+  const CanvasDataModelId._();
+  factory CanvasDataModelId.fromJson(final String value) =>
+      CanvasDataModelId(value: value);
+  static const empty = CanvasDataModelId(value: '');
+  bool get isEmpty => value.isEmpty;
+  bool get isNotEmpty => value.isNotEmpty;
+  String toJson() => value;
+  static String toJsonString(final CanvasDataModelId id) => id.value;
+  @override
+  List<Object?> get props => [value];
+}
+
 @freezed
 class CanvasDataModel with _$CanvasDataModel {
   const factory CanvasDataModel({
+    @JsonKey(
+      fromJson: CanvasDataModelId.fromJson,
+      toJson: CanvasDataModelId.toJsonString,
+    )
+    required final CanvasDataModelId id,
+    @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default([]) final List<LayerModel> layers,
 
     /// Moving or idle obstacle, decoration - objects,
@@ -22,13 +46,16 @@ class CanvasDataModel with _$CanvasDataModel {
 
     /// As player is unique - it should be used separately from [objects].
     @Default(RenderObjectModel.empty) final RenderObjectModel playerObject,
+
+    /// can be negative and positive
+    @Default(0) final double skyYPosition,
   }) = _CanvasDataModel;
   const CanvasDataModel._();
   factory CanvasDataModel.fromJson(
     final Map<String, dynamic> json,
   ) =>
       _$CanvasDataModelFromJson(json);
-  static const empty = CanvasDataModel();
+  static const empty = CanvasDataModel(id: CanvasDataModelId.empty);
 
   static Map<Gid, RenderObjectModel> _objectsFromJson(
     final Map<String, dynamic> json,

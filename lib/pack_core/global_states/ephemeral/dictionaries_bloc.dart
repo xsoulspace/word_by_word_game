@@ -1,11 +1,11 @@
-import 'package:equatable/equatable.dart';
+import 'dart:async';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 part 'dictionaries_bloc.freezed.dart';
-part 'dictionaries_events.dart';
 part 'dictionaries_states.dart';
 
 class DictionariesBlocDiDto {
@@ -13,56 +13,35 @@ class DictionariesBlocDiDto {
   final ServicesCollection services;
 }
 
-class DictionariesBloc
-    extends Bloc<DictionariesBlocEvent, DictionariesBlocState> {
+class DictionariesBloc extends Cubit<DictionariesBlocState> {
   DictionariesBloc({
     required this.diDto,
-  }) : super(const EmptyDictionariesBlocState()) {
-    on<InitDictionariesBlocEvent>(_onInit);
-    on<SaveDictionariesBlocEvent>(_onSave);
-    on<AddWordToDictionaryBlocEvent>(_onAddWord);
-  }
+  }) : super(const DictionariesBlocState());
   final DictionariesBlocDiDto diDto;
-  Future<void> _onInit(
-    final InitDictionariesBlocEvent event,
-    final Emitter<DictionariesBlocState> emit,
-  ) async {
+  Future<void> onLoad({
+    required final LocalDictionaryModel localDictionary,
+  }) async {
     emit(
-      LiveDictionariesBlocState(
-        localDictionary: event.localDictionary,
-      ),
+      DictionariesBlocState(localDictionary: localDictionary),
     );
   }
 
-  Future<void> _onSave(
-    final SaveDictionariesBlocEvent event,
-    final Emitter<DictionariesBlocState> emit,
-  ) async {
+  Future<void> onSave() async {
     await diDto.services.dictionaryPersistence.saveDictionary(
-      dictionary: getLiveState().localDictionary,
+      dictionary: state.localDictionary,
     );
   }
 
-  Future<void> _onAddWord(
-    final AddWordToDictionaryBlocEvent event,
-    final Emitter<DictionariesBlocState> emit,
-  ) async {
-    final liveState = getLiveState();
-    final dictionary = getLiveState().localDictionary;
+  Future<void> onAddWord({
+    required final String word,
+  }) async {
+    final dictionary = state.localDictionary;
     final updatedDictionary =
-        dictionary.copyWith(words: {...dictionary.words, event.word});
-    final updatedState = liveState.copyWith(
+        dictionary.copyWith(words: {...dictionary.words, word});
+    final updatedState = state.copyWith(
       localDictionary: updatedDictionary,
     );
     emit(updatedState);
-    add(const SaveDictionariesBlocEvent());
-  }
-
-  LiveDictionariesBlocState getLiveState() {
-    final effectiveState = state;
-    if (effectiveState is! LiveDictionariesBlocState) {
-      throw ArgumentError.value(effectiveState);
-    }
-    return effectiveState;
+    unawaited(onSave());
   }
 }

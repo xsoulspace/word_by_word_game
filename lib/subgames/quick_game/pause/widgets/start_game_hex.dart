@@ -1,5 +1,6 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -17,7 +18,7 @@ class StartGameHex extends StatelessWidget {
     final state = context.read<PauseScreenState>();
     final routeState = context.watch<RouteState>();
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
-    final levelId = routeArgs.levelId;
+    final levelId = CanvasDataModelId.fromJson(routeArgs.levelId);
     final isLevelRunning = levelId.isNotEmpty;
     final uiTheme = UiTheme.of(context);
 

@@ -86,8 +86,17 @@ class $AssetsImagesGen {
   $AssetsImagesCharactersGen get characters =>
       const $AssetsImagesCharactersGen();
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
-  $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
   $AssetsImagesUiFramesGen get uiFrames => const $AssetsImagesUiFramesGen();
+}
+
+class $AssetsLevelsGen {
+  const $AssetsLevelsGen();
+
+  /// File path: assets/levels/lvl_0.json
+  String get lvl0 => 'assets/levels/lvl_0.json';
+
+  /// List of all assets
+  List<String> get values => [lvl0];
 }
 
 class $AssetsImagesButtonsGen {
@@ -167,22 +176,6 @@ class $AssetsImagesIconsGen {
       ];
 }
 
-class $AssetsImagesTilesetsGen {
-  const $AssetsImagesTilesetsGen();
-
-  /// File path: assets/images/tilesets/pixel_black_white_map_icon_highres.png
-  AssetGenImage get pixelBlackWhiteMapIconHighres => const AssetGenImage(
-      'assets/images/tilesets/pixel_black_white_map_icon_highres.png');
-
-  /// File path: assets/images/tilesets/pixel_black_white_tileset.png
-  AssetGenImage get pixelBlackWhiteTileset => const AssetGenImage(
-      'assets/images/tilesets/pixel_black_white_tileset.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [pixelBlackWhiteMapIconHighres, pixelBlackWhiteTileset];
-}
-
 class $AssetsImagesUiFramesGen {
   const $AssetsImagesUiFramesGen();
 
@@ -208,6 +201,7 @@ class Assets {
 
   static const AssetGenImage icon = AssetGenImage('assets/icon.png');
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsLevelsGen levels = $AssetsLevelsGen();
   static const $GoogleFontsGen googleFonts = $GoogleFontsGen();
 
   /// List of all assets

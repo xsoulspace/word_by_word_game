@@ -1794,7 +1794,7 @@ mixin _$LevelBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -1809,7 +1809,7 @@ mixin _$LevelBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -1824,7 +1824,7 @@ mixin _$LevelBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -1915,7 +1915,7 @@ class _$EmptyLevelBlocState implements EmptyLevelBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -1933,7 +1933,7 @@ class _$EmptyLevelBlocState implements EmptyLevelBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -1951,7 +1951,7 @@ class _$EmptyLevelBlocState implements EmptyLevelBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -2011,7 +2011,7 @@ abstract class _$$LiveLevelBlocStateCopyWith<$Res> {
       __$$LiveLevelBlocStateCopyWithImpl<$Res>;
   @useResult
   $Res call(
-      {String id,
+      {CanvasDataModelId id,
       LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
@@ -2020,6 +2020,7 @@ abstract class _$$LiveLevelBlocStateCopyWith<$Res> {
       EnergyMultiplierType actionMultiplier,
       WordWarning wordWarning});
 
+  $CanvasDataModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get name;
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
@@ -2048,7 +2049,7 @@ class __$$LiveLevelBlocStateCopyWithImpl<$Res>
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String,
+              as CanvasDataModelId,
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -2078,6 +2079,14 @@ class __$$LiveLevelBlocStateCopyWithImpl<$Res>
           : wordWarning // ignore: cast_nullable_to_non_nullable
               as WordWarning,
     ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CanvasDataModelIdCopyWith<$Res> get id {
+    return $CanvasDataModelIdCopyWith<$Res>(_value.id, (value) {
+      return _then(_value.copyWith(id: value));
+    });
   }
 
   @override
@@ -2112,7 +2121,7 @@ class _$LiveLevelBlocState implements LiveLevelBlocState {
       : _words = words;
 
   @override
-  final String id;
+  final CanvasDataModelId id;
   @override
   @JsonKey()
   final LocalizedMap name;
@@ -2194,7 +2203,7 @@ class _$LiveLevelBlocState implements LiveLevelBlocState {
   TResult when<TResult extends Object?>({
     required TResult Function() empty,
     required TResult Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -2213,7 +2222,7 @@ class _$LiveLevelBlocState implements LiveLevelBlocState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? empty,
     TResult? Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -2232,7 +2241,7 @@ class _$LiveLevelBlocState implements LiveLevelBlocState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? empty,
     TResult Function(
-            String id,
+            CanvasDataModelId id,
             LocalizedMap name,
             CurrentWordModel currentWord,
             Map<String, String> words,
@@ -2284,7 +2293,7 @@ class _$LiveLevelBlocState implements LiveLevelBlocState {
 
 abstract class LiveLevelBlocState implements LevelBlocState {
   const factory LiveLevelBlocState(
-      {required final String id,
+      {required final CanvasDataModelId id,
       final LocalizedMap name,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
@@ -2293,7 +2302,7 @@ abstract class LiveLevelBlocState implements LevelBlocState {
       final EnergyMultiplierType actionMultiplier,
       final WordWarning wordWarning}) = _$LiveLevelBlocState;
 
-  String get id;
+  CanvasDataModelId get id;
   LocalizedMap get name;
   CurrentWordModel get currentWord;
   Map<String, String> get words;

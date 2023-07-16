@@ -8,6 +8,10 @@ part of 'saveable_models.dart';
 
 _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
     _$_CanvasDataModel(
+      id: CanvasDataModelId.fromJson(json['id'] as String),
+      name: json['name'] == null
+          ? LocalizedMap.empty
+          : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),
       layers: (json['layers'] as List<dynamic>?)
               ?.map((e) => LayerModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -20,13 +24,17 @@ _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
           ? RenderObjectModel.empty
           : RenderObjectModel.fromJson(
               json['playerObject'] as Map<String, dynamic>),
+      skyYPosition: (json['skyYPosition'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
     <String, dynamic>{
+      'id': CanvasDataModelId.toJsonString(instance.id),
+      'name': instance.name,
       'layers': instance.layers,
       'objects': CanvasDataModel._objectsToJson(instance.objects),
       'playerObject': instance.playerObject,
+      'skyYPosition': instance.skyYPosition,
     };
 
 _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>

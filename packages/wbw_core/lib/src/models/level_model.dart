@@ -2,8 +2,6 @@
 
 part of 'models.dart';
 
-typedef LevelModelId = String;
-
 enum GamePhaseType { entryWord, selectFuel }
 
 enum EnergyMultiplierType {
@@ -22,7 +20,7 @@ class LevelModel with _$LevelModel {
     explicitToJson: true,
   )
   const factory LevelModel({
-    required final LevelModelId id,
+    required final CanvasDataModelId id,
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
     @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
@@ -44,9 +42,7 @@ class LevelModel with _$LevelModel {
 class TemplateLevelModel with _$TemplateLevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory TemplateLevelModel({
-    required final LevelModelId id,
     @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
-    @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
   }) = _TemplateLevelModel;
   const TemplateLevelModel._();

@@ -14,12 +14,121 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
+/// @nodoc
+mixin _$CanvasDataModelId {
+  String get value => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $CanvasDataModelIdCopyWith<CanvasDataModelId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $CanvasDataModelIdCopyWith<$Res> {
+  factory $CanvasDataModelIdCopyWith(
+          CanvasDataModelId value, $Res Function(CanvasDataModelId) then) =
+      _$CanvasDataModelIdCopyWithImpl<$Res, CanvasDataModelId>;
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class _$CanvasDataModelIdCopyWithImpl<$Res, $Val extends CanvasDataModelId>
+    implements $CanvasDataModelIdCopyWith<$Res> {
+  _$CanvasDataModelIdCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_value.copyWith(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_CanvasDataModelIdCopyWith<$Res>
+    implements $CanvasDataModelIdCopyWith<$Res> {
+  factory _$$_CanvasDataModelIdCopyWith(_$_CanvasDataModelId value,
+          $Res Function(_$_CanvasDataModelId) then) =
+      __$$_CanvasDataModelIdCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String value});
+}
+
+/// @nodoc
+class __$$_CanvasDataModelIdCopyWithImpl<$Res>
+    extends _$CanvasDataModelIdCopyWithImpl<$Res, _$_CanvasDataModelId>
+    implements _$$_CanvasDataModelIdCopyWith<$Res> {
+  __$$_CanvasDataModelIdCopyWithImpl(
+      _$_CanvasDataModelId _value, $Res Function(_$_CanvasDataModelId) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? value = null,
+  }) {
+    return _then(_$_CanvasDataModelId(
+      value: null == value
+          ? _value.value
+          : value // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_CanvasDataModelId extends _CanvasDataModelId {
+  const _$_CanvasDataModelId({required this.value}) : super._();
+
+  @override
+  final String value;
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_CanvasDataModelIdCopyWith<_$_CanvasDataModelId> get copyWith =>
+      __$$_CanvasDataModelIdCopyWithImpl<_$_CanvasDataModelId>(
+          this, _$identity);
+}
+
+abstract class _CanvasDataModelId extends CanvasDataModelId {
+  const factory _CanvasDataModelId({required final String value}) =
+      _$_CanvasDataModelId;
+  const _CanvasDataModelId._() : super._();
+
+  @override
+  String get value;
+  @override
+  @JsonKey(ignore: true)
+  _$$_CanvasDataModelIdCopyWith<_$_CanvasDataModelId> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 CanvasDataModel _$CanvasDataModelFromJson(Map<String, dynamic> json) {
   return _CanvasDataModel.fromJson(json);
 }
 
 /// @nodoc
 mixin _$CanvasDataModel {
+  @JsonKey(
+      fromJson: CanvasDataModelId.fromJson,
+      toJson: CanvasDataModelId.toJsonString)
+  CanvasDataModelId get id => throw _privateConstructorUsedError;
+  LocalizedMap get name => throw _privateConstructorUsedError;
   List<LayerModel> get layers => throw _privateConstructorUsedError;
 
   /// Moving or idle obstacle, decoration - objects,
@@ -36,6 +145,9 @@ mixin _$CanvasDataModel {
   /// As player is unique - it should be used separately from [objects].
   RenderObjectModel get playerObject => throw _privateConstructorUsedError;
 
+  /// can be negative and positive
+  double get skyYPosition => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $CanvasDataModelCopyWith<CanvasDataModel> get copyWith =>
@@ -49,11 +161,17 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       _$CanvasDataModelCopyWithImpl<$Res, CanvasDataModel>;
   @useResult
   $Res call(
-      {List<LayerModel> layers,
+      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
+          CanvasDataModelId id,
+      LocalizedMap name,
+      List<LayerModel> layers,
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           Map<Gid, RenderObjectModel> objects,
-      RenderObjectModel playerObject});
+      RenderObjectModel playerObject,
+      double skyYPosition});
 
+  $CanvasDataModelIdCopyWith<$Res> get id;
+  $LocalizedMapCopyWith<$Res> get name;
   $RenderObjectModelCopyWith<$Res> get playerObject;
 }
 
@@ -70,11 +188,22 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? name = null,
     Object? layers = null,
     Object? objects = null,
     Object? playerObject = null,
+    Object? skyYPosition = null,
   }) {
     return _then(_value.copyWith(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as CanvasDataModelId,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       layers: null == layers
           ? _value.layers
           : layers // ignore: cast_nullable_to_non_nullable
@@ -87,7 +216,27 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
           ? _value.playerObject
           : playerObject // ignore: cast_nullable_to_non_nullable
               as RenderObjectModel,
+      skyYPosition: null == skyYPosition
+          ? _value.skyYPosition
+          : skyYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CanvasDataModelIdCopyWith<$Res> get id {
+    return $CanvasDataModelIdCopyWith<$Res>(_value.id, (value) {
+      return _then(_value.copyWith(id: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocalizedMapCopyWith<$Res> get name {
+    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
+      return _then(_value.copyWith(name: value) as $Val);
+    });
   }
 
   @override
@@ -108,11 +257,19 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {List<LayerModel> layers,
+      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
+          CanvasDataModelId id,
+      LocalizedMap name,
+      List<LayerModel> layers,
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           Map<Gid, RenderObjectModel> objects,
-      RenderObjectModel playerObject});
+      RenderObjectModel playerObject,
+      double skyYPosition});
 
+  @override
+  $CanvasDataModelIdCopyWith<$Res> get id;
+  @override
+  $LocalizedMapCopyWith<$Res> get name;
   @override
   $RenderObjectModelCopyWith<$Res> get playerObject;
 }
@@ -128,11 +285,22 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
+    Object? id = null,
+    Object? name = null,
     Object? layers = null,
     Object? objects = null,
     Object? playerObject = null,
+    Object? skyYPosition = null,
   }) {
     return _then(_$_CanvasDataModel(
+      id: null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as CanvasDataModelId,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
       layers: null == layers
           ? _value._layers
           : layers // ignore: cast_nullable_to_non_nullable
@@ -145,6 +313,10 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
           ? _value.playerObject
           : playerObject // ignore: cast_nullable_to_non_nullable
               as RenderObjectModel,
+      skyYPosition: null == skyYPosition
+          ? _value.skyYPosition
+          : skyYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -153,10 +325,14 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CanvasDataModel extends _CanvasDataModel {
   const _$_CanvasDataModel(
-      {final List<LayerModel> layers = const [],
+      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
+          required this.id,
+      this.name = LocalizedMap.empty,
+      final List<LayerModel> layers = const [],
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           final Map<Gid, RenderObjectModel> objects = const {},
-      this.playerObject = RenderObjectModel.empty})
+      this.playerObject = RenderObjectModel.empty,
+      this.skyYPosition = 0})
       : _layers = layers,
         _objects = objects,
         super._();
@@ -164,6 +340,14 @@ class _$_CanvasDataModel extends _CanvasDataModel {
   factory _$_CanvasDataModel.fromJson(Map<String, dynamic> json) =>
       _$$_CanvasDataModelFromJson(json);
 
+  @override
+  @JsonKey(
+      fromJson: CanvasDataModelId.fromJson,
+      toJson: CanvasDataModelId.toJsonString)
+  final CanvasDataModelId id;
+  @override
+  @JsonKey()
+  final LocalizedMap name;
   final List<LayerModel> _layers;
   @override
   @JsonKey()
@@ -202,9 +386,14 @@ class _$_CanvasDataModel extends _CanvasDataModel {
   @JsonKey()
   final RenderObjectModel playerObject;
 
+  /// can be negative and positive
+  @override
+  @JsonKey()
+  final double skyYPosition;
+
   @override
   String toString() {
-    return 'CanvasDataModel(layers: $layers, objects: $objects, playerObject: $playerObject)';
+    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYPosition: $skyYPosition)';
   }
 
   @override
@@ -212,19 +401,26 @@ class _$_CanvasDataModel extends _CanvasDataModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CanvasDataModel &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._layers, _layers) &&
             const DeepCollectionEquality().equals(other._objects, _objects) &&
             (identical(other.playerObject, playerObject) ||
-                other.playerObject == playerObject));
+                other.playerObject == playerObject) &&
+            (identical(other.skyYPosition, skyYPosition) ||
+                other.skyYPosition == skyYPosition));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
       runtimeType,
+      id,
+      name,
       const DeepCollectionEquality().hash(_layers),
       const DeepCollectionEquality().hash(_objects),
-      playerObject);
+      playerObject,
+      skyYPosition);
 
   @JsonKey(ignore: true)
   @override
@@ -242,15 +438,26 @@ class _$_CanvasDataModel extends _CanvasDataModel {
 
 abstract class _CanvasDataModel extends CanvasDataModel {
   const factory _CanvasDataModel(
-      {final List<LayerModel> layers,
+      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
+          required final CanvasDataModelId id,
+      final LocalizedMap name,
+      final List<LayerModel> layers,
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           final Map<Gid, RenderObjectModel> objects,
-      final RenderObjectModel playerObject}) = _$_CanvasDataModel;
+      final RenderObjectModel playerObject,
+      final double skyYPosition}) = _$_CanvasDataModel;
   const _CanvasDataModel._() : super._();
 
   factory _CanvasDataModel.fromJson(Map<String, dynamic> json) =
       _$_CanvasDataModel.fromJson;
 
+  @override
+  @JsonKey(
+      fromJson: CanvasDataModelId.fromJson,
+      toJson: CanvasDataModelId.toJsonString)
+  CanvasDataModelId get id;
+  @override
+  LocalizedMap get name;
   @override
   List<LayerModel> get layers;
   @override
@@ -269,6 +476,10 @@ abstract class _CanvasDataModel extends CanvasDataModel {
 
   /// As player is unique - it should be used separately from [objects].
   RenderObjectModel get playerObject;
+  @override
+
+  /// can be negative and positive
+  double get skyYPosition;
   @override
   @JsonKey(ignore: true)
   _$$_CanvasDataModelCopyWith<_$_CanvasDataModel> get copyWith =>

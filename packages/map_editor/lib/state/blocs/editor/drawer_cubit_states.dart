@@ -19,13 +19,6 @@ class DrawerCubitState with _$DrawerCubitState {
     /// to instantiate objects
     @Default(TilesPresetResources.empty)
     final TilesPresetResources tileResources,
-
-    /// can be negative and positive
-    /// !maybe need to remove this
-    @Default(0) final double gravityYPosition,
-
-    /// can be negative and positive
-    @Default(0) final double skyYPosition,
   }) = _DrawerCubitState;
   const DrawerCubitState._();
   static final empty = DrawerCubitState(origin: Vector2.zero());
