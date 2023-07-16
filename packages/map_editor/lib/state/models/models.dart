@@ -8,6 +8,5 @@ export 'saveable_models/saveable_models.dart';
 
 part 'canvas/animation_entry.dart';
 part 'canvas/game_renderer_config.dart';
-part 'canvas/tile_data.dart';
 part 'models.freezed.dart';
 part 'models.g.dart';
