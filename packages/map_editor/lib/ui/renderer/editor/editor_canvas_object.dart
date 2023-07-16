@@ -8,29 +8,33 @@ class EditorCanvasObject extends Component
         HasEditorRef,
         HasResourcesLoaderRef {
   EditorCanvasObject({
-    required this.gid,
     required this.position,
-    required this.tileId,
-    this.onPositionChanged,
+    required this.distanceToOrigin,
+    required this.distanceToTileLeftTopCorner,
+    required this.onChanged,
+    required this.data,
   });
-  factory EditorCanvasObject.fromModel({
-    required final material.ValueChanged<Offset> onPositionChanged,
+  factory EditorCanvasObject.fromRenderObject({
+    required final material.ValueChanged<RenderObjectModel> onPositionChanged,
     required final RenderObjectModel data,
   }) =>
       EditorCanvasObject(
-        gid: data.id,
         position: data.position.toOffset(),
-        tileId: data.tileId,
-        onPositionChanged: onPositionChanged,
+        distanceToOrigin: data.distanceToOrigin.toOffset(),
+        distanceToTileLeftTopCorner:
+            data.distanceToTileLeftTopCorner.toOffset(),
+        onChanged: onPositionChanged,
+        data: data,
       );
 
-  final material.ValueChanged<Offset>? onPositionChanged;
-  final Gid gid;
-  final TileId tileId;
+  final material.ValueChanged<RenderObjectModel>? onChanged;
+  Gid get gid => data.id;
+  TileId get tileId => data.tileId;
+  final RenderObjectModel data;
 
   Offset position;
-  Offset distanceToOrigin = Offset.zero;
-  Offset distanceToTileLeftTopCorner = Offset.zero;
+  Offset distanceToOrigin;
+  Offset distanceToTileLeftTopCorner;
 
   void _updateDistanceToOrigin() {
     distanceToOrigin = position - origin.toOffset();
@@ -54,9 +58,9 @@ class EditorCanvasObject extends Component
 
   @override
   void render(final Canvas canvas) {
-    final resourceTile = tilesResources[tileId]!;
+    final resourceTile = allTiles[tileId]!;
     // TODO(antmalofeev): replace with listener
-    final renderObject = drawerCubit.canvasData.objects[gid]!;
+    final renderObject = drawerCubit.objects[gid]!;
     final animationEntry =
         resourceTile.behaviourPaths[renderObject.animationBehaviour]!;
 
@@ -92,11 +96,22 @@ class EditorCanvasObject extends Component
     if (event.canvasPosition.isNaN) return super.onDragUpdate(event);
     if (_selected) {
       position = (event.canvasPosition - _dragOffset).toOffset();
-      onPositionChanged?.call(position);
       _updateDistanceToOrigin();
+      _savePosition();
     }
 
     return super.onDragUpdate(event);
+  }
+
+  void _savePosition() {
+    onChanged?.call(
+      data.copyWith(
+        position: position.toSerializedVector2(),
+        distanceToOrigin: distanceToOrigin.toSerializedVector2(),
+        distanceToTileLeftTopCorner:
+            distanceToTileLeftTopCorner.toSerializedVector2(),
+      ),
+    );
   }
 
   @override
@@ -113,6 +128,7 @@ class EditorCanvasObject extends Component
 
   void onOriginUpdate() {
     _updatePosition();
+    _savePosition();
   }
 
   void _updatePosition() {
@@ -158,13 +174,23 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadPlayer() {
-    // final gid = kPlayerObjectId.toGid();
-    // // _mapEditorBloc.loadedState;
-    // _player = EditorCanvasObject(
-    //   gid: gid,
-    //   tileId: kPlayerObjectId,
-    //   position: (game.size / 2).toOffset(),
-    // );
+    RenderObjectModel player = drawerCubit.player;
+    if (player.id.isEmpty) {
+      final updatedPlayer = RenderObjectModel(
+        id: const Gid(value: 'Tester'),
+        animationBehaviour: TileBehaviourType.idleRight,
+        tileId: kPlayerTileId,
+        position: (game.size / 2).toSerializedVector2(),
+      );
+      drawerCubit.player = updatedPlayer;
+      player = updatedPlayer;
+    }
+    _player = EditorCanvasObject.fromRenderObject(
+      data: player,
+      onPositionChanged: (final value) {
+        drawerCubit.player = value;
+      },
+    );
   }
 
   void _loadSkyHandle() {

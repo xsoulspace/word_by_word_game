@@ -11,6 +11,7 @@ class Gid with _$Gid, EquatableMixin {
   const Gid._();
   factory Gid.fromJson(final String json) => Gid(value: json);
   static const empty = Gid(value: '');
+  bool get isEmpty => value.isEmpty;
   String toJson() => value;
   @override
   List<Object?> get props => [value];

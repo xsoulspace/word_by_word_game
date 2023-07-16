@@ -76,6 +76,18 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     emit(state.copyWith(canvasData: value));
   }
 
+  Map<Gid, RenderObjectModel> get objects => {
+        ...canvasData.objects,
+        canvasData.playerObject.id: canvasData.playerObject,
+      };
+  RenderObjectModel get player => canvasData.playerObject;
+
+  set player(final RenderObjectModel value) {
+    canvasData = canvasData.copyWith(
+      playerObject: value,
+    );
+  }
+
   void selectLayer({required final LayerModelId? id}) {
     if (id == null) return;
     emit(state.copyWith(drawLayerId: id));

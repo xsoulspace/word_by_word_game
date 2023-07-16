@@ -9,6 +9,7 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
 import 'package:map_editor/ui/renderer/game_renderer.dart';
 import 'package:path/path.dart' as path;
+import 'package:recase/recase.dart';
 
 mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
   Image getImage(final String path) => game.images.fromCache(path);
@@ -44,13 +45,13 @@ class ResourcesLoader {
       getPathsForPresetCharacterGraphics({
     required final PresetTileGraphicsModel tileGraphics,
   }) {
-    // assert(tileGraphics.type == TileGraphicsType.character, '');
+    if (tileGraphics.type == TileGraphicsType.directional) return {};
     final map = <TileBehaviourType, AnimationEntryModel>{};
     final folderPath = tileGraphics.path;
     if (folderPath.isEmpty) return map;
 
     for (final behaviour in tileGraphics.behaviours) {
-      final behaviourPath = '$folderPath/$behaviour';
+      final behaviourPath = '$folderPath/${behaviour.name.snakeCase}';
 
       /// maybe folder (if animation) or file (if no animation)
       /// otherwise should throw an error
@@ -84,7 +85,7 @@ class ResourcesLoader {
       getPathsForPresetDirectionalGraphics({
     required final PresetTileGraphicsModel tileGraphics,
   }) {
-    // assert(tileGraphics.type == TileGraphicsType.directional, '');
+    if (tileGraphics.type == TileGraphicsType.character) return {};
     final map = <NeighbourTileTitle, AnimationEntryModel>{};
     final rootFolderPath = tileGraphics.path;
     if (rootFolderPath.isEmpty) return map;
@@ -144,37 +145,21 @@ class AnimationUpdater extends Component
     );
   }
 
-  @override
-  void update(final double dt) {
-    final Map<TileId, PresetTileResource> tiles = {
-      ...drawerCubit.tilesResources.tiles
-    };
+  Map<TileId, PresetTileResource> _updateTiles({
+    required final double dt,
+    required final Map<TileId, PresetTileResource> orignalTiles,
+  }) {
+    final Map<TileId, PresetTileResource> tiles = {...orignalTiles};
     for (final MapEntry(key: cellPoint, value: cellTile) in tiles.entries) {
       final graphics = cellTile.tile.graphics;
       final isAnimated = graphics.animated;
 
       switch (graphics.type) {
         case TileGraphicsType.character when isAnimated:
-          for (final behaviour in graphics.behaviours) {
-            final animationEntry = cellTile.behaviourPaths[behaviour];
-            if (animationEntry == null) continue;
-
-            final tile = tiles[cellPoint]!;
-            tiles[cellPoint] = tile.copyWith(
-              behaviourPaths: {
-                ...tile.behaviourPaths,
-                behaviour: updateAnimationFrame(
-                  config: game.config,
-                  dt: dt,
-                  entry: animationEntry,
-                )
-              },
-            );
-          }
         case TileGraphicsType.character:
-
-          /// skipping update as non animated tiles should not be updated
-          break;
+          throw ArgumentError.value(
+            'tiles should not have character animation',
+          );
         case TileGraphicsType.directional when isAnimated:
           for (final MapEntry(key: path, value: animationEntry)
               in cellTile.directionalPaths.entries) {
@@ -197,8 +182,84 @@ class AnimationUpdater extends Component
           break;
       }
     }
+    return tiles;
+  }
+
+  Map<TileId, PresetTileResource> _updateObjects({
+    required final double dt,
+    required final Map<TileId, PresetTileResource> originalObjects,
+  }) {
+    final Map<TileId, PresetTileResource> objects = {...originalObjects};
+    for (final MapEntry(key: cellPoint, value: cellTile) in objects.entries) {
+      final graphics = cellTile.tile.graphics;
+      final isAnimated = graphics.animated;
+
+      switch (graphics.type) {
+        case TileGraphicsType.character when isAnimated:
+          for (final behaviour in graphics.behaviours) {
+            final animationEntry = cellTile.behaviourPaths[behaviour];
+            if (animationEntry == null) continue;
+
+            final tile = objects[cellPoint]!;
+            objects[cellPoint] = tile.copyWith(
+              behaviourPaths: {
+                ...tile.behaviourPaths,
+                behaviour: updateAnimationFrame(
+                  config: game.config,
+                  dt: dt,
+                  entry: animationEntry,
+                )
+              },
+            );
+          }
+        case TileGraphicsType.character:
+
+          /// skipping update as non animated tiles should not be updated
+          break;
+        case TileGraphicsType.directional when isAnimated:
+        case TileGraphicsType.directional:
+          throw ArgumentError.value(
+            'objects should not have directonal animation',
+          );
+      }
+    }
+    return objects;
+  }
+
+  @override
+  void update(final double dt) {
+    final tiles =
+        _updateTiles(dt: dt, orignalTiles: drawerCubit.tilesResources.tiles);
     drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
       tiles: tiles,
+    );
+    final objects = _updateObjects(
+      dt: dt,
+      originalObjects: drawerCubit.tilesResources.objects,
+    );
+    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+      objects: objects,
+    );
+    final npcs = _updateObjects(
+      dt: dt,
+      originalObjects: drawerCubit.tilesResources.npcs,
+    );
+    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+      npcs: npcs,
+    );
+    final players = _updateObjects(
+      dt: dt,
+      originalObjects: drawerCubit.tilesResources.players,
+    );
+    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+      players: players,
+    );
+    final other = _updateObjects(
+      dt: dt,
+      originalObjects: drawerCubit.tilesResources.other,
+    );
+    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+      other: other,
     );
 
     super.update(dt);

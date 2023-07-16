@@ -45,7 +45,7 @@ class StateDiProvider extends StatelessWidget {
             ),
             BlocProvider(
               create: (final context) => MapEditorCubit(
-                read: context.read,
+                dto: MapEditorCubitDto.use(context),
               ),
             ),
           ],

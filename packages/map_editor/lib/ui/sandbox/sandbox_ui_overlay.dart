@@ -119,7 +119,8 @@ class TileButtons extends StatelessWidget {
                   label: const Text('Save'),
                 ),
                 TextButton.icon(
-                  onPressed: mapEditorBloc.onSaveAndPlay,
+                  onPressed: () async =>
+                      mapEditorBloc.onSaveAndPlay(context: context),
                   icon: const Icon(Icons.play_arrow),
                   label: const Text('Save & Play'),
                 ),

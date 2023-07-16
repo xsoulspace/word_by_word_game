@@ -1,22 +1,24 @@
 part of '../../state.dart';
 
 class MapEditorCubitDto {
-  MapEditorCubitDto.use(final Locator read) : drawerCubit = read();
+  MapEditorCubitDto.use(final BuildContext context)
+      : drawerCubit = context.read();
   final DrawerCubit drawerCubit;
 }
 
 class MapEditorCubit extends Cubit<MapEditorBlocState> {
   MapEditorCubit({
-    required final Locator read,
-  })  : dto = MapEditorCubitDto.use(read),
-        super(const MapEditorBlocState());
+    required this.dto,
+  }) : super(const MapEditorBlocState());
   final MapEditorCubitDto dto;
   // ignore: avoid_positional_boolean_parameters
   Future<void> onChangeIsEditing(final bool isEditing) async {
     emit(state.copyWith(isEditing: isEditing));
   }
 
-  Future<void> onSaveAndPlay() async {
+  Future<void> onSaveAndPlay({
+    required final BuildContext context,
+  }) async {
     // final tiles = <CellPointModel, RenderCanvasTileModel>{};
     // final gameObjects = <Gid, RenderObjectModel>{};
     // final skyYPosition = dto.drawerCubit.state.skyYPosition;

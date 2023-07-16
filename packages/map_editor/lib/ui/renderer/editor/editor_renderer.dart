@@ -15,6 +15,7 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/game_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 part 'debug_surface.dart';
 part 'editor_canvas_object.dart';
@@ -136,6 +137,17 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
   set canvasData(final CanvasDataModel value) => drawerCubit.canvasData = value;
   TilesPresetResources get presetResources => drawerCubit.tilesResources;
   Map<TileId, PresetTileResource> get tilesResources => presetResources.tiles;
+
+  /// as temporary solution
+  ///
+  /// in future change it to different tiles calls
+  Map<TileId, PresetTileResource> get allTiles => {
+        ...presetResources.tiles,
+        ...presetResources.objects,
+        ...presetResources.npcs,
+        ...presetResources.players,
+        ...presetResources.other,
+      };
 }
 
 class CursorRenderer extends Component
