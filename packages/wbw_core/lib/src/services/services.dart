@@ -6,6 +6,7 @@ import 'local_data_service.dart';
 export 'analytics/analytics.dart';
 export 'app_settings_persistence_service.dart';
 export 'game_persistence_service.dart';
+export 'local_data_service.dart';
 
 class ServicesCollection {
   const ServicesCollection._({

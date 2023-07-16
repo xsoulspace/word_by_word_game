@@ -2,8 +2,11 @@ part of '../../state.dart';
 
 class DrawerCubitDto {
   // ignore: avoid_unused_constructor_parameters
-  DrawerCubitDto.use(final Locator read);
+  DrawerCubitDto.use(final Locator read) : localDataService = read();
+  final LocalDataService localDataService;
 }
+
+String get _tempPersistanceKey => 'map_editor_save';
 
 class DrawerCubit extends Cubit<DrawerCubitState> {
   DrawerCubit({
@@ -26,12 +29,27 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     final jsonStr = await rootBundle.loadString(Assets.json.tilesPresetData);
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
     final tileData = TilesPresetDataModel.fromJson(json);
+    final canvasDataJson =
+        await dto.localDataService.getMap(_tempPersistanceKey);
 
+    final canvasData = canvasDataJson.isEmpty
+        ? CanvasDataModel.empty
+        : CanvasDataModel.fromJson(canvasDataJson);
     final tileResources = TilesPresetResources.fromModel(
       data: tileData,
       resourcesLoader: resourcesLoader,
     );
-    emit(DrawerCubitState.empty.copyWith(tileResources: tileResources));
+    emit(
+      DrawerCubitState.empty.copyWith(
+        tileResources: tileResources,
+        canvasData: canvasData,
+        drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
+      ),
+    );
+  }
+
+  Future<void> saveData() async {
+    await dto.localDataService.setMap(_tempPersistanceKey, canvasData.toJson());
   }
 
   /// This function should be triggered when game.onLoad happening
