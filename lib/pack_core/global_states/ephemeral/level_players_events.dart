@@ -1,60 +1,24 @@
 part of 'level_players_bloc.dart';
 
-@immutable
-abstract class LevelPlayersEvent extends Equatable {
-  const LevelPlayersEvent();
-  @override
-  List<Object?> get props => [];
-}
-
-@immutable
-class InitLevelPlayersEvent extends LevelPlayersEvent {
-  const InitLevelPlayersEvent({
-    required this.playersModel,
-    required this.charactersModel,
-  });
-  final LevelPlayersModel playersModel;
-  final LevelCharactersModel charactersModel;
-}
-
-@immutable
-class SwitchToNextPlayerEvent extends LevelPlayersEvent {
-  const SwitchToNextPlayerEvent();
-}
-
-@immutable
-class ConsumeFuelEvent extends LevelPlayersEvent {
-  const ConsumeFuelEvent({
-    required this.fuel,
-  });
-  final FuelStorageModel fuel;
-}
-
-@immutable
-class ChangeCharacterPositionEvent extends LevelPlayersEvent {
-  const ChangeCharacterPositionEvent({
-    required this.position,
-  });
-  final Vector2 position;
-}
-
-@immutable
-class RefuelStorageEvent extends LevelPlayersEvent {
-  const RefuelStorageEvent({
-    required this.score,
-  });
-
-  final ScoreModel score;
-}
-
-@immutable
-class UpdatePlayerHighscoreEvent extends LevelPlayersEvent {
-  const UpdatePlayerHighscoreEvent({
-    required this.score,
-    required this.playerId,
-    this.word,
-  });
-  final PlayerProfileModelId playerId;
-  final ScoreModel score;
-  final String? word;
+@freezed
+class LevelPlayerEvent with _$LevelPlayerEvent {
+  const factory LevelPlayerEvent.init({
+    required final LevelPlayersModel playersModel,
+    required final LevelCharactersModel charactersModel,
+  }) = InitLevelPlayersEvent;
+  const factory LevelPlayerEvent.switchToNextPlayer() = SwitchToNextPlayerEvent;
+  const factory LevelPlayerEvent.consumeFuel({
+    required final FuelStorageModel fuel,
+  }) = ConsumeFuelEvent;
+  const factory LevelPlayerEvent.changeCharacterPosition({
+    required final Vector2 position,
+  }) = ChangeCharacterPositionEvent;
+  const factory LevelPlayerEvent.refuelStorage({
+    required final ScoreModel score,
+  }) = RefuelStorageEvent;
+  const factory LevelPlayerEvent.updatePlayerHighscore({
+    required final PlayerProfileModelId playerId,
+    required final ScoreModel score,
+    final String? word,
+  }) = UpdatePlayerHighscoreEvent;
 }
