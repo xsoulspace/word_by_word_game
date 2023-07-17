@@ -12,7 +12,7 @@ class UILevelCenterBar extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final phaseType = context.select<LevelBloc, GamePhaseType>(
-      (final s) => s.getLiveState().phaseType,
+      (final s) => s.state.phaseType,
     );
     final uiTheme = UiTheme.of(context);
     final wordCompositionState = context.read<WordCompositionState>();

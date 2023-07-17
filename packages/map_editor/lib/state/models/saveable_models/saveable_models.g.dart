@@ -8,7 +8,9 @@ part of 'saveable_models.dart';
 
 _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
     _$_CanvasDataModel(
-      id: CanvasDataModelId.fromJson(json['id'] as String),
+      id: json['id'] == null
+          ? CanvasDataModelId.empty
+          : CanvasDataModelId.fromJson(json['id'] as String),
       name: json['name'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),

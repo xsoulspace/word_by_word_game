@@ -12,7 +12,9 @@ String get _tempPersistanceKey => 'map_editor_save';
 class DrawerCubit extends Cubit<DrawerCubitState> {
   DrawerCubit({
     required this.dto,
+    this.rootPath = '',
   }) : super(DrawerCubitState.empty);
+  final String rootPath;
   final DrawerCubitDto dto;
   PresetTileResource? get tileToDraw => state.tileToDraw;
   set tileToDraw(final PresetTileResource? data) =>
@@ -47,7 +49,8 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
 
   Future<void> loadResources() async {
     await resourcesLoader.onLoad();
-    final jsonStr = await rootBundle.loadString(Assets.json.tilesPresetData);
+    final jsonStr =
+        await rootBundle.loadString('$rootPath${Assets.json.tilesPresetData}');
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
     final tileData = TilesPresetDataModel.fromJson(json);
     final tileResources = TilesPresetResources.fromModel(

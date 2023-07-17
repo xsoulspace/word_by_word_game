@@ -44,7 +44,7 @@ class GlobalStateInitializer extends StateInitializer {
     final initGameEvent = await GameInitializer().loadGameModel(
       services: services,
     );
-    globalGameBloc.add(initGameEvent);
+    await globalGameBloc.onInitGlobalGame(initGameEvent);
     await servicesDto.firebaseInitializer?.onDelayedLoad();
     await analyticsService.onDelayedLoad();
     await adManager.onLoad();

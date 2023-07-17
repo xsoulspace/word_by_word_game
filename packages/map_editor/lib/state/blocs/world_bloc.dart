@@ -6,44 +6,35 @@ class WorldBlocDiDto {
   final EditorMechanicsCollection mechanicsCollection;
 }
 
-class WorldBloc extends Bloc<WorldEvent, WorldState> {
+class WorldBloc extends Cubit<WorldState> {
   WorldBloc({
     required final Locator read,
   })  : diDto = WorldBlocDiDto.use(read),
-        super(WorldState.initial()) {
-    on<WorldTimeTickEvent>(_onWorldTick);
-    on<InitWorldEvent>(_onInitWorld);
-    add(const InitWorldEvent());
+        super(const WorldState()) {
+    unawaited(onInitWorld());
   }
   final WorldBlocDiDto diDto;
 
-  Future<void> _onInitWorld(
-    final InitWorldEvent event,
-    final Emitter<WorldState> emit,
-  ) async {
+  Future<void> onInitWorld() async {
     final worldTime = diDto.mechanicsCollection.worldTime;
     // emit(state.copyWith(worldData: event.worldData));
     await worldTime.onLoad();
-    worldTime.addListener(_onWorldTimeChange);
-    _initLoadedWorld(event);
+    worldTime.addListener(onWorldTimeChange);
   }
 
   @override
   Future<void> close() async {
-    diDto.mechanicsCollection.worldTime.removeListener(_onWorldTimeChange);
+    diDto.mechanicsCollection.worldTime.removeListener(onWorldTimeChange);
     return super.close();
   }
 
-  void _onWorldTimeChange(final WorldTimeMechanics worldTime) =>
-      add(WorldTimeTickEvent(worldTimeManager: worldTime));
+  void onWorldTimeChange(final WorldTimeMechanics worldTime) =>
+      onWorldTick(worldTime);
 
-  void _initLoadedWorld(final InitWorldEvent event) {}
-
-  void _onWorldTick(
-    final WorldTimeTickEvent event,
-    final Emitter<WorldState> emit,
+  void onWorldTick(
+    final WorldTimeMechanics worldTime,
   ) {
-    final newDateTime = event.worldTimeManager.dateTime;
+    final newDateTime = worldTime.dateTime;
     final lastDateTime = state.dateTime;
     final dateTimeDelta = newDateTime.second - lastDateTime.second;
     final newState = state.copyWith(

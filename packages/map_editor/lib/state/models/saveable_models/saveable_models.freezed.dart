@@ -326,7 +326,7 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
 class _$_CanvasDataModel extends _CanvasDataModel {
   const _$_CanvasDataModel(
       {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          required this.id,
+          this.id = CanvasDataModelId.empty,
       this.name = LocalizedMap.empty,
       final List<LayerModel> layers = const [],
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
@@ -439,7 +439,7 @@ class _$_CanvasDataModel extends _CanvasDataModel {
 abstract class _CanvasDataModel extends CanvasDataModel {
   const factory _CanvasDataModel(
       {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          required final CanvasDataModelId id,
+          final CanvasDataModelId id,
       final LocalizedMap name,
       final List<LayerModel> layers,
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)

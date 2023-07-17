@@ -123,10 +123,10 @@ class _DialogStackState extends LifeState {
     dialogType = GameDialogType.tutorialBool;
   }
 
-  void onSendEndLevelEvent() {
+  Future<void> onSendEndLevelEvent() async {
     final event = endLevelEvent;
     if (event != null) {
-      diDto.globalGameBloc.add(event);
+      unawaited(diDto.globalGameBloc.onLevelEnd(event));
       endLevelEvent = null;
     }
   }

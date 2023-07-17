@@ -28,7 +28,7 @@ class LevelBlocDiDto {
 class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   LevelBloc({
     required this.diDto,
-  }) : super(const EmptyLevelBlocState()) {
+  }) : super(const LevelBlocState()) {
     on<LevelBlocEventInit>(_onInitLevel);
     on<LevelBlocEventConsumeTick>(_consumeTickEvent);
     on<LevelBlocEventChangeCurrentWord>(_onChangeCurrentWord);
@@ -47,23 +47,11 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     LevelBlocState current,
   ) useCheckStateEqualityBuilder({
     required final bool Function(
-      LiveLevelBlocState previous,
-      LiveLevelBlocState current,
+      LevelBlocState previous,
+      LevelBlocState current,
     ) checkLiveState,
   }) =>
-      (final previous, final current) {
-        if (previous is LiveLevelBlocState && current is! LiveLevelBlocState) {
-          return true;
-        }
-        if (previous is! LiveLevelBlocState && current is LiveLevelBlocState) {
-          return true;
-        }
-        if (current is LiveLevelBlocState && previous is LiveLevelBlocState) {
-          return checkLiveState(current, previous);
-        }
-
-        return false;
-      };
+      (final previous, final current) => checkLiveState(current, previous);
 
   final LevelBlocDiDto diDto;
 
@@ -73,7 +61,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   ) {
     final liveLevel = LevelBlocState.liveFromModel(event.levelModel);
     emit(liveLevel);
-    diDto.globalGameBloc.add(
+    diDto.globalGameBloc.onLevelPartLoaded(
       const LevelPartLoadedEvent(loadedState: LevelPartStates.level),
     );
   }
@@ -89,7 +77,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelBlocEventHideWarning event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final newState = getLiveState().copyWith(
+    final newState = state.copyWith(
       wordWarning: WordWarning.none,
     );
     emit(newState);
@@ -99,7 +87,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelBlocEventChangeCurrentWord event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final newState = getLiveState().copyWith(
+    final newState = state.copyWith(
       currentWord: event.word,
       wordWarning: WordWarning.none,
     );
@@ -112,7 +100,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final dicionaryMechanics = diDto.mechanics.dictionary;
     final isWritten = dicionaryMechanics.checkIsWordIsWritten(
       word: word,
-      words: getLiveState().words,
+      words: state.words,
     );
     if (word.cleanWord.isEmpty) {
       return WordWarning.none;
@@ -135,7 +123,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelBlocEventAddNewWordToDictionary event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final liveState = getLiveState();
+    final liveState = state;
     unawaited(
       diDto.dictionaryBloc.onAddWord(
         word: liveState.currentWord.cleanWord,
@@ -150,7 +138,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelBlocEventAcceptNewWord event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final liveState = getLiveState();
+    final liveState = state;
     final effectiveCurrentWord = event.word ?? liveState.currentWord;
     final newWord = effectiveCurrentWord.cleanWord;
     if (newWord.isEmpty) return;
@@ -192,7 +180,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelBlocEventSelectActionMultiplier event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final liveState = getLiveState();
+    final liveState = state;
     final updatedState = liveState.copyWith(
       actionMultiplier: event.multiplier,
     );
@@ -203,7 +191,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelBlocEventEndTurn event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final liveState = getLiveState();
+    final liveState = state;
     final updatedState = liveState.copyWith(
       phaseType: GamePhaseType.entryWord,
     );
@@ -231,7 +219,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
   }
 
   String getWordSuggestion() {
-    final liveState = getLiveState();
+    final liveState = state;
     return diDto.mechanics.dictionary.getWordSuggestion(
       exceptions: liveState.words.keys,
       letters: liveState.currentWord.middlePart,
@@ -242,7 +230,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     final LevelBlocEventDecreaseMiddlePart event,
     final Emitter<LevelBlocState> emit,
   ) {
-    final liveState = getLiveState();
+    final liveState = state;
     final updatedWord =
         diDto.mechanics.wordComposition.applyDecreaseMiddlePartType(
       index: event.index,
@@ -261,13 +249,5 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
         playerId: playerId,
       ),
     );
-  }
-
-  LiveLevelBlocState getLiveState() {
-    final effectiveState = state;
-    if (effectiveState is! LiveLevelBlocState) {
-      throw ArgumentError.value(effectiveState);
-    }
-    return effectiveState;
   }
 }

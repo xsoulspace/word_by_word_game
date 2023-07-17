@@ -36,43 +36,38 @@ class UiFuelFrame extends StatelessWidget {
         checkLiveState: (final previous, final current) =>
             previous.actionMultiplier != current.actionMultiplier,
       ),
-      builder: (final context, final levelState) {
-        if (levelState is! LiveLevelBlocState) {
-          return const SizedBox();
-        }
-        return TutorialFrame(
-          highlightPosition: Alignment.centerLeft,
-          uiKey: TutorialUiItem.selectRefuelOption,
-          child: Column(
-            children: [
-              Text(
-                S.of(context).applyFuelOption,
-                style: textTheme.titleMedium,
-              ),
-              const Divider(),
-              uiTheme.verticalBoxes.medium,
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 100),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (final context, final index) {
-                    final type = EnergyMultiplierType.values[index];
+      builder: (final context, final levelState) => TutorialFrame(
+        highlightPosition: Alignment.centerLeft,
+        uiKey: TutorialUiItem.selectRefuelOption,
+        child: Column(
+          children: [
+            Text(
+              S.of(context).applyFuelOption,
+              style: textTheme.titleMedium,
+            ),
+            const Divider(),
+            uiTheme.verticalBoxes.medium,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 100),
+              child: ListView.separated(
+                shrinkWrap: true,
+                itemBuilder: (final context, final index) {
+                  final type = EnergyMultiplierType.values[index];
 
-                    return UIEnergyOptionCard(
-                      levelState: levelState,
-                      type: type,
-                    );
-                  },
-                  separatorBuilder: (final context, final index) =>
-                      uiTheme.horizontalBoxes.medium,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: EnergyMultiplierType.values.length,
-                ),
-              ).animate().fadeIn().slideY(begin: 0.1),
-            ],
-          ),
-        ).animate().fadeIn().slideY(begin: 0.1);
-      },
+                  return UIEnergyOptionCard(
+                    levelState: levelState,
+                    type: type,
+                  );
+                },
+                separatorBuilder: (final context, final index) =>
+                    uiTheme.horizontalBoxes.medium,
+                scrollDirection: Axis.horizontal,
+                itemCount: EnergyMultiplierType.values.length,
+              ),
+            ).animate().fadeIn().slideY(begin: 0.1),
+          ],
+        ),
+      ).animate().fadeIn().slideY(begin: 0.1),
     );
   }
 }
@@ -84,7 +79,7 @@ class UIEnergyOptionCard extends StatelessWidget {
     super.key,
   });
   final EnergyMultiplierType type;
-  final LiveLevelBlocState levelState;
+  final LevelBlocState levelState;
 
   @override
   Widget build(final BuildContext context) {

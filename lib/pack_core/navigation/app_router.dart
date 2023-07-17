@@ -30,7 +30,7 @@ class AppRouterController extends RouterController {
   void toPauseOrRoot({
     required final GlobalGameBloc globalGameBloc,
   }) {
-    final levelId = globalGameBloc.getLiveState().currentLevelId;
+    final levelId = globalGameBloc.state.currentLevelId;
     final isGameIsRunning = levelId.isNotEmpty;
     if (isGameIsRunning) {
       toPause(id: levelId);

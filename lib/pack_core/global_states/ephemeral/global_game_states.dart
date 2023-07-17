@@ -3,27 +3,15 @@
 part of 'global_game_bloc.dart';
 
 @immutable
-abstract class GlobalGameBlocState {
-  const GlobalGameBlocState();
-}
-
-@immutable
-class EmptyGlobalGameBlocState extends GlobalGameBlocState {
-  const EmptyGlobalGameBlocState();
-}
-
-@immutable
 @freezed
-class LiveGlobalGameBlocState extends GlobalGameBlocState
-    with _$LiveGlobalGameBlocState {
-  @Implements<GlobalGameBlocState>()
-  const factory LiveGlobalGameBlocState({
+class GlobalGameBlocState with _$GlobalGameBlocState {
+  const factory GlobalGameBlocState({
     /// ********************************************
     /// *      RESTORABLE FROM MODEL
     /// ********************************************
 
-    required final GameModelId id,
-    @Default('') final CanvasDataModelId currentLevelId,
+    @Default('') final GameModelId id,
+    @Default(CanvasDataModelId.empty) final CanvasDataModelId currentLevelId,
 
     /// Current Level Model is a model with all level configurations
     /// chosen by the user (players, characters, etc).
@@ -46,11 +34,11 @@ class LiveGlobalGameBlocState extends GlobalGameBlocState
     /// ********************************************
     @Default(0) final int dateTimeDelta,
     @Default({}) final Set<LevelPartStates> loadedLevelParts,
-  }) = _LiveGlobalGameBlocState;
-  const LiveGlobalGameBlocState._();
+  }) = _GlobalGameBlocState;
+  const GlobalGameBlocState._();
 
-  factory LiveGlobalGameBlocState.fromModel(final GameModel gameModel) =>
-      LiveGlobalGameBlocState(
+  factory GlobalGameBlocState.fromModel(final GameModel gameModel) =>
+      GlobalGameBlocState(
         currentLevelId: gameModel.currentLevelId,
         currentLevelModel: gameModel.currentLevel,
         id: gameModel.id,

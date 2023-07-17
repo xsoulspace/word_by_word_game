@@ -48,7 +48,9 @@ class LevelLostDialog extends StatelessWidget {
           // ignore: dead_code
           TextButton(
             onPressed: () {
-              context.read<GlobalGameBloc>().add(const RestartLevelEvent());
+              context
+                  .read<GlobalGameBloc>()
+                  .onRestartLevel(const RestartLevelEvent());
 
               context.read<DialogController>().closeDialog();
             },
@@ -69,7 +71,9 @@ class LevelLostDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 onSendEndLevelEvent();
-                context.read<GlobalGameBloc>().add(const RestartLevelEvent());
+                context
+                    .read<GlobalGameBloc>()
+                    .onRestartLevel(const RestartLevelEvent());
 
                 context.read<DialogController>().closeDialog();
               },

@@ -27,9 +27,6 @@ class StartGameHex extends StatelessWidget {
       builder: (final context, final child) =>
           BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
         builder: (final context, final blocState) {
-          if (blocState is! LiveGlobalGameBlocState) {
-            return const SizedBox();
-          }
           final levels = blocState.templateLevels;
 
           return Center(
@@ -53,7 +50,7 @@ class StartGameHex extends StatelessWidget {
                         UiFilledButton.text(
                           text: S.of(context).continueGame,
                           onPressed: isLevelRunning
-                              ? () => state.onContinue(id: levelId)
+                              ? () async => state.onContinue(id: levelId)
                               : null,
                         )
                             .animate()

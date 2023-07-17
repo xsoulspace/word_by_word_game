@@ -9,5 +9,4 @@ class WorldState with _$WorldState {
     @Default(0) final int dateTimeDelta,
   }) = _WorldState;
   const WorldState._();
-  factory WorldState.initial() => const WorldState();
 }

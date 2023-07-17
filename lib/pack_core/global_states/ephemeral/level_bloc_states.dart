@@ -5,9 +5,8 @@ part of 'level_bloc.dart';
 @immutable
 @freezed
 class LevelBlocState with _$LevelBlocState {
-  const factory LevelBlocState.empty() = EmptyLevelBlocState;
-  const factory LevelBlocState.live({
-    required final CanvasDataModelId id,
+  const factory LevelBlocState({
+    @Default(CanvasDataModelId.empty) final CanvasDataModelId id,
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
@@ -20,10 +19,10 @@ class LevelBlocState with _$LevelBlocState {
     /// *      NON PERSISTENT
     /// ********************************************
     @Default(WordWarning.none) final WordWarning wordWarning,
-  }) = LiveLevelBlocState;
+  }) = _LevelBlocState;
   // ignore: prefer_constructors_over_static_methods
-  static LiveLevelBlocState liveFromModel(final LevelModel levelModel) =>
-      LiveLevelBlocState(
+  static LevelBlocState liveFromModel(final LevelModel levelModel) =>
+      LevelBlocState(
         name: levelModel.name,
         phaseType: levelModel.phaseType,
         actionMultiplier: levelModel.actionMultiplier,

@@ -42,7 +42,7 @@ class LevelPlayersBloc extends Bloc<LevelPlayersEvent, LevelPlayersBlocState> {
       levelCharactersModel: event.charactersModel,
     );
     emit(liveState);
-    diDto.globalGameBloc.add(
+    diDto.globalGameBloc.onLevelPartLoaded(
       const LevelPartLoadedEvent(loadedState: LevelPartStates.players),
     );
   }

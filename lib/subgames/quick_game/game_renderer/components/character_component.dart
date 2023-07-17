@@ -75,7 +75,7 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
 
   void _showLevelLostDialog() {
     gameRef.diDto
-      ..globalGameBloc.add(const CharacterCollisionEvent())
+      ..globalGameBloc.onCharacterCollision(const CharacterCollisionEvent())
       ..dialogController.showLevelLostDialog(
         EndLevelEvent(
           isWon: false,
@@ -89,15 +89,17 @@ class CharacterComponent extends PositionComponent with HasGameRef<WbwGame> {
       obstacleLevelHelper.roundToTileDimension(params.minXBoundry);
 
   void _showLevelWinDialog() {
-    gameRef.diDto
-      ..globalGameBloc.add(const CharacterCollisionEvent())
-      ..globalGameBloc.add(
+    gameRef.diDto.globalGameBloc
+        .onCharacterCollision(const CharacterCollisionEvent());
+    unawaited(
+      gameRef.diDto.globalGameBloc.onLevelEnd(
         EndLevelEvent(
           isWon: true,
           maxDistance: maxDistance.toDouble(),
         ),
-      )
-      ..dialogController.showLevelWinDialog();
+      ),
+    );
+    gameRef.diDto.dialogController.showLevelWinDialog();
   }
 
   void _onCollision() {

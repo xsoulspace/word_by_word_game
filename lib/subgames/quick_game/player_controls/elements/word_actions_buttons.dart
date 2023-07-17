@@ -16,7 +16,7 @@ class UiWordActions extends StatelessWidget {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
     final phaseType = context.select<LevelBloc, GamePhaseType>(
-      (final s) => s.getLiveState().phaseType,
+      (final s) => s.state.phaseType,
     );
     final children = <Widget>[];
     switch (phaseType) {
@@ -76,7 +76,7 @@ class UIAddWordToDictionaryButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final warning = context.select<LevelBloc, WordWarning>(
-      (final s) => s.getLiveState().wordWarning,
+      (final s) => s.state.wordWarning,
     );
 
     return UiTextButton.icon(
@@ -97,10 +97,10 @@ class UiConfirmWordButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final warning = context.select<LevelBloc, WordWarning>(
-      (final s) => s.getLiveState().wordWarning,
+      (final s) => s.state.wordWarning,
     );
     final currentWord = context.select<LevelBloc, String>(
-      (final s) => s.getLiveState().currentWord.fullWord,
+      (final s) => s.state.currentWord.fullWord,
     );
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
@@ -139,11 +139,7 @@ class UiRandomWordIconButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final cleanWord = context.select<LevelBloc, String>(
-      (final bloc) =>
-          bloc.state.mapOrNull(
-            live: (final value) => value.currentWord.cleanWord,
-          ) ??
-          '',
+      (final bloc) => bloc.state.currentWord.cleanWord,
     );
 
     return TutorialFrame(

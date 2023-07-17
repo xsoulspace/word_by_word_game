@@ -27,7 +27,8 @@ class CanvasDataModel with _$CanvasDataModel {
       fromJson: CanvasDataModelId.fromJson,
       toJson: CanvasDataModelId.toJsonString,
     )
-    required final CanvasDataModelId id,
+    @Default(CanvasDataModelId.empty)
+    final CanvasDataModelId id,
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default([]) final List<LayerModel> layers,
 

@@ -5,7 +5,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/core/dialog_stack.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/wbw_game.dart';
@@ -25,16 +24,7 @@ class WbwGameWidget extends HookWidget {
       body: Portal(
         child: DialogStack(
           builder: (final context, final dialogController) {
-            final bottomDialog = BlocSelector<LevelBloc, LevelBlocState, bool>(
-              selector: (final state) => state is LiveLevelBlocState,
-              builder: (final context, final isLive) {
-                if (isLive) {
-                  return const GameBottomBar();
-                } else {
-                  return const SizedBox();
-                }
-              },
-            );
+            const bottomDialog = GameBottomBar();
             return Column(
               children: [
                 Expanded(

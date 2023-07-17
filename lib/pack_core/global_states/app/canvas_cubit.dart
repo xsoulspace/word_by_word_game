@@ -8,7 +8,10 @@ class CanvasCubit extends DrawerCubit {
   CanvasCubit({
     required this.canvasDto,
     required final DrawerCubitDto drawerCubit,
-  }) : super(dto: drawerCubit);
+  }) : super(
+          dto: drawerCubit,
+          rootPath: 'packages/map_editor/',
+        );
   final CanvasCubitDto canvasDto;
   @override
   Future<void> loadInitialData() async {

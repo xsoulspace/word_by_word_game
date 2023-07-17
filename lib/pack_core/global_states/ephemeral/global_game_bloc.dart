@@ -28,29 +28,17 @@ class GlobalGameBlocDiDto {
   final ServicesCollection services;
 }
 
-class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
+class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   GlobalGameBloc({
     required this.diDto,
-  }) : super(const EmptyGlobalGameBlocState()) {
-    on<InitGlobalGameEvent>(_onInitGlobalGame);
-    on<InitGlobalGameLevelEvent>(_onInitGlobalGameLevel);
-    on<WorldTimeTickEvent>(_onWorldTick);
-    on<CreatePlayerProfileEvent>(_onCreatePlayerProfile);
-    on<DeletePlayerProfileEvent>(_onDeletePlayerProfile);
-    on<LevelPartLoadedEvent>(_onLevelPartLoaded);
-    on<SaveGameEvent>(_onSaveGame);
-    on<SaveCurrentLevelEvent>(_onSaveCurrentLevel);
-    on<CharacterCollisionEvent>(_onCharacterCollision);
-    on<RestartLevelEvent>(_restartLevel);
-    on<EndLevelEvent>(_onLevelEnd);
-    on<StartPlayingLevelEvent>(_onStartPlayingLevel);
+  }) : super(const GlobalGameBlocState()) {
     _tutorialEventsListener = GameTutorialEventListener(read: diDto.read);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
   }
   GameTutorialEventListener? _tutorialEventsListener;
   final GlobalGameBlocDiDto diDto;
   void _addWorldTimeTick(final WorldTimeMechanics time) {
-    add(WorldTimeTickEvent(time));
+    onWorldTick(WorldTimeTickEvent(time));
   }
 
   @override
@@ -63,12 +51,11 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     return super.close();
   }
 
-  Future<void> _onInitGlobalGame(
+  Future<void> onInitGlobalGame(
     final InitGlobalGameEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) async {
     final gameModel = event.gameModel;
-    final liveGame = LiveGlobalGameBlocState.fromModel(gameModel);
+    final liveGame = GlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
     if (liveGame.currentLevelId.isNotEmpty && gameModel.levels.isNotEmpty) {
       final levelModel = gameModel.levels[liveGame.currentLevelId];
@@ -79,7 +66,9 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
           'presented in the game model.',
         );
       }
-      add(InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false));
+      onInitGlobalGameLevel(
+        InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false),
+      );
     }
     unawaited(diDto.mechanics.worldTime.onLoad());
     diDto.tutorialBloc.add(
@@ -90,37 +79,34 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     }
   }
 
-  void _restartLevel(
+  void onRestartLevel(
     final RestartLevelEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) {
-    final liveState = getLiveState();
-    final levelModel = liveState.currentLevelModel;
+    final levelModel = state.currentLevelModel;
     if (levelModel == null) {
       // TODO(arenuvkern): description
       throw UnimplementedError();
     } else {
-      add(InitGlobalGameLevelEvent(levelModel: levelModel));
-      add(const StartPlayingLevelEvent());
+      onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: levelModel));
+      unawaited(onStartPlayingLevel(const StartPlayingLevelEvent()));
     }
   }
 
   /// This completer exists because we need to wait until the game will be
   /// loaded completely.
-  /// The inital game level load function is [_onInitGlobalGameLevel]
+  /// The inital game level load function is [onInitGlobalGameLevel]
   ///
-  /// The [_onLevelPartLoaded] function is completes this completer.
+  /// The [onLevelPartLoaded] function is completes this completer.
   ///
-  /// The [_onStartPlayingLevel] is waiting for the completer future
+  /// The [onStartPlayingLevel] is waiting for the completer future
   Completer? _globalLevelLoadCompleter;
 
-  void _onInitGlobalGameLevel(
+  void onInitGlobalGameLevel(
     final InitGlobalGameLevelEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) {
     _globalLevelLoadCompleter = Completer();
     final levelModel = event.levelModel;
-    LiveGlobalGameBlocState updatedState = _getResetedLevelLoad();
+    GlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
       updatedState = updatedState.copyWith(
         currentLevelModel: levelModel,
@@ -137,34 +123,30 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
       );
   }
 
-  LiveGlobalGameBlocState _getResetedLevelLoad() {
+  GlobalGameBlocState _getResetedLevelLoad() {
     diDto.mechanics.worldTime.pause();
-    final liveState = getLiveState();
-    return liveState.copyWith(loadedLevelParts: {});
+    return state.copyWith(loadedLevelParts: {});
   }
 
-  void _onLevelPartLoaded(
+  void onLevelPartLoaded(
     final LevelPartLoadedEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) {
-    final liveState = getLiveState();
-    final loadedStates = {...liveState.loadedLevelParts, event.loadedState};
-    LiveGlobalGameBlocState updateState = liveState.copyWith(
+    final loadedStates = {...state.loadedLevelParts, event.loadedState};
+    GlobalGameBlocState updateState = state.copyWith(
       loadedLevelParts: loadedStates,
     );
 
     if (updateState.isLevelCompletelyLoaded) {
       _globalLevelLoadCompleter!.complete();
       updateState = updateState.copyWith(
-        currentLevelId: diDto.levelBloc.getLiveState().id,
+        currentLevelId: diDto.levelBloc.state.id,
       );
     }
     emit(updateState);
   }
 
-  Future<void> _onStartPlayingLevel(
+  Future<void> onStartPlayingLevel(
     final StartPlayingLevelEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) async {
     await _globalLevelLoadCompleter!.future;
     diDto.mechanics.worldTime.resume();
@@ -176,16 +158,13 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     diDto.tutorialBloc.add(tutorialEvent);
   }
 
-  void _onWorldTick(
+  void onWorldTick(
     final WorldTimeTickEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) {
-    final effectiveState = getLiveState();
-
     final newDateTime = event.worldTimeManager.dateTime;
-    final lastDateTime = effectiveState.dateTime;
+    final lastDateTime = state.dateTime;
     final dateTimeDelta = newDateTime.second - lastDateTime.second;
-    final newState = effectiveState.copyWith(
+    final newState = state.copyWith(
       lastDateTime: lastDateTime,
       dateTime: newDateTime,
       dateTimeDelta: dateTimeDelta,
@@ -194,14 +173,12 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     _shareNewDateTime(newState);
   }
 
-  Future<void> _onLevelEnd(
+  Future<void> onLevelEnd(
     final EndLevelEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) async {
     final currentLevelModel = _getCurrentLevelModel();
     final players = currentLevelModel.players;
-    final liveState = getLiveState();
-    final updatedPlayers = [...liveState.playersCollection];
+    final updatedPlayers = [...state.playersCollection];
     for (final player in players.players) {
       PlayerProfileModel updatedPlayer =
           diDto.mechanics.score.countPlayerLevelHighscore(
@@ -224,84 +201,76 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
         updatedPlayers[index] = updatedPlayer;
       }
     }
-    final updatedState = liveState.copyWith(
+    final updatedState = state.copyWith(
       playersCollection: updatedPlayers,
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
   }
 
-  void _onCharacterCollision(
+  void onCharacterCollision(
     final CharacterCollisionEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) {
     diDto.mechanics.worldTime.pause();
   }
 
-  void _shareNewDateTime(final LiveGlobalGameBlocState newState) {
+  void _shareNewDateTime(final GlobalGameBlocState newState) {
     diDto.levelBloc.add(
       LevelBlocEventConsumeTick(timeDeltaInSeconds: newState.dateTimeDelta),
     );
   }
 
-  Future<void> _onDeletePlayerProfile(
+  Future<void> onDeletePlayerProfile(
     final DeletePlayerProfileEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) async {
     final profile = event.profile;
-    final liveState = getLiveState();
-    final updateState = liveState.copyWith(
-      playersCollection: [...liveState.playersCollection]
+    final updateState = state.copyWith(
+      playersCollection: [...state.playersCollection]
         ..removeWhere((final player) => player.id == profile.id),
     );
     emit(updateState);
     await _saveGame();
   }
 
-  Future<void> _onCreatePlayerProfile(
+  Future<void> onCreatePlayerProfile(
     final CreatePlayerProfileEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) async {
     final profile = event.profile;
-    final liveState = getLiveState();
-    final updateState = liveState.copyWith(
-      playersCollection: [...liveState.playersCollection, profile],
+    final updateState = state.copyWith(
+      playersCollection: [...state.playersCollection, profile],
     );
     emit(updateState);
     await _saveGame();
   }
 
   /// before to save game, make sure to add [SaveCurrentLevelEvent]
-  Future<void> _onSaveGame(
+  Future<void> onSaveGame(
     final SaveGameEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) async =>
       _saveGame();
 
   Future<void> _saveGame({
-    final LiveGlobalGameBlocState? liveState,
+    final GlobalGameBlocState? liveState,
   }) async {
-    final resolvedLiveState = liveState ?? getLiveState();
+    final resolvedLiveState = liveState ?? state;
     final gameModel = _getGameModel(liveState: resolvedLiveState);
     await diDto.services.gamePersistence.saveGame(game: gameModel);
   }
 
-  Future<void> _onSaveCurrentLevel(
+  Future<void> onSaveCurrentLevel(
     final SaveCurrentLevelEvent event,
-    final Emitter<GlobalGameBlocState> emit,
   ) async {
-    final liveState = getLiveState();
-    final currentLevelId = liveState.currentLevelId;
-    final levels = {...liveState.levels}..[currentLevelId] =
+    final currentLevelId = state.currentLevelId;
+    final levels = {...state.levels}..[currentLevelId] =
         _getCurrentLevelModel();
-    final updatedState = liveState.copyWith(
+    final updatedState = state.copyWith(
       levels: levels,
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
   }
 
-  GameModel _getGameModel({required final LiveGlobalGameBlocState liveState}) {
+  GameModel _getGameModel({required final GlobalGameBlocState liveState}) {
     final tutorialProgress = diDto.tutorialBloc.getLiveProgress();
 
     return GameModel(
@@ -319,7 +288,7 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
   }
 
   LevelModel _getCurrentLevelModel() {
-    final liveLevelState = diDto.levelBloc.getLiveState();
+    final liveLevelState = diDto.levelBloc.state;
     final livePlayersState = diDto.levelPlayersBloc.getLiveState();
 
     return LevelModel(
@@ -338,22 +307,13 @@ class GlobalGameBloc extends Bloc<GameEvent, GlobalGameBlocState> {
     );
   }
 
-  LiveGlobalGameBlocState getLiveState() {
-    final effectiveState = state;
-    if (effectiveState is! LiveGlobalGameBlocState) {
-      throw ArgumentError.value(effectiveState);
-    }
-    return effectiveState;
-  }
-
   TemplateLevelModel? getTemplateLevelById({
     required final CanvasDataModelId id,
   }) {
     if (id.isEmpty) return null;
 
-    final liveState = getLiveState();
     // TODO(arenukvern): handle null error
-    return liveState.templateLevels
+    return state.templateLevels
         .firstWhere((final level) => level.canvasData.id == id);
   }
 }

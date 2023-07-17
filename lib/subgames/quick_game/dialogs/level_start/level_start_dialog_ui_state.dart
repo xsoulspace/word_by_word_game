@@ -41,7 +41,7 @@ class LevelStartDialogUiState extends ContextfulLifeState {
 
   bool isVisible = false;
   void onSwitchDialogVisiblity() {
-    final liveState = diDto.globalGameBloc.getLiveState();
+    final liveState = diDto.globalGameBloc.state;
     if (liveState.playersCollection.isEmpty) {
       onCreatePlayer();
     } else {

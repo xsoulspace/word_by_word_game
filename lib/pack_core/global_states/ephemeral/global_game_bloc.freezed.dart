@@ -15,7 +15,7 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$LiveGlobalGameBlocState {
+mixin _$GlobalGameBlocState {
   /// ********************************************
   /// *      RESTORABLE FROM MODEL
   /// ********************************************
@@ -50,15 +50,15 @@ mixin _$LiveGlobalGameBlocState {
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $LiveGlobalGameBlocStateCopyWith<LiveGlobalGameBlocState> get copyWith =>
+  $GlobalGameBlocStateCopyWith<GlobalGameBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
-  factory $LiveGlobalGameBlocStateCopyWith(LiveGlobalGameBlocState value,
-          $Res Function(LiveGlobalGameBlocState) then) =
-      _$LiveGlobalGameBlocStateCopyWithImpl<$Res, LiveGlobalGameBlocState>;
+abstract class $GlobalGameBlocStateCopyWith<$Res> {
+  factory $GlobalGameBlocStateCopyWith(
+          GlobalGameBlocState value, $Res Function(GlobalGameBlocState) then) =
+      _$GlobalGameBlocStateCopyWithImpl<$Res, GlobalGameBlocState>;
   @useResult
   $Res call(
       {String id,
@@ -80,10 +80,9 @@ abstract class $LiveGlobalGameBlocStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LiveGlobalGameBlocStateCopyWithImpl<$Res,
-        $Val extends LiveGlobalGameBlocState>
-    implements $LiveGlobalGameBlocStateCopyWith<$Res> {
-  _$LiveGlobalGameBlocStateCopyWithImpl(this._value, this._then);
+class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
+    implements $GlobalGameBlocStateCopyWith<$Res> {
+  _$GlobalGameBlocStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -191,11 +190,11 @@ class _$LiveGlobalGameBlocStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
-    implements $LiveGlobalGameBlocStateCopyWith<$Res> {
-  factory _$$_LiveGlobalGameBlocStateCopyWith(_$_LiveGlobalGameBlocState value,
-          $Res Function(_$_LiveGlobalGameBlocState) then) =
-      __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>;
+abstract class _$$_GlobalGameBlocStateCopyWith<$Res>
+    implements $GlobalGameBlocStateCopyWith<$Res> {
+  factory _$$_GlobalGameBlocStateCopyWith(_$_GlobalGameBlocState value,
+          $Res Function(_$_GlobalGameBlocState) then) =
+      __$$_GlobalGameBlocStateCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -222,12 +221,11 @@ abstract class _$$_LiveGlobalGameBlocStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
-    extends _$LiveGlobalGameBlocStateCopyWithImpl<$Res,
-        _$_LiveGlobalGameBlocState>
-    implements _$$_LiveGlobalGameBlocStateCopyWith<$Res> {
-  __$$_LiveGlobalGameBlocStateCopyWithImpl(_$_LiveGlobalGameBlocState _value,
-      $Res Function(_$_LiveGlobalGameBlocState) _then)
+class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
+    extends _$GlobalGameBlocStateCopyWithImpl<$Res, _$_GlobalGameBlocState>
+    implements _$$_GlobalGameBlocStateCopyWith<$Res> {
+  __$$_GlobalGameBlocStateCopyWithImpl(_$_GlobalGameBlocState _value,
+      $Res Function(_$_GlobalGameBlocState) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -245,7 +243,7 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
     Object? dateTimeDelta = null,
     Object? loadedLevelParts = null,
   }) {
-    return _then(_$_LiveGlobalGameBlocState(
+    return _then(_$_GlobalGameBlocState(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -296,10 +294,10 @@ class __$$_LiveGlobalGameBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
-  const _$_LiveGlobalGameBlocState(
-      {required this.id,
-      this.currentLevelId = '',
+class _$_GlobalGameBlocState extends _GlobalGameBlocState {
+  const _$_GlobalGameBlocState(
+      {this.id = '',
+      this.currentLevelId = CanvasDataModelId.empty,
       this.currentLevelModel,
       this.dateTime = const WorldDateTimeModel(),
       this.lastDateTime = const WorldDateTimeModel(),
@@ -320,6 +318,7 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   /// *      RESTORABLE FROM MODEL
   /// ********************************************
   @override
+  @JsonKey()
   final String id;
   @override
   @JsonKey()
@@ -398,14 +397,14 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
 
   @override
   String toString() {
-    return 'LiveGlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta, loadedLevelParts: $loadedLevelParts)';
+    return 'GlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta, loadedLevelParts: $loadedLevelParts)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LiveGlobalGameBlocState &&
+            other is _$_GlobalGameBlocState &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.currentLevelId, currentLevelId) ||
                 other.currentLevelId == currentLevelId) &&
@@ -446,28 +445,25 @@ class _$_LiveGlobalGameBlocState extends _LiveGlobalGameBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LiveGlobalGameBlocStateCopyWith<_$_LiveGlobalGameBlocState>
-      get copyWith =>
-          __$$_LiveGlobalGameBlocStateCopyWithImpl<_$_LiveGlobalGameBlocState>(
-              this, _$identity);
+  _$$_GlobalGameBlocStateCopyWith<_$_GlobalGameBlocState> get copyWith =>
+      __$$_GlobalGameBlocStateCopyWithImpl<_$_GlobalGameBlocState>(
+          this, _$identity);
 }
 
-abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
-    implements GlobalGameBlocState {
-  const factory _LiveGlobalGameBlocState(
-          {required final String id,
-          final CanvasDataModelId currentLevelId,
-          final LevelModel? currentLevelModel,
-          final WorldDateTimeModel dateTime,
-          final WorldDateTimeModel lastDateTime,
-          final Map<CanvasDataModelId, LevelModel> levels,
-          final List<TemplateLevelModel> templateLevels,
-          final List<PlayerProfileModel> playersCollection,
-          final List<PlayerCharacterModel> playersCharacters,
-          final int dateTimeDelta,
-          final Set<LevelPartStates> loadedLevelParts}) =
-      _$_LiveGlobalGameBlocState;
-  const _LiveGlobalGameBlocState._() : super._();
+abstract class _GlobalGameBlocState extends GlobalGameBlocState {
+  const factory _GlobalGameBlocState(
+      {final String id,
+      final CanvasDataModelId currentLevelId,
+      final LevelModel? currentLevelModel,
+      final WorldDateTimeModel dateTime,
+      final WorldDateTimeModel lastDateTime,
+      final Map<CanvasDataModelId, LevelModel> levels,
+      final List<TemplateLevelModel> templateLevels,
+      final List<PlayerProfileModel> playersCollection,
+      final List<PlayerCharacterModel> playersCharacters,
+      final int dateTimeDelta,
+      final Set<LevelPartStates> loadedLevelParts}) = _$_GlobalGameBlocState;
+  const _GlobalGameBlocState._() : super._();
 
   @override
 
@@ -510,6 +506,6 @@ abstract class _LiveGlobalGameBlocState extends LiveGlobalGameBlocState
   Set<LevelPartStates> get loadedLevelParts;
   @override
   @JsonKey(ignore: true)
-  _$$_LiveGlobalGameBlocStateCopyWith<_$_LiveGlobalGameBlocState>
-      get copyWith => throw _privateConstructorUsedError;
+  _$$_GlobalGameBlocStateCopyWith<_$_GlobalGameBlocState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

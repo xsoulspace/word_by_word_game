@@ -104,12 +104,8 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   Future<void> _handleGlobalGameStateChanges(
     final GlobalGameBlocState state,
   ) async {
-    if (state is LiveGlobalGameBlocState) {
-      if (state.isLevelCompletelyLoaded) {
-        if (!isLevelLoaded) await onLoadLevel();
-      } else {
-        unloadLevel();
-      }
+    if (state.isLevelCompletelyLoaded) {
+      if (!isLevelLoaded) await onLoadLevel();
     } else {
       unloadLevel();
     }

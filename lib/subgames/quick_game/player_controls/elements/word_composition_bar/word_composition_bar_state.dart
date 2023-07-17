@@ -33,10 +33,10 @@ class WordCompositionState extends LifeState {
   WordCompositionState({
     required this.diDto,
   })  : leftPartController = TextEditingController(
-          text: diDto.levelBloc.getLiveState().currentWord.leftPart,
+          text: diDto.levelBloc.state.currentWord.leftPart,
         ),
         rightPartController = TextEditingController(
-          text: diDto.levelBloc.getLiveState().currentWord.rightPart,
+          text: diDto.levelBloc.state.currentWord.rightPart,
         );
   final TextEditingController leftPartController;
   final TextEditingController rightPartController;
@@ -85,10 +85,11 @@ class WordCompositionState extends LifeState {
     diDto.dialogController.showLevelWordSuggestionDialog();
   }
 
-  void onPause() {
+  Future<void> onPause() async {
     diDto.mechanics.worldTime.pause();
-    diDto.globalGameBloc.add(const SaveCurrentLevelEvent());
-    final id = diDto.levelBloc.getLiveState().id;
+    await diDto.globalGameBloc
+        .onSaveCurrentLevel(const SaveCurrentLevelEvent());
+    final id = diDto.levelBloc.state.id;
     diDto.appRouterController.toPause(id: id);
   }
 
@@ -112,7 +113,7 @@ class WordCompositionState extends LifeState {
     final newWord = diDto.mechanics.wordComposition.applyPartsChanges(
       word: CurrentWordModel(
         leftPart: leftPartController.text,
-        middlePart: diDto.levelBloc.getLiveState().currentWord.middlePart,
+        middlePart: diDto.levelBloc.state.currentWord.middlePart,
         rightPart: rightPartController.text,
       ),
     );

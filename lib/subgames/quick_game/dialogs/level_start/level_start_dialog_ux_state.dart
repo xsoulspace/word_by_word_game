@@ -39,7 +39,7 @@ class LevelStartDialogUxState extends LifeState {
   @override
   void initState() {
     super.initState();
-    final liveState = diDto.globalGameBloc.getLiveState();
+    final liveState = diDto.globalGameBloc.state;
     characterId = liveState.playersCharacters.first.id;
     final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
       progress: diDto.tutorialBloc.getLiveProgress(),
@@ -70,7 +70,10 @@ class LevelStartDialogUxState extends LifeState {
       playersIds.contains(player.id);
 
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
-    diDto.globalGameBloc.add(CreatePlayerProfileEvent(profile: profile));
+    unawaited(
+      diDto.globalGameBloc
+          .onCreatePlayerProfile(CreatePlayerProfileEvent(profile: profile)),
+    );
     onPlayerSelected(profile);
   }
 
@@ -82,7 +85,7 @@ class LevelStartDialogUxState extends LifeState {
   }
 
   void onPlay() {
-    final liveState = diDto.globalGameBloc.getLiveState();
+    final liveState = diDto.globalGameBloc.state;
     final charactersCollection = liveState.playersCharacters;
     final playersCollection = liveState.playersCollection;
     final levelPlayers = playersIds.map(
@@ -113,8 +116,12 @@ class LevelStartDialogUxState extends LifeState {
     );
 
     diDto.globalGameBloc
-      ..add(InitGlobalGameLevelEvent(levelModel: level))
-      ..add(StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial));
+        .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
+    unawaited(
+      diDto.globalGameBloc.onStartPlayingLevel(
+        StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
+      ),
+    );
     diDto.appRouterController.toPlayableLevel(id: level.id);
   }
 

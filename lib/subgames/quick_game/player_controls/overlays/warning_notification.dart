@@ -14,7 +14,7 @@ class UIWarningNotification extends StatelessWidget {
     final colorTheme = theme.colorScheme;
 
     final warning = context.select<LevelBloc, WordWarning>(
-      (final s) => s.getLiveState().wordWarning,
+      (final s) => s.state.wordWarning,
     );
     final borderRadius = BorderRadius.circular(14);
     final Color backgroundColor;
@@ -51,11 +51,7 @@ class UIWarningNotification extends StatelessWidget {
                 switch (warning) {
                   case WordWarning.isNotCorrect:
                     return S.of(context).wordIsNotCorrect(
-                          context
-                              .read<LevelBloc>()
-                              .getLiveState()
-                              .currentWord
-                              .cleanWord,
+                          context.read<LevelBloc>().state.currentWord.cleanWord,
                         );
                   case WordWarning.isWritten:
                     return S.of(context).wordAlreadyWritten;
