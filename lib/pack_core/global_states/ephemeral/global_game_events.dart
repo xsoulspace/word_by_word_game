@@ -1,65 +1,32 @@
 part of 'global_game_bloc.dart';
 
 @immutable
-abstract class GameEvent extends Equatable {
-  const GameEvent();
-  @override
-  List<Object?> get props => [];
-}
-
-@immutable
-class InitGlobalGameEvent extends GameEvent {
-  const InitGlobalGameEvent({
-    required this.gameModel,
-  });
-  final GameModel gameModel;
-}
-
-class WorldTimeTickEvent extends GameEvent {
-  const WorldTimeTickEvent(this.worldTimeManager);
-  final WorldTimeMechanics worldTimeManager;
-}
-
-@immutable
-class StartPlayingLevelEvent extends GameEvent {
-  const StartPlayingLevelEvent({
-    this.shouldRestartTutorial = false,
-  });
-  final bool shouldRestartTutorial;
-}
-
-@immutable
-class InitGlobalGameLevelEvent extends GameEvent {
-  const InitGlobalGameLevelEvent({
-    required this.levelModel,
-    this.isNewStart = true,
-  });
-  final LevelModel levelModel;
-  final bool isNewStart;
-}
-
-@immutable
-class DeletePlayerProfileEvent extends GameEvent {
-  const DeletePlayerProfileEvent({
-    required this.profile,
-  });
-  final PlayerProfileModel profile;
-}
-
-@immutable
-class CreatePlayerProfileEvent extends GameEvent {
-  const CreatePlayerProfileEvent({
-    required this.profile,
-  });
-  final PlayerProfileModel profile;
-}
-
-@immutable
-class LevelPartLoadedEvent extends GameEvent {
-  const LevelPartLoadedEvent({
-    required this.loadedState,
-  });
-  final LevelPartStates loadedState;
+@freezed
+class GameEvent with _$GameEvent {
+  const factory GameEvent.startPlayingLevel({
+    @Default(true) final bool shouldRestartTutorial,
+  }) = StartPlayingLevelEvent;
+  const factory GameEvent.initGlobalGameLevel({
+    required final LevelModel levelModel,
+    @Default(true) final bool isNewStart,
+  }) = InitGlobalGameLevelEvent;
+  const factory GameEvent.deletePlayerProfile({
+    required final PlayerProfileModel profile,
+  }) = DeletePlayerProfileEvent;
+  const factory GameEvent.createPlayerProfile({
+    required final PlayerProfileModel profile,
+  }) = CreatePlayerProfileEvent;
+  const factory GameEvent.levelPartLoaded({
+    required final LevelPartStates loadedState,
+  }) = LevelPartLoadedEvent;
+  const factory GameEvent.saveGame() = SaveGameEvent;
+  const factory GameEvent.saveCurrentLevel() = SaveCurrentLevelEvent;
+  const factory GameEvent.characterCollision() = CharacterCollisionEvent;
+  const factory GameEvent.endLevel({
+    required final bool isWon,
+    required final double maxDistance,
+  }) = EndLevelEvent;
+  const factory GameEvent.restartLevel() = RestartLevelEvent;
 }
 
 enum LevelPartStates {
@@ -73,34 +40,4 @@ enum LevelPartStates {
     final isEqual = diff.isEmpty;
     return isEqual;
   }
-}
-
-@immutable
-class SaveGameEvent extends GameEvent {
-  const SaveGameEvent();
-}
-
-@immutable
-class SaveCurrentLevelEvent extends GameEvent {
-  const SaveCurrentLevelEvent();
-}
-
-@immutable
-class CharacterCollisionEvent extends GameEvent {
-  const CharacterCollisionEvent();
-}
-
-@immutable
-class EndLevelEvent extends GameEvent {
-  const EndLevelEvent({
-    required this.isWon,
-    required this.maxDistance,
-  });
-  final bool isWon;
-  final double maxDistance;
-}
-
-@immutable
-class RestartLevelEvent extends GameEvent {
-  const RestartLevelEvent();
 }

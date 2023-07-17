@@ -41,10 +41,10 @@ class GlobalStateInitializer extends StateInitializer {
     await dictionariesBloc.onLoad(localDictionary: localDictionary);
     await canvasCubit.loadInitialData();
     final appRouterController = AppRouterController.use(read);
-    final initGameEvent = await GameInitializer().loadGameModel(
+    final initGame = await GameInitializer().loadGameModel(
       services: services,
     );
-    await globalGameBloc.onInitGlobalGame(initGameEvent);
+    await globalGameBloc.onInitGlobalGame(initGame);
     await servicesDto.firebaseInitializer?.onDelayedLoad();
     await analyticsService.onDelayedLoad();
     await adManager.onLoad();
@@ -54,7 +54,7 @@ class GlobalStateInitializer extends StateInitializer {
     }();
     if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
 
-    final currentLevelId = initGameEvent.gameModel.currentLevelId;
+    final currentLevelId = initGame.currentLevelId;
     if (currentLevelId.isNotEmpty) {
       WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
         appRouterController.toPause(id: currentLevelId);
@@ -105,24 +105,20 @@ class GameInitializer {
     return game;
   }
 
-  Future<InitGlobalGameEvent> loadGameModel({
+  Future<GameModel> loadGameModel({
     required final ServicesCollection services,
   }) async {
     final savedGame = await services.gamePersistence.loadGame();
     if (savedGame != null) {
-      return InitGlobalGameEvent(
-        gameModel: migrateSave(savedGame),
-      );
+      return migrateSave(savedGame);
     }
 
-    return InitGlobalGameEvent(
-      gameModel: GameModel(
-        id: 'game',
-        version: kLatestGameVersion,
-        templateLevels: templateLevels,
-        playersCharacters: characters,
-        currentLevelId: CanvasDataModelId.empty,
-      ),
+    return GameModel(
+      id: 'game',
+      version: kLatestGameVersion,
+      templateLevels: templateLevels,
+      playersCharacters: characters,
+      currentLevelId: CanvasDataModelId.empty,
     );
   }
 }

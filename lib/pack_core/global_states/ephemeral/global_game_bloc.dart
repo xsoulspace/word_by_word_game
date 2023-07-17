@@ -38,7 +38,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   GameTutorialEventListener? _tutorialEventsListener;
   final GlobalGameBlocDiDto diDto;
   void _addWorldTimeTick(final WorldTimeMechanics time) {
-    onWorldTick(WorldTimeTickEvent(time));
+    onWorldTick(time);
   }
 
   @override
@@ -52,9 +52,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 
   Future<void> onInitGlobalGame(
-    final InitGlobalGameEvent event,
+    final GameModel gameModel,
   ) async {
-    final gameModel = event.gameModel;
     final liveGame = GlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
     if (liveGame.currentLevelId.isNotEmpty && gameModel.levels.isNotEmpty) {
@@ -159,9 +158,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 
   void onWorldTick(
-    final WorldTimeTickEvent event,
+    final WorldTimeMechanics worldTimeManager,
   ) {
-    final newDateTime = event.worldTimeManager.dateTime;
+    final newDateTime = worldTimeManager.dateTime;
     final lastDateTime = state.dateTime;
     final dateTimeDelta = newDateTime.second - lastDateTime.second;
     final newState = state.copyWith(
