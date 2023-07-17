@@ -68,7 +68,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false),
       );
     }
-    unawaited(diDto.mechanics.worldTime.onLoad());
+    await diDto.mechanics.worldTime.onLoad();
     diDto.tutorialBloc.add(
       LoadTutorialsProgressEvent(progress: gameModel.tutorialProgress),
     );
