@@ -18,25 +18,16 @@ class LevelPlayersBlocDiDto {
   final MechanicsCollection mechanics;
 }
 
-class LevelPlayersBloc extends Bloc<LevelPlayerEvent, LevelPlayersBlocState> {
+class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   LevelPlayersBloc({
     required this.diDto,
-  }) : super(const EmptyLevelPlayersBlocState()) {
-    on<InitLevelPlayersEvent>(_onInitLevelPlayers);
-    on<SwitchToNextPlayerEvent>(_onSwitchToNextPlayer);
-    on<ConsumeFuelEvent>(_consumeCharacterFuel);
-    on<RefuelStorageEvent>(_onRefuelStorage);
-
-    on<UpdatePlayerHighscoreEvent>(_onUpdatePlayerHighscore);
-    on<ChangeCharacterPositionEvent>(_onChangeCharacterPosition);
-  }
+  }) : super(LevelPlayersBlocState.empty);
   final LevelPlayersBlocDiDto diDto;
 
-  void _onInitLevelPlayers(
+  void onInitLevelPlayers(
     final InitLevelPlayersEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = LevelPlayersBlocState.liveFromModel(
+    final liveState = LevelPlayersBlocState.fromModel(
       levelPlayersModel: event.playersModel,
       levelCharactersModel: event.charactersModel,
     );
@@ -46,24 +37,22 @@ class LevelPlayersBloc extends Bloc<LevelPlayerEvent, LevelPlayersBlocState> {
     );
   }
 
-  void _onSwitchToNextPlayer(
+  void onSwitchToNextPlayer(
     final SwitchToNextPlayerEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = getLiveState();
-    final players = [...liveState.players];
+    final players = [...state.players];
 
     if (players.length == 1) {
       return;
     } else {
-      final currentPlayer = liveState.currentPlayer;
+      final currentPlayer = state.currentPlayer;
 
       final updatedPlayers = [...players]
         ..removeWhere((final player) => player.id == currentPlayer.id)
         ..add(currentPlayer);
       final newPlayer = updatedPlayers.first;
 
-      final updatedState = liveState.copyWith(
+      final updatedState = state.copyWith(
         currentPlayerId: newPlayer.id,
         players: updatedPlayers,
       );
@@ -72,13 +61,11 @@ class LevelPlayersBloc extends Bloc<LevelPlayerEvent, LevelPlayersBlocState> {
     }
   }
 
-  void _consumeCharacterFuel(
+  void onConsumeCharacterFuel(
     final ConsumeFuelEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = getLiveState();
-    final updatedState = liveState.copyWith(
-      playerCharacter: liveState.playerCharacter.copyWith(
+    final updatedState = state.copyWith(
+      playerCharacter: state.playerCharacter.copyWith(
         fuel: event.fuel,
       ),
     );
@@ -86,14 +73,12 @@ class LevelPlayersBloc extends Bloc<LevelPlayerEvent, LevelPlayersBlocState> {
     emit(updatedState);
   }
 
-  void _onChangeCharacterPosition(
+  void onChangeCharacterPosition(
     final ChangeCharacterPositionEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = getLiveState();
     final position = event.position;
-    final updatedState = liveState.copyWith(
-      playerCharacter: liveState.playerCharacter.copyWith(
+    final updatedState = state.copyWith(
+      playerCharacter: state.playerCharacter.copyWith(
         position: SerializedVector2(x: position.x, y: position.y),
       ),
     );
@@ -101,38 +86,34 @@ class LevelPlayersBloc extends Bloc<LevelPlayerEvent, LevelPlayersBlocState> {
     emit(updatedState);
   }
 
-  void _onRefuelStorage(
+  void onRefuelStorage(
     final RefuelStorageEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = getLiveState();
     final fuelMechanics = diDto.mechanics.fuel;
     final fuel = fuelMechanics.getFuelFromScore(score: event.score);
     final fuelStorage = fuelMechanics.refuel(
-      fuelStorage: liveState.playerCharacter.fuel,
+      fuelStorage: state.playerCharacter.fuel,
       fuel: fuel,
     );
-    final updatedState = liveState.copyWith(
-      playerCharacter: liveState.playerCharacter.copyWith(
+    final updatedState = state.copyWith(
+      playerCharacter: state.playerCharacter.copyWith(
         fuel: fuelStorage,
       ),
     );
     emit(updatedState);
   }
 
-  void _onUpdatePlayerHighscore(
+  void onUpdatePlayerHighscore(
     final UpdatePlayerHighscoreEvent event,
-    final Emitter<LevelPlayersBlocState> emit,
   ) {
-    final liveState = getLiveState();
-    final updatedPlayers = [...liveState.players];
+    final updatedPlayers = [...state.players];
     final index = updatedPlayers
         .indexWhere((final player) => player.id == event.playerId);
     if (index < 0) {
       // TODO(arenukvern): add exception
       return;
     }
-    final player = liveState.players[index];
+    final player = state.players[index];
     final updatedPlayer = diDto.mechanics.score.countPlayerHighscore(
       player: player,
       score: event.score,
@@ -140,17 +121,9 @@ class LevelPlayersBloc extends Bloc<LevelPlayerEvent, LevelPlayersBlocState> {
     );
     updatedPlayers[index] = updatedPlayer;
 
-    final updatedState = liveState.copyWith(
+    final updatedState = state.copyWith(
       players: updatedPlayers,
     );
     emit(updatedState);
-  }
-
-  LiveLevelPlayersBlocState getLiveState() {
-    final effectiveState = state;
-    if (effectiveState is! LiveLevelPlayersBlocState) {
-      throw ArgumentError.value(effectiveState);
-    }
-    return effectiveState;
   }
 }

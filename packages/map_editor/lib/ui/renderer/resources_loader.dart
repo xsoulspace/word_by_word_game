@@ -7,11 +7,11 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
-import 'package:map_editor/ui/renderer/game_renderer.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
 
-mixin HasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
+mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
   Image getImage(final String path) => game.images.fromCache(path);
 }
 
@@ -130,7 +130,10 @@ class ResourcesLoader {
 }
 
 class AnimationUpdater extends Component
-    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
+    with
+        HasGameRef<EditorRendererGame>,
+        HasEditorRef,
+        HasEditorResourcesLoaderRef {
   static AnimationEntryModel updateAnimationFrame({
     required final AnimationEntryModel entry,
     required final GameRendererConfig config,

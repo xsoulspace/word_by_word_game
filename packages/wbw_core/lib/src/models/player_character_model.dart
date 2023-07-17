@@ -9,10 +9,10 @@ typedef PlayerCharacterModelId = String;
 class PlayerCharacterModel with _$PlayerCharacterModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerCharacterModel({
-    required final PlayerCharacterModelId id,
-    required final String description,
-    required final int color,
-    required final CharacterAssetModel asset,
+    @Default('') final PlayerCharacterModelId id,
+    @Default('') final String description,
+    @Default(0) final int color,
+    @Default(CharacterAssetModel.empty) final CharacterAssetModel asset,
     @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 position,
@@ -23,6 +23,7 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
   const PlayerCharacterModel._();
   factory PlayerCharacterModel.fromJson(final Map<String, dynamic> json) =>
       _$PlayerCharacterModelFromJson(json);
+  static const empty = PlayerCharacterModel();
 }
 
 @immutable
@@ -30,13 +31,14 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
 class CharacterAssetModel with _$CharacterAssetModel {
   @JsonSerializable(explicitToJson: true)
   const factory CharacterAssetModel({
-    required final SerializedVector2 srcPosition,
-    required final int srcSizeX,
-    required final int srcSizeY,
+    @Default(SerializedVector2.zero) final SerializedVector2 srcPosition,
+    @Default(0) final int srcSizeX,
+    @Default(0) final int srcSizeY,
   }) = _CharacterAssetModel;
   const CharacterAssetModel._();
   factory CharacterAssetModel.fromJson(final Map<String, dynamic> json) =>
       _$CharacterAssetModelFromJson(json);
+  static const empty = CharacterAssetModel();
 }
 
 @immutable

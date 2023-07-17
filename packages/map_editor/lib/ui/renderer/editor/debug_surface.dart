@@ -1,7 +1,7 @@
 part of 'editor_renderer.dart';
 
 class DebugSurface extends Component
-    with HasGameRef<GameRenderer>, HasEditorRef {
+    with HasGameRef<EditorRendererGame>, HasEditorRef {
   material.Paint get _paint => Palette.grey.withAlpha(60).paint();
 
   void _renderLines(final material.Canvas canvas) {

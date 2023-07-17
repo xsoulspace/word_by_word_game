@@ -235,11 +235,12 @@ Map<String, dynamic> _$$_LocalDictionaryModelToJson(
 _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
         Map<String, dynamic> json) =>
     _$_PlayerCharacterModel(
-      id: json['id'] as String,
-      description: json['description'] as String,
-      color: json['color'] as int,
-      asset:
-          CharacterAssetModel.fromJson(json['asset'] as Map<String, dynamic>),
+      id: json['id'] as String? ?? '',
+      description: json['description'] as String? ?? '',
+      color: json['color'] as int? ?? 0,
+      asset: json['asset'] == null
+          ? CharacterAssetModel.empty
+          : CharacterAssetModel.fromJson(json['asset'] as Map<String, dynamic>),
       localizedName: json['localizedName'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(
@@ -274,10 +275,12 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
 _$_CharacterAssetModel _$$_CharacterAssetModelFromJson(
         Map<String, dynamic> json) =>
     _$_CharacterAssetModel(
-      srcPosition: SerializedVector2.fromJson(
-          json['srcPosition'] as Map<String, dynamic>),
-      srcSizeX: json['srcSizeX'] as int,
-      srcSizeY: json['srcSizeY'] as int,
+      srcPosition: json['srcPosition'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['srcPosition'] as Map<String, dynamic>),
+      srcSizeX: json['srcSizeX'] as int? ?? 0,
+      srcSizeY: json['srcSizeY'] as int? ?? 0,
     );
 
 Map<String, dynamic> _$$_CharacterAssetModelToJson(

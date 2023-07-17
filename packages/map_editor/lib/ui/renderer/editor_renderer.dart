@@ -38,13 +38,13 @@ TileId get kCursorHandleObjectId => const TileId(value: 'cursor');
 
 // Made with awesome Tutorial:
 // https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
-class GameRenderer extends FlameGame
+class EditorRendererGame extends FlameGame
     with
         HasCollisionDetection,
         SingleGameInstance,
         // replace to MouseMovementDetector (?)
         HasHoverables {
-  GameRenderer.use({
+  EditorRendererGame.use({
     required final Locator read,
     required final material.ThemeData theme,
     this.config = const GameRendererConfig(),
@@ -59,7 +59,7 @@ class GameRenderer extends FlameGame
   late CameraComponent worldCamera;
   late final World world;
   late FlameMultiBlocProvider providersComponent;
-  final editor = EditorRenderer();
+  final editor = EditorRendererComponent();
 
   @override
   Future<void> onLoad() async {
@@ -69,7 +69,7 @@ class GameRenderer extends FlameGame
       ..register<CameraComponent>()
       ..register<World>()
       ..register<FlameMultiBlocProvider>()
-      ..register<EditorRenderer>();
+      ..register<EditorRendererComponent>();
     world = World();
     worldCamera = await _initCamera();
     await diDto.drawerCubit.loadCache(images: images);
@@ -99,15 +99,14 @@ class GameRenderer extends FlameGame
     // final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
     final camera = CameraComponent(
       world: world,
-    ); //..setBounds(bounds);
+    );
+    //..setBounds(bounds);
 
-    camera
-        .viewfinder
-        // ..visibleGameSize = Vector2(
-        //   kVisibleTilesCount * kTileDimension.toDouble() / 2,
-        //   kVisibleTilesHeight * kTileDimension.toDouble(),
-        // )
-        .anchor = Anchor.topLeft;
+    // ..visibleGameSize = Vector2(
+    //   kVisibleTilesCount * kTileDimension.toDouble() / 2,
+    //   kVisibleTilesHeight * kTileDimension.toDouble(),
+    // )
+    camera.viewfinder.anchor = Anchor.topLeft;
     return camera;
   }
 

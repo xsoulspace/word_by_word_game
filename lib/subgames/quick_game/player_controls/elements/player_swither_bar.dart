@@ -10,13 +10,9 @@ class UIMobilePlayerName extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final playerName = context.select<LevelPlayersBloc, String>((final bloc) {
-      final liveState = bloc.state;
-      if (liveState is! LiveLevelPlayersBlocState) {
-        return PlayerProfileModel.empty.name;
-      }
-      return liveState.currentPlayer.name;
-    });
+    final playerName = context.select<LevelPlayersBloc, String>(
+      (final bloc) => bloc.state.currentPlayer.name,
+    );
     return TutorialFrame(
       highlightPosition: Alignment.topCenter,
       uiKey: TutorialUiItem.yourNameLabel,
@@ -31,11 +27,7 @@ class UIMobilePlayerScore extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final score = context.select<LevelPlayersBloc, int>(
-      (final bloc) => bloc.state.maybeMap(
-        orElse: () => 0,
-        live: (final value) =>
-            value.currentPlayer.highscore.score.value.toInt(),
-      ),
+      (final bloc) => bloc.state.currentPlayer.highscore.score.value.toInt(),
     );
     return TutorialFrame(
       highlightPosition: Alignment.topCenter,

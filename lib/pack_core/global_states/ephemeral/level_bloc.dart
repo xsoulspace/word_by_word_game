@@ -148,7 +148,7 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
       final levelPlayersBloc = diDto.levelPlayersBloc;
       final updatedWords = {
         ...liveState.words,
-      }..[newWord] = levelPlayersBloc.getLiveState().currentPlayerId;
+      }..[newWord] = levelPlayersBloc.state.currentPlayerId;
       final updatedState = liveState.copyWith(
         latestWord: newWord,
         currentWord: diDto.mechanics.wordComposition
@@ -159,8 +159,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
       );
       emit(updatedState);
       final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
-      final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
-      levelPlayersBloc.add(
+      final playerId = levelPlayersBloc.state.currentPlayerId;
+      levelPlayersBloc.onUpdatePlayerHighscore(
         UpdatePlayerHighscoreEvent(
           word: newWord,
           score: score,
@@ -198,24 +198,24 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     emit(updatedState);
 
     final levelPlayersBloc = diDto.levelPlayersBloc;
-    final liveLevelPlayerState = levelPlayersBloc.getLiveState();
+    final liveLevelPlayerState = levelPlayersBloc.state;
     final scoreMechanics = diDto.mechanics.score;
 
     final appliedScore = scoreMechanics.getScoreForStorageEnergyByModifier(
       multiplier: liveState.actionMultiplier,
       availableScore: liveLevelPlayerState.currentPlayer.highscore.score,
     );
-    levelPlayersBloc.add(RefuelStorageEvent(score: appliedScore));
+    levelPlayersBloc.onRefuelStorage(RefuelStorageEvent(score: appliedScore));
 
-    final playerId = levelPlayersBloc.getLiveState().currentPlayerId;
+    final playerId = levelPlayersBloc.state.currentPlayerId;
     levelPlayersBloc
-      ..add(
+      ..onUpdatePlayerHighscore(
         UpdatePlayerHighscoreEvent(
           score: appliedScore * -1,
           playerId: playerId,
         ),
       )
-      ..add(const SwitchToNextPlayerEvent());
+      ..onSwitchToNextPlayer(const SwitchToNextPlayerEvent());
   }
 
   String getWordSuggestion() {
@@ -241,9 +241,9 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     );
 
     emit(updatedState);
-    final playerId = diDto.levelPlayersBloc.getLiveState().currentPlayerId;
+    final playerId = diDto.levelPlayersBloc.state.currentPlayerId;
     final score = diDto.mechanics.score.getDecreaseScore(lettersCount: 1);
-    diDto.levelPlayersBloc.add(
+    diDto.levelPlayersBloc.onUpdatePlayerHighscore(
       UpdatePlayerHighscoreEvent(
         score: score,
         playerId: playerId,

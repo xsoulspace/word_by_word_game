@@ -5,26 +5,29 @@ part of 'level_players_bloc.dart';
 @immutable
 @freezed
 class LevelPlayersBlocState with _$LevelPlayersBlocState {
-  const factory LevelPlayersBlocState.empty() = EmptyLevelPlayersBlocState;
-  const factory LevelPlayersBlocState.live({
-    required final List<PlayerProfileModel> players,
-    required final PlayerProfileModelId currentPlayerId,
-    required final PlayerCharacterModel playerCharacter,
-  }) = LiveLevelPlayersBlocState;
-
+  const factory LevelPlayersBlocState({
+    @Default([]) final List<PlayerProfileModel> players,
+    @Default('') final PlayerProfileModelId currentPlayerId,
+    @Default(PlayerCharacterModel.empty)
+    final PlayerCharacterModel playerCharacter,
+  }) = _LevelPlayersBlocState;
+  const LevelPlayersBlocState._();
+  static const empty = LevelPlayersBlocState();
   // ignore: prefer_constructors_over_static_methods
-  static LiveLevelPlayersBlocState liveFromModel({
+  static LevelPlayersBlocState fromModel({
     required final LevelPlayersModel levelPlayersModel,
     required final LevelCharactersModel levelCharactersModel,
   }) =>
-      LiveLevelPlayersBlocState(
+      LevelPlayersBlocState(
         currentPlayerId: levelPlayersModel.currentPlayerId,
         players: levelPlayersModel.players,
         playerCharacter: levelCharactersModel.playerCharacter,
       );
+  bool get isEmpty => currentPlayerId.isEmpty;
+  bool get isNotEmpty => currentPlayerId.isNotEmpty;
 }
 
-extension LiveLevelPlayersBlocStateExtension on LiveLevelPlayersBlocState {
+extension LevelPlayersBlocStateExtension on LevelPlayersBlocState {
   Iterable<PlayerProfileModel> get notCurrentPlayers =>
       players.where((final player) => player.id != currentPlayerId);
   PlayerProfileModel get currentPlayer =>

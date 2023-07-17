@@ -85,11 +85,9 @@ class UIEnergyOptionCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final mechanics = context.read<MechanicsCollection>();
 
-    final player =
-        context.select<LevelPlayersBloc, PlayerProfileModel>((final bloc) {
-      final liveState = bloc.getLiveState();
-      return liveState.currentPlayer;
-    });
+    final player = context.select<LevelPlayersBloc, PlayerProfileModel>(
+      (final bloc) => bloc.state.currentPlayer,
+    );
     final applyingScore = mechanics.score
         .getScoreForStorageEnergyByModifier(
           multiplier: type,

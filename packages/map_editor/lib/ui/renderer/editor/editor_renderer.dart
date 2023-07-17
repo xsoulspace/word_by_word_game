@@ -13,7 +13,7 @@ import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
-import 'package:map_editor/ui/renderer/game_renderer.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_core/wbw_core.dart';
 
@@ -21,8 +21,8 @@ part 'debug_surface.dart';
 part 'editor_canvas_object.dart';
 part 'tiles_render_drawer.dart';
 
-class EditorRenderer extends Component
-    with DragCallbacks, HasGameRef<GameRenderer>, Hoverable {
+class EditorRendererComponent extends Component
+    with DragCallbacks, HasGameRef<EditorRendererGame>, Hoverable {
   DrawerCubit get drawerCubit => game.diDto.drawerCubit;
   DrawerCubitState get drawerCubitState => drawerCubit.state;
   Vector2 get origin => drawerCubitState.origin;
@@ -115,9 +115,9 @@ class EditorRenderer extends Component
   bool containsLocalPoint(final Vector2 point) => true;
 }
 
-mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
-  EditorRenderer? _editor;
-  EditorRenderer get editor => _editor ??= game.editor;
+mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
+  EditorRendererComponent? _editor;
+  EditorRendererComponent get editor => _editor ??= game.editor;
   DrawerCubit get drawerCubit => game.diDto.drawerCubit;
   Vector2 get origin => editor.origin;
   @useResult
@@ -151,7 +151,7 @@ mixin HasEditorRef on Component, HasGameRef<GameRenderer> {
 }
 
 class CursorRenderer extends Component
-    with HasGameRef<GameRenderer>, HasEditorRef {
+    with HasGameRef<EditorRendererGame>, HasEditorRef {
   Image? _image;
   @override
   FutureOr<void> onLoad() async {

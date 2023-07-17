@@ -22,7 +22,7 @@ class LevelLostDialog extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final players = context.select<LevelPlayersBloc, List<PlayerProfileModel>>(
       (final value) {
-        final effectivePlayers = [...value.getLiveState().players];
+        final effectivePlayers = [...value.state.players];
         return effectivePlayers
           ..sort(
             (final a, final b) =>

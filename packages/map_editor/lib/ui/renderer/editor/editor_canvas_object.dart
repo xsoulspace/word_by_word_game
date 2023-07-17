@@ -1,12 +1,12 @@
 part of 'editor_renderer.dart';
 
-class PlayerCanvasObject extends EditorCanvasObject {
-  PlayerCanvasObject.fromRenderObject({
+class EditorPlayerCanvasObject extends EditorCanvasObject {
+  EditorPlayerCanvasObject.fromRenderObject({
     required super.onPositionChanged,
     required super.data,
   }) : super.fromRenderObject();
-  factory PlayerCanvasObject.fromDrawerCubit({
-    required final GameRenderer game,
+  factory EditorPlayerCanvasObject.fromDrawerCubit({
+    required final EditorRendererGame game,
     required final DrawerCubit drawerCubit,
   }) {
     RenderObjectModel player = drawerCubit.player;
@@ -22,7 +22,7 @@ class PlayerCanvasObject extends EditorCanvasObject {
       player = updatedPlayer;
     }
 
-    return PlayerCanvasObject.fromRenderObject(
+    return EditorPlayerCanvasObject.fromRenderObject(
       data: player,
       onPositionChanged: (final value) {
         drawerCubit.player = value;
@@ -35,19 +35,12 @@ class EditorCanvasObject extends Component
     with
         TapCallbacks,
         DragCallbacks,
-        HasGameRef<GameRenderer>,
+        HasGameRef<EditorRendererGame>,
         HasEditorRef,
-        HasResourcesLoaderRef {
-  EditorCanvasObject({
-    required this.position,
-    required this.distanceToOrigin,
-    required this.distanceToTileLeftTopCorner,
-    required this.onChanged,
-    required this.data,
-  });
+        HasEditorResourcesLoaderRef {
   EditorCanvasObject.fromRenderObject({
     required final material.ValueChanged<RenderObjectModel> onPositionChanged,
-    required final this.data,
+    required this.data,
   })  : position = data.position.toOffset(),
         distanceToOrigin = data.distanceToOrigin.toOffset(),
         distanceToTileLeftTopCorner =
@@ -65,8 +58,8 @@ class EditorCanvasObject extends Component
 
   void _updateDistanceToOrigin() {
     distanceToOrigin = position - origin.toOffset();
-    final cell =
-        OriginVectorUtils.use(origin).getCurrentCellByCanvasObject(this);
+    final cell = OriginVectorUtils.use(origin)
+        .getCurrentCellByCanvasObject(objectDistanceToOrigin: distanceToOrigin);
     final cellTopLeftPosition = Offset(
       (cell.x * kTileDimension).toDouble(),
       (cell.y * kTileDimension).toDouble(),
@@ -168,7 +161,10 @@ class EditorCanvasObject extends Component
 }
 
 class EditorCanvasObjectsDrawer extends Component
-    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
+    with
+        HasGameRef<EditorRendererGame>,
+        HasEditorRef,
+        HasEditorResourcesLoaderRef {
   MapEditorCubit get _mapEditorBloc => game.diDto.mapEditorBloc;
 
   Future<void> _addCanvasObjects(
@@ -186,7 +182,7 @@ class EditorCanvasObjectsDrawer extends Component
     }
   }
 
-  PlayerCanvasObject? _player;
+  EditorPlayerCanvasObject? _player;
   EditorCanvasObject? _gravitationHandle;
   EditorCanvasObject? _skyHandle;
 
@@ -201,7 +197,7 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadPlayer() {
-    _player = PlayerCanvasObject.fromDrawerCubit(
+    _player = EditorPlayerCanvasObject.fromDrawerCubit(
       game: game,
       drawerCubit: drawerCubit,
     );

@@ -1,7 +1,7 @@
 part of 'editor_renderer.dart';
 
 class TilesDrawer extends Component
-    with TapCallbacks, HasGameRef<GameRenderer>, HasEditorRef {
+    with TapCallbacks, HasGameRef<EditorRendererGame>, HasEditorRef {
   @override
   void onTapUp(final TapUpEvent event) {
     _onTap(event);
@@ -100,7 +100,10 @@ class TilesDrawer extends Component
 }
 
 class TilesRenderer extends Component
-    with HasGameRef<GameRenderer>, HasEditorRef, HasResourcesLoaderRef {
+    with
+        HasGameRef<EditorRendererGame>,
+        HasEditorRef,
+        HasEditorResourcesLoaderRef {
   // final _canvasTilesComponents = <>{};
   @override
   FutureOr<void> onLoad() {

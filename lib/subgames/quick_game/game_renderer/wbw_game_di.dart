@@ -1,14 +1,15 @@
-part of 'wbw_game.dart';
+part of 'canvas_renderer.dart';
 
-class WbwGameDiDto {
-  WbwGameDiDto.use({
+class GameRendererDiDto {
+  GameRendererDiDto.use({
     required final Locator read,
     required this.theme,
     required this.dialogController,
   })  : levelBloc = read(),
         levelPlayersBloc = read(),
         globalGameBloc = read(),
-        mechanics = read();
+        mechanics = read(),
+        canvasCubit = read();
 
   /// ********************************************
   /// *      Ephemeral
@@ -16,6 +17,7 @@ class WbwGameDiDto {
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
   final GlobalGameBloc globalGameBloc;
+  final CanvasCubit canvasCubit;
   final MechanicsCollection mechanics;
   final ThemeData theme;
   final DialogController dialogController;

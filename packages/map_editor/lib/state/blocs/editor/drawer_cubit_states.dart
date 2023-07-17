@@ -61,10 +61,10 @@ class OriginVectorUtils {
     return getCellByDistance(distanceToOrigin);
   }
 
-  math.Point<int> getCurrentCellByCanvasObject(
-    final EditorCanvasObject object,
-  ) {
-    final distanceToOrigin = object.distanceToOrigin.toVector2() - origin;
+  math.Point<int> getCurrentCellByCanvasObject({
+    required final Offset objectDistanceToOrigin,
+  }) {
+    final distanceToOrigin = objectDistanceToOrigin.toVector2() - origin;
     return getCellByDistance(distanceToOrigin);
   }
 

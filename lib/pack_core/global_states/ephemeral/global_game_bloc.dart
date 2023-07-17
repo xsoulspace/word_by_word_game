@@ -113,7 +113,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
     diDto
       ..levelBloc.add(LevelBlocEventInit(levelModel: levelModel))
-      ..levelPlayersBloc.add(
+      ..levelPlayersBloc.onInitLevelPlayers(
         InitLevelPlayersEvent(
           playersModel: levelModel.players,
           charactersModel: levelModel.characters,
@@ -287,7 +287,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
 
   LevelModel _getCurrentLevelModel() {
     final liveLevelState = diDto.levelBloc.state;
-    final livePlayersState = diDto.levelPlayersBloc.getLiveState();
+    final livePlayersState = diDto.levelPlayersBloc.state;
 
     return LevelModel(
       name: liveLevelState.name,

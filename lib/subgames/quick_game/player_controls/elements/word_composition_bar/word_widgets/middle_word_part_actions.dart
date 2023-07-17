@@ -18,11 +18,9 @@ class MiddleWordPartActions extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final spacing = uiTheme.spacing;
 
-    final player =
-        context.select<LevelPlayersBloc, PlayerProfileModel>((final bloc) {
-      final liveState = bloc.getLiveState();
-      return liveState.currentPlayer;
-    });
+    final player = context.select<LevelPlayersBloc, PlayerProfileModel>(
+      (final bloc) => bloc.state.currentPlayer,
+    );
 
     final mechanics = context.watch<MechanicsCollection>();
 

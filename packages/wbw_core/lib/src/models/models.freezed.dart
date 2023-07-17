@@ -2483,10 +2483,10 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   const _$_PlayerCharacterModel(
-      {required this.id,
-      required this.description,
-      required this.color,
-      required this.asset,
+      {this.id = '',
+      this.description = '',
+      this.color = 0,
+      this.asset = CharacterAssetModel.empty,
       this.localizedName = LocalizedMap.empty,
       this.characterIcon = '',
       this.position = SerializedVector2.zero,
@@ -2499,12 +2499,16 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       _$$_PlayerCharacterModelFromJson(json);
 
   @override
+  @JsonKey()
   final String id;
   @override
+  @JsonKey()
   final String description;
   @override
+  @JsonKey()
   final int color;
   @override
+  @JsonKey()
   final CharacterAssetModel asset;
   @override
   @JsonKey()
@@ -2585,10 +2589,10 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 
 abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   const factory _PlayerCharacterModel(
-      {required final String id,
-      required final String description,
-      required final int color,
-      required final CharacterAssetModel asset,
+      {final String id,
+      final String description,
+      final int color,
+      final CharacterAssetModel asset,
       final LocalizedMap localizedName,
       final String characterIcon,
       final SerializedVector2 position,
@@ -2746,19 +2750,22 @@ class __$$_CharacterAssetModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_CharacterAssetModel extends _CharacterAssetModel {
   const _$_CharacterAssetModel(
-      {required this.srcPosition,
-      required this.srcSizeX,
-      required this.srcSizeY})
+      {this.srcPosition = SerializedVector2.zero,
+      this.srcSizeX = 0,
+      this.srcSizeY = 0})
       : super._();
 
   factory _$_CharacterAssetModel.fromJson(Map<String, dynamic> json) =>
       _$$_CharacterAssetModelFromJson(json);
 
   @override
+  @JsonKey()
   final SerializedVector2 srcPosition;
   @override
+  @JsonKey()
   final int srcSizeX;
   @override
+  @JsonKey()
   final int srcSizeY;
 
   @override
@@ -2800,9 +2807,9 @@ class _$_CharacterAssetModel extends _CharacterAssetModel {
 
 abstract class _CharacterAssetModel extends CharacterAssetModel {
   const factory _CharacterAssetModel(
-      {required final SerializedVector2 srcPosition,
-      required final int srcSizeX,
-      required final int srcSizeY}) = _$_CharacterAssetModel;
+      {final SerializedVector2 srcPosition,
+      final int srcSizeX,
+      final int srcSizeY}) = _$_CharacterAssetModel;
   const _CharacterAssetModel._() : super._();
 
   factory _CharacterAssetModel.fromJson(Map<String, dynamic> json) =
