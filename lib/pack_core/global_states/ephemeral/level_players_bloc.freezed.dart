@@ -1321,12 +1321,13 @@ class __$$_LevelPlayersBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LevelPlayersBlocState implements _LevelPlayersBlocState {
+class _$_LevelPlayersBlocState extends _LevelPlayersBlocState {
   const _$_LevelPlayersBlocState(
       {final List<PlayerProfileModel> players = const [],
       this.currentPlayerId = '',
       this.playerCharacter = PlayerCharacterModel.empty})
-      : _players = players;
+      : _players = players,
+        super._();
 
   final List<PlayerProfileModel> _players;
   @override
@@ -1376,11 +1377,12 @@ class _$_LevelPlayersBlocState implements _LevelPlayersBlocState {
           this, _$identity);
 }
 
-abstract class _LevelPlayersBlocState implements LevelPlayersBlocState {
+abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
   const factory _LevelPlayersBlocState(
       {final List<PlayerProfileModel> players,
       final String currentPlayerId,
       final PlayerCharacterModel playerCharacter}) = _$_LevelPlayersBlocState;
+  const _LevelPlayersBlocState._() : super._();
 
   @override
   List<PlayerProfileModel> get players;
