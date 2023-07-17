@@ -109,7 +109,7 @@ class GameRenderer extends FlameGame
   }
 
   Future<CameraComponent> _initCamera() async {
-    final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
+    // final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
     final camera = CameraComponent(
       world: world,
     ); //..setBounds(bounds);

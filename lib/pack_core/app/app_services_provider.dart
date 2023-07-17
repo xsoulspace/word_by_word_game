@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
-import 'package:word_by_word_game/pack_core/global_states/app/canvas_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class AppServicesProviderDto {

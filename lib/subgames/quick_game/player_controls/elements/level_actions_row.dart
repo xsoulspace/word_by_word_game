@@ -97,18 +97,18 @@ class UIEnergyOptionCard extends StatelessWidget {
         )
         .value
         .toInt();
-    final isAllowedToUse = mechanics.score.checkPlayerAbilityToUseScore(
-      player: player,
-      score: applyingScore,
-    );
-    final uiTheme = UiTheme.of(context);
-    final bool isSelected =
-        isAllowedToUse && levelState.actionMultiplier == type;
+    // final isAllowedToUse = mechanics.score.checkPlayerAbilityToUseScore(
+    //   player: player,
+    //   score: applyingScore,
+    // );
+    // final uiTheme = UiTheme.of(context);
+    // final bool isSelected =
+    //     isAllowedToUse && levelState.actionMultiplier == type;
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    // final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     final widgetState = context.read<WordCompositionState>();
-    final borderRadius = BorderRadius.circular(100);
+    // final borderRadius = BorderRadius.circular(100);
     void onApply() {
       widgetState.onSelectActionMultiplier(type);
       TutorialFrame.sendOnClickEvent(

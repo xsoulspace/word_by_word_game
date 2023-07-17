@@ -49,7 +49,8 @@ class CharactersRow extends StatelessWidget {
 
 class CharacterAvatarButton extends StatelessWidget {
   /// Displays default character
-  const CharacterAvatarButton.useDefault({super.key}) : isDefault = true;
+  // ignore: prefer_const_constructors_in_immutables
+  CharacterAvatarButton.useDefault({super.key}) : isDefault = true;
   final bool isDefault;
   @override
   Widget build(final BuildContext context) {

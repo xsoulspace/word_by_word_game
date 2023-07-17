@@ -23,7 +23,7 @@ class UiWordCompositionBar extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
-    final uiTheme = UiTheme.of(context);
+    // final uiTheme = UiTheme.of(context);
     final buildAndListenWhenCallback = LevelBloc.useCheckStateEqualityBuilder(
       checkLiveState: (final previous, final current) =>
           previous.latestWord != current.latestWord,

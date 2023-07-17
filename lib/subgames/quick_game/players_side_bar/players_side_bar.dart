@@ -141,7 +141,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
+    // final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
     final textStyle =
         isCurrent ? theme.textTheme.labelLarge : theme.textTheme.labelMedium;
     final backgroundColor = isCurrent

@@ -39,7 +39,7 @@ class UiTextButton extends HookWidget {
     );
     const height = 32.0;
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    // final uiTheme = UiTheme.of(context);
     return Tooltip(
       message: tooltip,
       child: GestureDetector(

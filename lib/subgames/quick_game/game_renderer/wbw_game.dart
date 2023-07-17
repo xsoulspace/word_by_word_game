@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flame/components.dart';
-import 'package:flame/experimental.dart';
 import 'package:flame/game.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -77,7 +76,7 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   }
 
   Future<CameraComponent> _initCamera() async {
-    final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
+    // final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
     final camera = CameraComponent(
       world: world,
     ); //..setBounds(bounds);
@@ -117,7 +116,7 @@ class WbwGame extends FlameGame with HasCollisionDetection {
   Future<void> onLoadLevel() async {
     if (isLevelLoading) return;
     isLevelLoading = true;
-    final playersState = diDto.levelPlayersBloc.getLiveState();
+    // final playersState = diDto.levelPlayersBloc.getLiveState();
 // final obstacleLevelHelper = ObstacleLevelHelper.fromMapComponent(
 //           tiledMapComponent: map,
 //           tileDimension: kTileDimension,

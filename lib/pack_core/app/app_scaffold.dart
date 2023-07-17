@@ -200,7 +200,8 @@ class WindowControlsScaffold extends HookWidget {
                         maxHeight: dimension,
                       ),
                       onPressed: () async {
-                        // final isFullScreen = await windowManager.isFullScreen();
+                        // final isFullScreen = await windowManager.
+                        // isFullScreen();
                         // await windowManager.setFullScreen(!isFullScreen);
                         // if (await windowManager.isMaximized()) {
                         //   await windowManager.unmaximize();

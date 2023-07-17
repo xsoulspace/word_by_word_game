@@ -35,9 +35,6 @@ class LevelStartDialogButton extends HookWidget {
       uxState: uxState,
       level: level,
     );
-    final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return MultiProvider(
       providers: [
@@ -83,9 +80,6 @@ class _DialogScreen extends HookWidget {
   final TemplateLevelModel level;
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
-    final colorScheme = theme.colorScheme;
     final screenSize = MediaQuery.of(context).size;
     final widgetUiState = context.read<LevelStartDialogUiState>();
     final uiState = context.read<LevelStartDialogUiState>();

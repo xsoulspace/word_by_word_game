@@ -16,8 +16,6 @@ class WbwGameWidget extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final gameFocusNode = useFocusNode();
-    final uiTheme = UiTheme.of(context);
-    final spacing = uiTheme.spacing;
 
     return Scaffold(
       resizeToAvoidBottomInset: false,

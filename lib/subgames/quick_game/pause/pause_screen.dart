@@ -97,7 +97,7 @@ class PauseScreen extends HookWidget {
                 ),
               ),
               if (_kIsCharacterVisible)
-                const Positioned(
+                Positioned(
                   right: 24,
                   top: 24,
                   child: CharacterAvatarButton.useDefault(),

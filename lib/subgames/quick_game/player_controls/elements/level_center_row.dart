@@ -14,7 +14,7 @@ class UILevelCenterBar extends StatelessWidget {
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
-    final uiTheme = UiTheme.of(context);
+    // final uiTheme = UiTheme.of(context);
     final wordCompositionState = context.read<WordCompositionState>();
     final List<Widget> centerBarChildren;
     final Widget body;

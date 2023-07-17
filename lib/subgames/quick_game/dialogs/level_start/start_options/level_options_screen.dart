@@ -21,7 +21,6 @@ class LevelOptionsScreen extends HookWidget {
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final widgetUxState = context.read<LevelStartDialogUxState>();
-    final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
 
     return Column(
