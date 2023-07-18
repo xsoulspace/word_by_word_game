@@ -1,6 +1,6 @@
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/global_game_bloc.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 /// !If you want to add new route, please add the route to the [routes]
 class NavigationRoutes {
