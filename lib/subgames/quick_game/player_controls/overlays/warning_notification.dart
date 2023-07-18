@@ -68,7 +68,9 @@ class UIWarningNotification extends StatelessWidget {
       )
           .animate(
             onComplete: (final _) {
-              context.read<LevelBloc>().add(const LevelBlocEventHideWarning());
+              context
+                  .read<LevelBloc>()
+                  .onHideWarning(const LevelBlocEventHideWarning());
             },
           )
           .fadeIn()

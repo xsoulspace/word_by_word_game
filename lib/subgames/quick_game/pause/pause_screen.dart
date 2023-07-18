@@ -36,6 +36,7 @@ class PauseScreen extends HookWidget {
     return Provider(
       create: (final context) => state,
       builder: (final context, final child) => Scaffold(
+        backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
         body: Portal(
           child: Stack(

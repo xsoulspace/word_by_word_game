@@ -10,8 +10,6 @@ import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
-
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 
 class PlayerGameCanvasObject extends GameCanvasObject {
@@ -52,16 +50,6 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   final PlayerCharacterModel characterModel;
   FlyingObjectsParams params;
   // final ObstacleLevelHelper obstacleLevelHelper;
-  // @override
-  // Future<void>? onLoad() async {
-  //   position = characterModel.position.isZero
-  //       ? Vector2(
-  //           params.minXBoundry,
-  //           ((kMapTilesPlayableHeight - 3) * kTileDimension).toDouble(),
-  //         )
-  //       : characterModel.position.toVector2();
-  //   return super.onLoad();
-  // }
 
   // void _handleLevelState(final LevelPlayersBlocState levelState) {
   //   if (levelState is! LevelPlayersBlocState) return;

@@ -25,22 +25,10 @@ class LevelBlocDiDto {
   final DictionariesBloc dictionaryBloc;
 }
 
-class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
+class LevelBloc extends Cubit<LevelBlocState> {
   LevelBloc({
     required this.diDto,
-  }) : super(const LevelBlocState()) {
-    on<LevelBlocEventInit>(_onInitLevel);
-    on<LevelBlocEventConsumeTick>(_consumeTickEvent);
-    on<LevelBlocEventChangeCurrentWord>(_onChangeCurrentWord);
-    on<LevelBlocEventAcceptNewWord>(_onAcceptNewWord);
-    on<LevelBlocEventAddNewWordToDictionary>(_onAddNewWordToDictionary);
-    on<LevelBlocEventDecreaseMiddlePart>(_onDecreaseMiddlePart);
-    on<LevelBlocEventEndTurn>(_onLevelPlayerEndTurnAction);
-    on<LevelBlocEventSelectActionMultiplier>(
-      _onLevelPlayerSelectActionMultiplier,
-    );
-    on<LevelBlocEventHideWarning>(_onHideWarning);
-  }
+  }) : super(const LevelBlocState());
 
   static bool Function(
     LevelBlocState previous,
@@ -55,9 +43,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
 
   final LevelBlocDiDto diDto;
 
-  void _onInitLevel(
+  void onInitLevel(
     final LevelBlocEventInit event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final liveLevel = LevelBlocState.liveFromModel(event.levelModel);
     emit(liveLevel);
@@ -66,16 +53,14 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     );
   }
 
-  void _consumeTickEvent(
+  void onConsumeTickEvent(
     final LevelBlocEventConsumeTick event,
-    final Emitter<LevelBlocState> emit,
   ) {
     // noop
   }
 
-  void _onHideWarning(
+  void onHideWarning(
     final LevelBlocEventHideWarning event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final newState = state.copyWith(
       wordWarning: WordWarning.none,
@@ -83,9 +68,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     emit(newState);
   }
 
-  void _onChangeCurrentWord(
+  void onChangeCurrentWord(
     final LevelBlocEventChangeCurrentWord event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final newState = state.copyWith(
       currentWord: event.word,
@@ -119,9 +103,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     return WordWarning.none;
   }
 
-  void _onAddNewWordToDictionary(
+  void onAddNewWordToDictionary(
     final LevelBlocEventAddNewWordToDictionary event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final liveState = state;
     unawaited(
@@ -130,13 +113,12 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((final _) {
-      add(const LevelBlocEventAcceptNewWord(word: null));
+      onAcceptNewWord(const LevelBlocEventAcceptNewWord(word: null));
     });
   }
 
-  void _onAcceptNewWord(
+  void onAcceptNewWord(
     final LevelBlocEventAcceptNewWord event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final liveState = state;
     final effectiveCurrentWord = event.word ?? liveState.currentWord;
@@ -176,9 +158,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     }
   }
 
-  void _onLevelPlayerSelectActionMultiplier(
+  void onLevelPlayerSelectActionMultiplier(
     final LevelBlocEventSelectActionMultiplier event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final liveState = state;
     final updatedState = liveState.copyWith(
@@ -187,9 +168,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     emit(updatedState);
   }
 
-  void _onLevelPlayerEndTurnAction(
+  void onLevelPlayerEndTurnAction(
     final LevelBlocEventEndTurn event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final liveState = state;
     final updatedState = liveState.copyWith(
@@ -226,9 +206,8 @@ class LevelBloc extends Bloc<LevelBlocEvent, LevelBlocState> {
     );
   }
 
-  void _onDecreaseMiddlePart(
+  void onDecreaseMiddlePart(
     final LevelBlocEventDecreaseMiddlePart event,
-    final Emitter<LevelBlocState> emit,
   ) {
     final liveState = state;
     final updatedWord =

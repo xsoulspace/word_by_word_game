@@ -63,11 +63,12 @@ class GameRendererGame extends FlameGame with HasCollisionDetection {
     );
 
     await add(providersComponent);
-    await world.add(
+    await world.addAll([
       FlameBlocListener<GlobalGameBloc, GlobalGameBlocState>(
         onNewState: _handleGlobalGameStateChanges,
       ),
-    );
+      canvasRenderer,
+    ]);
     // Enable initial overlays
     overlays.addAll([
       GameOverlaysRoutes.levelsHud.name,

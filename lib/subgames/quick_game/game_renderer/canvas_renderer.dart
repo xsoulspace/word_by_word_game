@@ -14,9 +14,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 
 String get kDefaultTilesetPath => 'tilesets/pixel_black_white_tileset.png';
-int get kMapTilesPlayableHeight => 20;
-
-const int kLevelSideTileWidth = 16;
 
 class CanvasRenderer extends Component
     with DragCallbacks, HasGameRef<GameRendererGame>, Hoverable {

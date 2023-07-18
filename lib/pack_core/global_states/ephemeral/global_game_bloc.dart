@@ -112,7 +112,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       emit(updatedState);
     }
     diDto
-      ..levelBloc.add(LevelBlocEventInit(levelModel: levelModel))
+      ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: levelModel))
       ..levelPlayersBloc.onInitLevelPlayers(
         InitLevelPlayersEvent(
           playersModel: levelModel.players,
@@ -213,7 +213,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 
   void _shareNewDateTime(final GlobalGameBlocState newState) {
-    diDto.levelBloc.add(
+    diDto.levelBloc.onConsumeTickEvent(
       LevelBlocEventConsumeTick(timeDeltaInSeconds: newState.dateTimeDelta),
     );
   }
