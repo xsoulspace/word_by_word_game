@@ -9,9 +9,9 @@ enum GameOverlaysRoutes { levelsHud, debug }
 
 class GameOverlayBuilderMapRouter {
   const GameOverlayBuilderMapRouter();
-  Map<String, OverlayWidgetBuilder<GameRenderer>> build() =>
+  Map<String, OverlayWidgetBuilder<GameRendererGame>> build() =>
       _build().map((final key, final value) => MapEntry(key.name, value));
-  Map<GameOverlaysRoutes, OverlayWidgetBuilder<GameRenderer>> _build() => {
+  Map<GameOverlaysRoutes, OverlayWidgetBuilder<GameRendererGame>> _build() => {
         GameOverlaysRoutes.levelsHud: (final context, final game) =>
             WbwGameProvider(
               game: game,

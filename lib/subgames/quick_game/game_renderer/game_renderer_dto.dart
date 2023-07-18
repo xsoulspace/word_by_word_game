@@ -1,4 +1,4 @@
-part of 'canvas_renderer.dart';
+part of 'game_renderer.dart';
 
 class GameRendererDiDto {
   GameRendererDiDto.use({

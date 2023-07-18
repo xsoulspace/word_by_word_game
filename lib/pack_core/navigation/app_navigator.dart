@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
-import 'package:word_by_word_game/subgames/quick_game/game_renderer/wbw_game_widget.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_widget.dart';
 import 'package:word_by_word_game/subgames/quick_game/highscore/highscore_screen.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause_screen.dart';
 import 'package:word_by_word_game/subgames/quick_game/settings/settings_screen.dart';

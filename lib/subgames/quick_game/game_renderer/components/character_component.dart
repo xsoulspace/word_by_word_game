@@ -12,6 +12,8 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
 
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
+
 class PlayerGameCanvasObject extends GameCanvasObject {
   PlayerGameCanvasObject.fromRenderObject({
     required super.onPositionChanged,
@@ -21,7 +23,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   })  : params = const FlyingObjectsParams(),
         super.fromRenderObject();
   factory PlayerGameCanvasObject.fromCanvasCubit({
-    required final GameRenderer game,
+    required final GameRendererGame game,
     required final CanvasCubit canvasCubit,
     required final LevelPlayersBloc levelPlayersBloc,
   }) {
@@ -146,14 +148,14 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   }
 }
 
-mixin HasCanvasResourcesLoaderRef on Component, HasGameRef<GameRenderer> {
+mixin HasCanvasResourcesLoaderRef on Component, HasGameRef<GameRendererGame> {
   Image getImage(final String path) => game.images.fromCache(path);
 }
 
 class GameCanvasObject extends Component
     with
         TapCallbacks,
-        HasGameRef<GameRenderer>,
+        HasGameRef<GameRendererGame>,
         HasCanvasRendererRef,
         HasCanvasResourcesLoaderRef {
   GameCanvasObject.fromRenderObject({

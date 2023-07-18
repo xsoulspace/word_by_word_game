@@ -7,7 +7,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/core/dialog_stack.dart';
-import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/player_controls.dart';
 
 class WbwGameWidget extends HookWidget {
@@ -33,9 +33,9 @@ class WbwGameWidget extends HookWidget {
                         gameFocusNode.requestFocus();
                       }
                     },
-                    child: GameWidget<GameRenderer>.controlled(
+                    child: GameWidget<GameRendererGame>.controlled(
                       focusNode: gameFocusNode,
-                      gameFactory: () => GameRenderer.use(
+                      gameFactory: () => GameRendererGame.use(
                         read: context.read,
                         dialogController: dialogController,
                         theme: Theme.of(context),
