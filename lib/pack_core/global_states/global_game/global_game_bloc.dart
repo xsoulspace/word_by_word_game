@@ -1,9 +1,9 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
-import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/tutorial/tutorial_listener.dart';
@@ -13,13 +13,15 @@ part 'global_game_events.dart';
 part 'global_game_states.dart';
 
 class GlobalGameBlocDiDto {
-  GlobalGameBlocDiDto.use(this.read)
-      : mechanics = read(),
-        levelBloc = read(),
-        levelPlayersBloc = read(),
-        tutorialBloc = read(),
-        services = read();
-  final Locator read;
+  GlobalGameBlocDiDto.use({required this.context})
+      : mechanics = context.read(),
+        levelBloc = context.read(),
+        levelPlayersBloc = context.read(),
+        tutorialBloc = context.read(),
+        services = context.read(),
+        statesStatusesCubit = context.read();
+  final BuildContext context;
+  final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
@@ -31,17 +33,23 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   GlobalGameBloc({
     required this.diDto,
   }) : super(const GlobalGameBlocState()) {
-    _tutorialEventsListener = GameTutorialEventListener(read: diDto.read);
+    _tutorialEventsListener =
+        GameTutorialEventListener(read: diDto.context.read);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
+    _statesStatusesCubitSubscription =
+        diDto.statesStatusesCubit.stream.listen(onLevelPartLoaded);
   }
   GameTutorialEventListener? _tutorialEventsListener;
   final GlobalGameBlocDiDto diDto;
+  StreamSubscription<StatesStatusesCubitState>?
+      _statesStatusesCubitSubscription;
   void _addWorldTimeTick(final WorldTimeMechanics time) {
     onWorldTick(time);
   }
 
   @override
   Future<void> close() {
+    _statesStatusesCubitSubscription?.cancel();
     diDto.mechanics.worldTime.removeListener(_addWorldTimeTick);
     if (_tutorialEventsListener != null) {
       diDto.tutorialBloc.notifier.removeListener(_tutorialEventsListener!);
@@ -122,25 +130,24 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 
   GlobalGameBlocState _getResetedLevelLoad() {
-    diDto.mechanics.worldTime.pause();
-    return state.copyWith(loadedLevelParts: {});
+    diDto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
+    return state;
   }
 
   void onLevelPartLoaded(
-    final LevelPartLoadedEvent event,
+    final StatesStatusesCubitState statesStatuses,
   ) {
-    final loadedStates = {...state.loadedLevelParts, event.loadedState};
-    GlobalGameBlocState updateState = state.copyWith(
-      loadedLevelParts: loadedStates,
-    );
-
-    if (updateState.isLevelCompletelyLoaded) {
-      _globalLevelLoadCompleter!.complete();
-      updateState = updateState.copyWith(
-        currentLevelId: diDto.levelBloc.state.id,
-      );
+    switch (statesStatuses.levelStateStatus) {
+      case LevelStateStatus.paused || LevelStateStatus.playing:
+        _globalLevelLoadCompleter!.complete();
+        emit(
+          state.copyWith(currentLevelId: diDto.levelBloc.state.id),
+        );
+      case LevelStateStatus.loading:
+        break;
     }
-    emit(updateState);
   }
 
   Future<void> onStartPlayingLevel(
@@ -252,7 +259,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }) async {
     final resolvedLiveState = liveState ?? state;
     final gameModel = _getGameModel(liveState: resolvedLiveState);
-    await diDto.services.gamePersistence.saveGame(game: gameModel);
+    await diDto.services.gameRepository.saveGame(game: gameModel);
   }
 
   Future<void> onSaveCurrentLevel(

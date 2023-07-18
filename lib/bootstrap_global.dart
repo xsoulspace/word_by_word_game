@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/envs.dart';
-import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
+import 'package:word_by_word_game/pack_core/app/app_di.dart';
 
 class AppBlocObserver extends BlocObserver {
   AppBlocObserver({
@@ -37,8 +37,7 @@ class AppBlocObserver extends BlocObserver {
 }
 
 Future<void> bootstrapGlobal(
-  final Widget Function({required AppServicesProviderDto servicesDto})
-      builder, {
+  final Widget Function({required AppDiProviderDto servicesDto}) builder, {
   final FirebaseOptions? firebaseOptions,
 }) async {
   // await Flame.device.fullScreen();
@@ -69,7 +68,7 @@ Future<void> bootstrapGlobal(
       await analyticsService.attachPlugins(plugins: plugins);
       await analyticsService.onLoad();
       Bloc.observer = AppBlocObserver(analyticsService: analyticsService);
-      final servicesDto = AppServicesProviderDto(
+      final servicesDto = AppDiProviderDto(
         analyticsService: analyticsService,
         firebaseInitializer: firebaseIntializer,
       );

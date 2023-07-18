@@ -9,12 +9,22 @@ part of 'models.dart';
 _$_AppSettingsModel _$$_AppSettingsModelFromJson(Map<String, dynamic> json) =>
     _$_AppSettingsModel(
       locale: localeFromString(json['locale'] as String?),
+      brightnessMode: $enumDecodeNullable(
+              _$BrightnessModeEnumMap, json['brightnessMode']) ??
+          BrightnessMode.system,
     );
 
 Map<String, dynamic> _$$_AppSettingsModelToJson(_$_AppSettingsModel instance) =>
     <String, dynamic>{
       'locale': localeToString(instance.locale),
+      'brightnessMode': _$BrightnessModeEnumMap[instance.brightnessMode]!,
     };
+
+const _$BrightnessModeEnumMap = {
+  BrightnessMode.system: 'system',
+  BrightnessMode.light: 'light',
+  BrightnessMode.dark: 'dark',
+};
 
 _$_CurrentWordModel _$$_CurrentWordModelFromJson(Map<String, dynamic> json) =>
     _$_CurrentWordModel(

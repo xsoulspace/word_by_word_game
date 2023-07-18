@@ -8,8 +8,8 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
-class AppServicesProviderDto {
-  AppServicesProviderDto({
+class AppDiProviderDto {
+  AppDiProviderDto({
     required this.analyticsService,
     required this.firebaseInitializer,
   });
@@ -17,20 +17,20 @@ class AppServicesProviderDto {
   final FirebaseInitializer? firebaseInitializer;
 }
 
-class AppServicesProvider extends StatefulWidget {
-  const AppServicesProvider({
+class AppDiProvider extends StatefulWidget {
+  const AppDiProvider({
     required this.diDto,
     required this.child,
     super.key,
   });
   final Widget child;
-  final AppServicesProviderDto diDto;
+  final AppDiProviderDto diDto;
 
   @override
-  State<AppServicesProvider> createState() => _AppServicesProviderState();
+  State<AppDiProvider> createState() => _AppDiProviderState();
 }
 
-class _AppServicesProviderState extends State<AppServicesProvider> {
+class _AppDiProviderState extends State<AppDiProvider> {
   @override
   void dispose() {
     widget.diDto.analyticsService.dispose();
@@ -46,48 +46,66 @@ class _AppServicesProviderState extends State<AppServicesProvider> {
           Provider<ServicesCollection>(
             create: (final context) => ServicesCollection.v1,
           ),
-          Provider<LocalDataService>(
+          Provider<GameRespository>(
             create: (final context) =>
-                context.read<ServicesCollection>().localDataService,
+                context.read<ServicesCollection>().gameRepository,
+          ),
+          Provider<DictionariesRespository>(
+            create: (final context) =>
+                context.read<ServicesCollection>().dictionariesRepository,
+          ),
+          Provider<AppSettingsRepository>(
+            create: (final context) =>
+                context.read<ServicesCollection>().appSettingsRepository,
           ),
           Provider<MechanicsCollection>(
             create: (final context) => MechanicsCollection.v1,
           ),
-          Provider(create: (final context) => AdManager())
+          Provider(create: (final context) => AdManager()),
+          BlocProvider(
+            create: (final context) => StatesStatusesCubit(
+              dto: StatesStatusesCubitDto(context: context),
+            ),
+          ),
         ],
         child: Builder(
           builder: (final context) {
-            late Locator providersContextLocator;
+            final providersContext = context;
             final initialProviders = <SingleChildWidget>[
               BlocProvider(
                 create: (final context) => CanvasCubit(
                   canvasDto: CanvasCubitDto(),
-                  drawerCubit: DrawerCubitDto.use(context: context),
+                  drawerCubit: DrawerCubitDto.use(context: providersContext),
                 ),
               ),
               BlocProvider(
                 create: (final context) => DictionariesBloc(
-                  diDto: DictionariesBlocDiDto.use(providersContextLocator),
+                  diDto: DictionariesBlocDiDto.use(providersContext),
                 ),
               ),
               BlocProvider(
                 create: (final context) => LevelPlayersBloc(
-                  diDto: LevelPlayersBlocDiDto.use(providersContextLocator),
+                  diDto: LevelPlayersBlocDiDto.use(providersContext),
                 ),
               ),
               BlocProvider<LevelBloc>(
                 create: (final context) => LevelBloc(
-                  diDto: LevelBlocDiDto.use(providersContextLocator),
+                  diDto: LevelBlocDiDto.use(providersContext),
                 ),
               ),
               BlocProvider(
                 create: (final context) => TutorialBloc(
-                  diDto: TutorialBlocDiDto.use(providersContextLocator),
+                  diDto: TutorialBlocDiDto.use(context),
                 ),
               ),
               BlocProvider<GlobalGameBloc>(
                 create: (final context) => GlobalGameBloc(
-                  diDto: GlobalGameBlocDiDto.use(providersContextLocator),
+                  diDto: GlobalGameBlocDiDto.use(context: context),
+                ),
+              ),
+              BlocProvider(
+                create: (final context) => AppSettingsCubit(
+                  dto: AppSettingsCubitDto(context: context),
                 ),
               ),
             ];
@@ -100,18 +118,9 @@ class _AppServicesProviderState extends State<AppServicesProvider> {
                 ...otherProviders,
               ],
               child: MultiProvider(
-                providers: [
-                  ChangeNotifierProvider(
-                    create: (final context) => AppSettingsNotifier.use(
-                      context.read,
-                    ),
-                  ),
-                ],
+                providers: const [],
                 child: Builder(
-                  builder: (final context) {
-                    providersContextLocator = context.read;
-                    return widget.child;
-                  },
+                  builder: (final context) => widget.child,
                 ),
               ),
             );

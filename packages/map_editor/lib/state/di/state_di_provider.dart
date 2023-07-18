@@ -24,8 +24,8 @@ class StateDiProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
-          Provider<LocalDataService>(
-            create: (final context) => SharedPreferencesDataService(),
+          Provider<LocalDbDataSource>(
+            create: (final context) => SharedPreferencesDbDataSourceImpl(),
           ),
           Provider(
             create: (final context) => EditorMechanicsCollection.v1(),

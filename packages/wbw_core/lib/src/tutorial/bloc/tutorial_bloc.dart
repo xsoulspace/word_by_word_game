@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,8 @@ part 'tutorial_events.dart';
 part 'tutorial_states.dart';
 
 class TutorialBlocDiDto {
-  TutorialBlocDiDto.use(final Locator read) : mechanics = read();
+  TutorialBlocDiDto.use(final BuildContext context)
+      : mechanics = context.read();
   final MechanicsCollection mechanics;
 }
 

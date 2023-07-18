@@ -3,8 +3,8 @@ part of '../../state.dart';
 class DrawerCubitDto {
   DrawerCubitDto.use({
     required final BuildContext context,
-  }) : localDataService = context.read();
-  final LocalDataService localDataService;
+  }) : localDbDataSource = context.read();
+  final LocalDbDataSource localDbDataSource;
 }
 
 String get _tempPersistanceKey => 'map_editor_save';
@@ -32,7 +32,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   Future<void> loadCanvasData() async {
-    final canvasDataJson = await dto.localDataService.getMap(
+    final canvasDataJson = await dto.localDbDataSource.getMap(
       _tempPersistanceKey,
     );
 
@@ -109,7 +109,10 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   Future<void> saveData() async {
-    await dto.localDataService.setMap(_tempPersistanceKey, canvasData.toJson());
+    await dto.localDbDataSource.setMap(
+      key: _tempPersistanceKey,
+      value: canvasData.toJson(),
+    );
   }
 
   /// This function should be triggered when game.onLoad happening

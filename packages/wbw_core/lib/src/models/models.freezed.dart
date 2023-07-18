@@ -22,6 +22,7 @@ AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) {
 mixin _$AppSettingsModel {
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
   Locale? get locale => throw _privateConstructorUsedError;
+  BrightnessMode get brightnessMode => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +38,8 @@ abstract class $AppSettingsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          Locale? locale});
+          Locale? locale,
+      BrightnessMode brightnessMode});
 }
 
 /// @nodoc
@@ -54,12 +56,17 @@ class _$AppSettingsModelCopyWithImpl<$Res, $Val extends AppSettingsModel>
   @override
   $Res call({
     Object? locale = freezed,
+    Object? brightnessMode = null,
   }) {
     return _then(_value.copyWith(
       locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
               as Locale?,
+      brightnessMode: null == brightnessMode
+          ? _value.brightnessMode
+          : brightnessMode // ignore: cast_nullable_to_non_nullable
+              as BrightnessMode,
     ) as $Val);
   }
 }
@@ -74,7 +81,8 @@ abstract class _$$_AppSettingsModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          Locale? locale});
+          Locale? locale,
+      BrightnessMode brightnessMode});
 }
 
 /// @nodoc
@@ -89,12 +97,17 @@ class __$$_AppSettingsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? locale = freezed,
+    Object? brightnessMode = null,
   }) {
     return _then(_$_AppSettingsModel(
       locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
               as Locale?,
+      brightnessMode: null == brightnessMode
+          ? _value.brightnessMode
+          : brightnessMode // ignore: cast_nullable_to_non_nullable
+              as BrightnessMode,
     ));
   }
 }
@@ -104,8 +117,8 @@ class __$$_AppSettingsModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_AppSettingsModel extends _AppSettingsModel {
   const _$_AppSettingsModel(
-      {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          this.locale})
+      {@JsonKey(fromJson: localeFromString, toJson: localeToString) this.locale,
+      this.brightnessMode = BrightnessMode.system})
       : super._();
 
   factory _$_AppSettingsModel.fromJson(Map<String, dynamic> json) =>
@@ -114,10 +127,13 @@ class _$_AppSettingsModel extends _AppSettingsModel {
   @override
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
   final Locale? locale;
+  @override
+  @JsonKey()
+  final BrightnessMode brightnessMode;
 
   @override
   String toString() {
-    return 'AppSettingsModel(locale: $locale)';
+    return 'AppSettingsModel(locale: $locale, brightnessMode: $brightnessMode)';
   }
 
   @override
@@ -125,12 +141,14 @@ class _$_AppSettingsModel extends _AppSettingsModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_AppSettingsModel &&
-            (identical(other.locale, locale) || other.locale == locale));
+            (identical(other.locale, locale) || other.locale == locale) &&
+            (identical(other.brightnessMode, brightnessMode) ||
+                other.brightnessMode == brightnessMode));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, locale);
+  int get hashCode => Object.hash(runtimeType, locale, brightnessMode);
 
   @JsonKey(ignore: true)
   @override
@@ -149,7 +167,8 @@ class _$_AppSettingsModel extends _AppSettingsModel {
 abstract class _AppSettingsModel extends AppSettingsModel {
   const factory _AppSettingsModel(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          final Locale? locale}) = _$_AppSettingsModel;
+          final Locale? locale,
+      final BrightnessMode brightnessMode}) = _$_AppSettingsModel;
   const _AppSettingsModel._() : super._();
 
   factory _AppSettingsModel.fromJson(Map<String, dynamic> json) =
@@ -158,6 +177,8 @@ abstract class _AppSettingsModel extends AppSettingsModel {
   @override
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
   Locale? get locale;
+  @override
+  BrightnessMode get brightnessMode;
   @override
   @JsonKey(ignore: true)
   _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>

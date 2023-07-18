@@ -1,15 +1,16 @@
 import 'dart:async';
 
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 part 'dictionaries_bloc.freezed.dart';
 part 'dictionaries_states.dart';
 
 class DictionariesBlocDiDto {
-  DictionariesBlocDiDto.use(final Locator read) : services = read();
+  DictionariesBlocDiDto.use(final BuildContext context)
+      : services = context.read();
   final ServicesCollection services;
 }
 
@@ -27,7 +28,7 @@ class DictionariesBloc extends Cubit<DictionariesBlocState> {
   }
 
   Future<void> onSave() async {
-    await diDto.services.dictionaryPersistence.saveDictionary(
+    await diDto.services.dictionariesRepository.saveDictionary(
       dictionary: state.localDictionary,
     );
   }

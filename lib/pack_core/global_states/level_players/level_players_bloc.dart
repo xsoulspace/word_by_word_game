@@ -1,7 +1,7 @@
 import 'package:flame/extensions.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -10,11 +10,10 @@ part 'level_players_events.dart';
 part 'level_players_states.dart';
 
 class LevelPlayersBlocDiDto {
-  LevelPlayersBlocDiDto.use(final Locator read)
-      : mechanics = read(),
-        _read = read;
-  final Locator _read;
-  GlobalGameBloc get globalGameBloc => _read();
+  LevelPlayersBlocDiDto.use(final BuildContext context)
+      : mechanics = context.read(),
+        statesStatusesCubit = context.read();
+  final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
 }
 
@@ -32,8 +31,8 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
       levelCharactersModel: event.charactersModel,
     );
     emit(liveState);
-    diDto.globalGameBloc.onLevelPartLoaded(
-      const LevelPartLoadedEvent(loadedState: LevelPartStates.players),
+    diDto.statesStatusesCubit.onLevelPartLoaded(
+      levelPartName: LevelPartName.players,
     );
   }
 

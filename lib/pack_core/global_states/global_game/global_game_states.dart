@@ -33,7 +33,6 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
     /// *      NON-RESTORABLE
     /// ********************************************
     @Default(0) final int dateTimeDelta,
-    @Default({}) final Set<LevelPartStates> loadedLevelParts,
   }) = _GlobalGameBlocState;
   const GlobalGameBlocState._();
 
@@ -49,7 +48,4 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
         playersCollection: gameModel.playersCollection,
         playersCharacters: gameModel.playersCharacters,
       );
-
-  bool get isLevelCompletelyLoaded =>
-      LevelPartStates.containsAll(loadedLevelParts);
 }

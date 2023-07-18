@@ -1,23 +1,26 @@
 import 'package:flutter/foundation.dart';
 
-import '../../wbw_core.dart';
-import 'local_data_service.dart';
+import '../../models/models.dart';
+import '../interfaces/interfaces.dart';
 
-class GamePersistenceService {
-  GamePersistenceService({
-    required this.localDataService,
+class GameLocalDataSourceImpl implements GameLocalDataSource {
+  GameLocalDataSourceImpl({
+    required this.localDb,
   });
-  final LocalDataService localDataService;
+
+  final LocalDbDataSource localDb;
   static const _persistenceKey = 'game_save';
+  @override
   Future<void> saveGame({
     required final GameModel game,
   }) async {
-    await localDataService.setMap(_persistenceKey, game.toJson());
+    await localDb.setMap(key: _persistenceKey, value: game.toJson());
   }
 
-// https://isar.dev/recipes/data_migration.html
+  // https://isar.dev/recipes/data_migration.html
+  @override
   Future<GameModel?> loadGame() async {
-    final jsonMap = await localDataService.getMap(_persistenceKey);
+    final jsonMap = await localDb.getMap(_persistenceKey);
     if (jsonMap.isEmpty) return null;
     try {
       return GameModel.fromJson(jsonMap);

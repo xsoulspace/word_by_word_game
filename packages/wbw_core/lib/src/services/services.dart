@@ -1,39 +1,34 @@
-import 'app_settings_persistence_service.dart';
-import 'dictionary_persistence_service.dart';
-import 'game_persistence_service.dart';
-import 'local_data_service.dart';
+import '../datasources/datasources.dart';
+import '../repositories/repositories.dart';
 
 export 'analytics/analytics.dart';
-export 'app_settings_persistence_service.dart';
-export 'game_persistence_service.dart';
-export 'local_data_service.dart';
 
 class ServicesCollection {
   const ServicesCollection._({
-    required this.gamePersistence,
+    required this.gameRepository,
     required this.localDataService,
-    required this.dictionaryPersistence,
-    required this.appSettingsPersistence,
+    required this.dictionariesRepository,
+    required this.appSettingsRepository,
   });
 
   static final v1 = () {
-    final LocalDataService localDataService = SharedPreferencesDataService();
+    final LocalDbDataSource localDb = SharedPreferencesDbDataSourceImpl();
     return ServicesCollection._(
-      localDataService: localDataService,
-      gamePersistence: GamePersistenceService(
-        localDataService: localDataService,
+      localDataService: localDb,
+      gameRepository: GameRespository(
+        local: GameLocalDataSourceImpl(localDb: localDb),
       ),
-      dictionaryPersistence: DictionaryPersistenceService(
-        localDataService: localDataService,
+      dictionariesRepository: DictionariesRespository(
+        local: DictionariesLocalDataSourceImpl(localDb: localDb),
       ),
-      appSettingsPersistence: AppSettingsPersistenceService(
-        localDataService: localDataService,
+      appSettingsRepository: AppSettingsRepository(
+        local: AppSettingsLocalDataSourceImpl(localDb: localDb),
       ),
     );
   }();
 
-  final LocalDataService localDataService;
-  final DictionaryPersistenceService dictionaryPersistence;
-  final GamePersistenceService gamePersistence;
-  final AppSettingsPersistenceService appSettingsPersistence;
+  final LocalDbDataSource localDataService;
+  final DictionariesRespository dictionariesRepository;
+  final GameRespository gameRepository;
+  final AppSettingsRepository appSettingsRepository;
 }

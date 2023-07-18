@@ -13,13 +13,12 @@ part 'level_bloc_events.dart';
 part 'level_bloc_states.dart';
 
 class LevelBlocDiDto {
-  LevelBlocDiDto.use(final Locator read)
-      : mechanics = read(),
-        levelPlayersBloc = read(),
-        dictionaryBloc = read(),
-        _read = read;
-  final Locator _read;
-  GlobalGameBloc get globalGameBloc => _read();
+  LevelBlocDiDto.use(final BuildContext context)
+      : mechanics = context.read(),
+        levelPlayersBloc = context.read(),
+        dictionaryBloc = context.read(),
+        statesStatusesCubit = context.read();
+  final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
   final LevelPlayersBloc levelPlayersBloc;
   final DictionariesBloc dictionaryBloc;
@@ -48,8 +47,8 @@ class LevelBloc extends Cubit<LevelBlocState> {
   ) {
     final liveLevel = LevelBlocState.liveFromModel(event.levelModel);
     emit(liveLevel);
-    diDto.globalGameBloc.onLevelPartLoaded(
-      const LevelPartLoadedEvent(loadedState: LevelPartStates.level),
+    diDto.statesStatusesCubit.onLevelPartLoaded(
+      levelPartName: LevelPartName.level,
     );
   }
 

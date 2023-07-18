@@ -23,7 +23,6 @@ mixin _$GameEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -38,7 +37,6 @@ mixin _$GameEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -53,7 +51,6 @@ mixin _$GameEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -71,7 +68,6 @@ mixin _$GameEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -85,7 +81,6 @@ mixin _$GameEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -99,7 +94,6 @@ mixin _$GameEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -199,7 +193,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -217,7 +210,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -235,7 +227,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -259,7 +250,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -276,7 +266,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -293,7 +282,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -411,7 +399,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -429,7 +416,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -447,7 +433,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -471,7 +456,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -488,7 +472,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -505,7 +488,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -613,7 +595,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -631,7 +612,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -649,7 +629,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -673,7 +652,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -690,7 +668,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -707,7 +684,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -813,7 +789,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -831,7 +806,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -849,7 +823,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -873,7 +846,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -890,7 +862,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -907,7 +878,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -930,196 +900,6 @@ abstract class CreatePlayerProfileEvent implements GameEvent {
   @JsonKey(ignore: true)
   _$$CreatePlayerProfileEventCopyWith<_$CreatePlayerProfileEvent>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LevelPartLoadedEventCopyWith<$Res> {
-  factory _$$LevelPartLoadedEventCopyWith(_$LevelPartLoadedEvent value,
-          $Res Function(_$LevelPartLoadedEvent) then) =
-      __$$LevelPartLoadedEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({LevelPartStates loadedState});
-}
-
-/// @nodoc
-class __$$LevelPartLoadedEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$LevelPartLoadedEvent>
-    implements _$$LevelPartLoadedEventCopyWith<$Res> {
-  __$$LevelPartLoadedEventCopyWithImpl(_$LevelPartLoadedEvent _value,
-      $Res Function(_$LevelPartLoadedEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? loadedState = null,
-  }) {
-    return _then(_$LevelPartLoadedEvent(
-      loadedState: null == loadedState
-          ? _value.loadedState
-          : loadedState // ignore: cast_nullable_to_non_nullable
-              as LevelPartStates,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$LevelPartLoadedEvent implements LevelPartLoadedEvent {
-  const _$LevelPartLoadedEvent({required this.loadedState});
-
-  @override
-  final LevelPartStates loadedState;
-
-  @override
-  String toString() {
-    return 'GameEvent.levelPartLoaded(loadedState: $loadedState)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelPartLoadedEvent &&
-            (identical(other.loadedState, loadedState) ||
-                other.loadedState == loadedState));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, loadedState);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelPartLoadedEventCopyWith<_$LevelPartLoadedEvent> get copyWith =>
-      __$$LevelPartLoadedEventCopyWithImpl<_$LevelPartLoadedEvent>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
-        initGlobalGameLevel,
-    required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
-    required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
-    required TResult Function() saveGame,
-    required TResult Function() saveCurrentLevel,
-    required TResult Function() characterCollision,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
-  }) {
-    return levelPartLoaded(loadedState);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
-    TResult? Function()? saveGame,
-    TResult? Function()? saveCurrentLevel,
-    TResult? Function()? characterCollision,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
-  }) {
-    return levelPartLoaded?.call(loadedState);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
-    TResult Function()? saveGame,
-    TResult Function()? saveCurrentLevel,
-    TResult Function()? characterCollision,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
-    required TResult orElse(),
-  }) {
-    if (levelPartLoaded != null) {
-      return levelPartLoaded(loadedState);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
-    required TResult Function(InitGlobalGameLevelEvent value)
-        initGlobalGameLevel,
-    required TResult Function(DeletePlayerProfileEvent value)
-        deletePlayerProfile,
-    required TResult Function(CreatePlayerProfileEvent value)
-        createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
-    required TResult Function(SaveGameEvent value) saveGame,
-    required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
-    required TResult Function(CharacterCollisionEvent value) characterCollision,
-    required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
-  }) {
-    return levelPartLoaded(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
-    TResult? Function(SaveGameEvent value)? saveGame,
-    TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult? Function(CharacterCollisionEvent value)? characterCollision,
-    TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
-  }) {
-    return levelPartLoaded?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
-    TResult Function(SaveGameEvent value)? saveGame,
-    TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult Function(CharacterCollisionEvent value)? characterCollision,
-    TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
-    required TResult orElse(),
-  }) {
-    if (levelPartLoaded != null) {
-      return levelPartLoaded(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LevelPartLoadedEvent implements GameEvent {
-  const factory LevelPartLoadedEvent(
-      {required final LevelPartStates loadedState}) = _$LevelPartLoadedEvent;
-
-  LevelPartStates get loadedState;
-  @JsonKey(ignore: true)
-  _$$LevelPartLoadedEventCopyWith<_$LevelPartLoadedEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1165,7 +945,6 @@ class _$SaveGameEvent implements SaveGameEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -1183,7 +962,6 @@ class _$SaveGameEvent implements SaveGameEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -1201,7 +979,6 @@ class _$SaveGameEvent implements SaveGameEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -1225,7 +1002,6 @@ class _$SaveGameEvent implements SaveGameEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -1242,7 +1018,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -1259,7 +1034,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -1321,7 +1095,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -1339,7 +1112,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -1357,7 +1129,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -1381,7 +1152,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -1398,7 +1168,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -1415,7 +1184,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -1478,7 +1246,6 @@ class _$CharacterCollisionEvent implements CharacterCollisionEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -1496,7 +1263,6 @@ class _$CharacterCollisionEvent implements CharacterCollisionEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -1514,7 +1280,6 @@ class _$CharacterCollisionEvent implements CharacterCollisionEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -1538,7 +1303,6 @@ class _$CharacterCollisionEvent implements CharacterCollisionEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -1555,7 +1319,6 @@ class _$CharacterCollisionEvent implements CharacterCollisionEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -1572,7 +1335,6 @@ class _$CharacterCollisionEvent implements CharacterCollisionEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -1669,7 +1431,6 @@ class _$EndLevelEvent implements EndLevelEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -1687,7 +1448,6 @@ class _$EndLevelEvent implements EndLevelEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -1705,7 +1465,6 @@ class _$EndLevelEvent implements EndLevelEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -1729,7 +1488,6 @@ class _$EndLevelEvent implements EndLevelEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -1746,7 +1504,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -1763,7 +1520,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -1833,7 +1589,6 @@ class _$RestartLevelEvent implements RestartLevelEvent {
         initGlobalGameLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function(LevelPartStates loadedState) levelPartLoaded,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function() characterCollision,
@@ -1851,7 +1606,6 @@ class _$RestartLevelEvent implements RestartLevelEvent {
         initGlobalGameLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function()? characterCollision,
@@ -1869,7 +1623,6 @@ class _$RestartLevelEvent implements RestartLevelEvent {
         initGlobalGameLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function(LevelPartStates loadedState)? levelPartLoaded,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function()? characterCollision,
@@ -1893,7 +1646,6 @@ class _$RestartLevelEvent implements RestartLevelEvent {
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
         createPlayerProfile,
-    required TResult Function(LevelPartLoadedEvent value) levelPartLoaded,
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(CharacterCollisionEvent value) characterCollision,
@@ -1910,7 +1662,6 @@ class _$RestartLevelEvent implements RestartLevelEvent {
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(CharacterCollisionEvent value)? characterCollision,
@@ -1927,7 +1678,6 @@ class _$RestartLevelEvent implements RestartLevelEvent {
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(LevelPartLoadedEvent value)? levelPartLoaded,
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(CharacterCollisionEvent value)? characterCollision,
@@ -1978,8 +1728,6 @@ mixin _$GlobalGameBlocState {
   /// *      NON-RESTORABLE
   /// ********************************************
   int get dateTimeDelta => throw _privateConstructorUsedError;
-  Set<LevelPartStates> get loadedLevelParts =>
-      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GlobalGameBlocStateCopyWith<GlobalGameBlocState> get copyWith =>
@@ -2002,8 +1750,7 @@ abstract class $GlobalGameBlocStateCopyWith<$Res> {
       List<TemplateLevelModel> templateLevels,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
-      int dateTimeDelta,
-      Set<LevelPartStates> loadedLevelParts});
+      int dateTimeDelta});
 
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
   $LevelModelCopyWith<$Res>? get currentLevelModel;
@@ -2034,7 +1781,6 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? dateTimeDelta = null,
-    Object? loadedLevelParts = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -2077,10 +1823,6 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
               as int,
-      loadedLevelParts: null == loadedLevelParts
-          ? _value.loadedLevelParts
-          : loadedLevelParts // ignore: cast_nullable_to_non_nullable
-              as Set<LevelPartStates>,
     ) as $Val);
   }
 
@@ -2139,8 +1881,7 @@ abstract class _$$_GlobalGameBlocStateCopyWith<$Res>
       List<TemplateLevelModel> templateLevels,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
-      int dateTimeDelta,
-      Set<LevelPartStates> loadedLevelParts});
+      int dateTimeDelta});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
@@ -2173,7 +1914,6 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? dateTimeDelta = null,
-    Object? loadedLevelParts = null,
   }) {
     return _then(_$_GlobalGameBlocState(
       id: null == id
@@ -2216,10 +1956,6 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
               as int,
-      loadedLevelParts: null == loadedLevelParts
-          ? _value._loadedLevelParts
-          : loadedLevelParts // ignore: cast_nullable_to_non_nullable
-              as Set<LevelPartStates>,
     ));
   }
 }
@@ -2237,13 +1973,11 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
       final List<TemplateLevelModel> templateLevels = const [],
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
-      this.dateTimeDelta = 0,
-      final Set<LevelPartStates> loadedLevelParts = const {}})
+      this.dateTimeDelta = 0})
       : _levels = levels,
         _templateLevels = templateLevels,
         _playersCollection = playersCollection,
         _playersCharacters = playersCharacters,
-        _loadedLevelParts = loadedLevelParts,
         super._();
 
   /// ********************************************
@@ -2318,18 +2052,10 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
   @override
   @JsonKey()
   final int dateTimeDelta;
-  final Set<LevelPartStates> _loadedLevelParts;
-  @override
-  @JsonKey()
-  Set<LevelPartStates> get loadedLevelParts {
-    if (_loadedLevelParts is EqualUnmodifiableSetView) return _loadedLevelParts;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableSetView(_loadedLevelParts);
-  }
 
   @override
   String toString() {
-    return 'GlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta, loadedLevelParts: $loadedLevelParts)';
+    return 'GlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta)';
   }
 
   @override
@@ -2354,9 +2080,7 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
             const DeepCollectionEquality()
                 .equals(other._playersCharacters, _playersCharacters) &&
             (identical(other.dateTimeDelta, dateTimeDelta) ||
-                other.dateTimeDelta == dateTimeDelta) &&
-            const DeepCollectionEquality()
-                .equals(other._loadedLevelParts, _loadedLevelParts));
+                other.dateTimeDelta == dateTimeDelta));
   }
 
   @override
@@ -2371,8 +2095,7 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
       const DeepCollectionEquality().hash(_templateLevels),
       const DeepCollectionEquality().hash(_playersCollection),
       const DeepCollectionEquality().hash(_playersCharacters),
-      dateTimeDelta,
-      const DeepCollectionEquality().hash(_loadedLevelParts));
+      dateTimeDelta);
 
   @JsonKey(ignore: true)
   @override
@@ -2393,8 +2116,7 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
       final List<TemplateLevelModel> templateLevels,
       final List<PlayerProfileModel> playersCollection,
       final List<PlayerCharacterModel> playersCharacters,
-      final int dateTimeDelta,
-      final Set<LevelPartStates> loadedLevelParts}) = _$_GlobalGameBlocState;
+      final int dateTimeDelta}) = _$_GlobalGameBlocState;
   const _GlobalGameBlocState._() : super._();
 
   @override
@@ -2434,8 +2156,6 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   /// *      NON-RESTORABLE
   /// ********************************************
   int get dateTimeDelta;
-  @override
-  Set<LevelPartStates> get loadedLevelParts;
   @override
   @JsonKey(ignore: true)
   _$$_GlobalGameBlocStateCopyWith<_$_GlobalGameBlocState> get copyWith =>

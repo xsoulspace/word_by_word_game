@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -24,11 +23,11 @@ part 'game_renderer_dto.dart';
 
 class GameRendererGame extends FlameGame with HasCollisionDetection {
   GameRendererGame.use({
-    required final Locator read,
+    required final BuildContext context,
     required final ThemeData theme,
     required final DialogController dialogController,
   }) : diDto = GameRendererDiDto.use(
-          read: read,
+          context: context,
           theme: theme,
           dialogController: dialogController,
         );
@@ -64,8 +63,11 @@ class GameRendererGame extends FlameGame with HasCollisionDetection {
 
     await add(providersComponent);
     await world.addAll([
-      FlameBlocListener<GlobalGameBloc, GlobalGameBlocState>(
-        onNewState: _handleGlobalGameStateChanges,
+      // FlameBlocListener<GlobalGameBloc, GlobalGameBlocState>(
+      //   onNewState: _handleLevelStateChanges,
+      // ),
+      FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
+        onNewState: _handleLevelStateChanges,
       ),
       canvasRenderer,
     ]);
@@ -111,13 +113,14 @@ class GameRendererGame extends FlameGame with HasCollisionDetection {
     }
   }
 
-  Future<void> _handleGlobalGameStateChanges(
-    final GlobalGameBlocState state,
+  Future<void> _handleLevelStateChanges(
+    final StatesStatusesCubitState state,
   ) async {
-    if (state.isLevelCompletelyLoaded) {
-      if (!isLevelLoaded) await onLoadLevel();
-    } else {
-      unloadLevel();
+    switch (state.levelStateStatus) {
+      case LevelStateStatus.loading:
+        unloadLevel();
+      case LevelStateStatus.paused || LevelStateStatus.playing:
+        if (!isLevelLoaded) await onLoadLevel();
     }
   }
 

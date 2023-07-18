@@ -2,20 +2,22 @@ part of 'game_renderer.dart';
 
 class GameRendererDiDto {
   GameRendererDiDto.use({
-    required final Locator read,
+    required final BuildContext context,
     required this.theme,
     required this.dialogController,
-  })  : levelBloc = read(),
-        levelPlayersBloc = read(),
-        globalGameBloc = read(),
-        mechanics = read(),
-        canvasCubit = read();
+  })  : levelBloc = context.read(),
+        levelPlayersBloc = context.read(),
+        globalGameBloc = context.read(),
+        mechanics = context.read(),
+        canvasCubit = context.read(),
+        statesStatusesCubit = context.read();
 
   /// ********************************************
   /// *      Ephemeral
   /// ********************************************
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
+  final StatesStatusesCubit statesStatusesCubit;
   final GlobalGameBloc globalGameBloc;
   final CanvasCubit canvasCubit;
   final MechanicsCollection mechanics;
@@ -34,6 +36,9 @@ class GameRendererDiDto {
       ),
       FlameBlocProvider<GlobalGameBloc, GlobalGameBlocState>.value(
         value: globalGameBloc,
+      ),
+      FlameBlocProvider<StatesStatusesCubit, StatesStatusesCubitState>.value(
+        value: statesStatusesCubit,
       ),
     ];
 

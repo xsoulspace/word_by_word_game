@@ -9,7 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
-import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
+import 'package:word_by_word_game/pack_core/app/app_di.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 
@@ -17,7 +17,7 @@ class GlobalSettingsInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
-    final appSettingsNotifier = read<AppSettingsNotifier>();
+    final appSettingsNotifier = read<AppSettingsCubit>();
     await appSettingsNotifier.onLoad();
   }
 }
@@ -26,7 +26,7 @@ class GlobalStateInitializer extends StateInitializer {
   GlobalStateInitializer({
     required this.servicesDto,
   });
-  final AppServicesProviderDto servicesDto;
+  final AppDiProviderDto servicesDto;
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
@@ -37,7 +37,7 @@ class GlobalStateInitializer extends StateInitializer {
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
     final localDictionary =
-        await services.dictionaryPersistence.loadDictionary();
+        await services.dictionariesRepository.loadDictionary();
     await dictionariesBloc.onLoad(localDictionary: localDictionary);
     await canvasCubit.loadInitialData();
     final appRouterController = AppRouterController.use(read);
@@ -108,7 +108,7 @@ class GameInitializer {
   Future<GameModel> loadGameModel({
     required final ServicesCollection services,
   }) async {
-    final savedGame = await services.gamePersistence.loadGame();
+    final savedGame = await services.gameRepository.loadGame();
     if (savedGame != null) {
       return migrateSave(savedGame);
     }
