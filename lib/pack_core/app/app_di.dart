@@ -46,6 +46,10 @@ class _AppDiProviderState extends State<AppDiProvider> {
           Provider<ServicesCollection>(
             create: (final context) => ServicesCollection.v1,
           ),
+          Provider<LocalDbDataSource>(
+            create: (final context) =>
+                context.read<ServicesCollection>().localDataService,
+          ),
           Provider<GameRespository>(
             create: (final context) =>
                 context.read<ServicesCollection>().gameRepository,
@@ -70,27 +74,26 @@ class _AppDiProviderState extends State<AppDiProvider> {
         ],
         child: Builder(
           builder: (final context) {
-            final providersContext = context;
             final initialProviders = <SingleChildWidget>[
               BlocProvider(
                 create: (final context) => CanvasCubit(
                   canvasDto: CanvasCubitDto(),
-                  drawerCubit: DrawerCubitDto.use(context: providersContext),
+                  drawerCubit: DrawerCubitDto.use(context: context),
                 ),
               ),
               BlocProvider(
                 create: (final context) => DictionariesBloc(
-                  diDto: DictionariesBlocDiDto.use(providersContext),
+                  diDto: DictionariesBlocDiDto.use(context),
                 ),
               ),
               BlocProvider(
                 create: (final context) => LevelPlayersBloc(
-                  diDto: LevelPlayersBlocDiDto.use(providersContext),
+                  diDto: LevelPlayersBlocDiDto.use(context),
                 ),
               ),
               BlocProvider<LevelBloc>(
                 create: (final context) => LevelBloc(
-                  diDto: LevelBlocDiDto.use(providersContext),
+                  diDto: LevelBlocDiDto.use(context),
                 ),
               ),
               BlocProvider(
@@ -117,11 +120,8 @@ class _AppDiProviderState extends State<AppDiProvider> {
                 ...initialProviders,
                 ...otherProviders,
               ],
-              child: MultiProvider(
-                providers: const [],
-                child: Builder(
-                  builder: (final context) => widget.child,
-                ),
+              child: Builder(
+                builder: (final context) => widget.child,
               ),
             );
           },
