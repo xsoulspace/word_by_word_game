@@ -27,7 +27,7 @@ class StartGameHex extends StatelessWidget {
       builder: (final context, final child) =>
           BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
         builder: (final context, final blocState) {
-          final levels = blocState.templateLevels;
+          final levels = blocState.allCanvasData.values.toList();
 
           return Center(
             child: Column(

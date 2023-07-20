@@ -64,8 +64,6 @@ class GlobalStateInitializer extends StateInitializer {
 }
 
 class GameInitializer {
-  // TODO(arenukvern): add template levels
-  List<TemplateLevelModel> get templateLevels => [];
   List<PlayerCharacterModel> get characters => [
         PlayerCharacterModel(
           id: 'hot-air-balloon',
@@ -88,15 +86,14 @@ class GameInitializer {
       ];
 
   /// the logic is to migrate from the version to to the next version
-  GameModel migrateSave(final GameModel savedGame) {
-    GameModel game = savedGame;
+  GameSaveModel migrateSave(final GameSaveModel savedGame) {
+    GameSaveModel game = savedGame;
     for (var i = savedGame.version.index; i < GameVersion.values.length; i++) {
       switch (savedGame.version) {
         case GameVersion.$1:
           game = game.copyWith(
             version: GameVersion.$2,
             playersCharacters: characters,
-            templateLevels: templateLevels,
           );
         case GameVersion.$2:
           break;
@@ -105,7 +102,7 @@ class GameInitializer {
     return game;
   }
 
-  Future<GameModel> loadGameModel({
+  Future<GameSaveModel> loadGameModel({
     required final ServicesCollection services,
   }) async {
     final savedGame = await services.gameRepository.loadGame();
@@ -113,10 +110,9 @@ class GameInitializer {
       return migrateSave(savedGame);
     }
 
-    return GameModel(
+    return GameSaveModel(
       id: 'game',
       version: kLatestGameVersion,
-      templateLevels: templateLevels,
       playersCharacters: characters,
       currentLevelId: CanvasDataModelId.empty,
     );

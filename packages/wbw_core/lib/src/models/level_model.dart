@@ -20,11 +20,12 @@ class LevelModel with _$LevelModel {
     explicitToJson: true,
   )
   const factory LevelModel({
-    required final CanvasDataModelId id,
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
-    @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
-    @Default(LocalizedMap.empty) final LocalizedMap name,
+
+    /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
+    /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]
+    @Default(CanvasDataModelId.empty) final CanvasDataModelId canvasDataId,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
@@ -35,17 +36,5 @@ class LevelModel with _$LevelModel {
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
       _$LevelModelFromJson(json);
-}
-
-@immutable
-@freezed
-class TemplateLevelModel with _$TemplateLevelModel {
-  @JsonSerializable(explicitToJson: true)
-  const factory TemplateLevelModel({
-    @Default(CanvasDataModel.empty) final CanvasDataModel canvasData,
-    @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
-  }) = _TemplateLevelModel;
-  const TemplateLevelModel._();
-  factory TemplateLevelModel.fromJson(final Map<String, dynamic> json) =>
-      _$TemplateLevelModelFromJson(json);
+  CanvasDataModelId get id => canvasDataId;
 }

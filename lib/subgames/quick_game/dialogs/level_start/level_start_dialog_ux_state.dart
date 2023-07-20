@@ -14,14 +14,14 @@ class _LevelStartDialogUxStateDiDto {
 
 LevelStartDialogUxState _useLevelStartDialogUxState({
   required final Locator read,
-  required final TemplateLevelModel templateLevel,
+  required final CanvasDataModel canvasData,
 }) =>
     use(
       LifeHook(
         debugLabel: 'LevelStartDialogUxState',
         state: LevelStartDialogUxState(
           diDto: _LevelStartDialogUxStateDiDto.use(read),
-          templateLevel: templateLevel,
+          canvasData: canvasData,
         ),
       ),
     );
@@ -29,9 +29,9 @@ LevelStartDialogUxState _useLevelStartDialogUxState({
 class LevelStartDialogUxState extends LifeState {
   LevelStartDialogUxState({
     required this.diDto,
-    required this.templateLevel,
+    required this.canvasData,
   });
-  final TemplateLevelModel templateLevel;
+  final CanvasDataModel canvasData;
   final _LevelStartDialogUxStateDiDto diDto;
 
   PlayerCharacterModelId? characterId;
@@ -98,7 +98,6 @@ class LevelStartDialogUxState extends LifeState {
     );
 
     final level = LevelModel(
-      name: templateLevel.canvasData.name,
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),
@@ -112,7 +111,7 @@ class LevelStartDialogUxState extends LifeState {
             )
             .toList(),
       ),
-      id: templateLevel.canvasData.id,
+      canvasDataId: canvasData.id,
     );
 
     diDto.globalGameBloc

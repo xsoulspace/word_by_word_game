@@ -10,7 +10,6 @@ import 'package:wbw_core/wbw_core.dart';
 
 part 'canvas_models.dart';
 part 'game_object.dart';
-part 'game_save.dart';
 part 'player.dart';
 part 'saveable_models.freezed.dart';
 part 'saveable_models.g.dart';

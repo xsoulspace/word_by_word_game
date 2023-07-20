@@ -1,7 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/state.dart';
-// ignore: implementation_imports
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:wbw_core/wbw_core.dart';

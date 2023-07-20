@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wbw_core/wbw_core.dart';
 
 part 'states_statuses_cubit.freezed.dart';
 
@@ -41,9 +40,9 @@ class StatesStatusesCubitState with _$StatesStatusesCubitState {
 
 class StatesStatusesCubitDto {
   StatesStatusesCubitDto({
+    // ignore: avoid_unused_constructor_parameters
     required final BuildContext context,
-  }) : mechanicsCollection = context.read();
-  final MechanicsCollection mechanicsCollection;
+  });
 }
 
 class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
@@ -70,11 +69,8 @@ class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
     switch (status) {
       case LevelStateStatus.loading:
         _state = state.copyWith(loadedLevelParts: {});
-        dto.mechanicsCollection.worldTime.pause();
       case LevelStateStatus.paused:
-        dto.mechanicsCollection.worldTime.pause();
       case LevelStateStatus.playing:
-        dto.mechanicsCollection.worldTime.resume();
     }
     _state = state.copyWith(levelStateStatus: status);
   }

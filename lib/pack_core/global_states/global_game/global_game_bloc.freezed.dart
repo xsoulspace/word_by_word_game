@@ -1704,6 +1704,10 @@ mixin _$GlobalGameBlocState {
   String get id => throw _privateConstructorUsedError;
   CanvasDataModelId get currentLevelId => throw _privateConstructorUsedError;
 
+  /// Should be loaded independently
+  Map<CanvasDataModelId, CanvasDataModel> get allCanvasData =>
+      throw _privateConstructorUsedError;
+
   /// Current Level Model is a model with all level configurations
   /// chosen by the user (players, characters, etc).
   /// It should not be update or changed during the playing the level.
@@ -1712,10 +1716,6 @@ mixin _$GlobalGameBlocState {
   LevelModel? get currentLevelModel => throw _privateConstructorUsedError;
   WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
   WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
-  Map<CanvasDataModelId, LevelModel> get levels =>
-      throw _privateConstructorUsedError;
-  List<TemplateLevelModel> get templateLevels =>
-      throw _privateConstructorUsedError;
 
   /// The [playersCollection] is the collection of players characters,
   /// which will be available for user to playe and progress through the game.
@@ -1743,11 +1743,10 @@ abstract class $GlobalGameBlocStateCopyWith<$Res> {
   $Res call(
       {String id,
       CanvasDataModelId currentLevelId,
+      Map<CanvasDataModelId, CanvasDataModel> allCanvasData,
       LevelModel? currentLevelModel,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      Map<CanvasDataModelId, LevelModel> levels,
-      List<TemplateLevelModel> templateLevels,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
       int dateTimeDelta});
@@ -1773,11 +1772,10 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
   $Res call({
     Object? id = null,
     Object? currentLevelId = null,
+    Object? allCanvasData = null,
     Object? currentLevelModel = freezed,
     Object? dateTime = null,
     Object? lastDateTime = null,
-    Object? levels = null,
-    Object? templateLevels = null,
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? dateTimeDelta = null,
@@ -1791,6 +1789,10 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as CanvasDataModelId,
+      allCanvasData: null == allCanvasData
+          ? _value.allCanvasData
+          : allCanvasData // ignore: cast_nullable_to_non_nullable
+              as Map<CanvasDataModelId, CanvasDataModel>,
       currentLevelModel: freezed == currentLevelModel
           ? _value.currentLevelModel
           : currentLevelModel // ignore: cast_nullable_to_non_nullable
@@ -1803,14 +1805,6 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
           ? _value.lastDateTime
           : lastDateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
-      levels: null == levels
-          ? _value.levels
-          : levels // ignore: cast_nullable_to_non_nullable
-              as Map<CanvasDataModelId, LevelModel>,
-      templateLevels: null == templateLevels
-          ? _value.templateLevels
-          : templateLevels // ignore: cast_nullable_to_non_nullable
-              as List<TemplateLevelModel>,
       playersCollection: null == playersCollection
           ? _value.playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
@@ -1874,11 +1868,10 @@ abstract class _$$_GlobalGameBlocStateCopyWith<$Res>
   $Res call(
       {String id,
       CanvasDataModelId currentLevelId,
+      Map<CanvasDataModelId, CanvasDataModel> allCanvasData,
       LevelModel? currentLevelModel,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      Map<CanvasDataModelId, LevelModel> levels,
-      List<TemplateLevelModel> templateLevels,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
       int dateTimeDelta});
@@ -1906,11 +1899,10 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? currentLevelId = null,
+    Object? allCanvasData = null,
     Object? currentLevelModel = freezed,
     Object? dateTime = null,
     Object? lastDateTime = null,
-    Object? levels = null,
-    Object? templateLevels = null,
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? dateTimeDelta = null,
@@ -1924,6 +1916,10 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.currentLevelId
           : currentLevelId // ignore: cast_nullable_to_non_nullable
               as CanvasDataModelId,
+      allCanvasData: null == allCanvasData
+          ? _value._allCanvasData
+          : allCanvasData // ignore: cast_nullable_to_non_nullable
+              as Map<CanvasDataModelId, CanvasDataModel>,
       currentLevelModel: freezed == currentLevelModel
           ? _value.currentLevelModel
           : currentLevelModel // ignore: cast_nullable_to_non_nullable
@@ -1936,14 +1932,6 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
           ? _value.lastDateTime
           : lastDateTime // ignore: cast_nullable_to_non_nullable
               as WorldDateTimeModel,
-      levels: null == levels
-          ? _value._levels
-          : levels // ignore: cast_nullable_to_non_nullable
-              as Map<CanvasDataModelId, LevelModel>,
-      templateLevels: null == templateLevels
-          ? _value._templateLevels
-          : templateLevels // ignore: cast_nullable_to_non_nullable
-              as List<TemplateLevelModel>,
       playersCollection: null == playersCollection
           ? _value._playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
@@ -1966,16 +1954,14 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
   const _$_GlobalGameBlocState(
       {this.id = '',
       this.currentLevelId = CanvasDataModelId.empty,
+      final Map<CanvasDataModelId, CanvasDataModel> allCanvasData = const {},
       this.currentLevelModel,
       this.dateTime = const WorldDateTimeModel(),
       this.lastDateTime = const WorldDateTimeModel(),
-      final Map<CanvasDataModelId, LevelModel> levels = const {},
-      final List<TemplateLevelModel> templateLevels = const [],
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
       this.dateTimeDelta = 0})
-      : _levels = levels,
-        _templateLevels = templateLevels,
+      : _allCanvasData = allCanvasData,
         _playersCollection = playersCollection,
         _playersCharacters = playersCharacters,
         super._();
@@ -1990,6 +1976,18 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
   @JsonKey()
   final CanvasDataModelId currentLevelId;
 
+  /// Should be loaded independently
+  final Map<CanvasDataModelId, CanvasDataModel> _allCanvasData;
+
+  /// Should be loaded independently
+  @override
+  @JsonKey()
+  Map<CanvasDataModelId, CanvasDataModel> get allCanvasData {
+    if (_allCanvasData is EqualUnmodifiableMapView) return _allCanvasData;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_allCanvasData);
+  }
+
   /// Current Level Model is a model with all level configurations
   /// chosen by the user (players, characters, etc).
   /// It should not be update or changed during the playing the level.
@@ -2003,23 +2001,6 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
   @override
   @JsonKey()
   final WorldDateTimeModel lastDateTime;
-  final Map<CanvasDataModelId, LevelModel> _levels;
-  @override
-  @JsonKey()
-  Map<CanvasDataModelId, LevelModel> get levels {
-    if (_levels is EqualUnmodifiableMapView) return _levels;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_levels);
-  }
-
-  final List<TemplateLevelModel> _templateLevels;
-  @override
-  @JsonKey()
-  List<TemplateLevelModel> get templateLevels {
-    if (_templateLevels is EqualUnmodifiableListView) return _templateLevels;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_templateLevels);
-  }
 
   /// The [playersCollection] is the collection of players characters,
   /// which will be available for user to playe and progress through the game.
@@ -2055,7 +2036,7 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
 
   @override
   String toString() {
-    return 'GlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, levels: $levels, templateLevels: $templateLevels, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta)';
+    return 'GlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, allCanvasData: $allCanvasData, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta)';
   }
 
   @override
@@ -2066,15 +2047,14 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
             (identical(other.id, id) || other.id == id) &&
             (identical(other.currentLevelId, currentLevelId) ||
                 other.currentLevelId == currentLevelId) &&
+            const DeepCollectionEquality()
+                .equals(other._allCanvasData, _allCanvasData) &&
             (identical(other.currentLevelModel, currentLevelModel) ||
                 other.currentLevelModel == currentLevelModel) &&
             (identical(other.dateTime, dateTime) ||
                 other.dateTime == dateTime) &&
             (identical(other.lastDateTime, lastDateTime) ||
                 other.lastDateTime == lastDateTime) &&
-            const DeepCollectionEquality().equals(other._levels, _levels) &&
-            const DeepCollectionEquality()
-                .equals(other._templateLevels, _templateLevels) &&
             const DeepCollectionEquality()
                 .equals(other._playersCollection, _playersCollection) &&
             const DeepCollectionEquality()
@@ -2088,11 +2068,10 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
       runtimeType,
       id,
       currentLevelId,
+      const DeepCollectionEquality().hash(_allCanvasData),
       currentLevelModel,
       dateTime,
       lastDateTime,
-      const DeepCollectionEquality().hash(_levels),
-      const DeepCollectionEquality().hash(_templateLevels),
       const DeepCollectionEquality().hash(_playersCollection),
       const DeepCollectionEquality().hash(_playersCharacters),
       dateTimeDelta);
@@ -2109,11 +2088,10 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   const factory _GlobalGameBlocState(
       {final String id,
       final CanvasDataModelId currentLevelId,
+      final Map<CanvasDataModelId, CanvasDataModel> allCanvasData,
       final LevelModel? currentLevelModel,
       final WorldDateTimeModel dateTime,
       final WorldDateTimeModel lastDateTime,
-      final Map<CanvasDataModelId, LevelModel> levels,
-      final List<TemplateLevelModel> templateLevels,
       final List<PlayerProfileModel> playersCollection,
       final List<PlayerCharacterModel> playersCharacters,
       final int dateTimeDelta}) = _$_GlobalGameBlocState;
@@ -2129,6 +2107,10 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   CanvasDataModelId get currentLevelId;
   @override
 
+  /// Should be loaded independently
+  Map<CanvasDataModelId, CanvasDataModel> get allCanvasData;
+  @override
+
   /// Current Level Model is a model with all level configurations
   /// chosen by the user (players, characters, etc).
   /// It should not be update or changed during the playing the level.
@@ -2139,10 +2121,6 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   WorldDateTimeModel get dateTime;
   @override
   WorldDateTimeModel get lastDateTime;
-  @override
-  Map<CanvasDataModelId, LevelModel> get levels;
-  @override
-  List<TemplateLevelModel> get templateLevels;
   @override
 
   /// The [playersCollection] is the collection of players characters,

@@ -132,23 +132,6 @@ Map<String, dynamic> _$$_GidToJson(_$_Gid instance) => <String, dynamic>{
       'value': instance.value,
     };
 
-_$_LevelSaveModel _$$_LevelSaveModelFromJson(Map<String, dynamic> json) =>
-    _$_LevelSaveModel(
-      canvasData: json['canvasData'] == null
-          ? CanvasDataModel.empty
-          : CanvasDataModel.fromJson(
-              json['canvasData'] as Map<String, dynamic>),
-      player: json['player'] == null
-          ? PlayerModel.empty
-          : PlayerModel.fromJson(json['player'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$_LevelSaveModelToJson(_$_LevelSaveModel instance) =>
-    <String, dynamic>{
-      'canvasData': instance.canvasData,
-      'player': instance.player,
-    };
-
 _$_PlayerModel _$$_PlayerModelFromJson(Map<String, dynamic> json) =>
     _$_PlayerModel(
       id: Gid.fromJson(json['id'] as String),

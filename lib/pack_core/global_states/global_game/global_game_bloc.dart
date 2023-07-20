@@ -19,8 +19,10 @@ class GlobalGameBlocDiDto {
         levelPlayersBloc = context.read(),
         tutorialBloc = context.read(),
         services = context.read(),
-        statesStatusesCubit = context.read();
+        statesStatusesCubit = context.read(),
+        canvasCubit = context.read();
   final BuildContext context;
+  final CanvasCubit canvasCubit;
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
   final LevelBloc levelBloc;
@@ -37,7 +39,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         GameTutorialEventListener(read: diDto.context.read);
     diDto.mechanics.worldTime.addListener(_addWorldTimeTick);
     _statesStatusesCubitSubscription =
-        diDto.statesStatusesCubit.stream.listen(onLevelPartLoaded);
+        diDto.statesStatusesCubit.stream.listen(_onStatusChanged);
   }
   GameTutorialEventListener? _tutorialEventsListener;
   final GlobalGameBlocDiDto diDto;
@@ -59,7 +61,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 
   Future<void> onInitGlobalGame(
-    final GameModel gameModel,
+    final GameSaveModel gameModel,
   ) async {
     final liveGame = GlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
@@ -102,7 +104,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   /// loaded completely.
   /// The inital game level load function is [onInitGlobalGameLevel]
   ///
-  /// The [onLevelPartLoaded] function is completes this completer.
+  /// The [_onStatusChanged] function is completes this completer.
   ///
   /// The [onStartPlayingLevel] is waiting for the completer future
   Completer? _globalLevelLoadCompleter;
@@ -136,17 +138,30 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     return state;
   }
 
-  void onLevelPartLoaded(
+  void _onStatusChanged(
     final StatesStatusesCubitState statesStatuses,
   ) {
     switch (statesStatuses.levelStateStatus) {
       case LevelStateStatus.paused || LevelStateStatus.playing:
-        _globalLevelLoadCompleter!.complete();
-        emit(
-          state.copyWith(currentLevelId: diDto.levelBloc.state.id),
-        );
+        final globalLevelLoadCompleter = _globalLevelLoadCompleter;
+        if (globalLevelLoadCompleter != null &&
+            !globalLevelLoadCompleter.isCompleted) {
+          globalLevelLoadCompleter.complete();
+          emit(
+            state.copyWith(currentLevelId: diDto.levelBloc.state.id),
+          );
+        }
       case LevelStateStatus.loading:
         break;
+    }
+
+    switch (statesStatuses.levelStateStatus) {
+      case LevelStateStatus.paused:
+        diDto.mechanics.worldTime.pause();
+      case LevelStateStatus.loading:
+        diDto.mechanics.worldTime.pause();
+      case LevelStateStatus.playing:
+        diDto.mechanics.worldTime.resume();
     }
   }
 
@@ -275,18 +290,16 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     await _saveGame(liveState: updatedState);
   }
 
-  GameModel _getGameModel({required final GlobalGameBlocState liveState}) {
+  GameSaveModel _getGameModel({required final GlobalGameBlocState liveState}) {
     final tutorialProgress = diDto.tutorialBloc.getLiveProgress();
 
-    return GameModel(
+    return GameSaveModel(
       id: liveState.id,
       currentLevel: liveState.currentLevelModel,
       currentLevelId: liveState.currentLevelId,
-      templateLevels: liveState.templateLevels,
       dateTime: liveState.dateTime,
       tutorialProgress: tutorialProgress,
       lastDateTime: liveState.lastDateTime,
-      levels: liveState.levels,
       playersCharacters: liveState.playersCharacters,
       playersCollection: liveState.playersCollection,
     );
@@ -297,8 +310,6 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final livePlayersState = diDto.levelPlayersBloc.state;
 
     return LevelModel(
-      name: liveLevelState.name,
-      id: liveLevelState.id,
       currentWord: liveLevelState.currentWord,
       latestWord: liveLevelState.latestWord,
       words: liveLevelState.words,
@@ -312,13 +323,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
   }
 
-  TemplateLevelModel? getTemplateLevelById({
+  CanvasDataModel? getCanvasDataById({
     required final CanvasDataModelId id,
   }) {
     if (id.isEmpty) return null;
-
-    // TODO(arenukvern): handle null error
-    return state.templateLevels
-        .firstWhere((final level) => level.canvasData.id == id);
+    return state.allCanvasData[id];
   }
 }

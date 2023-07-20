@@ -9,7 +9,7 @@ part 'app_settings_model.dart';
 part 'current_word_model.dart';
 part 'fuel_model.dart';
 part 'fuel_storage_model.dart';
-part 'game_model.dart';
+part 'game_save_model.dart';
 part 'level_characters_model.dart';
 part 'level_model.dart';
 part 'level_players_model.dart';

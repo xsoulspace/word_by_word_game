@@ -56,7 +56,7 @@ class CanvasDataModel with _$CanvasDataModel {
     final Map<String, dynamic> json,
   ) =>
       _$CanvasDataModelFromJson(json);
-  static const empty = CanvasDataModel(id: CanvasDataModelId.empty);
+  static const empty = CanvasDataModel();
 
   static Map<Gid, RenderObjectModel> _objectsFromJson(
     final Map<String, dynamic> json,

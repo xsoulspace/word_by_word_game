@@ -19,11 +19,27 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     @Default(FuelStorageModel()) final FuelStorageModel fuel,
     @Default(50.5) final double fuelNormalPower,
     @Default(0.5) final double requiredLiftForce,
+    @Default(PlayerCharacterLevelInitialParams.initial)
+    final PlayerCharacterLevelInitialParams initialParams,
   }) = _PlayerCharacterModel;
   const PlayerCharacterModel._();
   factory PlayerCharacterModel.fromJson(final Map<String, dynamic> json) =>
       _$PlayerCharacterModelFromJson(json);
   static const empty = PlayerCharacterModel();
+}
+
+@freezed
+class PlayerCharacterLevelInitialParams
+    with _$PlayerCharacterLevelInitialParams {
+  const factory PlayerCharacterLevelInitialParams({
+    @Default(FuelStorageModel()) final FuelStorageModel fuel,
+  }) = _PlayerCharacterLevelInitialParams;
+  const PlayerCharacterLevelInitialParams._();
+  factory PlayerCharacterLevelInitialParams.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$PlayerCharacterLevelInitialParamsFromJson(json);
+  static const initial = PlayerCharacterLevelInitialParams();
 }
 
 @immutable

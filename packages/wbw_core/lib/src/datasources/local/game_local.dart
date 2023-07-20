@@ -12,18 +12,18 @@ class GameLocalDataSourceImpl implements GameLocalDataSource {
   static const _persistenceKey = 'game_save';
   @override
   Future<void> saveGame({
-    required final GameModel game,
+    required final GameSaveModel game,
   }) async {
     await localDb.setMap(key: _persistenceKey, value: game.toJson());
   }
 
   // https://isar.dev/recipes/data_migration.html
   @override
-  Future<GameModel?> loadGame() async {
+  Future<GameSaveModel?> loadGame() async {
     final jsonMap = await localDb.getMap(_persistenceKey);
     if (jsonMap.isEmpty) return null;
     try {
-      return GameModel.fromJson(jsonMap);
+      return GameSaveModel.fromJson(jsonMap);
       // TODO(arenukvern): add correct exception
     } catch (e) {
       // TODO(arenukvern): replace with analytics service

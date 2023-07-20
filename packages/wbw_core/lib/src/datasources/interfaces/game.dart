@@ -2,7 +2,7 @@ import '../../models/models.dart';
 
 abstract interface class GameLocalDataSource {
   Future<void> saveGame({
-    required final GameModel game,
+    required final GameSaveModel game,
   });
-  Future<GameModel?> loadGame();
+  Future<GameSaveModel?> loadGame();
 }

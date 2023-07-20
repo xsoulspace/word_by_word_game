@@ -5,8 +5,8 @@ import 'base_repository.dart';
 final class GameRespository extends BaseLocalRepository<GameLocalDataSource> {
   GameRespository({required super.local});
   Future<void> saveGame({
-    required final GameModel game,
+    required final GameSaveModel game,
   }) =>
       local.saveGame(game: game);
-  Future<GameModel?> loadGame() => local.loadGame();
+  Future<GameSaveModel?> loadGame() => local.loadGame();
 }

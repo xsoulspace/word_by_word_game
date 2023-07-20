@@ -1791,7 +1791,6 @@ abstract class LevelBlocEventDecreaseMiddlePart implements LevelBlocEvent {
 /// @nodoc
 mixin _$LevelBlocState {
   CanvasDataModelId get id => throw _privateConstructorUsedError;
-  LocalizedMap get name => throw _privateConstructorUsedError;
   CurrentWordModel get currentWord => throw _privateConstructorUsedError;
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
@@ -1817,7 +1816,6 @@ abstract class $LevelBlocStateCopyWith<$Res> {
   @useResult
   $Res call(
       {CanvasDataModelId id,
-      LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
@@ -1826,7 +1824,6 @@ abstract class $LevelBlocStateCopyWith<$Res> {
       WordWarning wordWarning});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
-  $LocalizedMapCopyWith<$Res> get name;
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
 
@@ -1844,7 +1841,6 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
     Object? currentWord = null,
     Object? words = null,
     Object? latestWord = null,
@@ -1857,10 +1853,6 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as CanvasDataModelId,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as LocalizedMap,
       currentWord: null == currentWord
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -1898,14 +1890,6 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
 
   @override
   @pragma('vm:prefer-inline')
-  $LocalizedMapCopyWith<$Res> get name {
-    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
-      return _then(_value.copyWith(name: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $CurrentWordModelCopyWith<$Res> get currentWord {
     return $CurrentWordModelCopyWith<$Res>(_value.currentWord, (value) {
       return _then(_value.copyWith(currentWord: value) as $Val);
@@ -1923,7 +1907,6 @@ abstract class _$$_LevelBlocStateCopyWith<$Res>
   @useResult
   $Res call(
       {CanvasDataModelId id,
-      LocalizedMap name,
       CurrentWordModel currentWord,
       Map<String, String> words,
       String latestWord,
@@ -1933,8 +1916,6 @@ abstract class _$$_LevelBlocStateCopyWith<$Res>
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get id;
-  @override
-  $LocalizedMapCopyWith<$Res> get name;
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
@@ -1951,7 +1932,6 @@ class __$$_LevelBlocStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? id = null,
-    Object? name = null,
     Object? currentWord = null,
     Object? words = null,
     Object? latestWord = null,
@@ -1964,10 +1944,6 @@ class __$$_LevelBlocStateCopyWithImpl<$Res>
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
               as CanvasDataModelId,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as LocalizedMap,
       currentWord: null == currentWord
           ? _value.currentWord
           : currentWord // ignore: cast_nullable_to_non_nullable
@@ -2001,7 +1977,6 @@ class __$$_LevelBlocStateCopyWithImpl<$Res>
 class _$_LevelBlocState implements _LevelBlocState {
   const _$_LevelBlocState(
       {this.id = CanvasDataModelId.empty,
-      this.name = LocalizedMap.empty,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
@@ -2013,9 +1988,6 @@ class _$_LevelBlocState implements _LevelBlocState {
   @override
   @JsonKey()
   final CanvasDataModelId id;
-  @override
-  @JsonKey()
-  final LocalizedMap name;
   @override
   @JsonKey()
   final CurrentWordModel currentWord;
@@ -2047,7 +2019,7 @@ class _$_LevelBlocState implements _LevelBlocState {
 
   @override
   String toString() {
-    return 'LevelBlocState(id: $id, name: $name, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, wordWarning: $wordWarning)';
+    return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, wordWarning: $wordWarning)';
   }
 
   @override
@@ -2056,7 +2028,6 @@ class _$_LevelBlocState implements _LevelBlocState {
         (other.runtimeType == runtimeType &&
             other is _$_LevelBlocState &&
             (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name) &&
             (identical(other.currentWord, currentWord) ||
                 other.currentWord == currentWord) &&
             const DeepCollectionEquality().equals(other._words, _words) &&
@@ -2074,7 +2045,6 @@ class _$_LevelBlocState implements _LevelBlocState {
   int get hashCode => Object.hash(
       runtimeType,
       id,
-      name,
       currentWord,
       const DeepCollectionEquality().hash(_words),
       latestWord,
@@ -2092,7 +2062,6 @@ class _$_LevelBlocState implements _LevelBlocState {
 abstract class _LevelBlocState implements LevelBlocState {
   const factory _LevelBlocState(
       {final CanvasDataModelId id,
-      final LocalizedMap name,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
       final String latestWord,
@@ -2102,8 +2071,6 @@ abstract class _LevelBlocState implements LevelBlocState {
 
   @override
   CanvasDataModelId get id;
-  @override
-  LocalizedMap get name;
   @override
   CurrentWordModel get currentWord;
   @override

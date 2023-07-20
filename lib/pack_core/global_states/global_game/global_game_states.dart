@@ -3,15 +3,18 @@
 part of 'global_game_bloc.dart';
 
 @immutable
-@freezed
+@Freezed(fromJson: false, toJson: false)
 class GlobalGameBlocState with _$GlobalGameBlocState {
   const factory GlobalGameBlocState({
     /// ********************************************
     /// *      RESTORABLE FROM MODEL
     /// ********************************************
 
-    @Default('') final GameModelId id,
+    @Default('') final GameSaveModelId id,
     @Default(CanvasDataModelId.empty) final CanvasDataModelId currentLevelId,
+
+    /// Should be loaded independently
+    @Default({}) final Map<CanvasDataModelId, CanvasDataModel> allCanvasData,
 
     /// Current Level Model is a model with all level configurations
     /// chosen by the user (players, characters, etc).
@@ -21,8 +24,6 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
     final LevelModel? currentLevelModel,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
-    @Default({}) final Map<CanvasDataModelId, LevelModel> levels,
-    @Default([]) final List<TemplateLevelModel> templateLevels,
 
     /// The [playersCollection] is the collection of players characters,
     /// which will be available for user to playe and progress through the game.
@@ -36,16 +37,27 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
   }) = _GlobalGameBlocState;
   const GlobalGameBlocState._();
 
-  factory GlobalGameBlocState.fromModel(final GameModel gameModel) =>
+  factory GlobalGameBlocState.fromModel(final GameSaveModel gameModel) =>
       GlobalGameBlocState(
         currentLevelId: gameModel.currentLevelId,
         currentLevelModel: gameModel.currentLevel,
         id: gameModel.id,
         dateTime: gameModel.dateTime,
         lastDateTime: gameModel.lastDateTime,
-        levels: gameModel.levels,
-        templateLevels: gameModel.templateLevels,
         playersCollection: gameModel.playersCollection,
         playersCharacters: gameModel.playersCharacters,
       );
+  static Map<CanvasDataModelId, CanvasDataModel> allCanvasDataFromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      json.map(
+        (final key, final value) => MapEntry(
+          CanvasDataModelId.fromJson(key),
+          CanvasDataModel.fromJson(value),
+        ),
+      );
+  static Map<String, dynamic> allCanvasDataToJson(
+    final Map<CanvasDataModelId, CanvasDataModel> data,
+  ) =>
+      data.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
