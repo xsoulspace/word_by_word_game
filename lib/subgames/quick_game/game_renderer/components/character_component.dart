@@ -21,7 +21,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   })  : params = const FlyingObjectsParams(),
         super.fromRenderObject();
   factory PlayerGameCanvasObject.fromCanvasCubit({
-    required final GameRendererGame game,
+    required final CanvasRendererGame game,
     required final CanvasCubit canvasCubit,
     required final LevelPlayersBloc levelPlayersBloc,
   }) {
@@ -136,14 +136,14 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   }
 }
 
-mixin HasCanvasResourcesLoaderRef on Component, HasGameRef<GameRendererGame> {
+mixin HasCanvasResourcesLoaderRef on Component, HasGameRef<CanvasRendererGame> {
   Image getImage(final String path) => game.images.fromCache(path);
 }
 
 class GameCanvasObject extends Component
     with
         TapCallbacks,
-        HasGameRef<GameRendererGame>,
+        HasGameRef<CanvasRendererGame>,
         HasCanvasRendererRef,
         HasCanvasResourcesLoaderRef {
   GameCanvasObject.fromRenderObject({

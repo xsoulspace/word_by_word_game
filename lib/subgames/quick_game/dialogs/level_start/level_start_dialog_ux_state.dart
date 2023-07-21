@@ -84,7 +84,7 @@ class LevelStartDialogUxState extends LifeState {
     setState();
   }
 
-  void onPlay() {
+  Future<void> onPlay() async {
     final liveState = diDto.globalGameBloc.state;
     final charactersCollection = liveState.playersCharacters;
     final playersCollection = liveState.playersCollection;
@@ -116,10 +116,8 @@ class LevelStartDialogUxState extends LifeState {
 
     diDto.globalGameBloc
         .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
-    unawaited(
-      diDto.globalGameBloc.onStartPlayingLevel(
-        StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
-      ),
+    await diDto.globalGameBloc.onStartPlayingLevel(
+      StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
     diDto.appRouterController.toPlayableLevel(id: level.id);
   }

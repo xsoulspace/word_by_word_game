@@ -21,6 +21,25 @@ class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
 }
 
 @freezed
+class CanvasDataReferenceModel with _$CanvasDataReferenceModel {
+  const factory CanvasDataReferenceModel({
+    @JsonKey(
+      fromJson: CanvasDataModelId.fromJson,
+      toJson: CanvasDataModelId.toJsonString,
+    )
+    @Default(CanvasDataModelId.empty)
+    final CanvasDataModelId id,
+    @Default(LocalizedMap.empty) final LocalizedMap name,
+  }) = _CanvasDataReferenceModel;
+  const CanvasDataReferenceModel._();
+  factory CanvasDataReferenceModel.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$CanvasDataReferenceModelFromJson(json);
+  static const empty = CanvasDataReferenceModel();
+}
+
+@freezed
 class CanvasDataModel with _$CanvasDataModel {
   const factory CanvasDataModel({
     @JsonKey(
@@ -29,7 +48,12 @@ class CanvasDataModel with _$CanvasDataModel {
     )
     @Default(CanvasDataModelId.empty)
     final CanvasDataModelId id,
-    @Default(LocalizedMap.empty) final LocalizedMap name,
+    @JsonKey(
+      fromJson: LocalizedMap.fromJsonValueMap,
+      toJson: LocalizedMap.toJsonValueMap,
+    )
+    @Default(LocalizedMap.empty)
+    final LocalizedMap name,
     @Default([]) final List<LayerModel> layers,
 
     /// Moving or idle obstacle, decoration - objects,

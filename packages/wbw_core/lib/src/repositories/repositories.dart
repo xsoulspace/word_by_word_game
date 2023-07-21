@@ -1,3 +1,4 @@
-export 'app_settings.dart';
-export 'dictionaries.dart';
-export 'game.dart';
+export 'app_settings_repository.dart';
+export 'dictionaries_repository.dart';
+export 'game_repository.dart';
+export 'levels_repository.dart';

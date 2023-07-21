@@ -117,14 +117,31 @@ class TilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final _paint = material.Paint();
-
+  final _painter = TilesPainter();
   @override
   void render(final Canvas canvas) {
+    _painter.render(
+      canvas: canvas,
+      canvasData: canvasData,
+      tilesResources: tilesResources,
+      origin: origin,
+      images: game.images,
+    );
     super.render(canvas);
+  }
+}
 
+class TilesPainter {
+  final _paint = material.Paint();
+  void render({
+    required final Canvas canvas,
+    required final CanvasDataModel canvasData,
+    required final Map<TileId, PresetTileResource> tilesResources,
+    required final Vector2 origin,
+    required final Images images,
+  }) {
     /// Drawing layers
-    for (final tileLayer in drawerCubit.canvasData.layers) {
+    for (final tileLayer in canvasData.layers) {
       /// Drawing cell tiles
       // TODO(antmalofeev): maybe rewrite to drawAtlas
       for (final MapEntry(key: cellPoint, value: cellTile)
@@ -148,7 +165,7 @@ class TilesRenderer extends Component
                 : resourceTile
                         .directionalPaths[cellTile.tileMergedDirectionsTitle] ??
                     x;
-            final img = getImage(animationEntry.currentFramePath);
+            final img = images.fromCache(animationEntry.currentFramePath);
             canvas.drawImage(img, position, _paint);
         }
 
@@ -163,7 +180,7 @@ class TilesRenderer extends Component
               final animationEntry =
                   resourceTile.behaviourPaths[renderObject.animationBehaviour];
               if (animationEntry == null) continue;
-              final img = getImage(animationEntry.currentFramePath);
+              final img = images.fromCache(animationEntry.currentFramePath);
               canvas.drawImage(img, renderObject.position.toOffset(), _paint);
             case TileGraphicsType.directional:
               assert(

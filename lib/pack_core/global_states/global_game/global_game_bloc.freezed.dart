@@ -1723,6 +1723,8 @@ mixin _$GlobalGameBlocState {
       throw _privateConstructorUsedError;
   List<PlayerCharacterModel> get playersCharacters =>
       throw _privateConstructorUsedError;
+  Map<CanvasDataModelId, LevelModel> get savedLevels =>
+      throw _privateConstructorUsedError;
 
   /// ********************************************
   /// *      NON-RESTORABLE
@@ -1749,6 +1751,7 @@ abstract class $GlobalGameBlocStateCopyWith<$Res> {
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
+      Map<CanvasDataModelId, LevelModel> savedLevels,
       int dateTimeDelta});
 
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
@@ -1778,6 +1781,7 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     Object? lastDateTime = null,
     Object? playersCollection = null,
     Object? playersCharacters = null,
+    Object? savedLevels = null,
     Object? dateTimeDelta = null,
   }) {
     return _then(_value.copyWith(
@@ -1813,6 +1817,10 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
           ? _value.playersCharacters
           : playersCharacters // ignore: cast_nullable_to_non_nullable
               as List<PlayerCharacterModel>,
+      savedLevels: null == savedLevels
+          ? _value.savedLevels
+          : savedLevels // ignore: cast_nullable_to_non_nullable
+              as Map<CanvasDataModelId, LevelModel>,
       dateTimeDelta: null == dateTimeDelta
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
@@ -1874,6 +1882,7 @@ abstract class _$$_GlobalGameBlocStateCopyWith<$Res>
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
+      Map<CanvasDataModelId, LevelModel> savedLevels,
       int dateTimeDelta});
 
   @override
@@ -1905,6 +1914,7 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
     Object? lastDateTime = null,
     Object? playersCollection = null,
     Object? playersCharacters = null,
+    Object? savedLevels = null,
     Object? dateTimeDelta = null,
   }) {
     return _then(_$_GlobalGameBlocState(
@@ -1940,6 +1950,10 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
           ? _value._playersCharacters
           : playersCharacters // ignore: cast_nullable_to_non_nullable
               as List<PlayerCharacterModel>,
+      savedLevels: null == savedLevels
+          ? _value._savedLevels
+          : savedLevels // ignore: cast_nullable_to_non_nullable
+              as Map<CanvasDataModelId, LevelModel>,
       dateTimeDelta: null == dateTimeDelta
           ? _value.dateTimeDelta
           : dateTimeDelta // ignore: cast_nullable_to_non_nullable
@@ -1960,10 +1974,12 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
       this.lastDateTime = const WorldDateTimeModel(),
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
+      final Map<CanvasDataModelId, LevelModel> savedLevels = const {},
       this.dateTimeDelta = 0})
       : _allCanvasData = allCanvasData,
         _playersCollection = playersCollection,
         _playersCharacters = playersCharacters,
+        _savedLevels = savedLevels,
         super._();
 
   /// ********************************************
@@ -2027,6 +2043,15 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
     return EqualUnmodifiableListView(_playersCharacters);
   }
 
+  final Map<CanvasDataModelId, LevelModel> _savedLevels;
+  @override
+  @JsonKey()
+  Map<CanvasDataModelId, LevelModel> get savedLevels {
+    if (_savedLevels is EqualUnmodifiableMapView) return _savedLevels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_savedLevels);
+  }
+
   /// ********************************************
   /// *      NON-RESTORABLE
   /// ********************************************
@@ -2036,7 +2061,7 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
 
   @override
   String toString() {
-    return 'GlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, allCanvasData: $allCanvasData, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters, dateTimeDelta: $dateTimeDelta)';
+    return 'GlobalGameBlocState(id: $id, currentLevelId: $currentLevelId, allCanvasData: $allCanvasData, currentLevelModel: $currentLevelModel, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters, savedLevels: $savedLevels, dateTimeDelta: $dateTimeDelta)';
   }
 
   @override
@@ -2059,6 +2084,8 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
                 .equals(other._playersCollection, _playersCollection) &&
             const DeepCollectionEquality()
                 .equals(other._playersCharacters, _playersCharacters) &&
+            const DeepCollectionEquality()
+                .equals(other._savedLevels, _savedLevels) &&
             (identical(other.dateTimeDelta, dateTimeDelta) ||
                 other.dateTimeDelta == dateTimeDelta));
   }
@@ -2074,6 +2101,7 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
       lastDateTime,
       const DeepCollectionEquality().hash(_playersCollection),
       const DeepCollectionEquality().hash(_playersCharacters),
+      const DeepCollectionEquality().hash(_savedLevels),
       dateTimeDelta);
 
   @JsonKey(ignore: true)
@@ -2094,6 +2122,7 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
       final WorldDateTimeModel lastDateTime,
       final List<PlayerProfileModel> playersCollection,
       final List<PlayerCharacterModel> playersCharacters,
+      final Map<CanvasDataModelId, LevelModel> savedLevels,
       final int dateTimeDelta}) = _$_GlobalGameBlocState;
   const _GlobalGameBlocState._() : super._();
 
@@ -2128,6 +2157,8 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   List<PlayerProfileModel> get playersCollection;
   @override
   List<PlayerCharacterModel> get playersCharacters;
+  @override
+  Map<CanvasDataModelId, LevelModel> get savedLevels;
   @override
 
   /// ********************************************

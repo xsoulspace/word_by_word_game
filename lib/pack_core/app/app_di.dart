@@ -49,6 +49,10 @@ class _AppDiProviderState extends State<AppDiProvider> {
             create: (final context) =>
                 context.read<ServicesCollection>().localDataService,
           ),
+          Provider<LevelsRepository>(
+            create: (final context) =>
+                context.read<ServicesCollection>().levelsRepository,
+          ),
           Provider<GameRespository>(
             create: (final context) =>
                 context.read<ServicesCollection>().gameRepository,

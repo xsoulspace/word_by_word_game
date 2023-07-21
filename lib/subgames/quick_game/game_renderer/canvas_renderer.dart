@@ -1,22 +1,25 @@
 import 'dart:async';
 
+import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
+import 'package:flame/extensions.dart';
+import 'package:flame/input.dart';
+import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
-import 'package:map_editor/ui/renderer/renderer.dart';
-import 'package:map_editor/ui/renderer/resources_loader.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
-
-String get kDefaultTilesetPath => 'tilesets/pixel_black_white_tileset.png';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/character_component.dart';
+import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class CanvasRenderer extends Component
-    with DragCallbacks, HasGameRef<GameRendererGame>, Hoverable {
+    with DragCallbacks, HasGameRef<CanvasRendererGame>, Hoverable {
   CanvasCubit get canvasCubit => game.diDto.canvasCubit;
   DrawerCubitState get canvasCubitState => canvasCubit.state;
   Vector2 get origin => canvasCubitState.origin;
@@ -29,14 +32,13 @@ class CanvasRenderer extends Component
   double get windowWidth => gameSize.x;
   double get tileColumns => (windowWidth / kTileDimension) + 1;
   double get tileRows => (windowHeight / kTileDimension) + 1;
-  final debugSurface = DebugSurface();
-  final cursor = CursorRenderer();
-  final tilesDrawer = TilesDrawer();
-  final tilesRenderer = TilesRenderer();
+  final debugSurface = CanvasDebugSurface();
+  final cursor = CanvasCursorRenderer();
+  final tilesRenderer = CanvasTilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
-  final animationUpdater = AnimationUpdater();
+  // final animationUpdater = AnimationUpdater();
   // TODO(username): description
-  final canvasObjectsDrawer = EditorCanvasObjectsDrawer();
+  // final canvasObjectsDrawer = EditorCanvasObjectsDrawer();
 
   @override
   FutureOr<void> onLoad() {
@@ -44,11 +46,10 @@ class CanvasRenderer extends Component
       // RENDER
       tilesRenderer,
       if (debugMode) debugSurface,
-      tilesDrawer,
-      canvasObjectsDrawer,
+      // canvasObjectsDrawer,
       cursor,
       // LOGIC
-      animationUpdater,
+      // animationUpdater,
     ]);
 
     return super.onLoad();
@@ -65,7 +66,7 @@ class CanvasRenderer extends Component
     final eventPosition = event.canvasPosition;
     origin = eventPosition - _dragOffset;
     mousePosition = eventPosition;
-    canvasObjectsDrawer.onOriginUpdate();
+    // canvasObjectsDrawer.onOriginUpdate();
     super.onDragUpdate(event);
   }
 
@@ -110,7 +111,7 @@ class CanvasRenderer extends Component
   bool containsLocalPoint(final Vector2 point) => true;
 }
 
-mixin HasCanvasRendererRef on Component, HasGameRef<GameRendererGame> {
+mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   CanvasRenderer? _canvasRenderer;
   CanvasRenderer get canvasRenderer => _canvasRenderer ??= game.canvasRenderer;
   CanvasCubit get canvasCubit => game.diDto.canvasCubit;
@@ -143,4 +144,86 @@ mixin HasCanvasRendererRef on Component, HasGameRef<GameRendererGame> {
         ...presetResources.players,
         ...presetResources.other,
       };
+}
+
+class CanvasTilesRenderer extends Component
+    with
+        HasGameRef<CanvasRendererGame>,
+        HasCanvasRendererRef,
+        HasCanvasResourcesLoaderRef {
+  // final _canvasTilesComponents = <>{};
+  @override
+  FutureOr<void> onLoad() {
+    add(
+      FlameBlocListener<CanvasCubit, DrawerCubitState>(
+        onNewState: _onNewDrawerState,
+      ),
+    );
+    return super.onLoad();
+  }
+
+  void _onNewDrawerState(final DrawerCubitState state) {}
+
+  final _painter = TilesPainter();
+  @override
+  void render(final Canvas canvas) {
+    _painter.render(
+      canvas: canvas,
+      canvasData: canvasData,
+      tilesResources: tilesResources,
+      origin: origin,
+      images: game.images,
+    );
+    super.render(canvas);
+  }
+}
+
+class CanvasCursorRenderer extends Component
+    with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
+  Image? _image;
+  @override
+  FutureOr<void> onLoad() async {
+    final imagesLoader = Images(prefix: '');
+
+    final path = 'packages/map_editor/${Assets.images.cursors.cursor.path}';
+    _image = await imagesLoader.load(path);
+    return super.onLoad();
+  }
+
+  final _paint = material.Paint();
+  @override
+  void render(final Canvas canvas) {
+    super.render(canvas);
+    if (_image != null && canvasRenderer.isHovered) {
+      canvas.drawImage(
+        _image!,
+        canvasRenderer.mousePosition.toOffset(),
+        _paint,
+      );
+    }
+  }
+}
+
+class CanvasDebugSurface extends Component
+    with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
+  material.Paint get _paint => Palette.grey.withAlpha(60).paint();
+
+  void _renderLines(final material.Canvas canvas) {
+    final offsetOrigin = getOffsetOrigin();
+    for (var col = 0; col < tileColumns; col++) {
+      final double x = offsetOrigin.x + (col * kTileDimension).toDouble();
+      canvas.drawLine(Offset(x, 0), Offset(x, windowHeight), _paint);
+    }
+
+    for (var row = 0; row < tileRows; row++) {
+      final double y = offsetOrigin.y + (row * kTileDimension).toDouble();
+      canvas.drawLine(Offset(0, y), Offset(windowWidth, y), _paint);
+    }
+  }
+
+  @override
+  void render(final material.Canvas canvas) {
+    super.render(canvas);
+    _renderLines(canvas);
+  }
 }

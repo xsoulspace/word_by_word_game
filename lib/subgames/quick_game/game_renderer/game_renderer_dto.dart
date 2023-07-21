@@ -31,6 +31,9 @@ class GameRendererDiDto {
       FlameBlocProvider<LevelBloc, LevelBlocState>.value(
         value: levelBloc,
       ),
+      FlameBlocProvider<CanvasCubit, DrawerCubitState>.value(
+        value: canvasCubit,
+      ),
       FlameBlocProvider<LevelPlayersBloc, LevelPlayersBlocState>.value(
         value: levelPlayersBloc,
       ),

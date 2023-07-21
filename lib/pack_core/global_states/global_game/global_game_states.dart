@@ -29,6 +29,7 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
     /// which will be available for user to playe and progress through the game.
     @Default([]) final List<PlayerProfileModel> playersCollection,
     @Default([]) final List<PlayerCharacterModel> playersCharacters,
+    @Default({}) final Map<CanvasDataModelId, LevelModel> savedLevels,
 
     /// ********************************************
     /// *      NON-RESTORABLE
@@ -42,6 +43,7 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
         currentLevelId: gameModel.currentLevelId,
         currentLevelModel: gameModel.currentLevel,
         id: gameModel.id,
+        savedLevels: gameModel.savedLevels,
         dateTime: gameModel.dateTime,
         lastDateTime: gameModel.lastDateTime,
         playersCollection: gameModel.playersCollection,

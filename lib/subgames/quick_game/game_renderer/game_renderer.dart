@@ -7,6 +7,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:map_editor/state/state.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -21,8 +22,13 @@ export 'game_widget.dart';
 
 part 'game_renderer_dto.dart';
 
-class GameRendererGame extends FlameGame with HasCollisionDetection {
-  GameRendererGame.use({
+class CanvasRendererGame extends FlameGame
+    with
+        HasCollisionDetection, // replace to MouseMovementDetector (?)
+        SingleGameInstance,
+        // replace to MouseMovementDetector (?)
+        HasHoverables {
+  CanvasRendererGame.use({
     required final BuildContext context,
     required final ThemeData theme,
     required final DialogController dialogController,
@@ -77,7 +83,7 @@ class GameRendererGame extends FlameGame with HasCollisionDetection {
     ]);
     // assets loading
 
-    await images.load(kDefaultTilesetPath);
+    // await images.load(kDefaultTilesetPath);
 
     return super.onLoad();
   }

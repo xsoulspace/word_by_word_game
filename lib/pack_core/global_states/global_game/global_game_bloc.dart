@@ -65,19 +65,21 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   ) async {
     final liveGame = GlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
-    if (liveGame.currentLevelId.isNotEmpty && gameModel.levels.isNotEmpty) {
-      final levelModel = gameModel.levels[liveGame.currentLevelId];
-      if (levelModel == null) {
-        throw ArgumentError.value(
-          levelModel,
-          'current level ${liveGame.currentLevelId} is not '
-          'presented in the game model.',
-        );
-      }
+    final allLevels = await diDto.services.levelsRepository.getLevels();
+    emit(liveGame.copyWith(allCanvasData: allLevels));
+
+    LevelModel? levelModel;
+    if (liveGame.currentLevelId.isNotEmpty &&
+        gameModel.savedLevels.isNotEmpty) {
+      levelModel = gameModel.savedLevels[liveGame.currentLevelId];
+    }
+    if (levelModel != null) {
+      /// resume latest game
       onInitGlobalGameLevel(
         InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false),
       );
     }
+
     await diDto.mechanics.worldTime.onLoad();
     diDto.tutorialBloc.add(
       LoadTutorialsProgressEvent(progress: gameModel.tutorialProgress),
@@ -112,6 +114,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   void onInitGlobalGameLevel(
     final InitGlobalGameLevelEvent event,
   ) {
+    diDto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
     _globalLevelLoadCompleter = Completer();
     final levelModel = event.levelModel;
     GlobalGameBlocState updatedState = _getResetedLevelLoad();
@@ -165,11 +170,14 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
   }
 
+  /// Before calling this method, [onInitGlobalGameLevel] must be called
   Future<void> onStartPlayingLevel(
     final StartPlayingLevelEvent event,
   ) async {
     await _globalLevelLoadCompleter!.future;
-    diDto.mechanics.worldTime.resume();
+    diDto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.playing,
+    );
     final tutorialEvent = StartTutorialEvent(
       tutorialName: TutorialCollectionsName.levelIntroduction,
       shouldContinueIfPlayed: false,
@@ -228,12 +236,6 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     await _saveGame(liveState: updatedState);
   }
 
-  void onCharacterCollision(
-    final CharacterCollisionEvent event,
-  ) {
-    diDto.mechanics.worldTime.pause();
-  }
-
   void _shareNewDateTime(final GlobalGameBlocState newState) {
     diDto.levelBloc.onConsumeTickEvent(
       LevelBlocEventConsumeTick(timeDeltaInSeconds: newState.dateTimeDelta),
@@ -281,10 +283,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final SaveCurrentLevelEvent event,
   ) async {
     final currentLevelId = state.currentLevelId;
-    final levels = {...state.levels}..[currentLevelId] =
+    final savedLevels = {...state.savedLevels}..[currentLevelId] =
         _getCurrentLevelModel();
     final updatedState = state.copyWith(
-      levels: levels,
+      savedLevels: savedLevels,
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
@@ -295,6 +297,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
 
     return GameSaveModel(
       id: liveState.id,
+      savedLevels: liveState.savedLevels,
       currentLevel: liveState.currentLevelModel,
       currentLevelId: liveState.currentLevelId,
       dateTime: liveState.dateTime,
@@ -316,6 +319,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       characters: LevelCharactersModel(
         playerCharacter: livePlayersState.playerCharacter,
       ),
+      canvasDataId: liveLevelState.id,
       players: LevelPlayersModel(
         currentPlayerId: livePlayersState.currentPlayerId,
         players: livePlayersState.players,

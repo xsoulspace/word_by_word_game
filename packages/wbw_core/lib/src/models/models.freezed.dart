@@ -691,6 +691,11 @@ mixin _$GameSaveModel {
       throw _privateConstructorUsedError;
   TutorialCollectionsProgressModel get tutorialProgress =>
       throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: GameSaveModel._savedLevelsFromJson,
+      toJson: GameSaveModel._savedLevelsToJson)
+  Map<CanvasDataModelId, LevelModel> get savedLevels =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -713,7 +718,9 @@ abstract class $GameSaveModelCopyWith<$Res> {
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
-      TutorialCollectionsProgressModel tutorialProgress});
+      TutorialCollectionsProgressModel tutorialProgress,
+      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
+          Map<CanvasDataModelId, LevelModel> savedLevels});
 
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
   $LevelModelCopyWith<$Res>? get currentLevel;
@@ -744,6 +751,7 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? tutorialProgress = null,
+    Object? savedLevels = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -782,6 +790,10 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
           ? _value.tutorialProgress
           : tutorialProgress // ignore: cast_nullable_to_non_nullable
               as TutorialCollectionsProgressModel,
+      savedLevels: null == savedLevels
+          ? _value.savedLevels
+          : savedLevels // ignore: cast_nullable_to_non_nullable
+              as Map<CanvasDataModelId, LevelModel>,
     ) as $Val);
   }
 
@@ -848,7 +860,9 @@ abstract class _$$_GameModelCopyWith<$Res>
       WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
-      TutorialCollectionsProgressModel tutorialProgress});
+      TutorialCollectionsProgressModel tutorialProgress,
+      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
+          Map<CanvasDataModelId, LevelModel> savedLevels});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
@@ -882,6 +896,7 @@ class __$$_GameModelCopyWithImpl<$Res>
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? tutorialProgress = null,
+    Object? savedLevels = null,
   }) {
     return _then(_$_GameModel(
       id: null == id
@@ -920,6 +935,10 @@ class __$$_GameModelCopyWithImpl<$Res>
           ? _value.tutorialProgress
           : tutorialProgress // ignore: cast_nullable_to_non_nullable
               as TutorialCollectionsProgressModel,
+      savedLevels: null == savedLevels
+          ? _value._savedLevels
+          : savedLevels // ignore: cast_nullable_to_non_nullable
+              as Map<CanvasDataModelId, LevelModel>,
     ));
   }
 }
@@ -937,9 +956,12 @@ class _$_GameModel extends _GameModel {
       this.lastDateTime = const WorldDateTimeModel(),
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
-      this.tutorialProgress = TutorialCollectionsProgressModel.empty})
+      this.tutorialProgress = TutorialCollectionsProgressModel.empty,
+      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
+          final Map<CanvasDataModelId, LevelModel> savedLevels = const {}})
       : _playersCollection = playersCollection,
         _playersCharacters = playersCharacters,
+        _savedLevels = savedLevels,
         super._();
 
   factory _$_GameModel.fromJson(Map<String, dynamic> json) =>
@@ -991,10 +1013,20 @@ class _$_GameModel extends _GameModel {
   @override
   @JsonKey()
   final TutorialCollectionsProgressModel tutorialProgress;
+  final Map<CanvasDataModelId, LevelModel> _savedLevels;
+  @override
+  @JsonKey(
+      fromJson: GameSaveModel._savedLevelsFromJson,
+      toJson: GameSaveModel._savedLevelsToJson)
+  Map<CanvasDataModelId, LevelModel> get savedLevels {
+    if (_savedLevels is EqualUnmodifiableMapView) return _savedLevels;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_savedLevels);
+  }
 
   @override
   String toString() {
-    return 'GameSaveModel(id: $id, currentLevelId: $currentLevelId, currentLevel: $currentLevel, version: $version, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters, tutorialProgress: $tutorialProgress)';
+    return 'GameSaveModel(id: $id, currentLevelId: $currentLevelId, currentLevel: $currentLevel, version: $version, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters, tutorialProgress: $tutorialProgress, savedLevels: $savedLevels)';
   }
 
   @override
@@ -1017,7 +1049,9 @@ class _$_GameModel extends _GameModel {
             const DeepCollectionEquality()
                 .equals(other._playersCharacters, _playersCharacters) &&
             (identical(other.tutorialProgress, tutorialProgress) ||
-                other.tutorialProgress == tutorialProgress));
+                other.tutorialProgress == tutorialProgress) &&
+            const DeepCollectionEquality()
+                .equals(other._savedLevels, _savedLevels));
   }
 
   @JsonKey(ignore: true)
@@ -1032,7 +1066,8 @@ class _$_GameModel extends _GameModel {
       lastDateTime,
       const DeepCollectionEquality().hash(_playersCollection),
       const DeepCollectionEquality().hash(_playersCharacters),
-      tutorialProgress);
+      tutorialProgress,
+      const DeepCollectionEquality().hash(_savedLevels));
 
   @JsonKey(ignore: true)
   @override
@@ -1058,7 +1093,9 @@ abstract class _GameModel extends GameSaveModel {
       final WorldDateTimeModel lastDateTime,
       final List<PlayerProfileModel> playersCollection,
       final List<PlayerCharacterModel> playersCharacters,
-      final TutorialCollectionsProgressModel tutorialProgress}) = _$_GameModel;
+      final TutorialCollectionsProgressModel tutorialProgress,
+      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
+          final Map<CanvasDataModelId, LevelModel> savedLevels}) = _$_GameModel;
   const _GameModel._() : super._();
 
   factory _GameModel.fromJson(Map<String, dynamic> json) =
@@ -1088,6 +1125,11 @@ abstract class _GameModel extends GameSaveModel {
   List<PlayerCharacterModel> get playersCharacters;
   @override
   TutorialCollectionsProgressModel get tutorialProgress;
+  @override
+  @JsonKey(
+      fromJson: GameSaveModel._savedLevelsFromJson,
+      toJson: GameSaveModel._savedLevelsToJson)
+  Map<CanvasDataModelId, LevelModel> get savedLevels;
   @override
   @JsonKey(ignore: true)
   _$$_GameModelCopyWith<_$_GameModel> get copyWith =>

@@ -1,7 +1,7 @@
-# melos_managed_dependency_overrides: wbw_design_core,http,map_editor
+# melos_managed_dependency_overrides: map_editor,wbw_design_core,http
 dependency_overrides:
-  http: 1.0.0
   map_editor:
     path: ../map_editor
   wbw_design_core:
     path: ../wbw_design_core
+  http: 1.0.0

@@ -6,14 +6,13 @@ part 'states_statuses_cubit.freezed.dart';
 
 enum LevelStateStatus {
   loading,
-  playing,
-  paused;
+  paused,
+  playing;
 }
 
 enum LevelPartName {
   level,
-  players,
-  resources;
+  players;
 
   const LevelPartName();
   static bool containsAll(final Set<LevelPartName> states) {

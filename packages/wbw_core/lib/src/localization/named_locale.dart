@@ -64,7 +64,7 @@ class LocalizedMap with _$LocalizedMap {
   factory LocalizedMap.fromJson(final Map<String, dynamic> json) =>
       _$LocalizedMapFromJson(json);
   factory LocalizedMap.fromJsonValueMap(final Map<String, dynamic> json) =>
-      _$LocalizedMapFromJson({'value': json});
+      LocalizedMap.fromJson({'value': json});
   static Map<String, dynamic> toJsonValueMap(final LocalizedMap map) =>
       map.toJson()['value'];
   static const empty = LocalizedMap(value: {});

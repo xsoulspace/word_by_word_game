@@ -148,9 +148,10 @@ class AnimationUpdater extends Component
     );
   }
 
-  Map<TileId, PresetTileResource> _updateTiles({
+  static Map<TileId, PresetTileResource> _updateTiles({
     required final double dt,
     required final Map<TileId, PresetTileResource> orignalTiles,
+    required final GameRendererConfig config,
   }) {
     final Map<TileId, PresetTileResource> tiles = {...orignalTiles};
     for (final MapEntry(key: cellPoint, value: cellTile) in tiles.entries) {
@@ -171,7 +172,7 @@ class AnimationUpdater extends Component
               directionalPaths: {
                 ...tile.directionalPaths,
                 path: updateAnimationFrame(
-                  config: game.config,
+                  config: config,
                   dt: dt,
                   entry: animationEntry,
                 )
@@ -188,9 +189,10 @@ class AnimationUpdater extends Component
     return tiles;
   }
 
-  Map<TileId, PresetTileResource> _updateObjects({
+  static Map<TileId, PresetTileResource> _updateObjects({
     required final double dt,
     required final Map<TileId, PresetTileResource> originalObjects,
+    required final GameRendererConfig config,
   }) {
     final Map<TileId, PresetTileResource> objects = {...originalObjects};
     for (final MapEntry(key: cellPoint, value: cellTile) in objects.entries) {
@@ -208,7 +210,7 @@ class AnimationUpdater extends Component
               behaviourPaths: {
                 ...tile.behaviourPaths,
                 behaviour: updateAnimationFrame(
-                  config: game.config,
+                  config: config,
                   dt: dt,
                   entry: animationEntry,
                 )
@@ -231,13 +233,17 @@ class AnimationUpdater extends Component
 
   @override
   void update(final double dt) {
-    final tiles =
-        _updateTiles(dt: dt, orignalTiles: drawerCubit.tilesResources.tiles);
+    final tiles = _updateTiles(
+      dt: dt,
+      orignalTiles: drawerCubit.tilesResources.tiles,
+      config: game.config,
+    );
     drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
       tiles: tiles,
     );
     final objects = _updateObjects(
       dt: dt,
+      config: game.config,
       originalObjects: drawerCubit.tilesResources.objects,
     );
     drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
@@ -245,6 +251,7 @@ class AnimationUpdater extends Component
     );
     final npcs = _updateObjects(
       dt: dt,
+      config: game.config,
       originalObjects: drawerCubit.tilesResources.npcs,
     );
     drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
@@ -252,6 +259,7 @@ class AnimationUpdater extends Component
     );
     final players = _updateObjects(
       dt: dt,
+      config: game.config,
       originalObjects: drawerCubit.tilesResources.players,
     );
     drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
@@ -259,6 +267,7 @@ class AnimationUpdater extends Component
     );
     final other = _updateObjects(
       dt: dt,
+      config: game.config,
       originalObjects: drawerCubit.tilesResources.other,
     );
     drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
