@@ -1,7 +1,8 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
-class MaterialTransparentRoute<T> extends PageRoute<T>
-    with MaterialRouteTransitionMixin<T> {
+class MaterialTransparentRoute<T> extends PageRoute<T> {
   MaterialTransparentRoute({
     super.settings,
     this.maintainState = true,
@@ -13,7 +14,26 @@ class MaterialTransparentRoute<T> extends PageRoute<T>
       settings as MaterialTransparentPage<T>;
 
   @override
-  Widget buildContent(final BuildContext context) => _page.child;
+  Widget buildPage(
+    final BuildContext context,
+    final Animation<double> animation,
+    final Animation<double> secondaryAnimation,
+  ) {
+    final Widget result = _page.child;
+    return Stack(
+      children: [
+        Container().frosted().animate().then(delay: 50.milliseconds).fadeIn(
+              curve: Curves.easeIn,
+              duration: 550.milliseconds,
+            ),
+        Semantics(
+          scopesRoute: true,
+          explicitChildNodes: true,
+          child: result,
+        ),
+      ],
+    );
+  }
 
   @override
   bool get opaque => false;
@@ -23,6 +43,15 @@ class MaterialTransparentRoute<T> extends PageRoute<T>
 
   @override
   String get debugLabel => '${super.debugLabel}(${settings.name})';
+
+  @override
+  Color? get barrierColor => null;
+
+  @override
+  String? get barrierLabel => null;
+
+  @override
+  Duration get transitionDuration => Duration.zero;
 }
 
 class MaterialTransparentPage<T> extends Page<T> {
