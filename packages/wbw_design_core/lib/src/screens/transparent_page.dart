@@ -22,7 +22,13 @@ class MaterialTransparentRoute<T> extends PageRoute<T> {
     final Widget result = _page.child;
     return Stack(
       children: [
-        Container().frosted().animate().then(delay: 25.milliseconds).fadeIn(
+        Container()
+            .blurred(
+              colorOpacity: 0.1,
+            )
+            .animate()
+            .then(delay: 25.milliseconds)
+            .fadeIn(
               curve: Curves.fastLinearToSlowEaseIn,
               duration: 400.milliseconds,
             ),
