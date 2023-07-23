@@ -103,7 +103,16 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
                 ),
               )
               .toList(),
-          child: Text(_language.name),
+          builder: (final context, final controller, final child) => TextButton(
+            onPressed: () {
+              if (controller.isOpen) {
+                controller.close();
+              } else {
+                controller.open();
+              }
+            },
+            child: Text(_language.name),
+          ),
         ),
       ],
     );

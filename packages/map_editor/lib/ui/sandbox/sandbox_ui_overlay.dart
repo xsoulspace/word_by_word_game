@@ -5,6 +5,7 @@ import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
   const SandboxUiOverlay({super.key});
@@ -138,6 +139,11 @@ class TileButtons extends StatelessWidget {
                 onPressed: () async => drawerCubit.paste(context: context),
                 icon: const Icon(Icons.paste),
                 label: const Text('Paste'),
+              ),
+              UiLocalizedTextField(
+                fieldConstraints: const BoxConstraints(maxWidth: 140),
+                onChanged: drawerCubit.onChangeName,
+                value: drawerCubit.state.canvasData.name,
               ),
             ],
           )

@@ -116,6 +116,16 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     );
   }
 
+  Future<void> onChangeName(final LocalizedMap name) async {
+    emit(
+      state.copyWith(
+        canvasData: state.canvasData.copyWith(
+          name: name,
+        ),
+      ),
+    );
+  }
+
   /// This function should be triggered when game.onLoad happening
   Future<void> loadCache({
     required final Images images,

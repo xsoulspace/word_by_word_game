@@ -1,6 +1,6 @@
 {
-  "id": "lvl0",
-  "name": { "ru": "Lvl0", "en": "Lvl0", "it": "Lvl0" },
+  "id": "lvl",
+  "name": { "ru": "уровень 1", "en": "level 1", "it": "lvl 1" },
   "layers": [
     {
       "id": "abeae340-23be-11ee-b7ff-49690c9f73c3",
@@ -714,9 +714,9 @@
   "playerObject": {
     "id": "Tester",
     "tileId": "tester",
-    "position": { "x": 428.97265625, "y": 160.3984375 },
-    "distanceToOrigin": { "x": 472.66015625, "y": 197.43359375 },
-    "distanceToTileLeftTopCorner": { "x": -39.33984375, "y": 5.43359375 },
+    "position": { "x": 193.50390625, "y": 171.21484375 },
+    "distanceToOrigin": { "x": 428.97265625, "y": 160.3984375 },
+    "distanceToTileLeftTopCorner": { "x": 44.97265625, "y": 32.3984375 },
     "animationBehaviour": "idle_right"
   },
   "skyYPosition": 0.0
