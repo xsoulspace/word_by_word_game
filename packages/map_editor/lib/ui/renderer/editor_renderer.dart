@@ -82,7 +82,6 @@ class EditorRendererGame extends FlameGame
       ],
     );
 
-    // await providersComponent.add(worldCamera);
     await add(providersComponent);
     await world.addAll([
       FlameBlocListener<MapEditorCubit, MapEditorBlocState>(
@@ -97,16 +96,9 @@ class EditorRendererGame extends FlameGame
   }
 
   Future<CameraComponent> _initCamera() async {
-    // final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
     final camera = CameraComponent(
       world: world,
     );
-    //..setBounds(bounds);
-
-    // ..visibleGameSize = Vector2(
-    //   kVisibleTilesCount * kTileDimension.toDouble() / 2,
-    //   kVisibleTilesHeight * kTileDimension.toDouble(),
-    // )
     camera.viewfinder.anchor = Anchor.topLeft;
     return camera;
   }

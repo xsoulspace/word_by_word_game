@@ -118,7 +118,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       status: LevelStateStatus.loading,
     );
     _globalLevelLoadCompleter = Completer();
-    final level = event.levelModel;
+    LevelModel level = event.levelModel;
     GlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
       updatedState = updatedState.copyWith(
@@ -126,10 +126,20 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       );
       emit(updatedState);
     }
-    final canvasData = state.allCanvasData[level.id]!;
-    diDto.canvasCubit.loadCanvasData(canvasData: canvasData);
+
+    CanvasDataModel? canvasData;
+    canvasData = state.allCanvasData[level.id];
+
+    /// level should be reloaded according to the canvas data
+    if (canvasData == null) {
+      canvasData = state.allCanvasData.values.first;
+      level = level.copyWith(
+        canvasDataId: canvasData.id,
+      );
+    }
 
     diDto
+      ..canvasCubit.loadCanvasData(canvasData: canvasData)
       ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: level))
       ..levelPlayersBloc.onInitLevelPlayers(
         InitLevelPlayersEvent(

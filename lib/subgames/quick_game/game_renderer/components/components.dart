@@ -1,1 +1,1 @@
-export './character_component.dart';
+export 'game_canvas_object.dart';

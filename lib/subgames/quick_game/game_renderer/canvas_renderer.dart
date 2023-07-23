@@ -14,7 +14,7 @@ import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/character_component.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class CanvasRenderer extends Component
@@ -36,8 +36,7 @@ class CanvasRenderer extends Component
   final tilesRenderer = CanvasTilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
   // final animationUpdater = AnimationUpdater();
-  // TODO(username): description
-  // final canvasObjectsDrawer = EditorCanvasObjectsDrawer();
+  final canvasObjectsDrawer = GameCanvasObjectsDrawer();
 
   @override
   FutureOr<void> onLoad() {
@@ -45,7 +44,7 @@ class CanvasRenderer extends Component
       // RENDER
       tilesRenderer,
       if (debugMode) debugSurface,
-      // canvasObjectsDrawer,
+      canvasObjectsDrawer,
       cursor,
       // LOGIC
       // animationUpdater,
@@ -65,7 +64,7 @@ class CanvasRenderer extends Component
     final eventPosition = event.canvasPosition;
     origin = eventPosition - _dragOffset;
     mousePosition = eventPosition;
-    // canvasObjectsDrawer.onOriginUpdate();
+    canvasObjectsDrawer.onOriginUpdate();
     super.onDragUpdate(event);
   }
 

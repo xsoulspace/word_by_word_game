@@ -14,7 +14,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
-import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/character_component.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
 
 export 'canvas_renderer.dart';
@@ -70,9 +69,9 @@ class CanvasRendererGame extends FlameGame
 
     await add(providersComponent);
     await world.addAll([
-      // FlameBlocListener<GlobalGameBloc, GlobalGameBlocState>(
-      //   onNewState: _handleLevelStateChanges,
-      // ),
+      FlameBlocListener<GlobalGameBloc, GlobalGameBlocState>(
+        onNewState: _handleGlobalStateChanges,
+      ),
       FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
         onNewState: _handleLevelStateChanges,
       ),
@@ -90,18 +89,6 @@ class CanvasRendererGame extends FlameGame
   }
 
   Future<CameraComponent> _initCamera() async {
-    // final bounds = Rectangle.fromLTRB(0, 0, 1500, 1200);
-    // final camera = CameraComponent(
-    //   world: world,
-    // ); //..setBounds(bounds);
-
-    // camera.viewfinder
-    //   ..visibleGameSize = Vector2(
-    //     kVisibleTilesWidth * kTileDimension.toDouble() / 2,
-    //     kVisibleTilesHeight * kTileDimension.toDouble(),
-    //   )
-    //   ..anchor = Anchor.center;
-    // return camera;
     final camera = CameraComponent(
       world: world,
     );
@@ -120,6 +107,10 @@ class CanvasRendererGame extends FlameGame
     }
   }
 
+  void _handleGlobalStateChanges(final GlobalGameBlocState gameBlocState) {
+    // canvasObjectsDrawer.onOriginUpdate();
+  }
+
   Future<void> _handleLevelStateChanges(
     final StatesStatusesCubitState state,
   ) async {
@@ -131,8 +122,10 @@ class CanvasRendererGame extends FlameGame
     }
   }
 
-  PlayerGameCanvasObject? character;
-  bool get isLevelLoaded => character != null && !isLevelLoading;
+  // PlayerGameCanvasObject? character;
+  bool get isLevelLoaded =>
+      // character != null &&
+      !isLevelLoading;
   bool isLevelLoading = false;
   Future<void> onLoadLevel() async {
     if (isLevelLoading) return;
@@ -143,11 +136,11 @@ class CanvasRendererGame extends FlameGame
 
   /// Unloads current level, unassignes character from the camera
   void unloadLevel() {
-    if (character != null) {
-      worldCamera.stop();
-      character?.removeFromParent();
-      character = null;
-    }
+    // if (character != null) {
+    //   worldCamera.stop();
+    //   // character?.removeFromParent();
+    //   // character = null;
+    // }
   }
 
   @override

@@ -1,10 +1,6 @@
 {
-  "id": "lvl0",
-  "name": {
-    "en": "Black & White Mountains",
-    "ru": "Черно-белые горы",
-    "it": "Montagne in bianco e nero"
-  },
+  "id": "lvl",
+  "name": { "ru": "lvl1", "en": "level 1", "it": "lvl 1" },
   "layers": [
     {
       "id": "abeae340-23be-11ee-b7ff-49690c9f73c3",
@@ -154,12 +150,6 @@
           "npcs": []
         },
         "{\"x\":6,\"y\":2}": {
-          "tileId": "",
-          "tileNeighbours": [],
-          "objects": [],
-          "npcs": []
-        },
-        "{\"x\":7,\"y\":2}": {
           "tileId": "",
           "tileNeighbours": [],
           "objects": [],
@@ -701,17 +691,105 @@
           ],
           "objects": [],
           "npcs": []
+        },
+        "{\"x\":3,\"y\":2}": {
+          "tileId": "",
+          "tileNeighbours": [],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":2,\"y\":1}": {
+          "tileId": "",
+          "tileNeighbours": [],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":2,\"y\":0}": {
+          "tileId": "",
+          "tileNeighbours": [],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":1,\"y\":3}": {
+          "tileId": "",
+          "tileNeighbours": [{ "value": "D" }, { "value": "E" }],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":0,\"y\":3}": {
+          "tileId": "",
+          "tileNeighbours": [{ "value": "D" }],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":0,\"y\":2}": {
+          "tileId": "",
+          "tileNeighbours": [],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":0,\"y\":4}": {
+          "tileId": "",
+          "tileNeighbours": [{ "value": "C" }, { "value": "D" }],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":0,\"y\":5}": {
+          "tileId": "",
+          "tileNeighbours": [
+            { "value": "B" },
+            { "value": "C" },
+            { "value": "D" }
+          ],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":3,\"y\":7}": {
+          "tileId": "",
+          "tileNeighbours": [
+            { "value": "A" },
+            { "value": "B" },
+            { "value": "H" }
+          ],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":2,\"y\":3}": {
+          "tileId": "",
+          "tileNeighbours": [
+            { "value": "D" },
+            { "value": "E" },
+            { "value": "F" }
+          ],
+          "objects": [],
+          "npcs": []
+        },
+        "{\"x\":7,\"y\":2}": {
+          "tileId": "",
+          "tileNeighbours": [],
+          "objects": [],
+          "npcs": []
         }
       }
     }
   ],
-  "objects": {},
+  "objects": {
+    "Tester": {
+      "id": "Tester",
+      "tileId": "tester",
+      "position": { "x": 393.65234375, "y": 61.67578125 },
+      "distanceToOrigin": { "x": 393.65234375, "y": 61.67578125 },
+      "distanceToTileLeftTopCorner": { "x": 9.65234375, "y": 61.67578125 },
+      "animationBehaviour": "idle_right"
+    }
+  },
   "playerObject": {
     "id": "Tester",
     "tileId": "tester",
-    "position": { "x": 280.56640625, "y": 276.93359375 },
-    "distanceToOrigin": { "x": 321.43359375, "y": 192.078125 },
-    "distanceToTileLeftTopCorner": { "x": -254.56640625, "y": 128.078125 },
+    "position": { "x": 228.36328125, "y": 97.765625 },
+    "distanceToOrigin": { "x": 212.53125, "y": 89.21484375 },
+    "distanceToTileLeftTopCorner": { "x": 20.53125, "y": 25.21484375 },
     "animationBehaviour": "idle_right"
-  }
+  },
+  "skyYPosition": 0.0
 }
