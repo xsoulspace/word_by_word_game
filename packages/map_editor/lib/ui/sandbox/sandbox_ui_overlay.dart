@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -15,7 +16,7 @@ class SandboxUiOverlay extends StatelessWidget {
         fit: StackFit.passthrough,
         children: [
           Align(
-            alignment: Alignment.bottomRight,
+            alignment: Alignment.bottomCenter,
             child: SizedBox(
               height: (kTileDimension * 2).toDouble() + 16,
               child: const TileButtons(),
@@ -37,117 +38,121 @@ class TileButtons extends StatelessWidget {
     final tilesResources = context.watch<DrawerCubit>().tilesResources;
 
     return Material(
-      child: ListView(
-        scrollDirection: Axis.horizontal,
-        padding: const EdgeInsets.all(8),
-        shrinkWrap: true,
-        children: [
-          Column(
-            children: [
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 150),
-                child: CheckboxListTile(
-                  value: mapEditorBloc.state.isEditing,
-                  onChanged: (final isEditing) async {
-                    await mapEditorBloc.onChangeIsEditing(
-                      isEditing ?? false,
-                    );
-                  },
-                  title: const Text('Is Editing'),
-                ),
-              ),
-              const SizedBox(height: 14),
-              Text('Time ${worldBloc.state.dateTime.second}'),
-              const SizedBox(height: 4),
-              Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  TextButton(
-                    onPressed:
-                        worldTime.paused ? worldTime.resume : worldTime.pause,
-                    child: Text(worldTime.paused ? '>' : '||'),
-                  ),
-                  TextButton(
-                    onPressed: worldTime.speedX2,
-                    child: Text(worldTime.isSpeed2 ? '(>>)' : '>>'),
-                  ),
-                ],
-              ),
-            ],
-          ),
-          TextButton(
-            onPressed: () async => showLayersDialog(context: context),
-            child: Text('Layers - ${drawerCubit.drawLayer.title}'),
-          ),
-          ...[
-            ...tilesResources.tiles.values.map(
-              (final e) => TileSpriteButton(
-                tileResource: e,
-              ),
-            ),
-          ].map(
-            (final e) => Padding(
-              padding: const EdgeInsets.only(right: 8),
-              child: e,
-            ),
-          ),
-          ConstrainedBox(
-            constraints: const BoxConstraints(minWidth: 100),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+      child: CupertinoScrollbar(
+        thumbVisibility: true,
+        child: ListView(
+          primary: true,
+          shrinkWrap: true,
+          scrollDirection: Axis.horizontal,
+          padding: const EdgeInsets.all(8),
+          children: [
+            Column(
               children: [
-                Text(
-                  // ignore: lines_longer_than_80_chars
-                  'Selected Tile ${drawerCubit.state.tileToDraw?.tile.properties.title}',
-                ),
-                // TODO(arenukvern): add layer crud
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 150),
                   child: CheckboxListTile(
-                    value: drawerCubit.state.isDeleteSelection,
-                    onChanged: (final isDeleteSelection) {
-                      drawerCubit.onChangeIsDeleteSelection(
-                        isDeleteSelection ?? false,
+                    value: mapEditorBloc.state.isEditing,
+                    onChanged: (final isEditing) async {
+                      await mapEditorBloc.onChangeIsEditing(
+                        isEditing ?? false,
                       );
                     },
-                    dense: true,
-                    title: const Text('Delete Tile'),
+                    title: const Text('Is Editing'),
                   ),
                 ),
-                TextButton.icon(
-                  onPressed: drawerCubit.saveData,
-                  icon: const Icon(Icons.save),
-                  label: const Text('Save'),
-                ),
-                TextButton.icon(
-                  onPressed: () async =>
-                      mapEditorBloc.onSaveAndPlay(context: context),
-                  icon: const Icon(Icons.play_arrow),
-                  label: const Text('Save & Play'),
+                const SizedBox(height: 14),
+                Text('Time ${worldBloc.state.dateTime.second}'),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextButton(
+                      onPressed:
+                          worldTime.paused ? worldTime.resume : worldTime.pause,
+                      child: Text(worldTime.paused ? '>' : '||'),
+                    ),
+                    TextButton(
+                      onPressed: worldTime.speedX2,
+                      child: Text(worldTime.isSpeed2 ? '(>>)' : '>>'),
+                    ),
+                  ],
                 ),
               ],
             ),
-          ),
-          Column(
-            children: [
-              TextButton.icon(
-                onPressed: () async => drawerCubit.copy(context: context),
-                icon: const Icon(Icons.copy),
-                label: const Text('Copy'),
+            TextButton(
+              onPressed: () async => showLayersDialog(context: context),
+              child: Text('Layers - ${drawerCubit.drawLayer.title}'),
+            ),
+            ...[
+              ...tilesResources.tiles.values.map(
+                (final e) => TileSpriteButton(
+                  tileResource: e,
+                ),
               ),
-              TextButton.icon(
-                onPressed: () async => drawerCubit.paste(context: context),
-                icon: const Icon(Icons.paste),
-                label: const Text('Paste'),
+            ].map(
+              (final e) => Padding(
+                padding: const EdgeInsets.only(right: 8),
+                child: e,
               ),
-              UiLocalizedTextField(
-                fieldConstraints: const BoxConstraints(maxWidth: 140),
-                onChanged: drawerCubit.onChangeName,
-                value: drawerCubit.state.canvasData.name,
+            ),
+            ConstrainedBox(
+              constraints: const BoxConstraints(minWidth: 100),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    // ignore: lines_longer_than_80_chars
+                    'Selected Tile ${drawerCubit.state.tileToDraw?.tile.properties.title}',
+                  ),
+                  // TODO(arenukvern): add layer crud
+                  ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 150),
+                    child: CheckboxListTile(
+                      value: drawerCubit.state.isDeleteSelection,
+                      onChanged: (final isDeleteSelection) {
+                        drawerCubit.onChangeIsDeleteSelection(
+                          isDeleteSelection ?? false,
+                        );
+                      },
+                      dense: true,
+                      title: const Text('Delete Tile'),
+                    ),
+                  ),
+                  TextButton.icon(
+                    onPressed: drawerCubit.saveData,
+                    icon: const Icon(Icons.save),
+                    label: const Text('Save'),
+                  ),
+                  TextButton.icon(
+                    onPressed: () async =>
+                        mapEditorBloc.onSaveAndPlay(context: context),
+                    icon: const Icon(Icons.play_arrow),
+                    label: const Text('Save & Play'),
+                  ),
+                ],
               ),
-            ],
-          )
-        ],
+            ),
+            Column(
+              children: [
+                TextButton.icon(
+                  onPressed: () async => drawerCubit.copy(context: context),
+                  icon: const Icon(Icons.copy),
+                  label: const Text('Copy'),
+                ),
+                TextButton.icon(
+                  onPressed: () async => drawerCubit.paste(context: context),
+                  icon: const Icon(Icons.paste),
+                  label: const Text('Paste'),
+                ),
+                UiLocalizedTextField(
+                  fieldConstraints: const BoxConstraints(maxWidth: 140),
+                  onChanged: drawerCubit.onChangeName,
+                  value: drawerCubit.state.canvasData.name,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
