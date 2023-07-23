@@ -182,7 +182,8 @@ class CanvasCursorRenderer extends Component
   Image? _image;
   @override
   FutureOr<void> onLoad() async {
-    final path = 'packages/map_editor/${Assets.images.cursors.cursor.path}';
+    final path =
+        Assets.images.cursors.cursor.path.replaceFirst('assets/images/', '');
     _image = await game.images.load(path);
     return super.onLoad();
   }

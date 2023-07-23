@@ -23,7 +23,7 @@ class MaterialTransparentRoute<T> extends PageRoute<T> {
     return Stack(
       children: [
         Container().frosted().animate().then(delay: 25.milliseconds).fadeIn(
-              curve: Curves.easeIn,
+              curve: Curves.fastLinearToSlowEaseIn,
               duration: 400.milliseconds,
             ),
         Semantics(

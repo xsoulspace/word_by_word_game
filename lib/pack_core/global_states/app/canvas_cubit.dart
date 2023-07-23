@@ -12,7 +12,9 @@ class CanvasCubit extends DrawerCubit {
     required final DrawerCubitDto drawerCubit,
   }) : super(
           dto: drawerCubit,
-          resourcesLoader: ResourcesLoader(),
+          resourcesLoader: ResourcesLoader(
+            cachePrefix: 'packages/map_editor/assets/images/',
+          ),
           rootPath: 'packages/map_editor/',
         );
   final CanvasCubitDto canvasDto;
