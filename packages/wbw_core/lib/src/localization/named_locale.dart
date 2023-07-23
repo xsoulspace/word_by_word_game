@@ -79,9 +79,15 @@ class LocalizedMap with _$LocalizedMap {
   static Map<String, dynamic> toJsonValueMap(final LocalizedMap map) =>
       map.toJson()['value'];
   static const empty = LocalizedMap(value: {});
-  String getValue() {
+  String getValue([
+    final Languages? language,
+  ]) {
+    final effectiveLanguage = language ?? getCurrentLanugage();
+    return value[effectiveLanguage]!;
+  }
+
+  static Languages getCurrentLanugage() {
     final languageCode = getLanguageCodeByStr(Intl.getCurrentLocale());
-    final language = Languages.byLanguageCode(languageCode);
-    return value[language]!;
+    return Languages.byLanguageCode(languageCode);
   }
 }
