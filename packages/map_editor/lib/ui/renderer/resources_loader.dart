@@ -16,6 +16,8 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 }
 
 class ResourcesLoader {
+  ResourcesLoader();
+
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
   ///
@@ -33,13 +35,8 @@ class ResourcesLoader {
   Future<void> _loadImagesManifest() async {
     final manifestContent = await rootBundle.loadString('AssetManifest.json');
     final Map<String, dynamic> rawManifestMap = jsonDecode(manifestContent);
-    _manifestMap = rawManifestMap.map(
-      (final key, final value) => MapEntry(_fixAssetsPath(key), value),
-    );
+    _manifestMap = rawManifestMap;
   }
-
-  static String _fixAssetsPath(final String path) =>
-      path.replaceAll('assets/images/', '');
 
   Map<TileBehaviourType, AnimationEntryModel>
       getPathsForPresetCharacterGraphics({
@@ -56,7 +53,7 @@ class ResourcesLoader {
       /// maybe folder (if animation) or file (if no animation)
       /// otherwise should throw an error
       final paths = _manifestMap.keys
-          .where((final e) => e.startsWith(behaviourPath))
+          .where((final e) => e.contains(behaviourPath))
           .toList();
 
       if (paths.isEmpty) continue;
@@ -98,7 +95,7 @@ class ResourcesLoader {
         final [..., folderTitle, _] = fullPath.split('/');
         final folderPath = '$rootFolderPath/$folderTitle';
         final folderPaths = _manifestMap.keys
-            .where((final e) => e.startsWith(folderPath))
+            .where((final e) => e.contains(folderPath))
             .toList();
         if (folderPaths.isEmpty) continue;
         map.update(

@@ -118,20 +118,23 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       status: LevelStateStatus.loading,
     );
     _globalLevelLoadCompleter = Completer();
-    final levelModel = event.levelModel;
+    final level = event.levelModel;
     GlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
       updatedState = updatedState.copyWith(
-        currentLevelModel: levelModel,
+        currentLevelModel: level,
       );
       emit(updatedState);
     }
+    final canvasData = state.allCanvasData[level.id]!;
+    diDto.canvasCubit.loadCanvasData(canvasData: canvasData);
+
     diDto
-      ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: levelModel))
+      ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: level))
       ..levelPlayersBloc.onInitLevelPlayers(
         InitLevelPlayersEvent(
-          playersModel: levelModel.players,
-          charactersModel: levelModel.characters,
+          playersModel: level.players,
+          charactersModel: level.characters,
         ),
       );
   }

@@ -12,6 +12,7 @@ String get _tempPersistanceKey => 'map_editor_save';
 class DrawerCubit extends Cubit<DrawerCubitState> {
   DrawerCubit({
     required this.dto,
+    required this.resourcesLoader,
     this.rootPath = '',
   }) : super(DrawerCubitState.empty);
   final String rootPath;
@@ -20,7 +21,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   set tileToDraw(final PresetTileResource? data) =>
       emit(state.copyWith(tileToDraw: data));
 
-  final ResourcesLoader resourcesLoader = ResourcesLoader();
+  final ResourcesLoader resourcesLoader;
   void changeOrigin(final Vector2 value) => emit(state.copyWith(origin: value));
 
   void changeState(final DrawerCubitState newState) => emit(newState);
@@ -28,10 +29,10 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   /// This function should be triggered before game is started to renderc
   Future<void> loadInitialData() async {
     await loadResources();
-    await loadCanvasData();
+    await loadEditorCanvasData();
   }
 
-  Future<void> loadCanvasData() async {
+  Future<void> loadEditorCanvasData() async {
     final canvasDataJson = await dto.localDbDataSource.getMap(
       _tempPersistanceKey,
     );

@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/logic/logic.dart';
@@ -63,7 +64,7 @@ class EditorRendererGame extends FlameGame
 
   @override
   Future<void> onLoad() async {
-    // debugMode = kDebugMode ;
+    debugMode = kDebugMode;
     mouseCursor = material.SystemMouseCursors.none;
     children
       ..register<CameraComponent>()

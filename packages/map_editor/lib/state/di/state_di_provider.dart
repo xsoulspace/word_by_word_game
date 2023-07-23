@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
@@ -40,6 +41,7 @@ class StateDiProvider extends StatelessWidget {
             ),
             BlocProvider(
               create: (final context) => DrawerCubit(
+                resourcesLoader: ResourcesLoader(),
                 dto: DrawerCubitDto.use(context: context),
               ),
             ),

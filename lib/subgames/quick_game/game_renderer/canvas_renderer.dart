@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
@@ -183,10 +182,8 @@ class CanvasCursorRenderer extends Component
   Image? _image;
   @override
   FutureOr<void> onLoad() async {
-    final imagesLoader = Images(prefix: '');
-
     final path = 'packages/map_editor/${Assets.images.cursors.cursor.path}';
-    _image = await imagesLoader.load(path);
+    _image = await game.images.load(path);
     return super.onLoad();
   }
 
