@@ -35,6 +35,12 @@ Map<Languages, String> localeValueFromMap(final dynamic map) {
   if (map is String) {
     return {};
   } else if (map is Map) {
+    if (map.isEmpty) {
+      return Languages.values.toMap(
+        toKey: (final item) => item,
+        toValue: (final item) => '',
+      );
+    }
     return map.map(
       (final key, final value) => MapEntry(Languages.values.byName(key), value),
     );
@@ -63,8 +69,13 @@ class LocalizedMap with _$LocalizedMap {
   const LocalizedMap._();
   factory LocalizedMap.fromJson(final Map<String, dynamic> json) =>
       _$LocalizedMapFromJson(json);
-  factory LocalizedMap.fromJsonValueMap(final Map<String, dynamic> json) =>
-      LocalizedMap.fromJson({'value': json});
+  factory LocalizedMap.fromJsonValueMap(final Map<String, dynamic> json) {
+    if (json.containsKey('value')) {
+      return LocalizedMap.fromJson(json);
+    } else {
+      return LocalizedMap.fromJson({'value': json});
+    }
+  }
   static Map<String, dynamic> toJsonValueMap(final LocalizedMap map) =>
       map.toJson()['value'];
   static const empty = LocalizedMap(value: {});

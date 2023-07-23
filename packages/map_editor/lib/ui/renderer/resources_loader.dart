@@ -16,7 +16,10 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 }
 
 class ResourcesLoader {
-  ResourcesLoader();
+  ResourcesLoader({
+    this.cachePrefix = 'assets/images/',
+  });
+  final String cachePrefix;
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
@@ -35,8 +38,13 @@ class ResourcesLoader {
   Future<void> _loadImagesManifest() async {
     final manifestContent = await rootBundle.loadString('AssetManifest.json');
     final Map<String, dynamic> rawManifestMap = jsonDecode(manifestContent);
-    _manifestMap = rawManifestMap;
+    _manifestMap = rawManifestMap.map(
+      (final key, final value) => MapEntry(fixAssetPath(key), value),
+    );
   }
+
+  /// removes prefixs from aset path
+  String fixAssetPath(final String path) => path.replaceAll(cachePrefix, '');
 
   Map<TileBehaviourType, AnimationEntryModel>
       getPathsForPresetCharacterGraphics({
