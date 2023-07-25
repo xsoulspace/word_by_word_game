@@ -6,7 +6,7 @@ import 'ui_text_field.dart';
 class UiLocalizedTextField extends StatefulWidget {
   const UiLocalizedTextField({
     required this.fieldConstraints,
-    required this.value,
+    required this.initialValue,
     required this.onChanged,
     this.labelText,
     this.focusedBorder,
@@ -20,7 +20,7 @@ class UiLocalizedTextField extends StatefulWidget {
   const UiLocalizedTextField.underlined({
     required this.onChanged,
     required this.fieldConstraints,
-    required this.value,
+    required this.initialValue,
     this.labelText,
     this.onEditingComplete,
     this.onFieldSubmitted,
@@ -33,7 +33,7 @@ class UiLocalizedTextField extends StatefulWidget {
   final String? labelText;
   final ValueChanged<LocalizedMap> onChanged;
   final InputBorder? focusedBorder;
-  final LocalizedMap value;
+  final LocalizedMap initialValue;
   final bool obscureText;
   final BoxConstraints fieldConstraints;
   final FormFieldValidator? validator;
@@ -47,9 +47,9 @@ class UiLocalizedTextField extends StatefulWidget {
 
 class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   late final _textController = TextEditingController(
-    text: widget.value.getValue(),
+    text: widget.initialValue.getValue(),
   );
-  late LocalizedMap _value = widget.value;
+  late LocalizedMap _value = widget.initialValue;
   Languages _language = Languages.en;
 
   @override

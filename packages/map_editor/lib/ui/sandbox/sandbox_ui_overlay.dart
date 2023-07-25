@@ -147,7 +147,7 @@ class TileButtons extends StatelessWidget {
                 UiLocalizedTextField(
                   fieldConstraints: const BoxConstraints(maxWidth: 140),
                   onChanged: drawerCubit.onChangeName,
-                  value: drawerCubit.state.canvasData.name,
+                  initialValue: drawerCubit.state.canvasData.name,
                 ),
               ],
             )

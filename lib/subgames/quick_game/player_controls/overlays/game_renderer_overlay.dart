@@ -9,6 +9,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
+import 'package:word_by_word_game/subgames/quick_game/debug_side_bar/debug_side_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/overlays/warning_notification.dart';
 import 'package:word_by_word_game/subgames/quick_game/players_side_bar/players_side_bar.dart';
@@ -37,6 +38,7 @@ class LevelsHudScreenOverlay extends HookWidget {
                   const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
                   uiTheme.verticalBoxes.medium,
                   const UIPlayersSideBar(),
+                  const UiDebugSideBar(),
                 ],
               ),
             ),
