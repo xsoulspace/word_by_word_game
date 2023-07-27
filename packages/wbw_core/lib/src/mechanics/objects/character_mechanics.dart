@@ -132,3 +132,109 @@ class BasicFlyingObjectMechanics {
 
   double get xVelocity => params.windSign * params.windForce;
 }
+
+class HotAirBalloonMechanics {
+  /// [Height]
+  ///
+  /// To calculate [height] of the hot air balloon
+  /// use tiles count.
+  ///
+  /// For example hot air baloon is on tile -4, 15
+  /// The sea level set to -10
+  /// So the [height] is -10 - -4 = -6
+  ///
+  /// Then fix the sign:
+  /// if -6 < 0 then 6
+  ///
+  /// Example 2
+  /// hot air baloon is on tile 8, 15
+  /// The sea level set to -10
+  /// So the [height] is -10 - 8 = -18
+  ///
+  /// Then fix the sign:
+  /// if -18 < 0 then 18
+  ///
+  /// To calculate final [height] use topLeftCellPosition
+  /// to add its value to the [heigth].
+  ///
+  /// Height is needed to decrease some volume from
+  /// the [currentVolume].
+  ///
+  /// [powerUsage] is how much energy can be converted to volume.
+  /// [volumeIncreaseRatio] is how much volume will be increased
+  /// from the [powerUsage].
+  LiftForceModel calculateLiftForce({
+    required final ForcesConstantsModel constants,
+    required final BalloonLiftPowersModel balloonPowers,
+    required final BalloonLiftParamsModel balloonParams,
+    required final double height,
+  }) {
+    double powerUsage;
+    double powerLeft = balloonPowers.power - balloonParams.powerUsage;
+    if (powerLeft < 0) {
+      powerUsage = balloonParams.powerUsage - powerLeft;
+      powerLeft = 0;
+    } else if (balloonParams.maxPower < powerLeft) {
+      powerUsage = balloonParams.powerUsage;
+      powerLeft = balloonParams.maxPower;
+    } else {
+      powerUsage = balloonParams.powerUsage;
+    }
+    final double increasedVolume = constants.volumeIncreaseRatio * powerUsage;
+
+    final decreasedVolume = constants.volumeDecreaseRatio * height;
+    double volume = balloonPowers.volume - decreasedVolume + increasedVolume;
+    if (balloonParams.maxVolume < volume) {
+      /// The volume & power is wasted.
+      /// Updated values should be returned.
+      volume = balloonParams.maxVolume;
+    } else if (volume < 0) {
+      volume = 0;
+    }
+    final volumeLiftForce = volume * constants.volumeToLiftRatio;
+    final liftForce = volumeLiftForce - constants.gravityForce;
+
+    return LiftForceModel(
+      liftPower: liftForce,
+      updatedPowers: balloonPowers.copyWith(
+        power: powerLeft,
+        volume: volume,
+      ),
+    );
+  }
+}
+
+@freezed
+class LiftForceModel with _$LiftForceModel {
+  const factory LiftForceModel({
+    required final double liftPower,
+    required final BalloonLiftPowersModel updatedPowers,
+  }) = _LiftForceModel;
+}
+
+@freezed
+class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
+  const factory BalloonLiftPowersModel({
+    @Default(0.0) final double volume,
+    @Default(0.0) final double power,
+  }) = _BalloonLiftPowersModel;
+}
+
+@freezed
+class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
+  const factory BalloonLiftParamsModel({
+    @Default(0.0) final double maxVolume,
+    @Default(0.0) final double maxPower,
+    @Default(0.0) final double powerUsage,
+  }) = _BalloonLiftParamsModel;
+}
+
+@Freezed()
+class ForcesConstantsModel with _$ForcesConstantsModel {
+  const factory ForcesConstantsModel({
+    @Default(0.0) final double gravityForce,
+    @Default(0.0) final double volumeDecreaseRatio,
+    @Default(0.0) final double volumeIncreaseRatio,
+    @Default(0.0) final double volumeToLiftRatio,
+  }) = _ForcesConstantsModel;
+}
