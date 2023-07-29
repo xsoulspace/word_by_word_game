@@ -29,7 +29,12 @@ class CanvasDataReferenceModel with _$CanvasDataReferenceModel {
     )
     @Default(CanvasDataModelId.empty)
     final CanvasDataModelId id,
-    @Default(LocalizedMap.empty) final LocalizedMap name,
+    @JsonKey(
+      fromJson: LocalizedMap.fromJson,
+      toJson: LocalizedMap.toJsonValueMap,
+    )
+    @Default(LocalizedMap.empty)
+    final LocalizedMap name,
   }) = _CanvasDataReferenceModel;
   const CanvasDataReferenceModel._();
   factory CanvasDataReferenceModel.fromJson(
@@ -72,8 +77,11 @@ class CanvasDataModel with _$CanvasDataModel {
     /// As player is unique - it should be used separately from [objects].
     @Default(RenderObjectModel.empty) final RenderObjectModel playerObject,
 
-    /// can be negative and positive
+    /// can be negative and positive. Should be tile index.
     @Default(0) final double skyYPosition,
+
+    /// can be negative and positive. Should be tile index.
+    @Default(0) final double gravityYPosition,
   }) = _CanvasDataModel;
   const CanvasDataModel._();
   factory CanvasDataModel.fromJson(

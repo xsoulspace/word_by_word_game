@@ -89,16 +89,6 @@ class $AssetsImagesGen {
   $AssetsImagesUiFramesGen get uiFrames => const $AssetsImagesUiFramesGen();
 }
 
-class $AssetsLevelsGen {
-  const $AssetsLevelsGen();
-
-  /// File path: assets/levels/lvl_0.json
-  String get lvl0 => 'assets/levels/lvl_0.json';
-
-  /// List of all assets
-  List<String> get values => [lvl0];
-}
-
 class $AssetsImagesButtonsGen {
   const $AssetsImagesButtonsGen();
 
@@ -201,7 +191,6 @@ class Assets {
 
   static const AssetGenImage icon = AssetGenImage('assets/icon.png');
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsLevelsGen levels = $AssetsLevelsGen();
   static const $GoogleFontsGen googleFonts = $GoogleFontsGen();
 
   /// List of all assets

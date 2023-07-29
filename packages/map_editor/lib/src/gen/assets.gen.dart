@@ -574,25 +574,8 @@ class $AssetsImagesPlayerIdleRightGen {
   AssetGenImage get idleRight0 =>
       const AssetGenImage('assets/images/player/idle_right/idle_right_0.png');
 
-  /// File path: assets/images/player/idle_right/idle_right_1.png
-  AssetGenImage get idleRight1 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_1.png');
-
-  /// File path: assets/images/player/idle_right/idle_right_2.png
-  AssetGenImage get idleRight2 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_2.png');
-
-  /// File path: assets/images/player/idle_right/idle_right_3.png
-  AssetGenImage get idleRight3 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_3.png');
-
-  /// File path: assets/images/player/idle_right/idle_right_4.png
-  AssetGenImage get idleRight4 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_4.png');
-
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [idleRight0, idleRight1, idleRight2, idleRight3, idleRight4];
+  List<AssetGenImage> get values => [idleRight0];
 }
 
 class $AssetsImagesPlayerJumpLeftGen {

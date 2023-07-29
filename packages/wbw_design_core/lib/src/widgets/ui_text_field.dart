@@ -33,7 +33,7 @@ class UiTextField extends StatelessWidget {
     super.key,
   });
   const UiTextField.underlined({
-    required this.controller,
+    this.controller,
     this.constraints,
     this.hintText,
     this.labelText,

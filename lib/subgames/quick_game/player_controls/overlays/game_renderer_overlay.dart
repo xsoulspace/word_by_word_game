@@ -28,6 +28,11 @@ class LevelsHudScreenOverlay extends HookWidget {
       children: [
         Stack(
           children: [
+            const Positioned(
+              top: 20,
+              right: 0,
+              child: UiDebugSideBar(),
+            ),
             Positioned(
               left: 0,
               top: 20,
@@ -38,7 +43,6 @@ class LevelsHudScreenOverlay extends HookWidget {
                   const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
                   uiTheme.verticalBoxes.medium,
                   const UIPlayersSideBar(),
-                  const UiDebugSideBar(),
                 ],
               ),
             ),

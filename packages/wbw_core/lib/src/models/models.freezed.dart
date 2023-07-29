@@ -2786,7 +2786,6 @@ mixin _$SerializedVector2 {
   double get x => throw _privateConstructorUsedError;
   double get y => throw _privateConstructorUsedError;
 
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $SerializedVector2CopyWith<SerializedVector2> get copyWith =>
       throw _privateConstructorUsedError;
@@ -2908,13 +2907,6 @@ class _$_SerializedVector2 extends _SerializedVector2 {
   _$$_SerializedVector2CopyWith<_$_SerializedVector2> get copyWith =>
       __$$_SerializedVector2CopyWithImpl<_$_SerializedVector2>(
           this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_SerializedVector2ToJson(
-      this,
-    );
-  }
 }
 
 abstract class _SerializedVector2 extends SerializedVector2 {

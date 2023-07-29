@@ -58,7 +58,7 @@ class CharacterAssetModel with _$CharacterAssetModel {
 }
 
 @immutable
-@freezed
+@Freezed(toJson: false)
 class SerializedVector2 with _$SerializedVector2 {
   @JsonSerializable(explicitToJson: true)
   const factory SerializedVector2({
@@ -71,6 +71,7 @@ class SerializedVector2 with _$SerializedVector2 {
   static const zero = SerializedVector2();
   bool get isZero => x == 0 && y == 0;
   Vector2 toVector2() => Vector2(x, y);
+  Map<String, dynamic> toJson() => {'x': x, 'y': y};
   Offset toOffset() => Offset(x, y);
 }
 

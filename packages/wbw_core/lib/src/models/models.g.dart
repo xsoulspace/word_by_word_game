@@ -118,6 +118,7 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
 const _$GameVersionEnumMap = {
   GameVersion.$1: r'$1',
   GameVersion.$2: r'$2',
+  GameVersion.$3: r'$3',
 };
 
 _$_LevelCharactersModel _$$_LevelCharactersModelFromJson(

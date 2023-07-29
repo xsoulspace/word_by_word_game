@@ -21,7 +21,7 @@ Map<String, dynamic> _$$_CanvasDataReferenceModelToJson(
         _$_CanvasDataReferenceModel instance) =>
     <String, dynamic>{
       'id': CanvasDataModelId.toJsonString(instance.id),
-      'name': instance.name,
+      'name': LocalizedMap.toJsonValueMap(instance.name),
     };
 
 _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
@@ -45,6 +45,7 @@ _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
           : RenderObjectModel.fromJson(
               json['playerObject'] as Map<String, dynamic>),
       skyYPosition: (json['skyYPosition'] as num?)?.toDouble() ?? 0,
+      gravityYPosition: (json['gravityYPosition'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
@@ -55,6 +56,7 @@ Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
       'objects': CanvasDataModel._objectsToJson(instance.objects),
       'playerObject': instance.playerObject,
       'skyYPosition': instance.skyYPosition,
+      'gravityYPosition': instance.gravityYPosition,
     };
 
 _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>

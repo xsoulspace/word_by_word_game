@@ -95,7 +95,7 @@ class GameInitializer {
             version: GameVersion.$2,
             playersCharacters: characters,
           );
-        case GameVersion.$2:
+        case GameVersion.$2 || GameVersion.$3:
           break;
       }
     }
@@ -112,7 +112,6 @@ class GameInitializer {
 
     return GameSaveModel(
       id: 'game',
-      version: kLatestGameVersion,
       playersCharacters: characters,
       currentLevelId: CanvasDataModelId.empty,
     );

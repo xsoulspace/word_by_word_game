@@ -129,6 +129,7 @@ mixin _$CanvasDataReferenceModel {
       fromJson: CanvasDataModelId.fromJson,
       toJson: CanvasDataModelId.toJsonString)
   CanvasDataModelId get id => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
   LocalizedMap get name => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -146,7 +147,8 @@ abstract class $CanvasDataReferenceModelCopyWith<$Res> {
   $Res call(
       {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
           CanvasDataModelId id,
-      LocalizedMap name});
+      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
+          LocalizedMap name});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get name;
@@ -210,7 +212,8 @@ abstract class _$$_CanvasDataReferenceModelCopyWith<$Res>
   $Res call(
       {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
           CanvasDataModelId id,
-      LocalizedMap name});
+      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
+          LocalizedMap name});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get id;
@@ -252,7 +255,8 @@ class _$_CanvasDataReferenceModel extends _CanvasDataReferenceModel {
   const _$_CanvasDataReferenceModel(
       {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
           this.id = CanvasDataModelId.empty,
-      this.name = LocalizedMap.empty})
+      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
+          this.name = LocalizedMap.empty})
       : super._();
 
   factory _$_CanvasDataReferenceModel.fromJson(Map<String, dynamic> json) =>
@@ -264,7 +268,7 @@ class _$_CanvasDataReferenceModel extends _CanvasDataReferenceModel {
       toJson: CanvasDataModelId.toJsonString)
   final CanvasDataModelId id;
   @override
-  @JsonKey()
+  @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
   final LocalizedMap name;
 
   @override
@@ -304,7 +308,8 @@ abstract class _CanvasDataReferenceModel extends CanvasDataReferenceModel {
   const factory _CanvasDataReferenceModel(
       {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
           final CanvasDataModelId id,
-      final LocalizedMap name}) = _$_CanvasDataReferenceModel;
+      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
+          final LocalizedMap name}) = _$_CanvasDataReferenceModel;
   const _CanvasDataReferenceModel._() : super._();
 
   factory _CanvasDataReferenceModel.fromJson(Map<String, dynamic> json) =
@@ -316,6 +321,7 @@ abstract class _CanvasDataReferenceModel extends CanvasDataReferenceModel {
       toJson: CanvasDataModelId.toJsonString)
   CanvasDataModelId get id;
   @override
+  @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
   LocalizedMap get name;
   @override
   @JsonKey(ignore: true)
@@ -353,8 +359,11 @@ mixin _$CanvasDataModel {
   /// As player is unique - it should be used separately from [objects].
   RenderObjectModel get playerObject => throw _privateConstructorUsedError;
 
-  /// can be negative and positive
+  /// can be negative and positive. Should be tile index.
   double get skyYPosition => throw _privateConstructorUsedError;
+
+  /// can be negative and positive. Should be tile index.
+  double get gravityYPosition => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -377,7 +386,8 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
-      double skyYPosition});
+      double skyYPosition,
+      double gravityYPosition});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get name;
@@ -403,6 +413,7 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     Object? objects = null,
     Object? playerObject = null,
     Object? skyYPosition = null,
+    Object? gravityYPosition = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -428,6 +439,10 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
       skyYPosition: null == skyYPosition
           ? _value.skyYPosition
           : skyYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
+      gravityYPosition: null == gravityYPosition
+          ? _value.gravityYPosition
+          : gravityYPosition // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -474,7 +489,8 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
-      double skyYPosition});
+      double skyYPosition,
+      double gravityYPosition});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get id;
@@ -501,6 +517,7 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
     Object? objects = null,
     Object? playerObject = null,
     Object? skyYPosition = null,
+    Object? gravityYPosition = null,
   }) {
     return _then(_$_CanvasDataModel(
       id: null == id
@@ -527,6 +544,10 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
           ? _value.skyYPosition
           : skyYPosition // ignore: cast_nullable_to_non_nullable
               as double,
+      gravityYPosition: null == gravityYPosition
+          ? _value.gravityYPosition
+          : gravityYPosition // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
@@ -543,7 +564,8 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           final Map<Gid, RenderObjectModel> objects = const {},
       this.playerObject = RenderObjectModel.empty,
-      this.skyYPosition = 0})
+      this.skyYPosition = 0,
+      this.gravityYPosition = 0})
       : _layers = layers,
         _objects = objects,
         super._();
@@ -599,14 +621,19 @@ class _$_CanvasDataModel extends _CanvasDataModel {
   @JsonKey()
   final RenderObjectModel playerObject;
 
-  /// can be negative and positive
+  /// can be negative and positive. Should be tile index.
   @override
   @JsonKey()
   final double skyYPosition;
 
+  /// can be negative and positive. Should be tile index.
+  @override
+  @JsonKey()
+  final double gravityYPosition;
+
   @override
   String toString() {
-    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYPosition: $skyYPosition)';
+    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYPosition: $skyYPosition, gravityYPosition: $gravityYPosition)';
   }
 
   @override
@@ -621,7 +648,9 @@ class _$_CanvasDataModel extends _CanvasDataModel {
             (identical(other.playerObject, playerObject) ||
                 other.playerObject == playerObject) &&
             (identical(other.skyYPosition, skyYPosition) ||
-                other.skyYPosition == skyYPosition));
+                other.skyYPosition == skyYPosition) &&
+            (identical(other.gravityYPosition, gravityYPosition) ||
+                other.gravityYPosition == gravityYPosition));
   }
 
   @JsonKey(ignore: true)
@@ -633,7 +662,8 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       const DeepCollectionEquality().hash(_layers),
       const DeepCollectionEquality().hash(_objects),
       playerObject,
-      skyYPosition);
+      skyYPosition,
+      gravityYPosition);
 
   @JsonKey(ignore: true)
   @override
@@ -659,7 +689,8 @@ abstract class _CanvasDataModel extends CanvasDataModel {
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           final Map<Gid, RenderObjectModel> objects,
       final RenderObjectModel playerObject,
-      final double skyYPosition}) = _$_CanvasDataModel;
+      final double skyYPosition,
+      final double gravityYPosition}) = _$_CanvasDataModel;
   const _CanvasDataModel._() : super._();
 
   factory _CanvasDataModel.fromJson(Map<String, dynamic> json) =
@@ -695,8 +726,12 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   RenderObjectModel get playerObject;
   @override
 
-  /// can be negative and positive
+  /// can be negative and positive. Should be tile index.
   double get skyYPosition;
+  @override
+
+  /// can be negative and positive. Should be tile index.
+  double get gravityYPosition;
   @override
   @JsonKey(ignore: true)
   _$$_CanvasDataModelCopyWith<_$_CanvasDataModel> get copyWith =>

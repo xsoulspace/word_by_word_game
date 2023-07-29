@@ -1,10 +1,12 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
@@ -47,6 +49,8 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       },
     );
   }
+  final hotAirBalloonMechanics = HotAirBalloonMechanics();
+
   final PlayerCharacterModel characterModel;
   FlyingObjectsParams params;
   // final ObstacleLevelHelper obstacleLevelHelper;
@@ -100,6 +104,30 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   @override
   void update(final double dt) {
+    final gameConstantsCubit = game.diDto.gameConstantsCubit;
+    final gameConstants = gameConstantsCubit.state;
+    final gravityYPosition = game.diDto.canvasCubit.canvasData.gravityYPosition;
+    if (game.paused) {
+      // do nothing
+    } else {
+      // update position if needed
+      final liftForce = hotAirBalloonMechanics.calculateLiftForce(
+        constants: gameConstants.forces,
+        balloonPowers: gameConstants.balloonPowers,
+        balloonParams: gameConstants.balloonParams,
+        height: 10, // (gravityYPosition - cell.y).toDouble(),
+      );
+      final newPosition = position.copyWith(
+        dy: position.dy - liftForce.liftPower,
+      );
+      setPosition(newPosition);
+
+      gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
+        ChangeCharacterPositionEvent(
+          position: newPosition.toVector2(),
+        ),
+      );
+    }
     // final collided = obstacleLevelHelper.checkCollision(position);
     // if (collided) {
     //   _onCollision();
@@ -163,12 +191,13 @@ class GameCanvasObject extends Component
   Offset position;
   Offset distanceToOrigin;
   Offset distanceToTileLeftTopCorner;
+  math.Point<int> get cell =>
+      OriginVectorUtils.use(origin).getCurrentCellByCanvasObject(
+        objectDistanceToOrigin: distanceToOrigin,
+      );
 
   void _updateDistanceToOrigin() {
     distanceToOrigin = position - origin.toOffset();
-    final cell = OriginVectorUtils.use(origin).getCurrentCellByCanvasObject(
-      objectDistanceToOrigin: distanceToOrigin,
-    );
     final cellTopLeftPosition = Offset(
       (cell.x * kTileDimension).toDouble(),
       (cell.y * kTileDimension).toDouble(),
@@ -222,6 +251,12 @@ class GameCanvasObject extends Component
 
   void onOriginUpdate() {
     _updatePosition();
+    _savePosition();
+  }
+
+  void setPosition(final Offset newPosition) {
+    position = newPosition;
+    _updateDistanceToOrigin();
     _savePosition();
   }
 

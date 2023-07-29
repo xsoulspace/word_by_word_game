@@ -180,9 +180,9 @@ class HotAirBalloonMechanics {
     } else {
       powerUsage = balloonParams.powerUsage;
     }
-    final double increasedVolume = constants.volumeIncreaseRatio * powerUsage;
-
+    final increasedVolume = constants.volumeIncreaseRatio * powerUsage;
     final decreasedVolume = constants.volumeDecreaseRatio * height;
+
     double volume = balloonPowers.volume - decreasedVolume + increasedVolume;
     if (balloonParams.maxVolume < volume) {
       /// The volume & power is wasted.
