@@ -60,25 +60,20 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     }
   }
 
-  void onConsumeCharacterFuel(
-    final ConsumeFuelEvent event,
+  void onChangeCharacter(
+    final PlayerCharacterModel value,
   ) {
-    final updatedState = state.copyWith(
-      playerCharacter: state.playerCharacter.copyWith(
-        fuel: event.fuel,
-      ),
-    );
-
-    emit(updatedState);
+    emit(state.copyWith(playerCharacter: value));
   }
 
-  void onChangeCharacterPosition(
-    final ChangeCharacterPositionEvent event,
-  ) {
-    final position = event.position;
+  void onChangeCharacterPosition({
+    required final Vector2 position,
+    required final LiftForceModel liftForce,
+  }) {
     final updatedState = state.copyWith(
       playerCharacter: state.playerCharacter.copyWith(
         position: SerializedVector2(x: position.x, y: position.y),
+        balloonPowers: liftForce.updatedPowers,
       ),
     );
 
@@ -91,12 +86,12 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     final fuelMechanics = diDto.mechanics.fuel;
     final fuel = fuelMechanics.getFuelFromScore(score: event.score);
     final fuelStorage = fuelMechanics.refuel(
-      fuelStorage: state.playerCharacter.fuel,
+      fuelStorage: const FuelStorageModel(), //state.playerCharacter.power,
       fuel: fuel,
     );
     final updatedState = state.copyWith(
       playerCharacter: state.playerCharacter.copyWith(
-        fuel: fuelStorage,
+        balloonPowers: const BalloonLiftPowersModel(),
       ),
     );
     emit(updatedState);

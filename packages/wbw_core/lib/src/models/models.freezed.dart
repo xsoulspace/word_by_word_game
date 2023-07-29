@@ -1990,10 +1990,9 @@ mixin _$PlayerCharacterModel {
   LocalizedMap get localizedName => throw _privateConstructorUsedError;
   String get characterIcon => throw _privateConstructorUsedError;
   SerializedVector2 get position => throw _privateConstructorUsedError;
-  FuelStorageModel get fuel => throw _privateConstructorUsedError;
-  double get fuelNormalPower => throw _privateConstructorUsedError;
-  double get requiredLiftForce => throw _privateConstructorUsedError;
-  PlayerCharacterLevelInitialParams get initialParams =>
+  BalloonLiftPowersModel get balloonPowers =>
+      throw _privateConstructorUsedError;
+  BalloonLiftParamsModel get balloonParams =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -2016,16 +2015,14 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       LocalizedMap localizedName,
       String characterIcon,
       SerializedVector2 position,
-      FuelStorageModel fuel,
-      double fuelNormalPower,
-      double requiredLiftForce,
-      PlayerCharacterLevelInitialParams initialParams});
+      BalloonLiftPowersModel balloonPowers,
+      BalloonLiftParamsModel balloonParams});
 
   $CharacterAssetModelCopyWith<$Res> get asset;
   $LocalizedMapCopyWith<$Res> get localizedName;
   $SerializedVector2CopyWith<$Res> get position;
-  $FuelStorageModelCopyWith<$Res> get fuel;
-  $PlayerCharacterLevelInitialParamsCopyWith<$Res> get initialParams;
+  $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
+  $BalloonLiftParamsModelCopyWith<$Res> get balloonParams;
 }
 
 /// @nodoc
@@ -2049,10 +2046,8 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     Object? localizedName = null,
     Object? characterIcon = null,
     Object? position = null,
-    Object? fuel = null,
-    Object? fuelNormalPower = null,
-    Object? requiredLiftForce = null,
-    Object? initialParams = null,
+    Object? balloonPowers = null,
+    Object? balloonParams = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -2083,22 +2078,14 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
-      fuel: null == fuel
-          ? _value.fuel
-          : fuel // ignore: cast_nullable_to_non_nullable
-              as FuelStorageModel,
-      fuelNormalPower: null == fuelNormalPower
-          ? _value.fuelNormalPower
-          : fuelNormalPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      requiredLiftForce: null == requiredLiftForce
-          ? _value.requiredLiftForce
-          : requiredLiftForce // ignore: cast_nullable_to_non_nullable
-              as double,
-      initialParams: null == initialParams
-          ? _value.initialParams
-          : initialParams // ignore: cast_nullable_to_non_nullable
-              as PlayerCharacterLevelInitialParams,
+      balloonPowers: null == balloonPowers
+          ? _value.balloonPowers
+          : balloonPowers // ignore: cast_nullable_to_non_nullable
+              as BalloonLiftPowersModel,
+      balloonParams: null == balloonParams
+          ? _value.balloonParams
+          : balloonParams // ignore: cast_nullable_to_non_nullable
+              as BalloonLiftParamsModel,
     ) as $Val);
   }
 
@@ -2128,18 +2115,17 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $FuelStorageModelCopyWith<$Res> get fuel {
-    return $FuelStorageModelCopyWith<$Res>(_value.fuel, (value) {
-      return _then(_value.copyWith(fuel: value) as $Val);
+  $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers {
+    return $BalloonLiftPowersModelCopyWith<$Res>(_value.balloonPowers, (value) {
+      return _then(_value.copyWith(balloonPowers: value) as $Val);
     });
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $PlayerCharacterLevelInitialParamsCopyWith<$Res> get initialParams {
-    return $PlayerCharacterLevelInitialParamsCopyWith<$Res>(
-        _value.initialParams, (value) {
-      return _then(_value.copyWith(initialParams: value) as $Val);
+  $BalloonLiftParamsModelCopyWith<$Res> get balloonParams {
+    return $BalloonLiftParamsModelCopyWith<$Res>(_value.balloonParams, (value) {
+      return _then(_value.copyWith(balloonParams: value) as $Val);
     });
   }
 }
@@ -2160,10 +2146,8 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
       LocalizedMap localizedName,
       String characterIcon,
       SerializedVector2 position,
-      FuelStorageModel fuel,
-      double fuelNormalPower,
-      double requiredLiftForce,
-      PlayerCharacterLevelInitialParams initialParams});
+      BalloonLiftPowersModel balloonPowers,
+      BalloonLiftParamsModel balloonParams});
 
   @override
   $CharacterAssetModelCopyWith<$Res> get asset;
@@ -2172,9 +2156,9 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
   @override
   $SerializedVector2CopyWith<$Res> get position;
   @override
-  $FuelStorageModelCopyWith<$Res> get fuel;
+  $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
   @override
-  $PlayerCharacterLevelInitialParamsCopyWith<$Res> get initialParams;
+  $BalloonLiftParamsModelCopyWith<$Res> get balloonParams;
 }
 
 /// @nodoc
@@ -2195,10 +2179,8 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
     Object? localizedName = null,
     Object? characterIcon = null,
     Object? position = null,
-    Object? fuel = null,
-    Object? fuelNormalPower = null,
-    Object? requiredLiftForce = null,
-    Object? initialParams = null,
+    Object? balloonPowers = null,
+    Object? balloonParams = null,
   }) {
     return _then(_$_PlayerCharacterModel(
       id: null == id
@@ -2229,22 +2211,14 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
-      fuel: null == fuel
-          ? _value.fuel
-          : fuel // ignore: cast_nullable_to_non_nullable
-              as FuelStorageModel,
-      fuelNormalPower: null == fuelNormalPower
-          ? _value.fuelNormalPower
-          : fuelNormalPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      requiredLiftForce: null == requiredLiftForce
-          ? _value.requiredLiftForce
-          : requiredLiftForce // ignore: cast_nullable_to_non_nullable
-              as double,
-      initialParams: null == initialParams
-          ? _value.initialParams
-          : initialParams // ignore: cast_nullable_to_non_nullable
-              as PlayerCharacterLevelInitialParams,
+      balloonPowers: null == balloonPowers
+          ? _value.balloonPowers
+          : balloonPowers // ignore: cast_nullable_to_non_nullable
+              as BalloonLiftPowersModel,
+      balloonParams: null == balloonParams
+          ? _value.balloonParams
+          : balloonParams // ignore: cast_nullable_to_non_nullable
+              as BalloonLiftParamsModel,
     ));
   }
 }
@@ -2261,10 +2235,8 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       this.localizedName = LocalizedMap.empty,
       this.characterIcon = '',
       this.position = SerializedVector2.zero,
-      this.fuel = const FuelStorageModel(),
-      this.fuelNormalPower = 50.5,
-      this.requiredLiftForce = 0.5,
-      this.initialParams = PlayerCharacterLevelInitialParams.initial})
+      this.balloonPowers = const BalloonLiftPowersModel(),
+      this.balloonParams = const BalloonLiftParamsModel()})
       : super._();
 
   factory _$_PlayerCharacterModel.fromJson(Map<String, dynamic> json) =>
@@ -2293,20 +2265,14 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   final SerializedVector2 position;
   @override
   @JsonKey()
-  final FuelStorageModel fuel;
+  final BalloonLiftPowersModel balloonPowers;
   @override
   @JsonKey()
-  final double fuelNormalPower;
-  @override
-  @JsonKey()
-  final double requiredLiftForce;
-  @override
-  @JsonKey()
-  final PlayerCharacterLevelInitialParams initialParams;
+  final BalloonLiftParamsModel balloonParams;
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, description: $description, color: $color, asset: $asset, localizedName: $localizedName, characterIcon: $characterIcon, position: $position, fuel: $fuel, fuelNormalPower: $fuelNormalPower, requiredLiftForce: $requiredLiftForce, initialParams: $initialParams)';
+    return 'PlayerCharacterModel(id: $id, description: $description, color: $color, asset: $asset, localizedName: $localizedName, characterIcon: $characterIcon, position: $position, balloonPowers: $balloonPowers, balloonParams: $balloonParams)';
   }
 
   @override
@@ -2325,30 +2291,16 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
                 other.characterIcon == characterIcon) &&
             (identical(other.position, position) ||
                 other.position == position) &&
-            (identical(other.fuel, fuel) || other.fuel == fuel) &&
-            (identical(other.fuelNormalPower, fuelNormalPower) ||
-                other.fuelNormalPower == fuelNormalPower) &&
-            (identical(other.requiredLiftForce, requiredLiftForce) ||
-                other.requiredLiftForce == requiredLiftForce) &&
-            (identical(other.initialParams, initialParams) ||
-                other.initialParams == initialParams));
+            (identical(other.balloonPowers, balloonPowers) ||
+                other.balloonPowers == balloonPowers) &&
+            (identical(other.balloonParams, balloonParams) ||
+                other.balloonParams == balloonParams));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      id,
-      description,
-      color,
-      asset,
-      localizedName,
-      characterIcon,
-      position,
-      fuel,
-      fuelNormalPower,
-      requiredLiftForce,
-      initialParams);
+  int get hashCode => Object.hash(runtimeType, id, description, color, asset,
+      localizedName, characterIcon, position, balloonPowers, balloonParams);
 
   @JsonKey(ignore: true)
   @override
@@ -2367,18 +2319,15 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 
 abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   const factory _PlayerCharacterModel(
-          {final String id,
-          final String description,
-          final int color,
-          final CharacterAssetModel asset,
-          final LocalizedMap localizedName,
-          final String characterIcon,
-          final SerializedVector2 position,
-          final FuelStorageModel fuel,
-          final double fuelNormalPower,
-          final double requiredLiftForce,
-          final PlayerCharacterLevelInitialParams initialParams}) =
-      _$_PlayerCharacterModel;
+      {final String id,
+      final String description,
+      final int color,
+      final CharacterAssetModel asset,
+      final LocalizedMap localizedName,
+      final String characterIcon,
+      final SerializedVector2 position,
+      final BalloonLiftPowersModel balloonPowers,
+      final BalloonLiftParamsModel balloonParams}) = _$_PlayerCharacterModel;
   const _PlayerCharacterModel._() : super._();
 
   factory _PlayerCharacterModel.fromJson(Map<String, dynamic> json) =
@@ -2399,185 +2348,13 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   @override
   SerializedVector2 get position;
   @override
-  FuelStorageModel get fuel;
+  BalloonLiftPowersModel get balloonPowers;
   @override
-  double get fuelNormalPower;
-  @override
-  double get requiredLiftForce;
-  @override
-  PlayerCharacterLevelInitialParams get initialParams;
+  BalloonLiftParamsModel get balloonParams;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-PlayerCharacterLevelInitialParams _$PlayerCharacterLevelInitialParamsFromJson(
-    Map<String, dynamic> json) {
-  return _PlayerCharacterLevelInitialParams.fromJson(json);
-}
-
-/// @nodoc
-mixin _$PlayerCharacterLevelInitialParams {
-  FuelStorageModel get fuel => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PlayerCharacterLevelInitialParamsCopyWith<PlayerCharacterLevelInitialParams>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $PlayerCharacterLevelInitialParamsCopyWith<$Res> {
-  factory $PlayerCharacterLevelInitialParamsCopyWith(
-          PlayerCharacterLevelInitialParams value,
-          $Res Function(PlayerCharacterLevelInitialParams) then) =
-      _$PlayerCharacterLevelInitialParamsCopyWithImpl<$Res,
-          PlayerCharacterLevelInitialParams>;
-  @useResult
-  $Res call({FuelStorageModel fuel});
-
-  $FuelStorageModelCopyWith<$Res> get fuel;
-}
-
-/// @nodoc
-class _$PlayerCharacterLevelInitialParamsCopyWithImpl<$Res,
-        $Val extends PlayerCharacterLevelInitialParams>
-    implements $PlayerCharacterLevelInitialParamsCopyWith<$Res> {
-  _$PlayerCharacterLevelInitialParamsCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fuel = null,
-  }) {
-    return _then(_value.copyWith(
-      fuel: null == fuel
-          ? _value.fuel
-          : fuel // ignore: cast_nullable_to_non_nullable
-              as FuelStorageModel,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FuelStorageModelCopyWith<$Res> get fuel {
-    return $FuelStorageModelCopyWith<$Res>(_value.fuel, (value) {
-      return _then(_value.copyWith(fuel: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_PlayerCharacterLevelInitialParamsCopyWith<$Res>
-    implements $PlayerCharacterLevelInitialParamsCopyWith<$Res> {
-  factory _$$_PlayerCharacterLevelInitialParamsCopyWith(
-          _$_PlayerCharacterLevelInitialParams value,
-          $Res Function(_$_PlayerCharacterLevelInitialParams) then) =
-      __$$_PlayerCharacterLevelInitialParamsCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({FuelStorageModel fuel});
-
-  @override
-  $FuelStorageModelCopyWith<$Res> get fuel;
-}
-
-/// @nodoc
-class __$$_PlayerCharacterLevelInitialParamsCopyWithImpl<$Res>
-    extends _$PlayerCharacterLevelInitialParamsCopyWithImpl<$Res,
-        _$_PlayerCharacterLevelInitialParams>
-    implements _$$_PlayerCharacterLevelInitialParamsCopyWith<$Res> {
-  __$$_PlayerCharacterLevelInitialParamsCopyWithImpl(
-      _$_PlayerCharacterLevelInitialParams _value,
-      $Res Function(_$_PlayerCharacterLevelInitialParams) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fuel = null,
-  }) {
-    return _then(_$_PlayerCharacterLevelInitialParams(
-      fuel: null == fuel
-          ? _value.fuel
-          : fuel // ignore: cast_nullable_to_non_nullable
-              as FuelStorageModel,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_PlayerCharacterLevelInitialParams
-    extends _PlayerCharacterLevelInitialParams {
-  const _$_PlayerCharacterLevelInitialParams(
-      {this.fuel = const FuelStorageModel()})
-      : super._();
-
-  factory _$_PlayerCharacterLevelInitialParams.fromJson(
-          Map<String, dynamic> json) =>
-      _$$_PlayerCharacterLevelInitialParamsFromJson(json);
-
-  @override
-  @JsonKey()
-  final FuelStorageModel fuel;
-
-  @override
-  String toString() {
-    return 'PlayerCharacterLevelInitialParams(fuel: $fuel)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_PlayerCharacterLevelInitialParams &&
-            (identical(other.fuel, fuel) || other.fuel == fuel));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, fuel);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_PlayerCharacterLevelInitialParamsCopyWith<
-          _$_PlayerCharacterLevelInitialParams>
-      get copyWith => __$$_PlayerCharacterLevelInitialParamsCopyWithImpl<
-          _$_PlayerCharacterLevelInitialParams>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_PlayerCharacterLevelInitialParamsToJson(
-      this,
-    );
-  }
-}
-
-abstract class _PlayerCharacterLevelInitialParams
-    extends PlayerCharacterLevelInitialParams {
-  const factory _PlayerCharacterLevelInitialParams(
-      {final FuelStorageModel fuel}) = _$_PlayerCharacterLevelInitialParams;
-  const _PlayerCharacterLevelInitialParams._() : super._();
-
-  factory _PlayerCharacterLevelInitialParams.fromJson(
-          Map<String, dynamic> json) =
-      _$_PlayerCharacterLevelInitialParams.fromJson;
-
-  @override
-  FuelStorageModel get fuel;
-  @override
-  @JsonKey(ignore: true)
-  _$$_PlayerCharacterLevelInitialParamsCopyWith<
-          _$_PlayerCharacterLevelInitialParams>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 CharacterAssetModel _$CharacterAssetModelFromJson(Map<String, dynamic> json) {

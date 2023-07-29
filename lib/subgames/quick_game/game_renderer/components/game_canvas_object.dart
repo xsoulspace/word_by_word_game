@@ -105,27 +105,62 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   @override
   void update(final double dt) {
     final gameConstantsCubit = game.diDto.gameConstantsCubit;
+    final character = game.diDto.levelPlayersBloc.state.playerCharacter;
     final gameConstants = gameConstantsCubit.state;
-    final gravityYPosition = game.diDto.canvasCubit.canvasData.gravityYPosition;
+    const gravityYTilePosition = 10;
+    // game.diDto.canvasCubit.canvasData.gravityYPosition;
     if (game.paused) {
       // do nothing
     } else {
-      // update position if needed
-      final liftForce = hotAirBalloonMechanics.calculateLiftForce(
-        constants: gameConstants.forces,
-        balloonPowers: gameConstants.balloonPowers,
-        balloonParams: gameConstants.balloonParams,
-        height: 10, // (gravityYPosition - cell.y).toDouble(),
-      );
-      final newPosition = position.copyWith(
-        dy: position.dy - liftForce.liftPower,
-      );
-      setPosition(newPosition);
+      LiftForceModel liftForce;
+
+      /// can be positive and negative
+      /// if negative, then it should stick to the ground
+      ///
+      /// if positive, then it's flying
+      ///
+      /// -4 -3 -2 -1 0 1 2 3 4
+      /// ---------------------
+      ///    Zero       Point
+      ///
+      /// Zero - point for right will be always negative
+      /// for left will be always positive
+
+      final tileDistance = gravityYTilePosition * kTileDimension;
+      final height = tileDistance - distanceToOrigin.dy;
+      print(height);
+      if (height < 0) {
+        // do not update position
+        // update position if needed
+        liftForce = hotAirBalloonMechanics.calculateLiftForce(
+          constants: gameConstants.forces,
+          balloonPowers: character.balloonPowers,
+          balloonParams: character.balloonParams,
+          height: 0,
+        );
+        if (liftForce.liftPower > 0) {
+          final newPosition = position.copyWith(
+            dy: position.dy - liftForce.liftPower,
+          );
+          setPosition(newPosition);
+        }
+      } else {
+        // update position if needed
+        liftForce = hotAirBalloonMechanics.calculateLiftForce(
+          constants: gameConstants.forces,
+          balloonPowers: character.balloonPowers,
+          balloonParams: character.balloonParams,
+          height: height,
+        );
+        final newPosition = position.copyWith(
+          dy: position.dy - liftForce.liftPower,
+        );
+        setPosition(newPosition);
+      }
 
       gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
-        ChangeCharacterPositionEvent(
-          position: newPosition.toVector2(),
-        ),
+        position: position.toVector2(),
+        liftForce: liftForce,
       );
     }
     // final collided = obstacleLevelHelper.checkCollision(position);

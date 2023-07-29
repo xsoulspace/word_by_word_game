@@ -231,15 +231,14 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
               json['position'] as Map<String, dynamic>),
-      fuel: json['fuel'] == null
-          ? const FuelStorageModel()
-          : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
-      fuelNormalPower: (json['fuelNormalPower'] as num?)?.toDouble() ?? 50.5,
-      requiredLiftForce: (json['requiredLiftForce'] as num?)?.toDouble() ?? 0.5,
-      initialParams: json['initialParams'] == null
-          ? PlayerCharacterLevelInitialParams.initial
-          : PlayerCharacterLevelInitialParams.fromJson(
-              json['initialParams'] as Map<String, dynamic>),
+      balloonPowers: json['balloonPowers'] == null
+          ? const BalloonLiftPowersModel()
+          : BalloonLiftPowersModel.fromJson(
+              json['balloonPowers'] as Map<String, dynamic>),
+      balloonParams: json['balloonParams'] == null
+          ? const BalloonLiftParamsModel()
+          : BalloonLiftParamsModel.fromJson(
+              json['balloonParams'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_PlayerCharacterModelToJson(
@@ -252,24 +251,8 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'localizedName': instance.localizedName.toJson(),
       'characterIcon': instance.characterIcon,
       'position': instance.position.toJson(),
-      'fuel': instance.fuel.toJson(),
-      'fuelNormalPower': instance.fuelNormalPower,
-      'requiredLiftForce': instance.requiredLiftForce,
-      'initialParams': instance.initialParams.toJson(),
-    };
-
-_$_PlayerCharacterLevelInitialParams
-    _$$_PlayerCharacterLevelInitialParamsFromJson(Map<String, dynamic> json) =>
-        _$_PlayerCharacterLevelInitialParams(
-          fuel: json['fuel'] == null
-              ? const FuelStorageModel()
-              : FuelStorageModel.fromJson(json['fuel'] as Map<String, dynamic>),
-        );
-
-Map<String, dynamic> _$$_PlayerCharacterLevelInitialParamsToJson(
-        _$_PlayerCharacterLevelInitialParams instance) =>
-    <String, dynamic>{
-      'fuel': instance.fuel,
+      'balloonPowers': instance.balloonPowers.toJson(),
+      'balloonParams': instance.balloonParams.toJson(),
     };
 
 _$_CharacterAssetModel _$$_CharacterAssetModelFromJson(

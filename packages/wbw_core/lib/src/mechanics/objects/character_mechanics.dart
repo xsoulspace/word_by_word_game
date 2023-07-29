@@ -3,6 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../wbw_core.dart';
 
 part 'character_mechanics.freezed.dart';
+part 'character_mechanics.g.dart';
 
 @immutable
 @Freezed(
@@ -34,13 +35,9 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
   }) = _FlyingObjectsParams;
   const FlyingObjectsParams._();
 
-  factory FlyingObjectsParams.fromCharacterModel(
-    final PlayerCharacterModel character,
-  ) =>
-      FlyingObjectsParams(
-        fuel: character.fuel,
-        fuelNormalPower: character.fuelNormalPower,
-        requiredLiftForce: character.requiredLiftForce,
+  factory FlyingObjectsParams.fromCharacterModel() => const FlyingObjectsParams(
+        fuelNormalPower: 0,
+        requiredLiftForce: 0,
       );
 
   /// immutable
@@ -171,7 +168,10 @@ class HotAirBalloonMechanics {
   }) {
     double powerUsage;
     double powerLeft = balloonPowers.power - balloonParams.powerUsage;
-    if (powerLeft < 0) {
+    if (balloonPowers.power == 0) {
+      powerLeft = 0;
+      powerUsage = 0;
+    } else if (powerLeft < 0) {
       powerUsage = balloonParams.powerUsage - powerLeft;
       powerLeft = 0;
     } else if (balloonParams.maxPower < powerLeft) {
@@ -193,6 +193,14 @@ class HotAirBalloonMechanics {
     }
     final volumeLiftForce = volume * constants.volumeToLiftRatio;
     final liftForce = volumeLiftForce - constants.gravityForce;
+    print({
+      'powerLeft': powerLeft.toInt(),
+      'volume': volume.toInt(),
+      'liftForce': liftForce.toStringAsFixed(2),
+      'decreasedVolume': decreasedVolume.toStringAsFixed(2),
+      'increasedVolume': increasedVolume.toStringAsFixed(2),
+      'height': height.toStringAsFixed(2),
+    });
 
     return LiftForceModel(
       liftPower: liftForce,
@@ -218,15 +226,26 @@ class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
     @Default(0.0) final double volume,
     @Default(0.0) final double power,
   }) = _BalloonLiftPowersModel;
+  factory BalloonLiftPowersModel.fromJson(final Map<String, dynamic> json) =>
+      _$BalloonLiftPowersModelFromJson(json);
+  static const initial = BalloonLiftPowersModel(
+    power: 2000,
+  );
 }
 
-@freezed
+@Freezed()
 class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
   const factory BalloonLiftParamsModel({
     @Default(0.0) final double maxVolume,
     @Default(0.0) final double maxPower,
     @Default(0.0) final double powerUsage,
   }) = _BalloonLiftParamsModel;
+  factory BalloonLiftParamsModel.fromJson(final Map<String, dynamic> json) =>
+      _$BalloonLiftParamsModelFromJson(json);
+  static const initial = BalloonLiftParamsModel(
+    maxVolume: 100,
+    maxPower: 20000,
+  );
 }
 
 @Freezed()
@@ -237,4 +256,9 @@ class ForcesConstantsModel with _$ForcesConstantsModel {
     @Default(0.0) final double volumeIncreaseRatio,
     @Default(0.0) final double volumeToLiftRatio,
   }) = _ForcesConstantsModel;
+  static const initial = ForcesConstantsModel(
+    gravityForce: 1.4,
+    volumeDecreaseRatio: 0.07,
+    volumeIncreaseRatio: 15,
+  );
 }

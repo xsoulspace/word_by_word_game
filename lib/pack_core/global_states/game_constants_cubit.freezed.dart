@@ -16,12 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$GameConstantsCubitState {
-  ForcesConstantsModel get forces =>
-      throw _privateConstructorUsedError; // TODO(arenukvern): move params below to
-  BalloonLiftParamsModel get balloonParams =>
-      throw _privateConstructorUsedError;
-  BalloonLiftPowersModel get balloonPowers =>
-      throw _privateConstructorUsedError;
+  ForcesConstantsModel get forces => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GameConstantsCubitStateCopyWith<GameConstantsCubitState> get copyWith =>
@@ -34,14 +29,9 @@ abstract class $GameConstantsCubitStateCopyWith<$Res> {
           $Res Function(GameConstantsCubitState) then) =
       _$GameConstantsCubitStateCopyWithImpl<$Res, GameConstantsCubitState>;
   @useResult
-  $Res call(
-      {ForcesConstantsModel forces,
-      BalloonLiftParamsModel balloonParams,
-      BalloonLiftPowersModel balloonPowers});
+  $Res call({ForcesConstantsModel forces});
 
   $ForcesConstantsModelCopyWith<$Res> get forces;
-  $BalloonLiftParamsModelCopyWith<$Res> get balloonParams;
-  $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
 }
 
 /// @nodoc
@@ -59,22 +49,12 @@ class _$GameConstantsCubitStateCopyWithImpl<$Res,
   @override
   $Res call({
     Object? forces = null,
-    Object? balloonParams = null,
-    Object? balloonPowers = null,
   }) {
     return _then(_value.copyWith(
       forces: null == forces
           ? _value.forces
           : forces // ignore: cast_nullable_to_non_nullable
               as ForcesConstantsModel,
-      balloonParams: null == balloonParams
-          ? _value.balloonParams
-          : balloonParams // ignore: cast_nullable_to_non_nullable
-              as BalloonLiftParamsModel,
-      balloonPowers: null == balloonPowers
-          ? _value.balloonPowers
-          : balloonPowers // ignore: cast_nullable_to_non_nullable
-              as BalloonLiftPowersModel,
     ) as $Val);
   }
 
@@ -83,22 +63,6 @@ class _$GameConstantsCubitStateCopyWithImpl<$Res,
   $ForcesConstantsModelCopyWith<$Res> get forces {
     return $ForcesConstantsModelCopyWith<$Res>(_value.forces, (value) {
       return _then(_value.copyWith(forces: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $BalloonLiftParamsModelCopyWith<$Res> get balloonParams {
-    return $BalloonLiftParamsModelCopyWith<$Res>(_value.balloonParams, (value) {
-      return _then(_value.copyWith(balloonParams: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers {
-    return $BalloonLiftPowersModelCopyWith<$Res>(_value.balloonPowers, (value) {
-      return _then(_value.copyWith(balloonPowers: value) as $Val);
     });
   }
 }
@@ -111,17 +75,10 @@ abstract class _$$_GameConstantsCubitStateCopyWith<$Res>
       __$$_GameConstantsCubitStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {ForcesConstantsModel forces,
-      BalloonLiftParamsModel balloonParams,
-      BalloonLiftPowersModel balloonPowers});
+  $Res call({ForcesConstantsModel forces});
 
   @override
   $ForcesConstantsModelCopyWith<$Res> get forces;
-  @override
-  $BalloonLiftParamsModelCopyWith<$Res> get balloonParams;
-  @override
-  $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
 }
 
 /// @nodoc
@@ -137,22 +94,12 @@ class __$$_GameConstantsCubitStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? forces = null,
-    Object? balloonParams = null,
-    Object? balloonPowers = null,
   }) {
     return _then(_$_GameConstantsCubitState(
       forces: null == forces
           ? _value.forces
           : forces // ignore: cast_nullable_to_non_nullable
               as ForcesConstantsModel,
-      balloonParams: null == balloonParams
-          ? _value.balloonParams
-          : balloonParams // ignore: cast_nullable_to_non_nullable
-              as BalloonLiftParamsModel,
-      balloonPowers: null == balloonPowers
-          ? _value.balloonPowers
-          : balloonPowers // ignore: cast_nullable_to_non_nullable
-              as BalloonLiftPowersModel,
     ));
   }
 }
@@ -161,24 +108,15 @@ class __$$_GameConstantsCubitStateCopyWithImpl<$Res>
 
 class _$_GameConstantsCubitState implements _GameConstantsCubitState {
   const _$_GameConstantsCubitState(
-      {this.forces = const ForcesConstantsModel(),
-      this.balloonParams = const BalloonLiftParamsModel(),
-      this.balloonPowers = const BalloonLiftPowersModel()});
+      {this.forces = const ForcesConstantsModel()});
 
   @override
   @JsonKey()
   final ForcesConstantsModel forces;
-// TODO(arenukvern): move params below to
-  @override
-  @JsonKey()
-  final BalloonLiftParamsModel balloonParams;
-  @override
-  @JsonKey()
-  final BalloonLiftPowersModel balloonPowers;
 
   @override
   String toString() {
-    return 'GameConstantsCubitState(forces: $forces, balloonParams: $balloonParams, balloonPowers: $balloonPowers)';
+    return 'GameConstantsCubitState(forces: $forces)';
   }
 
   @override
@@ -186,16 +124,11 @@ class _$_GameConstantsCubitState implements _GameConstantsCubitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_GameConstantsCubitState &&
-            (identical(other.forces, forces) || other.forces == forces) &&
-            (identical(other.balloonParams, balloonParams) ||
-                other.balloonParams == balloonParams) &&
-            (identical(other.balloonPowers, balloonPowers) ||
-                other.balloonPowers == balloonPowers));
+            (identical(other.forces, forces) || other.forces == forces));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, forces, balloonParams, balloonPowers);
+  int get hashCode => Object.hash(runtimeType, forces);
 
   @JsonKey(ignore: true)
   @override
@@ -207,17 +140,11 @@ class _$_GameConstantsCubitState implements _GameConstantsCubitState {
 }
 
 abstract class _GameConstantsCubitState implements GameConstantsCubitState {
-  const factory _GameConstantsCubitState(
-      {final ForcesConstantsModel forces,
-      final BalloonLiftParamsModel balloonParams,
-      final BalloonLiftPowersModel balloonPowers}) = _$_GameConstantsCubitState;
+  const factory _GameConstantsCubitState({final ForcesConstantsModel forces}) =
+      _$_GameConstantsCubitState;
 
   @override
   ForcesConstantsModel get forces;
-  @override // TODO(arenukvern): move params below to
-  BalloonLiftParamsModel get balloonParams;
-  @override
-  BalloonLiftPowersModel get balloonPowers;
   @override
   @JsonKey(ignore: true)
   _$$_GameConstantsCubitStateCopyWith<_$_GameConstantsCubitState>

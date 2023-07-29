@@ -17,34 +17,50 @@ class UiDebugSideBarCubit extends Cubit<UiDebugSideBarCubitState> {
   }) : super(UiDebugSideBarCubitState());
   GameConstantsCubit get gameConstantsCubit => dto.gameConstantsCubit;
   GameConstantsCubitState get _gameConstants => dto.gameConstantsCubit.state;
+  PlayerCharacterModel get _character =>
+      dto.levelPlayersBloc.state.playerCharacter;
 
   final UiDebugSideBarCubitDto dto;
   double get volume => 0;
-  void onVolumeChange(final String? value) {}
+  void onVolumeChange(final String? value) {
+    changePowers(
+      _character.balloonPowers.copyWith(
+        volume: double.tryParse(value ?? '') ?? 0,
+      ),
+    );
+  }
+
   double get power => 0;
-  void onPowerChange(final String? value) {}
-  double get maxVolume => _gameConstants.balloonParams.maxVolume;
+  void onPowerChange(final String? value) {
+    changePowers(
+      _character.balloonPowers.copyWith(
+        power: double.tryParse(value ?? '') ?? 0,
+      ),
+    );
+  }
+
+  double get maxVolume => _character.balloonParams.maxVolume;
   void onMaxVolumeChange(final String? value) {
     changeParams(
-      _gameConstants.balloonParams.copyWith(
+      _character.balloonParams.copyWith(
         maxVolume: double.tryParse(value ?? '') ?? 0,
       ),
     );
   }
 
-  double get maxPower => _gameConstants.balloonParams.maxPower;
+  double get maxPower => _character.balloonParams.maxPower;
   void onMaxPowerChange(final String? value) {
     changeParams(
-      _gameConstants.balloonParams.copyWith(
+      _character.balloonParams.copyWith(
         maxPower: double.tryParse(value ?? '') ?? 0,
       ),
     );
   }
 
-  double get powerUsage => _gameConstants.balloonParams.powerUsage;
+  double get powerUsage => _character.balloonParams.powerUsage;
   void onPowerUsageChange(final String? value) {
     changeParams(
-      _gameConstants.balloonParams.copyWith(
+      _character.balloonParams.copyWith(
         powerUsage: double.tryParse(value ?? '') ?? 0,
       ),
     );
@@ -87,18 +103,14 @@ class UiDebugSideBarCubit extends Cubit<UiDebugSideBarCubitState> {
   }
 
   void changePowers(final BalloonLiftPowersModel balloonPowers) {
-    gameConstantsCubit.changeState(
-      gameConstantsCubit.state.copyWith(
-        balloonPowers: balloonPowers,
-      ),
+    dto.levelPlayersBloc.onChangeCharacter(
+      _character.copyWith(balloonPowers: balloonPowers),
     );
   }
 
   void changeParams(final BalloonLiftParamsModel balloonParams) {
-    gameConstantsCubit.changeState(
-      gameConstantsCubit.state.copyWith(
-        balloonParams: balloonParams,
-      ),
+    dto.levelPlayersBloc.onChangeCharacter(
+      _character.copyWith(balloonParams: balloonParams),
     );
   }
 

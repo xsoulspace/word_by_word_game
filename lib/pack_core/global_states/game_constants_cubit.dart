@@ -8,12 +8,10 @@ part 'game_constants_cubit.freezed.dart';
 class GameConstantsCubitState with _$GameConstantsCubitState {
   const factory GameConstantsCubitState({
     @Default(ForcesConstantsModel()) final ForcesConstantsModel forces,
-    // TODO(arenukvern): move params below to
-    @Default(BalloonLiftParamsModel())
-    final BalloonLiftParamsModel balloonParams,
-    @Default(BalloonLiftPowersModel())
-    final BalloonLiftPowersModel balloonPowers,
   }) = _GameConstantsCubitState;
+  static const initial = GameConstantsCubitState(
+    forces: ForcesConstantsModel.initial,
+  );
 }
 
 class GameConstantsCubitDto {
@@ -23,7 +21,7 @@ class GameConstantsCubitDto {
 class GameConstantsCubit extends Cubit<GameConstantsCubitState> {
   GameConstantsCubit({
     required this.dto,
-  }) : super(const GameConstantsCubitState());
+  }) : super(GameConstantsCubitState.initial);
   final GameConstantsCubitDto dto;
 
   void changeState(final GameConstantsCubitState newState) {

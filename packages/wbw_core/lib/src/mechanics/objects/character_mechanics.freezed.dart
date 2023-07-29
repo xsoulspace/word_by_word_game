@@ -391,11 +391,17 @@ abstract class _LiftForceModel implements LiftForceModel {
       throw _privateConstructorUsedError;
 }
 
+BalloonLiftPowersModel _$BalloonLiftPowersModelFromJson(
+    Map<String, dynamic> json) {
+  return _BalloonLiftPowersModel.fromJson(json);
+}
+
 /// @nodoc
 mixin _$BalloonLiftPowersModel {
   double get volume => throw _privateConstructorUsedError;
   double get power => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BalloonLiftPowersModelCopyWith<BalloonLiftPowersModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -480,9 +486,12 @@ class __$$_BalloonLiftPowersModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
   const _$_BalloonLiftPowersModel({this.volume = 0.0, this.power = 0.0});
+
+  factory _$_BalloonLiftPowersModel.fromJson(Map<String, dynamic> json) =>
+      _$$_BalloonLiftPowersModelFromJson(json);
 
   @override
   @JsonKey()
@@ -505,6 +514,7 @@ class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
             (identical(other.power, power) || other.power == power));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, volume, power);
 
@@ -514,11 +524,21 @@ class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
   _$$_BalloonLiftPowersModelCopyWith<_$_BalloonLiftPowersModel> get copyWith =>
       __$$_BalloonLiftPowersModelCopyWithImpl<_$_BalloonLiftPowersModel>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BalloonLiftPowersModelToJson(
+      this,
+    );
+  }
 }
 
 abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
   const factory _BalloonLiftPowersModel(
       {final double volume, final double power}) = _$_BalloonLiftPowersModel;
+
+  factory _BalloonLiftPowersModel.fromJson(Map<String, dynamic> json) =
+      _$_BalloonLiftPowersModel.fromJson;
 
   @override
   double get volume;
@@ -530,12 +550,18 @@ abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
       throw _privateConstructorUsedError;
 }
 
+BalloonLiftParamsModel _$BalloonLiftParamsModelFromJson(
+    Map<String, dynamic> json) {
+  return _BalloonLiftParamsModel.fromJson(json);
+}
+
 /// @nodoc
 mixin _$BalloonLiftParamsModel {
   double get maxVolume => throw _privateConstructorUsedError;
   double get maxPower => throw _privateConstructorUsedError;
   double get powerUsage => throw _privateConstructorUsedError;
 
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $BalloonLiftParamsModelCopyWith<BalloonLiftParamsModel> get copyWith =>
       throw _privateConstructorUsedError;
@@ -630,10 +656,13 @@ class __$$_BalloonLiftParamsModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
+@JsonSerializable()
 class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
   const _$_BalloonLiftParamsModel(
       {this.maxVolume = 0.0, this.maxPower = 0.0, this.powerUsage = 0.0});
+
+  factory _$_BalloonLiftParamsModel.fromJson(Map<String, dynamic> json) =>
+      _$$_BalloonLiftParamsModelFromJson(json);
 
   @override
   @JsonKey()
@@ -663,6 +692,7 @@ class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
                 other.powerUsage == powerUsage));
   }
 
+  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, maxVolume, maxPower, powerUsage);
 
@@ -672,6 +702,13 @@ class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
   _$$_BalloonLiftParamsModelCopyWith<_$_BalloonLiftParamsModel> get copyWith =>
       __$$_BalloonLiftParamsModelCopyWithImpl<_$_BalloonLiftParamsModel>(
           this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_BalloonLiftParamsModelToJson(
+      this,
+    );
+  }
 }
 
 abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
@@ -679,6 +716,9 @@ abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
       {final double maxVolume,
       final double maxPower,
       final double powerUsage}) = _$_BalloonLiftParamsModel;
+
+  factory _BalloonLiftParamsModel.fromJson(Map<String, dynamic> json) =
+      _$_BalloonLiftParamsModel.fromJson;
 
   @override
   double get maxVolume;

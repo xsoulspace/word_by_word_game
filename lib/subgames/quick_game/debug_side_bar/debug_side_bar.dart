@@ -42,52 +42,94 @@ class UiDebugSideBarBody extends StatelessWidget {
             UiTextField.underlined(
               initialValue: screenCubit.volume.toString(),
               onChanged: screenCubit.onVolumeChange,
+              keyboardType: TextInputType.number,
               labelText: 'volume',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.power.toString(),
               onChanged: screenCubit.onPowerChange,
+              keyboardType: TextInputType.number,
               labelText: 'power',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.maxVolume.toString(),
               onChanged: screenCubit.onMaxVolumeChange,
+              keyboardType: TextInputType.number,
               labelText: 'maxVolume',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.maxPower.toString(),
               onChanged: screenCubit.onMaxPowerChange,
+              keyboardType: TextInputType.number,
               labelText: 'maxPower',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.powerUsage.toString(),
               onChanged: screenCubit.onPowerUsageChange,
+              keyboardType: TextInputType.number,
               labelText: 'powerUsage',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.gravityForce.toString(),
               onChanged: screenCubit.onGravityForceChange,
+              keyboardType: TextInputType.number,
               labelText: 'gravityForce',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.volumeDecreaseRatio.toString(),
               onChanged: screenCubit.onVolumeDecreaseRatioChange,
+              keyboardType: TextInputType.number,
               labelText: 'volumeDecreaseRatio',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.volumeIncreaseRatio.toString(),
               onChanged: screenCubit.onVolumeIncreaseRatioChange,
+              keyboardType: TextInputType.number,
               labelText: 'volumeIncreaseRatio',
             ),
             UiTextField.underlined(
               initialValue: screenCubit.volumeToLiftRatio.toString(),
               onChanged: screenCubit.onVolumeToLiftRatioChange,
+              keyboardType: TextInputType.number,
               labelText: 'volumeToLiftRatio',
             ),
-            const Gap(24),
+            const _WorldTime(),
+            const Gap(100),
           ],
         ),
       ),
+    );
+  }
+}
+
+class _WorldTime extends StatelessWidget {
+  const _WorldTime();
+
+  @override
+  Widget build(final BuildContext context) {
+    final worldBloc = context.watch<GlobalGameBloc>();
+    final worldTime = context.read<MechanicsCollection>().worldTime;
+
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        const Gap(24),
+        Text('Time ${worldBloc.state.dateTime.second}'),
+        const Gap(4),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextButton(
+              onPressed: worldTime.paused ? worldTime.resume : worldTime.pause,
+              child: Text(worldTime.paused ? '>' : '||'),
+            ),
+            TextButton(
+              onPressed: worldTime.speedX2,
+              child: Text(worldTime.isSpeed2 ? '(>>)' : '>>'),
+            ),
+          ],
+        ),
+      ],
     );
   }
 }

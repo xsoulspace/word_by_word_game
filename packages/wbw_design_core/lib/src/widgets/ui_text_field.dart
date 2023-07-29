@@ -10,6 +10,7 @@ class UiTextField extends StatelessWidget {
     this.constraints,
     this.onEditingComplete,
     this.onChanged,
+    this.keyboardType,
     this.onFieldSubmitted,
     this.validator,
     this.initialValue,
@@ -21,6 +22,7 @@ class UiTextField extends StatelessWidget {
     this.labelText,
     this.focusedBorder,
     this.onChanged,
+    this.keyboardType,
     this.obscureText = false,
     this.initialValue,
     this.constraints,
@@ -41,6 +43,7 @@ class UiTextField extends StatelessWidget {
     this.onChanged,
     this.onEditingComplete,
     this.onFieldSubmitted,
+    this.keyboardType,
     this.validator,
     this.focusNode,
     this.obscureText = false,
@@ -61,11 +64,13 @@ class UiTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final ValueChanged<String>? onChanged;
   final String? hintText;
+  final TextInputType? keyboardType;
   @override
   Widget build(final BuildContext context) {
     Widget child = TextFormField(
       focusNode: focusNode,
       initialValue: initialValue,
+      keyboardType: keyboardType,
       onChanged: onChanged,
       obscureText: obscureText,
       validator: validator,
