@@ -7,11 +7,9 @@ part 'game_constants_cubit.freezed.dart';
 @freezed
 class GameConstantsCubitState with _$GameConstantsCubitState {
   const factory GameConstantsCubitState({
-    @Default(ForcesConstantsModel()) final ForcesConstantsModel forces,
+    @Default(ForcesConstantsModel.initial) final ForcesConstantsModel forces,
   }) = _GameConstantsCubitState;
-  static const initial = GameConstantsCubitState(
-    forces: ForcesConstantsModel.initial,
-  );
+  static const initial = GameConstantsCubitState();
 }
 
 class GameConstantsCubitDto {

@@ -29,6 +29,7 @@ class UiDebugSideBarBody extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final screenCubit = context.watch<UiDebugSideBarCubit>();
+    final levelPlayersBloc = context.watch<LevelPlayersBloc>();
     final screenSize = MediaQuery.sizeOf(context);
     return Container(
       color: Theme.of(context).colorScheme.secondaryContainer,
@@ -39,56 +40,64 @@ class UiDebugSideBarBody extends StatelessWidget {
         child: ListView(
           children: [
             const Text('Debug Tools'),
-            UiTextField.underlined(
-              initialValue: screenCubit.volume.toString(),
-              onChanged: screenCubit.onVolumeChange,
-              keyboardType: TextInputType.number,
-              labelText: 'volume',
+            const Gap(16),
+            Row(
+              children: [
+                const Text('volume: '),
+                Text(screenCubit.volume.toInt().toString()),
+              ],
+            ),
+            Row(
+              children: [
+                const Text('power: '),
+                Text(screenCubit.power.toInt().toString()),
+                TextButton(
+                  onPressed: () {
+                    screenCubit
+                        .onPowerChange((screenCubit.power + 500).toString());
+                  },
+                  child: const Text('+500'),
+                )
+              ],
             ),
             UiTextField.underlined(
-              initialValue: screenCubit.power.toString(),
-              onChanged: screenCubit.onPowerChange,
-              keyboardType: TextInputType.number,
-              labelText: 'power',
-            ),
-            UiTextField.underlined(
-              initialValue: screenCubit.maxVolume.toString(),
+              value: screenCubit.maxVolume.toString(),
               onChanged: screenCubit.onMaxVolumeChange,
               keyboardType: TextInputType.number,
               labelText: 'maxVolume',
             ),
             UiTextField.underlined(
-              initialValue: screenCubit.maxPower.toString(),
+              value: screenCubit.maxPower.toString(),
               onChanged: screenCubit.onMaxPowerChange,
               keyboardType: TextInputType.number,
               labelText: 'maxPower',
             ),
             UiTextField.underlined(
-              initialValue: screenCubit.powerUsage.toString(),
+              value: screenCubit.powerUsage.toString(),
               onChanged: screenCubit.onPowerUsageChange,
               keyboardType: TextInputType.number,
               labelText: 'powerUsage',
             ),
             UiTextField.underlined(
-              initialValue: screenCubit.gravityForce.toString(),
+              value: screenCubit.gravityForce.toString(),
               onChanged: screenCubit.onGravityForceChange,
               keyboardType: TextInputType.number,
               labelText: 'gravityForce',
             ),
             UiTextField.underlined(
-              initialValue: screenCubit.volumeDecreaseRatio.toString(),
+              value: screenCubit.volumeDecreaseRatio.toString(),
               onChanged: screenCubit.onVolumeDecreaseRatioChange,
               keyboardType: TextInputType.number,
               labelText: 'volumeDecreaseRatio',
             ),
             UiTextField.underlined(
-              initialValue: screenCubit.volumeIncreaseRatio.toString(),
+              value: screenCubit.volumeIncreaseRatio.toString(),
               onChanged: screenCubit.onVolumeIncreaseRatioChange,
               keyboardType: TextInputType.number,
               labelText: 'volumeIncreaseRatio',
             ),
             UiTextField.underlined(
-              initialValue: screenCubit.volumeToLiftRatio.toString(),
+              value: screenCubit.volumeToLiftRatio.toString(),
               onChanged: screenCubit.onVolumeToLiftRatioChange,
               keyboardType: TextInputType.number,
               labelText: 'volumeToLiftRatio',

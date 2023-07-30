@@ -2235,8 +2235,8 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       this.localizedName = LocalizedMap.empty,
       this.characterIcon = '',
       this.position = SerializedVector2.zero,
-      this.balloonPowers = const BalloonLiftPowersModel(),
-      this.balloonParams = const BalloonLiftParamsModel()})
+      this.balloonPowers = BalloonLiftPowersModel.initial,
+      this.balloonParams = BalloonLiftParamsModel.initial})
       : super._();
 
   factory _$_PlayerCharacterModel.fromJson(Map<String, dynamic> json) =>

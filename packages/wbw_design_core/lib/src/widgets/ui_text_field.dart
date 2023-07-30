@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class UiTextField extends StatelessWidget {
+class UiTextField extends StatefulWidget {
   const UiTextField({
     required this.controller,
     this.hintText,
@@ -9,6 +9,7 @@ class UiTextField extends StatelessWidget {
     this.obscureText = false,
     this.constraints,
     this.onEditingComplete,
+    this.value,
     this.onChanged,
     this.keyboardType,
     this.onFieldSubmitted,
@@ -31,6 +32,7 @@ class UiTextField extends StatelessWidget {
     this.validator,
     this.focusNode,
     this.decoration,
+    this.value,
     this.hintText,
     super.key,
   });
@@ -39,6 +41,7 @@ class UiTextField extends StatelessWidget {
     this.constraints,
     this.hintText,
     this.labelText,
+    this.value,
     this.initialValue,
     this.onChanged,
     this.onEditingComplete,
@@ -64,29 +67,56 @@ class UiTextField extends StatelessWidget {
   final FocusNode? focusNode;
   final ValueChanged<String>? onChanged;
   final String? hintText;
+  final String? value;
   final TextInputType? keyboardType;
+
+  @override
+  State<UiTextField> createState() => _UiTextFieldState();
+}
+
+class _UiTextFieldState extends State<UiTextField> {
+  late final TextEditingController _controller =
+      widget.controller ?? TextEditingController(text: widget.value);
+  @override
+  void didUpdateWidget(covariant final UiTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    WidgetsBinding.instance.addPostFrameCallback((final _) {
+      if (widget.value != _controller.text) {
+        _controller.text = widget.value ?? '';
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    if (widget.controller == null) {
+      _controller.dispose();
+    }
+    super.dispose();
+  }
+
   @override
   Widget build(final BuildContext context) {
     Widget child = TextFormField(
-      focusNode: focusNode,
-      initialValue: initialValue,
-      keyboardType: keyboardType,
-      onChanged: onChanged,
-      obscureText: obscureText,
-      validator: validator,
-      onEditingComplete: onEditingComplete,
-      onFieldSubmitted: onFieldSubmitted,
-      decoration: decoration ??
+      focusNode: widget.focusNode,
+      initialValue: widget.initialValue,
+      keyboardType: widget.keyboardType,
+      onChanged: widget.onChanged,
+      obscureText: widget.obscureText,
+      validator: widget.validator,
+      onEditingComplete: widget.onEditingComplete,
+      onFieldSubmitted: widget.onFieldSubmitted,
+      decoration: widget.decoration ??
           InputDecoration(
-            hintText: hintText,
-            labelText: labelText,
-            focusedBorder: focusedBorder,
+            hintText: widget.hintText,
+            labelText: widget.labelText,
+            focusedBorder: widget.focusedBorder,
           ),
-      controller: controller,
+      controller: _controller,
     );
 
-    if (constraints != null) {
-      child = ConstrainedBox(constraints: constraints!, child: child);
+    if (widget.constraints != null) {
+      child = ConstrainedBox(constraints: widget.constraints!, child: child);
     }
 
     return child;

@@ -128,7 +128,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
       final tileDistance = gravityYTilePosition * kTileDimension;
       final height = tileDistance - distanceToOrigin.dy;
-      print(height);
+      // print(height);
       if (height < 0) {
         // do not update position
         // update position if needed
@@ -176,25 +176,6 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     // } else {
     //   y -= yResult.force;
     // }
-    // gameRef.diDto.levelPlayersBloc.add(
-    //   ConsumeFuelEvent(
-    //     fuel: FuelStorageModel(
-    //       // value: 1,
-    //       value: yResult.fuel,
-    //     ),
-    //   ),
-    // );
-    // x -= mechanics.xVelocity;
-
-    // gameRef.diDto.levelPlayersBloc.add(
-    //   ChangeCharacterPositionEvent(
-    //     position: position,
-    //   ),
-    // );
-
-    // fuel = 90;
-    // y = 0;
-    // x = 0;
     super.update(dt);
   }
 }

@@ -146,6 +146,7 @@ class __$$_FlyingObjectsParamsCopyWithImpl<$Res>
 
 /// @nodoc
 
+@Deprecated('')
 class _$_FlyingObjectsParams extends _FlyingObjectsParams {
   const _$_FlyingObjectsParams(
       {this.fuel = const FuelStorageModel(),
@@ -398,8 +399,8 @@ BalloonLiftPowersModel _$BalloonLiftPowersModelFromJson(
 
 /// @nodoc
 mixin _$BalloonLiftPowersModel {
-  double get volume => throw _privateConstructorUsedError;
   double get power => throw _privateConstructorUsedError;
+  double get volume => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -413,7 +414,7 @@ abstract class $BalloonLiftPowersModelCopyWith<$Res> {
           $Res Function(BalloonLiftPowersModel) then) =
       _$BalloonLiftPowersModelCopyWithImpl<$Res, BalloonLiftPowersModel>;
   @useResult
-  $Res call({double volume, double power});
+  $Res call({double power, double volume});
 }
 
 /// @nodoc
@@ -430,17 +431,17 @@ class _$BalloonLiftPowersModelCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? volume = null,
     Object? power = null,
+    Object? volume = null,
   }) {
     return _then(_value.copyWith(
-      volume: null == volume
-          ? _value.volume
-          : volume // ignore: cast_nullable_to_non_nullable
-              as double,
       power: null == power
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
+              as double,
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
               as double,
     ) as $Val);
   }
@@ -454,7 +455,7 @@ abstract class _$$_BalloonLiftPowersModelCopyWith<$Res>
       __$$_BalloonLiftPowersModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({double volume, double power});
+  $Res call({double power, double volume});
 }
 
 /// @nodoc
@@ -469,17 +470,17 @@ class __$$_BalloonLiftPowersModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? volume = null,
     Object? power = null,
+    Object? volume = null,
   }) {
     return _then(_$_BalloonLiftPowersModel(
-      volume: null == volume
-          ? _value.volume
-          : volume // ignore: cast_nullable_to_non_nullable
-              as double,
       power: null == power
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
+              as double,
+      volume: null == volume
+          ? _value.volume
+          : volume // ignore: cast_nullable_to_non_nullable
               as double,
     ));
   }
@@ -488,21 +489,20 @@ class __$$_BalloonLiftPowersModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
-  const _$_BalloonLiftPowersModel({this.volume = 0.0, this.power = 0.0});
+  const _$_BalloonLiftPowersModel({required this.power, this.volume = 0});
 
   factory _$_BalloonLiftPowersModel.fromJson(Map<String, dynamic> json) =>
       _$$_BalloonLiftPowersModelFromJson(json);
 
   @override
-  @JsonKey()
-  final double volume;
+  final double power;
   @override
   @JsonKey()
-  final double power;
+  final double volume;
 
   @override
   String toString() {
-    return 'BalloonLiftPowersModel(volume: $volume, power: $power)';
+    return 'BalloonLiftPowersModel(power: $power, volume: $volume)';
   }
 
   @override
@@ -510,13 +510,13 @@ class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_BalloonLiftPowersModel &&
-            (identical(other.volume, volume) || other.volume == volume) &&
-            (identical(other.power, power) || other.power == power));
+            (identical(other.power, power) || other.power == power) &&
+            (identical(other.volume, volume) || other.volume == volume));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, volume, power);
+  int get hashCode => Object.hash(runtimeType, power, volume);
 
   @JsonKey(ignore: true)
   @override
@@ -535,15 +535,16 @@ class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
 
 abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
   const factory _BalloonLiftPowersModel(
-      {final double volume, final double power}) = _$_BalloonLiftPowersModel;
+      {required final double power,
+      final double volume}) = _$_BalloonLiftPowersModel;
 
   factory _BalloonLiftPowersModel.fromJson(Map<String, dynamic> json) =
       _$_BalloonLiftPowersModel.fromJson;
 
   @override
-  double get volume;
-  @override
   double get power;
+  @override
+  double get volume;
   @override
   @JsonKey(ignore: true)
   _$$_BalloonLiftPowersModelCopyWith<_$_BalloonLiftPowersModel> get copyWith =>
@@ -659,19 +660,18 @@ class __$$_BalloonLiftParamsModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
   const _$_BalloonLiftParamsModel(
-      {this.maxVolume = 0.0, this.maxPower = 0.0, this.powerUsage = 0.0});
+      {required this.maxVolume,
+      required this.maxPower,
+      required this.powerUsage});
 
   factory _$_BalloonLiftParamsModel.fromJson(Map<String, dynamic> json) =>
       _$$_BalloonLiftParamsModelFromJson(json);
 
   @override
-  @JsonKey()
   final double maxVolume;
   @override
-  @JsonKey()
   final double maxPower;
   @override
-  @JsonKey()
   final double powerUsage;
 
   @override
@@ -713,9 +713,9 @@ class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
 
 abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
   const factory _BalloonLiftParamsModel(
-      {final double maxVolume,
-      final double maxPower,
-      final double powerUsage}) = _$_BalloonLiftParamsModel;
+      {required final double maxVolume,
+      required final double maxPower,
+      required final double powerUsage}) = _$_BalloonLiftParamsModel;
 
   factory _BalloonLiftParamsModel.fromJson(Map<String, dynamic> json) =
       _$_BalloonLiftParamsModel.fromJson;
@@ -853,22 +853,18 @@ class __$$_ForcesConstantsModelCopyWithImpl<$Res>
 
 class _$_ForcesConstantsModel implements _ForcesConstantsModel {
   const _$_ForcesConstantsModel(
-      {this.gravityForce = 0.0,
-      this.volumeDecreaseRatio = 0.0,
-      this.volumeIncreaseRatio = 0.0,
-      this.volumeToLiftRatio = 0.0});
+      {required this.gravityForce,
+      required this.volumeDecreaseRatio,
+      required this.volumeIncreaseRatio,
+      required this.volumeToLiftRatio});
 
   @override
-  @JsonKey()
   final double gravityForce;
   @override
-  @JsonKey()
   final double volumeDecreaseRatio;
   @override
-  @JsonKey()
   final double volumeIncreaseRatio;
   @override
-  @JsonKey()
   final double volumeToLiftRatio;
 
   @override
@@ -905,10 +901,10 @@ class _$_ForcesConstantsModel implements _ForcesConstantsModel {
 
 abstract class _ForcesConstantsModel implements ForcesConstantsModel {
   const factory _ForcesConstantsModel(
-      {final double gravityForce,
-      final double volumeDecreaseRatio,
-      final double volumeIncreaseRatio,
-      final double volumeToLiftRatio}) = _$_ForcesConstantsModel;
+      {required final double gravityForce,
+      required final double volumeDecreaseRatio,
+      required final double volumeIncreaseRatio,
+      required final double volumeToLiftRatio}) = _$_ForcesConstantsModel;
 
   @override
   double get gravityForce;

@@ -16,9 +16,9 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 position,
-    @Default(BalloonLiftPowersModel())
+    @Default(BalloonLiftPowersModel.initial)
     final BalloonLiftPowersModel balloonPowers,
-    @Default(BalloonLiftParamsModel())
+    @Default(BalloonLiftParamsModel.initial)
     final BalloonLiftParamsModel balloonParams,
   }) = _PlayerCharacterModel;
   const PlayerCharacterModel._();

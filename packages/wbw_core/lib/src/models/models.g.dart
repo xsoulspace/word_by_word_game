@@ -232,11 +232,11 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
           : SerializedVector2.fromJson(
               json['position'] as Map<String, dynamic>),
       balloonPowers: json['balloonPowers'] == null
-          ? const BalloonLiftPowersModel()
+          ? BalloonLiftPowersModel.initial
           : BalloonLiftPowersModel.fromJson(
               json['balloonPowers'] as Map<String, dynamic>),
       balloonParams: json['balloonParams'] == null
-          ? const BalloonLiftParamsModel()
+          ? BalloonLiftParamsModel.initial
           : BalloonLiftParamsModel.fromJson(
               json['balloonParams'] as Map<String, dynamic>),
     );

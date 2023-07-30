@@ -13,7 +13,9 @@ part 'character_mechanics.g.dart';
   addImplicitFinal: true,
   copyWith: true,
 )
+@Deprecated('')
 class FlyingObjectsParams with _$FlyingObjectsParams {
+  @Deprecated('')
   const factory FlyingObjectsParams({
     @Default(FuelStorageModel()) final FuelStorageModel fuel,
 
@@ -33,8 +35,10 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
     /// keep line, go up and go down
     @Default(0.5) final double requiredLiftForce,
   }) = _FlyingObjectsParams;
+  @Deprecated('')
   const FlyingObjectsParams._();
 
+  @Deprecated('')
   factory FlyingObjectsParams.fromCharacterModel() => const FlyingObjectsParams(
         fuelNormalPower: 0,
         requiredLiftForce: 0,
@@ -60,7 +64,9 @@ class FlyingObjectsParams with _$FlyingObjectsParams {
   double get minYBoundry => 100;
 }
 
+@Deprecated('')
 class ForceResult {
+  @Deprecated('')
   ForceResult({
     this.fuel = 0.0,
     this.force = 0.0,
@@ -69,7 +75,9 @@ class ForceResult {
   final double fuel;
 }
 
+@Deprecated('')
 class BasicFlyingObjectMechanics {
+  @Deprecated('')
   BasicFlyingObjectMechanics({
     required this.params,
   });
@@ -223,8 +231,8 @@ class LiftForceModel with _$LiftForceModel {
 @freezed
 class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
   const factory BalloonLiftPowersModel({
-    @Default(0.0) final double volume,
-    @Default(0.0) final double power,
+    required final double power,
+    @Default(0) final double volume,
   }) = _BalloonLiftPowersModel;
   factory BalloonLiftPowersModel.fromJson(final Map<String, dynamic> json) =>
       _$BalloonLiftPowersModelFromJson(json);
@@ -236,29 +244,31 @@ class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
 @Freezed()
 class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
   const factory BalloonLiftParamsModel({
-    @Default(0.0) final double maxVolume,
-    @Default(0.0) final double maxPower,
-    @Default(0.0) final double powerUsage,
+    required final double maxVolume,
+    required final double maxPower,
+    required final double powerUsage,
   }) = _BalloonLiftParamsModel;
   factory BalloonLiftParamsModel.fromJson(final Map<String, dynamic> json) =>
       _$BalloonLiftParamsModelFromJson(json);
   static const initial = BalloonLiftParamsModel(
-    maxVolume: 100,
-    maxPower: 20000,
+    maxVolume: 250,
+    maxPower: 10000,
+    powerUsage: 0.75,
   );
 }
 
 @Freezed()
 class ForcesConstantsModel with _$ForcesConstantsModel {
   const factory ForcesConstantsModel({
-    @Default(0.0) final double gravityForce,
-    @Default(0.0) final double volumeDecreaseRatio,
-    @Default(0.0) final double volumeIncreaseRatio,
-    @Default(0.0) final double volumeToLiftRatio,
+    required final double gravityForce,
+    required final double volumeDecreaseRatio,
+    required final double volumeIncreaseRatio,
+    required final double volumeToLiftRatio,
   }) = _ForcesConstantsModel;
   static const initial = ForcesConstantsModel(
-    gravityForce: 1.4,
-    volumeDecreaseRatio: 0.07,
-    volumeIncreaseRatio: 15,
+    gravityForce: 0.12,
+    volumeDecreaseRatio: 0.08,
+    volumeIncreaseRatio: 80,
+    volumeToLiftRatio: 0.001,
   );
 }

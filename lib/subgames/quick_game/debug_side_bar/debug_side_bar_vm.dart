@@ -21,7 +21,7 @@ class UiDebugSideBarCubit extends Cubit<UiDebugSideBarCubitState> {
       dto.levelPlayersBloc.state.playerCharacter;
 
   final UiDebugSideBarCubitDto dto;
-  double get volume => 0;
+  double get volume => _character.balloonPowers.volume;
   void onVolumeChange(final String? value) {
     changePowers(
       _character.balloonPowers.copyWith(
@@ -30,7 +30,7 @@ class UiDebugSideBarCubit extends Cubit<UiDebugSideBarCubitState> {
     );
   }
 
-  double get power => 0;
+  double get power => _character.balloonPowers.power;
   void onPowerChange(final String? value) {
     changePowers(
       _character.balloonPowers.copyWith(

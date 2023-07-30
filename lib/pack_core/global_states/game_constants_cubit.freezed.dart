@@ -108,7 +108,7 @@ class __$$_GameConstantsCubitStateCopyWithImpl<$Res>
 
 class _$_GameConstantsCubitState implements _GameConstantsCubitState {
   const _$_GameConstantsCubitState(
-      {this.forces = const ForcesConstantsModel()});
+      {this.forces = ForcesConstantsModel.initial});
 
   @override
   @JsonKey()

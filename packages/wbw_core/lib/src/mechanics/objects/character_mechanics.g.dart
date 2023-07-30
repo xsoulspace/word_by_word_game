@@ -9,23 +9,23 @@ part of 'character_mechanics.dart';
 _$_BalloonLiftPowersModel _$$_BalloonLiftPowersModelFromJson(
         Map<String, dynamic> json) =>
     _$_BalloonLiftPowersModel(
-      volume: (json['volume'] as num?)?.toDouble() ?? 0.0,
-      power: (json['power'] as num?)?.toDouble() ?? 0.0,
+      power: (json['power'] as num).toDouble(),
+      volume: (json['volume'] as num?)?.toDouble() ?? 0,
     );
 
 Map<String, dynamic> _$$_BalloonLiftPowersModelToJson(
         _$_BalloonLiftPowersModel instance) =>
     <String, dynamic>{
-      'volume': instance.volume,
       'power': instance.power,
+      'volume': instance.volume,
     };
 
 _$_BalloonLiftParamsModel _$$_BalloonLiftParamsModelFromJson(
         Map<String, dynamic> json) =>
     _$_BalloonLiftParamsModel(
-      maxVolume: (json['maxVolume'] as num?)?.toDouble() ?? 0.0,
-      maxPower: (json['maxPower'] as num?)?.toDouble() ?? 0.0,
-      powerUsage: (json['powerUsage'] as num?)?.toDouble() ?? 0.0,
+      maxVolume: (json['maxVolume'] as num).toDouble(),
+      maxPower: (json['maxPower'] as num).toDouble(),
+      powerUsage: (json['powerUsage'] as num).toDouble(),
     );
 
 Map<String, dynamic> _$$_BalloonLiftParamsModelToJson(

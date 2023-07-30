@@ -91,7 +91,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     );
     final updatedState = state.copyWith(
       playerCharacter: state.playerCharacter.copyWith(
-        balloonPowers: const BalloonLiftPowersModel(),
+        balloonPowers: BalloonLiftPowersModel.initial,
       ),
     );
     emit(updatedState);
