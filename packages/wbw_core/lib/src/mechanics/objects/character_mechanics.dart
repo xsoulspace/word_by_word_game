@@ -193,14 +193,14 @@ class HotAirBalloonMechanics {
     }
     final volumeLiftForce = volume * constants.volumeToLiftRatio;
     final liftForce = volumeLiftForce - constants.gravityForce;
-    print({
-      'powerLeft': powerLeft.toInt(),
-      'volume': volume.toInt(),
-      'liftForce': liftForce.toStringAsFixed(2),
-      'decreasedVolume': decreasedVolume.toStringAsFixed(2),
-      'increasedVolume': increasedVolume.toStringAsFixed(2),
-      'height': height.toStringAsFixed(2),
-    });
+    // print({
+    //   'powerLeft': powerLeft.toInt(),
+    //   'volume': volume.toInt(),
+    //   'liftForce': liftForce.toStringAsFixed(2),
+    //   'decreasedVolume': decreasedVolume.toStringAsFixed(2),
+    //   'increasedVolume': increasedVolume.toStringAsFixed(2),
+    //   'height': height.toStringAsFixed(2),
+    // });
 
     return LiftForceModel(
       liftPower: liftForce,
