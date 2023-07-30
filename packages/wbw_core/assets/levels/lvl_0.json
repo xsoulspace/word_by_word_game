@@ -770,7 +770,8 @@
           "objects": [],
           "npcs": []
         }
-      }
+      },
+      "isCollidable": true
     }
   ],
   "objects": {
@@ -786,10 +787,11 @@
   "playerObject": {
     "id": "Tester",
     "tileId": "tester",
-    "position": { "x": 228.36328125, "y": 97.765625 },
-    "distanceToOrigin": { "x": 212.53125, "y": 89.21484375 },
-    "distanceToTileLeftTopCorner": { "x": 20.53125, "y": 25.21484375 },
+    "position": { "x": 229.34375, "y": 187.89453125 },
+    "distanceToOrigin": { "x": 204.17578125, "y": -47.7109375 },
+    "distanceToTileLeftTopCorner": { "x": 44.17578125, "y": 240.2890625 },
     "animationBehaviour": "idle_right"
   },
-  "skyYPosition": 0.0
+  "skyYPosition": 0.0,
+  "gravityYPosition": 0.0
 }

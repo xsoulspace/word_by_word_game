@@ -853,6 +853,10 @@ mixin _$LayerModel {
   Map<CellPointModel, CellTileModel> get tiles =>
       throw _privateConstructorUsedError;
 
+  /// determines is tiles in this layer should be
+  /// treated as hitboxes
+  bool get isCollidable => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LayerModelCopyWith<LayerModel> get copyWith =>
@@ -870,7 +874,8 @@ abstract class $LayerModelCopyWith<$Res> {
           LayerModelId id,
       String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          Map<CellPointModel, CellTileModel> tiles});
+          Map<CellPointModel, CellTileModel> tiles,
+      bool isCollidable});
 
   $LayerModelIdCopyWith<$Res> get id;
 }
@@ -891,6 +896,7 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
     Object? id = null,
     Object? title = null,
     Object? tiles = null,
+    Object? isCollidable = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -905,6 +911,10 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
           ? _value.tiles
           : tiles // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CellTileModel>,
+      isCollidable: null == isCollidable
+          ? _value.isCollidable
+          : isCollidable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -930,7 +940,8 @@ abstract class _$$_LayerModelCopyWith<$Res>
           LayerModelId id,
       String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          Map<CellPointModel, CellTileModel> tiles});
+          Map<CellPointModel, CellTileModel> tiles,
+      bool isCollidable});
 
   @override
   $LayerModelIdCopyWith<$Res> get id;
@@ -950,6 +961,7 @@ class __$$_LayerModelCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? tiles = null,
+    Object? isCollidable = null,
   }) {
     return _then(_$_LayerModel(
       id: null == id
@@ -964,6 +976,10 @@ class __$$_LayerModelCopyWithImpl<$Res>
           ? _value._tiles
           : tiles // ignore: cast_nullable_to_non_nullable
               as Map<CellPointModel, CellTileModel>,
+      isCollidable: null == isCollidable
+          ? _value.isCollidable
+          : isCollidable // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -976,7 +992,8 @@ class _$_LayerModel extends _LayerModel {
           required this.id,
       this.title = '',
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          final Map<CellPointModel, CellTileModel> tiles = const {}})
+          final Map<CellPointModel, CellTileModel> tiles = const {},
+      this.isCollidable = false})
       : _tiles = tiles,
         super._();
 
@@ -998,9 +1015,15 @@ class _$_LayerModel extends _LayerModel {
     return EqualUnmodifiableMapView(_tiles);
   }
 
+  /// determines is tiles in this layer should be
+  /// treated as hitboxes
+  @override
+  @JsonKey()
+  final bool isCollidable;
+
   @override
   String toString() {
-    return 'LayerModel(id: $id, title: $title, tiles: $tiles)';
+    return 'LayerModel(id: $id, title: $title, tiles: $tiles, isCollidable: $isCollidable)';
   }
 
   @override
@@ -1010,13 +1033,15 @@ class _$_LayerModel extends _LayerModel {
             other is _$_LayerModel &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
-            const DeepCollectionEquality().equals(other._tiles, _tiles));
+            const DeepCollectionEquality().equals(other._tiles, _tiles) &&
+            (identical(other.isCollidable, isCollidable) ||
+                other.isCollidable == isCollidable));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, const DeepCollectionEquality().hash(_tiles));
+  int get hashCode => Object.hash(runtimeType, id, title,
+      const DeepCollectionEquality().hash(_tiles), isCollidable);
 
   @JsonKey(ignore: true)
   @override
@@ -1038,7 +1063,8 @@ abstract class _LayerModel extends LayerModel {
           required final LayerModelId id,
       final String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          final Map<CellPointModel, CellTileModel> tiles}) = _$_LayerModel;
+          final Map<CellPointModel, CellTileModel> tiles,
+      final bool isCollidable}) = _$_LayerModel;
   const _LayerModel._() : super._();
 
   factory _LayerModel.fromJson(Map<String, dynamic> json) =
@@ -1052,6 +1078,11 @@ abstract class _LayerModel extends LayerModel {
   @override
   @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
   Map<CellPointModel, CellTileModel> get tiles;
+  @override
+
+  /// determines is tiles in this layer should be
+  /// treated as hitboxes
+  bool get isCollidable;
   @override
   @JsonKey(ignore: true)
   _$$_LayerModelCopyWith<_$_LayerModel> get copyWith =>

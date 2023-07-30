@@ -66,6 +66,7 @@ _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>
       tiles: json['tiles'] == null
           ? const {}
           : LayerModel._tilesFromJson(json['tiles'] as Map<String, dynamic>),
+      isCollidable: json['isCollidable'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$_LayerModelToJson(_$_LayerModel instance) =>
@@ -73,6 +74,7 @@ Map<String, dynamic> _$$_LayerModelToJson(_$_LayerModel instance) =>
       'id': LayerModelId.toJsonString(instance.id),
       'title': instance.title,
       'tiles': LayerModel._tilesToJson(instance.tiles),
+      'isCollidable': instance.isCollidable,
     };
 
 _$_CellTileModel _$$_CellTileModelFromJson(Map<String, dynamic> json) =>

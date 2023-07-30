@@ -126,6 +126,11 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
       final tileDistance = gravityYTilePosition * kTileDimension;
       final height = tileDistance - distanceToOrigin.dy;
+      final isColliding = game.diDto.canvasCubit
+          .checkIsCollidingWithTiles(cell: cell.toCellPoint());
+      if (isColliding) {
+        print('iscoliding');
+      }
       // print(height);
       if (height < 0) {
         // do not update position

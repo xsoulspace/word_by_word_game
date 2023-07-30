@@ -145,6 +145,10 @@ class LayerModel with _$LayerModel {
     )
     @Default({})
     final Map<CellPointModel, CellTileModel> tiles,
+
+    /// determines is tiles in this layer should be
+    /// treated as hitboxes
+    @Default(false) final bool isCollidable,
   }) = _LayerModel;
   const LayerModel._();
   factory LayerModel.fromJson(final Map<String, dynamic> json) =>

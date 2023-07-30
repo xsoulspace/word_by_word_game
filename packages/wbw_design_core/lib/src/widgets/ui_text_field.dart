@@ -81,6 +81,7 @@ class _UiTextFieldState extends State<UiTextField> {
   void didUpdateWidget(covariant final UiTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
     WidgetsBinding.instance.addPostFrameCallback((final _) {
+      if (widget.controller != null) return;
       if (widget.value != _controller.text) {
         _controller.text = widget.value ?? '';
       }

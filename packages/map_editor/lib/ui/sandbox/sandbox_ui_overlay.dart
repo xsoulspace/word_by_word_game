@@ -12,14 +12,14 @@ class SandboxUiOverlay extends StatelessWidget {
   const SandboxUiOverlay({super.key});
 
   @override
-  Widget build(final BuildContext context) => Stack(
+  Widget build(final BuildContext context) => const Stack(
         fit: StackFit.passthrough,
         children: [
           Align(
             alignment: Alignment.bottomCenter,
             child: SizedBox(
-              height: (kTileDimension * 2).toDouble() + 16,
-              child: const TileButtons(),
+              height: 128 + 16,
+              child: TileButtons(),
             ),
           ),
         ],
@@ -216,18 +216,18 @@ Future<void> showLayersDialog({
 }) async {
   await showDialog(
     context: context,
-    builder: (final context) => const LevelsDialog(),
+    builder: (final context) => const LayersDialog(),
   );
 }
 
-class LevelsDialog extends StatefulWidget {
-  const LevelsDialog({super.key});
+class LayersDialog extends StatefulWidget {
+  const LayersDialog({super.key});
 
   @override
-  State<LevelsDialog> createState() => _LevelsDialogState();
+  State<LayersDialog> createState() => _LayersDialogState();
 }
 
-class _LevelsDialogState extends State<LevelsDialog> {
+class _LayersDialogState extends State<LayersDialog> {
   final _textController = TextEditingController();
   @override
   void dispose() {
@@ -286,9 +286,23 @@ class _LevelsDialogState extends State<LevelsDialog> {
                             id: id,
                           ),
                         ),
-                        trailing: ReorderableDragStartListener(
-                          index: index,
-                          child: const Icon(Icons.drag_handle),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            const Text('Collidable'),
+                            Switch(
+                              value: layer.isCollidable,
+                              onChanged: (final value) =>
+                                  drawerCubit.changeLayer(
+                                index: index,
+                                layer: layer.copyWith(isCollidable: value),
+                              ),
+                            ),
+                            ReorderableDragStartListener(
+                              index: index,
+                              child: const Icon(Icons.drag_handle),
+                            ),
+                          ],
                         ),
                         title: TextFormField(
                           initialValue: layer.title,

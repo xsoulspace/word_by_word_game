@@ -23,6 +23,22 @@ class CanvasCubit extends DrawerCubit {
     await loadResources();
   }
 
+  // TODO(arenukvern): cache it
+  Iterable<LayerModel> get _collidableLayers =>
+      state.canvasData.layers.where((final e) => e.isCollidable);
+
+  bool checkIsCollidingWithTiles({
+    required final CellPointModel cell,
+  }) {
+    bool isColliding = false;
+    print(cell);
+    for (final layer in _collidableLayers) {
+      isColliding = layer.tiles.containsKey(cell);
+      if (isColliding) return true;
+    }
+    return false;
+  }
+
   void loadCanvasData({
     required final CanvasDataModel canvasData,
   }) {
