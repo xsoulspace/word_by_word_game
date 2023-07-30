@@ -96,7 +96,17 @@ class GameInitializer {
             playersCharacters: characters,
           );
         case GameVersion.$2 || GameVersion.$3:
-          break;
+          game = game.copyWith(
+            version: GameVersion.$2,
+            playersCharacters: characters
+                .map(
+                  (final e) => e.copyWith(
+                    balloonPowers: BalloonLiftPowersModel.initial,
+                    balloonParams: BalloonLiftParamsModel.initial,
+                  ),
+                )
+                .toList(),
+          );
       }
     }
     return game;

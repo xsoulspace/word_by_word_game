@@ -10,6 +10,7 @@ class GameRendererDiDto {
         globalGameBloc = context.read(),
         mechanics = context.read(),
         canvasCubit = context.read(),
+        debugCubit = context.read(),
         statesStatusesCubit = context.read(),
         gameConstantsCubit = context.read();
 
@@ -17,6 +18,7 @@ class GameRendererDiDto {
   /// *      Ephemeral
   /// ********************************************
   final LevelBloc levelBloc;
+  final DebugCubit debugCubit;
   final LevelPlayersBloc levelPlayersBloc;
   final StatesStatusesCubit statesStatusesCubit;
   final GameConstantsCubit gameConstantsCubit;

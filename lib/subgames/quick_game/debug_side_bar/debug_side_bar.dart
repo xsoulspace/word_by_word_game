@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 part 'debug_side_bar_vm.dart';
@@ -29,7 +30,8 @@ class UiDebugSideBarBody extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final screenCubit = context.watch<UiDebugSideBarCubit>();
-    final levelPlayersBloc = context.watch<LevelPlayersBloc>();
+    context.watch<LevelPlayersBloc>();
+    final debugCubit = context.watch<DebugCubit>();
     final screenSize = MediaQuery.sizeOf(context);
     return Container(
       color: Theme.of(context).colorScheme.secondaryContainer,
@@ -41,15 +43,24 @@ class UiDebugSideBarBody extends StatelessWidget {
           children: [
             const Text('Debug Tools'),
             const Gap(16),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(
+                'Is Camera following Player',
+                style: Theme.of(context).textTheme.labelMedium,
+              ),
+              value: debugCubit.state.isCameraFollowingPlayer,
+              onChanged: debugCubit.switchIsCameraFollowingPlayerChange,
+            ),
             Row(
               children: [
-                const Text('volume: '),
+                const Text('Volume: '),
                 Text(screenCubit.volume.toInt().toString()),
               ],
             ),
             Row(
               children: [
-                const Text('power: '),
+                const Text('Power: '),
                 Text(screenCubit.power.toInt().toString()),
                 TextButton(
                   onPressed: () {

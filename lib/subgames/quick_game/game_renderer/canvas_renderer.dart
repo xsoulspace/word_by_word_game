@@ -61,10 +61,12 @@ class CanvasRenderer extends Component
 
   @override
   void onDragUpdate(final DragUpdateEvent event) {
-    final eventPosition = event.canvasPosition;
-    origin = eventPosition - _dragOffset;
-    mousePosition = eventPosition;
-    canvasObjectsDrawer.onOriginUpdate();
+    if (!game.diDto.debugCubit.state.isCameraFollowingPlayer) {
+      final eventPosition = event.canvasPosition;
+      origin = eventPosition - _dragOffset;
+      mousePosition = eventPosition;
+      canvasObjectsDrawer.onOriginUpdate();
+    }
     super.onDragUpdate(event);
   }
 
@@ -103,6 +105,22 @@ class CanvasRenderer extends Component
 
     _renderOrigin(canvas);
     _renderOffsetOrigin(canvas);
+  }
+
+  @override
+  void update(final double dt) {
+    if (game.diDto.debugCubit.state.isCameraFollowingPlayer) {
+      final player = canvasObjectsDrawer.player;
+      if (player != null) {
+        final screenSize = game.size;
+        Offset offset = player.position - (screenSize.toOffset() / 2);
+        offset = origin.toOffset() - offset;
+        origin = offset.toVector2();
+        canvasObjectsDrawer.onOriginUpdate();
+      }
+    }
+
+    super.update(dt);
   }
 
   @override

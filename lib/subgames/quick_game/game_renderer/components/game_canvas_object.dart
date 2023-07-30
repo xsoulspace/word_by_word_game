@@ -21,8 +21,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     // required this.obstacleLevelHelper,
     required this.characterModel,
     required super.data,
-  })  : params = const FlyingObjectsParams(),
-        super.fromRenderObject();
+  }) : super.fromRenderObject();
   factory PlayerGameCanvasObject.fromCanvasCubit({
     required final CanvasRendererGame game,
     required final CanvasCubit canvasCubit,
@@ -52,7 +51,6 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   final hotAirBalloonMechanics = HotAirBalloonMechanics();
 
   final PlayerCharacterModel characterModel;
-  FlyingObjectsParams params;
   // final ObstacleLevelHelper obstacleLevelHelper;
 
   // void _handleLevelState(final LevelPlayersBlocState levelState) {
@@ -178,6 +176,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     // }
     super.update(dt);
   }
+
+  @override
+  void setPosition(final Offset newPosition) {
+    // canvasCubit.changeOrigin(origin);
+    super.setPosition(newPosition);
+  }
 }
 
 mixin HasCanvasResourcesLoaderRef on Component, HasGameRef<CanvasRendererGame> {
@@ -297,7 +301,7 @@ class GameCanvasObjectsDrawer extends Component
   }
 
   List<GameCanvasObject> get canvasObjects =>
-      [_skyHandle, _gravitationHandle, _player].whereNotNull().toList();
+      [_skyHandle, _gravitationHandle, player].whereNotNull().toList();
 
   void onOriginUpdate() {
     for (final canvasObject in canvasObjects) {
@@ -305,7 +309,7 @@ class GameCanvasObjectsDrawer extends Component
     }
   }
 
-  PlayerGameCanvasObject? _player;
+  PlayerGameCanvasObject? player;
   GameCanvasObject? _gravitationHandle;
   GameCanvasObject? _skyHandle;
 
@@ -320,7 +324,7 @@ class GameCanvasObjectsDrawer extends Component
   }
 
   void _loadPlayer() {
-    _player = PlayerGameCanvasObject.fromCanvasCubit(
+    player = PlayerGameCanvasObject.fromCanvasCubit(
       game: game,
       canvasCubit: canvasCubit,
       levelPlayersBloc: game.diDto.levelPlayersBloc,

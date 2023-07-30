@@ -26,7 +26,7 @@ class Palette {
   static const yellow = PaletteEntry(Color.fromARGB(255, 241, 221, 5));
 }
 
-int get kTileDimension => 64;
+int get kTileDimension => 32;
 
 int get kVisibleTilesColumns => 30;
 int get kVisibleTilesRows => 16;

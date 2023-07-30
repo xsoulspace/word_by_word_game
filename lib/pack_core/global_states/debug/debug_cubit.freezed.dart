@@ -15,13 +15,21 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
-mixin _$DebugCubitState {}
+mixin _$DebugCubitState {
+  bool get isCameraFollowingPlayer => throw _privateConstructorUsedError;
+
+  @JsonKey(ignore: true)
+  $DebugCubitStateCopyWith<DebugCubitState> get copyWith =>
+      throw _privateConstructorUsedError;
+}
 
 /// @nodoc
 abstract class $DebugCubitStateCopyWith<$Res> {
   factory $DebugCubitStateCopyWith(
           DebugCubitState value, $Res Function(DebugCubitState) then) =
       _$DebugCubitStateCopyWithImpl<$Res, DebugCubitState>;
+  @useResult
+  $Res call({bool isCameraFollowingPlayer});
 }
 
 /// @nodoc
@@ -33,13 +41,30 @@ class _$DebugCubitStateCopyWithImpl<$Res, $Val extends DebugCubitState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isCameraFollowingPlayer = null,
+  }) {
+    return _then(_value.copyWith(
+      isCameraFollowingPlayer: null == isCameraFollowingPlayer
+          ? _value.isCameraFollowingPlayer
+          : isCameraFollowingPlayer // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
 }
 
 /// @nodoc
-abstract class _$$_DebugCubitStateCopyWith<$Res> {
+abstract class _$$_DebugCubitStateCopyWith<$Res>
+    implements $DebugCubitStateCopyWith<$Res> {
   factory _$$_DebugCubitStateCopyWith(
           _$_DebugCubitState value, $Res Function(_$_DebugCubitState) then) =
       __$$_DebugCubitStateCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isCameraFollowingPlayer});
 }
 
 /// @nodoc
@@ -49,28 +74,63 @@ class __$$_DebugCubitStateCopyWithImpl<$Res>
   __$$_DebugCubitStateCopyWithImpl(
       _$_DebugCubitState _value, $Res Function(_$_DebugCubitState) _then)
       : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isCameraFollowingPlayer = null,
+  }) {
+    return _then(_$_DebugCubitState(
+      isCameraFollowingPlayer: null == isCameraFollowingPlayer
+          ? _value.isCameraFollowingPlayer
+          : isCameraFollowingPlayer // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
 }
 
 /// @nodoc
 
 class _$_DebugCubitState implements _DebugCubitState {
-  const _$_DebugCubitState();
+  const _$_DebugCubitState({this.isCameraFollowingPlayer = true});
+
+  @override
+  @JsonKey()
+  final bool isCameraFollowingPlayer;
 
   @override
   String toString() {
-    return 'DebugCubitState()';
+    return 'DebugCubitState(isCameraFollowingPlayer: $isCameraFollowingPlayer)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_DebugCubitState);
+        (other.runtimeType == runtimeType &&
+            other is _$_DebugCubitState &&
+            (identical(
+                    other.isCameraFollowingPlayer, isCameraFollowingPlayer) ||
+                other.isCameraFollowingPlayer == isCameraFollowingPlayer));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, isCameraFollowingPlayer);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_DebugCubitStateCopyWith<_$_DebugCubitState> get copyWith =>
+      __$$_DebugCubitStateCopyWithImpl<_$_DebugCubitState>(this, _$identity);
 }
 
 abstract class _DebugCubitState implements DebugCubitState {
-  const factory _DebugCubitState() = _$_DebugCubitState;
+  const factory _DebugCubitState({final bool isCameraFollowingPlayer}) =
+      _$_DebugCubitState;
+
+  @override
+  bool get isCameraFollowingPlayer;
+  @override
+  @JsonKey(ignore: true)
+  _$$_DebugCubitStateCopyWith<_$_DebugCubitState> get copyWith =>
+      throw _privateConstructorUsedError;
 }

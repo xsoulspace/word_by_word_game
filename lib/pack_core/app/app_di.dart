@@ -116,13 +116,13 @@ class _AppDiProviderState extends State<AppDiProvider> {
                 ),
               ),
               BlocProvider(
-                create: (final context) => DebugCubit(
-                  dto: DebugCubitDto(context: context),
+                create: (final context) => GameConstantsCubit(
+                  dto: GameConstantsCubitDto(),
                 ),
               ),
               BlocProvider(
-                create: (final context) => GameConstantsCubit(
-                  dto: GameConstantsCubitDto(),
+                create: (final context) => DebugCubit(
+                  dto: DebugCubitDto(context: context),
                 ),
               ),
             ];
