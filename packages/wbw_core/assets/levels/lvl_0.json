@@ -38524,22 +38524,13 @@
       "isCollidable": true
     }
   ],
-  "objects": {
-    "Tester": {
-      "id": "Tester",
-      "tileId": "tester",
-      "position": { "x": 393.65234375, "y": 61.67578125 },
-      "distanceToOrigin": { "x": 393.65234375, "y": 61.67578125 },
-      "distanceToTileLeftTopCorner": { "x": 9.65234375, "y": 61.67578125 },
-      "animationBehaviour": "idle_right"
-    }
-  },
+  "objects": {},
   "playerObject": {
     "id": "Tester",
     "tileId": "tester",
-    "position": { "x": 356.84375, "y": 132.875 },
-    "distanceToOrigin": { "x": 87.77734375, "y": -103.84375 },
-    "distanceToTileLeftTopCorner": { "x": 279.77734375, "y": 248.15625 },
+    "position": { "x": 153.25390625, "y": -15.0078125 },
+    "distanceToOrigin": { "x": 201.859375, "y": -69.515625 },
+    "distanceToTileLeftTopCorner": { "x": 9.859375, "y": 26.484375 },
     "animationBehaviour": "idle_right"
   },
   "skyYPosition": 0.0,
