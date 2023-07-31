@@ -145,10 +145,15 @@ class TilesRenderer extends Component
     // TODO(arenukvern): render only visible area
     _painter.render(
       canvas: canvas,
+      offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
       tilesResources: tilesResources,
       origin: origin,
       images: game.images,
+      tileColumns: tileColumns,
+      windowHeight: windowHeight,
+      tileRows: tileRows,
+      windowWidth: windowWidth,
     );
     super.render(canvas);
   }
@@ -161,55 +166,68 @@ class TilesPainter {
     required final CanvasDataModel canvasData,
     required final Map<TileId, PresetTileResource> tilesResources,
     required final Vector2 origin,
+    required final Vector2 offsetOrigin,
     required final Images images,
+    required final double tileColumns,
+    required final double windowHeight,
+    required final double tileRows,
+    required final double windowWidth,
   }) {
-    /// Drawing layers
-    for (final tileLayer in canvasData.layers) {
-      /// Drawing cell tiles
-      // TODO(antmalofeev): maybe rewrite to drawAtlas
-      for (final MapEntry(key: cellPoint, value: cellTile)
-          in tileLayer.tiles.entries) {
-        final vectorPosition =
-            origin + (cellPoint.toVector2() * kTileDimension.toDouble());
-        final position = vectorPosition.toOffset();
-        final resourceTile = tilesResources[cellTile.tileId];
-        if (resourceTile == null) continue;
-        final graphics = resourceTile.tile.graphics;
+    for (var col = -1; col < tileColumns + 1; col++) {
+      for (var row = -1; row < tileRows + 3; row++) {
+        for (final tileLayer in canvasData.layers) {
+          final cellPointVector =
+              ((offsetOrigin - origin) / kTileDimension.toDouble()) +
+                  Vector2(col.toDouble(), row.toDouble());
 
-        /// Drawing tile
-        switch (graphics.type) {
-          case TileGraphicsType.character:
-            assert(false, 'Character graphics type cannot be used in tile');
-          case TileGraphicsType.directional:
-            final directionTitle = cellTile.tileMergedDirectionsTitle;
-            final x = resourceTile.directionalPaths['X']!;
-            final animationEntry = directionTitle.isEmpty
-                ? x
-                : resourceTile
-                        .directionalPaths[cellTile.tileMergedDirectionsTitle] ??
-                    x;
-            final img = images.fromCache(animationEntry.currentFramePath);
-            canvas.drawImage(img, position, _paint);
-        }
-
-        /// Drawing objects
-        for (final gid in cellTile.objects) {
-          final renderObject = canvasData.objects[gid];
-          if (renderObject == null) continue;
+          final cellPoint = CellPointModel(
+            cellPointVector.x.toInt(),
+            cellPointVector.y.toInt(),
+          );
+          final cellTile = tileLayer.tiles[cellPoint];
+          if (cellTile == null) continue;
+          final vectorPosition =
+              origin + (cellPoint.toVector2() * kTileDimension.toDouble());
+          final position = vectorPosition.toOffset();
+          final resourceTile = tilesResources[cellTile.tileId];
+          if (resourceTile == null) continue;
+          final graphics = resourceTile.tile.graphics;
 
           /// Drawing tile
           switch (graphics.type) {
             case TileGraphicsType.character:
-              final animationEntry =
-                  resourceTile.behaviourPaths[renderObject.animationBehaviour];
-              if (animationEntry == null) continue;
-              final img = images.fromCache(animationEntry.currentFramePath);
-              canvas.drawImage(img, renderObject.position.toOffset(), _paint);
+              assert(false, 'Character graphics type cannot be used in tile');
             case TileGraphicsType.directional:
-              assert(
-                false,
-                'Directional graphics type cannot be used with object',
-              );
+              final directionTitle = cellTile.tileMergedDirectionsTitle;
+              final x = resourceTile.directionalPaths['X']!;
+              final animationEntry = directionTitle.isEmpty
+                  ? x
+                  : resourceTile.directionalPaths[
+                          cellTile.tileMergedDirectionsTitle] ??
+                      x;
+              final img = images.fromCache(animationEntry.currentFramePath);
+              canvas.drawImage(img, position, _paint);
+          }
+
+          /// Drawing objects
+          for (final gid in cellTile.objects) {
+            final renderObject = canvasData.objects[gid];
+            if (renderObject == null) continue;
+
+            /// Drawing tile
+            switch (graphics.type) {
+              case TileGraphicsType.character:
+                final animationEntry = resourceTile
+                    .behaviourPaths[renderObject.animationBehaviour];
+                if (animationEntry == null) continue;
+                final img = images.fromCache(animationEntry.currentFramePath);
+                canvas.drawImage(img, renderObject.position.toOffset(), _paint);
+              case TileGraphicsType.directional:
+                assert(
+                  false,
+                  'Directional graphics type cannot be used with object',
+                );
+            }
           }
         }
       }

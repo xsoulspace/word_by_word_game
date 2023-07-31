@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
@@ -68,6 +69,9 @@ class CanvasRendererGame extends FlameGame
       ],
     );
 
+    final style = material.TextStyle(color: BasicPalette.red.color);
+    final regular = TextPaint(style: style);
+
     await add(providersComponent);
     await world.addAll([
       FlameBlocListener<GlobalGameBloc, GlobalGameBlocState>(
@@ -76,6 +80,14 @@ class CanvasRendererGame extends FlameGame
       FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
         onNewState: _handleLevelStateChanges,
       ),
+      if (debugMode)
+        FpsTextComponent(
+          textRenderer: regular,
+          priority: 100,
+        )
+          ..anchor = Anchor.topLeft
+          ..x = 32
+          ..y = 32.0,
       canvasRenderer,
     ]);
     // Enable initial overlays
