@@ -8,18 +8,18 @@ class _DialogStackDiDto {
   final TutorialBloc tutorialBloc;
 }
 
-_DialogStackState _useDialogStackState({
+DialogStackState _useDialogStackState({
   required final Locator read,
 }) =>
     use(
       LifeHook(
         debugLabel: '_DialogStackState',
-        state: _DialogStackState(diDto: _DialogStackDiDto.use(read)),
+        state: DialogStackState(diDto: _DialogStackDiDto.use(read)),
       ),
     );
 
-class _DialogStackState extends LifeState {
-  _DialogStackState({
+class DialogStackState extends LifeState with ChangeNotifier {
+  DialogStackState({
     required this.diDto,
   });
   late final dialogController = DialogController(
@@ -51,7 +51,7 @@ class _DialogStackState extends LifeState {
 
   set dialogType(final GameDialogType dialogType) {
     _dialogType = dialogType;
-    setState();
+    notifyListeners();
   }
 
   @override

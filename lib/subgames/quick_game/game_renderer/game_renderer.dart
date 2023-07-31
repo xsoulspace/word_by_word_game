@@ -51,7 +51,7 @@ class CanvasRendererGame extends FlameGame
   Future<void> onLoad() async {
     images.prefix = 'packages/map_editor/assets/images/';
     debugMode = kDebugMode && !Envs.isMarketingMode;
-    mouseCursor = material.SystemMouseCursors.none;
+    // mouseCursor = material.SystemMouseCursors.none;
     children
       ..register<CameraComponent>()
       ..register<World>()

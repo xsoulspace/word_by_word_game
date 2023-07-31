@@ -45,7 +45,7 @@ class CanvasRenderer extends Component
       tilesRenderer,
       if (debugMode) debugSurface,
       canvasObjectsDrawer,
-      cursor,
+      // cursor,
       // LOGIC
       // animationUpdater,
     ]);
