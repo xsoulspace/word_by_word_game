@@ -120,6 +120,7 @@ class TilesRenderer extends Component
   final _painter = TilesPainter();
   @override
   void render(final Canvas canvas) {
+    // TODO(arenukvern): render only visible area
     _painter.render(
       canvas: canvas,
       canvasData: canvasData,
@@ -147,7 +148,7 @@ class TilesPainter {
       for (final MapEntry(key: cellPoint, value: cellTile)
           in tileLayer.tiles.entries) {
         final vectorPosition =
-            origin + cellPoint.toVector2() * kTileDimension.toDouble();
+            origin + (cellPoint.toVector2() * kTileDimension.toDouble());
         final position = vectorPosition.toOffset();
         final resourceTile = tilesResources[cellTile.tileId];
         if (resourceTile == null) continue;

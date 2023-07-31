@@ -126,46 +126,49 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
       final tileDistance = gravityYTilePosition * kTileDimension;
       final height = tileDistance - distanceToOrigin.dy;
-      final isColliding = game.diDto.canvasCubit
-          .checkIsCollidingWithTiles(cell: cell.toCellPoint());
+      final isColliding = game.diDto.canvasCubit.checkIsCollidingWithTiles(
+        cell: cell.toCellPoint(),
+      );
       if (isColliding) {
-        print('iscoliding');
-      }
-      // print(height);
-      if (height < 0) {
-        // do not update position
-        // update position if needed
-        liftForce = hotAirBalloonMechanics.calculateLiftForce(
-          constants: gameConstants.forces,
-          balloonPowers: character.balloonPowers,
-          balloonParams: character.balloonParams,
-          height: 0,
-        );
-        if (liftForce.liftPower > 0) {
+        _onCollision();
+      } else {
+// print(height);
+        if (height < 0) {
+          // do not update position
+          // update position if needed
+          liftForce = hotAirBalloonMechanics.calculateLiftForce(
+            constants: gameConstants.forces,
+            balloonPowers: character.balloonPowers,
+            balloonParams: character.balloonParams,
+            height: 0,
+          );
+          if (liftForce.liftPower > 0) {
+            final newPosition = position.copyWith(
+              dy: position.dy - liftForce.liftPower,
+            );
+            setPosition(newPosition);
+          }
+        } else {
+          // update position if needed
+          liftForce = hotAirBalloonMechanics.calculateLiftForce(
+            constants: gameConstants.forces,
+            balloonPowers: character.balloonPowers,
+            balloonParams: character.balloonParams,
+            height: height,
+          );
           final newPosition = position.copyWith(
             dy: position.dy - liftForce.liftPower,
           );
           setPosition(newPosition);
         }
-      } else {
-        // update position if needed
-        liftForce = hotAirBalloonMechanics.calculateLiftForce(
-          constants: gameConstants.forces,
-          balloonPowers: character.balloonPowers,
-          balloonParams: character.balloonParams,
-          height: height,
-        );
-        final newPosition = position.copyWith(
-          dy: position.dy - liftForce.liftPower,
-        );
-        setPosition(newPosition);
-      }
 
-      gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
-        position: position.toVector2(),
-        liftForce: liftForce,
-      );
+        gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
+          position: position.toVector2(),
+          liftForce: liftForce,
+        );
+      }
     }
+
     // final collided = obstacleLevelHelper.checkCollision(position);
     // if (collided) {
     //   _onCollision();
@@ -216,10 +219,19 @@ class GameCanvasObject extends Component
   Offset position;
   Offset distanceToOrigin;
   Offset distanceToTileLeftTopCorner;
-  math.Point<int> get cell =>
-      OriginVectorUtils.use(origin).getCurrentCellByCanvasObject(
-        objectDistanceToOrigin: distanceToOrigin,
-      );
+
+  /// relative cell, depends from the origin position and
+  /// screen changes
+  math.Point<int> _cell = const math.Point<int>(0, 0);
+
+  /// should never be changed outside
+  math.Point<int> get cell => _cell;
+
+  /// absolute coordinate for screen
+  math.Point<int> _absoluteCell = const math.Point<int>(0, 0);
+
+  /// should never be changed outside
+  math.Point<int> get absoluteCell => _absoluteCell;
 
   void _updateDistanceToOrigin() {
     distanceToOrigin = position - origin.toOffset();
@@ -228,6 +240,13 @@ class GameCanvasObject extends Component
       (cell.y * kTileDimension).toDouble(),
     );
     distanceToTileLeftTopCorner = distanceToOrigin - cellTopLeftPosition;
+    final originUtils = OriginVectorUtils.use(origin);
+    _absoluteCell = originUtils.getAbsoluteCellByCanvasObject(
+      objectDistanceToOrigin: distanceToOrigin,
+    );
+    _cell = originUtils.getCurrentCellByCanvasObject(
+      objectDistanceToOrigin: distanceToOrigin,
+    );
   }
 
   @override

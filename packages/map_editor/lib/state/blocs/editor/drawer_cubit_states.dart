@@ -54,6 +54,7 @@ class OriginVectorUtils {
     return math.Point(x, y);
   }
 
+  /// Current is the same as offset
   math.Point<int> getCurrentCellByGameObject(
     final RenderObjectModel object,
   ) {
@@ -61,10 +62,18 @@ class OriginVectorUtils {
     return getCellByDistance(distanceToOrigin);
   }
 
+  /// Current is the same as offset
   math.Point<int> getCurrentCellByCanvasObject({
     required final Offset objectDistanceToOrigin,
   }) {
     final distanceToOrigin = objectDistanceToOrigin.toVector2() - origin;
+    return getCellByDistance(distanceToOrigin);
+  }
+
+  math.Point<int> getAbsoluteCellByCanvasObject({
+    required final Offset objectDistanceToOrigin,
+  }) {
+    final distanceToOrigin = objectDistanceToOrigin.toVector2();
     return getCellByDistance(distanceToOrigin);
   }
 

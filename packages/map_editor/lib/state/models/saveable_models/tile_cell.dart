@@ -68,4 +68,5 @@ class CellPointModel with _$CellPointModel, EquatableMixin {
 
 extension PointExtension on math.Point {
   CellPointModel toCellPoint() => CellPointModel(x.toInt(), y.toInt());
+  Vector2 toVector2() => Vector2(x.toDouble(), y.toDouble());
 }
