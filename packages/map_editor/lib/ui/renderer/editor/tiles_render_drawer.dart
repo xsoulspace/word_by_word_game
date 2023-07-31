@@ -1,11 +1,33 @@
 part of 'editor_renderer.dart';
 
 class TilesDrawer extends Component
-    with TapCallbacks, HasGameRef<EditorRendererGame>, HasEditorRef {
+    with
+        TapCallbacks,
+        DragCallbacks,
+        HasGameRef<EditorRendererGame>,
+        HasEditorRef {
   @override
-  void onTapUp(final TapUpEvent event) {
-    _onTap(event);
-    return super.onTapUp(event);
+  void onDragStart(final DragStartEvent event) {
+    event.continuePropagation = true;
+    super.onDragStart(event);
+  }
+
+  @override
+  void onDragUpdate(final DragUpdateEvent event) {
+    event.continuePropagation = true;
+    super.onDragUpdate(event);
+    if (game.diDto.mapEditorBloc.state.isEditing) {
+      _onTap(event);
+    }
+  }
+
+  @override
+  void onTapDown(final TapDownEvent event) {
+    event.continuePropagation = true;
+    if (game.diDto.mapEditorBloc.state.isEditing) {
+      _onTap(event);
+    }
+    return super.onTapDown(event);
   }
 
   Map<CellPointModel, CellTileModel> checkNeighbours({
@@ -58,7 +80,7 @@ class TilesDrawer extends Component
   }
 
   math.Point<int>? _lastSelectedCell;
-  void _onTap(final TapUpEvent event) {
+  void _onTap(final PositionEvent event) {
     final originUtils = OriginVectorUtils.use(origin);
     final cell = originUtils.getCurrentCellByTap(event);
     final effectiveLayerTiles = {...layerTiles};

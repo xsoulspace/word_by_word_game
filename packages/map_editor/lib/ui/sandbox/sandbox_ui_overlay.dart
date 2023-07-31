@@ -50,11 +50,12 @@ class TileButtons extends StatelessWidget {
               children: [
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 150),
-                  child: CheckboxListTile(
+                  child: SwitchListTile(
+                    contentPadding: EdgeInsets.zero,
                     value: mapEditorBloc.state.isEditing,
                     onChanged: (final isEditing) async {
                       await mapEditorBloc.onChangeIsEditing(
-                        isEditing ?? false,
+                        isEditing,
                       );
                     },
                     title: const Text('Is Editing'),

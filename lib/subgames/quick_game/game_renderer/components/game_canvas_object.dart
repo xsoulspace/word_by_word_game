@@ -18,7 +18,6 @@ import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_rendere
 class PlayerGameCanvasObject extends GameCanvasObject {
   PlayerGameCanvasObject.fromRenderObject({
     required super.onPositionChanged,
-    // required this.obstacleLevelHelper,
     required this.characterModel,
     required super.data,
   }) : super.fromRenderObject();
@@ -42,7 +41,6 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     return PlayerGameCanvasObject.fromRenderObject(
       data: player,
       characterModel: levelPlayersBloc.state.playerCharacter,
-      // obstacleLevelHelper: ,
       onPositionChanged: (final value) {
         canvasCubit.player = value;
       },
@@ -51,7 +49,6 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   final hotAirBalloonMechanics = HotAirBalloonMechanics();
 
   final PlayerCharacterModel characterModel;
-  // final ObstacleLevelHelper obstacleLevelHelper;
 
   // void _handleLevelState(final LevelPlayersBlocState levelState) {
   //   if (levelState is! LevelPlayersBlocState) return;
@@ -71,9 +68,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   //     );
   // }
 
-  // int get maxDistance =>
-  //     obstacleLevelHelper.roundToTileDimension(position.dx) -
-  //     obstacleLevelHelper.roundToTileDimension(params.minXBoundry);
+  int get maxDistance => absoluteCell.x;
 
   // void _showLevelWinDialog() {
   //   gameRef.diDto.globalGameBloc
@@ -102,77 +97,19 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   @override
   void update(final double dt) {
-    final gameConstantsCubit = game.diDto.gameConstantsCubit;
-    final character = game.diDto.levelPlayersBloc.state.playerCharacter;
-    final gameConstants = gameConstantsCubit.state;
-    const gravityYTilePosition = 10;
     // game.diDto.canvasCubit.canvasData.gravityYPosition;
     if (game.paused) {
       // do nothing
     } else {
-      LiftForceModel liftForce;
-
-      /// can be positive and negative
-      /// if negative, then it should stick to the ground
-      ///
-      /// if positive, then it's flying
-      ///
-      /// -4 -3 -2 -1 0 1 2 3 4
-      /// ---------------------
-      ///    Zero       Point
-      ///
-      /// Zero - point for right will be always negative
-      /// for left will be always positive
-
-      final tileDistance = gravityYTilePosition * kTileDimension;
-      final height = tileDistance - distanceToOrigin.dy;
       final isColliding = game.diDto.canvasCubit.checkIsCollidingWithTiles(
         cell: cell.toCellPoint(),
       );
       if (isColliding) {
         _onCollision();
-      } else {
-// print(height);
-        if (height < 0) {
-          // do not update position
-          // update position if needed
-          liftForce = hotAirBalloonMechanics.calculateLiftForce(
-            constants: gameConstants.forces,
-            balloonPowers: character.balloonPowers,
-            balloonParams: character.balloonParams,
-            height: 0,
-          );
-          if (liftForce.liftPower > 0) {
-            final newPosition = position.copyWith(
-              dy: position.dy - liftForce.liftPower,
-            );
-            setPosition(newPosition);
-          }
-        } else {
-          // update position if needed
-          liftForce = hotAirBalloonMechanics.calculateLiftForce(
-            constants: gameConstants.forces,
-            balloonPowers: character.balloonPowers,
-            balloonParams: character.balloonParams,
-            height: height,
-          );
-          final newPosition = position.copyWith(
-            dy: position.dy - liftForce.liftPower,
-          );
-          setPosition(newPosition);
-        }
-
-        gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
-          position: position.toVector2(),
-          liftForce: liftForce,
-        );
-      }
+      } else {}
+      _onMove(dt);
     }
 
-    // final collided = obstacleLevelHelper.checkCollision(position);
-    // if (collided) {
-    //   _onCollision();
-    // }
     // final mechanics = BasicFlyingObjectMechanics(
     //   params: params,
     // );
@@ -185,10 +122,62 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     super.update(dt);
   }
 
-  @override
-  void setPosition(final Offset newPosition) {
-    // canvasCubit.changeOrigin(origin);
-    super.setPosition(newPosition);
+  void _onMove(final double dt) {
+    final gameConstantsCubit = game.diDto.gameConstantsCubit;
+    final character = game.diDto.levelPlayersBloc.state.playerCharacter;
+    final gameConstants = gameConstantsCubit.state;
+    const gravityYTilePosition = 10;
+
+    LiftForceModel liftForce;
+
+    /// can be positive and negative
+    /// if negative, then it should stick to the ground
+    ///
+    /// if positive, then it's flying
+    ///
+    /// -4 -3 -2 -1 0 1 2 3 4
+    /// ---------------------
+    ///    Zero       Point
+    ///
+    /// Zero - point for right will be always negative
+    /// for left will be always positive
+
+    final tileDistance = gravityYTilePosition * kTileDimension;
+    final height = tileDistance - distanceToOrigin.dy;
+
+    if (height < 0) {
+      // do not update position
+      // update position if needed
+      liftForce = hotAirBalloonMechanics.calculateLiftForce(
+        constants: gameConstants.forces,
+        balloonPowers: character.balloonPowers,
+        balloonParams: character.balloonParams,
+        height: 0,
+      );
+      if (liftForce.liftPower > 0) {
+        final newPosition = position.copyWith(
+          dy: position.dy - liftForce.liftPower,
+        );
+        setPosition(newPosition);
+      }
+    } else {
+      // update position if needed
+      liftForce = hotAirBalloonMechanics.calculateLiftForce(
+        constants: gameConstants.forces,
+        balloonPowers: character.balloonPowers,
+        balloonParams: character.balloonParams,
+        height: height,
+      );
+      final newPosition = position.copyWith(
+        dy: position.dy - liftForce.liftPower,
+      );
+      setPosition(newPosition);
+    }
+
+    gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
+      position: position.toVector2(),
+      liftForce: liftForce,
+    );
   }
 }
 

@@ -77,7 +77,7 @@ class OriginVectorUtils {
     return getCellByDistance(distanceToOrigin);
   }
 
-  math.Point<int> getCurrentCellByTap(final TapUpEvent eventPosition) {
+  math.Point<int> getCurrentCellByTap(final PositionEvent eventPosition) {
     final distanceToOrigin = eventPosition.canvasPosition - origin;
     return getCellByDistance(distanceToOrigin);
   }
