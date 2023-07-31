@@ -23,7 +23,12 @@ class GameBottomBarBackground extends StatelessWidget {
         Positioned.fill(
           child: AnimatedContainer(
             duration: 80.milliseconds,
-          ).frosted(),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+            ),
+          ).frosted(
+            borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+          ),
         ),
         AnimatedContainer(
           duration: 80.milliseconds,
