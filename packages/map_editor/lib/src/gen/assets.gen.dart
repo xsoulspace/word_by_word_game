@@ -243,6 +243,14 @@ class $AssetsImagesPreviewGen {
   AssetGenImage get leftFg =>
       const AssetGenImage('assets/images/preview/left_fg.png');
 
+  /// File path: assets/images/preview/maker_green.png
+  AssetGenImage get makerGreen =>
+      const AssetGenImage('assets/images/preview/maker_green.png');
+
+  /// File path: assets/images/preview/marker_red.png
+  AssetGenImage get markerRed =>
+      const AssetGenImage('assets/images/preview/marker_red.png');
+
   /// File path: assets/images/preview/right_bg.png
   AssetGenImage get rightBg =>
       const AssetGenImage('assets/images/preview/right_bg.png');
@@ -292,6 +300,8 @@ class $AssetsImagesPreviewGen {
         largeFg,
         leftBg,
         leftFg,
+        makerGreen,
+        markerRed,
         rightBg,
         rightFg,
         shellLeft,

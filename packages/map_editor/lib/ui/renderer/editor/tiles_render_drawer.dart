@@ -173,9 +173,10 @@ class TilesPainter {
     required final double tileRows,
     required final double windowWidth,
   }) {
+    final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
     for (var col = -1; col < tileColumns + 1; col++) {
       for (var row = -1; row < tileRows + 3; row++) {
-        for (final tileLayer in canvasData.layers) {
+        for (final tileLayer in visibleLayers) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
                   Vector2(col.toDouble(), row.toDouble());

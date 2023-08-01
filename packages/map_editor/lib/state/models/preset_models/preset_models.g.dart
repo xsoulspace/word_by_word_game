@@ -35,6 +35,7 @@ const _$TileTypeEnumMap = {
 
 const _$DataCategoryTypeEnumMap = {
   DataCategoryType.terrain: 'terrain',
+  DataCategoryType.marker: 'marker',
   DataCategoryType.water: 'water',
   DataCategoryType.palms: 'palms',
   DataCategoryType.players: 'players',

@@ -67,6 +67,10 @@ _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>
           ? const {}
           : LayerModel._tilesFromJson(json['tiles'] as Map<String, dynamic>),
       isCollidable: json['isCollidable'] as bool? ?? false,
+      collisionConsequence: $enumDecodeNullable(
+              _$CollisionConsequenceEnumMap, json['collisionConsequence']) ??
+          CollisionConsequence.none,
+      isVisible: json['isVisible'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$_LayerModelToJson(_$_LayerModel instance) =>
@@ -75,7 +79,16 @@ Map<String, dynamic> _$$_LayerModelToJson(_$_LayerModel instance) =>
       'title': instance.title,
       'tiles': LayerModel._tilesToJson(instance.tiles),
       'isCollidable': instance.isCollidable,
+      'collisionConsequence':
+          _$CollisionConsequenceEnumMap[instance.collisionConsequence]!,
+      'isVisible': instance.isVisible,
     };
+
+const _$CollisionConsequenceEnumMap = {
+  CollisionConsequence.none: 'none',
+  CollisionConsequence.win: 'win',
+  CollisionConsequence.lose: 'lose',
+};
 
 _$_CellTileModel _$$_CellTileModelFromJson(Map<String, dynamic> json) =>
     _$_CellTileModel(

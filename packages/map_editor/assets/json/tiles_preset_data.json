@@ -1,5 +1,33 @@
 {
   "tiles": {
+    "marker_red": {
+      "id": "marker_red",
+      "type": "autotile",
+      "category": "marker",
+      "properties": {
+        "title": "Red marker",
+        "thumbnail_path": "preview/marker_red.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "path": "markers/red",
+        "animated": false
+      }
+    },
+    "marker_green": {
+      "id": "marker_green",
+      "type": "autotile",
+      "category": "marker",
+      "properties": {
+        "title": "Green marker",
+        "thumbnail_path": "preview/marker_green.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "path": "markers/green",
+        "animated": false
+      }
+    },
     "tropical_land": {
       "id": "tropical_land",
       "type": "autotile",

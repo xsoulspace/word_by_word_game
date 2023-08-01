@@ -187,6 +187,14 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     layers = [...state.canvasData.layers, layer];
   }
 
+  void deleteLayer({
+    required final LayerModel layer,
+  }) {
+    final index = layers.indexWhere((final e) => e.id == layer.id);
+    layers = [...state.canvasData.layers]..removeAt(index);
+    selectLayer(id: layers.first.id);
+  }
+
   void reorderLayers(final int oldIndex, final int newIndex) {
     layers = [...layers]..reorder(oldIndex, newIndex);
   }

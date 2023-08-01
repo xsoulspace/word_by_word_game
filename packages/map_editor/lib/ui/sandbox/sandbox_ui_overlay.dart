@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:map_editor/logic/logic.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
@@ -85,11 +86,11 @@ class TileButtons extends StatelessWidget {
               child: Text('Layers - ${drawerCubit.drawLayer.title}'),
             ),
             ...[
-              ...tilesResources.tiles.values.map(
-                (final e) => TileSpriteButton(
-                  tileResource: e,
-                ),
-              ),
+              ...tilesResources.tiles.values.toList().reversed.map(
+                    (final e) => TileSpriteButton(
+                      tileResource: e,
+                    ),
+                  ),
             ].map(
               (final e) => Padding(
                 padding: const EdgeInsets.only(right: 8),
@@ -240,6 +241,8 @@ class _LayersDialogState extends State<LayersDialog> {
   Widget build(final BuildContext context) {
     final drawerCubit = context.watch<DrawerCubit>();
     final layers = drawerCubit.layers;
+    final theme = Theme.of(context);
+    final colorSheme = theme.colorScheme;
     return Dialog.fullscreen(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -249,19 +252,25 @@ class _LayersDialogState extends State<LayersDialog> {
             title: const Text('Layers'),
           ),
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(24),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(24),
+                  child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      ConstrainedBox(
-                        constraints: const BoxConstraints(
-                          maxWidth: 240,
+                      const Text('New Layer Name'),
+                      const Gap(16),
+                      Flexible(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(
+                            maxWidth: 240,
+                          ),
+                          child: TextFormField(
+                            controller: _textController,
+                          ),
                         ),
-                        child: TextFormField(controller: _textController),
                       ),
                       IconButton(
                         icon: const Icon(Icons.save),
@@ -274,55 +283,157 @@ class _LayersDialogState extends State<LayersDialog> {
                       ),
                     ],
                   ),
-                  ReorderableListView.builder(
-                    shrinkWrap: true,
-                    itemBuilder: (final context, final index) {
-                      final layer = layers[index];
-                      return ListTile(
-                        key: ValueKey(layer.id),
-                        leading: Radio.adaptive(
-                          value: layer.id,
-                          groupValue: drawerCubit.drawLayer.id,
-                          onChanged: (final id) => drawerCubit.selectLayer(
-                            id: id,
-                          ),
-                        ),
-                        trailing: Row(
-                          mainAxisSize: MainAxisSize.min,
+                ),
+                ReorderableListView.builder(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  buildDefaultDragHandles: false,
+                  itemBuilder: (final context, final index) {
+                    final layer = layers[index];
+                    return Card(
+                      key: ValueKey(layer.id),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8),
+                        child: Column(
                           children: [
-                            const Text('Collidable'),
-                            Switch(
-                              value: layer.isCollidable,
-                              onChanged: (final value) =>
-                                  drawerCubit.changeLayer(
-                                index: index,
-                                layer: layer.copyWith(isCollidable: value),
-                              ),
+                            Row(
+                              children: [
+                                ReorderableDragStartListener(
+                                  index: index,
+                                  child: const Icon(Icons.drag_handle),
+                                ),
+                                const Gap(16),
+                                Radio(
+                                  value: layer.id,
+                                  groupValue: drawerCubit.drawLayer.id,
+                                  onChanged: (final id) =>
+                                      drawerCubit.selectLayer(
+                                    id: id,
+                                  ),
+                                ),
+                                const Gap(16),
+                                Flexible(
+                                  child: ConstrainedBox(
+                                    constraints:
+                                        const BoxConstraints(maxWidth: 250),
+                                    child: TextFormField(
+                                      initialValue: layer.title,
+                                      onChanged: (final value) {
+                                        drawerCubit.changeLayer(
+                                          layer: layer.copyWith(
+                                            title: value,
+                                          ),
+                                          index: index,
+                                        );
+                                      },
+                                    ),
+                                  ),
+                                ),
+                                const Gap(16),
+                                Tooltip(
+                                  message: layer.isVisible
+                                      ? 'Visible. Click to hide'
+                                      : 'Not visible. Click to make visible',
+                                  child: IconButton.filled(
+                                    onPressed: () {
+                                      drawerCubit.changeLayer(
+                                        index: index,
+                                        layer: layer.copyWith(
+                                          isVisible: !layer.isVisible,
+                                        ),
+                                      );
+                                    },
+                                    icon: layer.isVisible
+                                        ? Icon(
+                                            Icons.visibility,
+                                            color: colorSheme.primary,
+                                          )
+                                        : const Icon(Icons.visibility_off),
+                                  ),
+                                ),
+                                IconButton.filled(
+                                  onPressed: () async {
+                                    await showDialog(
+                                      context: context,
+                                      builder: (final context) => AlertDialog(
+                                        content: const Text('Delete layer?'),
+                                        actions: [
+                                          TextButton(
+                                            child: const Text('Cancel'),
+                                            onPressed: () =>
+                                                Navigator.pop(context),
+                                          ),
+                                          TextButton(
+                                            child: const Text('Delete'),
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                              drawerCubit.deleteLayer(
+                                                layer: layer,
+                                              );
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  },
+                                  icon: const Icon(Icons.delete),
+                                ),
+                              ],
                             ),
-                            ReorderableDragStartListener(
-                              index: index,
-                              child: const Icon(Icons.drag_handle),
-                            ),
+                            const Gap(16),
+                            Row(
+                              children: [
+                                const Text('Collidable'),
+                                Switch(
+                                  value: layer.isCollidable,
+                                  onChanged: (final value) =>
+                                      drawerCubit.changeLayer(
+                                    index: index,
+                                    layer: layer.copyWith(isCollidable: value),
+                                  ),
+                                ),
+                                const Gap(16),
+                                if (layer.isCollidable)
+                                  const Text('Collision Consequence'),
+                                if (layer.isCollidable)
+                                  MenuAnchor(
+                                    menuChildren: CollisionConsequence.values
+                                        .map(
+                                          (final e) => MenuItemButton(
+                                            child: Text(e.name),
+                                            onPressed: () =>
+                                                drawerCubit.changeLayer(
+                                              index: index,
+                                              layer: layer.copyWith(
+                                                collisionConsequence: e,
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                        .toList(),
+                                    builder: (
+                                      final context,
+                                      final controller,
+                                      final child,
+                                    ) =>
+                                        TextButton(
+                                      onPressed: controller.open,
+                                      child: Text(
+                                        layer.collisionConsequence.name,
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            )
                           ],
                         ),
-                        title: TextFormField(
-                          initialValue: layer.title,
-                          onChanged: (final value) {
-                            drawerCubit.changeLayer(
-                              layer: layer.copyWith(
-                                title: value,
-                              ),
-                              index: index,
-                            );
-                          },
-                        ),
-                      );
-                    },
-                    itemCount: layers.length,
-                    onReorder: drawerCubit.reorderLayers,
-                  ),
-                ],
-              ),
+                      ),
+                    );
+                  },
+                  itemCount: layers.length,
+                  onReorder: drawerCubit.reorderLayers,
+                ),
+              ],
             ),
           )
         ],

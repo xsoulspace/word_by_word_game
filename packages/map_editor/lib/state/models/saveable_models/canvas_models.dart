@@ -130,6 +130,12 @@ class LayerModelId with _$LayerModelId, EquatableMixin {
   List<Object?> get props => [value];
 }
 
+enum CollisionConsequence {
+  none,
+  win,
+  lose,
+}
+
 @freezed
 class LayerModel with _$LayerModel {
   const factory LayerModel({
@@ -149,6 +155,9 @@ class LayerModel with _$LayerModel {
     /// determines is tiles in this layer should be
     /// treated as hitboxes
     @Default(false) final bool isCollidable,
+    @Default(CollisionConsequence.none)
+    final CollisionConsequence collisionConsequence,
+    @Default(true) final bool isVisible,
   }) = _LayerModel;
   const LayerModel._();
   factory LayerModel.fromJson(final Map<String, dynamic> json) =>

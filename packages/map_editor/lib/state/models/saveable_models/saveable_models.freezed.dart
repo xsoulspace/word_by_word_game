@@ -856,6 +856,9 @@ mixin _$LayerModel {
   /// determines is tiles in this layer should be
   /// treated as hitboxes
   bool get isCollidable => throw _privateConstructorUsedError;
+  CollisionConsequence get collisionConsequence =>
+      throw _privateConstructorUsedError;
+  bool get isVisible => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -875,7 +878,9 @@ abstract class $LayerModelCopyWith<$Res> {
       String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           Map<CellPointModel, CellTileModel> tiles,
-      bool isCollidable});
+      bool isCollidable,
+      CollisionConsequence collisionConsequence,
+      bool isVisible});
 
   $LayerModelIdCopyWith<$Res> get id;
 }
@@ -897,6 +902,8 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
     Object? title = null,
     Object? tiles = null,
     Object? isCollidable = null,
+    Object? collisionConsequence = null,
+    Object? isVisible = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -914,6 +921,14 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
       isCollidable: null == isCollidable
           ? _value.isCollidable
           : isCollidable // ignore: cast_nullable_to_non_nullable
+              as bool,
+      collisionConsequence: null == collisionConsequence
+          ? _value.collisionConsequence
+          : collisionConsequence // ignore: cast_nullable_to_non_nullable
+              as CollisionConsequence,
+      isVisible: null == isVisible
+          ? _value.isVisible
+          : isVisible // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -941,7 +956,9 @@ abstract class _$$_LayerModelCopyWith<$Res>
       String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           Map<CellPointModel, CellTileModel> tiles,
-      bool isCollidable});
+      bool isCollidable,
+      CollisionConsequence collisionConsequence,
+      bool isVisible});
 
   @override
   $LayerModelIdCopyWith<$Res> get id;
@@ -962,6 +979,8 @@ class __$$_LayerModelCopyWithImpl<$Res>
     Object? title = null,
     Object? tiles = null,
     Object? isCollidable = null,
+    Object? collisionConsequence = null,
+    Object? isVisible = null,
   }) {
     return _then(_$_LayerModel(
       id: null == id
@@ -980,6 +999,14 @@ class __$$_LayerModelCopyWithImpl<$Res>
           ? _value.isCollidable
           : isCollidable // ignore: cast_nullable_to_non_nullable
               as bool,
+      collisionConsequence: null == collisionConsequence
+          ? _value.collisionConsequence
+          : collisionConsequence // ignore: cast_nullable_to_non_nullable
+              as CollisionConsequence,
+      isVisible: null == isVisible
+          ? _value.isVisible
+          : isVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -993,7 +1020,9 @@ class _$_LayerModel extends _LayerModel {
       this.title = '',
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           final Map<CellPointModel, CellTileModel> tiles = const {},
-      this.isCollidable = false})
+      this.isCollidable = false,
+      this.collisionConsequence = CollisionConsequence.none,
+      this.isVisible = true})
       : _tiles = tiles,
         super._();
 
@@ -1020,10 +1049,16 @@ class _$_LayerModel extends _LayerModel {
   @override
   @JsonKey()
   final bool isCollidable;
+  @override
+  @JsonKey()
+  final CollisionConsequence collisionConsequence;
+  @override
+  @JsonKey()
+  final bool isVisible;
 
   @override
   String toString() {
-    return 'LayerModel(id: $id, title: $title, tiles: $tiles, isCollidable: $isCollidable)';
+    return 'LayerModel(id: $id, title: $title, tiles: $tiles, isCollidable: $isCollidable, collisionConsequence: $collisionConsequence, isVisible: $isVisible)';
   }
 
   @override
@@ -1035,13 +1070,23 @@ class _$_LayerModel extends _LayerModel {
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tiles, _tiles) &&
             (identical(other.isCollidable, isCollidable) ||
-                other.isCollidable == isCollidable));
+                other.isCollidable == isCollidable) &&
+            (identical(other.collisionConsequence, collisionConsequence) ||
+                other.collisionConsequence == collisionConsequence) &&
+            (identical(other.isVisible, isVisible) ||
+                other.isVisible == isVisible));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, title,
-      const DeepCollectionEquality().hash(_tiles), isCollidable);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      title,
+      const DeepCollectionEquality().hash(_tiles),
+      isCollidable,
+      collisionConsequence,
+      isVisible);
 
   @JsonKey(ignore: true)
   @override
@@ -1064,7 +1109,9 @@ abstract class _LayerModel extends LayerModel {
       final String title,
       @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
           final Map<CellPointModel, CellTileModel> tiles,
-      final bool isCollidable}) = _$_LayerModel;
+      final bool isCollidable,
+      final CollisionConsequence collisionConsequence,
+      final bool isVisible}) = _$_LayerModel;
   const _LayerModel._() : super._();
 
   factory _LayerModel.fromJson(Map<String, dynamic> json) =
@@ -1083,6 +1130,10 @@ abstract class _LayerModel extends LayerModel {
   /// determines is tiles in this layer should be
   /// treated as hitboxes
   bool get isCollidable;
+  @override
+  CollisionConsequence get collisionConsequence;
+  @override
+  bool get isVisible;
   @override
   @JsonKey(ignore: true)
   _$$_LayerModelCopyWith<_$_LayerModel> get copyWith =>

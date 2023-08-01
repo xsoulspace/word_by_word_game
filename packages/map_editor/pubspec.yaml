@@ -130,6 +130,9 @@ flutter:
     - assets/images/player/jump_right/
     - assets/images/player/fly_left/
     - assets/images/player/fly_right/
+    - assets/images/markers/
+    - assets/images/markers/red/
+    - assets/images/markers/green/
     - assets/images/preview/
     - assets/images/terrain/
     - assets/images/terrain/land/

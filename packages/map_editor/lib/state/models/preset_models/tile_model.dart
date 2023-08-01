@@ -28,6 +28,7 @@ enum TileType {
 
 enum DataCategoryType {
   terrain,
+  marker,
   water,
   palms,
   players,
