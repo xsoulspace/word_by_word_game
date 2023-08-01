@@ -23,7 +23,6 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     required super.data,
   }) : super.fromRenderObject();
   factory PlayerGameCanvasObject.fromCanvasCubit({
-    // ignore: avoid_unused_constructor_parameters
     required final CanvasRendererGame game,
     required final CanvasCubit canvasCubit,
     required final LevelPlayersBloc levelPlayersBloc,
@@ -62,31 +61,23 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   final PlayerCharacterModel characterModel;
 
-  // void _handleLevelState(final LevelPlayersBlocState levelState) {
-  //   if (levelState is! LevelPlayersBlocState) return;
-  //   params = params.copyWith(
-  //     fuel: levelState.playerCharacter.fuel,
-  //   );
-  // }
+  void _pauseGame() => game.diDto.mechanics.worldTime.pause();
 
   void _showLevelLostDialog() {
-    // TODO(arenukvern): description
-    gameRef.diDto
-      // ..globalGameBloc.onCharacterCollision(const CharacterCollisionEvent())
-      ..dialogController.showLevelLostDialog(
-        EndLevelEvent(
-          isWon: false,
-          maxDistance: maxDistance.toDouble(),
-        ),
-      );
+    _pauseGame();
+    gameRef.diDto.dialogController.showLevelLostDialog(
+      EndLevelEvent(
+        isWon: false,
+        maxDistance: maxDistance.toDouble(),
+      ),
+    );
   }
 
   int get maxDistance => absoluteCell.x;
 
   void _showLevelWinDialog() {
-    // TODO(arenukvern): description
-    // gameRef.diDto.globalGameBloc
-    //     .onCharacterCollision(const CharacterCollisionEvent());
+    _pauseGame();
+
     unawaited(
       gameRef.diDto.globalGameBloc.onLevelEnd(
         EndLevelEvent(
@@ -98,21 +89,10 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     gameRef.diDto.dialogController.showLevelWinDialog();
   }
 
-  void _onCollision(final double dt) {
-    _onMove(dt, isCollided: true);
-    // final sideCollision = obstacleLevelHelper.checkSideCollision(position);
-    // if (sideCollision.hasRightSideCollision) {
-    //   _showLevelWinDialog();
-    // } else if (sideCollision.hasLeftSideCollision) {
-    //   _showLevelLostDialog();
-    // } else {
-    //   _showLevelLostDialog();
-    // }
-  }
+  void _onCollision(final double dt) => _onMove(dt, isCollided: true);
 
   @override
   void update(final double dt) {
-    // game.diDto.canvasCubit.canvasData.gravityYPosition;
     if (game.paused) {
       // do nothing
     } else {
@@ -186,6 +166,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       if (liftForce.liftPower > 0) {
         final newPosition = position.copyWith(
           dy: position.dy - liftForce.liftPower,
+          // dx: position.dx + 0.5,
         );
         setPosition(newPosition);
       }
@@ -199,6 +180,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       );
       final newPosition = position.copyWith(
         dy: position.dy - liftForce.liftPower,
+        // dx: position.dx + 0.5,
       );
       setPosition(newPosition);
     }
