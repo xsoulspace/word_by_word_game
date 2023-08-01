@@ -18,7 +18,6 @@ class GameEvent with _$GameEvent {
   }) = CreatePlayerProfileEvent;
   const factory GameEvent.saveGame() = SaveGameEvent;
   const factory GameEvent.saveCurrentLevel() = SaveCurrentLevelEvent;
-  const factory GameEvent.characterCollision() = CharacterCollisionEvent;
   const factory GameEvent.endLevel({
     required final bool isWon,
     required final double maxDistance,

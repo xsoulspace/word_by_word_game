@@ -69,32 +69,34 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   //   );
   // }
 
-  // void _showLevelLostDialog() {
-  //   gameRef.diDto
-  //     ..globalGameBloc.onCharacterCollision(const CharacterCollisionEvent())
-  //     ..dialogController.showLevelLostDialog(
-  //       EndLevelEvent(
-  //         isWon: false,
-  //         maxDistance: maxDistance.toDouble(),
-  //       ),
-  //     );
-  // }
+  void _showLevelLostDialog() {
+    // TODO(arenukvern): description
+    gameRef.diDto
+      // ..globalGameBloc.onCharacterCollision(const CharacterCollisionEvent())
+      ..dialogController.showLevelLostDialog(
+        EndLevelEvent(
+          isWon: false,
+          maxDistance: maxDistance.toDouble(),
+        ),
+      );
+  }
 
   int get maxDistance => absoluteCell.x;
 
-  // void _showLevelWinDialog() {
-  //   gameRef.diDto.globalGameBloc
-  //       .onCharacterCollision(const CharacterCollisionEvent());
-  //   unawaited(
-  //     gameRef.diDto.globalGameBloc.onLevelEnd(
-  //       EndLevelEvent(
-  //         isWon: true,
-  //         maxDistance: maxDistance.toDouble(),
-  //       ),
-  //     ),
-  //   );
-  //   gameRef.diDto.dialogController.showLevelWinDialog();
-  // }
+  void _showLevelWinDialog() {
+    // TODO(arenukvern): description
+    // gameRef.diDto.globalGameBloc
+    //     .onCharacterCollision(const CharacterCollisionEvent());
+    unawaited(
+      gameRef.diDto.globalGameBloc.onLevelEnd(
+        EndLevelEvent(
+          isWon: true,
+          maxDistance: maxDistance.toDouble(),
+        ),
+      ),
+    );
+    gameRef.diDto.dialogController.showLevelWinDialog();
+  }
 
   void _onCollision(final double dt) {
     _onMove(dt, isCollided: true);
@@ -114,14 +116,25 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     if (game.paused) {
       // do nothing
     } else {
-      final isColliding = game.diDto.canvasCubit.checkIsCollidingWithTiles(
+      final collisionConsequences =
+          game.diDto.canvasCubit.checkIsCollidingWithTiles(
         hitboxCells: hitboxCells,
       );
-      if (isColliding) {
-        print('isColliding');
-        _onCollision(dt);
+      if (collisionConsequences.isNotEmpty) {
+        /// means we have at least one collision
+        for (final consequence in collisionConsequences) {
+          switch (consequence) {
+            case CollisionConsequence.lose:
+              _showLevelLostDialog();
+              return;
+            case CollisionConsequence.win:
+              _showLevelWinDialog();
+
+            case CollisionConsequence.none:
+              _onCollision(dt);
+          }
+        }
       } else {
-        print('isMoving');
         _onMove(dt);
       }
     }

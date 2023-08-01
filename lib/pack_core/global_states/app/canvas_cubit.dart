@@ -27,17 +27,20 @@ class CanvasCubit extends DrawerCubit {
   Iterable<LayerModel> get _collidableLayers =>
       state.canvasData.layers.where((final e) => e.isCollidable);
 
-  bool checkIsCollidingWithTiles({
+  Set<CollisionConsequence> checkIsCollidingWithTiles({
     required final List<CellPointModel> hitboxCells,
   }) {
-    bool isColliding = false;
+    final consequences = <CollisionConsequence>{};
     for (final layer in _collidableLayers) {
       for (final cell in hitboxCells) {
-        isColliding = layer.tiles.containsKey(cell);
-        if (isColliding) return true;
+        final tile = layer.tiles[cell];
+        if (tile != null) {
+          consequences.add(layer.collisionConsequence);
+          break;
+        }
       }
     }
-    return false;
+    return consequences;
   }
 
   void loadCanvasData({
