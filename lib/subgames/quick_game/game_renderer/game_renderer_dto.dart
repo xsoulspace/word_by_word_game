@@ -12,7 +12,8 @@ class GameRendererDiDto {
         canvasCubit = context.read(),
         debugCubit = context.read(),
         statesStatusesCubit = context.read(),
-        gameConstantsCubit = context.read();
+        gameConstantsCubit = context.read(),
+        weatherCubit = context.read();
 
   /// ********************************************
   /// *      Ephemeral
@@ -24,6 +25,7 @@ class GameRendererDiDto {
   final GameConstantsCubit gameConstantsCubit;
   final GlobalGameBloc globalGameBloc;
   final CanvasCubit canvasCubit;
+  final WeatherCubit weatherCubit;
   final MechanicsCollection mechanics;
   final ThemeData theme;
   final DialogController dialogController;

@@ -7,6 +7,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 
 class AppDiProviderDto {
   AppDiProviderDto({
@@ -108,6 +109,11 @@ class _AppDiProviderState extends State<AppDiProvider> {
               BlocProvider(
                 create: (final context) => TutorialBloc(
                   diDto: TutorialBlocDiDto.use(context),
+                ),
+              ),
+              BlocProvider(
+                create: (final context) => WeatherCubit(
+                  dto: WeatherCubitDto(context: context),
                 ),
               ),
               BlocProvider<GlobalGameBloc>(

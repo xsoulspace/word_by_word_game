@@ -1301,6 +1301,7 @@ LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
 mixin _$LevelModel {
   LevelPlayersModel get players => throw _privateConstructorUsedError;
   LevelCharactersModel get characters => throw _privateConstructorUsedError;
+  List<WeatherModel> get weathers => throw _privateConstructorUsedError;
 
   /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
   /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]
@@ -1327,6 +1328,7 @@ abstract class $LevelModelCopyWith<$Res> {
   $Res call(
       {LevelPlayersModel players,
       LevelCharactersModel characters,
+      List<WeatherModel> weathers,
       CanvasDataModelId canvasDataId,
       CurrentWordModel currentWord,
       Map<String, String> words,
@@ -1355,6 +1357,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
   $Res call({
     Object? players = null,
     Object? characters = null,
+    Object? weathers = null,
     Object? canvasDataId = null,
     Object? currentWord = null,
     Object? words = null,
@@ -1371,6 +1374,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
+      weathers: null == weathers
+          ? _value.weathers
+          : weathers // ignore: cast_nullable_to_non_nullable
+              as List<WeatherModel>,
       canvasDataId: null == canvasDataId
           ? _value.canvasDataId
           : canvasDataId // ignore: cast_nullable_to_non_nullable
@@ -1442,6 +1449,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
   $Res call(
       {LevelPlayersModel players,
       LevelCharactersModel characters,
+      List<WeatherModel> weathers,
       CanvasDataModelId canvasDataId,
       CurrentWordModel currentWord,
       Map<String, String> words,
@@ -1472,6 +1480,7 @@ class __$$_LevelModelCopyWithImpl<$Res>
   $Res call({
     Object? players = null,
     Object? characters = null,
+    Object? weathers = null,
     Object? canvasDataId = null,
     Object? currentWord = null,
     Object? words = null,
@@ -1488,6 +1497,10 @@ class __$$_LevelModelCopyWithImpl<$Res>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
+      weathers: null == weathers
+          ? _value._weathers
+          : weathers // ignore: cast_nullable_to_non_nullable
+              as List<WeatherModel>,
       canvasDataId: null == canvasDataId
           ? _value.canvasDataId
           : canvasDataId // ignore: cast_nullable_to_non_nullable
@@ -1523,13 +1536,15 @@ class _$_LevelModel extends _LevelModel {
   const _$_LevelModel(
       {required this.players,
       required this.characters,
+      final List<WeatherModel> weathers = const [],
       this.canvasDataId = CanvasDataModelId.empty,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
       this.latestWord = '',
       this.phaseType = GamePhaseType.entryWord,
       this.actionMultiplier = EnergyMultiplierType.m1})
-      : _words = words,
+      : _weathers = weathers,
+        _words = words,
         super._();
 
   factory _$_LevelModel.fromJson(Map<String, dynamic> json) =>
@@ -1539,6 +1554,14 @@ class _$_LevelModel extends _LevelModel {
   final LevelPlayersModel players;
   @override
   final LevelCharactersModel characters;
+  final List<WeatherModel> _weathers;
+  @override
+  @JsonKey()
+  List<WeatherModel> get weathers {
+    if (_weathers is EqualUnmodifiableListView) return _weathers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_weathers);
+  }
 
   /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
   /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]
@@ -1569,7 +1592,7 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier)';
+    return 'LevelModel(players: $players, characters: $characters, weathers: $weathers, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier)';
   }
 
   @override
@@ -1580,6 +1603,7 @@ class _$_LevelModel extends _LevelModel {
             (identical(other.players, players) || other.players == players) &&
             (identical(other.characters, characters) ||
                 other.characters == characters) &&
+            const DeepCollectionEquality().equals(other._weathers, _weathers) &&
             (identical(other.canvasDataId, canvasDataId) ||
                 other.canvasDataId == canvasDataId) &&
             (identical(other.currentWord, currentWord) ||
@@ -1599,6 +1623,7 @@ class _$_LevelModel extends _LevelModel {
       runtimeType,
       players,
       characters,
+      const DeepCollectionEquality().hash(_weathers),
       canvasDataId,
       currentWord,
       const DeepCollectionEquality().hash(_words),
@@ -1624,6 +1649,7 @@ abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
       {required final LevelPlayersModel players,
       required final LevelCharactersModel characters,
+      final List<WeatherModel> weathers,
       final CanvasDataModelId canvasDataId,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
@@ -1639,6 +1665,8 @@ abstract class _LevelModel extends LevelModel {
   LevelPlayersModel get players;
   @override
   LevelCharactersModel get characters;
+  @override
+  List<WeatherModel> get weathers;
   @override
 
   /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]

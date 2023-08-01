@@ -22,6 +22,7 @@ class LevelModel with _$LevelModel {
   const factory LevelModel({
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
+    @Default([]) final List<WeatherModel> weathers,
 
     /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
     /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]

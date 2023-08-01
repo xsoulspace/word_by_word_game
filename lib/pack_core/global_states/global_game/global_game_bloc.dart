@@ -7,6 +7,7 @@ import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/tutorial/tutorial_listener.dart';
 
 part 'global_game_bloc.freezed.dart';
@@ -22,8 +23,10 @@ class GlobalGameBlocDiDto {
         services = context.read(),
         statesStatusesCubit = context.read(),
         canvasCubit = context.read(),
+        weatherCubit = context.read(),
         debugCubit = context.read();
   final DebugCubit debugCubit;
+  final WeatherCubit weatherCubit;
   final BuildContext context;
   final CanvasCubit canvasCubit;
   final StatesStatusesCubit statesStatusesCubit;
@@ -122,6 +125,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     _globalLevelLoadCompleter = Completer();
     LevelModel level = event.levelModel;
+    diDto.weatherCubit.loadWeather(weathers: level.weathers);
     GlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
       updatedState = updatedState.copyWith(
@@ -256,6 +260,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     diDto.levelBloc.onConsumeTickEvent(
       LevelBlocEventConsumeTick(timeDeltaInSeconds: newState.dateTimeDelta),
     );
+    diDto.weatherCubit.onConsumeTickEvent();
   }
 
   Future<void> onDeletePlayerProfile(
@@ -329,6 +334,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final livePlayersState = diDto.levelPlayersBloc.state;
 
     return LevelModel(
+      weathers: diDto.weatherCubit.state.weathers,
       currentWord: liveLevelState.currentWord,
       latestWord: liveLevelState.latestWord,
       words: liveLevelState.words,

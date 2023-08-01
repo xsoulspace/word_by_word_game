@@ -140,6 +140,10 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
           json['characters'] as Map<String, dynamic>),
+      weathers: (json['weathers'] as List<dynamic>?)
+              ?.map((e) => WeatherModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       canvasDataId: json['canvasDataId'] == null
           ? CanvasDataModelId.empty
           : CanvasDataModelId.fromJson(json['canvasDataId'] as String),
@@ -164,6 +168,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
     <String, dynamic>{
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
+      'weathers': instance.weathers.map((e) => e.toJson()).toList(),
       'canvasDataId': instance.canvasDataId.toJson(),
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
