@@ -289,9 +289,11 @@ class GameCanvasObject extends Component
 
   @override
   void render(final Canvas canvas) {
+    if (tileId.isEmpty) return super.render(canvas);
     final resourceTile = allTiles[tileId]!;
     // TODO(antmalofeev): replace with listener
     final renderObject = canvasCubit.objects[gid]!;
+
     final animationEntry =
         resourceTile.behaviourPaths[renderObject.animationBehaviour]!;
 
