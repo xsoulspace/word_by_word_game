@@ -31,7 +31,6 @@ class CanvasCubit extends DrawerCubit {
     required final CellPointModel cell,
   }) {
     bool isColliding = false;
-    // print(cell);
     for (final layer in _collidableLayers) {
       isColliding = layer.tiles.containsKey(cell);
       if (isColliding) return true;

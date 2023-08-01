@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 part 'debug_cubit.freezed.dart';
 
@@ -13,10 +11,7 @@ class DebugCubitState with _$DebugCubitState {
 }
 
 class DebugCubitDto {
-  DebugCubitDto({
-    required final BuildContext context,
-  }) : gameConstantsCubit = context.read();
-  final GameConstantsCubit gameConstantsCubit;
+  DebugCubitDto();
 }
 
 class DebugCubit extends Cubit<DebugCubitState> {
@@ -26,7 +21,7 @@ class DebugCubit extends Cubit<DebugCubitState> {
   final DebugCubitDto dto;
   // ignore: avoid_positional_boolean_parameters
   void switchIsCameraFollowingPlayerChange([final bool? value]) {
-    final isFollowing = state.isCameraFollowingPlayer;
-    emit(state.copyWith(isCameraFollowingPlayer: value ?? !isFollowing));
+    final isFollowing = value ?? !state.isCameraFollowingPlayer;
+    emit(state.copyWith(isCameraFollowingPlayer: isFollowing));
   }
 }

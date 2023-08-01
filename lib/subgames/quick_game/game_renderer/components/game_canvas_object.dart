@@ -5,6 +5,7 @@ import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
+import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
@@ -27,17 +28,26 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     required final LevelPlayersBloc levelPlayersBloc,
   }) {
     RenderObjectModel player = canvasCubit.player;
+    final position = player.position.toVector2() + game.canvasRenderer.origin;
     if (player.id.isEmpty) {
-      /// creating player if it is empty
       final updatedPlayer = RenderObjectModel(
         id: const Gid(value: 'Tester'),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: kPlayerTileId,
-        position: (game.size / 2).toSerializedVector2(),
+        position: position.toSerializedVector2(),
       );
+
+      /// creating player if it is empty
       canvasCubit.player = updatedPlayer;
-      player = updatedPlayer;
+    } else {
+      player = player.copyWith(position: position.toSerializedVector2());
     }
+    levelPlayersBloc.onChangeCharacter(
+      levelPlayersBloc.state.playerCharacter.copyWith(
+        gid: player.id,
+        position: position.toSerializedVector2(),
+      ),
+    );
     return PlayerGameCanvasObject.fromRenderObject(
       data: player,
       characterModel: levelPlayersBloc.state.playerCharacter,
@@ -84,7 +94,8 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   //   gameRef.diDto.dialogController.showLevelWinDialog();
   // }
 
-  void _onCollision() {
+  void _onCollision(final double dt) {
+    _onMove(dt, isCollided: true);
     // final sideCollision = obstacleLevelHelper.checkSideCollision(position);
     // if (sideCollision.hasRightSideCollision) {
     //   _showLevelWinDialog();
@@ -105,9 +116,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         cell: cell.toCellPoint(),
       );
       if (isColliding) {
-        _onCollision();
-      } else {}
-      _onMove(dt);
+        print('isColliding');
+        _onCollision(dt);
+      } else {
+        print('isMoving');
+        _onMove(dt);
+      }
     }
 
     // final mechanics = BasicFlyingObjectMechanics(
@@ -122,7 +136,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     super.update(dt);
   }
 
-  void _onMove(final double dt) {
+  void _onMove(final double dt, {final bool isCollided = false}) {
     final gameConstantsCubit = game.diDto.gameConstantsCubit;
     final character = game.diDto.levelPlayersBloc.state.playerCharacter;
     final gameConstants = gameConstantsCubit.state;
@@ -145,7 +159,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     final tileDistance = gravityYTilePosition * kTileDimension;
     final height = tileDistance - distanceToOrigin.dy;
 
-    if (height < 0) {
+    if (height < 0 || isCollided) {
       // do not update position
       // update position if needed
       liftForce = hotAirBalloonMechanics.calculateLiftForce(
@@ -333,15 +347,44 @@ class GameCanvasObjectsDrawer extends Component
     _loadSkyHandle();
 
     await _addCanvasObjects(canvasObjects);
+    add(
+      FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
+        onNewState: _handleGameStatusChanged,
+      ),
+    );
+
     return super.onLoad();
   }
 
-  void _loadPlayer() {
-    player = PlayerGameCanvasObject.fromCanvasCubit(
-      game: game,
+  Future<void> _handleGameStatusChanged(
+    final StatesStatusesCubitState statusState,
+  ) async {
+    final oldPlayer = player;
+    switch (statusState.levelStateStatus) {
+      case LevelStateStatus.loading:
+        if (oldPlayer != null) {
+          player = null;
+          if (oldPlayer.isMounted) {
+            remove(oldPlayer);
+          }
+        }
+
+      case LevelStateStatus.paused || LevelStateStatus.playing:
+        if (oldPlayer == null) {
+          final newPlayer = _loadPlayer();
+          add(newPlayer);
+        }
+    }
+  }
+
+  PlayerGameCanvasObject _loadPlayer() {
+    final newPlayer = PlayerGameCanvasObject.fromCanvasCubit(
       canvasCubit: canvasCubit,
+      game: game,
       levelPlayersBloc: game.diDto.levelPlayersBloc,
     );
+    player = newPlayer;
+    return newPlayer;
   }
 
   void _loadSkyHandle() {

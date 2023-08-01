@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/tutorial/tutorial_listener.dart';
 
@@ -20,7 +21,9 @@ class GlobalGameBlocDiDto {
         tutorialBloc = context.read(),
         services = context.read(),
         statesStatusesCubit = context.read(),
-        canvasCubit = context.read();
+        canvasCubit = context.read(),
+        debugCubit = context.read();
+  final DebugCubit debugCubit;
   final BuildContext context;
   final CanvasCubit canvasCubit;
   final StatesStatusesCubit statesStatusesCubit;
@@ -156,9 +159,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     return state;
   }
 
-  void _onStatusChanged(
+  Future<void> _onStatusChanged(
     final StatesStatusesCubitState statesStatuses,
-  ) {
+  ) async {
     switch (statesStatuses.levelStateStatus) {
       case LevelStateStatus.paused || LevelStateStatus.playing:
         final globalLevelLoadCompleter = _globalLevelLoadCompleter;

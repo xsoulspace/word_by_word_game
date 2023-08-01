@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
-import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -66,18 +65,14 @@ class GlobalStateInitializer extends StateInitializer {
 class GameInitializer {
   List<PlayerCharacterModel> get characters => [
         PlayerCharacterModel(
-          id: 'hot-air-balloon',
+          id: const Gid(value: 'balloon 1'),
+          gid: const Gid(value: 'balloon 1'),
           localizedName: const LocalizedMap(
             value: {
               Languages.en: 'Hot Air Balloon',
               Languages.ru: 'Воздушный шар',
               Languages.it: 'Mongolfiera',
             },
-          ),
-          asset: CharacterAssetModel(
-            srcPosition: SerializedVector2(y: kTileDimension * 6),
-            srcSizeX: kTileDimension,
-            srcSizeY: kTileDimension,
           ),
           characterIcon: 'char_hot_air_baloon',
           description: 'Moves with the wind..',

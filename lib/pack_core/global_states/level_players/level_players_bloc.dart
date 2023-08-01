@@ -12,8 +12,10 @@ part 'level_players_states.dart';
 class LevelPlayersBlocDiDto {
   LevelPlayersBlocDiDto.use(final BuildContext context)
       : mechanics = context.read(),
-        statesStatusesCubit = context.read();
+        statesStatusesCubit = context.read(),
+        canvasCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
+  final CanvasCubit canvasCubit;
   final MechanicsCollection mechanics;
 }
 
@@ -28,7 +30,12 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   ) {
     final liveState = LevelPlayersBlocState.fromModel(
       levelPlayersModel: event.playersModel,
-      levelCharactersModel: event.charactersModel,
+      levelCharactersModel: event.charactersModel.copyWith(
+        playerCharacter: event.charactersModel.playerCharacter.copyWith(
+          gid: diDto.canvasCubit.player.id,
+          position: diDto.canvasCubit.player.position,
+        ),
+      ),
     );
     emit(liveState);
     diDto.statesStatusesCubit.onLevelPartLoaded(

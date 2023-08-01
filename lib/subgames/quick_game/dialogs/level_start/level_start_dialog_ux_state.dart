@@ -34,7 +34,7 @@ class LevelStartDialogUxState extends LifeState {
   final CanvasDataModel canvasData;
   final _LevelStartDialogUxStateDiDto diDto;
 
-  PlayerCharacterModelId? characterId;
+  Gid? characterId;
 
   @override
   void initState() {

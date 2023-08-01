@@ -2,17 +2,20 @@
 
 part of 'models.dart';
 
-typedef PlayerCharacterModelId = String;
-
 @immutable
 @freezed
 class PlayerCharacterModel with _$PlayerCharacterModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerCharacterModel({
-    @Default('') final PlayerCharacterModelId id,
+    /// unique id which used to identify unqiue set of following params:
+    /// [balloonPowers] [balloonParams] [color] [localizedName] etc
+    @Default(Gid.empty) final Gid id,
+
+    /// is assigning during game start to pick required tileId's
+    /// reference from the canvasCubit
+    @Default(Gid.empty) final Gid gid,
     @Default('') final String description,
     @Default(0) final int color,
-    @Default(CharacterAssetModel.empty) final CharacterAssetModel asset,
     @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 position,
@@ -25,21 +28,6 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
   factory PlayerCharacterModel.fromJson(final Map<String, dynamic> json) =>
       _$PlayerCharacterModelFromJson(json);
   static const empty = PlayerCharacterModel();
-}
-
-@immutable
-@freezed
-class CharacterAssetModel with _$CharacterAssetModel {
-  @JsonSerializable(explicitToJson: true)
-  const factory CharacterAssetModel({
-    @Default(SerializedVector2.zero) final SerializedVector2 srcPosition,
-    @Default(0) final int srcSizeX,
-    @Default(0) final int srcSizeY,
-  }) = _CharacterAssetModel;
-  const CharacterAssetModel._();
-  factory CharacterAssetModel.fromJson(final Map<String, dynamic> json) =>
-      _$CharacterAssetModelFromJson(json);
-  static const empty = CharacterAssetModel();
 }
 
 @immutable

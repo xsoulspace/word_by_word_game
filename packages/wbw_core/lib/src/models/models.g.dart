@@ -216,12 +216,11 @@ Map<String, dynamic> _$$_LocalDictionaryModelToJson(
 _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
         Map<String, dynamic> json) =>
     _$_PlayerCharacterModel(
-      id: json['id'] as String? ?? '',
+      id: json['id'] == null ? Gid.empty : Gid.fromJson(json['id'] as String),
+      gid:
+          json['gid'] == null ? Gid.empty : Gid.fromJson(json['gid'] as String),
       description: json['description'] as String? ?? '',
       color: json['color'] as int? ?? 0,
-      asset: json['asset'] == null
-          ? CharacterAssetModel.empty
-          : CharacterAssetModel.fromJson(json['asset'] as Map<String, dynamic>),
       localizedName: json['localizedName'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(
@@ -244,34 +243,15 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
 Map<String, dynamic> _$$_PlayerCharacterModelToJson(
         _$_PlayerCharacterModel instance) =>
     <String, dynamic>{
-      'id': instance.id,
+      'id': instance.id.toJson(),
+      'gid': instance.gid.toJson(),
       'description': instance.description,
       'color': instance.color,
-      'asset': instance.asset.toJson(),
       'localizedName': instance.localizedName.toJson(),
       'characterIcon': instance.characterIcon,
       'position': instance.position.toJson(),
       'balloonPowers': instance.balloonPowers.toJson(),
       'balloonParams': instance.balloonParams.toJson(),
-    };
-
-_$_CharacterAssetModel _$$_CharacterAssetModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_CharacterAssetModel(
-      srcPosition: json['srcPosition'] == null
-          ? SerializedVector2.zero
-          : SerializedVector2.fromJson(
-              json['srcPosition'] as Map<String, dynamic>),
-      srcSizeX: json['srcSizeX'] as int? ?? 0,
-      srcSizeY: json['srcSizeY'] as int? ?? 0,
-    );
-
-Map<String, dynamic> _$$_CharacterAssetModelToJson(
-        _$_CharacterAssetModel instance) =>
-    <String, dynamic>{
-      'srcPosition': instance.srcPosition.toJson(),
-      'srcSizeX': instance.srcSizeX,
-      'srcSizeY': instance.srcSizeY,
     };
 
 _$_SerializedVector2 _$$_SerializedVector2FromJson(Map<String, dynamic> json) =>

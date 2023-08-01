@@ -80,6 +80,11 @@ class _AppDiProviderState extends State<AppDiProvider> {
           builder: (final context) {
             final initialProviders = <SingleChildWidget>[
               BlocProvider(
+                create: (final context) => DebugCubit(
+                  dto: DebugCubitDto(),
+                ),
+              ),
+              BlocProvider(
                 create: (final context) => CanvasCubit(
                   canvasDto: CanvasCubitDto(),
                   drawerCubit: DrawerCubitDto.use(context: context),
@@ -118,11 +123,6 @@ class _AppDiProviderState extends State<AppDiProvider> {
               BlocProvider(
                 create: (final context) => GameConstantsCubit(
                   dto: GameConstantsCubitDto(),
-                ),
-              ),
-              BlocProvider(
-                create: (final context) => DebugCubit(
-                  dto: DebugCubitDto(context: context),
                 ),
               ),
             ];
