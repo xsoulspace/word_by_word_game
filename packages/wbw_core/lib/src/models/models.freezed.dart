@@ -1994,7 +1994,7 @@ mixin _$PlayerCharacterModel {
   int get color => throw _privateConstructorUsedError;
   LocalizedMap get localizedName => throw _privateConstructorUsedError;
   String get characterIcon => throw _privateConstructorUsedError;
-  SerializedVector2 get position => throw _privateConstructorUsedError;
+  SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
   BalloonLiftPowersModel get balloonPowers =>
       throw _privateConstructorUsedError;
   BalloonLiftParamsModel get balloonParams =>
@@ -2019,14 +2019,14 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       int color,
       LocalizedMap localizedName,
       String characterIcon,
-      SerializedVector2 position,
+      SerializedVector2 distanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
       BalloonLiftParamsModel balloonParams});
 
   $GidCopyWith<$Res> get id;
   $GidCopyWith<$Res> get gid;
   $LocalizedMapCopyWith<$Res> get localizedName;
-  $SerializedVector2CopyWith<$Res> get position;
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
   $BalloonLiftParamsModelCopyWith<$Res> get balloonParams;
 }
@@ -2051,7 +2051,7 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     Object? color = null,
     Object? localizedName = null,
     Object? characterIcon = null,
-    Object? position = null,
+    Object? distanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
   }) {
@@ -2080,9 +2080,9 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
           ? _value.characterIcon
           : characterIcon // ignore: cast_nullable_to_non_nullable
               as String,
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
       balloonPowers: null == balloonPowers
           ? _value.balloonPowers
@@ -2121,9 +2121,9 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $SerializedVector2CopyWith<$Res> get position {
-    return $SerializedVector2CopyWith<$Res>(_value.position, (value) {
-      return _then(_value.copyWith(position: value) as $Val);
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin {
+    return $SerializedVector2CopyWith<$Res>(_value.distanceToOrigin, (value) {
+      return _then(_value.copyWith(distanceToOrigin: value) as $Val);
     });
   }
 
@@ -2159,7 +2159,7 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
       int color,
       LocalizedMap localizedName,
       String characterIcon,
-      SerializedVector2 position,
+      SerializedVector2 distanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
       BalloonLiftParamsModel balloonParams});
 
@@ -2170,7 +2170,7 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
   @override
   $LocalizedMapCopyWith<$Res> get localizedName;
   @override
-  $SerializedVector2CopyWith<$Res> get position;
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
   @override
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
   @override
@@ -2194,7 +2194,7 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
     Object? color = null,
     Object? localizedName = null,
     Object? characterIcon = null,
-    Object? position = null,
+    Object? distanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
   }) {
@@ -2223,9 +2223,9 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.characterIcon
           : characterIcon // ignore: cast_nullable_to_non_nullable
               as String,
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
       balloonPowers: null == balloonPowers
           ? _value.balloonPowers
@@ -2250,7 +2250,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       this.color = 0,
       this.localizedName = LocalizedMap.empty,
       this.characterIcon = '',
-      this.position = SerializedVector2.zero,
+      this.distanceToOrigin = SerializedVector2.zero,
       this.balloonPowers = BalloonLiftPowersModel.initial,
       this.balloonParams = BalloonLiftParamsModel.initial})
       : super._();
@@ -2283,7 +2283,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   final String characterIcon;
   @override
   @JsonKey()
-  final SerializedVector2 position;
+  final SerializedVector2 distanceToOrigin;
   @override
   @JsonKey()
   final BalloonLiftPowersModel balloonPowers;
@@ -2293,7 +2293,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, position: $position, balloonPowers: $balloonPowers, balloonParams: $balloonParams)';
+    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, distanceToOrigin: $distanceToOrigin, balloonPowers: $balloonPowers, balloonParams: $balloonParams)';
   }
 
   @override
@@ -2310,8 +2310,8 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
                 other.localizedName == localizedName) &&
             (identical(other.characterIcon, characterIcon) ||
                 other.characterIcon == characterIcon) &&
-            (identical(other.position, position) ||
-                other.position == position) &&
+            (identical(other.distanceToOrigin, distanceToOrigin) ||
+                other.distanceToOrigin == distanceToOrigin) &&
             (identical(other.balloonPowers, balloonPowers) ||
                 other.balloonPowers == balloonPowers) &&
             (identical(other.balloonParams, balloonParams) ||
@@ -2320,8 +2320,17 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, gid, description, color,
-      localizedName, characterIcon, position, balloonPowers, balloonParams);
+  int get hashCode => Object.hash(
+      runtimeType,
+      id,
+      gid,
+      description,
+      color,
+      localizedName,
+      characterIcon,
+      distanceToOrigin,
+      balloonPowers,
+      balloonParams);
 
   @JsonKey(ignore: true)
   @override
@@ -2346,7 +2355,7 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
       final int color,
       final LocalizedMap localizedName,
       final String characterIcon,
-      final SerializedVector2 position,
+      final SerializedVector2 distanceToOrigin,
       final BalloonLiftPowersModel balloonPowers,
       final BalloonLiftParamsModel balloonParams}) = _$_PlayerCharacterModel;
   const _PlayerCharacterModel._() : super._();
@@ -2373,7 +2382,7 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   @override
   String get characterIcon;
   @override
-  SerializedVector2 get position;
+  SerializedVector2 get distanceToOrigin;
   @override
   BalloonLiftPowersModel get balloonPowers;
   @override

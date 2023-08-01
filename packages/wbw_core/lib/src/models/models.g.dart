@@ -226,10 +226,10 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
           : LocalizedMap.fromJson(
               json['localizedName'] as Map<String, dynamic>),
       characterIcon: json['characterIcon'] as String? ?? '',
-      position: json['position'] == null
+      distanceToOrigin: json['distanceToOrigin'] == null
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
-              json['position'] as Map<String, dynamic>),
+              json['distanceToOrigin'] as Map<String, dynamic>),
       balloonPowers: json['balloonPowers'] == null
           ? BalloonLiftPowersModel.initial
           : BalloonLiftPowersModel.fromJson(
@@ -249,7 +249,7 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'color': instance.color,
       'localizedName': instance.localizedName.toJson(),
       'characterIcon': instance.characterIcon,
-      'position': instance.position.toJson(),
+      'distanceToOrigin': instance.distanceToOrigin.toJson(),
       'balloonPowers': instance.balloonPowers.toJson(),
       'balloonParams': instance.balloonParams.toJson(),
     };

@@ -10,16 +10,20 @@ class EditorPlayerCanvasObject extends EditorCanvasObject {
     required final DrawerCubit drawerCubit,
   }) {
     RenderObjectModel player = drawerCubit.player;
+    final position =
+        game.editor.origin + drawerCubit.player.distanceToOrigin.toVector2();
     if (player.id.isEmpty) {
       /// creating player if it is empty
       final updatedPlayer = RenderObjectModel(
         id: const Gid(value: 'Tester'),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: kPlayerTileId,
-        position: (game.size / 2).toSerializedVector2(),
+        position: position.toSerializedVector2(),
       );
       drawerCubit.player = updatedPlayer;
       player = updatedPlayer;
+    } else {
+      player = player.copyWith(position: position.toSerializedVector2());
     }
 
     return EditorPlayerCanvasObject.fromRenderObject(

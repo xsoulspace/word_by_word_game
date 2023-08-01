@@ -33,7 +33,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
       levelCharactersModel: event.charactersModel.copyWith(
         playerCharacter: event.charactersModel.playerCharacter.copyWith(
           gid: diDto.canvasCubit.player.id,
-          position: diDto.canvasCubit.player.position,
+          distanceToOrigin: diDto.canvasCubit.player.distanceToOrigin,
         ),
       ),
     );
@@ -74,12 +74,12 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   }
 
   void onChangeCharacterPosition({
-    required final Vector2 position,
+    required final Vector2 distanceToOrigin,
     required final LiftForceModel liftForce,
   }) {
     final updatedState = state.copyWith(
       playerCharacter: state.playerCharacter.copyWith(
-        position: SerializedVector2(x: position.x, y: position.y),
+        distanceToOrigin: distanceToOrigin.toSerializedVector2(),
         balloonPowers: liftForce.updatedPowers,
       ),
     );

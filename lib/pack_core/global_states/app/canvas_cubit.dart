@@ -28,12 +28,14 @@ class CanvasCubit extends DrawerCubit {
       state.canvasData.layers.where((final e) => e.isCollidable);
 
   bool checkIsCollidingWithTiles({
-    required final CellPointModel cell,
+    required final List<CellPointModel> hitboxCells,
   }) {
     bool isColliding = false;
     for (final layer in _collidableLayers) {
-      isColliding = layer.tiles.containsKey(cell);
-      if (isColliding) return true;
+      for (final cell in hitboxCells) {
+        isColliding = layer.tiles.containsKey(cell);
+        if (isColliding) return true;
+      }
     }
     return false;
   }

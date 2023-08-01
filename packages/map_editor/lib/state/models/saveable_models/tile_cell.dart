@@ -57,6 +57,7 @@ class CellPointModel with _$CellPointModel, EquatableMixin {
         x.toDouble(),
         y.toDouble(),
       );
+  static const zero = CellPointModel(0, 0);
   CellPointModel operator -(final CellPointModel other) =>
       CellPointModel(x - other.x, y - other.y);
   CellPointModel operator +(final CellPointModel other) =>

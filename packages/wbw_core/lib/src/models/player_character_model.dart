@@ -18,7 +18,7 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     @Default(0) final int color,
     @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
-    @Default(SerializedVector2.zero) final SerializedVector2 position,
+    @Default(SerializedVector2.zero) final SerializedVector2 distanceToOrigin,
     @Default(BalloonLiftPowersModel.initial)
     final BalloonLiftPowersModel balloonPowers,
     @Default(BalloonLiftParamsModel.initial)
@@ -50,6 +50,7 @@ class SerializedVector2 with _$SerializedVector2 {
 
 extension OffsetExtension on Offset {
   SerializedVector2 toSerializedVector2() => SerializedVector2(x: dx, y: dy);
+  CellPointModel toCellPoint() => CellPointModel(dx.toInt(), dy.toInt());
 }
 
 extension Vector2Extension on Vector2 {

@@ -431,7 +431,7 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_MapEditorBlocState implements _MapEditorBlocState {
-  const _$_MapEditorBlocState({this.isEditing = true});
+  const _$_MapEditorBlocState({this.isEditing = false});
 
   @override
   @JsonKey()

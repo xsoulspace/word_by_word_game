@@ -23,12 +23,14 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     required super.data,
   }) : super.fromRenderObject();
   factory PlayerGameCanvasObject.fromCanvasCubit({
+    // ignore: avoid_unused_constructor_parameters
     required final CanvasRendererGame game,
     required final CanvasCubit canvasCubit,
     required final LevelPlayersBloc levelPlayersBloc,
   }) {
     RenderObjectModel player = canvasCubit.player;
-    final position = player.position.toVector2() + game.canvasRenderer.origin;
+    final position =
+        game.canvasRenderer.origin + player.distanceToOrigin.toVector2();
     if (player.id.isEmpty) {
       final updatedPlayer = RenderObjectModel(
         id: const Gid(value: 'Tester'),
@@ -45,7 +47,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     levelPlayersBloc.onChangeCharacter(
       levelPlayersBloc.state.playerCharacter.copyWith(
         gid: player.id,
-        position: position.toSerializedVector2(),
+        distanceToOrigin: player.distanceToOrigin,
       ),
     );
     return PlayerGameCanvasObject.fromRenderObject(
@@ -113,7 +115,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       // do nothing
     } else {
       final isColliding = game.diDto.canvasCubit.checkIsCollidingWithTiles(
-        cell: cell.toCellPoint(),
+        hitboxCells: hitboxCells,
       );
       if (isColliding) {
         print('isColliding');
@@ -189,7 +191,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     }
 
     gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
-      position: position.toVector2(),
+      distanceToOrigin: distanceToOrigin.toVector2(),
       liftForce: liftForce,
     );
   }
@@ -258,8 +260,32 @@ class GameCanvasObject extends Component
     return super.onLoad();
   }
 
-  Rect? _imageRect;
-  Rect? get _positionedImageRect => _imageRect?.shift(position);
+  Rect? _hitboxRect;
+  Rect? get shiftedHitbox => _hitboxRect?.shift(position);
+  List<CellPointModel> get hitboxCells {
+    final hitbox = shiftedHitbox;
+    if (hitbox == null) {
+      return [];
+    }
+    final originUtils = OriginVectorUtils.use(origin);
+    final topLeft = absoluteCell.toCellPoint();
+    final topRight = originUtils.getAbsoluteCellByCanvasObject(
+      objectDistanceToOrigin: distanceToOrigin + Offset(hitbox.width, 0),
+    );
+    final bottomRight = originUtils.getAbsoluteCellByCanvasObject(
+      objectDistanceToOrigin:
+          distanceToOrigin + Offset(hitbox.width, hitbox.height),
+    );
+    final bottomLeft = originUtils.getAbsoluteCellByCanvasObject(
+      objectDistanceToOrigin: distanceToOrigin + Offset(0, hitbox.height),
+    );
+    return [
+      topLeft,
+      topRight.toCellPoint(),
+      bottomRight.toCellPoint(),
+      bottomLeft.toCellPoint(),
+    ];
+  }
 
   @override
   void render(final Canvas canvas) {
@@ -271,12 +297,21 @@ class GameCanvasObject extends Component
 
     final tilePath = animationEntry.currentFramePath;
     final tileImage = getImage(tilePath);
-    _imageRect ??= Rect.fromLTWH(
+    _hitboxRect ??= Rect.fromLTWH(
       0,
       0,
       tileImage.width.toDouble(),
       tileImage.height.toDouble(),
     );
+    if (debugMode) {
+      final hitbox = shiftedHitbox;
+      if (hitbox != null) {
+        canvas.drawRect(
+          hitbox,
+          Palette.red.paint(),
+        );
+      }
+    }
     canvas.drawImage(
       tileImage,
       position,
@@ -313,7 +348,7 @@ class GameCanvasObject extends Component
 
   @override
   bool containsLocalPoint(final Vector2 point) =>
-      _positionedImageRect?.containsPoint(point) ?? false;
+      _hitboxRect?.containsPoint(point) ?? false;
 }
 
 class GameCanvasObjectsDrawer extends Component
