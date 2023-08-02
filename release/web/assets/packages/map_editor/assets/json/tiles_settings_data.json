@@ -1,0 +1,22 @@
+{
+	"0": {"style": "player", "type": "object", "menu": null, "menu_surf": null, "preview": null, "graphics": "assets/images/player/idle_right"},
+	"1": {"style": "sky",    "type": "object", "menu": null, "menu_surf": null, "preview": null, "graphics": null},
+	"2": {"style": "terrain", "type": "tile", "menu": "terrain", "menu_surf": "assets/images/menu/land.png",  "preview": "assets/images/preview/land.png",  "graphics": null},
+	"3": {"style": "water",   "type": "tile", "menu": "terrain", "menu_surf": "assets/images/menu/water.png", "preview": "assets/images/preview/water.png", "graphics": "assets/images/terrain/water/animation"},	
+	"4": {"style": "coin", "type": "tile", "menu": "coin", "menu_surf": "assets/images/menu/gold.png",    "preview": "assets/images/preview/gold.png",    "graphics": "assets/images/items/gold"},
+	"5": {"style": "coin", "type": "tile", "menu": "coin", "menu_surf": "assets/images/menu/silver.png",  "preview": "assets/images/preview/silver.png",  "graphics": "assets/images/items/silver"},
+	"6": {"style": "coin", "type": "tile", "menu": "coin", "menu_surf": "assets/images/menu/diamond.png", "preview": "assets/images/preview/diamond.png", "graphics": "assets/images/items/diamond"},
+	"7":  {"style": "enemy", "type": "tile", "menu": "enemy", "menu_surf": "assets/images/menu/spikes.png",      "preview": "assets/images/preview/spikes.png",      "graphics": "assets/images/enemies/spikes"},
+	"8":  {"style": "enemy", "type": "tile", "menu": "enemy", "menu_surf": "assets/images/menu/tooth.png",       "preview": "assets/images/preview/tooth.png",       "graphics": "assets/images/enemies/tooth/idle"},
+	"9":  {"style": "enemy", "type": "tile", "menu": "enemy", "menu_surf": "assets/images/menu/shell_left.png",  "preview": "assets/images/preview/shell_left.png",  "graphics": "assets/images/enemies/shell_left/idle"},
+	"10": {"style": "enemy", "type": "tile", "menu": "enemy", "menu_surf": "assets/images/menu/shell_right.png", "preview": "assets/images/preview/shell_right.png", "graphics": "assets/images/enemies/shell_right/idle"},
+	"11": {"style": "palm_fg", "type": "object", "menu": "palm_fg", "menu_surf": "assets/images/menu/small_fg.png", "preview": "assets/images/preview/small_fg.png", "graphics": "assets/images/terrain/palm/small_fg"},
+	"12": {"style": "palm_fg", "type": "object", "menu": "palm_fg", "menu_surf": "assets/images/menu/large_fg.png", "preview": "assets/images/preview/large_fg.png", "graphics": "assets/images/terrain/palm/large_fg"},
+	"13": {"style": "palm_fg", "type": "object", "menu": "palm_fg", "menu_surf": "assets/images/menu/left_fg.png",  "preview": "assets/images/preview/left_fg.png",  "graphics": "assets/images/terrain/palm/left_fg"},
+	"14": {"style": "palm_fg", "type": "object", "menu": "palm_fg", "menu_surf": "assets/images/menu/right_fg.png", "preview": "assets/images/preview/right_fg.png", "graphics": "assets/images/terrain/palm/right_fg"},
+	"15": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/small_bg.png", "preview": "assets/images/preview/small_bg.png", "graphics": "assets/images/terrain/palm/small_bg"},
+	"16": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/large_bg.png", "preview": "assets/images/preview/large_bg.png", "graphics": "assets/images/terrain/palm/large_bg"},
+	"17": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/left_bg.png",  "preview": "assets/images/preview/left_bg.png",  "graphics": "assets/images/terrain/palm/left_bg"},
+	"18": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/right_bg.png", "preview": "assets/images/preview/right_bg.png", "graphics": "assets/images/terrain/palm/right_bg"},
+	"19": {"style": "cursor_handle", "type": "object", "menu": null, "menu_surf": "assets/images/cursors/handle.png", "preview": null, "graphics": null}
+}
