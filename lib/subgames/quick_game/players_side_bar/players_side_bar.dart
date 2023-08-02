@@ -9,7 +9,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class UiPlayersStateDiDto {
   UiPlayersStateDiDto.use(final Locator read) : levelPlayersBloc = read();
@@ -31,8 +31,7 @@ class UiPlayersState extends LifeState {
   final UiPlayersStateDiDto diDto;
   final players = <PlayerProfileModel>[];
   StreamSubscription<LevelPlayersBlocState>? levelPlayersBlocSubscription;
-  String get currentPlayerId =>
-      diDto.levelPlayersBloc.getLiveState().currentPlayerId;
+  String get currentPlayerId => diDto.levelPlayersBloc.state.currentPlayerId;
   @override
   void initState() {
     levelPlayersBlocSubscription =
@@ -41,48 +40,45 @@ class UiPlayersState extends LifeState {
   }
 
   void _onLevelPlayersBlocChange(final LevelPlayersBlocState state) {
-    state.map(
-      empty: (final value) {
-        players.clear();
-        setState();
-      },
-      live: (final value) {
-        final newPlayers = value.players;
-        final isPlayersListEquals = DeepCollectionEquality.unordered(
-          EqualityBy<PlayerProfileModel, String>((final e) => e.id),
-        ).equals(newPlayers, players);
-        if (isPlayersListEquals) {
-          // accurately update all players
-          final updatedPlayers = [...players];
-          final playersIndexedMap = newPlayers.toIndexedMap((final e) => e.id);
+    if (state.isEmpty) {
+      players.clear();
+      setState();
+    } else {
+      final newPlayers = state.players;
+      final isPlayersListEquals = DeepCollectionEquality.unordered(
+        EqualityBy<PlayerProfileModel, String>((final e) => e.id),
+      ).equals(newPlayers, players);
+      if (isPlayersListEquals) {
+        // accurately update all players
+        final updatedPlayers = [...players];
+        final playersIndexedMap = newPlayers.toIndexedMap((final e) => e.id);
 
-          for (var i = 0; i < players.length; i++) {
-            final oldPlayer = players[i];
-            final index = playersIndexedMap[oldPlayer.id]!;
-            final newPlayer = newPlayers[index];
-            updatedPlayers[i] = newPlayer;
-          }
-          final isPlayersListSame = DeepCollectionEquality(
-            EqualityBy<PlayerProfileModel, double>(
-              (final e) => e.highscore.score.value,
-            ),
-          ).equals(updatedPlayers, players);
-          if (!isPlayersListSame) {
-            players
-              ..clear()
-              ..addAll(updatedPlayers);
-
-            setState();
-          }
-        } else {
-          // replace all players
+        for (var i = 0; i < players.length; i++) {
+          final oldPlayer = players[i];
+          final index = playersIndexedMap[oldPlayer.id]!;
+          final newPlayer = newPlayers[index];
+          updatedPlayers[i] = newPlayer;
+        }
+        final isPlayersListSame = DeepCollectionEquality(
+          EqualityBy<PlayerProfileModel, double>(
+            (final e) => e.highscore.score.value,
+          ),
+        ).equals(updatedPlayers, players);
+        if (!isPlayersListSame) {
           players
             ..clear()
-            ..addAll(newPlayers);
+            ..addAll(updatedPlayers);
+
           setState();
         }
-      },
-    );
+      } else {
+        // replace all players
+        players
+          ..clear()
+          ..addAll(newPlayers);
+        setState();
+      }
+    }
   }
 
   @override
@@ -141,7 +137,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
-    final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
+    // final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
     final textStyle =
         isCurrent ? theme.textTheme.labelLarge : theme.textTheme.labelMedium;
     final backgroundColor = isCurrent

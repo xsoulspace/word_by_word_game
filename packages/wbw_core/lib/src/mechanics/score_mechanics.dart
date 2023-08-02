@@ -1,5 +1,7 @@
 import 'dart:math' as math;
 
+import 'package:map_editor/state/models/models.dart';
+
 import '../../wbw_core.dart';
 
 const int kIncreaseScoreModifier = 65;
@@ -8,6 +10,8 @@ const double kRevealScoreModifier = 1.8;
 double get kLetterDecreaseCost => 1.0 * kDecreaseScoreModifier;
 
 class ScoreMechanics {
+  double convertScoreToPower({required final ScoreModel score}) => score.value;
+
   ScoreModel getScoreFromWord({
     required final String word,
     final int scoreModifier = kIncreaseScoreModifier,
@@ -35,13 +39,10 @@ class ScoreMechanics {
     switch (multiplier) {
       case EnergyMultiplierType.m1:
         score = scorePart;
-        break;
       case EnergyMultiplierType.m2:
         score = scorePart * 2;
-        break;
       case EnergyMultiplierType.m3:
         score = availableScore.value.toInt();
-        break;
     }
 
     return ScoreModel(value: score.toDouble());
@@ -102,7 +103,7 @@ class ScoreMechanics {
   /// [isLevelFinished] = true
   PlayerProfileModel countPlayerLevelHighscore({
     required final PlayerProfileModel player,
-    required final LevelModelId levelId,
+    required final CanvasDataModelId levelId,
     required final bool isLevelFinished,
     required final double maxDistance,
   }) {

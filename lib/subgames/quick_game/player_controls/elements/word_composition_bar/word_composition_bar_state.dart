@@ -33,10 +33,10 @@ class WordCompositionState extends LifeState {
   WordCompositionState({
     required this.diDto,
   })  : leftPartController = TextEditingController(
-          text: diDto.levelBloc.getLiveState().currentWord.leftPart,
+          text: diDto.levelBloc.state.currentWord.leftPart,
         ),
         rightPartController = TextEditingController(
-          text: diDto.levelBloc.getLiveState().currentWord.rightPart,
+          text: diDto.levelBloc.state.currentWord.rightPart,
         );
   final TextEditingController leftPartController;
   final TextEditingController rightPartController;
@@ -64,8 +64,8 @@ class WordCompositionState extends LifeState {
   final rightWordFocus = FocusNode();
 
   void onSelectActionMultiplier(final EnergyMultiplierType multiplier) {
-    diDto.levelBloc.add(
-      LevelPlayerSelectActionMultiplierEvent(
+    diDto.levelBloc.onLevelPlayerSelectActionMultiplier(
+      LevelBlocEventSelectActionMultiplier(
         multiplier: multiplier,
       ),
     );
@@ -73,11 +73,12 @@ class WordCompositionState extends LifeState {
   }
 
   void onToSelectActionPhase() {
-    diDto.levelBloc.add(const AcceptNewWordEvent());
+    diDto.levelBloc
+        .onAcceptNewWord(const LevelBlocEventAcceptNewWord(word: null));
   }
 
   void onToEndTurn() {
-    diDto.levelBloc.add(const LevelPlayerEndTurnActionEvent());
+    diDto.levelBloc.onLevelPlayerEndTurnAction(const LevelBlocEventEndTurn());
     onRequestLeftTextFocus();
   }
 
@@ -85,15 +86,17 @@ class WordCompositionState extends LifeState {
     diDto.dialogController.showLevelWordSuggestionDialog();
   }
 
-  void onPause() {
+  Future<void> onPause() async {
     diDto.mechanics.worldTime.pause();
-    diDto.globalGameBloc.add(const SaveCurrentLevelEvent());
-    final id = diDto.levelBloc.getLiveState().id;
+    await diDto.globalGameBloc
+        .onSaveCurrentLevel(const SaveCurrentLevelEvent());
+    final id = diDto.levelBloc.state.id;
     diDto.appRouterController.toPause(id: id);
   }
 
   void onAddWordToDictionary() {
-    diDto.levelBloc.add(const AddNewWordToDictionaryEvent());
+    diDto.levelBloc
+        .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
   }
 
   void onRequestLeftTextFocus() {
@@ -112,7 +115,7 @@ class WordCompositionState extends LifeState {
     final newWord = diDto.mechanics.wordComposition.applyPartsChanges(
       word: CurrentWordModel(
         leftPart: leftPartController.text,
-        middlePart: diDto.levelBloc.getLiveState().currentWord.middlePart,
+        middlePart: diDto.levelBloc.state.currentWord.middlePart,
         rightPart: rightPartController.text,
       ),
     );
@@ -121,8 +124,8 @@ class WordCompositionState extends LifeState {
   }
 
   void _changeFullWord(final CurrentWordModel word) {
-    final event = ChangeCurrentWordEvent(word: word);
-    diDto.levelBloc.add(event);
+    final event = LevelBlocEventChangeCurrentWord(word: word);
+    diDto.levelBloc.onChangeCurrentWord(event);
     final tutorialEvent = TutorialUiActionEvent(
       action: TutorialCompleteAction.onEdit,
       stringValue: event.word.fullWord,
@@ -132,7 +135,8 @@ class WordCompositionState extends LifeState {
   }
 
   void onDecreaseMiddlePart(final int index) {
-    diDto.levelBloc.add(DecreaseMiddlePartEvent(index: index));
+    diDto.levelBloc
+        .onDecreaseMiddlePart(LevelBlocEventDecreaseMiddlePart(index: index));
   }
 
   void onLatestWordChanged() {

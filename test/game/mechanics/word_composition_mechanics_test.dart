@@ -76,7 +76,6 @@ void main() {
         equals(
           const CurrentWordModel(
             fullWord: 'sun',
-            middlePart: '',
             rightPart: 'sun',
           ),
         ),

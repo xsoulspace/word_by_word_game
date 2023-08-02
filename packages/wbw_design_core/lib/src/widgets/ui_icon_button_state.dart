@@ -24,7 +24,7 @@ class _ButtonState extends ContextfulLifeState {
   set isPressed(final bool isPressed) {
     _isPressed = isPressed;
 
-    setState();
+    if (mounted) setState();
   }
 
   late final pressedIconImagePath = UiAssetHelper.useImagePath(
