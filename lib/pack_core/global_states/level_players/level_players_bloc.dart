@@ -90,15 +90,15 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   void onRefuelStorage(
     final RefuelStorageEvent event,
   ) {
-    final fuelMechanics = diDto.mechanics.fuel;
-    final fuel = fuelMechanics.getFuelFromScore(score: event.score);
-    final fuelStorage = fuelMechanics.refuel(
-      fuelStorage: const FuelStorageModel(), //state.playerCharacter.power,
-      fuel: fuel,
+    final scoreMechanics = diDto.mechanics.score;
+    final power = scoreMechanics.convertScoreToPower(
+      score: event.score,
     );
     final updatedState = state.copyWith(
       playerCharacter: state.playerCharacter.copyWith(
-        balloonPowers: BalloonLiftPowersModel.initial,
+        balloonPowers: state.playerCharacter.balloonPowers.copyWith(
+          power: state.playerCharacter.balloonPowers.power + power,
+        ),
       ),
     );
     emit(updatedState);

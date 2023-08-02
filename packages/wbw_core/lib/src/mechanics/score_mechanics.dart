@@ -10,6 +10,8 @@ const double kRevealScoreModifier = 1.8;
 double get kLetterDecreaseCost => 1.0 * kDecreaseScoreModifier;
 
 class ScoreMechanics {
+  double convertScoreToPower({required final ScoreModel score}) => score.value;
+
   ScoreModel getScoreFromWord({
     required final String word,
     final int scoreModifier = kIncreaseScoreModifier,

@@ -1,6 +1,6 @@
-import 'dart:math' as math;
-
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 import '../../../wbw_core.dart';
 
@@ -54,11 +54,11 @@ part 'weather_mechanics.g.dart';
 /// Running the code will generate 10 random numbers
 /// with the desired probability distribution.
 enum WindScale {
-  calm(xMin: 0, xMax: 0.5, yMin: -0.005, yMax: 0.01, weight: 30),
-  lightAir(xMin: 0.5, xMax: 1.5, yMin: -0.03, yMax: 0.05, weight: 50),
-  lightBreeze(xMin: 1.6, xMax: 3.3, yMin: -0.08, yMax: 0.1, weight: 100),
-  gentleBreeze(xMin: 3.4, xMax: 5.5, yMin: -0.8, yMax: 0.12, weight: 150),
-  moderateBreeze(xMin: 5.5, xMax: 7.9, yMin: -0.12, yMax: 0.15, weight: 140),
+  calm(xMin: 0, xMax: 0.5, yMin: -0.01, yMax: 0.01, weight: 50),
+  lightAir(xMin: 0.5, xMax: 1.5, yMin: -0.03, yMax: 0.05, weight: 100),
+  lightBreeze(xMin: 1.6, xMax: 3.3, yMin: -0.08, yMax: 0.1, weight: 150),
+  gentleBreeze(xMin: 3.4, xMax: 5.5, yMin: -0.8, yMax: 0.12, weight: 80),
+  moderateBreeze(xMin: 5.5, xMax: 7.9, yMin: -0.12, yMax: 0.15, weight: 50),
   freshBreeze(xMin: 8, xMax: 10.7, yMin: -0.12, yMax: 0.17, weight: 10),
   strongBreeze(xMin: 10.8, xMax: 13.8, yMin: -0.15, yMax: 0.2, weight: 5),
   highWind(xMin: 13.9, xMax: 17.1, yMin: -0.18, yMax: 0.3, weight: 1),
@@ -83,6 +83,21 @@ enum WindScale {
   static final weightedValues = values
       .expand((final e) => List.generate(e.weight, (final i) => e))
       .toList();
+  String getLocalizedName(final BuildContext context) => switch (this) {
+        WindScale.calm => S.of(context).windCalm,
+        WindScale.lightAir => S.of(context).windLightAir,
+        WindScale.lightBreeze => S.of(context).windLightBreeze,
+        WindScale.gentleBreeze => S.of(context).windGentleBreeze,
+        WindScale.moderateBreeze => S.of(context).windModerateBreeze,
+        WindScale.freshBreeze => S.of(context).windFreshBreeze,
+        WindScale.strongBreeze => S.of(context).windStrongBreeze,
+        WindScale.highWind => S.of(context).windHighWind,
+        WindScale.gale => S.of(context).windGale,
+        WindScale.severeGale => S.of(context).windSevereGale,
+        WindScale.storm => S.of(context).windStorm,
+        WindScale.violentStorm => S.of(context).windViolentStorm,
+        WindScale.hurricane => S.of(context).windHurricane,
+      };
 }
 
 @freezed
@@ -138,19 +153,20 @@ class WindModel with _$WindModel {
 /// When [WeatherModel.durationInGameSeconds] works
 /// the [WindModel] should be changed.
 class WeatherMechanics {
-  final _random = math.Random();
+  final _random = Randomizer();
   List<WeatherModel> generateWeather({
     final int count = 3,
   }) =>
       List.generate(
         count,
         (final i) {
-          final windScale = WindScale.weightedValues[_random.nextInt(
-            WindScale.weightedValues.length,
-          )];
+          final randomIndex = _random.nextInt(
+            max: WindScale.weightedValues.length,
+          );
+          final windScale = WindScale.weightedValues[randomIndex];
           return WeatherModel(
             windScale: windScale,
-            durationInGameSeconds: _random.nextInt(60) + 20,
+            durationInGameSeconds: _random.nextInt(max: 40, min: 10),
           );
         },
       );
@@ -165,9 +181,16 @@ class WeatherMechanics {
     required final int heightInTiles,
   }) {
     final yDirection = _random.nextBool() ? -1 : 1;
-
-    final y = _random.nextInt((scale.yMax * 1000).toInt()) / 1000 + scale.yMin;
-    final x = _random.nextInt((scale.xMax * 1000).toInt()) / 1000 + scale.xMin;
+    final y = _random.nextInt(
+          max: (scale.yMax * 1000).toInt(),
+          min: (scale.yMin * 1000).toInt(),
+        ) /
+        1000;
+    final x = _random.nextInt(
+          max: (scale.xMax * 1000).toInt(),
+          min: (scale.xMin * 1000).toInt(),
+        ) /
+        1000;
     const realityModifier = 10;
     return WindModel(
       force: SerializedVector2(

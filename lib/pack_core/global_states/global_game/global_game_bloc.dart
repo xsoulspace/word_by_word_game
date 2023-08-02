@@ -104,7 +104,13 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       throw UnimplementedError();
     } else {
       onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: levelModel));
-      unawaited(onStartPlayingLevel(const StartPlayingLevelEvent()));
+      unawaited(
+        onStartPlayingLevel(
+          const StartPlayingLevelEvent(
+            shouldRestartTutorial: false,
+          ),
+        ),
+      );
     }
   }
 

@@ -222,6 +222,57 @@ class SIt extends S {
   String get createPlayer => 'Crea giocatore';
 
   @override
+  String get wind => 'Vento';
+
+  @override
+  String get weather => 'Meteorologico';
+
+  @override
+  String get windCalm => 'Calm';
+
+  @override
+  String get windLightAir => 'Aria leggera';
+
+  @override
+  String get windLightBreeze => 'Brezza leggera';
+
+  @override
+  String get windGentleBreeze => 'Brezza leggera';
+
+  @override
+  String get windModerateBreeze => 'Brezza moderata';
+
+  @override
+  String get windFreshBreeze => 'Brezza fresca';
+
+  @override
+  String get windStrongBreeze => 'Brezza forte';
+
+  @override
+  String get windHighWind => 'Vento forte';
+
+  @override
+  String get windGale => 'Burrasca';
+
+  @override
+  String get windSevereGale => 'Burrasca severa';
+
+  @override
+  String get windStorm => 'Tempesta';
+
+  @override
+  String get windViolentStorm => 'Tempesta violenta';
+
+  @override
+  String get windHurricane => 'Uragano';
+
+  @override
+  String get nextWeatherIn => 'Prossimo tempo in';
+
+  @override
+  String get power => 'Energia';
+
+  @override
   String get yes => 'Si';
 
   @override
@@ -231,5 +282,5 @@ class SIt extends S {
   String get enableTutorial => 'Utilizzare il tutorial';
 
   @override
-  String get close => 'Сhiudere';
+  String get close => 'Chiudere';
 }

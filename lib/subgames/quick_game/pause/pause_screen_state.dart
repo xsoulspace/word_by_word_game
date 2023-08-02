@@ -41,7 +41,7 @@ class PauseScreenState extends ContextfulLifeState {
     required final CanvasDataModelId id,
   }) async {
     await diDto.globalGameBloc.onStartPlayingLevel(
-      const StartPlayingLevelEvent(),
+      const StartPlayingLevelEvent(shouldRestartTutorial: false),
     );
     diDto.appRouterController.toPlayableLevel(id: id);
   }

@@ -94,7 +94,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   @override
   void update(final double dt) {
-    if (game.paused) {
+    if (game.timePaused) {
       // do nothing
     } else {
       final collisionConsequences =

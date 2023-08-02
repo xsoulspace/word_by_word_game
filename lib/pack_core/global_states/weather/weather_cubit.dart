@@ -45,10 +45,12 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
     if (isCompleted) {
       if (state.weathers.length == 1) {
         _generateWeather();
+        _generateWindForce();
       } else {
         final updatedWeathers = [...state.weathers]..removeAt(0);
         print({'weather switched to': updatedWeathers.first});
         emit(state.copyWith(weathers: updatedWeathers));
+        _generateWindForce();
       }
     } else {
       final updatedWeathers = [...state.weathers]
@@ -89,13 +91,17 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
     /// in height tiles more then 2
     if (heightDelta > 2) {
       _previousHeightInTiles = heightInTiles;
-      final windForce = dto.mechanics.weather.getWindByWeather(
-        weather: state.weather,
-        heightInTiles: heightInTiles,
-      );
-      emit(state.copyWith(wind: windForce));
-      _currentWindOffsetCache = null;
+      _generateWindForce();
     }
     return _currentWindOffsetCache ??= state.wind.force.toOffset();
+  }
+
+  void _generateWindForce() {
+    final windForce = dto.mechanics.weather.getWindByWeather(
+      weather: state.weather,
+      heightInTiles: _previousHeightInTiles,
+    );
+    emit(state.copyWith(wind: windForce));
+    _currentWindOffsetCache = null;
   }
 }

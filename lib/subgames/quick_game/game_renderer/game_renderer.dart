@@ -48,6 +48,8 @@ class CanvasRendererGame extends FlameGame
 
   late ObstacleLevelHelper obstacleLevelHelper;
 
+  bool get timePaused => diDto.mechanics.worldTime.paused;
+
   @override
   Future<void> onLoad() async {
     images.prefix = 'packages/map_editor/assets/images/';
