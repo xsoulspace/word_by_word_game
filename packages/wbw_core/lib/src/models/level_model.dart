@@ -23,6 +23,7 @@ class LevelModel with _$LevelModel {
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
     @Default([]) final List<WeatherModel> weathers,
+    @Default(WindModel.zero) final WindModel wind,
 
     /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
     /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]

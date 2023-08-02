@@ -120,35 +120,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       }
     }
 
-    // final mechanics = BasicFlyingObjectMechanics(
-    //   params: params,
-    // );
-    // final yResult = mechanics.getYVelocity(y);
-    // if (y < params.minYBoundry && yResult.fuel > 0) {
-    //   // noop
-    // } else {
-    //   y -= yResult.force;
-    // }
     super.update(dt);
-  }
-
-  int _previousHeightInTiles = 0;
-  Offset _currentWindOffset = Offset.zero;
-
-  Offset _generateWind({
-    required final int heightInTiles,
-  }) {
-    int heightDelta = _previousHeightInTiles - heightInTiles;
-    if (heightDelta < 0) heightDelta *= -1;
-    if (heightDelta > 2) {
-      _previousHeightInTiles = heightInTiles;
-      final windForce = game.diDto.mechanics.weather.getWindByWeather(
-        weather: game.diDto.weatherCubit.state.weather,
-        heightInTiles: heightInTiles,
-      );
-      _currentWindOffset = windForce.force.toOffset();
-    }
-    return _currentWindOffset;
   }
 
   void _onMove(final double dt, {final bool isCollided = false}) {
@@ -173,7 +145,8 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
     final tileDistance = gravityYTilePosition * kTileDimension;
     final height = tileDistance - distanceToOrigin.dy;
-    final windOffset = _generateWind(heightInTiles: height ~/ kTileDimension);
+    final windOffset = game.diDto.weatherCubit
+        .generateWindForce(heightInTiles: height ~/ kTileDimension);
     if (height < 0 || isCollided) {
       // do not update position
       // update position if needed

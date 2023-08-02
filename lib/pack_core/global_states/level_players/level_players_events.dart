@@ -7,9 +7,7 @@ class LevelPlayerEvent with _$LevelPlayerEvent {
     required final LevelCharactersModel charactersModel,
   }) = InitLevelPlayersEvent;
   const factory LevelPlayerEvent.switchToNextPlayer() = SwitchToNextPlayerEvent;
-  const factory LevelPlayerEvent.consumeFuel({
-    required final FuelStorageModel fuel,
-  }) = ConsumeFuelEvent;
+
   const factory LevelPlayerEvent.changeCharacterPosition({
     required final Vector2 position,
   }) = ChangeCharacterPositionEvent;

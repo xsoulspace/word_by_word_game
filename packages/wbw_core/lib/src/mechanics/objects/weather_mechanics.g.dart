@@ -36,7 +36,9 @@ const _$WindScaleEnumMap = {
 };
 
 _$_WindModel _$$_WindModelFromJson(Map<String, dynamic> json) => _$_WindModel(
-      force: SerializedVector2.fromJson(json['force'] as Map<String, dynamic>),
+      force: json['force'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(json['force'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_WindModelToJson(_$_WindModel instance) =>

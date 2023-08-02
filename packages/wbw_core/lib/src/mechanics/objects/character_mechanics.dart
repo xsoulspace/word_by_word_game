@@ -128,12 +128,14 @@ class ForcesConstantsModel with _$ForcesConstantsModel {
     required final double gravityForce,
     required final double volumeDecreaseRatio,
     required final double volumeIncreaseRatio,
+    required final double volumeIncreaseRatioMax,
     required final double volumeToLiftRatio,
   }) = _ForcesConstantsModel;
   static const initial = ForcesConstantsModel(
     gravityForce: 0.12,
     volumeDecreaseRatio: 0.08,
     volumeIncreaseRatio: 50,
+    volumeIncreaseRatioMax: 80,
     volumeToLiftRatio: 0.001,
   );
 }

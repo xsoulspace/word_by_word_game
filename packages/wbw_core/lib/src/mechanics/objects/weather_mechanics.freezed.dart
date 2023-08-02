@@ -270,12 +270,13 @@ class __$$_WindModelCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_WindModel implements _WindModel {
-  const _$_WindModel({required this.force});
+  const _$_WindModel({this.force = SerializedVector2.zero});
 
   factory _$_WindModel.fromJson(Map<String, dynamic> json) =>
       _$$_WindModelFromJson(json);
 
   @override
+  @JsonKey()
   final SerializedVector2 force;
 
   @override
@@ -310,8 +311,7 @@ class _$_WindModel implements _WindModel {
 }
 
 abstract class _WindModel implements WindModel {
-  const factory _WindModel({required final SerializedVector2 force}) =
-      _$_WindModel;
+  const factory _WindModel({final SerializedVector2 force}) = _$_WindModel;
 
   factory _WindModel.fromJson(Map<String, dynamic> json) =
       _$_WindModel.fromJson;

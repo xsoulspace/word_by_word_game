@@ -12,6 +12,7 @@ class WeatherCubitState with _$WeatherCubitState {
     /// idea that current weather always first.
     /// With weather completed, [weathers] first element should be removed
     @Default([]) final List<WeatherModel> weathers,
+    @Default(WindModel.zero) final WindModel wind,
   }) = _WeatherCubitState;
   const WeatherCubitState._();
   WeatherModel get weather =>
@@ -59,6 +60,7 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
 
   void loadWeather({
     final List<WeatherModel> weathers = const [],
+    final WindModel wind = WindModel.zero,
   }) {
     if (weathers.isEmpty) {
       _generateWeather();
@@ -72,5 +74,28 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
     final newWeathers = mechanics.generateWeather();
     emit(state.copyWith(weathers: newWeathers));
     print({'weathers generated': state.weathers});
+  }
+
+  int _previousHeightInTiles = 0;
+  Offset? _currentWindOffsetCache;
+
+  Offset generateWindForce({
+    required final int heightInTiles,
+  }) {
+    int heightDelta = _previousHeightInTiles - heightInTiles;
+    if (heightDelta < 0) heightDelta *= -1;
+
+    /// change wind if there is a change
+    /// in height tiles more then 2
+    if (heightDelta > 2) {
+      _previousHeightInTiles = heightInTiles;
+      final windForce = dto.mechanics.weather.getWindByWeather(
+        weather: state.weather,
+        heightInTiles: heightInTiles,
+      );
+      emit(state.copyWith(wind: windForce));
+      _currentWindOffsetCache = null;
+    }
+    return _currentWindOffsetCache ??= state.wind.force.toOffset();
   }
 }

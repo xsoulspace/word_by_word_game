@@ -125,7 +125,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     _globalLevelLoadCompleter = Completer();
     LevelModel level = event.levelModel;
-    diDto.weatherCubit.loadWeather(weathers: level.weathers);
+    diDto.weatherCubit.loadWeather(
+      weathers: level.weathers,
+      wind: level.wind,
+    );
     GlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
       updatedState = updatedState.copyWith(
@@ -330,21 +333,22 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 
   LevelModel _getCurrentLevelModel() {
-    final liveLevelState = diDto.levelBloc.state;
-    final livePlayersState = diDto.levelPlayersBloc.state;
-
+    final levelState = diDto.levelBloc.state;
+    final playersState = diDto.levelPlayersBloc.state;
+    final weatherState = diDto.weatherCubit.state;
     return LevelModel(
-      weathers: diDto.weatherCubit.state.weathers,
-      currentWord: liveLevelState.currentWord,
-      latestWord: liveLevelState.latestWord,
-      words: liveLevelState.words,
+      weathers: weatherState.weathers,
+      wind: weatherState.wind,
+      currentWord: levelState.currentWord,
+      latestWord: levelState.latestWord,
+      words: levelState.words,
       characters: LevelCharactersModel(
-        playerCharacter: livePlayersState.playerCharacter,
+        playerCharacter: playersState.playerCharacter,
       ),
-      canvasDataId: liveLevelState.id,
+      canvasDataId: levelState.id,
       players: LevelPlayersModel(
-        currentPlayerId: livePlayersState.currentPlayerId,
-        players: livePlayersState.players,
+        currentPlayerId: playersState.currentPlayerId,
+        players: playersState.players,
       ),
     );
   }

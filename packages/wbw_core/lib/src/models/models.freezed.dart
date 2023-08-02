@@ -391,282 +391,6 @@ abstract class _CurrentWordModel extends CurrentWordModel {
       throw _privateConstructorUsedError;
 }
 
-FuelModel _$FuelModelFromJson(Map<String, dynamic> json) {
-  return _FuelModel.fromJson(json);
-}
-
-/// @nodoc
-mixin _$FuelModel {
-  double get value => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FuelModelCopyWith<FuelModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FuelModelCopyWith<$Res> {
-  factory $FuelModelCopyWith(FuelModel value, $Res Function(FuelModel) then) =
-      _$FuelModelCopyWithImpl<$Res, FuelModel>;
-  @useResult
-  $Res call({double value});
-}
-
-/// @nodoc
-class _$FuelModelCopyWithImpl<$Res, $Val extends FuelModel>
-    implements $FuelModelCopyWith<$Res> {
-  _$FuelModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_FuelModelCopyWith<$Res> implements $FuelModelCopyWith<$Res> {
-  factory _$$_FuelModelCopyWith(
-          _$_FuelModel value, $Res Function(_$_FuelModel) then) =
-      __$$_FuelModelCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({double value});
-}
-
-/// @nodoc
-class __$$_FuelModelCopyWithImpl<$Res>
-    extends _$FuelModelCopyWithImpl<$Res, _$_FuelModel>
-    implements _$$_FuelModelCopyWith<$Res> {
-  __$$_FuelModelCopyWithImpl(
-      _$_FuelModel _value, $Res Function(_$_FuelModel) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$_FuelModel(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
-}
-
-/// @nodoc
-
-@JsonSerializable(explicitToJson: true)
-class _$_FuelModel extends _FuelModel {
-  const _$_FuelModel({required this.value}) : super._();
-
-  factory _$_FuelModel.fromJson(Map<String, dynamic> json) =>
-      _$$_FuelModelFromJson(json);
-
-  @override
-  final double value;
-
-  @override
-  String toString() {
-    return 'FuelModel(value: $value)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_FuelModel &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_FuelModelCopyWith<_$_FuelModel> get copyWith =>
-      __$$_FuelModelCopyWithImpl<_$_FuelModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_FuelModelToJson(
-      this,
-    );
-  }
-}
-
-abstract class _FuelModel extends FuelModel {
-  const factory _FuelModel({required final double value}) = _$_FuelModel;
-  const _FuelModel._() : super._();
-
-  factory _FuelModel.fromJson(Map<String, dynamic> json) =
-      _$_FuelModel.fromJson;
-
-  @override
-  double get value;
-  @override
-  @JsonKey(ignore: true)
-  _$$_FuelModelCopyWith<_$_FuelModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-FuelStorageModel _$FuelStorageModelFromJson(Map<String, dynamic> json) {
-  return _FuelStorageModel.fromJson(json);
-}
-
-/// @nodoc
-mixin _$FuelStorageModel {
-  double get value => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $FuelStorageModelCopyWith<FuelStorageModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FuelStorageModelCopyWith<$Res> {
-  factory $FuelStorageModelCopyWith(
-          FuelStorageModel value, $Res Function(FuelStorageModel) then) =
-      _$FuelStorageModelCopyWithImpl<$Res, FuelStorageModel>;
-  @useResult
-  $Res call({double value});
-}
-
-/// @nodoc
-class _$FuelStorageModelCopyWithImpl<$Res, $Val extends FuelStorageModel>
-    implements $FuelStorageModelCopyWith<$Res> {
-  _$FuelStorageModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_FuelStorageModelCopyWith<$Res>
-    implements $FuelStorageModelCopyWith<$Res> {
-  factory _$$_FuelStorageModelCopyWith(
-          _$_FuelStorageModel value, $Res Function(_$_FuelStorageModel) then) =
-      __$$_FuelStorageModelCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({double value});
-}
-
-/// @nodoc
-class __$$_FuelStorageModelCopyWithImpl<$Res>
-    extends _$FuelStorageModelCopyWithImpl<$Res, _$_FuelStorageModel>
-    implements _$$_FuelStorageModelCopyWith<$Res> {
-  __$$_FuelStorageModelCopyWithImpl(
-      _$_FuelStorageModel _value, $Res Function(_$_FuelStorageModel) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$_FuelStorageModel(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
-  }
-}
-
-/// @nodoc
-
-@JsonSerializable(explicitToJson: true)
-class _$_FuelStorageModel extends _FuelStorageModel {
-  const _$_FuelStorageModel({this.value = FuelStorageModel.defaultValue})
-      : super._();
-
-  factory _$_FuelStorageModel.fromJson(Map<String, dynamic> json) =>
-      _$$_FuelStorageModelFromJson(json);
-
-  @override
-  @JsonKey()
-  final double value;
-
-  @override
-  String toString() {
-    return 'FuelStorageModel(value: $value)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_FuelStorageModel &&
-            (identical(other.value, value) || other.value == value));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, value);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_FuelStorageModelCopyWith<_$_FuelStorageModel> get copyWith =>
-      __$$_FuelStorageModelCopyWithImpl<_$_FuelStorageModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_FuelStorageModelToJson(
-      this,
-    );
-  }
-}
-
-abstract class _FuelStorageModel extends FuelStorageModel {
-  const factory _FuelStorageModel({final double value}) = _$_FuelStorageModel;
-  const _FuelStorageModel._() : super._();
-
-  factory _FuelStorageModel.fromJson(Map<String, dynamic> json) =
-      _$_FuelStorageModel.fromJson;
-
-  @override
-  double get value;
-  @override
-  @JsonKey(ignore: true)
-  _$$_FuelStorageModelCopyWith<_$_FuelStorageModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 GameSaveModel _$GameSaveModelFromJson(Map<String, dynamic> json) {
   return _GameModel.fromJson(json);
 }
@@ -1302,6 +1026,7 @@ mixin _$LevelModel {
   LevelPlayersModel get players => throw _privateConstructorUsedError;
   LevelCharactersModel get characters => throw _privateConstructorUsedError;
   List<WeatherModel> get weathers => throw _privateConstructorUsedError;
+  WindModel get wind => throw _privateConstructorUsedError;
 
   /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
   /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]
@@ -1329,6 +1054,7 @@ abstract class $LevelModelCopyWith<$Res> {
       {LevelPlayersModel players,
       LevelCharactersModel characters,
       List<WeatherModel> weathers,
+      WindModel wind,
       CanvasDataModelId canvasDataId,
       CurrentWordModel currentWord,
       Map<String, String> words,
@@ -1338,6 +1064,7 @@ abstract class $LevelModelCopyWith<$Res> {
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
+  $WindModelCopyWith<$Res> get wind;
   $CanvasDataModelIdCopyWith<$Res> get canvasDataId;
   $CurrentWordModelCopyWith<$Res> get currentWord;
 }
@@ -1358,6 +1085,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? players = null,
     Object? characters = null,
     Object? weathers = null,
+    Object? wind = null,
     Object? canvasDataId = null,
     Object? currentWord = null,
     Object? words = null,
@@ -1378,6 +1106,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.weathers
           : weathers // ignore: cast_nullable_to_non_nullable
               as List<WeatherModel>,
+      wind: null == wind
+          ? _value.wind
+          : wind // ignore: cast_nullable_to_non_nullable
+              as WindModel,
       canvasDataId: null == canvasDataId
           ? _value.canvasDataId
           : canvasDataId // ignore: cast_nullable_to_non_nullable
@@ -1423,6 +1155,14 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
 
   @override
   @pragma('vm:prefer-inline')
+  $WindModelCopyWith<$Res> get wind {
+    return $WindModelCopyWith<$Res>(_value.wind, (value) {
+      return _then(_value.copyWith(wind: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get canvasDataId {
     return $CanvasDataModelIdCopyWith<$Res>(_value.canvasDataId, (value) {
       return _then(_value.copyWith(canvasDataId: value) as $Val);
@@ -1450,6 +1190,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
       {LevelPlayersModel players,
       LevelCharactersModel characters,
       List<WeatherModel> weathers,
+      WindModel wind,
       CanvasDataModelId canvasDataId,
       CurrentWordModel currentWord,
       Map<String, String> words,
@@ -1461,6 +1202,8 @@ abstract class _$$_LevelModelCopyWith<$Res>
   $LevelPlayersModelCopyWith<$Res> get players;
   @override
   $LevelCharactersModelCopyWith<$Res> get characters;
+  @override
+  $WindModelCopyWith<$Res> get wind;
   @override
   $CanvasDataModelIdCopyWith<$Res> get canvasDataId;
   @override
@@ -1481,6 +1224,7 @@ class __$$_LevelModelCopyWithImpl<$Res>
     Object? players = null,
     Object? characters = null,
     Object? weathers = null,
+    Object? wind = null,
     Object? canvasDataId = null,
     Object? currentWord = null,
     Object? words = null,
@@ -1501,6 +1245,10 @@ class __$$_LevelModelCopyWithImpl<$Res>
           ? _value._weathers
           : weathers // ignore: cast_nullable_to_non_nullable
               as List<WeatherModel>,
+      wind: null == wind
+          ? _value.wind
+          : wind // ignore: cast_nullable_to_non_nullable
+              as WindModel,
       canvasDataId: null == canvasDataId
           ? _value.canvasDataId
           : canvasDataId // ignore: cast_nullable_to_non_nullable
@@ -1537,6 +1285,7 @@ class _$_LevelModel extends _LevelModel {
       {required this.players,
       required this.characters,
       final List<WeatherModel> weathers = const [],
+      this.wind = WindModel.zero,
       this.canvasDataId = CanvasDataModelId.empty,
       this.currentWord = const CurrentWordModel(),
       final Map<String, String> words = const {},
@@ -1562,6 +1311,10 @@ class _$_LevelModel extends _LevelModel {
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_weathers);
   }
+
+  @override
+  @JsonKey()
+  final WindModel wind;
 
   /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
   /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]
@@ -1592,7 +1345,7 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, weathers: $weathers, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier)';
+    return 'LevelModel(players: $players, characters: $characters, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier)';
   }
 
   @override
@@ -1604,6 +1357,7 @@ class _$_LevelModel extends _LevelModel {
             (identical(other.characters, characters) ||
                 other.characters == characters) &&
             const DeepCollectionEquality().equals(other._weathers, _weathers) &&
+            (identical(other.wind, wind) || other.wind == wind) &&
             (identical(other.canvasDataId, canvasDataId) ||
                 other.canvasDataId == canvasDataId) &&
             (identical(other.currentWord, currentWord) ||
@@ -1624,6 +1378,7 @@ class _$_LevelModel extends _LevelModel {
       players,
       characters,
       const DeepCollectionEquality().hash(_weathers),
+      wind,
       canvasDataId,
       currentWord,
       const DeepCollectionEquality().hash(_words),
@@ -1650,6 +1405,7 @@ abstract class _LevelModel extends LevelModel {
       {required final LevelPlayersModel players,
       required final LevelCharactersModel characters,
       final List<WeatherModel> weathers,
+      final WindModel wind,
       final CanvasDataModelId canvasDataId,
       final CurrentWordModel currentWord,
       final Map<String, String> words,
@@ -1667,6 +1423,8 @@ abstract class _LevelModel extends LevelModel {
   LevelCharactersModel get characters;
   @override
   List<WeatherModel> get weathers;
+  @override
+  WindModel get wind;
   @override
 
   /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
@@ -2028,6 +1786,10 @@ mixin _$PlayerCharacterModel {
   BalloonLiftParamsModel get balloonParams =>
       throw _privateConstructorUsedError;
 
+  /// If is true, then it means that the balloon is on the ground and
+  /// cannot be moved.
+  bool get isAnchored => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $PlayerCharacterModelCopyWith<PlayerCharacterModel> get copyWith =>
@@ -2049,7 +1811,8 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       String characterIcon,
       SerializedVector2 distanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
-      BalloonLiftParamsModel balloonParams});
+      BalloonLiftParamsModel balloonParams,
+      bool isAnchored});
 
   $GidCopyWith<$Res> get id;
   $GidCopyWith<$Res> get gid;
@@ -2082,6 +1845,7 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     Object? distanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
+    Object? isAnchored = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -2120,6 +1884,10 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
           ? _value.balloonParams
           : balloonParams // ignore: cast_nullable_to_non_nullable
               as BalloonLiftParamsModel,
+      isAnchored: null == isAnchored
+          ? _value.isAnchored
+          : isAnchored // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -2189,7 +1957,8 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
       String characterIcon,
       SerializedVector2 distanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
-      BalloonLiftParamsModel balloonParams});
+      BalloonLiftParamsModel balloonParams,
+      bool isAnchored});
 
   @override
   $GidCopyWith<$Res> get id;
@@ -2225,6 +1994,7 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
     Object? distanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
+    Object? isAnchored = null,
   }) {
     return _then(_$_PlayerCharacterModel(
       id: null == id
@@ -2263,6 +2033,10 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
           ? _value.balloonParams
           : balloonParams // ignore: cast_nullable_to_non_nullable
               as BalloonLiftParamsModel,
+      isAnchored: null == isAnchored
+          ? _value.isAnchored
+          : isAnchored // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -2280,7 +2054,8 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       this.characterIcon = '',
       this.distanceToOrigin = SerializedVector2.zero,
       this.balloonPowers = BalloonLiftPowersModel.initial,
-      this.balloonParams = BalloonLiftParamsModel.initial})
+      this.balloonParams = BalloonLiftParamsModel.initial,
+      this.isAnchored = true})
       : super._();
 
   factory _$_PlayerCharacterModel.fromJson(Map<String, dynamic> json) =>
@@ -2319,9 +2094,15 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   @JsonKey()
   final BalloonLiftParamsModel balloonParams;
 
+  /// If is true, then it means that the balloon is on the ground and
+  /// cannot be moved.
+  @override
+  @JsonKey()
+  final bool isAnchored;
+
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, distanceToOrigin: $distanceToOrigin, balloonPowers: $balloonPowers, balloonParams: $balloonParams)';
+    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, distanceToOrigin: $distanceToOrigin, balloonPowers: $balloonPowers, balloonParams: $balloonParams, isAnchored: $isAnchored)';
   }
 
   @override
@@ -2343,7 +2124,9 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
             (identical(other.balloonPowers, balloonPowers) ||
                 other.balloonPowers == balloonPowers) &&
             (identical(other.balloonParams, balloonParams) ||
-                other.balloonParams == balloonParams));
+                other.balloonParams == balloonParams) &&
+            (identical(other.isAnchored, isAnchored) ||
+                other.isAnchored == isAnchored));
   }
 
   @JsonKey(ignore: true)
@@ -2358,7 +2141,8 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       characterIcon,
       distanceToOrigin,
       balloonPowers,
-      balloonParams);
+      balloonParams,
+      isAnchored);
 
   @JsonKey(ignore: true)
   @override
@@ -2385,7 +2169,8 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
       final String characterIcon,
       final SerializedVector2 distanceToOrigin,
       final BalloonLiftPowersModel balloonPowers,
-      final BalloonLiftParamsModel balloonParams}) = _$_PlayerCharacterModel;
+      final BalloonLiftParamsModel balloonParams,
+      final bool isAnchored}) = _$_PlayerCharacterModel;
   const _PlayerCharacterModel._() : super._();
 
   factory _PlayerCharacterModel.fromJson(Map<String, dynamic> json) =
@@ -2415,6 +2200,11 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   BalloonLiftPowersModel get balloonPowers;
   @override
   BalloonLiftParamsModel get balloonParams;
+  @override
+
+  /// If is true, then it means that the balloon is on the ground and
+  /// cannot be moved.
+  bool get isAnchored;
   @override
   @JsonKey(ignore: true)
   _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>

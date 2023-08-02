@@ -42,26 +42,6 @@ Map<String, dynamic> _$$_CurrentWordModelToJson(_$_CurrentWordModel instance) =>
       'fullWord': instance.fullWord,
     };
 
-_$_FuelModel _$$_FuelModelFromJson(Map<String, dynamic> json) => _$_FuelModel(
-      value: (json['value'] as num).toDouble(),
-    );
-
-Map<String, dynamic> _$$_FuelModelToJson(_$_FuelModel instance) =>
-    <String, dynamic>{
-      'value': instance.value,
-    };
-
-_$_FuelStorageModel _$$_FuelStorageModelFromJson(Map<String, dynamic> json) =>
-    _$_FuelStorageModel(
-      value:
-          (json['value'] as num?)?.toDouble() ?? FuelStorageModel.defaultValue,
-    );
-
-Map<String, dynamic> _$$_FuelStorageModelToJson(_$_FuelStorageModel instance) =>
-    <String, dynamic>{
-      'value': instance.value,
-    };
-
 _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
       id: json['id'] as String,
       currentLevelId:
@@ -144,6 +124,9 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
               ?.map((e) => WeatherModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
+      wind: json['wind'] == null
+          ? WindModel.zero
+          : WindModel.fromJson(json['wind'] as Map<String, dynamic>),
       canvasDataId: json['canvasDataId'] == null
           ? CanvasDataModelId.empty
           : CanvasDataModelId.fromJson(json['canvasDataId'] as String),
@@ -169,6 +152,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
       'weathers': instance.weathers.map((e) => e.toJson()).toList(),
+      'wind': instance.wind.toJson(),
       'canvasDataId': instance.canvasDataId.toJson(),
       'currentWord': instance.currentWord.toJson(),
       'words': instance.words,
@@ -243,6 +227,7 @@ _$_PlayerCharacterModel _$$_PlayerCharacterModelFromJson(
           ? BalloonLiftParamsModel.initial
           : BalloonLiftParamsModel.fromJson(
               json['balloonParams'] as Map<String, dynamic>),
+      isAnchored: json['isAnchored'] as bool? ?? true,
     );
 
 Map<String, dynamic> _$$_PlayerCharacterModelToJson(
@@ -257,6 +242,7 @@ Map<String, dynamic> _$$_PlayerCharacterModelToJson(
       'distanceToOrigin': instance.distanceToOrigin.toJson(),
       'balloonPowers': instance.balloonPowers.toJson(),
       'balloonParams': instance.balloonParams.toJson(),
+      'isAnchored': instance.isAnchored,
     };
 
 _$_SerializedVector2 _$$_SerializedVector2FromJson(Map<String, dynamic> json) =>

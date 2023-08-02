@@ -22,7 +22,6 @@ mixin _$LevelPlayerEvent {
             LevelCharactersModel charactersModel)
         init,
     required TResult Function() switchToNextPlayer,
-    required TResult Function(FuelStorageModel fuel) consumeFuel,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(String playerId, ScoreModel score, String? word)
@@ -35,7 +34,6 @@ mixin _$LevelPlayerEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult? Function()? switchToNextPlayer,
-    TResult? Function(FuelStorageModel fuel)? consumeFuel,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(String playerId, ScoreModel score, String? word)?
@@ -48,7 +46,6 @@ mixin _$LevelPlayerEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult Function()? switchToNextPlayer,
-    TResult Function(FuelStorageModel fuel)? consumeFuel,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(String playerId, ScoreModel score, String? word)?
@@ -60,7 +57,6 @@ mixin _$LevelPlayerEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ConsumeFuelEvent value) consumeFuel,
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
@@ -72,7 +68,6 @@ mixin _$LevelPlayerEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ConsumeFuelEvent value)? consumeFuel,
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
@@ -83,7 +78,6 @@ mixin _$LevelPlayerEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ConsumeFuelEvent value)? consumeFuel,
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
@@ -211,7 +205,6 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
             LevelCharactersModel charactersModel)
         init,
     required TResult Function() switchToNextPlayer,
-    required TResult Function(FuelStorageModel fuel) consumeFuel,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(String playerId, ScoreModel score, String? word)
@@ -227,7 +220,6 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult? Function()? switchToNextPlayer,
-    TResult? Function(FuelStorageModel fuel)? consumeFuel,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(String playerId, ScoreModel score, String? word)?
@@ -243,7 +235,6 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult Function()? switchToNextPlayer,
-    TResult Function(FuelStorageModel fuel)? consumeFuel,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(String playerId, ScoreModel score, String? word)?
@@ -261,7 +252,6 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ConsumeFuelEvent value) consumeFuel,
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
@@ -276,7 +266,6 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ConsumeFuelEvent value)? consumeFuel,
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
@@ -290,7 +279,6 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ConsumeFuelEvent value)? consumeFuel,
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
@@ -360,7 +348,6 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
             LevelCharactersModel charactersModel)
         init,
     required TResult Function() switchToNextPlayer,
-    required TResult Function(FuelStorageModel fuel) consumeFuel,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(String playerId, ScoreModel score, String? word)
@@ -376,7 +363,6 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult? Function()? switchToNextPlayer,
-    TResult? Function(FuelStorageModel fuel)? consumeFuel,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(String playerId, ScoreModel score, String? word)?
@@ -392,7 +378,6 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult Function()? switchToNextPlayer,
-    TResult Function(FuelStorageModel fuel)? consumeFuel,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(String playerId, ScoreModel score, String? word)?
@@ -410,7 +395,6 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ConsumeFuelEvent value) consumeFuel,
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
@@ -425,7 +409,6 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ConsumeFuelEvent value)? consumeFuel,
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
@@ -439,7 +422,6 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ConsumeFuelEvent value)? consumeFuel,
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
@@ -455,187 +437,6 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
 
 abstract class SwitchToNextPlayerEvent implements LevelPlayerEvent {
   const factory SwitchToNextPlayerEvent() = _$SwitchToNextPlayerEvent;
-}
-
-/// @nodoc
-abstract class _$$ConsumeFuelEventCopyWith<$Res> {
-  factory _$$ConsumeFuelEventCopyWith(
-          _$ConsumeFuelEvent value, $Res Function(_$ConsumeFuelEvent) then) =
-      __$$ConsumeFuelEventCopyWithImpl<$Res>;
-  @useResult
-  $Res call({FuelStorageModel fuel});
-
-  $FuelStorageModelCopyWith<$Res> get fuel;
-}
-
-/// @nodoc
-class __$$ConsumeFuelEventCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$ConsumeFuelEvent>
-    implements _$$ConsumeFuelEventCopyWith<$Res> {
-  __$$ConsumeFuelEventCopyWithImpl(
-      _$ConsumeFuelEvent _value, $Res Function(_$ConsumeFuelEvent) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fuel = null,
-  }) {
-    return _then(_$ConsumeFuelEvent(
-      fuel: null == fuel
-          ? _value.fuel
-          : fuel // ignore: cast_nullable_to_non_nullable
-              as FuelStorageModel,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $FuelStorageModelCopyWith<$Res> get fuel {
-    return $FuelStorageModelCopyWith<$Res>(_value.fuel, (value) {
-      return _then(_value.copyWith(fuel: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$ConsumeFuelEvent implements ConsumeFuelEvent {
-  const _$ConsumeFuelEvent({required this.fuel});
-
-  @override
-  final FuelStorageModel fuel;
-
-  @override
-  String toString() {
-    return 'LevelPlayerEvent.consumeFuel(fuel: $fuel)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ConsumeFuelEvent &&
-            (identical(other.fuel, fuel) || other.fuel == fuel));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, fuel);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ConsumeFuelEventCopyWith<_$ConsumeFuelEvent> get copyWith =>
-      __$$ConsumeFuelEventCopyWithImpl<_$ConsumeFuelEvent>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(FuelStorageModel fuel) consumeFuel,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
-  }) {
-    return consumeFuel(fuel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(FuelStorageModel fuel)? consumeFuel,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
-  }) {
-    return consumeFuel?.call(fuel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(FuelStorageModel fuel)? consumeFuel,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (consumeFuel != null) {
-      return consumeFuel(fuel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ConsumeFuelEvent value) consumeFuel,
-    required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
-  }) {
-    return consumeFuel(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ConsumeFuelEvent value)? consumeFuel,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) {
-    return consumeFuel?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ConsumeFuelEvent value)? consumeFuel,
-    TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (consumeFuel != null) {
-      return consumeFuel(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ConsumeFuelEvent implements LevelPlayerEvent {
-  const factory ConsumeFuelEvent({required final FuelStorageModel fuel}) =
-      _$ConsumeFuelEvent;
-
-  FuelStorageModel get fuel;
-  @JsonKey(ignore: true)
-  _$$ConsumeFuelEventCopyWith<_$ConsumeFuelEvent> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -710,7 +511,6 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
             LevelCharactersModel charactersModel)
         init,
     required TResult Function() switchToNextPlayer,
-    required TResult Function(FuelStorageModel fuel) consumeFuel,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(String playerId, ScoreModel score, String? word)
@@ -726,7 +526,6 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult? Function()? switchToNextPlayer,
-    TResult? Function(FuelStorageModel fuel)? consumeFuel,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(String playerId, ScoreModel score, String? word)?
@@ -742,7 +541,6 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult Function()? switchToNextPlayer,
-    TResult Function(FuelStorageModel fuel)? consumeFuel,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(String playerId, ScoreModel score, String? word)?
@@ -760,7 +558,6 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ConsumeFuelEvent value) consumeFuel,
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
@@ -775,7 +572,6 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ConsumeFuelEvent value)? consumeFuel,
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
@@ -789,7 +585,6 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ConsumeFuelEvent value)? consumeFuel,
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
@@ -892,7 +687,6 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
             LevelCharactersModel charactersModel)
         init,
     required TResult Function() switchToNextPlayer,
-    required TResult Function(FuelStorageModel fuel) consumeFuel,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(String playerId, ScoreModel score, String? word)
@@ -908,7 +702,6 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult? Function()? switchToNextPlayer,
-    TResult? Function(FuelStorageModel fuel)? consumeFuel,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(String playerId, ScoreModel score, String? word)?
@@ -924,7 +717,6 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult Function()? switchToNextPlayer,
-    TResult Function(FuelStorageModel fuel)? consumeFuel,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(String playerId, ScoreModel score, String? word)?
@@ -942,7 +734,6 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ConsumeFuelEvent value) consumeFuel,
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
@@ -957,7 +748,6 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ConsumeFuelEvent value)? consumeFuel,
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
@@ -971,7 +761,6 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ConsumeFuelEvent value)? consumeFuel,
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
@@ -1094,7 +883,6 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
             LevelCharactersModel charactersModel)
         init,
     required TResult Function() switchToNextPlayer,
-    required TResult Function(FuelStorageModel fuel) consumeFuel,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(String playerId, ScoreModel score, String? word)
@@ -1110,7 +898,6 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult? Function()? switchToNextPlayer,
-    TResult? Function(FuelStorageModel fuel)? consumeFuel,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(String playerId, ScoreModel score, String? word)?
@@ -1126,7 +913,6 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
             LevelCharactersModel charactersModel)?
         init,
     TResult Function()? switchToNextPlayer,
-    TResult Function(FuelStorageModel fuel)? consumeFuel,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(String playerId, ScoreModel score, String? word)?
@@ -1144,7 +930,6 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ConsumeFuelEvent value) consumeFuel,
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
@@ -1159,7 +944,6 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ConsumeFuelEvent value)? consumeFuel,
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
@@ -1173,7 +957,6 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ConsumeFuelEvent value)? consumeFuel,
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,

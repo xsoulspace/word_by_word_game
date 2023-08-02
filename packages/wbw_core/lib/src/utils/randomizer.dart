@@ -1,8 +1,10 @@
-part of utils;
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 
 @immutable
-class Randomer {
-  Randomer({
+class Randomizer {
+  Randomizer({
     required this.max,
     this.min = 0,
   });

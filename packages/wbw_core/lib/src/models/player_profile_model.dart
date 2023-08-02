@@ -4,6 +4,9 @@ part of 'models.dart';
 
 typedef PlayerProfileModelId = String;
 
+/// Only user specific properties.
+///
+/// For game entity model see [PlayerCharacterModel]
 @immutable
 @freezed
 class PlayerProfileModel with _$PlayerProfileModel {

@@ -511,6 +511,7 @@ mixin _$ForcesConstantsModel {
   double get gravityForce => throw _privateConstructorUsedError;
   double get volumeDecreaseRatio => throw _privateConstructorUsedError;
   double get volumeIncreaseRatio => throw _privateConstructorUsedError;
+  double get volumeIncreaseRatioMax => throw _privateConstructorUsedError;
   double get volumeToLiftRatio => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -528,6 +529,7 @@ abstract class $ForcesConstantsModelCopyWith<$Res> {
       {double gravityForce,
       double volumeDecreaseRatio,
       double volumeIncreaseRatio,
+      double volumeIncreaseRatioMax,
       double volumeToLiftRatio});
 }
 
@@ -548,6 +550,7 @@ class _$ForcesConstantsModelCopyWithImpl<$Res,
     Object? gravityForce = null,
     Object? volumeDecreaseRatio = null,
     Object? volumeIncreaseRatio = null,
+    Object? volumeIncreaseRatioMax = null,
     Object? volumeToLiftRatio = null,
   }) {
     return _then(_value.copyWith(
@@ -562,6 +565,10 @@ class _$ForcesConstantsModelCopyWithImpl<$Res,
       volumeIncreaseRatio: null == volumeIncreaseRatio
           ? _value.volumeIncreaseRatio
           : volumeIncreaseRatio // ignore: cast_nullable_to_non_nullable
+              as double,
+      volumeIncreaseRatioMax: null == volumeIncreaseRatioMax
+          ? _value.volumeIncreaseRatioMax
+          : volumeIncreaseRatioMax // ignore: cast_nullable_to_non_nullable
               as double,
       volumeToLiftRatio: null == volumeToLiftRatio
           ? _value.volumeToLiftRatio
@@ -583,6 +590,7 @@ abstract class _$$_ForcesConstantsModelCopyWith<$Res>
       {double gravityForce,
       double volumeDecreaseRatio,
       double volumeIncreaseRatio,
+      double volumeIncreaseRatioMax,
       double volumeToLiftRatio});
 }
 
@@ -600,6 +608,7 @@ class __$$_ForcesConstantsModelCopyWithImpl<$Res>
     Object? gravityForce = null,
     Object? volumeDecreaseRatio = null,
     Object? volumeIncreaseRatio = null,
+    Object? volumeIncreaseRatioMax = null,
     Object? volumeToLiftRatio = null,
   }) {
     return _then(_$_ForcesConstantsModel(
@@ -614,6 +623,10 @@ class __$$_ForcesConstantsModelCopyWithImpl<$Res>
       volumeIncreaseRatio: null == volumeIncreaseRatio
           ? _value.volumeIncreaseRatio
           : volumeIncreaseRatio // ignore: cast_nullable_to_non_nullable
+              as double,
+      volumeIncreaseRatioMax: null == volumeIncreaseRatioMax
+          ? _value.volumeIncreaseRatioMax
+          : volumeIncreaseRatioMax // ignore: cast_nullable_to_non_nullable
               as double,
       volumeToLiftRatio: null == volumeToLiftRatio
           ? _value.volumeToLiftRatio
@@ -630,6 +643,7 @@ class _$_ForcesConstantsModel implements _ForcesConstantsModel {
       {required this.gravityForce,
       required this.volumeDecreaseRatio,
       required this.volumeIncreaseRatio,
+      required this.volumeIncreaseRatioMax,
       required this.volumeToLiftRatio});
 
   @override
@@ -639,11 +653,13 @@ class _$_ForcesConstantsModel implements _ForcesConstantsModel {
   @override
   final double volumeIncreaseRatio;
   @override
+  final double volumeIncreaseRatioMax;
+  @override
   final double volumeToLiftRatio;
 
   @override
   String toString() {
-    return 'ForcesConstantsModel(gravityForce: $gravityForce, volumeDecreaseRatio: $volumeDecreaseRatio, volumeIncreaseRatio: $volumeIncreaseRatio, volumeToLiftRatio: $volumeToLiftRatio)';
+    return 'ForcesConstantsModel(gravityForce: $gravityForce, volumeDecreaseRatio: $volumeDecreaseRatio, volumeIncreaseRatio: $volumeIncreaseRatio, volumeIncreaseRatioMax: $volumeIncreaseRatioMax, volumeToLiftRatio: $volumeToLiftRatio)';
   }
 
   @override
@@ -657,13 +673,20 @@ class _$_ForcesConstantsModel implements _ForcesConstantsModel {
                 other.volumeDecreaseRatio == volumeDecreaseRatio) &&
             (identical(other.volumeIncreaseRatio, volumeIncreaseRatio) ||
                 other.volumeIncreaseRatio == volumeIncreaseRatio) &&
+            (identical(other.volumeIncreaseRatioMax, volumeIncreaseRatioMax) ||
+                other.volumeIncreaseRatioMax == volumeIncreaseRatioMax) &&
             (identical(other.volumeToLiftRatio, volumeToLiftRatio) ||
                 other.volumeToLiftRatio == volumeToLiftRatio));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, gravityForce,
-      volumeDecreaseRatio, volumeIncreaseRatio, volumeToLiftRatio);
+  int get hashCode => Object.hash(
+      runtimeType,
+      gravityForce,
+      volumeDecreaseRatio,
+      volumeIncreaseRatio,
+      volumeIncreaseRatioMax,
+      volumeToLiftRatio);
 
   @JsonKey(ignore: true)
   @override
@@ -678,6 +701,7 @@ abstract class _ForcesConstantsModel implements ForcesConstantsModel {
       {required final double gravityForce,
       required final double volumeDecreaseRatio,
       required final double volumeIncreaseRatio,
+      required final double volumeIncreaseRatioMax,
       required final double volumeToLiftRatio}) = _$_ForcesConstantsModel;
 
   @override
@@ -686,6 +710,8 @@ abstract class _ForcesConstantsModel implements ForcesConstantsModel {
   double get volumeDecreaseRatio;
   @override
   double get volumeIncreaseRatio;
+  @override
+  double get volumeIncreaseRatioMax;
   @override
   double get volumeToLiftRatio;
   @override

@@ -111,10 +111,11 @@ class WeatherModel with _$WeatherModel {
 @freezed
 class WindModel with _$WindModel {
   const factory WindModel({
-    required final SerializedVector2 force,
+    @Default(SerializedVector2.zero) final SerializedVector2 force,
   }) = _WindModel;
   factory WindModel.fromJson(final Map<String, dynamic> json) =>
       _$WindModelFromJson(json);
+  static const zero = WindModel();
 }
 
 /// Idea:

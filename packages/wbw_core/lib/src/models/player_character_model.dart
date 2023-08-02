@@ -2,6 +2,11 @@
 
 part of 'models.dart';
 
+// TODO(arenukvern): rename to VehicleModel - or something similar
+/// Character - is a game entity, that has its own properties
+/// which player can control, for example [HotAirBalloon]
+///
+/// For User Profile model see [PlayerProfileModel]
 @immutable
 @freezed
 class PlayerCharacterModel with _$PlayerCharacterModel {
@@ -23,6 +28,10 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     final BalloonLiftPowersModel balloonPowers,
     @Default(BalloonLiftParamsModel.initial)
     final BalloonLiftParamsModel balloonParams,
+
+    /// If is true, then it means that the balloon is on the ground and
+    /// cannot be moved.
+    @Default(true) final bool isAnchored,
   }) = _PlayerCharacterModel;
   const PlayerCharacterModel._();
   factory PlayerCharacterModel.fromJson(final Map<String, dynamic> json) =>
