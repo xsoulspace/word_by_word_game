@@ -142,7 +142,6 @@ class TilesRenderer extends Component
   final _painter = TilesPainter();
   @override
   void render(final Canvas canvas) {
-    // TODO(arenukvern): render only visible area
     _painter.render(
       canvas: canvas,
       offsetOrigin: getOffsetOrigin(),

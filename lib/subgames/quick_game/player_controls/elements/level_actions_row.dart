@@ -126,7 +126,7 @@ class UIEnergyOptionCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    '$applyingScore',
+                    '${applyingScore ~/ 10}',
                     style: textTheme.headlineSmall,
                   ),
                 ),
