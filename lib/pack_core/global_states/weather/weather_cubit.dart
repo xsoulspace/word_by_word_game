@@ -60,6 +60,12 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
     }
   }
 
+  void regenerateWeather() {
+    _generateWeather();
+    _generateWindForce();
+    print({'weathers generated': state.weathers});
+  }
+
   void loadWeather({
     final List<WeatherModel> weathers = const [],
     final WindModel wind = WindModel.zero,
@@ -67,7 +73,7 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
     if (weathers.isEmpty) {
       _generateWeather();
     } else {
-      emit(state.copyWith(weathers: weathers));
+      emit(state.copyWith(weathers: weathers, wind: wind));
     }
     print({'weathers loaded': state.weathers});
   }

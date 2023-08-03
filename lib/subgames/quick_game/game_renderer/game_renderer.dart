@@ -83,14 +83,15 @@ class CanvasRendererGame extends FlameGame
       FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
         onNewState: _handleLevelStateChanges,
       ),
-      if (debugMode)
-        FpsTextComponent(
-          textRenderer: regular,
-          priority: 100,
-        )
-          ..anchor = Anchor.topLeft
-          ..x = 32
-          ..y = 32.0,
+      // temporary enabling it
+      // if (debugMode)
+      FpsTextComponent(
+        textRenderer: regular,
+        priority: 100,
+      )
+        ..anchor = Anchor.topLeft
+        ..x = 32
+        ..y = 32.0,
       canvasRenderer,
     ]);
     // Enable initial overlays
@@ -151,13 +152,7 @@ class CanvasRendererGame extends FlameGame
   }
 
   /// Unloads current level, unassignes character from the camera
-  void unloadLevel() {
-    // if (character != null) {
-    //   worldCamera.stop();
-    //   // character?.removeFromParent();
-    //   // character = null;
-    // }
-  }
+  void unloadLevel() {}
 
   @override
   Color backgroundColor() => diDto.theme.colorScheme.surface;
