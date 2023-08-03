@@ -1,6 +1,6 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
@@ -12,16 +12,29 @@ class UiDebugSideBar extends StatelessWidget {
   const UiDebugSideBar({super.key});
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
-        create: (final context) => UiDebugSideBarCubit(
-          dto: UiDebugSideBarCubitDto(
-            context: context,
+  Widget build(final BuildContext context) {
+    final debugCubit = context.watch<DebugCubit>();
+    if (!debugCubit.state.isDebugPaneVisible) return const SizedBox();
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Container().blurred(
+            borderRadius: BorderRadius.circular(16),
           ),
         ),
-        child: Builder(
-          builder: (final context) => const UiDebugSideBarBody(),
+        BlocProvider(
+          create: (final context) => UiDebugSideBarCubit(
+            dto: UiDebugSideBarCubitDto(
+              context: context,
+            ),
+          ),
+          child: Builder(
+            builder: (final context) => const UiDebugSideBarBody(),
+          ),
         ),
-      );
+      ],
+    );
+  }
 }
 
 class UiDebugSideBarBody extends StatelessWidget {
@@ -33,90 +46,121 @@ class UiDebugSideBarBody extends StatelessWidget {
     context.watch<LevelPlayersBloc>();
     final debugCubit = context.watch<DebugCubit>();
     final screenSize = MediaQuery.sizeOf(context);
-    return Container(
-      color: Theme.of(context).colorScheme.secondaryContainer,
-      padding: const EdgeInsets.all(16),
-      child: SizedBox(
-        width: 200,
-        height: (screenSize.height / 2) + (screenSize.height / 3),
-        child: ListView(
-          children: [
-            const Text('Debug Tools'),
-            const Gap(16),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(
-                'Is Camera following Player',
-                style: Theme.of(context).textTheme.labelMedium,
+    final theme = Theme.of(context);
+    final worldBloc = context.watch<GlobalGameBloc>();
+    return SizedBox(
+      width: 200,
+      height: (screenSize.height / 2) + (screenSize.height / 3),
+      child: ListView(
+        padding: const EdgeInsets.all(16),
+        children: [
+          Row(
+            children: [
+              IconButton(
+                onPressed: debugCubit.closeDebugPane,
+                icon: const Icon(Icons.close),
               ),
-              value: debugCubit.state.isCameraFollowingPlayer,
-              onChanged: debugCubit.switchIsCameraFollowingPlayerChange,
-            ),
-            Row(
-              children: [
-                const Text('Volume: '),
-                Text(screenCubit.volume.toInt().toString()),
-              ],
-            ),
-            Row(
-              children: [
-                const Text('Power: '),
-                Text(screenCubit.power.toInt().toString()),
-                TextButton(
+              Tooltip(
+                message: 'Stop game engine with world time',
+                child: IconButton(
                   onPressed: () {
-                    screenCubit
-                        .onPowerChange((screenCubit.power + 500).toString());
+                    final worldTime =
+                        context.read<MechanicsCollection>().worldTime;
+                    if (worldTime.paused) {
+                      worldTime.resume();
+                    } else {
+                      worldTime.pause();
+                    }
                   },
-                  child: const Text('+500'),
-                )
-              ],
+                  color: theme.colorScheme.errorContainer,
+                  icon: const Icon(Icons.motion_photos_pause_outlined),
+                ),
+              ),
+              const Gap(8),
+              Flexible(
+                child: Text(
+                  'Time ${worldBloc.state.dateTime.second ~/ 100}',
+                  overflow: TextOverflow.ellipsis,
+                ),
+              )
+            ],
+          ),
+          const _WorldTime(),
+          const Gap(16),
+          const Text('Debug Tools'),
+          const Gap(16),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(
+              'Is Camera following Player',
+              style: Theme.of(context).textTheme.labelMedium,
             ),
-            UiTextField.underlined(
-              value: screenCubit.maxVolume.toString(),
-              onChanged: screenCubit.onMaxVolumeChange,
-              keyboardType: TextInputType.number,
-              labelText: 'maxVolume',
-            ),
-            UiTextField.underlined(
-              value: screenCubit.maxPower.toString(),
-              onChanged: screenCubit.onMaxPowerChange,
-              keyboardType: TextInputType.number,
-              labelText: 'maxPower',
-            ),
-            UiTextField.underlined(
-              value: screenCubit.powerUsage.toString(),
-              onChanged: screenCubit.onPowerUsageChange,
-              keyboardType: TextInputType.number,
-              labelText: 'powerUsage',
-            ),
-            UiTextField.underlined(
-              value: screenCubit.gravityForce.toString(),
-              onChanged: screenCubit.onGravityForceChange,
-              keyboardType: TextInputType.number,
-              labelText: 'gravityForce',
-            ),
-            UiTextField.underlined(
-              value: screenCubit.volumeDecreaseRatio.toString(),
-              onChanged: screenCubit.onVolumeDecreaseRatioChange,
-              keyboardType: TextInputType.number,
-              labelText: 'volumeDecreaseRatio',
-            ),
-            UiTextField.underlined(
-              value: screenCubit.volumeIncreaseRatio.toString(),
-              onChanged: screenCubit.onVolumeIncreaseRatioChange,
-              keyboardType: TextInputType.number,
-              labelText: 'volumeIncreaseRatio',
-            ),
-            UiTextField.underlined(
-              value: screenCubit.volumeToLiftRatio.toString(),
-              onChanged: screenCubit.onVolumeToLiftRatioChange,
-              keyboardType: TextInputType.number,
-              labelText: 'volumeToLiftRatio',
-            ),
-            const _WorldTime(),
-            const Gap(100),
-          ],
-        ),
+            value: debugCubit.state.isCameraFollowingPlayer,
+            onChanged: debugCubit.switchIsCameraFollowingPlayerChange,
+          ),
+          Row(
+            children: [
+              const Text('Volume: '),
+              Text(screenCubit.volume.toInt().toString()),
+            ],
+          ),
+          Row(
+            children: [
+              const Text('Power: '),
+              Text(screenCubit.power.toInt().toString()),
+              TextButton(
+                onPressed: () {
+                  screenCubit
+                      .onPowerChange((screenCubit.power + 500).toString());
+                },
+                child: const Text('+500'),
+              )
+            ],
+          ),
+          UiTextField.underlined(
+            value: screenCubit.maxVolume.toString(),
+            onChanged: screenCubit.onMaxVolumeChange,
+            keyboardType: TextInputType.number,
+            labelText: 'maxVolume',
+          ),
+          UiTextField.underlined(
+            value: screenCubit.maxPower.toString(),
+            onChanged: screenCubit.onMaxPowerChange,
+            keyboardType: TextInputType.number,
+            labelText: 'maxPower',
+          ),
+          UiTextField.underlined(
+            value: screenCubit.powerUsage.toString(),
+            onChanged: screenCubit.onPowerUsageChange,
+            keyboardType: TextInputType.number,
+            labelText: 'powerUsage',
+          ),
+          UiTextField.underlined(
+            value: screenCubit.gravityForce.toString(),
+            onChanged: screenCubit.onGravityForceChange,
+            keyboardType: TextInputType.number,
+            labelText: 'gravityForce',
+          ),
+          UiTextField.underlined(
+            value: screenCubit.volumeDecreaseRatio.toString(),
+            onChanged: screenCubit.onVolumeDecreaseRatioChange,
+            keyboardType: TextInputType.number,
+            labelText: 'volumeDecreaseRatio',
+          ),
+          UiTextField.underlined(
+            value: screenCubit.volumeIncreaseRatio.toString(),
+            onChanged: screenCubit.onVolumeIncreaseRatioChange,
+            keyboardType: TextInputType.number,
+            labelText: 'volumeIncreaseRatio',
+          ),
+          UiTextField.underlined(
+            value: screenCubit.volumeToLiftRatio.toString(),
+            onChanged: screenCubit.onVolumeToLiftRatioChange,
+            keyboardType: TextInputType.number,
+            labelText: 'volumeToLiftRatio',
+          ),
+          const Gap(16),
+        ],
       ),
     );
   }
@@ -127,15 +171,12 @@ class _WorldTime extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final worldBloc = context.watch<GlobalGameBloc>();
     final worldTime = context.read<MechanicsCollection>().worldTime;
+    final worldBloc = context.watch<GlobalGameBloc>();
 
-    return Column(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        const Gap(24),
-        Text('Time ${worldBloc.state.dateTime.second}'),
-        const Gap(4),
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [

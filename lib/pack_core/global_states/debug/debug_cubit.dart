@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -7,6 +8,7 @@ part 'debug_cubit.freezed.dart';
 class DebugCubitState with _$DebugCubitState {
   const factory DebugCubitState({
     @Default(true) final bool isCameraFollowingPlayer,
+    @Default(kDebugMode) final bool isDebugPaneVisible,
   }) = _DebugCubitState;
 }
 
@@ -23,5 +25,17 @@ class DebugCubit extends Cubit<DebugCubitState> {
   void switchIsCameraFollowingPlayerChange([final bool? value]) {
     final isFollowing = value ?? !state.isCameraFollowingPlayer;
     emit(state.copyWith(isCameraFollowingPlayer: isFollowing));
+  }
+
+  int _countdown = 5;
+  void tryOpenDebugPane() {
+    _countdown--;
+    if (_countdown <= 0) {
+      emit(state.copyWith(isDebugPaneVisible: true));
+    }
+  }
+
+  void closeDebugPane() {
+    emit(state.copyWith(isDebugPaneVisible: false));
   }
 }

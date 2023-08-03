@@ -1,15 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:gap/gap.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/envs.dart';
+import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
@@ -27,7 +25,6 @@ class LevelsHudScreenOverlay extends HookWidget {
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
-    // final state = _useLevelsHudScreenOverlayState(read: context.read);
     return Stack(
       children: [
         Stack(
@@ -79,8 +76,13 @@ class LevelsHudScreenOverlay extends HookWidget {
                       builder: (final context, final powers) => Column(
                         children: [
                           const Gap(8),
-                          Text(
-                            '${S.of(context).power}: ${powers.power ~/ 10} ',
+                          GestureDetector(
+                            onTap: () {
+                              context.read<DebugCubit>().tryOpenDebugPane();
+                            },
+                            child: Text(
+                              '${S.of(context).power}: ${powers.power ~/ 10} ',
+                            ),
                           ),
                         ],
                       ),
@@ -89,24 +91,6 @@ class LevelsHudScreenOverlay extends HookWidget {
                 ],
               ),
             ),
-            if (kDebugMode && !Envs.isMarketingMode)
-              Positioned(
-                top: 60,
-                right: 20,
-                child: IconButton(
-                  onPressed: () {
-                    final worldTime =
-                        context.read<MechanicsCollection>().worldTime;
-                    if (worldTime.paused) {
-                      worldTime.resume();
-                    } else {
-                      worldTime.pause();
-                    }
-                  },
-                  color: theme.colorScheme.errorContainer,
-                  icon: const Icon(Icons.motion_photos_pause_outlined),
-                ),
-              ),
           ],
         ),
         const Positioned(

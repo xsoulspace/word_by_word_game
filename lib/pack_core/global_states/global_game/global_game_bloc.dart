@@ -131,16 +131,19 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     _globalLevelLoadCompleter = Completer();
     LevelModel level = event.levelModel;
-    diDto.weatherCubit.loadWeather(
-      weathers: level.weathers,
-      wind: level.wind,
-    );
+
     GlobalGameBlocState updatedState = _getResetedLevelLoad();
     if (event.isNewStart) {
+      diDto.weatherCubit.regenerateWeather();
       updatedState = updatedState.copyWith(
         currentLevelModel: level,
       );
       emit(updatedState);
+    } else {
+      diDto.weatherCubit.loadWeather(
+        weathers: level.weathers,
+        wind: level.wind,
+      );
     }
 
     CanvasDataModel? canvasData;
