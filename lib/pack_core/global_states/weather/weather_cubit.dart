@@ -62,7 +62,6 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
 
   void regenerateWeather() {
     _generateWeather();
-    _generateWindForce();
     print({'weathers generated': state.weathers});
   }
 
@@ -81,6 +80,7 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
   void _generateWeather() {
     final newWeathers = mechanics.generateWeather();
     emit(state.copyWith(weathers: newWeathers));
+    _generateWindForce();
     print({'weathers generated': state.weathers});
   }
 
