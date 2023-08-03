@@ -366,9 +366,6 @@ class GameCanvasObjectsDrawer extends Component
   @override
   FutureOr<void> onLoad() async {
     _loadPlayer();
-    _loadGravitationHandle();
-    _loadSkyHandle();
-
     await _addCanvasObjects(canvasObjects);
     add(
       FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
@@ -442,8 +439,9 @@ class GameCanvasObjectsDrawer extends Component
 
   @override
   void render(final Canvas canvas) {
-    _renderGravitationLine(canvas);
-    _renderSkyHorizon(canvas);
+    // TODO(arenukvern): restore
+    // _renderGravitationLine(canvas);
+    // _renderSkyHorizon(canvas);
     super.render(canvas);
   }
 
