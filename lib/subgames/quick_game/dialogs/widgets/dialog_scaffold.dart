@@ -14,7 +14,6 @@ class DialogScaffold extends StatelessWidget {
   final WidgetBuilder? builder;
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
     Widget child;
     if (builder != null) {

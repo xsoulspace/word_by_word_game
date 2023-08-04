@@ -4,10 +4,10 @@ class EmptyScreen extends StatelessWidget {
   const EmptyScreen({super.key});
 
   @override
-  Widget build(final BuildContext context) => Center(
+  Widget build(final BuildContext context) => const Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [Text(r'At least it works ¯\_(ツ)_/¯')],
+          children: [Text(r'At least it works ¯\_(ツ)_/¯')],
         ),
       );
 }
@@ -16,10 +16,10 @@ class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
 
   @override
-  Widget build(final BuildContext context) => Center(
+  Widget build(final BuildContext context) => const Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
-          children: const [
+          children: [
             CircularProgress(),
           ],
         ),

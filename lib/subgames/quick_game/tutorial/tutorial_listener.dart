@@ -32,13 +32,10 @@ class GameTutorialEventListener extends TutorialEventListener {
       switch (effect.name) {
         case TutorialGameEffectName.completeCurrentTutorial:
           diDto.tutorialBloc.add(const CompleteTutorialEvent());
-          break;
         case TutorialGameEffectName.pauseGame:
           diDto.mechanics.worldTime.pause();
-          break;
         case TutorialGameEffectName.resumeGame:
           diDto.mechanics.worldTime.resume();
-          break;
       }
     }
   }

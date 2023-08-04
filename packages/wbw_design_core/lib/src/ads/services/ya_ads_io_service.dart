@@ -7,6 +7,6 @@ class YaAdsMobileService implements AdsService {
 
   @override
   void showFullscreenAds() {
-    // TODO: implement showFullscreenAds
+    // TODO(arenukvern): implement showFullscreenAds
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
-import 'package:map_editor/ui/renderer/game_renderer.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart';
 
 enum GameOverlays {
   sandboxUi,
@@ -17,10 +17,11 @@ class GameRendererWidget extends HookWidget {
     final gameFocusNode = useFocusNode();
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Portal(
-        child: GameWidget<GameRenderer>.controlled(
+        child: GameWidget<EditorRendererGame>.controlled(
           focusNode: gameFocusNode,
-          gameFactory: () => GameRenderer.use(
+          gameFactory: () => EditorRendererGame.use(
             read: context.read,
             theme: Theme.of(context),
           ),

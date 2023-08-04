@@ -18,7 +18,6 @@ class PlayerProfileRow extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     return BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
       builder: (final context, final state) {
-        if (state is! LiveGlobalGameBlocState) return const SizedBox();
         final players = state.playersCollection;
         return Scrollbar(
           interactive: true,

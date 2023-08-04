@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../wbw_design_core.dart';
-import '../utils/utils.dart';
 
 class UiTextButton extends HookWidget {
   const UiTextButton.icon({
@@ -40,7 +39,7 @@ class UiTextButton extends HookWidget {
     );
     const height = 32.0;
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    // final uiTheme = UiTheme.of(context);
     return Tooltip(
       message: tooltip,
       child: GestureDetector(

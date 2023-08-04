@@ -19,9 +19,9 @@ class CreatePlayerScreen extends HookWidget {
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     final globalGameBloc = context.watch<GlobalGameBloc>();
-    final liveState = globalGameBloc.getLiveState();
+    final liveState = globalGameBloc.state;
     final isPlayersEmpty = liveState.playersCollection.isEmpty;
-    final screenSize = MediaQuery.of(context).size;
+    // final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     final widgetState = usePlayerProfileCreatorState(read: context.read);
 

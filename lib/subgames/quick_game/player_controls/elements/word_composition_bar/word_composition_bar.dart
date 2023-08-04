@@ -23,7 +23,7 @@ class UiWordCompositionBar extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
-    final uiTheme = UiTheme.of(context);
+    // final uiTheme = UiTheme.of(context);
     final buildAndListenWhenCallback = LevelBloc.useCheckStateEqualityBuilder(
       checkLiveState: (final previous, final current) =>
           previous.latestWord != current.latestWord,
@@ -35,77 +35,70 @@ class UiWordCompositionBar extends HookWidget {
       listenWhen: buildAndListenWhenCallback,
       child: BlocBuilder<LevelBloc, LevelBlocState>(
         buildWhen: buildAndListenWhenCallback,
-        builder: (final context, final levelState) {
-          if (levelState is! LiveLevelBlocState) return const SizedBox();
-
-          return TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.enterWordPhaseFrame,
-            child: UICenterFrame(
-              leftButton: UiRandomWordIconButton(
-                onPressed: levelState.currentWord.cleanWord.isEmpty
-                    ? null
-                    : state.onOpenSuggestionDialog,
+        builder: (final context, final levelState) => TutorialFrame(
+          highlightPosition: Alignment.topCenter,
+          uiKey: TutorialUiItem.enterWordPhaseFrame,
+          child: UICenterFrame(
+            leftButton: UiRandomWordIconButton(
+              onPressed: levelState.currentWord.cleanWord.isEmpty
+                  ? null
+                  : state.onOpenSuggestionDialog,
+            ),
+            rightButton: UiPauseIconButton(onPressed: state.onPause),
+            textFieldBuilder: (final context) =>
+                BlocBuilder<LevelBloc, LevelBlocState>(
+              buildWhen: LevelBloc.useCheckStateEqualityBuilder(
+                checkLiveState: (final previous, final current) =>
+                    previous.currentWord.middlePart !=
+                    current.currentWord.middlePart,
               ),
-              rightButton: UiPauseIconButton(onPressed: state.onPause),
-              textFieldBuilder: (final context) =>
-                  BlocBuilder<LevelBloc, LevelBlocState>(
-                buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-                  checkLiveState: (final previous, final current) =>
-                      previous.currentWord.middlePart !=
-                      current.currentWord.middlePart,
-                ),
-                builder: (final context, final levelState) {
-                  if (levelState is! LiveLevelBlocState) {
-                    return const SizedBox();
-                  }
-                  final latestWord = levelState.latestWord;
-                  final currentWord = levelState.currentWord;
+              builder: (final context, final levelState) {
+                final latestWord = levelState.latestWord;
+                final currentWord = levelState.currentWord;
 
-                  return Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (latestWord.isNotEmpty &&
-                          currentWord.middlePart.isNotEmpty)
-                        TutorialFrame(
-                          highlightPosition: Alignment.topCenter,
-                          uiKey: TutorialUiItem.enterWordLeft,
-                          child: UiFrameTextField(
-                            textFieldFocusNode: state.leftWordFocus,
-                            onEnterPressed: state.onRequestRightTextFocus,
-                            onSubmitted: state.onRequestRightTextFocus,
-                            keyFocusNode: state.leftWordKeyFocus,
-                            controller: state.leftPartController,
-                            hintText: S.of(context).hintAddBeginning,
-                          ),
-                        ),
-                      if (latestWord.isNotEmpty)
-                        TutorialFrame(
-                          highlightPosition: Alignment.topCenter,
-                          uiKey: TutorialUiItem.removeLetterButton,
-                          child: MiddleWordPartActions(
-                            middlePartOfWord: currentWord.middlePart,
-                            onLetterPressed: state.onDecreaseMiddlePart,
-                          ),
-                        ),
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    if (latestWord.isNotEmpty &&
+                        currentWord.middlePart.isNotEmpty)
                       TutorialFrame(
                         highlightPosition: Alignment.topCenter,
-                        uiKey: TutorialUiItem.enterWordRight,
+                        uiKey: TutorialUiItem.enterWordLeft,
                         child: UiFrameTextField(
-                          keyFocusNode: state.rightWordKeyFocus,
-                          textFieldFocusNode: state.rightWordFocus,
-                          controller: state.rightPartController,
-                          hintText: S.of(context).hintAddEnding,
-                          onSubmitted: state.onToSelectActionPhase,
+                          textFieldFocusNode: state.leftWordFocus,
+                          onEnterPressed: state.onRequestRightTextFocus,
+                          onSubmitted: state.onRequestRightTextFocus,
+                          keyFocusNode: state.leftWordKeyFocus,
+                          controller: state.leftPartController,
+                          hintText: S.of(context).hintAddBeginning,
                         ),
                       ),
-                    ],
-                  );
-                },
-              ),
+                    if (latestWord.isNotEmpty)
+                      TutorialFrame(
+                        highlightPosition: Alignment.topCenter,
+                        uiKey: TutorialUiItem.removeLetterButton,
+                        child: MiddleWordPartActions(
+                          middlePartOfWord: currentWord.middlePart,
+                          onLetterPressed: state.onDecreaseMiddlePart,
+                        ),
+                      ),
+                    TutorialFrame(
+                      highlightPosition: Alignment.topCenter,
+                      uiKey: TutorialUiItem.enterWordRight,
+                      child: UiFrameTextField(
+                        keyFocusNode: state.rightWordKeyFocus,
+                        textFieldFocusNode: state.rightWordFocus,
+                        controller: state.rightPartController,
+                        hintText: S.of(context).hintAddEnding,
+                        onSubmitted: state.onToSelectActionPhase,
+                      ),
+                    ),
+                  ],
+                );
+              },
             ),
-          );
-        },
+          ),
+        ),
       ),
     );
   }

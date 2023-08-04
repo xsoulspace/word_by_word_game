@@ -48,10 +48,8 @@ class WidgetbookHotReload extends StatelessWidget {
                 useCases: [
                   WidgetbookUseCase(
                     name: 'Basic Desktop',
-                    builder: (final context) => Center(
-                      child: Row(
-                        children: const [],
-                      ),
+                    builder: (final context) => const Center(
+                      child: Row(),
                     ),
                   ),
                 ],

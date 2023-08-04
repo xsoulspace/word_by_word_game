@@ -8,6 +8,11 @@
 
 ## Next
 
+## 1 August 2023
+
+- Fixed: player reloading, level reloading
+- Added hitbox for player and completed logic for obstacles
+
 ## PRIVACY POLICY & TERMS AND CONDITIONS
 
 Now docs available here:

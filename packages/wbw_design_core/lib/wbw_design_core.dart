@@ -1,4 +1,5 @@
 export 'package:flutter/widgets.dart';
+export 'package:gap/gap.dart';
 
 export 'src/screens/screens.dart';
 export 'src/theme/theme.dart';

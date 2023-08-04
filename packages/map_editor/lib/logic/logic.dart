@@ -1,1 +1,1 @@
-export 'mechanics_collection.dart';
+export 'editor_mechanics_collection.dart';

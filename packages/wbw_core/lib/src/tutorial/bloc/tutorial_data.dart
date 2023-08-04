@@ -17,8 +17,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Se si hanno abbastanza punti, si possono rimuovere le lettere. Ogni lettera costerà alcuni punti.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.removeLetterButton,
       ),
       TutorialEventModel(
@@ -33,8 +31,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'È possibile inserire una parte della parola in questo campo di testo per creare una parola completa.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.enterWordLeft,
       ),
       TutorialEventModel(
@@ -46,8 +42,6 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.gameFuelIndicator,
       ),
     ],
@@ -84,7 +78,6 @@ const _tutorialData = TutorialCollectionsDataModel(
             name: TutorialGameEffectName.pauseGame,
           )
         ],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
@@ -98,8 +91,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 "Il vostro obiettivo è raggiungere l'estremità del paesaggio. \nSiete da soli o con i vostri amici e siete responsabili del carburante dell'aerostato. \n\nDurante l'esercitazione il pallone non si muoverà per farvi prendere confidenza con i comandi.",
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
@@ -113,8 +104,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 "Se si gioca con gli amici, si è in una squadra che controlla un aereo, quindi ogni giocatore giocherà dopo l'altro.",
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
@@ -125,8 +114,6 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: 'Questo è il nome del giocatore attuale.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.yourNameLabel,
       ),
       TutorialEventModel(
@@ -138,8 +125,6 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: 'Questo è il punteggio attuale del giocatore.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.yourScoreLabel,
       ),
       TutorialEventModel(
@@ -154,8 +139,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 "Ogni turno di gioco è composto da due fasi. \n\n\nLa prima fase consiste nell'inserire una nuova parola.",
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
@@ -169,8 +152,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Se la parola scritta non viene trovata, è possibile fare clic su Aggiungi al dizionario per aggiungere questa parola al dizionario. \n\nFare attenzione alla parola, perché verrà salvata e non potrà essere rimossa.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.addToDictionaryButton,
       ),
       TutorialEventModel(
@@ -184,8 +165,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Se siete bloccati, potete provare a usare i suggerimenti di parole.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.suggestWordButton,
       ),
       TutorialEventModel(
@@ -210,8 +189,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Per continuare, inserire la prima parola in questo campo di testo.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.enterWordRight,
       ),
       TutorialEventModel(
@@ -236,8 +213,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Si guadagneranno punti per la parola, che verranno aggiunti al punteggio e utilizzati nella fase successiva. \n\nPer continuare, fare clic su Conferma parola.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.confirmWordButton,
       ),
       TutorialEventModel(
@@ -262,8 +237,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'La seconda fase - Azioni ed effetti.\n\nAzione è qualcosa che si fa. \n\nScegliere Rifornimento per rifornire il pallone.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.selectRefuelOption,
       ),
       TutorialEventModel(
@@ -288,7 +261,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Per terminare il turno del giocatore, fare clic su Applica e termina il turno. \n\nAttenzione: questa azione terminerà il tutorial e il palloncino inizierà a muoversi. \n\n\nBuona fortuna nelle vostre avventure!',
           },
         ),
-        gamePreEffects: [],
         gamePostEffects: [
           TutorialGameEffectModel(name: TutorialGameEffectName.resumeGame)
         ],

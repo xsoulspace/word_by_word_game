@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:life_hooks/life_hooks.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -22,22 +23,18 @@ class LevelStartDialogButton extends HookWidget {
     required this.level,
     super.key,
   });
-  final TemplateLevelModel level;
+  final CanvasDataModel level;
   @override
   Widget build(final BuildContext context) {
     final uxState = _useLevelStartDialogUxState(
       read: context.read,
-      templateLevel: level,
+      canvasData: level,
     );
 
     final uiState = _useLevelStartUiState(
       read: context.read,
       uxState: uxState,
-      level: level,
     );
-    final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return MultiProvider(
       providers: [
@@ -80,12 +77,9 @@ class _DialogScreen extends HookWidget {
   const _DialogScreen({
     required this.level,
   });
-  final TemplateLevelModel level;
+  final CanvasDataModel level;
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
-    final colorScheme = theme.colorScheme;
     final screenSize = MediaQuery.of(context).size;
     final widgetUiState = context.read<LevelStartDialogUiState>();
     final uiState = context.read<LevelStartDialogUiState>();

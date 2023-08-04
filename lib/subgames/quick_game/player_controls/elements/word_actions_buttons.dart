@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/global_states/ephemeral/ephemeral.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class UiWordActions extends StatelessWidget {
@@ -16,7 +16,7 @@ class UiWordActions extends StatelessWidget {
     final state = context.read<WordCompositionState>();
     final uiTheme = UiTheme.of(context);
     final phaseType = context.select<LevelBloc, GamePhaseType>(
-      (final s) => s.getLiveState().phaseType,
+      (final s) => s.state.phaseType,
     );
     final children = <Widget>[];
     switch (phaseType) {
@@ -47,7 +47,6 @@ class UiWordActions extends StatelessWidget {
             ),
           ),
         ]);
-        break;
       case GamePhaseType.selectFuel:
         break;
     }
@@ -77,7 +76,7 @@ class UIAddWordToDictionaryButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final warning = context.select<LevelBloc, WordWarning>(
-      (final s) => s.getLiveState().wordWarning,
+      (final s) => s.state.wordWarning,
     );
 
     return UiTextButton.icon(
@@ -98,10 +97,10 @@ class UiConfirmWordButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final warning = context.select<LevelBloc, WordWarning>(
-      (final s) => s.getLiveState().wordWarning,
+      (final s) => s.state.wordWarning,
     );
     final currentWord = context.select<LevelBloc, String>(
-      (final s) => s.getLiveState().currentWord.fullWord,
+      (final s) => s.state.currentWord.fullWord,
     );
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
@@ -140,11 +139,7 @@ class UiRandomWordIconButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final cleanWord = context.select<LevelBloc, String>(
-      (final bloc) =>
-          bloc.state.mapOrNull(
-            live: (final value) => value.currentWord.cleanWord,
-          ) ??
-          '',
+      (final bloc) => bloc.state.currentWord.cleanWord,
     );
 
     return TutorialFrame(

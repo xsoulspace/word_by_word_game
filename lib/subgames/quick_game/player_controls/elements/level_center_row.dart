@@ -12,9 +12,9 @@ class UILevelCenterBar extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final phaseType = context.select<LevelBloc, GamePhaseType>(
-      (final s) => s.getLiveState().phaseType,
+      (final s) => s.state.phaseType,
     );
-    final uiTheme = UiTheme.of(context);
+    // final uiTheme = UiTheme.of(context);
     final wordCompositionState = context.read<WordCompositionState>();
     final List<Widget> centerBarChildren;
     final Widget body;
@@ -28,7 +28,6 @@ class UILevelCenterBar extends StatelessWidget {
           const SizedBox(width: 10),
           UiPauseIconButton(onPressed: wordCompositionState.onPause),
         ];
-        break;
       case GamePhaseType.selectFuel:
         body = Column(
           children: [
@@ -40,7 +39,6 @@ class UILevelCenterBar extends StatelessWidget {
         centerBarChildren = [
           UiPauseIconButton(onPressed: wordCompositionState.onPause),
         ];
-        break;
     }
 
     return Stack(

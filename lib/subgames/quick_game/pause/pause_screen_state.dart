@@ -37,10 +37,12 @@ class PauseScreenState extends ContextfulLifeState {
     if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
   }
 
-  void onContinue({
-    required final LevelModelId id,
-  }) {
-    diDto.globalGameBloc.add(const StartPlayingLevelEvent());
+  Future<void> onContinue({
+    required final CanvasDataModelId id,
+  }) async {
+    await diDto.globalGameBloc.onStartPlayingLevel(
+      const StartPlayingLevelEvent(shouldRestartTutorial: false),
+    );
     diDto.appRouterController.toPlayableLevel(id: id);
   }
 
