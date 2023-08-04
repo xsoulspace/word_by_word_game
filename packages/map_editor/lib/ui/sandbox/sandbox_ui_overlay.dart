@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gap/gap.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
@@ -124,12 +123,6 @@ class TileButtons extends StatelessWidget {
                     onPressed: drawerCubit.saveData,
                     icon: const Icon(Icons.save),
                     label: const Text('Save'),
-                  ),
-                  TextButton.icon(
-                    onPressed: () async =>
-                        mapEditorBloc.onSaveAndPlay(context: context),
-                    icon: const Icon(Icons.play_arrow),
-                    label: const Text('Save & Play'),
                   ),
                 ],
               ),

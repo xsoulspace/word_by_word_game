@@ -84,7 +84,7 @@ class EditorCanvasObject extends Component
   void render(final Canvas canvas) {
     final resourceTile = allTiles[tileId]!;
     // TODO(antmalofeev): replace with listener
-    final renderObject = drawerCubit.objects[gid]!;
+    final renderObject = drawerCubit.objects[gid] ?? data;
     final animationEntry =
         resourceTile.behaviourPaths[renderObject.animationBehaviour]!;
 
@@ -223,18 +223,26 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadGravitationHandle() {
-    // _gravitationHandle = EditorCanvasObject(
-    //   gid: kCursorHandleObjectId.toGid(),
-    //   tileId: kCursorHandleObjectId,
-    //   position: (game.size / 2).toOffset(),
-    //   onPositionChanged: (final position) {
-    //     drawerCubit.changeState(
-    //       drawerCubit.state.copyWith(
-    //         gravityYPosition: position.dy,
-    //       ),
-    //     );
-    //   },
-    // );
+    _gravitationHandle = EditorCanvasObject.fromRenderObject(
+      data: RenderObjectModel(
+        id: kHandleObjectId.toGid(),
+        tileId: kHandleObjectId,
+        position: SerializedVector2(
+          y: canvasData.gravity.tileDistance + origin.y,
+        ),
+      ),
+      onPositionChanged: (final object) {
+        final updatedY = OriginVectorUtils.use(origin)
+            .getAbsoluteCellByCanvasObject(
+              objectDistanceToOrigin: object.distanceToOrigin.toOffset(),
+            )
+            .y;
+        final updatedGravity = drawerCubit.canvasData.gravity.copyWith(
+          yTilePosition: updatedY,
+        );
+        drawerCubit.onChangeGravity(updatedGravity);
+      },
+    );
   }
 
   @override
@@ -246,7 +254,7 @@ class EditorCanvasObjectsDrawer extends Component
 
   final _gravitationLinePaint = Palette.brown.paint()..strokeWidth = 2;
   void _renderGravitationLine(final Canvas canvas) {
-    final dy = (_gravitationHandle?.position.dy ?? 0) + 20;
+    final dy = _gravitationHandle?.position.dy ?? 0;
     canvas.drawLine(
       Offset(0, dy),
       Offset(editor.windowWidth, dy),

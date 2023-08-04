@@ -16,6 +16,7 @@ class $AssetsImagesGen {
   $AssetsImagesCursorsGen get cursors => const $AssetsImagesCursorsGen();
   $AssetsImagesEnemiesGen get enemies => const $AssetsImagesEnemiesGen();
   $AssetsImagesItemsGen get items => const $AssetsImagesItemsGen();
+  $AssetsImagesMarkersGen get markers => const $AssetsImagesMarkersGen();
   $AssetsImagesMenuGen get menu => const $AssetsImagesMenuGen();
   $AssetsImagesPlayerGen get player => const $AssetsImagesPlayerGen();
   $AssetsImagesPreviewGen get preview => const $AssetsImagesPreviewGen();
@@ -60,16 +61,10 @@ class $AssetsImagesCloudsGen {
 class $AssetsImagesCursorsGen {
   const $AssetsImagesCursorsGen();
 
-  /// File path: assets/images/cursors/cursor.png
-  AssetGenImage get cursor =>
-      const AssetGenImage('assets/images/cursors/cursor.png');
-
-  /// File path: assets/images/cursors/handle.png
-  AssetGenImage get handle =>
-      const AssetGenImage('assets/images/cursors/handle.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [cursor, handle];
+  $AssetsImagesCursorsCursorGen get cursor =>
+      const $AssetsImagesCursorsCursorGen();
+  $AssetsImagesCursorsHandleGen get handle =>
+      const $AssetsImagesCursorsHandleGen();
 }
 
 class $AssetsImagesEnemiesGen {
@@ -96,6 +91,14 @@ class $AssetsImagesItemsGen {
   $AssetsImagesItemsParticleGen get particle =>
       const $AssetsImagesItemsParticleGen();
   $AssetsImagesItemsSilverGen get silver => const $AssetsImagesItemsSilverGen();
+}
+
+class $AssetsImagesMarkersGen {
+  const $AssetsImagesMarkersGen();
+
+  $AssetsImagesMarkersGreenGen get green =>
+      const $AssetsImagesMarkersGreenGen();
+  $AssetsImagesMarkersRedGen get red => const $AssetsImagesMarkersRedGen();
 }
 
 class $AssetsImagesMenuGen {
@@ -241,6 +244,14 @@ class $AssetsImagesPreviewGen {
   AssetGenImage get leftFg =>
       const AssetGenImage('assets/images/preview/left_fg.png');
 
+  /// File path: assets/images/preview/marker_green.png
+  AssetGenImage get markerGreen =>
+      const AssetGenImage('assets/images/preview/marker_green.png');
+
+  /// File path: assets/images/preview/marker_red.png
+  AssetGenImage get markerRed =>
+      const AssetGenImage('assets/images/preview/marker_red.png');
+
   /// File path: assets/images/preview/right_bg.png
   AssetGenImage get rightBg =>
       const AssetGenImage('assets/images/preview/right_bg.png');
@@ -290,6 +301,8 @@ class $AssetsImagesPreviewGen {
         largeFg,
         leftBg,
         leftFg,
+        markerGreen,
+        markerRed,
         rightBg,
         rightFg,
         shellLeft,
@@ -310,6 +323,28 @@ class $AssetsImagesTerrainGen {
   $AssetsImagesTerrainPalmGen get palm => const $AssetsImagesTerrainPalmGen();
   $AssetsImagesTerrainWaterGen get water =>
       const $AssetsImagesTerrainWaterGen();
+}
+
+class $AssetsImagesCursorsCursorGen {
+  const $AssetsImagesCursorsCursorGen();
+
+  /// File path: assets/images/cursors/cursor/idle.png
+  AssetGenImage get idle =>
+      const AssetGenImage('assets/images/cursors/cursor/idle.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [idle];
+}
+
+class $AssetsImagesCursorsHandleGen {
+  const $AssetsImagesCursorsHandleGen();
+
+  /// File path: assets/images/cursors/handle/idle.png
+  AssetGenImage get idle =>
+      const AssetGenImage('assets/images/cursors/handle/idle.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [idle];
 }
 
 class $AssetsImagesEnemiesPearlGen {
@@ -451,6 +486,27 @@ class $AssetsImagesItemsSilverGen {
   List<AssetGenImage> get values => [silver0, silver1, silver2, silver3];
 }
 
+class $AssetsImagesMarkersGreenGen {
+  const $AssetsImagesMarkersGreenGen();
+
+  /// File path: assets/images/markers/green/X.png
+  AssetGenImage get x =>
+      const AssetGenImage('assets/images/markers/green/X.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [x];
+}
+
+class $AssetsImagesMarkersRedGen {
+  const $AssetsImagesMarkersRedGen();
+
+  /// File path: assets/images/markers/red/X.png
+  AssetGenImage get x => const AssetGenImage('assets/images/markers/red/X.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [x];
+}
+
 class $AssetsImagesPlayerFallLeftGen {
   const $AssetsImagesPlayerFallLeftGen();
 
@@ -572,25 +628,8 @@ class $AssetsImagesPlayerIdleRightGen {
   AssetGenImage get idleRight0 =>
       const AssetGenImage('assets/images/player/idle_right/idle_right_0.png');
 
-  /// File path: assets/images/player/idle_right/idle_right_1.png
-  AssetGenImage get idleRight1 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_1.png');
-
-  /// File path: assets/images/player/idle_right/idle_right_2.png
-  AssetGenImage get idleRight2 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_2.png');
-
-  /// File path: assets/images/player/idle_right/idle_right_3.png
-  AssetGenImage get idleRight3 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_3.png');
-
-  /// File path: assets/images/player/idle_right/idle_right_4.png
-  AssetGenImage get idleRight4 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_4.png');
-
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [idleRight0, idleRight1, idleRight2, idleRight3, idleRight4];
+  List<AssetGenImage> get values => [idleRight0];
 }
 
 class $AssetsImagesPlayerJumpLeftGen {

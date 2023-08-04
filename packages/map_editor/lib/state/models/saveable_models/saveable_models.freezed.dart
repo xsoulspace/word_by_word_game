@@ -359,11 +359,11 @@ mixin _$CanvasDataModel {
   /// As player is unique - it should be used separately from [objects].
   RenderObjectModel get playerObject => throw _privateConstructorUsedError;
 
-  /// can be negative and positive. Should be tile index.
-  double get skyYPosition => throw _privateConstructorUsedError;
+  /// can be negative and positive. Should be absolute tile index.
+  int get skyYTilePosition => throw _privateConstructorUsedError;
 
-  /// can be negative and positive. Should be tile index.
-  double get gravityYPosition => throw _privateConstructorUsedError;
+  /// can be negative and positive. Should be absolute tile index.
+  GravityModel get gravity => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -386,12 +386,13 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
-      double skyYPosition,
-      double gravityYPosition});
+      int skyYTilePosition,
+      GravityModel gravity});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get name;
   $RenderObjectModelCopyWith<$Res> get playerObject;
+  $GravityModelCopyWith<$Res> get gravity;
 }
 
 /// @nodoc
@@ -412,8 +413,8 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     Object? layers = null,
     Object? objects = null,
     Object? playerObject = null,
-    Object? skyYPosition = null,
-    Object? gravityYPosition = null,
+    Object? skyYTilePosition = null,
+    Object? gravity = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -436,14 +437,14 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
           ? _value.playerObject
           : playerObject // ignore: cast_nullable_to_non_nullable
               as RenderObjectModel,
-      skyYPosition: null == skyYPosition
-          ? _value.skyYPosition
-          : skyYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
-      gravityYPosition: null == gravityYPosition
-          ? _value.gravityYPosition
-          : gravityYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
+      skyYTilePosition: null == skyYTilePosition
+          ? _value.skyYTilePosition
+          : skyYTilePosition // ignore: cast_nullable_to_non_nullable
+              as int,
+      gravity: null == gravity
+          ? _value.gravity
+          : gravity // ignore: cast_nullable_to_non_nullable
+              as GravityModel,
     ) as $Val);
   }
 
@@ -470,6 +471,14 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
       return _then(_value.copyWith(playerObject: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GravityModelCopyWith<$Res> get gravity {
+    return $GravityModelCopyWith<$Res>(_value.gravity, (value) {
+      return _then(_value.copyWith(gravity: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -489,8 +498,8 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
-      double skyYPosition,
-      double gravityYPosition});
+      int skyYTilePosition,
+      GravityModel gravity});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get id;
@@ -498,6 +507,8 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
   $LocalizedMapCopyWith<$Res> get name;
   @override
   $RenderObjectModelCopyWith<$Res> get playerObject;
+  @override
+  $GravityModelCopyWith<$Res> get gravity;
 }
 
 /// @nodoc
@@ -516,8 +527,8 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
     Object? layers = null,
     Object? objects = null,
     Object? playerObject = null,
-    Object? skyYPosition = null,
-    Object? gravityYPosition = null,
+    Object? skyYTilePosition = null,
+    Object? gravity = null,
   }) {
     return _then(_$_CanvasDataModel(
       id: null == id
@@ -540,14 +551,14 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
           ? _value.playerObject
           : playerObject // ignore: cast_nullable_to_non_nullable
               as RenderObjectModel,
-      skyYPosition: null == skyYPosition
-          ? _value.skyYPosition
-          : skyYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
-      gravityYPosition: null == gravityYPosition
-          ? _value.gravityYPosition
-          : gravityYPosition // ignore: cast_nullable_to_non_nullable
-              as double,
+      skyYTilePosition: null == skyYTilePosition
+          ? _value.skyYTilePosition
+          : skyYTilePosition // ignore: cast_nullable_to_non_nullable
+              as int,
+      gravity: null == gravity
+          ? _value.gravity
+          : gravity // ignore: cast_nullable_to_non_nullable
+              as GravityModel,
     ));
   }
 }
@@ -564,8 +575,8 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           final Map<Gid, RenderObjectModel> objects = const {},
       this.playerObject = RenderObjectModel.empty,
-      this.skyYPosition = 0,
-      this.gravityYPosition = 0})
+      this.skyYTilePosition = 0,
+      this.gravity = GravityModel.initial})
       : _layers = layers,
         _objects = objects,
         super._();
@@ -621,19 +632,19 @@ class _$_CanvasDataModel extends _CanvasDataModel {
   @JsonKey()
   final RenderObjectModel playerObject;
 
-  /// can be negative and positive. Should be tile index.
+  /// can be negative and positive. Should be absolute tile index.
   @override
   @JsonKey()
-  final double skyYPosition;
+  final int skyYTilePosition;
 
-  /// can be negative and positive. Should be tile index.
+  /// can be negative and positive. Should be absolute tile index.
   @override
   @JsonKey()
-  final double gravityYPosition;
+  final GravityModel gravity;
 
   @override
   String toString() {
-    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYPosition: $skyYPosition, gravityYPosition: $gravityYPosition)';
+    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYTilePosition: $skyYTilePosition, gravity: $gravity)';
   }
 
   @override
@@ -647,10 +658,9 @@ class _$_CanvasDataModel extends _CanvasDataModel {
             const DeepCollectionEquality().equals(other._objects, _objects) &&
             (identical(other.playerObject, playerObject) ||
                 other.playerObject == playerObject) &&
-            (identical(other.skyYPosition, skyYPosition) ||
-                other.skyYPosition == skyYPosition) &&
-            (identical(other.gravityYPosition, gravityYPosition) ||
-                other.gravityYPosition == gravityYPosition));
+            (identical(other.skyYTilePosition, skyYTilePosition) ||
+                other.skyYTilePosition == skyYTilePosition) &&
+            (identical(other.gravity, gravity) || other.gravity == gravity));
   }
 
   @JsonKey(ignore: true)
@@ -662,8 +672,8 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       const DeepCollectionEquality().hash(_layers),
       const DeepCollectionEquality().hash(_objects),
       playerObject,
-      skyYPosition,
-      gravityYPosition);
+      skyYTilePosition,
+      gravity);
 
   @JsonKey(ignore: true)
   @override
@@ -689,8 +699,8 @@ abstract class _CanvasDataModel extends CanvasDataModel {
       @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
           final Map<Gid, RenderObjectModel> objects,
       final RenderObjectModel playerObject,
-      final double skyYPosition,
-      final double gravityYPosition}) = _$_CanvasDataModel;
+      final int skyYTilePosition,
+      final GravityModel gravity}) = _$_CanvasDataModel;
   const _CanvasDataModel._() : super._();
 
   factory _CanvasDataModel.fromJson(Map<String, dynamic> json) =
@@ -726,15 +736,158 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   RenderObjectModel get playerObject;
   @override
 
-  /// can be negative and positive. Should be tile index.
-  double get skyYPosition;
+  /// can be negative and positive. Should be absolute tile index.
+  int get skyYTilePosition;
   @override
 
-  /// can be negative and positive. Should be tile index.
-  double get gravityYPosition;
+  /// can be negative and positive. Should be absolute tile index.
+  GravityModel get gravity;
   @override
   @JsonKey(ignore: true)
   _$$_CanvasDataModelCopyWith<_$_CanvasDataModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+GravityModel _$GravityModelFromJson(Map<String, dynamic> json) {
+  return _GravityModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$GravityModel {
+  ///absolute tile position. may be negative and positive
+  int get yTilePosition => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $GravityModelCopyWith<GravityModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $GravityModelCopyWith<$Res> {
+  factory $GravityModelCopyWith(
+          GravityModel value, $Res Function(GravityModel) then) =
+      _$GravityModelCopyWithImpl<$Res, GravityModel>;
+  @useResult
+  $Res call({int yTilePosition});
+}
+
+/// @nodoc
+class _$GravityModelCopyWithImpl<$Res, $Val extends GravityModel>
+    implements $GravityModelCopyWith<$Res> {
+  _$GravityModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? yTilePosition = null,
+  }) {
+    return _then(_value.copyWith(
+      yTilePosition: null == yTilePosition
+          ? _value.yTilePosition
+          : yTilePosition // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_GravityModelCopyWith<$Res>
+    implements $GravityModelCopyWith<$Res> {
+  factory _$$_GravityModelCopyWith(
+          _$_GravityModel value, $Res Function(_$_GravityModel) then) =
+      __$$_GravityModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({int yTilePosition});
+}
+
+/// @nodoc
+class __$$_GravityModelCopyWithImpl<$Res>
+    extends _$GravityModelCopyWithImpl<$Res, _$_GravityModel>
+    implements _$$_GravityModelCopyWith<$Res> {
+  __$$_GravityModelCopyWithImpl(
+      _$_GravityModel _value, $Res Function(_$_GravityModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? yTilePosition = null,
+  }) {
+    return _then(_$_GravityModel(
+      yTilePosition: null == yTilePosition
+          ? _value.yTilePosition
+          : yTilePosition // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_GravityModel extends _GravityModel {
+  const _$_GravityModel({required this.yTilePosition}) : super._();
+
+  factory _$_GravityModel.fromJson(Map<String, dynamic> json) =>
+      _$$_GravityModelFromJson(json);
+
+  ///absolute tile position. may be negative and positive
+  @override
+  final int yTilePosition;
+
+  @override
+  String toString() {
+    return 'GravityModel(yTilePosition: $yTilePosition)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_GravityModel &&
+            (identical(other.yTilePosition, yTilePosition) ||
+                other.yTilePosition == yTilePosition));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, yTilePosition);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_GravityModelCopyWith<_$_GravityModel> get copyWith =>
+      __$$_GravityModelCopyWithImpl<_$_GravityModel>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_GravityModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _GravityModel extends GravityModel {
+  const factory _GravityModel({required final int yTilePosition}) =
+      _$_GravityModel;
+  const _GravityModel._() : super._();
+
+  factory _GravityModel.fromJson(Map<String, dynamic> json) =
+      _$_GravityModel.fromJson;
+
+  @override
+
+  ///absolute tile position. may be negative and positive
+  int get yTilePosition;
+  @override
+  @JsonKey(ignore: true)
+  _$$_GravityModelCopyWith<_$_GravityModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

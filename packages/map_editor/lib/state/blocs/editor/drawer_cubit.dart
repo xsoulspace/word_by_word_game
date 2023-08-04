@@ -136,6 +136,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
       ...state.tileResources.tiles.values.map(load),
       ...state.tileResources.objects.values.map(load),
       ...state.tileResources.npcs.values.map(load),
+      ...state.tileResources.other.values.map(load),
       ...state.tileResources.players.values.map(load),
     ]);
   }
@@ -221,6 +222,13 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   // ignore: avoid_positional_boolean_parameters
   void onChangeIsDeleteSelection(final bool isDeleteSelection) {
     emit(state.copyWith(isDeleteSelection: isDeleteSelection));
+  }
+
+  // ignore: avoid_positional_boolean_parameters
+  void onChangeGravity(final GravityModel gravity) {
+    emit(
+      state.copyWith(canvasData: state.canvasData.copyWith(gravity: gravity)),
+    );
   }
 
   List<PresetTileResource> get objectsMenuTiles =>

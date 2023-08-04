@@ -38132,11 +38132,11 @@
   "playerObject": {
     "id": "Tester",
     "tileId": "tester",
-    "position": { "x": -1495.57421875, "y": 166.19921875 },
+    "position": { "x": 188.3671875, "y": 327.69140625 },
     "distanceToOrigin": { "x": -49.73828125, "y": -69.8203125 },
     "distanceToTileLeftTopCorner": { "x": 14.26171875, "y": 26.1796875 },
     "animationBehaviour": "idle_right"
   },
-  "skyYPosition": 0.0,
-  "gravityYPosition": 0.0
+  "skyYTilePosition": 0,
+  "gravity": { "yTilePosition": 10 }
 }

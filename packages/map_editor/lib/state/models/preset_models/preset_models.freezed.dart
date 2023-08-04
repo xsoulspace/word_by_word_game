@@ -1063,6 +1063,10 @@ mixin _$TilesPresetDataModel {
       toJson: TilesPresetDataModel._tilesToJson)
   Map<TileId, PresetTileModel> get players =>
       throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get other => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1084,7 +1088,9 @@ abstract class $TilesPresetDataModelCopyWith<$Res> {
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
           Map<TileId, PresetTileModel> npcs,
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> players});
+          Map<TileId, PresetTileModel> players,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> other});
 }
 
 /// @nodoc
@@ -1105,6 +1111,7 @@ class _$TilesPresetDataModelCopyWithImpl<$Res,
     Object? objects = null,
     Object? npcs = null,
     Object? players = null,
+    Object? other = null,
   }) {
     return _then(_value.copyWith(
       tiles: null == tiles
@@ -1122,6 +1129,10 @@ class _$TilesPresetDataModelCopyWithImpl<$Res,
       players: null == players
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
+      other: null == other
+          ? _value.other
+          : other // ignore: cast_nullable_to_non_nullable
               as Map<TileId, PresetTileModel>,
     ) as $Val);
   }
@@ -1143,7 +1154,9 @@ abstract class _$$_TilesPresetDataModelCopyWith<$Res>
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
           Map<TileId, PresetTileModel> npcs,
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> players});
+          Map<TileId, PresetTileModel> players,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          Map<TileId, PresetTileModel> other});
 }
 
 /// @nodoc
@@ -1161,6 +1174,7 @@ class __$$_TilesPresetDataModelCopyWithImpl<$Res>
     Object? objects = null,
     Object? npcs = null,
     Object? players = null,
+    Object? other = null,
   }) {
     return _then(_$_TilesPresetDataModel(
       tiles: null == tiles
@@ -1179,6 +1193,10 @@ class __$$_TilesPresetDataModelCopyWithImpl<$Res>
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
               as Map<TileId, PresetTileModel>,
+      other: null == other
+          ? _value._other
+          : other // ignore: cast_nullable_to_non_nullable
+              as Map<TileId, PresetTileModel>,
     ));
   }
 }
@@ -1195,11 +1213,14 @@ class _$_TilesPresetDataModel implements _TilesPresetDataModel {
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
           final Map<TileId, PresetTileModel> npcs = const {},
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> players = const {}})
+          final Map<TileId, PresetTileModel> players = const {},
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> other = const {}})
       : _tiles = tiles,
         _objects = objects,
         _npcs = npcs,
-        _players = players;
+        _players = players,
+        _other = other;
 
   factory _$_TilesPresetDataModel.fromJson(Map<String, dynamic> json) =>
       _$$_TilesPresetDataModelFromJson(json);
@@ -1248,9 +1269,20 @@ class _$_TilesPresetDataModel implements _TilesPresetDataModel {
     return EqualUnmodifiableMapView(_players);
   }
 
+  final Map<TileId, PresetTileModel> _other;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get other {
+    if (_other is EqualUnmodifiableMapView) return _other;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_other);
+  }
+
   @override
   String toString() {
-    return 'TilesPresetDataModel(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players)';
+    return 'TilesPresetDataModel(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other)';
   }
 
   @override
@@ -1261,7 +1293,8 @@ class _$_TilesPresetDataModel implements _TilesPresetDataModel {
             const DeepCollectionEquality().equals(other._tiles, _tiles) &&
             const DeepCollectionEquality().equals(other._objects, _objects) &&
             const DeepCollectionEquality().equals(other._npcs, _npcs) &&
-            const DeepCollectionEquality().equals(other._players, _players));
+            const DeepCollectionEquality().equals(other._players, _players) &&
+            const DeepCollectionEquality().equals(other._other, this._other));
   }
 
   @JsonKey(ignore: true)
@@ -1271,7 +1304,8 @@ class _$_TilesPresetDataModel implements _TilesPresetDataModel {
       const DeepCollectionEquality().hash(_tiles),
       const DeepCollectionEquality().hash(_objects),
       const DeepCollectionEquality().hash(_npcs),
-      const DeepCollectionEquality().hash(_players));
+      const DeepCollectionEquality().hash(_players),
+      const DeepCollectionEquality().hash(_other));
 
   @JsonKey(ignore: true)
   @override
@@ -1297,7 +1331,9 @@ abstract class _TilesPresetDataModel implements TilesPresetDataModel {
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
           final Map<TileId, PresetTileModel> npcs,
       @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> players}) = _$_TilesPresetDataModel;
+          final Map<TileId, PresetTileModel> players,
+      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
+          final Map<TileId, PresetTileModel> other}) = _$_TilesPresetDataModel;
 
   factory _TilesPresetDataModel.fromJson(Map<String, dynamic> json) =
       _$_TilesPresetDataModel.fromJson;
@@ -1322,6 +1358,11 @@ abstract class _TilesPresetDataModel implements TilesPresetDataModel {
       fromJson: TilesPresetDataModel._tilesFromJson,
       toJson: TilesPresetDataModel._tilesToJson)
   Map<TileId, PresetTileModel> get players;
+  @override
+  @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson)
+  Map<TileId, PresetTileModel> get other;
   @override
   @JsonKey(ignore: true)
   _$$_TilesPresetDataModelCopyWith<_$_TilesPresetDataModel> get copyWith =>

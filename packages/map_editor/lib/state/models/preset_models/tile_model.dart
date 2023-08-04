@@ -32,6 +32,7 @@ enum DataCategoryType {
   water,
   palms,
   players,
+  other,
 }
 
 @freezed

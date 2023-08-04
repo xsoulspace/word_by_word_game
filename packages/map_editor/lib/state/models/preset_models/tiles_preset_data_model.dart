@@ -30,6 +30,12 @@ class TilesPresetDataModel with _$TilesPresetDataModel {
     )
     @Default({})
     final Map<TileId, PresetTileModel> players,
+    @JsonKey(
+      fromJson: TilesPresetDataModel._tilesFromJson,
+      toJson: TilesPresetDataModel._tilesToJson,
+    )
+    @Default({})
+    final Map<TileId, PresetTileModel> other,
   }) = _TilesPresetDataModel;
 
   factory TilesPresetDataModel.fromJson(final Map<String, dynamic> json) =>
@@ -91,6 +97,15 @@ class TilesPresetResources with _$TilesPresetResources {
           ),
         ),
         npcs: data.npcs.map(
+          (final key, final tile) => MapEntry(
+            key,
+            PresetTileResource.fromTile(
+              tile: tile,
+              resourcesLoader: resourcesLoader,
+            ),
+          ),
+        ),
+        other: data.other.map(
           (final key, final tile) => MapEntry(
             key,
             PresetTileResource.fromTile(
