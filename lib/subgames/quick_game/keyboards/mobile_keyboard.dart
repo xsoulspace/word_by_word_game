@@ -1,90 +1,280 @@
-import 'package:flame/components.dart';
-import 'package:flame/events.dart';
-import 'package:flame/game.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:wbw_core/wbw_core.dart';
 
-abstract interface class LettersPile {
-  bool acceptLetter(final LetterComponent letter);
-  bool removeLetter(final LetterComponent letter);
+class MobileKeyboard extends StatefulWidget {
+  const MobileKeyboard({super.key});
+  @override
+  State<MobileKeyboard> createState() => _MobileKeyboardState();
 }
 
-/// Where should be placed
-class LetterTargetRowComponent extends PositionComponent
-    implements LettersPile {
+class _MobileKeyboardState extends State<MobileKeyboard> {
+  final GlobalKey _draggableKey = GlobalKey();
+  List<LetterModel> _items = [];
+  int _cursorIndex = 0;
   @override
-  bool acceptLetter(final LetterComponent letter) {
-    // TODO: implement canAcceptLetter
-    throw UnimplementedError();
-  }
-
-  @override
-  bool removeLetter(final LetterComponent letter) {
-    // TODO: implement removeLetter
-    throw UnimplementedError();
-  }
+  Widget build(final BuildContext context) => SizedBox(
+        width: 320,
+        height: 320,
+        child: Column(
+          children: [
+            TargetRow(
+              draggableKey: _draggableKey,
+              items: _items,
+              cursorIndex: _cursorIndex,
+              onCursorIndexChanged: (final index) {
+                _cursorIndex = index;
+                setState(() {});
+              },
+              onItemsChanged: (final items) {
+                _items = items;
+                setState(() {});
+              },
+            ),
+            Wrap(
+              children:
+                  // ignore: lines_longer_than_80_chars
+                  'A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z'
+                      .split(',')
+                      .map(
+                        (final e) => KeyboardLetterCard(
+                          draggableKey: _draggableKey,
+                          letter: LetterModel(
+                            title: e,
+                          ),
+                          onPressed: () {
+                            _items.insert(_cursorIndex, LetterModel(title: e));
+                            _cursorIndex++;
+                            setState(() {});
+                          },
+                        ),
+                      )
+                      .toList(),
+            ),
+          ],
+        ),
+      );
 }
 
-/// Where is letters kept
-class LettersAreaComponent extends PositionComponent implements LettersPile {
-  @override
-  bool acceptLetter(final LetterComponent letter) {
-    // TODO: implement canAcceptLetter
-    throw UnimplementedError();
-  }
-
-  @override
-  bool removeLetter(final LetterComponent letter) {
-    // TODO: implement removeLetter
-    throw UnimplementedError();
-  }
-}
-
-/// What is dragged
-class LetterComponent extends PositionComponent with DragCallbacks {
-  LetterComponent({
-    this.isMovable = true,
+class KeyboardLetterCard extends StatelessWidget {
+  const KeyboardLetterCard({
+    required this.draggableKey,
+    required this.letter,
+    required this.onPressed,
+    super.key,
   });
-  final bool isMovable;
-  bool _isDragging = false;
+  final GlobalKey draggableKey;
+  final LetterModel letter;
+  final VoidCallback onPressed;
   @override
-  void onDragStart(final DragStartEvent event) {
-    event.continuePropagation = true;
-    super.onDragStart(event);
-    if (isMovable) {
-      _isDragging = true;
+  Widget build(final BuildContext context) => LetterCard(
+        letter: letter,
+        onPressed: onPressed,
+      );
+}
 
-      priority = 100;
-    }
-  }
-
-  @override
-  void onDragUpdate(final DragUpdateEvent event) {
-    if (!_isDragging) return;
-
-    final cameraZoom = (findGame()! as FlameGame)
-        .firstChild<CameraComponent>()!
-        .viewfinder
-        .zoom;
-    position += event.delta / cameraZoom;
-  }
+class ReorderableLetterCard extends StatelessWidget {
+  const ReorderableLetterCard({
+    required this.index,
+    required this.letter,
+    required this.draggableKey,
+    super.key,
+  });
+  final int index;
+  final LetterModel letter;
+  final GlobalKey draggableKey;
 
   @override
-  void onDragEnd(final DragEndEvent event) {
-    event.continuePropagation = true;
-    super.onDragEnd(event);
-    if (!_isDragging) {
-      return;
-    }
-    _isDragging = false;
-    final dropPiles = parent!
-        .componentsAtPoint(position + size / 2)
-        .whereType<LettersPile>()
-        .toList();
-    if (dropPiles.isNotEmpty) {
-      /// if (card is allowed to be dropped into this pile) {
-      ///   remove the card from the current pile
-      ///   create new letter there
-      ///   add the card into the new pile
-      /// }
-    } else {}
-  }
+  Widget build(final BuildContext context) =>
+      // Draggable(
+      ReorderableDragStartListener(
+        index: index,
+        child: LetterCard(
+          letter: letter,
+        ),
+      )
+      //   dragAnchorStrategy: pointerDragAnchorStrategy,
+      //   feedback: DraggingListItem(
+      //     dragKey: draggableKey,
+      //     letter: letter,
+      //   ),
+      //   child: ,
+      // )
+      ;
+}
+
+class DraggingListItem extends StatelessWidget {
+  const DraggingListItem({
+    required this.dragKey,
+    required this.letter,
+    super.key,
+  });
+  final GlobalKey dragKey;
+  final LetterModel letter;
+  @override
+  Widget build(final BuildContext context) => LetterCard(
+        letter: letter,
+      );
+}
+
+class LetterCard extends StatelessWidget {
+  const LetterCard({
+    required this.letter,
+    this.onPressed,
+    super.key,
+  });
+  final VoidCallback? onPressed;
+  final LetterModel letter;
+  @override
+  Widget build(final BuildContext context) => FilledButton.tonal(
+        onPressed: onPressed ?? () {},
+        style: const ButtonStyle(
+          padding: MaterialStatePropertyAll(
+            EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+          ),
+          minimumSize: MaterialStatePropertyAll(Size.zero),
+          alignment: Alignment.center,
+        ),
+        child: Text(letter.title),
+      );
+}
+
+class LetterModel {
+  LetterModel({
+    required this.title,
+  }) : id = IdCreator.create();
+  final String id;
+  final String title;
+}
+
+class TargetRow extends StatelessWidget {
+  const TargetRow({
+    required this.draggableKey,
+    required this.items,
+    required this.onItemsChanged,
+    required this.onCursorIndexChanged,
+    required this.cursorIndex,
+    super.key,
+  });
+  final List<LetterModel> items;
+  final ValueChanged<List<LetterModel>> onItemsChanged;
+  final int cursorIndex;
+  final ValueChanged<int> onCursorIndexChanged;
+  final GlobalKey draggableKey;
+
+  @override
+  Widget build(final BuildContext context) => Row(
+        children: [
+          Expanded(
+            child: DragTarget<LetterModel>(
+              onAccept: (final data) {
+                onItemsChanged([...items, LetterModel(title: data.title)]);
+              },
+              builder:
+                  (final context, final candidateItems, final rejectedItems) =>
+                      Container(
+                color: candidateItems.isNotEmpty ? Colors.red : null,
+                child: SizedBox(
+                  height: 36,
+                  child: ReorderableListView.builder(
+                    scrollDirection: Axis.horizontal,
+                    buildDefaultDragHandles: false,
+                    itemCount: items.length + 1,
+                    proxyDecorator:
+                        (final child, final index, final animation) => child,
+                    padding: const EdgeInsets.only(left: 16, right: 8),
+                    itemBuilder: (final context, final index) {
+                      int i = index;
+                      if (i == cursorIndex) {
+                        return ReorderableDragStartListener(
+                          key: const ValueKey('divider'),
+                          index: cursorIndex,
+                          child: Container(
+                            width: 14,
+                            color: Colors.transparent,
+                            child: const VerticalDivider(
+                              thickness: 4,
+                              width: 4,
+                            ),
+                          )
+                              .animate(
+                                onPlay: (final controller) =>
+                                    controller.repeat(),
+                              )
+                              .fadeIn(duration: 600.milliseconds)
+                              .fadeOut(
+                                delay: 350.milliseconds,
+                                duration: 600.milliseconds,
+                              ),
+                        );
+                      } else if (i > cursorIndex) {
+                        i--;
+                      }
+                      final letter = items[i];
+                      return ReorderableLetterCard(
+                        key: ValueKey(letter),
+                        letter: letter,
+                        index: index,
+                        draggableKey: draggableKey,
+                      );
+                    },
+                    onReorder: (final oldIndex, final newIndex) {
+                      int i = newIndex;
+                      if (oldIndex < newIndex) {
+                        // removing the item at oldIndex will shorten the list by 1.
+                        i -= 1;
+                      }
+                      if (oldIndex == cursorIndex) {
+                        onCursorIndexChanged(i);
+                      } else {
+                        if (oldIndex == i) return;
+                        if (oldIndex < cursorIndex) {
+                          if (i < cursorIndex) {
+                            /// old - new - c
+                            // noop
+                          } else if (i == cursorIndex) {
+                            onCursorIndexChanged(i - 1);
+                          } else {
+                            /// old - c - new
+                            onCursorIndexChanged(i);
+                          }
+                        } else if (oldIndex > cursorIndex) {
+                          if (i > cursorIndex) {
+                            /// c - old - new
+                            // noop
+                          }
+                          if (i == cursorIndex) {
+                            // noop
+                          } else {
+                            /// new - c - old
+                            onCursorIndexChanged(i + 1);
+                          }
+                        } else {
+                          print('');
+                        }
+
+                        final updatedItems = [...items];
+                        final element = updatedItems.removeAt(oldIndex);
+                        updatedItems.insert(i, element);
+
+                        onItemsChanged(updatedItems);
+                      }
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+          IconButton(
+            onPressed: () {
+              if (items.isEmpty) return;
+              final newIndex = cursorIndex - 1;
+              onCursorIndexChanged(newIndex);
+              onItemsChanged([...items]..removeAt(newIndex));
+            },
+            icon: const Icon(CupertinoIcons.arrow_left_square_fill),
+          )
+        ],
+      );
 }
