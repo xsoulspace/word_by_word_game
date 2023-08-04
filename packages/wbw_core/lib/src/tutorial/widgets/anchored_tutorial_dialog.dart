@@ -44,10 +44,8 @@ class MobileAnchoredTutorialDialog extends StatelessWidget {
     switch (dialogType) {
       case AnchoredTutorialDialogType.idle:
         child = _AnchoredTutorialIdleDialog(tutorialEvent: tutorialEvent);
-        break;
       case AnchoredTutorialDialogType.ok:
         child = _AnchoredTutorialOkDialog(tutorialEvent: tutorialEvent);
-        break;
       case null:
         child = const SizedBox();
     }
@@ -83,10 +81,8 @@ class DesktopAnchoredTutorialDialog extends StatelessWidget {
     switch (dialogType) {
       case AnchoredTutorialDialogType.idle:
         child = _AnchoredTutorialIdleDialog(tutorialEvent: tutorialEvent);
-        break;
       case AnchoredTutorialDialogType.ok:
         child = _AnchoredTutorialOkDialog(tutorialEvent: tutorialEvent);
-        break;
       case null:
         child = const SizedBox();
     }
@@ -158,7 +154,7 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
   final WidgetBuilder? builder;
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
+    // final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
     Widget child;
     if (builder != null) {

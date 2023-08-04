@@ -8,10 +8,10 @@ import '../utils/utils.dart';
 
 class AnalyticsServiceImpl extends AnalyticsService {
   AnalyticsServiceImpl({
-    required this.plugins,
-  });
+    final List<AnalyticsService> plugins = const [],
+  }) : _plugins = plugins;
   final logsNotifier = ValueNotifier<List<String>>([]);
-  final List<AnalyticsService> plugins;
+  List<AnalyticsService> _plugins;
   final logger =
       Logger(filter: kDebugMode ? DevelopmentFilter() : ProductionFilter());
 
@@ -22,7 +22,7 @@ class AnalyticsServiceImpl extends AnalyticsService {
 
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {
-    for (final plugin in plugins) {
+    for (final plugin in _plugins) {
       await plugin.logAnalyticEvent(event);
     }
   }
@@ -83,7 +83,7 @@ class AnalyticsServiceImpl extends AnalyticsService {
     if (printDetails) print(errorDetailsStr);
 
     log(errorDetailsStr);
-    for (final plugin in plugins) {
+    for (final plugin in _plugins) {
       await plugin.recordError(
         exception,
         stack,
@@ -102,7 +102,7 @@ class AnalyticsServiceImpl extends AnalyticsService {
     final bool fatal = false,
   }) async {
     FlutterError.presentError(flutterErrorDetails);
-    for (final plugin in plugins) {
+    for (final plugin in _plugins) {
       await plugin.recordFlutterError(flutterErrorDetails, fatal: fatal);
     }
     // ignore: newline-before-return
@@ -126,14 +126,20 @@ class AnalyticsServiceImpl extends AnalyticsService {
       // Forward to original handler.
       originalOnError?.call(errorDetails);
     };
-    for (final plugin in plugins) {
+    for (final plugin in _plugins) {
       await plugin.onLoad();
     }
   }
 
+  Future<void> attachPlugins({
+    required final List<AnalyticsService> plugins,
+  }) async {
+    _plugins = plugins;
+  }
+
   @override
   Future<void> onDelayedLoad() async {
-    for (final plugin in plugins) {
+    for (final plugin in _plugins) {
       await plugin.onDelayedLoad();
     }
   }

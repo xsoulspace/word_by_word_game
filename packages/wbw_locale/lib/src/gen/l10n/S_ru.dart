@@ -222,6 +222,57 @@ class SRu extends S {
   String get createPlayer => 'Создать игрока';
 
   @override
+  String get wind => 'Ветер';
+
+  @override
+  String get weather => 'Погода';
+
+  @override
+  String get windCalm => 'спокойствие';
+
+  @override
+  String get windLightAir => 'легкий воздух';
+
+  @override
+  String get windLightBreeze => 'легкий бриз';
+
+  @override
+  String get windGentleBreeze => 'нежный бриз';
+
+  @override
+  String get windModerateBreeze => 'умеренный бриз';
+
+  @override
+  String get windFreshBreeze => 'свежий бриз';
+
+  @override
+  String get windStrongBreeze => 'сильный бриз';
+
+  @override
+  String get windHighWind => 'сильный ветер';
+
+  @override
+  String get windGale => 'буря';
+
+  @override
+  String get windSevereGale => 'суровая буря';
+
+  @override
+  String get windStorm => 'шторм';
+
+  @override
+  String get windViolentStorm => 'сильный шторм';
+
+  @override
+  String get windHurricane => 'ураган';
+
+  @override
+  String get nextWeatherIn => 'До смены погоды';
+
+  @override
+  String get power => 'Энергия';
+
+  @override
   String get yes => 'Да';
 
   @override

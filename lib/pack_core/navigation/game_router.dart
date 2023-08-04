@@ -1,22 +1,26 @@
 import 'package:flame/game.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/player_controls.dart';
 
 enum GameRoutes { level }
 
-enum GameOverlaysRoutes { levelsHud, debug }
+enum GameOverlaysRoutes { levelsHud, debug, dialog }
 
 class GameOverlayBuilderMapRouter {
   const GameOverlayBuilderMapRouter();
-  Map<String, OverlayWidgetBuilder<WbwGame>> build() =>
+  Map<String, OverlayWidgetBuilder<CanvasRendererGame>> build() =>
       _build().map((final key, final value) => MapEntry(key.name, value));
-  Map<GameOverlaysRoutes, OverlayWidgetBuilder<WbwGame>> _build() => {
+  Map<GameOverlaysRoutes, OverlayWidgetBuilder<CanvasRendererGame>> _build() =>
+      {
         GameOverlaysRoutes.levelsHud: (final context, final game) =>
             WbwGameProvider(
               game: game,
               child: const LevelsHudScreenOverlay(),
             ),
+        GameOverlaysRoutes.dialog: (final context, final game) =>
+            const DialogOverlay(),
       };
 }
 

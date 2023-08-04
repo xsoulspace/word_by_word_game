@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
+// import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final _yandexAdsSdkPlugin = YandexAdsSdk();
+  // final _yandexAdsSdkPlugin = YandexAdsSdk();
 
   @override
   void initState() {

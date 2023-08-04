@@ -29,10 +29,8 @@ class GameBottomBar extends HookWidget {
       case WidthFormFactor.tablet:
         constraints = const BoxConstraints(maxWidth: 500);
         child = const DesktopGameBottomBarWidget();
-        break;
       case WidthFormFactor.mobile:
         child = const MobileGameBottomBarWidget();
-        break;
     }
 
     return Provider(

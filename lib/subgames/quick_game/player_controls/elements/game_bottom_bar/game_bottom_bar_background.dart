@@ -13,20 +13,22 @@ class GameBottomBarBackground extends StatelessWidget {
   final BoxConstraints? constraints;
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
 
     final levelPlayersBloc = context.watch<LevelPlayersBloc>();
-    final livePlayerColor = levelPlayersBloc.state.mapOrNull(
-      live: (final value) => value.currentPlayer.color,
-    );
+    final livePlayerColor = levelPlayersBloc.state.currentPlayer.color;
 
     return Stack(
       children: [
         Positioned.fill(
           child: AnimatedContainer(
             duration: 80.milliseconds,
-          ).frosted(),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+            ),
+          ).frosted(
+            borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+          ),
         ),
         AnimatedContainer(
           duration: 80.milliseconds,
@@ -34,7 +36,7 @@ class GameBottomBarBackground extends StatelessWidget {
           constraints: constraints,
           decoration: BoxDecoration(
             color: ElevationOverlay.applySurfaceTint(
-              livePlayerColor ?? theme.colorScheme.surfaceTint,
+              livePlayerColor,
               Colors.white,
               30,
             ).withOpacity(0.1),

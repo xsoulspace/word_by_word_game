@@ -14,7 +14,7 @@ class UIWarningNotification extends StatelessWidget {
     final colorTheme = theme.colorScheme;
 
     final warning = context.select<LevelBloc, WordWarning>(
-      (final s) => s.getLiveState().wordWarning,
+      (final s) => s.state.wordWarning,
     );
     final borderRadius = BorderRadius.circular(14);
     final Color backgroundColor;
@@ -27,12 +27,10 @@ class UIWarningNotification extends StatelessWidget {
         backgroundColor = colorTheme.errorContainer;
         borderColor = colorTheme.error;
         shakingHz = 10;
-        break;
       case WordWarning.isNotCorrect:
         backgroundColor = colorTheme.tertiaryContainer;
         borderColor = colorTheme.onTertiaryContainer;
         shakingHz = 4;
-        break;
     }
 
     return Visibility(
@@ -53,11 +51,7 @@ class UIWarningNotification extends StatelessWidget {
                 switch (warning) {
                   case WordWarning.isNotCorrect:
                     return S.of(context).wordIsNotCorrect(
-                          context
-                              .read<LevelBloc>()
-                              .getLiveState()
-                              .currentWord
-                              .cleanWord,
+                          context.read<LevelBloc>().state.currentWord.cleanWord,
                         );
                   case WordWarning.isWritten:
                     return S.of(context).wordAlreadyWritten;
@@ -74,7 +68,9 @@ class UIWarningNotification extends StatelessWidget {
       )
           .animate(
             onComplete: (final _) {
-              context.read<LevelBloc>().add(const HideWarningEvent());
+              context
+                  .read<LevelBloc>()
+                  .onHideWarning(const LevelBlocEventHideWarning());
             },
           )
           .fadeIn()

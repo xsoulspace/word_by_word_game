@@ -222,6 +222,57 @@ class SEn extends S {
   String get createPlayer => 'Create player';
 
   @override
+  String get wind => 'Wind';
+
+  @override
+  String get weather => 'Weather';
+
+  @override
+  String get windCalm => 'Calm';
+
+  @override
+  String get windLightAir => 'Light Air';
+
+  @override
+  String get windLightBreeze => 'Light Breeze';
+
+  @override
+  String get windGentleBreeze => 'Gentle Breeze';
+
+  @override
+  String get windModerateBreeze => 'Moderate Breeze';
+
+  @override
+  String get windFreshBreeze => 'Fresh Breeze';
+
+  @override
+  String get windStrongBreeze => 'Strong Breeze';
+
+  @override
+  String get windHighWind => 'High Wind';
+
+  @override
+  String get windGale => 'Gale';
+
+  @override
+  String get windSevereGale => 'Severe Gale';
+
+  @override
+  String get windStorm => 'Storm';
+
+  @override
+  String get windViolentStorm => 'Violent Storm';
+
+  @override
+  String get windHurricane => 'Hurricane';
+
+  @override
+  String get nextWeatherIn => 'Next weather in';
+
+  @override
+  String get power => 'Power';
+
+  @override
   String get yes => 'Yes';
 
   @override

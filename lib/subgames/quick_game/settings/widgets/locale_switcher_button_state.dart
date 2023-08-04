@@ -3,7 +3,7 @@ part of 'locale_switcher_button.dart';
 class _LocaleSwitcherButtonDiDto {
   _LocaleSwitcherButtonDiDto.use(final Locator read)
       : appSettingsNotifier = read();
-  final AppSettingsNotifier appSettingsNotifier;
+  final AppSettingsCubit appSettingsNotifier;
 }
 
 _LocaleSwitcherButtonState _useLocaleSwitcherButtonState({

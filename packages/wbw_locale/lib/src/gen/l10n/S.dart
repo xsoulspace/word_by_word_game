@@ -521,6 +521,108 @@ abstract class S {
   /// **'Create player'**
   String get createPlayer;
 
+  /// No description provided for @wind.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind'**
+  String get wind;
+
+  /// No description provided for @weather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get weather;
+
+  /// No description provided for @windCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get windCalm;
+
+  /// No description provided for @windLightAir.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Air'**
+  String get windLightAir;
+
+  /// No description provided for @windLightBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Breeze'**
+  String get windLightBreeze;
+
+  /// No description provided for @windGentleBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle Breeze'**
+  String get windGentleBreeze;
+
+  /// No description provided for @windModerateBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Moderate Breeze'**
+  String get windModerateBreeze;
+
+  /// No description provided for @windFreshBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresh Breeze'**
+  String get windFreshBreeze;
+
+  /// No description provided for @windStrongBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong Breeze'**
+  String get windStrongBreeze;
+
+  /// No description provided for @windHighWind.
+  ///
+  /// In en, this message translates to:
+  /// **'High Wind'**
+  String get windHighWind;
+
+  /// No description provided for @windGale.
+  ///
+  /// In en, this message translates to:
+  /// **'Gale'**
+  String get windGale;
+
+  /// No description provided for @windSevereGale.
+  ///
+  /// In en, this message translates to:
+  /// **'Severe Gale'**
+  String get windSevereGale;
+
+  /// No description provided for @windStorm.
+  ///
+  /// In en, this message translates to:
+  /// **'Storm'**
+  String get windStorm;
+
+  /// No description provided for @windViolentStorm.
+  ///
+  /// In en, this message translates to:
+  /// **'Violent Storm'**
+  String get windViolentStorm;
+
+  /// No description provided for @windHurricane.
+  ///
+  /// In en, this message translates to:
+  /// **'Hurricane'**
+  String get windHurricane;
+
+  /// No description provided for @nextWeatherIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Next weather in'**
+  String get nextWeatherIn;
+
+  /// No description provided for @power.
+  ///
+  /// In en, this message translates to:
+  /// **'Power'**
+  String get power;
+
   /// No description provided for @yes.
   ///
   /// In en, this message translates to:

@@ -22,7 +22,7 @@ class LevelLostDialog extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final players = context.select<LevelPlayersBloc, List<PlayerProfileModel>>(
       (final value) {
-        final effectivePlayers = [...value.getLiveState().players];
+        final effectivePlayers = [...value.state.players];
         return effectivePlayers
           ..sort(
             (final a, final b) =>
@@ -48,7 +48,9 @@ class LevelLostDialog extends StatelessWidget {
           // ignore: dead_code
           TextButton(
             onPressed: () {
-              context.read<GlobalGameBloc>().add(const RestartLevelEvent());
+              context
+                  .read<GlobalGameBloc>()
+                  .onRestartLevel(const RestartLevelEvent());
 
               context.read<DialogController>().closeDialog();
             },
@@ -69,7 +71,9 @@ class LevelLostDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 onSendEndLevelEvent();
-                context.read<GlobalGameBloc>().add(const RestartLevelEvent());
+                context
+                    .read<GlobalGameBloc>()
+                    .onRestartLevel(const RestartLevelEvent());
 
                 context.read<DialogController>().closeDialog();
               },

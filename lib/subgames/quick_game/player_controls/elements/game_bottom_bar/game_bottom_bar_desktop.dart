@@ -11,7 +11,7 @@ class DesktopGameBottomBarWidget extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: [
-          Expanded(
+          const Expanded(
             child: UILevelCenterBar(),
           ),
           uiTheme.horizontalBoxes.medium,

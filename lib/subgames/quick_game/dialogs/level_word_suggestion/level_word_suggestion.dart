@@ -47,13 +47,12 @@ class _DialogState extends LifeState {
   void onRevealWord() {
     isWordRevealed = true;
     setState();
-    final currentPlayerId =
-        diDto.levelPlayersBloc.getLiveState().currentPlayerId;
+    final currentPlayerId = diDto.levelPlayersBloc.state.currentPlayerId;
     final event = UpdatePlayerHighscoreEvent(
       playerId: currentPlayerId,
       score: ScoreModel(value: -costOfWord.toDouble()),
     );
-    diDto.levelPlayersBloc.add(event);
+    diDto.levelPlayersBloc.onUpdatePlayerHighscore(event);
   }
 
   void onTryAnotherWord() {
@@ -63,12 +62,8 @@ class _DialogState extends LifeState {
   }
 
   bool get isUsageAvailable {
-    final playerScore = diDto.levelPlayersBloc
-        .getLiveState()
-        .currentPlayer
-        .highscore
-        .score
-        .value;
+    final playerScore =
+        diDto.levelPlayersBloc.state.currentPlayer.highscore.score.value;
     return playerScore > costOfWord;
   }
 
