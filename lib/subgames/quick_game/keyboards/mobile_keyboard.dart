@@ -219,44 +219,50 @@ class TargetRow extends StatelessWidget {
                         draggableKey: draggableKey,
                       );
                     },
-                    onReorder: (final oldIndex, final newIndex) {
-                      int i = newIndex;
+                    // ignore: prefer_final_parameters
+                    onReorder: (oldIndex, newIndex) {
                       if (oldIndex < newIndex) {
-                        // removing the item at oldIndex will shorten the list by 1.
-                        i -= 1;
+                        // removing the item at oldIndex will shorten the list
+                        // by 1.
+                        newIndex -= 1;
                       }
                       if (oldIndex == cursorIndex) {
-                        onCursorIndexChanged(i);
+                        onCursorIndexChanged(newIndex);
                       } else {
-                        if (oldIndex == i) return;
                         if (oldIndex < cursorIndex) {
-                          if (i < cursorIndex) {
+                          if (newIndex < cursorIndex) {
                             /// old - new - c
                             // noop
-                          } else if (i == cursorIndex) {
-                            onCursorIndexChanged(i - 1);
+                          } else if (newIndex == cursorIndex) {
+                            newIndex--;
+                            onCursorIndexChanged(cursorIndex - 1);
                           } else {
                             /// old - c - new
-                            onCursorIndexChanged(i);
+                            newIndex--;
+                            onCursorIndexChanged(cursorIndex - 1);
                           }
                         } else if (oldIndex > cursorIndex) {
-                          if (i > cursorIndex) {
+                          if (newIndex > cursorIndex) {
                             /// c - old - new
                             // noop
-                          }
-                          if (i == cursorIndex) {
-                            // noop
+                            newIndex--;
+                            oldIndex--;
+                          } else if (newIndex == cursorIndex) {
+                            /// new <-> c - old
+
+                            oldIndex--;
+                            onCursorIndexChanged(cursorIndex + 1);
                           } else {
+                            oldIndex--;
+
                             /// new - c - old
-                            onCursorIndexChanged(i + 1);
+                            onCursorIndexChanged(cursorIndex + 1);
                           }
-                        } else {
-                          print('');
                         }
 
                         final updatedItems = [...items];
                         final element = updatedItems.removeAt(oldIndex);
-                        updatedItems.insert(i, element);
+                        updatedItems.insert(newIndex, element);
 
                         onItemsChanged(updatedItems);
                       }
@@ -269,9 +275,15 @@ class TargetRow extends StatelessWidget {
           IconButton(
             onPressed: () {
               if (items.isEmpty) return;
-              final newIndex = cursorIndex - 1;
-              onCursorIndexChanged(newIndex);
-              onItemsChanged([...items]..removeAt(newIndex));
+              if (cursorIndex == 0) {
+                if (items.isNotEmpty) {
+                  onItemsChanged([...items]..removeAt(0));
+                }
+              } else {
+                final newIndex = cursorIndex - 1;
+                onCursorIndexChanged(newIndex);
+                onItemsChanged([...items]..removeAt(newIndex));
+              }
             },
             icon: const Icon(CupertinoIcons.arrow_left_square_fill),
           )

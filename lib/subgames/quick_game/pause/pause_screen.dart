@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -104,7 +105,8 @@ class PauseScreen extends HookWidget {
                   top: 24,
                   child: CharacterAvatarButton.useDefault(),
                 ),
-              const Positioned(child: MobileKeyboard()),
+              Positioned.fill(child: Container().blurred()),
+              const Positioned(child: Center(child: MobileKeyboard())),
             ],
           ),
         ),
