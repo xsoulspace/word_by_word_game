@@ -115,6 +115,7 @@ class KeyboardLetters extends StatelessWidget {
                 )
                 .toList(),
           ),
+          const Gap(5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -126,14 +127,9 @@ class KeyboardLetters extends StatelessWidget {
                   ),
                   onPressed: () => onLetterPressed(e),
                 ),
-              DeleteLetterButton(
-                cursorIndex: cursorIndex,
-                items: items,
-                onCursorIndexChanged: onCursorIndexChanged,
-                onItemsChanged: onItemsChanged,
-              )
             ],
           ),
+          const Gap(5),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -143,13 +139,19 @@ class KeyboardLetters extends StatelessWidget {
                   letter: LetterModel(title: e),
                   onPressed: () => onLetterPressed(e),
                 ),
+              DeleteLetterButton(
+                cursorIndex: cursorIndex,
+                items: items,
+                onCursorIndexChanged: onCursorIndexChanged,
+                onItemsChanged: onItemsChanged,
+              )
             ],
           ),
         ],
       );
 }
 
-class DeleteLetterButton extends StatelessWidget {
+class DeleteLetterButton extends StatefulWidget {
   const DeleteLetterButton({
     required this.cursorIndex,
     required this.items,
@@ -161,21 +163,49 @@ class DeleteLetterButton extends StatelessWidget {
   final ValueChanged<int> onCursorIndexChanged;
   final ValueChanged<List<LetterModel>> onItemsChanged;
   final List<LetterModel> items;
+
   @override
-  Widget build(final BuildContext context) => IconButton(
-        onPressed: () {
-          if (items.isEmpty) return;
-          if (cursorIndex == 0) {
-            if (items.isNotEmpty) {
-              onItemsChanged([...items]..removeAt(0));
-            }
-          } else {
-            final newIndex = cursorIndex - 1;
-            onCursorIndexChanged(newIndex);
-            onItemsChanged([...items]..removeAt(newIndex));
+  State<DeleteLetterButton> createState() => _DeleteLetterButtonState();
+}
+
+class _DeleteLetterButtonState extends State<DeleteLetterButton> {
+  void _onRemove() {
+    if (widget.items.isEmpty) return;
+    if (widget.cursorIndex == 0) {
+      if (widget.items.isNotEmpty) {
+        widget.onItemsChanged([...widget.items]..removeAt(0));
+      }
+    } else {
+      final newIndex = widget.cursorIndex - 1;
+      widget.onCursorIndexChanged(newIndex);
+      widget.onItemsChanged([...widget.items]..removeAt(newIndex));
+    }
+  }
+
+  bool _isLongPressed = false;
+  @override
+  Widget build(final BuildContext context) => GestureDetector(
+        onLongPress: () async {
+          await Future.delayed(200.milliseconds);
+          while (_isLongPressed) {
+            await Future.delayed(100.milliseconds);
+            if (!_isLongPressed) break;
+            _onRemove();
           }
         },
-        icon: const Icon(CupertinoIcons.arrow_left_square_fill),
+        onLongPressStart: (final _) async {
+          _isLongPressed = true;
+        },
+        onLongPressEnd: (final _) {
+          _isLongPressed = false;
+        },
+        onLongPressCancel: () {
+          _isLongPressed = false;
+        },
+        child: IconButton(
+          onPressed: _onRemove,
+          icon: const Icon(CupertinoIcons.arrow_left_square_fill),
+        ),
       );
 }
 
@@ -277,29 +307,32 @@ class LetterCard extends StatelessWidget {
   final LetterModel letter;
   @override
   Widget build(final BuildContext context) {
-    const width = (kKeyboardWidth - 24 - (10 * 1.5)) / 10;
-    return GestureDetector(
-      onTap: onPressed,
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 1.5),
-        color: Colors.transparent,
-        child: FilledButton.tonal(
-          onPressed: onPressed ?? () {},
-          style: const ButtonStyle(
-            fixedSize: MaterialStatePropertyAll(
-              Size(
-                width,
-                36,
-              ),
+    const width = (kKeyboardWidth - 24 - (10 * 2)) / 10;
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: FilledButton.tonal(
+        onPressed: onPressed ?? () {},
+        style: const ButtonStyle(
+          fixedSize: MaterialStatePropertyAll(
+            Size(
+              width,
+              36,
             ),
-            padding: MaterialStatePropertyAll(
-              EdgeInsets.zero,
-            ),
-            minimumSize: MaterialStatePropertyAll(Size.zero),
-            alignment: Alignment.center,
           ),
-          child: Text(letter.title),
+          enableFeedback: true,
+          elevation: MaterialStatePropertyAll(1),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
+            ),
+          ),
+          padding: MaterialStatePropertyAll(
+            EdgeInsets.zero,
+          ),
+          minimumSize: MaterialStatePropertyAll(Size.zero),
+          alignment: Alignment.center,
         ),
+        child: Text(letter.title),
       ),
     );
   }
