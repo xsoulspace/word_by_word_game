@@ -203,6 +203,7 @@ class _DeleteLetterButtonState extends State<DeleteLetterButton> {
           _isLongPressed = false;
         },
         child: IconButton(
+          enableFeedback: true,
           onPressed: _onRemove,
           icon: const Icon(CupertinoIcons.arrow_left_square_fill),
         ),
