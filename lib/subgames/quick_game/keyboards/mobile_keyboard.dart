@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
+
+const kKeyboardWidth = 320.0;
 
 class MobileKeyboard extends StatefulWidget {
   const MobileKeyboard({super.key});
@@ -10,19 +13,37 @@ class MobileKeyboard extends StatefulWidget {
 }
 
 class _MobileKeyboardState extends State<MobileKeyboard> {
+  final enLetters = [
+    ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
+    ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
+    ['z', 'x', 'c', 'v', 'b', 'n', 'm']
+  ];
+  final ruLetters = [
+    ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х'],
+    ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'],
+    ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю']
+  ];
+
   final GlobalKey _draggableKey = GlobalKey();
   List<LetterModel> _items = [];
   int _cursorIndex = 0;
+  List<int> _inactiveLettersIndexes = [3, 4, 5];
   @override
   Widget build(final BuildContext context) => SizedBox(
-        width: 320,
+        width: kKeyboardWidth,
         height: 320,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TargetRow(
+              inactiveIndexes: _inactiveLettersIndexes,
               draggableKey: _draggableKey,
               items: _items,
               cursorIndex: _cursorIndex,
+              onChangeInactiveIndexes: (final indexes) {
+                _inactiveLettersIndexes = indexes;
+                setState(() {});
+              },
               onCursorIndexChanged: (final index) {
                 _cursorIndex = index;
                 setState(() {});
@@ -32,28 +53,129 @@ class _MobileKeyboardState extends State<MobileKeyboard> {
                 setState(() {});
               },
             ),
-            Wrap(
-              children:
-                  // ignore: lines_longer_than_80_chars
-                  'A, B, C, D, E, F, G, H, I, J, K, L, M, N, O, P, Q, R, S, T, U, V, W, X, Y, Z'
-                      .split(',')
-                      .map(
-                        (final e) => KeyboardLetterCard(
-                          draggableKey: _draggableKey,
-                          letter: LetterModel(
-                            title: e,
-                          ),
-                          onPressed: () {
-                            _items.insert(_cursorIndex, LetterModel(title: e));
-                            _cursorIndex++;
-                            setState(() {});
-                          },
-                        ),
-                      )
-                      .toList(),
+            const Gap(12),
+            KeyboardLetters(
+              cursorIndex: _cursorIndex,
+              items: _items,
+              onItemsChanged: (final items) {
+                _items = items;
+                setState(() {});
+              },
+              onCursorIndexChanged: (final index) {
+                _cursorIndex = index;
+                setState(() {});
+              },
+              draggableKey: _draggableKey,
+              rows: enLetters,
+              onLetterPressed: (final letter) {
+                _items.insert(_cursorIndex, LetterModel(title: letter));
+                _cursorIndex++;
+                setState(() {});
+              },
             ),
           ],
         ),
+      );
+}
+
+class KeyboardLetters extends StatelessWidget {
+  const KeyboardLetters({
+    required this.draggableKey,
+    required this.rows,
+    required this.onLetterPressed,
+    required this.cursorIndex,
+    required this.items,
+    required this.onItemsChanged,
+    required this.onCursorIndexChanged,
+    super.key,
+  });
+  final List<List<String>> rows;
+  final ValueChanged<String> onLetterPressed;
+  final GlobalKey draggableKey;
+  final int cursorIndex;
+  final ValueChanged<int> onCursorIndexChanged;
+  final ValueChanged<List<LetterModel>> onItemsChanged;
+  final List<LetterModel> items;
+  @override
+  Widget build(final BuildContext context) => Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: rows.first
+                .map(
+                  (final e) => KeyboardLetterCard(
+                    draggableKey: draggableKey,
+                    letter: LetterModel(
+                      title: e,
+                    ),
+                    onPressed: () => onLetterPressed(e),
+                  ),
+                )
+                .toList(),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (final e in rows[1])
+                KeyboardLetterCard(
+                  draggableKey: draggableKey,
+                  letter: LetterModel(
+                    title: e,
+                  ),
+                  onPressed: () => onLetterPressed(e),
+                ),
+              DeleteLetterButton(
+                cursorIndex: cursorIndex,
+                items: items,
+                onCursorIndexChanged: onCursorIndexChanged,
+                onItemsChanged: onItemsChanged,
+              )
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              for (final e in rows[2])
+                KeyboardLetterCard(
+                  draggableKey: draggableKey,
+                  letter: LetterModel(title: e),
+                  onPressed: () => onLetterPressed(e),
+                ),
+            ],
+          ),
+        ],
+      );
+}
+
+class DeleteLetterButton extends StatelessWidget {
+  const DeleteLetterButton({
+    required this.cursorIndex,
+    required this.items,
+    required this.onItemsChanged,
+    required this.onCursorIndexChanged,
+    super.key,
+  });
+  final int cursorIndex;
+  final ValueChanged<int> onCursorIndexChanged;
+  final ValueChanged<List<LetterModel>> onItemsChanged;
+  final List<LetterModel> items;
+  @override
+  Widget build(final BuildContext context) => IconButton(
+        onPressed: () {
+          if (items.isEmpty) return;
+          if (cursorIndex == 0) {
+            if (items.isNotEmpty) {
+              onItemsChanged([...items]..removeAt(0));
+            }
+          } else {
+            final newIndex = cursorIndex - 1;
+            onCursorIndexChanged(newIndex);
+            onItemsChanged([...items]..removeAt(newIndex));
+          }
+        },
+        icon: const Icon(CupertinoIcons.arrow_left_square_fill),
       );
 }
 
@@ -86,22 +208,12 @@ class ReorderableLetterCard extends StatelessWidget {
   final GlobalKey draggableKey;
 
   @override
-  Widget build(final BuildContext context) =>
-      // Draggable(
-      ReorderableDragStartListener(
+  Widget build(final BuildContext context) => ReorderableDragStartListener(
         index: index,
-        child: LetterCard(
+        child: InputLetterCard(
           letter: letter,
         ),
-      )
-      //   dragAnchorStrategy: pointerDragAnchorStrategy,
-      //   feedback: DraggingListItem(
-      //     dragKey: draggableKey,
-      //     letter: letter,
-      //   ),
-      //   child: ,
-      // )
-      ;
+      );
 }
 
 class DraggingListItem extends StatelessWidget {
@@ -118,6 +230,43 @@ class DraggingListItem extends StatelessWidget {
       );
 }
 
+class InputInactiveLetterCard extends StatelessWidget {
+  const InputInactiveLetterCard({
+    required this.letter,
+    this.onPressed,
+    super.key,
+  });
+
+  final VoidCallback? onPressed;
+  final LetterModel letter;
+  @override
+  Widget build(final BuildContext context) => Align(
+        child: Card(
+          margin: EdgeInsets.zero,
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 4),
+            child: Text(letter.title),
+          ),
+        ),
+      );
+}
+
+class InputLetterCard extends StatelessWidget {
+  const InputLetterCard({
+    required this.letter,
+    this.onPressed,
+    super.key,
+  });
+
+  final VoidCallback? onPressed;
+  final LetterModel letter;
+  @override
+  Widget build(final BuildContext context) => Container(
+        alignment: Alignment.center,
+        child: Text(letter.title),
+      );
+}
+
 class LetterCard extends StatelessWidget {
   const LetterCard({
     required this.letter,
@@ -127,17 +276,33 @@ class LetterCard extends StatelessWidget {
   final VoidCallback? onPressed;
   final LetterModel letter;
   @override
-  Widget build(final BuildContext context) => FilledButton.tonal(
-        onPressed: onPressed ?? () {},
-        style: const ButtonStyle(
-          padding: MaterialStatePropertyAll(
-            EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+  Widget build(final BuildContext context) {
+    const width = (kKeyboardWidth - 24 - (10 * 1.5)) / 10;
+    return GestureDetector(
+      onTap: onPressed,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 1.5),
+        color: Colors.transparent,
+        child: FilledButton.tonal(
+          onPressed: onPressed ?? () {},
+          style: const ButtonStyle(
+            fixedSize: MaterialStatePropertyAll(
+              Size(
+                width,
+                36,
+              ),
+            ),
+            padding: MaterialStatePropertyAll(
+              EdgeInsets.zero,
+            ),
+            minimumSize: MaterialStatePropertyAll(Size.zero),
+            alignment: Alignment.center,
           ),
-          minimumSize: MaterialStatePropertyAll(Size.zero),
-          alignment: Alignment.center,
+          child: Text(letter.title),
         ),
-        child: Text(letter.title),
-      );
+      ),
+    );
+  }
 }
 
 class LetterModel {
@@ -155,6 +320,8 @@ class TargetRow extends StatelessWidget {
     required this.onItemsChanged,
     required this.onCursorIndexChanged,
     required this.cursorIndex,
+    required this.inactiveIndexes,
+    required this.onChangeInactiveIndexes,
     super.key,
   });
   final List<LetterModel> items;
@@ -162,6 +329,8 @@ class TargetRow extends StatelessWidget {
   final int cursorIndex;
   final ValueChanged<int> onCursorIndexChanged;
   final GlobalKey draggableKey;
+  final List<int> inactiveIndexes;
+  final ValueChanged<List<int>> onChangeInactiveIndexes;
 
   @override
   Widget build(final BuildContext context) => Row(
@@ -212,6 +381,12 @@ class TargetRow extends StatelessWidget {
                         i--;
                       }
                       final letter = items[i];
+                      if (inactiveIndexes.contains(i)) {
+                        return InputInactiveLetterCard(
+                          key: ValueKey(letter),
+                          letter: letter,
+                        );
+                      }
                       return ReorderableLetterCard(
                         key: ValueKey(letter),
                         letter: letter,
@@ -219,6 +394,7 @@ class TargetRow extends StatelessWidget {
                         draggableKey: draggableKey,
                       );
                     },
+                    // TODO(antmalofeev): add inactive indexes handling
                     // ignore: prefer_final_parameters
                     onReorder: (oldIndex, newIndex) {
                       if (oldIndex < newIndex) {
@@ -272,21 +448,6 @@ class TargetRow extends StatelessWidget {
               ),
             ),
           ),
-          IconButton(
-            onPressed: () {
-              if (items.isEmpty) return;
-              if (cursorIndex == 0) {
-                if (items.isNotEmpty) {
-                  onItemsChanged([...items]..removeAt(0));
-                }
-              } else {
-                final newIndex = cursorIndex - 1;
-                onCursorIndexChanged(newIndex);
-                onItemsChanged([...items]..removeAt(newIndex));
-              }
-            },
-            icon: const Icon(CupertinoIcons.arrow_left_square_fill),
-          )
         ],
       );
 }
