@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
 /// use for word field only
 class WordField extends StatefulWidget {
@@ -11,7 +12,6 @@ class WordField extends StatefulWidget {
 }
 
 class _WordFieldState extends State<WordField> {
-  KeyboardLanguage _language = KeyboardLanguage.en;
   List<LetterModel> _items = [];
   int _caretIndex = 0;
   List<int> _inactiveLettersIndexes = [3, 4, 5];
@@ -56,6 +56,7 @@ class _WordFieldState extends State<WordField> {
   @override
   Widget build(final BuildContext context) => InputKeyboardListener(
         focusNode: focusNode,
+        autofocus: false,
         caretIndex: _caretIndex,
         onCaretIndexChanged: _onCaretIndexChanged,
         onCharacter: _onLetterPressed,
@@ -85,26 +86,6 @@ class _WordFieldState extends State<WordField> {
                 onItemsChanged: _onItemsChanged,
               ),
               const Gap(12),
-              KeyboardLetters(
-                caretIndex: _caretIndex,
-                items: _items,
-                onDelete: _onDelete,
-                language: _language,
-                onLanguageChanged: (final lang) {
-                  _language = lang;
-                  setState(() {});
-                },
-                onItemsChanged: (final items) {
-                  _items = items;
-                  setState(() {});
-                },
-                onCaretIndexChanged: (final index) {
-                  _caretIndex = index;
-                  setState(() {});
-                },
-                rows: _language.letters,
-                onLetterPressed: _onLetterPressed,
-              ),
             ],
           ),
         ),

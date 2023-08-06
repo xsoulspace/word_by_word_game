@@ -1,7 +1,12 @@
+import 'dart:async';
+import 'dart:math' as math;
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/word_field.dart';
 
 /// use for any usual field
@@ -22,7 +27,7 @@ class TextFieldWithKeyboard extends StatefulWidget {
 }
 
 class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
-  KeyboardLanguage _language = KeyboardLanguage.en;
+  StreamSubscription<UiKeyboardEvent>? _keyboardSubscription;
   List<LetterModel> get _items => __items;
   set _items(final List<LetterModel> items) {
     __items = items;
@@ -72,62 +77,68 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
 
   final focusNode = FocusNode();
   @override
+  void initState() {
+    super.initState();
+
+    _keyboardSubscription = context
+        .read<UiKeyboardController>()
+        .keyEventsStream
+        .listen((final event) {
+      switch (event) {
+        case UiKeyboardEventAddCharacter(:final character):
+          _onLetterPressed(character);
+        case UiKeyboardEventRemoveCharacter():
+          _onDelete();
+      }
+    });
+  }
+
+  @override
   void dispose() {
+    unawaited(_keyboardSubscription?.cancel());
     focusNode.dispose();
     super.dispose();
   }
 
   @override
-  Widget build(final BuildContext context) => InputKeyboardListener(
-        focusNode: focusNode,
-        caretIndex: _caretIndex,
-        onCaretIndexChanged: _onCaretIndexChanged,
-        onCharacter: _onLetterPressed,
-        onDelete: _onDelete,
-        child: SizedBox(
-          width: kKeyboardWidth,
-          height: 200,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              if (kDebugMode)
-                AnimatedBuilder(
-                  animation: focusNode,
-                  builder: (final context, final data) =>
-                      Text('is focused: ${focusNode.hasFocus}'),
-                ),
-              UiEditableText(
-                items: _items,
-                decoration: widget.decoration,
-                caretIndex: _caretIndex,
-                onCaretIndexChanged: _onCaretIndexChanged,
-                onItemsChanged: _onItemsChanged,
-              ),
-              const Gap(12),
-              KeyboardLetters(
-                caretIndex: _caretIndex,
-                items: _items,
-                onDelete: _onDelete,
-                language: _language,
-                onLanguageChanged: (final lang) {
-                  _language = lang;
-                  setState(() {});
-                },
-                onItemsChanged: (final items) {
-                  _items = items;
-                  setState(() {});
-                },
-                onCaretIndexChanged: (final index) {
-                  _caretIndex = index;
-                  setState(() {});
-                },
-                rows: _language.letters,
-                onLetterPressed: _onLetterPressed,
-              ),
-            ],
-          ),
+  Widget build(final BuildContext context) {
+    const inputHeight = 30.0;
+    final width =
+        math.max(MediaQuery.sizeOf(context).width * 0.9, kKeyboardWidth);
+    return InputKeyboardListener(
+      focusNode: focusNode,
+      caretIndex: _caretIndex,
+      autofocus: widget.autofocus,
+      onCaretIndexChanged: _onCaretIndexChanged,
+      onCharacter: _onLetterPressed,
+      onDelete: _onDelete,
+      child: ConstrainedBox(
+        constraints: BoxConstraints(
+          maxWidth: width,
         ),
-      );
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            UiEditableText(
+              items: _items,
+              height: inputHeight,
+              decoration: widget.decoration,
+              caretIndex: _caretIndex,
+              onCaretIndexChanged: _onCaretIndexChanged,
+              onItemsChanged: _onItemsChanged,
+            ),
+            if (kDebugMode)
+              AnimatedBuilder(
+                animation: focusNode,
+                builder: (final context, final data) => const Divider(),
+              ),
+            const Gap(16),
+            const UiKeyboard(),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class UiEditableText extends StatelessWidget {
@@ -137,6 +148,7 @@ class UiEditableText extends StatelessWidget {
     required this.onCaretIndexChanged,
     required this.caretIndex,
     required this.decoration,
+    required this.height,
     super.key,
   });
   final InputDecoration? decoration;
@@ -144,12 +156,12 @@ class UiEditableText extends StatelessWidget {
   final ValueChanged<List<LetterModel>> onItemsChanged;
   final int caretIndex;
   final ValueChanged<int> onCaretIndexChanged;
-
+  final double height;
   @override
   Widget build(final BuildContext context) {
     final hintText = decoration?.hintText ?? '';
     return SizedBox(
-      height: 36,
+      height: height,
       child: Stack(
         children: [
           if (hintText.isNotEmpty && items.isEmpty)
@@ -158,7 +170,7 @@ class UiEditableText extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 12),
+                  padding: const EdgeInsets.only(left: 18),
                   child: Text(
                     hintText,
                     style: TextStyle(
@@ -177,7 +189,7 @@ class UiEditableText extends StatelessWidget {
             itemCount: items.length + 1,
             proxyDecorator: (final child, final index, final animation) =>
                 child,
-            padding: EdgeInsets.zero,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             itemBuilder: (final context, final index) {
               int i = index;
               if (i == caretIndex) {

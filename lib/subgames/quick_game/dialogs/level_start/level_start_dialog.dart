@@ -90,7 +90,7 @@ class _DialogScreen extends HookWidget {
           padding: const EdgeInsets.only(top: 26),
           child: SizedBox(
             width: math.min(400, screenSize.width),
-            height: math.max(340, screenSize.height * 0.45),
+            height: math.max(400, screenSize.height * 0.45),
             child: Card(
               child: ValueListenableBuilder(
                 valueListenable: widgetUiState.currentViewNotifier,
