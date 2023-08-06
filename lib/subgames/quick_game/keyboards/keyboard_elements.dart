@@ -85,6 +85,10 @@ class InputKeyboardListener extends StatelessWidget {
             case LogicalKeyboardKey.delete || LogicalKeyboardKey.backspace:
               onDelete();
               return KeyEventResult.handled;
+            case LogicalKeyboardKey.enter:
+              // TODO(arenukvern): description
+              // onComplete();
+              return KeyEventResult.handled;
             case LogicalKeyboardKey.space:
               return KeyEventResult.handled;
           }

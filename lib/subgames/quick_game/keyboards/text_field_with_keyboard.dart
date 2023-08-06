@@ -52,7 +52,9 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
   }
 
   void _onLetterPressed(final String letter) {
-    _items.insert(_caretIndex, LetterModel(title: letter));
+    _onItemsChanged(
+      [..._items]..insert(_caretIndex, LetterModel(title: letter)),
+    );
     _caretIndex++;
     setState(() {});
   }
