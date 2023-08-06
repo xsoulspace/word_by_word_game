@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -65,11 +66,12 @@ class _GameplayKeyboardState extends State<GameplayKeyboard> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              AnimatedBuilder(
-                animation: focusNode,
-                builder: (final context, final data) =>
-                    Text('${focusNode.hasFocus}'),
-              ),
+              if (kDebugMode)
+                AnimatedBuilder(
+                  animation: focusNode,
+                  builder: (final context, final data) =>
+                      Text('is focused: ${focusNode.hasFocus}'),
+                ),
               GameplayEditableText(
                 inactiveIndexes: _inactiveLettersIndexes,
                 items: _items,
