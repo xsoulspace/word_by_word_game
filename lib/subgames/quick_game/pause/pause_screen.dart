@@ -106,11 +106,34 @@ class PauseScreen extends HookWidget {
                   child: CharacterAvatarButton.useDefault(),
                 ),
               Positioned.fill(child: Container().blurred()),
-              const Positioned(child: Center(child: GameplayKeyboard())),
+              const Positioned(
+                child: Center(
+                  child: Column(
+                    children: [
+                      WordField(),
+                      TestTextField(),
+                    ],
+                  ),
+                ),
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+class TestTextField extends HookWidget {
+  const TestTextField({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final focusNode = useFocusNode();
+    final controller = useTextEditingController(text: 'Ola!');
+    return TextFieldWithKeyboard(
+      focusNode: focusNode,
+      controller: controller,
     );
   }
 }

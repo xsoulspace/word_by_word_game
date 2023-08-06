@@ -163,6 +163,38 @@ class KeyboardLetters extends StatelessWidget {
   }
 }
 
+class InputCaret extends StatelessWidget {
+  const InputCaret({super.key});
+
+  @override
+  Widget build(final BuildContext context) => Container(
+        width: 14,
+        color: Colors.transparent,
+        child: Container(
+          decoration: BoxDecoration(
+            color: Theme.of(context)
+                .colorScheme
+                .onPrimaryContainer
+                .withOpacity(0.8),
+            borderRadius: const BorderRadius.all(
+              Radius.elliptical(4, 4),
+            ),
+          ),
+          height: double.maxFinite,
+          margin: const EdgeInsets.symmetric(horizontal: 4),
+          width: 4,
+        ),
+      )
+          .animate(
+            onPlay: (final controller) => controller.repeat(),
+          )
+          .fadeIn(duration: 300.milliseconds)
+          .fadeOut(
+            delay: 700.milliseconds,
+            duration: 300.milliseconds,
+          );
+}
+
 class LanguageSwitcher extends StatelessWidget {
   const LanguageSwitcher({
     required this.onChanged,

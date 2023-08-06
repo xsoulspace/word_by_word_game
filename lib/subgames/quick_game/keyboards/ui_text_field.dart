@@ -1,25 +1,45 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/word_field.dart';
 
-class GameplayKeyboard extends StatefulWidget {
-  const GameplayKeyboard({super.key});
+/// use for any usual field
+class TextFieldWithKeyboard extends StatefulWidget {
+  const TextFieldWithKeyboard({
+    required this.focusNode,
+    required this.controller,
+    super.key,
+  });
+  final FocusNode focusNode;
+  final TextEditingController controller;
   @override
-  State<GameplayKeyboard> createState() => _GameplayKeyboardState();
+  State<TextFieldWithKeyboard> createState() => _TextFieldWithKeyboardState();
 }
 
-class _GameplayKeyboardState extends State<GameplayKeyboard> {
+class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
   KeyboardLanguage _language = KeyboardLanguage.en;
-  List<LetterModel> _items = [];
+  List<LetterModel> get _items => __items;
+  set _items(final List<LetterModel> items) {
+    __items = items;
+    widget.controller.text = items.map((final item) => item.title).join();
+  }
+
+  late List<LetterModel> __items = _getControllerChracters();
   int _caretIndex = 0;
-  List<int> _inactiveLettersIndexes = [3, 4, 5];
   void _onCaretIndexChanged(final int index) {
     if (index > _items.length) return;
     if (index < 0) return;
     _caretIndex = index;
     setState(() {});
+  }
+
+  List<LetterModel> _getControllerChracters() {
+    final text = widget.controller.text;
+    return List.generate(
+      text.length,
+      (final index) => LetterModel(title: text[index]),
+    );
   }
 
   void _onLetterPressed(final String letter) {
@@ -72,14 +92,9 @@ class _GameplayKeyboardState extends State<GameplayKeyboard> {
                   builder: (final context, final data) =>
                       Text('is focused: ${focusNode.hasFocus}'),
                 ),
-              GameplayEditableText(
-                inactiveIndexes: _inactiveLettersIndexes,
+              UiEditableText(
                 items: _items,
                 caretIndex: _caretIndex,
-                onChangeInactiveIndexes: (final indexes) {
-                  _inactiveLettersIndexes = indexes;
-                  setState(() {});
-                },
                 onCaretIndexChanged: _onCaretIndexChanged,
                 onItemsChanged: _onItemsChanged,
               ),
@@ -110,96 +125,26 @@ class _GameplayKeyboardState extends State<GameplayKeyboard> {
       );
 }
 
-class ReorderableLetterCard extends StatelessWidget {
-  const ReorderableLetterCard({
-    required this.index,
-    required this.letter,
-    super.key,
-  });
-  final int index;
-  final LetterModel letter;
-
-  @override
-  Widget build(final BuildContext context) => ReorderableDragStartListener(
-        index: index,
-        child: InputLetterCard(
-          letter: letter,
-        ),
-      );
-}
-
-class InputInactiveLetterCard extends StatelessWidget {
-  const InputInactiveLetterCard({
-    required this.letter,
-    this.onPressed,
-    super.key,
-  });
-
-  final VoidCallback? onPressed;
-  final LetterModel letter;
-  @override
-  Widget build(final BuildContext context) => Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
-          ),
-          borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
-        ),
-        margin: const EdgeInsets.symmetric(
-          vertical: 4,
-          horizontal: 2,
-        ),
-        child: SizedBox.square(
-          dimension: 24,
-          child: Center(
-            child: Text(letter.title),
-          ),
-        ),
-      );
-}
-
-class InputLetterCard extends StatelessWidget {
-  const InputLetterCard({
-    required this.letter,
-    this.onPressed,
-    super.key,
-  });
-
-  final VoidCallback? onPressed;
-  final LetterModel letter;
-  @override
-  Widget build(final BuildContext context) => Container(
-        alignment: Alignment.center,
-        child: Text(letter.title),
-      );
-}
-
-class GameplayEditableText extends StatelessWidget {
-  const GameplayEditableText({
+class UiEditableText extends StatelessWidget {
+  const UiEditableText({
     required this.items,
     required this.onItemsChanged,
     required this.onCaretIndexChanged,
     required this.caretIndex,
-    required this.inactiveIndexes,
-    required this.onChangeInactiveIndexes,
     super.key,
   });
   final List<LetterModel> items;
   final ValueChanged<List<LetterModel>> onItemsChanged;
   final int caretIndex;
   final ValueChanged<int> onCaretIndexChanged;
-  final List<int> inactiveIndexes;
-  final ValueChanged<List<int>> onChangeInactiveIndexes;
 
   @override
-  Widget build(final BuildContext context) => Container(
-        alignment: Alignment.center,
+  Widget build(final BuildContext context) => SizedBox(
         height: 36,
         child: ReorderableListView.builder(
           scrollDirection: Axis.horizontal,
           buildDefaultDragHandles: false,
-          itemCount: items.length + 1, shrinkWrap: true,
+          itemCount: items.length + 1,
           proxyDecorator: (final child, final index, final animation) => child,
           padding: EdgeInsets.zero,
           itemBuilder: (final context, final index) {
@@ -208,50 +153,18 @@ class GameplayEditableText extends StatelessWidget {
               return ReorderableDragStartListener(
                 key: const ValueKey('divider'),
                 index: caretIndex,
-                child: Container(
-                  width: 14,
-                  color: Colors.transparent,
-                  child: Container(
-                    decoration: BoxDecoration(
-                      color: Theme.of(context)
-                          .colorScheme
-                          .onPrimaryContainer
-                          .withOpacity(0.8),
-                      borderRadius: const BorderRadius.all(
-                        Radius.elliptical(4, 4),
-                      ),
-                    ),
-                    height: double.maxFinite,
-                    margin: const EdgeInsets.symmetric(horizontal: 4),
-                    width: 4,
-                  ),
-                )
-                    .animate(
-                      onPlay: (final controller) => controller.repeat(),
-                    )
-                    .fadeIn(duration: 300.milliseconds)
-                    .fadeOut(
-                      delay: 700.milliseconds,
-                      duration: 300.milliseconds,
-                    ),
+                child: const InputCaret(),
               );
             } else if (i > caretIndex) {
               i--;
             }
             final letter = items[i];
-            if (inactiveIndexes.contains(i)) {
-              return InputInactiveLetterCard(
-                key: ValueKey(letter),
-                letter: letter,
-              );
-            }
             return ReorderableLetterCard(
               key: ValueKey(letter),
               letter: letter,
               index: index,
             );
           },
-          // TODO(antmalofeev): add inactive indexes handling
           // ignore: prefer_final_parameters
           onReorder: (oldIndex, newIndex) {
             if (oldIndex < newIndex) {
