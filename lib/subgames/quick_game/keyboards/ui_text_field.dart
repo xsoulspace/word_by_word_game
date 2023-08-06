@@ -7,12 +7,16 @@ import 'package:word_by_word_game/subgames/quick_game/keyboards/word_field.dart'
 /// use for any usual field
 class TextFieldWithKeyboard extends StatefulWidget {
   const TextFieldWithKeyboard({
-    required this.focusNode,
     required this.controller,
+    this.autofocus = false,
+    this.focusNode,
+    this.decoration,
     super.key,
   });
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
+  final bool autofocus;
   final TextEditingController controller;
+  final InputDecoration? decoration;
   @override
   State<TextFieldWithKeyboard> createState() => _TextFieldWithKeyboardState();
 }
@@ -94,6 +98,7 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
                 ),
               UiEditableText(
                 items: _items,
+                decoration: widget.decoration,
                 caretIndex: _caretIndex,
                 onCaretIndexChanged: _onCaretIndexChanged,
                 onItemsChanged: _onItemsChanged,
@@ -131,88 +136,117 @@ class UiEditableText extends StatelessWidget {
     required this.onItemsChanged,
     required this.onCaretIndexChanged,
     required this.caretIndex,
+    required this.decoration,
     super.key,
   });
+  final InputDecoration? decoration;
   final List<LetterModel> items;
   final ValueChanged<List<LetterModel>> onItemsChanged;
   final int caretIndex;
   final ValueChanged<int> onCaretIndexChanged;
 
   @override
-  Widget build(final BuildContext context) => SizedBox(
-        height: 36,
-        child: ReorderableListView.builder(
-          scrollDirection: Axis.horizontal,
-          buildDefaultDragHandles: false,
-          itemCount: items.length + 1,
-          proxyDecorator: (final child, final index, final animation) => child,
-          padding: EdgeInsets.zero,
-          itemBuilder: (final context, final index) {
-            int i = index;
-            if (i == caretIndex) {
-              return ReorderableDragStartListener(
-                key: const ValueKey('divider'),
-                index: caretIndex,
-                child: const InputCaret(),
-              );
-            } else if (i > caretIndex) {
-              i--;
-            }
-            final letter = items[i];
-            return ReorderableLetterCard(
-              key: ValueKey(letter),
-              letter: letter,
-              index: index,
-            );
-          },
-          // ignore: prefer_final_parameters
-          onReorder: (oldIndex, newIndex) {
-            if (oldIndex < newIndex) {
-              // removing the item at oldIndex will shorten the list
-              // by 1.
-              newIndex -= 1;
-            }
-            if (oldIndex == caretIndex) {
-              onCaretIndexChanged(newIndex);
-            } else {
-              if (oldIndex < caretIndex) {
-                if (newIndex < caretIndex) {
-                  /// old - new - c
-                  // noop
-                } else if (newIndex == caretIndex) {
-                  newIndex--;
-                  onCaretIndexChanged(caretIndex - 1);
-                } else {
-                  /// old - c - new
-                  newIndex--;
-                  onCaretIndexChanged(caretIndex - 1);
-                }
-              } else if (oldIndex > caretIndex) {
-                if (newIndex > caretIndex) {
-                  /// c - old - new
-                  // noop
-                  newIndex--;
-                  oldIndex--;
-                } else if (newIndex == caretIndex) {
-                  /// new <-> c - old
-
-                  oldIndex--;
-                  onCaretIndexChanged(caretIndex + 1);
-                } else {
-                  oldIndex--;
-
-                  /// new - c - old
-                  onCaretIndexChanged(caretIndex + 1);
-                }
+  Widget build(final BuildContext context) {
+    final hintText = decoration?.hintText ?? '';
+    return SizedBox(
+      height: 36,
+      child: Stack(
+        children: [
+          if (hintText.isNotEmpty && items.isEmpty)
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: 12),
+                  child: Text(
+                    hintText,
+                    style: TextStyle(
+                      color: Theme.of(context)
+                          .colorScheme
+                          .secondary
+                          .withOpacity(0.4),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ReorderableListView.builder(
+            scrollDirection: Axis.horizontal,
+            buildDefaultDragHandles: false,
+            itemCount: items.length + 1,
+            proxyDecorator: (final child, final index, final animation) =>
+                child,
+            padding: EdgeInsets.zero,
+            itemBuilder: (final context, final index) {
+              int i = index;
+              if (i == caretIndex) {
+                return ReorderableDragStartListener(
+                  key: const ValueKey('divider'),
+                  index: caretIndex,
+                  child: const InputCaret(),
+                );
+              } else if (i > caretIndex) {
+                i--;
               }
+              final letter = items[i];
+              return ReorderableLetterCard(
+                key: ValueKey(letter),
+                letter: letter,
+                index: index,
+              );
+            },
+            // ignore: prefer_final_parameters
+            onReorder: (oldIndex, newIndex) {
+              if (oldIndex < newIndex) {
+                // removing the item at oldIndex will shorten the list
+                // by 1.
+                newIndex -= 1;
+              }
+              if (oldIndex == caretIndex) {
+                onCaretIndexChanged(newIndex);
+              } else {
+                if (oldIndex < caretIndex) {
+                  if (newIndex < caretIndex) {
+                    /// old - new - c
+                    // noop
+                  } else if (newIndex == caretIndex) {
+                    newIndex--;
+                    onCaretIndexChanged(caretIndex - 1);
+                  } else {
+                    /// old - c - new
+                    newIndex--;
+                    onCaretIndexChanged(caretIndex - 1);
+                  }
+                } else if (oldIndex > caretIndex) {
+                  if (newIndex > caretIndex) {
+                    /// c - old - new
+                    // noop
+                    newIndex--;
+                    oldIndex--;
+                  } else if (newIndex == caretIndex) {
+                    /// new <-> c - old
 
-              final updatedItems = [...items];
-              final element = updatedItems.removeAt(oldIndex);
-              updatedItems.insert(newIndex, element);
+                    oldIndex--;
+                    onCaretIndexChanged(caretIndex + 1);
+                  } else {
+                    oldIndex--;
 
-              onItemsChanged(updatedItems);
-            }
-          },
-        ),
-      );
+                    /// new - c - old
+                    onCaretIndexChanged(caretIndex + 1);
+                  }
+                }
+
+                final updatedItems = [...items];
+                final element = updatedItems.removeAt(oldIndex);
+                updatedItems.insert(newIndex, element);
+
+                onItemsChanged(updatedItems);
+              }
+            },
+          ),
+        ],
+      ),
+    );
+  }
 }

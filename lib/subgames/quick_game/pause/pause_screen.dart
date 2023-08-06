@@ -134,6 +134,10 @@ class TestTextField extends HookWidget {
     return TextFieldWithKeyboard(
       focusNode: focusNode,
       controller: controller,
+      autofocus: true,
+      decoration: InputDecoration.collapsed(
+        hintText: S.of(context).username,
+      ),
     );
   }
 }
