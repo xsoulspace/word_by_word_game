@@ -106,7 +106,7 @@ class PauseScreen extends HookWidget {
                   child: CharacterAvatarButton.useDefault(),
                 ),
               Positioned.fill(child: Container().blurred()),
-              const Positioned(child: Center(child: MobileKeyboard())),
+              const Positioned(child: Center(child: GameplayKeyboard())),
             ],
           ),
         ),
