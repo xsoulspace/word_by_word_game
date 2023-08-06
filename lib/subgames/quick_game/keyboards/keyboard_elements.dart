@@ -144,12 +144,14 @@ class KeyboardLetters extends StatelessWidget {
               onChanged: onLanguageChanged,
               value: language,
             ),
+            const Spacer(),
             for (final e in rows[2])
               LetterCard(
                 lettersCount: lettersCount,
                 letter: LetterModel(title: e),
                 onPressed: () => onLetterPressed(e),
               ),
+            const Spacer(),
             DeleteLetterButton(
               onDelete: onDelete,
               lettersCount: lettersCount,
