@@ -81,7 +81,8 @@ class LevelsHudScreenOverlay extends HookWidget {
                               context.read<DebugCubit>().tryOpenDebugPane();
                             },
                             child: Text(
-                              '${S.of(context).power}: ${powers.power ~/ 10} ',
+                              // ignore: lines_longer_than_80_chars
+                              '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
                             ),
                           ),
                         ],

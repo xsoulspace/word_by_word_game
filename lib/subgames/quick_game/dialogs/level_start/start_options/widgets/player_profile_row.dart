@@ -139,7 +139,7 @@ class UiPlayerProfileAvatar extends StatelessWidget {
       width: dimension,
       height: dimension,
       alignment: Alignment.center,
-      child: Text('${score.toInt()}'),
+      child: Text('${score ~/ kScoreFactor}'),
     );
   }
 }

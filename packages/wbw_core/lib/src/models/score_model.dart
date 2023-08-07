@@ -1,5 +1,7 @@
 part of 'models.dart';
 
+const kScoreFactor = 10;
+
 @immutable
 @freezed
 class ScoreModel with _$ScoreModel {
