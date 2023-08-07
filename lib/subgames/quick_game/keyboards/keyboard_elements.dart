@@ -196,12 +196,10 @@ class KeyboardLetters extends StatelessWidget {
           const Gap(5),
           Row(
             children: [
-              Flexible(
-                child: LanguageSwitcher(
-                  lettersCount: lettersCount,
-                  onChanged: onLanguageChanged,
-                  value: language,
-                ),
+              LanguageSwitcher(
+                lettersCount: lettersCount,
+                onChanged: onLanguageChanged,
+                value: language,
               ),
               Expanded(
                 flex: lettersCount,
@@ -224,15 +222,10 @@ class KeyboardLetters extends StatelessWidget {
                   ],
                 ),
               ),
-              Flexible(
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(minWidth: 12),
-                  child: DeleteLetterButton(
-                    onDelete: onDelete,
-                    lettersCount: lettersCount,
-                  ),
-                ),
-              )
+              DeleteLetterButton(
+                onDelete: onDelete,
+                lettersCount: lettersCount,
+              ),
             ],
           ),
         ],
@@ -337,6 +330,7 @@ class _DeleteLetterButtonState extends State<DeleteLetterButton> {
         },
         child: OutlinedKeyboardElement(
           onPressed: widget.onDelete,
+          padding: const EdgeInsets.symmetric(vertical: 8),
           lettersCount: widget.lettersCount,
           title: const Icon(CupertinoIcons.arrow_left_square_fill),
         ),
@@ -348,16 +342,19 @@ class OutlinedKeyboardElement extends StatelessWidget {
     required this.title,
     required this.lettersCount,
     required this.onPressed,
+    this.padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
     super.key,
   });
   final VoidCallback? onPressed;
   final Widget title;
   final int lettersCount;
+  final EdgeInsets padding;
   @override
   Widget build(final BuildContext context) => Padding(
         padding: const EdgeInsets.symmetric(horizontal: 2),
         child: UiElevatedButton(
           onPressed: onPressed,
+          padding: padding,
           child: title,
         ),
       );
@@ -421,10 +418,13 @@ class UiElevatedButton extends StatelessWidget {
   const UiElevatedButton({
     required this.child,
     required this.onPressed,
+    this.padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
     super.key,
   });
   final Widget child;
   final VoidCallback? onPressed;
+  final EdgeInsets padding;
+
   @override
   Widget build(final BuildContext context) => Material(
         type: MaterialType.button,
@@ -439,7 +439,7 @@ class UiElevatedButton extends StatelessWidget {
           onTap: onPressed,
           child: Container(
             alignment: Alignment.center,
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+            padding: padding,
             child: IconTheme(
               data: IconThemeData(
                 color: Theme.of(context).colorScheme.primary,

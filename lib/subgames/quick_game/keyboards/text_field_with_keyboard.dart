@@ -110,7 +110,7 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
       onCaretIndexChanged: _onCaretIndexChanged,
       onCharacter: _onLetterPressed,
       onDelete: _onDelete,
-      child: ConstrainedBox(
+      child: Container(
         constraints: const BoxConstraints(
           maxWidth: kKeyboardWidth,
         ),
@@ -125,12 +125,7 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
               onCaretIndexChanged: _onCaretIndexChanged,
               onItemsChanged: _onItemsChanged,
             ),
-            AnimatedBuilder(
-              animation: focusNode,
-              builder: (final context, final data) => Divider(
-                color: Theme.of(context).colorScheme.onPrimary,
-              ),
-            ),
+            Divider(color: Theme.of(context).colorScheme.onPrimary),
             const Gap(16),
             const UiKeyboard(),
           ],
@@ -207,50 +202,23 @@ class UiEditableText extends StatelessWidget {
                 index: index,
               );
             },
-            // ignore: prefer_final_parameters
-            onReorder: (oldIndex, newIndex) {
-              if (oldIndex < newIndex) {
-                // removing the item at oldIndex will shorten the list
-                // by 1.
-                newIndex -= 1;
-              }
+            onReorder: (final eOldIndex, final eNewIndex) {
+              final (oldIndex: oldIndex, newIndex: newIndex) =
+                  KeyboardReoderer.prepare(eNewIndex, eOldIndex);
+
               if (oldIndex == caretIndex) {
                 onCaretIndexChanged(newIndex);
               } else {
-                if (oldIndex < caretIndex) {
-                  if (newIndex < caretIndex) {
-                    /// old - new - c
-                    // noop
-                  } else if (newIndex == caretIndex) {
-                    newIndex--;
-                    onCaretIndexChanged(caretIndex - 1);
-                  } else {
-                    /// old - c - new
-                    newIndex--;
-                    onCaretIndexChanged(caretIndex - 1);
-                  }
-                } else if (oldIndex > caretIndex) {
-                  if (newIndex > caretIndex) {
-                    /// c - old - new
-                    // noop
-                    newIndex--;
-                    oldIndex--;
-                  } else if (newIndex == caretIndex) {
-                    /// new <-> c - old
-
-                    oldIndex--;
-                    onCaretIndexChanged(caretIndex + 1);
-                  } else {
-                    oldIndex--;
-
-                    /// new - c - old
-                    onCaretIndexChanged(caretIndex + 1);
-                  }
-                }
+                final values = KeyboardReoderer.onReorder(
+                  eOldIndex: oldIndex,
+                  eNewIndex: newIndex,
+                  eExceptionIndex: caretIndex,
+                );
+                onCaretIndexChanged(values.exceptionIndex);
 
                 final updatedItems = [...items];
-                final element = updatedItems.removeAt(oldIndex);
-                updatedItems.insert(newIndex, element);
+                final element = updatedItems.removeAt(values.oldIndex);
+                updatedItems.insert(values.newIndex, element);
 
                 onItemsChanged(updatedItems);
               }

@@ -1,20 +1,96 @@
+import 'dart:async';
+import 'dart:collection';
+
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
+class WordFieldController extends ChangeNotifier {
+  final controller = TextEditingController();
+  final _inactiveCharacters = <LetterModel>[];
+  UnmodifiableListView<LetterModel> get inactiveCharacters =>
+      UnmodifiableListView(_inactiveCharacters);
+  set inactiveCharacters(final List<LetterModel> characters) {
+    _inactiveCharacters
+      ..clear()
+      ..addAll(characters);
+    notifyListeners();
+  }
+
+  final List<LetterModel> _items = [];
+  UnmodifiableListView<LetterModel> get items => UnmodifiableListView(_items);
+  set items(final List<LetterModel> values) {
+    _items
+      ..clear()
+      ..addAll(values);
+    join();
+    notifyListeners();
+  }
+
+  String join() {
+    final text = _items.map((final e) => e.title).join();
+    controller.text = text;
+    notifyListeners();
+    return text;
+  }
+
+  List<LetterModel> split({
+    required final List<int> inactiveIndexes,
+    required final String text,
+  }) {
+    _items.clear();
+    _inactiveCharacters.clear();
+    controller.text = text;
+    for (var i = 0; i < controller.text.length; i++) {
+      final letter = LetterModel(title: text[i]);
+      if (inactiveIndexes.contains(i)) {
+        _inactiveCharacters.add(letter);
+      }
+
+      _items.add(letter);
+    }
+    notifyListeners();
+    return _items;
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+}
+
 /// use for word field only
 class WordField extends StatefulWidget {
-  const WordField({super.key});
+  const WordField({
+    required this.controller,
+    required this.focusNode,
+    super.key,
+  });
+  final WordFieldController controller;
+  final FocusNode focusNode;
   @override
   State<WordField> createState() => _WordFieldState();
 }
 
 class _WordFieldState extends State<WordField> {
-  List<LetterModel> _items = [];
+  UnmodifiableListView<LetterModel> get _inactiveCharacters =>
+      UnmodifiableListView(widget.controller.inactiveCharacters);
+  set _inactiveCharacters(final List<LetterModel> values) {
+    widget.controller.inactiveCharacters = values;
+    setState(() {});
+  }
+
+  StreamSubscription<UiKeyboardEvent>? _keyboardSubscription;
+  UnmodifiableListView<LetterModel> get _items => widget.controller.items;
+  set _items(final List<LetterModel> values) {
+    widget.controller.items = values;
+  }
+
   int _caretIndex = 0;
-  List<int> _inactiveLettersIndexes = [3, 4, 5];
   void _onCaretIndexChanged(final int index) {
     if (index > _items.length) return;
     if (index < 0) return;
@@ -23,7 +99,9 @@ class _WordFieldState extends State<WordField> {
   }
 
   void _onLetterPressed(final String letter) {
-    _items.insert(_caretIndex, LetterModel(title: letter));
+    _onItemsChanged(
+      [..._items]..insert(_caretIndex, LetterModel(title: letter)),
+    );
     _caretIndex++;
     setState(() {});
   }
@@ -46,46 +124,63 @@ class _WordFieldState extends State<WordField> {
     setState(() {});
   }
 
-  final focusNode = FocusNode();
+  void _onControllerChange() => setState(() {});
+
+  @override
+  void initState() {
+    super.initState();
+    widget.controller.addListener(_onControllerChange);
+    _keyboardSubscription = context
+        .read<UiKeyboardController>()
+        .keyEventsStream
+        .listen((final event) {
+      switch (event) {
+        case UiKeyboardEventAddCharacter(:final character):
+          _onLetterPressed(character);
+        case UiKeyboardEventRemoveCharacter():
+          _onDelete();
+      }
+    });
+  }
+
   @override
   void dispose() {
-    focusNode.dispose();
+    widget.controller.removeListener(_onControllerChange);
+    unawaited(_keyboardSubscription?.cancel());
+
     super.dispose();
   }
 
   @override
   Widget build(final BuildContext context) => InputKeyboardListener(
-        focusNode: focusNode,
+        focusNode: widget.focusNode,
         autofocus: false,
         caretIndex: _caretIndex,
         onCaretIndexChanged: _onCaretIndexChanged,
         onCharacter: _onLetterPressed,
         onDelete: _onDelete,
         child: Container(
-          width: kKeyboardWidth,
-          height: 200,
-          decoration: const BoxDecoration(),
+          constraints: const BoxConstraints(
+            maxWidth: kKeyboardWidth,
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               if (kDebugMode)
                 AnimatedBuilder(
-                  animation: focusNode,
+                  animation: widget.focusNode,
                   builder: (final context, final data) =>
-                      Text('is focused: ${focusNode.hasFocus}'),
+                      Text('is focused: ${widget.focusNode.hasFocus}'),
                 ),
               GameplayEditableText(
-                inactiveIndexes: _inactiveLettersIndexes,
                 items: _items,
+                inactiveCharacters: _inactiveCharacters,
                 caretIndex: _caretIndex,
-                onChangeInactiveIndexes: (final indexes) {
-                  _inactiveLettersIndexes = indexes;
-                  setState(() {});
-                },
                 onCaretIndexChanged: _onCaretIndexChanged,
                 onItemsChanged: _onItemsChanged,
               ),
-              const Gap(12),
+              const Gap(16),
+              const UiKeyboard(),
             ],
           ),
         ),
@@ -161,19 +256,20 @@ class GameplayEditableText extends StatelessWidget {
   const GameplayEditableText({
     required this.items,
     required this.onItemsChanged,
+    required this.inactiveCharacters,
     required this.onCaretIndexChanged,
     required this.caretIndex,
-    required this.inactiveIndexes,
-    required this.onChangeInactiveIndexes,
     super.key,
   });
   final List<LetterModel> items;
   final ValueChanged<List<LetterModel>> onItemsChanged;
   final int caretIndex;
+  final List<LetterModel> inactiveCharacters;
   final ValueChanged<int> onCaretIndexChanged;
-  final List<int> inactiveIndexes;
-  final ValueChanged<List<int>> onChangeInactiveIndexes;
 
+  // decoration:    InputDecoration.collapsed(
+  //   hintText: S.of(context).username,
+  // )
   @override
   Widget build(final BuildContext context) => Container(
         alignment: Alignment.center,
@@ -197,7 +293,7 @@ class GameplayEditableText extends StatelessWidget {
               i--;
             }
             final letter = items[i];
-            if (inactiveIndexes.contains(i)) {
+            if (inactiveCharacters.contains(letter)) {
               return InputInactiveLetterCard(
                 key: ValueKey(letter),
                 letter: letter,
@@ -209,55 +305,92 @@ class GameplayEditableText extends StatelessWidget {
               index: index,
             );
           },
-          // TODO(antmalofeev): add inactive indexes handling
-          // ignore: prefer_final_parameters
-          onReorder: (oldIndex, newIndex) {
-            if (oldIndex < newIndex) {
-              // removing the item at oldIndex will shorten the list
-              // by 1.
-              newIndex -= 1;
-            }
+          onReorder: (final eOldIndex, final eNewIndex) {
+            var (oldIndex: oldIndex, newIndex: newIndex) =
+                KeyboardReoderer.prepare(eNewIndex, eOldIndex);
+
             if (oldIndex == caretIndex) {
               onCaretIndexChanged(newIndex);
             } else {
-              if (oldIndex < caretIndex) {
-                if (newIndex < caretIndex) {
-                  /// old - new - c
-                  // noop
-                } else if (newIndex == caretIndex) {
-                  newIndex--;
-                  onCaretIndexChanged(caretIndex - 1);
-                } else {
-                  /// old - c - new
-                  newIndex--;
-                  onCaretIndexChanged(caretIndex - 1);
-                }
-              } else if (oldIndex > caretIndex) {
-                if (newIndex > caretIndex) {
-                  /// c - old - new
-                  // noop
-                  newIndex--;
-                  oldIndex--;
-                } else if (newIndex == caretIndex) {
-                  /// new <-> c - old
-
-                  oldIndex--;
-                  onCaretIndexChanged(caretIndex + 1);
-                } else {
-                  oldIndex--;
-
-                  /// new - c - old
-                  onCaretIndexChanged(caretIndex + 1);
-                }
-              }
+              final values = KeyboardReoderer.onReorder(
+                eOldIndex: oldIndex,
+                eNewIndex: newIndex,
+                eExceptionIndex: caretIndex,
+              );
+              oldIndex = values.oldIndex;
+              newIndex = values.newIndex;
+              onCaretIndexChanged(values.exceptionIndex);
 
               final updatedItems = [...items];
-              final element = updatedItems.removeAt(oldIndex);
-              updatedItems.insert(newIndex, element);
+              final element = updatedItems.removeAt(values.oldIndex);
+              updatedItems.insert(values.newIndex, element);
 
               onItemsChanged(updatedItems);
             }
           },
         ),
       );
+}
+
+class KeyboardReoderer {
+  KeyboardReoderer._();
+  static ({int oldIndex, int newIndex}) prepare(
+    final int iNewIndex,
+    final int oldIndex,
+  ) {
+    int newIndex = iNewIndex;
+    if (oldIndex < newIndex) {
+      // removing the item at oldIndex will shorten the list
+      // by 1.
+      newIndex -= 1;
+    }
+    return (oldIndex: oldIndex, newIndex: newIndex);
+  }
+
+  static ({int oldIndex, int newIndex, int exceptionIndex}) onReorder({
+    required final int eOldIndex,
+    required final int eNewIndex,
+    required final int eExceptionIndex,
+  }) {
+    int oldIndex = eOldIndex;
+    int newIndex = eNewIndex;
+    int exceptionIndex = eExceptionIndex;
+
+    if (oldIndex < exceptionIndex) {
+      if (newIndex < exceptionIndex) {
+        /// old - new - c
+        // noop
+      } else if (newIndex == exceptionIndex) {
+        newIndex--;
+        exceptionIndex--;
+      } else {
+        /// old - c - new
+        newIndex--;
+        exceptionIndex--;
+      }
+    } else if (oldIndex > exceptionIndex) {
+      if (newIndex > exceptionIndex) {
+        /// c - old - new
+        // noop
+        newIndex--;
+        oldIndex--;
+      } else if (newIndex == exceptionIndex) {
+        /// new <-> c - old
+
+        oldIndex--;
+        exceptionIndex++;
+      } else {
+        oldIndex--;
+
+        /// new - c - old
+        exceptionIndex++;
+      }
+    }
+
+    return (
+      oldIndex: oldIndex,
+      newIndex: newIndex,
+      exceptionIndex: exceptionIndex,
+    );
+  }
 }
