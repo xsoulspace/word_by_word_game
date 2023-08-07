@@ -142,8 +142,11 @@ class KeyboardLetters extends StatelessWidget {
     final firstRow = rows.first;
     final lettersCount = firstRow.length;
     const maxLetterWidth = 36.0;
+    final size = MediaQuery.sizeOf(context);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: WidthFormFactor.checkIsXs(size)
+          ? EdgeInsets.zero
+          : const EdgeInsets.symmetric(horizontal: 8),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -222,9 +225,12 @@ class KeyboardLetters extends StatelessWidget {
                 ),
               ),
               Flexible(
-                child: DeleteLetterButton(
-                  onDelete: onDelete,
-                  lettersCount: lettersCount,
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(minWidth: 12),
+                  child: DeleteLetterButton(
+                    onDelete: onDelete,
+                    lettersCount: lettersCount,
+                  ),
                 ),
               )
             ],
@@ -337,24 +343,6 @@ class _DeleteLetterButtonState extends State<DeleteLetterButton> {
       );
 }
 
-class LetterCard extends StatelessWidget {
-  const LetterCard({
-    required this.letter,
-    this.lettersCount = 10,
-    this.onPressed,
-    super.key,
-  });
-  final VoidCallback? onPressed;
-  final LetterModel letter;
-  final int lettersCount;
-  @override
-  Widget build(final BuildContext context) => FilledKeyboardElement(
-        lettersCount: lettersCount,
-        title: Text(letter.title),
-        onPressed: onPressed,
-      );
-}
-
 class OutlinedKeyboardElement extends StatelessWidget {
   const OutlinedKeyboardElement({
     required this.title,
@@ -375,6 +363,24 @@ class OutlinedKeyboardElement extends StatelessWidget {
       );
 }
 
+class LetterCard extends StatelessWidget {
+  const LetterCard({
+    required this.letter,
+    this.lettersCount = 10,
+    this.onPressed,
+    super.key,
+  });
+  final VoidCallback? onPressed;
+  final LetterModel letter;
+  final int lettersCount;
+  @override
+  Widget build(final BuildContext context) => FilledKeyboardElement(
+        lettersCount: lettersCount,
+        title: Text(letter.title),
+        onPressed: onPressed,
+      );
+}
+
 class FilledKeyboardElement extends StatelessWidget {
   const FilledKeyboardElement({
     required this.title,
@@ -386,13 +392,29 @@ class FilledKeyboardElement extends StatelessWidget {
   final Widget title;
   final int lettersCount;
   @override
-  Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        child: UiFilledButton(
-          onPressed: onPressed,
-          child: title,
-        ),
-      );
+  Widget build(final BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    final (:margin, :padding) = () {
+      final double margin;
+      final double padding;
+      if (WidthFormFactor.checkIsXs(size)) {
+        margin = 2.0;
+        padding = 1.0;
+      } else {
+        margin = 4.0;
+        padding = 4.0;
+      }
+      return (margin: margin, padding: padding);
+    }();
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: margin),
+      child: UiFilledButton(
+        onPressed: onPressed,
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: padding),
+        child: title,
+      ),
+    );
+  }
 }
 
 class UiElevatedButton extends StatelessWidget {
@@ -438,28 +460,27 @@ class UiFilledButton extends StatelessWidget {
   const UiFilledButton({
     required this.child,
     required this.onPressed,
+    this.padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
     super.key,
   });
   final Widget child;
+  final EdgeInsets padding;
   final VoidCallback? onPressed;
   @override
-  Widget build(final BuildContext context) => Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        child: Material(
-          type: MaterialType.button,
-          elevation: 1,
-          color: Theme.of(context).colorScheme.secondaryContainer,
-          shape: const RoundedRectangleBorder(
-            borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
-          ),
-          child: InkWell(
-            borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
-            onTap: onPressed,
-            child: Container(
-              alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-              child: child,
-            ),
+  Widget build(final BuildContext context) => Material(
+        type: MaterialType.button,
+        elevation: 1,
+        color: Theme.of(context).colorScheme.secondaryContainer,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
+        ),
+        child: InkWell(
+          borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+          onTap: onPressed,
+          child: Container(
+            alignment: Alignment.center,
+            padding: padding,
+            child: child,
           ),
         ),
       );

@@ -54,7 +54,7 @@ class TutorialFrame extends StatelessWidget {
             child: child,
           ),
         );
-      case WidthFormFactor.mobile:
+      case WidthFormFactor.mobile || WidthFormFactor.xs:
         return PortalTarget(
           visible: highlighted,
           portalFollower: const MobileAnchoredTutorialDialog(),

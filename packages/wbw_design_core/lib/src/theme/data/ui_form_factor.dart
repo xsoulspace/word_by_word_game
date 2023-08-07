@@ -61,45 +61,23 @@ class UiPersistentFormFactors with _$UiPersistentFormFactors {
 }
 
 enum WidthFormFactor {
+  xs(max: 375),
   mobile(
-    isLeftPanelAllowed: true,
-    isCenterPanelAllowed: false,
-    isRightPanelAllowed: false,
     max: 700,
   ),
   tablet(
-    isLeftPanelAllowed: true,
-    isCenterPanelAllowed: true,
-    isRightPanelAllowed: false,
     max: 1000,
   ),
   desktop(
-    isLeftPanelAllowed: true,
-    isCenterPanelAllowed: true,
-    isRightPanelAllowed: true,
     max: double.infinity,
   );
 
   const WidthFormFactor({
-    required this.isLeftPanelAllowed,
-    required this.isCenterPanelAllowed,
-    required this.isRightPanelAllowed,
     required this.max,
   });
-  final bool isLeftPanelAllowed;
-  final bool isCenterPanelAllowed;
-  final bool isRightPanelAllowed;
   final double max;
+  static bool checkIsXs(final Size size) => size.width <= xs.max;
 }
-
-@Deprecated('should be dynamic and saved in user preferences')
-const maxFullscreenPageWidth = 500.0;
-@Deprecated('should be dynamic and saved in user preferences')
-const minFullscreenPageWidth = 450.0;
-@Deprecated('use WidthFormFactor')
-const maxSmallWidth = 700.0;
-@Deprecated('use WidthFormFactor')
-const maxMediumWidth = 1000.0;
 
 enum DeviceWindowFormFactor {
   android(

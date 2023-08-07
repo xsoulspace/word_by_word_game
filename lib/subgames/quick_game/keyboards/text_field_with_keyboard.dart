@@ -1,7 +1,5 @@
 import 'dart:async';
-import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -105,8 +103,6 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
   @override
   Widget build(final BuildContext context) {
     const inputHeight = 30.0;
-    final width =
-        math.max(MediaQuery.sizeOf(context).width * 0.9, kKeyboardWidth);
     return InputKeyboardListener(
       focusNode: focusNode,
       caretIndex: _caretIndex,
@@ -115,8 +111,8 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
       onCharacter: _onLetterPressed,
       onDelete: _onDelete,
       child: ConstrainedBox(
-        constraints: BoxConstraints(
-          maxWidth: width,
+        constraints: const BoxConstraints(
+          maxWidth: kKeyboardWidth,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -129,11 +125,12 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
               onCaretIndexChanged: _onCaretIndexChanged,
               onItemsChanged: _onItemsChanged,
             ),
-            if (kDebugMode)
-              AnimatedBuilder(
-                animation: focusNode,
-                builder: (final context, final data) => const Divider(),
+            AnimatedBuilder(
+              animation: focusNode,
+              builder: (final context, final data) => Divider(
+                color: Theme.of(context).colorScheme.onPrimary,
               ),
+            ),
             const Gap(16),
             const UiKeyboard(),
           ],

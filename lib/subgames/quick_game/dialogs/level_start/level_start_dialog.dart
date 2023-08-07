@@ -80,7 +80,7 @@ class _DialogScreen extends HookWidget {
   final CanvasDataModel level;
   @override
   Widget build(final BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.sizeOf(context);
     final widgetUiState = context.read<LevelStartDialogUiState>();
     final uiState = context.read<LevelStartDialogUiState>();
     final isKeyboardVisibleNotifier = useKeyboardVisibility();
@@ -92,6 +92,9 @@ class _DialogScreen extends HookWidget {
             width: math.min(400, screenSize.width),
             height: math.max(400, screenSize.height * 0.45),
             child: Card(
+              margin: WidthFormFactor.checkIsXs(screenSize)
+                  ? EdgeInsets.zero
+                  : null,
               child: ValueListenableBuilder(
                 valueListenable: widgetUiState.currentViewNotifier,
                 builder: (final context, final currentView, final child) {
