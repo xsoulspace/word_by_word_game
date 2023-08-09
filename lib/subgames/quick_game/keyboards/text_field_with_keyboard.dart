@@ -34,7 +34,10 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
 
   late List<LetterModel> __items = _getControllerChracters();
   int _caretIndex = 0;
-  void _onCaretIndexChanged(final int index) {
+  void _onCaretIndexChanged(
+    final int index, {
+    final KeyboardDirection direction = KeyboardDirection.right,
+  }) {
     if (index > _items.length) return;
     if (index < 0) return;
     _caretIndex = index;

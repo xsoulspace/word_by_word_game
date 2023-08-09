@@ -91,10 +91,34 @@ class _WordFieldState extends State<WordField> {
   }
 
   int _caretIndex = 0;
-  void _onCaretIndexChanged(final int index) {
-    if (index > _items.length) return;
-    if (index < 0) return;
-    _caretIndex = index;
+  void _onCaretIndexChanged(
+    final int eNewIndex, {
+    final KeyboardDirection direction = KeyboardDirection.right,
+  }) {
+    int newIndex = eNewIndex;
+    if (newIndex > _items.length) return;
+    if (newIndex < 0) return;
+    int? leftIndex;
+    int? rightIndex;
+    for (final ($1, $2) in _items.indexed) {
+      final index = newIndex <= $1 ? $1 + 1 : $1;
+      if (_inactiveCharacters.contains($2)) {
+        leftIndex ??= index;
+        rightIndex ??= index;
+        if (index > rightIndex) {
+          rightIndex = index;
+        }
+      }
+    }
+    if (leftIndex != null && rightIndex != null) {
+      if (newIndex >= leftIndex && newIndex <= rightIndex) {
+        newIndex = switch (direction) {
+          KeyboardDirection.left => leftIndex,
+          KeyboardDirection.right => rightIndex,
+        };
+      }
+    }
+    _caretIndex = newIndex;
     setState(() {});
   }
 

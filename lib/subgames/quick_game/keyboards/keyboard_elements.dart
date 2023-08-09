@@ -42,6 +42,8 @@ class UiKeyboardController extends Cubit<UiKeyboardControllerState> {
   }
 }
 
+enum KeyboardDirection { left, right }
+
 class InputKeyboardListener extends StatelessWidget {
   const InputKeyboardListener({
     required this.child,
@@ -57,7 +59,10 @@ class InputKeyboardListener extends StatelessWidget {
   final Widget child;
   final bool autofocus;
   final int caretIndex;
-  final ValueChanged<int> onCaretIndexChanged;
+  final void Function(
+    int, {
+    KeyboardDirection direction,
+  }) onCaretIndexChanged;
   final ValueSetter<String> onCharacter;
   final VoidCallback onDelete;
 
@@ -77,10 +82,16 @@ class InputKeyboardListener extends StatelessWidget {
 
           switch (event.logicalKey) {
             case LogicalKeyboardKey.arrowLeft:
-              onCaretIndexChanged(caretIndex - 1);
+              onCaretIndexChanged(
+                caretIndex - 1,
+                direction: KeyboardDirection.left,
+              );
               return KeyEventResult.handled;
             case LogicalKeyboardKey.arrowRight:
-              onCaretIndexChanged(caretIndex + 1);
+              onCaretIndexChanged(
+                caretIndex + 1,
+                direction: KeyboardDirection.right,
+              );
               return KeyEventResult.handled;
             case LogicalKeyboardKey.delete || LogicalKeyboardKey.backspace:
               onDelete();
