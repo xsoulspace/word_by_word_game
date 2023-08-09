@@ -232,12 +232,6 @@ class _WordFieldState extends State<WordField> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              if (kDebugMode)
-                AnimatedBuilder(
-                  animation: widget.focusNode,
-                  builder: (final context, final data) =>
-                      Text('is focused: ${widget.focusNode.hasFocus}'),
-                ),
               GameplayEditableText(
                 items: _items,
                 inactiveCharacters: _inactiveCharacters,
@@ -245,6 +239,15 @@ class _WordFieldState extends State<WordField> {
                 onCaretIndexChanged: _onCaretIndexChanged,
                 onItemsChanged: _onItemsChanged,
               ),
+              if (kDebugMode)
+                AnimatedBuilder(
+                  animation: widget.focusNode,
+                  builder: (final context, final data) => Divider(
+                    color: widget.focusNode.hasFocus
+                        ? Theme.of(context).colorScheme.tertiary
+                        : null,
+                  ),
+                ),
               const Gap(16),
               const UiKeyboard(),
             ],

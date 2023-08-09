@@ -15,18 +15,15 @@ class UILevelCenterBar extends StatelessWidget {
       (final s) => s.state.phaseType,
     );
     // final uiTheme = UiTheme.of(context);
-    final wordCompositionState = context.read<WordCompositionState>();
     final List<Widget> centerBarChildren;
     final Widget body;
     switch (phaseType) {
       case GamePhaseType.entryWord:
         body = const UiWordCompositionBar();
         centerBarChildren = [
-          UiRandomWordIconButton(
-            onPressed: wordCompositionState.onOpenSuggestionDialog,
-          ),
+          const UiRandomWordButton(),
           const SizedBox(width: 10),
-          UiPauseIconButton(onPressed: wordCompositionState.onPause),
+          const UiPauseButton(),
         ];
       case GamePhaseType.selectFuel:
         body = Column(
@@ -37,7 +34,7 @@ class UILevelCenterBar extends StatelessWidget {
           ],
         );
         centerBarChildren = [
-          UiPauseIconButton(onPressed: wordCompositionState.onPause),
+          const UiPauseButton(),
         ];
     }
 

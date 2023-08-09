@@ -51,7 +51,7 @@ class UIWarningNotification extends StatelessWidget {
                 switch (warning) {
                   case WordWarning.isNotCorrect:
                     return S.of(context).wordIsNotCorrect(
-                          context.read<LevelBloc>().state.currentWord.cleanWord,
+                          context.read<LevelBloc>().state.currentWord.fullWord,
                         );
                   case WordWarning.isWritten:
                     return S.of(context).wordAlreadyWritten;

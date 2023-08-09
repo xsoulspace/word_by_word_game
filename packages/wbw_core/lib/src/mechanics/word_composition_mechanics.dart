@@ -7,7 +7,7 @@ class WordCompositionMechanics {
     required final CurrentWordModel word,
     final int middlePartLimit = 3,
   }) {
-    final String fullWord = word.cleanWord;
+    final String fullWord = word.fullWord;
     final wordLength = fullWord.length;
     if (wordLength < middlePartLimit) {
       throw ArgumentError.value(

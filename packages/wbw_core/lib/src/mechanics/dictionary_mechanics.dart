@@ -14,7 +14,7 @@ class DictionaryMechanics {
     required final CurrentWordModel word,
     required final Map<FullWordString, PlayerProfileModelId> words,
   }) =>
-      words.containsKey(word.cleanWord);
+      words.containsKey(word.fullWord);
 
   String getWordSuggestion({
     required final String characters,
@@ -63,7 +63,7 @@ class DictionaryMechanics {
     required final CurrentWordModel word,
     required final LocalDictionaryModel localDictionary,
   }) {
-    final cleanWord = word.cleanWord;
+    final cleanWord = word.fullWord;
     final isEnglishWord = english_words.nouns.contains(cleanWord);
     final isRussianWord = russian_words.nouns.contains(cleanWord);
     if (isEnglishWord || isRussianWord) return true;

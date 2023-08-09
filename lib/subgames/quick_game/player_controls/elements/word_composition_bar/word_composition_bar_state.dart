@@ -74,18 +74,6 @@ class WordCompositionState extends LifeState {
     onRequestTextFocus();
   }
 
-  void onOpenSuggestionDialog() {
-    diDto.dialogController.showLevelWordSuggestionDialog();
-  }
-
-  Future<void> onPause() async {
-    diDto.mechanics.worldTime.pause();
-    await diDto.globalGameBloc
-        .onSaveCurrentLevel(const SaveCurrentLevelEvent());
-    final id = diDto.levelBloc.state.id;
-    diDto.appRouterController.toPause(id: id);
-  }
-
   void onAddWordToDictionary() {
     diDto.levelBloc
         .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());

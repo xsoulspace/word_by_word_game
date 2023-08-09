@@ -11,7 +11,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_actions_buttons.dart';
 
 export 'word_widgets/word_widgets.dart';
 
@@ -32,31 +31,17 @@ class UiWordCompositionBar extends HookWidget {
         state.onLatestWordChanged();
       },
       listenWhen: buildAndListenWhenCallback,
-      child: BlocBuilder<LevelBloc, LevelBlocState>(
-        buildWhen: buildAndListenWhenCallback,
-        builder: (final context, final levelState) => TutorialFrame(
-          highlightPosition: Alignment.topCenter,
-          uiKey: TutorialUiItem.enterWordPhaseFrame,
-          child: UICenterFrame(
-            leftButton: UiRandomWordIconButton(
-              onPressed: levelState.currentWord.cleanWord.isEmpty
-                  ? null
-                  : state.onOpenSuggestionDialog,
-            ),
-            rightButton: UiPauseIconButton(onPressed: state.onPause),
-            textFieldBuilder: (final context) => TutorialFrame(
-              highlightPosition: Alignment.topCenter,
-              uiKey: TutorialUiItem.enterWordRight,
-              child: WordField(
-                controller: state.wordController,
-                focusNode: state.wordFocusNode,
-              ),
-
-              // hintText: S.of(context).hintAddEnding,
-              // onSubmitted: state.onToSelectActionPhase,
-            ),
-          ),
+      child: TutorialFrame(
+        highlightPosition: Alignment.topCenter,
+        uiKey: TutorialUiItem.enterWordPhaseFrame,
+        child: WordField(
+          controller: state.wordController,
+          focusNode: state.wordFocusNode,
         ),
+
+        // uiKey: TutorialUiItem.enterWordRight,
+        // hintText: S.of(context).hintAddEnding,
+        // onSubmitted: state.onToSelectActionPhase,
       ),
     );
   }

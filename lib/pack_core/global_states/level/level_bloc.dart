@@ -85,7 +85,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
       word: word,
       words: state.words,
     );
-    if (word.cleanWord.isEmpty) {
+    if (word.fullWord.isEmpty) {
       return WordWarning.none;
     }
 
@@ -108,7 +108,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
     final liveState = state;
     unawaited(
       diDto.dictionaryBloc.onAddWord(
-        word: liveState.currentWord.cleanWord,
+        word: liveState.currentWord.fullWord,
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((final _) {
@@ -121,7 +121,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
   ) {
     final liveState = state;
     final effectiveCurrentWord = event.word ?? liveState.currentWord;
-    final newWord = effectiveCurrentWord.cleanWord;
+    final newWord = effectiveCurrentWord.fullWord;
     if (newWord.isEmpty) return;
 
     final wordWarning = _checkNewWord(effectiveCurrentWord);

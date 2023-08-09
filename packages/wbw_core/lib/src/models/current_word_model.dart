@@ -20,7 +20,6 @@ class CurrentWordModel with _$CurrentWordModel {
   factory CurrentWordModel.fromJson(final Map<String, dynamic> json) =>
       _$CurrentWordModelFromJson(json);
 
-  String get cleanWord => fullWord.toLowerCase().replaceAll(' ', '');
   @useResult
   String get middlePart => List.generate(inactiveIndexes.length, (final i) {
         final index = inactiveIndexes[i];

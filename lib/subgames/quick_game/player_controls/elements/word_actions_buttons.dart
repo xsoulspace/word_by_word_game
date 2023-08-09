@@ -3,6 +3,8 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class UiWordActions extends StatelessWidget {
@@ -130,16 +132,14 @@ class UIToEndTurnButton extends StatelessWidget {
       );
 }
 
-class UiRandomWordIconButton extends StatelessWidget {
-  const UiRandomWordIconButton({
-    required this.onPressed,
+class UiRandomWordButton extends StatelessWidget {
+  const UiRandomWordButton({
     super.key,
   });
-  final VoidCallback? onPressed;
   @override
   Widget build(final BuildContext context) {
-    final cleanWord = context.select<LevelBloc, String>(
-      (final bloc) => bloc.state.currentWord.cleanWord,
+    final isEnabled = context.select<LevelBloc, bool>(
+      (final value) => value.state.currentWord.fullWord.isNotEmpty,
     );
 
     return TutorialFrame(
@@ -147,19 +147,23 @@ class UiRandomWordIconButton extends StatelessWidget {
       uiKey: TutorialUiItem.suggestWordButton,
       child: UiIconButton(
         tooltip: S.of(context).suggestWordButtonTooltip,
-        onPressed: cleanWord.isEmpty ? null : onPressed,
+        onPressed: isEnabled
+            ? null
+            : () {
+                context
+                    .read<DialogController>()
+                    .showLevelWordSuggestionDialog();
+              },
         icon: UiIcons.idea,
       ),
     );
   }
 }
 
-class UiPauseIconButton extends StatelessWidget {
-  const UiPauseIconButton({
-    required this.onPressed,
+class UiPauseButton extends StatelessWidget {
+  const UiPauseButton({
     super.key,
   });
-  final VoidCallback onPressed;
 
   @override
   Widget build(final BuildContext context) => TutorialFrame(
@@ -169,7 +173,18 @@ class UiPauseIconButton extends StatelessWidget {
           tag: const ValueKey('UiPauseIconButton'),
           child: UiIconButton(
             tooltip: S.of(context).mainMenuButtonTooltip,
-            onPressed: onPressed,
+            onPressed: () async {
+              final globalGameBloc = context.read<GlobalGameBloc>();
+              final levelBloc = context.read<LevelBloc>();
+              final appRouterController = context.read<AppRouterController>();
+
+              context.read<MechanicsCollection>().worldTime.pause();
+
+              await globalGameBloc
+                  .onSaveCurrentLevel(const SaveCurrentLevelEvent());
+              final id = levelBloc.state.id;
+              appRouterController.toPause(id: id);
+            },
             icon: UiIcons.pause,
           ),
         ),
