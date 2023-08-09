@@ -95,9 +95,17 @@ class _WordFieldState extends State<WordField> {
     final int eNewIndex, {
     final KeyboardDirection direction = KeyboardDirection.right,
   }) {
-    int newIndex = eNewIndex;
+    final int newIndex = eNewIndex;
     if (newIndex > _items.length) return;
     if (newIndex < 0) return;
+    _caretIndex = _protectCaretIndex(direction: direction, newIndex: newIndex);
+    setState(() {});
+  }
+
+  int _protectCaretIndex({
+    required final int newIndex,
+    required final KeyboardDirection direction,
+  }) {
     int? leftIndex;
     int? rightIndex;
     for (final ($1, $2) in _items.indexed) {
@@ -112,14 +120,13 @@ class _WordFieldState extends State<WordField> {
     }
     if (leftIndex != null && rightIndex != null) {
       if (newIndex >= leftIndex && newIndex <= rightIndex) {
-        newIndex = switch (direction) {
+        return switch (direction) {
           KeyboardDirection.left => leftIndex,
           KeyboardDirection.right => rightIndex,
         };
       }
     }
-    _caretIndex = newIndex;
-    setState(() {});
+    return newIndex;
   }
 
   void _onLetterPressed(final String letter) {
@@ -132,12 +139,22 @@ class _WordFieldState extends State<WordField> {
 
   void _onDelete() {
     if (_items.isEmpty) return;
+    if (_items.length == _inactiveCharacters.length) return;
     if (_caretIndex == 0) {
       if (_items.isNotEmpty) {
         _onItemsChanged([..._items]..removeAt(0));
       }
     } else {
-      final newIndex = _caretIndex - 1;
+      final initialNewIndex = _caretIndex - 1;
+      int newIndex = _protectCaretIndex(
+        direction: initialNewIndex == 0
+            ? KeyboardDirection.right
+            : KeyboardDirection.left,
+        newIndex: initialNewIndex,
+      );
+      if (initialNewIndex > newIndex) {
+        newIndex = newIndex - 1;
+      }
       _onCaretIndexChanged(newIndex);
       _onItemsChanged([..._items]..removeAt(newIndex));
     }
@@ -298,6 +315,7 @@ class GameplayEditableText extends StatelessWidget {
   Widget build(final BuildContext context) => Container(
         alignment: Alignment.center,
         height: 36,
+        color: Colors.transparent,
         child: ReorderableListView.builder(
           scrollDirection: Axis.horizontal,
           buildDefaultDragHandles: false,
