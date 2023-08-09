@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -18,7 +17,6 @@ import 'package:word_by_word_game/pack_core/ads/ads.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
-import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
 import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 
@@ -105,69 +103,19 @@ class PauseScreen extends HookWidget {
                   top: 24,
                   child: CharacterAvatarButton.useDefault(),
                 ),
-              Positioned.fill(child: Container().blurred()),
-              const Positioned.fill(
-                child: Column(
-                  children: [
-                    TestWordField(),
-                    // TestTextField(),
-                  ],
-                ),
-              ),
+
+              /// left for test cases
+              // Positioned.fill(child: Container().blurred()),
+              // const Positioned.fill(
+              //   child: Column(
+              //     children: [
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),
       ),
-    );
-  }
-}
-
-class TestWordField extends StatefulWidget {
-  const TestWordField({super.key});
-
-  @override
-  State<TestWordField> createState() => _TestWordFieldState();
-}
-
-class _TestWordFieldState extends State<TestWordField> {
-  final _focusNode = FocusNode();
-  final _controller = WordFieldController();
-
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
-      _controller.split(
-        inactiveIndexes: [1, 2],
-        text: 'Ola!',
-      );
-    });
-  }
-
-  @override
-  void dispose() {
-    _focusNode.dispose();
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(final BuildContext context) => WordField(
-        controller: _controller,
-        focusNode: _focusNode,
-      );
-}
-
-class TestTextField extends HookWidget {
-  const TestTextField({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    final focusNode = useFocusNode();
-    final controller = useTextEditingController(text: 'Ola!');
-    return TextFieldWithKeyboard(
-      focusNode: focusNode,
-      controller: controller,
     );
   }
 }

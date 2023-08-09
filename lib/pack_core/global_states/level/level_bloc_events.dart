@@ -22,7 +22,4 @@ class LevelBlocEvent with _$LevelBlocEvent {
   }) = LevelBlocEventSelectActionMultiplier;
   const factory LevelBlocEvent.addNewWordToDictionary() =
       LevelBlocEventAddNewWordToDictionary;
-  const factory LevelBlocEvent.decreaseMiddlePart({
-    required final int index,
-  }) = LevelBlocEventDecreaseMiddlePart;
 }

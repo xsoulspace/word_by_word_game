@@ -11,9 +11,7 @@ class CurrentWordModel with _$CurrentWordModel {
     explicitToJson: true,
   )
   const factory CurrentWordModel({
-    @Default('') final String leftPart,
-    @Default('') final String middlePart,
-    @Default('') final String rightPart,
+    @Default([]) final List<int> inactiveIndexes,
     @Default('') final FullWordString fullWord,
   }) = _CurrentWordModel;
 
@@ -23,4 +21,9 @@ class CurrentWordModel with _$CurrentWordModel {
       _$CurrentWordModelFromJson(json);
 
   String get cleanWord => fullWord.toLowerCase().replaceAll(' ', '');
+  @useResult
+  String get middlePart => List.generate(inactiveIndexes.length, (final i) {
+        final index = inactiveIndexes[i];
+        return fullWord[index];
+      }).join();
 }

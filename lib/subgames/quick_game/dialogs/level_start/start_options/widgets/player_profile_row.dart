@@ -57,27 +57,30 @@ class PlayerProfileCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    return FocusableActionDetector(
-      mouseCursor: SystemMouseCursors.click,
-      child: Card(
-        clipBehavior: Clip.hardEdge,
-        child: InkWell(
-          onTap: () => onSelected!(player),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                UiPlayerProfileAvatar(player: player),
-                uiTheme.horizontalBoxes.medium,
-                Text(player.name),
-                if (onSelected != null) ...[
-                  Checkbox(
-                    value: selected,
-                    onChanged: (final _) => onSelected!(player),
-                  )
+    return Center(
+      child: FocusableActionDetector(
+        mouseCursor: SystemMouseCursors.click,
+        child: Card(
+          clipBehavior: Clip.hardEdge,
+          child: InkWell(
+            onTap: () => onSelected!(player),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  UiPlayerProfileAvatar(player: player),
+                  uiTheme.horizontalBoxes.medium,
+                  Text(player.name),
+                  if (onSelected != null) ...[
+                    Checkbox(
+                      value: selected,
+                      onChanged: (final _) => onSelected!(player),
+                    )
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),

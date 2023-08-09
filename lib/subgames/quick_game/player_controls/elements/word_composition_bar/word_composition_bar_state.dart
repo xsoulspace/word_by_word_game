@@ -32,14 +32,9 @@ WordCompositionState useWordCompositionState({
 class WordCompositionState extends LifeState {
   WordCompositionState({
     required this.diDto,
-  })  : leftPartController = TextEditingController(
-          text: diDto.levelBloc.state.currentWord.leftPart,
-        ),
-        rightPartController = TextEditingController(
-          text: diDto.levelBloc.state.currentWord.rightPart,
+  }) : wordController = WordFieldController(
+          currentWord: diDto.levelBloc.state.currentWord,
         );
-  final TextEditingController leftPartController;
-  final TextEditingController rightPartController;
 
   final _wordUpdatesController = StreamController<CurrentWordModel>();
   final _WordCompositionStateDiDto diDto;
@@ -47,8 +42,7 @@ class WordCompositionState extends LifeState {
   @override
   void initState() {
     super.initState();
-    leftPartController.addListener(_onPartChanged);
-    rightPartController.addListener(_onPartChanged);
+    wordController.addListener(_onPartChanged);
     unawaited(
       _wordUpdatesController.stream
           .sampleTime(
@@ -58,10 +52,8 @@ class WordCompositionState extends LifeState {
     );
   }
 
-  final leftWordKeyFocus = FocusNode();
-  final leftWordFocus = FocusNode();
-  final rightWordKeyFocus = FocusNode();
-  final rightWordFocus = FocusNode();
+  final wordFocusNode = FocusNode();
+  final WordFieldController wordController;
 
   void onSelectActionMultiplier(final EnergyMultiplierType multiplier) {
     diDto.levelBloc.onLevelPlayerSelectActionMultiplier(
@@ -79,7 +71,7 @@ class WordCompositionState extends LifeState {
 
   void onToEndTurn() {
     diDto.levelBloc.onLevelPlayerEndTurnAction(const LevelBlocEventEndTurn());
-    onRequestLeftTextFocus();
+    onRequestTextFocus();
   }
 
   void onOpenSuggestionDialog() {
@@ -99,29 +91,14 @@ class WordCompositionState extends LifeState {
         .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
   }
 
-  void onRequestLeftTextFocus() {
+  void onRequestTextFocus() {
     WidgetsBinding.instance.addPostFrameCallback((final _) {
-      leftWordFocus.requestFocus();
+      wordFocusNode.requestFocus();
     });
   }
 
-  void onRequestRightTextFocus() {
-    WidgetsBinding.instance.addPostFrameCallback((final _) {
-      rightWordFocus.requestFocus();
-    });
-  }
-
-  void _onPartChanged() {
-    final newWord = diDto.mechanics.wordComposition.applyPartsChanges(
-      word: CurrentWordModel(
-        leftPart: leftPartController.text,
-        middlePart: diDto.levelBloc.state.currentWord.middlePart,
-        rightPart: rightPartController.text,
-      ),
-    );
-
-    _wordUpdatesController.add(newWord);
-  }
+  void _onPartChanged() =>
+      _wordUpdatesController.add(wordController.currentWord);
 
   void _changeFullWord(final CurrentWordModel word) {
     final event = LevelBlocEventChangeCurrentWord(word: word);
@@ -134,29 +111,21 @@ class WordCompositionState extends LifeState {
     diDto.tutorialBloc.add(tutorialEvent);
   }
 
-  void onDecreaseMiddlePart(final int index) {
-    diDto.levelBloc
-        .onDecreaseMiddlePart(LevelBlocEventDecreaseMiddlePart(index: index));
+  void onUnblockIndex(final int index) {
+    diDto.levelBloc.onUnblockIndex(index: index);
   }
 
   void onLatestWordChanged() {
-    leftPartController.clear();
-    rightPartController.clear();
+    wordController.clear();
   }
 
   @override
   Future<void> dispose() async {
-    leftPartController
-      ..removeListener(_onPartChanged)
-      ..dispose();
-    rightPartController
+    wordController
       ..removeListener(_onPartChanged)
       ..dispose();
     await _wordUpdatesController.close();
-    leftWordKeyFocus.dispose();
-    rightWordKeyFocus.dispose();
-    rightWordFocus.dispose();
-    leftWordFocus.dispose();
+    wordFocusNode.dispose();
     super.dispose();
   }
 }

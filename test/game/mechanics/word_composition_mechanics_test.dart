@@ -7,14 +7,13 @@ void main() {
     test('createNextCurrentWordFromFullWord - fullword. Length >= 3 ', () {
       const fullword = 'dictionary';
       const word = CurrentWordModel(fullWord: fullword);
-      final nextWord =
-          wordCompoisitionMechanics.createNextCurrentWordFromFullWord(
+      final nextWord = wordCompoisitionMechanics.createNextCurrentWord(
         word: word,
       );
 
       expect(
         nextWord,
-        const CurrentWordModel(fullWord: 'ary', middlePart: 'ary'),
+        const CurrentWordModel(fullWord: 'ary', inactiveIndexes: [0, 1, 2]),
       );
     });
     test('createNextCurrentWordFromFullWord - fullword. Length < 3 ', () {
@@ -22,62 +21,23 @@ void main() {
       const word = CurrentWordModel(fullWord: fullword);
 
       expect(
-        () => wordCompoisitionMechanics.createNextCurrentWordFromFullWord(
+        () => wordCompoisitionMechanics.createNextCurrentWord(
           word: word,
         ),
         throwsArgumentError,
       );
     });
-    test('applyDecreaseMiddlePartType - can reset left letter', () {
-      const currentWord = CurrentWordModel(middlePart: 'dic');
-      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
-        currentWord: currentWord,
-        index: 0,
-      );
-      expect(
-        result,
-        equals(const CurrentWordModel(fullWord: 'ic', middlePart: 'ic')),
-      );
-    });
-    test('applyDecreaseMiddlePartType - can reset right letter', () {
-      const currentWord = CurrentWordModel(middlePart: 'dic');
-      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
-        currentWord: currentWord,
-        index: 2,
-      );
-      expect(
-        result,
-        equals(const CurrentWordModel(fullWord: 'di', middlePart: 'di')),
-      );
-    });
-    test('applyDecreaseMiddlePartType - can reset middle letter', () {
-      const currentWord = CurrentWordModel(middlePart: 'dic');
-      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
+    test('applyDecreaseMiddlePartType - can unblock any index', () {
+      const currentWord =
+          CurrentWordModel(inactiveIndexes: [0, 1, 2], fullWord: 'dic');
+      final result = wordCompoisitionMechanics.unblockInactiveIndex(
         currentWord: currentWord,
         index: 1,
       );
       expect(
         result,
-        equals(const CurrentWordModel(fullWord: 'dc', middlePart: 'dc')),
-      );
-    });
-    test('applyDecreaseMiddlePartType - can reset last middle letter', () {
-      const currentWord = CurrentWordModel(
-        middlePart: 'd',
-        leftPart: 's',
-        rightPart: 'un',
-      );
-      final result = wordCompoisitionMechanics.applyDecreaseMiddlePartType(
-        currentWord: currentWord,
-        index: 0,
-      );
-      expect(
-        result,
         equals(
-          const CurrentWordModel(
-            fullWord: 'sun',
-            rightPart: 'sun',
-          ),
+          const CurrentWordModel(fullWord: 'dic', inactiveIndexes: [0, 2]),
         ),
       );
     });

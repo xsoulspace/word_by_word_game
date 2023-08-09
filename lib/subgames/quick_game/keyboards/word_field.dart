@@ -4,12 +4,31 @@ import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
 class WordFieldController extends ChangeNotifier {
+  WordFieldController({
+    required final CurrentWordModel currentWord,
+  }) {
+    split(
+      inactiveIndexes: currentWord.inactiveIndexes,
+      text: currentWord.fullWord,
+    );
+  }
   final controller = TextEditingController();
+  CurrentWordModel get currentWord => CurrentWordModel(
+        fullWord: controller.text,
+        inactiveIndexes: _inactiveCharacters
+            .map(
+              (final inactiveChar) =>
+                  _items.indexWhere((final char) => char.id == inactiveChar.id),
+            )
+            .where((final i) => i >= 0)
+            .toList(),
+      );
   final _inactiveCharacters = <LetterModel>[];
   UnmodifiableListView<LetterModel> get inactiveCharacters =>
       UnmodifiableListView(_inactiveCharacters);
@@ -18,6 +37,12 @@ class WordFieldController extends ChangeNotifier {
       ..clear()
       ..addAll(characters);
     notifyListeners();
+  }
+
+  void clear() {
+    _items.clear();
+    _inactiveCharacters.clear();
+    controller.clear();
   }
 
   final List<LetterModel> _items = [];

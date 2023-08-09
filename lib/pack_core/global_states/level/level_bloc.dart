@@ -133,7 +133,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
       final updatedState = liveState.copyWith(
         latestWord: newWord,
         currentWord: diDto.mechanics.wordComposition
-            .createNextCurrentWordFromFullWord(word: effectiveCurrentWord),
+            .createNextCurrentWord(word: effectiveCurrentWord),
         words: updatedWords,
         wordWarning: wordWarning,
         phaseType: GamePhaseType.selectFuel,
@@ -201,20 +201,18 @@ class LevelBloc extends Cubit<LevelBlocState> {
     final liveState = state;
     return diDto.mechanics.dictionary.getWordSuggestion(
       exceptions: liveState.words.keys,
-      letters: liveState.currentWord.middlePart,
+      characters: liveState.currentWord.middlePart,
     );
   }
 
-  void onDecreaseMiddlePart(
-    final LevelBlocEventDecreaseMiddlePart event,
-  ) {
-    final liveState = state;
-    final updatedWord =
-        diDto.mechanics.wordComposition.applyDecreaseMiddlePartType(
-      index: event.index,
-      currentWord: liveState.currentWord,
+  void onUnblockIndex({
+    required final int index,
+  }) {
+    final updatedWord = diDto.mechanics.wordComposition.unblockInactiveIndex(
+      index: index,
+      currentWord: state.currentWord,
     );
-    final updatedState = liveState.copyWith(
+    final updatedState = state.copyWith(
       currentWord: updatedWord,
     );
 
