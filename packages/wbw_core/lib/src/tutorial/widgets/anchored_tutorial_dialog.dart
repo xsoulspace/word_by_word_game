@@ -27,6 +27,26 @@ extension _TutorialEventModelExtension on TutorialEventModel {
   }
 }
 
+class MobileTutorialDialog extends StatelessWidget {
+  const MobileTutorialDialog({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final persistentFormFactors = UiPersistentFormFactors.of(context);
+    final highlighted =
+        context.select<TutorialBloc, bool>((final tutorialBloc) {
+      // return true;
+      if (tutorialBloc.state is! LiveTutorialBlocState) return false;
+      final tutorialEvent = tutorialBloc.getTutorialEvent();
+      return !tutorialEvent.isCompleted;
+    });
+    if (highlighted && persistentFormFactors.screenSize.width < 700) {
+      return const MobileAnchoredTutorialDialog();
+    }
+    return const SizedBox();
+  }
+}
+
 class MobileAnchoredTutorialDialog extends StatelessWidget {
   const MobileAnchoredTutorialDialog({super.key});
 

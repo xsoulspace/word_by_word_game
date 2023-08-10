@@ -1,3 +1,4 @@
+export 'animations/animations.dart';
 export 'circled_avatar.dart';
 export 'game_back_button.dart';
 export 'highlight_frame.dart';

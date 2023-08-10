@@ -95,6 +95,11 @@ class LevelsHudScreenOverlay extends HookWidget {
             ),
           ),
           const Positioned(
+            child: Center(
+              child: MobileTutorialDialog(),
+            ),
+          ),
+          const Positioned(
             top: 20,
             right: 20,
             left: 20,

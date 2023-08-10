@@ -79,6 +79,7 @@ enum WidthFormFactor {
   });
   final double max;
   static bool checkIsXs(final Size size) => size.width <= xs.max;
+  static const double mobileTutorialMaxWidth = 700;
 }
 
 enum DeviceWindowFormFactor {
