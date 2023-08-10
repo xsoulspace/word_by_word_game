@@ -14,13 +14,13 @@ class GameOverlayBuilderMapRouter {
       _build().map((final key, final value) => MapEntry(key.name, value));
   Map<GameOverlaysRoutes, OverlayWidgetBuilder<CanvasRendererGame>> _build() =>
       {
+        GameOverlaysRoutes.dialog: (final context, final game) =>
+            const DialogOverlay(),
         GameOverlaysRoutes.levelsHud: (final context, final game) =>
             WbwGameProvider(
               game: game,
               child: const LevelsHudScreenOverlay(),
             ),
-        GameOverlaysRoutes.dialog: (final context, final game) =>
-            const DialogOverlay(),
       };
 }
 
