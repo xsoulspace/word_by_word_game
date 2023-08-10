@@ -36,11 +36,9 @@ class TutorialFrame extends StatelessWidget {
       final tutorialEvent = tutorialBloc.getTutorialEvent();
       return tutorialEvent.anchorUiItem == uiKey;
     });
-    final uiTheme = UiTheme.of(context);
-
-    switch (uiTheme.persistentFormFactors.width) {
-      case WidthFormFactor.desktop:
-      case WidthFormFactor.tablet:
+    final persistentFormFactors = UiPersistentFormFactors.of(context);
+    switch (persistentFormFactors.width) {
+      case WidthFormFactor.desktop || WidthFormFactor.tablet:
         return PortalTarget(
           anchor: highlightPosition.toAnchor(),
           visible: highlighted,
@@ -56,8 +54,8 @@ class TutorialFrame extends StatelessWidget {
         );
       case WidthFormFactor.mobile || WidthFormFactor.xs:
         return PortalTarget(
-          visible: highlighted,
           portalFollower: const MobileAnchoredTutorialDialog(),
+          visible: highlighted,
           child: HighlightFrame(
             onPressed: () {
               sendOnClickEvent(context: context, uiKey: uiKey);

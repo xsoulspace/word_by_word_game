@@ -17,18 +17,20 @@ class UiPersistentFormFactors with _$UiPersistentFormFactors {
   const factory UiPersistentFormFactors({
     required final WidthFormFactor width,
     required final DeviceWindowFormFactor deviceWindow,
+    required final Size screenSize,
   }) = _UiPersistentFormFactors;
   const UiPersistentFormFactors._();
   factory UiPersistentFormFactors.of(final BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
 
     return UiPersistentFormFactors(
-      deviceWindow: _getDeviceWindow(),
-      width: _getWidthBySize(screenSize),
+      deviceWindow: getDeviceWindow(),
+      width: getWidthBySize(screenSize),
+      screenSize: screenSize,
     );
   }
 
-  static DeviceWindowFormFactor _getDeviceWindow() {
+  static DeviceWindowFormFactor getDeviceWindow() {
     if (kIsWeb) {
       return DeviceWindowFormFactor.web;
     } else {
@@ -49,7 +51,7 @@ class UiPersistentFormFactors with _$UiPersistentFormFactors {
     }
   }
 
-  static WidthFormFactor _getWidthBySize(final Size screenSize) {
+  static WidthFormFactor getWidthBySize(final Size screenSize) {
     if (screenSize.width <= WidthFormFactor.mobile.max) {
       return WidthFormFactor.mobile;
     } else if (screenSize.width <= WidthFormFactor.tablet.max) {

@@ -11,7 +11,6 @@ class UILevelCenterBar extends StatelessWidget {
   });
   @override
   Widget build(final BuildContext context) {
-    final state = context.read<WordCompositionState>();
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
@@ -29,7 +28,7 @@ class UILevelCenterBar extends StatelessWidget {
               uiKey: TutorialUiItem.confirmWordButton,
               child: UiConfirmWordButton(
                 onPressed: () {
-                  state.onToSelectActionPhase();
+                  context.read<WordCompositionState>().onToSelectActionPhase();
                   TutorialFrame.sendOnClickEvent(
                     uiKey: TutorialUiItem.confirmWordButton,
                     context: context,

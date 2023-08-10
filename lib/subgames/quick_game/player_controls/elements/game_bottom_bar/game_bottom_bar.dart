@@ -21,38 +21,48 @@ class GameBottomBar extends HookWidget {
 
     return Provider.value(
       value: state,
-      builder: (final context, final cacheChild) => MediaQuery(
-        data: const MediaQueryData(),
-        child: Builder(
-          builder: (final context) {
-            BoxConstraints? constraints;
-            switch (uiTheme.persistentFormFactors.width) {
-              case WidthFormFactor.desktop:
-              case WidthFormFactor.tablet:
-                constraints = const BoxConstraints(maxWidth: 500);
-              case WidthFormFactor.mobile || WidthFormFactor.xs:
-            }
-            return CardFrostedBackground(
-              padding: EdgeInsets.only(
-                top: 2,
-                bottom:
-                    DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
-              ),
-              constraints: constraints,
-              child: Column(
-                children: [
-                  const UILevelCenterBar(),
-                  if (DeviceRuntimeType.isMobile)
-                    uiTheme.verticalBoxes.extraSmall
-                  else
-                    uiTheme.verticalBoxes.medium,
-                  const UiWordActions(),
-                ],
-              ),
-            );
-          },
+      updateShouldNotify: (final previous, final current) => false,
+      builder: (final context, final cacheChild) => _Card(
+        builder: (final context) => Column(
+          children: [
+            const UILevelCenterBar(),
+            if (DeviceRuntimeType.isMobile)
+              uiTheme.verticalBoxes.extraSmall
+            else
+              uiTheme.verticalBoxes.medium,
+            const UiWordActions(),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _Card extends StatelessWidget {
+  const _Card({
+    required this.builder,
+  });
+  final WidgetBuilder builder;
+  @override
+  Widget build(final BuildContext context) {
+    final persistentFormFactors = UiPersistentFormFactors.of(context);
+    final constraints = switch (persistentFormFactors.width) {
+      WidthFormFactor.desktop ||
+      WidthFormFactor.tablet =>
+        const BoxConstraints(maxWidth: 500),
+      WidthFormFactor.mobile || WidthFormFactor.xs => BoxConstraints(
+          maxWidth: persistentFormFactors.screenSize.width,
+        )
+    };
+    final uiTheme = UiTheme.of(context);
+
+    return CardFrostedBackground(
+      padding: EdgeInsets.only(
+        top: 2,
+        bottom: DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
+      ),
+      constraints: constraints,
+      child: Builder(builder: builder),
     );
   }
 }
