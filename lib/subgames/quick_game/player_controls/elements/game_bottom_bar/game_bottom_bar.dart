@@ -26,10 +26,7 @@ class GameBottomBar extends HookWidget {
         builder: (final context) => Column(
           children: [
             const UILevelCenterBar(),
-            if (DeviceRuntimeType.isMobile)
-              uiTheme.verticalBoxes.extraSmall
-            else
-              uiTheme.verticalBoxes.medium,
+            uiTheme.verticalBoxes.medium,
             const UiWordActions(),
           ],
         ),

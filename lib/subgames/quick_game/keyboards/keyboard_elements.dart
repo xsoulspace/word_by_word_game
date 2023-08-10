@@ -400,29 +400,14 @@ class FilledKeyboardElement extends StatelessWidget {
   final Widget title;
   final int lettersCount;
   @override
-  Widget build(final BuildContext context) {
-    final size = MediaQuery.sizeOf(context);
-    final (:margin, :padding) = () {
-      final double margin;
-      final double padding;
-      if (WidthFormFactor.checkIsXs(size)) {
-        margin = 2.0;
-        padding = 1.0;
-      } else {
-        margin = 4.0;
-        padding = 4.0;
-      }
-      return (margin: margin, padding: padding);
-    }();
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: margin),
-      child: UiFilledButton(
-        onPressed: onPressed,
-        padding: EdgeInsets.symmetric(vertical: 8, horizontal: padding),
-        child: title,
-      ),
-    );
-  }
+  Widget build(final BuildContext context) => Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 2),
+        child: UiFilledButton(
+          onPressed: onPressed,
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 1),
+          child: title,
+        ),
+      );
 }
 
 class UiElevatedButton extends StatelessWidget {
