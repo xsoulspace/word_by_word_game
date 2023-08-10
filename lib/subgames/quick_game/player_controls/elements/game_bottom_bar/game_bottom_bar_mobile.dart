@@ -16,7 +16,7 @@ class MobileGameBottomBarWidget extends StatelessWidget {
           uiTheme.verticalBoxes.extraSmall
         else
           uiTheme.verticalBoxes.medium,
-        const UiWordActions(alignAsRow: true),
+        const UiWordActions(),
       ],
     );
   }

@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -239,15 +238,6 @@ class _WordFieldState extends State<WordField> {
                 onCaretIndexChanged: _onCaretIndexChanged,
                 onItemsChanged: _onItemsChanged,
               ),
-              if (kDebugMode)
-                AnimatedBuilder(
-                  animation: widget.focusNode,
-                  builder: (final context, final data) => Divider(
-                    color: widget.focusNode.hasFocus
-                        ? Theme.of(context).colorScheme.tertiary
-                        : null,
-                  ),
-                ),
               const Gap(16),
               const UiKeyboard(),
             ],
@@ -317,7 +307,10 @@ class InputLetterCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Container(
         alignment: Alignment.center,
-        child: Text(letter.title),
+        child: Text(
+          letter.title,
+          style: Theme.of(context).textTheme.bodyLarge,
+        ),
       );
 }
 

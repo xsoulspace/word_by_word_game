@@ -25,15 +25,16 @@ class LevelsHudScreenOverlay extends HookWidget {
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
     // final theme = Theme.of(context);
+    final screenSize = MediaQuery.sizeOf(context);
     return Portal(
       child: Stack(
         children: [
-          const Positioned(
-            top: 20,
-            bottom: 20,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [UiPauseButton(), UiRandomWordButton()],
+          Positioned(
+            top: screenSize.height * 0.1,
+            right: 16,
+            child: const Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [UiPauseButton(), Gap(16), UiRandomWordButton()],
             ),
           ),
           Positioned(
@@ -48,7 +49,7 @@ class LevelsHudScreenOverlay extends HookWidget {
                 const UIPlayersSideBar(),
                 const Gap(16),
                 Padding(
-                  padding: const EdgeInsets.all(8),
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
                   child: BlocBuilder<WeatherCubit, WeatherCubitState>(
                     builder: (final context, final state) => Column(
                       mainAxisSize: MainAxisSize.min,
@@ -56,7 +57,7 @@ class LevelsHudScreenOverlay extends HookWidget {
                       children: [
                         Text(
                           // ignore: lines_longer_than_80_chars
-                          '${S.of(context).wind}: ${state.weather.windScale.name} '
+                          '${S.of(context).wind}: ${state.weather.windScale.toLocalizedName(context)} '
                           // ignore: lines_longer_than_80_chars
                           '| ${state.wind.force.x.toStringAsFixed(2)} ${state.wind.force.y.toStringAsFixed(2)}',
                         ),

@@ -192,6 +192,9 @@ class SEn extends S {
   String get addToDictionary => 'Add to Dictionary';
 
   @override
+  String get currentPlayerName => 'Name of current player';
+
+  @override
   String get suggestWordButtonTooltip => 'Click to get random word based on current letters.';
 
   @override

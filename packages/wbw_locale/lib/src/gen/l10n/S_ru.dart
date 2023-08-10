@@ -192,6 +192,9 @@ class SRu extends S {
   String get addToDictionary => 'Внести в словарь';
 
   @override
+  String get currentPlayerName => 'Ник текущего игрока';
+
+  @override
   String get suggestWordButtonTooltip => 'Нажми, чтобы получить случайное слово на основе текущих букв.';
 
   @override

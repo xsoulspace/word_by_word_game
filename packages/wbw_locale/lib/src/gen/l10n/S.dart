@@ -461,6 +461,12 @@ abstract class S {
   /// **'Add to Dictionary'**
   String get addToDictionary;
 
+  /// No description provided for @currentPlayerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name of current player'**
+  String get currentPlayerName;
+
   /// No description provided for @suggestWordButtonTooltip.
   ///
   /// In en, this message translates to:

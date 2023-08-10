@@ -33,18 +33,40 @@ class GameBottomBar extends HookWidget {
         child = const MobileGameBottomBarWidget();
     }
 
-    return Provider(
-      create: (final context) => state,
-      builder: (final context, final cacheChild) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
-        child: GameBottomBarBackground(
-          padding: EdgeInsets.symmetric(
-            vertical: DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
+    return Stack(
+      children: [
+        Provider(
+          create: (final context) => state,
+          builder: (final context, final cacheChild) => MediaQuery(
+            data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
+            child: GameBottomBarBackground(
+              padding: EdgeInsets.symmetric(
+                vertical:
+                    DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
+              ),
+              constraints: constraints,
+              child: child,
+            ),
           ),
-          constraints: constraints,
-          child: child,
         ),
-      ),
+        Positioned(
+          top: 0,
+          right: 0,
+          child: TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.confirmWordButton,
+            child: UiConfirmWordButton(
+              onPressed: () {
+                state.onToSelectActionPhase();
+                TutorialFrame.sendOnClickEvent(
+                  uiKey: TutorialUiItem.confirmWordButton,
+                  context: context,
+                );
+              },
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

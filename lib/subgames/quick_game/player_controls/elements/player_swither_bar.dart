@@ -7,35 +7,71 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class UIMobilePlayerName extends StatelessWidget {
   const UIMobilePlayerName({super.key});
-
   @override
   Widget build(final BuildContext context) {
     final playerName = context.select<LevelPlayersBloc, String>(
       (final bloc) => bloc.state.currentPlayer.name,
     );
-    return TutorialFrame(
-      highlightPosition: Alignment.topCenter,
+    final isHighlighted = context.select<LevelBloc, bool>(
+      (final s) => s.state.phaseType == GamePhaseType.entryWord,
+    );
+    return _LabelText(
+      uiKeyPosition: Alignment.topCenter,
       uiKey: TutorialUiItem.yourNameLabel,
-      child: Text(playerName),
-    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
+      text: playerName,
+      tooltipMessage: S.of(context).currentPlayerName,
+      isHighlighted: isHighlighted,
+    );
   }
 }
 
 class UIMobilePlayerScore extends StatelessWidget {
   const UIMobilePlayerScore({super.key});
-
   @override
   Widget build(final BuildContext context) {
     final score = context.select<LevelPlayersBloc, int>(
       (final bloc) => bloc.state.currentPlayer.highscore.score.value.toInt(),
     );
-    return TutorialFrame(
-      highlightPosition: Alignment.topCenter,
+    final isHighlighted = context.select<LevelBloc, bool>(
+      (final s) => s.state.phaseType == GamePhaseType.selectFuel,
+    );
+    final eScore = score ~/ kScoreFactor;
+    return _LabelText(
+      uiKeyPosition: Alignment.topCenter,
+      isHighlighted: isHighlighted,
       uiKey: TutorialUiItem.yourScoreLabel,
-      child: Tooltip(
-        message: S.of(context).yourCurrentHighcoreTooltip,
-        child: Text('$score'),
-      ),
-    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
+      tooltipMessage: S.of(context).yourCurrentHighcoreTooltip,
+      text: '$eScore ',
+    );
   }
+}
+
+class _LabelText extends StatelessWidget {
+  const _LabelText({
+    required this.text,
+    required this.tooltipMessage,
+    required this.uiKey,
+    required this.isHighlighted,
+    required this.uiKeyPosition,
+  });
+  final bool isHighlighted;
+  final TutorialUiItem uiKey;
+  final Alignment uiKeyPosition;
+  final String text;
+  final String tooltipMessage;
+  @override
+  Widget build(final BuildContext context) => TutorialFrame(
+        highlightPosition: Alignment.topCenter,
+        uiKey: uiKey,
+        child: Tooltip(
+          message: tooltipMessage,
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+            style: isHighlighted
+                ? Theme.of(context).textTheme.titleLarge
+                : Theme.of(context).textTheme.labelSmall,
+          ),
+        ),
+      ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
 }

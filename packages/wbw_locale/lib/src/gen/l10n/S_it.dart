@@ -192,6 +192,9 @@ class SIt extends S {
   String get addToDictionary => 'Aggiungi al dizionario';
 
   @override
+  String get currentPlayerName => 'Nome del giocatore attuale';
+
+  @override
   String get suggestWordButtonTooltip => 'Fare clic per ottenere una parola casuale in base alle lettere correnti.';
 
   @override

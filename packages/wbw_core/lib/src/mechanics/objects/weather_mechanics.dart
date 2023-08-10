@@ -83,7 +83,7 @@ enum WindScale {
   static final weightedValues = values
       .expand((final e) => List.generate(e.weight, (final i) => e))
       .toList();
-  String getLocalizedName(final BuildContext context) => switch (this) {
+  String toLocalizedName(final BuildContext context) => switch (this) {
         WindScale.calm => S.of(context).windCalm,
         WindScale.lightAir => S.of(context).windLightAir,
         WindScale.lightBreeze => S.of(context).windLightBreeze,

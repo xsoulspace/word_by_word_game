@@ -13,6 +13,7 @@
   },
   "wordIsNotCorrect": "Non riusciamo a trovare la parola {word} nel nostro dizionario! Prova un'altra parola o aggiungila.",
   "wordAlreadyWritten": "Questa parola è già scritta. Prova con un'altra parola.",
+  "currentPlayerName": "Nome del giocatore attuale",
   "congratulations": "Congratulazioni!",
   "@congratulations": {
     "type": "text"

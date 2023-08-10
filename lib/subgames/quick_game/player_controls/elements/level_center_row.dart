@@ -15,16 +15,10 @@ class UILevelCenterBar extends StatelessWidget {
       (final s) => s.state.phaseType,
     );
     // final uiTheme = UiTheme.of(context);
-    final List<Widget> centerBarChildren;
     final Widget body;
     switch (phaseType) {
       case GamePhaseType.entryWord:
         body = const UiWordCompositionBar();
-        centerBarChildren = [
-          const UiRandomWordButton(),
-          const SizedBox(width: 10),
-          const UiPauseButton(),
-        ];
       case GamePhaseType.selectFuel:
         body = Column(
           children: [
@@ -33,57 +27,22 @@ class UILevelCenterBar extends StatelessWidget {
             if (DeviceRuntimeType.isMobile) const SizedBox(height: 36),
           ],
         );
-        centerBarChildren = [
-          const UiPauseButton(),
-        ];
     }
 
-    return Stack(
+    return Column(
       children: [
-        body,
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 100,
-                  ),
-                  child: const Center(child: UIMobilePlayerName()),
-                ),
+        const Row(
+          children: [
+            Padding(
+              padding: EdgeInsets.only(
+                left: 16,
               ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 3),
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minWidth: 100,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: centerBarChildren,
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 100,
-                  ),
-                  child: const Center(child: UIMobilePlayerScore()),
-                ),
-              )
-            ],
-          ),
+              child: UIMobilePlayerName(),
+            ),
+            UIMobilePlayerScore(),
+          ],
         ),
+        body,
       ],
     );
   }
