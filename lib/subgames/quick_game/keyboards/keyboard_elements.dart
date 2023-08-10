@@ -153,42 +153,15 @@ class KeyboardLetters extends StatelessWidget {
     final firstRow = rows.first;
     final lettersCount = firstRow.length;
     const maxLetterWidth = 36.0;
-    final size = MediaQuery.sizeOf(context);
-    return Padding(
-      padding: WidthFormFactor.checkIsXs(size)
-          ? EdgeInsets.zero
-          : const EdgeInsets.symmetric(horizontal: 8),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: firstRow
-                .map(
-                  (final e) => Flexible(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(
-                        maxWidth: maxLetterWidth,
-                      ),
-                      child: LetterCard(
-                        lettersCount: lettersCount,
-                        letter: LetterModel(
-                          title: e,
-                        ),
-                        onPressed: () => onLetterPressed(e),
-                      ),
-                    ),
-                  ),
-                )
-                .toList(),
-          ),
-          const Gap(5),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              for (final e in rows[1])
-                Flexible(
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: firstRow
+              .map(
+                (final e) => Flexible(
                   child: ConstrainedBox(
                     constraints: const BoxConstraints(
                       maxWidth: maxLetterWidth,
@@ -202,45 +175,66 @@ class KeyboardLetters extends StatelessWidget {
                     ),
                   ),
                 ),
-            ],
-          ),
-          const Gap(5),
-          Row(
-            children: [
-              LanguageSwitcher(
-                lettersCount: lettersCount,
-                onChanged: onLanguageChanged,
-                value: language,
-              ),
-              Expanded(
-                flex: lettersCount,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    for (final e in rows[2])
-                      Flexible(
-                        child: ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            maxWidth: maxLetterWidth,
-                          ),
-                          child: LetterCard(
-                            lettersCount: lettersCount,
-                            letter: LetterModel(title: e),
-                            onPressed: () => onLetterPressed(e),
-                          ),
-                        ),
-                      ),
-                  ],
+              )
+              .toList(),
+        ),
+        const Gap(5),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            for (final e in rows[1])
+              Flexible(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: maxLetterWidth,
+                  ),
+                  child: LetterCard(
+                    lettersCount: lettersCount,
+                    letter: LetterModel(
+                      title: e,
+                    ),
+                    onPressed: () => onLetterPressed(e),
+                  ),
                 ),
               ),
-              DeleteLetterButton(
-                onDelete: onDelete,
-                lettersCount: lettersCount,
+          ],
+        ),
+        const Gap(5),
+        Row(
+          children: [
+            LanguageSwitcher(
+              lettersCount: lettersCount,
+              onChanged: onLanguageChanged,
+              value: language,
+            ),
+            Expanded(
+              flex: lettersCount,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  for (final e in rows[2])
+                    Flexible(
+                      child: ConstrainedBox(
+                        constraints: const BoxConstraints(
+                          maxWidth: maxLetterWidth,
+                        ),
+                        child: LetterCard(
+                          lettersCount: lettersCount,
+                          letter: LetterModel(title: e),
+                          onPressed: () => onLetterPressed(e),
+                        ),
+                      ),
+                    ),
+                ],
               ),
-            ],
-          ),
-        ],
-      ),
+            ),
+            DeleteLetterButton(
+              onDelete: onDelete,
+              lettersCount: lettersCount,
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
@@ -292,8 +286,10 @@ class LanguageSwitcher extends StatelessWidget {
         builder: (final context, final controller, final child) =>
             OutlinedKeyboardElement(
           lettersCount: lettersCount,
-          onPressed: controller.open,
-          title: Text(value.name),
+          onLongPress: controller.open,
+          onPressed: () => onChanged(value.next()),
+          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
+          title: const Icon(CupertinoIcons.globe),
         ),
         menuChildren: KeyboardLanguage.values
             .map(
@@ -352,19 +348,23 @@ class OutlinedKeyboardElement extends StatelessWidget {
   const OutlinedKeyboardElement({
     required this.title,
     required this.lettersCount,
-    required this.onPressed,
+    this.onPressed,
+    this.onLongPress,
     this.padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
     super.key,
   });
   final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
   final Widget title;
   final int lettersCount;
   final EdgeInsets padding;
   @override
   Widget build(final BuildContext context) => Padding(
+        /// margin
         padding: const EdgeInsets.symmetric(horizontal: 2),
         child: UiElevatedButton(
           onPressed: onPressed,
+          onLongPress: onLongPress,
           padding: padding,
           child: title,
         ),
@@ -428,12 +428,14 @@ class FilledKeyboardElement extends StatelessWidget {
 class UiElevatedButton extends StatelessWidget {
   const UiElevatedButton({
     required this.child,
-    required this.onPressed,
+    this.onPressed,
+    this.onLongPress,
     this.padding = const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
     super.key,
   });
   final Widget child;
   final VoidCallback? onPressed;
+  final VoidCallback? onLongPress;
   final EdgeInsets padding;
 
   @override
@@ -448,6 +450,7 @@ class UiElevatedButton extends StatelessWidget {
         child: InkWell(
           borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
           onTap: onPressed,
+          onLongPress: onLongPress,
           child: Container(
             alignment: Alignment.center,
             padding: padding,

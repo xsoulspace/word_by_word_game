@@ -20,7 +20,7 @@ class UiPersistentFormFactors with _$UiPersistentFormFactors {
   }) = _UiPersistentFormFactors;
   const UiPersistentFormFactors._();
   factory UiPersistentFormFactors.of(final BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.sizeOf(context);
 
     return UiPersistentFormFactors(
       deviceWindow: _getDeviceWindow(),
@@ -63,7 +63,7 @@ class UiPersistentFormFactors with _$UiPersistentFormFactors {
 enum WidthFormFactor {
   xs(max: 375),
   mobile(
-    max: 700,
+    max: 500,
   ),
   tablet(
     max: 1000,

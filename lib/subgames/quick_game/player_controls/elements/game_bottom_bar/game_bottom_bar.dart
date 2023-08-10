@@ -9,9 +9,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-part 'game_bottom_bar_background.dart';
-part 'game_bottom_bar_desktop.dart';
-part 'game_bottom_bar_mobile.dart';
+part 'card_frosted_background.dart';
 
 class GameBottomBar extends HookWidget {
   const GameBottomBar({super.key});
@@ -21,52 +19,40 @@ class GameBottomBar extends HookWidget {
     final uiTheme = UiTheme.of(context);
     final state = useWordCompositionState(read: context.read);
 
-    final Widget child;
-    BoxConstraints? constraints;
-
-    switch (uiTheme.persistentFormFactors.width) {
-      case WidthFormFactor.desktop:
-      case WidthFormFactor.tablet:
-        constraints = const BoxConstraints(maxWidth: 500);
-        child = const DesktopGameBottomBarWidget();
-      case WidthFormFactor.mobile || WidthFormFactor.xs:
-        child = const MobileGameBottomBarWidget();
-    }
-
-    return Stack(
-      children: [
-        Provider(
-          create: (final context) => state,
-          builder: (final context, final cacheChild) => MediaQuery(
-            data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
-            child: GameBottomBarBackground(
-              padding: EdgeInsets.symmetric(
-                vertical:
+    return Provider.value(
+      value: state,
+      builder: (final context, final cacheChild) => MediaQuery(
+        data: const MediaQueryData(),
+        child: Builder(
+          builder: (final context) {
+            BoxConstraints? constraints;
+            switch (uiTheme.persistentFormFactors.width) {
+              case WidthFormFactor.desktop:
+              case WidthFormFactor.tablet:
+                constraints = const BoxConstraints(maxWidth: 500);
+              case WidthFormFactor.mobile || WidthFormFactor.xs:
+            }
+            return CardFrostedBackground(
+              padding: EdgeInsets.only(
+                top: 2,
+                bottom:
                     DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
               ),
               constraints: constraints,
-              child: child,
-            ),
-          ),
+              child: Column(
+                children: [
+                  const UILevelCenterBar(),
+                  if (DeviceRuntimeType.isMobile)
+                    uiTheme.verticalBoxes.extraSmall
+                  else
+                    uiTheme.verticalBoxes.medium,
+                  const UiWordActions(),
+                ],
+              ),
+            );
+          },
         ),
-        Positioned(
-          top: 0,
-          right: 0,
-          child: TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.confirmWordButton,
-            child: UiConfirmWordButton(
-              onPressed: () {
-                state.onToSelectActionPhase();
-                TutorialFrame.sendOnClickEvent(
-                  uiKey: TutorialUiItem.confirmWordButton,
-                  context: context,
-                );
-              },
-            ),
-          ),
-        ),
-      ],
+      ),
     );
   }
 }

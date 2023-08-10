@@ -65,8 +65,7 @@ class WordCompositionState extends LifeState {
   }
 
   void onToSelectActionPhase() {
-    diDto.levelBloc
-        .onAcceptNewWord(const LevelBlocEventAcceptNewWord(word: null));
+    diDto.levelBloc.onAcceptNewWord();
   }
 
   void onToEndTurn() {

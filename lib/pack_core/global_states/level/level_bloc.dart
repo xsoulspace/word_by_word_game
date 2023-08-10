@@ -112,19 +112,24 @@ class LevelBloc extends Cubit<LevelBlocState> {
       ),
     );
     WidgetsBinding.instance.addPostFrameCallback((final _) {
-      onAcceptNewWord(const LevelBlocEventAcceptNewWord(word: null));
+      onAcceptNewWord();
     });
   }
 
-  void onAcceptNewWord(
-    final LevelBlocEventAcceptNewWord event,
-  ) {
+  void onAcceptNewWord() {
     final liveState = state;
-    final effectiveCurrentWord = event.word ?? liveState.currentWord;
-    final newWord = effectiveCurrentWord.fullWord;
-    if (newWord.isEmpty) return;
+    final currentWord = liveState.currentWord;
+    final newWord = currentWord.fullWord;
+    if (newWord.isEmpty) {
+      emit(
+        liveState.copyWith(
+          wordWarning: WordWarning.isNotCorrect,
+        ),
+      );
+      return;
+    }
 
-    final wordWarning = _checkNewWord(effectiveCurrentWord);
+    final wordWarning = _checkNewWord(currentWord);
     if (wordWarning == WordWarning.none) {
       final levelPlayersBloc = diDto.levelPlayersBloc;
       final updatedWords = {
@@ -133,7 +138,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
       final updatedState = liveState.copyWith(
         latestWord: newWord,
         currentWord: diDto.mechanics.wordComposition
-            .createNextCurrentWord(word: effectiveCurrentWord),
+            .createNextCurrentWord(word: currentWord),
         words: updatedWords,
         wordWarning: wordWarning,
         phaseType: GamePhaseType.selectFuel,

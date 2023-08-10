@@ -11,38 +11,46 @@ class UILevelCenterBar extends StatelessWidget {
   });
   @override
   Widget build(final BuildContext context) {
+    final state = context.read<WordCompositionState>();
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
-    // final uiTheme = UiTheme.of(context);
-    final Widget body;
-    switch (phaseType) {
-      case GamePhaseType.entryWord:
-        body = const UiWordCompositionBar();
-      case GamePhaseType.selectFuel:
-        body = Column(
-          children: [
-            const SizedBox(height: 48),
-            const UiFuelBar(),
-            if (DeviceRuntimeType.isMobile) const SizedBox(height: 36),
-          ],
-        );
-    }
 
     return Column(
       children: [
-        const Row(
+        Row(
           children: [
-            Padding(
-              padding: EdgeInsets.only(
-                left: 16,
+            const Gap(16),
+            const UIMobilePlayerName(),
+            const UIMobilePlayerScore(),
+            const Spacer(),
+            TutorialFrame(
+              highlightPosition: Alignment.topCenter,
+              uiKey: TutorialUiItem.confirmWordButton,
+              child: UiConfirmWordButton(
+                onPressed: () {
+                  state.onToSelectActionPhase();
+                  TutorialFrame.sendOnClickEvent(
+                    uiKey: TutorialUiItem.confirmWordButton,
+                    context: context,
+                  );
+                },
               ),
-              child: UIMobilePlayerName(),
             ),
-            UIMobilePlayerScore(),
+            const Gap(16),
           ],
         ),
-        body,
+        const Gap(8),
+        switch (phaseType) {
+          GamePhaseType.entryWord => const UiWordCompositionBar(),
+          GamePhaseType.selectFuel => Column(
+              children: [
+                const SizedBox(height: 48),
+                const UiFuelBar(),
+                if (DeviceRuntimeType.isMobile) const SizedBox(height: 36),
+              ],
+            ),
+        }
       ],
     );
   }

@@ -1,12 +1,16 @@
 import 'dart:async';
 import 'dart:collection';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 
 class WordFieldController extends ChangeNotifier {
   WordFieldController({
@@ -208,6 +212,7 @@ class _WordFieldState extends State<WordField> {
     });
   }
 
+  bool _isKeyboardVisible = DeviceRuntimeType.isMobile || kDebugMode;
   @override
   void dispose() {
     widget.controller.removeListener(_onControllerChange);
@@ -224,6 +229,8 @@ class _WordFieldState extends State<WordField> {
         onCaretIndexChanged: _onCaretIndexChanged,
         onCharacter: _onLetterPressed,
         onDelete: _onDelete,
+
+        /// container is needed to get focus
         child: Container(
           constraints: const BoxConstraints(
             maxWidth: kKeyboardWidth,
@@ -231,15 +238,53 @@ class _WordFieldState extends State<WordField> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              GameplayEditableText(
-                items: _items,
-                inactiveCharacters: _inactiveCharacters,
-                caretIndex: _caretIndex,
-                onCaretIndexChanged: _onCaretIndexChanged,
-                onItemsChanged: _onItemsChanged,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 6),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: CardFrostedBackground(
+                        child: GameplayEditableText(
+                          items: _items,
+                          inactiveCharacters: _inactiveCharacters,
+                          caretIndex: _caretIndex,
+                          onCaretIndexChanged: _onCaretIndexChanged,
+                          onItemsChanged: _onItemsChanged,
+                        ),
+                      ),
+                    ),
+                    if (DeviceRuntimeType.isDesktop)
+                      IconButton(
+                        tooltip: _isKeyboardVisible
+                            ? S.of(context).hideKeyboard
+                            : S.of(context).showKeyboard,
+                        onPressed: () {
+                          _isKeyboardVisible = !_isKeyboardVisible;
+                          setState(() {});
+                        },
+                        icon: AnimatedSwitcher(
+                          duration: 250.milliseconds,
+                          child: _isKeyboardVisible
+                              ? const Icon(Icons.keyboard_hide)
+                              : const Icon(Icons.keyboard_sharp),
+                        ),
+                      ),
+                  ],
+                ),
               ),
-              const Gap(16),
-              const UiKeyboard(),
+              const Gap(10),
+              if (_isKeyboardVisible)
+                const UiKeyboard()
+                    .animate()
+                    .scaleXY(
+                      curve: Curves.easeIn,
+                      begin: 0.99,
+                      end: 1,
+                      alignment: Alignment.bottomCenter,
+                    )
+                    .fadeIn(
+                      curve: Curves.easeIn,
+                    ),
             ],
           ),
         ),

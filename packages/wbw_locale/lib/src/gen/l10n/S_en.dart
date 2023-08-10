@@ -192,6 +192,18 @@ class SEn extends S {
   String get addToDictionary => 'Add to Dictionary';
 
   @override
+  String get powerOfEnteredWord => 'Power of entered word';
+
+  @override
+  String get hideKeyboard => 'Hide keyboard';
+
+  @override
+  String get showKeyboard => 'Show keyboard';
+
+  @override
+  String get suggestions => 'Suggestions';
+
+  @override
   String get currentPlayerName => 'Name of current player';
 
   @override

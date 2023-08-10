@@ -16,7 +16,7 @@ export 'word_widgets/word_widgets.dart';
 
 part 'word_composition_bar_state.dart';
 
-class UiWordCompositionBar extends HookWidget {
+class UiWordCompositionBar extends StatelessWidget {
   const UiWordCompositionBar({super.key});
   @override
   Widget build(final BuildContext context) {

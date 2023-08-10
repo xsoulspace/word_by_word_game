@@ -461,6 +461,30 @@ abstract class S {
   /// **'Add to Dictionary'**
   String get addToDictionary;
 
+  /// No description provided for @powerOfEnteredWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Power of entered word'**
+  String get powerOfEnteredWord;
+
+  /// No description provided for @hideKeyboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide keyboard'**
+  String get hideKeyboard;
+
+  /// No description provided for @showKeyboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Show keyboard'**
+  String get showKeyboard;
+
+  /// No description provided for @suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestions'**
+  String get suggestions;
+
   /// No description provided for @currentPlayerName.
   ///
   /// In en, this message translates to:

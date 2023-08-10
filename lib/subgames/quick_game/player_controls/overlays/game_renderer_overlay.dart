@@ -24,7 +24,6 @@ class LevelsHudScreenOverlay extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    // final theme = Theme.of(context);
     final screenSize = MediaQuery.sizeOf(context);
     return Portal(
       child: Stack(
@@ -34,7 +33,7 @@ class LevelsHudScreenOverlay extends HookWidget {
             right: 16,
             child: const Column(
               mainAxisSize: MainAxisSize.min,
-              children: [UiPauseButton(), Gap(16), UiRandomWordButton()],
+              children: [UiPauseButton()],
             ),
           ),
           Positioned(

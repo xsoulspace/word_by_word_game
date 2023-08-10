@@ -12,6 +12,9 @@
   "applyAndEndTurn": "Завершить ход",
   "toLandscapes": "В Места",
   "send": "Отправить",
+  "suggestions": "Подсказки",
+  "hideKeyboard": "Скрыть клавиатуру",
+  "showKeyboard": "Показать клавиатуру",
   "youHaveLandedInTheNowhere": "Вы приземлились где-то в неизвестность..",
   "profileCreator": "Создатель профиля",
   "currentPlayerName": "Ник текущего игрока",
@@ -25,6 +28,7 @@
   "congratulations": "Поздравляем!",
   "previousWord": "Предыдущее слово",
   "createProfile": "Создать профиль",
+  "powerOfEnteredWord": "Очки введеного слова",
   "username": "Ник игрока",
   "about": "Об игре",
   "@congratulations": {

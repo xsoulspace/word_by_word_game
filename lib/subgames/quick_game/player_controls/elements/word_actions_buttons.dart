@@ -23,12 +23,18 @@ class UiWordActions extends StatelessWidget {
     switch (phaseType) {
       case GamePhaseType.entryWord:
         children.addAll([
-          TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.addToDictionaryButton,
-            child: UIAddWordToDictionaryButton(
-              onPressed: state.onAddWordToDictionary,
-            ),
+          Row(
+            children: [
+              TutorialFrame(
+                highlightPosition: Alignment.topCenter,
+                uiKey: TutorialUiItem.addToDictionaryButton,
+                child: UIAddWordToDictionaryButton(
+                  onPressed: state.onAddWordToDictionary,
+                ),
+              ),
+              const Gap(4),
+              const UiSuggestionsButton()
+            ],
           ),
           if (DeviceRuntimeType.isMobile)
             uiTheme.verticalBoxes.small
@@ -84,32 +90,33 @@ class UiConfirmWordButton extends StatelessWidget {
     );
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
-    final isPressable = warning == WordWarning.isNotCorrect;
-    return Tooltip(
-      message: S.of(context).confirm,
-      child: Column(
-        children: [
-          Text('+${score.value ~/ kScoreFactor}'),
-          FloatingActionButton.small(
-            elevation: 1,
-            backgroundColor: Theme.of(context)
-                .colorScheme
-                .tertiaryContainer
-                .withOpacity(isPressable ? 0.1 : 0.8),
-            hoverElevation: 3,
-            onPressed: isPressable ? null : onPressed,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    UiAssetHelper.useImagePath(UiIcons.fire.path),
-                  ),
+    final isPressable = warning != WordWarning.isNotCorrect;
+    return Column(
+      children: [
+        Tooltip(
+          message: S.of(context).powerOfEnteredWord,
+          child: Text('+${score.value ~/ kScoreFactor}'),
+        ),
+        FloatingActionButton.small(
+          tooltip: S.of(context).confirm,
+          elevation: 1,
+          backgroundColor: Theme.of(context)
+              .colorScheme
+              .tertiaryContainer
+              .withOpacity(isPressable ? 0.8 : 0.1),
+          hoverElevation: 3,
+          onPressed: isPressable ? onPressed : null,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  UiAssetHelper.useImagePath(UiIcons.fire.path),
                 ),
               ),
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }
@@ -130,8 +137,8 @@ class UIToEndTurnButton extends StatelessWidget {
       );
 }
 
-class UiRandomWordButton extends StatelessWidget {
-  const UiRandomWordButton({
+class UiSuggestionsButton extends StatelessWidget {
+  const UiSuggestionsButton({
     super.key,
   });
   @override
@@ -143,7 +150,9 @@ class UiRandomWordButton extends StatelessWidget {
     return TutorialFrame(
       highlightPosition: Alignment.topCenter,
       uiKey: TutorialUiItem.suggestWordButton,
-      child: UiIconButton(
+      child: UiTextButton.icon(
+        isLongButton: true,
+        text: S.of(context).suggestions,
         tooltip: S.of(context).suggestWordButtonTooltip,
         onPressed: isEnabled
             ? null

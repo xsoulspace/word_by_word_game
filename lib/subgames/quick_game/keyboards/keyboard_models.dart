@@ -31,6 +31,12 @@ enum KeyboardLanguage {
         KeyboardLanguage.en => enLetters,
         KeyboardLanguage.ru => ruLetters,
       };
+
+  /// rewrite to indexes when there be a lot of letters
+  KeyboardLanguage next() => switch (this) {
+        KeyboardLanguage.en => KeyboardLanguage.ru,
+        KeyboardLanguage.ru => KeyboardLanguage.en,
+      };
 }
 
 @freezed
