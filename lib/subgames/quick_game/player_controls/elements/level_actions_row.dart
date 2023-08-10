@@ -45,12 +45,13 @@ class UiFuelFrame extends StatelessWidget {
               S.of(context).applyFuelOption,
               style: textTheme.titleMedium,
             ),
-            const Divider(),
-            uiTheme.verticalBoxes.medium,
+            Divider(color: theme.colorScheme.tertiary),
+            uiTheme.verticalBoxes.small,
             ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 100),
               child: ListView.separated(
                 shrinkWrap: true,
+                padding: EdgeInsets.zero,
                 itemBuilder: (final context, final index) {
                   final type = EnergyMultiplierType.values[index];
 

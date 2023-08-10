@@ -53,10 +53,12 @@ class InputKeyboardListener extends StatelessWidget {
     required this.onCharacter,
     required this.onDelete,
     required this.autofocus,
+    this.onComplete,
     super.key,
   });
   final FocusNode focusNode;
   final Widget child;
+  final VoidCallback? onComplete;
   final bool autofocus;
   final int caretIndex;
   final void Function(
@@ -97,8 +99,7 @@ class InputKeyboardListener extends StatelessWidget {
               onDelete();
               return KeyEventResult.handled;
             case LogicalKeyboardKey.enter:
-              // TODO(arenukvern): description
-              // onComplete();
+              onComplete?.call();
               return KeyEventResult.handled;
             case LogicalKeyboardKey.space:
               return KeyEventResult.handled;

@@ -41,7 +41,7 @@ class UIMobilePlayerScore extends StatelessWidget {
       isHighlighted: isHighlighted,
       uiKey: TutorialUiItem.yourScoreLabel,
       tooltipMessage: S.of(context).yourCurrentHighcoreTooltip,
-      text: '$eScore ',
+      text: '$eScore',
     );
   }
 }
@@ -60,18 +60,30 @@ class _LabelText extends StatelessWidget {
   final String text;
   final String tooltipMessage;
   @override
-  Widget build(final BuildContext context) => TutorialFrame(
-        highlightPosition: Alignment.topCenter,
-        uiKey: uiKey,
-        child: Tooltip(
-          message: tooltipMessage,
+  Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = theme.colorScheme;
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: uiKey,
+      child: Tooltip(
+        message: tooltipMessage,
+        child: AnimatedDefaultTextStyle(
+          duration: 170.milliseconds,
+          style: isHighlighted
+              ? textTheme.titleLarge!.copyWith(
+                  fontWeight: FontWeight.bold,
+                )
+              : textTheme.labelMedium!.copyWith(
+                  color: colorScheme.tertiary,
+                ),
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: isHighlighted
-                ? Theme.of(context).textTheme.titleLarge
-                : Theme.of(context).textTheme.labelSmall,
           ),
         ),
-      ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
+      ),
+    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
+  }
 }

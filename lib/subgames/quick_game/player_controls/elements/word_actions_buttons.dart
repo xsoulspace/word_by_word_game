@@ -92,6 +92,7 @@ class UiConfirmWordButton extends StatelessWidget {
     final score = mechanics.score.getScoreFromWord(word: currentWord);
     final isPressable = warning != WordWarning.isNotCorrect;
     return Column(
+      mainAxisSize: MainAxisSize.min,
       children: [
         Tooltip(
           message: S.of(context).powerOfEnteredWord,
