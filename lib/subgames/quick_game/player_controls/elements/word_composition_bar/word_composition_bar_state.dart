@@ -34,8 +34,20 @@ class WordCompositionState extends LifeState {
     required this.diDto,
   }) : wordController = WordFieldController(
           currentWord: diDto.levelBloc.state.currentWord,
-        );
-
+        ) {
+    _latestWord = diDto.levelBloc.state.latestWord;
+    _levelBlocSubscription = diDto.levelBloc.stream
+        .distinct()
+        .debounceTime(200.milliseconds)
+        .listen((final newState) {
+      if (_latestWord != newState.latestWord) {
+        _latestWord = newState.latestWord;
+        wordController.currentWord = newState.currentWord;
+      }
+    });
+  }
+  String _latestWord = '';
+  StreamSubscription<LevelBlocState>? _levelBlocSubscription;
   final _wordUpdatesController = StreamController<CurrentWordModel>();
   final _WordCompositionStateDiDto diDto;
 
@@ -102,16 +114,13 @@ class WordCompositionState extends LifeState {
     diDto.levelBloc.onUnblockIndex(index: index);
   }
 
-  void onLatestWordChanged() {
-    wordController.clear();
-  }
-
   @override
   Future<void> dispose() async {
     wordController
       ..removeListener(_onPartChanged)
       ..dispose();
     await _wordUpdatesController.close();
+    await _levelBlocSubscription?.cancel();
     wordFocusNode.dispose();
     super.dispose();
   }

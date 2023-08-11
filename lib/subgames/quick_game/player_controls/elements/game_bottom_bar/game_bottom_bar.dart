@@ -43,14 +43,11 @@ class _Card extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final persistentFormFactors = UiPersistentFormFactors.of(context);
-    final constraints = switch (persistentFormFactors.width) {
-      WidthFormFactor.desktop ||
-      WidthFormFactor.tablet =>
-        const BoxConstraints(maxWidth: 500),
-      WidthFormFactor.mobile || WidthFormFactor.xs => BoxConstraints(
-          maxWidth: persistentFormFactors.screenSize.width,
-        )
-    };
+    final screenWidth = persistentFormFactors.screenSize.width;
+    final constraints = screenWidth < 370
+        ? BoxConstraints(maxWidth: screenWidth)
+        : const BoxConstraints(maxWidth: 365);
+
     final uiTheme = UiTheme.of(context);
 
     return CardFrostedBackground(

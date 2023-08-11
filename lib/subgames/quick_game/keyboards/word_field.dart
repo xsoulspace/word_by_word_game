@@ -21,6 +21,7 @@ class WordFieldController extends ChangeNotifier {
       text: currentWord.fullWord,
     );
   }
+  int _caretIndex = 0;
   final controller = TextEditingController();
   CurrentWordModel get currentWord => CurrentWordModel(
         fullWord: controller.text,
@@ -32,6 +33,13 @@ class WordFieldController extends ChangeNotifier {
             .where((final i) => i >= 0)
             .toList(),
       );
+  set currentWord(final CurrentWordModel currentWord) {
+    split(
+      inactiveIndexes: currentWord.inactiveIndexes,
+      text: currentWord.fullWord,
+    );
+  }
+
   final _inactiveCharacters = <LetterModel>[];
   UnmodifiableListView<LetterModel> get inactiveCharacters =>
       UnmodifiableListView(_inactiveCharacters);
@@ -46,6 +54,7 @@ class WordFieldController extends ChangeNotifier {
     _items.clear();
     _inactiveCharacters.clear();
     controller.clear();
+    notifyListeners();
   }
 
   final List<LetterModel> _items = [];
@@ -71,6 +80,7 @@ class WordFieldController extends ChangeNotifier {
   }) {
     _items.clear();
     _inactiveCharacters.clear();
+    _caretIndex = 0;
     controller.text = text;
     for (var i = 0; i < controller.text.length; i++) {
       final letter = LetterModel(title: text[i]);
@@ -106,19 +116,20 @@ class WordField extends StatefulWidget {
 
 class _WordFieldState extends State<WordField> {
   UnmodifiableListView<LetterModel> get _inactiveCharacters =>
-      UnmodifiableListView(widget.controller.inactiveCharacters);
+      UnmodifiableListView(_controller.inactiveCharacters);
   set _inactiveCharacters(final List<LetterModel> values) {
-    widget.controller.inactiveCharacters = values;
+    _controller.inactiveCharacters = values;
     setState(() {});
   }
 
   StreamSubscription<UiKeyboardEvent>? _keyboardSubscription;
-  UnmodifiableListView<LetterModel> get _items => widget.controller.items;
+  UnmodifiableListView<LetterModel> get _items => _controller.items;
   set _items(final List<LetterModel> values) {
-    widget.controller.items = values;
+    _controller.items = values;
   }
 
-  int _caretIndex = 0;
+  WordFieldController get _controller => widget.controller;
+
   void _onCaretIndexChanged(
     final int eNewIndex, {
     final KeyboardDirection direction = KeyboardDirection.right,
@@ -126,7 +137,9 @@ class _WordFieldState extends State<WordField> {
     final int newIndex = eNewIndex;
     if (newIndex > _items.length) return;
     if (newIndex < 0) return;
-    _caretIndex = _protectCaretIndex(direction: direction, newIndex: newIndex);
+    _controller._caretIndex =
+        _protectCaretIndex(direction: direction, newIndex: newIndex);
+
     setState(() {});
   }
 
@@ -154,26 +167,27 @@ class _WordFieldState extends State<WordField> {
         };
       }
     }
+
     return newIndex;
   }
 
   void _onLetterPressed(final String letter) {
     _onItemsChanged(
-      [..._items]..insert(_caretIndex, LetterModel(title: letter)),
+      [..._items]..insert(_controller._caretIndex, LetterModel(title: letter)),
     );
-    _caretIndex++;
+    _controller._caretIndex++;
     setState(() {});
   }
 
   void _onDelete() {
     if (_items.isEmpty) return;
     if (_items.length == _inactiveCharacters.length) return;
-    if (_caretIndex == 0) {
+    if (_controller._caretIndex == 0) {
       if (_items.isNotEmpty) {
         _onItemsChanged([..._items]..removeAt(0));
       }
     } else {
-      final initialNewIndex = _caretIndex - 1;
+      final initialNewIndex = _controller._caretIndex - 1;
       int newIndex = _protectCaretIndex(
         direction: initialNewIndex == 0
             ? KeyboardDirection.right
@@ -198,7 +212,7 @@ class _WordFieldState extends State<WordField> {
   @override
   void initState() {
     super.initState();
-    widget.controller.addListener(_onControllerChange);
+    _controller.addListener(_onControllerChange);
     _keyboardSubscription = context
         .read<UiKeyboardController>()
         .keyEventsStream
@@ -215,7 +229,7 @@ class _WordFieldState extends State<WordField> {
   bool _isKeyboardVisible = DeviceRuntimeType.isMobile || kDebugMode;
   @override
   void dispose() {
-    widget.controller.removeListener(_onControllerChange);
+    _controller.removeListener(_onControllerChange);
     unawaited(_keyboardSubscription?.cancel());
 
     super.dispose();
@@ -225,7 +239,7 @@ class _WordFieldState extends State<WordField> {
   Widget build(final BuildContext context) => InputKeyboardListener(
         focusNode: widget.focusNode,
         autofocus: false,
-        caretIndex: _caretIndex,
+        caretIndex: _controller._caretIndex,
         onCaretIndexChanged: _onCaretIndexChanged,
         onCharacter: _onLetterPressed,
         onDelete: _onDelete,
@@ -248,7 +262,7 @@ class _WordFieldState extends State<WordField> {
                         child: GameplayEditableText(
                           items: _items,
                           inactiveCharacters: _inactiveCharacters,
-                          caretIndex: _caretIndex,
+                          caretIndex: _controller._caretIndex,
                           onCaretIndexChanged: _onCaretIndexChanged,
                           onItemsChanged: _onItemsChanged,
                         ),
@@ -401,6 +415,7 @@ class GameplayEditableText extends StatelessWidget {
             } else if (i > caretIndex) {
               i--;
             }
+
             final letter = items[i];
             if (inactiveCharacters.contains(letter)) {
               return InputInactiveLetterCard(
@@ -495,7 +510,6 @@ class KeyboardReoderer {
         exceptionIndex++;
       }
     }
-
     return (
       oldIndex: oldIndex,
       newIndex: newIndex,

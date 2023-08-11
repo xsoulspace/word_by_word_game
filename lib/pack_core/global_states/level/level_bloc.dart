@@ -111,9 +111,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
         word: liveState.currentWord.fullWord,
       ),
     );
-    WidgetsBinding.instance.addPostFrameCallback((final _) {
-      onAcceptNewWord();
-    });
+    onAcceptNewWord();
   }
 
   void onAcceptNewWord() {
@@ -126,7 +124,6 @@ class LevelBloc extends Cubit<LevelBlocState> {
           wordWarning: WordWarning.isNotCorrect,
         ),
       );
-      return;
     }
 
     final wordWarning = _checkNewWord(currentWord);
@@ -160,6 +157,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
         ),
       );
     }
+    return;
   }
 
   void onLevelPlayerSelectActionMultiplier(

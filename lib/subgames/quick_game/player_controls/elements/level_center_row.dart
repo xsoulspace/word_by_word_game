@@ -73,12 +73,7 @@ class UILevelCenterBar extends StatelessWidget {
         const Gap(8),
         switch (phaseType) {
           GamePhaseType.entryWord => const UiWordCompositionBar(),
-          GamePhaseType.selectFuel => Column(
-              children: [
-                const UiFuelBar(),
-                if (DeviceRuntimeType.isMobile) const SizedBox(height: 36),
-              ],
-            ),
+          GamePhaseType.selectFuel => const UiFuelBar(),
         }
       ],
     );

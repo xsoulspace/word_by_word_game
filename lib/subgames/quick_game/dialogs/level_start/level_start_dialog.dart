@@ -83,7 +83,6 @@ class _DialogScreen extends HookWidget {
     final screenSize = MediaQuery.sizeOf(context);
     final widgetUiState = context.read<LevelStartDialogUiState>();
     final uiState = context.read<LevelStartDialogUiState>();
-    final isKeyboardVisibleNotifier = useKeyboardVisibility();
     final child = Stack(
       children: [
         Padding(
@@ -140,17 +139,10 @@ class _DialogScreen extends HookWidget {
       ],
     );
     if (DeviceRuntimeType.isMobile) {
-      return Padding(
-        padding: EdgeInsets.only(
-          bottom: isKeyboardVisibleNotifier.value
-              ? MediaQuery.of(context).viewInsets.bottom
-              : 0,
-        ),
-        child: Center(
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: child,
-            ),
+      return Center(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: child,
           ),
         ),
       );

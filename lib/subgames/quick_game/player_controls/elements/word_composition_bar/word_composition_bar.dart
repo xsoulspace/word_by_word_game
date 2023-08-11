@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
@@ -21,28 +21,18 @@ class UiWordCompositionBar extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
-    // final uiTheme = UiTheme.of(context);
-    final buildAndListenWhenCallback = LevelBloc.useCheckStateEqualityBuilder(
-      checkLiveState: (final previous, final current) =>
-          previous.latestWord != current.latestWord,
-    );
-    return BlocListener<LevelBloc, LevelBlocState>(
-      listener: (final context, final blocState) {
-        state.onLatestWordChanged();
-      },
-      listenWhen: buildAndListenWhenCallback,
-      child: TutorialFrame(
-        highlightPosition: Alignment.topCenter,
-        uiKey: TutorialUiItem.enterWordPhaseFrame,
-        child: WordField(
-          controller: state.wordController,
-          focusNode: state.wordFocusNode,
-        ),
 
-        // uiKey: TutorialUiItem.enterWordRight,
-        // hintText: S.of(context).hintAddEnding,
-        // onSubmitted: state.onToSelectActionPhase,
+    return TutorialFrame(
+      highlightPosition: Alignment.topCenter,
+      uiKey: TutorialUiItem.enterWordPhaseFrame,
+      child: WordField(
+        controller: state.wordController,
+        focusNode: state.wordFocusNode,
       ),
+
+      // uiKey: TutorialUiItem.enterWordRight,
+      // hintText: S.of(context).hintAddEnding,
+      // onSubmitted: state.onToSelectActionPhase,
     );
   }
 }

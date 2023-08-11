@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
 import '../../models/models.dart';
@@ -70,17 +69,7 @@ class MobileAnchoredTutorialDialog extends StatelessWidget {
         child = const SizedBox();
     }
 
-    return KeyboardVisibilityBuilder(
-      builder: (final context, final isKeyboardVisible) {
-        if (!isKeyboardVisible) return Center(child: child);
-        return SafeArea(
-          child: Align(
-            alignment: Alignment.topCenter,
-            child: child,
-          ),
-        );
-      },
-    );
+    return Center(child: child);
   }
 }
 
