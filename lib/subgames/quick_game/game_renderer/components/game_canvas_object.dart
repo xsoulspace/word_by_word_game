@@ -127,7 +127,6 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     final gameConstantsCubit = game.diDto.gameConstantsCubit;
     final character = game.diDto.levelPlayersBloc.state.playerCharacter;
     final gameConstants = gameConstantsCubit.state;
-    const gravityYTilePosition = 10;
 
     LiftForceModel liftForce;
 
@@ -142,12 +141,13 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     ///
     /// Zero - point for right will be always negative
     /// for left will be always positive
+    final gravity = canvasRenderer.canvasObjectsDrawer.gravity;
 
-    final tileDistance = gravityYTilePosition * kTileDimension;
-    final height = tileDistance - distanceToOrigin.dy;
-    final windOffset = game.diDto.weatherCubit
-        .generateWindForce(heightInTiles: height ~/ kTileDimension);
-    if (height < 0 || isCollided) {
+    final height = gravity.getHeight(distanceToOrigin);
+    final heightInTiles = gravity.getHeightInTiles(distanceToOrigin);
+    final windOffset =
+        game.diDto.weatherCubit.generateWindForce(heightInTiles: heightInTiles);
+    if (heightInTiles < 0 || isCollided) {
       // do not update position
       // update position if needed
       liftForce = hotAirBalloonMechanics.calculateLiftForce(
@@ -351,7 +351,7 @@ class GameCanvasObjectsDrawer extends Component
   }
 
   List<GameCanvasObject> get canvasObjects =>
-      [_skyHandle, _gravitationHandle, player].whereNotNull().toList();
+      [_skyHandle, player].whereNotNull().toList();
 
   void onOriginUpdate() {
     for (final canvasObject in canvasObjects) {
@@ -360,7 +360,6 @@ class GameCanvasObjectsDrawer extends Component
   }
 
   PlayerGameCanvasObject? player;
-  GameCanvasObject? _gravitationHandle;
   GameCanvasObject? _skyHandle;
 
   @override
@@ -439,15 +438,16 @@ class GameCanvasObjectsDrawer extends Component
 
   @override
   void render(final Canvas canvas) {
+    if (debugMode) _renderGravitationLine(canvas);
     // TODO(arenukvern): restore
-    // _renderGravitationLine(canvas);
     // _renderSkyHorizon(canvas);
     super.render(canvas);
   }
 
-  final _gravitationLinePaint = Palette.brown.paint()..strokeWidth = 2;
+  GravityModel get gravity => const GravityModel(yTilePosition: 10);
+  final _gravitationLinePaint = Palette.red.paint()..strokeWidth = 2;
   void _renderGravitationLine(final Canvas canvas) {
-    final dy = (_gravitationHandle?.position.dy ?? 0) + 20;
+    final dy = gravity.tileDistance.toDouble() + origin.y;
     canvas.drawLine(
       Offset(0, dy),
       Offset(canvasRenderer.windowWidth, dy),

@@ -39,6 +39,7 @@ const _$DataCategoryTypeEnumMap = {
   DataCategoryType.water: 'water',
   DataCategoryType.palms: 'palms',
   DataCategoryType.players: 'players',
+  DataCategoryType.other: 'other',
 };
 
 _$_PresetTilePropertiesModel _$$_PresetTilePropertiesModelFromJson(
@@ -143,6 +144,10 @@ _$_TilesPresetDataModel _$$_TilesPresetDataModelFromJson(
           ? const {}
           : TilesPresetDataModel._tilesFromJson(
               json['players'] as Map<String, dynamic>),
+      other: json['other'] == null
+          ? const {}
+          : TilesPresetDataModel._tilesFromJson(
+              json['other'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_TilesPresetDataModelToJson(
@@ -152,4 +157,5 @@ Map<String, dynamic> _$$_TilesPresetDataModelToJson(
       'objects': TilesPresetDataModel._tilesToJson(instance.objects),
       'npcs': TilesPresetDataModel._tilesToJson(instance.npcs),
       'players': TilesPresetDataModel._tilesToJson(instance.players),
+      'other': TilesPresetDataModel._tilesToJson(instance.other),
     };

@@ -13,16 +13,10 @@ class LevelBlocEvent with _$LevelBlocEvent {
   const factory LevelBlocEvent.changeCurrentWord({
     required final CurrentWordModel word,
   }) = LevelBlocEventChangeCurrentWord;
-  const factory LevelBlocEvent.acceptNewWord({
-    required final CurrentWordModel? word,
-  }) = LevelBlocEventAcceptNewWord;
   const factory LevelBlocEvent.endTurn() = LevelBlocEventEndTurn;
   const factory LevelBlocEvent.selectActionMultiplier({
     required final EnergyMultiplierType multiplier,
   }) = LevelBlocEventSelectActionMultiplier;
   const factory LevelBlocEvent.addNewWordToDictionary() =
       LevelBlocEventAddNewWordToDictionary;
-  const factory LevelBlocEvent.decreaseMiddlePart({
-    required final int index,
-  }) = LevelBlocEventDecreaseMiddlePart;
 }

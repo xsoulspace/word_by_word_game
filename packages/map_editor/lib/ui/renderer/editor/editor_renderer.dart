@@ -162,7 +162,7 @@ class CursorRenderer extends Component
   @override
   FutureOr<void> onLoad() async {
     _image = await game.images.load(
-      Assets.images.cursors.cursor.path.replaceAll('assets/images/', ''),
+      Assets.images.cursors.cursor.idle.path.replaceAll('assets/images/', ''),
     );
     return super.onLoad();
   }

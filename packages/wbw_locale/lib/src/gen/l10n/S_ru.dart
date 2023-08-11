@@ -192,6 +192,21 @@ class SRu extends S {
   String get addToDictionary => 'Внести в словарь';
 
   @override
+  String get powerOfEnteredWord => 'Очки введеного слова';
+
+  @override
+  String get hideKeyboard => 'Скрыть клавиатуру';
+
+  @override
+  String get showKeyboard => 'Показать клавиатуру';
+
+  @override
+  String get suggestions => 'Подсказки';
+
+  @override
+  String get currentPlayerName => 'Ник текущего игрока';
+
+  @override
   String get suggestWordButtonTooltip => 'Нажми, чтобы получить случайное слово на основе текущих букв.';
 
   @override

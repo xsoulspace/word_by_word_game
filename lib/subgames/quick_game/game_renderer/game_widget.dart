@@ -30,7 +30,10 @@ class WbwGameWidget extends HookWidget {
             loadingBuilder: (final context) => const Center(
               child: CircularProgressIndicator(),
             ),
-            initialActiveOverlays: [GameOverlaysRoutes.dialog.name],
+            initialActiveOverlays: [
+              GameOverlaysRoutes.dialog.name,
+              GameOverlaysRoutes.debug.name,
+            ],
             overlayBuilderMap: const GameOverlayBuilderMapRouter().build(),
             //Work in progress error handling
             errorBuilder: (final context, final ex) {

@@ -48,8 +48,8 @@ class RouterScaffold extends HookWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<RouteState>(
-          create: (final context) => state.routeState,
+        ChangeNotifierProvider<RouteState>.value(
+          value: state.routeState,
         ),
         Provider<AppRouterController>(
           create: (final context) => AppRouterController.use(context.read),

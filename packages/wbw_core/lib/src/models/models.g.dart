@@ -28,17 +28,16 @@ const _$BrightnessModeEnumMap = {
 
 _$_CurrentWordModel _$$_CurrentWordModelFromJson(Map<String, dynamic> json) =>
     _$_CurrentWordModel(
-      leftPart: json['leftPart'] as String? ?? '',
-      middlePart: json['middlePart'] as String? ?? '',
-      rightPart: json['rightPart'] as String? ?? '',
+      inactiveIndexes: (json['inactiveIndexes'] as List<dynamic>?)
+              ?.map((e) => e as int)
+              .toList() ??
+          const [],
       fullWord: json['fullWord'] as String? ?? '',
     );
 
 Map<String, dynamic> _$$_CurrentWordModelToJson(_$_CurrentWordModel instance) =>
     <String, dynamic>{
-      'leftPart': instance.leftPart,
-      'middlePart': instance.middlePart,
-      'rightPart': instance.rightPart,
+      'inactiveIndexes': instance.inactiveIndexes,
       'fullWord': instance.fullWord,
     };
 
@@ -378,7 +377,6 @@ const _$TutorialUiItemEnumMap = {
   TutorialUiItem.confirmWordButton: 'confirmWordButton',
   TutorialUiItem.removeLetterButton: 'removeLetterButton',
   TutorialUiItem.suggestWordButton: 'suggestWordButton',
-  TutorialUiItem.enterWordLeft: 'enterWordLeft',
   TutorialUiItem.enterWordRight: 'enterWordRight',
   TutorialUiItem.actionPhaseFrame: 'actionPhaseFrame',
   TutorialUiItem.enterWordPhaseFrame: 'enterWordPhaseFrame',

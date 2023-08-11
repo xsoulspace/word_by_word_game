@@ -6,6 +6,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_creator.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
 
 class CreatePlayerScreen extends HookWidget {
   const CreatePlayerScreen({
@@ -27,6 +28,7 @@ class CreatePlayerScreen extends HookWidget {
 
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         uiTheme.verticalBoxes.medium,
         Text(
@@ -42,22 +44,15 @@ class CreatePlayerScreen extends HookWidget {
           style: theme.textTheme.bodySmall,
           textAlign: TextAlign.center,
         ),
-        Expanded(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 24,
-              ),
-              child: TextField(
-                controller: widgetState.nameController,
-                autofocus: true,
-                decoration: InputDecoration.collapsed(
-                  hintText: S.of(context).username,
-                ),
-              ),
-            ),
+        const Spacer(),
+        TextFieldWithKeyboard(
+          controller: widgetState.nameController,
+          autofocus: true,
+          decoration: InputDecoration.collapsed(
+            hintText: S.of(context).username,
           ),
         ),
+        const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

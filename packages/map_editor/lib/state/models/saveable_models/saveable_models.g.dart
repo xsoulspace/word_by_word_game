@@ -44,8 +44,10 @@ _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
           ? RenderObjectModel.empty
           : RenderObjectModel.fromJson(
               json['playerObject'] as Map<String, dynamic>),
-      skyYPosition: (json['skyYPosition'] as num?)?.toDouble() ?? 0,
-      gravityYPosition: (json['gravityYPosition'] as num?)?.toDouble() ?? 0,
+      skyYTilePosition: json['skyYTilePosition'] as int? ?? 0,
+      gravity: json['gravity'] == null
+          ? GravityModel.initial
+          : GravityModel.fromJson(json['gravity'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
@@ -55,8 +57,18 @@ Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
       'layers': instance.layers,
       'objects': CanvasDataModel._objectsToJson(instance.objects),
       'playerObject': instance.playerObject,
-      'skyYPosition': instance.skyYPosition,
-      'gravityYPosition': instance.gravityYPosition,
+      'skyYTilePosition': instance.skyYTilePosition,
+      'gravity': instance.gravity,
+    };
+
+_$_GravityModel _$$_GravityModelFromJson(Map<String, dynamic> json) =>
+    _$_GravityModel(
+      yTilePosition: json['yTilePosition'] as int,
+    );
+
+Map<String, dynamic> _$$_GravityModelToJson(_$_GravityModel instance) =>
+    <String, dynamic>{
+      'yTilePosition': instance.yTilePosition,
     };
 
 _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>

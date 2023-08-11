@@ -7,7 +7,6 @@ import 'package:flame/input.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
@@ -32,7 +31,6 @@ class CanvasRenderer extends Component
   double get tileColumns => (windowWidth / kTileDimension) + 1;
   double get tileRows => (windowHeight / kTileDimension) + 1;
   final debugSurface = CanvasDebugSurface();
-  final cursor = CanvasCursorRenderer();
   final tilesRenderer = CanvasTilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
   // final animationUpdater = AnimationUpdater();
@@ -43,7 +41,7 @@ class CanvasRenderer extends Component
     addAll([
       // RENDER
       tilesRenderer,
-      if (debugMode) debugSurface,
+      debugSurface,
       canvasObjectsDrawer,
       // cursor,
       // LOGIC
@@ -200,31 +198,6 @@ class CanvasTilesRenderer extends Component
   }
 }
 
-class CanvasCursorRenderer extends Component
-    with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
-  Image? _image;
-  @override
-  FutureOr<void> onLoad() async {
-    final path =
-        Assets.images.cursors.cursor.path.replaceFirst('assets/images/', '');
-    _image = await game.images.load(path);
-    return super.onLoad();
-  }
-
-  final _paint = material.Paint();
-  @override
-  void render(final Canvas canvas) {
-    super.render(canvas);
-    if (_image != null && canvasRenderer.isHovered) {
-      canvas.drawImage(
-        _image!,
-        canvasRenderer.mousePosition.toOffset(),
-        _paint,
-      );
-    }
-  }
-}
-
 class CanvasDebugSurface extends Component
     with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
   material.Paint get _paint => Palette.grey.withAlpha(60).paint();
@@ -245,6 +218,7 @@ class CanvasDebugSurface extends Component
   @override
   void render(final material.Canvas canvas) {
     super.render(canvas);
+    if (!debugMode) return;
     _renderLines(canvas);
   }
 }

@@ -77,11 +77,11 @@ class CanvasDataModel with _$CanvasDataModel {
     /// As player is unique - it should be used separately from [objects].
     @Default(RenderObjectModel.empty) final RenderObjectModel playerObject,
 
-    /// can be negative and positive. Should be tile index.
-    @Default(0) final double skyYPosition,
+    /// can be negative and positive. Should be absolute tile index.
+    @Default(0) final int skyYTilePosition,
 
-    /// can be negative and positive. Should be tile index.
-    @Default(0) final double gravityYPosition,
+    /// can be negative and positive. Should be absolute tile index.
+    @Default(GravityModel.initial) final GravityModel gravity,
   }) = _CanvasDataModel;
   const CanvasDataModel._();
   factory CanvasDataModel.fromJson(
@@ -108,6 +108,28 @@ class CanvasDataModel with _$CanvasDataModel {
           value.toJson(),
         ),
       );
+}
+
+@freezed
+class GravityModel with _$GravityModel {
+  const factory GravityModel({
+    ///absolute tile position. may be negative and positive
+    required final int yTilePosition,
+  }) = _GravityModel;
+  const GravityModel._();
+  factory GravityModel.fromJson(final Map<String, dynamic> json) =>
+      _$GravityModelFromJson(json);
+
+  static const initial = GravityModel(yTilePosition: 10);
+  int get tileDistance => yTilePosition * kTileDimension;
+
+  /// "above the line"
+  double getHeight(final Offset distanceToOrigin) =>
+      tileDistance - distanceToOrigin.dy;
+
+  /// "above the line"
+  int getHeightInTiles(final Offset distanceToOrigin) =>
+      getHeight(distanceToOrigin) ~/ kTileDimension;
 }
 
 @immutable

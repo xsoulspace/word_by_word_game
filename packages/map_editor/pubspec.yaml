@@ -6,7 +6,7 @@ publish_to: none
 # publish_to: "none"
 # homepage:
 environment:
-  sdk: ">=3.0.1 <4.0.0"
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   animate_do: ^3.0.2
@@ -74,14 +74,14 @@ dependency_overrides:
   http: 1.0.0
 
 flutter_gen:
-  output: lib/src/gen/
+  output: lib/generated/
   lineLength: 80
 
   assets:
     enabled: true
     outputs:
-      gen_for_package: true
-      package_parameter_enabled: true
+      gen_for_package: false
+      package_parameter_enabled: false
 
   integrations:
     flutter_svg: true
@@ -102,6 +102,9 @@ flutter:
     - assets/images/
     - assets/images/clouds/
     - assets/images/cursors/
+    - assets/images/cursors/cursor/
+    - assets/images/cursors/
+    - assets/images/cursors/handle/
     - assets/images/enemies/
     - assets/images/enemies/pearl/
     - assets/images/enemies/shell_left/

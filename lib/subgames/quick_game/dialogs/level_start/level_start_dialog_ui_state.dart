@@ -50,18 +50,18 @@ class LevelStartDialogUiState extends ContextfulLifeState {
   final currentViewNotifier = ValueNotifier(LevelStartDialogView.choosePlayers);
   void onCreatePlayer() {
     currentViewNotifier.value = LevelStartDialogView.createPlayer;
-    unawaited(SoftKeyboard.open());
+    // unawaited(SoftKeyboard.open());
   }
 
   void onPlayerCreated(final PlayerProfileModel profile) {
     onChoosePlayers();
     uxState.onPlayerProfileCreated(profile);
-    unawaited(SoftKeyboard.close());
+    // unawaited(SoftKeyboard.close());
   }
 
   void onChoosePlayers() {
     currentViewNotifier.value = LevelStartDialogView.choosePlayers;
-    closeKeyboard(context: getContext());
+    // closeKeyboard(context: getContext());
   }
 
   @override

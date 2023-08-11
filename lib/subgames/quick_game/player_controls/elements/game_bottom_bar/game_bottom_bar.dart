@@ -9,9 +9,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-part 'game_bottom_bar_background.dart';
-part 'game_bottom_bar_desktop.dart';
-part 'game_bottom_bar_mobile.dart';
+part 'card_frosted_background.dart';
 
 class GameBottomBar extends HookWidget {
   const GameBottomBar({super.key});
@@ -21,30 +19,44 @@ class GameBottomBar extends HookWidget {
     final uiTheme = UiTheme.of(context);
     final state = useWordCompositionState(read: context.read);
 
-    final Widget child;
-    BoxConstraints? constraints;
-
-    switch (uiTheme.persistentFormFactors.width) {
-      case WidthFormFactor.desktop:
-      case WidthFormFactor.tablet:
-        constraints = const BoxConstraints(maxWidth: 500);
-        child = const DesktopGameBottomBarWidget();
-      case WidthFormFactor.mobile:
-        child = const MobileGameBottomBarWidget();
-    }
-
-    return Provider(
-      create: (final context) => state,
-      builder: (final context, final cacheChild) => MediaQuery(
-        data: MediaQuery.of(context).copyWith(devicePixelRatio: 1),
-        child: GameBottomBarBackground(
-          padding: EdgeInsets.symmetric(
-            vertical: DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
-          ),
-          constraints: constraints,
-          child: child,
+    return Provider.value(
+      value: state,
+      updateShouldNotify: (final previous, final current) => false,
+      builder: (final context, final cacheChild) => _Card(
+        builder: (final context) => Column(
+          children: [
+            const UILevelCenterBar(),
+            uiTheme.verticalBoxes.medium,
+            const UiWordActions(),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class _Card extends StatelessWidget {
+  const _Card({
+    required this.builder,
+  });
+  final WidgetBuilder builder;
+  @override
+  Widget build(final BuildContext context) {
+    final persistentFormFactors = UiPersistentFormFactors.of(context);
+    final screenWidth = persistentFormFactors.screenSize.width;
+    final constraints = screenWidth < 370
+        ? BoxConstraints(maxWidth: screenWidth)
+        : const BoxConstraints(maxWidth: 365);
+
+    final uiTheme = UiTheme.of(context);
+
+    return CardFrostedBackground(
+      padding: EdgeInsets.only(
+        top: 2,
+        bottom: DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
+      ),
+      constraints: constraints,
+      child: Builder(builder: builder),
     );
   }
 }

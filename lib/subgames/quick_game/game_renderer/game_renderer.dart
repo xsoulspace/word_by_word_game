@@ -94,10 +94,14 @@ class CanvasRendererGame extends FlameGame
         ..y = 32.0,
       canvasRenderer,
     ]);
-    // Enable initial overlays
-    overlays.addAll([
-      GameOverlaysRoutes.levelsHud.name,
-    ]);
+    final oldOverlays = [...overlays.activeOverlays];
+    overlays
+      ..clear()
+      // Enable initial overlays and old ones
+      ..addAll([
+        GameOverlaysRoutes.levelsHud.name,
+        ...oldOverlays,
+      ]);
     // assets loading
 
     // await images.load(kDefaultTilesetPath);
