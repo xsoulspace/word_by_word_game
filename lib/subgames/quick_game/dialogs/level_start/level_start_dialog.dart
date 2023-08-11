@@ -80,18 +80,20 @@ class _DialogScreen extends HookWidget {
   final CanvasDataModel level;
   @override
   Widget build(final BuildContext context) {
-    final screenSize = MediaQuery.of(context).size;
+    final screenSize = MediaQuery.sizeOf(context);
     final widgetUiState = context.read<LevelStartDialogUiState>();
     final uiState = context.read<LevelStartDialogUiState>();
-    final isKeyboardVisibleNotifier = useKeyboardVisibility();
     final child = Stack(
       children: [
         Padding(
           padding: const EdgeInsets.only(top: 26),
           child: SizedBox(
             width: math.min(400, screenSize.width),
-            height: math.max(340, screenSize.height * 0.45),
+            height: math.max(400, screenSize.height * 0.45),
             child: Card(
+              margin: WidthFormFactor.checkIsXs(screenSize)
+                  ? EdgeInsets.zero
+                  : null,
               child: ValueListenableBuilder(
                 valueListenable: widgetUiState.currentViewNotifier,
                 builder: (final context, final currentView, final child) {
@@ -137,17 +139,10 @@ class _DialogScreen extends HookWidget {
       ],
     );
     if (DeviceRuntimeType.isMobile) {
-      return Padding(
-        padding: EdgeInsets.only(
-          bottom: isKeyboardVisibleNotifier.value
-              ? MediaQuery.of(context).viewInsets.bottom
-              : 0,
-        ),
-        child: Center(
-          child: SafeArea(
-            child: SingleChildScrollView(
-              child: child,
-            ),
+      return Center(
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: child,
           ),
         ),
       );

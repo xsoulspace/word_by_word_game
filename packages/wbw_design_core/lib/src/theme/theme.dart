@@ -26,7 +26,6 @@ class UiThemeScheme with _$UiThemeScheme {
     required final UiBoxSpacing verticalBoxes,
     required final UiRadius circularRadius,
     required final UiTextTheme text,
-    required final UiPersistentFormFactors persistentFormFactors,
     required final UiCustomizableFormFactors customizableFormFactors,
   }) = _UiThemeScheme;
   const UiThemeScheme._();
@@ -35,7 +34,6 @@ class UiThemeScheme with _$UiThemeScheme {
     return UiThemeScheme(
       text: UiTextTheme.of(context),
       customizableFormFactors: UiCustomizableFormFactors.ofTargetPlatform(),
-      persistentFormFactors: UiPersistentFormFactors.of(context),
       circularRadius: UiRadius.circularBySpacing(spacing: spacing),
       spacing: spacing,
       horizontalBoxes: UiBoxSpacing.horizontal(spacing: spacing),

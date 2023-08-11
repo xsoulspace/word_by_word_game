@@ -6,7 +6,7 @@ publish_to: none
 # publish_to: "none"
 # homepage:
 environment:
-  sdk: ">=3.0.1 <4.0.0"
+  sdk: ">=3.0.5 <4.0.0"
 
 dependencies:
   animate_do: ^3.0.2

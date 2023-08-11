@@ -1,16 +1,17 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class UiWordActions extends StatelessWidget {
   const UiWordActions({
-    this.alignAsRow = false,
     super.key,
   });
-  final bool alignAsRow;
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionState>();
@@ -22,48 +23,33 @@ class UiWordActions extends StatelessWidget {
     switch (phaseType) {
       case GamePhaseType.entryWord:
         children.addAll([
-          TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.addToDictionaryButton,
-            child: UIAddWordToDictionaryButton(
-              onPressed: state.onAddWordToDictionary,
-            ),
+          Row(
+            children: [
+              TutorialFrame(
+                highlightPosition: Alignment.topCenter,
+                uiKey: TutorialUiItem.addToDictionaryButton,
+                child: UIAddWordToDictionaryButton(
+                  onPressed: state.onAddWordToDictionary,
+                ),
+              ),
+              const Gap(4),
+              const UiSuggestionsButton()
+            ],
           ),
           if (DeviceRuntimeType.isMobile)
             uiTheme.verticalBoxes.small
           else
             uiTheme.verticalBoxes.medium,
-          TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.confirmWordButton,
-            child: UiConfirmWordButton(
-              onPressed: () {
-                state.onToSelectActionPhase();
-                TutorialFrame.sendOnClickEvent(
-                  uiKey: TutorialUiItem.confirmWordButton,
-                  context: context,
-                );
-              },
-            ),
-          ),
         ]);
       case GamePhaseType.selectFuel:
         break;
     }
 
-    if (alignAsRow) {
-      return Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: children,
-      );
-    } else {
-      return Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: children,
-      );
-    }
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: children,
+    );
   }
 }
 
@@ -104,12 +90,34 @@ class UiConfirmWordButton extends StatelessWidget {
     );
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
-    return UiTextButton.icon(
-      text: '${S.of(context).confirm} +${score.value.toInt()}',
-      onPressed: warning == WordWarning.isNotCorrect ? null : onPressed,
-      icon: UiIcons.fire,
-      mainAlignment: MainAxisAlignment.center,
-      isLongButton: true,
+    final isPressable = warning != WordWarning.isNotCorrect;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Tooltip(
+          message: S.of(context).powerOfEnteredWord,
+          child: Text('+${score.value ~/ kScoreFactor}'),
+        ),
+        FloatingActionButton.small(
+          tooltip: S.of(context).confirm,
+          elevation: 1,
+          backgroundColor: Theme.of(context)
+              .colorScheme
+              .tertiaryContainer
+              .withOpacity(isPressable ? 0.8 : 0.1),
+          hoverElevation: 3,
+          onPressed: isPressable ? onPressed : null,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  UiAssetHelper.useImagePath(UiIcons.fire.path),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
@@ -130,36 +138,40 @@ class UIToEndTurnButton extends StatelessWidget {
       );
 }
 
-class UiRandomWordIconButton extends StatelessWidget {
-  const UiRandomWordIconButton({
-    required this.onPressed,
+class UiSuggestionsButton extends StatelessWidget {
+  const UiSuggestionsButton({
     super.key,
   });
-  final VoidCallback? onPressed;
   @override
   Widget build(final BuildContext context) {
-    final cleanWord = context.select<LevelBloc, String>(
-      (final bloc) => bloc.state.currentWord.cleanWord,
+    final isEnabled = context.select<LevelBloc, bool>(
+      (final value) => value.state.currentWord.fullWord.isNotEmpty,
     );
 
     return TutorialFrame(
       highlightPosition: Alignment.topCenter,
       uiKey: TutorialUiItem.suggestWordButton,
-      child: UiIconButton(
+      child: UiTextButton.icon(
+        isLongButton: true,
+        text: S.of(context).suggestions,
         tooltip: S.of(context).suggestWordButtonTooltip,
-        onPressed: cleanWord.isEmpty ? null : onPressed,
+        onPressed: isEnabled
+            ? null
+            : () {
+                context
+                    .read<DialogController>()
+                    .showLevelWordSuggestionDialog();
+              },
         icon: UiIcons.idea,
       ),
     );
   }
 }
 
-class UiPauseIconButton extends StatelessWidget {
-  const UiPauseIconButton({
-    required this.onPressed,
+class UiPauseButton extends StatelessWidget {
+  const UiPauseButton({
     super.key,
   });
-  final VoidCallback onPressed;
 
   @override
   Widget build(final BuildContext context) => TutorialFrame(
@@ -169,7 +181,18 @@ class UiPauseIconButton extends StatelessWidget {
           tag: const ValueKey('UiPauseIconButton'),
           child: UiIconButton(
             tooltip: S.of(context).mainMenuButtonTooltip,
-            onPressed: onPressed,
+            onPressed: () async {
+              final globalGameBloc = context.read<GlobalGameBloc>();
+              final levelBloc = context.read<LevelBloc>();
+              final appRouterController = context.read<AppRouterController>();
+
+              context.read<MechanicsCollection>().worldTime.pause();
+
+              await globalGameBloc
+                  .onSaveCurrentLevel(const SaveCurrentLevelEvent());
+              final id = levelBloc.state.id;
+              appRouterController.toPause(id: id);
+            },
             icon: UiIcons.pause,
           ),
         ),

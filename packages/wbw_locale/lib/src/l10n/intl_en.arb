@@ -135,6 +135,11 @@
   "@addToDictionary": {
     "type": "text"
   },
+  "powerOfEnteredWord": "Power of entered word",
+  "hideKeyboard": "Hide keyboard",
+  "showKeyboard": "Show keyboard",
+  "suggestions": "Suggestions",
+  "currentPlayerName": "Name of current player",
   "suggestWordButtonTooltip": "Click to get random word based on current letters.",
   "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
   "yourCurrentHighcoreTooltip": "Your current points.",

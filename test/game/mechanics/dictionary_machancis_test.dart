@@ -9,7 +9,7 @@ void main() {
     const incorrectWord = CurrentWordModel(fullWord: 'lvl');
     const dictionary = LocalDictionaryModel();
     final Map<FullWordString, PlayerProfileModelId> words = {
-      writtenWord.cleanWord: 'profileid',
+      writtenWord.fullWord: 'profileid',
     };
     test('checkIsWordIsWritten - returns true', () {
       final isWritten = dictionaryMechanics.checkIsWordIsWritten(

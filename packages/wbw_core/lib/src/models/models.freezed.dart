@@ -191,9 +191,7 @@ CurrentWordModel _$CurrentWordModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CurrentWordModel {
-  String get leftPart => throw _privateConstructorUsedError;
-  String get middlePart => throw _privateConstructorUsedError;
-  String get rightPart => throw _privateConstructorUsedError;
+  List<int> get inactiveIndexes => throw _privateConstructorUsedError;
   String get fullWord => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -208,8 +206,7 @@ abstract class $CurrentWordModelCopyWith<$Res> {
           CurrentWordModel value, $Res Function(CurrentWordModel) then) =
       _$CurrentWordModelCopyWithImpl<$Res, CurrentWordModel>;
   @useResult
-  $Res call(
-      {String leftPart, String middlePart, String rightPart, String fullWord});
+  $Res call({List<int> inactiveIndexes, String fullWord});
 }
 
 /// @nodoc
@@ -225,24 +222,14 @@ class _$CurrentWordModelCopyWithImpl<$Res, $Val extends CurrentWordModel>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? leftPart = null,
-    Object? middlePart = null,
-    Object? rightPart = null,
+    Object? inactiveIndexes = null,
     Object? fullWord = null,
   }) {
     return _then(_value.copyWith(
-      leftPart: null == leftPart
-          ? _value.leftPart
-          : leftPart // ignore: cast_nullable_to_non_nullable
-              as String,
-      middlePart: null == middlePart
-          ? _value.middlePart
-          : middlePart // ignore: cast_nullable_to_non_nullable
-              as String,
-      rightPart: null == rightPart
-          ? _value.rightPart
-          : rightPart // ignore: cast_nullable_to_non_nullable
-              as String,
+      inactiveIndexes: null == inactiveIndexes
+          ? _value.inactiveIndexes
+          : inactiveIndexes // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       fullWord: null == fullWord
           ? _value.fullWord
           : fullWord // ignore: cast_nullable_to_non_nullable
@@ -259,8 +246,7 @@ abstract class _$$_CurrentWordModelCopyWith<$Res>
       __$$_CurrentWordModelCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String leftPart, String middlePart, String rightPart, String fullWord});
+  $Res call({List<int> inactiveIndexes, String fullWord});
 }
 
 /// @nodoc
@@ -274,24 +260,14 @@ class __$$_CurrentWordModelCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? leftPart = null,
-    Object? middlePart = null,
-    Object? rightPart = null,
+    Object? inactiveIndexes = null,
     Object? fullWord = null,
   }) {
     return _then(_$_CurrentWordModel(
-      leftPart: null == leftPart
-          ? _value.leftPart
-          : leftPart // ignore: cast_nullable_to_non_nullable
-              as String,
-      middlePart: null == middlePart
-          ? _value.middlePart
-          : middlePart // ignore: cast_nullable_to_non_nullable
-              as String,
-      rightPart: null == rightPart
-          ? _value.rightPart
-          : rightPart // ignore: cast_nullable_to_non_nullable
-              as String,
+      inactiveIndexes: null == inactiveIndexes
+          ? _value._inactiveIndexes
+          : inactiveIndexes // ignore: cast_nullable_to_non_nullable
+              as List<int>,
       fullWord: null == fullWord
           ? _value.fullWord
           : fullWord // ignore: cast_nullable_to_non_nullable
@@ -305,31 +281,29 @@ class __$$_CurrentWordModelCopyWithImpl<$Res>
 @JsonSerializable(explicitToJson: true)
 class _$_CurrentWordModel extends _CurrentWordModel {
   const _$_CurrentWordModel(
-      {this.leftPart = '',
-      this.middlePart = '',
-      this.rightPart = '',
-      this.fullWord = ''})
-      : super._();
+      {final List<int> inactiveIndexes = const [], this.fullWord = ''})
+      : _inactiveIndexes = inactiveIndexes,
+        super._();
 
   factory _$_CurrentWordModel.fromJson(Map<String, dynamic> json) =>
       _$$_CurrentWordModelFromJson(json);
 
+  final List<int> _inactiveIndexes;
   @override
   @JsonKey()
-  final String leftPart;
-  @override
-  @JsonKey()
-  final String middlePart;
-  @override
-  @JsonKey()
-  final String rightPart;
+  List<int> get inactiveIndexes {
+    if (_inactiveIndexes is EqualUnmodifiableListView) return _inactiveIndexes;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_inactiveIndexes);
+  }
+
   @override
   @JsonKey()
   final String fullWord;
 
   @override
   String toString() {
-    return 'CurrentWordModel(leftPart: $leftPart, middlePart: $middlePart, rightPart: $rightPart, fullWord: $fullWord)';
+    return 'CurrentWordModel(inactiveIndexes: $inactiveIndexes, fullWord: $fullWord)';
   }
 
   @override
@@ -337,20 +311,16 @@ class _$_CurrentWordModel extends _CurrentWordModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_CurrentWordModel &&
-            (identical(other.leftPart, leftPart) ||
-                other.leftPart == leftPart) &&
-            (identical(other.middlePart, middlePart) ||
-                other.middlePart == middlePart) &&
-            (identical(other.rightPart, rightPart) ||
-                other.rightPart == rightPart) &&
+            const DeepCollectionEquality()
+                .equals(other._inactiveIndexes, _inactiveIndexes) &&
             (identical(other.fullWord, fullWord) ||
                 other.fullWord == fullWord));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, leftPart, middlePart, rightPart, fullWord);
+  int get hashCode => Object.hash(runtimeType,
+      const DeepCollectionEquality().hash(_inactiveIndexes), fullWord);
 
   @JsonKey(ignore: true)
   @override
@@ -368,9 +338,7 @@ class _$_CurrentWordModel extends _CurrentWordModel {
 
 abstract class _CurrentWordModel extends CurrentWordModel {
   const factory _CurrentWordModel(
-      {final String leftPart,
-      final String middlePart,
-      final String rightPart,
+      {final List<int> inactiveIndexes,
       final String fullWord}) = _$_CurrentWordModel;
   const _CurrentWordModel._() : super._();
 
@@ -378,11 +346,7 @@ abstract class _CurrentWordModel extends CurrentWordModel {
       _$_CurrentWordModel.fromJson;
 
   @override
-  String get leftPart;
-  @override
-  String get middlePart;
-  @override
-  String get rightPart;
+  List<int> get inactiveIndexes;
   @override
   String get fullWord;
   @override

@@ -1,7 +1,7 @@
 part of 'game_bottom_bar.dart';
 
-class GameBottomBarBackground extends StatelessWidget {
-  const GameBottomBarBackground({
+class CardFrostedBackground extends StatelessWidget {
+  const CardFrostedBackground({
     required this.child,
     this.padding,
     this.constraints,
@@ -14,7 +14,6 @@ class GameBottomBarBackground extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-
     final levelPlayersBloc = context.watch<LevelPlayersBloc>();
     final livePlayerColor = levelPlayersBloc.state.currentPlayer.color;
 
