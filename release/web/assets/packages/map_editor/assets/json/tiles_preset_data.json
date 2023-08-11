@@ -117,17 +117,32 @@
     }
   },
   "other": {
-    "cursor": {
-      "id": "cursor",
+    "cursor_pointer": {
+      "id": "cursor_pointer",
       "category": "other",
       "type": "object",
       "properties": {
-        "title": "Cursor",
+        "title": "Cursor Pointer",
         "thumbnail_path": null
       },
       "graphics": {
         "type": "character",
-        "path": "cursor",
+        "path": "cursors/cursor",
+        "behaviours": ["idle"],
+        "animated": false
+      }
+    },
+    "cursor_handle": {
+      "id": "cursor_handle",
+      "category": "other",
+      "type": "object",
+      "properties": {
+        "title": "Cursor Handle",
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "path": "cursors/handle",
         "behaviours": ["idle"],
         "animated": false
       }
