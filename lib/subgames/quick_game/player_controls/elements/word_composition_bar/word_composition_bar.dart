@@ -19,20 +19,15 @@ part 'word_composition_bar_state.dart';
 class UiWordCompositionBar extends StatelessWidget {
   const UiWordCompositionBar({super.key});
   @override
-  Widget build(final BuildContext context) {
-    final state = context.read<WordCompositionState>();
+  Widget build(final BuildContext context) => TutorialFrame(
+        highlightPosition: Alignment.topCenter,
+        uiKey: TutorialUiItem.enterWordPhaseFrame,
+        child: WordField(
+          controller: context.read<WordCompositionState>().wordController,
+        ),
 
-    return TutorialFrame(
-      highlightPosition: Alignment.topCenter,
-      uiKey: TutorialUiItem.enterWordPhaseFrame,
-      child: WordField(
-        controller: state.wordController,
-        focusNode: state.wordFocusNode,
-      ),
-
-      // uiKey: TutorialUiItem.enterWordRight,
-      // hintText: S.of(context).hintAddEnding,
-      // onSubmitted: state.onToSelectActionPhase,
-    );
-  }
+        // uiKey: TutorialUiItem.enterWordRight,
+        // hintText: S.of(context).hintAddEnding,
+        // onSubmitted: state.onToSelectActionPhase,
+      );
 }

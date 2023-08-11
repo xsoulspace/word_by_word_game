@@ -44,19 +44,28 @@ class _Card extends StatelessWidget {
   Widget build(final BuildContext context) {
     final persistentFormFactors = UiPersistentFormFactors.of(context);
     final screenWidth = persistentFormFactors.screenSize.width;
-    final constraints = screenWidth < 370
-        ? BoxConstraints(maxWidth: screenWidth)
-        : const BoxConstraints(maxWidth: 365);
+    final screenContstraints = BoxConstraints(maxWidth: screenWidth);
+    BoxConstraints constraints;
+    if (DeviceRuntimeType.isMobile) {
+      constraints = screenContstraints;
+    } else {
+      constraints = screenWidth < 370
+          ? screenContstraints
+          : const BoxConstraints(maxWidth: 365);
+    }
 
     final uiTheme = UiTheme.of(context);
 
-    return CardFrostedBackground(
-      padding: EdgeInsets.only(
-        top: 2,
-        bottom: DeviceRuntimeType.isMobile ? 0.0 : uiTheme.spacing.medium,
+    return SafeArea(
+      top: false,
+      child: CardFrostedBackground(
+        padding: EdgeInsets.only(
+          top: 2,
+          bottom: uiTheme.spacing.medium,
+        ),
+        constraints: constraints,
+        child: Builder(builder: builder),
       ),
-      constraints: constraints,
-      child: Builder(builder: builder),
     );
   }
 }

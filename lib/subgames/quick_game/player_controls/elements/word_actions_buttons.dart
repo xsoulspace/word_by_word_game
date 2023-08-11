@@ -45,10 +45,13 @@ class UiWordActions extends StatelessWidget {
         break;
     }
 
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: children,
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: children,
+      ),
     );
   }
 }

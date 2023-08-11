@@ -11,6 +11,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class WordFieldController extends ChangeNotifier {
   WordFieldController({
@@ -105,11 +106,9 @@ class WordFieldController extends ChangeNotifier {
 class WordField extends StatefulWidget {
   const WordField({
     required this.controller,
-    required this.focusNode,
     super.key,
   });
   final WordFieldController controller;
-  final FocusNode focusNode;
   @override
   State<WordField> createState() => _WordFieldState();
 }
@@ -236,74 +235,79 @@ class _WordFieldState extends State<WordField> {
   }
 
   @override
-  Widget build(final BuildContext context) => InputKeyboardListener(
-        focusNode: widget.focusNode,
-        autofocus: false,
-        caretIndex: _controller._caretIndex,
-        onCaretIndexChanged: _onCaretIndexChanged,
-        onCharacter: _onLetterPressed,
-        onDelete: _onDelete,
-        onComplete: () => UILevelCenterBar.onConfirmWord(context),
+  Widget build(final BuildContext context) {
+    final wordCompositionState = context.read<WordCompositionState>();
+    return InputKeyboardListener(
+      focusNode: wordCompositionState.wordFocusNode,
+      autofocus: false,
+      caretIndex: _controller._caretIndex,
+      onCaretIndexChanged: _onCaretIndexChanged,
+      onCharacter: _onLetterPressed,
+      onDelete: _onDelete,
+      onComplete: () => UILevelCenterBar.onConfirmWord(context),
 
-        /// container is needed to get focus
-        child: Container(
-          constraints: const BoxConstraints(
-            maxWidth: kKeyboardWidth,
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 6),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: CardFrostedBackground(
-                        child: GameplayEditableText(
-                          items: _items,
-                          inactiveCharacters: _inactiveCharacters,
-                          caretIndex: _controller._caretIndex,
-                          onCaretIndexChanged: _onCaretIndexChanged,
-                          onItemsChanged: _onItemsChanged,
-                        ),
-                      ),
-                    ),
-                    if (DeviceRuntimeType.isDesktop)
-                      IconButton(
-                        tooltip: _isKeyboardVisible
-                            ? S.of(context).hideKeyboard
-                            : S.of(context).showKeyboard,
-                        onPressed: () {
-                          _isKeyboardVisible = !_isKeyboardVisible;
-                          setState(() {});
-                        },
-                        icon: AnimatedSwitcher(
-                          duration: 250.milliseconds,
-                          child: _isKeyboardVisible
-                              ? const Icon(Icons.keyboard_hide)
-                              : const Icon(Icons.keyboard_sharp),
-                        ),
-                      ),
-                  ],
-                ),
+      /// container is needed to get focus
+      child: Container(
+        constraints: DeviceRuntimeType.isMobile
+            ? null
+            : const BoxConstraints(
+                maxWidth: kKeyboardWidth,
               ),
-              const Gap(10),
-              if (_isKeyboardVisible)
-                const UiKeyboard()
-                    .animate()
-                    .scaleXY(
-                      curve: Curves.easeIn,
-                      begin: 0.99,
-                      end: 1,
-                      alignment: Alignment.bottomCenter,
-                    )
-                    .fadeIn(
-                      curve: Curves.easeIn,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 6),
+              child: Row(
+                children: [
+                  Expanded(
+                    child: CardFrostedBackground(
+                      child: GameplayEditableText(
+                        items: _items,
+                        inactiveCharacters: _inactiveCharacters,
+                        caretIndex: _controller._caretIndex,
+                        onCaretIndexChanged: _onCaretIndexChanged,
+                        onItemsChanged: _onItemsChanged,
+                      ),
                     ),
-            ],
-          ),
+                  ),
+                  if (DeviceRuntimeType.isDesktop)
+                    IconButton(
+                      tooltip: _isKeyboardVisible
+                          ? S.of(context).hideKeyboard
+                          : S.of(context).showKeyboard,
+                      onPressed: () {
+                        _isKeyboardVisible = !_isKeyboardVisible;
+                        setState(() {});
+                      },
+                      icon: AnimatedSwitcher(
+                        duration: 250.milliseconds,
+                        child: _isKeyboardVisible
+                            ? const Icon(Icons.keyboard_hide)
+                            : const Icon(Icons.keyboard_sharp),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            const Gap(10),
+            if (_isKeyboardVisible)
+              const UiKeyboard()
+                  .animate()
+                  .scaleXY(
+                    curve: Curves.easeIn,
+                    begin: 0.99,
+                    end: 1,
+                    alignment: Alignment.bottomCenter,
+                  )
+                  .fadeIn(
+                    curve: Curves.easeIn,
+                  ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }
 
 class ReorderableLetterCard extends StatelessWidget {

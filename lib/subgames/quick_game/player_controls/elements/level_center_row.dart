@@ -25,57 +25,60 @@ class UILevelCenterBar extends StatelessWidget {
       (final s) => s.state.phaseType,
     );
 
-    return Column(
-      children: [
-        Container(
-          constraints: const BoxConstraints(maxHeight: 64),
-          padding: const EdgeInsets.symmetric(
-            horizontal: 16,
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: Column(
+        children: [
+          Container(
+            constraints: const BoxConstraints(maxHeight: 68),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+            ),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: AnimatedAlign(
+                    duration: 250.milliseconds,
+                    alignment: phaseType == GamePhaseType.entryWord
+                        ? Alignment.center
+                        : Alignment.centerLeft,
+                    child: const UIMobilePlayerName(),
+                  ),
+                ),
+                Positioned.fill(
+                  child: AnimatedAlign(
+                    duration: 220.milliseconds,
+                    alignment: phaseType == GamePhaseType.selectFuel
+                        ? Alignment.center
+                        : Alignment.centerLeft,
+                    child: const UIMobilePlayerScore(),
+                  ),
+                ),
+                Positioned.fill(
+                  child: AnimatedAlign(
+                    duration: 250.milliseconds,
+                    alignment: Alignment.centerRight,
+                    child: phaseType == GamePhaseType.entryWord
+                        ? TutorialFrame(
+                            highlightPosition: Alignment.topCenter,
+                            uiKey: TutorialUiItem.confirmWordButton,
+                            child: UiConfirmWordButton(
+                              onPressed: () => onConfirmWord(context),
+                            ).animate().fadeIn(),
+                          )
+                        : const SizedBox(),
+                  ),
+                ),
+              ],
+            ),
           ),
-          child: Stack(
-            children: [
-              Positioned.fill(
-                child: AnimatedAlign(
-                  duration: 250.milliseconds,
-                  alignment: phaseType == GamePhaseType.entryWord
-                      ? Alignment.center
-                      : Alignment.centerLeft,
-                  child: const UIMobilePlayerName(),
-                ),
-              ),
-              Positioned.fill(
-                child: AnimatedAlign(
-                  duration: 220.milliseconds,
-                  alignment: phaseType == GamePhaseType.selectFuel
-                      ? Alignment.center
-                      : Alignment.centerLeft,
-                  child: const UIMobilePlayerScore(),
-                ),
-              ),
-              Positioned.fill(
-                child: AnimatedAlign(
-                  duration: 250.milliseconds,
-                  alignment: Alignment.centerRight,
-                  child: phaseType == GamePhaseType.entryWord
-                      ? TutorialFrame(
-                          highlightPosition: Alignment.topCenter,
-                          uiKey: TutorialUiItem.confirmWordButton,
-                          child: UiConfirmWordButton(
-                            onPressed: () => onConfirmWord(context),
-                          ).animate().fadeIn(),
-                        )
-                      : const SizedBox(),
-                ),
-              ),
-            ],
-          ),
-        ),
-        const Gap(8),
-        switch (phaseType) {
-          GamePhaseType.entryWord => const UiWordCompositionBar(),
-          GamePhaseType.selectFuel => const UiFuelBar(),
-        }
-      ],
+          const Gap(8),
+          switch (phaseType) {
+            GamePhaseType.entryWord => const UiWordCompositionBar(),
+            GamePhaseType.selectFuel => const UiFuelBar(),
+          }
+        ],
+      ),
     );
   }
 }

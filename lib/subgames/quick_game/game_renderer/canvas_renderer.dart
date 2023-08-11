@@ -101,8 +101,10 @@ class CanvasRenderer extends Component
   void render(final material.Canvas canvas) {
     super.render(canvas);
 
-    if (debugMode) _renderOrigin(canvas);
-    if (debugMode) _renderOffsetOrigin(canvas);
+    if (debugMode) {
+      _renderOrigin(canvas);
+      _renderOffsetOrigin(canvas);
+    }
   }
 
   @override

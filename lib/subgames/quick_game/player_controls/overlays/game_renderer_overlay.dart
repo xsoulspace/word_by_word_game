@@ -22,7 +22,6 @@ class LevelsHudScreenOverlay extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
     final screenSize = MediaQuery.sizeOf(context);
     return Portal(
       child: Stack(
@@ -35,63 +34,10 @@ class LevelsHudScreenOverlay extends StatelessWidget {
               children: [UiPauseButton()],
             ),
           ),
-          Positioned(
+          const Positioned(
             left: 0,
             top: 20,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (DeviceRuntimeType.isMobile) const SizedBox(height: 24),
-                const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
-                uiTheme.verticalBoxes.medium,
-                const UIPlayersSideBar(),
-                const Gap(16),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8),
-                  child: BlocBuilder<WeatherCubit, WeatherCubitState>(
-                    builder: (final context, final state) => Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          // ignore: lines_longer_than_80_chars
-                          '${S.of(context).wind}: ${state.weather.windScale.toLocalizedName(context)} '
-                          // ignore: lines_longer_than_80_chars
-                          '| ${state.wind.force.x.toStringAsFixed(2)} ${state.wind.force.y.toStringAsFixed(2)}',
-                        ),
-                        const Gap(8),
-                        Text(
-                          // ignore: lines_longer_than_80_chars
-                          '${S.of(context).nextWeatherIn}: ${state.weather.durationInGameSeconds} ',
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: BlocSelector<LevelPlayersBloc, LevelPlayersBlocState,
-                      BalloonLiftPowersModel>(
-                    selector: (final state) =>
-                        state.playerCharacter.balloonPowers,
-                    builder: (final context, final powers) => Column(
-                      children: [
-                        const Gap(8),
-                        GestureDetector(
-                          onTap: () {
-                            context.read<DebugCubit>().tryOpenDebugPane();
-                          },
-                          child: Text(
-                            // ignore: lines_longer_than_80_chars
-                            '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            child: _Statistics(),
           ),
           const Positioned(
             child: Center(
@@ -111,6 +57,68 @@ class LevelsHudScreenOverlay extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _Statistics extends StatelessWidget {
+  const _Statistics();
+
+  @override
+  Widget build(final BuildContext context) {
+    final uiTheme = UiTheme.of(context);
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        if (DeviceRuntimeType.isMobile) const SizedBox(height: 24),
+        const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
+        uiTheme.verticalBoxes.medium,
+        const UIPlayersSideBar(),
+        const Gap(16),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: BlocBuilder<WeatherCubit, WeatherCubitState>(
+            builder: (final context, final state) => Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  // ignore: lines_longer_than_80_chars
+                  '${S.of(context).wind}: ${state.weather.windScale.toLocalizedName(context)} '
+                  // ignore: lines_longer_than_80_chars
+                  '| ${state.wind.force.x.toStringAsFixed(2)} ${state.wind.force.y.toStringAsFixed(2)}',
+                ),
+                const Gap(8),
+                Text(
+                  // ignore: lines_longer_than_80_chars
+                  '${S.of(context).nextWeatherIn}: ${state.weather.durationInGameSeconds} ',
+                ),
+              ],
+            ),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(8),
+          child: BlocSelector<LevelPlayersBloc, LevelPlayersBlocState,
+              BalloonLiftPowersModel>(
+            selector: (final state) => state.playerCharacter.balloonPowers,
+            builder: (final context, final powers) => Column(
+              children: [
+                const Gap(8),
+                GestureDetector(
+                  onTap: () {
+                    context.read<DebugCubit>().tryOpenDebugPane();
+                  },
+                  child: Text(
+                    // ignore: lines_longer_than_80_chars
+                    '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ],
     );
   }
 }
