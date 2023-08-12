@@ -12,13 +12,13 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/pack_core/navigation/app_router.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/overlays/warning_notification.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/warning_notification.dart';
 import 'package:word_by_word_game/subgames/quick_game/players_side_bar/players_side_bar.dart';
 
-part 'game_renderer_overlay_state.dart';
+part 'hud_overlay_state.dart';
 
-class LevelsHudScreenOverlay extends StatelessWidget {
-  const LevelsHudScreenOverlay({super.key});
+class HudOverlay extends StatelessWidget {
+  const HudOverlay({super.key});
 
   @override
   Widget build(final BuildContext context) {

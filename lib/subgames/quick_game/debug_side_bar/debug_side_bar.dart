@@ -87,8 +87,6 @@ class UiDebugSideBarBody extends StatelessWidget {
           ),
           const _WorldTime(),
           const Gap(16),
-          const Text('Debug Tools'),
-          const Gap(16),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(
