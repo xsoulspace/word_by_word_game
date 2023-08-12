@@ -348,74 +348,82 @@ class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
       .getDecreaseScore(lettersCount: 1);
 
   @override
-  Widget build(final BuildContext context) => MenuAnchor(
-        onClose: () => setState(() {}),
-        alignmentOffset: const Offset(0, -110),
-        style: const MenuStyle(
-          alignment: Alignment.topCenter,
-        ),
-        controller: _menuController,
-        menuChildren: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 120),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          // TODO(arenukvern): add l10n
-                          'Unblock character for ${_decreaseScore.value / kScoreFactor * -1} points?',
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+  Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+    return MenuAnchor(
+      onClose: () => setState(() {}),
+      alignmentOffset: const Offset(0, -110),
+      style: const MenuStyle(
+        alignment: Alignment.topCenter,
+      ),
+      controller: _menuController,
+      menuChildren: [
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 140),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    TextButton(
-                      onPressed: _menuController.close,
-                      child: const Text('No'),
-                    ),
-                    TextButton(
-                      onPressed: () {},
-                      child: const Text('Yes'),
+                    Flexible(
+                      child: Text(
+                        S.of(context).unblockCharacterForPoints(
+                              _decreaseScore.value ~/ kScoreFactor * -1,
+                              widget.letter.title,
+                            ),
+                      ),
                     ),
                   ],
-                )
-              ],
-            ),
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const Gap(6),
+                  TextButton(
+                    onPressed: _menuController.close,
+                    child: const Text('No'),
+                  ),
+                  FilledButton(
+                    onPressed: () {},
+                    child: const Text('Yes'),
+                  ),
+                  const Gap(6),
+                ],
+              ),
+              if (!DeviceRuntimeType.isMobile) const Gap(6),
+            ],
           ),
-        ],
-        key: ValueKey(widget.letter),
-        builder: (final context, final controller, final child) => UiBaseButton(
-          onPressed: controller.open,
-          child: Card(
-            elevation: controller.isOpen ? 3 : 0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Theme.of(context).colorScheme.outline,
-              ),
-              borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+        ),
+      ],
+      key: ValueKey(widget.letter),
+      builder: (final context, final controller, final child) => UiBaseButton(
+        onPressed: controller.open,
+        child: Card(
+          elevation: controller.isOpen ? 3 : 0,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+              color: Theme.of(context).colorScheme.outline,
             ),
-            margin: const EdgeInsets.symmetric(
-              vertical: 4,
-              horizontal: 2,
-            ),
-            child: SizedBox.square(
-              dimension: 24,
-              child: Center(
-                child: Text(widget.letter.title),
-              ),
+            borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+          ),
+          margin: const EdgeInsets.symmetric(
+            vertical: 4,
+            horizontal: 2,
+          ),
+          child: SizedBox.square(
+            dimension: 24,
+            child: Center(
+              child: Text(widget.letter.title),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 }
 
 class InputLetterCard extends StatelessWidget {

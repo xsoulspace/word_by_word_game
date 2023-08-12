@@ -198,6 +198,11 @@ class SIt extends S {
   String get showPane => 'Mostra riquadro';
 
   @override
+  String unblockCharacterForPoints(int points, String character) {
+    return 'Sbloccare la lettera $character per $points punti?';
+  }
+
+  @override
   String get powerOfEnteredWord => 'potere della parola inserita';
 
   @override

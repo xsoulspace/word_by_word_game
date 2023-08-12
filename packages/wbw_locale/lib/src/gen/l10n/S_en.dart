@@ -198,6 +198,11 @@ class SEn extends S {
   String get showPane => 'Show pane';
 
   @override
+  String unblockCharacterForPoints(int points, String character) {
+    return 'Unblock character $character for $points points?';
+  }
+
+  @override
   String get powerOfEnteredWord => 'Power of entered word';
 
   @override

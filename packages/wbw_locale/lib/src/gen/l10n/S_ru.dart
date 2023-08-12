@@ -198,6 +198,11 @@ class SRu extends S {
   String get showPane => 'Показать панель';
 
   @override
+  String unblockCharacterForPoints(int points, String character) {
+    return 'Разблокировать букву $character за $points очков?';
+  }
+
+  @override
   String get powerOfEnteredWord => 'Очки введеного слова';
 
   @override

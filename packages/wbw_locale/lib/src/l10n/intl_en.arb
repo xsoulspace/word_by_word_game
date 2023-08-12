@@ -137,6 +137,17 @@
   },
   "hidePane": "Hide pane",
   "showPane": "Show pane",
+  "unblockCharacterForPoints": "Unblock character {character} for {points} points?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
   "powerOfEnteredWord": "Power of entered word",
   "hideKeyboard": "Hide keyboard",
   "showKeyboard": "Show keyboard",

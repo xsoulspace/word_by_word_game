@@ -36,6 +36,17 @@
   "previousWord": "Parola precedente",
   "createProfile": "Creare Profili",
   "hidePane": "Nascondi riquadro",
+  "unblockCharacterForPoints": "Sbloccare la lettera {character} per {points} punti?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
   "showPane": "Mostra riquadro",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",

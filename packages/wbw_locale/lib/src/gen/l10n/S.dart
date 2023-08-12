@@ -473,6 +473,12 @@ abstract class S {
   /// **'Show pane'**
   String get showPane;
 
+  /// No description provided for @unblockCharacterForPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock character {character} for {points} points?'**
+  String unblockCharacterForPoints(int points, String character);
+
   /// No description provided for @powerOfEnteredWord.
   ///
   /// In en, this message translates to:
