@@ -14,8 +14,9 @@ class CardFrostedBackground extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    final levelPlayersBloc = context.watch<LevelPlayersBloc>();
-    final livePlayerColor = levelPlayersBloc.state.currentPlayer.color;
+    final livePlayerColor = context.select<LevelPlayersBloc, Color>(
+      (final cubit) => cubit.state.currentPlayer.color,
+    );
 
     return Stack(
       children: [

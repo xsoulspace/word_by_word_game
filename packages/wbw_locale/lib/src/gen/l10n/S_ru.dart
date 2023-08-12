@@ -192,6 +192,12 @@ class SRu extends S {
   String get addToDictionary => 'Внести в словарь';
 
   @override
+  String get hidePane => 'Скрыть панель';
+
+  @override
+  String get showPane => 'Показать панель';
+
+  @override
   String get powerOfEnteredWord => 'Очки введеного слова';
 
   @override

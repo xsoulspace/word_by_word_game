@@ -135,6 +135,8 @@
   "@addToDictionary": {
     "type": "text"
   },
+  "hidePane": "Hide pane",
+  "showPane": "Show pane",
   "powerOfEnteredWord": "Power of entered word",
   "hideKeyboard": "Hide keyboard",
   "showKeyboard": "Show keyboard",

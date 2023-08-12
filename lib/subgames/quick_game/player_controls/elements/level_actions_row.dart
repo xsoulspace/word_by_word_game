@@ -106,7 +106,7 @@ class UIEnergyOptionCard extends StatelessWidget {
     final theme = Theme.of(context);
     // final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
-    final widgetState = context.read<WordCompositionState>();
+    final widgetState = context.read<WordCompositionCubit>();
     // final borderRadius = BorderRadius.circular(100);
     void onApply() {
       widgetState.onSelectActionMultiplier(type);

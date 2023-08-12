@@ -461,6 +461,18 @@ abstract class S {
   /// **'Add to Dictionary'**
   String get addToDictionary;
 
+  /// No description provided for @hidePane.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide pane'**
+  String get hidePane;
+
+  /// No description provided for @showPane.
+  ///
+  /// In en, this message translates to:
+  /// **'Show pane'**
+  String get showPane;
+
   /// No description provided for @powerOfEnteredWord.
   ///
   /// In en, this message translates to:

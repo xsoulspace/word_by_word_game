@@ -71,14 +71,6 @@ class InputKeyboardListener extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => Focus(
         autofocus: autofocus,
-        onFocusChange: (final isFocused) {
-          final controller = context.read<UiKeyboardController>();
-          if (isFocused) {
-            controller.showKeyboard();
-          } else {
-            controller.hideKeyboard();
-          }
-        },
         onKeyEvent: (final node, final event) {
           if (event is KeyUpEvent) return KeyEventResult.handled;
 
@@ -123,8 +115,10 @@ class UiKeyboard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final controller = context.watch<UiKeyboardController>();
-    final language = controller.state.language;
+    final controller = context.read<UiKeyboardController>();
+    final language = context.select<UiKeyboardController, KeyboardLanguage>(
+      (final cubit) => cubit.state.language,
+    );
     return KeyboardLetters(
       language: language,
       onDelete: controller.onDeleteCharacter,
@@ -425,31 +419,27 @@ class UiElevatedButton extends StatelessWidget {
   final EdgeInsets padding;
 
   @override
-  Widget build(final BuildContext context) => Material(
-        type: MaterialType.button,
-        color: Theme.of(context).dialogBackgroundColor,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
-        ),
-        surfaceTintColor: Theme.of(context).colorScheme.surfaceTint,
-        elevation: 1,
-        child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
-          onTap: onPressed,
-          onLongPress: onLongPress,
-          child: Container(
-            alignment: Alignment.center,
-            padding: padding,
-            child: IconTheme(
-              data: IconThemeData(
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              child: DefaultTextStyle.merge(
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
-                child: child,
-              ),
+  Widget build(final BuildContext context) => UiBaseButton(
+        onPressed: onPressed,
+        onLongPress: onLongPress,
+        child: Container(
+          decoration: ShapeDecoration(
+            color: Theme.of(context).dialogBackgroundColor,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
+            ),
+          ),
+          alignment: Alignment.center,
+          padding: padding,
+          child: IconTheme(
+            data: IconThemeData(
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            child: DefaultTextStyle.merge(
+              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+              child: child,
             ),
           ),
         ),
@@ -467,21 +457,18 @@ class UiFilledButton extends StatelessWidget {
   final EdgeInsets padding;
   final VoidCallback? onPressed;
   @override
-  Widget build(final BuildContext context) => Material(
-        type: MaterialType.button,
-        elevation: 1,
-        color: Theme.of(context).colorScheme.secondaryContainer,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
-        ),
-        child: InkWell(
-          borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
-          onTap: onPressed,
-          child: Container(
-            alignment: Alignment.center,
-            padding: padding,
-            child: child,
+  Widget build(final BuildContext context) => UiBaseButton(
+        onPressed: onPressed,
+        child: Container(
+          decoration: ShapeDecoration(
+            color: Theme.of(context).colorScheme.secondaryContainer,
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
+            ),
           ),
+          alignment: Alignment.center,
+          padding: padding,
+          child: child,
         ),
       );
 }

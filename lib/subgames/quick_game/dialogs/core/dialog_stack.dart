@@ -27,8 +27,8 @@ enum GameDialogType {
   tutorialOk,
 }
 
-class DialogOverlay extends StatelessWidget {
-  const DialogOverlay({super.key});
+class GuiOverlay extends StatelessWidget {
+  const GuiOverlay({super.key});
 
   @override
   Widget build(final BuildContext context) {

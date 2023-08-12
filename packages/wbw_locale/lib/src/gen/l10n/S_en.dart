@@ -192,6 +192,12 @@ class SEn extends S {
   String get addToDictionary => 'Add to Dictionary';
 
   @override
+  String get hidePane => 'Hide pane';
+
+  @override
+  String get showPane => 'Show pane';
+
+  @override
   String get powerOfEnteredWord => 'Power of entered word';
 
   @override
