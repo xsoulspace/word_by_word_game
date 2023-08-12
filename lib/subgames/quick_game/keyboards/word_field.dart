@@ -8,6 +8,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
@@ -73,6 +74,24 @@ class WordFieldController extends ChangeNotifier {
     controller.text = text;
     notifyListeners();
     return text;
+  }
+
+  void changeInactiveIndexes({
+    required final List<int> inactiveIndexes,
+  }) {
+    final inactiveCharacterIndexes = <int, LetterModel>{};
+    for (var i = 0; i < controller.text.length; i++) {
+      final letter = _items[i];
+      if (_inactiveCharacters.contains(letter)) {
+        inactiveCharacterIndexes[i] = letter;
+      }
+    }
+    final inactiveCharacters = inactiveCharacterIndexes
+      ..removeWhere((final key, final value) => !inactiveIndexes.contains(key));
+    _inactiveCharacters
+      ..clear()
+      ..addAll(inactiveCharacters.values);
+    notifyListeners();
   }
 
   List<LetterModel> split({
@@ -201,6 +220,10 @@ class _WordFieldState extends State<WordField> {
     }
   }
 
+  void _onUnblockCharacter(final int index, final LetterModel character) {
+    context.read<LevelBloc>().onUnblockIndex(index: index);
+  }
+
   void _onItemsChanged(final List<LetterModel> items) {
     _items = items;
     setState(() {});
@@ -268,6 +291,7 @@ class _WordFieldState extends State<WordField> {
                         caretIndex: _controller._caretIndex,
                         onCaretIndexChanged: _onCaretIndexChanged,
                         onItemsChanged: _onItemsChanged,
+                        onUnblock: _onUnblockCharacter,
                       ),
                     ),
                   ),
@@ -331,9 +355,11 @@ class ReorderableLetterCard extends StatelessWidget {
 class InputInactiveLetterCard extends StatefulWidget {
   const InputInactiveLetterCard({
     required this.letter,
+    required this.onUnblock,
     super.key,
   });
   final LetterModel letter;
+  final VoidCallback onUnblock;
 
   @override
   State<InputInactiveLetterCard> createState() =>
@@ -348,82 +374,79 @@ class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
       .getDecreaseScore(lettersCount: 1);
 
   @override
-  Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
-    return MenuAnchor(
-      onClose: () => setState(() {}),
-      alignmentOffset: const Offset(0, -110),
-      style: const MenuStyle(
-        alignment: Alignment.topCenter,
-      ),
-      controller: _menuController,
-      menuChildren: [
-        ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 140),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Flexible(
-                      child: Text(
-                        S.of(context).unblockCharacterForPoints(
-                              _decreaseScore.value ~/ kScoreFactor * -1,
-                              widget.letter.title,
-                            ),
+  Widget build(final BuildContext context) => MenuAnchor(
+        onClose: () => setState(() {}),
+        alignmentOffset: const Offset(0, -110),
+        style: const MenuStyle(
+          alignment: Alignment.topCenter,
+        ),
+        controller: _menuController,
+        menuChildren: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 140),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          S.of(context).unblockCharacterForPoints(
+                                _decreaseScore.value ~/ kScoreFactor * -1,
+                                widget.letter.title,
+                              ),
+                        ),
                       ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Gap(6),
+                    TextButton(
+                      onPressed: _menuController.close,
+                      child: const Text('No'),
                     ),
+                    FilledButton(
+                      onPressed: widget.onUnblock,
+                      child: const Text('Yes'),
+                    ),
+                    const Gap(6),
                   ],
                 ),
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  const Gap(6),
-                  TextButton(
-                    onPressed: _menuController.close,
-                    child: const Text('No'),
-                  ),
-                  FilledButton(
-                    onPressed: () {},
-                    child: const Text('Yes'),
-                  ),
-                  const Gap(6),
-                ],
-              ),
-              if (!DeviceRuntimeType.isMobile) const Gap(6),
-            ],
-          ),
-        ),
-      ],
-      key: ValueKey(widget.letter),
-      builder: (final context, final controller, final child) => UiBaseButton(
-        onPressed: controller.open,
-        child: Card(
-          elevation: controller.isOpen ? 3 : 0,
-          shape: RoundedRectangleBorder(
-            side: BorderSide(
-              color: Theme.of(context).colorScheme.outline,
+                if (!DeviceRuntimeType.isMobile) const Gap(6),
+              ],
             ),
-            borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
           ),
-          margin: const EdgeInsets.symmetric(
-            vertical: 4,
-            horizontal: 2,
-          ),
-          child: SizedBox.square(
-            dimension: 24,
-            child: Center(
-              child: Text(widget.letter.title),
+        ],
+        key: ValueKey(widget.letter),
+        builder: (final context, final controller, final child) => UiBaseButton(
+          onPressed: controller.open,
+          child: Card(
+            elevation: controller.isOpen ? 3 : 0,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: Theme.of(context).colorScheme.outline,
+              ),
+              borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+            ),
+            margin: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 2,
+            ),
+            child: SizedBox.square(
+              dimension: 24,
+              child: Center(
+                child: Text(widget.letter.title),
+              ),
             ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class InputLetterCard extends StatelessWidget {
@@ -454,6 +477,7 @@ class GameplayEditableText extends StatelessWidget {
     required this.inactiveCharacters,
     required this.onCaretIndexChanged,
     required this.caretIndex,
+    required this.onUnblock,
     super.key,
   });
   final List<LetterModel> items;
@@ -461,6 +485,7 @@ class GameplayEditableText extends StatelessWidget {
   final int caretIndex;
   final List<LetterModel> inactiveCharacters;
   final ValueChanged<int> onCaretIndexChanged;
+  final void Function(int index, LetterModel character) onUnblock;
 
   @override
   Widget build(final BuildContext context) => Container(
@@ -491,6 +516,7 @@ class GameplayEditableText extends StatelessWidget {
               return InputInactiveLetterCard(
                 key: ValueKey(letter),
                 letter: letter,
+                onUnblock: () => onUnblock(i, letter),
               );
             }
             return ReorderableLetterCard(
