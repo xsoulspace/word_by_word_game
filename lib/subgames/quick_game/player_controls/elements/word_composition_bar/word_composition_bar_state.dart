@@ -1,7 +1,7 @@
 part of 'word_composition_bar.dart';
 
-class _WordCompositionStateDiDto {
-  _WordCompositionStateDiDto.use(final Locator read)
+class WordCompositionStateDiDto {
+  WordCompositionStateDiDto.use(final Locator read)
       : levelBloc = read(),
         tutorialBloc = read(),
         mechanics = read(),
@@ -17,24 +17,28 @@ class _WordCompositionStateDiDto {
   final DialogController dialogController;
 }
 
-WordCompositionState useWordCompositionState({
-  required final Locator read,
-}) =>
-    use(
-      LifeHook(
-        debugLabel: '_WordCompositionState',
-        state: WordCompositionState(
-          diDto: _WordCompositionStateDiDto.use(read),
-        ),
-      ),
-    );
+@freezed
+class WordCompositionCubitState with _$WordCompositionCubitState {
+  const factory WordCompositionCubitState({
+    @Default(true) final bool isCardVisible,
+  }) = _WordCompositionCubitState;
+}
 
-class WordCompositionState extends LifeState {
-  WordCompositionState({
+class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
+  WordCompositionCubit({
     required this.diDto,
-  }) : wordController = WordFieldController(
+  })  : wordController = WordFieldController(
           currentWord: diDto.levelBloc.state.currentWord,
-        ) {
+        ),
+        super(const WordCompositionCubitState()) {
+    onLoad();
+  }
+  String _latestWord = '';
+  StreamSubscription<LevelBlocState>? _levelBlocSubscription;
+  final _wordUpdatesController = StreamController<CurrentWordModel>();
+  final WordCompositionStateDiDto diDto;
+
+  void onLoad() {
     _latestWord = diDto.levelBloc.state.latestWord;
     _levelBlocSubscription = diDto.levelBloc.stream
         .distinct()
@@ -45,20 +49,11 @@ class WordCompositionState extends LifeState {
         wordController.currentWord = newState.currentWord;
       }
     });
-  }
-  String _latestWord = '';
-  StreamSubscription<LevelBlocState>? _levelBlocSubscription;
-  final _wordUpdatesController = StreamController<CurrentWordModel>();
-  final _WordCompositionStateDiDto diDto;
-
-  @override
-  void initState() {
-    super.initState();
     wordController.addListener(_onPartChanged);
     unawaited(
       _wordUpdatesController.stream
           .sampleTime(
-            const Duration(milliseconds: 300),
+            const Duration(milliseconds: 150),
           )
           .forEach(_changeFullWord),
     );
@@ -78,6 +73,10 @@ class WordCompositionState extends LifeState {
 
   void onToSelectActionPhase() {
     diDto.levelBloc.onAcceptNewWord();
+  }
+
+  void changeCardVisibility() {
+    emit(state.copyWith(isCardVisible: !state.isCardVisible));
   }
 
   void onToEndTurn() {
@@ -115,13 +114,13 @@ class WordCompositionState extends LifeState {
   }
 
   @override
-  Future<void> dispose() async {
+  Future<void> close() async {
     wordController
       ..removeListener(_onPartChanged)
       ..dispose();
     await _wordUpdatesController.close();
     await _levelBlocSubscription?.cancel();
     wordFocusNode.dispose();
-    super.dispose();
+    return super.close();
   }
 }

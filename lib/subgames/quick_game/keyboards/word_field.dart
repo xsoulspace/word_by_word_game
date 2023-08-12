@@ -236,7 +236,7 @@ class _WordFieldState extends State<WordField> {
 
   @override
   Widget build(final BuildContext context) {
-    final wordCompositionState = context.read<WordCompositionState>();
+    final wordCompositionState = context.read<WordCompositionCubit>();
     return InputKeyboardListener(
       focusNode: wordCompositionState.wordFocusNode,
       autofocus: false,
@@ -328,32 +328,91 @@ class ReorderableLetterCard extends StatelessWidget {
       );
 }
 
-class InputInactiveLetterCard extends StatelessWidget {
+class InputInactiveLetterCard extends StatefulWidget {
   const InputInactiveLetterCard({
     required this.letter,
-    this.onPressed,
     super.key,
   });
-
-  final VoidCallback? onPressed;
   final LetterModel letter;
+
   @override
-  Widget build(final BuildContext context) => Card(
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          side: BorderSide(
-            color: Theme.of(context).colorScheme.outline,
+  State<InputInactiveLetterCard> createState() =>
+      _InputInactiveLetterCardState();
+}
+
+class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
+  final _menuController = MenuController();
+  late final _decreaseScore = context
+      .read<MechanicsCollection>()
+      .score
+      .getDecreaseScore(lettersCount: 1);
+
+  @override
+  Widget build(final BuildContext context) => MenuAnchor(
+        onClose: () => setState(() {}),
+        alignmentOffset: const Offset(0, -110),
+        style: const MenuStyle(
+          alignment: Alignment.topCenter,
+        ),
+        controller: _menuController,
+        menuChildren: [
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 120),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          // TODO(arenukvern): add l10n
+                          'Unblock character for ${_decreaseScore.value / kScoreFactor * -1} points?',
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    TextButton(
+                      onPressed: _menuController.close,
+                      child: const Text('No'),
+                    ),
+                    TextButton(
+                      onPressed: () {},
+                      child: const Text('Yes'),
+                    ),
+                  ],
+                )
+              ],
+            ),
           ),
-          borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
-        ),
-        margin: const EdgeInsets.symmetric(
-          vertical: 4,
-          horizontal: 2,
-        ),
-        child: SizedBox.square(
-          dimension: 24,
-          child: Center(
-            child: Text(letter.title),
+        ],
+        key: ValueKey(widget.letter),
+        builder: (final context, final controller, final child) => UiBaseButton(
+          onPressed: controller.open,
+          child: Card(
+            elevation: controller.isOpen ? 3 : 0,
+            shape: RoundedRectangleBorder(
+              side: BorderSide(
+                color: Theme.of(context).colorScheme.outline,
+              ),
+              borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+            ),
+            margin: const EdgeInsets.symmetric(
+              vertical: 4,
+              horizontal: 2,
+            ),
+            child: SizedBox.square(
+              dimension: 24,
+              child: Center(
+                child: Text(widget.letter.title),
+              ),
+            ),
           ),
         ),
       );

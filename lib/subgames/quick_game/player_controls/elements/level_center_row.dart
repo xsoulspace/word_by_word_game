@@ -12,7 +12,7 @@ class UILevelCenterBar extends StatelessWidget {
   });
 
   static void onConfirmWord(final BuildContext context) {
-    context.read<WordCompositionState>().onToSelectActionPhase();
+    context.read<WordCompositionCubit>().onToSelectActionPhase();
     TutorialFrame.sendOnClickEvent(
       uiKey: TutorialUiItem.confirmWordButton,
       context: context,

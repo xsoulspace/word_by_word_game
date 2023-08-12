@@ -14,7 +14,7 @@ class UiWordActions extends StatelessWidget {
   });
   @override
   Widget build(final BuildContext context) {
-    final state = context.read<WordCompositionState>();
+    final state = context.read<WordCompositionCubit>();
     final uiTheme = UiTheme.of(context);
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,

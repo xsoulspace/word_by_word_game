@@ -2,9 +2,8 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 
 /// Please do not include unneccessary graphics to this continaier.
 ///
@@ -19,11 +18,13 @@ class UiBaseButton extends StatefulWidget {
     this.padding,
     this.pressedOpacity = 0.4,
     this.alignment = Alignment.center,
+    this.tooltipMessage,
   });
 
   final Widget child;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onPressed;
+  final String? tooltipMessage;
   final VoidCallback? onLongPress;
   final double? pressedOpacity;
   final AlignmentGeometry alignment;
@@ -131,7 +132,7 @@ class _UiBaseButtonState extends State<UiBaseButton>
   Widget build(final BuildContext context) {
     final bool enabled = widget.enabled;
 
-    return MouseRegion(
+    final child = MouseRegion(
       cursor: enabled && kIsWeb ? SystemMouseCursors.click : MouseCursor.defer,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -149,5 +150,10 @@ class _UiBaseButtonState extends State<UiBaseButton>
         ),
       ),
     );
+    if (widget.tooltipMessage != null) {
+      return Tooltip(message: widget.tooltipMessage, child: child);
+    } else {
+      return child;
+    }
   }
 }

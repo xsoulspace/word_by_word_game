@@ -192,6 +192,12 @@ class SIt extends S {
   String get addToDictionary => 'Aggiungi al dizionario';
 
   @override
+  String get hidePane => 'Nascondi riquadro';
+
+  @override
+  String get showPane => 'Mostra riquadro';
+
+  @override
   String get powerOfEnteredWord => 'potere della parola inserita';
 
   @override

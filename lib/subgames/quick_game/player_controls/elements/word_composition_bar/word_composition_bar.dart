@@ -1,8 +1,8 @@
 import 'dart:async';
 
+import 'package:bloc/bloc.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -14,6 +14,7 @@ import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
 
 export 'word_widgets/word_widgets.dart';
 
+part 'word_composition_bar.freezed.dart';
 part 'word_composition_bar_state.dart';
 
 class UiWordCompositionBar extends StatelessWidget {
@@ -23,7 +24,7 @@ class UiWordCompositionBar extends StatelessWidget {
         highlightPosition: Alignment.topCenter,
         uiKey: TutorialUiItem.enterWordPhaseFrame,
         child: WordField(
-          controller: context.read<WordCompositionState>().wordController,
+          controller: context.read<WordCompositionCubit>().wordController,
         ),
 
         // uiKey: TutorialUiItem.enterWordRight,

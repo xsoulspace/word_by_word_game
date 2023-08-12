@@ -35,6 +35,8 @@
   "username": "Nome utente",
   "previousWord": "Parola precedente",
   "createProfile": "Creare Profili",
+  "hidePane": "Nascondi riquadro",
+  "showPane": "Mostra riquadro",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",
   "startNewGame": "Avvio Rapido",
