@@ -94,7 +94,17 @@ class _Card extends StatelessWidget {
               CardFrostedBackground(
                 padding: EdgeInsets.only(
                   top: 2,
-                  bottom: uiTheme.spacing.medium,
+                  bottom: () {
+                    if (DeviceRuntimeType.isMobile) {
+                      final padding = MediaQuery.viewPaddingOf(context);
+                      final insets = MediaQuery.viewInsetsOf(context);
+                      final bottom = padding.bottom + insets.bottom;
+                      if (bottom > 0) {
+                        return bottom + 6;
+                      }
+                    }
+                    return uiTheme.spacing.medium;
+                  }(),
                 ),
                 constraints: constraints,
                 child: Builder(builder: builder),
