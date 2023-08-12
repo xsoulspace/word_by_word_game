@@ -432,7 +432,9 @@ class InputLetterCard extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           letter.title,
-          style: Theme.of(context).textTheme.bodyLarge,
+          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
         ),
       );
 }
@@ -452,9 +454,6 @@ class GameplayEditableText extends StatelessWidget {
   final List<LetterModel> inactiveCharacters;
   final ValueChanged<int> onCaretIndexChanged;
 
-  // decoration:    InputDecoration.collapsed(
-  //   hintText: S.of(context).username,
-  // )
   @override
   Widget build(final BuildContext context) => Container(
         alignment: Alignment.center,

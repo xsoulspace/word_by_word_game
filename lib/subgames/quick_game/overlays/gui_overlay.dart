@@ -28,7 +28,8 @@ class GuiOverlay extends StatelessWidget {
                 : const SizedBox();
             if (DeviceRuntimeType.isMobile) {
               return Positioned(
-                bottom: MediaQuery.viewInsetsOf(context).bottom,
+                bottom: MediaQuery.viewInsetsOf(context).bottom +
+                    MediaQuery.paddingOf(context).bottom,
                 left: 0,
                 right: 0,
                 child: Align(
