@@ -223,6 +223,6 @@ class CanvasDebugSurface extends Component
   void render(final material.Canvas canvas) {
     super.render(canvas);
     if (!debugMode) return;
-    _renderLines(canvas);
+    // _renderLines(canvas);
   }
 }
