@@ -41,7 +41,7 @@
     <link rel="stylesheet" type="text/css" href="./styles.css" />
     <script>
       // The value below is injected by flutter build, do not touch.
-      var serviceWorkerVersion = "3090853369";
+      var serviceWorkerVersion = "1769892297";
     </script>
     <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"></script>
@@ -69,26 +69,21 @@
         var loading = document.querySelector("#loading");
 
         // Download main.dart.js
-        _flutter.loader
-          .loadEntrypoint({
-            serviceWorker: {
-              serviceWorkerVersion: serviceWorkerVersion,
-            },
-          })
-          .then(function (engineInitializer) {
+        _flutter.loader.loadEntrypoint({
+          serviceWorker: {
+            serviceWorkerVersion: serviceWorkerVersion,
+          },
+          onEntrypointLoaded: async function (engineInitializer) {
             loading.classList.add("main_done");
+            let appRunner = await engineInitializer.initializeEngine();
 
-            return engineInitializer.initializeEngine();
-          })
-          .then(function (appRunner) {
             loading.classList.add("init_done");
-            return appRunner.runApp();
-          })
-          .then(function () {
+            await appRunner.runApp();
             window.setTimeout(function () {
               loading.remove();
             }, 200);
-          });
+          },
+        });
       });
     </script>
   </body>
