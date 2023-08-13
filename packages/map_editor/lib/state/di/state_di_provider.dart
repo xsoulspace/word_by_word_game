@@ -1,4 +1,4 @@
-import 'package:flame/flame.dart';
+import 'package:flame/cache.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:life_hooks/life_hooks.dart';
@@ -43,7 +43,9 @@ class StateDiProvider extends StatelessWidget {
             BlocProvider(
               create: (final context) => DrawerCubit(
                 resourcesLoader: ResourcesLoader(
-                  tilesetAssets: Flame.assets,
+                  tilesetAssets: AssetsCache(
+                    prefix: 'assets/images/',
+                  ),
                 ),
                 dto: DrawerCubitDto.use(context: context),
               ),

@@ -180,9 +180,9 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     final atlasRects = <Rect>[];
     final atlasRsTransforms = <RSTransform>[];
 
-    for (var col = -1; col < tileColumns + 1; col++) {
-      for (var row = -1; row < tileRows + 3; row++) {
-        for (final tileLayer in visibleLayers) {
+    for (final tileLayer in visibleLayers) {
+      for (var col = -1; col < tileColumns + 1; col++) {
+        for (var row = -1; row < tileRows + 3; row++) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
                   Vector2(col.toDouble(), row.toDouble());
@@ -205,36 +205,53 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
               assert(false, 'Character graphics type cannot be used in tile');
             case TileGraphicsType.directional:
               final spriteCode = cellTile.tileMergedDirectionsTitle;
-              final src = _runtimeCache[spriteCode] ??= () {
-                final s = tilesetConstants.getSprite(spriteCode: spriteCode);
-                _spriteImage ??= s.image;
-                final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
-                return (srcRect: srcRect, srcSize: s.srcSize);
-              }();
-              _tmpRenderPosition.setFrom(vectorPosition);
+              final directionTitle = cellTile.tileMergedDirectionsTitle;
+              final x = resourceTile.directionalPaths['X'];
+              final animationEntry = directionTitle.isEmpty
+                  ? x
+                  : resourceTile.directionalPaths[
+                          cellTile.tileMergedDirectionsTitle] ??
+                      x;
+              final currentPath = animationEntry?.currentFramePath ?? '';
+              if (images.containsKey(currentPath)) {
+                final image = images.fromCache(currentPath);
+                canvas.drawImage(
+                  image,
+                  vectorPosition.toOffset(),
+                  _paint,
+                );
+              } else {
+                final src = _runtimeCache[spriteCode] ??= () {
+                  final s = tilesetConstants.getSprite(spriteCode: spriteCode);
+                  _spriteImage ??= s.image;
+                  final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
+                  return (srcRect: srcRect, srcSize: s.srcSize);
+                }();
+                _tmpRenderPosition.setFrom(vectorPosition);
 
-              _tmpRenderSize.setFrom(src.srcSize);
+                _tmpRenderSize.setFrom(src.srcSize);
 
-              _tmpRenderPosition.setValues(
-                _tmpRenderPosition.x - (0 * _tmpRenderSize.x),
-                _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
-              );
+                _tmpRenderPosition.setValues(
+                  _tmpRenderPosition.x - (0 * _tmpRenderSize.x),
+                  _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
+                );
 
-              final drawRect =
-                  _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
+                final drawRect =
+                    _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
 
-              final rsTransform = RSTransform.fromComponents(
-                rotation: 0,
-                scale: 1,
-                anchorX: 0,
-                anchorY: 0,
-                translateX: drawRect.left,
-                translateY: drawRect.top,
-              );
+                final rsTransform = RSTransform.fromComponents(
+                  rotation: 0,
+                  scale: 1,
+                  anchorX: 0,
+                  anchorY: 0,
+                  translateX: drawRect.left,
+                  translateY: drawRect.top,
+                );
 
-              // sprite.render(canvas, position: position.toVector2());
-              atlasRects.add(src.srcRect);
-              atlasRsTransforms.add(rsTransform);
+                // sprite.render(canvas, position: position.toVector2());
+                atlasRects.add(src.srcRect);
+                atlasRsTransforms.add(rsTransform);
+              }
           }
           // TODO(arenukvern): fix objects drawing because they should be drawn
           // on top of tiles, but ucrrently they are behind them
@@ -260,18 +277,20 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
           }
         }
       }
+      final atlasImage = _spriteImage;
+      if (atlasImage == null) return;
+      canvas.drawAtlas(
+        atlasImage,
+        atlasRsTransforms,
+        atlasRects,
+        null,
+        null,
+        null,
+        _paint,
+      );
+      atlasRsTransforms.clear();
+      atlasRects.clear();
     }
-    final atlasImage = _spriteImage;
-    if (atlasImage == null) return;
-    canvas.drawAtlas(
-      atlasImage,
-      atlasRsTransforms,
-      atlasRects,
-      null,
-      null,
-      null,
-      _paint,
-    );
   }
 
   static final _tmpRenderPosition = Vector2.zero();
@@ -298,9 +317,9 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
   }) {
     final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
 
-    for (var col = -1; col < tileColumns + 1; col++) {
-      for (var row = -1; row < tileRows + 3; row++) {
-        for (final tileLayer in visibleLayers) {
+    for (final tileLayer in visibleLayers) {
+      for (var col = -1; col < tileColumns + 1; col++) {
+        for (var row = -1; row < tileRows + 3; row++) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
                   Vector2(col.toDouble(), row.toDouble());
@@ -323,9 +342,23 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
               assert(false, 'Character graphics type cannot be used in tile');
             case TileGraphicsType.directional:
               final spriteCode = cellTile.tileMergedDirectionsTitle;
-              final image = tilesetConstants.getSpriteImage(
-                spriteCode: spriteCode,
-              );
+              final directionTitle = cellTile.tileMergedDirectionsTitle;
+              final x = resourceTile.directionalPaths['X'];
+              final animationEntry = directionTitle.isEmpty
+                  ? x
+                  : resourceTile.directionalPaths[
+                          cellTile.tileMergedDirectionsTitle] ??
+                      x;
+              final currentPath = animationEntry?.currentFramePath ?? '';
+              Image image;
+              if (images.containsKey(currentPath)) {
+                image = images.fromCache(currentPath);
+              } else {
+                image = tilesetConstants.getSpriteImage(
+                  spriteCode: spriteCode,
+                );
+              }
+
               canvas.drawImage(
                 image,
                 vectorPosition.toOffset(),
@@ -360,7 +393,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
 abstract interface class TilesPainterInterface {
   // ignore: unused_element
   TilesPainterInterface._();
-  factory TilesPainterInterface.getImpl() => DeviceRuntimeType.isMobile
+  factory TilesPainterInterface.getImpl() => (DeviceRuntimeType.isMobileWeb)
       ? TilesPainterImagesImpl()
       : TilesPainterAtlasImpl();
   void render({
