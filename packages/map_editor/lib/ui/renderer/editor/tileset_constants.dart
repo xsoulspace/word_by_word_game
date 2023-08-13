@@ -35,7 +35,13 @@ class TilesetConstants {
     required final SpriteCode spriteCode,
   }) {
     final SpriteTileName? tileName = _codeToName[spriteCode];
-    return _atlas!.getSprite((tileName ?? SpriteTileName.x).name.paramCase);
+    final spriteName = (tileName ?? SpriteTileName.x).name.paramCase;
+    switch (source) {
+      case TilesetConstantsSource.tileset:
+        return _atlas!.getSprite(spriteName);
+      case TilesetConstantsSource.image:
+        throw UnimplementedError();
+    }
   }
 
   static final Map<SpriteCode, SpriteTileName> _codeToName = () {
