@@ -7,7 +7,6 @@ import 'package:flame_fire_atlas/flame_fire_atlas.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
-import 'package:wbw_core/wbw_core.dart';
 
 enum TilesetConstantsSource { image, tileset }
 
@@ -37,12 +36,12 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    if (DeviceRuntimeType.isMobileWeb) {
-      await _preloadImages();
-    }
+    // if (DeviceRuntimeType.isMobileWeb ) {
+    await preloadImages();
+    // }
   }
 
-  Future<void> _preloadImages() async {
+  Future<void> preloadImages() async {
     for (final tileName in SpriteTileName.values) {
       await cacheSpriteImageByTileName(tileName: tileName);
     }
@@ -103,7 +102,9 @@ class ImageFileGenerator {
     Offset offset = Offset.zero;
     int maxWidth = 0;
     final paint = ui.Paint();
-    final byteData = await rawImage.toByteData();
+    final byteData = await rawImage.toByteData(
+      format: ui.ImageByteFormat.png,
+    );
     if (byteData == null) return null;
     final unit8List = byteData.buffer.asUint8List();
     final codec = await ui.instantiateImageCodec(unit8List);
