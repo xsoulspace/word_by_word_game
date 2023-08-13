@@ -99,8 +99,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/tilesets/
     - assets/images/
+    - assets/images/tilesets/
     - assets/images/clouds/
     - assets/images/cursors/
     - assets/images/cursors/cursor/

@@ -1,3 +1,4 @@
+import 'package:flame/cache.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame_fire_atlas/flame_fire_atlas.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
@@ -6,11 +7,13 @@ import 'package:recase/recase.dart';
 class TilesetConstants {
   TilesetConstants({
     required this.tilesetPath,
+    required this.assets,
   });
   final String tilesetPath;
+  final AssetsCache assets;
   FireAtlas? _atlas;
   Future<void> onLoad() async {
-    _atlas = await FireAtlas.loadAsset(tilesetPath);
+    _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
   }
 
   Sprite getImage({

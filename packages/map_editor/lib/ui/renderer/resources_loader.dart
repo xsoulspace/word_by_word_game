@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart' show rootBundle;
@@ -19,13 +20,18 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 
 class ResourcesLoader {
   ResourcesLoader({
+    required this.tilesetAssets,
     this.cachePrefix = 'assets/images/',
-  });
+  }) : tilesetConstants = TilesetConstants(
+          tilesetPath: Assets.images.tilesets.pirateTilesetPixelFrog.replaceAll(
+            'assets/',
+            '',
+          ),
+          assets: tilesetAssets,
+        );
+  final AssetsCache tilesetAssets;
   final String cachePrefix;
-  final tilesetConstants = TilesetConstants(
-    tilesetPath:
-        Assets.tilesets.pirateTilesetPixelFrog.replaceAll('assets/', ''),
-  );
+  final TilesetConstants tilesetConstants;
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
@@ -38,7 +44,6 @@ class ResourcesLoader {
   Future<void> onLoad() async {
     if (_isLoaded) return;
     _isLoaded = true;
-    await tilesetConstants.onLoad();
     await _loadImagesManifest();
   }
 
