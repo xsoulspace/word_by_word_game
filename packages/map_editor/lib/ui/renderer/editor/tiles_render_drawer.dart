@@ -126,7 +126,6 @@ class TilesRenderer extends Component
         HasGameRef<EditorRendererGame>,
         HasEditorRef,
         HasEditorResourcesLoaderRef {
-  // final _canvasTilesComponents = <>{};
   @override
   FutureOr<void> onLoad() {
     add(
@@ -161,6 +160,8 @@ class TilesRenderer extends Component
 
 class TilesPainter {
   final _paint = material.Paint();
+  final _runtimeCache = <SpriteCode, ({Rect srcRect, Vector2 srcSize})>{};
+  Image? _spriteImage;
   void render({
     required final Canvas canvas,
     required final CanvasDataModel canvasData,
@@ -175,6 +176,9 @@ class TilesPainter {
     required final double windowWidth,
   }) {
     final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
+    final atlasRects = <Rect>[];
+    final atlasRsTransforms = <RSTransform>[];
+
     for (var col = -1; col < tileColumns + 1; col++) {
       for (var row = -1; row < tileRows + 3; row++) {
         for (final tileLayer in visibleLayers) {
@@ -190,7 +194,6 @@ class TilesPainter {
           if (cellTile == null) continue;
           final vectorPosition =
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
-          final position = vectorPosition.toOffset();
           final resourceTile = tilesResources[cellTile.tileId];
           if (resourceTile == null) continue;
           final graphics = resourceTile.tile.graphics;
@@ -201,10 +204,39 @@ class TilesPainter {
               assert(false, 'Character graphics type cannot be used in tile');
             case TileGraphicsType.directional:
               final spriteCode = cellTile.tileMergedDirectionsTitle;
-              final sprite = tilesetConstants.getImage(spriteCode: spriteCode);
-              sprite.render(canvas, position: position.toVector2());
-          }
+              final src = _runtimeCache[spriteCode] ??= () {
+                final s = tilesetConstants.getImage(spriteCode: spriteCode);
+                _spriteImage ??= s.image;
+                final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
+                return (srcRect: srcRect, srcSize: s.srcSize);
+              }();
+              _tmpRenderPosition.setFrom(vectorPosition);
 
+              _tmpRenderSize.setFrom(src.srcSize);
+
+              _tmpRenderPosition.setValues(
+                _tmpRenderPosition.x - (0 * _tmpRenderSize.x),
+                _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
+              );
+
+              final drawRect =
+                  _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
+
+              final rsTransform = RSTransform.fromComponents(
+                rotation: 0,
+                scale: 1,
+                anchorX: 0,
+                anchorY: 0,
+                translateX: drawRect.left,
+                translateY: drawRect.top,
+              );
+
+              // sprite.render(canvas, position: position.toVector2());
+              atlasRects.add(src.srcRect);
+              atlasRsTransforms.add(rsTransform);
+          }
+          // TODO(arenukvern): fix objects drawing because they should be drawn
+          // on top of tiles, but ucrrently they are behind them
           /// Drawing objects
           for (final gid in cellTile.objects) {
             final renderObject = canvasData.objects[gid];
@@ -228,5 +260,19 @@ class TilesPainter {
         }
       }
     }
+    final atlasImage = _spriteImage;
+    if (atlasImage == null) return;
+    canvas.drawAtlas(
+      atlasImage,
+      atlasRsTransforms,
+      atlasRects,
+      null,
+      null,
+      null,
+      _paint,
+    );
   }
+
+  static final _tmpRenderPosition = Vector2.zero();
+  static final _tmpRenderSize = Vector2.zero();
 }
