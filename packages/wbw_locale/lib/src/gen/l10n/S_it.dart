@@ -198,6 +198,11 @@ class SIt extends S {
   String get showPane => 'Mostra riquadro';
 
   @override
+  String youDontHaveEnoughPointsToUnlockCharacter(int points) {
+    return 'Non hai abbastanza ($points) per sbloccare questa lettera.';
+  }
+
+  @override
   String unblockCharacterForPoints(int points, String character) {
     return 'Sbloccare la lettera $character per $points punti?';
   }

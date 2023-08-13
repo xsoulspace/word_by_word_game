@@ -25,6 +25,14 @@
       }
     }
   },
+  "youDontHaveEnoughPointsToUnlockCharacter": "У вас недостаточно очков ({points}) для разблокировки буквы.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
   "suggestions": "Подсказки",
   "hideKeyboard": "Скрыть клавиатуру",
   "showKeyboard": "Показать клавиатуру",

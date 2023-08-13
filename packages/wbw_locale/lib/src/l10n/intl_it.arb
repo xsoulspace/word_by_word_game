@@ -47,6 +47,14 @@
       }
     }
   },
+  "youDontHaveEnoughPointsToUnlockCharacter": "Non hai abbastanza ({points}) per sbloccare questa lettera.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
   "showPane": "Mostra riquadro",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",

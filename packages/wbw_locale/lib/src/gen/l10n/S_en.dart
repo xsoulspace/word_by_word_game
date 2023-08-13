@@ -198,6 +198,11 @@ class SEn extends S {
   String get showPane => 'Show pane';
 
   @override
+  String youDontHaveEnoughPointsToUnlockCharacter(int points) {
+    return 'You don\'t have enough points ($points) to unlock this character.';
+  }
+
+  @override
   String unblockCharacterForPoints(int points, String character) {
     return 'Unblock character $character for $points points?';
   }

@@ -356,10 +356,12 @@ class InputInactiveLetterCard extends StatefulWidget {
   const InputInactiveLetterCard({
     required this.letter,
     required this.onUnblock,
+    required this.userScore,
     super.key,
   });
   final LetterModel letter;
   final VoidCallback onUnblock;
+  final ScoreModel userScore;
 
   @override
   State<InputInactiveLetterCard> createState() =>
@@ -369,82 +371,113 @@ class InputInactiveLetterCard extends StatefulWidget {
 class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
   final _menuController = MenuController();
   late final _decreaseScore = context
-      .read<MechanicsCollection>()
-      .score
-      .getDecreaseScore(lettersCount: 1);
+          .read<MechanicsCollection>()
+          .score
+          .getDecreaseScore(lettersCount: 1) *
+      -1;
 
   @override
-  Widget build(final BuildContext context) => MenuAnchor(
-        onClose: () => setState(() {}),
-        alignmentOffset: const Offset(0, -110),
-        style: const MenuStyle(
-          alignment: Alignment.topCenter,
+  Widget build(final BuildContext context) {
+    final isUnlockingAvailable = widget.userScore.value >= _decreaseScore.value;
+    return MenuAnchor(
+      onClose: () => setState(() {}),
+      alignmentOffset: const Offset(0, -110),
+      style: const MenuStyle(
+        alignment: Alignment.topCenter,
+      ),
+      controller: _menuController,
+      menuChildren: [
+        if (isUnlockingAvailable)
+          _UnlockPopup(
+            title: S.of(context).unblockCharacterForPoints(
+                  _decreaseScore.value ~/ kScoreFactor,
+                  widget.letter.title,
+                ),
+            actions: [
+              TextButton(
+                onPressed: _menuController.close,
+                child: Text(S.of(context).no),
+              ),
+              FilledButton(
+                onPressed: widget.onUnblock,
+                child: Text(S.of(context).yes),
+              ),
+            ],
+          )
+        else
+          _UnlockPopup(
+            title: S.of(context).youDontHaveEnoughPointsToUnlockCharacter(
+                  _decreaseScore.value ~/ kScoreFactor,
+                ),
+            actions: [
+              TextButton(
+                onPressed: _menuController.close,
+                child: const Text('Ok'),
+              ),
+            ],
+          ),
+      ],
+      key: ValueKey(widget.letter),
+      builder: (final context, final controller, final child) => UiBaseButton(
+        onPressed: controller.open,
+        child: Card(
+          elevation: controller.isOpen ? 3 : 0,
+          shape: RoundedRectangleBorder(
+            side: BorderSide(
+              color: Theme.of(context).colorScheme.outline,
+            ),
+            borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+          ),
+          margin: const EdgeInsets.symmetric(
+            vertical: 4,
+            horizontal: 2,
+          ),
+          child: SizedBox.square(
+            dimension: 24,
+            child: Center(
+              child: Text(widget.letter.title),
+            ),
+          ),
         ),
-        controller: _menuController,
-        menuChildren: [
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 140),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Flexible(
-                        child: Text(
-                          S.of(context).unblockCharacterForPoints(
-                                _decreaseScore.value ~/ kScoreFactor * -1,
-                                widget.letter.title,
-                              ),
-                        ),
-                      ),
-                    ],
+      ),
+    );
+  }
+}
+
+class _UnlockPopup extends StatelessWidget {
+  const _UnlockPopup({
+    required this.actions,
+    required this.title,
+  });
+  final String title;
+  final List<Widget> actions;
+  @override
+  Widget build(final BuildContext context) => ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 140),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: Text(title),
                   ),
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Gap(6),
-                    TextButton(
-                      onPressed: _menuController.close,
-                      child: const Text('No'),
-                    ),
-                    FilledButton(
-                      onPressed: widget.onUnblock,
-                      child: const Text('Yes'),
-                    ),
-                    const Gap(6),
-                  ],
-                ),
-                if (!DeviceRuntimeType.isMobile) const Gap(6),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Gap(6),
+                ...actions,
+                const Gap(6),
               ],
             ),
-          ),
-        ],
-        key: ValueKey(widget.letter),
-        builder: (final context, final controller, final child) => UiBaseButton(
-          onPressed: controller.open,
-          child: Card(
-            elevation: controller.isOpen ? 3 : 0,
-            shape: RoundedRectangleBorder(
-              side: BorderSide(
-                color: Theme.of(context).colorScheme.outline,
-              ),
-              borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
-            ),
-            margin: const EdgeInsets.symmetric(
-              vertical: 4,
-              horizontal: 2,
-            ),
-            child: SizedBox.square(
-              dimension: 24,
-              child: Center(
-                child: Text(widget.letter.title),
-              ),
-            ),
-          ),
+            if (!DeviceRuntimeType.isMobile) const Gap(6),
+          ],
         ),
       );
 }
@@ -488,68 +521,74 @@ class GameplayEditableText extends StatelessWidget {
   final void Function(int index, LetterModel character) onUnblock;
 
   @override
-  Widget build(final BuildContext context) => Container(
-        alignment: Alignment.center,
-        height: 36,
-        color: Colors.transparent,
-        child: ReorderableListView.builder(
-          scrollDirection: Axis.horizontal,
-          buildDefaultDragHandles: false,
-          itemCount: items.length + 1,
-          shrinkWrap: true,
-          proxyDecorator: (final child, final index, final animation) => child,
-          padding: EdgeInsets.zero,
-          itemBuilder: (final context, final index) {
-            int i = index;
-            if (i == caretIndex) {
-              return ReorderableDragStartListener(
-                key: const ValueKey('divider'),
-                index: caretIndex,
-                child: const InputCaret(),
-              );
-            } else if (i > caretIndex) {
-              i--;
-            }
+  Widget build(final BuildContext context) {
+    final userScore = context.select<LevelPlayersBloc, ScoreModel>(
+      (final cubit) => cubit.state.currentPlayer.highscore.score,
+    );
+    return Container(
+      alignment: Alignment.center,
+      height: 36,
+      color: Colors.transparent,
+      child: ReorderableListView.builder(
+        scrollDirection: Axis.horizontal,
+        buildDefaultDragHandles: false,
+        itemCount: items.length + 1,
+        shrinkWrap: true,
+        proxyDecorator: (final child, final index, final animation) => child,
+        padding: EdgeInsets.zero,
+        itemBuilder: (final context, final index) {
+          int i = index;
+          if (i == caretIndex) {
+            return ReorderableDragStartListener(
+              key: const ValueKey('divider'),
+              index: caretIndex,
+              child: const InputCaret(),
+            );
+          } else if (i > caretIndex) {
+            i--;
+          }
 
-            final letter = items[i];
-            if (inactiveCharacters.contains(letter)) {
-              return InputInactiveLetterCard(
-                key: ValueKey(letter),
-                letter: letter,
-                onUnblock: () => onUnblock(i, letter),
-              );
-            }
-            return ReorderableLetterCard(
+          final letter = items[i];
+          if (inactiveCharacters.contains(letter)) {
+            return InputInactiveLetterCard(
               key: ValueKey(letter),
               letter: letter,
-              index: index,
+              userScore: userScore,
+              onUnblock: () => onUnblock(i, letter),
             );
-          },
-          onReorder: (final eOldIndex, final eNewIndex) {
-            var (oldIndex: oldIndex, newIndex: newIndex) =
-                KeyboardReoderer.prepare(eNewIndex, eOldIndex);
+          }
+          return ReorderableLetterCard(
+            key: ValueKey(letter),
+            letter: letter,
+            index: index,
+          );
+        },
+        onReorder: (final eOldIndex, final eNewIndex) {
+          var (oldIndex: oldIndex, newIndex: newIndex) =
+              KeyboardReoderer.prepare(eNewIndex, eOldIndex);
 
-            if (oldIndex == caretIndex) {
-              onCaretIndexChanged(newIndex);
-            } else {
-              final values = KeyboardReoderer.onReorder(
-                eOldIndex: oldIndex,
-                eNewIndex: newIndex,
-                eExceptionIndex: caretIndex,
-              );
-              oldIndex = values.oldIndex;
-              newIndex = values.newIndex;
-              onCaretIndexChanged(values.exceptionIndex);
+          if (oldIndex == caretIndex) {
+            onCaretIndexChanged(newIndex);
+          } else {
+            final values = KeyboardReoderer.onReorder(
+              eOldIndex: oldIndex,
+              eNewIndex: newIndex,
+              eExceptionIndex: caretIndex,
+            );
+            oldIndex = values.oldIndex;
+            newIndex = values.newIndex;
+            onCaretIndexChanged(values.exceptionIndex);
 
-              final updatedItems = [...items];
-              final element = updatedItems.removeAt(values.oldIndex);
-              updatedItems.insert(values.newIndex, element);
+            final updatedItems = [...items];
+            final element = updatedItems.removeAt(values.oldIndex);
+            updatedItems.insert(values.newIndex, element);
 
-              onItemsChanged(updatedItems);
-            }
-          },
-        ),
-      );
+            onItemsChanged(updatedItems);
+          }
+        },
+      ),
+    );
+  }
 }
 
 class KeyboardReoderer {

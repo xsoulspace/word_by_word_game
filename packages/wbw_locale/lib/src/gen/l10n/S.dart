@@ -473,6 +473,12 @@ abstract class S {
   /// **'Show pane'**
   String get showPane;
 
+  /// No description provided for @youDontHaveEnoughPointsToUnlockCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have enough points ({points}) to unlock this character.'**
+  String youDontHaveEnoughPointsToUnlockCharacter(int points);
+
   /// No description provided for @unblockCharacterForPoints.
   ///
   /// In en, this message translates to:

@@ -225,12 +225,9 @@ class KeyboardLetters extends StatelessWidget {
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(maxWidth: 40),
-              child: Flexible(
-                flex: 2,
-                child: DeleteLetterButton(
-                  onDelete: onDelete,
-                  lettersCount: lettersCount,
-                ),
+              child: DeleteLetterButton(
+                onDelete: onDelete,
+                lettersCount: lettersCount,
               ),
             ),
           ],
