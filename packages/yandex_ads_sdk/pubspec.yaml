@@ -22,6 +22,9 @@ dev_dependencies:
   pigeon: ^4.2.3
   xsoulspace_lints: ^0.0.9
 
+dependency_overrides:
+  http: 1.0.0
+  collection: 1.18.0
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter packages.
