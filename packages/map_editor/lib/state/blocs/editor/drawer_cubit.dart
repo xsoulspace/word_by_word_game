@@ -134,7 +134,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
         resource.loadToCache(images: images);
 
     await Future.wait([
-      resourcesLoader.tilesetConstants.onLoad(),
+      resourcesLoader.tilesetConstants.onLoad(images: images),
       ...state.tileResources.tiles.values.map(load),
       ...state.tileResources.objects.values.map(load),
       ...state.tileResources.npcs.values.map(load),

@@ -1,22 +1,37 @@
 import 'package:flame/cache.dart';
+import 'package:flame/extensions.dart';
 import 'package:flame/sprite.dart';
 import 'package:flame_fire_atlas/flame_fire_atlas.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
+import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
+
+enum TilesetConstantsSource { image, tileset }
 
 class TilesetConstants {
   TilesetConstants({
     required this.tilesetPath,
     required this.assets,
+    required this.source,
   });
+  final TilesetConstantsSource source;
   final String tilesetPath;
   final AssetsCache assets;
   FireAtlas? _atlas;
-  Future<void> onLoad() async {
-    _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
+  Image? atlasImage;
+  Future<void> onLoad({
+    required final Images images,
+  }) async {
+    switch (source) {
+      case TilesetConstantsSource.tileset:
+        _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
+      case TilesetConstantsSource.image:
+        final tilesetImagePath = '${path.withoutExtension(tilesetPath)}.png';
+        atlasImage = await images.load(tilesetImagePath);
+    }
   }
 
-  Sprite getImage({
+  Sprite getSprite({
     required final SpriteCode spriteCode,
   }) {
     final SpriteTileName? tileName = _codeToName[spriteCode];
