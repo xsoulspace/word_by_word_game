@@ -6,15 +6,11 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
 
-enum TilesetConstantsSource { image, tileset }
-
 class TilesetConstants {
   TilesetConstants({
     required this.tilesetPath,
     required this.assets,
-    required this.source,
   });
-  final TilesetConstantsSource source;
   final String tilesetPath;
   final AssetsCache assets;
   FireAtlas? _atlas;
@@ -22,13 +18,9 @@ class TilesetConstants {
   Future<void> onLoad({
     required final Images images,
   }) async {
-    switch (source) {
-      case TilesetConstantsSource.tileset:
-        _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
-      case TilesetConstantsSource.image:
-        final tilesetImagePath = '${path.withoutExtension(tilesetPath)}.png';
-        atlasImage = await images.load(tilesetImagePath);
-    }
+    _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
+    final tilesetImagePath = '${path.withoutExtension(tilesetPath)}.png';
+    atlasImage = await images.load(tilesetImagePath);
   }
 
   Sprite getSprite({
@@ -36,12 +28,7 @@ class TilesetConstants {
   }) {
     final SpriteTileName? tileName = _codeToName[spriteCode];
     final spriteName = (tileName ?? SpriteTileName.x).name.paramCase;
-    switch (source) {
-      case TilesetConstantsSource.tileset:
-        return _atlas!.getSprite(spriteName);
-      case TilesetConstantsSource.image:
-        throw UnimplementedError();
-    }
+    return _atlas!.getSprite(spriteName);
   }
 
   static final Map<SpriteCode, SpriteTileName> _codeToName = () {

@@ -182,8 +182,7 @@ class CanvasTilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final TilesPainterInterface _painter =
-      TilesPainterImagesImpl(); // TilesPainterAtlasImpl();
+  final TilesPainterInterface _painter = TilesPainterAtlasImpl();
   @override
   void render(final Canvas canvas) {
     _painter.render(
