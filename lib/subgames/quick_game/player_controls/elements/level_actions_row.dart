@@ -45,12 +45,13 @@ class UiFuelFrame extends StatelessWidget {
               S.of(context).applyFuelOption,
               style: textTheme.titleMedium,
             ),
-            const Divider(),
-            uiTheme.verticalBoxes.medium,
+            Divider(color: theme.colorScheme.tertiary),
+            uiTheme.verticalBoxes.small,
             ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 100),
               child: ListView.separated(
                 shrinkWrap: true,
+                padding: EdgeInsets.zero,
                 itemBuilder: (final context, final index) {
                   final type = EnergyMultiplierType.values[index];
 
@@ -105,7 +106,7 @@ class UIEnergyOptionCard extends StatelessWidget {
     final theme = Theme.of(context);
     // final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
-    final widgetState = context.read<WordCompositionState>();
+    final widgetState = context.read<WordCompositionCubit>();
     // final borderRadius = BorderRadius.circular(100);
     void onApply() {
       widgetState.onSelectActionMultiplier(type);
@@ -126,7 +127,7 @@ class UIEnergyOptionCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    '${applyingScore ~/ 10}',
+                    '${applyingScore ~/ kScoreFactor}',
                     style: textTheme.headlineSmall,
                   ),
                 ),

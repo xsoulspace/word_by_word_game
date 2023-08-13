@@ -1,3 +1,4 @@
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -9,85 +10,75 @@ class UILevelCenterBar extends StatelessWidget {
   const UILevelCenterBar({
     super.key,
   });
+
+  static void onConfirmWord(final BuildContext context) {
+    context.read<WordCompositionCubit>().onToSelectActionPhase();
+    TutorialFrame.sendOnClickEvent(
+      uiKey: TutorialUiItem.confirmWordButton,
+      context: context,
+    );
+  }
+
   @override
   Widget build(final BuildContext context) {
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
-    // final uiTheme = UiTheme.of(context);
-    final wordCompositionState = context.read<WordCompositionState>();
-    final List<Widget> centerBarChildren;
-    final Widget body;
-    switch (phaseType) {
-      case GamePhaseType.entryWord:
-        body = const UiWordCompositionBar();
-        centerBarChildren = [
-          UiRandomWordIconButton(
-            onPressed: wordCompositionState.onOpenSuggestionDialog,
-          ),
-          const SizedBox(width: 10),
-          UiPauseIconButton(onPressed: wordCompositionState.onPause),
-        ];
-      case GamePhaseType.selectFuel:
-        body = Column(
-          children: [
-            const SizedBox(height: 48),
-            const UiFuelBar(),
-            if (DeviceRuntimeType.isMobile) const SizedBox(height: 36),
-          ],
-        );
-        centerBarChildren = [
-          UiPauseIconButton(onPressed: wordCompositionState.onPause),
-        ];
-    }
 
-    return Stack(
-      children: [
-        body,
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 100,
-                  ),
-                  child: const Center(child: UIMobilePlayerName()),
-                ),
-              ),
-              Flexible(
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 3),
-                  child: ConstrainedBox(
-                    constraints: const BoxConstraints(
-                      minWidth: 100,
-                    ),
-                    child: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: centerBarChildren,
-                    ),
+    return MediaQuery(
+      data: const MediaQueryData(),
+      child: Column(
+        children: [
+          Container(
+            constraints: const BoxConstraints(maxHeight: 68),
+            padding: const EdgeInsets.symmetric(
+              horizontal: 16,
+            ),
+            child: Stack(
+              children: [
+                Positioned.fill(
+                  child: AnimatedAlign(
+                    duration: 250.milliseconds,
+                    alignment: phaseType == GamePhaseType.entryWord
+                        ? Alignment.center
+                        : Alignment.centerLeft,
+                    child: const UIMobilePlayerName(),
                   ),
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 6),
-                child: ConstrainedBox(
-                  constraints: const BoxConstraints(
-                    maxWidth: 100,
+                Positioned.fill(
+                  child: AnimatedAlign(
+                    duration: 220.milliseconds,
+                    alignment: phaseType == GamePhaseType.selectFuel
+                        ? Alignment.center
+                        : Alignment.centerLeft,
+                    child: const UIMobilePlayerScore(),
                   ),
-                  child: const Center(child: UIMobilePlayerScore()),
                 ),
-              )
-            ],
+                Positioned.fill(
+                  child: AnimatedAlign(
+                    duration: 250.milliseconds,
+                    alignment: Alignment.centerRight,
+                    child: phaseType == GamePhaseType.entryWord
+                        ? TutorialFrame(
+                            highlightPosition: Alignment.topCenter,
+                            uiKey: TutorialUiItem.confirmWordButton,
+                            child: UiConfirmWordButton(
+                              onPressed: () => onConfirmWord(context),
+                            ).animate().fadeIn(),
+                          )
+                        : const SizedBox(),
+                  ),
+                ),
+              ],
+            ),
           ),
-        ),
-      ],
+          const Gap(8),
+          switch (phaseType) {
+            GamePhaseType.entryWord => const UiWordCompositionBar(),
+            GamePhaseType.selectFuel => const UiFuelBar(),
+          }
+        ],
+      ),
     );
   }
 }

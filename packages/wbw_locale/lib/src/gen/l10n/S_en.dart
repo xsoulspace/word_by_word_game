@@ -192,6 +192,37 @@ class SEn extends S {
   String get addToDictionary => 'Add to Dictionary';
 
   @override
+  String get hidePane => 'Hide pane';
+
+  @override
+  String get showPane => 'Show pane';
+
+  @override
+  String youDontHaveEnoughPointsToUnlockCharacter(int points) {
+    return 'You don\'t have enough points ($points) to unlock this character.';
+  }
+
+  @override
+  String unblockCharacterForPoints(int points, String character) {
+    return 'Unblock character $character for $points points?';
+  }
+
+  @override
+  String get powerOfEnteredWord => 'Power of entered word';
+
+  @override
+  String get hideKeyboard => 'Hide keyboard';
+
+  @override
+  String get showKeyboard => 'Show keyboard';
+
+  @override
+  String get suggestions => 'Suggestions';
+
+  @override
+  String get currentPlayerName => 'Name of current player';
+
+  @override
   String get suggestWordButtonTooltip => 'Click to get random word based on current letters.';
 
   @override

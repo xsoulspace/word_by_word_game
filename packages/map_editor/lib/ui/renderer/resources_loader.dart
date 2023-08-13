@@ -1,12 +1,15 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:map_editor/main.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
+import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
@@ -17,9 +20,18 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 
 class ResourcesLoader {
   ResourcesLoader({
+    required this.tilesetAssets,
     this.cachePrefix = 'assets/images/',
-  });
+  }) : tilesetConstants = TilesetConstants(
+          tilesetPath: Assets.images.tilesets.pirateTilesetPixelFrog.replaceAll(
+            'assets/',
+            '',
+          ),
+          assets: tilesetAssets,
+        );
+  final AssetsCache tilesetAssets;
   final String cachePrefix;
+  final TilesetConstants tilesetConstants;
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
@@ -86,12 +98,11 @@ class ResourcesLoader {
     return map;
   }
 
-  Map<NeighbourTileTitle, AnimationEntryModel>
-      getPathsForPresetDirectionalGraphics({
+  Map<SpriteCode, AnimationEntryModel> getPathsForPresetDirectionalGraphics({
     required final PresetTileGraphicsModel tileGraphics,
   }) {
     if (tileGraphics.type == TileGraphicsType.character) return {};
-    final map = <NeighbourTileTitle, AnimationEntryModel>{};
+    final map = <SpriteCode, AnimationEntryModel>{};
     final rootFolderPath = tileGraphics.path;
     if (rootFolderPath.isEmpty) return map;
     final paths = _manifestMap.keys

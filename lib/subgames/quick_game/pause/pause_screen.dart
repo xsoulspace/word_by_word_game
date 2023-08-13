@@ -103,6 +103,15 @@ class PauseScreen extends HookWidget {
                   top: 24,
                   child: CharacterAvatarButton.useDefault(),
                 ),
+
+              /// left for test cases
+              // Positioned.fill(child: Container().blurred()),
+              // const Positioned.fill(
+              //   child: Column(
+              //     children: [
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

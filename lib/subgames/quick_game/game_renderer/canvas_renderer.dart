@@ -101,8 +101,10 @@ class CanvasRenderer extends Component
   void render(final material.Canvas canvas) {
     super.render(canvas);
 
-    if (debugMode) _renderOrigin(canvas);
-    if (debugMode) _renderOffsetOrigin(canvas);
+    if (debugMode) {
+      _renderOrigin(canvas);
+      _renderOffsetOrigin(canvas);
+    }
   }
 
   @override
@@ -111,8 +113,9 @@ class CanvasRenderer extends Component
       final player = canvasObjectsDrawer.player;
       if (player != null) {
         final screenSize = game.size;
-        Offset offset = player.position -
-            ((screenSize + (player.position.toVector2() / 2)) / 3).toOffset();
+        Offset offset =
+            ((player.position.toVector2() / 2.2) - (screenSize / 11))
+                .toOffset();
         offset = origin.toOffset() - offset;
         origin = offset.toVector2();
         canvasObjectsDrawer.onOriginUpdate();
@@ -184,6 +187,7 @@ class CanvasTilesRenderer extends Component
   void render(final Canvas canvas) {
     _painter.render(
       canvas: canvas,
+      tilesetConstants: game.diDto.canvasCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
       tilesResources: tilesResources,

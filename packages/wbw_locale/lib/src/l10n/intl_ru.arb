@@ -11,9 +11,34 @@
   "confirm": "Применить",
   "applyAndEndTurn": "Завершить ход",
   "toLandscapes": "В Места",
+  "hidePane": "Скрыть панель",
+  "showPane": "Показать панель",
   "send": "Отправить",
+  "unblockCharacterForPoints": "Разблокировать букву {character} за {points} очков?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "youDontHaveEnoughPointsToUnlockCharacter": "У вас недостаточно очков ({points}) для разблокировки буквы.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "suggestions": "Подсказки",
+  "hideKeyboard": "Скрыть клавиатуру",
+  "showKeyboard": "Показать клавиатуру",
   "youHaveLandedInTheNowhere": "Вы приземлились где-то в неизвестность..",
   "profileCreator": "Создатель профиля",
+  "currentPlayerName": "Ник текущего игрока",
   "returnToLandscapes": "Вернуться к Местам",
   "selectPlayers": "Выбери игроков",
   "chooseYourCharacter": "Выбери своего персонажа",
@@ -24,6 +49,7 @@
   "congratulations": "Поздравляем!",
   "previousWord": "Предыдущее слово",
   "createProfile": "Создать профиль",
+  "powerOfEnteredWord": "Очки введеного слова",
   "username": "Ник игрока",
   "about": "Об игре",
   "@congratulations": {

@@ -192,6 +192,37 @@ class SIt extends S {
   String get addToDictionary => 'Aggiungi al dizionario';
 
   @override
+  String get hidePane => 'Nascondi riquadro';
+
+  @override
+  String get showPane => 'Mostra riquadro';
+
+  @override
+  String youDontHaveEnoughPointsToUnlockCharacter(int points) {
+    return 'Non hai abbastanza ($points) per sbloccare questa lettera.';
+  }
+
+  @override
+  String unblockCharacterForPoints(int points, String character) {
+    return 'Sbloccare la lettera $character per $points punti?';
+  }
+
+  @override
+  String get powerOfEnteredWord => 'potere della parola inserita';
+
+  @override
+  String get hideKeyboard => 'Nascondi tastiera';
+
+  @override
+  String get showKeyboard => 'Mostra tastiera';
+
+  @override
+  String get suggestions => 'Suggerimenti';
+
+  @override
+  String get currentPlayerName => 'Nome del giocatore attuale';
+
+  @override
   String get suggestWordButtonTooltip => 'Fare clic per ottenere una parola casuale in base alle lettere correnti.';
 
   @override

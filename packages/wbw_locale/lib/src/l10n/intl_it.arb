@@ -11,8 +11,11 @@
   "@resetEnding": {
     "type": "text"
   },
+  "hideKeyboard": "Nascondi tastiera",
+  "showKeyboard": "Mostra tastiera",
   "wordIsNotCorrect": "Non riusciamo a trovare la parola {word} nel nostro dizionario! Prova un'altra parola o aggiungila.",
   "wordAlreadyWritten": "Questa parola è già scritta. Prova con un'altra parola.",
+  "currentPlayerName": "Nome del giocatore attuale",
   "congratulations": "Congratulazioni!",
   "@congratulations": {
     "type": "text"
@@ -28,12 +31,35 @@
   "chooseLandscape": "Scegli un paesaggio",
   "youHaveLandedInTheNowhere": "Sei atterrato in mezzo al nulla..",
   "settings": "Impostazioni",
+  "suggestions": "Suggerimenti",
   "username": "Nome utente",
   "previousWord": "Parola precedente",
   "createProfile": "Creare Profili",
+  "hidePane": "Nascondi riquadro",
+  "unblockCharacterForPoints": "Sbloccare la lettera {character} per {points} punti?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "youDontHaveEnoughPointsToUnlockCharacter": "Non hai abbastanza ({points}) per sbloccare questa lettera.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "showPane": "Mostra riquadro",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",
   "startNewGame": "Avvio Rapido",
+  "powerOfEnteredWord": "potere della parola inserita",
   "maxHighscoreIs": "Il punteggio massimo è ",
   "@maxHighscoreIs": {
     "type": "text"

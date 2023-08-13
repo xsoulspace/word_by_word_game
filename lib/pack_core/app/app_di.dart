@@ -8,6 +8,7 @@ import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 
 class AppDiProviderDto {
   AppDiProviderDto({
@@ -130,6 +131,9 @@ class _AppDiProviderState extends State<AppDiProvider> {
                 create: (final context) => GameConstantsCubit(
                   dto: GameConstantsCubitDto(),
                 ),
+              ),
+              BlocProvider(
+                create: (final context) => UiKeyboardController(),
               ),
             ];
 

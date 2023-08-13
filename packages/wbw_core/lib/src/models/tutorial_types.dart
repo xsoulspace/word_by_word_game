@@ -33,13 +33,8 @@ enum TutorialUiItem {
   /// onClick: anywhere else
   suggestWordButton,
 
-  /// You can enter a part of word in this text field to combine full word.
-  ///
-  /// onClick | onEdit: anywhere else
-  enterWordLeft,
-
   /// To start a game enter your first word in this text field.
-  ///
+  /// You can enter a part of word in this text field to combine full word.
   /// onEdit: enterWordRight
   enterWordRight,
 

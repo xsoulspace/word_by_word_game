@@ -106,6 +106,7 @@ class UIPlayersSideBar extends HookWidget {
         maxWidth: math.min(maxWidth, size.width),
       ),
       child: ListView.separated(
+        shrinkWrap: true,
         itemBuilder: (final context, final index) {
           final player = players[index];
           return UiPlayerAndScoreTile(
@@ -211,12 +212,12 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
     with SingleTickerProviderStateMixin {
   AnimationController? _appearanceScoreAnimationController;
   AnimationController? _decreaseScoreAnimationController;
-  late double _score = widget.player.highscore.score.value;
+  late int _score = widget.player.highscore.score.value ~/ kScoreFactor;
 
   @override
   void didUpdateWidget(covariant final UiAvatarBookmark oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final newScore = widget.player.highscore.score.value;
+    final newScore = widget.player.highscore.score.value ~/ kScoreFactor;
     if (newScore != _score) {
       _appearanceScoreAnimationController
         ?..reset()
@@ -263,7 +264,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
             child: Text(
-              '${_score.toInt()}',
+              '${_score}',
               style: theme.textTheme.labelMedium?.copyWith(
                 color: selected
                     ? colorScheme.onPrimary

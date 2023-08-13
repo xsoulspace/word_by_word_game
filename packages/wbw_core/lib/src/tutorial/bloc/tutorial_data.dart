@@ -20,20 +20,6 @@ const _tutorialData = TutorialCollectionsDataModel(
         anchorUiItem: TutorialUiItem.removeLetterButton,
       ),
       TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
-        localizedMap: LocalizedMap(
-          value: {
-            Languages.en:
-                'You can enter a part of word in this text field to create full word.',
-            Languages.ru:
-                'Вы можете ввести часть слова в это текстовое поле, чтобы создать полное слово.',
-            Languages.it:
-                'È possibile inserire una parte della parola in questo campo di testo per creare una parola completa.',
-          },
-        ),
-        anchorUiItem: TutorialUiItem.enterWordLeft,
-      ),
-      TutorialEventModel(
         completeActions: [],
         localizedMap: LocalizedMap(
           value: {
@@ -181,6 +167,12 @@ const _tutorialData = TutorialCollectionsDataModel(
         ],
         localizedMap: LocalizedMap(
           value: {
+            // Languages.en:
+            //         'You can enter a part of word in this text field to create full word.',
+            //     Languages.ru:
+            //         'Вы можете ввести часть слова в это текстовое поле, чтобы создать полное слово.',
+            //     Languages.it:
+            //         'È possibile inserire una parte della parola in questo campo di testo per creare una parola completa.',
             Languages.en:
                 'To continue, enter your first word in this text field.',
             Languages.ru:

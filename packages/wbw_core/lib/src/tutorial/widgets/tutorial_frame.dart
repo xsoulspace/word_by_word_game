@@ -4,7 +4,6 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 
 import '../../models/models.dart';
 import '../tutorial.dart';
-import 'anchored_tutorial_dialog.dart';
 
 class TutorialFrame extends StatelessWidget {
   const TutorialFrame({
@@ -36,37 +35,43 @@ class TutorialFrame extends StatelessWidget {
       final tutorialEvent = tutorialBloc.getTutorialEvent();
       return tutorialEvent.anchorUiItem == uiKey;
     });
-    final uiTheme = UiTheme.of(context);
 
-    switch (uiTheme.persistentFormFactors.width) {
-      case WidthFormFactor.desktop:
-      case WidthFormFactor.tablet:
-        return PortalTarget(
-          anchor: highlightPosition.toAnchor(),
-          visible: highlighted,
-          portalFollower: const DesktopAnchoredTutorialDialog(),
-          child: HighlightFrame(
-            onPressed: () {
-              sendOnClickEvent(context: context, uiKey: uiKey);
-            },
-            highlighted: highlighted,
-            highlightPosition: highlightPosition,
-            child: child,
-          ),
-        );
-      case WidthFormFactor.mobile:
-        return PortalTarget(
-          visible: highlighted,
-          portalFollower: const MobileAnchoredTutorialDialog(),
-          child: HighlightFrame(
-            onPressed: () {
-              sendOnClickEvent(context: context, uiKey: uiKey);
-            },
-            highlighted: highlighted,
-            highlightPosition: highlightPosition,
-            child: child,
-          ),
-        );
+    final persistentFormFactors = UiPersistentFormFactors.of(context);
+    if (persistentFormFactors.screenSize.width <
+        WidthFormFactor.mobileTutorialMaxWidth) {
+      return PortalTarget(
+        // TODO(arenukvern): there is problem with anchor.
+        /// when it is Filled, when it switches between states
+        /// it forces to rebuild all components, disposing their state etc.
+        anchor: const Aligned(
+          follower: Alignment.bottomLeft,
+          target: Alignment.topRight,
+        ),
+        portalFollower: const SizedBox(),
+        visible: highlighted,
+        child: HighlightFrame(
+          onPressed: () {
+            sendOnClickEvent(context: context, uiKey: uiKey);
+          },
+          highlighted: highlighted,
+          highlightPosition: highlightPosition,
+          child: child,
+        ),
+      );
+    } else {
+      return PortalTarget(
+        anchor: highlightPosition.toAnchor(),
+        portalFollower: const DesktopAnchoredTutorialDialog(),
+        visible: highlighted,
+        child: HighlightFrame(
+          onPressed: () {
+            sendOnClickEvent(context: context, uiKey: uiKey);
+          },
+          highlighted: highlighted,
+          highlightPosition: highlightPosition,
+          child: child,
+        ),
+      );
     }
   }
 }

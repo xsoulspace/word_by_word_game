@@ -14,24 +14,24 @@ class DictionaryMechanics {
     required final CurrentWordModel word,
     required final Map<FullWordString, PlayerProfileModelId> words,
   }) =>
-      words.containsKey(word.cleanWord);
+      words.containsKey(word.fullWord);
 
   String getWordSuggestion({
-    required final String letters,
+    required final String characters,
     required final Iterable<String> exceptions,
     final int maxSuggestions = 10,
   }) {
     List<String> words = searchWords(
       dictionaryWords: english_words.nouns,
       exceptions: exceptions,
-      letters: letters,
+      letters: characters,
       maxSuggestions: maxSuggestions,
     );
     if (words.isEmpty) {
       words = searchWords(
         dictionaryWords: russian_words.nouns,
         exceptions: exceptions,
-        letters: letters,
+        letters: characters,
         maxSuggestions: maxSuggestions,
       );
     }
@@ -63,7 +63,7 @@ class DictionaryMechanics {
     required final CurrentWordModel word,
     required final LocalDictionaryModel localDictionary,
   }) {
-    final cleanWord = word.cleanWord;
+    final cleanWord = word.fullWord;
     final isEnglishWord = english_words.nouns.contains(cleanWord);
     final isRussianWord = russian_words.nouns.contains(cleanWord);
     if (isEnglishWord || isRussianWord) return true;
