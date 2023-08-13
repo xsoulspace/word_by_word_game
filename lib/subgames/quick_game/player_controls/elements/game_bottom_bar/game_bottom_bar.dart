@@ -78,16 +78,23 @@ class _Card extends StatelessWidget {
                         ? S.of(context).hidePane
                         : S.of(context).showPane,
                     onPressed: () {},
-                    child: TextButton(
-                      onPressed: () {
-                        context
-                            .read<WordCompositionCubit>()
-                            .changeCardVisibility();
-                      },
-                      child: isCardVisible
-                          ? const Icon(Icons.arrow_drop_down)
-                          : const Icon(Icons.arrow_drop_up),
-                    ),
+                    child: isCardVisible
+                        ? TextButton(
+                            onPressed: () {
+                              context
+                                  .read<WordCompositionCubit>()
+                                  .changeCardVisibility();
+                            },
+                            child: const Icon(Icons.arrow_drop_down),
+                          )
+                        : OutlinedButton(
+                            onPressed: () {
+                              context
+                                  .read<WordCompositionCubit>()
+                                  .changeCardVisibility();
+                            },
+                            child: const Icon(Icons.arrow_drop_up),
+                          ),
                   )
                 ],
               ),
