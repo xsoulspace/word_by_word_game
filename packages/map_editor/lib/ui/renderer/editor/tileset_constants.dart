@@ -7,6 +7,7 @@ import 'package:flame_fire_atlas/flame_fire_atlas.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 enum TilesetConstantsSource { image, tileset }
 
@@ -36,9 +37,9 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    // if (DeviceRuntimeType.isMobileWeb ) {
-    await preloadImages();
-    // }
+    if (DeviceRuntimeType.isMobileWeb) {
+      await preloadImages();
+    }
   }
 
   Future<void> preloadImages() async {

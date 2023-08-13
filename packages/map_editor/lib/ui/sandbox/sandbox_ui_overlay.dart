@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +11,7 @@ import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
+import 'package:recase/recase.dart';
 import 'package:universal_io/io.dart' as io;
 import 'package:wbw_design_core/wbw_design_core.dart';
 
@@ -161,15 +164,17 @@ class TileButtons extends StatelessWidget {
                     for (final tileName in SpriteTileName.values) {
                       final image = await consts.images!.load(tileName.name);
                       final path = await FilePicker.platform.saveFile(
-                        fileName: '${tileName.name}.png',
+                        fileName: '${tileName.name.snakeCase}.png',
                         type: FileType.image,
                         allowedExtensions: ['.png'],
                       );
-                      if (path != null) {
-                        final bytes =
-                            (await image.toByteData())!.buffer.asUint8List();
-                        await io.File(path).writeAsBytes(bytes);
-                      }
+                      if (path == null) return;
+                      final bytes = (await image.toByteData(
+                        format: ImageByteFormat.png,
+                      ))!
+                          .buffer
+                          .asUint8List();
+                      await io.File(path).writeAsBytes(bytes);
                     }
                   },
                   icon: const Icon(Icons.paste),
