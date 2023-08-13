@@ -22,7 +22,11 @@ dependencies:
   firebase_crashlytics: ^3.3.3
   flame: ^1.8.2
   flame_bloc: ^1.10.0
-  flame_fire_atlas: ^1.3.8
+  flame_fire_atlas:
+    git:
+      url: https://github.com/Arenukvern/flame_fork.git
+      ref: feature/fire-atlas-load-txt
+      path: packages/flame_fire_atlas
   flame_tiled: ^1.12.0
   flare_flutter: ^3.0.2
   flutter:

@@ -6,6 +6,8 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
 
+enum TilesetConstantsSource { image, tileset }
+
 class TilesetConstants {
   TilesetConstants({
     required this.tilesetPath,
@@ -18,9 +20,20 @@ class TilesetConstants {
   Future<void> onLoad({
     required final Images images,
   }) async {
-    _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
-    final tilesetImagePath = '${path.withoutExtension(tilesetPath)}.png';
-    atlasImage = await images.load(tilesetImagePath);
+    try {
+      _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
+    } catch (e) {
+      print(e);
+      print(e.runtimeType);
+
+      /// if gzip loading failed, try decoded atlas
+      final tilesetImagePath = '${path.withoutExtension(tilesetPath)}.json';
+      _atlas = await FireAtlas.loadAsset(
+        tilesetImagePath,
+        assets: assets,
+        encoded: false,
+      );
+    }
   }
 
   Sprite getSprite({
