@@ -5,6 +5,7 @@ import 'package:flame_fire_atlas/flame_fire_atlas.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 enum TilesetConstantsSource { image, tileset }
 
@@ -17,15 +18,15 @@ class TilesetConstants {
   final AssetsCache assets;
   FireAtlas? _atlas;
   Image? atlasImage;
+  Images? images;
   Future<void> onLoad({
     required final Images images,
   }) async {
+    this.images = images;
     try {
       _atlas = await FireAtlas.loadAsset(tilesetPath, assets: assets);
+      // ignore: avoid_catches_without_on_clauses
     } catch (e) {
-      print(e);
-      print(e.runtimeType);
-
       /// if gzip loading failed, try decoded atlas
       final tilesetImagePath = '${path.withoutExtension(tilesetPath)}.json';
       _atlas = await FireAtlas.loadAsset(
@@ -33,6 +34,32 @@ class TilesetConstants {
         assets: assets,
         encoded: false,
       );
+    }
+    if (DeviceRuntimeType.isMobile) _preloadImages();
+  }
+
+  void _preloadImages() {
+    for (final tileName in SpriteTileName.values) {
+      getSpriteImageByTileName(tileName: tileName);
+    }
+  }
+
+  Image getSpriteImage({
+    required final SpriteCode spriteCode,
+  }) {
+    final tileName = _codeToName[spriteCode] ?? SpriteTileName.x;
+    return getSpriteImageByTileName(tileName: tileName);
+  }
+
+  Image getSpriteImageByTileName({
+    required final SpriteTileName tileName,
+  }) {
+    if (images!.containsKey(tileName.name)) {
+      return images!.fromCache(tileName.name);
+    } else {
+      final image = _atlas!.getSprite(tileName.name.paramCase).toImageSync();
+      images!.add(tileName.name, image);
+      return image;
     }
   }
 
