@@ -40,13 +40,16 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
 
   void onLoad() {
     _latestWord = diDto.levelBloc.state.latestWord;
-    _levelBlocSubscription = diDto.levelBloc.stream
-        .distinct()
-        .debounceTime(200.milliseconds)
-        .listen((final newState) {
+    _levelBlocSubscription =
+        diDto.levelBloc.stream.distinct().listen((final newState) {
       if (_latestWord != newState.latestWord) {
         _latestWord = newState.latestWord;
         wordController.currentWord = newState.currentWord;
+      } else if (wordController.currentWord.inactiveIndexes !=
+          newState.currentWord.inactiveIndexes) {
+        wordController.changeInactiveIndexes(
+          inactiveIndexes: newState.currentWord.inactiveIndexes,
+        );
       }
     });
     wordController.addListener(_onPartChanged);

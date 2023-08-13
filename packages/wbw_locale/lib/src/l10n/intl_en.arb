@@ -137,6 +137,25 @@
   },
   "hidePane": "Hide pane",
   "showPane": "Show pane",
+  "youDontHaveEnoughPointsToUnlockCharacter": "You don't have enough points ({points}) to unlock this character.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "unblockCharacterForPoints": "Unblock character {character} for {points} points?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
   "powerOfEnteredWord": "Power of entered word",
   "hideKeyboard": "Hide keyboard",
   "showKeyboard": "Show keyboard",

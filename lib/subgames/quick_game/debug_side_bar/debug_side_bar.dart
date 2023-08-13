@@ -87,8 +87,6 @@ class UiDebugSideBarBody extends StatelessWidget {
           ),
           const _WorldTime(),
           const Gap(16),
-          const Text('Debug Tools'),
-          const Gap(16),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(
@@ -172,7 +170,7 @@ class _WorldTime extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final worldTime = context.read<MechanicsCollection>().worldTime;
-    final worldBloc = context.watch<GlobalGameBloc>();
+    context.watch<GlobalGameBloc>();
 
     return Row(
       mainAxisSize: MainAxisSize.min,

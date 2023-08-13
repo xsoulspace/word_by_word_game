@@ -70,6 +70,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
   void onChangeCurrentWord(
     final LevelBlocEventChangeCurrentWord event,
   ) {
+    if (state.currentWord.fullWord == event.word.fullWord) return;
     final newState = state.copyWith(
       currentWord: event.word,
       wordWarning: WordWarning.none,

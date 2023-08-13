@@ -1,3 +1,4 @@
+import 'package:flame/cache.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
@@ -13,10 +14,14 @@ class CanvasCubit extends DrawerCubit {
   }) : super(
           dto: drawerCubit,
           resourcesLoader: ResourcesLoader(
+            tilesetAssets: AssetsCache(
+              prefix: 'packages/map_editor/assets/',
+            ),
             cachePrefix: 'packages/map_editor/assets/images/',
           ),
           rootPath: 'packages/map_editor/',
         );
+
   final CanvasCubitDto canvasDto;
   @override
   Future<void> loadInitialData() async {

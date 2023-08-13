@@ -78,23 +78,40 @@ class _Card extends StatelessWidget {
                         ? S.of(context).hidePane
                         : S.of(context).showPane,
                     onPressed: () {},
-                    child: TextButton(
-                      onPressed: () {
-                        context
-                            .read<WordCompositionCubit>()
-                            .changeCardVisibility();
-                      },
-                      child: isCardVisible
-                          ? const Icon(Icons.arrow_drop_down)
-                          : const Icon(Icons.arrow_drop_up),
-                    ),
+                    child: isCardVisible
+                        ? TextButton(
+                            onPressed: () {
+                              context
+                                  .read<WordCompositionCubit>()
+                                  .changeCardVisibility();
+                            },
+                            child: const Icon(Icons.arrow_drop_down),
+                          )
+                        : OutlinedButton(
+                            onPressed: () {
+                              context
+                                  .read<WordCompositionCubit>()
+                                  .changeCardVisibility();
+                            },
+                            child: const Icon(Icons.arrow_drop_up),
+                          ),
                   )
                 ],
               ),
               CardFrostedBackground(
                 padding: EdgeInsets.only(
                   top: 2,
-                  bottom: uiTheme.spacing.medium,
+                  bottom: () {
+                    if (DeviceRuntimeType.isMobile) {
+                      final padding = MediaQuery.viewPaddingOf(context);
+                      final insets = MediaQuery.viewInsetsOf(context);
+                      final bottom = padding.bottom + insets.bottom;
+                      if (bottom > 0) {
+                        return bottom + 6;
+                      }
+                    }
+                    return uiTheme.spacing.medium;
+                  }(),
                 ),
                 constraints: constraints,
                 child: Builder(builder: builder),

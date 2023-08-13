@@ -52,7 +52,8 @@ class CanvasRendererGame extends FlameGame
 
   @override
   Future<void> onLoad() async {
-    images.prefix = 'packages/map_editor/assets/images/';
+    const prefix = 'packages/map_editor/assets/images/';
+    images.prefix = prefix;
     debugMode = kDebugMode && !Envs.isMarketingMode;
     // mouseCursor = material.SystemMouseCursors.none;
     children

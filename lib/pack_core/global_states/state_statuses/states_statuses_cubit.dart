@@ -62,14 +62,16 @@ class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
     }
   }
 
+  void resume() => onChangeLevelStateStatus(status: LevelStateStatus.playing);
+  void pause() => onChangeLevelStateStatus(status: LevelStateStatus.paused);
+
   void onChangeLevelStateStatus({
     required final LevelStateStatus status,
   }) {
     switch (status) {
       case LevelStateStatus.loading:
         _state = state.copyWith(loadedLevelParts: {});
-      case LevelStateStatus.paused:
-      case LevelStateStatus.playing:
+      case LevelStateStatus.paused || LevelStateStatus.playing:
     }
     _state = state.copyWith(levelStateStatus: status);
   }

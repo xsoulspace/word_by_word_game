@@ -223,9 +223,12 @@ class KeyboardLetters extends StatelessWidget {
                 ],
               ),
             ),
-            DeleteLetterButton(
-              onDelete: onDelete,
-              lettersCount: lettersCount,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 40),
+              child: DeleteLetterButton(
+                onDelete: onDelete,
+                lettersCount: lettersCount,
+              ),
             ),
           ],
         ),
@@ -283,7 +286,7 @@ class LanguageSwitcher extends StatelessWidget {
           lettersCount: lettersCount,
           onLongPress: controller.open,
           onPressed: () => onChanged(value.next()),
-          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 2),
+          padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 2),
           title: const Icon(CupertinoIcons.globe),
         ),
         menuChildren: KeyboardLanguage.values
@@ -332,9 +335,9 @@ class _DeleteLetterButtonState extends State<DeleteLetterButton> {
         },
         child: OutlinedKeyboardElement(
           onPressed: widget.onDelete,
-          padding: const EdgeInsets.symmetric(vertical: 8),
+          padding: const EdgeInsets.symmetric(vertical: 6),
           lettersCount: widget.lettersCount,
-          title: const Icon(CupertinoIcons.arrow_left_square_fill),
+          title: const Icon(CupertinoIcons.delete_left),
         ),
       );
 }
@@ -424,7 +427,7 @@ class UiElevatedButton extends StatelessWidget {
         onLongPress: onLongPress,
         child: Container(
           decoration: ShapeDecoration(
-            color: Theme.of(context).dialogBackgroundColor,
+            color: Theme.of(context).dialogBackgroundColor.withOpacity(0.8),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
             ),
@@ -461,7 +464,10 @@ class UiFilledButton extends StatelessWidget {
         onPressed: onPressed,
         child: Container(
           decoration: ShapeDecoration(
-            color: Theme.of(context).colorScheme.secondaryContainer,
+            color: Theme.of(context)
+                .colorScheme
+                .secondaryContainer
+                .withOpacity(0.85),
             shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.all(Radius.elliptical(4, 4)),
             ),

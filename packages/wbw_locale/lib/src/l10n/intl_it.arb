@@ -36,6 +36,25 @@
   "previousWord": "Parola precedente",
   "createProfile": "Creare Profili",
   "hidePane": "Nascondi riquadro",
+  "unblockCharacterForPoints": "Sbloccare la lettera {character} per {points} punti?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "youDontHaveEnoughPointsToUnlockCharacter": "Non hai abbastanza ({points}) per sbloccare questa lettera.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
   "showPane": "Mostra riquadro",
   "playersAndHighscore": "Giocatori e punteggio",
   "about": "Di",

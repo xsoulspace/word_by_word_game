@@ -14,6 +14,25 @@
   "hidePane": "Скрыть панель",
   "showPane": "Показать панель",
   "send": "Отправить",
+  "unblockCharacterForPoints": "Разблокировать букву {character} за {points} очков?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "youDontHaveEnoughPointsToUnlockCharacter": "У вас недостаточно очков ({points}) для разблокировки буквы.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
   "suggestions": "Подсказки",
   "hideKeyboard": "Скрыть клавиатуру",
   "showKeyboard": "Показать клавиатуру",
