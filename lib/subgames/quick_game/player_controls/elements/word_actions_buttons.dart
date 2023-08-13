@@ -189,7 +189,7 @@ class UiPauseButton extends StatelessWidget {
               final levelBloc = context.read<LevelBloc>();
               final appRouterController = context.read<AppRouterController>();
 
-              context.read<MechanicsCollection>().worldTime.pause();
+              context.read<StatesStatusesCubit>().pause();
 
               await globalGameBloc
                   .onSaveCurrentLevel(const SaveCurrentLevelEvent());
