@@ -23,26 +23,26 @@ class TilesetConstants {
     return _atlas!.getSprite((tileName ?? SpriteTileName.x).name.paramCase);
   }
 
-  static Map<SpriteCode, SpriteTileName> get _codeToName => () {
-        final map = <SpriteCode, SpriteTileName>{};
-        for (final MapEntry(:key, value: codes) in _nameCodes.entries) {
-          for (final code in codes) {
-            map[code] = key;
-          }
-        }
-        return map;
-      }();
-  static Map<SpriteTileName, List<SpriteCode>> get _nameCodes => {
-        SpriteTileName.topLeft: ['BCDEF', 'CDEF', 'CDE', 'BCDE'],
-        SpriteTileName.topCenter: ['CDEFG', 'CEG', 'BCDEFG', 'CDEFGH'],
-        SpriteTileName.topRight: ['DEFGH', 'DEFG', 'EFG', 'EFGH'],
-        SpriteTileName.middleLeft: ['ABCDE', 'ACE'],
-        SpriteTileName.middleRight: ['AEFGH', 'AEG'],
-        SpriteTileName.x: ['ABCDEFGH', 'ACEG'],
-        SpriteTileName.bottomLeft: ['ABCDH', 'ABC', 'ABCH', 'ABCD'],
-        SpriteTileName.bottomCenter: ['ABCGH', 'ACG'],
-        SpriteTileName.bottomRight: ['ABFGH', 'AFGH', 'ABGH', 'AGH'],
-      };
+  static final Map<SpriteCode, SpriteTileName> _codeToName = () {
+    final map = <SpriteCode, SpriteTileName>{};
+    for (final MapEntry(:key, value: codes) in _nameCodes.entries) {
+      for (final code in codes) {
+        map[code] = key;
+      }
+    }
+    return map;
+  }();
+  static const Map<SpriteTileName, List<SpriteCode>> _nameCodes = {
+    SpriteTileName.topLeft: ['BCDEF', 'CDEF', 'CDE', 'BCDE'],
+    SpriteTileName.topCenter: ['CDEFG', 'CEG', 'BCDEFG', 'CDEFGH'],
+    SpriteTileName.topRight: ['DEFGH', 'DEFG', 'EFG', 'EFGH'],
+    SpriteTileName.middleLeft: ['ABCDE', 'ACE'],
+    SpriteTileName.middleRight: ['AEFGH', 'AEG'],
+    SpriteTileName.x: ['ABCDEFGH', 'ACEG'],
+    SpriteTileName.bottomLeft: ['ABCDH', 'ABC', 'ABCH', 'ABCD'],
+    SpriteTileName.bottomCenter: ['ABCGH', 'ACG'],
+    SpriteTileName.bottomRight: ['ABFGH', 'AFGH', 'ABGH', 'AGH'],
+  };
 }
 
 enum SpriteTileName {
