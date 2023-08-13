@@ -35,12 +35,14 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    if (DeviceRuntimeType.isMobile) _preloadImages();
+    if (DeviceRuntimeType.isMobile) {
+      await _preloadImages();
+    }
   }
 
-  void _preloadImages() {
+  Future<void> _preloadImages() async {
     for (final tileName in SpriteTileName.values) {
-      getSpriteImageByTileName(tileName: tileName);
+      await getSpriteImageByTileName(tileName: tileName);
     }
   }
 
@@ -48,16 +50,16 @@ class TilesetConstants {
     required final SpriteCode spriteCode,
   }) {
     final tileName = _codeToName[spriteCode] ?? SpriteTileName.x;
-    return getSpriteImageByTileName(tileName: tileName);
+    return images!.fromCache(tileName.name);
   }
 
-  Image getSpriteImageByTileName({
+  Future<Image> getSpriteImageByTileName({
     required final SpriteTileName tileName,
-  }) {
+  }) async {
     if (images!.containsKey(tileName.name)) {
       return images!.fromCache(tileName.name);
     } else {
-      final image = _atlas!.getSprite(tileName.name.paramCase).toImageSync();
+      final image = await _atlas!.getSprite(tileName.name.paramCase).toImage();
       images!.add(tileName.name, image);
       return image;
     }
