@@ -6,6 +6,7 @@ import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
+import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
@@ -80,9 +81,18 @@ class TileButtons extends StatelessWidget {
                 ),
               ],
             ),
-            TextButton(
-              onPressed: () async => showLayersDialog(context: context),
-              child: Text('Layers - ${drawerCubit.drawLayer.title}'),
+            Column(
+              children: [
+                TextButton(
+                  onPressed: () async => showLayersDialog(context: context),
+                  child: Text('Layers - ${drawerCubit.drawLayer.title}'),
+                ),
+                TextButton(
+                  onPressed: () async =>
+                      showTilesetDirectionGenerator(context: context),
+                  child: const Text('Tileset Directions gen'),
+                ),
+              ],
             ),
             ...[
               ...tilesResources.tiles.values.toList().reversed.map(

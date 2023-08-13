@@ -4,9 +4,11 @@ import 'dart:convert';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:map_editor/main.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
+import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:path/path.dart' as path;
 import 'package:recase/recase.dart';
@@ -20,6 +22,10 @@ class ResourcesLoader {
     this.cachePrefix = 'assets/images/',
   });
   final String cachePrefix;
+  final tilesetConstants = TilesetConstants(
+    tilesetPath:
+        Assets.tilesets.pirateTilesetPixelFrog.replaceAll('assets/', ''),
+  );
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
@@ -32,6 +38,7 @@ class ResourcesLoader {
   Future<void> onLoad() async {
     if (_isLoaded) return;
     _isLoaded = true;
+    await tilesetConstants.onLoad();
     await _loadImagesManifest();
   }
 
@@ -86,12 +93,11 @@ class ResourcesLoader {
     return map;
   }
 
-  Map<NeighbourTileTitle, AnimationEntryModel>
-      getPathsForPresetDirectionalGraphics({
+  Map<SpriteCode, AnimationEntryModel> getPathsForPresetDirectionalGraphics({
     required final PresetTileGraphicsModel tileGraphics,
   }) {
     if (tileGraphics.type == TileGraphicsType.character) return {};
-    final map = <NeighbourTileTitle, AnimationEntryModel>{};
+    final map = <SpriteCode, AnimationEntryModel>{};
     final rootFolderPath = tileGraphics.path;
     if (rootFolderPath.isEmpty) return map;
     final paths = _manifestMap.keys

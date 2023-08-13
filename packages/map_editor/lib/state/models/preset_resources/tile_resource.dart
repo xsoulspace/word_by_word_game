@@ -5,7 +5,7 @@ part of 'preset_resources.dart';
 ///
 /// Usually this string created by
 /// [CellTileModel.tileNeighbours.map((final e) => e.value).join()]
-typedef NeighbourTileTitle = String;
+typedef SpriteCode = String;
 
 @freezed
 class PresetTileResource with _$PresetTileResource {
@@ -13,8 +13,7 @@ class PresetTileResource with _$PresetTileResource {
     required final PresetTileModel tile,
     @Default({})
     final Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
-    @Default({})
-    final Map<NeighbourTileTitle, AnimationEntryModel> directionalPaths,
+    @Default({}) final Map<SpriteCode, AnimationEntryModel> directionalPaths,
   }) = _PresetTileResource;
   const PresetTileResource._();
   factory PresetTileResource.fromTile({

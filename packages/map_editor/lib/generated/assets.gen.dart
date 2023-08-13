@@ -39,6 +39,17 @@ class $AssetsJsonGen {
   List<String> get values => [readme, tilesPresetData, tilesSettingsData];
 }
 
+class $AssetsTilesetsGen {
+  const $AssetsTilesetsGen();
+
+  /// File path: assets/tilesets/pirate_tileset_pixel_frog.fa
+  String get pirateTilesetPixelFrog =>
+      'assets/tilesets/pirate_tileset_pixel_frog.fa';
+
+  /// List of all assets
+  List<String> get values => [pirateTilesetPixelFrog];
+}
+
 class $AssetsImagesCloudsGen {
   const $AssetsImagesCloudsGen();
 
@@ -2279,6 +2290,7 @@ class Assets {
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsJsonGen json = $AssetsJsonGen();
+  static const $AssetsTilesetsGen tilesets = $AssetsTilesetsGen();
 }
 
 class AssetGenImage {

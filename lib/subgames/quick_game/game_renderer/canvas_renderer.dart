@@ -187,6 +187,7 @@ class CanvasTilesRenderer extends Component
   void render(final Canvas canvas) {
     _painter.render(
       canvas: canvas,
+      tilesetConstants: game.diDto.canvasCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
       tilesResources: tilesResources,

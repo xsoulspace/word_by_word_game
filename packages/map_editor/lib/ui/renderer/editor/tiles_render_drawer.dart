@@ -144,6 +144,7 @@ class TilesRenderer extends Component
   void render(final Canvas canvas) {
     _painter.render(
       canvas: canvas,
+      tilesetConstants: game.diDto.drawerCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
       tilesResources: tilesResources,
@@ -164,6 +165,7 @@ class TilesPainter {
     required final Canvas canvas,
     required final CanvasDataModel canvasData,
     required final Map<TileId, PresetTileResource> tilesResources,
+    required final TilesetConstants tilesetConstants,
     required final Vector2 origin,
     required final Vector2 offsetOrigin,
     required final Images images,
@@ -198,15 +200,9 @@ class TilesPainter {
             case TileGraphicsType.character:
               assert(false, 'Character graphics type cannot be used in tile');
             case TileGraphicsType.directional:
-              final directionTitle = cellTile.tileMergedDirectionsTitle;
-              final x = resourceTile.directionalPaths['X']!;
-              final animationEntry = directionTitle.isEmpty
-                  ? x
-                  : resourceTile.directionalPaths[
-                          cellTile.tileMergedDirectionsTitle] ??
-                      x;
-              final img = images.fromCache(animationEntry.currentFramePath);
-              canvas.drawImage(img, position, _paint);
+              final spriteCode = cellTile.tileMergedDirectionsTitle;
+              final sprite = tilesetConstants.getImage(spriteCode: spriteCode);
+              sprite.render(canvas, position: position.toVector2());
           }
 
           /// Drawing objects

@@ -15,6 +15,7 @@ import 'package:map_editor/generated/assets.gen.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_core/wbw_core.dart';
