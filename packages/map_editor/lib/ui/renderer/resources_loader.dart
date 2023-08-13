@@ -21,10 +21,12 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 class ResourcesLoader {
   ResourcesLoader({
     required this.tilesetAssets,
+    final TilesetConstantsSource source = TilesetConstantsSource.image,
     this.cachePrefix = 'assets/images/',
   }) : tilesetConstants = TilesetConstants(
+          source: source,
           tilesetPath: Assets.images.tilesets.pirateTilesetPixelFrog.replaceAll(
-            'assets/',
+            'assets/images/',
             '',
           ),
           assets: tilesetAssets,

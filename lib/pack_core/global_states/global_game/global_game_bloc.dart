@@ -101,7 +101,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final levelModel = state.currentLevelModel;
     if (levelModel == null) {
       // TODO(arenuvkern): description
-      throw UnimplementedError();
+      throw UnimplementedError('onRestartLevel $levelModel');
     } else {
       onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: levelModel));
       unawaited(

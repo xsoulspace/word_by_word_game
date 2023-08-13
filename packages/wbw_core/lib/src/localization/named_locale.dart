@@ -46,7 +46,7 @@ Map<Languages, String> localeValueFromMap(final dynamic map) {
     );
   } else {
     // TODO(arenukvern): description
-    throw UnimplementedError();
+    throw UnimplementedError('localeValueFromMap $map');
   }
 }
 
