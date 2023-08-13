@@ -1,3 +1,5 @@
+import 'dart:ui' as ui;
+
 import 'package:flame/cache.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/sprite.dart';
@@ -35,14 +37,14 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    if (DeviceRuntimeType.isMobile) {
+    if (DeviceRuntimeType.isMobileWeb) {
       await _preloadImages();
     }
   }
 
   Future<void> _preloadImages() async {
     for (final tileName in SpriteTileName.values) {
-      await getSpriteImageByTileName(tileName: tileName);
+      await cacheSpriteImageByTileName(tileName: tileName);
     }
   }
 
@@ -53,16 +55,12 @@ class TilesetConstants {
     return images!.fromCache(tileName.name);
   }
 
-  Future<Image> getSpriteImageByTileName({
+  Future<void> cacheSpriteImageByTileName({
     required final SpriteTileName tileName,
   }) async {
-    if (images!.containsKey(tileName.name)) {
-      return images!.fromCache(tileName.name);
-    } else {
-      final image = await _atlas!.getSprite(tileName.name.paramCase).toImage();
-      images!.add(tileName.name, image);
-      return image;
-    }
+    final image = await _atlas!.getSprite(tileName.name.paramCase).toImage();
+    final converted = await ImageFileGenerator.generateFromImages(image);
+    images!.add(tileName.name, converted ?? image);
   }
 
   Sprite getSprite({
@@ -93,6 +91,34 @@ class TilesetConstants {
     SpriteTileName.bottomCenter: ['ABCGH', 'ACG'],
     SpriteTileName.bottomRight: ['ABFGH', 'AFGH', 'ABGH', 'AGH'],
   };
+}
+
+class ImageFileGenerator {
+  ImageFileGenerator._();
+  static Future<Image?> generateFromImages(
+    final Image rawImage,
+  ) async {
+    final pictureRecorder = ui.PictureRecorder();
+    final canvas = ui.Canvas(pictureRecorder);
+    Offset offset = Offset.zero;
+    int maxWidth = 0;
+    final paint = ui.Paint();
+    final byteData = await rawImage.toByteData();
+    if (byteData == null) return null;
+    final unit8List = byteData.buffer.asUint8List();
+    final codec = await ui.instantiateImageCodec(unit8List);
+    final frameInfo = await codec.getNextFrame();
+    final image = frameInfo.image;
+
+    canvas.drawImage(image, offset, paint);
+    offset = Offset(0, offset.dy + image.height + 1);
+    if (maxWidth < image.width) {
+      maxWidth = image.width;
+    }
+
+    final canvasPicture = pictureRecorder.endRecording();
+    return canvasPicture.toImage(maxWidth, offset.dy.toInt());
+  }
 }
 
 enum SpriteTileName {

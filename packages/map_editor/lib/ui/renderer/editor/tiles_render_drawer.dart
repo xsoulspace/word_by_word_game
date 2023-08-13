@@ -343,15 +343,16 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
             case TileGraphicsType.directional:
               final spriteCode = cellTile.tileMergedDirectionsTitle;
               final directionTitle = cellTile.tileMergedDirectionsTitle;
-              final x = resourceTile.directionalPaths['X']!;
+              final x = resourceTile.directionalPaths['X'];
               final animationEntry = directionTitle.isEmpty
                   ? x
                   : resourceTile.directionalPaths[
                           cellTile.tileMergedDirectionsTitle] ??
                       x;
+              final currentPath = animationEntry?.currentFramePath ?? '';
               Image image;
-              if (images.containsKey(animationEntry.currentFramePath)) {
-                image = images.fromCache(animationEntry.currentFramePath);
+              if (images.containsKey(currentPath)) {
+                image = images.fromCache(currentPath);
               } else {
                 image = tilesetConstants.getSpriteImage(
                   spriteCode: spriteCode,
@@ -392,7 +393,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
 abstract interface class TilesPainterInterface {
   // ignore: unused_element
   TilesPainterInterface._();
-  factory TilesPainterInterface.getImpl() => (DeviceRuntimeType.isMobile)
+  factory TilesPainterInterface.getImpl() => (DeviceRuntimeType.isMobileWeb)
       ? TilesPainterImagesImpl()
       : TilesPainterAtlasImpl();
   void render({
