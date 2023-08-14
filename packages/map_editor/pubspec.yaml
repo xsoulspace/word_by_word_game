@@ -107,6 +107,7 @@ flutter:
   assets:
     - assets/images/
     - assets/images/tilesets/
+    - assets/images/tilesets/pirate_tileset_pixel_frog/
     - assets/images/clouds/
     - assets/images/cursors/
     - assets/images/cursors/cursor/
