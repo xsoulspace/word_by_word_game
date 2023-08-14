@@ -44,7 +44,7 @@ class TilesDrawer extends Component
           CellPointModel(
             x + cellPoint.x - clusterOffset.x,
             y + cellPoint.y - clusterOffset.y,
-          )
+          ),
     ];
     for (final cell in localCluster) {
       if (effectiveLayerTiles.containsKey(cell)) {
@@ -195,6 +195,16 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
           if (cellTile == null) continue;
           final vectorPosition =
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
+
+          // / only for debug purposes
+          // if (cellTile.tileId.isEmpty) {
+          //   canvas.drawRect(
+          //     Rect.fromLTWH(vectorPosition.x, vectorPosition.y,
+          //         kTileDimension.toDouble(), kTileDimension.toDouble()),
+          //     Paint()..color = material.Colors.red,
+          //   );
+          //   continue;
+          // }
           final resourceTile = tilesResources[cellTile.tileId];
           if (resourceTile == null) continue;
           final graphics = resourceTile.tile.graphics;
