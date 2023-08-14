@@ -46841,9 +46841,9 @@
   "playerObject": {
     "id": "Tester",
     "tileId": "tester",
-    "position": { "x": -2975.80859375, "y": 330.4296875 },
-    "distanceToOrigin": { "x": -49.73828125, "y": -69.8203125 },
-    "distanceToTileLeftTopCorner": { "x": 14.26171875, "y": 26.1796875 },
+    "position": { "x": 394.953125, "y": 257.75 },
+    "distanceToOrigin": { "x": -53.109375, "y": -104.71875 },
+    "distanceToTileLeftTopCorner": { "x": 490.890625, "y": 439.28125 },
     "animationBehaviour": "idle_right"
   },
   "skyYTilePosition": 0,
