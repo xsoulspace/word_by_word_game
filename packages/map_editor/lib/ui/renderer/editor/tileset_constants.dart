@@ -37,9 +37,9 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    // if (DeviceRuntimeType.isMobileWeb) {
-    await preloadImages();
-    // }
+    if (DeviceRuntimeType.isMobileWeb) {
+      await preloadImages();
+    }
   }
 
   Future<void> preloadImages() async {
