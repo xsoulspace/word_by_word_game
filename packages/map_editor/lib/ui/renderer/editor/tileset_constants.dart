@@ -37,18 +37,16 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    // if (DeviceRuntimeType.isMobileWeb) {
-    await preloadImages();
-    // }
+    if (DeviceRuntimeType.isMobileWeb) {
+      await preloadImages();
+    }
   }
 
   Future<void> preloadImages() async {
     if (DeviceRuntimeType.isMobileWeb) {
       final imagesPath = path.withoutExtension(tilesetPath);
-      final folderName = imagesPath.split('/').last;
       for (final tileName in SpriteTileName.values) {
-        final imagePath =
-            '$imagesPath/$folderName/${tileName.name.snakeCase}.png';
+        final imagePath = '$imagesPath/${tileName.name.snakeCase}.png';
         await images!.load(imagePath, key: tileName.name);
       }
     } else {
