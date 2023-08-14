@@ -15,7 +15,7 @@ class CanvasCubit extends DrawerCubit {
           dto: drawerCubit,
           resourcesLoader: ResourcesLoader(
             tilesetAssets: AssetsCache(
-              prefix: 'packages/map_editor/assets/',
+              prefix: 'packages/map_editor/assets/images/',
             ),
             cachePrefix: 'packages/map_editor/assets/images/',
           ),

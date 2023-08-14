@@ -28,8 +28,8 @@ class Palette {
 
 int get kTileDimension => 32;
 
-int get kVisibleTilesColumns => 30;
-int get kVisibleTilesRows => 16;
+int get kVisibleTilesColumns => 20;
+int get kVisibleTilesRows => 12;
 
 int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;

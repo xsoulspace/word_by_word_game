@@ -182,7 +182,8 @@ class CanvasTilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final _painter = TilesPainter();
+  final TilesPainterInterface _painter = TilesPainterInterface.getImpl();
+
   @override
   void render(final Canvas canvas) {
     _painter.render(
@@ -223,6 +224,6 @@ class CanvasDebugSurface extends Component
   void render(final material.Canvas canvas) {
     super.render(canvas);
     if (!debugMode) return;
-    _renderLines(canvas);
+    // _renderLines(canvas);
   }
 }

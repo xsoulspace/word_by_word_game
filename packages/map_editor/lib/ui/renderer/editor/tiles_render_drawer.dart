@@ -126,7 +126,6 @@ class TilesRenderer extends Component
         HasGameRef<EditorRendererGame>,
         HasEditorRef,
         HasEditorResourcesLoaderRef {
-  // final _canvasTilesComponents = <>{};
   @override
   FutureOr<void> onLoad() {
     add(
@@ -139,7 +138,7 @@ class TilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final _painter = TilesPainter();
+  final TilesPainterInterface _painter = TilesPainterInterface.getImpl();
   @override
   void render(final Canvas canvas) {
     _painter.render(
@@ -159,8 +158,11 @@ class TilesRenderer extends Component
   }
 }
 
-class TilesPainter {
+class TilesPainterAtlasImpl implements TilesPainterInterface {
   final _paint = material.Paint();
+  final _runtimeCache = <SpriteCode, ({Rect srcRect, Vector2 srcSize})>{};
+  Image? _spriteImage;
+  @override
   void render({
     required final Canvas canvas,
     required final CanvasDataModel canvasData,
@@ -175,9 +177,12 @@ class TilesPainter {
     required final double windowWidth,
   }) {
     final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
-    for (var col = -1; col < tileColumns + 1; col++) {
-      for (var row = -1; row < tileRows + 3; row++) {
-        for (final tileLayer in visibleLayers) {
+    final atlasRects = <Rect>[];
+    final atlasRsTransforms = <RSTransform>[];
+
+    for (final tileLayer in visibleLayers) {
+      for (var col = -1; col < tileColumns + 1; col++) {
+        for (var row = -1; row < tileRows + 3; row++) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
                   Vector2(col.toDouble(), row.toDouble());
@@ -190,7 +195,6 @@ class TilesPainter {
           if (cellTile == null) continue;
           final vectorPosition =
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
-          final position = vectorPosition.toOffset();
           final resourceTile = tilesResources[cellTile.tileId];
           if (resourceTile == null) continue;
           final graphics = resourceTile.tile.graphics;
@@ -201,11 +205,166 @@ class TilesPainter {
               assert(false, 'Character graphics type cannot be used in tile');
             case TileGraphicsType.directional:
               final spriteCode = cellTile.tileMergedDirectionsTitle;
-              final sprite = tilesetConstants.getImage(spriteCode: spriteCode);
-              sprite.render(canvas, position: position.toVector2());
-          }
+              final directionTitle = cellTile.tileMergedDirectionsTitle;
+              final x = resourceTile.directionalPaths['X'];
+              final animationEntry = directionTitle.isEmpty
+                  ? x
+                  : resourceTile.directionalPaths[
+                          cellTile.tileMergedDirectionsTitle] ??
+                      x;
+              final currentPath = animationEntry?.currentFramePath ?? '';
+              if (images.containsKey(currentPath)) {
+                final image = images.fromCache(currentPath);
+                canvas.drawImage(
+                  image,
+                  vectorPosition.toOffset(),
+                  _paint,
+                );
+              } else {
+                final src = _runtimeCache[spriteCode] ??= () {
+                  final s = tilesetConstants.getSprite(spriteCode: spriteCode);
+                  _spriteImage ??= s.image;
+                  final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
+                  return (srcRect: srcRect, srcSize: s.srcSize);
+                }();
+                _tmpRenderPosition.setFrom(vectorPosition);
 
+                _tmpRenderSize.setFrom(src.srcSize);
+
+                _tmpRenderPosition.setValues(
+                  _tmpRenderPosition.x - (0 * _tmpRenderSize.x),
+                  _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
+                );
+
+                final drawRect =
+                    _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
+
+                final rsTransform = RSTransform.fromComponents(
+                  rotation: 0,
+                  scale: 1,
+                  anchorX: 0,
+                  anchorY: 0,
+                  translateX: drawRect.left,
+                  translateY: drawRect.top,
+                );
+
+                // sprite.render(canvas, position: position.toVector2());
+                atlasRects.add(src.srcRect);
+                atlasRsTransforms.add(rsTransform);
+              }
+          }
+          // TODO(arenukvern): fix objects drawing because they should be drawn
+          // on top of tiles, but ucrrently they are behind them
           /// Drawing objects
+          for (final gid in cellTile.objects) {
+            final renderObject = canvasData.objects[gid];
+            if (renderObject == null) continue;
+
+            /// Drawing tile
+            switch (graphics.type) {
+              case TileGraphicsType.character:
+                final animationEntry = resourceTile
+                    .behaviourPaths[renderObject.animationBehaviour];
+                if (animationEntry == null) continue;
+                final img = images.fromCache(animationEntry.currentFramePath);
+                canvas.drawImage(img, renderObject.position.toOffset(), _paint);
+              case TileGraphicsType.directional:
+                assert(
+                  false,
+                  'Directional graphics type cannot be used with object',
+                );
+            }
+          }
+        }
+      }
+      final atlasImage = _spriteImage;
+      if (atlasImage == null) return;
+      canvas.drawAtlas(
+        atlasImage,
+        atlasRsTransforms,
+        atlasRects,
+        null,
+        null,
+        null,
+        _paint,
+      );
+      atlasRsTransforms.clear();
+      atlasRects.clear();
+    }
+  }
+
+  static final _tmpRenderPosition = Vector2.zero();
+  static final _tmpRenderSize = Vector2.zero();
+}
+
+/// Is neede since drawAtlas is unavailable on mobile browsers
+class TilesPainterImagesImpl implements TilesPainterInterface {
+  final _paint = material.Paint();
+
+  @override
+  void render({
+    required final Canvas canvas,
+    required final CanvasDataModel canvasData,
+    required final Map<TileId, PresetTileResource> tilesResources,
+    required final TilesetConstants tilesetConstants,
+    required final Vector2 origin,
+    required final Vector2 offsetOrigin,
+    required final Images images,
+    required final double tileColumns,
+    required final double windowHeight,
+    required final double tileRows,
+    required final double windowWidth,
+  }) {
+    final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
+
+    for (final tileLayer in visibleLayers) {
+      for (var col = -1; col < tileColumns + 1; col++) {
+        for (var row = -1; row < tileRows + 3; row++) {
+          final cellPointVector =
+              ((offsetOrigin - origin) / kTileDimension.toDouble()) +
+                  Vector2(col.toDouble(), row.toDouble());
+
+          final cellPoint = CellPointModel(
+            cellPointVector.x.toInt(),
+            cellPointVector.y.toInt(),
+          );
+          final cellTile = tileLayer.tiles[cellPoint];
+          if (cellTile == null) continue;
+          final vectorPosition =
+              origin + (cellPoint.toVector2() * kTileDimension.toDouble());
+          final resourceTile = tilesResources[cellTile.tileId];
+          if (resourceTile == null) continue;
+          final graphics = resourceTile.tile.graphics;
+
+          /// Drawing tile
+          switch (graphics.type) {
+            case TileGraphicsType.character:
+              assert(false, 'Character graphics type cannot be used in tile');
+            case TileGraphicsType.directional:
+              final spriteCode = cellTile.tileMergedDirectionsTitle;
+              final directionTitle = cellTile.tileMergedDirectionsTitle;
+              final x = resourceTile.directionalPaths['X'];
+              final animationEntry = directionTitle.isEmpty
+                  ? x
+                  : resourceTile.directionalPaths[
+                          cellTile.tileMergedDirectionsTitle] ??
+                      x;
+              final currentPath = animationEntry?.currentFramePath ?? '';
+              Image image;
+              if (images.containsKey(currentPath)) {
+                image = images.fromCache(currentPath);
+              } else {
+                image = tilesetConstants.getSpriteImage(
+                  spriteCode: spriteCode,
+                );
+              }
+
+              canvas.drawImage(
+                image,
+                vectorPosition.toOffset(),
+                _paint,
+              );
+          }
           for (final gid in cellTile.objects) {
             final renderObject = canvasData.objects[gid];
             if (renderObject == null) continue;
@@ -229,4 +388,25 @@ class TilesPainter {
       }
     }
   }
+}
+
+abstract interface class TilesPainterInterface {
+  // ignore: unused_element
+  TilesPainterInterface._();
+  factory TilesPainterInterface.getImpl() => DeviceRuntimeType.isMobileWeb
+      ? TilesPainterImagesImpl()
+      : TilesPainterAtlasImpl();
+  void render({
+    required final Canvas canvas,
+    required final CanvasDataModel canvasData,
+    required final Map<TileId, PresetTileResource> tilesResources,
+    required final TilesetConstants tilesetConstants,
+    required final Vector2 origin,
+    required final Vector2 offsetOrigin,
+    required final Images images,
+    required final double tileColumns,
+    required final double windowHeight,
+    required final double tileRows,
+    required final double windowWidth,
+  });
 }

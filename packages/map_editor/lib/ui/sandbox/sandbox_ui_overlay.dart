@@ -1,17 +1,24 @@
+import 'dart:ui';
+
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
+import 'package:provider/provider.dart';
+import 'package:recase/recase.dart';
+import 'package:universal_io/io.dart' as io;
 import 'package:wbw_design_core/wbw_design_core.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
-  const SandboxUiOverlay({super.key});
-
+  const SandboxUiOverlay({
+    super.key,
+  });
   @override
   Widget build(final BuildContext context) => const Stack(
         fit: StackFit.passthrough,
@@ -148,6 +155,30 @@ class TileButtons extends StatelessWidget {
                   onPressed: () async => drawerCubit.paste(context: context),
                   icon: const Icon(Icons.paste),
                   label: const Text('Paste'),
+                ),
+                TextButton.icon(
+                  onPressed: () async {
+                    final consts = drawerCubit.resourcesLoader.tilesetConstants;
+                    await consts.preloadImages();
+
+                    for (final tileName in SpriteTileName.values) {
+                      final image = await consts.images!.load(tileName.name);
+                      final path = await FilePicker.platform.saveFile(
+                        fileName: '${tileName.name.snakeCase}.png',
+                        type: FileType.image,
+                        allowedExtensions: ['.png'],
+                      );
+                      if (path == null) return;
+                      final bytes = (await image.toByteData(
+                        format: ImageByteFormat.png,
+                      ))!
+                          .buffer
+                          .asUint8List();
+                      await io.File(path).writeAsBytes(bytes);
+                    }
+                  },
+                  icon: const Icon(Icons.paste),
+                  label: const Text('Save pics'),
                 ),
                 UiLocalizedTextField(
                   fieldConstraints: const BoxConstraints(maxWidth: 140),

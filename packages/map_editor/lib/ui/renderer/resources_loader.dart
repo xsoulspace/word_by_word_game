@@ -24,7 +24,7 @@ class ResourcesLoader {
     this.cachePrefix = 'assets/images/',
   }) : tilesetConstants = TilesetConstants(
           tilesetPath: Assets.images.tilesets.pirateTilesetPixelFrog.replaceAll(
-            'assets/',
+            'assets/images/',
             '',
           ),
           assets: tilesetAssets,
