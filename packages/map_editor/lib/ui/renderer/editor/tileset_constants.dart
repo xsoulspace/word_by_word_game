@@ -37,14 +37,24 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    if (DeviceRuntimeType.isMobileWeb) {
-      await preloadImages();
-    }
+    // if (DeviceRuntimeType.isMobileWeb) {
+    await preloadImages();
+    // }
   }
 
   Future<void> preloadImages() async {
-    for (final tileName in SpriteTileName.values) {
-      await cacheSpriteImageByTileName(tileName: tileName);
+    if (DeviceRuntimeType.isMobileWeb) {
+      final imagesPath = path.withoutExtension(tilesetPath);
+      final folderName = imagesPath.split('/').last;
+      for (final tileName in SpriteTileName.values) {
+        final imagePath =
+            '$imagesPath/$folderName/${tileName.name.snakeCase}.png';
+        await images!.load(imagePath, key: tileName.name);
+      }
+    } else {
+      for (final tileName in SpriteTileName.values) {
+        await cacheSpriteImageByTileName(tileName: tileName);
+      }
     }
   }
 
@@ -103,7 +113,8 @@ class ImageFileGenerator {
     Offset offset = Offset.zero;
     int maxWidth = 0;
     final paint = ui.Paint();
-    final byteData = await rawImage.toByteData(
+    final resizedImage = await rawImage.resize(rawImage.size + Vector2(1, 1));
+    final byteData = await resizedImage.toByteData(
       format: ui.ImageByteFormat.png,
     );
     if (byteData == null) return null;
@@ -113,7 +124,7 @@ class ImageFileGenerator {
     final image = frameInfo.image;
 
     canvas.drawImage(image, offset, paint);
-    offset = Offset(0, offset.dy + image.height + 1);
+    offset = Offset(0, offset.dy + image.height);
     if (maxWidth < image.width) {
       maxWidth = image.width;
     }
