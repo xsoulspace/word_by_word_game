@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:collection';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -248,7 +247,7 @@ class _WordFieldState extends State<WordField> {
     });
   }
 
-  bool _isKeyboardVisible = DeviceRuntimeType.isMobile || kDebugMode;
+  bool _isKeyboardVisible = DeviceRuntimeType.isMobile;
   @override
   void dispose() {
     _controller.removeListener(_onControllerChange);
