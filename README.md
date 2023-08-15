@@ -30,15 +30,15 @@ Features:
 - The game remembers the progress - if you press the menu (pause button in the center), the current game will be saved and you can continue later.
 - You can learn new words:)
 
+## Privacy Policy & Terms and Conditions:
+
+https://docs.page/xsoulspace/word_by_word_game
+
 ## Have an idea, improvements, or bugs?
 
 Join Discord - https://discord.gg/y54DpJwmAn
 
 Have fun and a great time!
-
----
-
-<br/>
 
 ## Donations / Sponsor
 
@@ -46,39 +46,33 @@ Please sponsor or donate to the creator on [Boosty](https://boosty.to/arenukvern
 
 Thank you for your support and have a great day! 🌄
 
+## Graphics credits & thanks:
+
+- Sonnenstein (we currently working to create new tileset) | https://sonnenstein.itch.io/
+- Pixel Frog (I used this pack during v3 development - https://pixelfrog-assets.itch.io/treasure-hunters) | https://pixelfrog-assets.itch.io
+
+## Additional Licenses and Insipration Sources:
+
+- color palette - https://lospec.com/palette-list/na16
+- extremly useful info of procedural map generation - https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
+
 ## Contributing
 
 All [comments](https://github.com/xsoulspace/word_by_word_game/issues) and [pull requests](https://github.com/xsoulspace/word_by_word_game/pulls) are welcome.
 
 ## Huge thank you for contributions!
 
-[@albanobattistella](https://github.com/albanobattistella)
+@albanobattistella - for initial Italian translation (v1) | https://github.com/albanobattistella
 
 ## Getting Help
 
 If you need help getting started or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
 
-## Build
-
-web:
-flutter clean && flutter pub get && flutter build web --csp -t lib/main_prod.dart
-
-android:
-flutter build appbundle --dart-define=""
-flutter build apk --dart-define=""
+## Other
 
 This project uses:
 
+Flutter & Dart 💙
+
 melos to manage packages
 https://melos.invertase.dev
-dart pub global activate melos
-
-Widgetbook:
-https://docs.widgetbook.io/widgetbook/overview
-dart pub global activate mason_cli
-
-## Additional Licenses and Insipration Sources:
-
-- color palette - https://lospec.com/palette-list/na16
-- temporary tilemap source - https://pixelfrog-assets.itch.io/treasure-hunters
-- extremly useful info of procedural map generation - https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s

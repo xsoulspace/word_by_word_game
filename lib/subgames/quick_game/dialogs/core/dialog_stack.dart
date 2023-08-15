@@ -24,64 +24,69 @@ enum GameDialogType {
   tutorialOk,
 }
 
-class DialogStack extends HookWidget {
-  const DialogStack({
+class DefaultDialogOverlayController extends HookWidget {
+  const DefaultDialogOverlayController({
     required this.builder,
     super.key,
   });
+
   final Widget Function(BuildContext context, DialogController dialogController)
       builder;
   @override
   Widget build(final BuildContext context) {
     final state = _useDialogStackState(read: context.read);
-    return Provider(
-      create: (final context) => state.dialogController,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          builder(context, state.dialogController),
-          Builder(
-            builder: (final context) {
-              Widget child;
-              switch (state.dialogType) {
-                case GameDialogType.none:
-                  return const SizedBox();
-                case GameDialogType.levelLost:
-                  child = LevelLostDialog(
-                    onSendEndLevelEvent: state.onSendEndLevelEvent,
-                  );
-                  break;
-                case GameDialogType.levelWin:
-                  child = const LevelWinDialog();
-                  break;
-                case GameDialogType.levelWordSuggestion:
-                  child = const LevelWordSuggestionDialog();
-                  break;
-                case GameDialogType.tutorialBool:
-                  child = const TutorialBoolDialog();
-                  break;
-                case GameDialogType.tutorialOk:
-                  child = const TutorialOkDialog();
-                  break;
-              }
 
-              return DialogBarrier(
-                child: child,
-              );
-            },
-          ),
-          if (state.isWinLoseDialog)
-            Positioned(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const [
-                  TopSafeArea(),
-                  AdLevelEndScreenBanner(),
-                ],
+    return MultiProvider(
+      providers: [
+        Provider<DialogController>.value(value: state.dialogController),
+        ChangeNotifierProvider<DialogStackState>.value(
+          value: state,
+        )
+      ],
+      builder: (final context, final child) =>
+          builder(context, state.dialogController),
+    );
+  }
+}
+
+class DialogStack extends HookWidget {
+  const DialogStack({
+    required this.child,
+    super.key,
+  });
+  final Widget child;
+  @override
+  Widget build(final BuildContext context) {
+    final state = context.watch<DialogStackState>();
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        child,
+        DialogBarrier(
+          isVisible: state.dialogType != GameDialogType.none,
+          child: switch (state.dialogType) {
+            GameDialogType.none => const SizedBox(),
+            GameDialogType.levelLost => LevelLostDialog(
+                onSendEndLevelEvent: state.onSendEndLevelEvent,
               ),
+            GameDialogType.levelWin => const LevelWinDialog(),
+            GameDialogType.levelWordSuggestion =>
+              const LevelWordSuggestionDialog(),
+            GameDialogType.tutorialBool => const TutorialBoolDialog(),
+            GameDialogType.tutorialOk => const TutorialOkDialog(),
+          },
+        ),
+        if (state.isWinLoseDialog)
+          const Positioned(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                TopSafeArea(),
+                AdLevelEndScreenBanner(),
+              ],
             ),
-        ],
-      ),
+          ),
+      ],
     );
   }
 }

@@ -12,7 +12,6 @@ import 'package:pointer_interceptor/src/shim/dart_ui.dart' as ui;
 ///
 /// This widget will create one [SizedBox] with the size of the ad and will
 /// display the ad inside it using the GPT.js library from Google
-///
 class YandexFlexiblePlatformBanner extends StatelessWidget {
   /// The constructor for our widget
   YandexFlexiblePlatformBanner({
@@ -26,7 +25,7 @@ class YandexFlexiblePlatformBanner extends StatelessWidget {
       final rootDiv = html.DivElement();
       final scriptDiv = html.ScriptElement();
       final div = html.DivElement()..id = renderTo;
-      // TODO: Allow more sizes, like responsive ads ["fluid"]
+      // TODO(arenukvern): Allow more sizes, like responsive ads ["fluid"]
 
       div.style.width = '${width}px';
       div.style.height = '${height}px';
@@ -44,7 +43,7 @@ class YandexFlexiblePlatformBanner extends StatelessWidget {
       rootDiv.children.add(div);
       rootDiv.children.add(scriptDiv);
 
-      // TODO: Add a eventListener to check if the ad was loaded
+      // TODO(arenukvern): Add a eventListener to check if the ad was loaded
 
       return rootDiv;
     });

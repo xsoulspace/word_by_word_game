@@ -26,9 +26,7 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
   }
 
   @override
-  Future<void> onDelayedLoad() async {
-    return;
-  }
+  Future<void> onDelayedLoad() async {}
 }
 
 class FirebaseAnalyticsPlugin extends AnalyticsService {
@@ -88,9 +86,7 @@ class FirebaseAnalyticsPlugin extends AnalyticsService {
   }
 
   @override
-  Future<void> onDelayedLoad() async {
-    return;
-  }
+  Future<void> onDelayedLoad() async {}
 
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {

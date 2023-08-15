@@ -1,5 +1,5 @@
 name: word-by-word-game
-version: 2.8.6+37
+version: 3.0.0+39
 summary: Word Arcade-> write word based on last 3 letters of last word & pass Landscape
 description: |
   Please note: the game is in active development.
@@ -38,7 +38,7 @@ slots:
 apps:
   word-by-word-game:
     command: word_by_word_game
-    extensions: [flutter-stable] # Where "master" defines which Flutter channel to use for the build
+    extensions: [flutter-master] # Where "master" defines which Flutter channel to use for the build
     # using dev as it is the one channel that supports linux
     plugs:
       - home
@@ -48,6 +48,10 @@ apps:
 
     slots:
       - dbus-word-by-word-game
+# https://forum.snapcraft.io/t/failed-to-install-or-refresh-a-snap-flutter-does-not-exist/25623
+architectures:
+  - build-on: amd64
+  - build-on: arm64
 
 parts:
   word-by-word-game:

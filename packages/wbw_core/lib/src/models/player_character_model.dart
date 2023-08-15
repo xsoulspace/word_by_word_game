@@ -2,45 +2,45 @@
 
 part of 'models.dart';
 
-typedef PlayerCharacterModelId = String;
-
+// TODO(arenukvern): rename to VehicleModel - or something similar
+/// Character - is a game entity, that has its own properties
+/// which player can control, for example [HotAirBalloon]
+///
+/// For User Profile model see [PlayerProfileModel]
 @immutable
 @freezed
 class PlayerCharacterModel with _$PlayerCharacterModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerCharacterModel({
-    required final PlayerCharacterModelId id,
-    required final String description,
-    required final int color,
-    required final CharacterAssetModel asset,
+    /// unique id which used to identify unqiue set of following params:
+    /// [balloonPowers] [balloonParams] [color] [localizedName] etc
+    @Default(Gid.empty) final Gid id,
+
+    /// is assigning during game start to pick required tileId's
+    /// reference from the canvasCubit
+    @Default(Gid.empty) final Gid gid,
+    @Default('') final String description,
+    @Default(0) final int color,
     @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
-    @Default(SerializedVector2.zero) final SerializedVector2 position,
-    @Default(FuelStorageModel()) final FuelStorageModel fuel,
-    @Default(50.5) final double fuelNormalPower,
-    @Default(0.5) final double requiredLiftForce,
+    @Default(SerializedVector2.zero) final SerializedVector2 distanceToOrigin,
+    @Default(BalloonLiftPowersModel.initial)
+    final BalloonLiftPowersModel balloonPowers,
+    @Default(BalloonLiftParamsModel.initial)
+    final BalloonLiftParamsModel balloonParams,
+
+    /// If is true, then it means that the balloon is on the ground and
+    /// cannot be moved.
+    @Default(true) final bool isAnchored,
   }) = _PlayerCharacterModel;
   const PlayerCharacterModel._();
   factory PlayerCharacterModel.fromJson(final Map<String, dynamic> json) =>
       _$PlayerCharacterModelFromJson(json);
+  static const empty = PlayerCharacterModel();
 }
 
 @immutable
-@freezed
-class CharacterAssetModel with _$CharacterAssetModel {
-  @JsonSerializable(explicitToJson: true)
-  const factory CharacterAssetModel({
-    required final SerializedVector2 srcPosition,
-    required final int srcSizeX,
-    required final int srcSizeY,
-  }) = _CharacterAssetModel;
-  const CharacterAssetModel._();
-  factory CharacterAssetModel.fromJson(final Map<String, dynamic> json) =>
-      _$CharacterAssetModelFromJson(json);
-}
-
-@immutable
-@freezed
+@Freezed(toJson: false)
 class SerializedVector2 with _$SerializedVector2 {
   @JsonSerializable(explicitToJson: true)
   const factory SerializedVector2({
@@ -53,4 +53,15 @@ class SerializedVector2 with _$SerializedVector2 {
   static const zero = SerializedVector2();
   bool get isZero => x == 0 && y == 0;
   Vector2 toVector2() => Vector2(x, y);
+  Map<String, dynamic> toJson() => {'x': x, 'y': y};
+  Offset toOffset() => Offset(x, y);
+}
+
+extension OffsetExtension on Offset {
+  SerializedVector2 toSerializedVector2() => SerializedVector2(x: dx, y: dy);
+  CellPointModel toCellPoint() => CellPointModel(dx.toInt(), dy.toInt());
+}
+
+extension Vector2Extension on Vector2 {
+  SerializedVector2 toSerializedVector2() => SerializedVector2(x: x, y: y);
 }

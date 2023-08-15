@@ -21,13 +21,13 @@ class AdPermissions with _$AdPermissions {
   static const noAds = AdPermissions();
   static const yandexGamesAds = AdPermissions(
     adsAllowed: true,
-    onContinueLevelVideoEnabled: false,
-    pauseGameScreenBannerEnabled: false,
-    levelEndScreenBannerEnabled: false,
+    // onContinueLevelVideoEnabled: false,
+    // pauseGameScreenBannerEnabled: false,
+    // levelEndScreenBannerEnabled: false,
   );
   static const webAndroidAds = AdPermissions(
     adsAllowed: true,
-    onContinueLevelVideoEnabled: false,
+    // onContinueLevelVideoEnabled: false,
     pauseGameScreenBannerEnabled: true,
     levelEndScreenBannerEnabled: true,
   );

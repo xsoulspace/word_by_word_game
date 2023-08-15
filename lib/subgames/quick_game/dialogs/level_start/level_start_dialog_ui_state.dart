@@ -10,7 +10,6 @@ class _LevelStartDialogUiStateDiDto {
 
 LevelStartDialogUiState _useLevelStartUiState({
   required final Locator read,
-  required final TemplateLevelModel level,
   required final LevelStartDialogUxState uxState,
 }) =>
     use(
@@ -18,7 +17,6 @@ LevelStartDialogUiState _useLevelStartUiState({
         debugLabel: '_LevelStartStateState',
         state: LevelStartDialogUiState(
           uxState: uxState,
-          level: level,
           diDto: _LevelStartDialogUiStateDiDto.use(read),
         ),
       ),
@@ -32,16 +30,14 @@ enum LevelStartDialogView {
 class LevelStartDialogUiState extends ContextfulLifeState {
   LevelStartDialogUiState({
     required this.diDto,
-    required this.level,
     required this.uxState,
   });
   final LevelStartDialogUxState uxState;
-  final TemplateLevelModel level;
   final _LevelStartDialogUiStateDiDto diDto;
 
   bool isVisible = false;
   void onSwitchDialogVisiblity() {
-    final liveState = diDto.globalGameBloc.getLiveState();
+    final liveState = diDto.globalGameBloc.state;
     if (liveState.playersCollection.isEmpty) {
       onCreatePlayer();
     } else {
@@ -54,18 +50,18 @@ class LevelStartDialogUiState extends ContextfulLifeState {
   final currentViewNotifier = ValueNotifier(LevelStartDialogView.choosePlayers);
   void onCreatePlayer() {
     currentViewNotifier.value = LevelStartDialogView.createPlayer;
-    unawaited(SoftKeyboard.open());
+    // unawaited(SoftKeyboard.open());
   }
 
   void onPlayerCreated(final PlayerProfileModel profile) {
     onChoosePlayers();
     uxState.onPlayerProfileCreated(profile);
-    unawaited(SoftKeyboard.close());
+    // unawaited(SoftKeyboard.close());
   }
 
   void onChoosePlayers() {
     currentViewNotifier.value = LevelStartDialogView.choosePlayers;
-    closeKeyboard(context: getContext());
+    // closeKeyboard(context: getContext());
   }
 
   @override

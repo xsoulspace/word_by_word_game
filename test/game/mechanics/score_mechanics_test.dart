@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 void main() {
@@ -89,7 +90,7 @@ void main() {
       final updatedPlayer = scoreMechanics.countPlayerLevelHighscore(
         player: player,
         isLevelFinished: true,
-        levelId: '1',
+        levelId: CanvasDataModelId.fromJson('1'),
         maxDistance: 200,
       );
       expect(
@@ -97,8 +98,8 @@ void main() {
         isTrue,
       );
       expect(updatedPlayer.levelsHighscores, {
-        '1': const PlayerLevelHighscoreModel(
-          levelId: '1',
+        '1': PlayerLevelHighscoreModel(
+          levelId: CanvasDataModelId.fromJson('1'),
           landingsCount: 1,
           maxDistance: 200,
           totalDistance: 200,
@@ -109,7 +110,7 @@ void main() {
       final updatedPlayer = scoreMechanics.countPlayerLevelHighscore(
         player: player,
         isLevelFinished: false,
-        levelId: '1',
+        levelId: CanvasDataModelId.fromJson('1'),
         maxDistance: 200,
       );
       expect(
@@ -117,9 +118,8 @@ void main() {
         isTrue,
       );
       expect(updatedPlayer.levelsHighscores, {
-        '1': const PlayerLevelHighscoreModel(
-          levelId: '1',
-          landingsCount: 0,
+        '1': PlayerLevelHighscoreModel(
+          levelId: CanvasDataModelId.fromJson('1'),
           maxDistance: 200,
           totalDistance: 200,
         ),

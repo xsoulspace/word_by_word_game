@@ -461,6 +461,60 @@ abstract class S {
   /// **'Add to Dictionary'**
   String get addToDictionary;
 
+  /// No description provided for @hidePane.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide pane'**
+  String get hidePane;
+
+  /// No description provided for @showPane.
+  ///
+  /// In en, this message translates to:
+  /// **'Show pane'**
+  String get showPane;
+
+  /// No description provided for @youDontHaveEnoughPointsToUnlockCharacter.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t have enough points ({points}) to unlock this character.'**
+  String youDontHaveEnoughPointsToUnlockCharacter(int points);
+
+  /// No description provided for @unblockCharacterForPoints.
+  ///
+  /// In en, this message translates to:
+  /// **'Unblock character {character} for {points} points?'**
+  String unblockCharacterForPoints(int points, String character);
+
+  /// No description provided for @powerOfEnteredWord.
+  ///
+  /// In en, this message translates to:
+  /// **'Power of entered word'**
+  String get powerOfEnteredWord;
+
+  /// No description provided for @hideKeyboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide keyboard'**
+  String get hideKeyboard;
+
+  /// No description provided for @showKeyboard.
+  ///
+  /// In en, this message translates to:
+  /// **'Show keyboard'**
+  String get showKeyboard;
+
+  /// No description provided for @suggestions.
+  ///
+  /// In en, this message translates to:
+  /// **'Suggestions'**
+  String get suggestions;
+
+  /// No description provided for @currentPlayerName.
+  ///
+  /// In en, this message translates to:
+  /// **'Name of current player'**
+  String get currentPlayerName;
+
   /// No description provided for @suggestWordButtonTooltip.
   ///
   /// In en, this message translates to:
@@ -520,6 +574,108 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Create player'**
   String get createPlayer;
+
+  /// No description provided for @wind.
+  ///
+  /// In en, this message translates to:
+  /// **'Wind'**
+  String get wind;
+
+  /// No description provided for @weather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get weather;
+
+  /// No description provided for @windCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Calm'**
+  String get windCalm;
+
+  /// No description provided for @windLightAir.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Air'**
+  String get windLightAir;
+
+  /// No description provided for @windLightBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Light Breeze'**
+  String get windLightBreeze;
+
+  /// No description provided for @windGentleBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Gentle Breeze'**
+  String get windGentleBreeze;
+
+  /// No description provided for @windModerateBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Moderate Breeze'**
+  String get windModerateBreeze;
+
+  /// No description provided for @windFreshBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Fresh Breeze'**
+  String get windFreshBreeze;
+
+  /// No description provided for @windStrongBreeze.
+  ///
+  /// In en, this message translates to:
+  /// **'Strong Breeze'**
+  String get windStrongBreeze;
+
+  /// No description provided for @windHighWind.
+  ///
+  /// In en, this message translates to:
+  /// **'High Wind'**
+  String get windHighWind;
+
+  /// No description provided for @windGale.
+  ///
+  /// In en, this message translates to:
+  /// **'Gale'**
+  String get windGale;
+
+  /// No description provided for @windSevereGale.
+  ///
+  /// In en, this message translates to:
+  /// **'Severe Gale'**
+  String get windSevereGale;
+
+  /// No description provided for @windStorm.
+  ///
+  /// In en, this message translates to:
+  /// **'Storm'**
+  String get windStorm;
+
+  /// No description provided for @windViolentStorm.
+  ///
+  /// In en, this message translates to:
+  /// **'Violent Storm'**
+  String get windViolentStorm;
+
+  /// No description provided for @windHurricane.
+  ///
+  /// In en, this message translates to:
+  /// **'Hurricane'**
+  String get windHurricane;
+
+  /// No description provided for @nextWeatherIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Next weather in'**
+  String get nextWeatherIn;
+
+  /// No description provided for @power.
+  ///
+  /// In en, this message translates to:
+  /// **'Power'**
+  String get power;
 
   /// No description provided for @yes.
   ///

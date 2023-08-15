@@ -1,7 +1,7 @@
 part of 'word_composition_bar.dart';
 
-class _WordCompositionStateDiDto {
-  _WordCompositionStateDiDto.use(final Locator read)
+class WordCompositionStateDiDto {
+  WordCompositionStateDiDto.use(final Locator read)
       : levelBloc = read(),
         tutorialBloc = read(),
         mechanics = read(),
@@ -17,55 +17,57 @@ class _WordCompositionStateDiDto {
   final DialogController dialogController;
 }
 
-WordCompositionState useWordCompositionState({
-  required final Locator read,
-}) =>
-    use(
-      LifeHook(
-        debugLabel: '_WordCompositionState',
-        state: WordCompositionState(
-          diDto: _WordCompositionStateDiDto.use(read),
-        ),
-      ),
-    );
+@freezed
+class WordCompositionCubitState with _$WordCompositionCubitState {
+  const factory WordCompositionCubitState({
+    @Default(true) final bool isCardVisible,
+  }) = _WordCompositionCubitState;
+}
 
-class WordCompositionState extends LifeState {
-  WordCompositionState({
+class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
+  WordCompositionCubit({
     required this.diDto,
-  })  : leftPartController = TextEditingController(
-          text: diDto.levelBloc.getLiveState().currentWord.leftPart,
+  })  : wordController = WordFieldController(
+          currentWord: diDto.levelBloc.state.currentWord,
         ),
-        rightPartController = TextEditingController(
-          text: diDto.levelBloc.getLiveState().currentWord.rightPart,
-        );
-  final TextEditingController leftPartController;
-  final TextEditingController rightPartController;
-
+        super(const WordCompositionCubitState()) {
+    onLoad();
+  }
+  String _latestWord = '';
+  StreamSubscription<LevelBlocState>? _levelBlocSubscription;
   final _wordUpdatesController = StreamController<CurrentWordModel>();
-  final _WordCompositionStateDiDto diDto;
+  final WordCompositionStateDiDto diDto;
 
-  @override
-  void initState() {
-    super.initState();
-    leftPartController.addListener(_onPartChanged);
-    rightPartController.addListener(_onPartChanged);
+  void onLoad() {
+    _latestWord = diDto.levelBloc.state.latestWord;
+    _levelBlocSubscription =
+        diDto.levelBloc.stream.distinct().listen((final newState) {
+      if (_latestWord != newState.latestWord) {
+        _latestWord = newState.latestWord;
+        wordController.currentWord = newState.currentWord;
+      } else if (wordController.currentWord.inactiveIndexes !=
+          newState.currentWord.inactiveIndexes) {
+        wordController.changeInactiveIndexes(
+          inactiveIndexes: newState.currentWord.inactiveIndexes,
+        );
+      }
+    });
+    wordController.addListener(_onPartChanged);
     unawaited(
       _wordUpdatesController.stream
           .sampleTime(
-            const Duration(milliseconds: 300),
+            const Duration(milliseconds: 150),
           )
           .forEach(_changeFullWord),
     );
   }
 
-  final leftWordKeyFocus = FocusNode();
-  final leftWordFocus = FocusNode();
-  final rightWordKeyFocus = FocusNode();
-  final rightWordFocus = FocusNode();
+  final wordFocusNode = FocusNode();
+  final WordFieldController wordController;
 
   void onSelectActionMultiplier(final EnergyMultiplierType multiplier) {
-    diDto.levelBloc.add(
-      LevelPlayerSelectActionMultiplierEvent(
+    diDto.levelBloc.onLevelPlayerSelectActionMultiplier(
+      LevelBlocEventSelectActionMultiplier(
         multiplier: multiplier,
       ),
     );
@@ -73,56 +75,35 @@ class WordCompositionState extends LifeState {
   }
 
   void onToSelectActionPhase() {
-    diDto.levelBloc.add(const AcceptNewWordEvent());
+    diDto.levelBloc.onAcceptNewWord();
+  }
+
+  void changeCardVisibility() {
+    emit(state.copyWith(isCardVisible: !state.isCardVisible));
   }
 
   void onToEndTurn() {
-    diDto.levelBloc.add(const LevelPlayerEndTurnActionEvent());
-    onRequestLeftTextFocus();
-  }
-
-  void onOpenSuggestionDialog() {
-    diDto.dialogController.showLevelWordSuggestionDialog();
-  }
-
-  void onPause() {
-    diDto.mechanics.worldTime.pause();
-    diDto.globalGameBloc.add(const SaveCurrentLevelEvent());
-    final id = diDto.levelBloc.getLiveState().id;
-    diDto.appRouterController.toPause(id: id);
+    diDto.levelBloc.onLevelPlayerEndTurnAction(const LevelBlocEventEndTurn());
+    onRequestTextFocus();
   }
 
   void onAddWordToDictionary() {
-    diDto.levelBloc.add(const AddNewWordToDictionaryEvent());
+    diDto.levelBloc
+        .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
   }
 
-  void onRequestLeftTextFocus() {
+  void onRequestTextFocus() {
     WidgetsBinding.instance.addPostFrameCallback((final _) {
-      leftWordFocus.requestFocus();
+      wordFocusNode.requestFocus();
     });
   }
 
-  void onRequestRightTextFocus() {
-    WidgetsBinding.instance.addPostFrameCallback((final _) {
-      rightWordFocus.requestFocus();
-    });
-  }
-
-  void _onPartChanged() {
-    final newWord = diDto.mechanics.wordComposition.applyPartsChanges(
-      word: CurrentWordModel(
-        leftPart: leftPartController.text,
-        middlePart: diDto.levelBloc.getLiveState().currentWord.middlePart,
-        rightPart: rightPartController.text,
-      ),
-    );
-
-    _wordUpdatesController.add(newWord);
-  }
+  void _onPartChanged() =>
+      _wordUpdatesController.add(wordController.currentWord);
 
   void _changeFullWord(final CurrentWordModel word) {
-    final event = ChangeCurrentWordEvent(word: word);
-    diDto.levelBloc.add(event);
+    final event = LevelBlocEventChangeCurrentWord(word: word);
+    diDto.levelBloc.onChangeCurrentWord(event);
     final tutorialEvent = TutorialUiActionEvent(
       action: TutorialCompleteAction.onEdit,
       stringValue: event.word.fullWord,
@@ -131,28 +112,18 @@ class WordCompositionState extends LifeState {
     diDto.tutorialBloc.add(tutorialEvent);
   }
 
-  void onDecreaseMiddlePart(final int index) {
-    diDto.levelBloc.add(DecreaseMiddlePartEvent(index: index));
-  }
-
-  void onLatestWordChanged() {
-    leftPartController.clear();
-    rightPartController.clear();
+  void onUnblockIndex(final int index) {
+    diDto.levelBloc.onUnblockIndex(index: index);
   }
 
   @override
-  Future<void> dispose() async {
-    leftPartController
-      ..removeListener(_onPartChanged)
-      ..dispose();
-    rightPartController
+  Future<void> close() async {
+    wordController
       ..removeListener(_onPartChanged)
       ..dispose();
     await _wordUpdatesController.close();
-    leftWordKeyFocus.dispose();
-    rightWordKeyFocus.dispose();
-    rightWordFocus.dispose();
-    leftWordFocus.dispose();
-    super.dispose();
+    await _levelBlocSubscription?.cancel();
+    wordFocusNode.dispose();
+    return super.close();
   }
 }

@@ -192,6 +192,37 @@ class SRu extends S {
   String get addToDictionary => 'Внести в словарь';
 
   @override
+  String get hidePane => 'Скрыть панель';
+
+  @override
+  String get showPane => 'Показать панель';
+
+  @override
+  String youDontHaveEnoughPointsToUnlockCharacter(int points) {
+    return 'У вас недостаточно очков ($points) для разблокировки буквы.';
+  }
+
+  @override
+  String unblockCharacterForPoints(int points, String character) {
+    return 'Разблокировать букву $character за $points очков?';
+  }
+
+  @override
+  String get powerOfEnteredWord => 'Очки введеного слова';
+
+  @override
+  String get hideKeyboard => 'Скрыть клавиатуру';
+
+  @override
+  String get showKeyboard => 'Показать клавиатуру';
+
+  @override
+  String get suggestions => 'Подсказки';
+
+  @override
+  String get currentPlayerName => 'Ник текущего игрока';
+
+  @override
   String get suggestWordButtonTooltip => 'Нажми, чтобы получить случайное слово на основе текущих букв.';
 
   @override
@@ -220,6 +251,57 @@ class SRu extends S {
 
   @override
   String get createPlayer => 'Создать игрока';
+
+  @override
+  String get wind => 'Ветер';
+
+  @override
+  String get weather => 'Погода';
+
+  @override
+  String get windCalm => 'спокойствие';
+
+  @override
+  String get windLightAir => 'легкий воздух';
+
+  @override
+  String get windLightBreeze => 'легкий бриз';
+
+  @override
+  String get windGentleBreeze => 'нежный бриз';
+
+  @override
+  String get windModerateBreeze => 'умеренный бриз';
+
+  @override
+  String get windFreshBreeze => 'свежий бриз';
+
+  @override
+  String get windStrongBreeze => 'сильный бриз';
+
+  @override
+  String get windHighWind => 'сильный ветер';
+
+  @override
+  String get windGale => 'буря';
+
+  @override
+  String get windSevereGale => 'суровая буря';
+
+  @override
+  String get windStorm => 'шторм';
+
+  @override
+  String get windViolentStorm => 'сильный шторм';
+
+  @override
+  String get windHurricane => 'ураган';
+
+  @override
+  String get nextWeatherIn => 'До смены погоды';
+
+  @override
+  String get power => 'Энергия';
 
   @override
   String get yes => 'Да';

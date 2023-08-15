@@ -10,7 +10,7 @@ class CharactersDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final globalGameBloc = context.watch<GlobalGameBloc>();
-    final liveState = globalGameBloc.getLiveState();
+    final liveState = globalGameBloc.state;
     final playersCharacters = liveState.playersCharacters;
 
     return CharactersRow(
@@ -49,12 +49,13 @@ class CharactersRow extends StatelessWidget {
 
 class CharacterAvatarButton extends StatelessWidget {
   /// Displays default character
-  const CharacterAvatarButton.useDefault({super.key}) : isDefault = true;
+  // ignore: prefer_const_constructors_in_immutables
+  CharacterAvatarButton.useDefault({super.key}) : isDefault = true;
   final bool isDefault;
   @override
   Widget build(final BuildContext context) {
     final globalGameBloc = context.watch<GlobalGameBloc>();
-    final liveState = globalGameBloc.getLiveState();
+    final liveState = globalGameBloc.state;
     final playersCharacters = liveState.playersCharacters;
     if (!isDefault) throw UnsupportedError('isNotDefault character');
     // TODO(arenukvern):

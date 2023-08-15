@@ -36,43 +36,39 @@ class UiFuelFrame extends StatelessWidget {
         checkLiveState: (final previous, final current) =>
             previous.actionMultiplier != current.actionMultiplier,
       ),
-      builder: (final context, final levelState) {
-        if (levelState is! LiveLevelBlocState) {
-          return const SizedBox();
-        }
-        return TutorialFrame(
-          highlightPosition: Alignment.centerLeft,
-          uiKey: TutorialUiItem.selectRefuelOption,
-          child: Column(
-            children: [
-              Text(
-                S.of(context).applyFuelOption,
-                style: textTheme.titleMedium,
-              ),
-              const Divider(),
-              uiTheme.verticalBoxes.medium,
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxHeight: 100),
-                child: ListView.separated(
-                  shrinkWrap: true,
-                  itemBuilder: (final context, final index) {
-                    final type = EnergyMultiplierType.values[index];
+      builder: (final context, final levelState) => TutorialFrame(
+        highlightPosition: Alignment.centerLeft,
+        uiKey: TutorialUiItem.selectRefuelOption,
+        child: Column(
+          children: [
+            Text(
+              S.of(context).applyFuelOption,
+              style: textTheme.titleMedium,
+            ),
+            Divider(color: theme.colorScheme.tertiary),
+            uiTheme.verticalBoxes.small,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 100),
+              child: ListView.separated(
+                shrinkWrap: true,
+                padding: EdgeInsets.zero,
+                itemBuilder: (final context, final index) {
+                  final type = EnergyMultiplierType.values[index];
 
-                    return UIEnergyOptionCard(
-                      levelState: levelState,
-                      type: type,
-                    );
-                  },
-                  separatorBuilder: (final context, final index) =>
-                      uiTheme.horizontalBoxes.medium,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: EnergyMultiplierType.values.length,
-                ),
-              ).animate().fadeIn().slideY(begin: 0.1),
-            ],
-          ),
-        ).animate().fadeIn().slideY(begin: 0.1);
-      },
+                  return UIEnergyOptionCard(
+                    levelState: levelState,
+                    type: type,
+                  );
+                },
+                separatorBuilder: (final context, final index) =>
+                    uiTheme.horizontalBoxes.medium,
+                scrollDirection: Axis.horizontal,
+                itemCount: EnergyMultiplierType.values.length,
+              ),
+            ).animate().fadeIn().slideY(begin: 0.1),
+          ],
+        ),
+      ).animate().fadeIn().slideY(begin: 0.1),
     );
   }
 }
@@ -84,17 +80,15 @@ class UIEnergyOptionCard extends StatelessWidget {
     super.key,
   });
   final EnergyMultiplierType type;
-  final LiveLevelBlocState levelState;
+  final LevelBlocState levelState;
 
   @override
   Widget build(final BuildContext context) {
     final mechanics = context.read<MechanicsCollection>();
 
-    final player =
-        context.select<LevelPlayersBloc, PlayerProfileModel>((final bloc) {
-      final liveState = bloc.getLiveState();
-      return liveState.currentPlayer;
-    });
+    final player = context.select<LevelPlayersBloc, PlayerProfileModel>(
+      (final bloc) => bloc.state.currentPlayer,
+    );
     final applyingScore = mechanics.score
         .getScoreForStorageEnergyByModifier(
           multiplier: type,
@@ -102,18 +96,18 @@ class UIEnergyOptionCard extends StatelessWidget {
         )
         .value
         .toInt();
-    final isAllowedToUse = mechanics.score.checkPlayerAbilityToUseScore(
-      player: player,
-      score: applyingScore,
-    );
-    final uiTheme = UiTheme.of(context);
-    final bool isSelected =
-        isAllowedToUse && levelState.actionMultiplier == type;
+    // final isAllowedToUse = mechanics.score.checkPlayerAbilityToUseScore(
+    //   player: player,
+    //   score: applyingScore,
+    // );
+    // final uiTheme = UiTheme.of(context);
+    // final bool isSelected =
+    //     isAllowedToUse && levelState.actionMultiplier == type;
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
+    // final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
-    final widgetState = context.read<WordCompositionState>();
-    final borderRadius = BorderRadius.circular(100);
+    final widgetState = context.read<WordCompositionCubit>();
+    // final borderRadius = BorderRadius.circular(100);
     void onApply() {
       widgetState.onSelectActionMultiplier(type);
       TutorialFrame.sendOnClickEvent(
@@ -133,7 +127,7 @@ class UIEnergyOptionCard extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    '$applyingScore',
+                    '${applyingScore ~/ kScoreFactor}',
                     style: textTheme.headlineSmall,
                   ),
                 ),

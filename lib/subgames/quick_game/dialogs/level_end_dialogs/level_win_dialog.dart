@@ -15,8 +15,8 @@ class LevelWinDialog extends StatelessWidget {
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
     final playersState =
-        context.select<LevelPlayersBloc, LiveLevelPlayersBlocState>(
-      (final value) => value.getLiveState(),
+        context.select<LevelPlayersBloc, LevelPlayersBlocState>(
+      (final value) => value.state,
     );
 
     return DialogScaffold(
@@ -42,7 +42,9 @@ class LevelWinDialog extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context.read<GlobalGameBloc>().add(const RestartLevelEvent());
+                context
+                    .read<GlobalGameBloc>()
+                    .onRestartLevel(const RestartLevelEvent());
 
                 context.read<DialogController>().closeDialog();
               },

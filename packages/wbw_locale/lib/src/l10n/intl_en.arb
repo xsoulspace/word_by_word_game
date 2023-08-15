@@ -135,6 +135,32 @@
   "@addToDictionary": {
     "type": "text"
   },
+  "hidePane": "Hide pane",
+  "showPane": "Show pane",
+  "youDontHaveEnoughPointsToUnlockCharacter": "You don't have enough points ({points}) to unlock this character.",
+  "@youDontHaveEnoughPointsToUnlockCharacter": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      }
+    }
+  },
+  "unblockCharacterForPoints": "Unblock character {character} for {points} points?",
+  "@unblockCharacterForPoints": {
+    "placeholders": {
+      "points": {
+        "type": "int"
+      },
+      "character": {
+        "type": "String"
+      }
+    }
+  },
+  "powerOfEnteredWord": "Power of entered word",
+  "hideKeyboard": "Hide keyboard",
+  "showKeyboard": "Show keyboard",
+  "suggestions": "Suggestions",
+  "currentPlayerName": "Name of current player",
   "suggestWordButtonTooltip": "Click to get random word based on current letters.",
   "mainMenuButtonTooltip": "Click to open menu (current progress will be saved).",
   "yourCurrentHighcoreTooltip": "Your current points.",
@@ -145,6 +171,23 @@
   "createNewPlayerTitle": "Create profile for new player.",
   "createNewPlayerBody": "You will be able to add this player's profile to any new game.",
   "createPlayer": "Create player",
+  "wind": "Wind",
+  "weather": "Weather",
+  "windCalm": "Calm",
+  "windLightAir": "Light Air",
+  "windLightBreeze": "Light Breeze",
+  "windGentleBreeze": "Gentle Breeze",
+  "windModerateBreeze": "Moderate Breeze",
+  "windFreshBreeze": "Fresh Breeze",
+  "windStrongBreeze": "Strong Breeze",
+  "windHighWind": "High Wind",
+  "windGale": "Gale",
+  "windSevereGale": "Severe Gale",
+  "windStorm": "Storm",
+  "windViolentStorm": "Violent Storm",
+  "windHurricane": "Hurricane",
+  "nextWeatherIn": "Next weather in",
+  "power": "Power",
   "yes": "Yes",
   "no": "No",
   "enableTutorial": "Use Tutorial",

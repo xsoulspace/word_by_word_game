@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
+
 import '../../wbw_core.dart';
 
 class WorldTimeMechanics implements Loadable {
@@ -39,7 +40,7 @@ class WorldTimeMechanics implements Loadable {
 
   bool get paused => speedDelta == 0;
   bool get isSpeed => _currentSpeed == _defaultSpeed;
-  bool get isSpeed2 => _currentSpeed == _defaultSpeed * 2;
+  bool get isSpeed2 => _currentSpeed == _defaultSpeed + (_speedStep * 2);
   set paused(final bool isPaused) {
     if (isPaused) {
       _currentSpeed = 0;
