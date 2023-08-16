@@ -92,17 +92,42 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
   Future<void> onNextTutorial(
     final NextTutorialEvent event,
   ) async {
-    final liveState = getLiveState();
+    TutorialBlocStateLive liveState = getLiveState();
+    TutorialEventsCollectionModel tutorial = liveState.tutorial;
+    TutorialEventModel? tutorialEvent = tutorial.currentEvent;
     if (liveState.tutorial.isCompleted) {
       emit(TutorialBlocStatePending(progress: liveState.progress));
+      return;
+    }
+    if (event.action == NextTutorialEventType.complete) {
+      final updatedTutorial = tutorial.copyWith(
+        currentIndex: tutorial.events.length,
+      );
+      final newLiveState = TutorialBlocStateLive(
+        tutorial: updatedTutorial,
+        progress: liveState.progress,
+      );
+      final updatedLiveState = newLiveState.applyTutorialProgress();
+      emit(TutorialBlocStatePending(progress: updatedLiveState.progress));
     } else {
-      final tutorial = liveState.tutorial;
-      final tutorialEvent = tutorial.currentEvent;
-      if (tutorialEvent == null ||
-          (!tutorialEvent.isCompleted &&
-              event.action != NextTutorialEventType.complete)) return;
+      if (tutorialEvent == null) return;
+      if (!tutorialEvent.isCompleted &&
+          event.action != NextTutorialEventType.complete) return;
 
       await notifier.notifyGamePostEffects(tutorial);
+      if (state is TutorialBlocStatePending) {
+        return;
+      }
+      liveState = getLiveState();
+
+      /// refesh tutorial, since it may be changed
+      tutorial = liveState.tutorial;
+      tutorialEvent = tutorial.currentEvent;
+      if (tutorial.isCompleted) {
+        emit(TutorialBlocStatePending(progress: liveState.progress));
+        return;
+      }
+
       int nextIndex;
       switch (event.action) {
         case NextTutorialEventType.next:
@@ -125,11 +150,11 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
         progress: liveState.progress,
       );
       final updatedLiveState = newLiveState.applyTutorialProgress();
-      emit(updatedLiveState);
 
       if (updatedLiveState.tutorial.isCompleted) {
         emit(TutorialBlocStatePending(progress: updatedLiveState.progress));
       } else {
+        emit(updatedLiveState);
         await notifier.notifyGamePreEffects(updatedTutorial);
       }
     }

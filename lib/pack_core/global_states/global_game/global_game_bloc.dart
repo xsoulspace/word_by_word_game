@@ -193,9 +193,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
 
     switch (statesStatuses.levelStateStatus) {
-      case LevelStateStatus.paused:
-        diDto.mechanics.worldTime.pause();
-      case LevelStateStatus.loading:
+      case LevelStateStatus.paused || LevelStateStatus.loading:
         diDto.mechanics.worldTime.pause();
       case LevelStateStatus.playing:
         diDto.mechanics.worldTime.resume();
@@ -210,12 +208,17 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     diDto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.playing,
     );
-    final tutorialEvent = StartTutorialEvent(
-      tutorialName: TutorialCollectionsName.levelIntroduction,
-      shouldContinueIfPlayed: false,
-      shouldStartFromBeginning: event.shouldRestartTutorial,
-    );
-    await diDto.tutorialBloc.onStartTutorial(tutorialEvent);
+
+    /// added to be sure that all effects will be launched after
+    /// LevelStateStatus.playing is changed.
+    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
+      final tutorialEvent = StartTutorialEvent(
+        tutorialName: TutorialCollectionsName.levelIntroduction,
+        shouldContinueIfPlayed: false,
+        shouldStartFromBeginning: event.shouldRestartTutorial,
+      );
+      diDto.tutorialBloc.onStartTutorial(tutorialEvent);
+    });
   }
 
   void onWorldTick(
