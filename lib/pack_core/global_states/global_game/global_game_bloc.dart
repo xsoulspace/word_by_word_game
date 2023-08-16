@@ -87,7 +87,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
 
     await diDto.mechanics.worldTime.onLoad();
-    diDto.tutorialBloc.add(
+    diDto.tutorialBloc.onLoadTutorialsProgress(
       LoadTutorialsProgressEvent(progress: gameModel.tutorialProgress),
     );
     if (_tutorialEventsListener != null) {
@@ -215,7 +215,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       shouldContinueIfPlayed: false,
       shouldStartFromBeginning: event.shouldRestartTutorial,
     );
-    diDto.tutorialBloc.add(tutorialEvent);
+    await diDto.tutorialBloc.onStartTutorial(tutorialEvent);
   }
 
   void onWorldTick(

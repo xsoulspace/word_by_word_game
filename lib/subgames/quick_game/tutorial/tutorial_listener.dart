@@ -31,7 +31,7 @@ class GameTutorialEventListener extends TutorialEventListener {
     for (final effect in effects) {
       switch (effect.name) {
         case TutorialGameEffectName.completeCurrentTutorial:
-          diDto.tutorialBloc.add(const CompleteTutorialEvent());
+          diDto.tutorialBloc.onCompleteTutorial(const CompleteTutorialEvent());
         case TutorialGameEffectName.pauseGame:
           diDto.mechanics.worldTime.pause();
         case TutorialGameEffectName.resumeGame:

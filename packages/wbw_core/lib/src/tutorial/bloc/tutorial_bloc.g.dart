@@ -6,31 +6,47 @@ part of 'tutorial_bloc.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PendingTutorialBlocState _$$_PendingTutorialBlocStateFromJson(
+_$TutorialBlocStateEmpty _$$TutorialBlocStateEmptyFromJson(
         Map<String, dynamic> json) =>
-    _$_PendingTutorialBlocState(
-      progress: TutorialCollectionsProgressModel.fromJson(
-          json['progress'] as Map<String, dynamic>),
+    _$TutorialBlocStateEmpty(
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_PendingTutorialBlocStateToJson(
-        _$_PendingTutorialBlocState instance) =>
+Map<String, dynamic> _$$TutorialBlocStateEmptyToJson(
+        _$TutorialBlocStateEmpty instance) =>
     <String, dynamic>{
-      'progress': instance.progress.toJson(),
+      'runtimeType': instance.$type,
     };
 
-_$_LiveTutorialBlocState _$$_LiveTutorialBlocStateFromJson(
+_$TutorialBlocStatePending _$$TutorialBlocStatePendingFromJson(
         Map<String, dynamic> json) =>
-    _$_LiveTutorialBlocState(
+    _$TutorialBlocStatePending(
+      progress: TutorialCollectionsProgressModel.fromJson(
+          json['progress'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
+    );
+
+Map<String, dynamic> _$$TutorialBlocStatePendingToJson(
+        _$TutorialBlocStatePending instance) =>
+    <String, dynamic>{
+      'progress': instance.progress,
+      'runtimeType': instance.$type,
+    };
+
+_$TutorialBlocStateLive _$$TutorialBlocStateLiveFromJson(
+        Map<String, dynamic> json) =>
+    _$TutorialBlocStateLive(
       tutorial: TutorialEventsCollectionModel.fromJson(
           json['tutorial'] as Map<String, dynamic>),
       progress: TutorialCollectionsProgressModel.fromJson(
           json['progress'] as Map<String, dynamic>),
+      $type: json['runtimeType'] as String?,
     );
 
-Map<String, dynamic> _$$_LiveTutorialBlocStateToJson(
-        _$_LiveTutorialBlocState instance) =>
+Map<String, dynamic> _$$TutorialBlocStateLiveToJson(
+        _$TutorialBlocStateLive instance) =>
     <String, dynamic>{
-      'tutorial': instance.tutorial.toJson(),
-      'progress': instance.progress.toJson(),
+      'tutorial': instance.tutorial,
+      'progress': instance.progress,
+      'runtimeType': instance.$type,
     };

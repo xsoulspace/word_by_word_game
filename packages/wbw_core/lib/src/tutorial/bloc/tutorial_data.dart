@@ -45,9 +45,9 @@ const _tutorialData = TutorialCollectionsDataModel(
                 TutorialGameEffectModel(
                   name: TutorialGameEffectName.resumeGame,
                 ),
-              ]
+              ],
             },
-          )
+          ),
         ],
         localizedMap: LocalizedMap(
           value: {
@@ -62,7 +62,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         gamePreEffects: [
           TutorialGameEffectModel(
             name: TutorialGameEffectName.pauseGame,
-          )
+          ),
         ],
       ),
       TutorialEventModel(
@@ -217,7 +217,7 @@ const _tutorialData = TutorialCollectionsDataModel(
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
             uiItem: TutorialUiItem.selectRefuelOption,
-          )
+          ),
         ],
         localizedMap: LocalizedMap(
           value: {
@@ -241,7 +241,7 @@ const _tutorialData = TutorialCollectionsDataModel(
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
             uiItem: TutorialUiItem.applyAndEndTurnButton,
-          )
+          ),
         ],
         localizedMap: LocalizedMap(
           value: {
@@ -254,7 +254,7 @@ const _tutorialData = TutorialCollectionsDataModel(
           },
         ),
         gamePostEffects: [
-          TutorialGameEffectModel(name: TutorialGameEffectName.resumeGame)
+          TutorialGameEffectModel(name: TutorialGameEffectName.resumeGame),
         ],
         anchorUiItem: TutorialUiItem.applyAndEndTurnButton,
       ),

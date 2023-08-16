@@ -109,7 +109,7 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
       stringValue: event.word.fullWord,
       key: TutorialUiItem.enterWordRight,
     );
-    diDto.tutorialBloc.add(tutorialEvent);
+    diDto.tutorialBloc.onTutorialUiAction(tutorialEvent);
   }
 
   void onUnblockIndex(final int index) {

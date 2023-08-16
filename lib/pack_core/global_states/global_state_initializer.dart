@@ -89,8 +89,8 @@ class GameInitializer {
           game = game.copyWith(
             version: GameVersion.$3,
             currentLevelId: CanvasDataModelId.empty,
-            playersCharacters: characters,
             currentLevel: null,
+            playersCharacters: characters,
           );
         case GameVersion.$2:
           game = game.copyWith(

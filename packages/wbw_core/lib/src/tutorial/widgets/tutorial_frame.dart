@@ -23,7 +23,7 @@ class TutorialFrame extends StatelessWidget {
       action: TutorialCompleteAction.onClick,
       key: uiKey,
     );
-    context.read<TutorialBloc>().add(event);
+    context.read<TutorialBloc>().onTutorialUiAction(event);
   }
 
   @override
@@ -31,7 +31,7 @@ class TutorialFrame extends StatelessWidget {
     final highlighted =
         context.select<TutorialBloc, bool>((final tutorialBloc) {
       // return true;
-      if (tutorialBloc.state is! LiveTutorialBlocState) return false;
+      if (tutorialBloc.state is! TutorialBlocStateLive) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
       return tutorialEvent.anchorUiItem == uiKey;
     });

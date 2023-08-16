@@ -37,7 +37,7 @@ abstract class $LocalizedMapCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
-          Map<Languages, String> value});
+      Map<Languages, String> value});
 }
 
 /// @nodoc
@@ -74,7 +74,7 @@ abstract class _$$_LocalizedMapCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
-          Map<Languages, String> value});
+      Map<Languages, String> value});
 }
 
 /// @nodoc
@@ -105,7 +105,7 @@ class __$$_LocalizedMapCopyWithImpl<$Res>
 class _$_LocalizedMap extends _LocalizedMap {
   const _$_LocalizedMap(
       {@JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
-          required final Map<Languages, String> value})
+      required final Map<Languages, String> value})
       : _value = value,
         super._();
 
@@ -156,7 +156,7 @@ class _$_LocalizedMap extends _LocalizedMap {
 abstract class _LocalizedMap extends LocalizedMap {
   const factory _LocalizedMap(
       {@JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
-          required final Map<Languages, String> value}) = _$_LocalizedMap;
+      required final Map<Languages, String> value}) = _$_LocalizedMap;
   const _LocalizedMap._() : super._();
 
   factory _LocalizedMap.fromJson(Map<String, dynamic> json) =
