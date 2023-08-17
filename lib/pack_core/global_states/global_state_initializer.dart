@@ -87,12 +87,16 @@ class GameInitializer {
       switch (savedGame.version) {
         case GameVersion.$1:
           game = game.copyWith(
-            version: GameVersion.$2,
+            version: GameVersion.$3,
+            currentLevelId: CanvasDataModelId.empty,
+            currentLevel: null,
             playersCharacters: characters,
           );
-        case GameVersion.$2 || GameVersion.$3:
+        case GameVersion.$2:
           game = game.copyWith(
-            version: GameVersion.$2,
+            version: GameVersion.$3,
+            currentLevelId: CanvasDataModelId.empty,
+            currentLevel: null,
             playersCharacters: characters
                 .map(
                   (final e) => e.copyWith(
@@ -102,6 +106,7 @@ class GameInitializer {
                 )
                 .toList(),
           );
+        case GameVersion.$3:
       }
     }
     return game;

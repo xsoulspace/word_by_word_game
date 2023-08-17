@@ -35,7 +35,7 @@ class MobileTutorialDialog extends StatelessWidget {
     final highlighted =
         context.select<TutorialBloc, bool>((final tutorialBloc) {
       // return true;
-      if (tutorialBloc.state is! LiveTutorialBlocState) return false;
+      if (tutorialBloc.state is! TutorialBlocStateLive) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
       return !tutorialEvent.isCompleted;
     });
@@ -53,7 +53,7 @@ class MobileAnchoredTutorialDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
       (final bloc) {
-        if (bloc.state is! LiveTutorialBlocState) return null;
+        if (bloc.state is! TutorialBlocStateLive) return null;
         return bloc.getTutorialEvent();
       },
     );
@@ -80,7 +80,7 @@ class DesktopAnchoredTutorialDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
       (final bloc) {
-        if (bloc.state is! LiveTutorialBlocState) return null;
+        if (bloc.state is! TutorialBlocStateLive) return null;
         return bloc.getTutorialEvent();
       },
     );
@@ -133,7 +133,7 @@ class _AnchoredTutorialOkDialog extends StatelessWidget {
             Expanded(
               child: TextButton(
                 onPressed: () {
-                  context.read<TutorialBloc>().add(
+                  context.read<TutorialBloc>().onTutorialUiAction(
                         const TutorialUiActionEvent(
                           action: TutorialCompleteAction.onClick,
                           key: TutorialUiItem.anchoredOkDialog,

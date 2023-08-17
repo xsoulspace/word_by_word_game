@@ -21,13 +21,11 @@ class UiWordCompositionBar extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => TutorialFrame(
         highlightPosition: Alignment.topCenter,
-        uiKey: TutorialUiItem.enterWordPhaseFrame,
+        uiKey: TutorialUiItem.wordField,
         child: WordField(
           controller: context.read<WordCompositionCubit>().wordController,
         ),
 
-        // uiKey: TutorialUiItem.enterWordRight,
         // hintText: S.of(context).hintAddEnding,
-        // onSubmitted: state.onToSelectActionPhase,
       );
 }
