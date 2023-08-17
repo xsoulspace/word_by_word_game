@@ -14,7 +14,7 @@ class TutorialBoolDialog extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
       (final bloc) {
-        if (bloc.state is! LiveTutorialBlocState) return null;
+        if (bloc.state is! TutorialBlocStateLive) return null;
         return bloc.getTutorialEvent();
       },
     );
@@ -29,7 +29,7 @@ class TutorialBoolDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 context.read<DialogController>().closeDialog();
-                context.read<TutorialBloc>().add(
+                context.read<TutorialBloc>().onTutorialUiAction(
                       const TutorialUiActionEvent(
                         action: TutorialCompleteAction.onBoolOptionSelected,
                         key: TutorialUiItem.tutorialBoolDialog,
@@ -41,7 +41,7 @@ class TutorialBoolDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 context.read<DialogController>().closeDialog();
-                context.read<TutorialBloc>().add(
+                context.read<TutorialBloc>().onTutorialUiAction(
                       const TutorialUiActionEvent(
                         action: TutorialCompleteAction.onBoolOptionSelected,
                         boolValue: true,

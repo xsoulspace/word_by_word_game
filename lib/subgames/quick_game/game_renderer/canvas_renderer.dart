@@ -13,7 +13,7 @@ import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class CanvasRenderer extends Component

@@ -15,6 +15,7 @@ class UIMobilePlayerName extends StatelessWidget {
     final isHighlighted = context.select<LevelBloc, bool>(
       (final s) => s.state.phaseType == GamePhaseType.entryWord,
     );
+
     return _LabelText(
       uiKeyPosition: Alignment.topCenter,
       uiKey: TutorialUiItem.yourNameLabel,
@@ -64,6 +65,7 @@ class _LabelText extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = Theme.of(context).textTheme;
     final colorScheme = theme.colorScheme;
+
     return TutorialFrame(
       highlightPosition: Alignment.topCenter,
       uiKey: uiKey,
@@ -81,9 +83,9 @@ class _LabelText extends StatelessWidget {
           child: Text(
             text,
             textAlign: TextAlign.center,
-          ),
+          ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2),
         ),
       ),
-    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2);
+    );
   }
 }

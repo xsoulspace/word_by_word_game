@@ -2,52 +2,22 @@
 
 part of 'tutorial_bloc.dart';
 
-@immutable
-abstract class TutorialBlocState {
-  const TutorialBlocState();
-}
-
-@immutable
-class EmptyTutorialBlocState extends TutorialBlocState {
-  const EmptyTutorialBlocState();
-}
-
-@immutable
 @freezed
-class PendingTutorialBlocState extends TutorialBlocState
-    with _$PendingTutorialBlocState {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
-  @Implements<TutorialBlocState>()
-  const factory PendingTutorialBlocState({
+sealed class TutorialBlocState with _$TutorialBlocState {
+  const factory TutorialBlocState.empty() = TutorialBlocStateEmpty;
+  const factory TutorialBlocState.pending({
     /// progress for all tutorials
     required final TutorialCollectionsProgressModel progress,
-  }) = _PendingTutorialBlocState;
-  const PendingTutorialBlocState._();
-  factory PendingTutorialBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$PendingTutorialBlocStateFromJson(json);
-}
-
-@immutable
-@freezed
-class LiveTutorialBlocState extends TutorialBlocState
-    with _$LiveTutorialBlocState {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
-  @Implements<TutorialBlocState>()
-  const factory LiveTutorialBlocState({
+  }) = TutorialBlocStatePending;
+  const factory TutorialBlocState.live({
     required final TutorialEventsCollectionModel tutorial,
 
     /// progress for all tutorials
     required final TutorialCollectionsProgressModel progress,
-  }) = _LiveTutorialBlocState;
-  const LiveTutorialBlocState._();
-  factory LiveTutorialBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$LiveTutorialBlocStateFromJson(json);
-
-  static LiveTutorialBlocState? fromProgressModel({
+  }) = TutorialBlocStateLive;
+  factory TutorialBlocState.fromJson(final Map<String, dynamic> json) =>
+      _$TutorialBlocStateFromJson(json);
+  static TutorialBlocStateLive? fromProgressModel({
     required final TutorialCollectionsDataModel data,
     required final TutorialCollectionsProgressModel progress,
     required final TutorialCollectionsName name,
@@ -59,13 +29,15 @@ class LiveTutorialBlocState extends TutorialBlocState
     );
     if (tutorial == null) return null;
 
-    return LiveTutorialBlocState(
+    return TutorialBlocStateLive(
       tutorial: tutorial,
       progress: progress,
     );
   }
+}
 
-  LiveTutorialBlocState applyTutorialProgress() {
+extension TutorialBlocStateLiveExtension on TutorialBlocStateLive {
+  TutorialBlocStateLive applyTutorialProgress() {
     final updatedProgress = toProgressModel();
     return copyWith(progress: updatedProgress);
   }

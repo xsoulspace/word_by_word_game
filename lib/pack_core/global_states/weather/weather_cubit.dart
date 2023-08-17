@@ -43,20 +43,25 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
     final oldWeather = state.weather;
     final (:weather, :isCompleted) = oldWeather.decreaseDuration();
     if (isCompleted) {
-      if (state.weathers.length == 1) {
-        _generateWeather();
-        _generateWindForce();
-      } else {
-        final updatedWeathers = [...state.weathers]..removeAt(0);
-        print({'weather switched to': updatedWeathers.first});
-        emit(state.copyWith(weathers: updatedWeathers));
-        _generateWindForce();
-      }
+      nextWeather();
     } else {
       final updatedWeathers = [...state.weathers]
         ..removeAt(0)
         ..insert(0, weather);
       emit(state.copyWith(weathers: updatedWeathers));
+    }
+  }
+
+  /// use to switch weather forcefully
+  void nextWeather() {
+    if (state.weathers.length == 1) {
+      _generateWeather();
+      _generateWindForce();
+    } else {
+      final updatedWeathers = [...state.weathers]..removeAt(0);
+      print({'weather switched to': updatedWeathers.first});
+      emit(state.copyWith(weathers: updatedWeathers));
+      _generateWindForce();
     }
   }
 
