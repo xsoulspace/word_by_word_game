@@ -36,18 +36,18 @@ class UiFuelFrame extends StatelessWidget {
         checkLiveState: (final previous, final current) =>
             previous.actionMultiplier != current.actionMultiplier,
       ),
-      builder: (final context, final levelState) => TutorialFrame(
-        highlightPosition: Alignment.centerLeft,
-        uiKey: TutorialUiItem.selectRefuelOption,
-        child: Column(
-          children: [
-            Text(
-              S.of(context).applyFuelOption,
-              style: textTheme.titleMedium,
-            ),
-            Divider(color: theme.colorScheme.tertiary),
-            uiTheme.verticalBoxes.small,
-            ConstrainedBox(
+      builder: (final context, final levelState) => Column(
+        children: [
+          Text(
+            S.of(context).applyFuelOption,
+            style: textTheme.titleMedium,
+          ),
+          Divider(color: theme.colorScheme.tertiary),
+          uiTheme.verticalBoxes.small,
+          TutorialFrame(
+            highlightPosition: Alignment.topLeft,
+            uiKey: TutorialUiItem.selectRefuelOption,
+            child: ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 100),
               child: ListView.separated(
                 shrinkWrap: true,
@@ -66,9 +66,9 @@ class UiFuelFrame extends StatelessWidget {
                 itemCount: EnergyMultiplierType.values.length,
               ),
             ).animate().fadeIn().slideY(begin: 0.1),
-          ],
-        ),
-      ).animate().fadeIn().slideY(begin: 0.1),
+          ),
+        ],
+      ),
     );
   }
 }

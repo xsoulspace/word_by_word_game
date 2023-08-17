@@ -1,7 +1,6 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:flutter_portal/flutter_portal.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -23,40 +22,38 @@ class HudOverlay extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final screenSize = MediaQuery.sizeOf(context);
-    return Portal(
-      child: Stack(
-        children: [
-          Positioned(
-            top: screenSize.height * 0.1,
-            right: 16,
-            child: const Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [UiPauseButton()],
-            ),
+    return Stack(
+      children: [
+        Positioned(
+          top: screenSize.height * 0.1,
+          right: 16,
+          child: const Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [UiPauseButton()],
           ),
-          const Positioned(
-            left: 0,
-            top: 20,
-            child: _Statistics(),
+        ),
+        const Positioned(
+          left: 0,
+          top: 20,
+          child: _Statistics(),
+        ),
+        const Positioned(
+          child: Center(
+            child: MobileTutorialDialog(),
           ),
-          const Positioned(
-            child: Center(
-              child: MobileTutorialDialog(),
-            ),
+        ),
+        const Positioned(
+          top: 20,
+          right: 20,
+          left: 20,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(child: UIWarningNotification()),
+            ],
           ),
-          const Positioned(
-            top: 20,
-            right: 20,
-            left: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(child: UIWarningNotification()),
-              ],
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

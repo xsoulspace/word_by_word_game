@@ -118,7 +118,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Every player turn consists from two pahses. \n\n\nFirst phase is to enter new word.',
+                'Every player turn consists from two phases. \n\n\nFirst phase is to enter new word.',
             Languages.ru:
                 'Каждый ход игрока состоит из двух фаз. \n\n\nВ первой фазе вы должны ввести новое слово.',
             Languages.it:
@@ -162,26 +162,25 @@ const _tutorialData = TutorialCollectionsDataModel(
           ),
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onEdit,
-            uiItem: TutorialUiItem.enterWordRight,
+            uiItem: TutorialUiItem.wordField,
+          ),
+        ],
+        gamePreEffects: [
+          TutorialGameEffectModel(
+            name: TutorialGameEffectName.requestWordFieldFocus,
           ),
         ],
         localizedMap: LocalizedMap(
           value: {
-            // Languages.en:
-            //         'You can enter a part of word in this text field to create full word.',
-            //     Languages.ru:
-            //         'Вы можете ввести часть слова в это текстовое поле, чтобы создать полное слово.',
-            //     Languages.it:
-            //         'È possibile inserire una parte della parola in questo campo di testo per creare una parola completa.',
             Languages.en:
-                'To continue, enter your first word in this text field.',
+                'To continue, enter your first word in this text field. (For example - lake)',
             Languages.ru:
-                'Чтобы продолжить, введите свое первое слово в это текстовое поле.',
+                'Чтобы продолжить, введите свое первое слово в это текстовое поле. (Например, самолет)',
             Languages.it:
                 'Per continuare, inserire la prima parola in questo campo di testo.',
           },
         ),
-        anchorUiItem: TutorialUiItem.enterWordRight,
+        anchorUiItem: TutorialUiItem.wordField,
       ),
       TutorialEventModel(
         completeActions: [
@@ -198,11 +197,11 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'You will earn points for the word which will be added to your score and used in the next phase. \n\nTo continue click Confirm Word.',
+                'You will earn points for the word which will be added to your score and used in the next phase. \n\nTo continue click a button with Fire below.',
             Languages.ru:
-                'За новое слово вы получите очки, которые будут добавлены к вашему счету и использованы в следующем этапе. \n\nДля продолжения нажми кнопку Применить.',
+                'За новое слово вы получите очки, которые будут добавлены к вашему счету и использованы в следующем этапе. \n\nДля продолжения нажми кнопку с огнем ниже.',
             Languages.it:
-                'Si guadagneranno punti per la parola, che verranno aggiunti al punteggio e utilizzati nella fase successiva. \n\nPer continuare, fare clic su Conferma parola.',
+                'Si guadagneranno punti per la parola, che verranno aggiunti al punteggio e utilizzati nella fase successiva. \n\Per continuare, fare clic sul pulsante con il fuoco qui sotto.',
           },
         ),
         anchorUiItem: TutorialUiItem.confirmWordButton,

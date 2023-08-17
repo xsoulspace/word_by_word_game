@@ -36,17 +36,12 @@ enum TutorialUiItem {
   /// To start a game enter your first word in this text field.
   /// You can enter a part of word in this text field to combine full word.
   /// onEdit: enterWordRight
-  enterWordRight,
+  wordField,
 
   /// Second phase of the turn is to choose an action and its effect.
   ///
   /// onClick: anywhere else
   actionPhaseFrame,
-
-  /// First phase is to enter new word.
-  ///
-  /// onClick | onEdit: anywhere else
-  enterWordPhaseFrame,
 
   /// After choosing the action and effect, click Apply & End Turn Button.
   /// It will start new turn for another player (if he exists),
@@ -103,5 +98,6 @@ enum TutorialCompleteAction {
 enum TutorialGameEffectName {
   pauseGame,
   resumeGame,
+  requestWordFieldFocus,
   completeCurrentTutorial,
 }

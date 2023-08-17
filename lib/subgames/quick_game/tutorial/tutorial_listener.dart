@@ -36,6 +36,7 @@ class GameTutorialEventListener extends TutorialEventListener {
           diDto.mechanics.worldTime.pause();
         case TutorialGameEffectName.resumeGame:
           diDto.mechanics.worldTime.resume();
+        case TutorialGameEffectName.requestWordFieldFocus:
       }
     }
   }

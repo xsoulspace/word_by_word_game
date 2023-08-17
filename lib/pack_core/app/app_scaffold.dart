@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:intl/intl.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -99,10 +100,17 @@ class AppScaffoldBuilder extends HookWidget {
         // settingsNotifier.systemLocale = Locale.fromSubtags(
         //   languageCode: defaultLocale?.languageCode ?? 'en',
         // );
+        void setIntlLocale(final Locale? newLocale) {
+          final intlDefaultLocale = Intl.defaultLocale;
+          Intl.defaultLocale = newLocale?.languageCode ?? intlDefaultLocale;
+        }
 
         /// if language is set by user, then use it
-        if (settingsNotifier.locale != null) return settingsNotifier.locale;
-
+        if (settingsNotifier.locale != null) {
+          setIntlLocale(settingsNotifier.locale);
+          return settingsNotifier.locale;
+        }
+        setIntlLocale(defaultLocale);
         return defaultLocale;
       },
       supportedLocales: Locales.values,
@@ -223,7 +231,7 @@ class WindowControlsScaffold extends HookWidget {
                         ],
                       ),
                       iconSize: dimension,
-                    )
+                    ),
                   ],
                 ),
               ),
