@@ -79,16 +79,24 @@ class _Statistics extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  // ignore: lines_longer_than_80_chars
-                  '${S.of(context).wind}: ${state.weather.windScale.toLocalizedName(context)} '
-                  // ignore: lines_longer_than_80_chars
-                  '| ${state.wind.force.x.toStringAsFixed(2)} ${state.wind.force.y.toStringAsFixed(2)}',
+                TutorialFrame(
+                  highlightPosition: Alignment.bottomRight,
+                  uiKey: TutorialUiItem.currentWind,
+                  child: Text(
+                    // ignore: lines_longer_than_80_chars
+                    '${S.of(context).wind}: ${state.weather.windScale.toLocalizedName(context)} '
+                    // ignore: lines_longer_than_80_chars
+                    '| ${state.wind.force.x.toStringAsFixed(2)} ${state.wind.force.y.toStringAsFixed(2)}',
+                  ),
                 ),
                 const Gap(8),
-                Text(
-                  // ignore: lines_longer_than_80_chars
-                  '${S.of(context).nextWeatherIn}: ${state.weather.durationInGameSeconds} ',
+                TutorialFrame(
+                  highlightPosition: Alignment.bottomRight,
+                  uiKey: TutorialUiItem.currentWeather,
+                  child: Text(
+                    // ignore: lines_longer_than_80_chars
+                    '${S.of(context).nextWeatherIn}: ${state.weather.durationInGameSeconds} ',
+                  ),
                 ),
               ],
             ),
@@ -102,13 +110,17 @@ class _Statistics extends StatelessWidget {
             builder: (final context, final powers) => Column(
               children: [
                 const Gap(8),
-                GestureDetector(
-                  onTap: () {
-                    context.read<DebugCubit>().tryOpenDebugPane();
-                  },
-                  child: Text(
-                    // ignore: lines_longer_than_80_chars
-                    '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
+                TutorialFrame(
+                  highlightPosition: Alignment.bottomRight,
+                  uiKey: TutorialUiItem.baloonPower,
+                  child: GestureDetector(
+                    onTap: () {
+                      context.read<DebugCubit>().tryOpenDebugPane();
+                    },
+                    child: Text(
+                      // ignore: lines_longer_than_80_chars
+                      '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
+                    ),
                   ),
                 ),
               ],

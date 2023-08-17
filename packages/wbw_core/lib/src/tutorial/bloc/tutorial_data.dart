@@ -221,7 +221,7 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'The second phase - Actions & Effects.\n\nAction is something that you do. \n\nChoose Refuel to refuel Balloon.',
+                'The second phase - Actions & Effects.\n\nAction is something that you do. \n\nChoose any option to refuel Balloon.',
             Languages.ru:
                 'Вторая фаза - Действия и эффекты.\n\nДействие - это то, что вы делаете. \n\nВыбери "Топливо", чтобы заправить воздушный шар.',
             Languages.it:
@@ -231,31 +231,62 @@ const _tutorialData = TutorialCollectionsDataModel(
         anchorUiItem: TutorialUiItem.selectRefuelOption,
       ),
       TutorialEventModel(
-        completeActions: [
-          TutorialUiActionEventModel(
-            action: TutorialCompleteAction.idle,
-            uiItem: TutorialUiItem.anchoredIdleDialog,
-            isCompleted: true,
-          ),
-          TutorialUiActionEventModel(
-            action: TutorialCompleteAction.onClick,
-            uiItem: TutorialUiItem.applyAndEndTurnButton,
-          ),
-        ],
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'To end turn for player click Apply & End Turn. \n\nBe aware: this action will end tutorial and the Balloon will start moving. \n\n\nGood Luck in your adventures!',
+                'An important factor is wind speed and direction. The balloon moves horizontally only if the wind is strong enough.',
             Languages.ru:
-                'Чтобы завершить ход для игрока, нажми "Завершить ход". \n\nБудьте внимательны: это действие завершит туториал и воздушный шар начнет двигаться. \n\n\nНевероятных приключений!',
+                'Важный фактор - скорость и направление ветра. Воздушный шар движется горизонтально только при достаточной силе ветра.',
             Languages.it:
-                'Per terminare il turno del giocatore, fare clic su Applica e termina il turno. \n\nAttenzione: questa azione terminerà il tutorial e il palloncino inizierà a muoversi. \n\n\nBuona fortuna nelle vostre avventure!',
+                'Un fattore importante è la velocità e la direzione del vento. Il pallone si muove orizzontalmente solo se il vento è sufficientemente forte.',
+          },
+        ),
+        anchorUiItem: TutorialUiItem.currentWind,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                'The weather changes in seconds. The wind changes with it.',
+            Languages.ru:
+                'Погода меняется за несколько секунд. Вместе с этим меняется и ветер.',
+            Languages.it:
+                'Il tempo cambia in pochi secondi. E con esso cambia anche il vento.',
+          },
+        ),
+        anchorUiItem: TutorialUiItem.currentWeather,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                'This is the force that the balloon has. This force creates the lift force that moves the balloon upwards. \nIf it goes to zero, then the ballon will fall.',
+            Languages.ru:
+                'Это - сила, которой обладает воздушный шар. Эта сила создает подъемную силу, которая перемещает воздушный шар вверх. \nЕсли она станет равной нулю, то шар будет падать.',
+            Languages.it:
+                "Questa è la forza che il palloncino possiede. Questa forza crea la forza di sollevamento che sposta il palloncino verso l'alto. \nSe il valore scende a zero, il pallone cade.",
+          },
+        ),
+        anchorUiItem: TutorialUiItem.baloonPower,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                "That's it - click ok) but be careful: the balloon will start to move. \n\n\nHave an incredible adventure!",
+            Languages.ru:
+                'На этом всё - жми ок) но будь внимателен: воздушный шар начнет двигаться. \n\n\nНевероятных приключений!',
+            Languages.it:
+                'Tutto qui - cliccate su ok) ma fate attenzione: il palloncino inizierà a muoversi. \n\n\nBuona avventura!',
           },
         ),
         gamePostEffects: [
           TutorialGameEffectModel(name: TutorialGameEffectName.resumeGame),
         ],
-        anchorUiItem: TutorialUiItem.applyAndEndTurnButton,
       ),
     ],
   },

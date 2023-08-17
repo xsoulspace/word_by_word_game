@@ -111,7 +111,7 @@ class UIEnergyOptionCard extends StatelessWidget {
     void onApply() {
       widgetState.onSelectActionMultiplier(type);
       TutorialFrame.sendOnClickEvent(
-        uiKey: TutorialUiItem.applyAndEndTurnButton,
+        uiKey: TutorialUiItem.selectRefuelOption,
         context: context,
       );
     }

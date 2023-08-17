@@ -43,13 +43,6 @@ enum TutorialUiItem {
   /// onClick: anywhere else
   actionPhaseFrame,
 
-  /// After choosing the action and effect, click Apply & End Turn Button.
-  /// It will start new turn for another player (if he exists),
-  /// or new turn for your player.
-  ///
-  /// onClick: applyAndEndTurnButton
-  applyAndEndTurnButton,
-
   /// Current player is displayed here.
   ///
   /// onClick: anywhere else
@@ -65,6 +58,10 @@ enum TutorialUiItem {
   /// onClick: anywhere else
   gameFuelIndicator,
 
+  /// After choosing the action and effect, click Apply & End Turn Button.
+  /// It will start new turn for another player (if he exists),
+  /// or new turn for your player.
+  ///
   /// New meaning:
   /// Just refueling.
   ///
@@ -79,6 +76,17 @@ enum TutorialUiItem {
   ///
   /// onClick: anywhere else
   selectRefuelOption,
+
+  ///An important factor is wind speed and direction.
+  ///The balloon moves horizontally only if the wind is strong enough.
+  currentWind,
+
+  /// The weather changes in seconds. The wind changes with it.
+  currentWeather,
+
+  /// 'This is the force that the balloon has.
+  /// This force creates the lift force that moves the balloon upwards.',
+  baloonPower,
   tutorialBoolDialog,
   tutorialOkDialog,
 

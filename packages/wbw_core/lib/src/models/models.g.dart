@@ -379,11 +379,13 @@ const _$TutorialUiItemEnumMap = {
   TutorialUiItem.suggestWordButton: 'suggestWordButton',
   TutorialUiItem.wordField: 'wordField',
   TutorialUiItem.actionPhaseFrame: 'actionPhaseFrame',
-  TutorialUiItem.applyAndEndTurnButton: 'applyAndEndTurnButton',
   TutorialUiItem.yourNameLabel: 'yourNameLabel',
   TutorialUiItem.yourScoreLabel: 'yourScoreLabel',
   TutorialUiItem.gameFuelIndicator: 'gameFuelIndicator',
   TutorialUiItem.selectRefuelOption: 'selectRefuelOption',
+  TutorialUiItem.currentWind: 'currentWind',
+  TutorialUiItem.currentWeather: 'currentWeather',
+  TutorialUiItem.baloonPower: 'baloonPower',
   TutorialUiItem.tutorialBoolDialog: 'tutorialBoolDialog',
   TutorialUiItem.tutorialOkDialog: 'tutorialOkDialog',
   TutorialUiItem.anchoredIdleDialog: 'anchoredIdleDialog',
@@ -405,6 +407,7 @@ Map<String, dynamic> _$$_TutorialGameEffectModelToJson(
 const _$TutorialGameEffectNameEnumMap = {
   TutorialGameEffectName.pauseGame: 'pauseGame',
   TutorialGameEffectName.resumeGame: 'resumeGame',
+  TutorialGameEffectName.requestWordFieldFocus: 'requestWordFieldFocus',
   TutorialGameEffectName.completeCurrentTutorial: 'completeCurrentTutorial',
 };
 
