@@ -1,14 +1,53 @@
 part of 'word_composition_bar.dart';
 
+class WordCompositionTutorialEventListenerDiDto {
+  WordCompositionTutorialEventListenerDiDto.use(final Locator read)
+      : mechanics = read(),
+        tutorialBloc = read();
+  final MechanicsCollection mechanics;
+  final TutorialBloc tutorialBloc;
+}
+
+class WordCompositionTutorialEventListener extends TutorialEventListener {
+  WordCompositionTutorialEventListener({
+    required final Locator read,
+    required this.onRequestWordFieldFocus,
+  }) : diDto = WordCompositionTutorialEventListenerDiDto.use(read);
+  final WordCompositionTutorialEventListenerDiDto diDto;
+  final VoidCallback onRequestWordFieldFocus;
+
+  @override
+  Future<void> onEventPreEffects(final TutorialEventModel event) {
+    _resolveEffects(event.gamePreEffects);
+    return super.onEventPreEffects(event);
+  }
+
+  @override
+  Future<void> onEventPostEffects(final TutorialEventModel event) {
+    _resolveEffects(event.gamePostEffects);
+    return super.onEventPostEffects(event);
+  }
+
+  void _resolveEffects(final List<TutorialGameEffectModel> effects) {
+    for (final effect in effects) {
+      switch (effect.name) {
+        case TutorialGameEffectName.requestWordFieldFocus:
+          onRequestWordFieldFocus();
+        default:
+      }
+    }
+  }
+}
+
 class WordCompositionStateDiDto {
-  WordCompositionStateDiDto.use(final Locator read)
+  WordCompositionStateDiDto.use(this.read)
       : levelBloc = read(),
         tutorialBloc = read(),
         mechanics = read(),
         appRouterController = read(),
         globalGameBloc = read(),
         dialogController = read();
-
+  final Locator read;
   final LevelBloc levelBloc;
   final TutorialBloc tutorialBloc;
   final MechanicsCollection mechanics;
@@ -33,6 +72,10 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
         super(const WordCompositionCubitState()) {
     onLoad();
   }
+  late final _tutorialEventsListener = WordCompositionTutorialEventListener(
+    read: diDto.read,
+    onRequestWordFieldFocus: onRequestTextFocus,
+  );
   String _latestWord = '';
   StreamSubscription<LevelBlocState>? _levelBlocSubscription;
   final _wordUpdatesController = StreamController<CurrentWordModel>();
@@ -53,6 +96,7 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
       }
     });
     wordController.addListener(_onPartChanged);
+    diDto.tutorialBloc.notifier.addListener(_tutorialEventsListener);
     unawaited(
       _wordUpdatesController.stream
           .sampleTime(
@@ -107,9 +151,9 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
     final tutorialEvent = TutorialUiActionEvent(
       action: TutorialCompleteAction.onEdit,
       stringValue: event.word.fullWord,
-      key: TutorialUiItem.enterWordRight,
+      key: TutorialUiItem.wordField,
     );
-    diDto.tutorialBloc.add(tutorialEvent);
+    diDto.tutorialBloc.onTutorialUiAction(tutorialEvent);
   }
 
   void onUnblockIndex(final int index) {
@@ -118,6 +162,7 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
 
   @override
   Future<void> close() async {
+    diDto.tutorialBloc.notifier.removeListener(_tutorialEventsListener);
     wordController
       ..removeListener(_onPartChanged)
       ..dispose();

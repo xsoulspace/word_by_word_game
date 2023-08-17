@@ -4,7 +4,7 @@ version: 0.0.1
 publish_to: none
 
 environment:
-  sdk: ">=3.0.5 <4.0.0"
+  sdk: ">=3.1.0 <4.0.0"
 
 dependencies:
   bloc: ^8.1.2
@@ -54,8 +54,8 @@ dev_dependencies:
   xsoulspace_lints: ^0.0.9
 
 dependency_overrides:
-  http: 1.0.0
   collection: 1.18.0
+  http: 1.0.0
 
 flutter_gen:
   output: lib/src/gen/

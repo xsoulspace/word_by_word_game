@@ -44,6 +44,9 @@ class _Card extends StatelessWidget {
   final WidgetBuilder builder;
   @override
   Widget build(final BuildContext context) {
+    final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
+        (final cubit) =>
+            cubit.state.levelStateStatus == LevelStateStatus.playing);
     final persistentFormFactors = UiPersistentFormFactors.of(context);
     final screenWidth = persistentFormFactors.screenSize.width;
     final screenContstraints = BoxConstraints(maxWidth: screenWidth);
@@ -58,6 +61,7 @@ class _Card extends StatelessWidget {
     final isCardVisible = context.select<WordCompositionCubit, bool>(
       (final cubit) => cubit.state.isCardVisible,
     );
+    final effectiveIsCardVisible = isCardVisible && isAllowedToBeVisible;
     final uiTheme = UiTheme.of(context);
 
     return SafeArea(
@@ -65,7 +69,7 @@ class _Card extends StatelessWidget {
       child: ConstrainedBox(
         constraints: constraints,
         child: AnimatedSlide(
-          offset: isCardVisible ? Offset.zero : const Offset(0, 0.92),
+          offset: effectiveIsCardVisible ? Offset.zero : const Offset(0, 0.92),
           duration: 200.milliseconds,
           curve: Curves.easeInCirc,
           child: Column(
@@ -74,11 +78,11 @@ class _Card extends StatelessWidget {
               Row(
                 children: [
                   UiBaseButton(
-                    tooltipMessage: isCardVisible
+                    tooltipMessage: effectiveIsCardVisible
                         ? S.of(context).hidePane
                         : S.of(context).showPane,
                     onPressed: () {},
-                    child: isCardVisible
+                    child: effectiveIsCardVisible
                         ? TextButton(
                             onPressed: () {
                               context
@@ -95,7 +99,7 @@ class _Card extends StatelessWidget {
                             },
                             child: const Icon(Icons.arrow_drop_up),
                           ),
-                  )
+                  ),
                 ],
               ),
               CardFrostedBackground(

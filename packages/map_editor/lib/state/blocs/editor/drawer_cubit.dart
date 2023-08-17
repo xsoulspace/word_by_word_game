@@ -71,7 +71,17 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     required final BuildContext context,
   }) async {
     final messenger = ScaffoldMessenger.of(context);
-    final jsonMap = canvasData.toJson();
+    final cleanCanvasData = canvasData.copyWith(
+      layers: canvasData.layers
+          .map(
+            (final layer) => layer.copyWith(
+              tiles: {...layer.tiles}
+                ..removeWhere((final key, final value) => value.isEmpty),
+            ),
+          )
+          .toList(),
+    );
+    final jsonMap = cleanCanvasData.toJson();
     final text = jsonEncode(jsonMap);
     await Clipboard.setData(ClipboardData(text: text));
     messenger.showMaterialBanner(
@@ -81,7 +91,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
           TextButton(
             onPressed: messenger.clearMaterialBanners,
             child: const Text('Close'),
-          )
+          ),
         ],
       ),
     );

@@ -33,7 +33,11 @@ class UiWordActions extends StatelessWidget {
                 ),
               ),
               const Gap(4),
-              const UiSuggestionsButton()
+              const TutorialFrame(
+                highlightPosition: Alignment.topCenter,
+                uiKey: TutorialUiItem.suggestWordButton,
+                child: UiSuggestionsButton(),
+              ),
             ],
           ),
           if (DeviceRuntimeType.isMobile)
@@ -46,7 +50,10 @@ class UiWordActions extends StatelessWidget {
     }
 
     return MediaQuery(
-      data: const MediaQueryData(),
+      data: MediaQuery.of(context).copyWith(
+        textScaler: TextScaler.noScaling,
+        devicePixelRatio: 1,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
@@ -151,22 +158,16 @@ class UiSuggestionsButton extends StatelessWidget {
       (final value) => value.state.currentWord.fullWord.isNotEmpty,
     );
 
-    return TutorialFrame(
-      highlightPosition: Alignment.topCenter,
-      uiKey: TutorialUiItem.suggestWordButton,
-      child: UiTextButton.icon(
-        isLongButton: true,
-        text: S.of(context).suggestions,
-        tooltip: S.of(context).suggestWordButtonTooltip,
-        onPressed: isEnabled
-            ? null
-            : () {
-                context
-                    .read<DialogController>()
-                    .showLevelWordSuggestionDialog();
-              },
-        icon: UiIcons.idea,
-      ),
+    return UiTextButton.icon(
+      isLongButton: true,
+      text: S.of(context).suggestions,
+      tooltip: S.of(context).suggestWordButtonTooltip,
+      onPressed: isEnabled
+          ? null
+          : () {
+              context.read<DialogController>().showLevelWordSuggestionDialog();
+            },
+      icon: UiIcons.idea,
     );
   }
 }
@@ -180,24 +181,21 @@ class UiPauseButton extends StatelessWidget {
   Widget build(final BuildContext context) => TutorialFrame(
         highlightPosition: Alignment.topCenter,
         uiKey: TutorialUiItem.pauseIconButton,
-        child: Hero(
-          tag: const ValueKey('UiPauseIconButton'),
-          child: UiIconButton(
-            tooltip: S.of(context).mainMenuButtonTooltip,
-            onPressed: () async {
-              final globalGameBloc = context.read<GlobalGameBloc>();
-              final levelBloc = context.read<LevelBloc>();
-              final appRouterController = context.read<AppRouterController>();
+        child: UiIconButton(
+          tooltip: S.of(context).mainMenuButtonTooltip,
+          onPressed: () async {
+            final globalGameBloc = context.read<GlobalGameBloc>();
+            final levelBloc = context.read<LevelBloc>();
+            final appRouterController = context.read<AppRouterController>();
 
-              context.read<StatesStatusesCubit>().pause();
+            context.read<StatesStatusesCubit>().pause();
 
-              await globalGameBloc
-                  .onSaveCurrentLevel(const SaveCurrentLevelEvent());
-              final id = levelBloc.state.id;
-              appRouterController.toPause(id: id);
-            },
-            icon: UiIcons.pause,
-          ),
+            await globalGameBloc
+                .onSaveCurrentLevel(const SaveCurrentLevelEvent());
+            final id = levelBloc.state.id;
+            appRouterController.toPause(id: id);
+          },
+          icon: UiIcons.pause,
         ),
       );
 }

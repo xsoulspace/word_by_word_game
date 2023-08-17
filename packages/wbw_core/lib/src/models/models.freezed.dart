@@ -38,7 +38,7 @@ abstract class $AppSettingsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          Locale? locale,
+      Locale? locale,
       BrightnessMode brightnessMode});
 }
 
@@ -81,7 +81,7 @@ abstract class _$$_AppSettingsModelCopyWith<$Res>
   @useResult
   $Res call(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          Locale? locale,
+      Locale? locale,
       BrightnessMode brightnessMode});
 }
 
@@ -167,7 +167,7 @@ class _$_AppSettingsModel extends _AppSettingsModel {
 abstract class _AppSettingsModel extends AppSettingsModel {
   const factory _AppSettingsModel(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
-          final Locale? locale,
+      final Locale? locale,
       final BrightnessMode brightnessMode}) = _$_AppSettingsModel;
   const _AppSettingsModel._() : super._();
 
@@ -407,8 +407,10 @@ abstract class $GameSaveModelCopyWith<$Res> {
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
       TutorialCollectionsProgressModel tutorialProgress,
-      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
-          Map<CanvasDataModelId, LevelModel> savedLevels});
+      @JsonKey(
+          fromJson: GameSaveModel._savedLevelsFromJson,
+          toJson: GameSaveModel._savedLevelsToJson)
+      Map<CanvasDataModelId, LevelModel> savedLevels});
 
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
   $LevelModelCopyWith<$Res>? get currentLevel;
@@ -549,8 +551,10 @@ abstract class _$$_GameModelCopyWith<$Res>
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
       TutorialCollectionsProgressModel tutorialProgress,
-      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
-          Map<CanvasDataModelId, LevelModel> savedLevels});
+      @JsonKey(
+          fromJson: GameSaveModel._savedLevelsFromJson,
+          toJson: GameSaveModel._savedLevelsToJson)
+      Map<CanvasDataModelId, LevelModel> savedLevels});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
@@ -645,8 +649,10 @@ class _$_GameModel extends _GameModel {
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
       this.tutorialProgress = TutorialCollectionsProgressModel.empty,
-      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
-          final Map<CanvasDataModelId, LevelModel> savedLevels = const {}})
+      @JsonKey(
+          fromJson: GameSaveModel._savedLevelsFromJson,
+          toJson: GameSaveModel._savedLevelsToJson)
+      final Map<CanvasDataModelId, LevelModel> savedLevels = const {}})
       : _playersCollection = playersCollection,
         _playersCharacters = playersCharacters,
         _savedLevels = savedLevels,
@@ -782,8 +788,10 @@ abstract class _GameModel extends GameSaveModel {
       final List<PlayerProfileModel> playersCollection,
       final List<PlayerCharacterModel> playersCharacters,
       final TutorialCollectionsProgressModel tutorialProgress,
-      @JsonKey(fromJson: GameSaveModel._savedLevelsFromJson, toJson: GameSaveModel._savedLevelsToJson)
-          final Map<CanvasDataModelId, LevelModel> savedLevels}) = _$_GameModel;
+      @JsonKey(
+          fromJson: GameSaveModel._savedLevelsFromJson,
+          toJson: GameSaveModel._savedLevelsToJson)
+      final Map<CanvasDataModelId, LevelModel> savedLevels}) = _$_GameModel;
   const _GameModel._() : super._();
 
   factory _GameModel.fromJson(Map<String, dynamic> json) =
@@ -2357,8 +2365,10 @@ abstract class $PlayerProfileModelCopyWith<$Res> {
       {String id,
       int colorValue,
       String name,
-      @JsonKey(fromJson: PlayerProfileModel._highscoreFromJson, toJson: PlayerProfileModel._highscoreToJson)
-          Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores,
+      @JsonKey(
+          fromJson: PlayerProfileModel._highscoreFromJson,
+          toJson: PlayerProfileModel._highscoreToJson)
+      Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores,
       PlayerHighscoreModel highscore});
 
   $PlayerHighscoreModelCopyWith<$Res> get highscore;
@@ -2428,8 +2438,10 @@ abstract class _$$_PlayerProfileModelCopyWith<$Res>
       {String id,
       int colorValue,
       String name,
-      @JsonKey(fromJson: PlayerProfileModel._highscoreFromJson, toJson: PlayerProfileModel._highscoreToJson)
-          Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores,
+      @JsonKey(
+          fromJson: PlayerProfileModel._highscoreFromJson,
+          toJson: PlayerProfileModel._highscoreToJson)
+      Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores,
       PlayerHighscoreModel highscore});
 
   @override
@@ -2486,9 +2498,11 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
       {required this.id,
       required this.colorValue,
       required this.name,
-      @JsonKey(fromJson: PlayerProfileModel._highscoreFromJson, toJson: PlayerProfileModel._highscoreToJson)
-          final Map<CanvasDataModelId, PlayerLevelHighscoreModel>
-              levelsHighscores = const {},
+      @JsonKey(
+          fromJson: PlayerProfileModel._highscoreFromJson,
+          toJson: PlayerProfileModel._highscoreToJson)
+      final Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores =
+          const {},
       this.highscore = PlayerHighscoreModel.empty})
       : _levelsHighscores = levelsHighscores,
         super._();
@@ -2562,9 +2576,10 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
       {required final String id,
       required final int colorValue,
       required final String name,
-      @JsonKey(fromJson: PlayerProfileModel._highscoreFromJson, toJson: PlayerProfileModel._highscoreToJson)
-          final Map<CanvasDataModelId, PlayerLevelHighscoreModel>
-              levelsHighscores,
+      @JsonKey(
+          fromJson: PlayerProfileModel._highscoreFromJson,
+          toJson: PlayerProfileModel._highscoreToJson)
+      final Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores,
       final PlayerHighscoreModel highscore}) = _$_PlayerProfileModel;
   const _PlayerProfileModel._() : super._();
 

@@ -5,6 +5,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 
 part 'debug_side_bar_vm.dart';
 
@@ -82,7 +83,7 @@ class UiDebugSideBarBody extends StatelessWidget {
                   'Time ${worldBloc.state.dateTime.second ~/ 100}',
                   overflow: TextOverflow.ellipsis,
                 ),
-              )
+              ),
             ],
           ),
           const _WorldTime(),
@@ -112,8 +113,14 @@ class UiDebugSideBarBody extends StatelessWidget {
                       .onPowerChange((screenCubit.power + 500).toString());
                 },
                 child: const Text('+500'),
-              )
+              ),
             ],
+          ),
+          TextButton(
+            onPressed: () {
+              context.read<WeatherCubit>().nextWeather();
+            },
+            child: const Text('Next weather'),
           ),
           UiTextField.underlined(
             value: screenCubit.maxVolume.toString(),

@@ -146,15 +146,20 @@ class TileButtons extends StatelessWidget {
             ),
             Column(
               children: [
-                TextButton.icon(
-                  onPressed: () async => drawerCubit.copy(context: context),
-                  icon: const Icon(Icons.copy),
-                  label: const Text('Copy'),
-                ),
-                TextButton.icon(
-                  onPressed: () async => drawerCubit.paste(context: context),
-                  icon: const Icon(Icons.paste),
-                  label: const Text('Paste'),
+                Row(
+                  children: [
+                    TextButton.icon(
+                      onPressed: () async => drawerCubit.copy(context: context),
+                      icon: const Icon(Icons.copy),
+                      label: const Text('Copy'),
+                    ),
+                    TextButton.icon(
+                      onPressed: () async =>
+                          drawerCubit.paste(context: context),
+                      icon: const Icon(Icons.paste),
+                      label: const Text('Paste'),
+                    ),
+                  ],
                 ),
                 TextButton.icon(
                   onPressed: () async {
@@ -186,7 +191,7 @@ class TileButtons extends StatelessWidget {
                   initialValue: drawerCubit.state.canvasData.name,
                 ),
               ],
-            )
+            ),
           ],
         ),
       ),
@@ -458,7 +463,7 @@ class _LayersDialogState extends State<LayersDialog> {
                                     ),
                                   ),
                               ],
-                            )
+                            ),
                           ],
                         ),
                       ),
@@ -469,7 +474,7 @@ class _LayersDialogState extends State<LayersDialog> {
                 ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );

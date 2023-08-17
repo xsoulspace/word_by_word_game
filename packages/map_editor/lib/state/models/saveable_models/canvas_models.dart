@@ -220,11 +220,7 @@ class CellTileModel with _$CellTileModel {
       _$CellTileModelFromJson(json);
 
   static const empty = CellTileModel();
-  bool get isEmpty =>
-      tileId.isEmpty &&
-      tileNeighbours.isEmpty &&
-      objects.isEmpty &&
-      npcs.isEmpty;
+  bool get isEmpty => tileId.isEmpty && objects.isEmpty && npcs.isEmpty;
   String get tileMergedDirectionsTitle =>
       tileNeighbours.map((final e) => e.value).join();
 }
