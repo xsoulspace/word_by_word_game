@@ -36,24 +36,12 @@ enum TutorialUiItem {
   /// To start a game enter your first word in this text field.
   /// You can enter a part of word in this text field to combine full word.
   /// onEdit: enterWordRight
-  enterWordRight,
+  wordField,
 
   /// Second phase of the turn is to choose an action and its effect.
   ///
   /// onClick: anywhere else
   actionPhaseFrame,
-
-  /// First phase is to enter new word.
-  ///
-  /// onClick | onEdit: anywhere else
-  enterWordPhaseFrame,
-
-  /// After choosing the action and effect, click Apply & End Turn Button.
-  /// It will start new turn for another player (if he exists),
-  /// or new turn for your player.
-  ///
-  /// onClick: applyAndEndTurnButton
-  applyAndEndTurnButton,
 
   /// Current player is displayed here.
   ///
@@ -70,6 +58,10 @@ enum TutorialUiItem {
   /// onClick: anywhere else
   gameFuelIndicator,
 
+  /// After choosing the action and effect, click Apply & End Turn Button.
+  /// It will start new turn for another player (if he exists),
+  /// or new turn for your player.
+  ///
   /// New meaning:
   /// Just refueling.
   ///
@@ -84,6 +76,17 @@ enum TutorialUiItem {
   ///
   /// onClick: anywhere else
   selectRefuelOption,
+
+  ///An important factor is wind speed and direction.
+  ///The balloon moves horizontally only if the wind is strong enough.
+  currentWind,
+
+  /// The weather changes in seconds. The wind changes with it.
+  currentWeather,
+
+  /// 'This is the force that the balloon has.
+  /// This force creates the lift force that moves the balloon upwards.',
+  baloonPower,
   tutorialBoolDialog,
   tutorialOkDialog,
 
@@ -103,5 +106,6 @@ enum TutorialCompleteAction {
 enum TutorialGameEffectName {
   pauseGame,
   resumeGame,
+  requestWordFieldFocus,
   completeCurrentTutorial,
 }

@@ -2,8 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
-import '../../models/models.dart';
-import '../tutorial.dart';
+import '../../../wbw_core.dart';
 
 class TutorialFrame extends StatelessWidget {
   const TutorialFrame({
@@ -23,7 +22,7 @@ class TutorialFrame extends StatelessWidget {
       action: TutorialCompleteAction.onClick,
       key: uiKey,
     );
-    context.read<TutorialBloc>().add(event);
+    context.read<TutorialBloc>().onTutorialUiAction(event);
   }
 
   @override
@@ -31,47 +30,122 @@ class TutorialFrame extends StatelessWidget {
     final highlighted =
         context.select<TutorialBloc, bool>((final tutorialBloc) {
       // return true;
-      if (tutorialBloc.state is! LiveTutorialBlocState) return false;
+      if (tutorialBloc.state is! TutorialBlocStateLive) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
+
       return tutorialEvent.anchorUiItem == uiKey;
     });
 
     final persistentFormFactors = UiPersistentFormFactors.of(context);
-    if (persistentFormFactors.screenSize.width <
-        WidthFormFactor.mobileTutorialMaxWidth) {
-      return PortalTarget(
-        // TODO(arenukvern): there is problem with anchor.
-        /// when it is Filled, when it switches between states
-        /// it forces to rebuild all components, disposing their state etc.
-        anchor: const Aligned(
-          follower: Alignment.bottomLeft,
-          target: Alignment.topRight,
-        ),
-        portalFollower: const SizedBox(),
-        visible: highlighted,
-        child: HighlightFrame(
-          onPressed: () {
-            sendOnClickEvent(context: context, uiKey: uiKey);
-          },
-          highlighted: highlighted,
-          highlightPosition: highlightPosition,
-          child: child,
-        ),
-      );
-    } else {
-      return PortalTarget(
-        anchor: highlightPosition.toAnchor(),
-        portalFollower: const DesktopAnchoredTutorialDialog(),
-        visible: highlighted,
-        child: HighlightFrame(
-          onPressed: () {
-            sendOnClickEvent(context: context, uiKey: uiKey);
-          },
-          highlighted: highlighted,
-          highlightPosition: highlightPosition,
-          child: child,
-        ),
-      );
-    }
+    final isMobile = persistentFormFactors.screenSize.width <
+        WidthFormFactor.mobileTutorialMaxWidth;
+    // if (isMobile) {
+    //   return HighlightFrame(
+    //     onPressed: () {
+    //       sendOnClickEvent(context: context, uiKey: uiKey);
+    //     },
+    //     highlighted: highlighted,
+    //     highlightPosition: highlightPosition,
+    //     child: child,
+    //   );
+    // } else {
+
+    return PortalTarget(
+      anchor: highlightPosition.toAnchor(),
+      portalFollower: const DesktopAnchoredTutorialDialog(),
+      visible: highlighted && !isMobile,
+      child: HighlightFrame(
+        onPressed: () {
+          sendOnClickEvent(context: context, uiKey: uiKey);
+        },
+        highlighted: highlighted,
+        highlightPosition: highlightPosition,
+        child: child,
+      ),
+    );
+    // }
   }
+}
+
+class TutorialEntryOverlay extends StatefulWidget {
+  const TutorialEntryOverlay({
+    required this.visible,
+    required this.child,
+    required this.overlayChild,
+    required this.alignment,
+    super.key,
+  });
+  final bool visible;
+  final Widget child;
+  final Widget overlayChild;
+  final Alignment alignment;
+
+  @override
+  State<TutorialEntryOverlay> createState() => _TutorialEntryOverlayState();
+}
+
+class _TutorialEntryOverlayState extends State<TutorialEntryOverlay> {
+  OverlayEntry? _overlayEntry;
+  // Remove the OverlayEntry.
+  void _removeHighlightOverlay() {
+    _overlayEntry?.remove();
+    _overlayEntry = null;
+  }
+
+  final globalKey = GlobalKey();
+
+  void _createHighlightOverlay() {
+    // Remove the existing OverlayEntry.
+    _removeHighlightOverlay();
+
+    assert(_overlayEntry == null, '');
+
+    _overlayEntry = OverlayEntry(
+      builder: (final context) {
+        MediaQuery.sizeOf(context);
+        final RenderBox? renderBox =
+            globalKey.currentContext!.findRenderObject() as RenderBox?;
+        final Offset offset = renderBox!.localToGlobal(Offset.zero);
+
+        return Positioned(
+          left: offset.dx,
+          bottom: renderBox.size.height,
+          child: Builder(
+            builder: (final context) => widget.overlayChild,
+          ),
+        );
+      },
+    );
+
+    // Add the OverlayEntry to the Overlay.
+    Overlay.of(context, debugRequiredFor: widget).insert(_overlayEntry!);
+  }
+
+  @override
+  void didUpdateWidget(covariant final TutorialEntryOverlay oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
+      final visible = widget.visible;
+      if (oldWidget.visible != visible) {
+        if (visible) {
+          _createHighlightOverlay();
+        } else {
+          _removeHighlightOverlay();
+        }
+      }
+    });
+  }
+
+  @override
+  void dispose() {
+    // Make sure to remove OverlayEntry when the widget is disposed.
+    _removeHighlightOverlay();
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) => SizedBox(
+        key: globalKey,
+        child: widget.child,
+      );
 }

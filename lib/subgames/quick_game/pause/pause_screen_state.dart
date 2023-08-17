@@ -105,7 +105,7 @@ class PauseScreenState extends ContextfulLifeState {
             Text(s.thankYou),
           ],
         ),
-      )
+      ),
     ];
     final applicationLegalese = '\u{a9} 2020-${DateTime.now().year} '
         'Game by Anton Malofeev, Irina Veter';
@@ -154,7 +154,7 @@ class PauseScreenState extends ContextfulLifeState {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
               uiTheme.verticalBoxes.medium,
@@ -165,7 +165,7 @@ class PauseScreenState extends ContextfulLifeState {
               TextButton(
                 onPressed: () => Navigator.maybePop(context),
                 child: Text(S.of(context).ok),
-              )
+              ),
             ],
           ),
         ),

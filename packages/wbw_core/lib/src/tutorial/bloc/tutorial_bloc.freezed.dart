@@ -1012,90 +1012,245 @@ abstract class TutorialUiActionEvent implements TutorialEvent {
       throw _privateConstructorUsedError;
 }
 
-PendingTutorialBlocState _$PendingTutorialBlocStateFromJson(
-    Map<String, dynamic> json) {
-  return _PendingTutorialBlocState.fromJson(json);
+TutorialBlocState _$TutorialBlocStateFromJson(Map<String, dynamic> json) {
+  switch (json['runtimeType']) {
+    case 'empty':
+      return TutorialBlocStateEmpty.fromJson(json);
+    case 'pending':
+      return TutorialBlocStatePending.fromJson(json);
+    case 'live':
+      return TutorialBlocStateLive.fromJson(json);
+
+    default:
+      throw CheckedFromJsonException(json, 'runtimeType', 'TutorialBlocState',
+          'Invalid union type "${json['runtimeType']}"!');
+  }
 }
 
 /// @nodoc
-mixin _$PendingTutorialBlocState {
-  /// progress for all tutorials
-  TutorialCollectionsProgressModel get progress =>
+mixin _$TutorialBlocState {
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(TutorialCollectionsProgressModel progress)
+        pending,
+    required TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)
+        live,
+  }) =>
       throw _privateConstructorUsedError;
-
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult? Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TutorialBlocStateEmpty value) empty,
+    required TResult Function(TutorialBlocStatePending value) pending,
+    required TResult Function(TutorialBlocStateLive value) live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TutorialBlocStateEmpty value)? empty,
+    TResult? Function(TutorialBlocStatePending value)? pending,
+    TResult? Function(TutorialBlocStateLive value)? live,
+  }) =>
+      throw _privateConstructorUsedError;
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TutorialBlocStateEmpty value)? empty,
+    TResult Function(TutorialBlocStatePending value)? pending,
+    TResult Function(TutorialBlocStateLive value)? live,
+    required TResult orElse(),
+  }) =>
+      throw _privateConstructorUsedError;
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $PendingTutorialBlocStateCopyWith<PendingTutorialBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $PendingTutorialBlocStateCopyWith<$Res> {
-  factory $PendingTutorialBlocStateCopyWith(PendingTutorialBlocState value,
-          $Res Function(PendingTutorialBlocState) then) =
-      _$PendingTutorialBlocStateCopyWithImpl<$Res, PendingTutorialBlocState>;
-  @useResult
-  $Res call({TutorialCollectionsProgressModel progress});
-
-  $TutorialCollectionsProgressModelCopyWith<$Res> get progress;
+abstract class $TutorialBlocStateCopyWith<$Res> {
+  factory $TutorialBlocStateCopyWith(
+          TutorialBlocState value, $Res Function(TutorialBlocState) then) =
+      _$TutorialBlocStateCopyWithImpl<$Res, TutorialBlocState>;
 }
 
 /// @nodoc
-class _$PendingTutorialBlocStateCopyWithImpl<$Res,
-        $Val extends PendingTutorialBlocState>
-    implements $PendingTutorialBlocStateCopyWith<$Res> {
-  _$PendingTutorialBlocStateCopyWithImpl(this._value, this._then);
+class _$TutorialBlocStateCopyWithImpl<$Res, $Val extends TutorialBlocState>
+    implements $TutorialBlocStateCopyWith<$Res> {
+  _$TutorialBlocStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? progress = null,
-  }) {
-    return _then(_value.copyWith(
-      progress: null == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as TutorialCollectionsProgressModel,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
-    return $TutorialCollectionsProgressModelCopyWith<$Res>(_value.progress,
-        (value) {
-      return _then(_value.copyWith(progress: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_PendingTutorialBlocStateCopyWith<$Res>
-    implements $PendingTutorialBlocStateCopyWith<$Res> {
-  factory _$$_PendingTutorialBlocStateCopyWith(
-          _$_PendingTutorialBlocState value,
-          $Res Function(_$_PendingTutorialBlocState) then) =
-      __$$_PendingTutorialBlocStateCopyWithImpl<$Res>;
+abstract class _$$TutorialBlocStateEmptyCopyWith<$Res> {
+  factory _$$TutorialBlocStateEmptyCopyWith(_$TutorialBlocStateEmpty value,
+          $Res Function(_$TutorialBlocStateEmpty) then) =
+      __$$TutorialBlocStateEmptyCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$TutorialBlocStateEmptyCopyWithImpl<$Res>
+    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStateEmpty>
+    implements _$$TutorialBlocStateEmptyCopyWith<$Res> {
+  __$$TutorialBlocStateEmptyCopyWithImpl(_$TutorialBlocStateEmpty _value,
+      $Res Function(_$TutorialBlocStateEmpty) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$TutorialBlocStateEmpty implements TutorialBlocStateEmpty {
+  const _$TutorialBlocStateEmpty({final String? $type})
+      : $type = $type ?? 'empty';
+
+  factory _$TutorialBlocStateEmpty.fromJson(Map<String, dynamic> json) =>
+      _$$TutorialBlocStateEmptyFromJson(json);
+
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
+  String toString() {
+    return 'TutorialBlocState.empty()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$TutorialBlocStateEmpty);
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(TutorialCollectionsProgressModel progress)
+        pending,
+    required TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)
+        live,
+  }) {
+    return empty();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult? Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+  }) {
+    return empty?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TutorialBlocStateEmpty value) empty,
+    required TResult Function(TutorialBlocStatePending value) pending,
+    required TResult Function(TutorialBlocStateLive value) live,
+  }) {
+    return empty(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TutorialBlocStateEmpty value)? empty,
+    TResult? Function(TutorialBlocStatePending value)? pending,
+    TResult? Function(TutorialBlocStateLive value)? live,
+  }) {
+    return empty?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TutorialBlocStateEmpty value)? empty,
+    TResult Function(TutorialBlocStatePending value)? pending,
+    TResult Function(TutorialBlocStateLive value)? live,
+    required TResult orElse(),
+  }) {
+    if (empty != null) {
+      return empty(this);
+    }
+    return orElse();
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$TutorialBlocStateEmptyToJson(
+      this,
+    );
+  }
+}
+
+abstract class TutorialBlocStateEmpty implements TutorialBlocState {
+  const factory TutorialBlocStateEmpty() = _$TutorialBlocStateEmpty;
+
+  factory TutorialBlocStateEmpty.fromJson(Map<String, dynamic> json) =
+      _$TutorialBlocStateEmpty.fromJson;
+}
+
+/// @nodoc
+abstract class _$$TutorialBlocStatePendingCopyWith<$Res> {
+  factory _$$TutorialBlocStatePendingCopyWith(_$TutorialBlocStatePending value,
+          $Res Function(_$TutorialBlocStatePending) then) =
+      __$$TutorialBlocStatePendingCopyWithImpl<$Res>;
   @useResult
   $Res call({TutorialCollectionsProgressModel progress});
 
-  @override
   $TutorialCollectionsProgressModelCopyWith<$Res> get progress;
 }
 
 /// @nodoc
-class __$$_PendingTutorialBlocStateCopyWithImpl<$Res>
-    extends _$PendingTutorialBlocStateCopyWithImpl<$Res,
-        _$_PendingTutorialBlocState>
-    implements _$$_PendingTutorialBlocStateCopyWith<$Res> {
-  __$$_PendingTutorialBlocStateCopyWithImpl(_$_PendingTutorialBlocState _value,
-      $Res Function(_$_PendingTutorialBlocState) _then)
+class __$$TutorialBlocStatePendingCopyWithImpl<$Res>
+    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStatePending>
+    implements _$$TutorialBlocStatePendingCopyWith<$Res> {
+  __$$TutorialBlocStatePendingCopyWithImpl(_$TutorialBlocStatePending _value,
+      $Res Function(_$TutorialBlocStatePending) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1103,38 +1258,51 @@ class __$$_PendingTutorialBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? progress = null,
   }) {
-    return _then(_$_PendingTutorialBlocState(
+    return _then(_$TutorialBlocStatePending(
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as TutorialCollectionsProgressModel,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
+    return $TutorialCollectionsProgressModelCopyWith<$Res>(_value.progress,
+        (value) {
+      return _then(_value.copyWith(progress: value));
+    });
+  }
 }
 
 /// @nodoc
+@JsonSerializable()
+class _$TutorialBlocStatePending implements TutorialBlocStatePending {
+  const _$TutorialBlocStatePending(
+      {required this.progress, final String? $type})
+      : $type = $type ?? 'pending';
 
-@JsonSerializable(explicitToJson: true)
-class _$_PendingTutorialBlocState extends _PendingTutorialBlocState {
-  const _$_PendingTutorialBlocState({required this.progress}) : super._();
-
-  factory _$_PendingTutorialBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$_PendingTutorialBlocStateFromJson(json);
+  factory _$TutorialBlocStatePending.fromJson(Map<String, dynamic> json) =>
+      _$$TutorialBlocStatePendingFromJson(json);
 
   /// progress for all tutorials
   @override
   final TutorialCollectionsProgressModel progress;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
-    return 'PendingTutorialBlocState(progress: $progress)';
+    return 'TutorialBlocState.pending(progress: $progress)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PendingTutorialBlocState &&
+            other is _$TutorialBlocStatePending &&
             (identical(other.progress, progress) ||
                 other.progress == progress));
   }
@@ -1146,63 +1314,114 @@ class _$_PendingTutorialBlocState extends _PendingTutorialBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PendingTutorialBlocStateCopyWith<_$_PendingTutorialBlocState>
-      get copyWith => __$$_PendingTutorialBlocStateCopyWithImpl<
-          _$_PendingTutorialBlocState>(this, _$identity);
+  _$$TutorialBlocStatePendingCopyWith<_$TutorialBlocStatePending>
+      get copyWith =>
+          __$$TutorialBlocStatePendingCopyWithImpl<_$TutorialBlocStatePending>(
+              this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(TutorialCollectionsProgressModel progress)
+        pending,
+    required TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)
+        live,
+  }) {
+    return pending(progress);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult? Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+  }) {
+    return pending?.call(progress);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+    required TResult orElse(),
+  }) {
+    if (pending != null) {
+      return pending(progress);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TutorialBlocStateEmpty value) empty,
+    required TResult Function(TutorialBlocStatePending value) pending,
+    required TResult Function(TutorialBlocStateLive value) live,
+  }) {
+    return pending(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TutorialBlocStateEmpty value)? empty,
+    TResult? Function(TutorialBlocStatePending value)? pending,
+    TResult? Function(TutorialBlocStateLive value)? live,
+  }) {
+    return pending?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TutorialBlocStateEmpty value)? empty,
+    TResult Function(TutorialBlocStatePending value)? pending,
+    TResult Function(TutorialBlocStateLive value)? live,
+    required TResult orElse(),
+  }) {
+    if (pending != null) {
+      return pending(this);
+    }
+    return orElse();
+  }
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PendingTutorialBlocStateToJson(
+    return _$$TutorialBlocStatePendingToJson(
       this,
     );
   }
 }
 
-abstract class _PendingTutorialBlocState extends PendingTutorialBlocState
-    implements TutorialBlocState {
-  const factory _PendingTutorialBlocState(
+abstract class TutorialBlocStatePending implements TutorialBlocState {
+  const factory TutorialBlocStatePending(
           {required final TutorialCollectionsProgressModel progress}) =
-      _$_PendingTutorialBlocState;
-  const _PendingTutorialBlocState._() : super._();
+      _$TutorialBlocStatePending;
 
-  factory _PendingTutorialBlocState.fromJson(Map<String, dynamic> json) =
-      _$_PendingTutorialBlocState.fromJson;
-
-  @override
+  factory TutorialBlocStatePending.fromJson(Map<String, dynamic> json) =
+      _$TutorialBlocStatePending.fromJson;
 
   /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
-  @override
   @JsonKey(ignore: true)
-  _$$_PendingTutorialBlocStateCopyWith<_$_PendingTutorialBlocState>
+  _$$TutorialBlocStatePendingCopyWith<_$TutorialBlocStatePending>
       get copyWith => throw _privateConstructorUsedError;
 }
 
-LiveTutorialBlocState _$LiveTutorialBlocStateFromJson(
-    Map<String, dynamic> json) {
-  return _LiveTutorialBlocState.fromJson(json);
-}
-
 /// @nodoc
-mixin _$LiveTutorialBlocState {
-  TutorialEventsCollectionModel get tutorial =>
-      throw _privateConstructorUsedError;
-
-  /// progress for all tutorials
-  TutorialCollectionsProgressModel get progress =>
-      throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $LiveTutorialBlocStateCopyWith<LiveTutorialBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $LiveTutorialBlocStateCopyWith<$Res> {
-  factory $LiveTutorialBlocStateCopyWith(LiveTutorialBlocState value,
-          $Res Function(LiveTutorialBlocState) then) =
-      _$LiveTutorialBlocStateCopyWithImpl<$Res, LiveTutorialBlocState>;
+abstract class _$$TutorialBlocStateLiveCopyWith<$Res> {
+  factory _$$TutorialBlocStateLiveCopyWith(_$TutorialBlocStateLive value,
+          $Res Function(_$TutorialBlocStateLive) then) =
+      __$$TutorialBlocStateLiveCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {TutorialEventsCollectionModel tutorial,
@@ -1213,77 +1432,11 @@ abstract class $LiveTutorialBlocStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$LiveTutorialBlocStateCopyWithImpl<$Res,
-        $Val extends LiveTutorialBlocState>
-    implements $LiveTutorialBlocStateCopyWith<$Res> {
-  _$LiveTutorialBlocStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? tutorial = null,
-    Object? progress = null,
-  }) {
-    return _then(_value.copyWith(
-      tutorial: null == tutorial
-          ? _value.tutorial
-          : tutorial // ignore: cast_nullable_to_non_nullable
-              as TutorialEventsCollectionModel,
-      progress: null == progress
-          ? _value.progress
-          : progress // ignore: cast_nullable_to_non_nullable
-              as TutorialCollectionsProgressModel,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TutorialEventsCollectionModelCopyWith<$Res> get tutorial {
-    return $TutorialEventsCollectionModelCopyWith<$Res>(_value.tutorial,
-        (value) {
-      return _then(_value.copyWith(tutorial: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
-    return $TutorialCollectionsProgressModelCopyWith<$Res>(_value.progress,
-        (value) {
-      return _then(_value.copyWith(progress: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_LiveTutorialBlocStateCopyWith<$Res>
-    implements $LiveTutorialBlocStateCopyWith<$Res> {
-  factory _$$_LiveTutorialBlocStateCopyWith(_$_LiveTutorialBlocState value,
-          $Res Function(_$_LiveTutorialBlocState) then) =
-      __$$_LiveTutorialBlocStateCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {TutorialEventsCollectionModel tutorial,
-      TutorialCollectionsProgressModel progress});
-
-  @override
-  $TutorialEventsCollectionModelCopyWith<$Res> get tutorial;
-  @override
-  $TutorialCollectionsProgressModelCopyWith<$Res> get progress;
-}
-
-/// @nodoc
-class __$$_LiveTutorialBlocStateCopyWithImpl<$Res>
-    extends _$LiveTutorialBlocStateCopyWithImpl<$Res, _$_LiveTutorialBlocState>
-    implements _$$_LiveTutorialBlocStateCopyWith<$Res> {
-  __$$_LiveTutorialBlocStateCopyWithImpl(_$_LiveTutorialBlocState _value,
-      $Res Function(_$_LiveTutorialBlocState) _then)
+class __$$TutorialBlocStateLiveCopyWithImpl<$Res>
+    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStateLive>
+    implements _$$TutorialBlocStateLiveCopyWith<$Res> {
+  __$$TutorialBlocStateLiveCopyWithImpl(_$TutorialBlocStateLive _value,
+      $Res Function(_$TutorialBlocStateLive) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1292,7 +1445,7 @@ class __$$_LiveTutorialBlocStateCopyWithImpl<$Res>
     Object? tutorial = null,
     Object? progress = null,
   }) {
-    return _then(_$_LiveTutorialBlocState(
+    return _then(_$TutorialBlocStateLive(
       tutorial: null == tutorial
           ? _value.tutorial
           : tutorial // ignore: cast_nullable_to_non_nullable
@@ -1303,18 +1456,35 @@ class __$$_LiveTutorialBlocStateCopyWithImpl<$Res>
               as TutorialCollectionsProgressModel,
     ));
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TutorialEventsCollectionModelCopyWith<$Res> get tutorial {
+    return $TutorialEventsCollectionModelCopyWith<$Res>(_value.tutorial,
+        (value) {
+      return _then(_value.copyWith(tutorial: value));
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
+    return $TutorialCollectionsProgressModelCopyWith<$Res>(_value.progress,
+        (value) {
+      return _then(_value.copyWith(progress: value));
+    });
+  }
 }
 
 /// @nodoc
+@JsonSerializable()
+class _$TutorialBlocStateLive implements TutorialBlocStateLive {
+  const _$TutorialBlocStateLive(
+      {required this.tutorial, required this.progress, final String? $type})
+      : $type = $type ?? 'live';
 
-@JsonSerializable(explicitToJson: true)
-class _$_LiveTutorialBlocState extends _LiveTutorialBlocState {
-  const _$_LiveTutorialBlocState(
-      {required this.tutorial, required this.progress})
-      : super._();
-
-  factory _$_LiveTutorialBlocState.fromJson(Map<String, dynamic> json) =>
-      _$$_LiveTutorialBlocStateFromJson(json);
+  factory _$TutorialBlocStateLive.fromJson(Map<String, dynamic> json) =>
+      _$$TutorialBlocStateLiveFromJson(json);
 
   @override
   final TutorialEventsCollectionModel tutorial;
@@ -1323,16 +1493,19 @@ class _$_LiveTutorialBlocState extends _LiveTutorialBlocState {
   @override
   final TutorialCollectionsProgressModel progress;
 
+  @JsonKey(name: 'runtimeType')
+  final String $type;
+
   @override
   String toString() {
-    return 'LiveTutorialBlocState(tutorial: $tutorial, progress: $progress)';
+    return 'TutorialBlocState.live(tutorial: $tutorial, progress: $progress)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LiveTutorialBlocState &&
+            other is _$TutorialBlocStateLive &&
             (identical(other.tutorial, tutorial) ||
                 other.tutorial == tutorial) &&
             (identical(other.progress, progress) ||
@@ -1346,37 +1519,107 @@ class _$_LiveTutorialBlocState extends _LiveTutorialBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LiveTutorialBlocStateCopyWith<_$_LiveTutorialBlocState> get copyWith =>
-      __$$_LiveTutorialBlocStateCopyWithImpl<_$_LiveTutorialBlocState>(
+  _$$TutorialBlocStateLiveCopyWith<_$TutorialBlocStateLive> get copyWith =>
+      __$$TutorialBlocStateLiveCopyWithImpl<_$TutorialBlocStateLive>(
           this, _$identity);
 
   @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() empty,
+    required TResult Function(TutorialCollectionsProgressModel progress)
+        pending,
+    required TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)
+        live,
+  }) {
+    return live(tutorial, progress);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? empty,
+    TResult? Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult? Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+  }) {
+    return live?.call(tutorial, progress);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? empty,
+    TResult Function(TutorialCollectionsProgressModel progress)? pending,
+    TResult Function(TutorialEventsCollectionModel tutorial,
+            TutorialCollectionsProgressModel progress)?
+        live,
+    required TResult orElse(),
+  }) {
+    if (live != null) {
+      return live(tutorial, progress);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(TutorialBlocStateEmpty value) empty,
+    required TResult Function(TutorialBlocStatePending value) pending,
+    required TResult Function(TutorialBlocStateLive value) live,
+  }) {
+    return live(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(TutorialBlocStateEmpty value)? empty,
+    TResult? Function(TutorialBlocStatePending value)? pending,
+    TResult? Function(TutorialBlocStateLive value)? live,
+  }) {
+    return live?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(TutorialBlocStateEmpty value)? empty,
+    TResult Function(TutorialBlocStatePending value)? pending,
+    TResult Function(TutorialBlocStateLive value)? live,
+    required TResult orElse(),
+  }) {
+    if (live != null) {
+      return live(this);
+    }
+    return orElse();
+  }
+
+  @override
   Map<String, dynamic> toJson() {
-    return _$$_LiveTutorialBlocStateToJson(
+    return _$$TutorialBlocStateLiveToJson(
       this,
     );
   }
 }
 
-abstract class _LiveTutorialBlocState extends LiveTutorialBlocState
-    implements TutorialBlocState {
-  const factory _LiveTutorialBlocState(
+abstract class TutorialBlocStateLive implements TutorialBlocState {
+  const factory TutorialBlocStateLive(
           {required final TutorialEventsCollectionModel tutorial,
           required final TutorialCollectionsProgressModel progress}) =
-      _$_LiveTutorialBlocState;
-  const _LiveTutorialBlocState._() : super._();
+      _$TutorialBlocStateLive;
 
-  factory _LiveTutorialBlocState.fromJson(Map<String, dynamic> json) =
-      _$_LiveTutorialBlocState.fromJson;
+  factory TutorialBlocStateLive.fromJson(Map<String, dynamic> json) =
+      _$TutorialBlocStateLive.fromJson;
 
-  @override
   TutorialEventsCollectionModel get tutorial;
-  @override
 
   /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
-  @override
   @JsonKey(ignore: true)
-  _$$_LiveTutorialBlocStateCopyWith<_$_LiveTutorialBlocState> get copyWith =>
+  _$$TutorialBlocStateLiveCopyWith<_$TutorialBlocStateLive> get copyWith =>
       throw _privateConstructorUsedError;
 }

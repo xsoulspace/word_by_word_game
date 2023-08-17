@@ -87,7 +87,7 @@ class DialogStackState extends LifeState with ChangeNotifier {
   }
 
   void _onTutorialChanged(final TutorialBlocState tutorialState) {
-    if (tutorialState is! LiveTutorialBlocState) {
+    if (tutorialState is! TutorialBlocStateLive) {
       if (dialogType.name.contains('tutorial')) {
         _closeDialog();
       }
