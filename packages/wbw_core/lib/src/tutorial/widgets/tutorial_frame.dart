@@ -29,7 +29,6 @@ class TutorialFrame extends StatelessWidget {
   Widget build(final BuildContext context) {
     final highlighted =
         context.select<TutorialBloc, bool>((final tutorialBloc) {
-      // return true;
       if (tutorialBloc.state is! TutorialBlocStateLive) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
 
@@ -52,6 +51,9 @@ class TutorialFrame extends StatelessWidget {
 
     return PortalTarget(
       anchor: highlightPosition.toAnchor(),
+
+      /// mobile dialog is in HudOverlay, so there is only desktop
+      /// will be displayed
       portalFollower: const DesktopAnchoredTutorialDialog(),
       visible: highlighted && !isMobile,
       child: HighlightFrame(

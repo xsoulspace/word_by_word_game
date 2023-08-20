@@ -1,9 +1,10 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
-import '../../models/models.dart';
-import '../bloc/tutorial_bloc.dart';
+import '../../../wbw_core.dart';
 
 enum AnchoredTutorialDialogType {
   idle,
@@ -39,7 +40,9 @@ class MobileTutorialDialog extends StatelessWidget {
       final tutorialEvent = tutorialBloc.getTutorialEvent();
       return !tutorialEvent.isCompleted;
     });
-    if (highlighted && persistentFormFactors.screenSize.width < 700) {
+    if (highlighted &&
+        persistentFormFactors.screenSize.width <
+            WidthFormFactor.mobileTutorialMaxWidth) {
       return const MobileAnchoredTutorialDialog();
     }
     return const SizedBox();
@@ -122,32 +125,28 @@ class _AnchoredTutorialOkDialog extends StatelessWidget {
   });
   final TutorialEventModel tutorialEvent;
   @override
-  Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
-    return AnchoredTutorialDialogScaffold(
-      children: [
-        Text(tutorialEvent.localizedMap.getValue()),
-        uiTheme.verticalBoxes.medium,
-        Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () {
-                  context.read<TutorialBloc>().onTutorialUiAction(
-                        const TutorialUiActionEvent(
-                          action: TutorialCompleteAction.onClick,
-                          key: TutorialUiItem.anchoredOkDialog,
-                        ),
-                      );
-                },
-                child: const Text('Ok'),
+  Widget build(final BuildContext context) => AnchoredTutorialDialogScaffold(
+        children: [
+          Text(tutorialEvent.localizedMap.getValue()),
+          Row(
+            children: [
+              Expanded(
+                child: TextButton(
+                  onPressed: () {
+                    context.read<TutorialBloc>().onTutorialUiAction(
+                          const TutorialUiActionEvent(
+                            action: TutorialCompleteAction.onClick,
+                            key: TutorialUiItem.anchoredOkDialog,
+                          ),
+                        );
+                  },
+                  child: const Text('Ok'),
+                ),
               ),
-            ),
-          ],
-        ),
-      ],
-    );
-  }
+            ],
+          ),
+        ],
+      );
 }
 
 class AnchoredTutorialDialogScaffold extends StatelessWidget {
@@ -165,6 +164,7 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
   Widget build(final BuildContext context) {
     // final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
+    final screenSize = MediaQuery.sizeOf(context);
     Widget child;
     if (builder != null) {
       child = Builder(builder: builder!);
@@ -176,8 +176,8 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
       );
     }
     return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 250,
+      constraints: BoxConstraints(
+        maxWidth: math.min(screenSize.width * 0.8, 300),
       ),
       child: Card(
         child: child,
