@@ -85,14 +85,14 @@ class CanvasRendererGame extends FlameGame
         onNewState: _handleLevelStateChanges,
       ),
       // temporary enabling it
-      // if (debugMode)
-      FpsTextComponent(
-        textRenderer: regular,
-        priority: 100,
-      )
-        ..anchor = Anchor.topLeft
-        ..x = 32
-        ..y = 32.0,
+      if (debugMode)
+        FpsTextComponent(
+          textRenderer: regular,
+          priority: 100,
+        )
+          ..anchor = Anchor.topLeft
+          ..x = 32
+          ..y = 32.0,
       canvasRenderer,
     ]);
     final oldOverlays = [...overlays.activeOverlays];
