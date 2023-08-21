@@ -70,7 +70,9 @@ class PauseScreenState extends ContextfulLifeState {
 
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 200),
+        constraints: const BoxConstraints(
+          maxWidth: 200,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -89,7 +91,7 @@ class PauseScreenState extends ContextfulLifeState {
                 ),
               ),
             ),
-            uiTheme.verticalBoxes.medium,
+            uiTheme.verticalBoxes.small,
             Visibility(
               visible: kLinksAreAllowed,
               child: TextButton(
@@ -98,6 +100,34 @@ class PauseScreenState extends ContextfulLifeState {
                 child: Padding(
                   padding: const EdgeInsets.all(8),
                   child: Text(s.supportGame),
+                ),
+              ),
+            ),
+            uiTheme.verticalBoxes.large,
+            const Text('Graphics credits & thanks:'),
+            uiTheme.verticalBoxes.medium,
+            Visibility(
+              visible: kLinksAreAllowed,
+              child: TextButton(
+                onPressed: () => launchUrlString('https://sonnenstein.itch.io'),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Sonnenstein (we currently working to create new tileset)',
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: kLinksAreAllowed,
+              child: TextButton(
+                onPressed: () =>
+                    launchUrlString('https://pixelfrog-assets.itch.io'),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Pixel Frog (Used this pack during v3 development)',
+                  ),
                 ),
               ),
             ),

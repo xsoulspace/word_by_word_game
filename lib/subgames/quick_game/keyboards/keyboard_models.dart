@@ -24,7 +24,7 @@ enum KeyboardLanguage {
   static const ruLetters = [
     ['й', 'ц', 'у', 'к', 'е', 'н', 'г', 'ш', 'щ', 'з', 'х'],
     ['ф', 'ы', 'в', 'а', 'п', 'р', 'о', 'л', 'д', 'ж', 'э'],
-    ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю']
+    ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'],
   ];
 
   List<List<String>> get letters => switch (this) {
@@ -36,6 +36,11 @@ enum KeyboardLanguage {
   KeyboardLanguage next() => switch (this) {
         KeyboardLanguage.en => KeyboardLanguage.ru,
         KeyboardLanguage.ru => KeyboardLanguage.en,
+      };
+  static KeyboardLanguage fromlanguage(final Languages? language) =>
+      switch (language) {
+        null || Languages.en || Languages.it => KeyboardLanguage.en,
+        Languages.ru => KeyboardLanguage.ru
       };
 }
 
