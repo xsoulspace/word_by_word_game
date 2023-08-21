@@ -107,13 +107,13 @@ class PolygonCreator {
 
     void getIntersections(final GidPoint point) {
       /// find neighbours points around the start point
-      final top = mapRows[point.rowIndex - 1]?[point.columnIndex];
-      final topLeft = mapRows[point.rowIndex - 1]?[point.columnIndex - 1];
-      final topRight = mapRows[point.rowIndex - 1]?[point.columnIndex + 1];
+      // final top = mapRows[point.rowIndex - 1]?[point.columnIndex];
+      // final topLeft = mapRows[point.rowIndex - 1]?[point.columnIndex - 1];
+      // final topRight = mapRows[point.rowIndex - 1]?[point.columnIndex + 1];
 
-      final bottom = mapRows[point.rowIndex + 1]?[point.columnIndex];
-      final bottomLeft = mapRows[point.rowIndex + 1]?[point.columnIndex - 1];
-      final bottomRight = mapRows[point.rowIndex + 1]?[point.columnIndex + 1];
+      // final bottom = mapRows[point.rowIndex + 1]?[point.columnIndex];
+      // final bottomLeft = mapRows[point.rowIndex + 1]?[point.columnIndex - 1];
+      // final bottomRight = mapRows[point.rowIndex + 1]?[point.columnIndex + 1];
     }
 
     getIntersections(firstPoint);

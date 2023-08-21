@@ -1,15 +1,19 @@
+import 'package:flame/cache.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 class EditorStateInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
-    read<MapEditorBloc>().add(const LoadMapEditorBlocEvent());
+    await read<DrawerCubit>().loadInitialData();
+    await read<MapEditorCubit>().load();
   }
 }
 
@@ -22,18 +26,33 @@ class StateDiProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
+          Provider<LocalDbDataSource>(
+            create: (final context) => SharedPreferencesDbDataSourceImpl(),
+          ),
           Provider(
-            create: (final context) => MechanicsCollection(),
+            create: (final context) => EditorMechanicsCollection.v1(),
           ),
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [
             BlocProvider(
-              create: (final context) => MapEditorBloc(),
+              create: (final context) => WorldBloc(
+                read: context.read,
+              ),
             ),
             BlocProvider(
               create: (final context) => DrawerCubit(
-                dto: DrawerCubitDto(context.read),
+                resourcesLoader: ResourcesLoader(
+                  tilesetAssets: AssetsCache(
+                    prefix: 'assets/images/',
+                  ),
+                ),
+                dto: DrawerCubitDto.use(context: context),
+              ),
+            ),
+            BlocProvider(
+              create: (final context) => MapEditorCubit(
+                dto: MapEditorCubitDto.use(context),
               ),
             ),
           ],

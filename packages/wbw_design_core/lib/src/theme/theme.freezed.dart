@@ -1,7 +1,7 @@
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
-// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target
+// ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
 part of 'theme.dart';
 
@@ -21,8 +21,6 @@ mixin _$UiThemeScheme {
   UiBoxSpacing get verticalBoxes => throw _privateConstructorUsedError;
   UiRadius get circularRadius => throw _privateConstructorUsedError;
   UiTextTheme get text => throw _privateConstructorUsedError;
-  UiPersistentFormFactors get persistentFormFactors =>
-      throw _privateConstructorUsedError;
   UiCustomizableFormFactors get customizableFormFactors =>
       throw _privateConstructorUsedError;
 
@@ -35,14 +33,14 @@ mixin _$UiThemeScheme {
 abstract class $UiThemeSchemeCopyWith<$Res> {
   factory $UiThemeSchemeCopyWith(
           UiThemeScheme value, $Res Function(UiThemeScheme) then) =
-      _$UiThemeSchemeCopyWithImpl<$Res>;
+      _$UiThemeSchemeCopyWithImpl<$Res, UiThemeScheme>;
+  @useResult
   $Res call(
       {UiSpacing spacing,
       UiBoxSpacing horizontalBoxes,
       UiBoxSpacing verticalBoxes,
       UiRadius circularRadius,
       UiTextTheme text,
-      UiPersistentFormFactors persistentFormFactors,
       UiCustomizableFormFactors customizableFormFactors});
 
   $UiSpacingCopyWith<$Res> get spacing;
@@ -50,109 +48,103 @@ abstract class $UiThemeSchemeCopyWith<$Res> {
   $UiBoxSpacingCopyWith<$Res> get verticalBoxes;
   $UiRadiusCopyWith<$Res> get circularRadius;
   $UiTextThemeCopyWith<$Res> get text;
-  $UiPersistentFormFactorsCopyWith<$Res> get persistentFormFactors;
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors;
 }
 
 /// @nodoc
-class _$UiThemeSchemeCopyWithImpl<$Res>
+class _$UiThemeSchemeCopyWithImpl<$Res, $Val extends UiThemeScheme>
     implements $UiThemeSchemeCopyWith<$Res> {
   _$UiThemeSchemeCopyWithImpl(this._value, this._then);
 
-  final UiThemeScheme _value;
   // ignore: unused_field
-  final $Res Function(UiThemeScheme) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? spacing = freezed,
-    Object? horizontalBoxes = freezed,
-    Object? verticalBoxes = freezed,
-    Object? circularRadius = freezed,
-    Object? text = freezed,
-    Object? persistentFormFactors = freezed,
-    Object? customizableFormFactors = freezed,
+    Object? spacing = null,
+    Object? horizontalBoxes = null,
+    Object? verticalBoxes = null,
+    Object? circularRadius = null,
+    Object? text = null,
+    Object? customizableFormFactors = null,
   }) {
     return _then(_value.copyWith(
-      spacing: spacing == freezed
+      spacing: null == spacing
           ? _value.spacing
           : spacing // ignore: cast_nullable_to_non_nullable
               as UiSpacing,
-      horizontalBoxes: horizontalBoxes == freezed
+      horizontalBoxes: null == horizontalBoxes
           ? _value.horizontalBoxes
           : horizontalBoxes // ignore: cast_nullable_to_non_nullable
               as UiBoxSpacing,
-      verticalBoxes: verticalBoxes == freezed
+      verticalBoxes: null == verticalBoxes
           ? _value.verticalBoxes
           : verticalBoxes // ignore: cast_nullable_to_non_nullable
               as UiBoxSpacing,
-      circularRadius: circularRadius == freezed
+      circularRadius: null == circularRadius
           ? _value.circularRadius
           : circularRadius // ignore: cast_nullable_to_non_nullable
               as UiRadius,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as UiTextTheme,
-      persistentFormFactors: persistentFormFactors == freezed
-          ? _value.persistentFormFactors
-          : persistentFormFactors // ignore: cast_nullable_to_non_nullable
-              as UiPersistentFormFactors,
-      customizableFormFactors: customizableFormFactors == freezed
+      customizableFormFactors: null == customizableFormFactors
           ? _value.customizableFormFactors
           : customizableFormFactors // ignore: cast_nullable_to_non_nullable
               as UiCustomizableFormFactors,
-    ));
+    ) as $Val);
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UiSpacingCopyWith<$Res> get spacing {
     return $UiSpacingCopyWith<$Res>(_value.spacing, (value) {
-      return _then(_value.copyWith(spacing: value));
+      return _then(_value.copyWith(spacing: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UiBoxSpacingCopyWith<$Res> get horizontalBoxes {
     return $UiBoxSpacingCopyWith<$Res>(_value.horizontalBoxes, (value) {
-      return _then(_value.copyWith(horizontalBoxes: value));
+      return _then(_value.copyWith(horizontalBoxes: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UiBoxSpacingCopyWith<$Res> get verticalBoxes {
     return $UiBoxSpacingCopyWith<$Res>(_value.verticalBoxes, (value) {
-      return _then(_value.copyWith(verticalBoxes: value));
+      return _then(_value.copyWith(verticalBoxes: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UiRadiusCopyWith<$Res> get circularRadius {
     return $UiRadiusCopyWith<$Res>(_value.circularRadius, (value) {
-      return _then(_value.copyWith(circularRadius: value));
+      return _then(_value.copyWith(circularRadius: value) as $Val);
     });
   }
 
   @override
+  @pragma('vm:prefer-inline')
   $UiTextThemeCopyWith<$Res> get text {
     return $UiTextThemeCopyWith<$Res>(_value.text, (value) {
-      return _then(_value.copyWith(text: value));
+      return _then(_value.copyWith(text: value) as $Val);
     });
   }
 
   @override
-  $UiPersistentFormFactorsCopyWith<$Res> get persistentFormFactors {
-    return $UiPersistentFormFactorsCopyWith<$Res>(_value.persistentFormFactors,
-        (value) {
-      return _then(_value.copyWith(persistentFormFactors: value));
-    });
-  }
-
-  @override
+  @pragma('vm:prefer-inline')
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors {
     return $UiCustomizableFormFactorsCopyWith<$Res>(
         _value.customizableFormFactors, (value) {
-      return _then(_value.copyWith(customizableFormFactors: value));
+      return _then(_value.copyWith(customizableFormFactors: value) as $Val);
     });
   }
 }
@@ -164,13 +156,13 @@ abstract class _$$_UiThemeSchemeCopyWith<$Res>
           _$_UiThemeScheme value, $Res Function(_$_UiThemeScheme) then) =
       __$$_UiThemeSchemeCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {UiSpacing spacing,
       UiBoxSpacing horizontalBoxes,
       UiBoxSpacing verticalBoxes,
       UiRadius circularRadius,
       UiTextTheme text,
-      UiPersistentFormFactors persistentFormFactors,
       UiCustomizableFormFactors customizableFormFactors});
 
   @override
@@ -184,58 +176,49 @@ abstract class _$$_UiThemeSchemeCopyWith<$Res>
   @override
   $UiTextThemeCopyWith<$Res> get text;
   @override
-  $UiPersistentFormFactorsCopyWith<$Res> get persistentFormFactors;
-  @override
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors;
 }
 
 /// @nodoc
 class __$$_UiThemeSchemeCopyWithImpl<$Res>
-    extends _$UiThemeSchemeCopyWithImpl<$Res>
+    extends _$UiThemeSchemeCopyWithImpl<$Res, _$_UiThemeScheme>
     implements _$$_UiThemeSchemeCopyWith<$Res> {
   __$$_UiThemeSchemeCopyWithImpl(
       _$_UiThemeScheme _value, $Res Function(_$_UiThemeScheme) _then)
-      : super(_value, (v) => _then(v as _$_UiThemeScheme));
+      : super(_value, _then);
 
-  @override
-  _$_UiThemeScheme get _value => super._value as _$_UiThemeScheme;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? spacing = freezed,
-    Object? horizontalBoxes = freezed,
-    Object? verticalBoxes = freezed,
-    Object? circularRadius = freezed,
-    Object? text = freezed,
-    Object? persistentFormFactors = freezed,
-    Object? customizableFormFactors = freezed,
+    Object? spacing = null,
+    Object? horizontalBoxes = null,
+    Object? verticalBoxes = null,
+    Object? circularRadius = null,
+    Object? text = null,
+    Object? customizableFormFactors = null,
   }) {
     return _then(_$_UiThemeScheme(
-      spacing: spacing == freezed
+      spacing: null == spacing
           ? _value.spacing
           : spacing // ignore: cast_nullable_to_non_nullable
               as UiSpacing,
-      horizontalBoxes: horizontalBoxes == freezed
+      horizontalBoxes: null == horizontalBoxes
           ? _value.horizontalBoxes
           : horizontalBoxes // ignore: cast_nullable_to_non_nullable
               as UiBoxSpacing,
-      verticalBoxes: verticalBoxes == freezed
+      verticalBoxes: null == verticalBoxes
           ? _value.verticalBoxes
           : verticalBoxes // ignore: cast_nullable_to_non_nullable
               as UiBoxSpacing,
-      circularRadius: circularRadius == freezed
+      circularRadius: null == circularRadius
           ? _value.circularRadius
           : circularRadius // ignore: cast_nullable_to_non_nullable
               as UiRadius,
-      text: text == freezed
+      text: null == text
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as UiTextTheme,
-      persistentFormFactors: persistentFormFactors == freezed
-          ? _value.persistentFormFactors
-          : persistentFormFactors // ignore: cast_nullable_to_non_nullable
-              as UiPersistentFormFactors,
-      customizableFormFactors: customizableFormFactors == freezed
+      customizableFormFactors: null == customizableFormFactors
           ? _value.customizableFormFactors
           : customizableFormFactors // ignore: cast_nullable_to_non_nullable
               as UiCustomizableFormFactors,
@@ -252,7 +235,6 @@ class _$_UiThemeScheme extends _UiThemeScheme with DiagnosticableTreeMixin {
       required this.verticalBoxes,
       required this.circularRadius,
       required this.text,
-      required this.persistentFormFactors,
       required this.customizableFormFactors})
       : super._();
 
@@ -267,13 +249,11 @@ class _$_UiThemeScheme extends _UiThemeScheme with DiagnosticableTreeMixin {
   @override
   final UiTextTheme text;
   @override
-  final UiPersistentFormFactors persistentFormFactors;
-  @override
   final UiCustomizableFormFactors customizableFormFactors;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UiThemeScheme(spacing: $spacing, horizontalBoxes: $horizontalBoxes, verticalBoxes: $verticalBoxes, circularRadius: $circularRadius, text: $text, persistentFormFactors: $persistentFormFactors, customizableFormFactors: $customizableFormFactors)';
+    return 'UiThemeScheme(spacing: $spacing, horizontalBoxes: $horizontalBoxes, verticalBoxes: $verticalBoxes, circularRadius: $circularRadius, text: $text, customizableFormFactors: $customizableFormFactors)';
   }
 
   @override
@@ -286,7 +266,6 @@ class _$_UiThemeScheme extends _UiThemeScheme with DiagnosticableTreeMixin {
       ..add(DiagnosticsProperty('verticalBoxes', verticalBoxes))
       ..add(DiagnosticsProperty('circularRadius', circularRadius))
       ..add(DiagnosticsProperty('text', text))
-      ..add(DiagnosticsProperty('persistentFormFactors', persistentFormFactors))
       ..add(DiagnosticsProperty(
           'customizableFormFactors', customizableFormFactors));
   }
@@ -296,33 +275,26 @@ class _$_UiThemeScheme extends _UiThemeScheme with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UiThemeScheme &&
-            const DeepCollectionEquality().equals(other.spacing, spacing) &&
-            const DeepCollectionEquality()
-                .equals(other.horizontalBoxes, horizontalBoxes) &&
-            const DeepCollectionEquality()
-                .equals(other.verticalBoxes, verticalBoxes) &&
-            const DeepCollectionEquality()
-                .equals(other.circularRadius, circularRadius) &&
-            const DeepCollectionEquality().equals(other.text, text) &&
-            const DeepCollectionEquality()
-                .equals(other.persistentFormFactors, persistentFormFactors) &&
-            const DeepCollectionEquality().equals(
-                other.customizableFormFactors, customizableFormFactors));
+            (identical(other.spacing, spacing) || other.spacing == spacing) &&
+            (identical(other.horizontalBoxes, horizontalBoxes) ||
+                other.horizontalBoxes == horizontalBoxes) &&
+            (identical(other.verticalBoxes, verticalBoxes) ||
+                other.verticalBoxes == verticalBoxes) &&
+            (identical(other.circularRadius, circularRadius) ||
+                other.circularRadius == circularRadius) &&
+            (identical(other.text, text) || other.text == text) &&
+            (identical(
+                    other.customizableFormFactors, customizableFormFactors) ||
+                other.customizableFormFactors == customizableFormFactors));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(spacing),
-      const DeepCollectionEquality().hash(horizontalBoxes),
-      const DeepCollectionEquality().hash(verticalBoxes),
-      const DeepCollectionEquality().hash(circularRadius),
-      const DeepCollectionEquality().hash(text),
-      const DeepCollectionEquality().hash(persistentFormFactors),
-      const DeepCollectionEquality().hash(customizableFormFactors));
+  int get hashCode => Object.hash(runtimeType, spacing, horizontalBoxes,
+      verticalBoxes, circularRadius, text, customizableFormFactors);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UiThemeSchemeCopyWith<_$_UiThemeScheme> get copyWith =>
       __$$_UiThemeSchemeCopyWithImpl<_$_UiThemeScheme>(this, _$identity);
 }
@@ -334,7 +306,6 @@ abstract class _UiThemeScheme extends UiThemeScheme {
           required final UiBoxSpacing verticalBoxes,
           required final UiRadius circularRadius,
           required final UiTextTheme text,
-          required final UiPersistentFormFactors persistentFormFactors,
           required final UiCustomizableFormFactors customizableFormFactors}) =
       _$_UiThemeScheme;
   const _UiThemeScheme._() : super._();
@@ -350,8 +321,6 @@ abstract class _UiThemeScheme extends UiThemeScheme {
   @override
   UiTextTheme get text;
   @override
-  UiPersistentFormFactors get persistentFormFactors;
-  @override
   UiCustomizableFormFactors get customizableFormFactors;
   @override
   @JsonKey(ignore: true)
@@ -363,6 +332,7 @@ abstract class _UiThemeScheme extends UiThemeScheme {
 mixin _$UiPersistentFormFactors {
   WidthFormFactor get width => throw _privateConstructorUsedError;
   DeviceWindowFormFactor get deviceWindow => throw _privateConstructorUsedError;
+  Size get screenSize => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $UiPersistentFormFactorsCopyWith<UiPersistentFormFactors> get copyWith =>
@@ -373,34 +343,46 @@ mixin _$UiPersistentFormFactors {
 abstract class $UiPersistentFormFactorsCopyWith<$Res> {
   factory $UiPersistentFormFactorsCopyWith(UiPersistentFormFactors value,
           $Res Function(UiPersistentFormFactors) then) =
-      _$UiPersistentFormFactorsCopyWithImpl<$Res>;
-  $Res call({WidthFormFactor width, DeviceWindowFormFactor deviceWindow});
+      _$UiPersistentFormFactorsCopyWithImpl<$Res, UiPersistentFormFactors>;
+  @useResult
+  $Res call(
+      {WidthFormFactor width,
+      DeviceWindowFormFactor deviceWindow,
+      Size screenSize});
 }
 
 /// @nodoc
-class _$UiPersistentFormFactorsCopyWithImpl<$Res>
+class _$UiPersistentFormFactorsCopyWithImpl<$Res,
+        $Val extends UiPersistentFormFactors>
     implements $UiPersistentFormFactorsCopyWith<$Res> {
   _$UiPersistentFormFactorsCopyWithImpl(this._value, this._then);
 
-  final UiPersistentFormFactors _value;
   // ignore: unused_field
-  final $Res Function(UiPersistentFormFactors) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? width = freezed,
-    Object? deviceWindow = freezed,
+    Object? width = null,
+    Object? deviceWindow = null,
+    Object? screenSize = null,
   }) {
     return _then(_value.copyWith(
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as WidthFormFactor,
-      deviceWindow: deviceWindow == freezed
+      deviceWindow: null == deviceWindow
           ? _value.deviceWindow
           : deviceWindow // ignore: cast_nullable_to_non_nullable
               as DeviceWindowFormFactor,
-    ));
+      screenSize: null == screenSize
+          ? _value.screenSize
+          : screenSize // ignore: cast_nullable_to_non_nullable
+              as Size,
+    ) as $Val);
   }
 }
 
@@ -411,35 +393,42 @@ abstract class _$$_UiPersistentFormFactorsCopyWith<$Res>
           $Res Function(_$_UiPersistentFormFactors) then) =
       __$$_UiPersistentFormFactorsCopyWithImpl<$Res>;
   @override
-  $Res call({WidthFormFactor width, DeviceWindowFormFactor deviceWindow});
+  @useResult
+  $Res call(
+      {WidthFormFactor width,
+      DeviceWindowFormFactor deviceWindow,
+      Size screenSize});
 }
 
 /// @nodoc
 class __$$_UiPersistentFormFactorsCopyWithImpl<$Res>
-    extends _$UiPersistentFormFactorsCopyWithImpl<$Res>
+    extends _$UiPersistentFormFactorsCopyWithImpl<$Res,
+        _$_UiPersistentFormFactors>
     implements _$$_UiPersistentFormFactorsCopyWith<$Res> {
   __$$_UiPersistentFormFactorsCopyWithImpl(_$_UiPersistentFormFactors _value,
       $Res Function(_$_UiPersistentFormFactors) _then)
-      : super(_value, (v) => _then(v as _$_UiPersistentFormFactors));
+      : super(_value, _then);
 
-  @override
-  _$_UiPersistentFormFactors get _value =>
-      super._value as _$_UiPersistentFormFactors;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? width = freezed,
-    Object? deviceWindow = freezed,
+    Object? width = null,
+    Object? deviceWindow = null,
+    Object? screenSize = null,
   }) {
     return _then(_$_UiPersistentFormFactors(
-      width: width == freezed
+      width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
               as WidthFormFactor,
-      deviceWindow: deviceWindow == freezed
+      deviceWindow: null == deviceWindow
           ? _value.deviceWindow
           : deviceWindow // ignore: cast_nullable_to_non_nullable
               as DeviceWindowFormFactor,
+      screenSize: null == screenSize
+          ? _value.screenSize
+          : screenSize // ignore: cast_nullable_to_non_nullable
+              as Size,
     ));
   }
 }
@@ -449,17 +438,21 @@ class __$$_UiPersistentFormFactorsCopyWithImpl<$Res>
 class _$_UiPersistentFormFactors extends _UiPersistentFormFactors
     with DiagnosticableTreeMixin {
   const _$_UiPersistentFormFactors(
-      {required this.width, required this.deviceWindow})
+      {required this.width,
+      required this.deviceWindow,
+      required this.screenSize})
       : super._();
 
   @override
   final WidthFormFactor width;
   @override
   final DeviceWindowFormFactor deviceWindow;
+  @override
+  final Size screenSize;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UiPersistentFormFactors(width: $width, deviceWindow: $deviceWindow)';
+    return 'UiPersistentFormFactors(width: $width, deviceWindow: $deviceWindow, screenSize: $screenSize)';
   }
 
   @override
@@ -468,7 +461,8 @@ class _$_UiPersistentFormFactors extends _UiPersistentFormFactors
     properties
       ..add(DiagnosticsProperty('type', 'UiPersistentFormFactors'))
       ..add(DiagnosticsProperty('width', width))
-      ..add(DiagnosticsProperty('deviceWindow', deviceWindow));
+      ..add(DiagnosticsProperty('deviceWindow', deviceWindow))
+      ..add(DiagnosticsProperty('screenSize', screenSize));
   }
 
   @override
@@ -476,19 +470,19 @@ class _$_UiPersistentFormFactors extends _UiPersistentFormFactors
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UiPersistentFormFactors &&
-            const DeepCollectionEquality().equals(other.width, width) &&
-            const DeepCollectionEquality()
-                .equals(other.deviceWindow, deviceWindow));
+            (identical(other.width, width) || other.width == width) &&
+            (identical(other.deviceWindow, deviceWindow) ||
+                other.deviceWindow == deviceWindow) &&
+            (identical(other.screenSize, screenSize) ||
+                other.screenSize == screenSize));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(width),
-      const DeepCollectionEquality().hash(deviceWindow));
+  int get hashCode => Object.hash(runtimeType, width, deviceWindow, screenSize);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UiPersistentFormFactorsCopyWith<_$_UiPersistentFormFactors>
       get copyWith =>
           __$$_UiPersistentFormFactorsCopyWithImpl<_$_UiPersistentFormFactors>(
@@ -497,15 +491,17 @@ class _$_UiPersistentFormFactors extends _UiPersistentFormFactors
 
 abstract class _UiPersistentFormFactors extends UiPersistentFormFactors {
   const factory _UiPersistentFormFactors(
-          {required final WidthFormFactor width,
-          required final DeviceWindowFormFactor deviceWindow}) =
-      _$_UiPersistentFormFactors;
+      {required final WidthFormFactor width,
+      required final DeviceWindowFormFactor deviceWindow,
+      required final Size screenSize}) = _$_UiPersistentFormFactors;
   const _UiPersistentFormFactors._() : super._();
 
   @override
   WidthFormFactor get width;
   @override
   DeviceWindowFormFactor get deviceWindow;
+  @override
+  Size get screenSize;
   @override
   @JsonKey(ignore: true)
   _$$_UiPersistentFormFactorsCopyWith<_$_UiPersistentFormFactors>
@@ -526,34 +522,38 @@ mixin _$UiCustomizableFormFactors {
 abstract class $UiCustomizableFormFactorsCopyWith<$Res> {
   factory $UiCustomizableFormFactorsCopyWith(UiCustomizableFormFactors value,
           $Res Function(UiCustomizableFormFactors) then) =
-      _$UiCustomizableFormFactorsCopyWithImpl<$Res>;
+      _$UiCustomizableFormFactorsCopyWithImpl<$Res, UiCustomizableFormFactors>;
+  @useResult
   $Res call({PerformanceFormFactor performance, ControlsFormFactor controls});
 }
 
 /// @nodoc
-class _$UiCustomizableFormFactorsCopyWithImpl<$Res>
+class _$UiCustomizableFormFactorsCopyWithImpl<$Res,
+        $Val extends UiCustomizableFormFactors>
     implements $UiCustomizableFormFactorsCopyWith<$Res> {
   _$UiCustomizableFormFactorsCopyWithImpl(this._value, this._then);
 
-  final UiCustomizableFormFactors _value;
   // ignore: unused_field
-  final $Res Function(UiCustomizableFormFactors) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? performance = freezed,
-    Object? controls = freezed,
+    Object? performance = null,
+    Object? controls = null,
   }) {
     return _then(_value.copyWith(
-      performance: performance == freezed
+      performance: null == performance
           ? _value.performance
           : performance // ignore: cast_nullable_to_non_nullable
               as PerformanceFormFactor,
-      controls: controls == freezed
+      controls: null == controls
           ? _value.controls
           : controls // ignore: cast_nullable_to_non_nullable
               as ControlsFormFactor,
-    ));
+    ) as $Val);
   }
 }
 
@@ -565,33 +565,32 @@ abstract class _$$_UiCustomizableFormFactorsCopyWith<$Res>
           $Res Function(_$_UiCustomizableFormFactors) then) =
       __$$_UiCustomizableFormFactorsCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({PerformanceFormFactor performance, ControlsFormFactor controls});
 }
 
 /// @nodoc
 class __$$_UiCustomizableFormFactorsCopyWithImpl<$Res>
-    extends _$UiCustomizableFormFactorsCopyWithImpl<$Res>
+    extends _$UiCustomizableFormFactorsCopyWithImpl<$Res,
+        _$_UiCustomizableFormFactors>
     implements _$$_UiCustomizableFormFactorsCopyWith<$Res> {
   __$$_UiCustomizableFormFactorsCopyWithImpl(
       _$_UiCustomizableFormFactors _value,
       $Res Function(_$_UiCustomizableFormFactors) _then)
-      : super(_value, (v) => _then(v as _$_UiCustomizableFormFactors));
+      : super(_value, _then);
 
-  @override
-  _$_UiCustomizableFormFactors get _value =>
-      super._value as _$_UiCustomizableFormFactors;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? performance = freezed,
-    Object? controls = freezed,
+    Object? performance = null,
+    Object? controls = null,
   }) {
     return _then(_$_UiCustomizableFormFactors(
-      performance: performance == freezed
+      performance: null == performance
           ? _value.performance
           : performance // ignore: cast_nullable_to_non_nullable
               as PerformanceFormFactor,
-      controls: controls == freezed
+      controls: null == controls
           ? _value.controls
           : controls // ignore: cast_nullable_to_non_nullable
               as ControlsFormFactor,
@@ -631,19 +630,18 @@ class _$_UiCustomizableFormFactors extends _UiCustomizableFormFactors
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UiCustomizableFormFactors &&
-            const DeepCollectionEquality()
-                .equals(other.performance, performance) &&
-            const DeepCollectionEquality().equals(other.controls, controls));
+            (identical(other.performance, performance) ||
+                other.performance == performance) &&
+            (identical(other.controls, controls) ||
+                other.controls == controls));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(performance),
-      const DeepCollectionEquality().hash(controls));
+  int get hashCode => Object.hash(runtimeType, performance, controls);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UiCustomizableFormFactorsCopyWith<_$_UiCustomizableFormFactors>
       get copyWith => __$$_UiCustomizableFormFactorsCopyWithImpl<
           _$_UiCustomizableFormFactors>(this, _$identity);
@@ -684,7 +682,8 @@ mixin _$UiSpacing {
 /// @nodoc
 abstract class $UiSpacingCopyWith<$Res> {
   factory $UiSpacingCopyWith(UiSpacing value, $Res Function(UiSpacing) then) =
-      _$UiSpacingCopyWithImpl<$Res>;
+      _$UiSpacingCopyWithImpl<$Res, UiSpacing>;
+  @useResult
   $Res call(
       {double none,
       double extraSmall,
@@ -696,53 +695,56 @@ abstract class $UiSpacingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UiSpacingCopyWithImpl<$Res> implements $UiSpacingCopyWith<$Res> {
+class _$UiSpacingCopyWithImpl<$Res, $Val extends UiSpacing>
+    implements $UiSpacingCopyWith<$Res> {
   _$UiSpacingCopyWithImpl(this._value, this._then);
 
-  final UiSpacing _value;
   // ignore: unused_field
-  final $Res Function(UiSpacing) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? none = freezed,
-    Object? extraSmall = freezed,
-    Object? small = freezed,
-    Object? medium = freezed,
-    Object? large = freezed,
-    Object? extraLarge = freezed,
-    Object? full = freezed,
+    Object? none = null,
+    Object? extraSmall = null,
+    Object? small = null,
+    Object? medium = null,
+    Object? large = null,
+    Object? extraLarge = null,
+    Object? full = null,
   }) {
     return _then(_value.copyWith(
-      none: none == freezed
+      none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
               as double,
-      extraSmall: extraSmall == freezed
+      extraSmall: null == extraSmall
           ? _value.extraSmall
           : extraSmall // ignore: cast_nullable_to_non_nullable
               as double,
-      small: small == freezed
+      small: null == small
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
               as double,
-      medium: medium == freezed
+      medium: null == medium
           ? _value.medium
           : medium // ignore: cast_nullable_to_non_nullable
               as double,
-      large: large == freezed
+      large: null == large
           ? _value.large
           : large // ignore: cast_nullable_to_non_nullable
               as double,
-      extraLarge: extraLarge == freezed
+      extraLarge: null == extraLarge
           ? _value.extraLarge
           : extraLarge // ignore: cast_nullable_to_non_nullable
               as double,
-      full: full == freezed
+      full: null == full
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as double,
-    ));
+    ) as $Val);
   }
 }
 
@@ -752,6 +754,7 @@ abstract class _$$_UiSpacingCopyWith<$Res> implements $UiSpacingCopyWith<$Res> {
           _$_UiSpacing value, $Res Function(_$_UiSpacing) then) =
       __$$_UiSpacingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {double none,
       double extraSmall,
@@ -763,51 +766,50 @@ abstract class _$$_UiSpacingCopyWith<$Res> implements $UiSpacingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UiSpacingCopyWithImpl<$Res> extends _$UiSpacingCopyWithImpl<$Res>
+class __$$_UiSpacingCopyWithImpl<$Res>
+    extends _$UiSpacingCopyWithImpl<$Res, _$_UiSpacing>
     implements _$$_UiSpacingCopyWith<$Res> {
   __$$_UiSpacingCopyWithImpl(
       _$_UiSpacing _value, $Res Function(_$_UiSpacing) _then)
-      : super(_value, (v) => _then(v as _$_UiSpacing));
+      : super(_value, _then);
 
-  @override
-  _$_UiSpacing get _value => super._value as _$_UiSpacing;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? none = freezed,
-    Object? extraSmall = freezed,
-    Object? small = freezed,
-    Object? medium = freezed,
-    Object? large = freezed,
-    Object? extraLarge = freezed,
-    Object? full = freezed,
+    Object? none = null,
+    Object? extraSmall = null,
+    Object? small = null,
+    Object? medium = null,
+    Object? large = null,
+    Object? extraLarge = null,
+    Object? full = null,
   }) {
     return _then(_$_UiSpacing(
-      none: none == freezed
+      none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
               as double,
-      extraSmall: extraSmall == freezed
+      extraSmall: null == extraSmall
           ? _value.extraSmall
           : extraSmall // ignore: cast_nullable_to_non_nullable
               as double,
-      small: small == freezed
+      small: null == small
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
               as double,
-      medium: medium == freezed
+      medium: null == medium
           ? _value.medium
           : medium // ignore: cast_nullable_to_non_nullable
               as double,
-      large: large == freezed
+      large: null == large
           ? _value.large
           : large // ignore: cast_nullable_to_non_nullable
               as double,
-      extraLarge: extraLarge == freezed
+      extraLarge: null == extraLarge
           ? _value.extraLarge
           : extraLarge // ignore: cast_nullable_to_non_nullable
               as double,
-      full: full == freezed
+      full: null == full
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as double,
@@ -867,30 +869,24 @@ class _$_UiSpacing extends _UiSpacing with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UiSpacing &&
-            const DeepCollectionEquality().equals(other.none, none) &&
-            const DeepCollectionEquality()
-                .equals(other.extraSmall, extraSmall) &&
-            const DeepCollectionEquality().equals(other.small, small) &&
-            const DeepCollectionEquality().equals(other.medium, medium) &&
-            const DeepCollectionEquality().equals(other.large, large) &&
-            const DeepCollectionEquality()
-                .equals(other.extraLarge, extraLarge) &&
-            const DeepCollectionEquality().equals(other.full, full));
+            (identical(other.none, none) || other.none == none) &&
+            (identical(other.extraSmall, extraSmall) ||
+                other.extraSmall == extraSmall) &&
+            (identical(other.small, small) || other.small == small) &&
+            (identical(other.medium, medium) || other.medium == medium) &&
+            (identical(other.large, large) || other.large == large) &&
+            (identical(other.extraLarge, extraLarge) ||
+                other.extraLarge == extraLarge) &&
+            (identical(other.full, full) || other.full == full));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(none),
-      const DeepCollectionEquality().hash(extraSmall),
-      const DeepCollectionEquality().hash(small),
-      const DeepCollectionEquality().hash(medium),
-      const DeepCollectionEquality().hash(large),
-      const DeepCollectionEquality().hash(extraLarge),
-      const DeepCollectionEquality().hash(full));
+      runtimeType, none, extraSmall, small, medium, large, extraLarge, full);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UiSpacingCopyWith<_$_UiSpacing> get copyWith =>
       __$$_UiSpacingCopyWithImpl<_$_UiSpacing>(this, _$identity);
 }
@@ -944,7 +940,8 @@ mixin _$UiRadius {
 /// @nodoc
 abstract class $UiRadiusCopyWith<$Res> {
   factory $UiRadiusCopyWith(UiRadius value, $Res Function(UiRadius) then) =
-      _$UiRadiusCopyWithImpl<$Res>;
+      _$UiRadiusCopyWithImpl<$Res, UiRadius>;
+  @useResult
   $Res call(
       {Radius none,
       Radius extraSmall,
@@ -956,53 +953,56 @@ abstract class $UiRadiusCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UiRadiusCopyWithImpl<$Res> implements $UiRadiusCopyWith<$Res> {
+class _$UiRadiusCopyWithImpl<$Res, $Val extends UiRadius>
+    implements $UiRadiusCopyWith<$Res> {
   _$UiRadiusCopyWithImpl(this._value, this._then);
 
-  final UiRadius _value;
   // ignore: unused_field
-  final $Res Function(UiRadius) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? none = freezed,
-    Object? extraSmall = freezed,
-    Object? small = freezed,
-    Object? medium = freezed,
-    Object? large = freezed,
-    Object? extraLarge = freezed,
-    Object? full = freezed,
+    Object? none = null,
+    Object? extraSmall = null,
+    Object? small = null,
+    Object? medium = null,
+    Object? large = null,
+    Object? extraLarge = null,
+    Object? full = null,
   }) {
     return _then(_value.copyWith(
-      none: none == freezed
+      none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
               as Radius,
-      extraSmall: extraSmall == freezed
+      extraSmall: null == extraSmall
           ? _value.extraSmall
           : extraSmall // ignore: cast_nullable_to_non_nullable
               as Radius,
-      small: small == freezed
+      small: null == small
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
               as Radius,
-      medium: medium == freezed
+      medium: null == medium
           ? _value.medium
           : medium // ignore: cast_nullable_to_non_nullable
               as Radius,
-      large: large == freezed
+      large: null == large
           ? _value.large
           : large // ignore: cast_nullable_to_non_nullable
               as Radius,
-      extraLarge: extraLarge == freezed
+      extraLarge: null == extraLarge
           ? _value.extraLarge
           : extraLarge // ignore: cast_nullable_to_non_nullable
               as Radius,
-      full: full == freezed
+      full: null == full
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as Radius,
-    ));
+    ) as $Val);
   }
 }
 
@@ -1012,6 +1012,7 @@ abstract class _$$_UiRadiusCopyWith<$Res> implements $UiRadiusCopyWith<$Res> {
           _$_UiRadius value, $Res Function(_$_UiRadius) then) =
       __$$_UiRadiusCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {Radius none,
       Radius extraSmall,
@@ -1023,51 +1024,50 @@ abstract class _$$_UiRadiusCopyWith<$Res> implements $UiRadiusCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UiRadiusCopyWithImpl<$Res> extends _$UiRadiusCopyWithImpl<$Res>
+class __$$_UiRadiusCopyWithImpl<$Res>
+    extends _$UiRadiusCopyWithImpl<$Res, _$_UiRadius>
     implements _$$_UiRadiusCopyWith<$Res> {
   __$$_UiRadiusCopyWithImpl(
       _$_UiRadius _value, $Res Function(_$_UiRadius) _then)
-      : super(_value, (v) => _then(v as _$_UiRadius));
+      : super(_value, _then);
 
-  @override
-  _$_UiRadius get _value => super._value as _$_UiRadius;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? none = freezed,
-    Object? extraSmall = freezed,
-    Object? small = freezed,
-    Object? medium = freezed,
-    Object? large = freezed,
-    Object? extraLarge = freezed,
-    Object? full = freezed,
+    Object? none = null,
+    Object? extraSmall = null,
+    Object? small = null,
+    Object? medium = null,
+    Object? large = null,
+    Object? extraLarge = null,
+    Object? full = null,
   }) {
     return _then(_$_UiRadius(
-      none: none == freezed
+      none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
               as Radius,
-      extraSmall: extraSmall == freezed
+      extraSmall: null == extraSmall
           ? _value.extraSmall
           : extraSmall // ignore: cast_nullable_to_non_nullable
               as Radius,
-      small: small == freezed
+      small: null == small
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
               as Radius,
-      medium: medium == freezed
+      medium: null == medium
           ? _value.medium
           : medium // ignore: cast_nullable_to_non_nullable
               as Radius,
-      large: large == freezed
+      large: null == large
           ? _value.large
           : large // ignore: cast_nullable_to_non_nullable
               as Radius,
-      extraLarge: extraLarge == freezed
+      extraLarge: null == extraLarge
           ? _value.extraLarge
           : extraLarge // ignore: cast_nullable_to_non_nullable
               as Radius,
-      full: full == freezed
+      full: null == full
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as Radius,
@@ -1127,30 +1127,24 @@ class _$_UiRadius extends _UiRadius with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UiRadius &&
-            const DeepCollectionEquality().equals(other.none, none) &&
-            const DeepCollectionEquality()
-                .equals(other.extraSmall, extraSmall) &&
-            const DeepCollectionEquality().equals(other.small, small) &&
-            const DeepCollectionEquality().equals(other.medium, medium) &&
-            const DeepCollectionEquality().equals(other.large, large) &&
-            const DeepCollectionEquality()
-                .equals(other.extraLarge, extraLarge) &&
-            const DeepCollectionEquality().equals(other.full, full));
+            (identical(other.none, none) || other.none == none) &&
+            (identical(other.extraSmall, extraSmall) ||
+                other.extraSmall == extraSmall) &&
+            (identical(other.small, small) || other.small == small) &&
+            (identical(other.medium, medium) || other.medium == medium) &&
+            (identical(other.large, large) || other.large == large) &&
+            (identical(other.extraLarge, extraLarge) ||
+                other.extraLarge == extraLarge) &&
+            (identical(other.full, full) || other.full == full));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(none),
-      const DeepCollectionEquality().hash(extraSmall),
-      const DeepCollectionEquality().hash(small),
-      const DeepCollectionEquality().hash(medium),
-      const DeepCollectionEquality().hash(large),
-      const DeepCollectionEquality().hash(extraLarge),
-      const DeepCollectionEquality().hash(full));
+      runtimeType, none, extraSmall, small, medium, large, extraLarge, full);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UiRadiusCopyWith<_$_UiRadius> get copyWith =>
       __$$_UiRadiusCopyWithImpl<_$_UiRadius>(this, _$identity);
 }
@@ -1205,7 +1199,8 @@ mixin _$UiBoxSpacing {
 abstract class $UiBoxSpacingCopyWith<$Res> {
   factory $UiBoxSpacingCopyWith(
           UiBoxSpacing value, $Res Function(UiBoxSpacing) then) =
-      _$UiBoxSpacingCopyWithImpl<$Res>;
+      _$UiBoxSpacingCopyWithImpl<$Res, UiBoxSpacing>;
+  @useResult
   $Res call(
       {SizedBox none,
       SizedBox extraSmall,
@@ -1217,53 +1212,56 @@ abstract class $UiBoxSpacingCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UiBoxSpacingCopyWithImpl<$Res> implements $UiBoxSpacingCopyWith<$Res> {
+class _$UiBoxSpacingCopyWithImpl<$Res, $Val extends UiBoxSpacing>
+    implements $UiBoxSpacingCopyWith<$Res> {
   _$UiBoxSpacingCopyWithImpl(this._value, this._then);
 
-  final UiBoxSpacing _value;
   // ignore: unused_field
-  final $Res Function(UiBoxSpacing) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? none = freezed,
-    Object? extraSmall = freezed,
-    Object? small = freezed,
-    Object? medium = freezed,
-    Object? large = freezed,
-    Object? extraLarge = freezed,
-    Object? full = freezed,
+    Object? none = null,
+    Object? extraSmall = null,
+    Object? small = null,
+    Object? medium = null,
+    Object? large = null,
+    Object? extraLarge = null,
+    Object? full = null,
   }) {
     return _then(_value.copyWith(
-      none: none == freezed
+      none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      extraSmall: extraSmall == freezed
+      extraSmall: null == extraSmall
           ? _value.extraSmall
           : extraSmall // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      small: small == freezed
+      small: null == small
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      medium: medium == freezed
+      medium: null == medium
           ? _value.medium
           : medium // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      large: large == freezed
+      large: null == large
           ? _value.large
           : large // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      extraLarge: extraLarge == freezed
+      extraLarge: null == extraLarge
           ? _value.extraLarge
           : extraLarge // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      full: full == freezed
+      full: null == full
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-    ));
+    ) as $Val);
   }
 }
 
@@ -1274,6 +1272,7 @@ abstract class _$$_UiBoxSpacingCopyWith<$Res>
           _$_UiBoxSpacing value, $Res Function(_$_UiBoxSpacing) then) =
       __$$_UiBoxSpacingCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call(
       {SizedBox none,
       SizedBox extraSmall,
@@ -1286,51 +1285,49 @@ abstract class _$$_UiBoxSpacingCopyWith<$Res>
 
 /// @nodoc
 class __$$_UiBoxSpacingCopyWithImpl<$Res>
-    extends _$UiBoxSpacingCopyWithImpl<$Res>
+    extends _$UiBoxSpacingCopyWithImpl<$Res, _$_UiBoxSpacing>
     implements _$$_UiBoxSpacingCopyWith<$Res> {
   __$$_UiBoxSpacingCopyWithImpl(
       _$_UiBoxSpacing _value, $Res Function(_$_UiBoxSpacing) _then)
-      : super(_value, (v) => _then(v as _$_UiBoxSpacing));
+      : super(_value, _then);
 
-  @override
-  _$_UiBoxSpacing get _value => super._value as _$_UiBoxSpacing;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? none = freezed,
-    Object? extraSmall = freezed,
-    Object? small = freezed,
-    Object? medium = freezed,
-    Object? large = freezed,
-    Object? extraLarge = freezed,
-    Object? full = freezed,
+    Object? none = null,
+    Object? extraSmall = null,
+    Object? small = null,
+    Object? medium = null,
+    Object? large = null,
+    Object? extraLarge = null,
+    Object? full = null,
   }) {
     return _then(_$_UiBoxSpacing(
-      none: none == freezed
+      none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      extraSmall: extraSmall == freezed
+      extraSmall: null == extraSmall
           ? _value.extraSmall
           : extraSmall // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      small: small == freezed
+      small: null == small
           ? _value.small
           : small // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      medium: medium == freezed
+      medium: null == medium
           ? _value.medium
           : medium // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      large: large == freezed
+      large: null == large
           ? _value.large
           : large // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      extraLarge: extraLarge == freezed
+      extraLarge: null == extraLarge
           ? _value.extraLarge
           : extraLarge // ignore: cast_nullable_to_non_nullable
               as SizedBox,
-      full: full == freezed
+      full: null == full
           ? _value.full
           : full // ignore: cast_nullable_to_non_nullable
               as SizedBox,
@@ -1390,30 +1387,24 @@ class _$_UiBoxSpacing extends _UiBoxSpacing with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UiBoxSpacing &&
-            const DeepCollectionEquality().equals(other.none, none) &&
-            const DeepCollectionEquality()
-                .equals(other.extraSmall, extraSmall) &&
-            const DeepCollectionEquality().equals(other.small, small) &&
-            const DeepCollectionEquality().equals(other.medium, medium) &&
-            const DeepCollectionEquality().equals(other.large, large) &&
-            const DeepCollectionEquality()
-                .equals(other.extraLarge, extraLarge) &&
-            const DeepCollectionEquality().equals(other.full, full));
+            (identical(other.none, none) || other.none == none) &&
+            (identical(other.extraSmall, extraSmall) ||
+                other.extraSmall == extraSmall) &&
+            (identical(other.small, small) || other.small == small) &&
+            (identical(other.medium, medium) || other.medium == medium) &&
+            (identical(other.large, large) || other.large == large) &&
+            (identical(other.extraLarge, extraLarge) ||
+                other.extraLarge == extraLarge) &&
+            (identical(other.full, full) || other.full == full));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(none),
-      const DeepCollectionEquality().hash(extraSmall),
-      const DeepCollectionEquality().hash(small),
-      const DeepCollectionEquality().hash(medium),
-      const DeepCollectionEquality().hash(large),
-      const DeepCollectionEquality().hash(extraLarge),
-      const DeepCollectionEquality().hash(full));
+      runtimeType, none, extraSmall, small, medium, large, extraLarge, full);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UiBoxSpacingCopyWith<_$_UiBoxSpacing> get copyWith =>
       __$$_UiBoxSpacingCopyWithImpl<_$_UiBoxSpacing>(this, _$identity);
 }
@@ -1462,28 +1453,32 @@ mixin _$UiTextTheme {
 abstract class $UiTextThemeCopyWith<$Res> {
   factory $UiTextThemeCopyWith(
           UiTextTheme value, $Res Function(UiTextTheme) then) =
-      _$UiTextThemeCopyWithImpl<$Res>;
+      _$UiTextThemeCopyWithImpl<$Res, UiTextTheme>;
+  @useResult
   $Res call({TextTheme error});
 }
 
 /// @nodoc
-class _$UiTextThemeCopyWithImpl<$Res> implements $UiTextThemeCopyWith<$Res> {
+class _$UiTextThemeCopyWithImpl<$Res, $Val extends UiTextTheme>
+    implements $UiTextThemeCopyWith<$Res> {
   _$UiTextThemeCopyWithImpl(this._value, this._then);
 
-  final UiTextTheme _value;
   // ignore: unused_field
-  final $Res Function(UiTextTheme) _then;
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
 
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_value.copyWith(
-      error: error == freezed
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as TextTheme,
-    ));
+    ) as $Val);
   }
 }
 
@@ -1494,25 +1489,25 @@ abstract class _$$_UiTextThemeCopyWith<$Res>
           _$_UiTextTheme value, $Res Function(_$_UiTextTheme) then) =
       __$$_UiTextThemeCopyWithImpl<$Res>;
   @override
+  @useResult
   $Res call({TextTheme error});
 }
 
 /// @nodoc
-class __$$_UiTextThemeCopyWithImpl<$Res> extends _$UiTextThemeCopyWithImpl<$Res>
+class __$$_UiTextThemeCopyWithImpl<$Res>
+    extends _$UiTextThemeCopyWithImpl<$Res, _$_UiTextTheme>
     implements _$$_UiTextThemeCopyWith<$Res> {
   __$$_UiTextThemeCopyWithImpl(
       _$_UiTextTheme _value, $Res Function(_$_UiTextTheme) _then)
-      : super(_value, (v) => _then(v as _$_UiTextTheme));
+      : super(_value, _then);
 
-  @override
-  _$_UiTextTheme get _value => super._value as _$_UiTextTheme;
-
+  @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? error = freezed,
+    Object? error = null,
   }) {
     return _then(_$_UiTextTheme(
-      error: error == freezed
+      error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as TextTheme,
@@ -1546,15 +1541,15 @@ class _$_UiTextTheme extends _UiTextTheme with DiagnosticableTreeMixin {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$_UiTextTheme &&
-            const DeepCollectionEquality().equals(other.error, error));
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+  int get hashCode => Object.hash(runtimeType, error);
 
   @JsonKey(ignore: true)
   @override
+  @pragma('vm:prefer-inline')
   _$$_UiTextThemeCopyWith<_$_UiTextTheme> get copyWith =>
       __$$_UiTextThemeCopyWithImpl<_$_UiTextTheme>(this, _$identity);
 }

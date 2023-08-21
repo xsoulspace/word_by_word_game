@@ -37,10 +37,12 @@ class PauseScreenState extends ContextfulLifeState {
     if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
   }
 
-  void onContinue({
-    required final LevelModelId id,
-  }) {
-    diDto.globalGameBloc.add(const StartPlayingLevelEvent());
+  Future<void> onContinue({
+    required final CanvasDataModelId id,
+  }) async {
+    await diDto.globalGameBloc.onStartPlayingLevel(
+      const StartPlayingLevelEvent(shouldRestartTutorial: false),
+    );
     diDto.appRouterController.toPlayableLevel(id: id);
   }
 
@@ -68,7 +70,9 @@ class PauseScreenState extends ContextfulLifeState {
 
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
-        constraints: const BoxConstraints(maxWidth: 200),
+        constraints: const BoxConstraints(
+          maxWidth: 200,
+        ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -87,7 +91,7 @@ class PauseScreenState extends ContextfulLifeState {
                 ),
               ),
             ),
-            uiTheme.verticalBoxes.medium,
+            uiTheme.verticalBoxes.small,
             Visibility(
               visible: kLinksAreAllowed,
               child: TextButton(
@@ -100,10 +104,38 @@ class PauseScreenState extends ContextfulLifeState {
               ),
             ),
             uiTheme.verticalBoxes.large,
+            const Text('Graphics credits & thanks:'),
+            uiTheme.verticalBoxes.medium,
+            Visibility(
+              visible: kLinksAreAllowed,
+              child: TextButton(
+                onPressed: () => launchUrlString('https://sonnenstein.itch.io'),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Sonnenstein (we currently working to create new tileset)',
+                  ),
+                ),
+              ),
+            ),
+            Visibility(
+              visible: kLinksAreAllowed,
+              child: TextButton(
+                onPressed: () =>
+                    launchUrlString('https://pixelfrog-assets.itch.io'),
+                child: const Padding(
+                  padding: EdgeInsets.all(8),
+                  child: Text(
+                    'Pixel Frog (Used this pack during v3 development)',
+                  ),
+                ),
+              ),
+            ),
+            uiTheme.verticalBoxes.large,
             Text(s.thankYou),
           ],
         ),
-      )
+      ),
     ];
     final applicationLegalese = '\u{a9} 2020-${DateTime.now().year} '
         'Game by Anton Malofeev, Irina Veter';
@@ -152,7 +184,7 @@ class PauseScreenState extends ContextfulLifeState {
                         ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
               uiTheme.verticalBoxes.medium,
@@ -163,7 +195,7 @@ class PauseScreenState extends ContextfulLifeState {
               TextButton(
                 onPressed: () => Navigator.maybePop(context),
                 child: Text(S.of(context).ok),
-              )
+              ),
             ],
           ),
         ),

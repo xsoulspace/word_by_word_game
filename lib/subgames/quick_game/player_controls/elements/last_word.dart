@@ -13,7 +13,7 @@ class LastWordWidget extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final latestWord = context.select<LevelBloc, String>(
-      (final state) => state.getLiveState().latestWord,
+      (final state) => state.state.latestWord,
     );
     return LastWordText(latestWord: latestWord);
   }

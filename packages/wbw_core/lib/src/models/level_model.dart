@@ -2,8 +2,6 @@
 
 part of 'models.dart';
 
-typedef LevelModelId = String;
-
 enum GamePhaseType { entryWord, selectFuel }
 
 enum EnergyMultiplierType {
@@ -22,34 +20,23 @@ class LevelModel with _$LevelModel {
     explicitToJson: true,
   )
   const factory LevelModel({
-    required final LevelModelId id,
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
-    required final ResourcesModel resources,
-    @Default(LocalizedMap.empty) final LocalizedMap name,
+    @Default([]) final List<WeatherModel> weathers,
+    @Default(WindModel.zero) final WindModel wind,
+
+    /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
+    /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]
+    @Default(CanvasDataModelId.empty) final CanvasDataModelId canvasDataId,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,
     @Default({}) final Map<FullWordString, PlayerProfileModelId> words,
     @Default('') final String latestWord,
     @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
     @Default(EnergyMultiplierType.m1)
-        final EnergyMultiplierType actionMultiplier,
+    final EnergyMultiplierType actionMultiplier,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
       _$LevelModelFromJson(json);
-}
-
-@immutable
-@freezed
-class TemplateLevelModel with _$TemplateLevelModel {
-  @JsonSerializable(explicitToJson: true)
-  const factory TemplateLevelModel({
-    required final LevelModelId id,
-    required final ResourcesModel resources,
-    @Default(LocalizedMap.empty) final LocalizedMap name,
-    @Default(FuelStorageModel()) final FuelStorageModel fuelStorage,
-  }) = _TemplateLevelModel;
-  const TemplateLevelModel._();
-  factory TemplateLevelModel.fromJson(final Map<String, dynamic> json) =>
-      _$TemplateLevelModelFromJson(json);
+  CanvasDataModelId get id => canvasDataId;
 }

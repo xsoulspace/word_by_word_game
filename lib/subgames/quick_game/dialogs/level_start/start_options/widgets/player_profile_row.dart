@@ -18,7 +18,6 @@ class PlayerProfileRow extends StatelessWidget {
     final uiTheme = UiTheme.of(context);
     return BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
       builder: (final context, final state) {
-        if (state is! LiveGlobalGameBlocState) return const SizedBox();
         final players = state.playersCollection;
         return Scrollbar(
           interactive: true,
@@ -58,27 +57,30 @@ class PlayerProfileCard extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = UiTheme.of(context);
-    return FocusableActionDetector(
-      mouseCursor: SystemMouseCursors.click,
-      child: Card(
-        clipBehavior: Clip.hardEdge,
-        child: InkWell(
-          onTap: () => onSelected!(player),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                UiPlayerProfileAvatar(player: player),
-                uiTheme.horizontalBoxes.medium,
-                Text(player.name),
-                if (onSelected != null) ...[
-                  Checkbox(
-                    value: selected,
-                    onChanged: (final _) => onSelected!(player),
-                  )
+    return Center(
+      child: FocusableActionDetector(
+        mouseCursor: SystemMouseCursors.click,
+        child: Card(
+          clipBehavior: Clip.hardEdge,
+          child: InkWell(
+            onTap: () => onSelected!(player),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  UiPlayerProfileAvatar(player: player),
+                  uiTheme.horizontalBoxes.medium,
+                  Text(player.name),
+                  if (onSelected != null) ...[
+                    Checkbox(
+                      value: selected,
+                      onChanged: (final _) => onSelected!(player),
+                    )
+                  ],
                 ],
-              ],
+              ),
             ),
           ),
         ),
@@ -140,7 +142,7 @@ class UiPlayerProfileAvatar extends StatelessWidget {
       width: dimension,
       height: dimension,
       alignment: Alignment.center,
-      child: Text('${score.toInt()}'),
+      child: Text('${score ~/ kScoreFactor}'),
     );
   }
 }

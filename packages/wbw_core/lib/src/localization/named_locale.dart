@@ -35,12 +35,18 @@ Map<Languages, String> localeValueFromMap(final dynamic map) {
   if (map is String) {
     return {};
   } else if (map is Map) {
+    if (map.isEmpty) {
+      return Languages.values.toMap(
+        toKey: (final item) => item,
+        toValue: (final item) => '',
+      );
+    }
     return map.map(
       (final key, final value) => MapEntry(Languages.values.byName(key), value),
     );
   } else {
     // TODO(arenukvern): description
-    throw UnimplementedError();
+    throw UnimplementedError('localeValueFromMap $map');
   }
 }
 
@@ -58,15 +64,30 @@ class LocalizedMap with _$LocalizedMap {
       fromJson: localeValueFromMap,
       toJson: localeValueToMap,
     )
-        required final Map<Languages, String> value,
+    required final Map<Languages, String> value,
   }) = _LocalizedMap;
   const LocalizedMap._();
   factory LocalizedMap.fromJson(final Map<String, dynamic> json) =>
       _$LocalizedMapFromJson(json);
+  factory LocalizedMap.fromJsonValueMap(final Map<String, dynamic> json) {
+    if (json.containsKey('value')) {
+      return LocalizedMap.fromJson(json);
+    } else {
+      return LocalizedMap.fromJson({'value': json});
+    }
+  }
+  static Map<String, dynamic> toJsonValueMap(final LocalizedMap map) =>
+      map.toJson()['value'];
   static const empty = LocalizedMap(value: {});
-  String getValue() {
+  String getValue([
+    final Languages? language,
+  ]) {
+    final effectiveLanguage = language ?? getCurrentLanugage();
+    return value[effectiveLanguage]!;
+  }
+
+  static Languages getCurrentLanugage() {
     final languageCode = getLanguageCodeByStr(Intl.getCurrentLocale());
-    final language = Languages.byLanguageCode(languageCode);
-    return value[language]!;
+    return Languages.byLanguageCode(languageCode);
   }
 }

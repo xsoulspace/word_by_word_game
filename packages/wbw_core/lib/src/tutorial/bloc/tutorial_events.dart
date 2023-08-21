@@ -1,60 +1,29 @@
 part of 'tutorial_bloc.dart';
 
-abstract class TutorialEvent extends Equatable {
-  const TutorialEvent();
-  @override
-  List<Object?> get props => [];
-}
-
-@immutable
-class CompleteTutorialEvent extends TutorialEvent {
-  const CompleteTutorialEvent();
-}
-
-@immutable
-class LoadTutorialsProgressEvent extends TutorialEvent {
-  const LoadTutorialsProgressEvent({
-    required this.progress,
-  });
-  final TutorialCollectionsProgressModel progress;
-}
-
-@immutable
-class StartTutorialEvent extends TutorialEvent {
-  const StartTutorialEvent({
-    required this.tutorialName,
-    required this.shouldContinueIfPlayed,
-    required this.shouldStartFromBeginning,
-  });
-  final TutorialCollectionsName tutorialName;
-  final bool shouldContinueIfPlayed;
-  final bool shouldStartFromBeginning;
+@freezed
+class TutorialEvent with _$TutorialEvent {
+  const factory TutorialEvent.complete() = CompleteTutorialEvent;
+  const factory TutorialEvent.loadTutorialProgress({
+    required final TutorialCollectionsProgressModel progress,
+  }) = LoadTutorialsProgressEvent;
+  const factory TutorialEvent.start({
+    required final TutorialCollectionsName tutorialName,
+    required final bool shouldContinueIfPlayed,
+    required final bool shouldStartFromBeginning,
+  }) = StartTutorialEvent;
+  const factory TutorialEvent.next({
+    @Default(NextTutorialEventType.next) final NextTutorialEventType action,
+  }) = NextTutorialEvent;
+  const factory TutorialEvent.uiAction({
+    required final TutorialCompleteAction action,
+    final TutorialUiItem? key,
+    @Default('') final String stringValue,
+    @Default(false) final bool boolValue,
+  }) = TutorialUiActionEvent;
 }
 
 enum NextTutorialEventType {
   complete,
   next,
   previous,
-}
-
-@immutable
-class NextTutorialEvent extends TutorialEvent {
-  const NextTutorialEvent({
-    this.action = NextTutorialEventType.next,
-  });
-  final NextTutorialEventType action;
-}
-
-@immutable
-class TutorialUiActionEvent extends TutorialEvent {
-  const TutorialUiActionEvent({
-    required this.action,
-    this.key,
-    this.stringValue = '',
-    this.boolValue = false,
-  });
-  final TutorialCompleteAction action;
-  final TutorialUiItem? key;
-  final String stringValue;
-  final bool boolValue;
 }

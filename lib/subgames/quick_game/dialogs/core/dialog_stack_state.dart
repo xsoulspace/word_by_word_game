@@ -8,18 +8,18 @@ class _DialogStackDiDto {
   final TutorialBloc tutorialBloc;
 }
 
-_DialogStackState _useDialogStackState({
+DialogStackState _useDialogStackState({
   required final Locator read,
 }) =>
     use(
       LifeHook(
         debugLabel: '_DialogStackState',
-        state: _DialogStackState(diDto: _DialogStackDiDto.use(read)),
+        state: DialogStackState(diDto: _DialogStackDiDto.use(read)),
       ),
     );
 
-class _DialogStackState extends LifeState {
-  _DialogStackState({
+class DialogStackState extends LifeState with ChangeNotifier {
+  DialogStackState({
     required this.diDto,
   });
   late final dialogController = DialogController(
@@ -51,7 +51,7 @@ class _DialogStackState extends LifeState {
 
   set dialogType(final GameDialogType dialogType) {
     _dialogType = dialogType;
-    setState();
+    notifyListeners();
   }
 
   @override
@@ -87,7 +87,7 @@ class _DialogStackState extends LifeState {
   }
 
   void _onTutorialChanged(final TutorialBlocState tutorialState) {
-    if (tutorialState is! LiveTutorialBlocState) {
+    if (tutorialState is! TutorialBlocStateLive) {
       if (dialogType.name.contains('tutorial')) {
         _closeDialog();
       }
@@ -104,13 +104,11 @@ class _DialogStackState extends LifeState {
             _showTutorialBoolDialog();
             return;
           }
-          break;
         case TutorialCompleteAction.onClick:
           if (action.uiItem == TutorialUiItem.tutorialOkDialog) {
             _showTutorialOkDialog();
             return;
           }
-          break;
         case TutorialCompleteAction.onEdit:
         case TutorialCompleteAction.idle:
       }
@@ -125,10 +123,10 @@ class _DialogStackState extends LifeState {
     dialogType = GameDialogType.tutorialBool;
   }
 
-  void onSendEndLevelEvent() {
+  Future<void> onSendEndLevelEvent() async {
     final event = endLevelEvent;
     if (event != null) {
-      diDto.globalGameBloc.add(event);
+      unawaited(diDto.globalGameBloc.onLevelEnd(event));
       endLevelEvent = null;
     }
   }

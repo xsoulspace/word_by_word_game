@@ -19,7 +19,7 @@ class CircledAvatarButton extends StatelessWidget {
     required this.text,
     super.key,
   });
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final String text;
   @override
   Widget build(final BuildContext context) => CupertinoButton(

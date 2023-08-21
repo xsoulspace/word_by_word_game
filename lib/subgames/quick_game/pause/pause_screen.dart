@@ -5,6 +5,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:life_hooks/life_hooks.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
@@ -35,6 +36,7 @@ class PauseScreen extends HookWidget {
     return Provider(
       create: (final context) => state,
       builder: (final context, final child) => Scaffold(
+        backgroundColor: Colors.transparent,
         resizeToAvoidBottomInset: false,
         body: Portal(
           child: Stack(
@@ -96,11 +98,20 @@ class PauseScreen extends HookWidget {
                 ),
               ),
               if (_kIsCharacterVisible)
-                const Positioned(
+                Positioned(
                   right: 24,
                   top: 24,
                   child: CharacterAvatarButton.useDefault(),
                 ),
+
+              /// left for test cases
+              // Positioned.fill(child: Container().blurred()),
+              // const Positioned.fill(
+              //   child: Column(
+              //     children: [
+              //     ],
+              //   ),
+              // ),
             ],
           ),
         ),

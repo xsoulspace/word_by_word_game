@@ -20,8 +20,7 @@ abstract class AdWidget extends StatelessWidget {
     if (permissions.adsNotAllowed) return const SizedBox();
     if (!isAdAllowed(permissions)) return const SizedBox();
 
-    final uiTheme = UiTheme.of(context);
-    final screenWidth = uiTheme.persistentFormFactors.width;
+    final screenWidth = UiPersistentFormFactors.of(context).width;
     if (Envs.isDebugAds) {
       return debugBuilder(context);
     }

@@ -14,7 +14,7 @@ class SettingsScreen extends HookWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final state = _useSettingsScreenState(read: context.read);
+    // final state = _useSettingsScreenState(read: context.read);
     final uiTheme = UiTheme.of(context);
     final theme = Theme.of(context);
 

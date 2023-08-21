@@ -5,3 +5,4 @@ analyzer:
     - lib/**/**.gen.dart
     - lib/**/**.g.dart
     - lib/**/**.freezed.dart
+    - lib/generated/

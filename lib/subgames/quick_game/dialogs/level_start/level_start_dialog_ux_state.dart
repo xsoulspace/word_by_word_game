@@ -14,14 +14,14 @@ class _LevelStartDialogUxStateDiDto {
 
 LevelStartDialogUxState _useLevelStartDialogUxState({
   required final Locator read,
-  required final TemplateLevelModel templateLevel,
+  required final CanvasDataModel canvasData,
 }) =>
     use(
       LifeHook(
         debugLabel: 'LevelStartDialogUxState',
         state: LevelStartDialogUxState(
           diDto: _LevelStartDialogUxStateDiDto.use(read),
-          templateLevel: templateLevel,
+          canvasData: canvasData,
         ),
       ),
     );
@@ -29,17 +29,17 @@ LevelStartDialogUxState _useLevelStartDialogUxState({
 class LevelStartDialogUxState extends LifeState {
   LevelStartDialogUxState({
     required this.diDto,
-    required this.templateLevel,
+    required this.canvasData,
   });
-  final TemplateLevelModel templateLevel;
+  final CanvasDataModel canvasData;
   final _LevelStartDialogUxStateDiDto diDto;
 
-  PlayerCharacterModelId? characterId;
+  Gid? characterId;
 
   @override
   void initState() {
     super.initState();
-    final liveState = diDto.globalGameBloc.getLiveState();
+    final liveState = diDto.globalGameBloc.state;
     characterId = liveState.playersCharacters.first.id;
     final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
       progress: diDto.tutorialBloc.getLiveProgress(),
@@ -70,7 +70,10 @@ class LevelStartDialogUxState extends LifeState {
       playersIds.contains(player.id);
 
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
-    diDto.globalGameBloc.add(CreatePlayerProfileEvent(profile: profile));
+    unawaited(
+      diDto.globalGameBloc
+          .onCreatePlayerProfile(CreatePlayerProfileEvent(profile: profile)),
+    );
     onPlayerSelected(profile);
   }
 
@@ -81,8 +84,8 @@ class LevelStartDialogUxState extends LifeState {
     setState();
   }
 
-  void onPlay() {
-    final liveState = diDto.globalGameBloc.getLiveState();
+  Future<void> onPlay() async {
+    final liveState = diDto.globalGameBloc.state;
     final charactersCollection = liveState.playersCharacters;
     final playersCollection = liveState.playersCollection;
     final levelPlayers = playersIds.map(
@@ -95,8 +98,6 @@ class LevelStartDialogUxState extends LifeState {
     );
 
     final level = LevelModel(
-      name: templateLevel.name,
-      resources: templateLevel.resources,
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),
@@ -110,12 +111,14 @@ class LevelStartDialogUxState extends LifeState {
             )
             .toList(),
       ),
-      id: templateLevel.id,
+      canvasDataId: canvasData.id,
     );
 
     diDto.globalGameBloc
-      ..add(InitGlobalGameLevelEvent(levelModel: level))
-      ..add(StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial));
+        .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
+    await diDto.globalGameBloc.onStartPlayingLevel(
+      StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
+    );
     diDto.appRouterController.toPlayableLevel(id: level.id);
   }
 

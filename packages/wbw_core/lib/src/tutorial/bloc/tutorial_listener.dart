@@ -15,7 +15,7 @@ class TutorialStateNotifier implements Disposable {
   }
 
   Future<void> _onStateChange(final TutorialBlocState state) async {
-    if (state is! LiveTutorialBlocState) return;
+    if (state is! TutorialBlocStateLive) return;
     if (state.tutorial.isCompleted) return;
     final event = state.tutorial.currentEvent;
     if (event == null) return;

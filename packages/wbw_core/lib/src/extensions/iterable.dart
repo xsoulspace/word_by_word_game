@@ -30,6 +30,20 @@ extension IterableExtension<E> on Iterable<E> {
     }
   }
 
+  Map<TKey, TMapType> toMap<TKey, TMapType>({
+    required final TKey Function(E item) toKey,
+    required final TMapType Function(E item) toValue,
+  }) {
+    final iterableEntries = map((final e) {
+      final key = toKey(e);
+      final value = toValue(e);
+
+      return MapEntry(key, value);
+    });
+
+    return Map.fromEntries(iterableEntries);
+  }
+
   Future<Iterable<TNew>> convert<TNew>(
     final IterableConverter<E, TNew> converter,
   ) async {

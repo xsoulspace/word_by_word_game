@@ -17,25 +17,7 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Se si hanno abbastanza punti, si possono rimuovere le lettere. Ogni lettera costerà alcuni punti.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.removeLetterButton,
-      ),
-      TutorialEventModel(
-        completeActions: [TutorialUiActionEventModel.onClickAnywhere],
-        localizedMap: LocalizedMap(
-          value: {
-            Languages.en:
-                'You can enter a part of word in this text field to create full word.',
-            Languages.ru:
-                'Вы можете ввести часть слова в это текстовое поле, чтобы создать полное слово.',
-            Languages.it:
-                'È possibile inserire una parte della parola in questo campo di testo per creare una parola completa.',
-          },
-        ),
-        gamePreEffects: [],
-        gamePostEffects: [],
-        anchorUiItem: TutorialUiItem.enterWordLeft,
       ),
       TutorialEventModel(
         completeActions: [],
@@ -46,8 +28,6 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: '',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.gameFuelIndicator,
       ),
     ],
@@ -65,9 +45,9 @@ const _tutorialData = TutorialCollectionsDataModel(
                 TutorialGameEffectModel(
                   name: TutorialGameEffectName.resumeGame,
                 ),
-              ]
+              ],
             },
-          )
+          ),
         ],
         localizedMap: LocalizedMap(
           value: {
@@ -82,9 +62,8 @@ const _tutorialData = TutorialCollectionsDataModel(
         gamePreEffects: [
           TutorialGameEffectModel(
             name: TutorialGameEffectName.pauseGame,
-          )
+          ),
         ],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
@@ -98,8 +77,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 "Il vostro obiettivo è raggiungere l'estremità del paesaggio. \nSiete da soli o con i vostri amici e siete responsabili del carburante dell'aerostato. \n\nDurante l'esercitazione il pallone non si muoverà per farvi prendere confidenza con i comandi.",
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
@@ -113,8 +90,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 "Se si gioca con gli amici, si è in una squadra che controlla un aereo, quindi ogni giocatore giocherà dopo l'altro.",
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
@@ -125,8 +100,6 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: 'Questo è il nome del giocatore attuale.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.yourNameLabel,
       ),
       TutorialEventModel(
@@ -138,8 +111,6 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.it: 'Questo è il punteggio attuale del giocatore.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.yourScoreLabel,
       ),
       TutorialEventModel(
@@ -147,15 +118,13 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'Every player turn consists from two pahses. \n\n\nFirst phase is to enter new word.',
+                'Every player turn consists from two phases. \n\n\nFirst phase is to enter new word.',
             Languages.ru:
                 'Каждый ход игрока состоит из двух фаз. \n\n\nВ первой фазе вы должны ввести новое слово.',
             Languages.it:
                 "Ogni turno di gioco è composto da due fasi. \n\n\nLa prima fase consiste nell'inserire una nuova parola.",
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
       ),
       TutorialEventModel(
         completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
@@ -169,8 +138,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Se la parola scritta non viene trovata, è possibile fare clic su Aggiungi al dizionario per aggiungere questa parola al dizionario. \n\nFare attenzione alla parola, perché verrà salvata e non potrà essere rimossa.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.addToDictionaryButton,
       ),
       TutorialEventModel(
@@ -184,8 +151,6 @@ const _tutorialData = TutorialCollectionsDataModel(
                 'Se siete bloccati, potete provare a usare i suggerimenti di parole.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.suggestWordButton,
       ),
       TutorialEventModel(
@@ -197,22 +162,25 @@ const _tutorialData = TutorialCollectionsDataModel(
           ),
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onEdit,
-            uiItem: TutorialUiItem.enterWordRight,
+            uiItem: TutorialUiItem.wordField,
+          ),
+        ],
+        gamePreEffects: [
+          TutorialGameEffectModel(
+            name: TutorialGameEffectName.requestWordFieldFocus,
           ),
         ],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'To continue, enter your first word in this text field.',
+                'To continue, enter your first word in this text field. (For example - lake)',
             Languages.ru:
-                'Чтобы продолжить, введите свое первое слово в это текстовое поле.',
+                'Чтобы продолжить, введите свое первое слово в это текстовое поле. (Например, самолет)',
             Languages.it:
                 'Per continuare, inserire la prima parola in questo campo di testo.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
-        anchorUiItem: TutorialUiItem.enterWordRight,
+        anchorUiItem: TutorialUiItem.wordField,
       ),
       TutorialEventModel(
         completeActions: [
@@ -229,15 +197,13 @@ const _tutorialData = TutorialCollectionsDataModel(
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'You will earn points for the word which will be added to your score and used in the next phase. \n\nTo continue click Confirm Word.',
+                'You will earn points for the word which will be added to your score and used in the next phase. \n\nTo continue click a button with Fire below.',
             Languages.ru:
-                'За новое слово вы получите очки, которые будут добавлены к вашему счету и использованы в следующем этапе. \n\nДля продолжения нажми кнопку Применить.',
+                'За новое слово вы получите очки, которые будут добавлены к вашему счету и использованы в следующем этапе. \n\nДля продолжения нажми кнопку с огнем ниже.',
             Languages.it:
-                'Si guadagneranno punti per la parola, che verranno aggiunti al punteggio e utilizzati nella fase successiva. \n\nPer continuare, fare clic su Conferma parola.',
+                'Si guadagneranno punti per la parola, che verranno aggiunti al punteggio e utilizzati nella fase successiva. \n\Per continuare, fare clic sul pulsante con il fuoco qui sotto.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.confirmWordButton,
       ),
       TutorialEventModel(
@@ -250,49 +216,77 @@ const _tutorialData = TutorialCollectionsDataModel(
           TutorialUiActionEventModel(
             action: TutorialCompleteAction.onClick,
             uiItem: TutorialUiItem.selectRefuelOption,
-          )
+          ),
         ],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'The second phase - Actions & Effects.\n\nAction is something that you do. \n\nChoose Refuel to refuel Balloon.',
+                'The second phase - Actions & Effects.\n\nAction is something that you do. \n\nChoose any option to refuel Balloon.',
             Languages.ru:
                 'Вторая фаза - Действия и эффекты.\n\nДействие - это то, что вы делаете. \n\nВыбери "Топливо", чтобы заправить воздушный шар.',
             Languages.it:
                 'La seconda fase - Azioni ed effetti.\n\nAzione è qualcosa che si fa. \n\nScegliere Rifornimento per rifornire il pallone.',
           },
         ),
-        gamePreEffects: [],
-        gamePostEffects: [],
         anchorUiItem: TutorialUiItem.selectRefuelOption,
       ),
       TutorialEventModel(
-        completeActions: [
-          TutorialUiActionEventModel(
-            action: TutorialCompleteAction.idle,
-            uiItem: TutorialUiItem.anchoredIdleDialog,
-            isCompleted: true,
-          ),
-          TutorialUiActionEventModel(
-            action: TutorialCompleteAction.onClick,
-            uiItem: TutorialUiItem.applyAndEndTurnButton,
-          )
-        ],
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
         localizedMap: LocalizedMap(
           value: {
             Languages.en:
-                'To end turn for player click Apply & End Turn. \n\nBe aware: this action will end tutorial and the Balloon will start moving. \n\n\nGood Luck in your adventures!',
+                'An important factor is wind speed and direction. The balloon moves horizontally only if the wind is strong enough.',
             Languages.ru:
-                'Чтобы завершить ход для игрока, нажми "Завершить ход". \n\nБудьте внимательны: это действие завершит туториал и воздушный шар начнет двигаться. \n\n\nНевероятных приключений!',
+                'Важный фактор - скорость и направление ветра. Воздушный шар движется горизонтально только при достаточной силе ветра.',
             Languages.it:
-                'Per terminare il turno del giocatore, fare clic su Applica e termina il turno. \n\nAttenzione: questa azione terminerà il tutorial e il palloncino inizierà a muoversi. \n\n\nBuona fortuna nelle vostre avventure!',
+                'Un fattore importante è la velocità e la direzione del vento. Il pallone si muove orizzontalmente solo se il vento è sufficientemente forte.',
           },
         ),
-        gamePreEffects: [],
+        anchorUiItem: TutorialUiItem.currentWind,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                'The weather changes in seconds. The wind changes with it.',
+            Languages.ru:
+                'Погода меняется за несколько секунд. Вместе с этим меняется и ветер.',
+            Languages.it:
+                'Il tempo cambia in pochi secondi. E con esso cambia anche il vento.',
+          },
+        ),
+        anchorUiItem: TutorialUiItem.currentWeather,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.anchoredOkDialog],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                'This is the force that the balloon has. This force creates the lift force that moves the balloon upwards. \nIf it goes to zero, then the ballon will fall.',
+            Languages.ru:
+                'Это - сила, которой обладает воздушный шар. Эта сила создает подъемную силу, которая перемещает воздушный шар вверх. \nЕсли она станет равной нулю, то шар будет падать.',
+            Languages.it:
+                "Questa è la forza che il palloncino possiede. Questa forza crea la forza di sollevamento che sposta il palloncino verso l'alto. \nSe il valore scende a zero, il pallone cade.",
+          },
+        ),
+        anchorUiItem: TutorialUiItem.baloonPower,
+      ),
+      TutorialEventModel(
+        completeActions: [TutorialUiActionEventModel.tutorialOkDialog],
+        localizedMap: LocalizedMap(
+          value: {
+            Languages.en:
+                "That's it - click ok) but be careful: the balloon will start to move. \n\n\nHave an incredible adventure!",
+            Languages.ru:
+                'На этом всё - жми ок) но будь внимателен: воздушный шар начнет двигаться. \n\n\nНевероятных приключений!',
+            Languages.it:
+                'Tutto qui - cliccate su ok) ma fate attenzione: il palloncino inizierà a muoversi. \n\n\nBuona avventura!',
+          },
+        ),
         gamePostEffects: [
-          TutorialGameEffectModel(name: TutorialGameEffectName.resumeGame)
+          TutorialGameEffectModel(name: TutorialGameEffectName.resumeGame),
         ],
-        anchorUiItem: TutorialUiItem.applyAndEndTurnButton,
       ),
     ],
   },

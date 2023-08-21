@@ -1,4 +1,4 @@
-part of 'game_renderer.dart';
+part of 'editor_renderer.dart';
 
 class GameRendererDiDto {
   GameRendererDiDto.use({
@@ -6,24 +6,28 @@ class GameRendererDiDto {
     required this.theme,
   })  : mapEditorBloc = read(),
         mechanics = read(),
-        drawerCubit = read();
+        drawerCubit = read(),
+        worldBloc = read();
 
   /// ********************************************
   /// *      Ephemeral
   /// ********************************************
-  final MapEditorBloc mapEditorBloc;
+  final MapEditorCubit mapEditorBloc;
+  final WorldBloc worldBloc;
   final DrawerCubit drawerCubit;
-  final MechanicsCollection mechanics;
+  final EditorMechanicsCollection mechanics;
   final material.ThemeData theme;
 
   FlameMultiBlocProvider getBlocsProviderComponent({
     required final List<Component>? children,
   }) {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
-      FlameBlocProvider<MapEditorBloc, MapEditorBlocState>.value(
+      FlameBlocProvider<MapEditorCubit, MapEditorBlocState>.value(
         value: mapEditorBloc,
       ),
-      FlameBlocProvider<DrawerCubit, DrawerCubitState>.value(value: drawerCubit)
+      FlameBlocProvider<DrawerCubit, DrawerCubitState>.value(
+        value: drawerCubit,
+      ),
     ];
 
     return FlameMultiBlocProvider(

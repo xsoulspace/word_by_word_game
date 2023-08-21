@@ -17,5 +17,6 @@
 	"15": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/small_bg.png", "preview": "assets/images/preview/small_bg.png", "graphics": "assets/images/terrain/palm/small_bg"},
 	"16": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/large_bg.png", "preview": "assets/images/preview/large_bg.png", "graphics": "assets/images/terrain/palm/large_bg"},
 	"17": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/left_bg.png",  "preview": "assets/images/preview/left_bg.png",  "graphics": "assets/images/terrain/palm/left_bg"},
-	"18": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/right_bg.png", "preview": "assets/images/preview/right_bg.png", "graphics": "assets/images/terrain/palm/right_bg"}
+	"18": {"style": "palm_bg", "type": "object", "menu": "palm_bg", "menu_surf": "assets/images/menu/right_bg.png", "preview": "assets/images/preview/right_bg.png", "graphics": "assets/images/terrain/palm/right_bg"},
+	"19": {"style": "cursor_handle", "type": "object", "menu": null, "menu_surf": "assets/images/cursors/handle.png", "preview": null, "graphics": null}
 }

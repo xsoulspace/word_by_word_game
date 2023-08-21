@@ -40,15 +40,21 @@ Join Discord - https://discord.gg/y54DpJwmAn
 
 Have fun and a great time!
 
----
-
-<br/>
-
 ## Donations / Sponsor
 
 Please sponsor or donate to the creator on [Boosty](https://boosty.to/arenukvern) or [CloudTips](https://pay.cloudtips.ru/p/1629cd27).
 
 Thank you for your support and have a great day! 🌄
+
+## Graphics credits & thanks:
+
+- Sonnenstein (we currently working to create new tileset) | https://sonnenstein.itch.io/
+- Pixel Frog (I used this pack during v3 development - https://pixelfrog-assets.itch.io/treasure-hunters) | https://pixelfrog-assets.itch.io
+
+## Additional Licenses and Insipration Sources:
+
+- color palette - https://lospec.com/palette-list/na16
+- extremly useful info of procedural map generation - https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
 
 ## Contributing
 
@@ -56,26 +62,17 @@ All [comments](https://github.com/xsoulspace/word_by_word_game/issues) and [pull
 
 ## Huge thank you for contributions!
 
-[@albanobattistella](https://github.com/albanobattistella)
+@albanobattistella - for initial Italian translation (v1) | https://github.com/albanobattistella
 
 ## Getting Help
 
 If you need help getting started or have any questions, check out our [Discord Community](https://discord.gg/y54DpJwmAn).
 
-## Additional Licenses and Insipration Sources:
-
-- color palette - https://lospec.com/palette-list/na16
-- temporary tilemap source - https://pixelfrog-assets.itch.io/treasure-hunters
-- extremly useful info of procedural map generation - https://www.youtube.com/watch?v=qYomF9p_SYM&t=9116s
-
 ## Other
 
 This project uses:
 
+Flutter & Dart 💙
+
 melos to manage packages
 https://melos.invertase.dev
-dart pub global activate melos
-
-Widgetbook:
-https://docs.widgetbook.io/widgetbook/overview
-dart pub global activate mason_cli

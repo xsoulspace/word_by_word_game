@@ -2,12 +2,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:intl/intl.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/app/app_services_provider.dart';
+import 'package:word_by_word_game/pack_core/app/app_di.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_state_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
@@ -16,9 +17,9 @@ part 'app_scaffold_state.dart';
 
 class AppScaffold extends StatelessWidget {
   const AppScaffold({required this.servicesDto, super.key});
-  final AppServicesProviderDto servicesDto;
+  final AppDiProviderDto servicesDto;
   @override
-  Widget build(final BuildContext context) => AppServicesProvider(
+  Widget build(final BuildContext context) => AppDiProvider(
         diDto: servicesDto,
         child: Builder(
           builder: (final context) => StateLoader(
@@ -48,8 +49,8 @@ class RouterScaffold extends HookWidget {
 
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider<RouteState>(
-          create: (final context) => state.routeState,
+        ChangeNotifierProvider<RouteState>.value(
+          value: state.routeState,
         ),
         Provider<AppRouterController>(
           create: (final context) => AppRouterController.use(context.read),
@@ -68,54 +69,59 @@ class AppScaffoldBuilder extends HookWidget {
     super.key,
   });
   final TemplateRouteParser routeParser;
-  final AppServicesProviderDto servicesDto;
+  final AppDiProviderDto servicesDto;
   @override
   Widget build(final BuildContext context) {
     final state = useAppScaffoldBodyState(context.read);
-    final settingsNotifier = context.watch<AppSettingsNotifier>();
-    return AnimatedBuilder(
-      animation: settingsNotifier,
-      builder: (final context, final child) => MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: AppThemeData.brandLight,
-        darkTheme: AppThemeData.brandDark,
-        themeMode: ThemeMode.light,
-        routeInformationParser: routeParser,
-        routerDelegate: state.routerDelegate,
-        localizationsDelegates: const [
-          ...S.localizationsDelegates,
-        ],
-        locale: settingsNotifier.locale,
-        localeListResolutionCallback: (final locales, final supportedLocales) {
-          final defaultLocale = () {
-            if (locales == null || locales.isEmpty) return null;
-            for (final locale in locales) {
-              if (S.delegate.isSupported(locale)) {
-                return locale;
-              }
+    final settingsNotifier = context.watch<AppSettingsCubit>();
+
+    return MaterialApp.router(
+      debugShowCheckedModeBanner: false,
+      theme: AppThemeData.brandLight,
+      darkTheme: AppThemeData.brandDark,
+      themeMode: ThemeMode.light,
+      routeInformationParser: routeParser,
+      routerDelegate: state.routerDelegate,
+      localizationsDelegates: const [
+        ...S.localizationsDelegates,
+      ],
+      locale: settingsNotifier.locale,
+      localeListResolutionCallback: (final locales, final supportedLocales) {
+        final defaultLocale = () {
+          if (locales == null || locales.isEmpty) return null;
+          for (final locale in locales) {
+            if (S.delegate.isSupported(locale)) {
+              return locale;
             }
-          }();
+          }
+        }();
 
-          // /// in case if we will needed preferrable system locale
-          // settingsNotifier.systemLocale = Locale.fromSubtags(
-          //   languageCode: defaultLocale?.languageCode ?? 'en',
-          // );
+        // /// in case if we will needed preferrable system locale
+        // settingsNotifier.systemLocale = Locale.fromSubtags(
+        //   languageCode: defaultLocale?.languageCode ?? 'en',
+        // );
+        void setIntlLocale(final Locale? newLocale) {
+          final intlDefaultLocale = Intl.defaultLocale;
+          Intl.defaultLocale = newLocale?.languageCode ?? intlDefaultLocale;
+        }
 
-          /// if language is set by user, then use it
-          if (settingsNotifier.locale != null) return settingsNotifier.locale;
-
-          return defaultLocale;
-        },
-        supportedLocales: Locales.values,
-        builder: (final context, final child) => UiTheme(
-          scheme: UiThemeScheme.m3(context),
-          child: StateLoader(
-            initializer: GlobalStateInitializer(
-              servicesDto: servicesDto,
-            ),
-            loader: const LoadingScreen(),
-            child: child!,
+        /// if language is set by user, then use it
+        if (settingsNotifier.locale != null) {
+          setIntlLocale(settingsNotifier.locale);
+          return settingsNotifier.locale;
+        }
+        setIntlLocale(defaultLocale);
+        return defaultLocale;
+      },
+      supportedLocales: Locales.values,
+      builder: (final context, final child) => UiTheme(
+        scheme: UiThemeScheme.m3(context),
+        child: StateLoader(
+          initializer: GlobalStateInitializer(
+            servicesDto: servicesDto,
           ),
+          loader: const LoadingScreen(),
+          child: child!,
         ),
       ),
     );
@@ -200,7 +206,8 @@ class WindowControlsScaffold extends HookWidget {
                         maxHeight: dimension,
                       ),
                       onPressed: () async {
-                        // final isFullScreen = await windowManager.isFullScreen();
+                        // final isFullScreen = await windowManager.
+                        // isFullScreen();
                         // await windowManager.setFullScreen(!isFullScreen);
                         // if (await windowManager.isMaximized()) {
                         //   await windowManager.unmaximize();
@@ -224,7 +231,7 @@ class WindowControlsScaffold extends HookWidget {
                         ],
                       ),
                       iconSize: dimension,
-                    )
+                    ),
                   ],
                 ),
               ),
