@@ -2,8 +2,10 @@ part of 'locale_switcher_button.dart';
 
 class _LocaleSwitcherButtonDiDto {
   _LocaleSwitcherButtonDiDto.use(final Locator read)
-      : appSettingsNotifier = read();
+      : appSettingsNotifier = read(),
+        uiKeyboardController = read();
   final AppSettingsCubit appSettingsNotifier;
+  final UiKeyboardController uiKeyboardController;
 }
 
 _LocaleSwitcherButtonState _useLocaleSwitcherButtonState({
@@ -37,6 +39,12 @@ class _LocaleSwitcherButtonState extends LifeState {
 
   void onUpdateLocale(final Locale? value) {
     diDto.appSettingsNotifier.locale = value;
+    final definedLocale = diDto.appSettingsNotifier.definedLocale;
+    diDto.uiKeyboardController.onChangeLanguage(
+      KeyboardLanguage.fromlanguage(
+        Languages.byLanguageCode(definedLocale.languageCode),
+      ),
+    );
     locale = value;
     setState();
   }
