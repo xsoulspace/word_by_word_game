@@ -23,8 +23,6 @@ class GameSaveModel with _$GameSaveModel {
     /// Saved level configuration to get player an option to restart a level
     final LevelModel? currentLevel,
     @Default(kLatestGameVersion) final GameVersion version,
-    @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
-    @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
 
     /// Global players statistics and data.
     @Default([]) final List<PlayerProfileModel> playersCollection,

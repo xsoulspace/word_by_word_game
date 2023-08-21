@@ -369,8 +369,6 @@ mixin _$GameSaveModel {
   /// Saved level configuration to get player an option to restart a level
   LevelModel? get currentLevel => throw _privateConstructorUsedError;
   GameVersion get version => throw _privateConstructorUsedError;
-  WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
-  WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
 
   /// Global players statistics and data.
   List<PlayerProfileModel> get playersCollection =>
@@ -402,8 +400,6 @@ abstract class $GameSaveModelCopyWith<$Res> {
       CanvasDataModelId currentLevelId,
       LevelModel? currentLevel,
       GameVersion version,
-      WorldDateTimeModel dateTime,
-      WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
       TutorialCollectionsProgressModel tutorialProgress,
@@ -414,8 +410,6 @@ abstract class $GameSaveModelCopyWith<$Res> {
 
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
   $LevelModelCopyWith<$Res>? get currentLevel;
-  $WorldDateTimeModelCopyWith<$Res> get dateTime;
-  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
   $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
 }
 
@@ -436,8 +430,6 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
     Object? currentLevelId = null,
     Object? currentLevel = freezed,
     Object? version = null,
-    Object? dateTime = null,
-    Object? lastDateTime = null,
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? tutorialProgress = null,
@@ -460,14 +452,6 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as GameVersion,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
-      lastDateTime: null == lastDateTime
-          ? _value.lastDateTime
-          : lastDateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
       playersCollection: null == playersCollection
           ? _value.playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
@@ -509,22 +493,6 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $WorldDateTimeModelCopyWith<$Res> get dateTime {
-    return $WorldDateTimeModelCopyWith<$Res>(_value.dateTime, (value) {
-      return _then(_value.copyWith(dateTime: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
-    return $WorldDateTimeModelCopyWith<$Res>(_value.lastDateTime, (value) {
-      return _then(_value.copyWith(lastDateTime: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress {
     return $TutorialCollectionsProgressModelCopyWith<$Res>(
         _value.tutorialProgress, (value) {
@@ -546,8 +514,6 @@ abstract class _$$_GameModelCopyWith<$Res>
       CanvasDataModelId currentLevelId,
       LevelModel? currentLevel,
       GameVersion version,
-      WorldDateTimeModel dateTime,
-      WorldDateTimeModel lastDateTime,
       List<PlayerProfileModel> playersCollection,
       List<PlayerCharacterModel> playersCharacters,
       TutorialCollectionsProgressModel tutorialProgress,
@@ -560,10 +526,6 @@ abstract class _$$_GameModelCopyWith<$Res>
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId;
   @override
   $LevelModelCopyWith<$Res>? get currentLevel;
-  @override
-  $WorldDateTimeModelCopyWith<$Res> get dateTime;
-  @override
-  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
   @override
   $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
 }
@@ -583,8 +545,6 @@ class __$$_GameModelCopyWithImpl<$Res>
     Object? currentLevelId = null,
     Object? currentLevel = freezed,
     Object? version = null,
-    Object? dateTime = null,
-    Object? lastDateTime = null,
     Object? playersCollection = null,
     Object? playersCharacters = null,
     Object? tutorialProgress = null,
@@ -607,14 +567,6 @@ class __$$_GameModelCopyWithImpl<$Res>
           ? _value.version
           : version // ignore: cast_nullable_to_non_nullable
               as GameVersion,
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
-      lastDateTime: null == lastDateTime
-          ? _value.lastDateTime
-          : lastDateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
       playersCollection: null == playersCollection
           ? _value._playersCollection
           : playersCollection // ignore: cast_nullable_to_non_nullable
@@ -644,8 +596,6 @@ class _$_GameModel extends _GameModel {
       required this.currentLevelId,
       this.currentLevel,
       this.version = kLatestGameVersion,
-      this.dateTime = const WorldDateTimeModel(),
-      this.lastDateTime = const WorldDateTimeModel(),
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
       this.tutorialProgress = TutorialCollectionsProgressModel.empty,
@@ -674,12 +624,6 @@ class _$_GameModel extends _GameModel {
   @override
   @JsonKey()
   final GameVersion version;
-  @override
-  @JsonKey()
-  final WorldDateTimeModel dateTime;
-  @override
-  @JsonKey()
-  final WorldDateTimeModel lastDateTime;
 
   /// Global players statistics and data.
   final List<PlayerProfileModel> _playersCollection;
@@ -720,7 +664,7 @@ class _$_GameModel extends _GameModel {
 
   @override
   String toString() {
-    return 'GameSaveModel(id: $id, currentLevelId: $currentLevelId, currentLevel: $currentLevel, version: $version, dateTime: $dateTime, lastDateTime: $lastDateTime, playersCollection: $playersCollection, playersCharacters: $playersCharacters, tutorialProgress: $tutorialProgress, savedLevels: $savedLevels)';
+    return 'GameSaveModel(id: $id, currentLevelId: $currentLevelId, currentLevel: $currentLevel, version: $version, playersCollection: $playersCollection, playersCharacters: $playersCharacters, tutorialProgress: $tutorialProgress, savedLevels: $savedLevels)';
   }
 
   @override
@@ -734,10 +678,6 @@ class _$_GameModel extends _GameModel {
             (identical(other.currentLevel, currentLevel) ||
                 other.currentLevel == currentLevel) &&
             (identical(other.version, version) || other.version == version) &&
-            (identical(other.dateTime, dateTime) ||
-                other.dateTime == dateTime) &&
-            (identical(other.lastDateTime, lastDateTime) ||
-                other.lastDateTime == lastDateTime) &&
             const DeepCollectionEquality()
                 .equals(other._playersCollection, _playersCollection) &&
             const DeepCollectionEquality()
@@ -756,8 +696,6 @@ class _$_GameModel extends _GameModel {
       currentLevelId,
       currentLevel,
       version,
-      dateTime,
-      lastDateTime,
       const DeepCollectionEquality().hash(_playersCollection),
       const DeepCollectionEquality().hash(_playersCharacters),
       tutorialProgress,
@@ -783,8 +721,6 @@ abstract class _GameModel extends GameSaveModel {
       required final CanvasDataModelId currentLevelId,
       final LevelModel? currentLevel,
       final GameVersion version,
-      final WorldDateTimeModel dateTime,
-      final WorldDateTimeModel lastDateTime,
       final List<PlayerProfileModel> playersCollection,
       final List<PlayerCharacterModel> playersCharacters,
       final TutorialCollectionsProgressModel tutorialProgress,
@@ -809,10 +745,6 @@ abstract class _GameModel extends GameSaveModel {
   LevelModel? get currentLevel;
   @override
   GameVersion get version;
-  @override
-  WorldDateTimeModel get dateTime;
-  @override
-  WorldDateTimeModel get lastDateTime;
   @override
 
   /// Global players statistics and data.
@@ -1009,6 +941,8 @@ mixin _$LevelModel {
   GamePhaseType get phaseType => throw _privateConstructorUsedError;
   EnergyMultiplierType get actionMultiplier =>
       throw _privateConstructorUsedError;
+  WorldDateTimeModel get dateTime => throw _privateConstructorUsedError;
+  WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -1032,13 +966,17 @@ abstract class $LevelModelCopyWith<$Res> {
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      EnergyMultiplierType actionMultiplier});
+      EnergyMultiplierType actionMultiplier,
+      WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
   $WindModelCopyWith<$Res> get wind;
   $CanvasDataModelIdCopyWith<$Res> get canvasDataId;
   $CurrentWordModelCopyWith<$Res> get currentWord;
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
 
 /// @nodoc
@@ -1064,6 +1002,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? latestWord = null,
     Object? phaseType = null,
     Object? actionMultiplier = null,
+    Object? dateTime = null,
+    Object? lastDateTime = null,
   }) {
     return _then(_value.copyWith(
       players: null == players
@@ -1106,6 +1046,14 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.actionMultiplier
           : actionMultiplier // ignore: cast_nullable_to_non_nullable
               as EnergyMultiplierType,
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: null == lastDateTime
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
     ) as $Val);
   }
 
@@ -1148,6 +1096,22 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
       return _then(_value.copyWith(currentWord: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WorldDateTimeModelCopyWith<$Res> get dateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.dateTime, (value) {
+      return _then(_value.copyWith(dateTime: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
+    return $WorldDateTimeModelCopyWith<$Res>(_value.lastDateTime, (value) {
+      return _then(_value.copyWith(lastDateTime: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1168,7 +1132,9 @@ abstract class _$$_LevelModelCopyWith<$Res>
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      EnergyMultiplierType actionMultiplier});
+      EnergyMultiplierType actionMultiplier,
+      WorldDateTimeModel dateTime,
+      WorldDateTimeModel lastDateTime});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1180,6 +1146,10 @@ abstract class _$$_LevelModelCopyWith<$Res>
   $CanvasDataModelIdCopyWith<$Res> get canvasDataId;
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get dateTime;
+  @override
+  $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 }
 
 /// @nodoc
@@ -1203,6 +1173,8 @@ class __$$_LevelModelCopyWithImpl<$Res>
     Object? latestWord = null,
     Object? phaseType = null,
     Object? actionMultiplier = null,
+    Object? dateTime = null,
+    Object? lastDateTime = null,
   }) {
     return _then(_$_LevelModel(
       players: null == players
@@ -1245,6 +1217,14 @@ class __$$_LevelModelCopyWithImpl<$Res>
           ? _value.actionMultiplier
           : actionMultiplier // ignore: cast_nullable_to_non_nullable
               as EnergyMultiplierType,
+      dateTime: null == dateTime
+          ? _value.dateTime
+          : dateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
+      lastDateTime: null == lastDateTime
+          ? _value.lastDateTime
+          : lastDateTime // ignore: cast_nullable_to_non_nullable
+              as WorldDateTimeModel,
     ));
   }
 }
@@ -1263,7 +1243,9 @@ class _$_LevelModel extends _LevelModel {
       final Map<String, String> words = const {},
       this.latestWord = '',
       this.phaseType = GamePhaseType.entryWord,
-      this.actionMultiplier = EnergyMultiplierType.m1})
+      this.actionMultiplier = EnergyMultiplierType.m1,
+      this.dateTime = WorldDateTimeModel.zero,
+      this.lastDateTime = WorldDateTimeModel.zero})
       : _weathers = weathers,
         _words = words,
         super._();
@@ -1314,10 +1296,16 @@ class _$_LevelModel extends _LevelModel {
   @override
   @JsonKey()
   final EnergyMultiplierType actionMultiplier;
+  @override
+  @JsonKey()
+  final WorldDateTimeModel dateTime;
+  @override
+  @JsonKey()
+  final WorldDateTimeModel lastDateTime;
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier)';
+    return 'LevelModel(players: $players, characters: $characters, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime)';
   }
 
   @override
@@ -1340,7 +1328,11 @@ class _$_LevelModel extends _LevelModel {
             (identical(other.phaseType, phaseType) ||
                 other.phaseType == phaseType) &&
             (identical(other.actionMultiplier, actionMultiplier) ||
-                other.actionMultiplier == actionMultiplier));
+                other.actionMultiplier == actionMultiplier) &&
+            (identical(other.dateTime, dateTime) ||
+                other.dateTime == dateTime) &&
+            (identical(other.lastDateTime, lastDateTime) ||
+                other.lastDateTime == lastDateTime));
   }
 
   @JsonKey(ignore: true)
@@ -1356,7 +1348,9 @@ class _$_LevelModel extends _LevelModel {
       const DeepCollectionEquality().hash(_words),
       latestWord,
       phaseType,
-      actionMultiplier);
+      actionMultiplier,
+      dateTime,
+      lastDateTime);
 
   @JsonKey(ignore: true)
   @override
@@ -1383,7 +1377,9 @@ abstract class _LevelModel extends LevelModel {
       final Map<String, String> words,
       final String latestWord,
       final GamePhaseType phaseType,
-      final EnergyMultiplierType actionMultiplier}) = _$_LevelModel;
+      final EnergyMultiplierType actionMultiplier,
+      final WorldDateTimeModel dateTime,
+      final WorldDateTimeModel lastDateTime}) = _$_LevelModel;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1412,6 +1408,10 @@ abstract class _LevelModel extends LevelModel {
   GamePhaseType get phaseType;
   @override
   EnergyMultiplierType get actionMultiplier;
+  @override
+  WorldDateTimeModel get dateTime;
+  @override
+  WorldDateTimeModel get lastDateTime;
   @override
   @JsonKey(ignore: true)
   _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>

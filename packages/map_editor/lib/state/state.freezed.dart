@@ -605,8 +605,8 @@ class __$$_WorldStateCopyWithImpl<$Res>
 
 class _$_WorldState extends _WorldState {
   const _$_WorldState(
-      {this.dateTime = const WorldDateTimeModel(),
-      this.lastDateTime = const WorldDateTimeModel(),
+      {this.dateTime = WorldDateTimeModel.zero,
+      this.lastDateTime = WorldDateTimeModel.zero,
       this.dateTimeDelta = 0})
       : super._();
 

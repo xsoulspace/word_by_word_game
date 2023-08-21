@@ -13,6 +13,7 @@ enum EnergyMultiplierType {
   final String namedPart;
 }
 
+/// maybe rename to world level model
 @immutable
 @freezed
 class LevelModel with _$LevelModel {
@@ -34,6 +35,8 @@ class LevelModel with _$LevelModel {
     @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
     @Default(EnergyMultiplierType.m1)
     final EnergyMultiplierType actionMultiplier,
+    @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
+    @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>

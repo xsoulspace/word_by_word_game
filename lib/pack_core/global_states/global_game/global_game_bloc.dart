@@ -336,9 +336,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       savedLevels: liveState.savedLevels,
       currentLevel: liveState.currentLevelModel,
       currentLevelId: liveState.currentLevelId,
-      dateTime: liveState.dateTime,
       tutorialProgress: tutorialProgress,
-      lastDateTime: liveState.lastDateTime,
       playersCharacters: liveState.playersCharacters,
       playersCollection: liveState.playersCollection,
     );
@@ -362,6 +360,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         currentPlayerId: playersState.currentPlayerId,
         players: playersState.players,
       ),
+      dateTime: state.dateTime,
+      lastDateTime: state.lastDateTime,
     );
   }
 

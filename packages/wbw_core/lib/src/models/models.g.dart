@@ -50,14 +50,6 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
           : LevelModel.fromJson(json['currentLevel'] as Map<String, dynamic>),
       version: $enumDecodeNullable(_$GameVersionEnumMap, json['version']) ??
           kLatestGameVersion,
-      dateTime: json['dateTime'] == null
-          ? const WorldDateTimeModel()
-          : WorldDateTimeModel.fromJson(
-              json['dateTime'] as Map<String, dynamic>),
-      lastDateTime: json['lastDateTime'] == null
-          ? const WorldDateTimeModel()
-          : WorldDateTimeModel.fromJson(
-              json['lastDateTime'] as Map<String, dynamic>),
       playersCollection: (json['playersCollection'] as List<dynamic>?)
               ?.map(
                   (e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
@@ -84,8 +76,6 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'currentLevelId': instance.currentLevelId.toJson(),
       'currentLevel': instance.currentLevel?.toJson(),
       'version': _$GameVersionEnumMap[instance.version]!,
-      'dateTime': instance.dateTime.toJson(),
-      'lastDateTime': instance.lastDateTime.toJson(),
       'playersCollection':
           instance.playersCollection.map((e) => e.toJson()).toList(),
       'playersCharacters':
@@ -144,6 +134,14 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
       actionMultiplier: $enumDecodeNullable(
               _$EnergyMultiplierTypeEnumMap, json['actionMultiplier']) ??
           EnergyMultiplierType.m1,
+      dateTime: json['dateTime'] == null
+          ? WorldDateTimeModel.zero
+          : WorldDateTimeModel.fromJson(
+              json['dateTime'] as Map<String, dynamic>),
+      lastDateTime: json['lastDateTime'] == null
+          ? WorldDateTimeModel.zero
+          : WorldDateTimeModel.fromJson(
+              json['lastDateTime'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
@@ -159,6 +157,8 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'phaseType': _$GamePhaseTypeEnumMap[instance.phaseType]!,
       'actionMultiplier':
           _$EnergyMultiplierTypeEnumMap[instance.actionMultiplier]!,
+      'dateTime': instance.dateTime.toJson(),
+      'lastDateTime': instance.lastDateTime.toJson(),
     };
 
 const _$GamePhaseTypeEnumMap = {
