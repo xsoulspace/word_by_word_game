@@ -338,8 +338,8 @@ abstract class S {
   /// No description provided for @notEnoughKnowledgeToRevealWord.
   ///
   /// In en, this message translates to:
-  /// **'Unfortunately, you have not enough knowledge points to reveal this word..'**
-  String get notEnoughKnowledgeToRevealWord;
+  /// **'Not enough points ({costOfWord}/{userPoints})'**
+  String notEnoughKnowledgeToRevealWord(int costOfWord, int userPoints);
 
   /// No description provided for @useCostKnowledgePoints.
   ///

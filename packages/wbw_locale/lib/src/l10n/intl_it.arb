@@ -114,7 +114,17 @@
   "back": "Indietro",
   "ok": "Bello",
   "tryAnotherWord": "Prova un'altra parola",
-  "notEnoughKnowledgeToRevealWord": "Purtroppo non avete abbastanza punti conoscenza per rivelare questa parola...",
+  "notEnoughKnowledgeToRevealWord": "Punti insufficienti ({costOfWord}/{userPoints})",
+  "@notEnoughKnowledgeToRevealWord": {
+    "placeholders": {
+      "costOfWord": {
+        "type": "int"
+      },
+      "userPoints": {
+        "type": "int"
+      }
+    }
+  },
   "useCostKnowledgePoints": "Utilizzare i punti di conoscenza: {costOfWord}",
   "revealSuggestedWord": "Rivela la parola suggerita?",
   "suggestedWord": "Parola suggerita",
