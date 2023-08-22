@@ -45,6 +45,9 @@ class DictionaryMechanics {
     required final Iterable<String> exceptions,
     final int maxSuggestions = 10,
   }) {
+    if (exceptions.isEmpty) {
+      return dictionaryWords.take(maxSuggestions).toList();
+    }
     final words = <String>[];
     for (final word in dictionaryWords) {
       final isException = exceptions.contains(word);

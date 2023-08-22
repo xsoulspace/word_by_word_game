@@ -38,23 +38,15 @@ class TutorialFrame extends StatelessWidget {
     final persistentFormFactors = UiPersistentFormFactors.of(context);
     final isMobile = persistentFormFactors.screenSize.width <
         WidthFormFactor.mobileTutorialMaxWidth;
-    // if (isMobile) {
-    //   return HighlightFrame(
-    //     onPressed: () {
-    //       sendOnClickEvent(context: context, uiKey: uiKey);
-    //     },
-    //     highlighted: highlighted,
-    //     highlightPosition: highlightPosition,
-    //     child: child,
-    //   );
-    // } else {
 
     return PortalTarget(
       anchor: highlightPosition.toAnchor(),
 
       /// mobile dialog is in HudOverlay, so there is only desktop
       /// will be displayed
-      portalFollower: const DesktopAnchoredTutorialDialog(),
+      portalFollower: DesktopAnchoredTutorialDialog(
+        highlightPosition: highlightPosition,
+      ),
       visible: highlighted && !isMobile,
       child: HighlightFrame(
         onPressed: () {

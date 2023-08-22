@@ -106,7 +106,10 @@ class _Statistics extends StatelessWidget {
               children: [
                 const Gap(8),
                 TutorialFrame(
-                  highlightPosition: Alignment.bottomCenter,
+                  highlightPosition: MediaQuery.sizeOf(context).width >
+                          WidthFormFactor.mobileTutorialMaxWidth
+                      ? Alignment.centerRight
+                      : Alignment.bottomCenter,
                   uiKey: TutorialUiItem.baloonPower,
                   child: GestureDetector(
                     onTap: () {
