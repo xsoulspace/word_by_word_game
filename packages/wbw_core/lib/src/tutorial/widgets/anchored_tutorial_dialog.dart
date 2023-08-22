@@ -77,7 +77,11 @@ class MobileAnchoredTutorialDialog extends StatelessWidget {
 }
 
 class DesktopAnchoredTutorialDialog extends StatelessWidget {
-  const DesktopAnchoredTutorialDialog({super.key});
+  const DesktopAnchoredTutorialDialog({
+    required this.highlightPosition,
+    super.key,
+  });
+  final Alignment highlightPosition;
 
   @override
   Widget build(final BuildContext context) {
@@ -99,7 +103,10 @@ class DesktopAnchoredTutorialDialog extends StatelessWidget {
         child = const SizedBox();
     }
     return Transform.translate(
-      offset: const Offset(0, -40),
+      offset: highlightPosition == Alignment.centerRight ||
+              highlightPosition == Alignment.bottomRight
+          ? const Offset(40, -40)
+          : const Offset(0, -40),
       child: child,
     );
   }

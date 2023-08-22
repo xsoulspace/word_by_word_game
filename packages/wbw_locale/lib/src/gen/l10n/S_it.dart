@@ -127,7 +127,9 @@ class SIt extends S {
   String get tryAnotherWord => 'Prova un\'altra parola';
 
   @override
-  String get notEnoughKnowledgeToRevealWord => 'Purtroppo non avete abbastanza punti conoscenza per rivelare questa parola...';
+  String notEnoughKnowledgeToRevealWord(int costOfWord, int userPoints) {
+    return 'Punti insufficienti ($costOfWord/$userPoints)';
+  }
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {
@@ -189,7 +191,7 @@ class SIt extends S {
   String get refuelStorage => 'Rifornirsi';
 
   @override
-  String get addToDictionary => 'Aggiungi al dizionario';
+  String get addToDictionary => 'Aggiungi al diz';
 
   @override
   String get hidePane => 'Nascondi riquadro';
@@ -212,6 +214,9 @@ class SIt extends S {
 
   @override
   String get hideKeyboard => 'Nascondi tastiera';
+
+  @override
+  String get graphicsCreditsThanks => 'Crediti grafici e ringraziamenti:';
 
   @override
   String get showKeyboard => 'Mostra tastiera';

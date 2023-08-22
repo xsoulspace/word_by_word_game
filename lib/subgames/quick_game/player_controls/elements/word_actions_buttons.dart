@@ -153,23 +153,15 @@ class UiSuggestionsButton extends StatelessWidget {
     super.key,
   });
   @override
-  Widget build(final BuildContext context) {
-    final isEnabled = context.select<LevelBloc, bool>(
-      (final value) => value.state.currentWord.fullWord.isNotEmpty,
-    );
-
-    return UiTextButton.icon(
-      isLongButton: true,
-      text: S.of(context).suggestions,
-      tooltip: S.of(context).suggestWordButtonTooltip,
-      onPressed: isEnabled
-          ? null
-          : () {
-              context.read<DialogController>().showLevelWordSuggestionDialog();
-            },
-      icon: UiIcons.idea,
-    );
-  }
+  Widget build(final BuildContext context) => UiTextButton.icon(
+        isLongButton: true,
+        text: S.of(context).suggestions,
+        tooltip: S.of(context).suggestWordButtonTooltip,
+        onPressed: () {
+          context.read<DialogController>().showLevelWordSuggestionDialog();
+        },
+        icon: UiIcons.idea,
+      );
 }
 
 class UiPauseButton extends StatelessWidget {

@@ -28,14 +28,8 @@ class LevelOptionsScreen extends HookWidget {
       children: [
         uiTheme.verticalBoxes.medium,
         Text(
-          level.name.getValue().toUpperCase(),
+          S.of(context).selectPlayers.toUpperCase(),
           style: theme.textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
-        uiTheme.verticalBoxes.small,
-        Text(
-          S.of(context).selectPlayers,
-          style: theme.textTheme.bodySmall,
           textAlign: TextAlign.center,
         ),
         uiTheme.verticalBoxes.medium,

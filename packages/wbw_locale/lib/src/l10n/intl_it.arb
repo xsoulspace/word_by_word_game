@@ -11,6 +11,7 @@
   "@resetEnding": {
     "type": "text"
   },
+  "graphicsCreditsThanks": "Crediti grafici e ringraziamenti:",
   "hideKeyboard": "Nascondi tastiera",
   "showKeyboard": "Mostra tastiera",
   "wordIsNotCorrect": "Non riusciamo a trovare la parola {word} nel nostro dizionario! Prova un'altra parola o aggiungila.",
@@ -113,7 +114,17 @@
   "back": "Indietro",
   "ok": "Bello",
   "tryAnotherWord": "Prova un'altra parola",
-  "notEnoughKnowledgeToRevealWord": "Purtroppo non avete abbastanza punti conoscenza per rivelare questa parola...",
+  "notEnoughKnowledgeToRevealWord": "Punti insufficienti ({costOfWord}/{userPoints})",
+  "@notEnoughKnowledgeToRevealWord": {
+    "placeholders": {
+      "costOfWord": {
+        "type": "int"
+      },
+      "userPoints": {
+        "type": "int"
+      }
+    }
+  },
   "useCostKnowledgePoints": "Utilizzare i punti di conoscenza: {costOfWord}",
   "revealSuggestedWord": "Rivela la parola suggerita?",
   "suggestedWord": "Parola suggerita",
@@ -157,7 +168,7 @@
   "selectAction": "Seleziona Azione",
   "cookFood": "Cucinare",
   "refuelStorage": "Rifornirsi",
-  "addToDictionary": "Aggiungi al dizionario",
+  "addToDictionary": "Aggiungi al diz",
   "@addToDictionary": {
     "type": "text"
   },
