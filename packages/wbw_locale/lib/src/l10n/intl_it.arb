@@ -158,7 +158,7 @@
   "selectAction": "Seleziona Azione",
   "cookFood": "Cucinare",
   "refuelStorage": "Rifornirsi",
-  "addToDictionary": "Aggiungi al dizionario",
+  "addToDictionary": "Aggiungi al diz",
   "@addToDictionary": {
     "type": "text"
   },

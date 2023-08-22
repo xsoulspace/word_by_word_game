@@ -189,7 +189,7 @@ class SIt extends S {
   String get refuelStorage => 'Rifornirsi';
 
   @override
-  String get addToDictionary => 'Aggiungi al dizionario';
+  String get addToDictionary => 'Aggiungi al diz';
 
   @override
   String get hidePane => 'Nascondi riquadro';
