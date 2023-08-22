@@ -214,6 +214,9 @@ class SIt extends S {
   String get hideKeyboard => 'Nascondi tastiera';
 
   @override
+  String get graphicsCreditsThanks => 'Crediti grafici e ringraziamenti:';
+
+  @override
   String get showKeyboard => 'Mostra tastiera';
 
   @override

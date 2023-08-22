@@ -214,6 +214,9 @@ class SEn extends S {
   String get hideKeyboard => 'Hide keyboard';
 
   @override
+  String get graphicsCreditsThanks => 'Graphics credits & thanks:';
+
+  @override
   String get showKeyboard => 'Show keyboard';
 
   @override

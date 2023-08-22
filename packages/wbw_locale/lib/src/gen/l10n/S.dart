@@ -497,6 +497,12 @@ abstract class S {
   /// **'Hide keyboard'**
   String get hideKeyboard;
 
+  /// No description provided for @graphicsCreditsThanks.
+  ///
+  /// In en, this message translates to:
+  /// **'Graphics credits & thanks:'**
+  String get graphicsCreditsThanks;
+
   /// No description provided for @showKeyboard.
   ///
   /// In en, this message translates to:

@@ -11,6 +11,7 @@
   "@resetEnding": {
     "type": "text"
   },
+  "graphicsCreditsThanks": "Crediti grafici e ringraziamenti:",
   "hideKeyboard": "Nascondi tastiera",
   "showKeyboard": "Mostra tastiera",
   "wordIsNotCorrect": "Non riusciamo a trovare la parola {word} nel nostro dizionario! Prova un'altra parola o aggiungila.",

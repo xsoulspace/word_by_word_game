@@ -214,6 +214,9 @@ class SRu extends S {
   String get hideKeyboard => 'Скрыть клавиатуру';
 
   @override
+  String get graphicsCreditsThanks => 'Графика и спасибо:';
+
+  @override
   String get showKeyboard => 'Показать клавиатуру';
 
   @override
