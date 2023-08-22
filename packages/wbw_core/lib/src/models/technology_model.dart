@@ -19,11 +19,24 @@ class TechnologyModelId with _$TechnologyModelId, EquatableMixin {
 }
 
 @freezed
+class TechnologyTreeModel with _$TechnologyTreeModel {
+  const factory TechnologyTreeModel({
+    @Default([]) final List<TechnologyModel> technologies,
+  }) = _TechnologyTreeModel;
+  factory TechnologyTreeModel.fromJson(final Map<String, dynamic> json) =>
+      _$TechnologyTreeModelFromJson(json);
+  const TechnologyTreeModel._();
+  static const empty = TechnologyTreeModel();
+}
+
+@freezed
 class TechnologyModel with _$TechnologyModel {
   const factory TechnologyModel({
     required final TechnologyModelId id,
     required final LocalizedMap title,
+    // TODO(antmalofeev): add icon?
     required final TechnologyUnlockConditionModel unlockCondition,
+    required final TechnologyType type,
     final TechnologyModelId? parentTechnologyId,
   }) = _TechnologyModel;
   factory TechnologyModel.fromJson(final Map<String, dynamic> json) =>
@@ -61,4 +74,11 @@ class UsefulWordModel with _$UsefulWordModel {
   factory UsefulWordModel.fromJson(final Map<String, dynamic> json) =>
       _$UsefulWordModelFromJson(json);
   const UsefulWordModel._();
+}
+
+enum TechnologyType {
+  safeLanding,
+  emergencyLanding,
+  ascending,
+  descending,
 }

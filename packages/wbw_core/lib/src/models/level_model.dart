@@ -37,6 +37,8 @@ class LevelModel with _$LevelModel {
     final EnergyMultiplierType actionMultiplier,
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel dateTime,
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel lastDateTime,
+    @Default(TechnologyTreeModel.empty)
+    final TechnologyTreeModel technologyTree,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
