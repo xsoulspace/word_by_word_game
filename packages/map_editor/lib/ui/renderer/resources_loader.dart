@@ -191,7 +191,7 @@ class AnimationUpdater extends Component
                   config: config,
                   dt: dt,
                   entry: animationEntry,
-                )
+                ),
               },
             );
           }
@@ -229,7 +229,7 @@ class AnimationUpdater extends Component
                   config: config,
                   dt: dt,
                   entry: animationEntry,
-                )
+                ),
               },
             );
           }

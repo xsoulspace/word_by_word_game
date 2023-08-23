@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';

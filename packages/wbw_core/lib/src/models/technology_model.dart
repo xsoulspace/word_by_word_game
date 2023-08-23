@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 part of 'models.dart';
 
 @immutable
@@ -7,8 +9,8 @@ class TechnologyModelId with _$TechnologyModelId, EquatableMixin {
     required final TechnologyType value,
   }) = _TechnologyModelId;
   const TechnologyModelId._();
-  factory TechnologyModelId.fromJson(final TechnologyType value) =>
-      TechnologyModelId(value: value);
+  factory TechnologyModelId.fromJson(final Map<String, dynamic> json) =>
+      _$TechnologyModelIdFromJson(json);
   @override
   List<Object?> get props => [value];
 }
@@ -16,25 +18,67 @@ class TechnologyModelId with _$TechnologyModelId, EquatableMixin {
 @freezed
 class TechnologyTreeModel with _$TechnologyTreeModel {
   const factory TechnologyTreeModel({
-    @Default({}) final Map<TechnologyModelId, TechnologyModel> technologies,
+    @JsonKey(
+      fromJson: TechnologyTreeModel._technologiesFromJson,
+      toJson: TechnologyTreeModel._technologiesToJson,
+    )
+    @Default({})
+    final Map<TechnologyModelId, TechnologyModel> technologies,
   }) = _TechnologyTreeModel;
   factory TechnologyTreeModel.fromJson(final Map<String, dynamic> json) =>
       _$TechnologyTreeModelFromJson(json);
   const TechnologyTreeModel._();
   static const empty = TechnologyTreeModel();
+  static Map<TechnologyModelId, TechnologyModel> _technologiesFromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      json.map(
+        (final key, final value) => MapEntry(
+          TechnologyModelId.fromJson(jsonDecode(key)),
+          TechnologyModel.fromJson(value),
+        ),
+      );
+  static Map<String, dynamic> _technologiesToJson(
+    final Map<TechnologyModelId, TechnologyModel> json,
+  ) =>
+      json.map(
+        (final key, final value) =>
+            MapEntry(jsonEncode(key.toJson()), value.toJson()),
+      );
 }
 
 @freezed
 class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
   const factory TechnologyTreeProgressModel({
+    @JsonKey(
+      fromJson: TechnologyTreeProgressModel._technologiesFromJson,
+      toJson: TechnologyTreeProgressModel._technologiesToJson,
+    )
     @Default({})
     final Map<TechnologyModelId, TechnologyProgressModel> technologies,
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
-          final Map<String, dynamic> json) =>
+    final Map<String, dynamic> json,
+  ) =>
       _$TechnologyTreeProgressModelFromJson(json);
   const TechnologyTreeProgressModel._();
   static const empty = TechnologyTreeProgressModel();
+  static Map<TechnologyModelId, TechnologyProgressModel> _technologiesFromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      json.map(
+        (final key, final value) => MapEntry(
+          TechnologyModelId.fromJson(jsonDecode(key)),
+          TechnologyProgressModel.fromJson(value),
+        ),
+      );
+  static Map<String, dynamic> _technologiesToJson(
+    final Map<TechnologyModelId, TechnologyProgressModel> json,
+  ) =>
+      json.map(
+        (final key, final value) =>
+            MapEntry(jsonEncode(key.toJson()), value.toJson()),
+      );
 }
 
 /// Should be short version of [TechnologyModel]
