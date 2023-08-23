@@ -28,8 +28,18 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
 
   /// This function should be triggered before game is started to renderc
   Future<void> loadInitialData() async {
-    await loadResources();
+    loadTilesets();
+    // TODO(arenukvern): should be dependent on tileset in level
+    await loadTileset(state.tilesetsConfigs.first);
     await loadEditorCanvasData();
+  }
+
+  void loadTilesets() {
+    final tilesetsPresetsConfigs = Assets.images.tilesets.values
+        .where((final e) => e.contains('preset_data.json'))
+        .map((final e) => TilesetConfigModel(path: e))
+        .toList();
+    emit(state.copyWith(tilesetsConfigs: tilesetsPresetsConfigs));
   }
 
   Future<void> loadEditorCanvasData() async {
@@ -48,13 +58,16 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     );
   }
 
-  Future<void> loadResources() async {
+  Future<void> onLoad() async {
     await resourcesLoader.onLoad();
+  }
+
+  Future<void> loadTileset(final TilesetConfigModel tilesetConfig) async {
     final jsonStr =
-        await rootBundle.loadString('$rootPath${Assets.json.tilesPresetData}');
+        await rootBundle.loadString('$rootPath${tilesetConfig.presetPath}');
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
-    final tileData = TilesPresetDataModel.fromJson(json);
-    final tileResources = TilesPresetResources.fromModel(
+    final tileData = TilesetPresetDataModel.fromJson(json);
+    final tileResources = TilesetPresetResources.fromModel(
       data: tileData,
       resourcesLoader: resourcesLoader,
     );
@@ -153,8 +166,8 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     ]);
   }
 
-  TilesPresetResources get tilesResources => state.tileResources;
-  set tilesResources(final TilesPresetResources presetResources) =>
+  TilesetPresetResources get tilesResources => state.tileResources;
+  set tilesResources(final TilesetPresetResources presetResources) =>
       emit(state.copyWith(tileResources: presetResources));
 
   CanvasDataModel get canvasData => state.canvasData;

@@ -25,7 +25,9 @@ class CanvasCubit extends DrawerCubit {
   final CanvasCubitDto canvasDto;
   @override
   Future<void> loadInitialData() async {
-    await loadResources();
+    loadTilesets();
+    // TODO(arenukvern): should be dependent on tileset in level
+    await loadTileset(state.tilesetsConfigs.first);
   }
 
   // TODO(arenukvern): cache it

@@ -106,8 +106,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/preview/
+    - assets/images/preview/colourful/
     - assets/images/tilesets/
-    - assets/images/tilesets/pirate_tileset_pixel_frog/
+    - assets/images/tilesets/colourful/
     - assets/images/cursors/
     - assets/images/cursors/cursor/
     - assets/images/cursors/

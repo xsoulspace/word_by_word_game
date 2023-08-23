@@ -2,46 +2,61 @@
 
 part of 'preset_models.dart';
 
+/// default values for autotiles
+const Map<SpriteTileName, List<SpriteCode>> _nameCodes = {
+  SpriteTileName.topLeft: ['BCDEF', 'CDEF', 'CDE', 'BCDE'],
+  SpriteTileName.topCenter: ['CDEFG', 'CEG', 'BCDEFG', 'CDEFGH'],
+  SpriteTileName.topRight: ['DEFGH', 'DEFG', 'EFG', 'EFGH'],
+  SpriteTileName.middleLeft: ['ABCDE', 'ACE'],
+  SpriteTileName.middleRight: ['AEFGH', 'AEG'],
+  SpriteTileName.x: ['ABCDEFGH', 'ACEG'],
+  SpriteTileName.bottomLeft: ['ABCDH', 'ABC', 'ABCH', 'ABCD'],
+  SpriteTileName.bottomCenter: ['ABCGH', 'ACG'],
+  SpriteTileName.bottomRight: ['ABFGH', 'AFGH', 'ABGH', 'AGH'],
+};
+
 @freezed
-class TilesPresetDataModel with _$TilesPresetDataModel {
+class TilesetPresetDataModel with _$TilesetPresetDataModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory TilesPresetDataModel({
+  const factory TilesetPresetDataModel({
     @JsonKey(
-      fromJson: TilesPresetDataModel._tilesFromJson,
-      toJson: TilesPresetDataModel._tilesToJson,
+      fromJson: TilesetPresetDataModel._tilesFromJson,
+      toJson: TilesetPresetDataModel._tilesToJson,
     )
     @Default({})
     final Map<TileId, PresetTileModel> tiles,
     @JsonKey(
-      fromJson: TilesPresetDataModel._tilesFromJson,
-      toJson: TilesPresetDataModel._tilesToJson,
+      fromJson: TilesetPresetDataModel._tilesFromJson,
+      toJson: TilesetPresetDataModel._tilesToJson,
     )
     @Default({})
     final Map<TileId, PresetTileModel> objects,
     @JsonKey(
-      fromJson: TilesPresetDataModel._tilesFromJson,
-      toJson: TilesPresetDataModel._tilesToJson,
+      fromJson: TilesetPresetDataModel._tilesFromJson,
+      toJson: TilesetPresetDataModel._tilesToJson,
     )
     @Default({})
     final Map<TileId, PresetTileModel> npcs,
     @JsonKey(
-      fromJson: TilesPresetDataModel._tilesFromJson,
-      toJson: TilesPresetDataModel._tilesToJson,
+      fromJson: TilesetPresetDataModel._tilesFromJson,
+      toJson: TilesetPresetDataModel._tilesToJson,
     )
     @Default({})
     final Map<TileId, PresetTileModel> players,
     @JsonKey(
-      fromJson: TilesPresetDataModel._tilesFromJson,
-      toJson: TilesPresetDataModel._tilesToJson,
+      fromJson: TilesetPresetDataModel._tilesFromJson,
+      toJson: TilesetPresetDataModel._tilesToJson,
     )
     @Default({})
     final Map<TileId, PresetTileModel> other,
-  }) = _TilesPresetDataModel;
+    @Default(_nameCodes)
+    final Map<SpriteTileName, List<SpriteCode>> autotileRules,
+  }) = _TilesetPresetDataModel;
 
-  factory TilesPresetDataModel.fromJson(final Map<String, dynamic> json) =>
-      _$TilesPresetDataModelFromJson(json);
+  factory TilesetPresetDataModel.fromJson(final Map<String, dynamic> json) =>
+      _$TilesetPresetDataModelFromJson(json);
 
-  static const empty = TilesPresetDataModel();
+  static const empty = TilesetPresetDataModel();
 
   static Map<TileId, PresetTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
@@ -63,21 +78,44 @@ class TilesPresetDataModel with _$TilesPresetDataModel {
       );
 }
 
+enum TilesetType {
+  colourful,
+}
+
+@Freezed(fromJson: false, toJson: false)
+class TilesetConfigModel with _$TilesetConfigModel {
+  const factory TilesetConfigModel({
+    /// should be a _preset_data.json
+    @Default('') final String path,
+  }) = _TilesetConfigModel;
+  const TilesetConfigModel._();
+  String get cleanPath => paths.withoutExtension(
+        path.replaceAll('assets/images/', '').replaceAll('_preset_data', ''),
+      );
+  String get encodedAtlasPath => '$cleanPath.fa';
+  String get decodedAtlasPath => '$cleanPath.json';
+  String get folderPath => cleanPath;
+  String get presetPath => path;
+}
+
 @Freezed(toJson: false, fromJson: false)
-class TilesPresetResources with _$TilesPresetResources {
-  const factory TilesPresetResources({
+class TilesetPresetResources with _$TilesetPresetResources {
+  const factory TilesetPresetResources({
+    @Default(LocalizedMap.empty) final LocalizedMap name,
+    @Default(TilesetType.colourful) final TilesetType type,
     @Default({}) final Map<TileId, PresetTileResource> tiles,
     @Default({}) final Map<TileId, PresetTileResource> objects,
     @Default({}) final Map<TileId, PresetTileResource> npcs,
     @Default({}) final Map<TileId, PresetTileResource> players,
     @Default({}) final Map<TileId, PresetTileResource> other,
-  }) = _TilesPresetResources;
+    @Default({}) final Map<SpriteTileName, List<SpriteCode>> autotileRules,
+  }) = _TilesetPresetResources;
 
-  factory TilesPresetResources.fromModel({
-    required final TilesPresetDataModel data,
+  factory TilesetPresetResources.fromModel({
+    required final TilesetPresetDataModel data,
     required final ResourcesLoader resourcesLoader,
   }) =>
-      TilesPresetResources(
+      TilesetPresetResources(
         tiles: data.tiles.map(
           (final key, final tile) => MapEntry(
             key,
@@ -125,5 +163,5 @@ class TilesPresetResources with _$TilesPresetResources {
         ),
       );
 
-  static const empty = TilesPresetResources();
+  static const empty = TilesetPresetResources();
 }

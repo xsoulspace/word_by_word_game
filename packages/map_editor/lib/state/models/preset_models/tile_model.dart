@@ -51,6 +51,18 @@ class PresetTileModel with _$PresetTileModel {
   const PresetTileModel._();
 }
 
+enum SpriteTileName {
+  topLeft,
+  topCenter,
+  topRight,
+  middleLeft,
+  middleRight,
+  x,
+  bottomLeft,
+  bottomCenter,
+  bottomRight,
+}
+
 @freezed
 class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
   @JsonSerializable(fieldRename: FieldRename.snake)

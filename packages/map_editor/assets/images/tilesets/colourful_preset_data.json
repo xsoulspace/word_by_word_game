@@ -1,4 +1,21 @@
 {
+  "autotile_rules": {
+    "SpriteTileName.topLeft": ["BCDEF", "CDEF", "CDE", "BCDE"],
+    "SpriteTileName.topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH"],
+    "SpriteTileName.topRight": ["DEFGH", "DEFG", "EFG", "EFGH"],
+    "SpriteTileName.middleLeft": ["ABCDE", "ACE"],
+    "SpriteTileName.middleRight": ["AEFGH", "AEG"],
+    "SpriteTileName.x": ["ABCDEFGH", "ACEG"],
+    "SpriteTileName.bottomLeft": ["ABCDH", "ABC", "ABCH", "ABCD"],
+    "SpriteTileName.bottomCenter": ["ABCGH", "ACG"],
+    "SpriteTileName.bottomRight": ["ABFGH", "AFGH", "ABGH", "AGH"]
+  },
+  "type": "TilesetType.colourful",
+  "name": {
+    "en": "Colourful",
+    "ru": "Цветной",
+    "it": "Colourful"
+  },
   "tiles": {
     "marker_red": {
       "id": "marker_red",
@@ -6,7 +23,7 @@
       "category": "marker",
       "properties": {
         "title": "Red marker",
-        "thumbnail_path": "preview/marker_red.png"
+        "thumbnail_path": "markers/red/X.png"
       },
       "graphics": {
         "type": "directional",
@@ -20,7 +37,7 @@
       "category": "marker",
       "properties": {
         "title": "Green marker",
-        "thumbnail_path": "preview/marker_green.png"
+        "thumbnail_path": "markers/green/X.png"
       },
       "graphics": {
         "type": "directional",
@@ -34,7 +51,7 @@
       "category": "terrain",
       "properties": {
         "title": "Tropical Land",
-        "thumbnail_path": "preview/land.png"
+        "thumbnail_path": "preview/colourful/tropical_land.png"
       },
       "graphics": {
         "type": "directional",
@@ -48,7 +65,7 @@
       "category": "water",
       "properties": {
         "title": "Tropical Water",
-        "thumbnail_path": "preview/water.png"
+        "thumbnail_path": "preview/colourful/tropical_water.png"
       },
       "graphics": {
         "type": "directional",
@@ -57,38 +74,7 @@
       }
     }
   },
-  "objects": {
-    "palm_small_fg": {
-      "id": "palm_small_fg",
-      "category": "palms",
-      "type": "object",
-      "properties": {
-        "title": "Foreground Palm Small",
-        "thumbnail_path": "preview/small_fg.png"
-      },
-      "graphics": {
-        "type": "character",
-        "path": "terrain/palm/small_fg",
-        "behaviours": ["idle"],
-        "animated": true
-      }
-    },
-    "palm_large_bg": {
-      "id": "palm_large_bg",
-      "category": "palms",
-      "type": "object",
-      "properties": {
-        "title": "Foreground Palm Large",
-        "thumbnail_path": "preview/large_bg.png"
-      },
-      "graphics": {
-        "type": "character",
-        "path": "terrain/palm/large_bg",
-        "behaviours": ["idle"],
-        "animated": true
-      }
-    }
-  },
+  "objects": {},
   "npcs": {},
   "players": {
     "tester": {

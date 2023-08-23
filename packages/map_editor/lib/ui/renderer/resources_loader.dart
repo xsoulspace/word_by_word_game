@@ -5,7 +5,6 @@ import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:map_editor/main.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
@@ -22,16 +21,15 @@ class ResourcesLoader {
   ResourcesLoader({
     required this.tilesetAssets,
     this.cachePrefix = 'assets/images/',
-  }) : tilesetConstants = TilesetConstants(
-          tilesetPath: Assets.images.tilesets.pirateTilesetPixelFrog.replaceAll(
-            'assets/images/',
-            '',
-          ),
-          assets: tilesetAssets,
-        );
+  });
   final AssetsCache tilesetAssets;
   final String cachePrefix;
-  final TilesetConstants tilesetConstants;
+  TilesetConstants? _tilesetConstants;
+  TilesetConstants get tilesetConstants {
+    final consts = _tilesetConstants;
+    if (consts == null) throw ArgumentError.notNull('call loadTileset first');
+    return consts;
+  }
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
@@ -45,6 +43,17 @@ class ResourcesLoader {
     if (_isLoaded) return;
     _isLoaded = true;
     await _loadImagesManifest();
+  }
+
+  void loadTileset({
+    required final TilesetConfigModel tilesetConfig,
+    required final TilesetPresetResources tilesetResources,
+  }) {
+    _tilesetConstants = TilesetConstants(
+      presetData: tilesetResources,
+      tilesetConfig: tilesetConfig,
+      assets: tilesetAssets,
+    );
   }
 
   Future<void> _loadImagesManifest() async {
