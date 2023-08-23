@@ -319,6 +319,25 @@ class $AssetsImagesPreviewGen {
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
 
+  /// File path: assets/images/tilesets/README.md
+  String get readme => 'assets/images/tilesets/README.md';
+
+  /// File path: assets/images/tilesets/black_white_arenukvern.fa
+  String get blackWhiteArenukvernFa =>
+      'assets/images/tilesets/black_white_arenukvern.fa';
+
+  /// File path: assets/images/tilesets/black_white_arenukvern.json
+  String get blackWhiteArenukvernJson =>
+      'assets/images/tilesets/black_white_arenukvern.json';
+
+  /// File path: assets/images/tilesets/evening_sonnenstain.fa
+  String get eveningSonnenstainFa =>
+      'assets/images/tilesets/evening_sonnenstain.fa';
+
+  /// File path: assets/images/tilesets/evening_sonnenstain.json
+  String get eveningSonnenstainJson =>
+      'assets/images/tilesets/evening_sonnenstain.json';
+
   $AssetsImagesTilesetsPirateTilesetPixelFrogGen get pirateTilesetPixelFrog =>
       const $AssetsImagesTilesetsPirateTilesetPixelFrogGen();
 
@@ -331,8 +350,15 @@ class $AssetsImagesTilesetsGen {
       'assets/images/tilesets/pirate_tileset_pixel_frog.json';
 
   /// List of all assets
-  List<String> get values =>
-      [pirateTilesetPixelFrogFa, pirateTilesetPixelFrogJson];
+  List<String> get values => [
+        readme,
+        blackWhiteArenukvernFa,
+        blackWhiteArenukvernJson,
+        eveningSonnenstainFa,
+        eveningSonnenstainJson,
+        pirateTilesetPixelFrogFa,
+        pirateTilesetPixelFrogJson
+      ];
 }
 
 class $AssetsImagesCursorsCursorGen {

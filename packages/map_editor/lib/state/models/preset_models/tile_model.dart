@@ -95,8 +95,6 @@ class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
     @Default('') final String path,
     @Default(false) final bool animated,
     @Default([]) final List<TileBehaviourType> behaviours,
-    @Default({})
-    final Map<String, NeighborsAssociationModel> neighborsAssociativeMap,
   }) = _PresetTileGraphicsModel;
   factory PresetTileGraphicsModel.fromJson(final Map<String, dynamic> json) =>
       _$PresetTileGraphicsModelFromJson(json);
@@ -104,17 +102,4 @@ class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
   static const emptyCharacter = PresetTileGraphicsModel(
     type: TileGraphicsType.character,
   );
-}
-
-@freezed
-class NeighborsAssociationModel with _$NeighborsAssociationModel {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory NeighborsAssociationModel({
-    @Default([]) final List<String> useWhenFilled,
-    @Default([]) final List<String> useWhenNotFilled,
-  }) = _NeighborsAssociationModel;
-  factory NeighborsAssociationModel.fromJson(final Map<String, dynamic> json) =>
-      _$NeighborsAssociationModelFromJson(json);
-  const NeighborsAssociationModel._();
-  static const empty = NeighborsAssociationModel();
 }
