@@ -319,12 +319,20 @@ class $AssetsImagesPreviewGen {
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
 
+  $AssetsImagesTilesetsPirateTilesetPixelFrogGen get pirateTilesetPixelFrog =>
+      const $AssetsImagesTilesetsPirateTilesetPixelFrogGen();
+
   /// File path: assets/images/tilesets/pirate_tileset_pixel_frog.fa
-  String get pirateTilesetPixelFrog =>
+  String get pirateTilesetPixelFrogFa =>
       'assets/images/tilesets/pirate_tileset_pixel_frog.fa';
 
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog.json
+  String get pirateTilesetPixelFrogJson =>
+      'assets/images/tilesets/pirate_tileset_pixel_frog.json';
+
   /// List of all assets
-  List<String> get values => [pirateTilesetPixelFrog];
+  List<String> get values =>
+      [pirateTilesetPixelFrogFa, pirateTilesetPixelFrogJson];
 }
 
 class $AssetsImagesCursorsCursorGen {
@@ -654,6 +662,59 @@ class $AssetsImagesPlayerJumpRightGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [jumpRight1];
+}
+
+class $AssetsImagesTilesetsPirateTilesetPixelFrogGen {
+  const $AssetsImagesTilesetsPirateTilesetPixelFrogGen();
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/bottom_center.png
+  AssetGenImage get bottomCenter => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/bottom_center.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/bottom_left.png
+  AssetGenImage get bottomLeft => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/bottom_left.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/bottom_right.png
+  AssetGenImage get bottomRight => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/bottom_right.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/middle_left.png
+  AssetGenImage get middleLeft => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/middle_left.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/middle_right.png
+  AssetGenImage get middleRight => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/middle_right.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/top_center.png
+  AssetGenImage get topCenter => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/top_center.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/top_left.png
+  AssetGenImage get topLeft => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/top_left.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/top_right.png
+  AssetGenImage get topRight => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/top_right.png');
+
+  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog/x.png
+  AssetGenImage get x => const AssetGenImage(
+      'assets/images/tilesets/pirate_tileset_pixel_frog/x.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [
+        bottomCenter,
+        bottomLeft,
+        bottomRight,
+        middleLeft,
+        middleRight,
+        topCenter,
+        topLeft,
+        topRight,
+        x
+      ];
 }
 
 class $AssetsImagesEnemiesShellLeftAttackGen {

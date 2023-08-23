@@ -404,8 +404,10 @@ abstract class $PresetTilePropertiesModelCopyWith<$Res> {
   $Res call(
       {String title,
       String thumbnailPath,
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          LocalizedMap description});
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      LocalizedMap description});
 
   $LocalizedMapCopyWith<$Res> get description;
 }
@@ -465,8 +467,10 @@ abstract class _$$_PresetTilePropertiesModelCopyWith<$Res>
   $Res call(
       {String title,
       String thumbnailPath,
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          LocalizedMap description});
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      LocalizedMap description});
 
   @override
   $LocalizedMapCopyWith<$Res> get description;
@@ -513,8 +517,10 @@ class _$_PresetTilePropertiesModel extends _PresetTilePropertiesModel {
   const _$_PresetTilePropertiesModel(
       {this.title = '',
       this.thumbnailPath = '',
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          this.description = LocalizedMap.empty})
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      this.description = LocalizedMap.empty})
       : super._();
 
   factory _$_PresetTilePropertiesModel.fromJson(Map<String, dynamic> json) =>
@@ -573,8 +579,10 @@ abstract class _PresetTilePropertiesModel extends PresetTilePropertiesModel {
   const factory _PresetTilePropertiesModel(
       {final String title,
       final String thumbnailPath,
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          final LocalizedMap description}) = _$_PresetTilePropertiesModel;
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      final LocalizedMap description}) = _$_PresetTilePropertiesModel;
   const _PresetTilePropertiesModel._() : super._();
 
   factory _PresetTilePropertiesModel.fromJson(Map<String, dynamic> json) =
@@ -1081,16 +1089,26 @@ abstract class $TilesPresetDataModelCopyWith<$Res> {
       _$TilesPresetDataModelCopyWithImpl<$Res, TilesPresetDataModel>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> tiles,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> objects,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> npcs,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> players,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> other});
+      {@JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> tiles,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> objects,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> npcs,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> players,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> other});
 }
 
 /// @nodoc
@@ -1147,16 +1165,26 @@ abstract class _$$_TilesPresetDataModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> tiles,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> objects,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> npcs,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> players,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          Map<TileId, PresetTileModel> other});
+      {@JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> tiles,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> objects,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> npcs,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> players,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      Map<TileId, PresetTileModel> other});
 }
 
 /// @nodoc
@@ -1206,16 +1234,26 @@ class __$$_TilesPresetDataModelCopyWithImpl<$Res>
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _$_TilesPresetDataModel implements _TilesPresetDataModel {
   const _$_TilesPresetDataModel(
-      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> tiles = const {},
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> objects = const {},
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> npcs = const {},
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> players = const {},
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> other = const {}})
+      {@JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> tiles = const {},
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> objects = const {},
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> npcs = const {},
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> players = const {},
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> other = const {}})
       : _tiles = tiles,
         _objects = objects,
         _npcs = npcs,
@@ -1324,16 +1362,26 @@ class _$_TilesPresetDataModel implements _TilesPresetDataModel {
 
 abstract class _TilesPresetDataModel implements TilesPresetDataModel {
   const factory _TilesPresetDataModel(
-      {@JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> tiles,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> objects,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> npcs,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> players,
-      @JsonKey(fromJson: TilesPresetDataModel._tilesFromJson, toJson: TilesPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> other}) = _$_TilesPresetDataModel;
+      {@JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> tiles,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> objects,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> npcs,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> players,
+      @JsonKey(
+          fromJson: TilesPresetDataModel._tilesFromJson,
+          toJson: TilesPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> other}) = _$_TilesPresetDataModel;
 
   factory _TilesPresetDataModel.fromJson(Map<String, dynamic> json) =
       _$_TilesPresetDataModel.fromJson;
