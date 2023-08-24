@@ -77,7 +77,7 @@ class PlayerProfileCard extends StatelessWidget {
                     Checkbox(
                       value: selected,
                       onChanged: (final _) => onSelected!(player),
-                    )
+                    ),
                   ],
                 ],
               ),
@@ -111,13 +111,16 @@ class PlayerProfileTile extends StatelessWidget {
         uiTheme.horizontalBoxes.medium,
         Text(player.name),
         if (onSelected != null) ...[
-          Checkbox(value: selected, onChanged: (final _) => onSelected!(player))
+          Checkbox(
+            value: selected,
+            onChanged: (final _) => onSelected!(player),
+          ),
         ],
         if (kDebugMode)
           IconButton(
             onPressed: onDelete == null ? null : () => onDelete!(player),
             icon: const Icon(Icons.delete),
-          )
+          ),
       ],
     );
   }

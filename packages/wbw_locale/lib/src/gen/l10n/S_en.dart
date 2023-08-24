@@ -127,7 +127,9 @@ class SEn extends S {
   String get tryAnotherWord => 'Try another word';
 
   @override
-  String get notEnoughKnowledgeToRevealWord => 'Unfortunately, you have not enough knowledge points to reveal this word..';
+  String notEnoughKnowledgeToRevealWord(int costOfWord, int userPoints) {
+    return 'Not enough points ($costOfWord/$userPoints)';
+  }
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {
@@ -212,6 +214,9 @@ class SEn extends S {
 
   @override
   String get hideKeyboard => 'Hide keyboard';
+
+  @override
+  String get graphicsCreditsThanks => 'Graphics credits & thanks:';
 
   @override
   String get showKeyboard => 'Show keyboard';

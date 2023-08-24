@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -26,17 +27,20 @@ class AppSettingsCubit extends Cubit<AppSettingsModel> {
     unawaited(dto.appSettingsRepository.setSettings(value));
   }
 
+  Locale get definedLocale => locale ?? systemLocale ?? Locales.en;
+
   Locale? get systemLocale =>
       Locale.fromSubtags(languageCode: Platform.localeName.substring(0, 2));
 
   Locale? get locale => state.locale;
   set locale(final Locale? value) {
     if (value?.languageCode == locale?.languageCode) return;
+
+    Intl.defaultLocale = value?.languageCode ?? systemLocale?.languageCode;
     if (value == null) {
-      final defaultLocale = systemLocale ?? Locales.en;
-      unawaited(dto.appSettingsRepository.setLocale(defaultLocale));
-      settings = state.copyWith(locale: defaultLocale);
-      unawaited(S.delegate.load(defaultLocale));
+      unawaited(dto.appSettingsRepository.setLocale(null));
+      settings = state.copyWith(locale: null);
+      unawaited(S.delegate.load(definedLocale));
     } else {
       final language = Languages.byLanguageCode(value.languageCode);
       final newLocale = Locales.byLanguage(language);

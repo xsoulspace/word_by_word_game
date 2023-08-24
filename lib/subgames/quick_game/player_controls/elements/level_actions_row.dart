@@ -45,7 +45,7 @@ class UiFuelFrame extends StatelessWidget {
           Divider(color: theme.colorScheme.tertiary),
           uiTheme.verticalBoxes.small,
           TutorialFrame(
-            highlightPosition: Alignment.topLeft,
+            highlightPosition: Alignment.topCenter,
             uiKey: TutorialUiItem.selectRefuelOption,
             child: ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 100),

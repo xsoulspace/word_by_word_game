@@ -33,6 +33,7 @@
       }
     }
   },
+  "graphicsCreditsThanks": "Графика и спасибо:",
   "suggestions": "Подсказки",
   "hideKeyboard": "Скрыть клавиатуру",
   "showKeyboard": "Показать клавиатуру",
@@ -106,7 +107,17 @@
     "type": "text"
   },
   "tryAnotherWord": "Попробовать другое слово",
-  "notEnoughKnowledgeToRevealWord": "К сожалению, очков знаний недостаточно, чтобы открыть это слово..",
+  "notEnoughKnowledgeToRevealWord": "Не хватает очков ({costOfWord}/{userPoints})",
+  "@notEnoughKnowledgeToRevealWord": {
+    "placeholders": {
+      "costOfWord": {
+        "type": "int"
+      },
+      "userPoints": {
+        "type": "int"
+      }
+    }
+  },
   "useCostKnowledgePoints": "Использовать очки знаний: {costOfWord}",
   "revealSuggestedWord": "Открыть слово-подсказку?",
   "ok": "Отлично",
