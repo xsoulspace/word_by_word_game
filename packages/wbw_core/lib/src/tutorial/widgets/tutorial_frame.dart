@@ -29,7 +29,6 @@ class TutorialFrame extends StatelessWidget {
   Widget build(final BuildContext context) {
     final highlighted =
         context.select<TutorialBloc, bool>((final tutorialBloc) {
-      // return true;
       if (tutorialBloc.state is! TutorialBlocStateLive) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
 
@@ -39,20 +38,15 @@ class TutorialFrame extends StatelessWidget {
     final persistentFormFactors = UiPersistentFormFactors.of(context);
     final isMobile = persistentFormFactors.screenSize.width <
         WidthFormFactor.mobileTutorialMaxWidth;
-    // if (isMobile) {
-    //   return HighlightFrame(
-    //     onPressed: () {
-    //       sendOnClickEvent(context: context, uiKey: uiKey);
-    //     },
-    //     highlighted: highlighted,
-    //     highlightPosition: highlightPosition,
-    //     child: child,
-    //   );
-    // } else {
 
     return PortalTarget(
       anchor: highlightPosition.toAnchor(),
-      portalFollower: const DesktopAnchoredTutorialDialog(),
+
+      /// mobile dialog is in HudOverlay, so there is only desktop
+      /// will be displayed
+      portalFollower: DesktopAnchoredTutorialDialog(
+        highlightPosition: highlightPosition,
+      ),
       visible: highlighted && !isMobile,
       child: HighlightFrame(
         onPressed: () {

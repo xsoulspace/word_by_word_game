@@ -38,11 +38,6 @@ class HudOverlay extends StatelessWidget {
           child: _Statistics(),
         ),
         const Positioned(
-          child: Center(
-            child: MobileTutorialDialog(),
-          ),
-        ),
-        const Positioned(
           top: 20,
           right: 20,
           left: 20,
@@ -111,7 +106,10 @@ class _Statistics extends StatelessWidget {
               children: [
                 const Gap(8),
                 TutorialFrame(
-                  highlightPosition: Alignment.bottomRight,
+                  highlightPosition: MediaQuery.sizeOf(context).width >
+                          WidthFormFactor.mobileTutorialMaxWidth
+                      ? Alignment.centerRight
+                      : Alignment.bottomCenter,
                   uiKey: TutorialUiItem.baloonPower,
                   child: GestureDetector(
                     onTap: () {

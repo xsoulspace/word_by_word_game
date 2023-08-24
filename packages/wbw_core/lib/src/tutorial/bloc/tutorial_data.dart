@@ -201,7 +201,7 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.ru:
                 'За новое слово вы получите очки, которые будут добавлены к вашему счету и использованы в следующем этапе. \n\nДля продолжения нажми кнопку с огнем ниже.',
             Languages.it:
-                'Si guadagneranno punti per la parola, che verranno aggiunti al punteggio e utilizzati nella fase successiva. \n\Per continuare, fare clic sul pulsante con il fuoco qui sotto.',
+                'Si guadagneranno punti per la parola, che verranno aggiunti al punteggio e utilizzati nella fase successiva. \n\nPer continuare, fare clic sul pulsante con il fuoco qui sotto.',
           },
         ),
         anchorUiItem: TutorialUiItem.confirmWordButton,
@@ -223,7 +223,7 @@ const _tutorialData = TutorialCollectionsDataModel(
             Languages.en:
                 'The second phase - Actions & Effects.\n\nAction is something that you do. \n\nChoose any option to refuel Balloon.',
             Languages.ru:
-                'Вторая фаза - Действия и эффекты.\n\nДействие - это то, что вы делаете. \n\nВыбери "Топливо", чтобы заправить воздушный шар.',
+                'Вторая фаза - Действия и эффекты.\n\nДействие - это то, что вы делаете. \n\nВыбери любой вариант, чтобы заправить воздушный шар.',
             Languages.it:
                 'La seconda fase - Azioni ed effetti.\n\nAzione è qualcosa che si fa. \n\nScegliere Rifornimento per rifornire il pallone.',
           },

@@ -127,7 +127,9 @@ class SRu extends S {
   String get tryAnotherWord => 'Попробовать другое слово';
 
   @override
-  String get notEnoughKnowledgeToRevealWord => 'К сожалению, очков знаний недостаточно, чтобы открыть это слово..';
+  String notEnoughKnowledgeToRevealWord(int costOfWord, int userPoints) {
+    return 'Не хватает очков ($costOfWord/$userPoints)';
+  }
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {
@@ -212,6 +214,9 @@ class SRu extends S {
 
   @override
   String get hideKeyboard => 'Скрыть клавиатуру';
+
+  @override
+  String get graphicsCreditsThanks => 'Графика и спасибо:';
 
   @override
   String get showKeyboard => 'Показать клавиатуру';

@@ -87,7 +87,17 @@
   "back": "Back",
   "suggestedWord": "Suggested Word",
   "tryAnotherWord": "Try another word",
-  "notEnoughKnowledgeToRevealWord": "Unfortunately, you have not enough knowledge points to reveal this word..",
+  "notEnoughKnowledgeToRevealWord": "Not enough points ({costOfWord}/{userPoints})",
+  "@notEnoughKnowledgeToRevealWord": {
+    "placeholders": {
+      "costOfWord": {
+        "type": "int"
+      },
+      "userPoints": {
+        "type": "int"
+      }
+    }
+  },
   "useCostKnowledgePoints": "Use {costOfWord} knowledge points",
   "revealSuggestedWord": "Reveal suggested word?",
   "ok": "Nice",
@@ -158,6 +168,7 @@
   },
   "powerOfEnteredWord": "Power of entered word",
   "hideKeyboard": "Hide keyboard",
+  "graphicsCreditsThanks": "Graphics credits & thanks:",
   "showKeyboard": "Show keyboard",
   "suggestions": "Suggestions",
   "currentPlayerName": "Name of current player",

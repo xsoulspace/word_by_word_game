@@ -4,6 +4,8 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
 part 'locale_switcher_button_state.dart';
 

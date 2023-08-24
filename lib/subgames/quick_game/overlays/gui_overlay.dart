@@ -1,5 +1,6 @@
 import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
@@ -30,7 +31,13 @@ class GuiOverlay extends StatelessWidget {
             right: 0,
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: bottomDialog,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  const MobileTutorialDialog(),
+                  bottomDialog,
+                ],
+              ),
             ),
           );
         },

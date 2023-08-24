@@ -61,6 +61,10 @@ class _DialogState extends LifeState {
     setState();
   }
 
+  int get userScore =>
+      diDto.levelPlayersBloc.state.currentPlayer.highscore.score.value ~/
+      kScoreFactor;
+
   bool get isUsageAvailable {
     final playerScore =
         diDto.levelPlayersBloc.state.currentPlayer.highscore.score.value;
@@ -89,7 +93,7 @@ class LevelWordSuggestionDialog extends HookWidget {
       onPressed: () {
         context.read<DialogController>().closeDialog();
       },
-      child: Text(S.of(context).back),
+      child: Text(S.of(context).close),
     );
     return DialogScaffold(
       builder: (final context) {
@@ -109,7 +113,7 @@ class LevelWordSuggestionDialog extends HookWidget {
                 textAlign: TextAlign.center,
               ),
               uiTheme.verticalBoxes.extraLarge,
-              cancelButton
+              cancelButton,
             ],
           );
         }
@@ -138,7 +142,7 @@ class LevelWordSuggestionDialog extends HookWidget {
                   context.read<DialogController>().closeDialog();
                 },
                 child: Text(S.of(context).ok),
-              )
+              ),
             ],
           );
         }
@@ -165,20 +169,23 @@ class LevelWordSuggestionDialog extends HookWidget {
             ),
             uiTheme.verticalBoxes.medium,
             TextButton(
+              onPressed: state.onTryAnotherWord,
+              child: Text(S.of(context).tryAnotherWord),
+            ),
+            uiTheme.verticalBoxes.small,
+            TextButton(
               onPressed: state.isUsageAvailable ? state.onRevealWord : null,
               child: Text(
                 state.isUsageAvailable
-                    ? S.of(context).useCostKnowledgePoints(state.costOfWord)
-                    : S.of(context).notEnoughKnowledgeToRevealWord,
+                    ? S.of(context).useCostKnowledgePoints(
+                          state.costOfWord ~/ kScoreFactor,
+                        )
+                    : S.of(context).notEnoughKnowledgeToRevealWord(
+                          state.userScore,
+                          state.costOfWord ~/ kScoreFactor,
+                        ),
               ),
             ),
-            if (!state.isUsageAvailable) ...[
-              uiTheme.verticalBoxes.medium,
-              TextButton(
-                onPressed: state.onTryAnotherWord,
-                child: Text(S.of(context).tryAnotherWord),
-              ),
-            ],
             uiTheme.verticalBoxes.small,
             cancelButton,
           ],
