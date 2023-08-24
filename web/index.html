@@ -47,11 +47,7 @@
     <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"></script>
     <!-- This script adds the flutter initialization JS code -->
     <script src="flutter.js" defer></script>
-    <!-- Yandex.RTB -->
-    <script>
-      window.yaContextCb = window.yaContextCb || [];
-    </script>
-    <script src="https://yandex.ru/ads/system/context.js" async></script>
+    <script src="https://sdk.crazygames.com/crazygames-sdk-v2.js"></script>
   </head>
   <body>
     <!-- <div id="loading">
@@ -66,6 +62,7 @@
 
     <script>
       window.addEventListener("load", function (ev) {
+        window.CrazyGames.SDK.game.sdkGameLoadingStart();
         var loading = document.querySelector("#loading");
 
         // Download main.dart.js
@@ -81,6 +78,7 @@
             await appRunner.runApp();
             window.setTimeout(function () {
               loading.remove();
+              window.CrazyGames.SDK.game.sdkGameLoadingStop();
             }, 200);
           },
         });
