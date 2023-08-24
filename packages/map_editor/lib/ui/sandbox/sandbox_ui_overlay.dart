@@ -7,7 +7,6 @@ import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
-import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
@@ -236,7 +235,7 @@ class TileSpriteButton extends StatelessWidget {
                 color: colorSheme.secondaryContainer,
                 image: DecorationImage(
                   image: Image.asset(
-                    'assets/images/${tileResource.tile.properties.thumbnailPath}',
+                    '${drawerCubit.resourcesLoader.assetsPrefix}/${tileResource.tile.properties.thumbnailPath}',
                   ).image,
                 ),
               ),

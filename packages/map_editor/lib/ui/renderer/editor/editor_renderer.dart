@@ -56,7 +56,7 @@ class EditorRendererComponent extends Component
       debugSurface,
       tilesDrawer,
       canvasObjectsDrawer,
-      cursor,
+      // cursor,
       // LOGIC
       animationUpdater,
     ]);

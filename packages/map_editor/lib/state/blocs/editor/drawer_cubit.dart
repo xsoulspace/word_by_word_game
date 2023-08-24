@@ -28,6 +28,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
 
   /// This function should be triggered before game is started to renderc
   Future<void> loadInitialData() async {
+    await loadResourcesData();
     loadTilesets();
     // TODO(arenukvern): should be dependent on tileset in level
     await loadTileset(state.tilesetsConfigs.first);
@@ -47,9 +48,19 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
       _tempPersistanceKey,
     );
 
-    final canvasData = canvasDataJson.isEmpty
+    CanvasDataModel canvasData = canvasDataJson.isEmpty
         ? CanvasDataModel.empty
         : CanvasDataModel.fromJson(canvasDataJson);
+    final player = canvasData.playerObject;
+    if (!state.tileResources.players.containsKey(player.id)) {
+      final firstPlayer = state.tileResources.players.values.first;
+      canvasData = canvasData.copyWith(
+        playerObject: player.copyWith(
+          id: firstPlayer.id.toGid(),
+          tileId: firstPlayer.tile.id,
+        ),
+      );
+    }
     emit(
       state.copyWith(
         canvasData: canvasData,
@@ -58,7 +69,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     );
   }
 
-  Future<void> onLoad() async {
+  Future<void> loadResourcesData() async {
     await resourcesLoader.onLoad();
   }
 
@@ -67,16 +78,21 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
         await rootBundle.loadString('$rootPath${tilesetConfig.presetPath}');
     final json = jsonDecode(jsonStr) as Map<String, dynamic>;
     final tileData = TilesetPresetDataModel.fromJson(json);
-    final tileResources = TilesetPresetResources.fromModel(
+    final tilesetResources = TilesetPresetResources.fromModel(
       data: tileData,
       resourcesLoader: resourcesLoader,
+      tilesetConfig: tilesetConfig,
     );
     emit(
       state.copyWith(
-        tileResources: tileResources,
+        tileResources: tilesetResources,
         canvasData: canvasData,
         drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
       ),
+    );
+    resourcesLoader.loadTileset(
+      tilesetConfig: tilesetConfig,
+      tilesetResources: tilesetResources,
     );
   }
 

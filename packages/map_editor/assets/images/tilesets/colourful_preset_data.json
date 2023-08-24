@@ -1,16 +1,16 @@
 {
   "autotile_rules": {
-    "SpriteTileName.topLeft": ["BCDEF", "CDEF", "CDE", "BCDE"],
-    "SpriteTileName.topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH"],
-    "SpriteTileName.topRight": ["DEFGH", "DEFG", "EFG", "EFGH"],
-    "SpriteTileName.middleLeft": ["ABCDE", "ACE"],
-    "SpriteTileName.middleRight": ["AEFGH", "AEG"],
-    "SpriteTileName.x": ["ABCDEFGH", "ACEG"],
-    "SpriteTileName.bottomLeft": ["ABCDH", "ABC", "ABCH", "ABCD"],
-    "SpriteTileName.bottomCenter": ["ABCGH", "ACG"],
-    "SpriteTileName.bottomRight": ["ABFGH", "AFGH", "ABGH", "AGH"]
+    "topLeft": ["BCDEF", "CDEF", "CDE", "BCDE"],
+    "topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH"],
+    "topRight": ["DEFGH", "DEFG", "EFG", "EFGH"],
+    "middleLeft": ["ABCDE", "ACE"],
+    "middleRight": ["AEFGH", "AEG"],
+    "x": ["ABCDEFGH", "ACEG"],
+    "bottomLeft": ["ABCDH", "ABC", "ABCH", "ABCD"],
+    "bottomCenter": ["ABCGH", "ACG"],
+    "bottomRight": ["ABFGH", "AFGH", "ABGH", "AGH"]
   },
-  "type": "TilesetType.colourful",
+  "type": "colourful",
   "name": {
     "en": "Colourful",
     "ru": "Цветной",
@@ -55,7 +55,6 @@
       },
       "graphics": {
         "type": "directional",
-        "path": "terrain/land",
         "animated": false
       }
     },
@@ -77,8 +76,8 @@
   "objects": {},
   "npcs": {},
   "players": {
-    "tester": {
-      "id": "tester",
+    "hot_air_balloon": {
+      "id": "hot_air_balloon",
       "category": "players",
       "type": "object",
       "properties": {
@@ -88,7 +87,6 @@
       },
       "graphics": {
         "type": "character",
-        "path": "player",
         "behaviours": ["idle_left", "idle_right", "fly_left", "fly_right"],
         "animated": true
       }

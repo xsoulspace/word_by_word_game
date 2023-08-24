@@ -65,7 +65,7 @@ class EditorRendererGame extends FlameGame
   @override
   Future<void> onLoad() async {
     debugMode = kDebugMode;
-    mouseCursor = material.SystemMouseCursors.none;
+    // mouseCursor = material.SystemMouseCursors.none;
     children
       ..register<CameraComponent>()
       ..register<World>()

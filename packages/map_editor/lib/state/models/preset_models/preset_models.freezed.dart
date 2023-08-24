@@ -611,7 +611,6 @@ PresetTileGraphicsModel _$PresetTileGraphicsModelFromJson(
 /// @nodoc
 mixin _$PresetTileGraphicsModel {
   TileGraphicsType get type => throw _privateConstructorUsedError;
-  String get path => throw _privateConstructorUsedError;
   bool get animated => throw _privateConstructorUsedError;
   List<TileBehaviourType> get behaviours => throw _privateConstructorUsedError;
 
@@ -629,7 +628,6 @@ abstract class $PresetTileGraphicsModelCopyWith<$Res> {
   @useResult
   $Res call(
       {TileGraphicsType type,
-      String path,
       bool animated,
       List<TileBehaviourType> behaviours});
 }
@@ -649,7 +647,6 @@ class _$PresetTileGraphicsModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? type = null,
-    Object? path = null,
     Object? animated = null,
     Object? behaviours = null,
   }) {
@@ -658,10 +655,6 @@ class _$PresetTileGraphicsModelCopyWithImpl<$Res,
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TileGraphicsType,
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
       animated: null == animated
           ? _value.animated
           : animated // ignore: cast_nullable_to_non_nullable
@@ -684,7 +677,6 @@ abstract class _$$_PresetTileGraphicsModelCopyWith<$Res>
   @useResult
   $Res call(
       {TileGraphicsType type,
-      String path,
       bool animated,
       List<TileBehaviourType> behaviours});
 }
@@ -702,7 +694,6 @@ class __$$_PresetTileGraphicsModelCopyWithImpl<$Res>
   @override
   $Res call({
     Object? type = null,
-    Object? path = null,
     Object? animated = null,
     Object? behaviours = null,
   }) {
@@ -711,10 +702,6 @@ class __$$_PresetTileGraphicsModelCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TileGraphicsType,
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
       animated: null == animated
           ? _value.animated
           : animated // ignore: cast_nullable_to_non_nullable
@@ -733,7 +720,6 @@ class __$$_PresetTileGraphicsModelCopyWithImpl<$Res>
 class _$_PresetTileGraphicsModel extends _PresetTileGraphicsModel {
   const _$_PresetTileGraphicsModel(
       {required this.type,
-      this.path = '',
       this.animated = false,
       final List<TileBehaviourType> behaviours = const []})
       : _behaviours = behaviours,
@@ -744,9 +730,6 @@ class _$_PresetTileGraphicsModel extends _PresetTileGraphicsModel {
 
   @override
   final TileGraphicsType type;
-  @override
-  @JsonKey()
-  final String path;
   @override
   @JsonKey()
   final bool animated;
@@ -761,7 +744,7 @@ class _$_PresetTileGraphicsModel extends _PresetTileGraphicsModel {
 
   @override
   String toString() {
-    return 'PresetTileGraphicsModel(type: $type, path: $path, animated: $animated, behaviours: $behaviours)';
+    return 'PresetTileGraphicsModel(type: $type, animated: $animated, behaviours: $behaviours)';
   }
 
   @override
@@ -770,7 +753,6 @@ class _$_PresetTileGraphicsModel extends _PresetTileGraphicsModel {
         (other.runtimeType == runtimeType &&
             other is _$_PresetTileGraphicsModel &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.path, path) || other.path == path) &&
             (identical(other.animated, animated) ||
                 other.animated == animated) &&
             const DeepCollectionEquality()
@@ -779,7 +761,7 @@ class _$_PresetTileGraphicsModel extends _PresetTileGraphicsModel {
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, type, path, animated,
+  int get hashCode => Object.hash(runtimeType, type, animated,
       const DeepCollectionEquality().hash(_behaviours));
 
   @JsonKey(ignore: true)
@@ -801,7 +783,6 @@ class _$_PresetTileGraphicsModel extends _PresetTileGraphicsModel {
 abstract class _PresetTileGraphicsModel extends PresetTileGraphicsModel {
   const factory _PresetTileGraphicsModel(
       {required final TileGraphicsType type,
-      final String path,
       final bool animated,
       final List<TileBehaviourType> behaviours}) = _$_PresetTileGraphicsModel;
   const _PresetTileGraphicsModel._() : super._();
@@ -811,8 +792,6 @@ abstract class _PresetTileGraphicsModel extends PresetTileGraphicsModel {
 
   @override
   TileGraphicsType get type;
-  @override
-  String get path;
   @override
   bool get animated;
   @override

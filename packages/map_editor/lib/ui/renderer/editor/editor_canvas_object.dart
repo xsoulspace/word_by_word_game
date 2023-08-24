@@ -15,7 +15,9 @@ class EditorPlayerCanvasObject extends EditorCanvasObject {
     if (player.id.isEmpty) {
       /// creating player if it is empty
       final updatedPlayer = RenderObjectModel(
-        id: const Gid(value: 'Tester'),
+        id: Gid(
+          value: drawerCubit.tilesResources.players.values.first.id.value,
+        ),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: kPlayerTileId,
         position: position.toSerializedVector2(),
@@ -223,26 +225,26 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadGravitationHandle() {
-    _gravitationHandle = EditorCanvasObject.fromRenderObject(
-      data: RenderObjectModel(
-        id: kHandleObjectId.toGid(),
-        tileId: kHandleObjectId,
-        position: SerializedVector2(
-          y: canvasData.gravity.tileDistance + origin.y,
-        ),
-      ),
-      onPositionChanged: (final object) {
-        final updatedY = OriginVectorUtils.use(origin)
-            .getAbsoluteCellByCanvasObject(
-              objectDistanceToOrigin: object.distanceToOrigin.toOffset(),
-            )
-            .y;
-        final updatedGravity = drawerCubit.canvasData.gravity.copyWith(
-          yTilePosition: updatedY,
-        );
-        drawerCubit.onChangeGravity(updatedGravity);
-      },
-    );
+    // _gravitationHandle = EditorCanvasObject.fromRenderObject(
+    //   data: RenderObjectModel(
+    //     id: kHandleObjectId.toGid(),
+    //     tileId: kHandleObjectId,
+    //     position: SerializedVector2(
+    //       y: canvasData.gravity.tileDistance + origin.y,
+    //     ),
+    //   ),
+    //   onPositionChanged: (final object) {
+    //     final updatedY = OriginVectorUtils.use(origin)
+    //         .getAbsoluteCellByCanvasObject(
+    //           objectDistanceToOrigin: object.distanceToOrigin.toOffset(),
+    //         )
+    //         .y;
+    //     final updatedGravity = drawerCubit.canvasData.gravity.copyWith(
+    //       yTilePosition: updatedY,
+    //     );
+    //     drawerCubit.onChangeGravity(updatedGravity);
+    //   },
+    // );
   }
 
   @override

@@ -104,7 +104,6 @@ class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTileGraphicsModel({
     required final TileGraphicsType type,
-    @Default('') final String path,
     @Default(false) final bool animated,
     @Default([]) final List<TileBehaviourType> behaviours,
   }) = _PresetTileGraphicsModel;

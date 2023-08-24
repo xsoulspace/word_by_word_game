@@ -17,7 +17,6 @@ class CanvasCubit extends DrawerCubit {
             tilesetAssets: AssetsCache(
               prefix: 'packages/map_editor/assets/images/',
             ),
-            cachePrefix: 'packages/map_editor/assets/images/',
           ),
           rootPath: 'packages/map_editor/',
         );

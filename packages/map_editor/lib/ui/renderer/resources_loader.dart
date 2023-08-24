@@ -20,16 +20,16 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 class ResourcesLoader {
   ResourcesLoader({
     required this.tilesetAssets,
-    this.cachePrefix = 'assets/images/',
   });
   final AssetsCache tilesetAssets;
-  final String cachePrefix;
   TilesetConstants? _tilesetConstants;
   TilesetConstants get tilesetConstants {
     final consts = _tilesetConstants;
     if (consts == null) throw ArgumentError.notNull('call loadTileset first');
     return consts;
   }
+
+  String get assetsPrefix => tilesetAssets.prefix;
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
@@ -65,19 +65,21 @@ class ResourcesLoader {
   }
 
   /// removes prefixs from aset path
-  String fixAssetPath(final String path) => path.replaceAll(cachePrefix, '');
+  String fixAssetPath(final String path) =>
+      path.replaceAll(tilesetAssets.prefix, '');
 
   Map<TileBehaviourType, AnimationEntryModel>
       getPathsForPresetCharacterGraphics({
-    required final PresetTileGraphicsModel tileGraphics,
+    required final PresetTileModel tile,
+    required final TilesetConfigModel tilesetConfig,
   }) {
-    if (tileGraphics.type == TileGraphicsType.directional) return {};
+    final graphics = tile.graphics;
+    if (graphics.type == TileGraphicsType.directional) return {};
     final map = <TileBehaviourType, AnimationEntryModel>{};
-    final folderPath = tileGraphics.path;
-    if (folderPath.isEmpty) return map;
+    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.id.value}__';
 
-    for (final behaviour in tileGraphics.behaviours) {
-      final behaviourPath = '$folderPath/${behaviour.name.snakeCase}';
+    for (final behaviour in graphics.behaviours) {
+      final behaviourPath = '$imageBasePath${behaviour.name.snakeCase}';
 
       /// maybe folder (if animation) or file (if no animation)
       /// otherwise should throw an error
@@ -88,7 +90,7 @@ class ResourcesLoader {
       if (paths.isEmpty) continue;
 
       /// folders case
-      if (tileGraphics.animated) {
+      if (graphics.animated) {
         map[behaviour] = AnimationEntryModel(
           framesLength: paths.length,
           framesPaths: paths,
@@ -108,37 +110,37 @@ class ResourcesLoader {
   }
 
   Map<SpriteCode, AnimationEntryModel> getPathsForPresetDirectionalGraphics({
-    required final PresetTileGraphicsModel tileGraphics,
+    required final PresetTileModel tile,
   }) {
-    if (tileGraphics.type == TileGraphicsType.character) return {};
+    final graphics = tile.graphics;
+    if (graphics.type == TileGraphicsType.character) return {};
     final map = <SpriteCode, AnimationEntryModel>{};
-    final rootFolderPath = tileGraphics.path;
-    if (rootFolderPath.isEmpty) return map;
+    final imageBasePath = '${tilesetAssets.prefix}${tile.id.value}__';
+
     final paths = _manifestMap.keys
-        .where((final e) => e.startsWith(rootFolderPath))
+        .where((final e) => e.startsWith(imageBasePath))
         .toList();
     if (paths.isEmpty) return map;
-    if (tileGraphics.animated) {
-      for (final fullPath in paths) {
-        final [..., folderTitle, _] = fullPath.split('/');
-        final folderPath = '$rootFolderPath/$folderTitle';
-        final folderPaths = _manifestMap.keys
-            .where((final e) => e.contains(folderPath))
-            .toList();
-        if (folderPaths.isEmpty) continue;
-        map.update(
-          folderTitle,
-          (final value) => value.copyWith(
-            framesLength: folderPaths.length,
-            framesPaths: folderPaths,
-          ),
-          ifAbsent: () => AnimationEntryModel(
-            framesLength: folderPaths.length,
-            framesPaths: folderPaths,
-          ),
-        );
-      }
-      // TODO(antmalofeev): add accosiations
+    if (graphics.animated) {
+      // for (final fullPath in paths) {
+      //   final [..., folderTitle, _] = fullPath.split('/');
+      //   final folderPath = '$rootFolderPath/$folderTitle';
+      //   final folderPaths = _manifestMap.keys
+      //       .where((final e) => e.contains(folderPath))
+      //       .toList();
+      //   if (folderPaths.isEmpty) continue;
+      //   map.update(
+      //     folderTitle,
+      //     (final value) => value.copyWith(
+      //       framesLength: folderPaths.length,
+      //       framesPaths: folderPaths,
+      //     ),
+      //     ifAbsent: () => AnimationEntryModel(
+      //       framesLength: folderPaths.length,
+      //       framesPaths: folderPaths,
+      //     ),
+      //   );
+      // }
     } else {
       for (final filePathWithExtension in paths) {
         final filePathWithoutExtension =

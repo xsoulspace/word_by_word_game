@@ -65,7 +65,6 @@ _$_PresetTileGraphicsModel _$$_PresetTileGraphicsModelFromJson(
         Map<String, dynamic> json) =>
     _$_PresetTileGraphicsModel(
       type: $enumDecode(_$TileGraphicsTypeEnumMap, json['type']),
-      path: json['path'] as String? ?? '',
       animated: json['animated'] as bool? ?? false,
       behaviours: (json['behaviours'] as List<dynamic>?)
               ?.map((e) => $enumDecode(_$TileBehaviourTypeEnumMap, e))
@@ -77,7 +76,6 @@ Map<String, dynamic> _$$_PresetTileGraphicsModelToJson(
         _$_PresetTileGraphicsModel instance) =>
     <String, dynamic>{
       'type': _$TileGraphicsTypeEnumMap[instance.type]!,
-      'path': instance.path,
       'animated': instance.animated,
       'behaviours': instance.behaviours
           .map((e) => _$TileBehaviourTypeEnumMap[e]!)

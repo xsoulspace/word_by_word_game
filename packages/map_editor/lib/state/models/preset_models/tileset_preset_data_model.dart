@@ -114,12 +114,14 @@ class TilesetPresetResources with _$TilesetPresetResources {
   factory TilesetPresetResources.fromModel({
     required final TilesetPresetDataModel data,
     required final ResourcesLoader resourcesLoader,
+    required final TilesetConfigModel tilesetConfig,
   }) =>
       TilesetPresetResources(
         tiles: data.tiles.map(
           (final key, final tile) => MapEntry(
             key,
             PresetTileResource.fromTile(
+              tilesetConfig: tilesetConfig,
               tile: tile,
               resourcesLoader: resourcesLoader,
             ),
@@ -129,6 +131,7 @@ class TilesetPresetResources with _$TilesetPresetResources {
           (final key, final tile) => MapEntry(
             key,
             PresetTileResource.fromTile(
+              tilesetConfig: tilesetConfig,
               tile: tile,
               resourcesLoader: resourcesLoader,
             ),
@@ -138,6 +141,7 @@ class TilesetPresetResources with _$TilesetPresetResources {
           (final key, final tile) => MapEntry(
             key,
             PresetTileResource.fromTile(
+              tilesetConfig: tilesetConfig,
               tile: tile,
               resourcesLoader: resourcesLoader,
             ),
@@ -147,6 +151,7 @@ class TilesetPresetResources with _$TilesetPresetResources {
           (final key, final tile) => MapEntry(
             key,
             PresetTileResource.fromTile(
+              tilesetConfig: tilesetConfig,
               tile: tile,
               resourcesLoader: resourcesLoader,
             ),
@@ -156,6 +161,7 @@ class TilesetPresetResources with _$TilesetPresetResources {
           (final key, final tile) => MapEntry(
             key,
             PresetTileResource.fromTile(
+              tilesetConfig: tilesetConfig,
               tile: tile,
               resourcesLoader: resourcesLoader,
             ),
