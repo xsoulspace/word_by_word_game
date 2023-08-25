@@ -76,7 +76,7 @@ class ResourcesLoader {
     final graphics = tile.graphics;
     if (graphics.type == TileGraphicsType.directional) return {};
     final map = <TileBehaviourType, AnimationEntryModel>{};
-    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.id.value}__';
+    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.path}';
 
     for (final behaviour in graphics.behaviours) {
       final behaviourPath = '$imageBasePath${behaviour.name.snakeCase}';
@@ -116,7 +116,7 @@ class ResourcesLoader {
     final graphics = tile.graphics;
     if (graphics.type == TileGraphicsType.character) return {};
     final map = <SpriteCode, AnimationEntryModel>{};
-    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.id.value}__';
+    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.path}';
 
     final paths = _manifestMap.keys
         .where((final e) => e.startsWith(imageBasePath))

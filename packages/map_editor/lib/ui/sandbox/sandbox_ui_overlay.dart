@@ -179,7 +179,7 @@ class TileButtons extends StatelessWidget {
                         case TileType.autotile:
                           for (final tileName in SpriteTileName.values) {
                             final filename =
-                                '${tile.id.value}__${tileName.name.snakeCase}';
+                                '${tile.tile.path}${tileName.name.snakeCase}';
                             if (consts.images!.containsKey(filename)) {
                               final image = await consts.images!.load(filename);
                               final path = await FilePicker.platform.saveFile(

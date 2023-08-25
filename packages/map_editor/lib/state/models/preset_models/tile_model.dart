@@ -49,6 +49,7 @@ class PresetTileModel with _$PresetTileModel {
   factory PresetTileModel.fromJson(final Map<String, dynamic> json) =>
       _$PresetTileModelFromJson(json);
   const PresetTileModel._();
+  String get path => '${id.value}__';
 }
 
 enum SpriteTileName {

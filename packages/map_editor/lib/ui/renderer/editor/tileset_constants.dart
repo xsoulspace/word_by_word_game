@@ -61,7 +61,7 @@ class TilesetConstants {
     required final SpriteCode spriteCode,
   }) {
     final spriteName = _codeToName[spriteCode] ?? SpriteTileName.x;
-    return images!.fromCache('${tile.id.value}__${spriteName.name.snakeCase}');
+    return images!.fromCache('${tile.path}${spriteName.name.snakeCase}');
   }
 
   Future<void> cacheFileSpriteImages() async {
@@ -94,7 +94,7 @@ class TilesetConstants {
   }) {
     final SpriteTileName? tileName = _codeToName[spriteCode];
     final spriteName = (tileName ?? SpriteTileName.x).name.snakeCase;
-    return _atlas!.getSprite('${tile.id.value}__$spriteName');
+    return _atlas!.getSprite('${tile.path}$spriteName');
   }
 
   Map<SpriteCode, SpriteTileName>? _codeToNameCache;
