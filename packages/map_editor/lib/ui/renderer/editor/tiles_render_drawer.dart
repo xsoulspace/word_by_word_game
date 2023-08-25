@@ -207,7 +207,8 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
           // }
           final resourceTile = tilesResources[cellTile.tileId];
           if (resourceTile == null) continue;
-          final graphics = resourceTile.tile.graphics;
+          final tile = resourceTile.tile;
+          final graphics = tile.graphics;
 
           /// Drawing tile
           switch (graphics.type) {
@@ -232,7 +233,10 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 );
               } else {
                 final src = _runtimeCache[spriteCode] ??= () {
-                  final s = tilesetConstants.getSprite(spriteCode: spriteCode);
+                  final s = tilesetConstants.getSprite(
+                    spriteCode: spriteCode,
+                    tile: tile,
+                  );
                   _spriteImage ??= s.image;
                   final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
                   return (srcRect: srcRect, srcSize: s.srcSize);
@@ -344,7 +348,8 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
           final resourceTile = tilesResources[cellTile.tileId];
           if (resourceTile == null) continue;
-          final graphics = resourceTile.tile.graphics;
+          final tile = resourceTile.tile;
+          final graphics = tile.graphics;
 
           /// Drawing tile
           switch (graphics.type) {
@@ -366,6 +371,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
               } else {
                 image = tilesetConstants.getSpriteImage(
                   spriteCode: spriteCode,
+                  tile: tile,
                 );
               }
 

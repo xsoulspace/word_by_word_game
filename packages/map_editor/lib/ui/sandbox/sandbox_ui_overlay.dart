@@ -164,25 +164,53 @@ class TileButtons extends StatelessWidget {
                   onPressed: () async {
                     final consts = drawerCubit.resourcesLoader.tilesetConstants;
                     await consts.preloadImages();
-
-                    for (final tileName in SpriteTileName.values) {
-                      final image = await consts.images!.load(tileName.name);
-                      final path = await FilePicker.platform.saveFile(
-                        fileName: '${tileName.name.snakeCase}.png',
-                        type: FileType.image,
-                        allowedExtensions: ['.png'],
+                    final presetData = drawerCubit.state.tileResources;
+                    final tiles = [
+                      ...presetData.tiles.values,
+                      ...presetData.npcs.values,
+                      ...presetData.objects.values,
+                      // if players will be in tileset use it
+                      // ...presetData.players.values,
+                    ];
+                    final oldPrefix = consts.images!.prefix;
+                    consts.images!.prefix = '';
+                    for (final tile in tiles) {
+                      switch (tile.tile.type) {
+                        case TileType.autotile:
+                          for (final tileName in SpriteTileName.values) {
+                            final filename =
+                                '${tile.id.value}__${tileName.name.snakeCase}';
+                            if (consts.images!.containsKey(filename)) {
+                              final image = await consts.images!.load(filename);
+                              final path = await FilePicker.platform.saveFile(
+                                fileName: '$filename.png',
+                                type: FileType.image,
+                                allowedExtensions: ['.png'],
+                              );
+                              if (path == null) {
+                                consts.images!.prefix = oldPrefix;
+                                return;
+                              }
+                              final bytes = (await image.toByteData(
+                                format: ImageByteFormat.png,
+                              ))!
+                                  .buffer
+                                  .asUint8List();
+                              await io.File(path).writeAsBytes(bytes);
+                            }
+                          }
+                        case TileType.object:
+                      }
+                    }
+                    consts.images!.prefix = oldPrefix;
+                    if (context.mounted) {
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Saved!')),
                       );
-                      if (path == null) return;
-                      final bytes = (await image.toByteData(
-                        format: ImageByteFormat.png,
-                      ))!
-                          .buffer
-                          .asUint8List();
-                      await io.File(path).writeAsBytes(bytes);
                     }
                   },
                   icon: const Icon(Icons.paste),
-                  label: const Text('Save pics'),
+                  label: const Text('Save tpics'),
                 ),
                 UiLocalizedTextField(
                   fieldConstraints: const BoxConstraints(maxWidth: 140),
@@ -235,7 +263,8 @@ class TileSpriteButton extends StatelessWidget {
                 color: colorSheme.secondaryContainer,
                 image: DecorationImage(
                   image: Image.asset(
-                    '${drawerCubit.resourcesLoader.assetsPrefix}/${tileResource.tile.properties.thumbnailPath}',
+                    // ignore: lines_longer_than_80_chars
+                    '${drawerCubit.resourcesLoader.assetsPrefix}${tileResource.tile.properties.thumbnailPath}',
                   ).image,
                 ),
               ),

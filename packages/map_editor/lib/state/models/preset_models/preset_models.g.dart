@@ -123,6 +123,11 @@ _$_TilesetPresetDataModel _$$_TilesetPresetDataModelFromJson(
                 (e as List<dynamic>).map((e) => e as String).toList()),
           ) ??
           _nameCodes,
+      name: json['name'] == null
+          ? LocalizedMap.empty
+          : LocalizedMap.fromJsonValueMap(json['name'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$TilesetTypeEnumMap, json['type']) ??
+          TilesetType.colourful,
     );
 
 Map<String, dynamic> _$$_TilesetPresetDataModelToJson(
@@ -135,6 +140,8 @@ Map<String, dynamic> _$$_TilesetPresetDataModelToJson(
       'other': TilesetPresetDataModel._tilesToJson(instance.other),
       'autotile_rules': instance.autotileRules
           .map((k, e) => MapEntry(_$SpriteTileNameEnumMap[k]!, e)),
+      'name': LocalizedMap.toJsonValueMap(instance.name),
+      'type': _$TilesetTypeEnumMap[instance.type]!,
     };
 
 const _$SpriteTileNameEnumMap = {
@@ -147,4 +154,8 @@ const _$SpriteTileNameEnumMap = {
   SpriteTileName.bottomLeft: 'bottomLeft',
   SpriteTileName.bottomCenter: 'bottomCenter',
   SpriteTileName.bottomRight: 'bottomRight',
+};
+
+const _$TilesetTypeEnumMap = {
+  TilesetType.colourful: 'colourful',
 };

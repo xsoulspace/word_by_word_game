@@ -833,6 +833,11 @@ mixin _$TilesetPresetDataModel {
   Map<TileId, PresetTileModel> get other => throw _privateConstructorUsedError;
   Map<SpriteTileName, List<String>> get autotileRules =>
       throw _privateConstructorUsedError;
+  @JsonKey(
+      fromJson: LocalizedMap.fromJsonValueMap,
+      toJson: LocalizedMap.toJsonValueMap)
+  LocalizedMap get name => throw _privateConstructorUsedError;
+  TilesetType get type => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -867,7 +872,14 @@ abstract class $TilesetPresetDataModelCopyWith<$Res> {
           fromJson: TilesetPresetDataModel._tilesFromJson,
           toJson: TilesetPresetDataModel._tilesToJson)
       Map<TileId, PresetTileModel> other,
-      Map<SpriteTileName, List<String>> autotileRules});
+      Map<SpriteTileName, List<String>> autotileRules,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      LocalizedMap name,
+      TilesetType type});
+
+  $LocalizedMapCopyWith<$Res> get name;
 }
 
 /// @nodoc
@@ -890,6 +902,8 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
     Object? players = null,
     Object? other = null,
     Object? autotileRules = null,
+    Object? name = null,
+    Object? type = null,
   }) {
     return _then(_value.copyWith(
       tiles: null == tiles
@@ -916,7 +930,23 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
           ? _value.autotileRules
           : autotileRules // ignore: cast_nullable_to_non_nullable
               as Map<SpriteTileName, List<String>>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TilesetType,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LocalizedMapCopyWith<$Res> get name {
+    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
+      return _then(_value.copyWith(name: value) as $Val);
+    });
   }
 }
 
@@ -949,7 +979,15 @@ abstract class _$$_TilesetPresetDataModelCopyWith<$Res>
           fromJson: TilesetPresetDataModel._tilesFromJson,
           toJson: TilesetPresetDataModel._tilesToJson)
       Map<TileId, PresetTileModel> other,
-      Map<SpriteTileName, List<String>> autotileRules});
+      Map<SpriteTileName, List<String>> autotileRules,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      LocalizedMap name,
+      TilesetType type});
+
+  @override
+  $LocalizedMapCopyWith<$Res> get name;
 }
 
 /// @nodoc
@@ -970,6 +1008,8 @@ class __$$_TilesetPresetDataModelCopyWithImpl<$Res>
     Object? players = null,
     Object? other = null,
     Object? autotileRules = null,
+    Object? name = null,
+    Object? type = null,
   }) {
     return _then(_$_TilesetPresetDataModel(
       tiles: null == tiles
@@ -996,6 +1036,14 @@ class __$$_TilesetPresetDataModelCopyWithImpl<$Res>
           ? _value._autotileRules
           : autotileRules // ignore: cast_nullable_to_non_nullable
               as Map<SpriteTileName, List<String>>,
+      name: null == name
+          ? _value.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as LocalizedMap,
+      type: null == type
+          ? _value.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as TilesetType,
     ));
   }
 }
@@ -1025,7 +1073,12 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
           fromJson: TilesetPresetDataModel._tilesFromJson,
           toJson: TilesetPresetDataModel._tilesToJson)
       final Map<TileId, PresetTileModel> other = const {},
-      final Map<SpriteTileName, List<String>> autotileRules = _nameCodes})
+      final Map<SpriteTileName, List<String>> autotileRules = _nameCodes,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      this.name = LocalizedMap.empty,
+      this.type = TilesetType.colourful})
       : _tiles = tiles,
         _objects = objects,
         _npcs = npcs,
@@ -1101,8 +1154,17 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
   }
 
   @override
+  @JsonKey(
+      fromJson: LocalizedMap.fromJsonValueMap,
+      toJson: LocalizedMap.toJsonValueMap)
+  final LocalizedMap name;
+  @override
+  @JsonKey()
+  final TilesetType type;
+
+  @override
   String toString() {
-    return 'TilesetPresetDataModel(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other, autotileRules: $autotileRules)';
+    return 'TilesetPresetDataModel(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other, autotileRules: $autotileRules, name: $name, type: $type)';
   }
 
   @override
@@ -1116,7 +1178,9 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
             const DeepCollectionEquality().equals(other._players, _players) &&
             const DeepCollectionEquality().equals(other._other, this._other) &&
             const DeepCollectionEquality()
-                .equals(other._autotileRules, _autotileRules));
+                .equals(other._autotileRules, _autotileRules) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type));
   }
 
   @JsonKey(ignore: true)
@@ -1128,7 +1192,9 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
       const DeepCollectionEquality().hash(_npcs),
       const DeepCollectionEquality().hash(_players),
       const DeepCollectionEquality().hash(_other),
-      const DeepCollectionEquality().hash(_autotileRules));
+      const DeepCollectionEquality().hash(_autotileRules),
+      name,
+      type);
 
   @JsonKey(ignore: true)
   @override
@@ -1147,28 +1213,32 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
 
 abstract class _TilesetPresetDataModel implements TilesetPresetDataModel {
   const factory _TilesetPresetDataModel(
-          {@JsonKey(
-              fromJson: TilesetPresetDataModel._tilesFromJson,
-              toJson: TilesetPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> tiles,
-          @JsonKey(
-              fromJson: TilesetPresetDataModel._tilesFromJson,
-              toJson: TilesetPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> objects,
-          @JsonKey(
-              fromJson: TilesetPresetDataModel._tilesFromJson,
-              toJson: TilesetPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> npcs,
-          @JsonKey(
-              fromJson: TilesetPresetDataModel._tilesFromJson,
-              toJson: TilesetPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> players,
-          @JsonKey(
-              fromJson: TilesetPresetDataModel._tilesFromJson,
-              toJson: TilesetPresetDataModel._tilesToJson)
-          final Map<TileId, PresetTileModel> other,
-          final Map<SpriteTileName, List<String>> autotileRules}) =
-      _$_TilesetPresetDataModel;
+      {@JsonKey(
+          fromJson: TilesetPresetDataModel._tilesFromJson,
+          toJson: TilesetPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> tiles,
+      @JsonKey(
+          fromJson: TilesetPresetDataModel._tilesFromJson,
+          toJson: TilesetPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> objects,
+      @JsonKey(
+          fromJson: TilesetPresetDataModel._tilesFromJson,
+          toJson: TilesetPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> npcs,
+      @JsonKey(
+          fromJson: TilesetPresetDataModel._tilesFromJson,
+          toJson: TilesetPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> players,
+      @JsonKey(
+          fromJson: TilesetPresetDataModel._tilesFromJson,
+          toJson: TilesetPresetDataModel._tilesToJson)
+      final Map<TileId, PresetTileModel> other,
+      final Map<SpriteTileName, List<String>> autotileRules,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      final LocalizedMap name,
+      final TilesetType type}) = _$_TilesetPresetDataModel;
 
   factory _TilesetPresetDataModel.fromJson(Map<String, dynamic> json) =
       _$_TilesetPresetDataModel.fromJson;
@@ -1200,6 +1270,13 @@ abstract class _TilesetPresetDataModel implements TilesetPresetDataModel {
   Map<TileId, PresetTileModel> get other;
   @override
   Map<SpriteTileName, List<String>> get autotileRules;
+  @override
+  @JsonKey(
+      fromJson: LocalizedMap.fromJsonValueMap,
+      toJson: LocalizedMap.toJsonValueMap)
+  LocalizedMap get name;
+  @override
+  TilesetType get type;
   @override
   @JsonKey(ignore: true)
   _$$_TilesetPresetDataModelCopyWith<_$_TilesetPresetDataModel> get copyWith =>
@@ -1335,6 +1412,8 @@ abstract class _TilesetConfigModel extends TilesetConfigModel {
 mixin _$TilesetPresetResources {
   LocalizedMap get name => throw _privateConstructorUsedError;
   TilesetType get type => throw _privateConstructorUsedError;
+  Map<SpriteTileName, List<String>> get autotileRules =>
+      throw _privateConstructorUsedError;
   Map<TileId, PresetTileResource> get tiles =>
       throw _privateConstructorUsedError;
   Map<TileId, PresetTileResource> get objects =>
@@ -1344,8 +1423,6 @@ mixin _$TilesetPresetResources {
   Map<TileId, PresetTileResource> get players =>
       throw _privateConstructorUsedError;
   Map<TileId, PresetTileResource> get other =>
-      throw _privateConstructorUsedError;
-  Map<SpriteTileName, List<String>> get autotileRules =>
       throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -1362,12 +1439,12 @@ abstract class $TilesetPresetResourcesCopyWith<$Res> {
   $Res call(
       {LocalizedMap name,
       TilesetType type,
+      Map<SpriteTileName, List<String>> autotileRules,
       Map<TileId, PresetTileResource> tiles,
       Map<TileId, PresetTileResource> objects,
       Map<TileId, PresetTileResource> npcs,
       Map<TileId, PresetTileResource> players,
-      Map<TileId, PresetTileResource> other,
-      Map<SpriteTileName, List<String>> autotileRules});
+      Map<TileId, PresetTileResource> other});
 
   $LocalizedMapCopyWith<$Res> get name;
 }
@@ -1388,12 +1465,12 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
   $Res call({
     Object? name = null,
     Object? type = null,
+    Object? autotileRules = null,
     Object? tiles = null,
     Object? objects = null,
     Object? npcs = null,
     Object? players = null,
     Object? other = null,
-    Object? autotileRules = null,
   }) {
     return _then(_value.copyWith(
       name: null == name
@@ -1404,6 +1481,10 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TilesetType,
+      autotileRules: null == autotileRules
+          ? _value.autotileRules
+          : autotileRules // ignore: cast_nullable_to_non_nullable
+              as Map<SpriteTileName, List<String>>,
       tiles: null == tiles
           ? _value.tiles
           : tiles // ignore: cast_nullable_to_non_nullable
@@ -1424,10 +1505,6 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
           ? _value.other
           : other // ignore: cast_nullable_to_non_nullable
               as Map<TileId, PresetTileResource>,
-      autotileRules: null == autotileRules
-          ? _value.autotileRules
-          : autotileRules // ignore: cast_nullable_to_non_nullable
-              as Map<SpriteTileName, List<String>>,
     ) as $Val);
   }
 
@@ -1451,12 +1528,12 @@ abstract class _$$_TilesetPresetResourcesCopyWith<$Res>
   $Res call(
       {LocalizedMap name,
       TilesetType type,
+      Map<SpriteTileName, List<String>> autotileRules,
       Map<TileId, PresetTileResource> tiles,
       Map<TileId, PresetTileResource> objects,
       Map<TileId, PresetTileResource> npcs,
       Map<TileId, PresetTileResource> players,
-      Map<TileId, PresetTileResource> other,
-      Map<SpriteTileName, List<String>> autotileRules});
+      Map<TileId, PresetTileResource> other});
 
   @override
   $LocalizedMapCopyWith<$Res> get name;
@@ -1476,12 +1553,12 @@ class __$$_TilesetPresetResourcesCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
     Object? type = null,
+    Object? autotileRules = null,
     Object? tiles = null,
     Object? objects = null,
     Object? npcs = null,
     Object? players = null,
     Object? other = null,
-    Object? autotileRules = null,
   }) {
     return _then(_$_TilesetPresetResources(
       name: null == name
@@ -1492,6 +1569,10 @@ class __$$_TilesetPresetResourcesCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TilesetType,
+      autotileRules: null == autotileRules
+          ? _value._autotileRules
+          : autotileRules // ignore: cast_nullable_to_non_nullable
+              as Map<SpriteTileName, List<String>>,
       tiles: null == tiles
           ? _value._tiles
           : tiles // ignore: cast_nullable_to_non_nullable
@@ -1512,10 +1593,6 @@ class __$$_TilesetPresetResourcesCopyWithImpl<$Res>
           ? _value._other
           : other // ignore: cast_nullable_to_non_nullable
               as Map<TileId, PresetTileResource>,
-      autotileRules: null == autotileRules
-          ? _value._autotileRules
-          : autotileRules // ignore: cast_nullable_to_non_nullable
-              as Map<SpriteTileName, List<String>>,
     ));
   }
 }
@@ -1526,18 +1603,18 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
   const _$_TilesetPresetResources(
       {this.name = LocalizedMap.empty,
       this.type = TilesetType.colourful,
+      final Map<SpriteTileName, List<String>> autotileRules = const {},
       final Map<TileId, PresetTileResource> tiles = const {},
       final Map<TileId, PresetTileResource> objects = const {},
       final Map<TileId, PresetTileResource> npcs = const {},
       final Map<TileId, PresetTileResource> players = const {},
-      final Map<TileId, PresetTileResource> other = const {},
-      final Map<SpriteTileName, List<String>> autotileRules = const {}})
-      : _tiles = tiles,
+      final Map<TileId, PresetTileResource> other = const {}})
+      : _autotileRules = autotileRules,
+        _tiles = tiles,
         _objects = objects,
         _npcs = npcs,
         _players = players,
-        _other = other,
-        _autotileRules = autotileRules;
+        _other = other;
 
   @override
   @JsonKey()
@@ -1545,6 +1622,15 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
   @override
   @JsonKey()
   final TilesetType type;
+  final Map<SpriteTileName, List<String>> _autotileRules;
+  @override
+  @JsonKey()
+  Map<SpriteTileName, List<String>> get autotileRules {
+    if (_autotileRules is EqualUnmodifiableMapView) return _autotileRules;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_autotileRules);
+  }
+
   final Map<TileId, PresetTileResource> _tiles;
   @override
   @JsonKey()
@@ -1590,18 +1676,9 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
     return EqualUnmodifiableMapView(_other);
   }
 
-  final Map<SpriteTileName, List<String>> _autotileRules;
-  @override
-  @JsonKey()
-  Map<SpriteTileName, List<String>> get autotileRules {
-    if (_autotileRules is EqualUnmodifiableMapView) return _autotileRules;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_autotileRules);
-  }
-
   @override
   String toString() {
-    return 'TilesetPresetResources(name: $name, type: $type, tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other, autotileRules: $autotileRules)';
+    return 'TilesetPresetResources(name: $name, type: $type, autotileRules: $autotileRules, tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other)';
   }
 
   @override
@@ -1611,13 +1688,13 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
             other is _$_TilesetPresetResources &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality()
+                .equals(other._autotileRules, _autotileRules) &&
             const DeepCollectionEquality().equals(other._tiles, _tiles) &&
             const DeepCollectionEquality().equals(other._objects, _objects) &&
             const DeepCollectionEquality().equals(other._npcs, _npcs) &&
             const DeepCollectionEquality().equals(other._players, _players) &&
-            const DeepCollectionEquality().equals(other._other, this._other) &&
-            const DeepCollectionEquality()
-                .equals(other._autotileRules, _autotileRules));
+            const DeepCollectionEquality().equals(other._other, this._other));
   }
 
   @override
@@ -1625,12 +1702,12 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
       runtimeType,
       name,
       type,
+      const DeepCollectionEquality().hash(_autotileRules),
       const DeepCollectionEquality().hash(_tiles),
       const DeepCollectionEquality().hash(_objects),
       const DeepCollectionEquality().hash(_npcs),
       const DeepCollectionEquality().hash(_players),
-      const DeepCollectionEquality().hash(_other),
-      const DeepCollectionEquality().hash(_autotileRules));
+      const DeepCollectionEquality().hash(_other));
 
   @JsonKey(ignore: true)
   @override
@@ -1642,20 +1719,21 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
 
 abstract class _TilesetPresetResources implements TilesetPresetResources {
   const factory _TilesetPresetResources(
-          {final LocalizedMap name,
-          final TilesetType type,
-          final Map<TileId, PresetTileResource> tiles,
-          final Map<TileId, PresetTileResource> objects,
-          final Map<TileId, PresetTileResource> npcs,
-          final Map<TileId, PresetTileResource> players,
-          final Map<TileId, PresetTileResource> other,
-          final Map<SpriteTileName, List<String>> autotileRules}) =
-      _$_TilesetPresetResources;
+      {final LocalizedMap name,
+      final TilesetType type,
+      final Map<SpriteTileName, List<String>> autotileRules,
+      final Map<TileId, PresetTileResource> tiles,
+      final Map<TileId, PresetTileResource> objects,
+      final Map<TileId, PresetTileResource> npcs,
+      final Map<TileId, PresetTileResource> players,
+      final Map<TileId, PresetTileResource> other}) = _$_TilesetPresetResources;
 
   @override
   LocalizedMap get name;
   @override
   TilesetType get type;
+  @override
+  Map<SpriteTileName, List<String>> get autotileRules;
   @override
   Map<TileId, PresetTileResource> get tiles;
   @override
@@ -1666,8 +1744,6 @@ abstract class _TilesetPresetResources implements TilesetPresetResources {
   Map<TileId, PresetTileResource> get players;
   @override
   Map<TileId, PresetTileResource> get other;
-  @override
-  Map<SpriteTileName, List<String>> get autotileRules;
   @override
   @JsonKey(ignore: true)
   _$$_TilesetPresetResourcesCopyWith<_$_TilesetPresetResources> get copyWith =>

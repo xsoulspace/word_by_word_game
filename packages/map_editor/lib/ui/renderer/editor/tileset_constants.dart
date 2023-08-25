@@ -43,46 +43,56 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    if (DeviceRuntimeType.isMobileWeb) {
-      await preloadImages();
-    }
+    // if (DeviceRuntimeType.isMobileWeb) {
+    await preloadImages();
+    // }
   }
 
   Future<void> preloadImages() async {
     if (DeviceRuntimeType.isMobileWeb) {
       final imagesPath = tilesetConfig.folderPath;
-      for (final tileName in SpriteTileName.values) {
-        final imagePath = '$imagesPath/${tileName.name.snakeCase}.png';
-        await images!.load(imagePath, key: tileName.name);
+      final tiles = [
+        ...presetData.tiles.values,
+        ...presetData.npcs.values,
+        ...presetData.objects.values,
+        ...presetData.players.values,
+      ];
+      for (final tile in tiles) {
+        for (final tileName in SpriteTileName.values) {
+          final name = '${tile.id.value}__${tileName.name.snakeCase}';
+          final imagePath = '$imagesPath/$name.png';
+          await images!.load(imagePath, key: name);
+        }
       }
     } else {
-      for (final tileName in SpriteTileName.values) {
-        await cacheSpriteImageByTileName(tileName: tileName);
-      }
+      await cacheSpriteImages();
     }
   }
 
   Image getSpriteImage({
+    required final PresetTileModel tile,
     required final SpriteCode spriteCode,
   }) {
-    final tileName = _codeToName[spriteCode] ?? SpriteTileName.x;
-    return images!.fromCache(tileName.name);
+    final spriteName = _codeToName[spriteCode] ?? SpriteTileName.x;
+    return images!.fromCache('${tile.id.value}__$spriteName');
   }
 
-  Future<void> cacheSpriteImageByTileName({
-    required final SpriteTileName tileName,
-  }) async {
-    final image = await _atlas!.getSprite(tileName.name.paramCase).toImage();
-    final converted = await ImageFileGenerator.generateFromImages(image);
-    images!.add(tileName.name, converted ?? image);
+  Future<void> cacheSpriteImages() async {
+    // TODO(arenukvern): move to run in isolate
+    for (final MapEntry(:key) in _atlas!.selections.entries) {
+      final image = await _atlas!.getSprite(key).toImage();
+      final converted = await ImageFileGenerator.generateFromImages(image);
+      images!.add(key, converted ?? image);
+    }
   }
 
   Sprite getSprite({
+    required final PresetTileModel tile,
     required final SpriteCode spriteCode,
   }) {
     final SpriteTileName? tileName = _codeToName[spriteCode];
-    final spriteName = (tileName ?? SpriteTileName.x).name.paramCase;
-    return _atlas!.getSprite(spriteName);
+    final spriteName = (tileName ?? SpriteTileName.x).name.snakeCase;
+    return _atlas!.getSprite('${tile.id.value}__$spriteName');
   }
 
   Map<SpriteCode, SpriteTileName>? _codeToNameCache;

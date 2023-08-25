@@ -51,6 +51,13 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
     final Map<TileId, PresetTileModel> other,
     @Default(_nameCodes)
     final Map<SpriteTileName, List<SpriteCode>> autotileRules,
+    @JsonKey(
+      fromJson: LocalizedMap.fromJsonValueMap,
+      toJson: LocalizedMap.toJsonValueMap,
+    )
+    @Default(LocalizedMap.empty)
+    final LocalizedMap name,
+    @Default(TilesetType.colourful) final TilesetType type,
   }) = _TilesetPresetDataModel;
 
   factory TilesetPresetDataModel.fromJson(final Map<String, dynamic> json) =>
@@ -103,12 +110,12 @@ class TilesetPresetResources with _$TilesetPresetResources {
   const factory TilesetPresetResources({
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(TilesetType.colourful) final TilesetType type,
+    @Default({}) final Map<SpriteTileName, List<SpriteCode>> autotileRules,
     @Default({}) final Map<TileId, PresetTileResource> tiles,
     @Default({}) final Map<TileId, PresetTileResource> objects,
     @Default({}) final Map<TileId, PresetTileResource> npcs,
     @Default({}) final Map<TileId, PresetTileResource> players,
     @Default({}) final Map<TileId, PresetTileResource> other,
-    @Default({}) final Map<SpriteTileName, List<SpriteCode>> autotileRules,
   }) = _TilesetPresetResources;
 
   factory TilesetPresetResources.fromModel({
@@ -117,6 +124,9 @@ class TilesetPresetResources with _$TilesetPresetResources {
     required final TilesetConfigModel tilesetConfig,
   }) =>
       TilesetPresetResources(
+        name: data.name,
+        type: data.type,
+        autotileRules: data.autotileRules,
         tiles: data.tiles.map(
           (final key, final tile) => MapEntry(
             key,

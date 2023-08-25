@@ -111,11 +111,12 @@ class ResourcesLoader {
 
   Map<SpriteCode, AnimationEntryModel> getPathsForPresetDirectionalGraphics({
     required final PresetTileModel tile,
+    required final TilesetConfigModel tilesetConfig,
   }) {
     final graphics = tile.graphics;
     if (graphics.type == TileGraphicsType.character) return {};
     final map = <SpriteCode, AnimationEntryModel>{};
-    final imageBasePath = '${tilesetAssets.prefix}${tile.id.value}__';
+    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.id.value}__';
 
     final paths = _manifestMap.keys
         .where((final e) => e.startsWith(imageBasePath))

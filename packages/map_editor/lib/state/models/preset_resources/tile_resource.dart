@@ -28,6 +28,7 @@ class PresetTileResource with _$PresetTileResource {
     final directionalPaths =
         resourcesLoader.getPathsForPresetDirectionalGraphics(
       tile: tile,
+      tilesetConfig: tilesetConfig,
     );
     return PresetTileResource(
       tile: tile,

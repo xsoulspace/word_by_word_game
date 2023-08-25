@@ -114,9 +114,6 @@ flutter:
     - assets/images/cursors/cursor/
     - assets/images/cursors/
     - assets/images/cursors/handle/
-    - assets/images/markers/
-    - assets/images/markers/red/
-    - assets/images/markers/green/
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

@@ -23,11 +23,10 @@
       "category": "marker",
       "properties": {
         "title": "Red marker",
-        "thumbnail_path": "markers/red/X.png"
+        "thumbnail_path": "preview/colourful/marker_red.png"
       },
       "graphics": {
         "type": "directional",
-        "path": "markers/red",
         "animated": false
       }
     },
@@ -37,11 +36,10 @@
       "category": "marker",
       "properties": {
         "title": "Green marker",
-        "thumbnail_path": "markers/green/X.png"
+        "thumbnail_path": "preview/colourful/marker_green.png"
       },
       "graphics": {
         "type": "directional",
-        "path": "markers/green",
         "animated": false
       }
     },

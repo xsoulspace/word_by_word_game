@@ -13,7 +13,6 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   $AssetsImagesCursorsGen get cursors => const $AssetsImagesCursorsGen();
-  $AssetsImagesMarkersGen get markers => const $AssetsImagesMarkersGen();
   $AssetsImagesPreviewGen get preview => const $AssetsImagesPreviewGen();
   $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
 }
@@ -25,14 +24,6 @@ class $AssetsImagesCursorsGen {
       const $AssetsImagesCursorsCursorGen();
   $AssetsImagesCursorsHandleGen get handle =>
       const $AssetsImagesCursorsHandleGen();
-}
-
-class $AssetsImagesMarkersGen {
-  const $AssetsImagesMarkersGen();
-
-  $AssetsImagesMarkersGreenGen get green =>
-      const $AssetsImagesMarkersGreenGen();
-  $AssetsImagesMarkersRedGen get red => const $AssetsImagesMarkersRedGen();
 }
 
 class $AssetsImagesPreviewGen {
@@ -96,29 +87,16 @@ class $AssetsImagesCursorsHandleGen {
   List<AssetGenImage> get values => [idle];
 }
 
-class $AssetsImagesMarkersGreenGen {
-  const $AssetsImagesMarkersGreenGen();
-
-  /// File path: assets/images/markers/green/X.png
-  AssetGenImage get x =>
-      const AssetGenImage('assets/images/markers/green/X.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [x];
-}
-
-class $AssetsImagesMarkersRedGen {
-  const $AssetsImagesMarkersRedGen();
-
-  /// File path: assets/images/markers/red/X.png
-  AssetGenImage get x => const AssetGenImage('assets/images/markers/red/X.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [x];
-}
-
 class $AssetsImagesPreviewColourfulGen {
   const $AssetsImagesPreviewColourfulGen();
+
+  /// File path: assets/images/preview/colourful/marker_green.png
+  AssetGenImage get markerGreen =>
+      const AssetGenImage('assets/images/preview/colourful/marker_green.png');
+
+  /// File path: assets/images/preview/colourful/marker_red.png
+  AssetGenImage get markerRed =>
+      const AssetGenImage('assets/images/preview/colourful/marker_red.png');
 
   /// File path: assets/images/preview/colourful/tropical_land.png
   AssetGenImage get tropicalLand =>
@@ -129,65 +107,19 @@ class $AssetsImagesPreviewColourfulGen {
       const AssetGenImage('assets/images/preview/colourful/tropical_water.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [tropicalLand, tropicalWater];
+  List<AssetGenImage> get values =>
+      [markerGreen, markerRed, tropicalLand, tropicalWater];
 }
 
 class $AssetsImagesTilesetsColourfulGen {
   const $AssetsImagesTilesetsColourfulGen();
 
-  /// File path: assets/images/tilesets/colourful/bottom_center.png
-  AssetGenImage get bottomCenter =>
-      const AssetGenImage('assets/images/tilesets/colourful/bottom_center.png');
-
-  /// File path: assets/images/tilesets/colourful/bottom_left.png
-  AssetGenImage get bottomLeft =>
-      const AssetGenImage('assets/images/tilesets/colourful/bottom_left.png');
-
-  /// File path: assets/images/tilesets/colourful/bottom_right.png
-  AssetGenImage get bottomRight =>
-      const AssetGenImage('assets/images/tilesets/colourful/bottom_right.png');
-
-  /// File path: assets/images/tilesets/colourful/middle_left.png
-  AssetGenImage get middleLeft =>
-      const AssetGenImage('assets/images/tilesets/colourful/middle_left.png');
-
-  /// File path: assets/images/tilesets/colourful/middle_right.png
-  AssetGenImage get middleRight =>
-      const AssetGenImage('assets/images/tilesets/colourful/middle_right.png');
-
-  /// File path: assets/images/tilesets/colourful/player__hot_air_ballloon__idle_right_0.png
-  AssetGenImage get playerHotAirBallloonIdleRight0 => const AssetGenImage(
-      'assets/images/tilesets/colourful/player__hot_air_ballloon__idle_right_0.png');
-
-  /// File path: assets/images/tilesets/colourful/top_center.png
-  AssetGenImage get topCenter =>
-      const AssetGenImage('assets/images/tilesets/colourful/top_center.png');
-
-  /// File path: assets/images/tilesets/colourful/top_left.png
-  AssetGenImage get topLeft =>
-      const AssetGenImage('assets/images/tilesets/colourful/top_left.png');
-
-  /// File path: assets/images/tilesets/colourful/top_right.png
-  AssetGenImage get topRight =>
-      const AssetGenImage('assets/images/tilesets/colourful/top_right.png');
-
-  /// File path: assets/images/tilesets/colourful/x.png
-  AssetGenImage get x =>
-      const AssetGenImage('assets/images/tilesets/colourful/x.png');
+  /// File path: assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png
+  AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
+      'assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [
-        bottomCenter,
-        bottomLeft,
-        bottomRight,
-        middleLeft,
-        middleRight,
-        playerHotAirBallloonIdleRight0,
-        topCenter,
-        topLeft,
-        topRight,
-        x
-      ];
+  List<AssetGenImage> get values => [hotAirBalloonIdleRight0];
 }
 
 class Assets {
