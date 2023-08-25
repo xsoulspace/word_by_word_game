@@ -24,6 +24,7 @@ class CanvasCubit extends DrawerCubit {
   final CanvasCubitDto canvasDto;
   @override
   Future<void> loadInitialData() async {
+    await loadResourcesData();
     loadTilesets();
   }
 
@@ -50,10 +51,21 @@ class CanvasCubit extends DrawerCubit {
   void loadCanvasData({
     required final CanvasDataModel canvasData,
   }) {
+    CanvasDataModel eCanvasData = canvasData;
+    final player = eCanvasData.playerObject;
+    if (!state.tileResources.players.containsKey(player.id)) {
+      final firstPlayer = state.tileResources.players.values.first;
+      eCanvasData = eCanvasData.copyWith(
+        playerObject: player.copyWith(
+          id: firstPlayer.id.toGid(),
+          tileId: firstPlayer.tile.id,
+        ),
+      );
+    }
     emit(
       state.copyWith(
-        canvasData: canvasData,
-        drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
+        canvasData: eCanvasData,
+        drawLayerId: eCanvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
       ),
     );
   }

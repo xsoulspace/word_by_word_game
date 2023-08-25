@@ -15,9 +15,7 @@ class EditorPlayerCanvasObject extends EditorCanvasObject {
     if (player.id.isEmpty) {
       /// creating player if it is empty
       final updatedPlayer = RenderObjectModel(
-        id: Gid(
-          value: drawerCubit.tilesResources.players.values.first.id.value,
-        ),
+        id: drawerCubit.tilesResources.players.values.first.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: kPlayerTileId,
         position: position.toSerializedVector2(),

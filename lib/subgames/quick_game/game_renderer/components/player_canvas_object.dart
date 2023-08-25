@@ -26,7 +26,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         game.canvasRenderer.origin + player.distanceToOrigin.toVector2();
     if (player.id.isEmpty) {
       final updatedPlayer = RenderObjectModel(
-        id: const Gid(value: 'Tester'),
+        id: canvasCubit.tilesResources.players.values.first.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: kPlayerTileId,
         position: position.toSerializedVector2(),
