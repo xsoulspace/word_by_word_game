@@ -43,29 +43,16 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    // if (DeviceRuntimeType.isMobileWeb) {
-    await preloadImages();
-    // }
+    if (DeviceRuntimeType.isMobileWeb) {
+      await preloadImages();
+    }
   }
 
   Future<void> preloadImages() async {
     if (DeviceRuntimeType.isMobileWeb) {
-      final imagesPath = tilesetConfig.folderPath;
-      final tiles = [
-        ...presetData.tiles.values,
-        ...presetData.npcs.values,
-        ...presetData.objects.values,
-        ...presetData.players.values,
-      ];
-      for (final tile in tiles) {
-        for (final tileName in SpriteTileName.values) {
-          final name = '${tile.id.value}__${tileName.name.snakeCase}';
-          final imagePath = '$imagesPath/$name.png';
-          await images!.load(imagePath, key: name);
-        }
-      }
+      await cacheFileSpriteImages();
     } else {
-      await cacheSpriteImages();
+      await cacheAtlasSpriteImages();
     }
   }
 
@@ -74,10 +61,25 @@ class TilesetConstants {
     required final SpriteCode spriteCode,
   }) {
     final spriteName = _codeToName[spriteCode] ?? SpriteTileName.x;
-    return images!.fromCache('${tile.id.value}__$spriteName');
+    return images!.fromCache('${tile.id.value}__${spriteName.name.snakeCase}');
   }
 
-  Future<void> cacheSpriteImages() async {
+  Future<void> cacheFileSpriteImages() async {
+    final tiles = [
+      ...presetData.tiles.values,
+      ...presetData.npcs.values,
+      ...presetData.objects.values,
+      // ...presetData.players.values,
+    ];
+    for (final tile in tiles) {
+      for (final MapEntry(key: tileName, value: animationEntry)
+          in tile.directionalPaths.entries) {
+        await images!.load(animationEntry.currentFramePath, key: tileName);
+      }
+    }
+  }
+
+  Future<void> cacheAtlasSpriteImages() async {
     // TODO(arenukvern): move to run in isolate
     for (final MapEntry(:key) in _atlas!.selections.entries) {
       final image = await _atlas!.getSprite(key).toImage();
