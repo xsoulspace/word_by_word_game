@@ -929,6 +929,7 @@ LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
 mixin _$LevelModel {
   LevelPlayersModel get players => throw _privateConstructorUsedError;
   LevelCharactersModel get characters => throw _privateConstructorUsedError;
+  TilesetType get tilesetType => throw _privateConstructorUsedError;
   List<WeatherModel> get weathers => throw _privateConstructorUsedError;
   WindModel get wind => throw _privateConstructorUsedError;
 
@@ -961,6 +962,7 @@ abstract class $LevelModelCopyWith<$Res> {
   $Res call(
       {LevelPlayersModel players,
       LevelCharactersModel characters,
+      TilesetType tilesetType,
       List<WeatherModel> weathers,
       WindModel wind,
       CanvasDataModelId canvasDataId,
@@ -998,6 +1000,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
   $Res call({
     Object? players = null,
     Object? characters = null,
+    Object? tilesetType = null,
     Object? weathers = null,
     Object? wind = null,
     Object? canvasDataId = null,
@@ -1019,6 +1022,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
+      tilesetType: null == tilesetType
+          ? _value.tilesetType
+          : tilesetType // ignore: cast_nullable_to_non_nullable
+              as TilesetType,
       weathers: null == weathers
           ? _value.weathers
           : weathers // ignore: cast_nullable_to_non_nullable
@@ -1143,6 +1150,7 @@ abstract class _$$_LevelModelCopyWith<$Res>
   $Res call(
       {LevelPlayersModel players,
       LevelCharactersModel characters,
+      TilesetType tilesetType,
       List<WeatherModel> weathers,
       WindModel wind,
       CanvasDataModelId canvasDataId,
@@ -1186,6 +1194,7 @@ class __$$_LevelModelCopyWithImpl<$Res>
   $Res call({
     Object? players = null,
     Object? characters = null,
+    Object? tilesetType = null,
     Object? weathers = null,
     Object? wind = null,
     Object? canvasDataId = null,
@@ -1207,6 +1216,10 @@ class __$$_LevelModelCopyWithImpl<$Res>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
+      tilesetType: null == tilesetType
+          ? _value.tilesetType
+          : tilesetType // ignore: cast_nullable_to_non_nullable
+              as TilesetType,
       weathers: null == weathers
           ? _value._weathers
           : weathers // ignore: cast_nullable_to_non_nullable
@@ -1262,6 +1275,7 @@ class _$_LevelModel extends _LevelModel {
   const _$_LevelModel(
       {required this.players,
       required this.characters,
+      this.tilesetType = TilesetType.colourful,
       final List<WeatherModel> weathers = const [],
       this.wind = WindModel.zero,
       this.canvasDataId = CanvasDataModelId.empty,
@@ -1284,6 +1298,9 @@ class _$_LevelModel extends _LevelModel {
   final LevelPlayersModel players;
   @override
   final LevelCharactersModel characters;
+  @override
+  @JsonKey()
+  final TilesetType tilesetType;
   final List<WeatherModel> _weathers;
   @override
   @JsonKey()
@@ -1335,7 +1352,7 @@ class _$_LevelModel extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress)';
+    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress)';
   }
 
   @override
@@ -1346,6 +1363,8 @@ class _$_LevelModel extends _LevelModel {
             (identical(other.players, players) || other.players == players) &&
             (identical(other.characters, characters) ||
                 other.characters == characters) &&
+            (identical(other.tilesetType, tilesetType) ||
+                other.tilesetType == tilesetType) &&
             const DeepCollectionEquality().equals(other._weathers, _weathers) &&
             (identical(other.wind, wind) || other.wind == wind) &&
             (identical(other.canvasDataId, canvasDataId) ||
@@ -1373,6 +1392,7 @@ class _$_LevelModel extends _LevelModel {
       runtimeType,
       players,
       characters,
+      tilesetType,
       const DeepCollectionEquality().hash(_weathers),
       wind,
       canvasDataId,
@@ -1403,6 +1423,7 @@ abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
           {required final LevelPlayersModel players,
           required final LevelCharactersModel characters,
+          final TilesetType tilesetType,
           final List<WeatherModel> weathers,
           final WindModel wind,
           final CanvasDataModelId canvasDataId,
@@ -1424,6 +1445,8 @@ abstract class _LevelModel extends LevelModel {
   LevelPlayersModel get players;
   @override
   LevelCharactersModel get characters;
+  @override
+  TilesetType get tilesetType;
   @override
   List<WeatherModel> get weathers;
   @override

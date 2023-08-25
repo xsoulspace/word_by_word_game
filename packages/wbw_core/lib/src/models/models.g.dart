@@ -109,6 +109,9 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
           json['characters'] as Map<String, dynamic>),
+      tilesetType:
+          $enumDecodeNullable(_$TilesetTypeEnumMap, json['tilesetType']) ??
+              TilesetType.colourful,
       weathers: (json['weathers'] as List<dynamic>?)
               ?.map((e) => WeatherModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -152,6 +155,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
     <String, dynamic>{
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
+      'tilesetType': _$TilesetTypeEnumMap[instance.tilesetType]!,
       'weathers': instance.weathers.map((e) => e.toJson()).toList(),
       'wind': instance.wind.toJson(),
       'canvasDataId': instance.canvasDataId.toJson(),
@@ -165,6 +169,10 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'lastDateTime': instance.lastDateTime.toJson(),
       'technologyTreeProgress': instance.technologyTreeProgress.toJson(),
     };
+
+const _$TilesetTypeEnumMap = {
+  TilesetType.colourful: 'colourful',
+};
 
 const _$GamePhaseTypeEnumMap = {
   GamePhaseType.entryWord: 'entryWord',

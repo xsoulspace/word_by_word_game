@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -42,9 +44,11 @@ class LevelWinDialog extends StatelessWidget {
             ),
             TextButton(
               onPressed: () {
-                context
-                    .read<GlobalGameBloc>()
-                    .onRestartLevel(const RestartLevelEvent());
+                unawaited(
+                  context
+                      .read<GlobalGameBloc>()
+                      .onRestartLevel(const RestartLevelEvent()),
+                );
 
                 context.read<DialogController>().closeDialog();
               },

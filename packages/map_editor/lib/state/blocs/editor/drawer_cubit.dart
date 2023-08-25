@@ -31,8 +31,22 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     await loadResourcesData();
     loadTilesets();
     // TODO(arenukvern): should be dependent on tileset in level
+    /// use [onLevelLoad]
     await loadTileset(state.tilesetsConfigs.first);
     await loadEditorCanvasData();
+  }
+
+  Future<void> prepareTilesetForLevel({
+    required final LevelModel level,
+  }) async {
+    TilesetConfigModel? tilesetConfig = state.tilesetsConfigs.firstWhereOrNull(
+      (final config) =>
+          config.cleanPath.endsWith(level.tilesetType.name.snakeCase),
+    );
+    tilesetConfig ??= state.tilesetsConfigs.firstWhere(
+      (final e) => e.cleanPath.endsWith(TilesetType.colourful.name),
+    );
+    await loadTileset(tilesetConfig);
   }
 
   void loadTilesets() {
@@ -142,7 +156,7 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
           TextButton(
             onPressed: messenger.clearMaterialBanners,
             child: const Text('Close'),
-          )
+          ),
         ],
       ),
     );

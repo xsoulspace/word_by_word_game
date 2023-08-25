@@ -14,6 +14,9 @@ enum EnergyMultiplierType {
 }
 
 /// maybe rename to world level model
+///
+/// !Warning: do not make fields required, as the model will not be
+/// compatible with older versions of the app.
 @immutable
 @freezed
 class LevelModel with _$LevelModel {
@@ -23,6 +26,7 @@ class LevelModel with _$LevelModel {
   const factory LevelModel({
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
+    @Default(TilesetType.colourful) final TilesetType tilesetType,
     @Default([]) final List<WeatherModel> weathers,
     @Default(WindModel.zero) final WindModel wind,
 

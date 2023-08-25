@@ -44,6 +44,14 @@ class CanvasDataReferenceModel with _$CanvasDataReferenceModel {
   static const empty = CanvasDataReferenceModel();
 }
 
+/// Canvas data is what is displayed on the screen
+/// It can be changed from the editor.
+///
+/// Currently immutable from whithin the game.
+///
+/// In future:
+/// It can be changed during the game. If this will be
+/// implemented, then it should be saved with the level.
 @freezed
 class CanvasDataModel with _$CanvasDataModel {
   const factory CanvasDataModel({

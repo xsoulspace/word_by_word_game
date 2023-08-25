@@ -96,8 +96,8 @@ dev_dependencies:
   xsoulspace_lints: ^0.0.9
 
 dependency_overrides:
-  http: 1.0.0
   collection: 1.18.0
+  http: 1.0.0
 
 # flutter pub run flutter_launcher_icons:main
 flutter_icons:
@@ -138,7 +138,6 @@ flutter:
     - assets/images/icons/
     - assets/images/ui_frames/
     - assets/images/buttons/
-    - assets/images/characters/
     # - assets/images/tilesets/
     # - assets/tiles/
     # - assets/icons/

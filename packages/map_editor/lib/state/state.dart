@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
 
+import 'package:collection/collection.dart';
 import 'package:flame/cache.dart';
 import 'package:flame/extensions.dart';
+// ignore: implementation_imports
 import 'package:flame/src/events/messages/position_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -16,6 +18,7 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
+import 'package:recase/recase.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 export 'di/di.dart';

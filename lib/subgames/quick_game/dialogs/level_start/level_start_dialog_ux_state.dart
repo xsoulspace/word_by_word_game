@@ -114,7 +114,7 @@ class LevelStartDialogUxState extends LifeState {
       canvasDataId: canvasData.id,
     );
 
-    diDto.globalGameBloc
+    await diDto.globalGameBloc
         .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
     await diDto.globalGameBloc.onStartPlayingLevel(
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),

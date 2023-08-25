@@ -117,7 +117,7 @@ class GameCanvasObjectsDrawer extends Component
     super.render(canvas);
   }
 
-  GravityModel get gravity => const GravityModel(yTilePosition: 10);
+  GravityModel get gravity => GravityModel.initial;
   final _gravitationLinePaint = Palette.red.paint()..strokeWidth = 2;
   void _renderGravitationLine(final Canvas canvas) {
     final dy = gravity.tileDistance.toDouble() + origin.y;

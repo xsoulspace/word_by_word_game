@@ -81,7 +81,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
     if (levelModel != null) {
       /// resume latest game
-      onInitGlobalGameLevel(
+      await onInitGlobalGameLevel(
         InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false),
       );
     }
@@ -95,15 +95,17 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
   }
 
-  void onRestartLevel(
+  Future<void> onRestartLevel(
     final RestartLevelEvent event,
-  ) {
+  ) async {
     final levelModel = state.currentLevelModel;
     if (levelModel == null) {
       // TODO(arenuvkern): description
       throw UnimplementedError('onRestartLevel $levelModel');
     } else {
-      onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: levelModel));
+      await onInitGlobalGameLevel(
+        InitGlobalGameLevelEvent(levelModel: levelModel),
+      );
       unawaited(
         onStartPlayingLevel(
           const StartPlayingLevelEvent(
@@ -123,9 +125,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   /// The [onStartPlayingLevel] is waiting for the completer future
   Completer? _globalLevelLoadCompleter;
 
-  void onInitGlobalGameLevel(
+  Future<void> onInitGlobalGameLevel(
     final InitGlobalGameLevelEvent event,
-  ) {
+  ) async {
     diDto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.loading,
     );
@@ -146,6 +148,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       );
     }
 
+    /// preloading resources which should be the same for all levels
+    await diDto.canvasCubit.prepareTilesetForLevel(level: level);
+
+    // load canvasCubit with graphics, but no more then it
     CanvasDataModel? canvasData;
     canvasData = state.allCanvasData[level.id];
 
@@ -156,7 +162,6 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         canvasDataId: canvasData.id,
       );
     }
-
     diDto
       ..canvasCubit.loadCanvasData(canvasData: canvasData)
       ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: level))
