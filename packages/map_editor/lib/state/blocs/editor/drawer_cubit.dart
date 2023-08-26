@@ -143,7 +143,14 @@ final class EditorDrawerCubit extends DrawerCubit {
     loadTilesets();
     CanvasDataModel? level = levelsMapsNotifier.value.firstOrNull;
     if (level == null) {
-      level = CanvasDataModel.create();
+      level = CanvasDataModel.create().copyWith(
+        name: LocalizedMap.empty.copyWith(
+          value: Languages.values.toMap(
+            toKey: (final item) => item,
+            toValue: (final item) => '',
+          ),
+        ),
+      );
       levelsMapsNotifier.value = [level];
     }
     await loadCanvasData(level);

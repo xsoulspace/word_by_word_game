@@ -47,7 +47,9 @@ class UiLocalizedTextField extends StatefulWidget {
 
 class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   late final _textController = TextEditingController(
-    text: widget.initialValue.getValue(),
+    text: widget.initialValue.value.isEmpty
+        ? null
+        : widget.initialValue.getValue(),
   );
   late LocalizedMap _value = widget.initialValue;
   Languages _language = Languages.en;

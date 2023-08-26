@@ -69,29 +69,33 @@ class TileButtons extends StatelessWidget {
                 const Gap(14),
                 ValueListenableBuilder(
                   valueListenable: drawerCubit.levelsMapsNotifier,
-                  builder: (final context, final levels, final child) =>
-                      MenuAnchor(
-                    menuChildren: levels
-                        .map(
-                          (final canvasData) => MenuItemButton(
-                            child: Text(canvasData.name.getValue()),
-                            onPressed: () async =>
-                                drawerCubit.onChangeLevelMap(canvasData),
-                          ),
-                        )
-                        .toList(),
-                    builder: (final context, final controller, final child) =>
-                        TextButton(
-                      onPressed: () {
-                        if (controller.isOpen) {
-                          controller.close();
-                        } else {
-                          controller.open();
-                        }
-                      },
-                      child: Text(drawerCubit.state.canvasData.name.getValue()),
-                    ),
-                  ),
+                  builder: (final context, final levels, final child) {
+                    final name = drawerCubit.state.canvasData.name;
+                    return MenuAnchor(
+                      menuChildren: levels
+                          .map(
+                            (final canvasData) => MenuItemButton(
+                              child: Text(canvasData.name.getValue()),
+                              onPressed: () async =>
+                                  drawerCubit.onChangeLevelMap(canvasData),
+                            ),
+                          )
+                          .toList(),
+                      builder: (final context, final controller, final child) =>
+                          TextButton(
+                        onPressed: () {
+                          if (controller.isOpen) {
+                            controller.close();
+                          } else {
+                            controller.open();
+                          }
+                        },
+                        child: Text(
+                          name.value.isEmpty ? 'noname' : name.getValue(),
+                        ),
+                      ),
+                    );
+                  },
                 ),
               ],
             ),
@@ -246,7 +250,7 @@ class TileSpriteButton extends StatelessWidget {
     final theme = Theme.of(context);
     final colorSheme = theme.colorScheme;
     final dimension = kTileDimension.toDouble();
-    final drawerCubit = context.watch<DrawerCubit>();
+    final drawerCubit = context.watch<EditorDrawerCubit>();
 
     final isActive = drawerCubit.tileToDraw?.id == tileResource.id;
 
