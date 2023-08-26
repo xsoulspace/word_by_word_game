@@ -23,7 +23,6 @@ class TilesetConstants {
       presetData.autotileRules;
   final AssetsCache assets;
   FireAtlas? _atlas;
-  Image? atlasImage;
   Images? images;
   Future<void> onLoad({
     required final Images images,

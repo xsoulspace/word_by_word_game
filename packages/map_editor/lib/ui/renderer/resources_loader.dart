@@ -38,11 +38,17 @@ class ResourcesLoader {
   Map<String, dynamic> _manifestMap = {};
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
+  Images? _images;
 
   Future<void> onLoad() async {
     if (_isLoaded) return;
     _isLoaded = true;
     await _loadImagesManifest();
+  }
+
+  Future<void> onGameLoad(final Images images) async {
+    if (_images != null) return;
+    _images = images;
   }
 
   void loadTileset({

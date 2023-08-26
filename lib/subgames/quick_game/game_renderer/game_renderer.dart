@@ -152,7 +152,6 @@ class CanvasRendererGame extends FlameGame
   Future<void> onLoadLevel() async {
     if (isLevelLoading) return;
     isLevelLoading = true;
-
     isLevelLoading = false;
   }
 

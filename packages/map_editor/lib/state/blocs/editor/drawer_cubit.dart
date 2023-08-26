@@ -24,8 +24,6 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   final ResourcesLoader resourcesLoader;
   void changeOrigin(final Vector2 value) => emit(state.copyWith(origin: value));
 
-  void changeState(final DrawerCubitState newState) => emit(newState);
-
   /// This function should be triggered before game is started to renderc
   Future<void> loadInitialData() async {
     await loadResourcesData();
@@ -108,6 +106,26 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
       tilesetConfig: tilesetConfig,
       tilesetResources: tilesetResources,
     );
+    final images = _images;
+    if (images != null) await loadCache(images: images);
+  }
+
+  Images? _images;
+
+  /// This function should be triggered when game.onLoad happening
+  Future<void> loadCache({required final Images images}) async {
+    final eImages = _images ??= images;
+    Future<void> load(final PresetTileResource resource) =>
+        resource.loadToCache(images: eImages);
+
+    await Future.wait([
+      resourcesLoader.tilesetConstants.onLoad(images: eImages),
+      ...state.tileResources.tiles.values.map(load),
+      ...state.tileResources.objects.values.map(load),
+      ...state.tileResources.npcs.values.map(load),
+      ...state.tileResources.other.values.map(load),
+      ...state.tileResources.players.values.map(load),
+    ]);
   }
 
   Future<void> copy({
@@ -177,23 +195,6 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
         ),
       ),
     );
-  }
-
-  /// This function should be triggered when game.onLoad happening
-  Future<void> loadCache({
-    required final Images images,
-  }) async {
-    Future<void> load(final PresetTileResource resource) =>
-        resource.loadToCache(images: images);
-
-    await Future.wait([
-      resourcesLoader.tilesetConstants.onLoad(images: images),
-      ...state.tileResources.tiles.values.map(load),
-      ...state.tileResources.objects.values.map(load),
-      ...state.tileResources.npcs.values.map(load),
-      ...state.tileResources.other.values.map(load),
-      ...state.tileResources.players.values.map(load),
-    ]);
   }
 
   TilesetPresetResources get tilesResources => state.tileResources;
