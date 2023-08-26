@@ -99,6 +99,10 @@ class TilesetConfigModel with _$TilesetConfigModel {
   String get cleanPath => paths.withoutExtension(
         path.replaceAll('assets/images/', '').replaceAll('_preset_data', ''),
       );
+  TilesetType get type => switch (cleanPath.split('/').last) {
+        'colourful' => TilesetType.colourful,
+        _ => throw UnimplementedError()
+      };
   String get encodedAtlasPath => '$cleanPath.fa';
   String get decodedAtlasPath => '$cleanPath.json';
   String get folderPath => cleanPath;

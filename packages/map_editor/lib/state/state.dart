@@ -18,7 +18,6 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
-import 'package:recase/recase.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 export 'di/di.dart';

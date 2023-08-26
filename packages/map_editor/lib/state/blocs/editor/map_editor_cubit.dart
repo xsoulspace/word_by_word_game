@@ -3,7 +3,7 @@ part of '../../state.dart';
 class MapEditorCubitDto {
   MapEditorCubitDto.use(final BuildContext context)
       : drawerCubit = context.read();
-  final DrawerCubit drawerCubit;
+  final EditorDrawerCubit drawerCubit;
 }
 
 class MapEditorCubit extends Cubit<MapEditorBlocState> {

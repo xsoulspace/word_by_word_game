@@ -7,7 +7,8 @@ class CanvasCubitDto {
   CanvasCubitDto();
 }
 
-class CanvasCubit extends DrawerCubit {
+/// Class for canvas data rendering
+final class CanvasCubit extends DrawerCubit {
   CanvasCubit({
     required this.canvasDto,
     required final DrawerCubitDto drawerCubit,

@@ -118,8 +118,65 @@ class $AssetsImagesTilesetsColourfulGen {
   AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
       'assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png');
 
+  /// File path: assets/images/tilesets/colourful/marker_green__x.png
+  AssetGenImage get markerGreenX => const AssetGenImage(
+      'assets/images/tilesets/colourful/marker_green__x.png');
+
+  /// File path: assets/images/tilesets/colourful/marker_red__x.png
+  AssetGenImage get markerRedX =>
+      const AssetGenImage('assets/images/tilesets/colourful/marker_red__x.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_center.png
+  AssetGenImage get tropicalLandBottomCenter => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__bottom_center.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_left.png
+  AssetGenImage get tropicalLandBottomLeft => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__bottom_left.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_right.png
+  AssetGenImage get tropicalLandBottomRight => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__bottom_right.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__middle_left.png
+  AssetGenImage get tropicalLandMiddleLeft => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__middle_left.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__middle_right.png
+  AssetGenImage get tropicalLandMiddleRight => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__middle_right.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__top_center.png
+  AssetGenImage get tropicalLandTopCenter => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__top_center.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__top_left.png
+  AssetGenImage get tropicalLandTopLeft => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__top_left.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__top_right.png
+  AssetGenImage get tropicalLandTopRight => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__top_right.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__x.png
+  AssetGenImage get tropicalLandX => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__x.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [hotAirBalloonIdleRight0];
+  List<AssetGenImage> get values => [
+        hotAirBalloonIdleRight0,
+        markerGreenX,
+        markerRedX,
+        tropicalLandBottomCenter,
+        tropicalLandBottomLeft,
+        tropicalLandBottomRight,
+        tropicalLandMiddleLeft,
+        tropicalLandMiddleRight,
+        tropicalLandTopCenter,
+        tropicalLandTopLeft,
+        tropicalLandTopRight,
+        tropicalLandX
+      ];
 }
 
 class Assets {

@@ -141,12 +141,6 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   double get windowWidth => canvasRenderer.windowWidth;
   double get tileColumns => canvasRenderer.tileColumns;
   double get tileRows => canvasRenderer.tileRows;
-  Map<CellPointModel, CellTileModel> get layerTiles =>
-      canvasCubit.drawLayer.tiles;
-  set layerTiles(final Map<CellPointModel, CellTileModel> value) =>
-      canvasCubit.drawLayer = canvasCubit.drawLayer.copyWith(
-        tiles: value,
-      );
   CanvasDataModel get canvasData => canvasCubit.canvasData;
   set canvasData(final CanvasDataModel value) => canvasCubit.canvasData = value;
   TilesetPresetResources get presetResources => canvasCubit.tilesResources;

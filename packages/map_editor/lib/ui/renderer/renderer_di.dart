@@ -14,7 +14,7 @@ class GameRendererDiDto {
   /// ********************************************
   final MapEditorCubit mapEditorBloc;
   final WorldBloc worldBloc;
-  final DrawerCubit drawerCubit;
+  final EditorDrawerCubit drawerCubit;
   final EditorMechanicsCollection mechanics;
   final material.ThemeData theme;
 

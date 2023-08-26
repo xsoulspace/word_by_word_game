@@ -127,7 +127,7 @@ class EditorRendererComponent extends Component
 mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   EditorRendererComponent? _editor;
   EditorRendererComponent get editor => _editor ??= game.editor;
-  DrawerCubit get drawerCubit => game.diDto.drawerCubit;
+  EditorDrawerCubit get drawerCubit => game.diDto.drawerCubit;
   Vector2 get origin => editor.origin;
   @useResult
   Vector2 getOffsetOrigin() => editor.getOffsetOrigin();
