@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -74,17 +75,24 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final allLevels = await diDto.services.levelsRepository.getLevels();
     emit(liveGame.copyWith(allCanvasData: allLevels));
 
-    LevelModel? levelModel;
+    LevelModel? level;
     if (liveGame.currentLevelId.isNotEmpty &&
         gameModel.savedLevels.isNotEmpty) {
-      levelModel = gameModel.savedLevels[liveGame.currentLevelId];
+      level = gameModel.savedLevels[liveGame.currentLevelId];
     }
-    if (levelModel != null) {
-      /// resume latest game
-      await onInitGlobalGameLevel(
-        InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false),
-      );
-    }
+    final isNewStart = level != null;
+
+    /// add level data to display something for start screen
+    level ??= createLevel(
+      canvasDataId: allLevels.values.first.id,
+      characterId: liveGame.playersCharacters.first.id,
+      playersIds: [],
+    );
+
+    /// resume latest game
+    await onInitGlobalGameLevel(
+      InitGlobalGameLevelEvent(levelModel: level, isNewStart: isNewStart),
+    );
 
     await diDto.mechanics.worldTime.onLoad();
     diDto.tutorialBloc.onLoadTutorialsProgress(
@@ -93,6 +101,49 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     if (_tutorialEventsListener != null) {
       diDto.tutorialBloc.notifier.addListener(_tutorialEventsListener!);
     }
+  }
+
+  LevelModel createLevel({
+    required final CanvasDataModelId canvasDataId,
+    required final List<PlayerProfileModelId> playersIds,
+    required final Gid characterId,
+  }) {
+    final liveState = state;
+    final charactersCollection = liveState.playersCharacters;
+    final playersCollection = liveState.playersCollection;
+    final levelPlayers = playersIds
+        .map(
+          (final id) => playersCollection.firstWhereOrNull(
+            (final player) => player.id == id,
+          ),
+        )
+        .nonNulls
+        .toList();
+
+    /// adding empty player just show in start screen
+    if (levelPlayers.isEmpty) {
+      levelPlayers.add(PlayerProfileModel.empty);
+    }
+    final levelCharecters = charactersCollection.firstWhere(
+      (final character) => character.id == characterId,
+    );
+
+    return LevelModel(
+      characters: LevelCharactersModel(
+        playerCharacter: levelCharecters,
+      ),
+      players: LevelPlayersModel(
+        currentPlayerId: levelPlayers.first.id,
+        players: levelPlayers
+            .map(
+              (final e) => e.copyWith(
+                highscore: PlayerHighscoreModel.empty,
+              ),
+            )
+            .toList(),
+      ),
+      canvasDataId: canvasDataId,
+    );
   }
 
   Future<void> onRestartLevel(
@@ -271,6 +322,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
     final updatedState = state.copyWith(
       playersCollection: updatedPlayers,
+      currentLevelId: CanvasDataModelId.empty,
+      currentLevelModel: null,
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);

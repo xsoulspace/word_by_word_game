@@ -199,6 +199,7 @@ class CanvasTilesRenderer extends Component
       tileRows: tileRows,
       windowWidth: windowWidth,
     );
+
     super.render(canvas);
   }
 }
