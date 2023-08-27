@@ -112,8 +112,6 @@ flutter:
     - assets/images/tilesets/colourful/
     - assets/images/cursors/
     - assets/images/cursors/cursor/
-    - assets/images/cursors/
-    - assets/images/cursors/handle/
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

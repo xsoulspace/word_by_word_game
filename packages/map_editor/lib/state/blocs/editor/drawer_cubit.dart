@@ -162,6 +162,7 @@ final class EditorDrawerCubit extends DrawerCubit {
   Future<void> changeCurrentLevelMap(
     final CanvasDataModel canvasData,
   ) async {
+    await saveData();
     await loadCanvasData(canvasData);
   }
 
@@ -208,7 +209,8 @@ final class EditorDrawerCubit extends DrawerCubit {
     emit(
       state.copyWith(
         canvasData: newCanvasData,
-        drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
+        drawLayerId:
+            newCanvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
       ),
     );
   }
@@ -273,10 +275,12 @@ final class EditorDrawerCubit extends DrawerCubit {
     } else {
       levels[index] = canvasData;
     }
+    final eLevels = levels.map((final e) => e.toJson()).toList();
     await dto.localDbDataSource.setMapList(
       key: _levelsMapsPersistanceKet,
-      value: levels.map((final e) => e.toJson()).toList(),
+      value: eLevels,
     );
+    levelsMapsNotifier.value = levels;
   }
 
   Future<void> onChangeName(final LocalizedMap name) async {

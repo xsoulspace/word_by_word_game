@@ -71,7 +71,23 @@
       }
     }
   },
-  "objects": {},
+  "objects": {
+    "cursor_handle": {
+      "id": "cursor_handle",
+      "category": "players",
+      "type": "object",
+      "properties": {
+        "title": "cursor_handle",
+        "description": { "en": "Description" },
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    }
+  },
   "npcs": {},
   "players": {
     "hot_air_balloon": {

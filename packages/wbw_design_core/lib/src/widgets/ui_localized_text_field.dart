@@ -6,7 +6,7 @@ import 'ui_text_field.dart';
 class UiLocalizedTextField extends StatefulWidget {
   const UiLocalizedTextField({
     required this.fieldConstraints,
-    required this.initialValue,
+    required this.value,
     required this.onChanged,
     this.labelText,
     this.focusedBorder,
@@ -20,7 +20,7 @@ class UiLocalizedTextField extends StatefulWidget {
   const UiLocalizedTextField.underlined({
     required this.onChanged,
     required this.fieldConstraints,
-    required this.initialValue,
+    required this.value,
     this.labelText,
     this.onEditingComplete,
     this.onFieldSubmitted,
@@ -33,7 +33,7 @@ class UiLocalizedTextField extends StatefulWidget {
   final String? labelText;
   final ValueChanged<LocalizedMap> onChanged;
   final InputBorder? focusedBorder;
-  final LocalizedMap initialValue;
+  final LocalizedMap value;
   final bool obscureText;
   final BoxConstraints fieldConstraints;
   final FormFieldValidator? validator;
@@ -47,11 +47,9 @@ class UiLocalizedTextField extends StatefulWidget {
 
 class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   late final _textController = TextEditingController(
-    text: widget.initialValue.value.isEmpty
-        ? null
-        : widget.initialValue.getValue(),
+    text: widget.value.value.isEmpty ? null : widget.value.getValue(),
   );
-  late LocalizedMap _value = widget.initialValue;
+  late LocalizedMap _value = widget.value;
   Languages _language = Languages.en;
 
   @override
@@ -64,6 +62,17 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   void dispose() {
     _textController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant final UiLocalizedTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final newText = widget.value.value.isEmpty ? '' : widget.value.getValue();
+    if (widget.value != _value || newText != _textController.text) {
+      _value = widget.value;
+      _textController.text =
+          _value.value.isEmpty ? '' : _value.getValue(_language);
+    }
   }
 
   @override

@@ -179,6 +179,12 @@ class EditorCanvasObjectsDrawer extends Component
     await addAll(objects.whereNotNull());
   }
 
+  Future<void> _removeCanvasObjects(
+    final Iterable<EditorCanvasObject?> objects,
+  ) async {
+    removeAll(objects.whereNotNull());
+  }
+
   List<EditorCanvasObject> get canvasObjects =>
       [_skyHandle, _gravitationHandle, _player].whereNotNull().toList();
 
@@ -194,12 +200,32 @@ class EditorCanvasObjectsDrawer extends Component
 
   @override
   FutureOr<void> onLoad() async {
+    add(
+      FlameBlocListener<EditorDrawerCubit, DrawerCubitState>(
+        onNewState: _handleMapEditorBlocStateChanges,
+      ),
+    );
+
+    return super.onLoad();
+  }
+
+  CanvasDataModelId? _currentCanvasDataId;
+  Future<void> _handleMapEditorBlocStateChanges(
+    final DrawerCubitState state,
+  ) async {
+    if (_currentCanvasDataId != state.canvasData.id) {
+      _currentCanvasDataId = state.canvasData.id;
+      await _loadObjects();
+    }
+  }
+
+  Future<void> _loadObjects() async {
+    await _removeCanvasObjects(canvasObjects);
     _loadPlayer();
     _loadGravitationHandle();
     _loadSkyHandle();
 
     await _addCanvasObjects(canvasObjects);
-    return super.onLoad();
   }
 
   void _loadPlayer() {
@@ -225,26 +251,26 @@ class EditorCanvasObjectsDrawer extends Component
   }
 
   void _loadGravitationHandle() {
-    // _gravitationHandle = EditorCanvasObject.fromRenderObject(
-    //   data: RenderObjectModel(
-    //     id: kHandleObjectId.toGid(),
-    //     tileId: kHandleObjectId,
-    //     position: SerializedVector2(
-    //       y: canvasData.gravity.tileDistance + origin.y,
-    //     ),
-    //   ),
-    //   onPositionChanged: (final object) {
-    //     final updatedY = OriginVectorUtils.use(origin)
-    //         .getAbsoluteCellByCanvasObject(
-    //           objectDistanceToOrigin: object.distanceToOrigin.toOffset(),
-    //         )
-    //         .y;
-    //     final updatedGravity = drawerCubit.canvasData.gravity.copyWith(
-    //       yTilePosition: updatedY,
-    //     );
-    //     drawerCubit.onChangeGravity(updatedGravity);
-    //   },
-    // );
+    _gravitationHandle = EditorCanvasObject.fromRenderObject(
+      data: RenderObjectModel(
+        id: kHandleObjectId.toGid(),
+        tileId: kHandleObjectId,
+        position: SerializedVector2(
+          y: canvasData.gravity.tileDistance + origin.y,
+        ),
+      ),
+      onPositionChanged: (final object) {
+        final updatedY = OriginVectorUtils.use(origin)
+            .getAbsoluteCellByCanvasObject(
+              objectDistanceToOrigin: object.distanceToOrigin.toOffset(),
+            )
+            .y;
+        final updatedGravity = drawerCubit.canvasData.gravity.copyWith(
+          yTilePosition: updatedY,
+        );
+        drawerCubit.onChangeGravity(updatedGravity);
+      },
+    );
   }
 
   @override

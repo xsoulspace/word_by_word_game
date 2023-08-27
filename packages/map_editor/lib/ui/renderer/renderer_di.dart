@@ -25,7 +25,7 @@ class GameRendererDiDto {
       FlameBlocProvider<MapEditorCubit, MapEditorBlocState>.value(
         value: mapEditorBloc,
       ),
-      FlameBlocProvider<DrawerCubit, DrawerCubitState>.value(
+      FlameBlocProvider<EditorDrawerCubit, DrawerCubitState>.value(
         value: drawerCubit,
       ),
     ];
