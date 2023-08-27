@@ -76,8 +76,8 @@ class TileButtons extends StatelessWidget {
                           .map(
                             (final canvasData) => MenuItemButton(
                               child: Text(canvasData.name.getValue()),
-                              onPressed: () async =>
-                                  drawerCubit.onChangeLevelMap(canvasData),
+                              onPressed: () async => drawerCubit
+                                  .changeCurrentCanvasData(canvasData),
                             ),
                           )
                           .toList(),
@@ -109,6 +109,28 @@ class TileButtons extends StatelessWidget {
                   onPressed: () async =>
                       showTilesetDirectionGenerator(context: context),
                   child: const Text('Tileset Directions gen'),
+                ),
+                MenuAnchor(
+                  menuChildren: drawerCubit.state.tilesetsConfigs
+                      .map(
+                        (final tilesetConig) => MenuItemButton(
+                          child: Text(tilesetConig.type.name),
+                          onPressed: () async =>
+                              drawerCubit.changeTilesetType(tilesetConig.type),
+                        ),
+                      )
+                      .toList(),
+                  builder: (final context, final controller, final child) =>
+                      TextButton(
+                    onPressed: () {
+                      if (controller.isOpen) {
+                        controller.close();
+                      } else {
+                        controller.open();
+                      }
+                    },
+                    child: Text(drawerCubit.state.canvasData.tilesetType.name),
+                  ),
                 ),
               ],
             ),

@@ -154,20 +154,33 @@ final class EditorDrawerCubit extends DrawerCubit {
     );
     await loadTileset(tilesetConfig);
 
-    CanvasDataModel? level = levelsMapsNotifier.value.firstOrNull;
-    if (level == null) {
-      level = CanvasDataModel.create().copyWith(
+    CanvasDataModel? canvasData = levelsMapsNotifier.value.firstOrNull;
+    if (canvasData == null) {
+      canvasData = CanvasDataModel.create().copyWith(
         name: state.tileResources.name,
         tilesetType: state.tileResources.type,
       );
-      levelsMapsNotifier.value = [level];
+      levelsMapsNotifier.value = [canvasData];
     }
-    await loadCanvasData(level);
+    await loadCanvasData(canvasData);
     await saveData();
   }
 
-  Future<void> onChangeLevelMap(final CanvasDataModel canvasData) async {
+  /// reloads the canvas data completely, with tileset
+  /// resources, layers, players & objects
+  Future<void> changeCurrentCanvasData(
+    final CanvasDataModel canvasData,
+  ) async {
     await loadCanvasData(canvasData);
+  }
+
+  /// Changes tileset type in current canvas data
+  Future<void> changeTilesetType(final TilesetType type) async {
+    final updatedCanvasData = canvasData.copyWith(
+      tilesetType: type,
+      layers: [],
+    );
+    await loadCanvasData(updatedCanvasData);
   }
 
   Future<void> loadAllCanvasData() async {
