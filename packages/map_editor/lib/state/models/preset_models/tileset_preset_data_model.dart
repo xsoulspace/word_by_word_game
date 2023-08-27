@@ -87,6 +87,7 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
 
 enum TilesetType {
   colourful,
+  whiteBlack,
 }
 
 @Freezed(fromJson: false, toJson: false)

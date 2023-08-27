@@ -1,0 +1,93 @@
+{
+  "autotile_rules": {
+    "topLeft": ["BCDEF", "CDEF", "CDE", "BCDE"],
+    "topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH"],
+    "topRight": ["DEFGH", "DEFG", "EFG", "EFGH"],
+    "middleLeft": ["ABCDE", "ACE"],
+    "middleRight": ["AEFGH", "AEG"],
+    "x": ["ABCDEFGH", "ACEG"]
+  },
+  "type": "white_black",
+  "name": {
+    "en": "White & Black",
+    "ru": "Бело-черный",
+    "it": "White & Black"
+  },
+  "tiles": {
+    "marker_red": {
+      "id": "marker_red",
+      "type": "autotile",
+      "category": "marker",
+      "properties": {
+        "title": "Red marker",
+        "thumbnail_path": "preview/colourful/marker_red.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "animated": false
+      }
+    },
+    "marker_green": {
+      "id": "marker_green",
+      "type": "autotile",
+      "category": "marker",
+      "properties": {
+        "title": "Green marker",
+        "thumbnail_path": "preview/colourful/marker_green.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "animated": false
+      }
+    },
+    "land": {
+      "id": "land",
+      "type": "autotile",
+      "category": "terrain",
+      "properties": {
+        "title": "Land",
+        "thumbnail_path": "preview/white_black/land.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "animated": false
+      }
+    }
+  },
+  "objects": {
+    "cursor_handle": {
+      "id": "cursor_handle",
+      "category": "players",
+      "type": "object",
+      "properties": {
+        "title": "cursor_handle",
+        "description": { "en": "Description" },
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    }
+  },
+  "npcs": {},
+  "players": {
+    "hot_air_balloon": {
+      "id": "hot_air_balloon",
+      "category": "players",
+      "type": "object",
+      "properties": {
+        "title": "Hot air balloon",
+        "description": { "en": "Description" },
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle_left", "idle_right", "fly_left", "fly_right"],
+        "animated": true
+      }
+    }
+  },
+  "other": {}
+}
