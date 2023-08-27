@@ -148,18 +148,9 @@ final class EditorDrawerCubit extends DrawerCubit {
     await loadResourcesData();
     loadTilesets();
 
-    /// preloading tileset config to get name and type
-    final tilesetConfig = getTilesetConfig(
-      type: state.tilesetsConfigs.first.type,
-    );
-    await loadTileset(tilesetConfig);
-
     CanvasDataModel? canvasData = levelsMapsNotifier.value.firstOrNull;
     if (canvasData == null) {
-      canvasData = CanvasDataModel.create().copyWith(
-        name: state.tileResources.name,
-        tilesetType: state.tileResources.type,
-      );
+      canvasData = await _createCanvasData();
       levelsMapsNotifier.value = [canvasData];
     }
     await loadCanvasData(canvasData);
@@ -168,10 +159,28 @@ final class EditorDrawerCubit extends DrawerCubit {
 
   /// reloads the canvas data completely, with tileset
   /// resources, layers, players & objects
-  Future<void> changeCurrentCanvasData(
+  Future<void> changeCurrentLevelMap(
     final CanvasDataModel canvasData,
   ) async {
     await loadCanvasData(canvasData);
+  }
+
+  Future<CanvasDataModel> _createCanvasData() async {
+    /// preloading tileset config to get name and type
+    final tilesetConfig = getTilesetConfig(
+      type: state.tilesetsConfigs.first.type,
+    );
+    await loadTileset(tilesetConfig);
+    return CanvasDataModel.create().copyWith(
+      name: state.tileResources.name,
+      tilesetType: state.tileResources.type,
+    );
+  }
+
+  Future<void> addLevelMap() async {
+    final canvasData = await _createCanvasData();
+    await loadCanvasData(canvasData);
+    await saveData();
   }
 
   /// Changes tileset type in current canvas data
@@ -259,8 +268,11 @@ final class EditorDrawerCubit extends DrawerCubit {
   Future<void> saveData() async {
     final levels = [...levelsMapsNotifier.value];
     final index = levels.indexWhere((final e) => e.id == canvasData.id);
-    if (index < 0) return;
-    levels[index] = canvasData;
+    if (index < 0) {
+      levels.add(canvasData);
+    } else {
+      levels[index] = canvasData;
+    }
     await dto.localDbDataSource.setMapList(
       key: _levelsMapsPersistanceKet,
       value: levels.map((final e) => e.toJson()).toList(),
@@ -292,6 +304,9 @@ final class EditorDrawerCubit extends DrawerCubit {
     required final String title,
   }) {
     final layer = LayerModel(title: title, id: LayerModelId.create());
+    if (drawLayer.id.isEmpty) {
+      emit(state.copyWith(drawLayerId: layer.id));
+    }
     layers = [...state.canvasData.layers, layer];
   }
 

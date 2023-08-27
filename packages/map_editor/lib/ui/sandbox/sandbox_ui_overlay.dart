@@ -67,35 +67,51 @@ class TileButtons extends StatelessWidget {
                   ),
                 ),
                 const Gap(14),
-                ValueListenableBuilder(
-                  valueListenable: drawerCubit.levelsMapsNotifier,
-                  builder: (final context, final levels, final child) {
-                    final name = drawerCubit.state.canvasData.name;
-                    return MenuAnchor(
-                      menuChildren: levels
-                          .map(
-                            (final canvasData) => MenuItemButton(
-                              child: Text(canvasData.name.getValue()),
-                              onPressed: () async => drawerCubit
-                                  .changeCurrentCanvasData(canvasData),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Flexible(
+                      child: ValueListenableBuilder(
+                        valueListenable: drawerCubit.levelsMapsNotifier,
+                        builder: (final context, final levels, final child) {
+                          final name = drawerCubit.state.canvasData.name;
+                          return MenuAnchor(
+                            menuChildren: levels
+                                .map(
+                                  (final canvasData) => MenuItemButton(
+                                    child: Text(canvasData.name.getValue()),
+                                    onPressed: () async => drawerCubit
+                                        .changeCurrentLevelMap(canvasData),
+                                  ),
+                                )
+                                .toList(),
+                            builder: (
+                              final context,
+                              final controller,
+                              final child,
+                            ) =>
+                                TextButton(
+                              onPressed: () {
+                                if (controller.isOpen) {
+                                  controller.close();
+                                } else {
+                                  controller.open();
+                                }
+                              },
+                              child: Text(
+                                name.value.isEmpty ? 'noname' : name.getValue(),
+                              ),
                             ),
-                          )
-                          .toList(),
-                      builder: (final context, final controller, final child) =>
-                          TextButton(
-                        onPressed: () {
-                          if (controller.isOpen) {
-                            controller.close();
-                          } else {
-                            controller.open();
-                          }
+                          );
                         },
-                        child: Text(
-                          name.value.isEmpty ? 'noname' : name.getValue(),
-                        ),
                       ),
-                    );
-                  },
+                    ),
+                    const Gap(2),
+                    IconButton(
+                      icon: const Icon(Icons.add),
+                      onPressed: drawerCubit.addLevelMap,
+                    ),
+                  ],
                 ),
               ],
             ),
