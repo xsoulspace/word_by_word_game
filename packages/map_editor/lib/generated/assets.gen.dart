@@ -22,8 +22,6 @@ class $AssetsImagesCursorsGen {
 
   $AssetsImagesCursorsCursorGen get cursor =>
       const $AssetsImagesCursorsCursorGen();
-  $AssetsImagesCursorsHandleGen get handle =>
-      const $AssetsImagesCursorsHandleGen();
 }
 
 class $AssetsImagesPreviewGen {
@@ -55,13 +53,34 @@ class $AssetsImagesTilesetsGen {
   String get colourfulPresetData =>
       'assets/images/tilesets/colourful_preset_data.json';
 
+  $AssetsImagesTilesetsWhiteBlackGen get whiteBlack =>
+      const $AssetsImagesTilesetsWhiteBlackGen();
+
+  /// File path: assets/images/tilesets/white_black.fa
+  String get whiteBlackFa => 'assets/images/tilesets/white_black.fa';
+
+  /// File path: assets/images/tilesets/white_black.json
+  String get whiteBlackJson => 'assets/images/tilesets/white_black.json';
+
+  /// File path: assets/images/tilesets/white_black_credits.md
+  String get whiteBlackCredits =>
+      'assets/images/tilesets/white_black_credits.md';
+
+  /// File path: assets/images/tilesets/white_black_preset_data.json
+  String get whiteBlackPresetData =>
+      'assets/images/tilesets/white_black_preset_data.json';
+
   /// List of all assets
   List<String> get values => [
         readme,
         colourfulFa,
         colourfulJson,
         colourfulCredits,
-        colourfulPresetData
+        colourfulPresetData,
+        whiteBlackFa,
+        whiteBlackJson,
+        whiteBlackCredits,
+        whiteBlackPresetData
       ];
 }
 
@@ -71,17 +90,6 @@ class $AssetsImagesCursorsCursorGen {
   /// File path: assets/images/cursors/cursor/idle.png
   AssetGenImage get idle =>
       const AssetGenImage('assets/images/cursors/cursor/idle.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [idle];
-}
-
-class $AssetsImagesCursorsHandleGen {
-  const $AssetsImagesCursorsHandleGen();
-
-  /// File path: assets/images/cursors/handle/idle.png
-  AssetGenImage get idle =>
-      const AssetGenImage('assets/images/cursors/handle/idle.png');
 
   /// List of all assets
   List<AssetGenImage> get values => [idle];
@@ -113,6 +121,10 @@ class $AssetsImagesPreviewColourfulGen {
 
 class $AssetsImagesTilesetsColourfulGen {
   const $AssetsImagesTilesetsColourfulGen();
+
+  /// File path: assets/images/tilesets/colourful/cursor_handle__idle.png
+  AssetGenImage get cursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/colourful/cursor_handle__idle.png');
 
   /// File path: assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png
   AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
@@ -164,6 +176,7 @@ class $AssetsImagesTilesetsColourfulGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
+        cursorHandleIdle,
         hotAirBalloonIdleRight0,
         markerGreenX,
         markerRedX,
@@ -177,6 +190,21 @@ class $AssetsImagesTilesetsColourfulGen {
         tropicalLandTopRight,
         tropicalLandX
       ];
+}
+
+class $AssetsImagesTilesetsWhiteBlackGen {
+  const $AssetsImagesTilesetsWhiteBlackGen();
+
+  /// File path: assets/images/tilesets/white_black/cursor_handle__idle.png
+  AssetGenImage get cursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/white_black/cursor_handle__idle.png');
+
+  /// File path: assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png
+  AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
+      'assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [cursorHandleIdle, hotAirBalloonIdleRight0];
 }
 
 class Assets {

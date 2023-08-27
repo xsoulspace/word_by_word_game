@@ -87,6 +87,7 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
 
 enum TilesetType {
   colourful,
+  @JsonValue('white_black')
   whiteBlack,
 }
 
@@ -102,6 +103,7 @@ class TilesetConfigModel with _$TilesetConfigModel {
       );
   TilesetType get type => switch (cleanPath.split('/').last) {
         'colourful' => TilesetType.colourful,
+        'white_black' => TilesetType.whiteBlack,
         _ => throw UnimplementedError()
       };
   String get encodedAtlasPath => '$cleanPath.fa';

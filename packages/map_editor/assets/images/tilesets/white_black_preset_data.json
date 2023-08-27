@@ -3,8 +3,6 @@
     "topLeft": ["BCDEF", "CDEF", "CDE", "BCDE"],
     "topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH"],
     "topRight": ["DEFGH", "DEFG", "EFG", "EFGH"],
-    "middleLeft": ["ABCDE", "ACE"],
-    "middleRight": ["AEFGH", "AEG"],
     "x": ["ABCDEFGH", "ACEG"]
   },
   "type": "white_black",

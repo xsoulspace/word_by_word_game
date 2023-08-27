@@ -158,4 +158,5 @@ const _$SpriteTileNameEnumMap = {
 
 const _$TilesetTypeEnumMap = {
   TilesetType.colourful: 'colourful',
+  TilesetType.whiteBlack: 'white_black',
 };
