@@ -32,13 +32,19 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
   Future<void> prepareTilesetForLevel({
     required final LevelModel level,
   }) async {
+    final tilesetConfig = getTilesetConfig(type: level.tilesetType);
+    await loadTileset(tilesetConfig);
+  }
+
+  TilesetConfigModel getTilesetConfig({
+    required final TilesetType type,
+  }) {
     TilesetConfigModel? tilesetConfig = state.tilesetsConfigs.firstWhereOrNull(
-      (final config) => config.type == level.tilesetType,
+      (final config) => config.type == type,
     );
-    tilesetConfig ??= state.tilesetsConfigs.firstWhere(
+    return tilesetConfig ??= state.tilesetsConfigs.firstWhere(
       (final e) => e.cleanPath.endsWith(TilesetType.colourful.name),
     );
-    await loadTileset(tilesetConfig);
   }
 
   void loadTilesets() {
@@ -141,20 +147,23 @@ final class EditorDrawerCubit extends DrawerCubit {
     await loadAllCanvasData();
     await loadResourcesData();
     loadTilesets();
+
+    /// preloading tileset config to get name and type
+    final tilesetConfig = getTilesetConfig(
+      type: state.tilesetsConfigs.first.type,
+    );
+    await loadTileset(tilesetConfig);
+
     CanvasDataModel? level = levelsMapsNotifier.value.firstOrNull;
     if (level == null) {
       level = CanvasDataModel.create().copyWith(
-        name: LocalizedMap.empty.copyWith(
-          value: Languages.values.toMap(
-            toKey: (final item) => item,
-            toValue: (final item) => '',
-          ),
-        ),
+        name: state.tileResources.name,
+        tilesetType: state.tileResources.type,
       );
       levelsMapsNotifier.value = [level];
     }
     await loadCanvasData(level);
-    // await saveData();
+    await saveData();
   }
 
   Future<void> onChangeLevelMap(final CanvasDataModel canvasData) async {
@@ -171,26 +180,12 @@ final class EditorDrawerCubit extends DrawerCubit {
   Future<void> loadCanvasData(
     final CanvasDataModel newCanvasData,
   ) async {
-    TilesetConfigModel? tilesetConfig = state.tilesetsConfigs.firstWhereOrNull(
-      (final config) => config.type == newCanvasData.tilesetType,
-    );
-    tilesetConfig ??= state.tilesetsConfigs.firstWhere(
-      (final e) => e.cleanPath.endsWith(TilesetType.colourful.name),
-    );
+    final tilesetConfig = getTilesetConfig(type: newCanvasData.tilesetType);
     await loadTileset(tilesetConfig);
-    final player = canvasData.playerObject;
-    if (!state.tileResources.players.containsKey(player.id)) {
-      final firstPlayer = state.tileResources.players.values.first;
-      canvasData = canvasData.copyWith(
-        playerObject: player.copyWith(
-          id: firstPlayer.id.toGid(),
-          tileId: firstPlayer.tile.id,
-        ),
-      );
-    }
+
     emit(
       state.copyWith(
-        canvasData: canvasData,
+        canvasData: newCanvasData,
         drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
       ),
     );

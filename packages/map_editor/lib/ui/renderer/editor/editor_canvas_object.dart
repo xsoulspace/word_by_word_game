@@ -13,11 +13,13 @@ class EditorPlayerCanvasObject extends EditorCanvasObject {
     final position =
         game.editor.origin + drawerCubit.player.distanceToOrigin.toVector2();
     if (player.id.isEmpty) {
+      final firstPlayer = drawerCubit.tilesResources.players.values.first;
+
       /// creating player if it is empty
       final updatedPlayer = RenderObjectModel(
-        id: drawerCubit.tilesResources.players.values.first.id.toGid(),
+        id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
-        tileId: kPlayerTileId,
+        tileId: firstPlayer.id,
         position: position.toSerializedVector2(),
       );
       drawerCubit.player = updatedPlayer;

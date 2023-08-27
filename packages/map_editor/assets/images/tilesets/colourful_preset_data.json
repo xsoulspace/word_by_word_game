@@ -79,8 +79,8 @@
       "category": "players",
       "type": "object",
       "properties": {
-        "title": "Tester",
-        "description": { "en": "Test description" },
+        "title": "Hot air balloon",
+        "description": { "en": "Description" },
         "thumbnail_path": null
       },
       "graphics": {

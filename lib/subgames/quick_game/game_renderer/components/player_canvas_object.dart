@@ -3,8 +3,6 @@ import 'dart:async';
 import 'package:flame/extensions.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
-import 'package:map_editor/ui/renderer/editor_renderer.dart';
-import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
@@ -25,10 +23,11 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     final position =
         game.canvasRenderer.origin + player.distanceToOrigin.toVector2();
     if (player.id.isEmpty) {
+      final firstPlayer = canvasCubit.tilesResources.players.values.first;
       final updatedPlayer = RenderObjectModel(
-        id: canvasCubit.tilesResources.players.values.first.id.toGid(),
+        id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
-        tileId: kPlayerTileId,
+        tileId: firstPlayer.id,
         position: position.toSerializedVector2(),
       );
 
