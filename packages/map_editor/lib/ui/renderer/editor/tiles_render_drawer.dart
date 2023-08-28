@@ -162,6 +162,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
   final _paint = material.Paint();
   final _runtimeCache = <SpriteCode, ({Rect srcRect, Vector2 srcSize})>{};
   Image? _spriteImage;
+  TilesetType? _tilesetType;
   @override
   void render({
     required final Canvas canvas,
@@ -176,6 +177,11 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     required final double tileRows,
     required final double windowWidth,
   }) {
+    if (canvasData.tilesetType != _tilesetType) {
+      _tilesetType = canvasData.tilesetType;
+      _spriteImage = null;
+      _runtimeCache.clear();
+    }
     final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
     final atlasRects = <Rect>[];
     final atlasRsTransforms = <RSTransform>[];
@@ -237,7 +243,9 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                     spriteCode: spriteCode,
                     tile: tile,
                   );
+
                   _spriteImage ??= s.image;
+
                   final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
                   return (srcRect: srcRect, srcSize: s.srcSize);
                 }();
