@@ -111,6 +111,11 @@ class TileButtons extends StatelessWidget {
                       icon: const Icon(Icons.add),
                       onPressed: drawerCubit.addLevelMap,
                     ),
+                    IconButton(
+                      icon: const Icon(Icons.remove),
+                      onPressed: () async =>
+                          drawerCubit.removeLevelMap(context),
+                    ),
                   ],
                 ),
               ],

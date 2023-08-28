@@ -148,12 +148,12 @@ final class EditorDrawerCubit extends DrawerCubit {
     await loadResourcesData();
     loadTilesets();
 
-    CanvasDataModel? canvasData = levelsMapsNotifier.value.firstOrNull;
-    if (canvasData == null) {
-      canvasData = await _createCanvasData();
-      levelsMapsNotifier.value = [canvasData];
+    CanvasDataModel? updatedCanvasData = levelsMapsNotifier.value.firstOrNull;
+    if (updatedCanvasData == null) {
+      updatedCanvasData = await _createCanvasData();
+      levelsMapsNotifier.value = [updatedCanvasData];
     }
-    await loadCanvasData(canvasData);
+    await loadCanvasData(updatedCanvasData);
     await saveData();
   }
 
@@ -179,9 +179,44 @@ final class EditorDrawerCubit extends DrawerCubit {
   }
 
   Future<void> addLevelMap() async {
-    final canvasData = await _createCanvasData();
-    await loadCanvasData(canvasData);
+    final newCanvasData = await _createCanvasData();
+    await loadCanvasData(newCanvasData);
     await saveData();
+  }
+
+  Future<void> removeLevelMap(final BuildContext context) async {
+    if (levelsMapsNotifier.value.length <= 1) return;
+    final shouldProceedToDelete = await showAdaptiveDialog<bool>(
+      context: context,
+      builder: (final context) => AlertDialog.adaptive(
+        title: const Text('Are you sure want to delete this level?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Yes'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('No'),
+          ),
+        ],
+      ),
+    );
+    if (shouldProceedToDelete == null || !shouldProceedToDelete) return;
+    final canvasDatas = [...levelsMapsNotifier.value];
+    final index =
+        levelsMapsNotifier.value.indexWhere((final e) => e.id == canvasData.id);
+    canvasDatas.removeAt(index);
+    levelsMapsNotifier.value = canvasDatas;
+    final firstCanvasData = canvasDatas.first;
+    emit(
+      state.copyWith(
+        canvasData: firstCanvasData,
+        drawLayerId:
+            firstCanvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
+      ),
+    );
+    unawaited(saveData());
   }
 
   /// Changes tileset type in current canvas data
