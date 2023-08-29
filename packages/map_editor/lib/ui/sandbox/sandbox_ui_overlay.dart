@@ -164,7 +164,13 @@ class TileButtons extends StatelessWidget {
                 ...tilesResources.tiles.values.toList().reversed.map(
                       (final e) => TileSpriteButton(tileResource: e),
                     ),
-                ...tilesResources.objects.values.toList().reversed.map(
+                ...tilesResources.objects.values
+                    .where(
+                      (final e) => e.tile.category == DataCategoryType.plants,
+                    )
+                    .toList()
+                    .reversed
+                    .map(
                       (final e) => TileSpriteButton(tileResource: e),
                     ),
               ],

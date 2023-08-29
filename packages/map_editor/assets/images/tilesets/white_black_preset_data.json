@@ -60,7 +60,7 @@
       "properties": {
         "title": "cursor_handle",
         "description": { "en": "Description" },
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__cursor_handle__idle.png"
       },
       "graphics": {
         "type": "character",
@@ -74,7 +74,7 @@
       "type": "object",
       "properties": {
         "title": "plant_1",
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__plant_1__idle.png"
       },
       "graphics": {
         "type": "character",
@@ -88,7 +88,7 @@
       "type": "object",
       "properties": {
         "title": "plant_2",
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__plant_2__idle.png"
       },
       "graphics": {
         "type": "character",
@@ -102,7 +102,7 @@
       "type": "object",
       "properties": {
         "title": "plant_3",
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__plant_3__idle.png"
       },
       "graphics": {
         "type": "character",
@@ -116,7 +116,7 @@
       "type": "object",
       "properties": {
         "title": "plant_4",
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__plant_4__idle.png"
       },
       "graphics": {
         "type": "character",
@@ -130,7 +130,7 @@
       "type": "object",
       "properties": {
         "title": "plant_5",
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__plant_5__idle.png"
       },
       "graphics": {
         "type": "character",
@@ -144,7 +144,7 @@
       "type": "object",
       "properties": {
         "title": "plant_6",
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__plant_6__idle.png"
       },
       "graphics": {
         "type": "character",
