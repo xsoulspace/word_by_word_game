@@ -55,11 +55,28 @@
   "objects": {
     "cursor_handle": {
       "id": "cursor_handle",
-      "category": "players",
+      "category": "other",
       "type": "object",
       "properties": {
         "title": "cursor_handle",
         "description": { "en": "Description" },
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "animated_object": {
+      "id": "animated_object",
+      "category": "graphic_objects",
+      "type": "object",
+      "properties": {
+        "title": "animated_object",
+        "description": {
+          "en": "Use this object properties for all generic assets"
+        },
         "thumbnail_path": null
       },
       "graphics": {

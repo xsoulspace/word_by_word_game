@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
-import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/sandbox/level_layers_dialog.dart';
 import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
@@ -155,17 +154,20 @@ class TileButtons extends StatelessWidget {
                 ),
               ],
             ),
-            ...[
-              ...tilesResources.tiles.values.toList().reversed.map(
-                    (final e) => TileSpriteButton(
-                      tileResource: e,
-                    ),
-                  ),
-            ].map(
-              (final e) => Padding(
-                padding: const EdgeInsets.only(right: 8),
-                child: e,
+            GridView(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
               ),
+              children: [
+                ...tilesResources.tiles.values.toList().reversed.map(
+                      (final e) => TileSpriteButton(tileResource: e),
+                    ),
+                ...tilesResources.objects.values.toList().reversed.map(
+                      (final e) => TileSpriteButton(tileResource: e),
+                    ),
+              ],
             ),
             ConstrainedBox(
               constraints: const BoxConstraints(minWidth: 100),
@@ -284,52 +286,54 @@ class TileButtons extends StatelessWidget {
 class TileSpriteButton extends StatelessWidget {
   const TileSpriteButton({
     required this.tileResource,
+    this.dimension = 14,
     super.key,
   });
+  final double dimension;
   final PresetTileResource tileResource;
 
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final colorSheme = theme.colorScheme;
-    final dimension = kTileDimension.toDouble();
     final drawerCubit = context.watch<EditorDrawerCubit>();
 
     final isActive = drawerCubit.tileToDraw?.id == tileResource.id;
-
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: isActive ? colorSheme.error : Colors.transparent,
+    final thumbnailPath = tileResource.tile.properties.thumbnailPath;
+    return GestureDetector(
+      behavior: HitTestBehavior.opaque,
+      onTap: () {
+        drawerCubit.tileToDraw = tileResource;
+      },
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          border: Border.all(
+            color: isActive ? colorSheme.error : Colors.transparent,
+          ),
         ),
-      ),
-      padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          InkWell(
-            onTap: () {
-              drawerCubit.tileToDraw = tileResource;
-            },
-            child: Container(
-              width: dimension,
-              height: dimension,
-              decoration: BoxDecoration(
-                color: colorSheme.secondaryContainer,
-                image: DecorationImage(
-                  image: Image.asset(
-                    // ignore: lines_longer_than_80_chars
-                    '${drawerCubit.resourcesLoader.assetsPrefix}${tileResource.tile.properties.thumbnailPath}',
-                  ).image,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            if (thumbnailPath.isNotEmpty)
+              Container(
+                width: dimension,
+                height: dimension,
+                decoration: BoxDecoration(
+                  color: colorSheme.secondaryContainer,
+                  image: DecorationImage(
+                    image: Image.asset(
+                      // ignore: lines_longer_than_80_chars
+                      '${drawerCubit.resourcesLoader.assetsPrefix}${tileResource.tile.properties.thumbnailPath}',
+                    ).image,
+                  ),
                 ),
               ),
+            const Gap(4),
+            Text(
+              tileResource.tile.properties.title,
             ),
-          ),
-          const Gap(16),
-          Text(
-            tileResource.tile.properties.title,
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

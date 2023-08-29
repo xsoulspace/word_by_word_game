@@ -30,7 +30,8 @@ enum DataCategoryType {
   terrain,
   marker,
   water,
-  palms,
+  @JsonValue('graphic_objects')
+  graphicObjects,
   players,
   other,
 }

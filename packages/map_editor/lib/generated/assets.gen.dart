@@ -29,6 +29,8 @@ class $AssetsImagesPreviewGen {
 
   $AssetsImagesPreviewColourfulGen get colourful =>
       const $AssetsImagesPreviewColourfulGen();
+  $AssetsImagesPreviewWhiteBlackGen get whiteBlack =>
+      const $AssetsImagesPreviewWhiteBlackGen();
 }
 
 class $AssetsImagesTilesetsGen {
@@ -117,6 +119,17 @@ class $AssetsImagesPreviewColourfulGen {
   /// List of all assets
   List<AssetGenImage> get values =>
       [markerGreen, markerRed, tropicalLand, tropicalWater];
+}
+
+class $AssetsImagesPreviewWhiteBlackGen {
+  const $AssetsImagesPreviewWhiteBlackGen();
+
+  /// File path: assets/images/preview/white_black/land.png
+  AssetGenImage get land =>
+      const AssetGenImage('assets/images/preview/white_black/land.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [land];
 }
 
 class $AssetsImagesTilesetsColourfulGen {
