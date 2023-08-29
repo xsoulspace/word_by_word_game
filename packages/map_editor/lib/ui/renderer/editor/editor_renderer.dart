@@ -144,7 +144,8 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
       );
   CanvasDataModel get canvasData => drawerCubit.canvasData;
   set canvasData(final CanvasDataModel value) => drawerCubit.canvasData = value;
-  TilesetPresetResources get presetResources => drawerCubit.tilesResources;
+  TilesetPresetResources get presetResources =>
+      drawerCubit.tilesPresetResources;
   Map<TileId, PresetTileResource> get tilesResources => presetResources.tiles;
 
   /// as temporary solution

@@ -102,8 +102,8 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
     ]);
   }
 
-  TilesetPresetResources get tilesResources => state.tileResources;
-  set tilesResources(final TilesetPresetResources presetResources) =>
+  TilesetPresetResources get tilesPresetResources => state.tileResources;
+  set tilesPresetResources(final TilesetPresetResources presetResources) =>
       emit(state.copyWith(tileResources: presetResources));
 
   CanvasDataModel get canvasData => state.canvasData;
@@ -393,5 +393,5 @@ final class EditorDrawerCubit extends DrawerCubit {
   }
 
   List<PresetTileResource> get objectsMenuTiles =>
-      tilesResources.objects.values.toList();
+      tilesPresetResources.objects.values.toList();
 }

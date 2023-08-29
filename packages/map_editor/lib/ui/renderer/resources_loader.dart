@@ -269,42 +269,47 @@ class AnimationUpdater extends Component
   void update(final double dt) {
     final tiles = _updateTiles(
       dt: dt,
-      orignalTiles: drawerCubit.tilesResources.tiles,
+      orignalTiles: drawerCubit.tilesPresetResources.tiles,
       config: game.config,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       tiles: tiles,
     );
     final objects = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.objects,
+      originalObjects: drawerCubit.tilesPresetResources.objects,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       objects: objects,
     );
     final npcs = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.npcs,
+      originalObjects: drawerCubit.tilesPresetResources.npcs,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       npcs: npcs,
     );
     final players = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.players,
+      originalObjects: drawerCubit.tilesPresetResources.players,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       players: players,
     );
     final other = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.other,
+      originalObjects: drawerCubit.tilesPresetResources.other,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       other: other,
     );
 

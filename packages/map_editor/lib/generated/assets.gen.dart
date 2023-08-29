@@ -135,10 +135,6 @@ class $AssetsImagesPreviewWhiteBlackGen {
 class $AssetsImagesTilesetsColourfulGen {
   const $AssetsImagesTilesetsColourfulGen();
 
-  /// File path: assets/images/tilesets/colourful/cursor_handle__idle.png
-  AssetGenImage get cursorHandleIdle => const AssetGenImage(
-      'assets/images/tilesets/colourful/cursor_handle__idle.png');
-
   /// File path: assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png
   AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
       'assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png');
@@ -150,6 +146,10 @@ class $AssetsImagesTilesetsColourfulGen {
   /// File path: assets/images/tilesets/colourful/marker_red__x.png
   AssetGenImage get markerRedX =>
       const AssetGenImage('assets/images/tilesets/colourful/marker_red__x.png');
+
+  /// File path: assets/images/tilesets/colourful/object__cursor_handle__idle.png
+  AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/colourful/object__cursor_handle__idle.png');
 
   /// File path: assets/images/tilesets/colourful/tropical_land__bottom_center.png
   AssetGenImage get tropicalLandBottomCenter => const AssetGenImage(
@@ -189,10 +189,10 @@ class $AssetsImagesTilesetsColourfulGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        cursorHandleIdle,
         hotAirBalloonIdleRight0,
         markerGreenX,
         markerRedX,
+        objectCursorHandleIdle,
         tropicalLandBottomCenter,
         tropicalLandBottomLeft,
         tropicalLandBottomRight,
@@ -208,16 +208,17 @@ class $AssetsImagesTilesetsColourfulGen {
 class $AssetsImagesTilesetsWhiteBlackGen {
   const $AssetsImagesTilesetsWhiteBlackGen();
 
-  /// File path: assets/images/tilesets/white_black/cursor_handle__idle.png
-  AssetGenImage get cursorHandleIdle => const AssetGenImage(
-      'assets/images/tilesets/white_black/cursor_handle__idle.png');
-
   /// File path: assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png
   AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
       'assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png');
 
+  /// File path: assets/images/tilesets/white_black/object__cursor_handle__idle.png
+  AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__cursor_handle__idle.png');
+
   /// List of all assets
-  List<AssetGenImage> get values => [cursorHandleIdle, hotAirBalloonIdleRight0];
+  List<AssetGenImage> get values =>
+      [hotAirBalloonIdleRight0, objectCursorHandleIdle];
 }
 
 class Assets {

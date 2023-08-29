@@ -10,6 +10,7 @@ class Gid with _$Gid, EquatableMixin {
   }) = _Gid;
   const Gid._();
   factory Gid.fromJson(final String json) => Gid(value: json);
+  factory Gid.create() => Gid(value: IdCreator.create());
   static const empty = Gid(value: '');
   bool get isEmpty => value.isEmpty;
   String toJson() => value;

@@ -39,7 +39,7 @@ class TileButtons extends StatelessWidget {
   Widget build(final BuildContext context) {
     final drawerCubit = context.watch<EditorDrawerCubit>();
     final mapEditorBloc = context.watch<MapEditorCubit>();
-    final tilesResources = drawerCubit.tilesResources;
+    final tilesResources = drawerCubit.tilesPresetResources;
 
     return Material(
       child: CupertinoScrollbar(
@@ -231,32 +231,43 @@ class TileButtons extends StatelessWidget {
                     ];
                     final oldPrefix = consts.images!.prefix;
                     consts.images!.prefix = '';
-                    for (final tile in tiles) {
-                      switch (tile.tile.type) {
+                    for (final presetTile in tiles) {
+                      final tile = presetTile.tile;
+                      Future<void> saveFile(
+                        final String tileName,
+                      ) async {
+                        final filename = '${tile.path}${tileName.snakeCase}';
+                        if (consts.images!.containsKey(filename)) {
+                          final image = await consts.images!.load(filename);
+                          final path = await FilePicker.platform.saveFile(
+                            fileName: '$filename.png',
+                            type: FileType.image,
+                            allowedExtensions: ['.png'],
+                          );
+                          if (path == null) {
+                            consts.images!.prefix = oldPrefix;
+                            return;
+                          }
+                          final bytes = (await image.toByteData(
+                            format: ImageByteFormat.png,
+                          ))!
+                              .buffer
+                              .asUint8List();
+                          await io.File(path).writeAsBytes(bytes);
+                        }
+                      }
+
+                      switch (tile.type) {
                         case TileType.autotile:
                           for (final tileName in SpriteTileName.values) {
-                            final filename =
-                                '${tile.tile.path}${tileName.name.snakeCase}';
-                            if (consts.images!.containsKey(filename)) {
-                              final image = await consts.images!.load(filename);
-                              final path = await FilePicker.platform.saveFile(
-                                fileName: '$filename.png',
-                                type: FileType.image,
-                                allowedExtensions: ['.png'],
-                              );
-                              if (path == null) {
-                                consts.images!.prefix = oldPrefix;
-                                return;
-                              }
-                              final bytes = (await image.toByteData(
-                                format: ImageByteFormat.png,
-                              ))!
-                                  .buffer
-                                  .asUint8List();
-                              await io.File(path).writeAsBytes(bytes);
-                            }
+                            await saveFile(tileName.name);
                           }
                         case TileType.object:
+                          for (final behaviour in tile.graphics.behaviours) {
+                            await saveFile(behaviour.name);
+                          }
+
+                        case TileType.playerObject:
                       }
                     }
                     consts.images!.prefix = oldPrefix;
@@ -295,7 +306,7 @@ class TileSpriteButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final colorSheme = theme.colorScheme;
+    final colorScheme = theme.colorScheme;
     final drawerCubit = context.watch<EditorDrawerCubit>();
 
     final isActive = drawerCubit.tileToDraw?.id == tileResource.id;
@@ -308,7 +319,7 @@ class TileSpriteButton extends StatelessWidget {
       child: DecoratedBox(
         decoration: BoxDecoration(
           border: Border.all(
-            color: isActive ? colorSheme.error : Colors.transparent,
+            color: isActive ? colorScheme.error : Colors.transparent,
           ),
         ),
         child: Column(
@@ -319,7 +330,7 @@ class TileSpriteButton extends StatelessWidget {
                 width: dimension,
                 height: dimension,
                 decoration: BoxDecoration(
-                  color: colorSheme.secondaryContainer,
+                  color: colorScheme.secondaryContainer,
                   image: DecorationImage(
                     image: Image.asset(
                       // ignore: lines_longer_than_80_chars

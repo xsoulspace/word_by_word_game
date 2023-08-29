@@ -23,7 +23,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     final position =
         game.canvasRenderer.origin + player.distanceToOrigin.toVector2();
     if (player.id.isEmpty) {
-      final firstPlayer = canvasCubit.tilesResources.players.values.first;
+      final firstPlayer = canvasCubit.tilesPresetResources.players.values.first;
       final updatedPlayer = RenderObjectModel(
         id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,

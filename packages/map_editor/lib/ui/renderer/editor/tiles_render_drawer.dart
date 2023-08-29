@@ -94,26 +94,59 @@ class TilesDrawer extends Component
           cellPoint,
           (final value) => value.copyWith(
             tileId: TileId.empty,
+            npcs: [],
+            objects: [],
           ),
         );
         if (updatedValue.isEmpty) effectiveLayerTiles.remove(cellPoint);
       }
     } else {
       if (_lastSelectedCell == cell || tileToDraw == null) return;
-      effectiveLayerTiles.update(
-        cellPoint,
-        (final value) => value.copyWith(
-          tileId: tileToDraw.id,
-        ),
-        ifAbsent: () => CellTileModel(
-          tileId: tileToDraw.id,
-        ),
-      );
+      switch (tileToDraw.tile.type) {
+        case TileType.autotile:
+          effectiveLayerTiles.update(
+            cellPoint,
+            (final value) => value.copyWith(
+              tileId: tileToDraw.id,
+            ),
+            ifAbsent: () => CellTileModel(
+              tileId: tileToDraw.id,
+            ),
+          );
+        case TileType.object:
+          final gid = Gid.create();
+          final objects = [gid];
+          canvasData = canvasData.copyWith(
+            objects: {...canvasData.objects}..[gid] = RenderObjectModel(
+                id: gid,
+                animationBehaviour: tileToDraw.behaviourPaths.keys.first,
+                tileId: tileToDraw.id,
+              ),
+          );
+          effectiveLayerTiles.update(
+            cellPoint,
+            (final value) => value.copyWith(
+              objects: objects,
+            ),
+            ifAbsent: () => CellTileModel(
+              objects: objects,
+            ),
+          );
+        case TileType.playerObject:
+      }
     }
-    layerTiles = checkNeighbours(
-      effectiveLayerTiles: effectiveLayerTiles,
-      cellPoint: cellPoint,
-    );
+    switch (tileToDraw?.tile.type) {
+      case TileType.autotile:
+      case null:
+        layerTiles = checkNeighbours(
+          effectiveLayerTiles: effectiveLayerTiles,
+          cellPoint: cellPoint,
+        );
+      case TileType.object:
+        layerTiles = effectiveLayerTiles;
+      case TileType.playerObject:
+    }
+
     _lastSelectedCell = cell;
   }
 
@@ -146,7 +179,7 @@ class TilesRenderer extends Component
       tilesetConstants: game.diDto.drawerCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
-      tilesResources: tilesResources,
+      tilesResources: allTiles,
       origin: origin,
       images: game.images,
       tileColumns: tileColumns,
@@ -212,75 +245,80 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
           //   continue;
           // }
           final resourceTile = tilesResources[cellTile.tileId];
-          if (resourceTile == null) continue;
-          final tile = resourceTile.tile;
-          final graphics = tile.graphics;
+          if (resourceTile != null) {
+            final tile = resourceTile.tile;
+            final graphics = tile.graphics;
 
-          /// Drawing tile
-          switch (graphics.type) {
-            case TileGraphicsType.character:
-              assert(false, 'Character graphics type cannot be used in tile');
-            case TileGraphicsType.directional:
-              final spriteCode = cellTile.tileMergedDirectionsTitle;
-              final directionTitle = cellTile.tileMergedDirectionsTitle;
-              final x = resourceTile.directionalPaths['X'];
-              final animationEntry = directionTitle.isEmpty
-                  ? x
-                  : resourceTile.directionalPaths[
-                          cellTile.tileMergedDirectionsTitle] ??
-                      x;
-              final currentPath = animationEntry?.currentFramePath ?? '';
-              if (images.containsKey(currentPath)) {
-                final image = images.fromCache(currentPath);
-                canvas.drawImage(
-                  image,
-                  vectorPosition.toOffset(),
-                  _paint,
-                );
-              } else {
-                final src = _runtimeCache[spriteCode] ??= () {
-                  final s = tilesetConstants.getSprite(
-                    spriteCode: spriteCode,
-                    tile: tile,
+            /// Drawing tile
+            switch (graphics.type) {
+              case TileGraphicsType.character:
+                assert(false, 'Character graphics type cannot be used in tile');
+              case TileGraphicsType.directional:
+                final spriteCode = cellTile.tileMergedDirectionsTitle;
+                final directionTitle = cellTile.tileMergedDirectionsTitle;
+                final x = resourceTile.directionalPaths['X'];
+                final animationEntry = directionTitle.isEmpty
+                    ? x
+                    : resourceTile.directionalPaths[
+                            cellTile.tileMergedDirectionsTitle] ??
+                        x;
+                final currentPath = animationEntry?.currentFramePath ?? '';
+                if (images.containsKey(currentPath)) {
+                  final image = images.fromCache(currentPath);
+                  canvas.drawImage(
+                    image,
+                    vectorPosition.toOffset(),
+                    _paint,
+                  );
+                } else {
+                  final src = _runtimeCache[spriteCode] ??= () {
+                    final s = tilesetConstants.getSprite(
+                      spriteCode: spriteCode,
+                      tile: tile,
+                    );
+
+                    _spriteImage ??= s.image;
+
+                    final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
+                    return (srcRect: srcRect, srcSize: s.srcSize);
+                  }();
+                  _tmpRenderPosition.setFrom(vectorPosition);
+
+                  _tmpRenderSize.setFrom(src.srcSize);
+
+                  _tmpRenderPosition.setValues(
+                    _tmpRenderPosition.x - (0 * _tmpRenderSize.x),
+                    _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
                   );
 
-                  _spriteImage ??= s.image;
+                  final drawRect =
+                      _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
 
-                  final srcRect = s.srcPosition.toPositionedRect(s.srcSize);
-                  return (srcRect: srcRect, srcSize: s.srcSize);
-                }();
-                _tmpRenderPosition.setFrom(vectorPosition);
+                  final rsTransform = RSTransform.fromComponents(
+                    rotation: 0,
+                    scale: 1,
+                    anchorX: 0,
+                    anchorY: 0,
+                    translateX: drawRect.left,
+                    translateY: drawRect.top,
+                  );
 
-                _tmpRenderSize.setFrom(src.srcSize);
-
-                _tmpRenderPosition.setValues(
-                  _tmpRenderPosition.x - (0 * _tmpRenderSize.x),
-                  _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
-                );
-
-                final drawRect =
-                    _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
-
-                final rsTransform = RSTransform.fromComponents(
-                  rotation: 0,
-                  scale: 1,
-                  anchorX: 0,
-                  anchorY: 0,
-                  translateX: drawRect.left,
-                  translateY: drawRect.top,
-                );
-
-                // sprite.render(canvas, position: position.toVector2());
-                atlasRects.add(src.srcRect);
-                atlasRsTransforms.add(rsTransform);
-              }
+                  // sprite.render(canvas, position: position.toVector2());
+                  atlasRects.add(src.srcRect);
+                  atlasRsTransforms.add(rsTransform);
+                }
+            }
           }
           // TODO(arenukvern): fix objects drawing because they should be drawn
-          // on top of tiles, but ucrrently they are behind them
+          // on top of tiles, but currently they are behind them
           /// Drawing objects
           for (final gid in cellTile.objects) {
             final renderObject = canvasData.objects[gid];
             if (renderObject == null) continue;
+            final resourceTile = tilesResources[renderObject.tileId];
+            if (resourceTile == null) continue;
+            final tile = resourceTile.tile;
+            final graphics = tile.graphics;
 
             /// Drawing tile
             switch (graphics.type) {
@@ -289,7 +327,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                     .behaviourPaths[renderObject.animationBehaviour];
                 if (animationEntry == null) continue;
                 final img = images.fromCache(animationEntry.currentFramePath);
-                canvas.drawImage(img, renderObject.position.toOffset(), _paint);
+                canvas.drawImage(img, vectorPosition.toOffset(), _paint);
               case TileGraphicsType.directional:
                 assert(
                   false,

@@ -24,14 +24,16 @@ class TileId with _$TileId, EquatableMixin {
 enum TileType {
   autotile,
   object,
+  @JsonValue('player_object')
+  playerObject,
 }
 
 enum DataCategoryType {
   terrain,
   marker,
   water,
-  @JsonValue('graphic_objects')
-  graphicObjects,
+  @JsonValue('plants')
+  plants,
   players,
   other,
 }
@@ -50,7 +52,8 @@ class PresetTileModel with _$PresetTileModel {
   factory PresetTileModel.fromJson(final Map<String, dynamic> json) =>
       _$PresetTileModelFromJson(json);
   const PresetTileModel._();
-  String get path => '${id.value}__';
+  String get path =>
+      '${type == TileType.object ? "object__" : ""}${id.value}__';
 }
 
 enum SpriteTileName {

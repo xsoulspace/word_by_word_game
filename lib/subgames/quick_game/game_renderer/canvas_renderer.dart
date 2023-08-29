@@ -143,7 +143,8 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   double get tileRows => canvasRenderer.tileRows;
   CanvasDataModel get canvasData => canvasCubit.canvasData;
   set canvasData(final CanvasDataModel value) => canvasCubit.canvasData = value;
-  TilesetPresetResources get presetResources => canvasCubit.tilesResources;
+  TilesetPresetResources get presetResources =>
+      canvasCubit.tilesPresetResources;
   Map<TileId, PresetTileResource> get tilesResources => presetResources.tiles;
 
   /// as temporary solution

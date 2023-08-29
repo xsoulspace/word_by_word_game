@@ -31,13 +31,14 @@ Map<String, dynamic> _$$_PresetTileModelToJson(_$_PresetTileModel instance) =>
 const _$TileTypeEnumMap = {
   TileType.autotile: 'autotile',
   TileType.object: 'object',
+  TileType.playerObject: 'player_object',
 };
 
 const _$DataCategoryTypeEnumMap = {
   DataCategoryType.terrain: 'terrain',
   DataCategoryType.marker: 'marker',
   DataCategoryType.water: 'water',
-  DataCategoryType.graphicObjects: 'graphic_objects',
+  DataCategoryType.plants: 'plants',
   DataCategoryType.players: 'players',
   DataCategoryType.other: 'other',
 };

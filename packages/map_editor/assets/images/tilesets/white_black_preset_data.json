@@ -68,15 +68,82 @@
         "animated": true
       }
     },
-    "animated_object": {
-      "id": "animated_object",
-      "category": "graphic_objects",
+    "plant_1": {
+      "id": "plant_1",
+      "category": "plants",
       "type": "object",
       "properties": {
-        "title": "animated_object",
-        "description": {
-          "en": "Use this object properties for all generic assets"
-        },
+        "title": "plant_1",
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "plant_2": {
+      "id": "plant_2",
+      "category": "plants",
+      "type": "object",
+      "properties": {
+        "title": "plant_2",
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "plant_3": {
+      "id": "plant_3",
+      "category": "plants",
+      "type": "object",
+      "properties": {
+        "title": "plant_3",
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "plant_4": {
+      "id": "plant_4",
+      "category": "plants",
+      "type": "object",
+      "properties": {
+        "title": "plant_4",
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "plant_5": {
+      "id": "plant_5",
+      "category": "plants",
+      "type": "object",
+      "properties": {
+        "title": "plant_5",
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "plant_6": {
+      "id": "plant_6",
+      "category": "plants",
+      "type": "object",
+      "properties": {
+        "title": "plant_6",
         "thumbnail_path": null
       },
       "graphics": {
@@ -91,7 +158,7 @@
     "hot_air_balloon": {
       "id": "hot_air_balloon",
       "category": "players",
-      "type": "object",
+      "type": "player_object",
       "properties": {
         "title": "Hot air balloon",
         "description": { "en": "Description" },

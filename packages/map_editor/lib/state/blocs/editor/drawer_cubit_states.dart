@@ -82,4 +82,7 @@ class OriginVectorUtils {
     final distanceToOrigin = eventPosition.canvasPosition - origin;
     return getCellByDistance(distanceToOrigin);
   }
+
+  Vector2 getCurrentPositionByTap(final PositionEvent eventPosition) =>
+      eventPosition.canvasPosition - origin;
 }
