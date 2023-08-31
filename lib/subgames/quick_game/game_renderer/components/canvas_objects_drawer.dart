@@ -23,6 +23,12 @@ class GameCanvasObjectsDrawer extends Component
     await addAll(objects.whereNotNull());
   }
 
+  Future<void> _removeCanvasObjects(
+    final Iterable<GameCanvasObject?> objects,
+  ) async {
+    removeAll(objects.whereNotNull());
+  }
+
   List<GameCanvasObject> get canvasObjects =>
       [_skyHandle, player].whereNotNull().toList();
 
@@ -37,8 +43,6 @@ class GameCanvasObjectsDrawer extends Component
 
   @override
   FutureOr<void> onLoad() async {
-    _loadPlayer();
-    await _addCanvasObjects(canvasObjects);
     add(
       FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
         onNewState: _handleGameStatusChanged,
@@ -55,18 +59,24 @@ class GameCanvasObjectsDrawer extends Component
     switch (statusState.levelStateStatus) {
       case LevelStateStatus.loading:
         if (oldPlayer != null) {
+          await _removeCanvasObjects(canvasObjects);
           player = null;
-          if (oldPlayer.isMounted) {
-            remove(oldPlayer);
-          }
         }
 
       case LevelStateStatus.paused || LevelStateStatus.playing:
         if (oldPlayer == null) {
-          final newPlayer = _loadPlayer();
-          add(newPlayer);
+          await _loadObjects();
         }
     }
+  }
+
+  Future<void> _loadObjects() async {
+    await _removeCanvasObjects(canvasObjects);
+    _loadPlayer();
+    _loadGravitationHandle();
+    _loadSkyHandle();
+
+    await _addCanvasObjects(canvasObjects);
   }
 
   PlayerGameCanvasObject _loadPlayer() {

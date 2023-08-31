@@ -12,11 +12,16 @@ import 'package:flutter/widgets.dart';
 class $AssetsLevelsGen {
   const $AssetsLevelsGen();
 
-  /// File path: assets/levels/lvl_0.json
-  String get lvl0 => 'packages/wbw_core/assets/levels/lvl_0.json';
+  /// File path: assets/levels/lvl_colourful.json
+  String get lvlColourful =>
+      'packages/wbw_core/assets/levels/lvl_colourful.json';
+
+  /// File path: assets/levels/lvl_white_black.json
+  String get lvlWhiteBlack =>
+      'packages/wbw_core/assets/levels/lvl_white_black.json';
 
   /// List of all assets
-  List<String> get values => [lvl0];
+  List<String> get values => [lvlColourful, lvlWhiteBlack];
 }
 
 class Assets {

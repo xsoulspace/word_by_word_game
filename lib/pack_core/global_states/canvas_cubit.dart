@@ -49,10 +49,12 @@ final class CanvasCubit extends DrawerCubit {
     return consequences;
   }
 
-  void loadCanvasData({
+  Future<void> loadCanvasData({
     required final CanvasDataModel canvasData,
-  }) {
+  }) async {
     CanvasDataModel eCanvasData = canvasData;
+    final tilesetConfig = getTilesetConfig(type: eCanvasData.tilesetType);
+    await loadTileset(tilesetConfig);
     final player = eCanvasData.playerObject;
     if (!state.tileResources.players.containsKey(player.id)) {
       final firstPlayer = state.tileResources.players.values.first;

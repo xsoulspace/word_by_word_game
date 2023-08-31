@@ -172,6 +172,7 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
 
 const _$TilesetTypeEnumMap = {
   TilesetType.colourful: 'colourful',
+  TilesetType.whiteBlack: 'white_black',
 };
 
 const _$GamePhaseTypeEnumMap = {

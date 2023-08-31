@@ -1,4 +1,25 @@
 {
+  "autotile_rules": {
+    "topLeft": ["BCDEF", "CDEF", "CDE", "BCDE"],
+    "topLeftCorner": [],
+    "topLeftSmooth": [],
+    "topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH"],
+    "topRight": ["DEFGH", "DEFG", "EFG", "EFGH"],
+    "topRightCorner": [],
+    "topRightSmooth": [],
+    "middleLeft": ["ABCDE", "ACE"],
+    "middleRight": ["AEFGH", "AEG"],
+    "x": ["ABCDEFGH", "ACEG"],
+    "bottomLeft": ["ABCDH", "ABC", "ABCH", "ABCD"],
+    "bottomCenter": ["ABCGH", "ACG"],
+    "bottomRight": ["ABFGH", "AFGH", "ABGH", "AGH"]
+  },
+  "type": "evening",
+  "name": {
+    "en": "evening",
+    "ru": "Вечерний",
+    "it": "evening"
+  },
   "tiles": {
     "marker_red": {
       "id": "marker_red",
@@ -6,11 +27,10 @@
       "category": "marker",
       "properties": {
         "title": "Red marker",
-        "thumbnail_path": "preview/marker_red.png"
+        "thumbnail_path": "preview/colourful/marker_red.png"
       },
       "graphics": {
         "type": "directional",
-        "path": "markers/red",
         "animated": false
       }
     },
@@ -20,70 +40,39 @@
       "category": "marker",
       "properties": {
         "title": "Green marker",
-        "thumbnail_path": "preview/marker_green.png"
+        "thumbnail_path": "preview/colourful/marker_green.png"
       },
       "graphics": {
         "type": "directional",
-        "path": "markers/green",
         "animated": false
       }
     },
-    "tropical_land": {
-      "id": "tropical_land",
+    "land": {
+      "id": "land",
       "type": "autotile",
       "category": "terrain",
       "properties": {
-        "title": "Tropical Land",
-        "thumbnail_path": "preview/land.png"
+        "title": "Land",
+        "thumbnail_path": "preview/evening/land.png"
       },
       "graphics": {
         "type": "directional",
-        "path": "terrain/land",
         "animated": false
-      }
-    },
-    "tropical_water": {
-      "id": "tropical_water",
-      "type": "autotile",
-      "category": "water",
-      "properties": {
-        "title": "Tropical Water",
-        "thumbnail_path": "preview/water.png"
-      },
-      "graphics": {
-        "type": "directional",
-        "path": "terrain/water",
-        "animated": true
       }
     }
   },
   "objects": {
-    "palm_small_fg": {
-      "id": "palm_small_fg",
-      "category": "palms",
+    "cursor_handle": {
+      "id": "cursor_handle",
+      "category": "players",
       "type": "object",
       "properties": {
-        "title": "Foreground Palm Small",
-        "thumbnail_path": "preview/small_fg.png"
+        "title": "cursor_handle",
+        "description": { "en": "Description" },
+        "thumbnail_path": null
       },
       "graphics": {
         "type": "character",
-        "path": "terrain/palm/small_fg",
-        "behaviours": ["idle"],
-        "animated": true
-      }
-    },
-    "palm_large_bg": {
-      "id": "palm_large_bg",
-      "category": "palms",
-      "type": "object",
-      "properties": {
-        "title": "Foreground Palm Large",
-        "thumbnail_path": "preview/large_bg.png"
-      },
-      "graphics": {
-        "type": "character",
-        "path": "terrain/palm/large_bg",
         "behaviours": ["idle"],
         "animated": true
       }
@@ -91,18 +80,17 @@
   },
   "npcs": {},
   "players": {
-    "tester": {
-      "id": "tester",
+    "hot_air_balloon": {
+      "id": "hot_air_balloon",
       "category": "players",
       "type": "object",
       "properties": {
-        "title": "Tester",
-        "description": { "en": "Test description" },
+        "title": "Hot air balloon",
+        "description": { "en": "Description" },
         "thumbnail_path": null
       },
       "graphics": {
         "type": "character",
-        "path": "player",
         "behaviours": ["idle_left", "idle_right", "fly_left", "fly_right"],
         "animated": true
       }
