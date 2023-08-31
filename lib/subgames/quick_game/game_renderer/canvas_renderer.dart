@@ -186,7 +186,7 @@ class CanvasTilesRenderer extends Component
       tilesetConstants: game.diDto.canvasCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
-      tilesResources: tilesResources,
+      tilesResources: allTiles,
       origin: origin,
       images: game.images,
       tileColumns: tileColumns,

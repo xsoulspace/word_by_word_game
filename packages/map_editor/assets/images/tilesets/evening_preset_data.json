@@ -86,7 +86,7 @@
     "hot_air_balloon": {
       "id": "hot_air_balloon",
       "category": "players",
-      "type": "object",
+      "type": "player_object",
       "properties": {
         "title": "Hot air balloon",
         "description": { "en": "Description" },
