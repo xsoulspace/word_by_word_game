@@ -147,8 +147,12 @@ Map<String, dynamic> _$$_TilesetPresetDataModelToJson(
 
 const _$SpriteTileNameEnumMap = {
   SpriteTileName.topLeft: 'topLeft',
+  SpriteTileName.topLeftSmooth: 'topLeftSmooth',
+  SpriteTileName.topLeftCorner: 'topLeftCorner',
   SpriteTileName.topCenter: 'topCenter',
   SpriteTileName.topRight: 'topRight',
+  SpriteTileName.topRightSmooth: 'topRightSmooth',
+  SpriteTileName.topRightCorner: 'topRightCorner',
   SpriteTileName.middleLeft: 'middleLeft',
   SpriteTileName.middleRight: 'middleRight',
   SpriteTileName.x: 'x',
@@ -160,4 +164,5 @@ const _$SpriteTileNameEnumMap = {
 const _$TilesetTypeEnumMap = {
   TilesetType.colourful: 'colourful',
   TilesetType.whiteBlack: 'white_black',
+  TilesetType.evening: 'evening',
 };

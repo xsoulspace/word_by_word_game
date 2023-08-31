@@ -109,9 +109,11 @@ flutter:
     - assets/images/preview/
     - assets/images/preview/colourful/
     - assets/images/preview/white_black/
+    - assets/images/preview/evening/
     - assets/images/tilesets/
     - assets/images/tilesets/colourful/
     - assets/images/tilesets/white_black/
+    - assets/images/tilesets/evening/
     - assets/images/cursors/
     - assets/images/cursors/cursor/
 # To add assets to your package, add an assets section, like this:

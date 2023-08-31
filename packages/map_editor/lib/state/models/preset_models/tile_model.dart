@@ -58,8 +58,12 @@ class PresetTileModel with _$PresetTileModel {
 
 enum SpriteTileName {
   topLeft,
+  topLeftSmooth,
+  topLeftCorner,
   topCenter,
   topRight,
+  topRightSmooth,
+  topRightCorner,
   middleLeft,
   middleRight,
   x,

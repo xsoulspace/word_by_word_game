@@ -55,6 +55,7 @@ Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
 const _$TilesetTypeEnumMap = {
   TilesetType.colourful: 'colourful',
   TilesetType.whiteBlack: 'white_black',
+  TilesetType.evening: 'evening',
 };
 
 _$_GravityModel _$$_GravityModelFromJson(Map<String, dynamic> json) =>

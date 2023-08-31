@@ -1,18 +1,15 @@
 {
   "autotile_rules": {
-    "topLeft": ["BCDEF", "CDEF", "CDE", "BCDE"],
-    "topLeftCorner": [],
-    "topLeftSmooth": [],
-    "topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH"],
-    "topRight": ["DEFGH", "DEFG", "EFG", "EFGH"],
-    "topRightCorner": [],
-    "topRightSmooth": [],
-    "middleLeft": ["ABCDE", "ACE"],
-    "middleRight": ["AEFGH", "AEG"],
-    "x": ["ABCDEFGH", "ACEG"],
-    "bottomLeft": ["ABCDH", "ABC", "ABCH", "ABCD"],
-    "bottomCenter": ["ABCGH", "ACG"],
-    "bottomRight": ["ABFGH", "AFGH", "ABGH", "AGH"]
+    "topLeft": ["CDE", "BCDE"],
+    "topLeftCorner": ["ABCDEFG"],
+    "topLeftSmooth": ["BCDEF", "CDEF"],
+    "topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH", "BCDEFGH"],
+    "topRight": ["EFG", "EFGH"],
+    "topRightCorner": ["ACDEFGH"],
+    "topRightSmooth": ["DEFGH", "DEFG"],
+    "middleLeft": ["ABCDE", "ACE", "ABCDEF"],
+    "middleRight": ["AEFGH", "AEG", "ADEFGH"],
+    "x": ["ABCDEFGH", "ACEG"]
   },
   "type": "evening",
   "name": {
@@ -67,12 +64,12 @@
   "objects": {
     "cursor_handle": {
       "id": "cursor_handle",
-      "category": "players",
+      "category": "other",
       "type": "object",
       "properties": {
         "title": "cursor_handle",
         "description": { "en": "Description" },
-        "thumbnail_path": null
+        "thumbnail_path": "tilesets/white_black/object__cursor_handle__idle.png"
       },
       "graphics": {
         "type": "character",
