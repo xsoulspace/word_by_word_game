@@ -20,6 +20,9 @@
     "ru": "Вечерний",
     "it": "evening"
   },
+  "theme": {
+    "backgroundSkyColorHex": "dbb0b7"
+  },
   "tiles": {
     "marker_red": {
       "id": "marker_red",
