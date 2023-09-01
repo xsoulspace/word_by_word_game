@@ -88,6 +88,7 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
 
   /// This function should be triggered when game.onLoad happening
   Future<void> loadCache({required final Images images}) async {
+    images.clearCache();
     final eImages = _images ??= images;
     Future<void> load(final PresetTileResource resource) =>
         resource.loadToCache(images: eImages);
