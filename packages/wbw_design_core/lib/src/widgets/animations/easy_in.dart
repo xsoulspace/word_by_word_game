@@ -84,7 +84,7 @@ class _EasyInState extends State<EasyIn> with SingleTickerProviderStateMixin {
             },
             child: const Text('Restart'),
           ),
-          child
+          child,
         ],
       );
     } else {

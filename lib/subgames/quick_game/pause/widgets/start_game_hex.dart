@@ -47,16 +47,16 @@ class StartGameHex extends StatelessWidget {
                             .fadeIn()
                             .slideY(begin: -0.1),
                         uiTheme.verticalBoxes.large,
-                        UiFilledButton.text(
-                          text: S.of(context).continueGame,
-                          onPressed: isLevelRunning
-                              ? () async => state.onContinue(id: levelId)
-                              : null,
-                        )
-                            .animate()
-                            .then(duration: 450.milliseconds)
-                            .fadeIn()
-                            .slideY(begin: -0.1),
+                        if (isLevelRunning)
+                          UiFilledButton.text(
+                            text: S.of(context).continueGame,
+                            onPressed: () async =>
+                                state.onContinue(id: levelId),
+                          )
+                              .animate()
+                              .then(duration: 450.milliseconds)
+                              .fadeIn()
+                              .slideY(begin: -0.1),
                       ],
                     ),
                   )

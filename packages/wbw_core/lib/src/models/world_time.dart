@@ -16,4 +16,5 @@ class WorldDateTimeModel with _$WorldDateTimeModel {
   const WorldDateTimeModel._();
   factory WorldDateTimeModel.fromJson(final Map<String, dynamic> json) =>
       _$WorldDateTimeModelFromJson(json);
+  static const zero = WorldDateTimeModel();
 }

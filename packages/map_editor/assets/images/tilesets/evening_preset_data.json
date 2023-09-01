@@ -1,0 +1,100 @@
+{
+  "autotile_rules": {
+    "topLeft": ["CDE", "BCDE"],
+    "topLeftCorner": ["ABCDEFG"],
+    "topLeftSmooth": ["BCDEF", "CDEF"],
+    "topCenter": ["CDEFG", "CEG", "BCDEFG", "CDEFGH", "BCDEFGH"],
+    "topRight": ["EFG", "EFGH"],
+    "topRightCorner": ["ACDEFGH"],
+    "topRightSmooth": ["DEFGH", "DEFG"],
+    "middleLeft": ["ABCDE", "ACE", "ABCDEF"],
+    "middleRight": ["AEFGH", "AEG", "ADEFGH"],
+    "x": ["ABCDEFGH", "ACEG"]
+  },
+  "type": "evening",
+  "name": {
+    "en": "evening",
+    "ru": "Вечерний",
+    "it": "evening"
+  },
+  "theme": {
+    "backgroundSkyColorHex": "dbb0b7"
+  },
+  "tiles": {
+    "marker_red": {
+      "id": "marker_red",
+      "type": "autotile",
+      "category": "marker",
+      "properties": {
+        "title": "Red marker",
+        "thumbnail_path": "preview/colourful/marker_red.png"
+      },
+      "graphics": {
+        "type": "standalone",
+        "animated": false
+      }
+    },
+    "marker_green": {
+      "id": "marker_green",
+      "type": "autotile",
+      "category": "marker",
+      "properties": {
+        "title": "Green marker",
+        "thumbnail_path": "preview/colourful/marker_green.png"
+      },
+      "graphics": {
+        "type": "standalone",
+        "animated": false
+      }
+    },
+    "land": {
+      "id": "land",
+      "type": "autotile",
+      "category": "terrain",
+      "properties": {
+        "title": "Land",
+        "thumbnail_path": "preview/evening/land.png"
+      },
+      "graphics": {
+        "type": "directional",
+        "animated": false
+      }
+    }
+  },
+  "objects": {
+    "cursor_handle": {
+      "id": "cursor_handle",
+      "category": "other",
+      "type": "object",
+      "properties": {
+        "title": "cursor_handle",
+        "description": { "en": "Description" },
+        "thumbnail_path": "tilesets/white_black/object__cursor_handle__idle.png"
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    }
+  },
+  "npcs": {},
+  "players": {
+    "hot_air_balloon": {
+      "id": "hot_air_balloon",
+      "category": "players",
+      "type": "player_object",
+      "properties": {
+        "title": "Hot air balloon",
+        "description": { "en": "Description" },
+        "thumbnail_path": null
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle_left", "idle_right", "fly_left", "fly_right"],
+        "animated": true
+      }
+    }
+  },
+  "other": {}
+}

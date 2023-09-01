@@ -41,7 +41,7 @@ class DefaultDialogOverlayController extends HookWidget {
         Provider<DialogController>.value(value: state.dialogController),
         ChangeNotifierProvider<DialogStackState>.value(
           value: state,
-        )
+        ),
       ],
       builder: (final context, final child) =>
           builder(context, state.dialogController),

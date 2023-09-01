@@ -24,13 +24,16 @@ class TileId with _$TileId, EquatableMixin {
 enum TileType {
   autotile,
   object,
+  @JsonValue('player_object')
+  playerObject,
 }
 
 enum DataCategoryType {
   terrain,
   marker,
   water,
-  palms,
+  @JsonValue('plants')
+  plants,
   players,
   other,
 }
@@ -49,6 +52,25 @@ class PresetTileModel with _$PresetTileModel {
   factory PresetTileModel.fromJson(final Map<String, dynamic> json) =>
       _$PresetTileModelFromJson(json);
   const PresetTileModel._();
+  String get path =>
+      '${type == TileType.object ? "object__" : ""}${id.value}__';
+  String get xPath => '${path}x';
+}
+
+enum SpriteTileName {
+  topLeft,
+  topLeftSmooth,
+  topLeftCorner,
+  topCenter,
+  topRight,
+  topRightSmooth,
+  topRightCorner,
+  middleLeft,
+  middleRight,
+  x,
+  bottomLeft,
+  bottomCenter,
+  bottomRight,
 }
 
 @freezed
@@ -73,6 +95,7 @@ class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
 enum TileGraphicsType {
   directional,
   character,
+  standalone,
 }
 
 enum TileBehaviourType {
@@ -92,11 +115,8 @@ class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTileGraphicsModel({
     required final TileGraphicsType type,
-    @Default('') final String path,
     @Default(false) final bool animated,
     @Default([]) final List<TileBehaviourType> behaviours,
-    @Default({})
-    final Map<String, NeighborsAssociationModel> neighborsAssociativeMap,
   }) = _PresetTileGraphicsModel;
   factory PresetTileGraphicsModel.fromJson(final Map<String, dynamic> json) =>
       _$PresetTileGraphicsModelFromJson(json);
@@ -104,17 +124,4 @@ class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
   static const emptyCharacter = PresetTileGraphicsModel(
     type: TileGraphicsType.character,
   );
-}
-
-@freezed
-class NeighborsAssociationModel with _$NeighborsAssociationModel {
-  @JsonSerializable(fieldRename: FieldRename.snake)
-  const factory NeighborsAssociationModel({
-    @Default([]) final List<String> useWhenFilled,
-    @Default([]) final List<String> useWhenNotFilled,
-  }) = _NeighborsAssociationModel;
-  factory NeighborsAssociationModel.fromJson(final Map<String, dynamic> json) =>
-      _$NeighborsAssociationModelFromJson(json);
-  const NeighborsAssociationModel._();
-  static const empty = NeighborsAssociationModel();
 }

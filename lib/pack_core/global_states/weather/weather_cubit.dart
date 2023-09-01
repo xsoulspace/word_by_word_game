@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -59,7 +60,7 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
       _generateWindForce();
     } else {
       final updatedWeathers = [...state.weathers]..removeAt(0);
-      print({'weather switched to': updatedWeathers.first});
+      if (kDebugMode) print({'weather switched to': updatedWeathers.first});
       emit(state.copyWith(weathers: updatedWeathers));
       _generateWindForce();
     }
@@ -67,7 +68,7 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
 
   void regenerateWeather() {
     _generateWeather();
-    print({'weathers generated': state.weathers});
+    if (kDebugMode) print({'weathers generated': state.weathers});
   }
 
   void loadWeather({
@@ -79,14 +80,14 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
     } else {
       emit(state.copyWith(weathers: weathers, wind: wind));
     }
-    print({'weathers loaded': state.weathers});
+    if (kDebugMode) print({'weathers loaded': state.weathers});
   }
 
   void _generateWeather() {
     final newWeathers = mechanics.generateWeather();
     emit(state.copyWith(weathers: newWeathers));
     _generateWindForce();
-    print({'weathers generated': state.weathers});
+    if (kDebugMode) print({'weathers generated': state.weathers});
   }
 
   int _previousHeightInTiles = 0;

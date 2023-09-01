@@ -13,11 +13,13 @@ class EditorPlayerCanvasObject extends EditorCanvasObject {
     final position =
         game.editor.origin + drawerCubit.player.distanceToOrigin.toVector2();
     if (player.id.isEmpty) {
+      final firstPlayer = drawerCubit.tilesPresetResources.players.values.first;
+
       /// creating player if it is empty
       final updatedPlayer = RenderObjectModel(
-        id: const Gid(value: 'Tester'),
+        id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
-        tileId: kPlayerTileId,
+        tileId: firstPlayer.id,
         position: position.toSerializedVector2(),
       );
       drawerCubit.player = updatedPlayer;
@@ -177,6 +179,12 @@ class EditorCanvasObjectsDrawer extends Component
     await addAll(objects.whereNotNull());
   }
 
+  Future<void> _removeCanvasObjects(
+    final Iterable<EditorCanvasObject?> objects,
+  ) async {
+    removeAll(objects.whereNotNull());
+  }
+
   List<EditorCanvasObject> get canvasObjects =>
       [_skyHandle, _gravitationHandle, _player].whereNotNull().toList();
 
@@ -192,12 +200,32 @@ class EditorCanvasObjectsDrawer extends Component
 
   @override
   FutureOr<void> onLoad() async {
+    add(
+      FlameBlocListener<EditorDrawerCubit, DrawerCubitState>(
+        onNewState: _handleMapEditorBlocStateChanges,
+      ),
+    );
+
+    return super.onLoad();
+  }
+
+  CanvasDataModelId? _currentCanvasDataId;
+  Future<void> _handleMapEditorBlocStateChanges(
+    final DrawerCubitState state,
+  ) async {
+    if (_currentCanvasDataId != state.canvasData.id) {
+      _currentCanvasDataId = state.canvasData.id;
+      await _loadObjects();
+    }
+  }
+
+  Future<void> _loadObjects() async {
+    await _removeCanvasObjects(canvasObjects);
     _loadPlayer();
     _loadGravitationHandle();
     _loadSkyHandle();
 
     await _addCanvasObjects(canvasObjects);
-    return super.onLoad();
   }
 
   void _loadPlayer() {
