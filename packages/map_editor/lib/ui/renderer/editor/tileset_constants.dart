@@ -55,7 +55,7 @@ class TilesetConstants {
     }
   }
 
-  Image getSpriteImage({
+  Image getCachedImage({
     required final PresetTileModel tile,
     required final SpriteCode spriteCode,
   }) {
@@ -87,14 +87,23 @@ class TilesetConstants {
     }
   }
 
-  Sprite getSprite({
+  Sprite getAtlasSpriteByCode({
     required final PresetTileModel tile,
     required final SpriteCode spriteCode,
-  }) {
-    final SpriteTileName? tileName = _codeToName[spriteCode];
-    final spriteName = (tileName ?? SpriteTileName.x).name.snakeCase;
-    return _atlas!.getSprite('${tile.path}$spriteName');
-  }
+  }) =>
+      getAtlasSpriteByName(
+        tile: tile,
+        tileName: getSpriteTileName(spriteCode: spriteCode),
+      );
+
+  Sprite getAtlasSpriteByName({
+    required final PresetTileModel tile,
+    required final SpriteTileName tileName,
+  }) =>
+      _atlas!.getSprite('${tile.path}${tileName.name.snakeCase}');
+
+  SpriteTileName getSpriteTileName({required final SpriteCode spriteCode}) =>
+      _codeToName[spriteCode] ?? SpriteTileName.x;
 
   Map<SpriteCode, SpriteTileName>? _codeToNameCache;
   Map<SpriteCode, SpriteTileName> get _codeToName =>
