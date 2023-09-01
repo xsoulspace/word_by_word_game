@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -48,9 +50,11 @@ class LevelLostDialog extends StatelessWidget {
           // ignore: dead_code
           TextButton(
             onPressed: () {
-              context
-                  .read<GlobalGameBloc>()
-                  .onRestartLevel(const RestartLevelEvent());
+              unawaited(
+                context
+                    .read<GlobalGameBloc>()
+                    .onRestartLevel(const RestartLevelEvent()),
+              );
 
               context.read<DialogController>().closeDialog();
             },
@@ -71,9 +75,11 @@ class LevelLostDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 onSendEndLevelEvent();
-                context
-                    .read<GlobalGameBloc>()
-                    .onRestartLevel(const RestartLevelEvent());
+                unawaited(
+                  context
+                      .read<GlobalGameBloc>()
+                      .onRestartLevel(const RestartLevelEvent()),
+                );
 
                 context.read<DialogController>().closeDialog();
               },

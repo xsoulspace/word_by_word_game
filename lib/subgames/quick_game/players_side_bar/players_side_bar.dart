@@ -264,7 +264,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
             child: Text(
-              '${_score}',
+              '$_score',
               style: theme.textTheme.labelMedium?.copyWith(
                 color: selected
                     ? colorScheme.onPrimary

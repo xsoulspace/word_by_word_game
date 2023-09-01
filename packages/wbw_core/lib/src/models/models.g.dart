@@ -50,14 +50,6 @@ _$_GameModel _$$_GameModelFromJson(Map<String, dynamic> json) => _$_GameModel(
           : LevelModel.fromJson(json['currentLevel'] as Map<String, dynamic>),
       version: $enumDecodeNullable(_$GameVersionEnumMap, json['version']) ??
           kLatestGameVersion,
-      dateTime: json['dateTime'] == null
-          ? const WorldDateTimeModel()
-          : WorldDateTimeModel.fromJson(
-              json['dateTime'] as Map<String, dynamic>),
-      lastDateTime: json['lastDateTime'] == null
-          ? const WorldDateTimeModel()
-          : WorldDateTimeModel.fromJson(
-              json['lastDateTime'] as Map<String, dynamic>),
       playersCollection: (json['playersCollection'] as List<dynamic>?)
               ?.map(
                   (e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
@@ -84,8 +76,6 @@ Map<String, dynamic> _$$_GameModelToJson(_$_GameModel instance) =>
       'currentLevelId': instance.currentLevelId.toJson(),
       'currentLevel': instance.currentLevel?.toJson(),
       'version': _$GameVersionEnumMap[instance.version]!,
-      'dateTime': instance.dateTime.toJson(),
-      'lastDateTime': instance.lastDateTime.toJson(),
       'playersCollection':
           instance.playersCollection.map((e) => e.toJson()).toList(),
       'playersCharacters':
@@ -119,6 +109,9 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
           json['characters'] as Map<String, dynamic>),
+      tilesetType:
+          $enumDecodeNullable(_$TilesetTypeEnumMap, json['tilesetType']) ??
+              TilesetType.colourful,
       weathers: (json['weathers'] as List<dynamic>?)
               ?.map((e) => WeatherModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -144,12 +137,25 @@ _$_LevelModel _$$_LevelModelFromJson(Map<String, dynamic> json) =>
       actionMultiplier: $enumDecodeNullable(
               _$EnergyMultiplierTypeEnumMap, json['actionMultiplier']) ??
           EnergyMultiplierType.m1,
+      dateTime: json['dateTime'] == null
+          ? WorldDateTimeModel.zero
+          : WorldDateTimeModel.fromJson(
+              json['dateTime'] as Map<String, dynamic>),
+      lastDateTime: json['lastDateTime'] == null
+          ? WorldDateTimeModel.zero
+          : WorldDateTimeModel.fromJson(
+              json['lastDateTime'] as Map<String, dynamic>),
+      technologyTreeProgress: json['technologyTreeProgress'] == null
+          ? TechnologyTreeProgressModel.empty
+          : TechnologyTreeProgressModel.fromJson(
+              json['technologyTreeProgress'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
     <String, dynamic>{
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
+      'tilesetType': _$TilesetTypeEnumMap[instance.tilesetType]!,
       'weathers': instance.weathers.map((e) => e.toJson()).toList(),
       'wind': instance.wind.toJson(),
       'canvasDataId': instance.canvasDataId.toJson(),
@@ -159,7 +165,16 @@ Map<String, dynamic> _$$_LevelModelToJson(_$_LevelModel instance) =>
       'phaseType': _$GamePhaseTypeEnumMap[instance.phaseType]!,
       'actionMultiplier':
           _$EnergyMultiplierTypeEnumMap[instance.actionMultiplier]!,
+      'dateTime': instance.dateTime.toJson(),
+      'lastDateTime': instance.lastDateTime.toJson(),
+      'technologyTreeProgress': instance.technologyTreeProgress.toJson(),
     };
+
+const _$TilesetTypeEnumMap = {
+  TilesetType.colourful: 'colourful',
+  TilesetType.whiteBlack: 'white_black',
+  TilesetType.evening: 'evening',
+};
 
 const _$GamePhaseTypeEnumMap = {
   GamePhaseType.entryWord: 'entryWord',
@@ -334,6 +349,128 @@ _$_ScoreModel _$$_ScoreModelFromJson(Map<String, dynamic> json) =>
 Map<String, dynamic> _$$_ScoreModelToJson(_$_ScoreModel instance) =>
     <String, dynamic>{
       'value': instance.value,
+    };
+
+_$_TechnologyModelId _$$_TechnologyModelIdFromJson(Map<String, dynamic> json) =>
+    _$_TechnologyModelId(
+      value: $enumDecode(_$TechnologyTypeEnumMap, json['value']),
+    );
+
+Map<String, dynamic> _$$_TechnologyModelIdToJson(
+        _$_TechnologyModelId instance) =>
+    <String, dynamic>{
+      'value': _$TechnologyTypeEnumMap[instance.value]!,
+    };
+
+const _$TechnologyTypeEnumMap = {
+  TechnologyType.safeLanding: 'safeLanding',
+  TechnologyType.emergencyLanding: 'emergencyLanding',
+  TechnologyType.ascending: 'ascending',
+  TechnologyType.descending: 'descending',
+};
+
+_$_TechnologyTreeModel _$$_TechnologyTreeModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TechnologyTreeModel(
+      technologies: json['technologies'] == null
+          ? const {}
+          : TechnologyTreeModel._technologiesFromJson(
+              json['technologies'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_TechnologyTreeModelToJson(
+        _$_TechnologyTreeModel instance) =>
+    <String, dynamic>{
+      'technologies':
+          TechnologyTreeModel._technologiesToJson(instance.technologies),
+    };
+
+_$_TechnologyTreeProgressModel _$$_TechnologyTreeProgressModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TechnologyTreeProgressModel(
+      technologies: json['technologies'] == null
+          ? const {}
+          : TechnologyTreeProgressModel._technologiesFromJson(
+              json['technologies'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_TechnologyTreeProgressModelToJson(
+        _$_TechnologyTreeProgressModel instance) =>
+    <String, dynamic>{
+      'technologies': TechnologyTreeProgressModel._technologiesToJson(
+          instance.technologies),
+    };
+
+_$_TechnologyProgressModel _$$_TechnologyProgressModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TechnologyProgressModel(
+      id: TechnologyModelId.fromJson(json['id'] as Map<String, dynamic>),
+      unlockCondition: TechnologyUnlockConditionModel.fromJson(
+          json['unlockCondition'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_TechnologyProgressModelToJson(
+        _$_TechnologyProgressModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'unlockCondition': instance.unlockCondition,
+    };
+
+_$_TechnologyModel _$$_TechnologyModelFromJson(Map<String, dynamic> json) =>
+    _$_TechnologyModel(
+      id: TechnologyModelId.fromJson(json['id'] as Map<String, dynamic>),
+      title: LocalizedMap.fromJson(json['title'] as Map<String, dynamic>),
+      unlockCondition: TechnologyUnlockConditionModel.fromJson(
+          json['unlockCondition'] as Map<String, dynamic>),
+      parentTechnologyId: json['parentTechnologyId'] == null
+          ? null
+          : TechnologyModelId.fromJson(
+              json['parentTechnologyId'] as Map<String, dynamic>),
+    );
+
+Map<String, dynamic> _$$_TechnologyModelToJson(_$_TechnologyModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'title': instance.title,
+      'unlockCondition': instance.unlockCondition,
+      'parentTechnologyId': instance.parentTechnologyId,
+    };
+
+_$_TechnologyUnlockConditionModel _$$_TechnologyUnlockConditionModelFromJson(
+        Map<String, dynamic> json) =>
+    _$_TechnologyUnlockConditionModel(
+      languageWords: (json['languageWords'] as Map<String, dynamic>).map(
+        (k, e) => MapEntry(
+            $enumDecode(_$LanguagesEnumMap, k),
+            (e as List<dynamic>)
+                .map((e) => UsefulWordModel.fromJson(e as Map<String, dynamic>))
+                .toList()),
+      ),
+    );
+
+Map<String, dynamic> _$$_TechnologyUnlockConditionModelToJson(
+        _$_TechnologyUnlockConditionModel instance) =>
+    <String, dynamic>{
+      'languageWords': instance.languageWords
+          .map((k, e) => MapEntry(_$LanguagesEnumMap[k]!, e)),
+    };
+
+const _$LanguagesEnumMap = {
+  Languages.ru: 'ru',
+  Languages.en: 'en',
+  Languages.it: 'it',
+};
+
+_$_UsefulWordModel _$$_UsefulWordModelFromJson(Map<String, dynamic> json) =>
+    _$_UsefulWordModel(
+      word: json['word'] as String,
+      isUsed: json['isUsed'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$_UsefulWordModelToJson(_$_UsefulWordModel instance) =>
+    <String, dynamic>{
+      'word': instance.word,
+      'isUsed': instance.isUsed,
     };
 
 _$_TutorialEventModel _$$_TutorialEventModelFromJson(

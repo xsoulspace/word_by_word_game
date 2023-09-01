@@ -152,7 +152,6 @@ class CanvasRendererGame extends FlameGame
   Future<void> onLoadLevel() async {
     if (isLevelLoading) return;
     isLevelLoading = true;
-
     isLevelLoading = false;
   }
 
@@ -160,5 +159,5 @@ class CanvasRendererGame extends FlameGame
   void unloadLevel() {}
 
   @override
-  Color backgroundColor() => diDto.theme.colorScheme.surface;
+  Color backgroundColor() => Colors.transparent;
 }

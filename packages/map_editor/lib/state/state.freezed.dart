@@ -30,7 +30,10 @@ mixin _$DrawerCubitState {
 
   /// Never changable in runtime tileset, like grass, water and data
   /// to instantiate objects
-  TilesPresetResources get tileResources => throw _privateConstructorUsedError;
+  TilesetPresetResources get tileResources =>
+      throw _privateConstructorUsedError;
+  List<TilesetConfigModel> get tilesetsConfigs =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DrawerCubitStateCopyWith<DrawerCubitState> get copyWith =>
@@ -50,12 +53,13 @@ abstract class $DrawerCubitStateCopyWith<$Res> {
       bool isDeleteSelectionCompletely,
       CanvasDataModel canvasData,
       LayerModelId drawLayerId,
-      TilesPresetResources tileResources});
+      TilesetPresetResources tileResources,
+      List<TilesetConfigModel> tilesetsConfigs});
 
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
   $CanvasDataModelCopyWith<$Res> get canvasData;
   $LayerModelIdCopyWith<$Res> get drawLayerId;
-  $TilesPresetResourcesCopyWith<$Res> get tileResources;
+  $TilesetPresetResourcesCopyWith<$Res> get tileResources;
 }
 
 /// @nodoc
@@ -78,6 +82,7 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     Object? canvasData = null,
     Object? drawLayerId = null,
     Object? tileResources = null,
+    Object? tilesetsConfigs = null,
   }) {
     return _then(_value.copyWith(
       origin: null == origin
@@ -107,7 +112,11 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
       tileResources: null == tileResources
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
-              as TilesPresetResources,
+              as TilesetPresetResources,
+      tilesetsConfigs: null == tilesetsConfigs
+          ? _value.tilesetsConfigs
+          : tilesetsConfigs // ignore: cast_nullable_to_non_nullable
+              as List<TilesetConfigModel>,
     ) as $Val);
   }
 
@@ -141,8 +150,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
 
   @override
   @pragma('vm:prefer-inline')
-  $TilesPresetResourcesCopyWith<$Res> get tileResources {
-    return $TilesPresetResourcesCopyWith<$Res>(_value.tileResources, (value) {
+  $TilesetPresetResourcesCopyWith<$Res> get tileResources {
+    return $TilesetPresetResourcesCopyWith<$Res>(_value.tileResources, (value) {
       return _then(_value.copyWith(tileResources: value) as $Val);
     });
   }
@@ -163,7 +172,8 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
       bool isDeleteSelectionCompletely,
       CanvasDataModel canvasData,
       LayerModelId drawLayerId,
-      TilesPresetResources tileResources});
+      TilesetPresetResources tileResources,
+      List<TilesetConfigModel> tilesetsConfigs});
 
   @override
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
@@ -172,7 +182,7 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
   @override
   $LayerModelIdCopyWith<$Res> get drawLayerId;
   @override
-  $TilesPresetResourcesCopyWith<$Res> get tileResources;
+  $TilesetPresetResourcesCopyWith<$Res> get tileResources;
 }
 
 /// @nodoc
@@ -193,6 +203,7 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
     Object? canvasData = null,
     Object? drawLayerId = null,
     Object? tileResources = null,
+    Object? tilesetsConfigs = null,
   }) {
     return _then(_$_DrawerCubitState(
       origin: null == origin
@@ -222,7 +233,11 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
       tileResources: null == tileResources
           ? _value.tileResources
           : tileResources // ignore: cast_nullable_to_non_nullable
-              as TilesPresetResources,
+              as TilesetPresetResources,
+      tilesetsConfigs: null == tilesetsConfigs
+          ? _value._tilesetsConfigs
+          : tilesetsConfigs // ignore: cast_nullable_to_non_nullable
+              as List<TilesetConfigModel>,
     ));
   }
 }
@@ -237,8 +252,10 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       this.isDeleteSelectionCompletely = false,
       this.canvasData = CanvasDataModel.empty,
       this.drawLayerId = LayerModelId.empty,
-      this.tileResources = TilesPresetResources.empty})
-      : super._();
+      this.tileResources = TilesetPresetResources.empty,
+      final List<TilesetConfigModel> tilesetsConfigs = const []})
+      : _tilesetsConfigs = tilesetsConfigs,
+        super._();
 
   /// Real origin for all elements
   @override
@@ -266,11 +283,19 @@ class _$_DrawerCubitState extends _DrawerCubitState {
   /// to instantiate objects
   @override
   @JsonKey()
-  final TilesPresetResources tileResources;
+  final TilesetPresetResources tileResources;
+  final List<TilesetConfigModel> _tilesetsConfigs;
+  @override
+  @JsonKey()
+  List<TilesetConfigModel> get tilesetsConfigs {
+    if (_tilesetsConfigs is EqualUnmodifiableListView) return _tilesetsConfigs;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_tilesetsConfigs);
+  }
 
   @override
   String toString() {
-    return 'DrawerCubitState(origin: $origin, tileToDraw: $tileToDraw, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, drawLayerId: $drawLayerId, tileResources: $tileResources)';
+    return 'DrawerCubitState(origin: $origin, tileToDraw: $tileToDraw, isDeleteSelection: $isDeleteSelection, isDeleteSelectionCompletely: $isDeleteSelectionCompletely, canvasData: $canvasData, drawLayerId: $drawLayerId, tileResources: $tileResources, tilesetsConfigs: $tilesetsConfigs)';
   }
 
   @override
@@ -292,7 +317,9 @@ class _$_DrawerCubitState extends _DrawerCubitState {
             (identical(other.drawLayerId, drawLayerId) ||
                 other.drawLayerId == drawLayerId) &&
             (identical(other.tileResources, tileResources) ||
-                other.tileResources == tileResources));
+                other.tileResources == tileResources) &&
+            const DeepCollectionEquality()
+                .equals(other._tilesetsConfigs, _tilesetsConfigs));
   }
 
   @override
@@ -304,7 +331,8 @@ class _$_DrawerCubitState extends _DrawerCubitState {
       isDeleteSelectionCompletely,
       canvasData,
       drawLayerId,
-      tileResources);
+      tileResources,
+      const DeepCollectionEquality().hash(_tilesetsConfigs));
 
   @JsonKey(ignore: true)
   @override
@@ -321,7 +349,8 @@ abstract class _DrawerCubitState extends DrawerCubitState {
       final bool isDeleteSelectionCompletely,
       final CanvasDataModel canvasData,
       final LayerModelId drawLayerId,
-      final TilesPresetResources tileResources}) = _$_DrawerCubitState;
+      final TilesetPresetResources tileResources,
+      final List<TilesetConfigModel> tilesetsConfigs}) = _$_DrawerCubitState;
   const _DrawerCubitState._() : super._();
 
   @override
@@ -346,7 +375,9 @@ abstract class _DrawerCubitState extends DrawerCubitState {
 
   /// Never changable in runtime tileset, like grass, water and data
   /// to instantiate objects
-  TilesPresetResources get tileResources;
+  TilesetPresetResources get tileResources;
+  @override
+  List<TilesetConfigModel> get tilesetsConfigs;
   @override
   @JsonKey(ignore: true)
   _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>
@@ -605,8 +636,8 @@ class __$$_WorldStateCopyWithImpl<$Res>
 
 class _$_WorldState extends _WorldState {
   const _$_WorldState(
-      {this.dateTime = const WorldDateTimeModel(),
-      this.lastDateTime = const WorldDateTimeModel(),
+      {this.dateTime = WorldDateTimeModel.zero,
+      this.lastDateTime = WorldDateTimeModel.zero,
       this.dateTimeDelta = 0})
       : super._();
 

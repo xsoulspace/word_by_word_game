@@ -12,50 +12,9 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
-  $AssetsImagesCloudsGen get clouds => const $AssetsImagesCloudsGen();
   $AssetsImagesCursorsGen get cursors => const $AssetsImagesCursorsGen();
-  $AssetsImagesEnemiesGen get enemies => const $AssetsImagesEnemiesGen();
-  $AssetsImagesItemsGen get items => const $AssetsImagesItemsGen();
-  $AssetsImagesMarkersGen get markers => const $AssetsImagesMarkersGen();
-  $AssetsImagesMenuGen get menu => const $AssetsImagesMenuGen();
-  $AssetsImagesPlayerGen get player => const $AssetsImagesPlayerGen();
   $AssetsImagesPreviewGen get preview => const $AssetsImagesPreviewGen();
   $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
-}
-
-class $AssetsJsonGen {
-  const $AssetsJsonGen();
-
-  /// File path: assets/json/README.md
-  String get readme => 'assets/json/README.md';
-
-  /// File path: assets/json/tiles_preset_data.json
-  String get tilesPresetData => 'assets/json/tiles_preset_data.json';
-
-  /// File path: assets/json/tiles_settings_data.json
-  String get tilesSettingsData => 'assets/json/tiles_settings_data.json';
-
-  /// List of all assets
-  List<String> get values => [readme, tilesPresetData, tilesSettingsData];
-}
-
-class $AssetsImagesCloudsGen {
-  const $AssetsImagesCloudsGen();
-
-  /// File path: assets/images/clouds/Small Cloud 1.png
-  AssetGenImage get smallCloud1 =>
-      const AssetGenImage('assets/images/clouds/Small Cloud 1.png');
-
-  /// File path: assets/images/clouds/Small Cloud 2.png
-  AssetGenImage get smallCloud2 =>
-      const AssetGenImage('assets/images/clouds/Small Cloud 2.png');
-
-  /// File path: assets/images/clouds/Small Cloud 3.png
-  AssetGenImage get smallCloud3 =>
-      const AssetGenImage('assets/images/clouds/Small Cloud 3.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [smallCloud1, smallCloud2, smallCloud3];
 }
 
 class $AssetsImagesCursorsGen {
@@ -63,268 +22,90 @@ class $AssetsImagesCursorsGen {
 
   $AssetsImagesCursorsCursorGen get cursor =>
       const $AssetsImagesCursorsCursorGen();
-  $AssetsImagesCursorsHandleGen get handle =>
-      const $AssetsImagesCursorsHandleGen();
-}
-
-class $AssetsImagesEnemiesGen {
-  const $AssetsImagesEnemiesGen();
-
-  $AssetsImagesEnemiesPearlGen get pearl =>
-      const $AssetsImagesEnemiesPearlGen();
-  $AssetsImagesEnemiesShellLeftGen get shellLeft =>
-      const $AssetsImagesEnemiesShellLeftGen();
-  $AssetsImagesEnemiesShellRightGen get shellRight =>
-      const $AssetsImagesEnemiesShellRightGen();
-  $AssetsImagesEnemiesSpikesGen get spikes =>
-      const $AssetsImagesEnemiesSpikesGen();
-  $AssetsImagesEnemiesToothGen get tooth =>
-      const $AssetsImagesEnemiesToothGen();
-}
-
-class $AssetsImagesItemsGen {
-  const $AssetsImagesItemsGen();
-
-  $AssetsImagesItemsDiamondGen get diamond =>
-      const $AssetsImagesItemsDiamondGen();
-  $AssetsImagesItemsGoldGen get gold => const $AssetsImagesItemsGoldGen();
-  $AssetsImagesItemsParticleGen get particle =>
-      const $AssetsImagesItemsParticleGen();
-  $AssetsImagesItemsSilverGen get silver => const $AssetsImagesItemsSilverGen();
-}
-
-class $AssetsImagesMarkersGen {
-  const $AssetsImagesMarkersGen();
-
-  $AssetsImagesMarkersGreenGen get green =>
-      const $AssetsImagesMarkersGreenGen();
-  $AssetsImagesMarkersRedGen get red => const $AssetsImagesMarkersRedGen();
-}
-
-class $AssetsImagesMenuGen {
-  const $AssetsImagesMenuGen();
-
-  /// File path: assets/images/menu/diamond.png
-  AssetGenImage get diamond =>
-      const AssetGenImage('assets/images/menu/diamond.png');
-
-  /// File path: assets/images/menu/gold.png
-  AssetGenImage get gold => const AssetGenImage('assets/images/menu/gold.png');
-
-  /// File path: assets/images/menu/land.png
-  AssetGenImage get land => const AssetGenImage('assets/images/menu/land.png');
-
-  /// File path: assets/images/menu/large_bg.png
-  AssetGenImage get largeBg =>
-      const AssetGenImage('assets/images/menu/large_bg.png');
-
-  /// File path: assets/images/menu/large_fg.png
-  AssetGenImage get largeFg =>
-      const AssetGenImage('assets/images/menu/large_fg.png');
-
-  /// File path: assets/images/menu/left_bg.png
-  AssetGenImage get leftBg =>
-      const AssetGenImage('assets/images/menu/left_bg.png');
-
-  /// File path: assets/images/menu/left_fg.png
-  AssetGenImage get leftFg =>
-      const AssetGenImage('assets/images/menu/left_fg.png');
-
-  /// File path: assets/images/menu/right_bg.png
-  AssetGenImage get rightBg =>
-      const AssetGenImage('assets/images/menu/right_bg.png');
-
-  /// File path: assets/images/menu/right_fg.png
-  AssetGenImage get rightFg =>
-      const AssetGenImage('assets/images/menu/right_fg.png');
-
-  /// File path: assets/images/menu/shell_left.png
-  AssetGenImage get shellLeft =>
-      const AssetGenImage('assets/images/menu/shell_left.png');
-
-  /// File path: assets/images/menu/shell_right.png
-  AssetGenImage get shellRight =>
-      const AssetGenImage('assets/images/menu/shell_right.png');
-
-  /// File path: assets/images/menu/silver.png
-  AssetGenImage get silver =>
-      const AssetGenImage('assets/images/menu/silver.png');
-
-  /// File path: assets/images/menu/small_bg.png
-  AssetGenImage get smallBg =>
-      const AssetGenImage('assets/images/menu/small_bg.png');
-
-  /// File path: assets/images/menu/small_fg.png
-  AssetGenImage get smallFg =>
-      const AssetGenImage('assets/images/menu/small_fg.png');
-
-  /// File path: assets/images/menu/spikes.png
-  AssetGenImage get spikes =>
-      const AssetGenImage('assets/images/menu/spikes.png');
-
-  /// File path: assets/images/menu/tooth.png
-  AssetGenImage get tooth =>
-      const AssetGenImage('assets/images/menu/tooth.png');
-
-  /// File path: assets/images/menu/water.png
-  AssetGenImage get water =>
-      const AssetGenImage('assets/images/menu/water.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [
-        diamond,
-        gold,
-        land,
-        largeBg,
-        largeFg,
-        leftBg,
-        leftFg,
-        rightBg,
-        rightFg,
-        shellLeft,
-        shellRight,
-        silver,
-        smallBg,
-        smallFg,
-        spikes,
-        tooth,
-        water
-      ];
-}
-
-class $AssetsImagesPlayerGen {
-  const $AssetsImagesPlayerGen();
-
-  $AssetsImagesPlayerFallLeftGen get fallLeft =>
-      const $AssetsImagesPlayerFallLeftGen();
-  $AssetsImagesPlayerFallRightGen get fallRight =>
-      const $AssetsImagesPlayerFallRightGen();
-  $AssetsImagesPlayerFlyLeftGen get flyLeft =>
-      const $AssetsImagesPlayerFlyLeftGen();
-  $AssetsImagesPlayerFlyRightGen get flyRight =>
-      const $AssetsImagesPlayerFlyRightGen();
-  $AssetsImagesPlayerIdleLeftGen get idleLeft =>
-      const $AssetsImagesPlayerIdleLeftGen();
-  $AssetsImagesPlayerIdleRightGen get idleRight =>
-      const $AssetsImagesPlayerIdleRightGen();
-  $AssetsImagesPlayerJumpLeftGen get jumpLeft =>
-      const $AssetsImagesPlayerJumpLeftGen();
-  $AssetsImagesPlayerJumpRightGen get jumpRight =>
-      const $AssetsImagesPlayerJumpRightGen();
 }
 
 class $AssetsImagesPreviewGen {
   const $AssetsImagesPreviewGen();
 
-  /// File path: assets/images/preview/diamond.png
-  AssetGenImage get diamond =>
-      const AssetGenImage('assets/images/preview/diamond.png');
-
-  /// File path: assets/images/preview/gold.png
-  AssetGenImage get gold =>
-      const AssetGenImage('assets/images/preview/gold.png');
-
-  /// File path: assets/images/preview/land.png
-  AssetGenImage get land =>
-      const AssetGenImage('assets/images/preview/land.png');
-
-  /// File path: assets/images/preview/large_bg.png
-  AssetGenImage get largeBg =>
-      const AssetGenImage('assets/images/preview/large_bg.png');
-
-  /// File path: assets/images/preview/large_fg.png
-  AssetGenImage get largeFg =>
-      const AssetGenImage('assets/images/preview/large_fg.png');
-
-  /// File path: assets/images/preview/left_bg.png
-  AssetGenImage get leftBg =>
-      const AssetGenImage('assets/images/preview/left_bg.png');
-
-  /// File path: assets/images/preview/left_fg.png
-  AssetGenImage get leftFg =>
-      const AssetGenImage('assets/images/preview/left_fg.png');
-
-  /// File path: assets/images/preview/marker_green.png
-  AssetGenImage get markerGreen =>
-      const AssetGenImage('assets/images/preview/marker_green.png');
-
-  /// File path: assets/images/preview/marker_red.png
-  AssetGenImage get markerRed =>
-      const AssetGenImage('assets/images/preview/marker_red.png');
-
-  /// File path: assets/images/preview/right_bg.png
-  AssetGenImage get rightBg =>
-      const AssetGenImage('assets/images/preview/right_bg.png');
-
-  /// File path: assets/images/preview/right_fg.png
-  AssetGenImage get rightFg =>
-      const AssetGenImage('assets/images/preview/right_fg.png');
-
-  /// File path: assets/images/preview/shell_left.png
-  AssetGenImage get shellLeft =>
-      const AssetGenImage('assets/images/preview/shell_left.png');
-
-  /// File path: assets/images/preview/shell_right.png
-  AssetGenImage get shellRight =>
-      const AssetGenImage('assets/images/preview/shell_right.png');
-
-  /// File path: assets/images/preview/silver.png
-  AssetGenImage get silver =>
-      const AssetGenImage('assets/images/preview/silver.png');
-
-  /// File path: assets/images/preview/small_bg.png
-  AssetGenImage get smallBg =>
-      const AssetGenImage('assets/images/preview/small_bg.png');
-
-  /// File path: assets/images/preview/small_fg.png
-  AssetGenImage get smallFg =>
-      const AssetGenImage('assets/images/preview/small_fg.png');
-
-  /// File path: assets/images/preview/spikes.png
-  AssetGenImage get spikes =>
-      const AssetGenImage('assets/images/preview/spikes.png');
-
-  /// File path: assets/images/preview/tooth.png
-  AssetGenImage get tooth =>
-      const AssetGenImage('assets/images/preview/tooth.png');
-
-  /// File path: assets/images/preview/water.png
-  AssetGenImage get water =>
-      const AssetGenImage('assets/images/preview/water.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [
-        diamond,
-        gold,
-        land,
-        largeBg,
-        largeFg,
-        leftBg,
-        leftFg,
-        markerGreen,
-        markerRed,
-        rightBg,
-        rightFg,
-        shellLeft,
-        shellRight,
-        silver,
-        smallBg,
-        smallFg,
-        spikes,
-        tooth,
-        water
-      ];
+  $AssetsImagesPreviewColourfulGen get colourful =>
+      const $AssetsImagesPreviewColourfulGen();
+  $AssetsImagesPreviewEveningGen get evening =>
+      const $AssetsImagesPreviewEveningGen();
+  $AssetsImagesPreviewWhiteBlackGen get whiteBlack =>
+      const $AssetsImagesPreviewWhiteBlackGen();
 }
 
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
 
-  /// File path: assets/images/tilesets/pirate_tileset_pixel_frog.fa
-  String get pirateTilesetPixelFrog =>
-      'assets/images/tilesets/pirate_tileset_pixel_frog.fa';
+  /// File path: assets/images/tilesets/README.md
+  String get readme => 'assets/images/tilesets/README.md';
+
+  $AssetsImagesTilesetsColourfulGen get colourful =>
+      const $AssetsImagesTilesetsColourfulGen();
+
+  /// File path: assets/images/tilesets/colourful.fa
+  String get colourfulFa => 'assets/images/tilesets/colourful.fa';
+
+  /// File path: assets/images/tilesets/colourful.json
+  String get colourfulJson => 'assets/images/tilesets/colourful.json';
+
+  /// File path: assets/images/tilesets/colourful_credits.md
+  String get colourfulCredits => 'assets/images/tilesets/colourful_credits.md';
+
+  /// File path: assets/images/tilesets/colourful_preset_data.json
+  String get colourfulPresetData =>
+      'assets/images/tilesets/colourful_preset_data.json';
+
+  $AssetsImagesTilesetsEveningGen get evening =>
+      const $AssetsImagesTilesetsEveningGen();
+
+  /// File path: assets/images/tilesets/evening.fa
+  String get eveningFa => 'assets/images/tilesets/evening.fa';
+
+  /// File path: assets/images/tilesets/evening.json
+  String get eveningJson => 'assets/images/tilesets/evening.json';
+
+  /// File path: assets/images/tilesets/evening_credits.md
+  String get eveningCredits => 'assets/images/tilesets/evening_credits.md';
+
+  /// File path: assets/images/tilesets/evening_preset_data.json
+  String get eveningPresetData =>
+      'assets/images/tilesets/evening_preset_data.json';
+
+  $AssetsImagesTilesetsWhiteBlackGen get whiteBlack =>
+      const $AssetsImagesTilesetsWhiteBlackGen();
+
+  /// File path: assets/images/tilesets/white_black.fa
+  String get whiteBlackFa => 'assets/images/tilesets/white_black.fa';
+
+  /// File path: assets/images/tilesets/white_black.json
+  String get whiteBlackJson => 'assets/images/tilesets/white_black.json';
+
+  /// File path: assets/images/tilesets/white_black_credits.md
+  String get whiteBlackCredits =>
+      'assets/images/tilesets/white_black_credits.md';
+
+  /// File path: assets/images/tilesets/white_black_preset_data.json
+  String get whiteBlackPresetData =>
+      'assets/images/tilesets/white_black_preset_data.json';
 
   /// List of all assets
-  List<String> get values => [pirateTilesetPixelFrog];
+  List<String> get values => [
+        readme,
+        colourfulFa,
+        colourfulJson,
+        colourfulCredits,
+        colourfulPresetData,
+        eveningFa,
+        eveningJson,
+        eveningCredits,
+        eveningPresetData,
+        whiteBlackFa,
+        whiteBlackJson,
+        whiteBlackCredits,
+        whiteBlackPresetData
+      ];
 }
 
 class $AssetsImagesCursorsCursorGen {
@@ -338,511 +119,295 @@ class $AssetsImagesCursorsCursorGen {
   List<AssetGenImage> get values => [idle];
 }
 
-class $AssetsImagesCursorsHandleGen {
-  const $AssetsImagesCursorsHandleGen();
+class $AssetsImagesPreviewColourfulGen {
+  const $AssetsImagesPreviewColourfulGen();
 
-  /// File path: assets/images/cursors/handle/idle.png
-  AssetGenImage get idle =>
-      const AssetGenImage('assets/images/cursors/handle/idle.png');
+  /// File path: assets/images/preview/colourful/marker_green.png
+  AssetGenImage get markerGreen =>
+      const AssetGenImage('assets/images/preview/colourful/marker_green.png');
 
-  /// List of all assets
-  List<AssetGenImage> get values => [idle];
-}
+  /// File path: assets/images/preview/colourful/marker_red.png
+  AssetGenImage get markerRed =>
+      const AssetGenImage('assets/images/preview/colourful/marker_red.png');
 
-class $AssetsImagesEnemiesPearlGen {
-  const $AssetsImagesEnemiesPearlGen();
+  /// File path: assets/images/preview/colourful/tropical_land.png
+  AssetGenImage get tropicalLand =>
+      const AssetGenImage('assets/images/preview/colourful/tropical_land.png');
 
-  /// File path: assets/images/enemies/pearl/pearl.png
-  AssetGenImage get pearl =>
-      const AssetGenImage('assets/images/enemies/pearl/pearl.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [pearl];
-}
-
-class $AssetsImagesEnemiesShellLeftGen {
-  const $AssetsImagesEnemiesShellLeftGen();
-
-  $AssetsImagesEnemiesShellLeftAttackGen get attack =>
-      const $AssetsImagesEnemiesShellLeftAttackGen();
-  $AssetsImagesEnemiesShellLeftIdleGen get idle =>
-      const $AssetsImagesEnemiesShellLeftIdleGen();
-}
-
-class $AssetsImagesEnemiesShellRightGen {
-  const $AssetsImagesEnemiesShellRightGen();
-
-  $AssetsImagesEnemiesShellRightAttackGen get attack =>
-      const $AssetsImagesEnemiesShellRightAttackGen();
-  $AssetsImagesEnemiesShellRightIdleGen get idle =>
-      const $AssetsImagesEnemiesShellRightIdleGen();
-}
-
-class $AssetsImagesEnemiesSpikesGen {
-  const $AssetsImagesEnemiesSpikesGen();
-
-  /// File path: assets/images/enemies/spikes/spikes.png
-  AssetGenImage get spikes =>
-      const AssetGenImage('assets/images/enemies/spikes/spikes.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [spikes];
-}
-
-class $AssetsImagesEnemiesToothGen {
-  const $AssetsImagesEnemiesToothGen();
-
-  $AssetsImagesEnemiesToothIdleGen get idle =>
-      const $AssetsImagesEnemiesToothIdleGen();
-  $AssetsImagesEnemiesToothRunLeftGen get runLeft =>
-      const $AssetsImagesEnemiesToothRunLeftGen();
-  $AssetsImagesEnemiesToothRunRightGen get runRight =>
-      const $AssetsImagesEnemiesToothRunRightGen();
-}
-
-class $AssetsImagesItemsDiamondGen {
-  const $AssetsImagesItemsDiamondGen();
-
-  /// File path: assets/images/items/diamond/diamond_0.png
-  AssetGenImage get diamond0 =>
-      const AssetGenImage('assets/images/items/diamond/diamond_0.png');
-
-  /// File path: assets/images/items/diamond/diamond_1.png
-  AssetGenImage get diamond1 =>
-      const AssetGenImage('assets/images/items/diamond/diamond_1.png');
-
-  /// File path: assets/images/items/diamond/diamond_2.png
-  AssetGenImage get diamond2 =>
-      const AssetGenImage('assets/images/items/diamond/diamond_2.png');
-
-  /// File path: assets/images/items/diamond/diamond_3.png
-  AssetGenImage get diamond3 =>
-      const AssetGenImage('assets/images/items/diamond/diamond_3.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [diamond0, diamond1, diamond2, diamond3];
-}
-
-class $AssetsImagesItemsGoldGen {
-  const $AssetsImagesItemsGoldGen();
-
-  /// File path: assets/images/items/gold/gold_0.png
-  AssetGenImage get gold0 =>
-      const AssetGenImage('assets/images/items/gold/gold_0.png');
-
-  /// File path: assets/images/items/gold/gold_1.png
-  AssetGenImage get gold1 =>
-      const AssetGenImage('assets/images/items/gold/gold_1.png');
-
-  /// File path: assets/images/items/gold/gold_2.png
-  AssetGenImage get gold2 =>
-      const AssetGenImage('assets/images/items/gold/gold_2.png');
-
-  /// File path: assets/images/items/gold/gold_3.png
-  AssetGenImage get gold3 =>
-      const AssetGenImage('assets/images/items/gold/gold_3.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [gold0, gold1, gold2, gold3];
-}
-
-class $AssetsImagesItemsParticleGen {
-  const $AssetsImagesItemsParticleGen();
-
-  /// File path: assets/images/items/particle/particle_01.png
-  AssetGenImage get particle01 =>
-      const AssetGenImage('assets/images/items/particle/particle_01.png');
-
-  /// File path: assets/images/items/particle/particle_02.png
-  AssetGenImage get particle02 =>
-      const AssetGenImage('assets/images/items/particle/particle_02.png');
-
-  /// File path: assets/images/items/particle/particle_03.png
-  AssetGenImage get particle03 =>
-      const AssetGenImage('assets/images/items/particle/particle_03.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [particle01, particle02, particle03];
-}
-
-class $AssetsImagesItemsSilverGen {
-  const $AssetsImagesItemsSilverGen();
-
-  /// File path: assets/images/items/silver/silver_0.png
-  AssetGenImage get silver0 =>
-      const AssetGenImage('assets/images/items/silver/silver_0.png');
-
-  /// File path: assets/images/items/silver/silver_1.png
-  AssetGenImage get silver1 =>
-      const AssetGenImage('assets/images/items/silver/silver_1.png');
-
-  /// File path: assets/images/items/silver/silver_2.png
-  AssetGenImage get silver2 =>
-      const AssetGenImage('assets/images/items/silver/silver_2.png');
-
-  /// File path: assets/images/items/silver/silver_3.png
-  AssetGenImage get silver3 =>
-      const AssetGenImage('assets/images/items/silver/silver_3.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [silver0, silver1, silver2, silver3];
-}
-
-class $AssetsImagesMarkersGreenGen {
-  const $AssetsImagesMarkersGreenGen();
-
-  /// File path: assets/images/markers/green/X.png
-  AssetGenImage get x =>
-      const AssetGenImage('assets/images/markers/green/X.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [x];
-}
-
-class $AssetsImagesMarkersRedGen {
-  const $AssetsImagesMarkersRedGen();
-
-  /// File path: assets/images/markers/red/X.png
-  AssetGenImage get x => const AssetGenImage('assets/images/markers/red/X.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [x];
-}
-
-class $AssetsImagesPlayerFallLeftGen {
-  const $AssetsImagesPlayerFallLeftGen();
-
-  /// File path: assets/images/player/fall_left/fall_left_1.png
-  AssetGenImage get fallLeft1 =>
-      const AssetGenImage('assets/images/player/fall_left/fall_left_1.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [fallLeft1];
-}
-
-class $AssetsImagesPlayerFallRightGen {
-  const $AssetsImagesPlayerFallRightGen();
-
-  /// File path: assets/images/player/fall_right/fall_right_1.png
-  AssetGenImage get fallRight1 =>
-      const AssetGenImage('assets/images/player/fall_right/fall_right_1.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [fallRight1];
-}
-
-class $AssetsImagesPlayerFlyLeftGen {
-  const $AssetsImagesPlayerFlyLeftGen();
-
-  /// File path: assets/images/player/fly_left/fly_left_0.png
-  AssetGenImage get flyLeft0 =>
-      const AssetGenImage('assets/images/player/fly_left/fly_left_0.png');
-
-  /// File path: assets/images/player/fly_left/fly_left_1.png
-  AssetGenImage get flyLeft1 =>
-      const AssetGenImage('assets/images/player/fly_left/fly_left_1.png');
-
-  /// File path: assets/images/player/fly_left/fly_left_2.png
-  AssetGenImage get flyLeft2 =>
-      const AssetGenImage('assets/images/player/fly_left/fly_left_2.png');
-
-  /// File path: assets/images/player/fly_left/fly_left_3.png
-  AssetGenImage get flyLeft3 =>
-      const AssetGenImage('assets/images/player/fly_left/fly_left_3.png');
-
-  /// File path: assets/images/player/fly_left/fly_left_4.png
-  AssetGenImage get flyLeft4 =>
-      const AssetGenImage('assets/images/player/fly_left/fly_left_4.png');
-
-  /// File path: assets/images/player/fly_left/fly_left_5.png
-  AssetGenImage get flyLeft5 =>
-      const AssetGenImage('assets/images/player/fly_left/fly_left_5.png');
+  /// File path: assets/images/preview/colourful/tropical_water.png
+  AssetGenImage get tropicalWater =>
+      const AssetGenImage('assets/images/preview/colourful/tropical_water.png');
 
   /// List of all assets
   List<AssetGenImage> get values =>
-      [flyLeft0, flyLeft1, flyLeft2, flyLeft3, flyLeft4, flyLeft5];
+      [markerGreen, markerRed, tropicalLand, tropicalWater];
 }
 
-class $AssetsImagesPlayerFlyRightGen {
-  const $AssetsImagesPlayerFlyRightGen();
+class $AssetsImagesPreviewEveningGen {
+  const $AssetsImagesPreviewEveningGen();
 
-  /// File path: assets/images/player/fly_right/fly_right_0.png
-  AssetGenImage get flyRight0 =>
-      const AssetGenImage('assets/images/player/fly_right/fly_right_0.png');
-
-  /// File path: assets/images/player/fly_right/fly_right_1.png
-  AssetGenImage get flyRight1 =>
-      const AssetGenImage('assets/images/player/fly_right/fly_right_1.png');
-
-  /// File path: assets/images/player/fly_right/fly_right_2.png
-  AssetGenImage get flyRight2 =>
-      const AssetGenImage('assets/images/player/fly_right/fly_right_2.png');
-
-  /// File path: assets/images/player/fly_right/fly_right_3.png
-  AssetGenImage get flyRight3 =>
-      const AssetGenImage('assets/images/player/fly_right/fly_right_3.png');
-
-  /// File path: assets/images/player/fly_right/fly_right_4.png
-  AssetGenImage get flyRight4 =>
-      const AssetGenImage('assets/images/player/fly_right/fly_right_4.png');
-
-  /// File path: assets/images/player/fly_right/fly_right_5.png
-  AssetGenImage get flyRight5 =>
-      const AssetGenImage('assets/images/player/fly_right/fly_right_5.png');
+  /// File path: assets/images/preview/evening/land.png
+  AssetGenImage get land =>
+      const AssetGenImage('assets/images/preview/evening/land.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [flyRight0, flyRight1, flyRight2, flyRight3, flyRight4, flyRight5];
+  List<AssetGenImage> get values => [land];
 }
 
-class $AssetsImagesPlayerIdleLeftGen {
-  const $AssetsImagesPlayerIdleLeftGen();
+class $AssetsImagesPreviewWhiteBlackGen {
+  const $AssetsImagesPreviewWhiteBlackGen();
 
-  /// File path: assets/images/player/idle_left/idle_left_0.png
-  AssetGenImage get idleLeft0 =>
-      const AssetGenImage('assets/images/player/idle_left/idle_left_0.png');
-
-  /// File path: assets/images/player/idle_left/idle_left_1.png
-  AssetGenImage get idleLeft1 =>
-      const AssetGenImage('assets/images/player/idle_left/idle_left_1.png');
-
-  /// File path: assets/images/player/idle_left/idle_left_2.png
-  AssetGenImage get idleLeft2 =>
-      const AssetGenImage('assets/images/player/idle_left/idle_left_2.png');
-
-  /// File path: assets/images/player/idle_left/idle_left_3.png
-  AssetGenImage get idleLeft3 =>
-      const AssetGenImage('assets/images/player/idle_left/idle_left_3.png');
-
-  /// File path: assets/images/player/idle_left/idle_left_4.png
-  AssetGenImage get idleLeft4 =>
-      const AssetGenImage('assets/images/player/idle_left/idle_left_4.png');
+  /// File path: assets/images/preview/white_black/land.png
+  AssetGenImage get land =>
+      const AssetGenImage('assets/images/preview/white_black/land.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [idleLeft0, idleLeft1, idleLeft2, idleLeft3, idleLeft4];
+  List<AssetGenImage> get values => [land];
 }
 
-class $AssetsImagesPlayerIdleRightGen {
-  const $AssetsImagesPlayerIdleRightGen();
+class $AssetsImagesTilesetsColourfulGen {
+  const $AssetsImagesTilesetsColourfulGen();
 
-  /// File path: assets/images/player/idle_right/idle_right_0.png
-  AssetGenImage get idleRight0 =>
-      const AssetGenImage('assets/images/player/idle_right/idle_right_0.png');
+  /// File path: assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png
+  AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
+      'assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png');
+
+  /// File path: assets/images/tilesets/colourful/marker_green__x.png
+  AssetGenImage get markerGreenX => const AssetGenImage(
+      'assets/images/tilesets/colourful/marker_green__x.png');
+
+  /// File path: assets/images/tilesets/colourful/marker_red__x.png
+  AssetGenImage get markerRedX =>
+      const AssetGenImage('assets/images/tilesets/colourful/marker_red__x.png');
+
+  /// File path: assets/images/tilesets/colourful/object__cursor_handle__idle.png
+  AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/colourful/object__cursor_handle__idle.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_center.png
+  AssetGenImage get tropicalLandBottomCenter => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__bottom_center.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_left.png
+  AssetGenImage get tropicalLandBottomLeft => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__bottom_left.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_right.png
+  AssetGenImage get tropicalLandBottomRight => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__bottom_right.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__middle_left.png
+  AssetGenImage get tropicalLandMiddleLeft => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__middle_left.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__middle_right.png
+  AssetGenImage get tropicalLandMiddleRight => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__middle_right.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__top_center.png
+  AssetGenImage get tropicalLandTopCenter => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__top_center.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__top_left.png
+  AssetGenImage get tropicalLandTopLeft => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__top_left.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__top_right.png
+  AssetGenImage get tropicalLandTopRight => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__top_right.png');
+
+  /// File path: assets/images/tilesets/colourful/tropical_land__x.png
+  AssetGenImage get tropicalLandX => const AssetGenImage(
+      'assets/images/tilesets/colourful/tropical_land__x.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [idleRight0];
+  List<AssetGenImage> get values => [
+        hotAirBalloonIdleRight0,
+        markerGreenX,
+        markerRedX,
+        objectCursorHandleIdle,
+        tropicalLandBottomCenter,
+        tropicalLandBottomLeft,
+        tropicalLandBottomRight,
+        tropicalLandMiddleLeft,
+        tropicalLandMiddleRight,
+        tropicalLandTopCenter,
+        tropicalLandTopLeft,
+        tropicalLandTopRight,
+        tropicalLandX
+      ];
 }
 
-class $AssetsImagesPlayerJumpLeftGen {
-  const $AssetsImagesPlayerJumpLeftGen();
+class $AssetsImagesTilesetsEveningGen {
+  const $AssetsImagesTilesetsEveningGen();
 
-  /// File path: assets/images/player/jump_left/jump_left_1.png
-  AssetGenImage get jumpLeft1 =>
-      const AssetGenImage('assets/images/player/jump_left/jump_left_1.png');
+  /// File path: assets/images/tilesets/evening/hot_air_balloon__idle_right_0.png
+  AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
+      'assets/images/tilesets/evening/hot_air_balloon__idle_right_0.png');
+
+  /// File path: assets/images/tilesets/evening/land__middle_left.png
+  AssetGenImage get landMiddleLeft => const AssetGenImage(
+      'assets/images/tilesets/evening/land__middle_left.png');
+
+  /// File path: assets/images/tilesets/evening/land__middle_right.png
+  AssetGenImage get landMiddleRight => const AssetGenImage(
+      'assets/images/tilesets/evening/land__middle_right.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_center.png
+  AssetGenImage get landTopCenter => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_center.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_left.png
+  AssetGenImage get landTopLeft =>
+      const AssetGenImage('assets/images/tilesets/evening/land__top_left.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_left_corner.png
+  AssetGenImage get landTopLeftCorner => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_left_corner.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_left_smooth.png
+  AssetGenImage get landTopLeftSmooth => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_left_smooth.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_right.png
+  AssetGenImage get landTopRight =>
+      const AssetGenImage('assets/images/tilesets/evening/land__top_right.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_right_corner.png
+  AssetGenImage get landTopRightCorner => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_right_corner.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_right_smooth.png
+  AssetGenImage get landTopRightSmooth => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_right_smooth.png');
+
+  /// File path: assets/images/tilesets/evening/land__x.png
+  AssetGenImage get landX =>
+      const AssetGenImage('assets/images/tilesets/evening/land__x.png');
+
+  /// File path: assets/images/tilesets/evening/marker_green__x.png
+  AssetGenImage get markerGreenX =>
+      const AssetGenImage('assets/images/tilesets/evening/marker_green__x.png');
+
+  /// File path: assets/images/tilesets/evening/marker_red__x.png
+  AssetGenImage get markerRedX =>
+      const AssetGenImage('assets/images/tilesets/evening/marker_red__x.png');
+
+  /// File path: assets/images/tilesets/evening/object__cursor_handle__idle.png
+  AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/evening/object__cursor_handle__idle.png');
 
   /// List of all assets
-  List<AssetGenImage> get values => [jumpLeft1];
+  List<AssetGenImage> get values => [
+        hotAirBalloonIdleRight0,
+        landMiddleLeft,
+        landMiddleRight,
+        landTopCenter,
+        landTopLeft,
+        landTopLeftCorner,
+        landTopLeftSmooth,
+        landTopRight,
+        landTopRightCorner,
+        landTopRightSmooth,
+        landX,
+        markerGreenX,
+        markerRedX,
+        objectCursorHandleIdle
+      ];
 }
 
-class $AssetsImagesPlayerJumpRightGen {
-  const $AssetsImagesPlayerJumpRightGen();
+class $AssetsImagesTilesetsWhiteBlackGen {
+  const $AssetsImagesTilesetsWhiteBlackGen();
 
-  /// File path: assets/images/player/jump_right/jump_right_1.png
-  AssetGenImage get jumpRight1 =>
-      const AssetGenImage('assets/images/player/jump_right/jump_right_1.png');
+  /// File path: assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png
+  AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
+      'assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png');
 
-  /// List of all assets
-  List<AssetGenImage> get values => [jumpRight1];
-}
+  /// File path: assets/images/tilesets/white_black/land__middle_left.png
+  AssetGenImage get landMiddleLeft => const AssetGenImage(
+      'assets/images/tilesets/white_black/land__middle_left.png');
 
-class $AssetsImagesEnemiesShellLeftAttackGen {
-  const $AssetsImagesEnemiesShellLeftAttackGen();
+  /// File path: assets/images/tilesets/white_black/land__middle_right.png
+  AssetGenImage get landMiddleRight => const AssetGenImage(
+      'assets/images/tilesets/white_black/land__middle_right.png');
 
-  /// File path: assets/images/enemies/shell_left/attack/attack_1.png
-  AssetGenImage get attack1 => const AssetGenImage(
-      'assets/images/enemies/shell_left/attack/attack_1.png');
+  /// File path: assets/images/tilesets/white_black/land__top_center.png
+  AssetGenImage get landTopCenter => const AssetGenImage(
+      'assets/images/tilesets/white_black/land__top_center.png');
 
-  /// File path: assets/images/enemies/shell_left/attack/attack_2.png
-  AssetGenImage get attack2 => const AssetGenImage(
-      'assets/images/enemies/shell_left/attack/attack_2.png');
+  /// File path: assets/images/tilesets/white_black/land__top_left.png
+  AssetGenImage get landTopLeft => const AssetGenImage(
+      'assets/images/tilesets/white_black/land__top_left.png');
 
-  /// File path: assets/images/enemies/shell_left/attack/attack_3.png
-  AssetGenImage get attack3 => const AssetGenImage(
-      'assets/images/enemies/shell_left/attack/attack_3.png');
+  /// File path: assets/images/tilesets/white_black/land__top_right.png
+  AssetGenImage get landTopRight => const AssetGenImage(
+      'assets/images/tilesets/white_black/land__top_right.png');
 
-  /// File path: assets/images/enemies/shell_left/attack/attack_4.png
-  AssetGenImage get attack4 => const AssetGenImage(
-      'assets/images/enemies/shell_left/attack/attack_4.png');
+  /// File path: assets/images/tilesets/white_black/land__x.png
+  AssetGenImage get landX =>
+      const AssetGenImage('assets/images/tilesets/white_black/land__x.png');
 
-  /// File path: assets/images/enemies/shell_left/attack/attack_5.png
-  AssetGenImage get attack5 => const AssetGenImage(
-      'assets/images/enemies/shell_left/attack/attack_5.png');
+  /// File path: assets/images/tilesets/white_black/marker_green__x.png
+  AssetGenImage get markerGreenX => const AssetGenImage(
+      'assets/images/tilesets/white_black/marker_green__x.png');
 
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [attack1, attack2, attack3, attack4, attack5];
-}
+  /// File path: assets/images/tilesets/white_black/marker_red__x.png
+  AssetGenImage get markerRedX => const AssetGenImage(
+      'assets/images/tilesets/white_black/marker_red__x.png');
 
-class $AssetsImagesEnemiesShellLeftIdleGen {
-  const $AssetsImagesEnemiesShellLeftIdleGen();
+  /// File path: assets/images/tilesets/white_black/object__cursor_handle__idle.png
+  AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__cursor_handle__idle.png');
 
-  /// File path: assets/images/enemies/shell_left/idle/idle_1.png
-  AssetGenImage get idle1 =>
-      const AssetGenImage('assets/images/enemies/shell_left/idle/idle_1.png');
+  /// File path: assets/images/tilesets/white_black/object__plant_1__idle.png
+  AssetGenImage get objectPlant1Idle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__plant_1__idle.png');
 
-  /// List of all assets
-  List<AssetGenImage> get values => [idle1];
-}
+  /// File path: assets/images/tilesets/white_black/object__plant_2__idle.png
+  AssetGenImage get objectPlant2Idle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__plant_2__idle.png');
 
-class $AssetsImagesEnemiesShellRightAttackGen {
-  const $AssetsImagesEnemiesShellRightAttackGen();
+  /// File path: assets/images/tilesets/white_black/object__plant_3__idle.png
+  AssetGenImage get objectPlant3Idle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__plant_3__idle.png');
 
-  /// File path: assets/images/enemies/shell_right/attack/attack_1.png
-  AssetGenImage get attack1 => const AssetGenImage(
-      'assets/images/enemies/shell_right/attack/attack_1.png');
+  /// File path: assets/images/tilesets/white_black/object__plant_4__idle.png
+  AssetGenImage get objectPlant4Idle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__plant_4__idle.png');
 
-  /// File path: assets/images/enemies/shell_right/attack/attack_2.png
-  AssetGenImage get attack2 => const AssetGenImage(
-      'assets/images/enemies/shell_right/attack/attack_2.png');
+  /// File path: assets/images/tilesets/white_black/object__plant_5__idle.png
+  AssetGenImage get objectPlant5Idle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__plant_5__idle.png');
 
-  /// File path: assets/images/enemies/shell_right/attack/attack_3.png
-  AssetGenImage get attack3 => const AssetGenImage(
-      'assets/images/enemies/shell_right/attack/attack_3.png');
-
-  /// File path: assets/images/enemies/shell_right/attack/attack_4.png
-  AssetGenImage get attack4 => const AssetGenImage(
-      'assets/images/enemies/shell_right/attack/attack_4.png');
-
-  /// File path: assets/images/enemies/shell_right/attack/attack_5.png
-  AssetGenImage get attack5 => const AssetGenImage(
-      'assets/images/enemies/shell_right/attack/attack_5.png');
+  /// File path: assets/images/tilesets/white_black/object__plant_6__idle.png
+  AssetGenImage get objectPlant6Idle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__plant_6__idle.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [attack1, attack2, attack3, attack4, attack5];
-}
-
-class $AssetsImagesEnemiesShellRightIdleGen {
-  const $AssetsImagesEnemiesShellRightIdleGen();
-
-  /// File path: assets/images/enemies/shell_right/idle/idle_1.png
-  AssetGenImage get idle1 =>
-      const AssetGenImage('assets/images/enemies/shell_right/idle/idle_1.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [idle1];
-}
-
-class $AssetsImagesEnemiesToothIdleGen {
-  const $AssetsImagesEnemiesToothIdleGen();
-
-  /// File path: assets/images/enemies/tooth/idle/idle_0.png
-  AssetGenImage get idle0 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_0.png');
-
-  /// File path: assets/images/enemies/tooth/idle/idle_1.png
-  AssetGenImage get idle1 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_1.png');
-
-  /// File path: assets/images/enemies/tooth/idle/idle_2.png
-  AssetGenImage get idle2 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_2.png');
-
-  /// File path: assets/images/enemies/tooth/idle/idle_3.png
-  AssetGenImage get idle3 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_3.png');
-
-  /// File path: assets/images/enemies/tooth/idle/idle_4.png
-  AssetGenImage get idle4 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_4.png');
-
-  /// File path: assets/images/enemies/tooth/idle/idle_5.png
-  AssetGenImage get idle5 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_5.png');
-
-  /// File path: assets/images/enemies/tooth/idle/idle_6.png
-  AssetGenImage get idle6 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_6.png');
-
-  /// File path: assets/images/enemies/tooth/idle/idle_7.png
-  AssetGenImage get idle7 =>
-      const AssetGenImage('assets/images/enemies/tooth/idle/idle_7.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [idle0, idle1, idle2, idle3, idle4, idle5, idle6, idle7];
-}
-
-class $AssetsImagesEnemiesToothRunLeftGen {
-  const $AssetsImagesEnemiesToothRunLeftGen();
-
-  /// File path: assets/images/enemies/tooth/run_left/run_left_1.png
-  AssetGenImage get runLeft1 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_left/run_left_1.png');
-
-  /// File path: assets/images/enemies/tooth/run_left/run_left_2.png
-  AssetGenImage get runLeft2 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_left/run_left_2.png');
-
-  /// File path: assets/images/enemies/tooth/run_left/run_left_3.png
-  AssetGenImage get runLeft3 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_left/run_left_3.png');
-
-  /// File path: assets/images/enemies/tooth/run_left/run_left_4.png
-  AssetGenImage get runLeft4 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_left/run_left_4.png');
-
-  /// File path: assets/images/enemies/tooth/run_left/run_left_5.png
-  AssetGenImage get runLeft5 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_left/run_left_5.png');
-
-  /// File path: assets/images/enemies/tooth/run_left/run_left_6.png
-  AssetGenImage get runLeft6 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_left/run_left_6.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [runLeft1, runLeft2, runLeft3, runLeft4, runLeft5, runLeft6];
-}
-
-class $AssetsImagesEnemiesToothRunRightGen {
-  const $AssetsImagesEnemiesToothRunRightGen();
-
-  /// File path: assets/images/enemies/tooth/run_right/run_right_1.png
-  AssetGenImage get runRight1 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_right/run_right_1.png');
-
-  /// File path: assets/images/enemies/tooth/run_right/run_right_2.png
-  AssetGenImage get runRight2 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_right/run_right_2.png');
-
-  /// File path: assets/images/enemies/tooth/run_right/run_right_3.png
-  AssetGenImage get runRight3 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_right/run_right_3.png');
-
-  /// File path: assets/images/enemies/tooth/run_right/run_right_4.png
-  AssetGenImage get runRight4 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_right/run_right_4.png');
-
-  /// File path: assets/images/enemies/tooth/run_right/run_right_5.png
-  AssetGenImage get runRight5 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_right/run_right_5.png');
-
-  /// File path: assets/images/enemies/tooth/run_right/run_right_6.png
-  AssetGenImage get runRight6 => const AssetGenImage(
-      'assets/images/enemies/tooth/run_right/run_right_6.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values =>
-      [runRight1, runRight2, runRight3, runRight4, runRight5, runRight6];
+  List<AssetGenImage> get values => [
+        hotAirBalloonIdleRight0,
+        landMiddleLeft,
+        landMiddleRight,
+        landTopCenter,
+        landTopLeft,
+        landTopRight,
+        landX,
+        markerGreenX,
+        markerRedX,
+        objectCursorHandleIdle,
+        objectPlant1Idle,
+        objectPlant2Idle,
+        objectPlant3Idle,
+        objectPlant4Idle,
+        objectPlant5Idle,
+        objectPlant6Idle
+      ];
 }
 
 class Assets {
   Assets._();
 
   static const $AssetsImagesGen images = $AssetsImagesGen();
-  static const $AssetsJsonGen json = $AssetsJsonGen();
 }
 
 class AssetGenImage {

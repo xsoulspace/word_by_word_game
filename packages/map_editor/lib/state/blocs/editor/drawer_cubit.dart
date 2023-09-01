@@ -7,9 +7,10 @@ class DrawerCubitDto {
   final LocalDbDataSource localDbDataSource;
 }
 
-String get _tempPersistanceKey => 'map_editor_save';
+String get _levelsMapsPersistanceKet => 'maps_saves';
 
-class DrawerCubit extends Cubit<DrawerCubitState> {
+/// Base class for canvas resources
+abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
   DrawerCubit({
     required this.dto,
     required this.resourcesLoader,
@@ -24,45 +25,228 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   final ResourcesLoader resourcesLoader;
   void changeOrigin(final Vector2 value) => emit(state.copyWith(origin: value));
 
-  void changeState(final DrawerCubitState newState) => emit(newState);
-
   /// This function should be triggered before game is started to renderc
-  Future<void> loadInitialData() async {
-    await loadResources();
-    await loadEditorCanvasData();
+  @mustBeOverridden
+  Future<void> loadInitialData();
+
+  Future<void> prepareTilesetForLevel({
+    required final LevelModel level,
+  }) async {
+    final tilesetConfig = getTilesetConfig(type: level.tilesetType);
+    await loadTileset(tilesetConfig);
   }
 
-  Future<void> loadEditorCanvasData() async {
-    final canvasDataJson = await dto.localDbDataSource.getMap(
-      _tempPersistanceKey,
+  TilesetConfigModel getTilesetConfig({
+    required final TilesetType type,
+  }) {
+    TilesetConfigModel? tilesetConfig = state.tilesetsConfigs.firstWhereOrNull(
+      (final config) => config.type == type,
     );
+    return tilesetConfig ??= state.tilesetsConfigs.firstWhere(
+      (final e) => e.cleanPath.endsWith(TilesetType.colourful.name),
+    );
+  }
 
-    final canvasData = canvasDataJson.isEmpty
-        ? CanvasDataModel.empty
-        : CanvasDataModel.fromJson(canvasDataJson);
+  void loadTilesets() {
+    final tilesetsPresetsConfigs = Assets.images.tilesets.values
+        .where((final e) => e.contains('preset_data.json'))
+        .map((final e) => TilesetConfigModel(path: e))
+        .toList();
+    emit(state.copyWith(tilesetsConfigs: tilesetsPresetsConfigs));
+  }
+
+  Future<void> loadResourcesData() async {
+    await resourcesLoader.onLoad();
+  }
+
+  Future<void> loadTileset(final TilesetConfigModel tilesetConfig) async {
+    final jsonStr =
+        await rootBundle.loadString('$rootPath${tilesetConfig.presetPath}');
+    final json = jsonDecode(jsonStr) as Map<String, dynamic>;
+    final tileData = TilesetPresetDataModel.fromJson(json);
+    final tilesetResources = TilesetPresetResources.fromModel(
+      data: tileData,
+      resourcesLoader: resourcesLoader,
+      tilesetConfig: tilesetConfig,
+    );
     emit(
       state.copyWith(
+        tileResources: tilesetResources,
         canvasData: canvasData,
         drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
       ),
     );
+    resourcesLoader.loadTileset(
+      tilesetConfig: tilesetConfig,
+      tilesetResources: tilesetResources,
+    );
+    final images = _images;
+    if (images != null) await loadCache(images: images);
   }
 
-  Future<void> loadResources() async {
-    await resourcesLoader.onLoad();
-    final jsonStr =
-        await rootBundle.loadString('$rootPath${Assets.json.tilesPresetData}');
-    final json = jsonDecode(jsonStr) as Map<String, dynamic>;
-    final tileData = TilesPresetDataModel.fromJson(json);
-    final tileResources = TilesPresetResources.fromModel(
-      data: tileData,
-      resourcesLoader: resourcesLoader,
+  Images? _images;
+
+  /// This function should be triggered when game.onLoad happening
+  Future<void> loadCache({required final Images images}) async {
+    images.clearCache();
+    final eImages = _images ??= images;
+    Future<void> load(final PresetTileResource resource) =>
+        resource.loadToCache(images: eImages);
+
+    await Future.wait([
+      resourcesLoader.tilesetConstants.onLoad(images: eImages),
+      ...state.tileResources.tiles.values.map(load),
+      ...state.tileResources.objects.values.map(load),
+      ...state.tileResources.npcs.values.map(load),
+      ...state.tileResources.other.values.map(load),
+      ...state.tileResources.players.values.map(load),
+    ]);
+  }
+
+  TilesetPresetResources get tilesPresetResources => state.tileResources;
+  set tilesPresetResources(final TilesetPresetResources presetResources) =>
+      emit(state.copyWith(tileResources: presetResources));
+
+  CanvasDataModel get canvasData => state.canvasData;
+
+  set canvasData(final CanvasDataModel value) {
+    emit(state.copyWith(canvasData: value));
+  }
+
+  Map<Gid, RenderObjectModel> get objects => {
+        ...canvasData.objects,
+        canvasData.playerObject.id: canvasData.playerObject,
+      };
+  RenderObjectModel get player => canvasData.playerObject;
+
+  set player(final RenderObjectModel value) {
+    canvasData = canvasData.copyWith(
+      playerObject: value,
     );
+  }
+
+  List<LayerModel> get layers => state.canvasData.layers;
+  set layers(final List<LayerModel> layers) => emit(
+        state.copyWith(
+          canvasData: state.canvasData.copyWith(layers: layers),
+        ),
+      );
+}
+
+/// Class for editing canvas data
+final class EditorDrawerCubit extends DrawerCubit {
+  EditorDrawerCubit({required super.dto, required super.resourcesLoader});
+  final levelsMapsNotifier = ValueNotifier(<CanvasDataModel>[]);
+  @override
+  Future<void> close() {
+    levelsMapsNotifier.dispose();
+    return super.close();
+  }
+
+  @override
+  Future<void> loadInitialData() async {
+    await loadAllCanvasData();
+    await loadResourcesData();
+    loadTilesets();
+
+    CanvasDataModel? updatedCanvasData = levelsMapsNotifier.value.firstOrNull;
+    if (updatedCanvasData == null) {
+      updatedCanvasData = await _createCanvasData();
+      levelsMapsNotifier.value = [updatedCanvasData];
+    }
+    await loadCanvasData(updatedCanvasData);
+    await saveData();
+  }
+
+  /// reloads the canvas data completely, with tileset
+  /// resources, layers, players & objects
+  Future<void> changeCurrentLevelMap(
+    final CanvasDataModel canvasData,
+  ) async {
+    await saveData();
+    await loadCanvasData(canvasData);
+  }
+
+  Future<CanvasDataModel> _createCanvasData() async {
+    /// preloading tileset config to get name and type
+    final tilesetConfig = getTilesetConfig(
+      type: state.tilesetsConfigs.first.type,
+    );
+    await loadTileset(tilesetConfig);
+    return CanvasDataModel.create().copyWith(
+      name: state.tileResources.name,
+      tilesetType: state.tileResources.type,
+    );
+  }
+
+  Future<void> addLevelMap() async {
+    final newCanvasData = await _createCanvasData();
+    await loadCanvasData(newCanvasData);
+    await saveData();
+  }
+
+  Future<void> removeLevelMap(final BuildContext context) async {
+    if (levelsMapsNotifier.value.length <= 1) return;
+    final shouldProceedToDelete = await showAdaptiveDialog<bool>(
+      context: context,
+      builder: (final context) => AlertDialog.adaptive(
+        title: const Text('Are you sure want to delete this level?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Yes'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('No'),
+          ),
+        ],
+      ),
+    );
+    if (shouldProceedToDelete == null || !shouldProceedToDelete) return;
+    final canvasDatas = [...levelsMapsNotifier.value];
+    final index =
+        levelsMapsNotifier.value.indexWhere((final e) => e.id == canvasData.id);
+    canvasDatas.removeAt(index);
+    levelsMapsNotifier.value = canvasDatas;
+    final firstCanvasData = canvasDatas.first;
     emit(
       state.copyWith(
-        tileResources: tileResources,
-        canvasData: canvasData,
-        drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
+        canvasData: firstCanvasData,
+        drawLayerId:
+            firstCanvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
+      ),
+    );
+    unawaited(saveData());
+  }
+
+  /// Changes tileset type in current canvas data
+  Future<void> changeTilesetType(final TilesetType type) async {
+    final updatedCanvasData = canvasData.copyWith(
+      tilesetType: type,
+      layers: [],
+    );
+    await loadCanvasData(updatedCanvasData);
+  }
+
+  Future<void> loadAllCanvasData() async {
+    final levelsJsons = await dto.localDbDataSource
+        .getMapIterable(key: _levelsMapsPersistanceKet);
+    levelsMapsNotifier.value =
+        levelsJsons.map(CanvasDataModel.fromJson).toList();
+  }
+
+  Future<void> loadCanvasData(
+    final CanvasDataModel newCanvasData,
+  ) async {
+    final tilesetConfig = getTilesetConfig(type: newCanvasData.tilesetType);
+    await loadTileset(tilesetConfig);
+
+    emit(
+      state.copyWith(
+        canvasData: newCanvasData,
+        drawLayerId:
+            newCanvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
       ),
     );
   }
@@ -113,17 +297,26 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
           TextButton(
             onPressed: messenger.clearMaterialBanners,
             child: const Text('Close'),
-          )
+          ),
         ],
       ),
     );
   }
 
   Future<void> saveData() async {
-    await dto.localDbDataSource.setMap(
-      key: _tempPersistanceKey,
-      value: canvasData.toJson(),
+    final levels = [...levelsMapsNotifier.value];
+    final index = levels.indexWhere((final e) => e.id == canvasData.id);
+    if (index < 0) {
+      levels.add(canvasData);
+    } else {
+      levels[index] = canvasData;
+    }
+    final eLevels = levels.map((final e) => e.toJson()).toList();
+    await dto.localDbDataSource.setMapList(
+      key: _levelsMapsPersistanceKet,
+      value: eLevels,
     );
+    levelsMapsNotifier.value = levels;
   }
 
   Future<void> onChangeName(final LocalizedMap name) async {
@@ -133,45 +326,6 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
           name: name,
         ),
       ),
-    );
-  }
-
-  /// This function should be triggered when game.onLoad happening
-  Future<void> loadCache({
-    required final Images images,
-  }) async {
-    Future<void> load(final PresetTileResource resource) =>
-        resource.loadToCache(images: images);
-
-    await Future.wait([
-      resourcesLoader.tilesetConstants.onLoad(images: images),
-      ...state.tileResources.tiles.values.map(load),
-      ...state.tileResources.objects.values.map(load),
-      ...state.tileResources.npcs.values.map(load),
-      ...state.tileResources.other.values.map(load),
-      ...state.tileResources.players.values.map(load),
-    ]);
-  }
-
-  TilesPresetResources get tilesResources => state.tileResources;
-  set tilesResources(final TilesPresetResources presetResources) =>
-      emit(state.copyWith(tileResources: presetResources));
-
-  CanvasDataModel get canvasData => state.canvasData;
-
-  set canvasData(final CanvasDataModel value) {
-    emit(state.copyWith(canvasData: value));
-  }
-
-  Map<Gid, RenderObjectModel> get objects => {
-        ...canvasData.objects,
-        canvasData.playerObject.id: canvasData.playerObject,
-      };
-  RenderObjectModel get player => canvasData.playerObject;
-
-  set player(final RenderObjectModel value) {
-    canvasData = canvasData.copyWith(
-      playerObject: value,
     );
   }
 
@@ -186,17 +340,13 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
     layers = [...state.canvasData.layers]..[index] = layer;
   }
 
-  List<LayerModel> get layers => state.canvasData.layers;
-  set layers(final List<LayerModel> layers) => emit(
-        state.copyWith(
-          canvasData: state.canvasData.copyWith(layers: layers),
-        ),
-      );
-
   void createNewLayer({
     required final String title,
   }) {
     final layer = LayerModel(title: title, id: LayerModelId.create());
+    if (drawLayer.id.isEmpty) {
+      emit(state.copyWith(drawLayerId: layer.id));
+    }
     layers = [...state.canvasData.layers, layer];
   }
 
@@ -244,5 +394,5 @@ class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   List<PresetTileResource> get objectsMenuTiles =>
-      tilesResources.objects.values.toList();
+      tilesPresetResources.objects.values.toList();
 }

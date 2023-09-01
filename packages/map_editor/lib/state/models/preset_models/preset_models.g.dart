@@ -31,13 +31,14 @@ Map<String, dynamic> _$$_PresetTileModelToJson(_$_PresetTileModel instance) =>
 const _$TileTypeEnumMap = {
   TileType.autotile: 'autotile',
   TileType.object: 'object',
+  TileType.playerObject: 'player_object',
 };
 
 const _$DataCategoryTypeEnumMap = {
   DataCategoryType.terrain: 'terrain',
   DataCategoryType.marker: 'marker',
   DataCategoryType.water: 'water',
-  DataCategoryType.palms: 'palms',
+  DataCategoryType.plants: 'plants',
   DataCategoryType.players: 'players',
   DataCategoryType.other: 'other',
 };
@@ -65,36 +66,27 @@ _$_PresetTileGraphicsModel _$$_PresetTileGraphicsModelFromJson(
         Map<String, dynamic> json) =>
     _$_PresetTileGraphicsModel(
       type: $enumDecode(_$TileGraphicsTypeEnumMap, json['type']),
-      path: json['path'] as String? ?? '',
       animated: json['animated'] as bool? ?? false,
       behaviours: (json['behaviours'] as List<dynamic>?)
               ?.map((e) => $enumDecode(_$TileBehaviourTypeEnumMap, e))
               .toList() ??
           const [],
-      neighborsAssociativeMap: (json['neighbors_associative_map']
-                  as Map<String, dynamic>?)
-              ?.map(
-            (k, e) => MapEntry(k,
-                NeighborsAssociationModel.fromJson(e as Map<String, dynamic>)),
-          ) ??
-          const {},
     );
 
 Map<String, dynamic> _$$_PresetTileGraphicsModelToJson(
         _$_PresetTileGraphicsModel instance) =>
     <String, dynamic>{
       'type': _$TileGraphicsTypeEnumMap[instance.type]!,
-      'path': instance.path,
       'animated': instance.animated,
       'behaviours': instance.behaviours
           .map((e) => _$TileBehaviourTypeEnumMap[e]!)
           .toList(),
-      'neighbors_associative_map': instance.neighborsAssociativeMap,
     };
 
 const _$TileGraphicsTypeEnumMap = {
   TileGraphicsType.directional: 'directional',
   TileGraphicsType.character: 'character',
+  TileGraphicsType.standalone: 'standalone',
 };
 
 const _$TileBehaviourTypeEnumMap = {
@@ -105,57 +97,88 @@ const _$TileBehaviourTypeEnumMap = {
   TileBehaviourType.flyRight: 'fly_right',
 };
 
-_$_NeighborsAssociationModel _$$_NeighborsAssociationModelFromJson(
+_$_TilesetPresetDataModel _$$_TilesetPresetDataModelFromJson(
         Map<String, dynamic> json) =>
-    _$_NeighborsAssociationModel(
-      useWhenFilled: (json['use_when_filled'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-      useWhenNotFilled: (json['use_when_not_filled'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          const [],
-    );
-
-Map<String, dynamic> _$$_NeighborsAssociationModelToJson(
-        _$_NeighborsAssociationModel instance) =>
-    <String, dynamic>{
-      'use_when_filled': instance.useWhenFilled,
-      'use_when_not_filled': instance.useWhenNotFilled,
-    };
-
-_$_TilesPresetDataModel _$$_TilesPresetDataModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_TilesPresetDataModel(
+    _$_TilesetPresetDataModel(
       tiles: json['tiles'] == null
           ? const {}
-          : TilesPresetDataModel._tilesFromJson(
+          : TilesetPresetDataModel._tilesFromJson(
               json['tiles'] as Map<String, dynamic>),
       objects: json['objects'] == null
           ? const {}
-          : TilesPresetDataModel._tilesFromJson(
+          : TilesetPresetDataModel._tilesFromJson(
               json['objects'] as Map<String, dynamic>),
       npcs: json['npcs'] == null
           ? const {}
-          : TilesPresetDataModel._tilesFromJson(
+          : TilesetPresetDataModel._tilesFromJson(
               json['npcs'] as Map<String, dynamic>),
       players: json['players'] == null
           ? const {}
-          : TilesPresetDataModel._tilesFromJson(
+          : TilesetPresetDataModel._tilesFromJson(
               json['players'] as Map<String, dynamic>),
       other: json['other'] == null
           ? const {}
-          : TilesPresetDataModel._tilesFromJson(
+          : TilesetPresetDataModel._tilesFromJson(
               json['other'] as Map<String, dynamic>),
+      autotileRules: (json['autotile_rules'] as Map<String, dynamic>?)?.map(
+            (k, e) => MapEntry($enumDecode(_$SpriteTileNameEnumMap, k),
+                (e as List<dynamic>).map((e) => e as String).toList()),
+          ) ??
+          _nameCodes,
+      name: json['name'] == null
+          ? LocalizedMap.empty
+          : LocalizedMap.fromJsonValueMap(json['name'] as Map<String, dynamic>),
+      type: $enumDecodeNullable(_$TilesetTypeEnumMap, json['type']) ??
+          TilesetType.colourful,
+      theme: json['theme'] == null
+          ? TilesetThemeModel.empty
+          : TilesetThemeModel.fromJson(json['theme'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_TilesPresetDataModelToJson(
-        _$_TilesPresetDataModel instance) =>
+Map<String, dynamic> _$$_TilesetPresetDataModelToJson(
+        _$_TilesetPresetDataModel instance) =>
     <String, dynamic>{
-      'tiles': TilesPresetDataModel._tilesToJson(instance.tiles),
-      'objects': TilesPresetDataModel._tilesToJson(instance.objects),
-      'npcs': TilesPresetDataModel._tilesToJson(instance.npcs),
-      'players': TilesPresetDataModel._tilesToJson(instance.players),
-      'other': TilesPresetDataModel._tilesToJson(instance.other),
+      'tiles': TilesetPresetDataModel._tilesToJson(instance.tiles),
+      'objects': TilesetPresetDataModel._tilesToJson(instance.objects),
+      'npcs': TilesetPresetDataModel._tilesToJson(instance.npcs),
+      'players': TilesetPresetDataModel._tilesToJson(instance.players),
+      'other': TilesetPresetDataModel._tilesToJson(instance.other),
+      'autotile_rules': instance.autotileRules
+          .map((k, e) => MapEntry(_$SpriteTileNameEnumMap[k]!, e)),
+      'name': LocalizedMap.toJsonValueMap(instance.name),
+      'type': _$TilesetTypeEnumMap[instance.type]!,
+      'theme': instance.theme,
+    };
+
+const _$SpriteTileNameEnumMap = {
+  SpriteTileName.topLeft: 'topLeft',
+  SpriteTileName.topLeftSmooth: 'topLeftSmooth',
+  SpriteTileName.topLeftCorner: 'topLeftCorner',
+  SpriteTileName.topCenter: 'topCenter',
+  SpriteTileName.topRight: 'topRight',
+  SpriteTileName.topRightSmooth: 'topRightSmooth',
+  SpriteTileName.topRightCorner: 'topRightCorner',
+  SpriteTileName.middleLeft: 'middleLeft',
+  SpriteTileName.middleRight: 'middleRight',
+  SpriteTileName.x: 'x',
+  SpriteTileName.bottomLeft: 'bottomLeft',
+  SpriteTileName.bottomCenter: 'bottomCenter',
+  SpriteTileName.bottomRight: 'bottomRight',
+};
+
+const _$TilesetTypeEnumMap = {
+  TilesetType.colourful: 'colourful',
+  TilesetType.whiteBlack: 'white_black',
+  TilesetType.evening: 'evening',
+};
+
+_$_TilesetThemeModel _$$_TilesetThemeModelFromJson(Map<String, dynamic> json) =>
+    _$_TilesetThemeModel(
+      backgroundSkyColorHex: json['backgroundSkyColorHex'] as String,
+    );
+
+Map<String, dynamic> _$$_TilesetThemeModelToJson(
+        _$_TilesetThemeModel instance) =>
+    <String, dynamic>{
+      'backgroundSkyColorHex': instance.backgroundSkyColorHex,
     };

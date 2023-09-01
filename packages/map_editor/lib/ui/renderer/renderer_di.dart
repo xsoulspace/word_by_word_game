@@ -14,7 +14,7 @@ class GameRendererDiDto {
   /// ********************************************
   final MapEditorCubit mapEditorBloc;
   final WorldBloc worldBloc;
-  final DrawerCubit drawerCubit;
+  final EditorDrawerCubit drawerCubit;
   final EditorMechanicsCollection mechanics;
   final material.ThemeData theme;
 
@@ -25,7 +25,7 @@ class GameRendererDiDto {
       FlameBlocProvider<MapEditorCubit, MapEditorBlocState>.value(
         value: mapEditorBloc,
       ),
-      FlameBlocProvider<DrawerCubit, DrawerCubitState>.value(
+      FlameBlocProvider<EditorDrawerCubit, DrawerCubitState>.value(
         value: drawerCubit,
       ),
     ];

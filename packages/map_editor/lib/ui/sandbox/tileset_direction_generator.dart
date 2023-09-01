@@ -64,7 +64,7 @@ class _TilesetDirectionGeneratorState extends State<TilesetDirectionGenerator> {
           TextButton(
             onPressed: messenger.clearMaterialBanners,
             child: const Text('Close'),
-          )
+          ),
         ],
       ),
     );
@@ -117,7 +117,7 @@ class _TilesetDirectionGeneratorState extends State<TilesetDirectionGenerator> {
                             onChanged: (final isAdded) {
                               _onChange(direction);
                             },
-                          )
+                          ),
                         ],
                       );
                     },
