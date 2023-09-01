@@ -391,42 +391,48 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
           final vectorPosition =
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
           final resourceTile = tilesResources[cellTile.tileId];
-          if (resourceTile == null) continue;
-          final tile = resourceTile.tile;
-          final graphics = tile.graphics;
+          if (resourceTile != null) {
+            final tile = resourceTile.tile;
+            final graphics = tile.graphics;
 
-          void renderPath(final SpriteCode spriteCode) {
-            final tileName = tilesetConstants.getSpriteTileName(
-              spriteCode: spriteCode,
-            );
-            final tilePath = tilesetConstants.getSpriteTilePath(
-              tile: tile,
-              tileName: tileName,
-            );
+            void renderPath(final SpriteCode spriteCode) {
+              final tileName = tilesetConstants.getSpriteTileName(
+                spriteCode: spriteCode,
+              );
+              final tilePath = tilesetConstants.getSpriteTilePath(
+                tile: tile,
+                tileName: tileName,
+              );
 
-            final image = images.fromCache(tilePath);
+              final image = images.fromCache(tilePath);
 
-            canvas.drawImage(
-              image,
-              vectorPosition.toOffset(),
-              _paint,
-            );
+              canvas.drawImage(
+                image,
+                vectorPosition.toOffset(),
+                _paint,
+              );
+            }
+
+            /// Drawing tile
+            switch (graphics.type) {
+              case TileGraphicsType.character:
+                assert(false, 'Character graphics type cannot be used in tile');
+              case TileGraphicsType.standalone:
+                renderPath('X');
+              case TileGraphicsType.directional:
+                final title = cellTile.tileMergedDirectionsTitle;
+                final code = title.isEmpty ? 'X' : title;
+                renderPath(code);
+            }
           }
 
-          /// Drawing tile
-          switch (graphics.type) {
-            case TileGraphicsType.character:
-              assert(false, 'Character graphics type cannot be used in tile');
-            case TileGraphicsType.standalone:
-              renderPath('X');
-            case TileGraphicsType.directional:
-              final title = cellTile.tileMergedDirectionsTitle;
-              final code = title.isEmpty ? 'X' : title;
-              renderPath(code);
-          }
           for (final gid in cellTile.objects) {
             final renderObject = canvasData.objects[gid];
             if (renderObject == null) continue;
+            final resourceTile = tilesResources[renderObject.tileId];
+            if (resourceTile == null) continue;
+            final tile = resourceTile.tile;
+            final graphics = tile.graphics;
 
             /// Drawing tile
             switch (graphics.type) {
@@ -435,7 +441,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
                     .behaviourPaths[renderObject.animationBehaviour];
                 if (animationEntry == null) continue;
                 final img = images.fromCache(animationEntry.currentFramePath);
-                canvas.drawImage(img, renderObject.position.toOffset(), _paint);
+                canvas.drawImage(img, vectorPosition.toOffset(), _paint);
               case TileGraphicsType.directional || TileGraphicsType.standalone:
                 assert(
                   false,
