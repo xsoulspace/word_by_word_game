@@ -58,6 +58,7 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
     @Default(LocalizedMap.empty)
     final LocalizedMap name,
     @Default(TilesetType.colourful) final TilesetType type,
+    @Default(TilesetThemeModel.empty) final TilesetThemeModel theme,
   }) = _TilesetPresetDataModel;
 
   factory TilesetPresetDataModel.fromJson(final Map<String, dynamic> json) =>
@@ -114,10 +115,23 @@ class TilesetConfigModel with _$TilesetConfigModel {
   String get presetPath => path;
 }
 
+@freezed
+class TilesetThemeModel with _$TilesetThemeModel {
+  const factory TilesetThemeModel({
+    required final String backgroundSkyColorHex,
+  }) = _TilesetThemeModel;
+  const TilesetThemeModel._();
+  factory TilesetThemeModel.fromJson(final Map<String, dynamic> json) =>
+      _$TilesetThemeModelFromJson(json);
+  static const empty = TilesetThemeModel(backgroundSkyColorHex: 'FFFFFF');
+  Color get backgroundSkyColor => backgroundSkyColorHex.toColor();
+}
+
 @Freezed(toJson: false, fromJson: false)
 class TilesetPresetResources with _$TilesetPresetResources {
   const factory TilesetPresetResources({
     @Default(LocalizedMap.empty) final LocalizedMap name,
+    @Default(TilesetThemeModel.empty) final TilesetThemeModel theme,
     @Default(TilesetType.colourful) final TilesetType type,
     @Default({}) final Map<SpriteTileName, List<SpriteCode>> autotileRules,
     @Default({}) final Map<TileId, PresetTileResource> tiles,
@@ -135,6 +149,7 @@ class TilesetPresetResources with _$TilesetPresetResources {
       TilesetPresetResources(
         name: data.name,
         type: data.type,
+        theme: data.theme,
         autotileRules: data.autotileRules,
         tiles: data.tiles.map(
           (final key, final tile) => MapEntry(

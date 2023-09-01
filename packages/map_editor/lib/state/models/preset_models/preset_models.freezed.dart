@@ -838,6 +838,7 @@ mixin _$TilesetPresetDataModel {
       toJson: LocalizedMap.toJsonValueMap)
   LocalizedMap get name => throw _privateConstructorUsedError;
   TilesetType get type => throw _privateConstructorUsedError;
+  TilesetThemeModel get theme => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -877,9 +878,11 @@ abstract class $TilesetPresetDataModelCopyWith<$Res> {
           fromJson: LocalizedMap.fromJsonValueMap,
           toJson: LocalizedMap.toJsonValueMap)
       LocalizedMap name,
-      TilesetType type});
+      TilesetType type,
+      TilesetThemeModel theme});
 
   $LocalizedMapCopyWith<$Res> get name;
+  $TilesetThemeModelCopyWith<$Res> get theme;
 }
 
 /// @nodoc
@@ -904,6 +907,7 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
     Object? autotileRules = null,
     Object? name = null,
     Object? type = null,
+    Object? theme = null,
   }) {
     return _then(_value.copyWith(
       tiles: null == tiles
@@ -938,6 +942,10 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TilesetType,
+      theme: null == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as TilesetThemeModel,
     ) as $Val);
   }
 
@@ -946,6 +954,14 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
   $LocalizedMapCopyWith<$Res> get name {
     return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
       return _then(_value.copyWith(name: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TilesetThemeModelCopyWith<$Res> get theme {
+    return $TilesetThemeModelCopyWith<$Res>(_value.theme, (value) {
+      return _then(_value.copyWith(theme: value) as $Val);
     });
   }
 }
@@ -984,10 +1000,13 @@ abstract class _$$_TilesetPresetDataModelCopyWith<$Res>
           fromJson: LocalizedMap.fromJsonValueMap,
           toJson: LocalizedMap.toJsonValueMap)
       LocalizedMap name,
-      TilesetType type});
+      TilesetType type,
+      TilesetThemeModel theme});
 
   @override
   $LocalizedMapCopyWith<$Res> get name;
+  @override
+  $TilesetThemeModelCopyWith<$Res> get theme;
 }
 
 /// @nodoc
@@ -1010,6 +1029,7 @@ class __$$_TilesetPresetDataModelCopyWithImpl<$Res>
     Object? autotileRules = null,
     Object? name = null,
     Object? type = null,
+    Object? theme = null,
   }) {
     return _then(_$_TilesetPresetDataModel(
       tiles: null == tiles
@@ -1044,6 +1064,10 @@ class __$$_TilesetPresetDataModelCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as TilesetType,
+      theme: null == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as TilesetThemeModel,
     ));
   }
 }
@@ -1078,7 +1102,8 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
           fromJson: LocalizedMap.fromJsonValueMap,
           toJson: LocalizedMap.toJsonValueMap)
       this.name = LocalizedMap.empty,
-      this.type = TilesetType.colourful})
+      this.type = TilesetType.colourful,
+      this.theme = TilesetThemeModel.empty})
       : _tiles = tiles,
         _objects = objects,
         _npcs = npcs,
@@ -1161,10 +1186,13 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
   @override
   @JsonKey()
   final TilesetType type;
+  @override
+  @JsonKey()
+  final TilesetThemeModel theme;
 
   @override
   String toString() {
-    return 'TilesetPresetDataModel(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other, autotileRules: $autotileRules, name: $name, type: $type)';
+    return 'TilesetPresetDataModel(tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other, autotileRules: $autotileRules, name: $name, type: $type, theme: $theme)';
   }
 
   @override
@@ -1180,7 +1208,8 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
             const DeepCollectionEquality()
                 .equals(other._autotileRules, _autotileRules) &&
             (identical(other.name, name) || other.name == name) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.theme, theme) || other.theme == theme));
   }
 
   @JsonKey(ignore: true)
@@ -1194,7 +1223,8 @@ class _$_TilesetPresetDataModel implements _TilesetPresetDataModel {
       const DeepCollectionEquality().hash(_other),
       const DeepCollectionEquality().hash(_autotileRules),
       name,
-      type);
+      type,
+      theme);
 
   @JsonKey(ignore: true)
   @override
@@ -1238,7 +1268,8 @@ abstract class _TilesetPresetDataModel implements TilesetPresetDataModel {
           fromJson: LocalizedMap.fromJsonValueMap,
           toJson: LocalizedMap.toJsonValueMap)
       final LocalizedMap name,
-      final TilesetType type}) = _$_TilesetPresetDataModel;
+      final TilesetType type,
+      final TilesetThemeModel theme}) = _$_TilesetPresetDataModel;
 
   factory _TilesetPresetDataModel.fromJson(Map<String, dynamic> json) =
       _$_TilesetPresetDataModel.fromJson;
@@ -1277,6 +1308,8 @@ abstract class _TilesetPresetDataModel implements TilesetPresetDataModel {
   LocalizedMap get name;
   @override
   TilesetType get type;
+  @override
+  TilesetThemeModel get theme;
   @override
   @JsonKey(ignore: true)
   _$$_TilesetPresetDataModelCopyWith<_$_TilesetPresetDataModel> get copyWith =>
@@ -1408,9 +1441,150 @@ abstract class _TilesetConfigModel extends TilesetConfigModel {
       throw _privateConstructorUsedError;
 }
 
+TilesetThemeModel _$TilesetThemeModelFromJson(Map<String, dynamic> json) {
+  return _TilesetThemeModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$TilesetThemeModel {
+  String get backgroundSkyColorHex => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $TilesetThemeModelCopyWith<TilesetThemeModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $TilesetThemeModelCopyWith<$Res> {
+  factory $TilesetThemeModelCopyWith(
+          TilesetThemeModel value, $Res Function(TilesetThemeModel) then) =
+      _$TilesetThemeModelCopyWithImpl<$Res, TilesetThemeModel>;
+  @useResult
+  $Res call({String backgroundSkyColorHex});
+}
+
+/// @nodoc
+class _$TilesetThemeModelCopyWithImpl<$Res, $Val extends TilesetThemeModel>
+    implements $TilesetThemeModelCopyWith<$Res> {
+  _$TilesetThemeModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? backgroundSkyColorHex = null,
+  }) {
+    return _then(_value.copyWith(
+      backgroundSkyColorHex: null == backgroundSkyColorHex
+          ? _value.backgroundSkyColorHex
+          : backgroundSkyColorHex // ignore: cast_nullable_to_non_nullable
+              as String,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_TilesetThemeModelCopyWith<$Res>
+    implements $TilesetThemeModelCopyWith<$Res> {
+  factory _$$_TilesetThemeModelCopyWith(_$_TilesetThemeModel value,
+          $Res Function(_$_TilesetThemeModel) then) =
+      __$$_TilesetThemeModelCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({String backgroundSkyColorHex});
+}
+
+/// @nodoc
+class __$$_TilesetThemeModelCopyWithImpl<$Res>
+    extends _$TilesetThemeModelCopyWithImpl<$Res, _$_TilesetThemeModel>
+    implements _$$_TilesetThemeModelCopyWith<$Res> {
+  __$$_TilesetThemeModelCopyWithImpl(
+      _$_TilesetThemeModel _value, $Res Function(_$_TilesetThemeModel) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? backgroundSkyColorHex = null,
+  }) {
+    return _then(_$_TilesetThemeModel(
+      backgroundSkyColorHex: null == backgroundSkyColorHex
+          ? _value.backgroundSkyColorHex
+          : backgroundSkyColorHex // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_TilesetThemeModel extends _TilesetThemeModel {
+  const _$_TilesetThemeModel({required this.backgroundSkyColorHex}) : super._();
+
+  factory _$_TilesetThemeModel.fromJson(Map<String, dynamic> json) =>
+      _$$_TilesetThemeModelFromJson(json);
+
+  @override
+  final String backgroundSkyColorHex;
+
+  @override
+  String toString() {
+    return 'TilesetThemeModel(backgroundSkyColorHex: $backgroundSkyColorHex)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_TilesetThemeModel &&
+            (identical(other.backgroundSkyColorHex, backgroundSkyColorHex) ||
+                other.backgroundSkyColorHex == backgroundSkyColorHex));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, backgroundSkyColorHex);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_TilesetThemeModelCopyWith<_$_TilesetThemeModel> get copyWith =>
+      __$$_TilesetThemeModelCopyWithImpl<_$_TilesetThemeModel>(
+          this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_TilesetThemeModelToJson(
+      this,
+    );
+  }
+}
+
+abstract class _TilesetThemeModel extends TilesetThemeModel {
+  const factory _TilesetThemeModel(
+      {required final String backgroundSkyColorHex}) = _$_TilesetThemeModel;
+  const _TilesetThemeModel._() : super._();
+
+  factory _TilesetThemeModel.fromJson(Map<String, dynamic> json) =
+      _$_TilesetThemeModel.fromJson;
+
+  @override
+  String get backgroundSkyColorHex;
+  @override
+  @JsonKey(ignore: true)
+  _$$_TilesetThemeModelCopyWith<_$_TilesetThemeModel> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
 /// @nodoc
 mixin _$TilesetPresetResources {
   LocalizedMap get name => throw _privateConstructorUsedError;
+  TilesetThemeModel get theme => throw _privateConstructorUsedError;
   TilesetType get type => throw _privateConstructorUsedError;
   Map<SpriteTileName, List<String>> get autotileRules =>
       throw _privateConstructorUsedError;
@@ -1438,6 +1612,7 @@ abstract class $TilesetPresetResourcesCopyWith<$Res> {
   @useResult
   $Res call(
       {LocalizedMap name,
+      TilesetThemeModel theme,
       TilesetType type,
       Map<SpriteTileName, List<String>> autotileRules,
       Map<TileId, PresetTileResource> tiles,
@@ -1447,6 +1622,7 @@ abstract class $TilesetPresetResourcesCopyWith<$Res> {
       Map<TileId, PresetTileResource> other});
 
   $LocalizedMapCopyWith<$Res> get name;
+  $TilesetThemeModelCopyWith<$Res> get theme;
 }
 
 /// @nodoc
@@ -1464,6 +1640,7 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
   @override
   $Res call({
     Object? name = null,
+    Object? theme = null,
     Object? type = null,
     Object? autotileRules = null,
     Object? tiles = null,
@@ -1477,6 +1654,10 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as LocalizedMap,
+      theme: null == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as TilesetThemeModel,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1515,6 +1696,14 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
       return _then(_value.copyWith(name: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $TilesetThemeModelCopyWith<$Res> get theme {
+    return $TilesetThemeModelCopyWith<$Res>(_value.theme, (value) {
+      return _then(_value.copyWith(theme: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1527,6 +1716,7 @@ abstract class _$$_TilesetPresetResourcesCopyWith<$Res>
   @useResult
   $Res call(
       {LocalizedMap name,
+      TilesetThemeModel theme,
       TilesetType type,
       Map<SpriteTileName, List<String>> autotileRules,
       Map<TileId, PresetTileResource> tiles,
@@ -1537,6 +1727,8 @@ abstract class _$$_TilesetPresetResourcesCopyWith<$Res>
 
   @override
   $LocalizedMapCopyWith<$Res> get name;
+  @override
+  $TilesetThemeModelCopyWith<$Res> get theme;
 }
 
 /// @nodoc
@@ -1552,6 +1744,7 @@ class __$$_TilesetPresetResourcesCopyWithImpl<$Res>
   @override
   $Res call({
     Object? name = null,
+    Object? theme = null,
     Object? type = null,
     Object? autotileRules = null,
     Object? tiles = null,
@@ -1565,6 +1758,10 @@ class __$$_TilesetPresetResourcesCopyWithImpl<$Res>
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
               as LocalizedMap,
+      theme: null == theme
+          ? _value.theme
+          : theme // ignore: cast_nullable_to_non_nullable
+              as TilesetThemeModel,
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
@@ -1602,6 +1799,7 @@ class __$$_TilesetPresetResourcesCopyWithImpl<$Res>
 class _$_TilesetPresetResources implements _TilesetPresetResources {
   const _$_TilesetPresetResources(
       {this.name = LocalizedMap.empty,
+      this.theme = TilesetThemeModel.empty,
       this.type = TilesetType.colourful,
       final Map<SpriteTileName, List<String>> autotileRules = const {},
       final Map<TileId, PresetTileResource> tiles = const {},
@@ -1619,6 +1817,9 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
   @override
   @JsonKey()
   final LocalizedMap name;
+  @override
+  @JsonKey()
+  final TilesetThemeModel theme;
   @override
   @JsonKey()
   final TilesetType type;
@@ -1678,7 +1879,7 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
 
   @override
   String toString() {
-    return 'TilesetPresetResources(name: $name, type: $type, autotileRules: $autotileRules, tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other)';
+    return 'TilesetPresetResources(name: $name, theme: $theme, type: $type, autotileRules: $autotileRules, tiles: $tiles, objects: $objects, npcs: $npcs, players: $players, other: $other)';
   }
 
   @override
@@ -1687,6 +1888,7 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
         (other.runtimeType == runtimeType &&
             other is _$_TilesetPresetResources &&
             (identical(other.name, name) || other.name == name) &&
+            (identical(other.theme, theme) || other.theme == theme) &&
             (identical(other.type, type) || other.type == type) &&
             const DeepCollectionEquality()
                 .equals(other._autotileRules, _autotileRules) &&
@@ -1701,6 +1903,7 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
   int get hashCode => Object.hash(
       runtimeType,
       name,
+      theme,
       type,
       const DeepCollectionEquality().hash(_autotileRules),
       const DeepCollectionEquality().hash(_tiles),
@@ -1720,6 +1923,7 @@ class _$_TilesetPresetResources implements _TilesetPresetResources {
 abstract class _TilesetPresetResources implements TilesetPresetResources {
   const factory _TilesetPresetResources(
       {final LocalizedMap name,
+      final TilesetThemeModel theme,
       final TilesetType type,
       final Map<SpriteTileName, List<String>> autotileRules,
       final Map<TileId, PresetTileResource> tiles,
@@ -1730,6 +1934,8 @@ abstract class _TilesetPresetResources implements TilesetPresetResources {
 
   @override
   LocalizedMap get name;
+  @override
+  TilesetThemeModel get theme;
   @override
   TilesetType get type;
   @override

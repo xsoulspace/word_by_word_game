@@ -129,6 +129,9 @@ _$_TilesetPresetDataModel _$$_TilesetPresetDataModelFromJson(
           : LocalizedMap.fromJsonValueMap(json['name'] as Map<String, dynamic>),
       type: $enumDecodeNullable(_$TilesetTypeEnumMap, json['type']) ??
           TilesetType.colourful,
+      theme: json['theme'] == null
+          ? TilesetThemeModel.empty
+          : TilesetThemeModel.fromJson(json['theme'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_TilesetPresetDataModelToJson(
@@ -143,6 +146,7 @@ Map<String, dynamic> _$$_TilesetPresetDataModelToJson(
           .map((k, e) => MapEntry(_$SpriteTileNameEnumMap[k]!, e)),
       'name': LocalizedMap.toJsonValueMap(instance.name),
       'type': _$TilesetTypeEnumMap[instance.type]!,
+      'theme': instance.theme,
     };
 
 const _$SpriteTileNameEnumMap = {
@@ -166,3 +170,14 @@ const _$TilesetTypeEnumMap = {
   TilesetType.whiteBlack: 'white_black',
   TilesetType.evening: 'evening',
 };
+
+_$_TilesetThemeModel _$$_TilesetThemeModelFromJson(Map<String, dynamic> json) =>
+    _$_TilesetThemeModel(
+      backgroundSkyColorHex: json['backgroundSkyColorHex'] as String,
+    );
+
+Map<String, dynamic> _$$_TilesetThemeModelToJson(
+        _$_TilesetThemeModel instance) =>
+    <String, dynamic>{
+      'backgroundSkyColorHex': instance.backgroundSkyColorHex,
+    };

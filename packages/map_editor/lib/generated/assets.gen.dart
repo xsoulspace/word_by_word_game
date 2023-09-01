@@ -29,6 +29,8 @@ class $AssetsImagesPreviewGen {
 
   $AssetsImagesPreviewColourfulGen get colourful =>
       const $AssetsImagesPreviewColourfulGen();
+  $AssetsImagesPreviewEveningGen get evening =>
+      const $AssetsImagesPreviewEveningGen();
   $AssetsImagesPreviewWhiteBlackGen get whiteBlack =>
       const $AssetsImagesPreviewWhiteBlackGen();
 }
@@ -54,6 +56,9 @@ class $AssetsImagesTilesetsGen {
   /// File path: assets/images/tilesets/colourful_preset_data.json
   String get colourfulPresetData =>
       'assets/images/tilesets/colourful_preset_data.json';
+
+  $AssetsImagesTilesetsEveningGen get evening =>
+      const $AssetsImagesTilesetsEveningGen();
 
   /// File path: assets/images/tilesets/evening.fa
   String get eveningFa => 'assets/images/tilesets/evening.fa';
@@ -138,6 +143,17 @@ class $AssetsImagesPreviewColourfulGen {
       [markerGreen, markerRed, tropicalLand, tropicalWater];
 }
 
+class $AssetsImagesPreviewEveningGen {
+  const $AssetsImagesPreviewEveningGen();
+
+  /// File path: assets/images/preview/evening/land.png
+  AssetGenImage get land =>
+      const AssetGenImage('assets/images/preview/evening/land.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [land];
+}
+
 class $AssetsImagesPreviewWhiteBlackGen {
   const $AssetsImagesPreviewWhiteBlackGen();
 
@@ -220,6 +236,26 @@ class $AssetsImagesTilesetsColourfulGen {
         tropicalLandTopRight,
         tropicalLandX
       ];
+}
+
+class $AssetsImagesTilesetsEveningGen {
+  const $AssetsImagesTilesetsEveningGen();
+
+  /// File path: assets/images/tilesets/evening/hot_air_balloon__idle_right_0.png
+  AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
+      'assets/images/tilesets/evening/hot_air_balloon__idle_right_0.png');
+
+  /// File path: assets/images/tilesets/evening/land__x.png
+  AssetGenImage get landX =>
+      const AssetGenImage('assets/images/tilesets/evening/land__x.png');
+
+  /// File path: assets/images/tilesets/evening/object__cursor_handle__idle.png
+  AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
+      'assets/images/tilesets/evening/object__cursor_handle__idle.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values =>
+      [hotAirBalloonIdleRight0, landX, objectCursorHandleIdle];
 }
 
 class $AssetsImagesTilesetsWhiteBlackGen {

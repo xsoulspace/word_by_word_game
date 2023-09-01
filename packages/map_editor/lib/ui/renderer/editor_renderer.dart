@@ -106,5 +106,5 @@ class EditorRendererGame extends FlameGame
   ) async {}
 
   @override
-  material.Color backgroundColor() => Palette.white.color;
+  material.Color backgroundColor() => material.Colors.transparent;
 }
