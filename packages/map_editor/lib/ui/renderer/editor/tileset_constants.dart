@@ -55,7 +55,7 @@ class TilesetConstants {
     }
   }
 
-  Image getSpriteImage({
+  Image getCachedSpriteImage({
     required final PresetTileModel tile,
     required final SpriteCode spriteCode,
   }) {
@@ -75,6 +75,13 @@ class TilesetConstants {
           in tile.directionalPaths.entries) {
         await images!.load(animationEntry.currentFramePath, key: tileName);
       }
+      for (final MapEntry(value: animationEntry)
+          in tile.behaviourPaths.entries) {
+        await images!.load(
+          animationEntry.currentFramePath,
+          key: animationEntry.currentFramePath,
+        );
+      }
     }
   }
 
@@ -87,15 +94,33 @@ class TilesetConstants {
     }
   }
 
-  Sprite getSprite({
+  ({Sprite sprite, String path}) getAtlasSpriteByCode({
     required final PresetTileModel tile,
     required final SpriteCode spriteCode,
+  }) =>
+      getAtlasSpriteByName(
+        tile: tile,
+        tileName: getSpriteTileName(spriteCode: spriteCode),
+      );
+
+  Sprite getAtlasSpriteByPath(final String path) => _atlas!.getSprite(path);
+  ({Sprite sprite, String path}) getAtlasSpriteByName({
+    required final PresetTileModel tile,
+    required final SpriteTileName tileName,
   }) {
-    final SpriteTileName? tileName = _codeToName[spriteCode];
-    final spriteName = (tileName ?? SpriteTileName.x).name.snakeCase;
-    return _atlas!.getSprite('${tile.path}$spriteName');
+    final path = getSpriteTilePath(tile: tile, tileName: tileName);
+    final sprite = getAtlasSpriteByPath(path);
+    return (sprite: sprite, path: path);
   }
 
+  String getSpriteTilePath({
+    required final PresetTileModel tile,
+    required final SpriteTileName tileName,
+  }) =>
+      '${tile.path}${tileName.name.snakeCase}';
+  SpriteTileName getSpriteTileName({required final SpriteCode spriteCode}) =>
+      _codeToName[spriteCode] ?? SpriteTileName.x;
+  void resetCache() => _codeToNameCache = null;
   Map<SpriteCode, SpriteTileName>? _codeToNameCache;
   Map<SpriteCode, SpriteTileName> get _codeToName =>
       _codeToNameCache ??= _calculateCodeToName();

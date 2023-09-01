@@ -26,7 +26,7 @@
         "thumbnail_path": "preview/colourful/marker_red.png"
       },
       "graphics": {
-        "type": "directional",
+        "type": "standalone",
         "animated": false
       }
     },
@@ -39,7 +39,7 @@
         "thumbnail_path": "preview/colourful/marker_green.png"
       },
       "graphics": {
-        "type": "directional",
+        "type": "standalone",
         "animated": false
       }
     },

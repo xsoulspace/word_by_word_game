@@ -214,7 +214,7 @@ class AnimationUpdater extends Component
             );
           }
 
-        case TileGraphicsType.directional:
+        case TileGraphicsType.directional || TileGraphicsType.standalone:
 
           /// skipping update as non animated tiles should not be updated
           break;
@@ -256,7 +256,7 @@ class AnimationUpdater extends Component
           /// skipping update as non animated tiles should not be updated
           break;
         case TileGraphicsType.directional when isAnimated:
-        case TileGraphicsType.directional:
+        case TileGraphicsType.directional || TileGraphicsType.standalone:
           throw ArgumentError.value(
             'objects should not have directonal animation',
           );

@@ -54,6 +54,7 @@ class PresetTileModel with _$PresetTileModel {
   const PresetTileModel._();
   String get path =>
       '${type == TileType.object ? "object__" : ""}${id.value}__';
+  String get xPath => '${path}x';
 }
 
 enum SpriteTileName {
@@ -94,6 +95,7 @@ class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
 enum TileGraphicsType {
   directional,
   character,
+  standalone,
 }
 
 enum TileBehaviourType {
