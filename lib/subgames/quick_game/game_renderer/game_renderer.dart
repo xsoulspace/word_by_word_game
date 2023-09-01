@@ -159,5 +159,5 @@ class CanvasRendererGame extends FlameGame
   void unloadLevel() {}
 
   @override
-  Color backgroundColor() => diDto.theme.colorScheme.surface;
+  Color backgroundColor() => Colors.transparent;
 }

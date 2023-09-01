@@ -16,12 +16,15 @@ class $AssetsLevelsGen {
   String get lvlColourful =>
       'packages/wbw_core/assets/levels/lvl_colourful.json';
 
+  /// File path: assets/levels/lvl_evening.json
+  String get lvlEvening => 'packages/wbw_core/assets/levels/lvl_evening.json';
+
   /// File path: assets/levels/lvl_white_black.json
   String get lvlWhiteBlack =>
       'packages/wbw_core/assets/levels/lvl_white_black.json';
 
   /// List of all assets
-  List<String> get values => [lvlColourful, lvlWhiteBlack];
+  List<String> get values => [lvlColourful, lvlEvening, lvlWhiteBlack];
 }
 
 class Assets {
