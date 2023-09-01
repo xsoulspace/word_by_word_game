@@ -253,7 +253,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
             switch (graphics.type) {
               case TileGraphicsType.character:
                 assert(false, 'Character graphics type cannot be used in tile');
-              case TileGraphicsType.directional:
+              case TileGraphicsType.directional || TileGraphicsType.standalone:
                 final spriteCode = cellTile.tileMergedDirectionsTitle;
                 final directionTitle = cellTile.tileMergedDirectionsTitle;
                 final x = resourceTile.directionalPaths['X'];
@@ -328,7 +328,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 if (animationEntry == null) continue;
                 final img = images.fromCache(animationEntry.currentFramePath);
                 canvas.drawImage(img, vectorPosition.toOffset(), _paint);
-              case TileGraphicsType.directional:
+              case TileGraphicsType.directional || TileGraphicsType.standalone:
                 assert(
                   false,
                   'Directional graphics type cannot be used with object',
@@ -401,7 +401,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
           switch (graphics.type) {
             case TileGraphicsType.character:
               assert(false, 'Character graphics type cannot be used in tile');
-            case TileGraphicsType.directional:
+            case TileGraphicsType.directional || TileGraphicsType.standalone:
               final spriteCode = cellTile.tileMergedDirectionsTitle;
               final directionTitle = cellTile.tileMergedDirectionsTitle;
               final x = resourceTile.directionalPaths['X'];
@@ -439,7 +439,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
                 if (animationEntry == null) continue;
                 final img = images.fromCache(animationEntry.currentFramePath);
                 canvas.drawImage(img, renderObject.position.toOffset(), _paint);
-              case TileGraphicsType.directional:
+              case TileGraphicsType.directional || TileGraphicsType.standalone:
                 assert(
                   false,
                   'Directional graphics type cannot be used with object',

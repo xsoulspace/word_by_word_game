@@ -245,17 +245,75 @@ class $AssetsImagesTilesetsEveningGen {
   AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
       'assets/images/tilesets/evening/hot_air_balloon__idle_right_0.png');
 
+  /// File path: assets/images/tilesets/evening/land__middle_left.png
+  AssetGenImage get landMiddleLeft => const AssetGenImage(
+      'assets/images/tilesets/evening/land__middle_left.png');
+
+  /// File path: assets/images/tilesets/evening/land__middle_right.png
+  AssetGenImage get landMiddleRight => const AssetGenImage(
+      'assets/images/tilesets/evening/land__middle_right.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_center.png
+  AssetGenImage get landTopCenter => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_center.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_left.png
+  AssetGenImage get landTopLeft =>
+      const AssetGenImage('assets/images/tilesets/evening/land__top_left.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_left_corner.png
+  AssetGenImage get landTopLeftCorner => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_left_corner.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_left_smooth.png
+  AssetGenImage get landTopLeftSmooth => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_left_smooth.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_right.png
+  AssetGenImage get landTopRight =>
+      const AssetGenImage('assets/images/tilesets/evening/land__top_right.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_right_corner.png
+  AssetGenImage get landTopRightCorner => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_right_corner.png');
+
+  /// File path: assets/images/tilesets/evening/land__top_right_smooth.png
+  AssetGenImage get landTopRightSmooth => const AssetGenImage(
+      'assets/images/tilesets/evening/land__top_right_smooth.png');
+
   /// File path: assets/images/tilesets/evening/land__x.png
   AssetGenImage get landX =>
       const AssetGenImage('assets/images/tilesets/evening/land__x.png');
+
+  /// File path: assets/images/tilesets/evening/marker_green__x.png
+  AssetGenImage get markerGreenX =>
+      const AssetGenImage('assets/images/tilesets/evening/marker_green__x.png');
+
+  /// File path: assets/images/tilesets/evening/marker_red__x.png
+  AssetGenImage get markerRedX =>
+      const AssetGenImage('assets/images/tilesets/evening/marker_red__x.png');
 
   /// File path: assets/images/tilesets/evening/object__cursor_handle__idle.png
   AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
       'assets/images/tilesets/evening/object__cursor_handle__idle.png');
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [hotAirBalloonIdleRight0, landX, objectCursorHandleIdle];
+  List<AssetGenImage> get values => [
+        hotAirBalloonIdleRight0,
+        landMiddleLeft,
+        landMiddleRight,
+        landTopCenter,
+        landTopLeft,
+        landTopLeftCorner,
+        landTopLeftSmooth,
+        landTopRight,
+        landTopRightCorner,
+        landTopRightSmooth,
+        landX,
+        markerGreenX,
+        markerRedX,
+        objectCursorHandleIdle
+      ];
 }
 
 class $AssetsImagesTilesetsWhiteBlackGen {

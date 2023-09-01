@@ -86,6 +86,7 @@ Map<String, dynamic> _$$_PresetTileGraphicsModelToJson(
 const _$TileGraphicsTypeEnumMap = {
   TileGraphicsType.directional: 'directional',
   TileGraphicsType.character: 'character',
+  TileGraphicsType.standalone: 'standalone',
 };
 
 const _$TileBehaviourTypeEnumMap = {

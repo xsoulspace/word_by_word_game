@@ -20,6 +20,7 @@ import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
+import 'package:recase/recase.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 part 'debug_surface.dart';

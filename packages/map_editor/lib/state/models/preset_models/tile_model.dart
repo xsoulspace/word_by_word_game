@@ -94,6 +94,7 @@ class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
 enum TileGraphicsType {
   directional,
   character,
+  standalone,
 }
 
 enum TileBehaviourType {
