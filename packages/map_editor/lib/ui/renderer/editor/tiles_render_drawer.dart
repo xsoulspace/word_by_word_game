@@ -272,7 +272,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                   );
                 } else {
                   final src = _runtimeCache[spriteCode] ??= () {
-                    final s = tilesetConstants.getSprite(
+                    final s = tilesetConstants.getAtlasSpriteByCode(
                       spriteCode: spriteCode,
                       tile: tile,
                     );
@@ -415,7 +415,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
               if (images.containsKey(currentPath)) {
                 image = images.fromCache(currentPath);
               } else {
-                image = tilesetConstants.getSpriteImage(
+                image = tilesetConstants.getCachedImage(
                   spriteCode: spriteCode,
                   tile: tile,
                 );
