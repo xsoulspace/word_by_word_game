@@ -51,9 +51,7 @@ class LevelLostDialog extends StatelessWidget {
           TextButton(
             onPressed: () {
               unawaited(
-                context
-                    .read<GlobalGameBloc>()
-                    .onRestartLevel(const RestartLevelEvent()),
+                context.read<GlobalGameBloc>().onRestartLevel(),
               );
 
               context.read<DialogController>().closeDialog();
@@ -76,9 +74,7 @@ class LevelLostDialog extends StatelessWidget {
               onPressed: () {
                 onSendEndLevelEvent();
                 unawaited(
-                  context
-                      .read<GlobalGameBloc>()
-                      .onRestartLevel(const RestartLevelEvent()),
+                  context.read<GlobalGameBloc>().onRestartLevel(),
                 );
 
                 context.read<DialogController>().closeDialog();

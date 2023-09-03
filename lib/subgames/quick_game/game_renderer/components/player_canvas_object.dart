@@ -22,19 +22,21 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     RenderObjectModel player = canvasCubit.player;
     final position =
         game.canvasRenderer.origin + player.distanceToOrigin.toVector2();
+    final serializedPosition = position.toSerializedVector2();
     if (player.id.isEmpty) {
       final firstPlayer = canvasCubit.tilesPresetResources.players.values.first;
       final updatedPlayer = RenderObjectModel(
         id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: firstPlayer.id,
-        position: position.toSerializedVector2(),
+        position: serializedPosition,
       );
 
       /// creating player if it is empty
       canvasCubit.player = updatedPlayer;
+      player = updatedPlayer;
     } else {
-      player = player.copyWith(position: position.toSerializedVector2());
+      player = player.copyWith(position: serializedPosition);
     }
     levelPlayersBloc.onChangeCharacter(
       levelPlayersBloc.state.playerCharacter.copyWith(

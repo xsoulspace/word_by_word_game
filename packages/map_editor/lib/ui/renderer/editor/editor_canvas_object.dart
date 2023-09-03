@@ -12,6 +12,7 @@ class EditorPlayerCanvasObject extends EditorCanvasObject {
     RenderObjectModel player = drawerCubit.player;
     final position =
         game.editor.origin + drawerCubit.player.distanceToOrigin.toVector2();
+    final serializedPosition = position.toSerializedVector2();
     if (player.id.isEmpty) {
       final firstPlayer = drawerCubit.tilesPresetResources.players.values.first;
 
@@ -20,12 +21,12 @@ class EditorPlayerCanvasObject extends EditorCanvasObject {
         id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: firstPlayer.id,
-        position: position.toSerializedVector2(),
+        position: serializedPosition,
       );
       drawerCubit.player = updatedPlayer;
       player = updatedPlayer;
     } else {
-      player = player.copyWith(position: position.toSerializedVector2());
+      player = player.copyWith(position: serializedPosition);
     }
 
     return EditorPlayerCanvasObject.fromRenderObject(

@@ -72,7 +72,6 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
     emit(
       state.copyWith(
         tileResources: tilesetResources,
-        canvasData: canvasData,
         drawLayerId: canvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
       ),
     );
