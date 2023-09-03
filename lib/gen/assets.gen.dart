@@ -83,8 +83,6 @@ class $AssetsImagesGen {
   const $AssetsImagesGen();
 
   $AssetsImagesButtonsGen get buttons => const $AssetsImagesButtonsGen();
-  $AssetsImagesCharactersGen get characters =>
-      const $AssetsImagesCharactersGen();
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
   $AssetsImagesUiFramesGen get uiFrames => const $AssetsImagesUiFramesGen();
 }
@@ -115,17 +113,6 @@ class $AssetsImagesButtonsGen {
         longButtonHighres,
         longButtonPressedHighres
       ];
-}
-
-class $AssetsImagesCharactersGen {
-  const $AssetsImagesCharactersGen();
-
-  /// File path: assets/images/characters/char_hot_air_baloon_highres.png
-  AssetGenImage get charHotAirBaloonHighres => const AssetGenImage(
-      'assets/images/characters/char_hot_air_baloon_highres.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [charHotAirBaloonHighres];
 }
 
 class $AssetsImagesIconsGen {

@@ -65,11 +65,6 @@ final class CanvasCubit extends DrawerCubit {
         ),
       );
     }
-    emit(
-      state.copyWith(
-        canvasData: eCanvasData,
-        drawLayerId: eCanvasData.layers.firstOrNull?.id ?? LayerModel.empty.id,
-      ),
-    );
+    emit(state.copyWith(canvasData: eCanvasData));
   }
 }

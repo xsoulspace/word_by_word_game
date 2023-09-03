@@ -22,5 +22,4 @@ class GameEvent with _$GameEvent {
     required final bool isWon,
     required final double maxDistance,
   }) = EndLevelEvent;
-  const factory GameEvent.restartLevel() = RestartLevelEvent;
 }

@@ -117,7 +117,8 @@ class __$$_WeatherCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WeatherCubitState extends _WeatherCubitState {
+class _$_WeatherCubitState extends _WeatherCubitState
+    with DiagnosticableTreeMixin {
   const _$_WeatherCubitState(
       {final List<WeatherModel> weathers = const [],
       this.wind = WindModel.zero})
@@ -143,8 +144,17 @@ class _$_WeatherCubitState extends _WeatherCubitState {
   final WindModel wind;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherCubitState(weathers: $weathers, wind: $wind)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WeatherCubitState'))
+      ..add(DiagnosticsProperty('weathers', weathers))
+      ..add(DiagnosticsProperty('wind', wind));
   }
 
   @override
