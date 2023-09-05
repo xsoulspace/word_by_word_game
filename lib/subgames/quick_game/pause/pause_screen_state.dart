@@ -66,8 +66,14 @@ class PauseScreenState extends ContextfulLifeState {
     final theme = Theme.of(context);
     final uiTheme = UiTheme.of(context);
     final s = S.of(context);
-    final packageInfo = await PackageInfo.fromPlatform();
-
+    final madeWith = '${const LocalizedMap(
+      value: {
+        Languages.en: 'Made with',
+        Languages.ru: 'Сделано с помощью',
+        Languages.it: 'Fatto con',
+      },
+    ).getValue()} '
+        'Flame Engine, Flutter & Dart.';
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
         constraints: const BoxConstraints(
@@ -75,6 +81,7 @@ class PauseScreenState extends ContextfulLifeState {
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             uiTheme.verticalBoxes.medium,
             Text(s.creatingGame),
@@ -104,7 +111,7 @@ class PauseScreenState extends ContextfulLifeState {
               ),
             ),
             uiTheme.verticalBoxes.large,
-            const Text('Graphics credits & thanks:'),
+            Text(S.of(context).graphicsCreditsThanks),
             uiTheme.verticalBoxes.medium,
             Visibility(
               visible: kLinksAreAllowed,
@@ -112,9 +119,7 @@ class PauseScreenState extends ContextfulLifeState {
                 onPressed: () => launchUrlString('https://sonnenstein.itch.io'),
                 child: const Padding(
                   padding: EdgeInsets.all(8),
-                  child: Text(
-                    'Sonnenstein (we currently working to create new tileset)',
-                  ),
+                  child: Text('Sonnenstein'),
                 ),
               ),
             ),
@@ -123,34 +128,68 @@ class PauseScreenState extends ContextfulLifeState {
               child: TextButton(
                 onPressed: () =>
                     launchUrlString('https://pixelfrog-assets.itch.io'),
-                child: const Padding(
-                  padding: EdgeInsets.all(8),
+                child: Padding(
+                  padding: const EdgeInsets.all(8),
                   child: Text(
-                    'Pixel Frog (Used this pack during v3 development)',
+                    'Pixel Frog (${const LocalizedMap(
+                      value: {
+                        Languages.en: 'Used this pack during v3 development',
+                        Languages.ru:
+                            'Использовал пакет графики для разработки 3 версии',
+                        Languages.it:
+                            // ignore: lines_longer_than_80_chars
+                            'Utilizzato questo pacchetto durante lo sviluppo della v3',
+                      },
+                    ).getValue()})',
                   ),
                 ),
               ),
             ),
+            uiTheme.verticalBoxes.medium,
+            Text(madeWith),
             uiTheme.verticalBoxes.large,
             Text(s.thankYou),
           ],
         ),
       ),
     ];
-    final applicationLegalese = '\u{a9} 2020-${DateTime.now().year} '
-        'Game by Anton Malofeev, Irina Veter';
+    final applicationLegalese =
+        '\u{a9} 2020-${DateTime.now().year} ${const LocalizedMap(
+      value: {
+        Languages.en: 'Game by Anton Malofeev, Irina Veter',
+        Languages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер',
+        Languages.it: 'Gioco di Anton Malofeev, Irina Veter',
+      },
+    ).getValue()}';
 
+    final packageInfo = await PackageInfo.fromPlatform();
     final applicationVersion =
         '${packageInfo.version}+${packageInfo.buildNumber}';
-    final icon = Image.asset(
-      'assets/icon.png',
-      width: 32,
-      height: 32,
+    final icon = Container(
+      decoration: BoxDecoration(
+        image: DecorationImage(
+          image: Image.asset(
+            'assets/icon.png',
+          ).image,
+        ),
+        borderRadius: const BorderRadius.all(Radius.elliptical(12, 12)),
+      ),
+      width: 64,
+      height: 64,
     );
     if (!mounted) return;
+    final applicationName = Envs.isYandexGames
+        ? const LocalizedMap(
+            value: {
+              Languages.en: 'Word By Word Adventure',
+              Languages.ru: 'Слово после слова Приключение',
+              Languages.it: 'Parola dopo parola Avventura',
+            },
+          ).getValue()
+        : 'Word By Word';
     if (kLinksAreAllowed) {
       showAboutDialog(
-        applicationName: 'Word By Word',
+        applicationName: applicationName,
         applicationIcon: icon,
         applicationLegalese: applicationLegalese,
         applicationVersion: applicationVersion,
@@ -162,27 +201,28 @@ class PauseScreenState extends ContextfulLifeState {
         showDialog(
           context: context,
           builder: (final context) => SimpleDialog(
-            title: const Text('Word By Word'),
+            title: Text(applicationName),
             contentPadding: const EdgeInsets.all(24),
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   icon,
-                  uiTheme.horizontalBoxes.large,
-                  ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 200),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(applicationLegalese),
-                        uiTheme.verticalBoxes.small,
-                        Text(
-                          applicationVersion,
-                          style: theme.textTheme.labelSmall,
-                        ),
-                      ],
+                  const Gap(12),
+                  Flexible(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 240),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(applicationLegalese),
+                          uiTheme.verticalBoxes.small,
+                          Text(
+                            applicationVersion,
+                            style: theme.textTheme.labelSmall,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],
@@ -190,7 +230,16 @@ class PauseScreenState extends ContextfulLifeState {
               uiTheme.verticalBoxes.medium,
               Text(s.creatingGame),
               uiTheme.verticalBoxes.large,
-              const Text('Made with Flutter & Flame Engine.'),
+              Text(
+                S.of(context).graphicsCreditsThanks,
+                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      fontWeight: FontWeight.bold,
+                    ),
+              ),
+              uiTheme.verticalBoxes.medium,
+              const Text('Sonnenstein, Pixel Frog'),
+              uiTheme.verticalBoxes.large,
+              Text(madeWith),
               uiTheme.verticalBoxes.large,
               TextButton(
                 onPressed: () => Navigator.maybePop(context),

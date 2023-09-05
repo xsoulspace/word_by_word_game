@@ -60,7 +60,7 @@ class PlayerProfileCreator extends HookWidget {
                           onPlayerCreated(profile);
                         },
                         child: Text(S.of(context).createProfile),
-                      )
+                      ),
                     ],
                   ),
                 ),

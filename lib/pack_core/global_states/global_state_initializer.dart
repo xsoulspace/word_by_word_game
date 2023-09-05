@@ -82,6 +82,14 @@ class GameInitializer {
 
   /// the logic is to migrate from the version to to the next version
   GameSaveModel migrateSave(final GameSaveModel savedGame) {
+    final presetCharacters = characters
+        .map(
+          (final e) => e.copyWith(
+            balloonPowers: BalloonLiftPowersModel.initial,
+            balloonParams: BalloonLiftParamsModel.initial,
+          ),
+        )
+        .toList();
     GameSaveModel game = savedGame;
     for (var i = savedGame.version.index; i < GameVersion.values.length; i++) {
       switch (savedGame.version) {
@@ -97,16 +105,16 @@ class GameInitializer {
             version: GameVersion.$3,
             currentLevelId: CanvasDataModelId.empty,
             currentLevel: null,
-            playersCharacters: characters
-                .map(
-                  (final e) => e.copyWith(
-                    balloonPowers: BalloonLiftPowersModel.initial,
-                    balloonParams: BalloonLiftParamsModel.initial,
-                  ),
-                )
-                .toList(),
+            playersCharacters: presetCharacters,
           );
         case GameVersion.$3:
+          game = game.copyWith(
+            version: GameVersion.$4,
+            currentLevelId: CanvasDataModelId.empty,
+            currentLevel: null,
+            playersCharacters: presetCharacters,
+          );
+        case GameVersion.$4:
       }
     }
     return game;

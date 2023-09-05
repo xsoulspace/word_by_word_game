@@ -1,5 +1,6 @@
 export './game_providers.dart';
 export 'app/app.dart';
+export 'canvas_cubit.dart';
 export 'dictionaries/dictionaries_bloc.dart';
 export 'game_constants_cubit.dart';
 export 'global_game/global_game_bloc.dart';

@@ -8,8 +8,8 @@ class DialogController {
     required this.showLevelWordSuggestionDialog,
     required this.closeDialog,
   });
-  void Function(EndLevelEvent endLevelEvent) showLevelLostDialog;
-  VoidCallback showLevelWinDialog;
+  ValueChanged<EndLevelEvent> showLevelLostDialog;
+  ValueChanged<EndLevelEvent> showLevelWinDialog;
   VoidCallback closeDialog;
   VoidCallback showLevelWordSuggestionDialog;
 }

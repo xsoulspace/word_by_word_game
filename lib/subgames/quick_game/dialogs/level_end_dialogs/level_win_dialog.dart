@@ -8,7 +8,13 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_
 import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 class LevelWinDialog extends StatelessWidget {
-  const LevelWinDialog({super.key});
+  const LevelWinDialog({
+    required this.onRestart,
+    required this.onSaveResults,
+    super.key,
+  });
+  final VoidCallback onRestart;
+  final VoidCallback onSaveResults;
 
   @override
   Widget build(final BuildContext context) {
@@ -35,19 +41,14 @@ class LevelWinDialog extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
+                onSaveResults();
                 AppRouterController.use(context.read).toRoot();
                 context.read<DialogController>().closeDialog();
               },
               child: const Text('To Landscapes'),
             ),
             TextButton(
-              onPressed: () {
-                context
-                    .read<GlobalGameBloc>()
-                    .onRestartLevel(const RestartLevelEvent());
-
-                context.read<DialogController>().closeDialog();
-              },
+              onPressed: onRestart,
               child: const Text('Start Again'),
             ),
           ],

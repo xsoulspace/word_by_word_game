@@ -41,7 +41,7 @@ class DefaultDialogOverlayController extends HookWidget {
         Provider<DialogController>.value(value: state.dialogController),
         ChangeNotifierProvider<DialogStackState>.value(
           value: state,
-        )
+        ),
       ],
       builder: (final context, final child) =>
           builder(context, state.dialogController),
@@ -67,11 +67,16 @@ class DialogStack extends HookWidget {
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
             GameDialogType.levelLost => LevelLostDialog(
-                onSendEndLevelEvent: state.onSendEndLevelEvent,
+                onEndLevel: state.onEndLevel,
+                onRestartLevel: state.onRestartLevel,
               ),
-            GameDialogType.levelWin => const LevelWinDialog(),
-            GameDialogType.levelWordSuggestion =>
-              const LevelWordSuggestionDialog(),
+            GameDialogType.levelWin => LevelWinDialog(
+                onRestart: state.onRestartLevel,
+                onSaveResults: state.onSaveResults,
+              ),
+            GameDialogType.levelWordSuggestion => LevelWordSuggestionDialog(
+                onResume: state.onResume,
+              ),
             GameDialogType.tutorialBool => const TutorialBoolDialog(),
             GameDialogType.tutorialOk => const TutorialOkDialog(),
           },

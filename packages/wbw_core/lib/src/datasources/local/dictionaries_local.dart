@@ -1,5 +1,4 @@
 import '../../models/models.dart';
-import '../interfaces/dictionaries.dart';
 import '../interfaces/interfaces.dart';
 
 class DictionariesLocalDataSourceImpl implements DictionariesLocalDataSource {

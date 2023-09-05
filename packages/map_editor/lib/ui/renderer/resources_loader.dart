@@ -5,7 +5,6 @@ import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/services.dart' show rootBundle;
-import 'package:map_editor/main.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
@@ -21,17 +20,16 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 class ResourcesLoader {
   ResourcesLoader({
     required this.tilesetAssets,
-    this.cachePrefix = 'assets/images/',
-  }) : tilesetConstants = TilesetConstants(
-          tilesetPath: Assets.images.tilesets.pirateTilesetPixelFrog.replaceAll(
-            'assets/images/',
-            '',
-          ),
-          assets: tilesetAssets,
-        );
+  });
   final AssetsCache tilesetAssets;
-  final String cachePrefix;
-  final TilesetConstants tilesetConstants;
+  TilesetConstants? _tilesetConstants;
+  TilesetConstants get tilesetConstants {
+    final consts = _tilesetConstants;
+    if (consts == null) throw ArgumentError.notNull('call loadTileset first');
+    return consts;
+  }
+
+  String get assetsPrefix => tilesetAssets.prefix;
 
   /// List of all asset files like:
   /// 'assets/images/clouds/Small Cloud 1.png'
@@ -40,11 +38,28 @@ class ResourcesLoader {
   Map<String, dynamic> _manifestMap = {};
   bool _isLoaded = false;
   bool get isLoaded => _isLoaded;
+  Images? _images;
 
   Future<void> onLoad() async {
     if (_isLoaded) return;
     _isLoaded = true;
     await _loadImagesManifest();
+  }
+
+  Future<void> onGameLoad(final Images images) async {
+    if (_images != null) return;
+    _images = images;
+  }
+
+  void loadTileset({
+    required final TilesetConfigModel tilesetConfig,
+    required final TilesetPresetResources tilesetResources,
+  }) {
+    _tilesetConstants = TilesetConstants(
+      presetData: tilesetResources,
+      tilesetConfig: tilesetConfig,
+      assets: tilesetAssets,
+    );
   }
 
   Future<void> _loadImagesManifest() async {
@@ -56,19 +71,21 @@ class ResourcesLoader {
   }
 
   /// removes prefixs from aset path
-  String fixAssetPath(final String path) => path.replaceAll(cachePrefix, '');
+  String fixAssetPath(final String path) =>
+      path.replaceAll(tilesetAssets.prefix, '');
 
   Map<TileBehaviourType, AnimationEntryModel>
       getPathsForPresetCharacterGraphics({
-    required final PresetTileGraphicsModel tileGraphics,
+    required final PresetTileModel tile,
+    required final TilesetConfigModel tilesetConfig,
   }) {
-    if (tileGraphics.type == TileGraphicsType.directional) return {};
+    final graphics = tile.graphics;
+    if (graphics.type == TileGraphicsType.directional) return {};
     final map = <TileBehaviourType, AnimationEntryModel>{};
-    final folderPath = tileGraphics.path;
-    if (folderPath.isEmpty) return map;
+    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.path}';
 
-    for (final behaviour in tileGraphics.behaviours) {
-      final behaviourPath = '$folderPath/${behaviour.name.snakeCase}';
+    for (final behaviour in graphics.behaviours) {
+      final behaviourPath = '$imageBasePath${behaviour.name.snakeCase}';
 
       /// maybe folder (if animation) or file (if no animation)
       /// otherwise should throw an error
@@ -79,7 +96,7 @@ class ResourcesLoader {
       if (paths.isEmpty) continue;
 
       /// folders case
-      if (tileGraphics.animated) {
+      if (graphics.animated) {
         map[behaviour] = AnimationEntryModel(
           framesLength: paths.length,
           framesPaths: paths,
@@ -99,37 +116,38 @@ class ResourcesLoader {
   }
 
   Map<SpriteCode, AnimationEntryModel> getPathsForPresetDirectionalGraphics({
-    required final PresetTileGraphicsModel tileGraphics,
+    required final PresetTileModel tile,
+    required final TilesetConfigModel tilesetConfig,
   }) {
-    if (tileGraphics.type == TileGraphicsType.character) return {};
+    final graphics = tile.graphics;
+    if (graphics.type == TileGraphicsType.character) return {};
     final map = <SpriteCode, AnimationEntryModel>{};
-    final rootFolderPath = tileGraphics.path;
-    if (rootFolderPath.isEmpty) return map;
+    final imageBasePath = '${tilesetConfig.cleanPath}/${tile.path}';
+
     final paths = _manifestMap.keys
-        .where((final e) => e.startsWith(rootFolderPath))
+        .where((final e) => e.startsWith(imageBasePath))
         .toList();
     if (paths.isEmpty) return map;
-    if (tileGraphics.animated) {
-      for (final fullPath in paths) {
-        final [..., folderTitle, _] = fullPath.split('/');
-        final folderPath = '$rootFolderPath/$folderTitle';
-        final folderPaths = _manifestMap.keys
-            .where((final e) => e.contains(folderPath))
-            .toList();
-        if (folderPaths.isEmpty) continue;
-        map.update(
-          folderTitle,
-          (final value) => value.copyWith(
-            framesLength: folderPaths.length,
-            framesPaths: folderPaths,
-          ),
-          ifAbsent: () => AnimationEntryModel(
-            framesLength: folderPaths.length,
-            framesPaths: folderPaths,
-          ),
-        );
-      }
-      // TODO(antmalofeev): add accosiations
+    if (graphics.animated) {
+      // for (final fullPath in paths) {
+      //   final [..., folderTitle, _] = fullPath.split('/');
+      //   final folderPath = '$rootFolderPath/$folderTitle';
+      //   final folderPaths = _manifestMap.keys
+      //       .where((final e) => e.contains(folderPath))
+      //       .toList();
+      //   if (folderPaths.isEmpty) continue;
+      //   map.update(
+      //     folderTitle,
+      //     (final value) => value.copyWith(
+      //       framesLength: folderPaths.length,
+      //       framesPaths: folderPaths,
+      //     ),
+      //     ifAbsent: () => AnimationEntryModel(
+      //       framesLength: folderPaths.length,
+      //       framesPaths: folderPaths,
+      //     ),
+      //   );
+      // }
     } else {
       for (final filePathWithExtension in paths) {
         final filePathWithoutExtension =
@@ -191,12 +209,12 @@ class AnimationUpdater extends Component
                   config: config,
                   dt: dt,
                   entry: animationEntry,
-                )
+                ),
               },
             );
           }
 
-        case TileGraphicsType.directional:
+        case TileGraphicsType.directional || TileGraphicsType.standalone:
 
           /// skipping update as non animated tiles should not be updated
           break;
@@ -229,7 +247,7 @@ class AnimationUpdater extends Component
                   config: config,
                   dt: dt,
                   entry: animationEntry,
-                )
+                ),
               },
             );
           }
@@ -238,7 +256,7 @@ class AnimationUpdater extends Component
           /// skipping update as non animated tiles should not be updated
           break;
         case TileGraphicsType.directional when isAnimated:
-        case TileGraphicsType.directional:
+        case TileGraphicsType.directional || TileGraphicsType.standalone:
           throw ArgumentError.value(
             'objects should not have directonal animation',
           );
@@ -251,42 +269,47 @@ class AnimationUpdater extends Component
   void update(final double dt) {
     final tiles = _updateTiles(
       dt: dt,
-      orignalTiles: drawerCubit.tilesResources.tiles,
+      orignalTiles: drawerCubit.tilesPresetResources.tiles,
       config: game.config,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       tiles: tiles,
     );
     final objects = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.objects,
+      originalObjects: drawerCubit.tilesPresetResources.objects,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       objects: objects,
     );
     final npcs = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.npcs,
+      originalObjects: drawerCubit.tilesPresetResources.npcs,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       npcs: npcs,
     );
     final players = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.players,
+      originalObjects: drawerCubit.tilesPresetResources.players,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       players: players,
     );
     final other = _updateObjects(
       dt: dt,
       config: game.config,
-      originalObjects: drawerCubit.tilesResources.other,
+      originalObjects: drawerCubit.tilesPresetResources.other,
     );
-    drawerCubit.tilesResources = drawerCubit.tilesResources.copyWith(
+    drawerCubit.tilesPresetResources =
+        drawerCubit.tilesPresetResources.copyWith(
       other: other,
     );
 
