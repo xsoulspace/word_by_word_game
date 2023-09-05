@@ -146,8 +146,14 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
   }
 
-  Future<void> onRestartLevel() async {
+  Future<void> onRestartLevel(final EndLevelEvent event) async {
+    /// saving current level
     final levelModel = state.currentLevelModel;
+
+    /// saving level results
+    await onLevelEnd(event);
+
+    /// restarting current level
     if (levelModel == null) {
       // TODO(arenuvkern): description
       throw UnimplementedError('onRestartLevel $levelModel');

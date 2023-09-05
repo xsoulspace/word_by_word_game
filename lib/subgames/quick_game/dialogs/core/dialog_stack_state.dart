@@ -73,7 +73,24 @@ class DialogStackState extends LifeState with ChangeNotifier {
     this.endLevelEvent = endLevelEvent;
   }
 
-  void _showLevelWinDialog() {
+  void onEndLevel() {
+    final event =
+        endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
+    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+
+    _closeDialog();
+  }
+
+  void onRestartLevel() {
+    final event =
+        endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
+    unawaited(diDto.globalGameBloc.onRestartLevel(event));
+
+    _closeDialog();
+  }
+
+  Future<void> _showLevelWinDialog(final EndLevelEvent endLevelEvent) async {
+    unawaited(diDto.globalGameBloc.onLevelEnd(endLevelEvent));
     dialogType = GameDialogType.levelWin;
   }
 
@@ -121,14 +138,6 @@ class DialogStackState extends LifeState with ChangeNotifier {
 
   void _showTutorialBoolDialog() {
     dialogType = GameDialogType.tutorialBool;
-  }
-
-  Future<void> onSendEndLevelEvent() async {
-    final event = endLevelEvent;
-    if (event != null) {
-      unawaited(diDto.globalGameBloc.onLevelEnd(event));
-      endLevelEvent = null;
-    }
   }
 }
 
