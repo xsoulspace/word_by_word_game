@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -10,7 +8,11 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_
 import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 class LevelWinDialog extends StatelessWidget {
-  const LevelWinDialog({super.key});
+  const LevelWinDialog({
+    required this.onRestart,
+    super.key,
+  });
+  final VoidCallback onRestart;
 
   @override
   Widget build(final BuildContext context) {
@@ -43,13 +45,7 @@ class LevelWinDialog extends StatelessWidget {
               child: const Text('To Landscapes'),
             ),
             TextButton(
-              onPressed: () {
-                unawaited(
-                  context.read<GlobalGameBloc>().onRestartLevel(),
-                );
-
-                context.read<DialogController>().closeDialog();
-              },
+              onPressed: onRestart,
               child: const Text('Start Again'),
             ),
           ],

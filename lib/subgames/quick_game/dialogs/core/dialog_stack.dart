@@ -67,9 +67,12 @@ class DialogStack extends HookWidget {
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
             GameDialogType.levelLost => LevelLostDialog(
-                onSendEndLevelEvent: state.onSendEndLevelEvent,
+                onEndLevel: state.onEndLevel,
+                onRestartLevel: state.onRestartLevel,
               ),
-            GameDialogType.levelWin => const LevelWinDialog(),
+            GameDialogType.levelWin => LevelWinDialog(
+                onRestart: state.onRestartLevel,
+              ),
             GameDialogType.levelWordSuggestion =>
               const LevelWordSuggestionDialog(),
             GameDialogType.tutorialBool => const TutorialBoolDialog(),

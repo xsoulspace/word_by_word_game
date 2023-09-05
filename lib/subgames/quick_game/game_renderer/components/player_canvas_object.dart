@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flame/extensions.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
@@ -73,16 +71,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   void _showLevelWinDialog() {
     _pauseGame();
-
-    unawaited(
-      gameRef.diDto.globalGameBloc.onLevelEnd(
-        EndLevelEvent(
-          isWon: true,
-          maxDistance: maxDistance.toDouble(),
-        ),
+    gameRef.diDto.dialogController.showLevelWinDialog(
+      EndLevelEvent(
+        isWon: true,
+        maxDistance: maxDistance.toDouble(),
       ),
     );
-    gameRef.diDto.dialogController.showLevelWinDialog();
   }
 
   void _onCollision(final double dt) => _onMove(dt, isCollided: true);

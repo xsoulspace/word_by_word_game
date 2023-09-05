@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -7,16 +5,17 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 class LevelLostDialog extends StatelessWidget {
   const LevelLostDialog({
-    required this.onSendEndLevelEvent,
+    required this.onEndLevel,
+    required this.onRestartLevel,
     super.key,
   });
-  final VoidCallback onSendEndLevelEvent;
+  final VoidCallback onEndLevel;
+  final VoidCallback onRestartLevel;
 
   @override
   Widget build(final BuildContext context) {
@@ -50,11 +49,7 @@ class LevelLostDialog extends StatelessWidget {
           // ignore: dead_code
           TextButton(
             onPressed: () {
-              unawaited(
-                context.read<GlobalGameBloc>().onRestartLevel(),
-              );
-
-              context.read<DialogController>().closeDialog();
+              throw UnimplementedError('unimplemented error');
             },
             child: const Text('Use Score to continue'),
           ),
@@ -64,21 +59,13 @@ class LevelLostDialog extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                onSendEndLevelEvent();
+                onEndLevel();
                 AppRouterController.use(context.read).toRoot();
-                context.read<DialogController>().closeDialog();
               },
               child: Text(S.of(context).toLandscapes),
             ),
             TextButton(
-              onPressed: () {
-                onSendEndLevelEvent();
-                unawaited(
-                  context.read<GlobalGameBloc>().onRestartLevel(),
-                );
-
-                context.read<DialogController>().closeDialog();
-              },
+              onPressed: onRestartLevel,
               child: Text(S.of(context).startAgain),
             ),
           ],
