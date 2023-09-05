@@ -89,8 +89,14 @@ class DialogStackState extends LifeState with ChangeNotifier {
     _closeDialog();
   }
 
+  void onSaveResults() {
+    final event =
+        endLevelEvent ?? const EndLevelEvent(isWon: true, maxDistance: 0);
+    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+  }
+
   Future<void> _showLevelWinDialog(final EndLevelEvent endLevelEvent) async {
-    unawaited(diDto.globalGameBloc.onLevelEnd(endLevelEvent));
+    this.endLevelEvent = endLevelEvent;
     dialogType = GameDialogType.levelWin;
   }
 

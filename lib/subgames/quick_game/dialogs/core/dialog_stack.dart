@@ -72,6 +72,7 @@ class DialogStack extends HookWidget {
               ),
             GameDialogType.levelWin => LevelWinDialog(
                 onRestart: state.onRestartLevel,
+                onSaveResults: state.onSaveResults,
               ),
             GameDialogType.levelWordSuggestion =>
               const LevelWordSuggestionDialog(),
