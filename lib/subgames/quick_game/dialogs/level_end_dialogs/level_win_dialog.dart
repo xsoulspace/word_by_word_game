@@ -10,9 +10,11 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.da
 class LevelWinDialog extends StatelessWidget {
   const LevelWinDialog({
     required this.onRestart,
+    required this.onSaveResults,
     super.key,
   });
   final VoidCallback onRestart;
+  final VoidCallback onSaveResults;
 
   @override
   Widget build(final BuildContext context) {
@@ -39,6 +41,7 @@ class LevelWinDialog extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
+                onSaveResults();
                 AppRouterController.use(context.read).toRoot();
                 context.read<DialogController>().closeDialog();
               },
