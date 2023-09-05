@@ -80,8 +80,10 @@ class _DialogState extends LifeState {
 
 class LevelWordSuggestionDialog extends HookWidget {
   const LevelWordSuggestionDialog({
+    required this.onResume,
     super.key,
   });
+  final VoidCallback onResume;
 
   @override
   Widget build(final BuildContext context) {
@@ -90,9 +92,7 @@ class LevelWordSuggestionDialog extends HookWidget {
 
     final state = _useDialogState(read: context.read);
     final cancelButton = TextButton(
-      onPressed: () {
-        context.read<DialogController>().closeDialog();
-      },
+      onPressed: onResume,
       child: Text(S.of(context).close),
     );
     return DialogScaffold(
@@ -138,9 +138,7 @@ class LevelWordSuggestionDialog extends HookWidget {
               ),
               uiTheme.verticalBoxes.extraLarge,
               TextButton(
-                onPressed: () {
-                  context.read<DialogController>().closeDialog();
-                },
+                onPressed: onResume,
                 child: Text(S.of(context).ok),
               ),
             ],

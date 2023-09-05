@@ -4,7 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -84,7 +84,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
 
     /// add level data to display something for start screen
     level ??= createLevel(
-      canvasDataId: allLevels.values.first.id,
+      canvasDataId: allLevels.values
+          .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack)
+          .id,
       characterId: liveGame.playersCharacters.first.id,
       playersIds: [],
     );

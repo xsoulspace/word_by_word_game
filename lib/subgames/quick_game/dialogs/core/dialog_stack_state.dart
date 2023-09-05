@@ -89,6 +89,11 @@ class DialogStackState extends LifeState with ChangeNotifier {
     _closeDialog();
   }
 
+  void onResume() {
+    _closeDialog();
+    _resume();
+  }
+
   void onSaveResults() {
     final event =
         endLevelEvent ?? const EndLevelEvent(isWon: true, maxDistance: 0);
@@ -102,7 +107,11 @@ class DialogStackState extends LifeState with ChangeNotifier {
 
   void _showLevelWordSuggestionDialog() {
     dialogType = GameDialogType.levelWordSuggestion;
+    _pause();
   }
+
+  void _pause() => diDto.globalGameBloc.diDto.mechanics.worldTime.pause();
+  void _resume() => diDto.globalGameBloc.diDto.mechanics.worldTime.resume();
 
   void _closeDialog() {
     dialogType = GameDialogType.none;
