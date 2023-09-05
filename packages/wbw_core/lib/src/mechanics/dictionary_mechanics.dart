@@ -19,7 +19,7 @@ class DictionaryMechanics {
   String getWordSuggestion({
     required final String characters,
     required final Iterable<String> exceptions,
-    final int maxSuggestions = 10,
+    final int maxSuggestions = 20,
   }) {
     List<String> words = searchWords(
       dictionaryWords: english_words.nouns,
