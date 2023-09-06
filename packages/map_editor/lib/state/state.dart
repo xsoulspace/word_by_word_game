@@ -2,8 +2,10 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
 
+import 'package:collection/collection.dart';
 import 'package:flame/cache.dart';
 import 'package:flame/extensions.dart';
+// ignore: implementation_imports
 import 'package:flame/src/events/messages/position_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

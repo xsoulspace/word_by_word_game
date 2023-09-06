@@ -45,8 +45,8 @@ class _Card extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
-        (final cubit) =>
-            cubit.state.levelStateStatus == LevelStateStatus.playing);
+      (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
+    );
     final persistentFormFactors = UiPersistentFormFactors.of(context);
     final screenWidth = persistentFormFactors.screenSize.width;
     final screenContstraints = BoxConstraints(maxWidth: screenWidth);

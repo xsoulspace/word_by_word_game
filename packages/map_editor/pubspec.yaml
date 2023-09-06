@@ -76,8 +76,8 @@ dev_dependencies:
   xsoulspace_lints: ^0.0.9
 
 dependency_overrides:
-  http: 1.0.0
   collection: 1.18.0
+  http: 1.0.0
 
 flutter_gen:
   output: lib/generated/
@@ -106,46 +106,16 @@ flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/preview/
+    - assets/images/preview/colourful/
+    - assets/images/preview/white_black/
+    - assets/images/preview/evening/
     - assets/images/tilesets/
-    - assets/images/tilesets/pirate_tileset_pixel_frog/
-    - assets/images/clouds/
+    - assets/images/tilesets/colourful/
+    - assets/images/tilesets/white_black/
+    - assets/images/tilesets/evening/
     - assets/images/cursors/
     - assets/images/cursors/cursor/
-    - assets/images/cursors/
-    - assets/images/cursors/handle/
-    - assets/images/enemies/
-    - assets/images/enemies/pearl/
-    - assets/images/enemies/shell_left/
-    - assets/images/enemies/shell_left/attack/
-    - assets/images/enemies/shell_left/idle/
-    - assets/images/enemies/shell_right/
-    - assets/images/enemies/shell_right/attack/
-    - assets/images/enemies/shell_right/idle/
-    - assets/images/enemies/spikes/
-    - assets/images/enemies/tooth/
-    - assets/images/enemies/tooth/idle/
-    - assets/images/enemies/tooth/run_left/
-    - assets/images/enemies/tooth/run_right/
-    - assets/images/items/
-    - assets/images/items/diamond/
-    - assets/images/items/gold/
-    - assets/images/items/particle/
-    - assets/images/items/silver/
-    - assets/images/menu/
-    - assets/images/player/
-    - assets/images/player/fall_left/
-    - assets/images/player/fall_right/
-    - assets/images/player/idle_left/
-    - assets/images/player/idle_right/
-    - assets/images/player/jump_left/
-    - assets/images/player/jump_right/
-    - assets/images/player/fly_left/
-    - assets/images/player/fly_right/
-    - assets/images/markers/
-    - assets/images/markers/red/
-    - assets/images/markers/green/
-    - assets/images/preview/
-    - assets/json/
 # To add assets to your package, add an assets section, like this:
 # assets:
 #   - images/a_dot_burr.jpeg

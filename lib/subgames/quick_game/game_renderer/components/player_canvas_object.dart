@@ -1,10 +1,6 @@
-import 'dart:async';
-
 import 'package:flame/extensions.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
-import 'package:map_editor/ui/renderer/editor_renderer.dart';
-import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
@@ -24,18 +20,21 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     RenderObjectModel player = canvasCubit.player;
     final position =
         game.canvasRenderer.origin + player.distanceToOrigin.toVector2();
+    final serializedPosition = position.toSerializedVector2();
     if (player.id.isEmpty) {
+      final firstPlayer = canvasCubit.tilesPresetResources.players.values.first;
       final updatedPlayer = RenderObjectModel(
-        id: const Gid(value: 'Tester'),
+        id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
-        tileId: kPlayerTileId,
-        position: position.toSerializedVector2(),
+        tileId: firstPlayer.id,
+        position: serializedPosition,
       );
 
       /// creating player if it is empty
       canvasCubit.player = updatedPlayer;
+      player = updatedPlayer;
     } else {
-      player = player.copyWith(position: position.toSerializedVector2());
+      player = player.copyWith(position: serializedPosition);
     }
     levelPlayersBloc.onChangeCharacter(
       levelPlayersBloc.state.playerCharacter.copyWith(
@@ -72,16 +71,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   void _showLevelWinDialog() {
     _pauseGame();
-
-    unawaited(
-      gameRef.diDto.globalGameBloc.onLevelEnd(
-        EndLevelEvent(
-          isWon: true,
-          maxDistance: maxDistance.toDouble(),
-        ),
+    gameRef.diDto.dialogController.showLevelWinDialog(
+      EndLevelEvent(
+        isWon: true,
+        maxDistance: maxDistance.toDouble(),
       ),
     );
-    gameRef.diDto.dialogController.showLevelWinDialog();
   }
 
   void _onCollision(final double dt) => _onMove(dt, isCollided: true);

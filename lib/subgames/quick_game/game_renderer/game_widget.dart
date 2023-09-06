@@ -1,7 +1,9 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/navigation/game_router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/core/core.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
@@ -12,9 +14,12 @@ class WbwGameWidget extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final gameFocusNode = useFocusNode();
-
+    final backgroundColor = context.select<CanvasCubit, Color>(
+      (final cubit) => cubit.tilesPresetResources.theme.backgroundSkyColor,
+    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: backgroundColor,
       body: Portal(
         child: DefaultDialogOverlayController(
           builder: (final context, final dialogController) => MouseRegion(

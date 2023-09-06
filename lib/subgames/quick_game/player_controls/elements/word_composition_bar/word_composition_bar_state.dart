@@ -33,6 +33,7 @@ class WordCompositionTutorialEventListener extends TutorialEventListener {
       switch (effect.name) {
         case TutorialGameEffectName.requestWordFieldFocus:
           onRequestWordFieldFocus();
+        // ignore: no_default_cases
         default:
       }
     }

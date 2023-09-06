@@ -22,8 +22,8 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
     /// It should be set during the level first initialization
     /// (When the player clicks play button).
     final LevelModel? currentLevelModel,
-    @Default(WorldDateTimeModel()) final WorldDateTimeModel dateTime,
-    @Default(WorldDateTimeModel()) final WorldDateTimeModel lastDateTime,
+    @Default(WorldDateTimeModel.zero) final WorldDateTimeModel dateTime,
+    @Default(WorldDateTimeModel.zero) final WorldDateTimeModel lastDateTime,
 
     /// The [playersCollection] is the collection of players characters,
     /// which will be available for user to playe and progress through the game.
@@ -44,8 +44,9 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
         currentLevelModel: gameModel.currentLevel,
         id: gameModel.id,
         savedLevels: gameModel.savedLevels,
-        dateTime: gameModel.dateTime,
-        lastDateTime: gameModel.lastDateTime,
+        dateTime: gameModel.currentLevel?.dateTime ?? WorldDateTimeModel.zero,
+        lastDateTime:
+            gameModel.currentLevel?.lastDateTime ?? WorldDateTimeModel.zero,
         playersCollection: gameModel.playersCollection,
         playersCharacters: gameModel.playersCharacters,
       );

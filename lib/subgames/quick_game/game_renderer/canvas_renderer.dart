@@ -141,15 +141,10 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   double get windowWidth => canvasRenderer.windowWidth;
   double get tileColumns => canvasRenderer.tileColumns;
   double get tileRows => canvasRenderer.tileRows;
-  Map<CellPointModel, CellTileModel> get layerTiles =>
-      canvasCubit.drawLayer.tiles;
-  set layerTiles(final Map<CellPointModel, CellTileModel> value) =>
-      canvasCubit.drawLayer = canvasCubit.drawLayer.copyWith(
-        tiles: value,
-      );
   CanvasDataModel get canvasData => canvasCubit.canvasData;
   set canvasData(final CanvasDataModel value) => canvasCubit.canvasData = value;
-  TilesPresetResources get presetResources => canvasCubit.tilesResources;
+  TilesetPresetResources get presetResources =>
+      canvasCubit.tilesPresetResources;
   Map<TileId, PresetTileResource> get tilesResources => presetResources.tiles;
 
   /// as temporary solution
@@ -191,7 +186,7 @@ class CanvasTilesRenderer extends Component
       tilesetConstants: game.diDto.canvasCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
-      tilesResources: tilesResources,
+      tilesResources: allTiles,
       origin: origin,
       images: game.images,
       tileColumns: tileColumns,
@@ -199,6 +194,7 @@ class CanvasTilesRenderer extends Component
       tileRows: tileRows,
       windowWidth: windowWidth,
     );
+
     super.render(canvas);
   }
 }

@@ -19,13 +19,16 @@ class PresetTileResource with _$PresetTileResource {
   factory PresetTileResource.fromTile({
     required final PresetTileModel tile,
     required final ResourcesLoader resourcesLoader,
+    required final TilesetConfigModel tilesetConfig,
   }) {
     final behaviourPaths = resourcesLoader.getPathsForPresetCharacterGraphics(
-      tileGraphics: tile.graphics,
+      tile: tile,
+      tilesetConfig: tilesetConfig,
     );
     final directionalPaths =
         resourcesLoader.getPathsForPresetDirectionalGraphics(
-      tileGraphics: tile.graphics,
+      tile: tile,
+      tilesetConfig: tilesetConfig,
     );
     return PresetTileResource(
       tile: tile,
