@@ -22,6 +22,9 @@ class SEn extends S {
   String get resetEnding => 'Reset ending';
 
   @override
+  String get congratulationsYouPassedTheLandscape => 'Congratulations! You passed this landscape!';
+
+  @override
   String get congratulations => 'Congratulations!';
 
   @override

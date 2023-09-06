@@ -22,6 +22,9 @@ class SIt extends S {
   String get resetEnding => 'Reimposta fine';
 
   @override
+  String get congratulationsYouPassedTheLandscape => 'Congratulazioni! Avete superato questo paesaggio!';
+
+  @override
   String get congratulations => 'Congratulazioni!';
 
   @override

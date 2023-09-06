@@ -13,10 +13,8 @@
   "@resetEnding": {
     "type": "text"
   },
+  "congratulationsYouPassedTheLandscape": "Congratulations! You passed this landscape!",
   "congratulations": "Congratulations!",
-  "@congratulations": {
-    "type": "text"
-  },
   "maxHighscoreIs": "Max highscore is ",
   "@maxHighscoreIs": {
     "type": "text"
