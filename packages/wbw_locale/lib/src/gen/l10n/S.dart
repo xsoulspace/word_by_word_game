@@ -245,6 +245,12 @@ abstract class S {
   /// **'Players & Highscore'**
   String get playersAndHighscore;
 
+  /// No description provided for @playersAndHighscoreYandex.
+  ///
+  /// In en, this message translates to:
+  /// **'Players & Highscore'**
+  String get playersAndHighscoreYandex;
+
   /// No description provided for @startNewGame.
   ///
   /// In en, this message translates to:

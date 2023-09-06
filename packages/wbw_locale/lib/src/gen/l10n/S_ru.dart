@@ -79,7 +79,10 @@ class SRu extends S {
   String get chooseLandscape => 'Выбери место';
 
   @override
-  String get playersAndHighscore => 'Игроки и опыт';
+  String get playersAndHighscore => 'Игроки & Опыт';
+
+  @override
+  String get playersAndHighscoreYandex => 'Игроки и опыт';
 
   @override
   String get startNewGame => 'Быстрая игра';

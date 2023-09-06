@@ -82,6 +82,9 @@ class SIt extends S {
   String get playersAndHighscore => 'Giocatori e punteggio';
 
   @override
+  String get playersAndHighscoreYandex => 'Giocatori e punteggio';
+
+  @override
   String get startNewGame => 'Avvio Rapido';
 
   @override

@@ -82,6 +82,9 @@ class SEn extends S {
   String get playersAndHighscore => 'Players & Highscore';
 
   @override
+  String get playersAndHighscoreYandex => 'Players & Highscore';
+
+  @override
   String get startNewGame => 'Quick Start';
 
   @override
