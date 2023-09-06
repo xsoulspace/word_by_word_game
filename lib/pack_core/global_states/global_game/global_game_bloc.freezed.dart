@@ -26,7 +26,6 @@ mixin _$GameEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +38,6 @@ mixin _$GameEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,7 +50,6 @@ mixin _$GameEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,7 +65,6 @@ mixin _$GameEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,7 +76,6 @@ mixin _$GameEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,7 +87,6 @@ mixin _$GameEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -190,7 +184,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return startPlayingLevel(shouldRestartTutorial);
   }
@@ -206,7 +199,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return startPlayingLevel?.call(shouldRestartTutorial);
   }
@@ -222,7 +214,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (startPlayingLevel != null) {
@@ -244,7 +235,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return startPlayingLevel(this);
   }
@@ -259,7 +249,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return startPlayingLevel?.call(this);
   }
@@ -274,7 +263,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (startPlayingLevel != null) {
@@ -390,7 +378,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return initGlobalGameLevel(levelModel, isNewStart);
   }
@@ -406,7 +393,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return initGlobalGameLevel?.call(levelModel, isNewStart);
   }
@@ -422,7 +408,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (initGlobalGameLevel != null) {
@@ -444,7 +429,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return initGlobalGameLevel(this);
   }
@@ -459,7 +443,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return initGlobalGameLevel?.call(this);
   }
@@ -474,7 +457,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (initGlobalGameLevel != null) {
@@ -580,7 +562,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return deletePlayerProfile(profile);
   }
@@ -596,7 +577,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return deletePlayerProfile?.call(profile);
   }
@@ -612,7 +592,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (deletePlayerProfile != null) {
@@ -634,7 +613,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return deletePlayerProfile(this);
   }
@@ -649,7 +627,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return deletePlayerProfile?.call(this);
   }
@@ -664,7 +641,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (deletePlayerProfile != null) {
@@ -768,7 +744,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return createPlayerProfile(profile);
   }
@@ -784,7 +759,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return createPlayerProfile?.call(profile);
   }
@@ -800,7 +774,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (createPlayerProfile != null) {
@@ -822,7 +795,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return createPlayerProfile(this);
   }
@@ -837,7 +809,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return createPlayerProfile?.call(this);
   }
@@ -852,7 +823,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (createPlayerProfile != null) {
@@ -918,7 +888,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return saveGame();
   }
@@ -934,7 +903,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return saveGame?.call();
   }
@@ -950,7 +918,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (saveGame != null) {
@@ -972,7 +939,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return saveGame(this);
   }
@@ -987,7 +953,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return saveGame?.call(this);
   }
@@ -1002,7 +967,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (saveGame != null) {
@@ -1062,7 +1026,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return saveCurrentLevel();
   }
@@ -1078,7 +1041,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return saveCurrentLevel?.call();
   }
@@ -1094,7 +1056,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (saveCurrentLevel != null) {
@@ -1116,7 +1077,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return saveCurrentLevel(this);
   }
@@ -1131,7 +1091,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return saveCurrentLevel?.call(this);
   }
@@ -1146,7 +1105,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (saveCurrentLevel != null) {
@@ -1241,7 +1199,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return endLevel(isWon, maxDistance);
   }
@@ -1257,7 +1214,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return endLevel?.call(isWon, maxDistance);
   }
@@ -1273,7 +1229,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (endLevel != null) {
@@ -1295,7 +1250,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return endLevel(this);
   }
@@ -1310,7 +1264,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return endLevel?.call(this);
   }
@@ -1325,7 +1278,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (endLevel != null) {
@@ -1345,150 +1297,6 @@ abstract class EndLevelEvent implements GameEvent {
   @JsonKey(ignore: true)
   _$$EndLevelEventCopyWith<_$EndLevelEvent> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RestartLevelEventCopyWith<$Res> {
-  factory _$$RestartLevelEventCopyWith(
-          _$RestartLevelEvent value, $Res Function(_$RestartLevelEvent) then) =
-      __$$RestartLevelEventCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$RestartLevelEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$RestartLevelEvent>
-    implements _$$RestartLevelEventCopyWith<$Res> {
-  __$$RestartLevelEventCopyWithImpl(
-      _$RestartLevelEvent _value, $Res Function(_$RestartLevelEvent) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$RestartLevelEvent implements RestartLevelEvent {
-  const _$RestartLevelEvent();
-
-  @override
-  String toString() {
-    return 'GameEvent.restartLevel()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RestartLevelEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
-        initGlobalGameLevel,
-    required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
-    required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function() saveGame,
-    required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
-  }) {
-    return restartLevel();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function()? saveGame,
-    TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
-  }) {
-    return restartLevel?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function()? saveGame,
-    TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
-    required TResult orElse(),
-  }) {
-    if (restartLevel != null) {
-      return restartLevel();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
-    required TResult Function(InitGlobalGameLevelEvent value)
-        initGlobalGameLevel,
-    required TResult Function(DeletePlayerProfileEvent value)
-        deletePlayerProfile,
-    required TResult Function(CreatePlayerProfileEvent value)
-        createPlayerProfile,
-    required TResult Function(SaveGameEvent value) saveGame,
-    required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
-    required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
-  }) {
-    return restartLevel(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(SaveGameEvent value)? saveGame,
-    TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
-  }) {
-    return restartLevel?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(SaveGameEvent value)? saveGame,
-    TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
-    required TResult orElse(),
-  }) {
-    if (restartLevel != null) {
-      return restartLevel(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RestartLevelEvent implements GameEvent {
-  const factory RestartLevelEvent() = _$RestartLevelEvent;
 }
 
 /// @nodoc
@@ -1765,8 +1573,8 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
       this.currentLevelId = CanvasDataModelId.empty,
       final Map<CanvasDataModelId, CanvasDataModel> allCanvasData = const {},
       this.currentLevelModel,
-      this.dateTime = const WorldDateTimeModel(),
-      this.lastDateTime = const WorldDateTimeModel(),
+      this.dateTime = WorldDateTimeModel.zero,
+      this.lastDateTime = WorldDateTimeModel.zero,
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
       final Map<CanvasDataModelId, LevelModel> savedLevels = const {},

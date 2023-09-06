@@ -12,7 +12,7 @@ class EditorStateInitializer extends StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
-    await read<DrawerCubit>().loadInitialData();
+    await read<EditorDrawerCubit>().loadInitialData();
     await read<MapEditorCubit>().load();
   }
 }
@@ -41,7 +41,7 @@ class StateDiProvider extends StatelessWidget {
               ),
             ),
             BlocProvider(
-              create: (final context) => DrawerCubit(
+              create: (final context) => EditorDrawerCubit(
                 resourcesLoader: ResourcesLoader(
                   tilesetAssets: AssetsCache(
                     prefix: 'assets/images/',

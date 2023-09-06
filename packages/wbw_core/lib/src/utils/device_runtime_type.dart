@@ -26,7 +26,7 @@ class DeviceRuntimeType {
 
   /// May return true for both native mobile and web browsers on the phone
   static bool get isMobile => _instance._isMobile;
-  static bool get isMobileWeb => _instance._isMobile && kIsWeb;
+  static bool get isMobileWeb => true; // _instance._isMobile && kIsWeb;
   bool? _isMobileCache;
   bool get _isMobile => _isMobileCache ??= !isDesktop;
 

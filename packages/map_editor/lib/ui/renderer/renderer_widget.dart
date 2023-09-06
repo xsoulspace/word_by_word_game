@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
+import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 
 enum GameOverlays {
@@ -15,9 +16,12 @@ class GameRendererWidget extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final gameFocusNode = useFocusNode();
-
+    final backgroundColor = context.select<EditorDrawerCubit, Color>(
+      (final cubit) => cubit.tilesPresetResources.theme.backgroundSkyColor,
+    );
     return Scaffold(
       resizeToAvoidBottomInset: false,
+      backgroundColor: backgroundColor,
       body: Portal(
         child: GameWidget<EditorRendererGame>.controlled(
           focusNode: gameFocusNode,

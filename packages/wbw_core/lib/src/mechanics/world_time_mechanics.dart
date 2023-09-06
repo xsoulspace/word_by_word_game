@@ -49,7 +49,7 @@ class WorldTimeMechanics implements Loadable {
     }
   }
 
-  WorldDateTimeModel _datetime = const WorldDateTimeModel();
+  WorldDateTimeModel _datetime = WorldDateTimeModel.zero;
   WorldDateTimeModel get dateTime => _datetime;
   void useDateTime(final WorldDateTimeModel datetime) {
     _datetime = datetime;

@@ -17,8 +17,9 @@ class DrawerCubitState with _$DrawerCubitState {
 
     /// Never changable in runtime tileset, like grass, water and data
     /// to instantiate objects
-    @Default(TilesPresetResources.empty)
-    final TilesPresetResources tileResources,
+    @Default(TilesetPresetResources.empty)
+    final TilesetPresetResources tileResources,
+    @Default([]) final List<TilesetConfigModel> tilesetsConfigs,
   }) = _DrawerCubitState;
   const DrawerCubitState._();
   static final empty = DrawerCubitState(origin: Vector2.zero());
@@ -81,4 +82,7 @@ class OriginVectorUtils {
     final distanceToOrigin = eventPosition.canvasPosition - origin;
     return getCellByDistance(distanceToOrigin);
   }
+
+  Vector2 getCurrentPositionByTap(final PositionEvent eventPosition) =>
+      eventPosition.canvasPosition - origin;
 }

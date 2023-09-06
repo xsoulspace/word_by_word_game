@@ -58,7 +58,7 @@ class CharacterAvatarButton extends StatelessWidget {
     final liveState = globalGameBloc.state;
     final playersCharacters = liveState.playersCharacters;
     if (!isDefault) throw UnsupportedError('isNotDefault character');
-    // TODO(arenukvern):
+    // TODO(arenukvern): add default character
     /// Add deafult character selection
     final character = playersCharacters.first;
     const dimension = 48.0;
@@ -87,7 +87,7 @@ class CharacterAvatarButton extends StatelessWidget {
             ),
           ),
         ),
-        Text(character.localizedName.getValue())
+        Text(character.localizedName.getValue()),
       ],
     );
   }

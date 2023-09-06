@@ -34,7 +34,6 @@ int get kVisibleTilesRows => 12;
 int get kTargetWindowWith => kVisibleTilesColumns * kTileDimension;
 int get kTargetWindowHeight => kVisibleTilesRows * kTileDimension;
 
-TileId get kPlayerTileId => const TileId(value: 'tester');
 TileId get kHandleObjectId => const TileId(value: 'cursor_handle');
 
 // Made with awesome Tutorial:
@@ -65,7 +64,7 @@ class EditorRendererGame extends FlameGame
   @override
   Future<void> onLoad() async {
     debugMode = kDebugMode;
-    mouseCursor = material.SystemMouseCursors.none;
+    // mouseCursor = material.SystemMouseCursors.none;
     children
       ..register<CameraComponent>()
       ..register<World>()
@@ -107,5 +106,5 @@ class EditorRendererGame extends FlameGame
   ) async {}
 
   @override
-  material.Color backgroundColor() => Palette.white.color;
+  material.Color backgroundColor() => material.Colors.transparent;
 }
