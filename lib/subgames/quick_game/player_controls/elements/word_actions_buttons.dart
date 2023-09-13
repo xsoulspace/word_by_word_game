@@ -51,7 +51,7 @@ class UiWordActions extends StatelessWidget {
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        textScaler: TextScaler.noScaling,
+        textScaleFactor: 1,
         devicePixelRatio: 1,
       ),
       child: Row(

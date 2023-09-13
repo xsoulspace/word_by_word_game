@@ -153,7 +153,7 @@ mixin _$CanvasDataModel {
 
   /// can be negative and positive. Should be absolute tile index.
   GravityModel get gravity => throw _privateConstructorUsedError;
-  TechnologyTreeModel get technologyTree => throw _privateConstructorUsedError;
+  List<TechnologyModel> get technologies => throw _privateConstructorUsedError;
   TilesetType get tilesetType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -185,14 +185,13 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       RenderObjectModel playerObject,
       int skyYTilePosition,
       GravityModel gravity,
-      TechnologyTreeModel technologyTree,
+      List<TechnologyModel> technologies,
       TilesetType tilesetType});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get name;
   $RenderObjectModelCopyWith<$Res> get playerObject;
   $GravityModelCopyWith<$Res> get gravity;
-  $TechnologyTreeModelCopyWith<$Res> get technologyTree;
 }
 
 /// @nodoc
@@ -215,7 +214,7 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     Object? playerObject = null,
     Object? skyYTilePosition = null,
     Object? gravity = null,
-    Object? technologyTree = null,
+    Object? technologies = null,
     Object? tilesetType = null,
   }) {
     return _then(_value.copyWith(
@@ -247,10 +246,10 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
           ? _value.gravity
           : gravity // ignore: cast_nullable_to_non_nullable
               as GravityModel,
-      technologyTree: null == technologyTree
-          ? _value.technologyTree
-          : technologyTree // ignore: cast_nullable_to_non_nullable
-              as TechnologyTreeModel,
+      technologies: null == technologies
+          ? _value.technologies
+          : technologies // ignore: cast_nullable_to_non_nullable
+              as List<TechnologyModel>,
       tilesetType: null == tilesetType
           ? _value.tilesetType
           : tilesetType // ignore: cast_nullable_to_non_nullable
@@ -289,14 +288,6 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
       return _then(_value.copyWith(gravity: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TechnologyTreeModelCopyWith<$Res> get technologyTree {
-    return $TechnologyTreeModelCopyWith<$Res>(_value.technologyTree, (value) {
-      return _then(_value.copyWith(technologyTree: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
@@ -324,7 +315,7 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
       RenderObjectModel playerObject,
       int skyYTilePosition,
       GravityModel gravity,
-      TechnologyTreeModel technologyTree,
+      List<TechnologyModel> technologies,
       TilesetType tilesetType});
 
   @override
@@ -335,8 +326,6 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
   $RenderObjectModelCopyWith<$Res> get playerObject;
   @override
   $GravityModelCopyWith<$Res> get gravity;
-  @override
-  $TechnologyTreeModelCopyWith<$Res> get technologyTree;
 }
 
 /// @nodoc
@@ -357,7 +346,7 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
     Object? playerObject = null,
     Object? skyYTilePosition = null,
     Object? gravity = null,
-    Object? technologyTree = null,
+    Object? technologies = null,
     Object? tilesetType = null,
   }) {
     return _then(_$_CanvasDataModel(
@@ -389,10 +378,10 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
           ? _value.gravity
           : gravity // ignore: cast_nullable_to_non_nullable
               as GravityModel,
-      technologyTree: null == technologyTree
-          ? _value.technologyTree
-          : technologyTree // ignore: cast_nullable_to_non_nullable
-              as TechnologyTreeModel,
+      technologies: null == technologies
+          ? _value._technologies
+          : technologies // ignore: cast_nullable_to_non_nullable
+              as List<TechnologyModel>,
       tilesetType: null == tilesetType
           ? _value.tilesetType
           : tilesetType // ignore: cast_nullable_to_non_nullable
@@ -421,10 +410,11 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       this.playerObject = RenderObjectModel.empty,
       this.skyYTilePosition = 0,
       this.gravity = GravityModel.initial,
-      this.technologyTree = TechnologyTreeModel.empty,
+      final List<TechnologyModel> technologies = const [],
       this.tilesetType = TilesetType.colourful})
       : _layers = layers,
         _objects = objects,
+        _technologies = technologies,
         super._();
 
   factory _$_CanvasDataModel.fromJson(Map<String, dynamic> json) =>
@@ -487,16 +477,22 @@ class _$_CanvasDataModel extends _CanvasDataModel {
   @override
   @JsonKey()
   final GravityModel gravity;
+  final List<TechnologyModel> _technologies;
   @override
   @JsonKey()
-  final TechnologyTreeModel technologyTree;
+  List<TechnologyModel> get technologies {
+    if (_technologies is EqualUnmodifiableListView) return _technologies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_technologies);
+  }
+
   @override
   @JsonKey()
   final TilesetType tilesetType;
 
   @override
   String toString() {
-    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYTilePosition: $skyYTilePosition, gravity: $gravity, technologyTree: $technologyTree, tilesetType: $tilesetType)';
+    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYTilePosition: $skyYTilePosition, gravity: $gravity, technologies: $technologies, tilesetType: $tilesetType)';
   }
 
   @override
@@ -513,8 +509,8 @@ class _$_CanvasDataModel extends _CanvasDataModel {
             (identical(other.skyYTilePosition, skyYTilePosition) ||
                 other.skyYTilePosition == skyYTilePosition) &&
             (identical(other.gravity, gravity) || other.gravity == gravity) &&
-            (identical(other.technologyTree, technologyTree) ||
-                other.technologyTree == technologyTree) &&
+            const DeepCollectionEquality()
+                .equals(other._technologies, _technologies) &&
             (identical(other.tilesetType, tilesetType) ||
                 other.tilesetType == tilesetType));
   }
@@ -530,7 +526,7 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       playerObject,
       skyYTilePosition,
       gravity,
-      technologyTree,
+      const DeepCollectionEquality().hash(_technologies),
       tilesetType);
 
   @JsonKey(ignore: true)
@@ -565,7 +561,7 @@ abstract class _CanvasDataModel extends CanvasDataModel {
       final RenderObjectModel playerObject,
       final int skyYTilePosition,
       final GravityModel gravity,
-      final TechnologyTreeModel technologyTree,
+      final List<TechnologyModel> technologies,
       final TilesetType tilesetType}) = _$_CanvasDataModel;
   const _CanvasDataModel._() : super._();
 
@@ -609,7 +605,7 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   /// can be negative and positive. Should be absolute tile index.
   GravityModel get gravity;
   @override
-  TechnologyTreeModel get technologyTree;
+  List<TechnologyModel> get technologies;
   @override
   TilesetType get tilesetType;
   @override

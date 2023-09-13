@@ -16,38 +16,6 @@ class TechnologyModelId with _$TechnologyModelId, EquatableMixin {
 }
 
 @freezed
-class TechnologyTreeModel with _$TechnologyTreeModel {
-  const factory TechnologyTreeModel({
-    @JsonKey(
-      fromJson: TechnologyTreeModel._technologiesFromJson,
-      toJson: TechnologyTreeModel._technologiesToJson,
-    )
-    @Default({})
-    final Map<TechnologyModelId, TechnologyModel> technologies,
-  }) = _TechnologyTreeModel;
-  factory TechnologyTreeModel.fromJson(final Map<String, dynamic> json) =>
-      _$TechnologyTreeModelFromJson(json);
-  const TechnologyTreeModel._();
-  static const empty = TechnologyTreeModel();
-  static Map<TechnologyModelId, TechnologyModel> _technologiesFromJson(
-    final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          TechnologyModelId.fromJson(jsonDecode(key)),
-          TechnologyModel.fromJson(value),
-        ),
-      );
-  static Map<String, dynamic> _technologiesToJson(
-    final Map<TechnologyModelId, TechnologyModel> json,
-  ) =>
-      json.map(
-        (final key, final value) =>
-            MapEntry(jsonEncode(key.toJson()), value.toJson()),
-      );
-}
-
-@freezed
 class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
   const factory TechnologyTreeProgressModel({
     @JsonKey(
