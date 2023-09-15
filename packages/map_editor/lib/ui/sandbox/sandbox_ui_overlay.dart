@@ -301,8 +301,8 @@ class TileButtons extends StatelessWidget {
                     );
                   }
                 },
-                icon: const Icon(Icons.paste),
-                label: const Text('Save tpics'),
+                icon: const Icon(Icons.image),
+                label: const Text('Save pics'),
               ),
               UiLocalizedTextField(
                 fieldConstraints: const BoxConstraints(maxWidth: 140),

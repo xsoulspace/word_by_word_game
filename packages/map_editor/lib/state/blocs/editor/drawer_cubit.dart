@@ -369,6 +369,9 @@ final class EditorDrawerCubit extends DrawerCubit {
     techologies = [...techologies]..reorder(oldIndex, newIndex);
   }
 
+  void onDeleteTechnology(final TechnologyModelId id) {}
+  void onTechnologyChanged(final TechnologyModel technology, final int index) {}
+
   void changeLayer({
     required final LayerModel layer,
     required final int index,

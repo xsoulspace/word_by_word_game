@@ -370,22 +370,6 @@ const _$TechnologyTypeEnumMap = {
   TechnologyType.descending: 'descending',
 };
 
-_$_TechnologyTreeModel _$$_TechnologyTreeModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_TechnologyTreeModel(
-      technologies: json['technologies'] == null
-          ? const {}
-          : TechnologyTreeModel._technologiesFromJson(
-              json['technologies'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$_TechnologyTreeModelToJson(
-        _$_TechnologyTreeModel instance) =>
-    <String, dynamic>{
-      'technologies':
-          TechnologyTreeModel._technologiesToJson(instance.technologies),
-    };
-
 _$_TechnologyTreeProgressModel _$$_TechnologyTreeProgressModelFromJson(
         Map<String, dynamic> json) =>
     _$_TechnologyTreeProgressModel(

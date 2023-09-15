@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -13,15 +12,19 @@ Future<void> showTechnologiesTreeDialog({
       builder: (final context) => const TechnologyTreeDialog(),
     );
 
-class TechnologyTreeDialog extends StatelessWidget {
+class TechnologyTreeDialog extends StatefulWidget {
   const TechnologyTreeDialog({super.key});
 
   @override
+  State<TechnologyTreeDialog> createState() => _TechnologyTreeDialogState();
+}
+
+class _TechnologyTreeDialogState extends State<TechnologyTreeDialog> {
+  Languages _language = LocalizedMap.getCurrentLanugage();
+  @override
   Widget build(final BuildContext context) {
     final drawerCubit = context.watch<EditorDrawerCubit>();
-    final layers = drawerCubit.layers;
-    final theme = Theme.of(context);
-    final colorSheme = theme.colorScheme;
+    final techologies = drawerCubit.techologies;
     return Dialog.fullscreen(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,157 +33,142 @@ class TechnologyTreeDialog extends StatelessWidget {
             leading: const CloseButton(),
             title: const Text('Technology Tree'),
           ),
+          LanguageSwitcher(
+            onChanged: (final value) {
+              _language = value;
+              setState(() {});
+            },
+            value: _language,
+          ),
           Expanded(
             child: ReorderableListView.builder(
               shrinkWrap: true,
               padding: EdgeInsets.zero,
               buildDefaultDragHandles: false,
               itemBuilder: (final context, final index) {
-                final layer = layers[index];
-                return Card(
-                  key: ValueKey(layer.id),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Column(
-                      children: [
-                        Row(
-                          children: [
-                            ReorderableDragStartListener(
-                              index: index,
-                              child: const Icon(Icons.drag_handle),
-                            ),
-                            const Gap(16),
-                            Radio(
-                              value: layer.id,
-                              groupValue: drawerCubit.drawLayer.id,
-                              onChanged: (final id) => drawerCubit.selectLayer(
-                                id: id,
-                              ),
-                            ),
-                            const Gap(16),
-                            Flexible(
-                              child: ConstrainedBox(
-                                constraints:
-                                    const BoxConstraints(maxWidth: 250),
-                                child: TextFormField(
-                                  initialValue: layer.title,
-                                  onChanged: (final value) {
-                                    drawerCubit.changeLayer(
-                                      layer: layer.copyWith(
-                                        title: value,
-                                      ),
-                                      index: index,
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            const Gap(16),
-                            Tooltip(
-                              message: layer.isVisible
-                                  ? 'Visible. Click to hide'
-                                  : 'Not visible. Click to make visible',
-                              child: IconButton.filled(
-                                onPressed: () {
-                                  drawerCubit.changeLayer(
-                                    index: index,
-                                    layer: layer.copyWith(
-                                      isVisible: !layer.isVisible,
-                                    ),
-                                  );
-                                },
-                                icon: layer.isVisible
-                                    ? Icon(
-                                        Icons.visibility,
-                                        color: colorSheme.primary,
-                                      )
-                                    : const Icon(Icons.visibility_off),
-                              ),
-                            ),
-                            IconButton.filled(
-                              onPressed: () async {
-                                await showDialog(
-                                  context: context,
-                                  builder: (final context) => AlertDialog(
-                                    content: const Text('Delete layer?'),
-                                    actions: [
-                                      TextButton(
-                                        child: const Text('Cancel'),
-                                        onPressed: () => Navigator.pop(context),
-                                      ),
-                                      TextButton(
-                                        child: const Text('Delete'),
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                          drawerCubit.deleteLayer(
-                                            layer: layer,
-                                          );
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              },
-                              icon: const Icon(Icons.delete),
-                            ),
-                          ],
-                        ),
-                        const Gap(16),
-                        Row(
-                          children: [
-                            const Text('Collidable'),
-                            Switch(
-                              value: layer.isCollidable,
-                              onChanged: (final value) =>
-                                  drawerCubit.changeLayer(
-                                index: index,
-                                layer: layer.copyWith(isCollidable: value),
-                              ),
-                            ),
-                            const Gap(16),
-                            if (layer.isCollidable)
-                              const Text('Collision Consequence'),
-                            if (layer.isCollidable)
-                              MenuAnchor(
-                                menuChildren: CollisionConsequence.values
-                                    .map(
-                                      (final e) => MenuItemButton(
-                                        child: Text(e.name),
-                                        onPressed: () =>
-                                            drawerCubit.changeLayer(
-                                          index: index,
-                                          layer: layer.copyWith(
-                                            collisionConsequence: e,
-                                          ),
-                                        ),
-                                      ),
-                                    )
-                                    .toList(),
-                                builder: (
-                                  final context,
-                                  final controller,
-                                  final child,
-                                ) =>
-                                    TextButton(
-                                  onPressed: controller.open,
-                                  child: Text(
-                                    layer.collisionConsequence.name,
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
+                final technology = techologies[index];
+                return TechnologyInput(
+                  key: ValueKey(technology.id),
+                  onDelete: () => drawerCubit.onDeleteTechnology(technology.id),
+                  onTechnologyChanged: drawerCubit.onTechnologyChanged,
+                  index: index,
+                  initialTechnology: technology,
+                  language: _language,
                 );
               },
               itemCount: TechnologyType.values.length,
-              onReorder: drawerCubit.reorderLayers,
+              onReorder: drawerCubit.reorderTechnologies,
             ),
           ),
         ],
       ),
     );
   }
+}
+
+class TechnologyInput extends StatefulWidget {
+  const TechnologyInput({
+    required this.language,
+    required this.initialTechnology,
+    required this.onTechnologyChanged,
+    required this.index,
+    required this.onDelete,
+    super.key,
+  });
+  final TechnologyModel initialTechnology;
+  final Languages language;
+  final int index;
+  final VoidCallback onDelete;
+  final TwoValuesChanged<TechnologyModel, int> onTechnologyChanged;
+
+  @override
+  State<TechnologyInput> createState() => _TechnologyInputState();
+}
+
+class _TechnologyInputState extends State<TechnologyInput> {
+  final _controller = TextEditingController();
+  late Map<Languages, List<UsefulWordModel>> words =
+      _initTechnology.unlockCondition.languageWords;
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  TechnologyModel get _initTechnology => widget.initialTechnology;
+  void _onTechnologyChanged() {
+    final tech = _initTechnology.copyWith(
+      unlockCondition: _initTechnology.unlockCondition.copyWith(
+        languageWords: words,
+      ),
+    );
+    widget.onTechnologyChanged(tech, widget.index);
+  }
+
+  @override
+  Widget build(final BuildContext context) => Card(
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  ReorderableDragStartListener(
+                    index: widget.index,
+                    child: const Icon(Icons.drag_handle),
+                  ),
+                  const Gap(16),
+                  Flexible(
+                    child: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 250),
+                      child: TextFormField(
+                        initialValue: widget.initialTechnology.title.getValue(),
+                        onChanged: (final value) {},
+                      ),
+                    ),
+                  ),
+                  const Gap(16),
+                  IconButton.filled(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () async {
+                      final shouldDelete = await showDialog<bool>(
+                        context: context,
+                        builder: (final context) => AlertDialog(
+                          content: const Text('Delete technology?'),
+                          actions: [
+                            TextButton(
+                              child: const Text('Cancel'),
+                              onPressed: () => Navigator.pop(context, false),
+                            ),
+                            TextButton(
+                              child: const Text('Delete'),
+                              onPressed: () => Navigator.pop(context, true),
+                            ),
+                          ],
+                        ),
+                      );
+                      if (shouldDelete == true) widget.onDelete();
+                    },
+                  ),
+                ],
+              ),
+              const Gap(16),
+              TextFormField(
+                controller: _controller,
+              ),
+              Wrap(
+                children: words[widget.language]
+                        ?.map(
+                          (final e) => InputChip(
+                            label: Text(e.word),
+                            onDeleted: () {},
+                          ),
+                        )
+                        .toList() ??
+                    [],
+              ),
+            ],
+          ),
+        ),
+      );
 }

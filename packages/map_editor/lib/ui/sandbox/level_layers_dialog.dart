@@ -145,7 +145,8 @@ class _LayersDialogState extends State<LayersDialog> {
                                   ),
                                   IconButton.filled(
                                     onPressed: () async {
-                                      await showDialog(
+                                      final shouldDeleteLayer =
+                                          await showDialog<bool>(
                                         context: context,
                                         builder: (final context) => AlertDialog(
                                           content: const Text('Delete layer?'),
@@ -153,20 +154,19 @@ class _LayersDialogState extends State<LayersDialog> {
                                             TextButton(
                                               child: const Text('Cancel'),
                                               onPressed: () =>
-                                                  Navigator.pop(context),
+                                                  Navigator.pop(context, false),
                                             ),
                                             TextButton(
                                               child: const Text('Delete'),
-                                              onPressed: () {
-                                                Navigator.pop(context);
-                                                drawerCubit.deleteLayer(
-                                                  layer: layer,
-                                                );
-                                              },
+                                              onPressed: () =>
+                                                  Navigator.pop(context, true),
                                             ),
                                           ],
                                         ),
                                       );
+                                      if (shouldDeleteLayer == true) {
+                                        drawerCubit.deleteLayer(layer: layer);
+                                      }
                                     },
                                     icon: const Icon(Icons.delete),
                                   ),
