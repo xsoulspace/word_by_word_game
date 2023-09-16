@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/widgets/dialogs.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
@@ -146,23 +147,9 @@ class _LayersDialogState extends State<LayersDialog> {
                                   IconButton.filled(
                                     onPressed: () async {
                                       final shouldDeleteLayer =
-                                          await showDialog<bool>(
-                                        context: context,
-                                        builder: (final context) => AlertDialog(
-                                          content: const Text('Delete layer?'),
-                                          actions: [
-                                            TextButton(
-                                              child: const Text('Cancel'),
-                                              onPressed: () =>
-                                                  Navigator.pop(context, false),
-                                            ),
-                                            TextButton(
-                                              child: const Text('Delete'),
-                                              onPressed: () =>
-                                                  Navigator.pop(context, true),
-                                            ),
-                                          ],
-                                        ),
+                                          await Dialogs.of(context)
+                                              .showDeleteDialog(
+                                        title: const Text('Delete layer?'),
                                       );
                                       if (shouldDeleteLayer == true) {
                                         drawerCubit.deleteLayer(layer: layer);

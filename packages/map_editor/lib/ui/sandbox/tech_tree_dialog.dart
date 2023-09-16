@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/widgets/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -131,21 +132,9 @@ class _TechnologyInputState extends State<TechnologyInput> {
                   IconButton.filled(
                     icon: const Icon(Icons.delete),
                     onPressed: () async {
-                      final shouldDelete = await showDialog<bool>(
-                        context: context,
-                        builder: (final context) => AlertDialog(
-                          content: const Text('Delete technology?'),
-                          actions: [
-                            TextButton(
-                              child: const Text('Cancel'),
-                              onPressed: () => Navigator.pop(context, false),
-                            ),
-                            TextButton(
-                              child: const Text('Delete'),
-                              onPressed: () => Navigator.pop(context, true),
-                            ),
-                          ],
-                        ),
+                      final shouldDelete =
+                          await Dialogs.of(context).showDeleteDialog(
+                        title: const Text('Delete technology?'),
                       );
                       if (shouldDelete == true) widget.onDelete();
                     },
