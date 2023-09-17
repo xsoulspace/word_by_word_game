@@ -369,8 +369,20 @@ final class EditorDrawerCubit extends DrawerCubit {
     techologies = [...techologies]..reorder(oldIndex, newIndex);
   }
 
-  void onDeleteTechnology(final TechnologyModelId id) {}
-  void onTechnologyChanged(final TechnologyModel technology, final int index) {}
+  void onResetTechnology(final int index) {
+    final tech = techologies[index];
+    techologies = techologies
+      ..[index] = TechnologyModel(
+        id: tech.id,
+        title: LocalizedMap.fromLanguages(),
+        unlockCondition:
+            const TechnologyUnlockConditionModel(languageWords: {}),
+      );
+  }
+
+  void onTechnologyChanged(final TechnologyModel technology, final int index) {
+    techologies = [...techologies]..[index] = technology;
+  }
 
   void changeLayer({
     required final LayerModel layer,
