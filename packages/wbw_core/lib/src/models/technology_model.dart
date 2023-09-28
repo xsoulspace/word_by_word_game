@@ -73,6 +73,7 @@ class TechnologyModel with _$TechnologyModel {
     required final LocalizedMap title,
     // TODO(antmalofeev): add icon?
     required final TechnologyUnlockConditionModel unlockCondition,
+    @Default(0) final int index,
     final TechnologyModelId? parentTechnologyId,
   }) = _TechnologyModel;
   factory TechnologyModel.fromJson(final Map<String, dynamic> json) =>

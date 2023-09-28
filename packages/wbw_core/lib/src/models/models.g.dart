@@ -407,6 +407,7 @@ _$_TechnologyModel _$$_TechnologyModelFromJson(Map<String, dynamic> json) =>
       title: LocalizedMap.fromJson(json['title'] as Map<String, dynamic>),
       unlockCondition: TechnologyUnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
+      index: json['index'] as int? ?? 0,
       parentTechnologyId: json['parentTechnologyId'] == null
           ? null
           : TechnologyModelId.fromJson(
@@ -418,6 +419,7 @@ Map<String, dynamic> _$$_TechnologyModelToJson(_$_TechnologyModel instance) =>
       'id': instance.id,
       'title': instance.title,
       'unlockCondition': instance.unlockCondition,
+      'index': instance.index,
       'parentTechnologyId': instance.parentTechnologyId,
     };
 

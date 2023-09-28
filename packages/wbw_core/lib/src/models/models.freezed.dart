@@ -3809,6 +3809,7 @@ mixin _$TechnologyModel {
       throw _privateConstructorUsedError; // TODO(antmalofeev): add icon?
   TechnologyUnlockConditionModel get unlockCondition =>
       throw _privateConstructorUsedError;
+  int get index => throw _privateConstructorUsedError;
   TechnologyModelId? get parentTechnologyId =>
       throw _privateConstructorUsedError;
 
@@ -3828,6 +3829,7 @@ abstract class $TechnologyModelCopyWith<$Res> {
       {TechnologyModelId id,
       LocalizedMap title,
       TechnologyUnlockConditionModel unlockCondition,
+      int index,
       TechnologyModelId? parentTechnologyId});
 
   $TechnologyModelIdCopyWith<$Res> get id;
@@ -3852,6 +3854,7 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
     Object? id = null,
     Object? title = null,
     Object? unlockCondition = null,
+    Object? index = null,
     Object? parentTechnologyId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -3867,6 +3870,10 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
           ? _value.unlockCondition
           : unlockCondition // ignore: cast_nullable_to_non_nullable
               as TechnologyUnlockConditionModel,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       parentTechnologyId: freezed == parentTechnologyId
           ? _value.parentTechnologyId
           : parentTechnologyId // ignore: cast_nullable_to_non_nullable
@@ -3925,6 +3932,7 @@ abstract class _$$_TechnologyModelCopyWith<$Res>
       {TechnologyModelId id,
       LocalizedMap title,
       TechnologyUnlockConditionModel unlockCondition,
+      int index,
       TechnologyModelId? parentTechnologyId});
 
   @override
@@ -3951,6 +3959,7 @@ class __$$_TechnologyModelCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? unlockCondition = null,
+    Object? index = null,
     Object? parentTechnologyId = freezed,
   }) {
     return _then(_$_TechnologyModel(
@@ -3966,6 +3975,10 @@ class __$$_TechnologyModelCopyWithImpl<$Res>
           ? _value.unlockCondition
           : unlockCondition // ignore: cast_nullable_to_non_nullable
               as TechnologyUnlockConditionModel,
+      index: null == index
+          ? _value.index
+          : index // ignore: cast_nullable_to_non_nullable
+              as int,
       parentTechnologyId: freezed == parentTechnologyId
           ? _value.parentTechnologyId
           : parentTechnologyId // ignore: cast_nullable_to_non_nullable
@@ -3981,6 +3994,7 @@ class _$_TechnologyModel extends _TechnologyModel {
       {required this.id,
       required this.title,
       required this.unlockCondition,
+      this.index = 0,
       this.parentTechnologyId})
       : super._();
 
@@ -3995,11 +4009,14 @@ class _$_TechnologyModel extends _TechnologyModel {
   @override
   final TechnologyUnlockConditionModel unlockCondition;
   @override
+  @JsonKey()
+  final int index;
+  @override
   final TechnologyModelId? parentTechnologyId;
 
   @override
   String toString() {
-    return 'TechnologyModel(id: $id, title: $title, unlockCondition: $unlockCondition, parentTechnologyId: $parentTechnologyId)';
+    return 'TechnologyModel(id: $id, title: $title, unlockCondition: $unlockCondition, index: $index, parentTechnologyId: $parentTechnologyId)';
   }
 
   @override
@@ -4011,14 +4028,15 @@ class _$_TechnologyModel extends _TechnologyModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.unlockCondition, unlockCondition) ||
                 other.unlockCondition == unlockCondition) &&
+            (identical(other.index, index) || other.index == index) &&
             (identical(other.parentTechnologyId, parentTechnologyId) ||
                 other.parentTechnologyId == parentTechnologyId));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, unlockCondition, parentTechnologyId);
+  int get hashCode => Object.hash(
+      runtimeType, id, title, unlockCondition, index, parentTechnologyId);
 
   @JsonKey(ignore: true)
   @override
@@ -4039,6 +4057,7 @@ abstract class _TechnologyModel extends TechnologyModel {
       {required final TechnologyModelId id,
       required final LocalizedMap title,
       required final TechnologyUnlockConditionModel unlockCondition,
+      final int index,
       final TechnologyModelId? parentTechnologyId}) = _$_TechnologyModel;
   const _TechnologyModel._() : super._();
 
@@ -4051,6 +4070,8 @@ abstract class _TechnologyModel extends TechnologyModel {
   LocalizedMap get title;
   @override // TODO(antmalofeev): add icon?
   TechnologyUnlockConditionModel get unlockCondition;
+  @override
+  int get index;
   @override
   TechnologyModelId? get parentTechnologyId;
   @override
