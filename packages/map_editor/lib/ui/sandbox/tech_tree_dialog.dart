@@ -110,10 +110,30 @@ class TechnologyInput extends StatefulWidget {
 }
 
 class _TechnologyInputState extends State<TechnologyInput> {
-  final _controller = TextEditingController();
+  final _newWordController = TextEditingController();
+  final _nameController = TextEditingController();
+  @override
+  void initState() {
+    _nameController.text = widget.initialTechnology.title.getValue(
+      widget.language,
+    );
+    super.initState();
+  }
+
+  @override
+  void didUpdateWidget(covariant final TechnologyInput oldWidget) {
+    if (widget.language != oldWidget.language) {
+      _nameController.text = widget.initialTechnology.title.getValue(
+        widget.language,
+      );
+    }
+    super.didUpdateWidget(oldWidget);
+  }
+
   @override
   void dispose() {
-    _controller.dispose();
+    _newWordController.dispose();
+    _nameController.dispose();
     super.dispose();
   }
 
@@ -128,9 +148,9 @@ class _TechnologyInputState extends State<TechnologyInput> {
   }
 
   void _onAddWord() {
-    final text = _controller.text;
+    final text = _newWordController.text;
     if (text.isEmpty) return;
-    _controller.clear();
+    _newWordController.clear();
     final word = UsefulWordModel(word: text);
     final updatedWords = {...words, word}.toList();
     _onWordsChanged(updatedWords);
@@ -170,7 +190,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 250),
                       child: TextFormField(
-                        initialValue: widget.initialTechnology.title.getValue(),
+                        controller: _nameController,
                         onChanged: (final value) {
                           widget.onTechnologyChanged(
                             _initTechnology.copyWith(
@@ -205,7 +225,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
                     child: ConstrainedBox(
                       constraints: const BoxConstraints(maxWidth: 250),
                       child: TextFormField(
-                        controller: _controller,
+                        controller: _newWordController,
                         onFieldSubmitted: (final value) => _onAddWord(),
                       ),
                     ),
