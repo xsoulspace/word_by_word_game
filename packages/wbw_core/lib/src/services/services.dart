@@ -17,7 +17,7 @@ class ServicesCollection {
     return ServicesCollection._(
       localDataService: localDb,
       levelsRepository: LevelsRepository(
-        localAssets: LevelsLocalDataSourceAssetsImpl(),
+        localAssets: LevelsLocalDataSourceAssetsImpl(localDb: localDb),
       ),
       gameRepository: GameRespository(
         local: GameLocalDataSourceImpl(localDb: localDb),
