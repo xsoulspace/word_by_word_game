@@ -21,10 +21,10 @@ class GlobalControllersInitializerImpl extends GlobalControllersInitializer {
       await FirebaseInitializerImpl(firebaseOptions: effectiveFirebaseOptions)
           .onLoad();
       analyticsService = AnalyticsServiceImpl(
-        plugins: [
-          FirebaseAnalyticsPlugin(),
-          FirebaseCrashlyticsPlugin(),
-        ],
+        plugins: {
+          FirebaseAnalyticsPlugin: FirebaseAnalyticsPlugin(),
+          FirebaseCrashlyticsPlugin: FirebaseCrashlyticsPlugin(),
+        },
       );
     }
     await analyticsService.onLoad();

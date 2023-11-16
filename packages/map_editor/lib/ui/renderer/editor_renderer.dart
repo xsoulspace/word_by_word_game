@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -43,7 +44,7 @@ class EditorRendererGame extends FlameGame
         HasCollisionDetection,
         SingleGameInstance,
         // replace to MouseMovementDetector (?)
-        HasHoverables {
+        MouseMovementDetector {
   EditorRendererGame.use({
     required final Locator read,
     required final material.ThemeData theme,
@@ -57,6 +58,7 @@ class EditorRendererGame extends FlameGame
   late final RouterComponent router;
 
   late CameraComponent worldCamera;
+  @override
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final editor = EditorRendererComponent();

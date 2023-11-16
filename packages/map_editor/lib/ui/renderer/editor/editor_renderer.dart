@@ -7,7 +7,6 @@ import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
-import 'package:flame/input.dart';
 // ignore: implementation_imports
 import 'package:flame/src/events/messages/position_event.dart';
 import 'package:flame_bloc/flame_bloc.dart';
@@ -27,7 +26,7 @@ part 'editor_canvas_object.dart';
 part 'tiles_render_drawer.dart';
 
 class EditorRendererComponent extends Component
-    with DragCallbacks, HasGameRef<EditorRendererGame>, Hoverable {
+    with DragCallbacks, HasGameRef<EditorRendererGame>, HoverCallbacks {
   DrawerCubit get drawerCubit => game.diDto.drawerCubit;
   DrawerCubitState get drawerCubitState => drawerCubit.state;
   Vector2 get origin => drawerCubitState.origin;
@@ -104,12 +103,10 @@ class EditorRendererComponent extends Component
 
   /// For cursor rendering
   Vector2 mousePosition = Vector2.zero();
-
   @override
-  // ignore: invalid_override_of_non_virtual_member
-  bool handleMouseMovement(final PointerHoverInfo info) {
-    mousePosition = info.eventPosition.viewport;
-    return super.handleMouseMovement(info);
+  void onPointerMove(final PointerMoveEvent event) {
+    mousePosition = event.canvasPosition;
+    super.onPointerMove(event);
   }
 
   @override

@@ -29,7 +29,7 @@ dependencies:
   intl: ^0.18.0
   json_annotation: ^4.8.1
   life_hooks: ^0.0.18
-  logger: ^1.4.0
+  logger: ^2.0.2+1
   map_editor:
     path: ../map_editor
   path_to_regexp: ^0.4.0

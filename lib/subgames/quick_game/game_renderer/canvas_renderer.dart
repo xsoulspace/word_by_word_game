@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
-import 'package:flame/input.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -17,7 +16,7 @@ import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/c
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class CanvasRenderer extends Component
-    with DragCallbacks, HasGameRef<CanvasRendererGame>, Hoverable {
+    with DragCallbacks, HasGameRef<CanvasRendererGame>, HoverCallbacks {
   CanvasCubit get canvasCubit => game.diDto.canvasCubit;
   DrawerCubitState get canvasCubitState => canvasCubit.state;
   Vector2 get origin => canvasCubitState.origin;
@@ -89,12 +88,10 @@ class CanvasRenderer extends Component
 
   /// For cursor rendering
   Vector2 mousePosition = Vector2.zero();
-
   @override
-  // ignore: invalid_override_of_non_virtual_member
-  bool handleMouseMovement(final PointerHoverInfo info) {
-    mousePosition = info.eventPosition.viewport;
-    return super.handleMouseMovement(info);
+  void onPointerMove(final PointerMoveEvent event) {
+    mousePosition = event.canvasPosition;
+    return super.onPointerMove(event);
   }
 
   @override

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -28,8 +29,8 @@ class CanvasRendererGame extends FlameGame
     with
         HasCollisionDetection, // replace to MouseMovementDetector (?)
         SingleGameInstance,
-        // replace to MouseMovementDetector (?)
-        HasHoverables {
+        // TODO: replace to MouseMovementDetector (?)
+        MouseMovementDetector {
   CanvasRendererGame.use({
     required final BuildContext context,
     required final ThemeData theme,
@@ -42,6 +43,7 @@ class CanvasRendererGame extends FlameGame
   final GameRendererDiDto diDto;
 
   late CameraComponent worldCamera;
+  @override
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final canvasRenderer = CanvasRenderer();
