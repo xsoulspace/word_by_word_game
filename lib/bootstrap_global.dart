@@ -51,21 +51,19 @@ Future<void> bootstrapGlobal(
         final license = await rootBundle.loadString('google_fonts/OFL.txt');
         yield LicenseEntryWithLineBreaks(['google_fonts'], license);
       });
-      final plugins = <AnalyticsService>[];
       final FirebaseInitializer? firebaseIntializer;
       if (Envs.isAnalyticsEnabled) {
         firebaseIntializer = FirebaseInitializerImpl(
           firebaseOptions: firebaseOptions,
         );
         await firebaseIntializer.onLoad();
-        plugins.addAll([
-          FirebaseAnalyticsPlugin(),
-          if (Envs.isCrashlyticsEnabled) FirebaseCrashlyticsPlugin(),
-        ]);
+        analyticsService.upsertPlugin(FirebaseAnalyticsPlugin());
+        if (Envs.isCrashlyticsEnabled) {
+          analyticsService.upsertPlugin(FirebaseCrashlyticsPlugin());
+        }
       } else {
         firebaseIntializer = null;
       }
-      await analyticsService.attachPlugins(plugins: plugins);
       await analyticsService.onLoad();
       Bloc.observer = AppBlocObserver(analyticsService: analyticsService);
       final servicesDto = AppDiProviderDto(

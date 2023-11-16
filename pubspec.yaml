@@ -38,8 +38,8 @@ dependencies:
   firebase_core: ^2.15.0
   firebase_core_web: ^2.6.0
   firebase_crashlytics: ^3.3.4
-  flame: ^1.9.1
-  flame_bloc: ^1.10.3
+  flame: ^1.10.1
+  flame_bloc: ^1.10.5
   flare_flutter: ^3.0.2
   flutter:
     sdk: flutter
