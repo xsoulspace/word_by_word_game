@@ -41,7 +41,7 @@ dependencies:
   hive_flutter: ^1.1.0
   intl: ^0.18.0
   json_annotation: ^4.8.1
-  life_hooks: ^0.0.18
+  life_hooks: ^0.0.19
   logger: ^2.0.2+1
   package_info_plus: ^4.0.2
   path: ^1.8.3
