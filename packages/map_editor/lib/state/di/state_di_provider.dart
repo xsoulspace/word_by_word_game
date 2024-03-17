@@ -8,7 +8,7 @@ import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-class EditorStateInitializer extends StateInitializer {
+class EditorStateInitializer implements StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;

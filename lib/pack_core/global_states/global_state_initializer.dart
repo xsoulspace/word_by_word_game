@@ -12,7 +12,7 @@ import 'package:word_by_word_game/pack_core/app/app_di.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 
-class GlobalSettingsInitializer extends StateInitializer {
+class GlobalSettingsInitializer implements StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
@@ -21,7 +21,7 @@ class GlobalSettingsInitializer extends StateInitializer {
   }
 }
 
-class GlobalStateInitializer extends StateInitializer {
+class GlobalStateInitializer implements StateInitializer {
   GlobalStateInitializer({
     required this.servicesDto,
   });

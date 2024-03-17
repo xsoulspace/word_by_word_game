@@ -66,22 +66,16 @@ class YandexAdEventNotifier {
       switch (notifyCall.type) {
         case YandexAdEventNotifyType.onAdLoaded:
           listener.onAdLoaded();
-          break;
         case YandexAdEventNotifyType.onAdFailedToLoad:
           listener.onAdFailedToLoad();
-          break;
         case YandexAdEventNotifyType.onImpression:
           listener.onImpression();
-          break;
         case YandexAdEventNotifyType.onAdClicked:
           listener.onAdClicked();
-          break;
         case YandexAdEventNotifyType.onLeftApplication:
           listener.onLeftApplication();
-          break;
         case YandexAdEventNotifyType.onReturnedToApplication:
           listener.onReturnedToApplication();
-          break;
       }
     }
   }
