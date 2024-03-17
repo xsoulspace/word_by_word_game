@@ -1,5 +1,5 @@
 export 'src/datasources/datasources.dart';
-export 'src/extensions/extensions.dart';
+export 'src/foundation/extensions/extensions.dart';
 export 'src/hooks/hooks.dart';
 export 'src/localization/localization.dart';
 export 'src/mechanics/mechanics.dart';
