@@ -27,11 +27,9 @@ class StateDiProvider extends StatelessWidget {
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
           Provider<LocalDbDataSource>(
-            create: (final context) => SharedPreferencesDbDataSourceImpl(),
+            create: SharedPreferencesDbDataSourceImpl.new,
           ),
-          Provider(
-            create: (final context) => EditorMechanicsCollection.v1(),
-          ),
+          Provider(create: EditorMechanicsCollection.v1),
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [

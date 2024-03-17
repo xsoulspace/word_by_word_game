@@ -42,32 +42,18 @@ class _AppDiProviderState extends State<AppDiProvider> {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
-          Provider(
-            create: (final context) => widget.diDto.analyticsService,
-          ),
-          Provider<ServicesCollection>(
-            create: (final context) => ServicesCollection.v1,
-          ),
+          Provider(create: (final context) => widget.diDto.analyticsService),
           Provider<LocalDbDataSource>(
-            create: (final context) =>
-                context.read<ServicesCollection>().localDataService,
+            create: SharedPreferencesDbDataSourceImpl.new,
           ),
-          Provider<LevelsRepository>(
-            create: (final context) =>
-                context.read<ServicesCollection>().levelsRepository,
-          ),
+          Provider(create: LevelsRepository.new),
           Provider<GameRespository>(
-            create: (final context) =>
-                context.read<ServicesCollection>().gameRepository,
+            create: (final context) => GameRespository(
+              local: GameLocalDataSourceImpl(localDb: context.read()),
+            ),
           ),
-          Provider<DictionariesRespository>(
-            create: (final context) =>
-                context.read<ServicesCollection>().dictionariesRepository,
-          ),
-          Provider<AppSettingsRepository>(
-            create: (final context) =>
-                context.read<ServicesCollection>().appSettingsRepository,
-          ),
+          Provider(create: DictionariesRespository.new),
+          Provider(create: AppSettingsRepository.new),
           Provider<MechanicsCollection>(
             create: (final context) => MechanicsCollection.v1,
           ),
@@ -77,6 +63,7 @@ class _AppDiProviderState extends State<AppDiProvider> {
               dto: StatesStatusesCubitDto(context: context),
             ),
           ),
+          Provider(create: ServicesCollection.new),
         ],
         child: Builder(
           builder: (final context) {

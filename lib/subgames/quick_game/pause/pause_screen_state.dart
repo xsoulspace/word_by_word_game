@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 part of 'pause_screen.dart';
 
 bool get kLinksAreAllowed => true;

@@ -29,7 +29,7 @@ class CanvasRendererGame extends FlameGame
     with
         HasCollisionDetection, // replace to MouseMovementDetector (?)
         SingleGameInstance,
-        // TODO: replace to MouseMovementDetector (?)
+        // TODO(arenukvern): replace to MouseMovementDetector (?)
         MouseMovementDetector {
   CanvasRendererGame.use({
     required final BuildContext context,

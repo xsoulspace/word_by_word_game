@@ -1,10 +1,10 @@
-export 'src/datasources/datasources.dart';
+export 'src/data_repositories/data_repositories.dart';
+export 'src/data_sources/data_sources.dart';
 export 'src/foundation/extensions/extensions.dart';
 export 'src/hooks/hooks.dart';
 export 'src/localization/localization.dart';
 export 'src/mechanics/mechanics.dart';
 export 'src/models/models.dart';
-export 'src/repositories/repositories.dart';
 export 'src/router/router.dart';
 export 'src/services/services.dart';
 export 'src/tutorial/tutorial.dart';

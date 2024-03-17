@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:map_editor/state/models/models.dart';
 
 import '../../gen/assets.gen.dart';
-import '../datasources.dart';
+import '../data_sources.dart';
 
 class LevelsLocalDataSourceAssetsImpl implements LevelsLocalDataSource {
   LevelsLocalDataSourceAssetsImpl({

@@ -1,11 +1,14 @@
 import 'dart:convert';
 
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../interfaces/interfaces.dart';
 
 /// This service purpose to manage shared preferences only
 class SharedPreferencesDbDataSourceImpl implements LocalDbDataSource {
+  // ignore: avoid_unused_constructor_parameters
+  SharedPreferencesDbDataSourceImpl(final BuildContext context);
   // cached SharedPreferences instance
   SharedPreferences? _sharedPreferences;
   Future<SharedPreferences> get sharedPreferences async =>

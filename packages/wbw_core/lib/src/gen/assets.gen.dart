@@ -9,6 +9,17 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsDictionariesGen {
+  const $AssetsDictionariesGen();
+
+  /// File path: assets/dictionaries/wrong_words.json
+  String get wrongWords =>
+      'packages/wbw_core/assets/dictionaries/wrong_words.json';
+
+  /// List of all assets
+  List<String> get values => [wrongWords];
+}
+
 class $AssetsLevelsGen {
   const $AssetsLevelsGen();
 
@@ -30,6 +41,7 @@ class $AssetsLevelsGen {
 class Assets {
   Assets._();
 
+  static const $AssetsDictionariesGen dictionaries = $AssetsDictionariesGen();
   static const $AssetsLevelsGen levels = $AssetsLevelsGen();
 }
 

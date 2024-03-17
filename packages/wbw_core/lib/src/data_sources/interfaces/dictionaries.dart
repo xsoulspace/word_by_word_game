@@ -7,4 +7,6 @@ abstract interface class DictionariesLocalDataSource {
     required final LocalDictionaryModel dictionary,
   });
   Future<LocalDictionaryModel> loadDictionary();
+  Future<void> preloadWrongWordsDictionary();
+  Future<bool> verifyWord(final String word);
 }

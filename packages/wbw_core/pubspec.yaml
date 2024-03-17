@@ -92,6 +92,7 @@ flutter:
   #         style: italic
   assets:
     - assets/
+    - assets/dictionaries/
     - assets/levels/
 # assets:
 #   - assets/images/

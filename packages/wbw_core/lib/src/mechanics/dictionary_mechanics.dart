@@ -68,8 +68,9 @@ class DictionaryMechanics {
   }) {
     final cleanWord = word.fullWord;
     final isEnglishWord = english_words.nouns.contains(cleanWord);
+    if (isEnglishWord) return true;
     final isRussianWord = russian_words.nouns.contains(cleanWord);
-    if (isEnglishWord || isRussianWord) return true;
+    if (isRussianWord) return true;
 
     return localDictionary.words.contains(cleanWord);
   }
