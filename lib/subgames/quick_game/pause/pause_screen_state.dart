@@ -180,7 +180,7 @@ class PauseScreenState extends ContextfulLifeState {
       height: 64,
     );
     if (!mounted) return;
-    final applicationName = Envs.isYandexGames
+    final applicationName = Envs.store.isYandexGames
         ? const LocalizedMap(
             value: {
               Languages.en: 'Word By Word Adventure',

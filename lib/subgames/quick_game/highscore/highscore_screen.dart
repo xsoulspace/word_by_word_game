@@ -46,7 +46,7 @@ class HighscoreScreen extends HookWidget {
               ),
               Expanded(
                 child: Text(
-                  Envs.isYandexGames
+                  Envs.store.isYandexGames
                       ? S.of(context).playersAndHighscoreYandex
                       : S.of(context).playersAndHighscore,
                   style: theme.textTheme.headlineLarge,

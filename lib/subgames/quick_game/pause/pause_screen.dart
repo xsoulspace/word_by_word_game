@@ -67,7 +67,7 @@ class PauseScreen extends HookWidget {
                         uiTheme.horizontalBoxes.medium,
                         UiFilledButton.icon(
                           icon: Icons.scoreboard_rounded,
-                          text: Envs.isYandexGames
+                          text: Envs.store.isYandexGames
                               ? S.of(context).playersAndHighscoreYandex
                               : S.of(context).playersAndHighscore,
                           onPressed: state.onToPlayersAndHighscore,
