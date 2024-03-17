@@ -17,7 +17,7 @@ class TilesDrawer extends Component
     event.continuePropagation = true;
     super.onDragUpdate(event);
     if (game.diDto.mapEditorBloc.state.isEditing) {
-      _onTap(event);
+      _onTap(event.canvasStartPosition);
     }
   }
 
@@ -25,7 +25,7 @@ class TilesDrawer extends Component
   void onTapDown(final TapDownEvent event) {
     event.continuePropagation = true;
     if (game.diDto.mapEditorBloc.state.isEditing) {
-      _onTap(event);
+      _onTap(event.canvasPosition);
     }
     return super.onTapDown(event);
   }
@@ -80,9 +80,9 @@ class TilesDrawer extends Component
   }
 
   math.Point<int>? _lastSelectedCell;
-  void _onTap(final PositionEvent event) {
+  void _onTap(final Vector2 canvasPosition) {
     final originUtils = OriginVectorUtils.use(origin);
-    final cell = originUtils.getCurrentCellByTap(event);
+    final cell = originUtils.getCurrentCellByTap(canvasPosition);
     final effectiveLayerTiles = {...layerTiles};
     final cellPoint = cell.toCellPoint();
     final tileToDraw = drawerCubit.tileToDraw;
