@@ -9,6 +9,7 @@ class LoadableContainer<T> with _$LoadableContainer<T> {
     required final T value,
     @Default(false) final bool isLoaded,
   }) = _LoadableContainer<T>;
+  const LoadableContainer._();
   factory LoadableContainer.loaded(final T value) =>
       LoadableContainer<T>(value: value, isLoaded: true);
   bool get isLoading => !isLoaded;

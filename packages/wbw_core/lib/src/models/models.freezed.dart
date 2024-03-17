@@ -72,11 +72,11 @@ class _$AppSettingsModelCopyWithImpl<$Res, $Val extends AppSettingsModel>
 }
 
 /// @nodoc
-abstract class _$$_AppSettingsModelCopyWith<$Res>
+abstract class _$$AppSettingsModelImplCopyWith<$Res>
     implements $AppSettingsModelCopyWith<$Res> {
-  factory _$$_AppSettingsModelCopyWith(
-          _$_AppSettingsModel value, $Res Function(_$_AppSettingsModel) then) =
-      __$$_AppSettingsModelCopyWithImpl<$Res>;
+  factory _$$AppSettingsModelImplCopyWith(_$AppSettingsModelImpl value,
+          $Res Function(_$AppSettingsModelImpl) then) =
+      __$$AppSettingsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -86,11 +86,11 @@ abstract class _$$_AppSettingsModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AppSettingsModelCopyWithImpl<$Res>
-    extends _$AppSettingsModelCopyWithImpl<$Res, _$_AppSettingsModel>
-    implements _$$_AppSettingsModelCopyWith<$Res> {
-  __$$_AppSettingsModelCopyWithImpl(
-      _$_AppSettingsModel _value, $Res Function(_$_AppSettingsModel) _then)
+class __$$AppSettingsModelImplCopyWithImpl<$Res>
+    extends _$AppSettingsModelCopyWithImpl<$Res, _$AppSettingsModelImpl>
+    implements _$$AppSettingsModelImplCopyWith<$Res> {
+  __$$AppSettingsModelImplCopyWithImpl(_$AppSettingsModelImpl _value,
+      $Res Function(_$AppSettingsModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +99,7 @@ class __$$_AppSettingsModelCopyWithImpl<$Res>
     Object? locale = freezed,
     Object? brightnessMode = null,
   }) {
-    return _then(_$_AppSettingsModel(
+    return _then(_$AppSettingsModelImpl(
       locale: freezed == locale
           ? _value.locale
           : locale // ignore: cast_nullable_to_non_nullable
@@ -115,14 +115,14 @@ class __$$_AppSettingsModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_AppSettingsModel extends _AppSettingsModel {
-  const _$_AppSettingsModel(
+class _$AppSettingsModelImpl extends _AppSettingsModel {
+  const _$AppSettingsModelImpl(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString) this.locale,
       this.brightnessMode = BrightnessMode.system})
       : super._();
 
-  factory _$_AppSettingsModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AppSettingsModelFromJson(json);
+  factory _$AppSettingsModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AppSettingsModelImplFromJson(json);
 
   @override
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
@@ -140,7 +140,7 @@ class _$_AppSettingsModel extends _AppSettingsModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AppSettingsModel &&
+            other is _$AppSettingsModelImpl &&
             (identical(other.locale, locale) || other.locale == locale) &&
             (identical(other.brightnessMode, brightnessMode) ||
                 other.brightnessMode == brightnessMode));
@@ -153,12 +153,13 @@ class _$_AppSettingsModel extends _AppSettingsModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>
-      __$$_AppSettingsModelCopyWithImpl<_$_AppSettingsModel>(this, _$identity);
+  _$$AppSettingsModelImplCopyWith<_$AppSettingsModelImpl> get copyWith =>
+      __$$AppSettingsModelImplCopyWithImpl<_$AppSettingsModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AppSettingsModelToJson(
+    return _$$AppSettingsModelImplToJson(
       this,
     );
   }
@@ -168,11 +169,11 @@ abstract class _AppSettingsModel extends AppSettingsModel {
   const factory _AppSettingsModel(
       {@JsonKey(fromJson: localeFromString, toJson: localeToString)
       final Locale? locale,
-      final BrightnessMode brightnessMode}) = _$_AppSettingsModel;
+      final BrightnessMode brightnessMode}) = _$AppSettingsModelImpl;
   const _AppSettingsModel._() : super._();
 
   factory _AppSettingsModel.fromJson(Map<String, dynamic> json) =
-      _$_AppSettingsModel.fromJson;
+      _$AppSettingsModelImpl.fromJson;
 
   @override
   @JsonKey(fromJson: localeFromString, toJson: localeToString)
@@ -181,7 +182,7 @@ abstract class _AppSettingsModel extends AppSettingsModel {
   BrightnessMode get brightnessMode;
   @override
   @JsonKey(ignore: true)
-  _$$_AppSettingsModelCopyWith<_$_AppSettingsModel> get copyWith =>
+  _$$AppSettingsModelImplCopyWith<_$AppSettingsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -239,22 +240,22 @@ class _$CurrentWordModelCopyWithImpl<$Res, $Val extends CurrentWordModel>
 }
 
 /// @nodoc
-abstract class _$$_CurrentWordModelCopyWith<$Res>
+abstract class _$$CurrentWordModelImplCopyWith<$Res>
     implements $CurrentWordModelCopyWith<$Res> {
-  factory _$$_CurrentWordModelCopyWith(
-          _$_CurrentWordModel value, $Res Function(_$_CurrentWordModel) then) =
-      __$$_CurrentWordModelCopyWithImpl<$Res>;
+  factory _$$CurrentWordModelImplCopyWith(_$CurrentWordModelImpl value,
+          $Res Function(_$CurrentWordModelImpl) then) =
+      __$$CurrentWordModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<int> inactiveIndexes, String fullWord});
 }
 
 /// @nodoc
-class __$$_CurrentWordModelCopyWithImpl<$Res>
-    extends _$CurrentWordModelCopyWithImpl<$Res, _$_CurrentWordModel>
-    implements _$$_CurrentWordModelCopyWith<$Res> {
-  __$$_CurrentWordModelCopyWithImpl(
-      _$_CurrentWordModel _value, $Res Function(_$_CurrentWordModel) _then)
+class __$$CurrentWordModelImplCopyWithImpl<$Res>
+    extends _$CurrentWordModelCopyWithImpl<$Res, _$CurrentWordModelImpl>
+    implements _$$CurrentWordModelImplCopyWith<$Res> {
+  __$$CurrentWordModelImplCopyWithImpl(_$CurrentWordModelImpl _value,
+      $Res Function(_$CurrentWordModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -263,7 +264,7 @@ class __$$_CurrentWordModelCopyWithImpl<$Res>
     Object? inactiveIndexes = null,
     Object? fullWord = null,
   }) {
-    return _then(_$_CurrentWordModel(
+    return _then(_$CurrentWordModelImpl(
       inactiveIndexes: null == inactiveIndexes
           ? _value._inactiveIndexes
           : inactiveIndexes // ignore: cast_nullable_to_non_nullable
@@ -279,14 +280,14 @@ class __$$_CurrentWordModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_CurrentWordModel extends _CurrentWordModel {
-  const _$_CurrentWordModel(
+class _$CurrentWordModelImpl extends _CurrentWordModel {
+  const _$CurrentWordModelImpl(
       {final List<int> inactiveIndexes = const [], this.fullWord = ''})
       : _inactiveIndexes = inactiveIndexes,
         super._();
 
-  factory _$_CurrentWordModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CurrentWordModelFromJson(json);
+  factory _$CurrentWordModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CurrentWordModelImplFromJson(json);
 
   final List<int> _inactiveIndexes;
   @override
@@ -310,7 +311,7 @@ class _$_CurrentWordModel extends _CurrentWordModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CurrentWordModel &&
+            other is _$CurrentWordModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._inactiveIndexes, _inactiveIndexes) &&
             (identical(other.fullWord, fullWord) ||
@@ -325,12 +326,13 @@ class _$_CurrentWordModel extends _CurrentWordModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CurrentWordModelCopyWith<_$_CurrentWordModel> get copyWith =>
-      __$$_CurrentWordModelCopyWithImpl<_$_CurrentWordModel>(this, _$identity);
+  _$$CurrentWordModelImplCopyWith<_$CurrentWordModelImpl> get copyWith =>
+      __$$CurrentWordModelImplCopyWithImpl<_$CurrentWordModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CurrentWordModelToJson(
+    return _$$CurrentWordModelImplToJson(
       this,
     );
   }
@@ -339,11 +341,11 @@ class _$_CurrentWordModel extends _CurrentWordModel {
 abstract class _CurrentWordModel extends CurrentWordModel {
   const factory _CurrentWordModel(
       {final List<int> inactiveIndexes,
-      final String fullWord}) = _$_CurrentWordModel;
+      final String fullWord}) = _$CurrentWordModelImpl;
   const _CurrentWordModel._() : super._();
 
   factory _CurrentWordModel.fromJson(Map<String, dynamic> json) =
-      _$_CurrentWordModel.fromJson;
+      _$CurrentWordModelImpl.fromJson;
 
   @override
   List<int> get inactiveIndexes;
@@ -351,7 +353,7 @@ abstract class _CurrentWordModel extends CurrentWordModel {
   String get fullWord;
   @override
   @JsonKey(ignore: true)
-  _$$_CurrentWordModelCopyWith<_$_CurrentWordModel> get copyWith =>
+  _$$CurrentWordModelImplCopyWith<_$CurrentWordModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -502,11 +504,11 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
 }
 
 /// @nodoc
-abstract class _$$_GameModelCopyWith<$Res>
+abstract class _$$GameModelImplCopyWith<$Res>
     implements $GameSaveModelCopyWith<$Res> {
-  factory _$$_GameModelCopyWith(
-          _$_GameModel value, $Res Function(_$_GameModel) then) =
-      __$$_GameModelCopyWithImpl<$Res>;
+  factory _$$GameModelImplCopyWith(
+          _$GameModelImpl value, $Res Function(_$GameModelImpl) then) =
+      __$$GameModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -531,11 +533,11 @@ abstract class _$$_GameModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GameModelCopyWithImpl<$Res>
-    extends _$GameSaveModelCopyWithImpl<$Res, _$_GameModel>
-    implements _$$_GameModelCopyWith<$Res> {
-  __$$_GameModelCopyWithImpl(
-      _$_GameModel _value, $Res Function(_$_GameModel) _then)
+class __$$GameModelImplCopyWithImpl<$Res>
+    extends _$GameSaveModelCopyWithImpl<$Res, _$GameModelImpl>
+    implements _$$GameModelImplCopyWith<$Res> {
+  __$$GameModelImplCopyWithImpl(
+      _$GameModelImpl _value, $Res Function(_$GameModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -550,7 +552,7 @@ class __$$_GameModelCopyWithImpl<$Res>
     Object? tutorialProgress = null,
     Object? savedLevels = null,
   }) {
-    return _then(_$_GameModel(
+    return _then(_$GameModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -590,8 +592,8 @@ class __$$_GameModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_GameModel extends _GameModel {
-  const _$_GameModel(
+class _$GameModelImpl extends _GameModel {
+  const _$GameModelImpl(
       {required this.id,
       required this.currentLevelId,
       this.currentLevel,
@@ -608,8 +610,8 @@ class _$_GameModel extends _GameModel {
         _savedLevels = savedLevels,
         super._();
 
-  factory _$_GameModel.fromJson(Map<String, dynamic> json) =>
-      _$$_GameModelFromJson(json);
+  factory _$GameModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GameModelImplFromJson(json);
 
   @override
   final String id;
@@ -671,7 +673,7 @@ class _$_GameModel extends _GameModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GameModel &&
+            other is _$GameModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.currentLevelId, currentLevelId) ||
                 other.currentLevelId == currentLevelId) &&
@@ -704,12 +706,12 @@ class _$_GameModel extends _GameModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
-      __$$_GameModelCopyWithImpl<_$_GameModel>(this, _$identity);
+  _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
+      __$$GameModelImplCopyWithImpl<_$GameModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GameModelToJson(
+    return _$$GameModelImplToJson(
       this,
     );
   }
@@ -727,11 +729,11 @@ abstract class _GameModel extends GameSaveModel {
       @JsonKey(
           fromJson: GameSaveModel._savedLevelsFromJson,
           toJson: GameSaveModel._savedLevelsToJson)
-      final Map<CanvasDataModelId, LevelModel> savedLevels}) = _$_GameModel;
+      final Map<CanvasDataModelId, LevelModel> savedLevels}) = _$GameModelImpl;
   const _GameModel._() : super._();
 
   factory _GameModel.fromJson(Map<String, dynamic> json) =
-      _$_GameModel.fromJson;
+      _$GameModelImpl.fromJson;
 
   @override
   String get id;
@@ -760,7 +762,7 @@ abstract class _GameModel extends GameSaveModel {
   Map<CanvasDataModelId, LevelModel> get savedLevels;
   @override
   @JsonKey(ignore: true)
-  _$$_GameModelCopyWith<_$_GameModel> get copyWith =>
+  _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -824,11 +826,11 @@ class _$LevelCharactersModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LevelCharactersModelCopyWith<$Res>
+abstract class _$$LevelCharactersModelImplCopyWith<$Res>
     implements $LevelCharactersModelCopyWith<$Res> {
-  factory _$$_LevelCharactersModelCopyWith(_$_LevelCharactersModel value,
-          $Res Function(_$_LevelCharactersModel) then) =
-      __$$_LevelCharactersModelCopyWithImpl<$Res>;
+  factory _$$LevelCharactersModelImplCopyWith(_$LevelCharactersModelImpl value,
+          $Res Function(_$LevelCharactersModelImpl) then) =
+      __$$LevelCharactersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PlayerCharacterModel playerCharacter});
@@ -838,11 +840,11 @@ abstract class _$$_LevelCharactersModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LevelCharactersModelCopyWithImpl<$Res>
-    extends _$LevelCharactersModelCopyWithImpl<$Res, _$_LevelCharactersModel>
-    implements _$$_LevelCharactersModelCopyWith<$Res> {
-  __$$_LevelCharactersModelCopyWithImpl(_$_LevelCharactersModel _value,
-      $Res Function(_$_LevelCharactersModel) _then)
+class __$$LevelCharactersModelImplCopyWithImpl<$Res>
+    extends _$LevelCharactersModelCopyWithImpl<$Res, _$LevelCharactersModelImpl>
+    implements _$$LevelCharactersModelImplCopyWith<$Res> {
+  __$$LevelCharactersModelImplCopyWithImpl(_$LevelCharactersModelImpl _value,
+      $Res Function(_$LevelCharactersModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -850,7 +852,7 @@ class __$$_LevelCharactersModelCopyWithImpl<$Res>
   $Res call({
     Object? playerCharacter = null,
   }) {
-    return _then(_$_LevelCharactersModel(
+    return _then(_$LevelCharactersModelImpl(
       playerCharacter: null == playerCharacter
           ? _value.playerCharacter
           : playerCharacter // ignore: cast_nullable_to_non_nullable
@@ -862,11 +864,11 @@ class __$$_LevelCharactersModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LevelCharactersModel extends _LevelCharactersModel {
-  const _$_LevelCharactersModel({required this.playerCharacter}) : super._();
+class _$LevelCharactersModelImpl extends _LevelCharactersModel {
+  const _$LevelCharactersModelImpl({required this.playerCharacter}) : super._();
 
-  factory _$_LevelCharactersModel.fromJson(Map<String, dynamic> json) =>
-      _$$_LevelCharactersModelFromJson(json);
+  factory _$LevelCharactersModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LevelCharactersModelImplFromJson(json);
 
   @override
   final PlayerCharacterModel playerCharacter;
@@ -880,7 +882,7 @@ class _$_LevelCharactersModel extends _LevelCharactersModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LevelCharactersModel &&
+            other is _$LevelCharactersModelImpl &&
             (identical(other.playerCharacter, playerCharacter) ||
                 other.playerCharacter == playerCharacter));
   }
@@ -892,13 +894,14 @@ class _$_LevelCharactersModel extends _LevelCharactersModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LevelCharactersModelCopyWith<_$_LevelCharactersModel> get copyWith =>
-      __$$_LevelCharactersModelCopyWithImpl<_$_LevelCharactersModel>(
-          this, _$identity);
+  _$$LevelCharactersModelImplCopyWith<_$LevelCharactersModelImpl>
+      get copyWith =>
+          __$$LevelCharactersModelImplCopyWithImpl<_$LevelCharactersModelImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LevelCharactersModelToJson(
+    return _$$LevelCharactersModelImplToJson(
       this,
     );
   }
@@ -907,18 +910,18 @@ class _$_LevelCharactersModel extends _LevelCharactersModel {
 abstract class _LevelCharactersModel extends LevelCharactersModel {
   const factory _LevelCharactersModel(
           {required final PlayerCharacterModel playerCharacter}) =
-      _$_LevelCharactersModel;
+      _$LevelCharactersModelImpl;
   const _LevelCharactersModel._() : super._();
 
   factory _LevelCharactersModel.fromJson(Map<String, dynamic> json) =
-      _$_LevelCharactersModel.fromJson;
+      _$LevelCharactersModelImpl.fromJson;
 
   @override
   PlayerCharacterModel get playerCharacter;
   @override
   @JsonKey(ignore: true)
-  _$$_LevelCharactersModelCopyWith<_$_LevelCharactersModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LevelCharactersModelImplCopyWith<_$LevelCharactersModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
@@ -1140,11 +1143,11 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
 }
 
 /// @nodoc
-abstract class _$$_LevelModelCopyWith<$Res>
+abstract class _$$LevelModelImplCopyWith<$Res>
     implements $LevelModelCopyWith<$Res> {
-  factory _$$_LevelModelCopyWith(
-          _$_LevelModel value, $Res Function(_$_LevelModel) then) =
-      __$$_LevelModelCopyWithImpl<$Res>;
+  factory _$$LevelModelImplCopyWith(
+          _$LevelModelImpl value, $Res Function(_$LevelModelImpl) then) =
+      __$$LevelModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1182,11 +1185,11 @@ abstract class _$$_LevelModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LevelModelCopyWithImpl<$Res>
-    extends _$LevelModelCopyWithImpl<$Res, _$_LevelModel>
-    implements _$$_LevelModelCopyWith<$Res> {
-  __$$_LevelModelCopyWithImpl(
-      _$_LevelModel _value, $Res Function(_$_LevelModel) _then)
+class __$$LevelModelImplCopyWithImpl<$Res>
+    extends _$LevelModelCopyWithImpl<$Res, _$LevelModelImpl>
+    implements _$$LevelModelImplCopyWith<$Res> {
+  __$$LevelModelImplCopyWithImpl(
+      _$LevelModelImpl _value, $Res Function(_$LevelModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1207,7 +1210,7 @@ class __$$_LevelModelCopyWithImpl<$Res>
     Object? lastDateTime = null,
     Object? technologyTreeProgress = null,
   }) {
-    return _then(_$_LevelModel(
+    return _then(_$LevelModelImpl(
       players: null == players
           ? _value.players
           : players // ignore: cast_nullable_to_non_nullable
@@ -1271,8 +1274,8 @@ class __$$_LevelModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LevelModel extends _LevelModel {
-  const _$_LevelModel(
+class _$LevelModelImpl extends _LevelModel {
+  const _$LevelModelImpl(
       {required this.players,
       required this.characters,
       this.tilesetType = TilesetType.colourful,
@@ -1291,8 +1294,8 @@ class _$_LevelModel extends _LevelModel {
         _words = words,
         super._();
 
-  factory _$_LevelModel.fromJson(Map<String, dynamic> json) =>
-      _$$_LevelModelFromJson(json);
+  factory _$LevelModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LevelModelImplFromJson(json);
 
   @override
   final LevelPlayersModel players;
@@ -1359,7 +1362,7 @@ class _$_LevelModel extends _LevelModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LevelModel &&
+            other is _$LevelModelImpl &&
             (identical(other.players, players) || other.players == players) &&
             (identical(other.characters, characters) ||
                 other.characters == characters) &&
@@ -1408,12 +1411,12 @@ class _$_LevelModel extends _LevelModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>
-      __$$_LevelModelCopyWithImpl<_$_LevelModel>(this, _$identity);
+  _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>
+      __$$LevelModelImplCopyWithImpl<_$LevelModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LevelModelToJson(
+    return _$$LevelModelImplToJson(
       this,
     );
   }
@@ -1435,11 +1438,11 @@ abstract class _LevelModel extends LevelModel {
           final WorldDateTimeModel dateTime,
           final WorldDateTimeModel lastDateTime,
           final TechnologyTreeProgressModel technologyTreeProgress}) =
-      _$_LevelModel;
+      _$LevelModelImpl;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
-      _$_LevelModel.fromJson;
+      _$LevelModelImpl.fromJson;
 
   @override
   LevelPlayersModel get players;
@@ -1474,7 +1477,7 @@ abstract class _LevelModel extends LevelModel {
   TechnologyTreeProgressModel get technologyTreeProgress;
   @override
   @JsonKey(ignore: true)
-  _$$_LevelModelCopyWith<_$_LevelModel> get copyWith =>
+  _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1532,22 +1535,22 @@ class _$LevelPlayersModelCopyWithImpl<$Res, $Val extends LevelPlayersModel>
 }
 
 /// @nodoc
-abstract class _$$_LevelPlayersModelCopyWith<$Res>
+abstract class _$$LevelPlayersModelImplCopyWith<$Res>
     implements $LevelPlayersModelCopyWith<$Res> {
-  factory _$$_LevelPlayersModelCopyWith(_$_LevelPlayersModel value,
-          $Res Function(_$_LevelPlayersModel) then) =
-      __$$_LevelPlayersModelCopyWithImpl<$Res>;
+  factory _$$LevelPlayersModelImplCopyWith(_$LevelPlayersModelImpl value,
+          $Res Function(_$LevelPlayersModelImpl) then) =
+      __$$LevelPlayersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<PlayerProfileModel> players, String currentPlayerId});
 }
 
 /// @nodoc
-class __$$_LevelPlayersModelCopyWithImpl<$Res>
-    extends _$LevelPlayersModelCopyWithImpl<$Res, _$_LevelPlayersModel>
-    implements _$$_LevelPlayersModelCopyWith<$Res> {
-  __$$_LevelPlayersModelCopyWithImpl(
-      _$_LevelPlayersModel _value, $Res Function(_$_LevelPlayersModel) _then)
+class __$$LevelPlayersModelImplCopyWithImpl<$Res>
+    extends _$LevelPlayersModelCopyWithImpl<$Res, _$LevelPlayersModelImpl>
+    implements _$$LevelPlayersModelImplCopyWith<$Res> {
+  __$$LevelPlayersModelImplCopyWithImpl(_$LevelPlayersModelImpl _value,
+      $Res Function(_$LevelPlayersModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1556,7 +1559,7 @@ class __$$_LevelPlayersModelCopyWithImpl<$Res>
     Object? players = null,
     Object? currentPlayerId = null,
   }) {
-    return _then(_$_LevelPlayersModel(
+    return _then(_$LevelPlayersModelImpl(
       players: null == players
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
@@ -1572,15 +1575,15 @@ class __$$_LevelPlayersModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LevelPlayersModel extends _LevelPlayersModel {
-  const _$_LevelPlayersModel(
+class _$LevelPlayersModelImpl extends _LevelPlayersModel {
+  const _$LevelPlayersModelImpl(
       {required final List<PlayerProfileModel> players,
       required this.currentPlayerId})
       : _players = players,
         super._();
 
-  factory _$_LevelPlayersModel.fromJson(Map<String, dynamic> json) =>
-      _$$_LevelPlayersModelFromJson(json);
+  factory _$LevelPlayersModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LevelPlayersModelImplFromJson(json);
 
   final List<PlayerProfileModel> _players;
   @override
@@ -1602,7 +1605,7 @@ class _$_LevelPlayersModel extends _LevelPlayersModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LevelPlayersModel &&
+            other is _$LevelPlayersModelImpl &&
             const DeepCollectionEquality().equals(other._players, _players) &&
             (identical(other.currentPlayerId, currentPlayerId) ||
                 other.currentPlayerId == currentPlayerId));
@@ -1616,13 +1619,13 @@ class _$_LevelPlayersModel extends _LevelPlayersModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LevelPlayersModelCopyWith<_$_LevelPlayersModel> get copyWith =>
-      __$$_LevelPlayersModelCopyWithImpl<_$_LevelPlayersModel>(
+  _$$LevelPlayersModelImplCopyWith<_$LevelPlayersModelImpl> get copyWith =>
+      __$$LevelPlayersModelImplCopyWithImpl<_$LevelPlayersModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LevelPlayersModelToJson(
+    return _$$LevelPlayersModelImplToJson(
       this,
     );
   }
@@ -1631,11 +1634,11 @@ class _$_LevelPlayersModel extends _LevelPlayersModel {
 abstract class _LevelPlayersModel extends LevelPlayersModel {
   const factory _LevelPlayersModel(
       {required final List<PlayerProfileModel> players,
-      required final String currentPlayerId}) = _$_LevelPlayersModel;
+      required final String currentPlayerId}) = _$LevelPlayersModelImpl;
   const _LevelPlayersModel._() : super._();
 
   factory _LevelPlayersModel.fromJson(Map<String, dynamic> json) =
-      _$_LevelPlayersModel.fromJson;
+      _$LevelPlayersModelImpl.fromJson;
 
   @override
   List<PlayerProfileModel> get players;
@@ -1643,7 +1646,7 @@ abstract class _LevelPlayersModel extends LevelPlayersModel {
   String get currentPlayerId;
   @override
   @JsonKey(ignore: true)
-  _$$_LevelPlayersModelCopyWith<_$_LevelPlayersModel> get copyWith =>
+  _$$LevelPlayersModelImplCopyWith<_$LevelPlayersModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1696,22 +1699,22 @@ class _$LocalDictionaryModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LocalDictionaryModelCopyWith<$Res>
+abstract class _$$LocalDictionaryModelImplCopyWith<$Res>
     implements $LocalDictionaryModelCopyWith<$Res> {
-  factory _$$_LocalDictionaryModelCopyWith(_$_LocalDictionaryModel value,
-          $Res Function(_$_LocalDictionaryModel) then) =
-      __$$_LocalDictionaryModelCopyWithImpl<$Res>;
+  factory _$$LocalDictionaryModelImplCopyWith(_$LocalDictionaryModelImpl value,
+          $Res Function(_$LocalDictionaryModelImpl) then) =
+      __$$LocalDictionaryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Set<String> words});
 }
 
 /// @nodoc
-class __$$_LocalDictionaryModelCopyWithImpl<$Res>
-    extends _$LocalDictionaryModelCopyWithImpl<$Res, _$_LocalDictionaryModel>
-    implements _$$_LocalDictionaryModelCopyWith<$Res> {
-  __$$_LocalDictionaryModelCopyWithImpl(_$_LocalDictionaryModel _value,
-      $Res Function(_$_LocalDictionaryModel) _then)
+class __$$LocalDictionaryModelImplCopyWithImpl<$Res>
+    extends _$LocalDictionaryModelCopyWithImpl<$Res, _$LocalDictionaryModelImpl>
+    implements _$$LocalDictionaryModelImplCopyWith<$Res> {
+  __$$LocalDictionaryModelImplCopyWithImpl(_$LocalDictionaryModelImpl _value,
+      $Res Function(_$LocalDictionaryModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1719,7 +1722,7 @@ class __$$_LocalDictionaryModelCopyWithImpl<$Res>
   $Res call({
     Object? words = null,
   }) {
-    return _then(_$_LocalDictionaryModel(
+    return _then(_$LocalDictionaryModelImpl(
       words: null == words
           ? _value._words
           : words // ignore: cast_nullable_to_non_nullable
@@ -1731,12 +1734,12 @@ class __$$_LocalDictionaryModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LocalDictionaryModel implements _LocalDictionaryModel {
-  const _$_LocalDictionaryModel({final Set<String> words = const {}})
+class _$LocalDictionaryModelImpl implements _LocalDictionaryModel {
+  const _$LocalDictionaryModelImpl({final Set<String> words = const {}})
       : _words = words;
 
-  factory _$_LocalDictionaryModel.fromJson(Map<String, dynamic> json) =>
-      _$$_LocalDictionaryModelFromJson(json);
+  factory _$LocalDictionaryModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LocalDictionaryModelImplFromJson(json);
 
   final Set<String> _words;
   @override
@@ -1756,7 +1759,7 @@ class _$_LocalDictionaryModel implements _LocalDictionaryModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LocalDictionaryModel &&
+            other is _$LocalDictionaryModelImpl &&
             const DeepCollectionEquality().equals(other._words, _words));
   }
 
@@ -1768,13 +1771,14 @@ class _$_LocalDictionaryModel implements _LocalDictionaryModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LocalDictionaryModelCopyWith<_$_LocalDictionaryModel> get copyWith =>
-      __$$_LocalDictionaryModelCopyWithImpl<_$_LocalDictionaryModel>(
-          this, _$identity);
+  _$$LocalDictionaryModelImplCopyWith<_$LocalDictionaryModelImpl>
+      get copyWith =>
+          __$$LocalDictionaryModelImplCopyWithImpl<_$LocalDictionaryModelImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LocalDictionaryModelToJson(
+    return _$$LocalDictionaryModelImplToJson(
       this,
     );
   }
@@ -1782,17 +1786,17 @@ class _$_LocalDictionaryModel implements _LocalDictionaryModel {
 
 abstract class _LocalDictionaryModel implements LocalDictionaryModel {
   const factory _LocalDictionaryModel({final Set<String> words}) =
-      _$_LocalDictionaryModel;
+      _$LocalDictionaryModelImpl;
 
   factory _LocalDictionaryModel.fromJson(Map<String, dynamic> json) =
-      _$_LocalDictionaryModel.fromJson;
+      _$LocalDictionaryModelImpl.fromJson;
 
   @override
   Set<String> get words;
   @override
   @JsonKey(ignore: true)
-  _$$_LocalDictionaryModelCopyWith<_$_LocalDictionaryModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LocalDictionaryModelImplCopyWith<_$LocalDictionaryModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 PlayerCharacterModel _$PlayerCharacterModelFromJson(Map<String, dynamic> json) {
@@ -1973,11 +1977,11 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PlayerCharacterModelCopyWith<$Res>
+abstract class _$$PlayerCharacterModelImplCopyWith<$Res>
     implements $PlayerCharacterModelCopyWith<$Res> {
-  factory _$$_PlayerCharacterModelCopyWith(_$_PlayerCharacterModel value,
-          $Res Function(_$_PlayerCharacterModel) then) =
-      __$$_PlayerCharacterModelCopyWithImpl<$Res>;
+  factory _$$PlayerCharacterModelImplCopyWith(_$PlayerCharacterModelImpl value,
+          $Res Function(_$PlayerCharacterModelImpl) then) =
+      __$$PlayerCharacterModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2007,11 +2011,11 @@ abstract class _$$_PlayerCharacterModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlayerCharacterModelCopyWithImpl<$Res>
-    extends _$PlayerCharacterModelCopyWithImpl<$Res, _$_PlayerCharacterModel>
-    implements _$$_PlayerCharacterModelCopyWith<$Res> {
-  __$$_PlayerCharacterModelCopyWithImpl(_$_PlayerCharacterModel _value,
-      $Res Function(_$_PlayerCharacterModel) _then)
+class __$$PlayerCharacterModelImplCopyWithImpl<$Res>
+    extends _$PlayerCharacterModelCopyWithImpl<$Res, _$PlayerCharacterModelImpl>
+    implements _$$PlayerCharacterModelImplCopyWith<$Res> {
+  __$$PlayerCharacterModelImplCopyWithImpl(_$PlayerCharacterModelImpl _value,
+      $Res Function(_$PlayerCharacterModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2028,7 +2032,7 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
     Object? balloonParams = null,
     Object? isAnchored = null,
   }) {
-    return _then(_$_PlayerCharacterModel(
+    return _then(_$PlayerCharacterModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2076,8 +2080,8 @@ class __$$_PlayerCharacterModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_PlayerCharacterModel extends _PlayerCharacterModel {
-  const _$_PlayerCharacterModel(
+class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
+  const _$PlayerCharacterModelImpl(
       {this.id = Gid.empty,
       this.gid = Gid.empty,
       this.description = '',
@@ -2090,8 +2094,8 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
       this.isAnchored = true})
       : super._();
 
-  factory _$_PlayerCharacterModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayerCharacterModelFromJson(json);
+  factory _$PlayerCharacterModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlayerCharacterModelImplFromJson(json);
 
   /// unique id which used to identify unqiue set of following params:
   /// [balloonPowers] [balloonParams] [color] [localizedName] etc
@@ -2141,7 +2145,7 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlayerCharacterModel &&
+            other is _$PlayerCharacterModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.gid, gid) || other.gid == gid) &&
             (identical(other.description, description) ||
@@ -2179,13 +2183,14 @@ class _$_PlayerCharacterModel extends _PlayerCharacterModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>
-      __$$_PlayerCharacterModelCopyWithImpl<_$_PlayerCharacterModel>(
-          this, _$identity);
+  _$$PlayerCharacterModelImplCopyWith<_$PlayerCharacterModelImpl>
+      get copyWith =>
+          __$$PlayerCharacterModelImplCopyWithImpl<_$PlayerCharacterModelImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlayerCharacterModelToJson(
+    return _$$PlayerCharacterModelImplToJson(
       this,
     );
   }
@@ -2202,11 +2207,11 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
       final SerializedVector2 distanceToOrigin,
       final BalloonLiftPowersModel balloonPowers,
       final BalloonLiftParamsModel balloonParams,
-      final bool isAnchored}) = _$_PlayerCharacterModel;
+      final bool isAnchored}) = _$PlayerCharacterModelImpl;
   const _PlayerCharacterModel._() : super._();
 
   factory _PlayerCharacterModel.fromJson(Map<String, dynamic> json) =
-      _$_PlayerCharacterModel.fromJson;
+      _$PlayerCharacterModelImpl.fromJson;
 
   @override
 
@@ -2239,8 +2244,8 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   bool get isAnchored;
   @override
   @JsonKey(ignore: true)
-  _$$_PlayerCharacterModelCopyWith<_$_PlayerCharacterModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PlayerCharacterModelImplCopyWith<_$PlayerCharacterModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 SerializedVector2 _$SerializedVector2FromJson(Map<String, dynamic> json) {
@@ -2296,22 +2301,22 @@ class _$SerializedVector2CopyWithImpl<$Res, $Val extends SerializedVector2>
 }
 
 /// @nodoc
-abstract class _$$_SerializedVector2CopyWith<$Res>
+abstract class _$$SerializedVector2ImplCopyWith<$Res>
     implements $SerializedVector2CopyWith<$Res> {
-  factory _$$_SerializedVector2CopyWith(_$_SerializedVector2 value,
-          $Res Function(_$_SerializedVector2) then) =
-      __$$_SerializedVector2CopyWithImpl<$Res>;
+  factory _$$SerializedVector2ImplCopyWith(_$SerializedVector2Impl value,
+          $Res Function(_$SerializedVector2Impl) then) =
+      __$$SerializedVector2ImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double x, double y});
 }
 
 /// @nodoc
-class __$$_SerializedVector2CopyWithImpl<$Res>
-    extends _$SerializedVector2CopyWithImpl<$Res, _$_SerializedVector2>
-    implements _$$_SerializedVector2CopyWith<$Res> {
-  __$$_SerializedVector2CopyWithImpl(
-      _$_SerializedVector2 _value, $Res Function(_$_SerializedVector2) _then)
+class __$$SerializedVector2ImplCopyWithImpl<$Res>
+    extends _$SerializedVector2CopyWithImpl<$Res, _$SerializedVector2Impl>
+    implements _$$SerializedVector2ImplCopyWith<$Res> {
+  __$$SerializedVector2ImplCopyWithImpl(_$SerializedVector2Impl _value,
+      $Res Function(_$SerializedVector2Impl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2320,7 +2325,7 @@ class __$$_SerializedVector2CopyWithImpl<$Res>
     Object? x = null,
     Object? y = null,
   }) {
-    return _then(_$_SerializedVector2(
+    return _then(_$SerializedVector2Impl(
       x: null == x
           ? _value.x
           : x // ignore: cast_nullable_to_non_nullable
@@ -2336,11 +2341,11 @@ class __$$_SerializedVector2CopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_SerializedVector2 extends _SerializedVector2 {
-  const _$_SerializedVector2({this.x = 0, this.y = 0}) : super._();
+class _$SerializedVector2Impl extends _SerializedVector2 {
+  const _$SerializedVector2Impl({this.x = 0, this.y = 0}) : super._();
 
-  factory _$_SerializedVector2.fromJson(Map<String, dynamic> json) =>
-      _$$_SerializedVector2FromJson(json);
+  factory _$SerializedVector2Impl.fromJson(Map<String, dynamic> json) =>
+      _$$SerializedVector2ImplFromJson(json);
 
   @override
   @JsonKey()
@@ -2358,7 +2363,7 @@ class _$_SerializedVector2 extends _SerializedVector2 {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_SerializedVector2 &&
+            other is _$SerializedVector2Impl &&
             (identical(other.x, x) || other.x == x) &&
             (identical(other.y, y) || other.y == y));
   }
@@ -2370,18 +2375,18 @@ class _$_SerializedVector2 extends _SerializedVector2 {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_SerializedVector2CopyWith<_$_SerializedVector2> get copyWith =>
-      __$$_SerializedVector2CopyWithImpl<_$_SerializedVector2>(
+  _$$SerializedVector2ImplCopyWith<_$SerializedVector2Impl> get copyWith =>
+      __$$SerializedVector2ImplCopyWithImpl<_$SerializedVector2Impl>(
           this, _$identity);
 }
 
 abstract class _SerializedVector2 extends SerializedVector2 {
   const factory _SerializedVector2({final double x, final double y}) =
-      _$_SerializedVector2;
+      _$SerializedVector2Impl;
   const _SerializedVector2._() : super._();
 
   factory _SerializedVector2.fromJson(Map<String, dynamic> json) =
-      _$_SerializedVector2.fromJson;
+      _$SerializedVector2Impl.fromJson;
 
   @override
   double get x;
@@ -2389,7 +2394,7 @@ abstract class _SerializedVector2 extends SerializedVector2 {
   double get y;
   @override
   @JsonKey(ignore: true)
-  _$$_SerializedVector2CopyWith<_$_SerializedVector2> get copyWith =>
+  _$$SerializedVector2ImplCopyWith<_$SerializedVector2Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2487,11 +2492,11 @@ class _$PlayerProfileModelCopyWithImpl<$Res, $Val extends PlayerProfileModel>
 }
 
 /// @nodoc
-abstract class _$$_PlayerProfileModelCopyWith<$Res>
+abstract class _$$PlayerProfileModelImplCopyWith<$Res>
     implements $PlayerProfileModelCopyWith<$Res> {
-  factory _$$_PlayerProfileModelCopyWith(_$_PlayerProfileModel value,
-          $Res Function(_$_PlayerProfileModel) then) =
-      __$$_PlayerProfileModelCopyWithImpl<$Res>;
+  factory _$$PlayerProfileModelImplCopyWith(_$PlayerProfileModelImpl value,
+          $Res Function(_$PlayerProfileModelImpl) then) =
+      __$$PlayerProfileModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2509,11 +2514,11 @@ abstract class _$$_PlayerProfileModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlayerProfileModelCopyWithImpl<$Res>
-    extends _$PlayerProfileModelCopyWithImpl<$Res, _$_PlayerProfileModel>
-    implements _$$_PlayerProfileModelCopyWith<$Res> {
-  __$$_PlayerProfileModelCopyWithImpl(
-      _$_PlayerProfileModel _value, $Res Function(_$_PlayerProfileModel) _then)
+class __$$PlayerProfileModelImplCopyWithImpl<$Res>
+    extends _$PlayerProfileModelCopyWithImpl<$Res, _$PlayerProfileModelImpl>
+    implements _$$PlayerProfileModelImplCopyWith<$Res> {
+  __$$PlayerProfileModelImplCopyWithImpl(_$PlayerProfileModelImpl _value,
+      $Res Function(_$PlayerProfileModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2525,7 +2530,7 @@ class __$$_PlayerProfileModelCopyWithImpl<$Res>
     Object? levelsHighscores = null,
     Object? highscore = null,
   }) {
-    return _then(_$_PlayerProfileModel(
+    return _then(_$PlayerProfileModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -2553,8 +2558,8 @@ class __$$_PlayerProfileModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_PlayerProfileModel extends _PlayerProfileModel {
-  const _$_PlayerProfileModel(
+class _$PlayerProfileModelImpl extends _PlayerProfileModel {
+  const _$PlayerProfileModelImpl(
       {required this.id,
       required this.colorValue,
       required this.name,
@@ -2567,8 +2572,8 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
       : _levelsHighscores = levelsHighscores,
         super._();
 
-  factory _$_PlayerProfileModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayerProfileModelFromJson(json);
+  factory _$PlayerProfileModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlayerProfileModelImplFromJson(json);
 
   @override
   final String id;
@@ -2600,7 +2605,7 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlayerProfileModel &&
+            other is _$PlayerProfileModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.colorValue, colorValue) ||
                 other.colorValue == colorValue) &&
@@ -2619,13 +2624,13 @@ class _$_PlayerProfileModel extends _PlayerProfileModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlayerProfileModelCopyWith<_$_PlayerProfileModel> get copyWith =>
-      __$$_PlayerProfileModelCopyWithImpl<_$_PlayerProfileModel>(
+  _$$PlayerProfileModelImplCopyWith<_$PlayerProfileModelImpl> get copyWith =>
+      __$$PlayerProfileModelImplCopyWithImpl<_$PlayerProfileModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlayerProfileModelToJson(
+    return _$$PlayerProfileModelImplToJson(
       this,
     );
   }
@@ -2640,11 +2645,11 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
           fromJson: PlayerProfileModel._highscoreFromJson,
           toJson: PlayerProfileModel._highscoreToJson)
       final Map<CanvasDataModelId, PlayerLevelHighscoreModel> levelsHighscores,
-      final PlayerHighscoreModel highscore}) = _$_PlayerProfileModel;
+      final PlayerHighscoreModel highscore}) = _$PlayerProfileModelImpl;
   const _PlayerProfileModel._() : super._();
 
   factory _PlayerProfileModel.fromJson(Map<String, dynamic> json) =
-      _$_PlayerProfileModel.fromJson;
+      _$PlayerProfileModelImpl.fromJson;
 
   @override
   String get id;
@@ -2661,7 +2666,7 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
   PlayerHighscoreModel get highscore;
   @override
   @JsonKey(ignore: true)
-  _$$_PlayerProfileModelCopyWith<_$_PlayerProfileModel> get copyWith =>
+  _$$PlayerProfileModelImplCopyWith<_$PlayerProfileModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2753,11 +2758,11 @@ class _$PlayerHighscoreModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PlayerHighscoreModelCopyWith<$Res>
+abstract class _$$PlayerHighscoreModelImplCopyWith<$Res>
     implements $PlayerHighscoreModelCopyWith<$Res> {
-  factory _$$_PlayerHighscoreModelCopyWith(_$_PlayerHighscoreModel value,
-          $Res Function(_$_PlayerHighscoreModel) then) =
-      __$$_PlayerHighscoreModelCopyWithImpl<$Res>;
+  factory _$$PlayerHighscoreModelImplCopyWith(_$PlayerHighscoreModelImpl value,
+          $Res Function(_$PlayerHighscoreModelImpl) then) =
+      __$$PlayerHighscoreModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -2772,11 +2777,11 @@ abstract class _$$_PlayerHighscoreModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlayerHighscoreModelCopyWithImpl<$Res>
-    extends _$PlayerHighscoreModelCopyWithImpl<$Res, _$_PlayerHighscoreModel>
-    implements _$$_PlayerHighscoreModelCopyWith<$Res> {
-  __$$_PlayerHighscoreModelCopyWithImpl(_$_PlayerHighscoreModel _value,
-      $Res Function(_$_PlayerHighscoreModel) _then)
+class __$$PlayerHighscoreModelImplCopyWithImpl<$Res>
+    extends _$PlayerHighscoreModelCopyWithImpl<$Res, _$PlayerHighscoreModelImpl>
+    implements _$$PlayerHighscoreModelImplCopyWith<$Res> {
+  __$$PlayerHighscoreModelImplCopyWithImpl(_$PlayerHighscoreModelImpl _value,
+      $Res Function(_$PlayerHighscoreModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2788,7 +2793,7 @@ class __$$_PlayerHighscoreModelCopyWithImpl<$Res>
     Object? totalLettersCount = null,
     Object? score = null,
   }) {
-    return _then(_$_PlayerHighscoreModel(
+    return _then(_$PlayerHighscoreModelImpl(
       maxWordsCount: null == maxWordsCount
           ? _value.maxWordsCount
           : maxWordsCount // ignore: cast_nullable_to_non_nullable
@@ -2816,8 +2821,8 @@ class __$$_PlayerHighscoreModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
-  const _$_PlayerHighscoreModel(
+class _$PlayerHighscoreModelImpl extends _PlayerHighscoreModel {
+  const _$PlayerHighscoreModelImpl(
       {this.maxWordsCount = 0,
       this.maxLettersCount = 0,
       this.totalWordsCount = 0,
@@ -2825,8 +2830,8 @@ class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
       this.score = ScoreModel.zero})
       : super._();
 
-  factory _$_PlayerHighscoreModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayerHighscoreModelFromJson(json);
+  factory _$PlayerHighscoreModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlayerHighscoreModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -2853,7 +2858,7 @@ class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlayerHighscoreModel &&
+            other is _$PlayerHighscoreModelImpl &&
             (identical(other.maxWordsCount, maxWordsCount) ||
                 other.maxWordsCount == maxWordsCount) &&
             (identical(other.maxLettersCount, maxLettersCount) ||
@@ -2873,13 +2878,14 @@ class _$_PlayerHighscoreModel extends _PlayerHighscoreModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlayerHighscoreModelCopyWith<_$_PlayerHighscoreModel> get copyWith =>
-      __$$_PlayerHighscoreModelCopyWithImpl<_$_PlayerHighscoreModel>(
-          this, _$identity);
+  _$$PlayerHighscoreModelImplCopyWith<_$PlayerHighscoreModelImpl>
+      get copyWith =>
+          __$$PlayerHighscoreModelImplCopyWithImpl<_$PlayerHighscoreModelImpl>(
+              this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlayerHighscoreModelToJson(
+    return _$$PlayerHighscoreModelImplToJson(
       this,
     );
   }
@@ -2891,11 +2897,11 @@ abstract class _PlayerHighscoreModel extends PlayerHighscoreModel {
       final int maxLettersCount,
       final int totalWordsCount,
       final int totalLettersCount,
-      final ScoreModel score}) = _$_PlayerHighscoreModel;
+      final ScoreModel score}) = _$PlayerHighscoreModelImpl;
   const _PlayerHighscoreModel._() : super._();
 
   factory _PlayerHighscoreModel.fromJson(Map<String, dynamic> json) =
-      _$_PlayerHighscoreModel.fromJson;
+      _$PlayerHighscoreModelImpl.fromJson;
 
   @override
   int get maxWordsCount;
@@ -2909,8 +2915,8 @@ abstract class _PlayerHighscoreModel extends PlayerHighscoreModel {
   ScoreModel get score;
   @override
   @JsonKey(ignore: true)
-  _$$_PlayerHighscoreModelCopyWith<_$_PlayerHighscoreModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$PlayerHighscoreModelImplCopyWith<_$PlayerHighscoreModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 PlayerLevelHighscoreModel _$PlayerLevelHighscoreModelFromJson(
@@ -3002,12 +3008,12 @@ class _$PlayerLevelHighscoreModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_PlayerLevelHighscoreModelCopyWith<$Res>
+abstract class _$$PlayerLevelHighscoreModelImplCopyWith<$Res>
     implements $PlayerLevelHighscoreModelCopyWith<$Res> {
-  factory _$$_PlayerLevelHighscoreModelCopyWith(
-          _$_PlayerLevelHighscoreModel value,
-          $Res Function(_$_PlayerLevelHighscoreModel) then) =
-      __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>;
+  factory _$$PlayerLevelHighscoreModelImplCopyWith(
+          _$PlayerLevelHighscoreModelImpl value,
+          $Res Function(_$PlayerLevelHighscoreModelImpl) then) =
+      __$$PlayerLevelHighscoreModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3022,13 +3028,13 @@ abstract class _$$_PlayerLevelHighscoreModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>
+class __$$PlayerLevelHighscoreModelImplCopyWithImpl<$Res>
     extends _$PlayerLevelHighscoreModelCopyWithImpl<$Res,
-        _$_PlayerLevelHighscoreModel>
-    implements _$$_PlayerLevelHighscoreModelCopyWith<$Res> {
-  __$$_PlayerLevelHighscoreModelCopyWithImpl(
-      _$_PlayerLevelHighscoreModel _value,
-      $Res Function(_$_PlayerLevelHighscoreModel) _then)
+        _$PlayerLevelHighscoreModelImpl>
+    implements _$$PlayerLevelHighscoreModelImplCopyWith<$Res> {
+  __$$PlayerLevelHighscoreModelImplCopyWithImpl(
+      _$PlayerLevelHighscoreModelImpl _value,
+      $Res Function(_$PlayerLevelHighscoreModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3040,7 +3046,7 @@ class __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>
     Object? landingsCount = null,
     Object? flightTime = null,
   }) {
-    return _then(_$_PlayerLevelHighscoreModel(
+    return _then(_$PlayerLevelHighscoreModelImpl(
       levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
@@ -3068,8 +3074,8 @@ class __$$_PlayerLevelHighscoreModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
-  const _$_PlayerLevelHighscoreModel(
+class _$PlayerLevelHighscoreModelImpl extends _PlayerLevelHighscoreModel {
+  const _$PlayerLevelHighscoreModelImpl(
       {required this.levelId,
       this.maxDistance = 0,
       this.totalDistance = 0,
@@ -3077,8 +3083,8 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
       this.flightTime = 0})
       : super._();
 
-  factory _$_PlayerLevelHighscoreModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayerLevelHighscoreModelFromJson(json);
+  factory _$PlayerLevelHighscoreModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlayerLevelHighscoreModelImplFromJson(json);
 
   @override
   final CanvasDataModelId levelId;
@@ -3104,7 +3110,7 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlayerLevelHighscoreModel &&
+            other is _$PlayerLevelHighscoreModelImpl &&
             (identical(other.levelId, levelId) || other.levelId == levelId) &&
             (identical(other.maxDistance, maxDistance) ||
                 other.maxDistance == maxDistance) &&
@@ -3124,13 +3130,13 @@ class _$_PlayerLevelHighscoreModel extends _PlayerLevelHighscoreModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlayerLevelHighscoreModelCopyWith<_$_PlayerLevelHighscoreModel>
-      get copyWith => __$$_PlayerLevelHighscoreModelCopyWithImpl<
-          _$_PlayerLevelHighscoreModel>(this, _$identity);
+  _$$PlayerLevelHighscoreModelImplCopyWith<_$PlayerLevelHighscoreModelImpl>
+      get copyWith => __$$PlayerLevelHighscoreModelImplCopyWithImpl<
+          _$PlayerLevelHighscoreModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlayerLevelHighscoreModelToJson(
+    return _$$PlayerLevelHighscoreModelImplToJson(
       this,
     );
   }
@@ -3142,11 +3148,11 @@ abstract class _PlayerLevelHighscoreModel extends PlayerLevelHighscoreModel {
       final double maxDistance,
       final double totalDistance,
       final double landingsCount,
-      final double flightTime}) = _$_PlayerLevelHighscoreModel;
+      final double flightTime}) = _$PlayerLevelHighscoreModelImpl;
   const _PlayerLevelHighscoreModel._() : super._();
 
   factory _PlayerLevelHighscoreModel.fromJson(Map<String, dynamic> json) =
-      _$_PlayerLevelHighscoreModel.fromJson;
+      _$PlayerLevelHighscoreModelImpl.fromJson;
 
   @override
   CanvasDataModelId get levelId;
@@ -3160,7 +3166,7 @@ abstract class _PlayerLevelHighscoreModel extends PlayerLevelHighscoreModel {
   double get flightTime;
   @override
   @JsonKey(ignore: true)
-  _$$_PlayerLevelHighscoreModelCopyWith<_$_PlayerLevelHighscoreModel>
+  _$$PlayerLevelHighscoreModelImplCopyWith<_$PlayerLevelHighscoreModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -3212,22 +3218,22 @@ class _$ScoreModelCopyWithImpl<$Res, $Val extends ScoreModel>
 }
 
 /// @nodoc
-abstract class _$$_ScoreModelCopyWith<$Res>
+abstract class _$$ScoreModelImplCopyWith<$Res>
     implements $ScoreModelCopyWith<$Res> {
-  factory _$$_ScoreModelCopyWith(
-          _$_ScoreModel value, $Res Function(_$_ScoreModel) then) =
-      __$$_ScoreModelCopyWithImpl<$Res>;
+  factory _$$ScoreModelImplCopyWith(
+          _$ScoreModelImpl value, $Res Function(_$ScoreModelImpl) then) =
+      __$$ScoreModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double value});
 }
 
 /// @nodoc
-class __$$_ScoreModelCopyWithImpl<$Res>
-    extends _$ScoreModelCopyWithImpl<$Res, _$_ScoreModel>
-    implements _$$_ScoreModelCopyWith<$Res> {
-  __$$_ScoreModelCopyWithImpl(
-      _$_ScoreModel _value, $Res Function(_$_ScoreModel) _then)
+class __$$ScoreModelImplCopyWithImpl<$Res>
+    extends _$ScoreModelCopyWithImpl<$Res, _$ScoreModelImpl>
+    implements _$$ScoreModelImplCopyWith<$Res> {
+  __$$ScoreModelImplCopyWithImpl(
+      _$ScoreModelImpl _value, $Res Function(_$ScoreModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3235,7 +3241,7 @@ class __$$_ScoreModelCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_ScoreModel(
+    return _then(_$ScoreModelImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -3246,11 +3252,11 @@ class __$$_ScoreModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_ScoreModel extends _ScoreModel {
-  const _$_ScoreModel({required this.value}) : super._();
+class _$ScoreModelImpl extends _ScoreModel {
+  const _$ScoreModelImpl({required this.value}) : super._();
 
-  factory _$_ScoreModel.fromJson(Map<String, dynamic> json) =>
-      _$$_ScoreModelFromJson(json);
+  factory _$ScoreModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$ScoreModelImplFromJson(json);
 
   @override
   final double value;
@@ -3264,7 +3270,7 @@ class _$_ScoreModel extends _ScoreModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ScoreModel &&
+            other is _$ScoreModelImpl &&
             (identical(other.value, value) || other.value == value));
   }
 
@@ -3275,29 +3281,29 @@ class _$_ScoreModel extends _ScoreModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ScoreModelCopyWith<_$_ScoreModel> get copyWith =>
-      __$$_ScoreModelCopyWithImpl<_$_ScoreModel>(this, _$identity);
+  _$$ScoreModelImplCopyWith<_$ScoreModelImpl> get copyWith =>
+      __$$ScoreModelImplCopyWithImpl<_$ScoreModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_ScoreModelToJson(
+    return _$$ScoreModelImplToJson(
       this,
     );
   }
 }
 
 abstract class _ScoreModel extends ScoreModel {
-  const factory _ScoreModel({required final double value}) = _$_ScoreModel;
+  const factory _ScoreModel({required final double value}) = _$ScoreModelImpl;
   const _ScoreModel._() : super._();
 
   factory _ScoreModel.fromJson(Map<String, dynamic> json) =
-      _$_ScoreModel.fromJson;
+      _$ScoreModelImpl.fromJson;
 
   @override
   double get value;
   @override
   @JsonKey(ignore: true)
-  _$$_ScoreModelCopyWith<_$_ScoreModel> get copyWith =>
+  _$$ScoreModelImplCopyWith<_$ScoreModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3349,22 +3355,22 @@ class _$TechnologyModelIdCopyWithImpl<$Res, $Val extends TechnologyModelId>
 }
 
 /// @nodoc
-abstract class _$$_TechnologyModelIdCopyWith<$Res>
+abstract class _$$TechnologyModelIdImplCopyWith<$Res>
     implements $TechnologyModelIdCopyWith<$Res> {
-  factory _$$_TechnologyModelIdCopyWith(_$_TechnologyModelId value,
-          $Res Function(_$_TechnologyModelId) then) =
-      __$$_TechnologyModelIdCopyWithImpl<$Res>;
+  factory _$$TechnologyModelIdImplCopyWith(_$TechnologyModelIdImpl value,
+          $Res Function(_$TechnologyModelIdImpl) then) =
+      __$$TechnologyModelIdImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({TechnologyType value});
 }
 
 /// @nodoc
-class __$$_TechnologyModelIdCopyWithImpl<$Res>
-    extends _$TechnologyModelIdCopyWithImpl<$Res, _$_TechnologyModelId>
-    implements _$$_TechnologyModelIdCopyWith<$Res> {
-  __$$_TechnologyModelIdCopyWithImpl(
-      _$_TechnologyModelId _value, $Res Function(_$_TechnologyModelId) _then)
+class __$$TechnologyModelIdImplCopyWithImpl<$Res>
+    extends _$TechnologyModelIdCopyWithImpl<$Res, _$TechnologyModelIdImpl>
+    implements _$$TechnologyModelIdImplCopyWith<$Res> {
+  __$$TechnologyModelIdImplCopyWithImpl(_$TechnologyModelIdImpl _value,
+      $Res Function(_$TechnologyModelIdImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3372,7 +3378,7 @@ class __$$_TechnologyModelIdCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_TechnologyModelId(
+    return _then(_$TechnologyModelIdImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -3383,11 +3389,11 @@ class __$$_TechnologyModelIdCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TechnologyModelId extends _TechnologyModelId {
-  const _$_TechnologyModelId({required this.value}) : super._();
+class _$TechnologyModelIdImpl extends _TechnologyModelId {
+  const _$TechnologyModelIdImpl({required this.value}) : super._();
 
-  factory _$_TechnologyModelId.fromJson(Map<String, dynamic> json) =>
-      _$$_TechnologyModelIdFromJson(json);
+  factory _$TechnologyModelIdImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TechnologyModelIdImplFromJson(json);
 
   @override
   final TechnologyType value;
@@ -3395,13 +3401,13 @@ class _$_TechnologyModelId extends _TechnologyModelId {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TechnologyModelIdCopyWith<_$_TechnologyModelId> get copyWith =>
-      __$$_TechnologyModelIdCopyWithImpl<_$_TechnologyModelId>(
+  _$$TechnologyModelIdImplCopyWith<_$TechnologyModelIdImpl> get copyWith =>
+      __$$TechnologyModelIdImplCopyWithImpl<_$TechnologyModelIdImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TechnologyModelIdToJson(
+    return _$$TechnologyModelIdImplToJson(
       this,
     );
   }
@@ -3409,17 +3415,17 @@ class _$_TechnologyModelId extends _TechnologyModelId {
 
 abstract class _TechnologyModelId extends TechnologyModelId {
   const factory _TechnologyModelId({required final TechnologyType value}) =
-      _$_TechnologyModelId;
+      _$TechnologyModelIdImpl;
   const _TechnologyModelId._() : super._();
 
   factory _TechnologyModelId.fromJson(Map<String, dynamic> json) =
-      _$_TechnologyModelId.fromJson;
+      _$TechnologyModelIdImpl.fromJson;
 
   @override
   TechnologyType get value;
   @override
   @JsonKey(ignore: true)
-  _$$_TechnologyModelIdCopyWith<_$_TechnologyModelId> get copyWith =>
+  _$$TechnologyModelIdImplCopyWith<_$TechnologyModelIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -3483,12 +3489,12 @@ class _$TechnologyTreeProgressModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TechnologyTreeProgressModelCopyWith<$Res>
+abstract class _$$TechnologyTreeProgressModelImplCopyWith<$Res>
     implements $TechnologyTreeProgressModelCopyWith<$Res> {
-  factory _$$_TechnologyTreeProgressModelCopyWith(
-          _$_TechnologyTreeProgressModel value,
-          $Res Function(_$_TechnologyTreeProgressModel) then) =
-      __$$_TechnologyTreeProgressModelCopyWithImpl<$Res>;
+  factory _$$TechnologyTreeProgressModelImplCopyWith(
+          _$TechnologyTreeProgressModelImpl value,
+          $Res Function(_$TechnologyTreeProgressModelImpl) then) =
+      __$$TechnologyTreeProgressModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3499,13 +3505,13 @@ abstract class _$$_TechnologyTreeProgressModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TechnologyTreeProgressModelCopyWithImpl<$Res>
+class __$$TechnologyTreeProgressModelImplCopyWithImpl<$Res>
     extends _$TechnologyTreeProgressModelCopyWithImpl<$Res,
-        _$_TechnologyTreeProgressModel>
-    implements _$$_TechnologyTreeProgressModelCopyWith<$Res> {
-  __$$_TechnologyTreeProgressModelCopyWithImpl(
-      _$_TechnologyTreeProgressModel _value,
-      $Res Function(_$_TechnologyTreeProgressModel) _then)
+        _$TechnologyTreeProgressModelImpl>
+    implements _$$TechnologyTreeProgressModelImplCopyWith<$Res> {
+  __$$TechnologyTreeProgressModelImplCopyWithImpl(
+      _$TechnologyTreeProgressModelImpl _value,
+      $Res Function(_$TechnologyTreeProgressModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3513,7 +3519,7 @@ class __$$_TechnologyTreeProgressModelCopyWithImpl<$Res>
   $Res call({
     Object? technologies = null,
   }) {
-    return _then(_$_TechnologyTreeProgressModel(
+    return _then(_$TechnologyTreeProgressModelImpl(
       technologies: null == technologies
           ? _value._technologies
           : technologies // ignore: cast_nullable_to_non_nullable
@@ -3524,8 +3530,8 @@ class __$$_TechnologyTreeProgressModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TechnologyTreeProgressModel extends _TechnologyTreeProgressModel {
-  const _$_TechnologyTreeProgressModel(
+class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
+  const _$TechnologyTreeProgressModelImpl(
       {@JsonKey(
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
@@ -3534,8 +3540,9 @@ class _$_TechnologyTreeProgressModel extends _TechnologyTreeProgressModel {
       : _technologies = technologies,
         super._();
 
-  factory _$_TechnologyTreeProgressModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TechnologyTreeProgressModelFromJson(json);
+  factory _$TechnologyTreeProgressModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TechnologyTreeProgressModelImplFromJson(json);
 
   final Map<TechnologyModelId, TechnologyProgressModel> _technologies;
   @override
@@ -3557,7 +3564,7 @@ class _$_TechnologyTreeProgressModel extends _TechnologyTreeProgressModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TechnologyTreeProgressModel &&
+            other is _$TechnologyTreeProgressModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._technologies, _technologies));
   }
@@ -3570,13 +3577,13 @@ class _$_TechnologyTreeProgressModel extends _TechnologyTreeProgressModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TechnologyTreeProgressModelCopyWith<_$_TechnologyTreeProgressModel>
-      get copyWith => __$$_TechnologyTreeProgressModelCopyWithImpl<
-          _$_TechnologyTreeProgressModel>(this, _$identity);
+  _$$TechnologyTreeProgressModelImplCopyWith<_$TechnologyTreeProgressModelImpl>
+      get copyWith => __$$TechnologyTreeProgressModelImplCopyWithImpl<
+          _$TechnologyTreeProgressModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TechnologyTreeProgressModelToJson(
+    return _$$TechnologyTreeProgressModelImplToJson(
       this,
     );
   }
@@ -3589,11 +3596,11 @@ abstract class _TechnologyTreeProgressModel
               fromJson: TechnologyTreeProgressModel._technologiesFromJson,
               toJson: TechnologyTreeProgressModel._technologiesToJson)
           final Map<TechnologyModelId, TechnologyProgressModel> technologies}) =
-      _$_TechnologyTreeProgressModel;
+      _$TechnologyTreeProgressModelImpl;
   const _TechnologyTreeProgressModel._() : super._();
 
   factory _TechnologyTreeProgressModel.fromJson(Map<String, dynamic> json) =
-      _$_TechnologyTreeProgressModel.fromJson;
+      _$TechnologyTreeProgressModelImpl.fromJson;
 
   @override
   @JsonKey(
@@ -3602,7 +3609,7 @@ abstract class _TechnologyTreeProgressModel
   Map<TechnologyModelId, TechnologyProgressModel> get technologies;
   @override
   @JsonKey(ignore: true)
-  _$$_TechnologyTreeProgressModelCopyWith<_$_TechnologyTreeProgressModel>
+  _$$TechnologyTreeProgressModelImplCopyWith<_$TechnologyTreeProgressModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -3684,11 +3691,12 @@ class _$TechnologyProgressModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TechnologyProgressModelCopyWith<$Res>
+abstract class _$$TechnologyProgressModelImplCopyWith<$Res>
     implements $TechnologyProgressModelCopyWith<$Res> {
-  factory _$$_TechnologyProgressModelCopyWith(_$_TechnologyProgressModel value,
-          $Res Function(_$_TechnologyProgressModel) then) =
-      __$$_TechnologyProgressModelCopyWithImpl<$Res>;
+  factory _$$TechnologyProgressModelImplCopyWith(
+          _$TechnologyProgressModelImpl value,
+          $Res Function(_$TechnologyProgressModelImpl) then) =
+      __$$TechnologyProgressModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3701,12 +3709,13 @@ abstract class _$$_TechnologyProgressModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TechnologyProgressModelCopyWithImpl<$Res>
+class __$$TechnologyProgressModelImplCopyWithImpl<$Res>
     extends _$TechnologyProgressModelCopyWithImpl<$Res,
-        _$_TechnologyProgressModel>
-    implements _$$_TechnologyProgressModelCopyWith<$Res> {
-  __$$_TechnologyProgressModelCopyWithImpl(_$_TechnologyProgressModel _value,
-      $Res Function(_$_TechnologyProgressModel) _then)
+        _$TechnologyProgressModelImpl>
+    implements _$$TechnologyProgressModelImplCopyWith<$Res> {
+  __$$TechnologyProgressModelImplCopyWithImpl(
+      _$TechnologyProgressModelImpl _value,
+      $Res Function(_$TechnologyProgressModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3715,7 +3724,7 @@ class __$$_TechnologyProgressModelCopyWithImpl<$Res>
     Object? id = null,
     Object? unlockCondition = null,
   }) {
-    return _then(_$_TechnologyProgressModel(
+    return _then(_$TechnologyProgressModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3730,13 +3739,13 @@ class __$$_TechnologyProgressModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TechnologyProgressModel extends _TechnologyProgressModel {
-  const _$_TechnologyProgressModel(
+class _$TechnologyProgressModelImpl extends _TechnologyProgressModel {
+  const _$TechnologyProgressModelImpl(
       {required this.id, required this.unlockCondition})
       : super._();
 
-  factory _$_TechnologyProgressModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TechnologyProgressModelFromJson(json);
+  factory _$TechnologyProgressModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TechnologyProgressModelImplFromJson(json);
 
   @override
   final TechnologyModelId id;
@@ -3752,7 +3761,7 @@ class _$_TechnologyProgressModel extends _TechnologyProgressModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TechnologyProgressModel &&
+            other is _$TechnologyProgressModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.unlockCondition, unlockCondition) ||
                 other.unlockCondition == unlockCondition));
@@ -3765,14 +3774,13 @@ class _$_TechnologyProgressModel extends _TechnologyProgressModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TechnologyProgressModelCopyWith<_$_TechnologyProgressModel>
-      get copyWith =>
-          __$$_TechnologyProgressModelCopyWithImpl<_$_TechnologyProgressModel>(
-              this, _$identity);
+  _$$TechnologyProgressModelImplCopyWith<_$TechnologyProgressModelImpl>
+      get copyWith => __$$TechnologyProgressModelImplCopyWithImpl<
+          _$TechnologyProgressModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TechnologyProgressModelToJson(
+    return _$$TechnologyProgressModelImplToJson(
       this,
     );
   }
@@ -3782,11 +3790,11 @@ abstract class _TechnologyProgressModel extends TechnologyProgressModel {
   const factory _TechnologyProgressModel(
           {required final TechnologyModelId id,
           required final TechnologyUnlockConditionModel unlockCondition}) =
-      _$_TechnologyProgressModel;
+      _$TechnologyProgressModelImpl;
   const _TechnologyProgressModel._() : super._();
 
   factory _TechnologyProgressModel.fromJson(Map<String, dynamic> json) =
-      _$_TechnologyProgressModel.fromJson;
+      _$TechnologyProgressModelImpl.fromJson;
 
   @override
   TechnologyModelId get id;
@@ -3794,7 +3802,7 @@ abstract class _TechnologyProgressModel extends TechnologyProgressModel {
   TechnologyUnlockConditionModel get unlockCondition;
   @override
   @JsonKey(ignore: true)
-  _$$_TechnologyProgressModelCopyWith<_$_TechnologyProgressModel>
+  _$$TechnologyProgressModelImplCopyWith<_$TechnologyProgressModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -3921,11 +3929,11 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
 }
 
 /// @nodoc
-abstract class _$$_TechnologyModelCopyWith<$Res>
+abstract class _$$TechnologyModelImplCopyWith<$Res>
     implements $TechnologyModelCopyWith<$Res> {
-  factory _$$_TechnologyModelCopyWith(
-          _$_TechnologyModel value, $Res Function(_$_TechnologyModel) then) =
-      __$$_TechnologyModelCopyWithImpl<$Res>;
+  factory _$$TechnologyModelImplCopyWith(_$TechnologyModelImpl value,
+          $Res Function(_$TechnologyModelImpl) then) =
+      __$$TechnologyModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -3946,11 +3954,11 @@ abstract class _$$_TechnologyModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TechnologyModelCopyWithImpl<$Res>
-    extends _$TechnologyModelCopyWithImpl<$Res, _$_TechnologyModel>
-    implements _$$_TechnologyModelCopyWith<$Res> {
-  __$$_TechnologyModelCopyWithImpl(
-      _$_TechnologyModel _value, $Res Function(_$_TechnologyModel) _then)
+class __$$TechnologyModelImplCopyWithImpl<$Res>
+    extends _$TechnologyModelCopyWithImpl<$Res, _$TechnologyModelImpl>
+    implements _$$TechnologyModelImplCopyWith<$Res> {
+  __$$TechnologyModelImplCopyWithImpl(
+      _$TechnologyModelImpl _value, $Res Function(_$TechnologyModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -3962,7 +3970,7 @@ class __$$_TechnologyModelCopyWithImpl<$Res>
     Object? index = null,
     Object? parentTechnologyId = freezed,
   }) {
-    return _then(_$_TechnologyModel(
+    return _then(_$TechnologyModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -3989,8 +3997,8 @@ class __$$_TechnologyModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TechnologyModel extends _TechnologyModel {
-  const _$_TechnologyModel(
+class _$TechnologyModelImpl extends _TechnologyModel {
+  const _$TechnologyModelImpl(
       {required this.id,
       required this.title,
       required this.unlockCondition,
@@ -3998,8 +4006,8 @@ class _$_TechnologyModel extends _TechnologyModel {
       this.parentTechnologyId})
       : super._();
 
-  factory _$_TechnologyModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TechnologyModelFromJson(json);
+  factory _$TechnologyModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TechnologyModelImplFromJson(json);
 
   @override
   final TechnologyModelId id;
@@ -4023,7 +4031,7 @@ class _$_TechnologyModel extends _TechnologyModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TechnologyModel &&
+            other is _$TechnologyModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             (identical(other.unlockCondition, unlockCondition) ||
@@ -4041,12 +4049,13 @@ class _$_TechnologyModel extends _TechnologyModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TechnologyModelCopyWith<_$_TechnologyModel> get copyWith =>
-      __$$_TechnologyModelCopyWithImpl<_$_TechnologyModel>(this, _$identity);
+  _$$TechnologyModelImplCopyWith<_$TechnologyModelImpl> get copyWith =>
+      __$$TechnologyModelImplCopyWithImpl<_$TechnologyModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TechnologyModelToJson(
+    return _$$TechnologyModelImplToJson(
       this,
     );
   }
@@ -4058,11 +4067,11 @@ abstract class _TechnologyModel extends TechnologyModel {
       required final LocalizedMap title,
       required final TechnologyUnlockConditionModel unlockCondition,
       final int index,
-      final TechnologyModelId? parentTechnologyId}) = _$_TechnologyModel;
+      final TechnologyModelId? parentTechnologyId}) = _$TechnologyModelImpl;
   const _TechnologyModel._() : super._();
 
   factory _TechnologyModel.fromJson(Map<String, dynamic> json) =
-      _$_TechnologyModel.fromJson;
+      _$TechnologyModelImpl.fromJson;
 
   @override
   TechnologyModelId get id;
@@ -4076,7 +4085,7 @@ abstract class _TechnologyModel extends TechnologyModel {
   TechnologyModelId? get parentTechnologyId;
   @override
   @JsonKey(ignore: true)
-  _$$_TechnologyModelCopyWith<_$_TechnologyModel> get copyWith =>
+  _$$TechnologyModelImplCopyWith<_$TechnologyModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4133,25 +4142,25 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TechnologyUnlockConditionModelCopyWith<$Res>
+abstract class _$$TechnologyUnlockConditionModelImplCopyWith<$Res>
     implements $TechnologyUnlockConditionModelCopyWith<$Res> {
-  factory _$$_TechnologyUnlockConditionModelCopyWith(
-          _$_TechnologyUnlockConditionModel value,
-          $Res Function(_$_TechnologyUnlockConditionModel) then) =
-      __$$_TechnologyUnlockConditionModelCopyWithImpl<$Res>;
+  factory _$$TechnologyUnlockConditionModelImplCopyWith(
+          _$TechnologyUnlockConditionModelImpl value,
+          $Res Function(_$TechnologyUnlockConditionModelImpl) then) =
+      __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Map<Languages, List<UsefulWordModel>> languageWords});
 }
 
 /// @nodoc
-class __$$_TechnologyUnlockConditionModelCopyWithImpl<$Res>
+class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
     extends _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
-        _$_TechnologyUnlockConditionModel>
-    implements _$$_TechnologyUnlockConditionModelCopyWith<$Res> {
-  __$$_TechnologyUnlockConditionModelCopyWithImpl(
-      _$_TechnologyUnlockConditionModel _value,
-      $Res Function(_$_TechnologyUnlockConditionModel) _then)
+        _$TechnologyUnlockConditionModelImpl>
+    implements _$$TechnologyUnlockConditionModelImplCopyWith<$Res> {
+  __$$TechnologyUnlockConditionModelImplCopyWithImpl(
+      _$TechnologyUnlockConditionModelImpl _value,
+      $Res Function(_$TechnologyUnlockConditionModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4159,7 +4168,7 @@ class __$$_TechnologyUnlockConditionModelCopyWithImpl<$Res>
   $Res call({
     Object? languageWords = null,
   }) {
-    return _then(_$_TechnologyUnlockConditionModel(
+    return _then(_$TechnologyUnlockConditionModelImpl(
       languageWords: null == languageWords
           ? _value._languageWords
           : languageWords // ignore: cast_nullable_to_non_nullable
@@ -4170,16 +4179,16 @@ class __$$_TechnologyUnlockConditionModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TechnologyUnlockConditionModel
+class _$TechnologyUnlockConditionModelImpl
     extends _TechnologyUnlockConditionModel {
-  const _$_TechnologyUnlockConditionModel(
+  const _$TechnologyUnlockConditionModelImpl(
       {required final Map<Languages, List<UsefulWordModel>> languageWords})
       : _languageWords = languageWords,
         super._();
 
-  factory _$_TechnologyUnlockConditionModel.fromJson(
+  factory _$TechnologyUnlockConditionModelImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TechnologyUnlockConditionModelFromJson(json);
+      _$$TechnologyUnlockConditionModelImplFromJson(json);
 
   final Map<Languages, List<UsefulWordModel>> _languageWords;
   @override
@@ -4198,7 +4207,7 @@ class _$_TechnologyUnlockConditionModel
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TechnologyUnlockConditionModel &&
+            other is _$TechnologyUnlockConditionModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._languageWords, _languageWords));
   }
@@ -4211,13 +4220,14 @@ class _$_TechnologyUnlockConditionModel
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TechnologyUnlockConditionModelCopyWith<_$_TechnologyUnlockConditionModel>
-      get copyWith => __$$_TechnologyUnlockConditionModelCopyWithImpl<
-          _$_TechnologyUnlockConditionModel>(this, _$identity);
+  _$$TechnologyUnlockConditionModelImplCopyWith<
+          _$TechnologyUnlockConditionModelImpl>
+      get copyWith => __$$TechnologyUnlockConditionModelImplCopyWithImpl<
+          _$TechnologyUnlockConditionModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TechnologyUnlockConditionModelToJson(
+    return _$$TechnologyUnlockConditionModelImplToJson(
       this,
     );
   }
@@ -4227,17 +4237,18 @@ abstract class _TechnologyUnlockConditionModel
     extends TechnologyUnlockConditionModel {
   const factory _TechnologyUnlockConditionModel(
       {required final Map<Languages, List<UsefulWordModel>>
-          languageWords}) = _$_TechnologyUnlockConditionModel;
+          languageWords}) = _$TechnologyUnlockConditionModelImpl;
   const _TechnologyUnlockConditionModel._() : super._();
 
   factory _TechnologyUnlockConditionModel.fromJson(Map<String, dynamic> json) =
-      _$_TechnologyUnlockConditionModel.fromJson;
+      _$TechnologyUnlockConditionModelImpl.fromJson;
 
   @override
   Map<Languages, List<UsefulWordModel>> get languageWords;
   @override
   @JsonKey(ignore: true)
-  _$$_TechnologyUnlockConditionModelCopyWith<_$_TechnologyUnlockConditionModel>
+  _$$TechnologyUnlockConditionModelImplCopyWith<
+          _$TechnologyUnlockConditionModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -4295,22 +4306,22 @@ class _$UsefulWordModelCopyWithImpl<$Res, $Val extends UsefulWordModel>
 }
 
 /// @nodoc
-abstract class _$$_UsefulWordModelCopyWith<$Res>
+abstract class _$$UsefulWordModelImplCopyWith<$Res>
     implements $UsefulWordModelCopyWith<$Res> {
-  factory _$$_UsefulWordModelCopyWith(
-          _$_UsefulWordModel value, $Res Function(_$_UsefulWordModel) then) =
-      __$$_UsefulWordModelCopyWithImpl<$Res>;
+  factory _$$UsefulWordModelImplCopyWith(_$UsefulWordModelImpl value,
+          $Res Function(_$UsefulWordModelImpl) then) =
+      __$$UsefulWordModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String word, bool isUsed});
 }
 
 /// @nodoc
-class __$$_UsefulWordModelCopyWithImpl<$Res>
-    extends _$UsefulWordModelCopyWithImpl<$Res, _$_UsefulWordModel>
-    implements _$$_UsefulWordModelCopyWith<$Res> {
-  __$$_UsefulWordModelCopyWithImpl(
-      _$_UsefulWordModel _value, $Res Function(_$_UsefulWordModel) _then)
+class __$$UsefulWordModelImplCopyWithImpl<$Res>
+    extends _$UsefulWordModelCopyWithImpl<$Res, _$UsefulWordModelImpl>
+    implements _$$UsefulWordModelImplCopyWith<$Res> {
+  __$$UsefulWordModelImplCopyWithImpl(
+      _$UsefulWordModelImpl _value, $Res Function(_$UsefulWordModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4319,7 +4330,7 @@ class __$$_UsefulWordModelCopyWithImpl<$Res>
     Object? word = null,
     Object? isUsed = null,
   }) {
-    return _then(_$_UsefulWordModel(
+    return _then(_$UsefulWordModelImpl(
       word: null == word
           ? _value.word
           : word // ignore: cast_nullable_to_non_nullable
@@ -4334,12 +4345,12 @@ class __$$_UsefulWordModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_UsefulWordModel extends _UsefulWordModel {
-  const _$_UsefulWordModel({required this.word, this.isUsed = false})
+class _$UsefulWordModelImpl extends _UsefulWordModel {
+  const _$UsefulWordModelImpl({required this.word, this.isUsed = false})
       : super._();
 
-  factory _$_UsefulWordModel.fromJson(Map<String, dynamic> json) =>
-      _$$_UsefulWordModelFromJson(json);
+  factory _$UsefulWordModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$UsefulWordModelImplFromJson(json);
 
   @override
   final String word;
@@ -4356,7 +4367,7 @@ class _$_UsefulWordModel extends _UsefulWordModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UsefulWordModel &&
+            other is _$UsefulWordModelImpl &&
             (identical(other.word, word) || other.word == word) &&
             (identical(other.isUsed, isUsed) || other.isUsed == isUsed));
   }
@@ -4368,12 +4379,13 @@ class _$_UsefulWordModel extends _UsefulWordModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UsefulWordModelCopyWith<_$_UsefulWordModel> get copyWith =>
-      __$$_UsefulWordModelCopyWithImpl<_$_UsefulWordModel>(this, _$identity);
+  _$$UsefulWordModelImplCopyWith<_$UsefulWordModelImpl> get copyWith =>
+      __$$UsefulWordModelImplCopyWithImpl<_$UsefulWordModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_UsefulWordModelToJson(
+    return _$$UsefulWordModelImplToJson(
       this,
     );
   }
@@ -4381,11 +4393,11 @@ class _$_UsefulWordModel extends _UsefulWordModel {
 
 abstract class _UsefulWordModel extends UsefulWordModel {
   const factory _UsefulWordModel(
-      {required final String word, final bool isUsed}) = _$_UsefulWordModel;
+      {required final String word, final bool isUsed}) = _$UsefulWordModelImpl;
   const _UsefulWordModel._() : super._();
 
   factory _UsefulWordModel.fromJson(Map<String, dynamic> json) =
-      _$_UsefulWordModel.fromJson;
+      _$UsefulWordModelImpl.fromJson;
 
   @override
   String get word;
@@ -4393,7 +4405,7 @@ abstract class _UsefulWordModel extends UsefulWordModel {
   bool get isUsed;
   @override
   @JsonKey(ignore: true)
-  _$$_UsefulWordModelCopyWith<_$_UsefulWordModel> get copyWith =>
+  _$$UsefulWordModelImplCopyWith<_$UsefulWordModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4497,11 +4509,11 @@ class _$TutorialEventModelCopyWithImpl<$Res, $Val extends TutorialEventModel>
 }
 
 /// @nodoc
-abstract class _$$_TutorialEventModelCopyWith<$Res>
+abstract class _$$TutorialEventModelImplCopyWith<$Res>
     implements $TutorialEventModelCopyWith<$Res> {
-  factory _$$_TutorialEventModelCopyWith(_$_TutorialEventModel value,
-          $Res Function(_$_TutorialEventModel) then) =
-      __$$_TutorialEventModelCopyWithImpl<$Res>;
+  factory _$$TutorialEventModelImplCopyWith(_$TutorialEventModelImpl value,
+          $Res Function(_$TutorialEventModelImpl) then) =
+      __$$TutorialEventModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -4516,11 +4528,11 @@ abstract class _$$_TutorialEventModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TutorialEventModelCopyWithImpl<$Res>
-    extends _$TutorialEventModelCopyWithImpl<$Res, _$_TutorialEventModel>
-    implements _$$_TutorialEventModelCopyWith<$Res> {
-  __$$_TutorialEventModelCopyWithImpl(
-      _$_TutorialEventModel _value, $Res Function(_$_TutorialEventModel) _then)
+class __$$TutorialEventModelImplCopyWithImpl<$Res>
+    extends _$TutorialEventModelCopyWithImpl<$Res, _$TutorialEventModelImpl>
+    implements _$$TutorialEventModelImplCopyWith<$Res> {
+  __$$TutorialEventModelImplCopyWithImpl(_$TutorialEventModelImpl _value,
+      $Res Function(_$TutorialEventModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4532,7 +4544,7 @@ class __$$_TutorialEventModelCopyWithImpl<$Res>
     Object? gamePostEffects = null,
     Object? anchorUiItem = freezed,
   }) {
-    return _then(_$_TutorialEventModel(
+    return _then(_$TutorialEventModelImpl(
       localizedMap: null == localizedMap
           ? _value.localizedMap
           : localizedMap // ignore: cast_nullable_to_non_nullable
@@ -4560,8 +4572,8 @@ class __$$_TutorialEventModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_TutorialEventModel extends _TutorialEventModel {
-  const _$_TutorialEventModel(
+class _$TutorialEventModelImpl extends _TutorialEventModel {
+  const _$TutorialEventModelImpl(
       {required this.localizedMap,
       required final List<TutorialUiActionEventModel> completeActions,
       final List<TutorialGameEffectModel> gamePreEffects = const [],
@@ -4572,8 +4584,8 @@ class _$_TutorialEventModel extends _TutorialEventModel {
         _gamePostEffects = gamePostEffects,
         super._();
 
-  factory _$_TutorialEventModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TutorialEventModelFromJson(json);
+  factory _$TutorialEventModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TutorialEventModelImplFromJson(json);
 
   @override
   final LocalizedMap localizedMap;
@@ -4629,7 +4641,7 @@ class _$_TutorialEventModel extends _TutorialEventModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TutorialEventModel &&
+            other is _$TutorialEventModelImpl &&
             (identical(other.localizedMap, localizedMap) ||
                 other.localizedMap == localizedMap) &&
             const DeepCollectionEquality()
@@ -4655,13 +4667,13 @@ class _$_TutorialEventModel extends _TutorialEventModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TutorialEventModelCopyWith<_$_TutorialEventModel> get copyWith =>
-      __$$_TutorialEventModelCopyWithImpl<_$_TutorialEventModel>(
+  _$$TutorialEventModelImplCopyWith<_$TutorialEventModelImpl> get copyWith =>
+      __$$TutorialEventModelImplCopyWithImpl<_$TutorialEventModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TutorialEventModelToJson(
+    return _$$TutorialEventModelImplToJson(
       this,
     );
   }
@@ -4673,11 +4685,11 @@ abstract class _TutorialEventModel extends TutorialEventModel {
       required final List<TutorialUiActionEventModel> completeActions,
       final List<TutorialGameEffectModel> gamePreEffects,
       final List<TutorialGameEffectModel> gamePostEffects,
-      final TutorialUiItem? anchorUiItem}) = _$_TutorialEventModel;
+      final TutorialUiItem? anchorUiItem}) = _$TutorialEventModelImpl;
   const _TutorialEventModel._() : super._();
 
   factory _TutorialEventModel.fromJson(Map<String, dynamic> json) =
-      _$_TutorialEventModel.fromJson;
+      _$TutorialEventModelImpl.fromJson;
 
   @override
   LocalizedMap get localizedMap;
@@ -4701,7 +4713,7 @@ abstract class _TutorialEventModel extends TutorialEventModel {
   TutorialUiItem? get anchorUiItem;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorialEventModelCopyWith<_$_TutorialEventModel> get copyWith =>
+  _$$TutorialEventModelImplCopyWith<_$TutorialEventModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -4755,23 +4767,25 @@ class _$TutorialGameEffectModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TutorialGameEffectModelCopyWith<$Res>
+abstract class _$$TutorialGameEffectModelImplCopyWith<$Res>
     implements $TutorialGameEffectModelCopyWith<$Res> {
-  factory _$$_TutorialGameEffectModelCopyWith(_$_TutorialGameEffectModel value,
-          $Res Function(_$_TutorialGameEffectModel) then) =
-      __$$_TutorialGameEffectModelCopyWithImpl<$Res>;
+  factory _$$TutorialGameEffectModelImplCopyWith(
+          _$TutorialGameEffectModelImpl value,
+          $Res Function(_$TutorialGameEffectModelImpl) then) =
+      __$$TutorialGameEffectModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({TutorialGameEffectName name});
 }
 
 /// @nodoc
-class __$$_TutorialGameEffectModelCopyWithImpl<$Res>
+class __$$TutorialGameEffectModelImplCopyWithImpl<$Res>
     extends _$TutorialGameEffectModelCopyWithImpl<$Res,
-        _$_TutorialGameEffectModel>
-    implements _$$_TutorialGameEffectModelCopyWith<$Res> {
-  __$$_TutorialGameEffectModelCopyWithImpl(_$_TutorialGameEffectModel _value,
-      $Res Function(_$_TutorialGameEffectModel) _then)
+        _$TutorialGameEffectModelImpl>
+    implements _$$TutorialGameEffectModelImplCopyWith<$Res> {
+  __$$TutorialGameEffectModelImplCopyWithImpl(
+      _$TutorialGameEffectModelImpl _value,
+      $Res Function(_$TutorialGameEffectModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4779,7 +4793,7 @@ class __$$_TutorialGameEffectModelCopyWithImpl<$Res>
   $Res call({
     Object? name = null,
   }) {
-    return _then(_$_TutorialGameEffectModel(
+    return _then(_$TutorialGameEffectModelImpl(
       name: null == name
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -4791,11 +4805,11 @@ class __$$_TutorialGameEffectModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_TutorialGameEffectModel extends _TutorialGameEffectModel {
-  const _$_TutorialGameEffectModel({required this.name}) : super._();
+class _$TutorialGameEffectModelImpl extends _TutorialGameEffectModel {
+  const _$TutorialGameEffectModelImpl({required this.name}) : super._();
 
-  factory _$_TutorialGameEffectModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TutorialGameEffectModelFromJson(json);
+  factory _$TutorialGameEffectModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TutorialGameEffectModelImplFromJson(json);
 
   @override
   final TutorialGameEffectName name;
@@ -4809,7 +4823,7 @@ class _$_TutorialGameEffectModel extends _TutorialGameEffectModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TutorialGameEffectModel &&
+            other is _$TutorialGameEffectModelImpl &&
             (identical(other.name, name) || other.name == name));
   }
 
@@ -4820,14 +4834,13 @@ class _$_TutorialGameEffectModel extends _TutorialGameEffectModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TutorialGameEffectModelCopyWith<_$_TutorialGameEffectModel>
-      get copyWith =>
-          __$$_TutorialGameEffectModelCopyWithImpl<_$_TutorialGameEffectModel>(
-              this, _$identity);
+  _$$TutorialGameEffectModelImplCopyWith<_$TutorialGameEffectModelImpl>
+      get copyWith => __$$TutorialGameEffectModelImplCopyWithImpl<
+          _$TutorialGameEffectModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TutorialGameEffectModelToJson(
+    return _$$TutorialGameEffectModelImplToJson(
       this,
     );
   }
@@ -4836,17 +4849,17 @@ class _$_TutorialGameEffectModel extends _TutorialGameEffectModel {
 abstract class _TutorialGameEffectModel extends TutorialGameEffectModel {
   const factory _TutorialGameEffectModel(
           {required final TutorialGameEffectName name}) =
-      _$_TutorialGameEffectModel;
+      _$TutorialGameEffectModelImpl;
   const _TutorialGameEffectModel._() : super._();
 
   factory _TutorialGameEffectModel.fromJson(Map<String, dynamic> json) =
-      _$_TutorialGameEffectModel.fromJson;
+      _$TutorialGameEffectModelImpl.fromJson;
 
   @override
   TutorialGameEffectName get name;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorialGameEffectModelCopyWith<_$_TutorialGameEffectModel>
+  _$$TutorialGameEffectModelImplCopyWith<_$TutorialGameEffectModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -4928,12 +4941,12 @@ class _$TutorialUiActionEventModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TutorialUiActionEventModelCopyWith<$Res>
+abstract class _$$TutorialUiActionEventModelImplCopyWith<$Res>
     implements $TutorialUiActionEventModelCopyWith<$Res> {
-  factory _$$_TutorialUiActionEventModelCopyWith(
-          _$_TutorialUiActionEventModel value,
-          $Res Function(_$_TutorialUiActionEventModel) then) =
-      __$$_TutorialUiActionEventModelCopyWithImpl<$Res>;
+  factory _$$TutorialUiActionEventModelImplCopyWith(
+          _$TutorialUiActionEventModelImpl value,
+          $Res Function(_$TutorialUiActionEventModelImpl) then) =
+      __$$TutorialUiActionEventModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -4944,13 +4957,13 @@ abstract class _$$_TutorialUiActionEventModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
+class __$$TutorialUiActionEventModelImplCopyWithImpl<$Res>
     extends _$TutorialUiActionEventModelCopyWithImpl<$Res,
-        _$_TutorialUiActionEventModel>
-    implements _$$_TutorialUiActionEventModelCopyWith<$Res> {
-  __$$_TutorialUiActionEventModelCopyWithImpl(
-      _$_TutorialUiActionEventModel _value,
-      $Res Function(_$_TutorialUiActionEventModel) _then)
+        _$TutorialUiActionEventModelImpl>
+    implements _$$TutorialUiActionEventModelImplCopyWith<$Res> {
+  __$$TutorialUiActionEventModelImplCopyWithImpl(
+      _$TutorialUiActionEventModelImpl _value,
+      $Res Function(_$TutorialUiActionEventModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -4961,7 +4974,7 @@ class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
     Object? isCompleted = null,
     Object? boolConsquenses = null,
   }) {
-    return _then(_$_TutorialUiActionEventModel(
+    return _then(_$TutorialUiActionEventModelImpl(
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -4985,8 +4998,8 @@ class __$$_TutorialUiActionEventModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
-  const _$_TutorialUiActionEventModel(
+class _$TutorialUiActionEventModelImpl extends _TutorialUiActionEventModel {
+  const _$TutorialUiActionEventModelImpl(
       {required this.action,
       this.uiItem,
       this.isCompleted = false,
@@ -4995,8 +5008,9 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
       : _boolConsquenses = boolConsquenses,
         super._();
 
-  factory _$_TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TutorialUiActionEventModelFromJson(json);
+  factory _$TutorialUiActionEventModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TutorialUiActionEventModelImplFromJson(json);
 
   /// If [uiItem] is set null and the action
   /// is [TutorialCompleteAction.onClick] then
@@ -5027,7 +5041,7 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TutorialUiActionEventModel &&
+            other is _$TutorialUiActionEventModelImpl &&
             (identical(other.action, action) || other.action == action) &&
             (identical(other.uiItem, uiItem) || other.uiItem == uiItem) &&
             (identical(other.isCompleted, isCompleted) ||
@@ -5044,13 +5058,13 @@ class _$_TutorialUiActionEventModel extends _TutorialUiActionEventModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TutorialUiActionEventModelCopyWith<_$_TutorialUiActionEventModel>
-      get copyWith => __$$_TutorialUiActionEventModelCopyWithImpl<
-          _$_TutorialUiActionEventModel>(this, _$identity);
+  _$$TutorialUiActionEventModelImplCopyWith<_$TutorialUiActionEventModelImpl>
+      get copyWith => __$$TutorialUiActionEventModelImplCopyWithImpl<
+          _$TutorialUiActionEventModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TutorialUiActionEventModelToJson(
+    return _$$TutorialUiActionEventModelImplToJson(
       this,
     );
   }
@@ -5062,11 +5076,11 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
       final TutorialUiItem? uiItem,
       final bool isCompleted,
       final Map<PrimitiveBool, List<TutorialGameEffectModel>>
-          boolConsquenses}) = _$_TutorialUiActionEventModel;
+          boolConsquenses}) = _$TutorialUiActionEventModelImpl;
   const _TutorialUiActionEventModel._() : super._();
 
   factory _TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =
-      _$_TutorialUiActionEventModel.fromJson;
+      _$TutorialUiActionEventModelImpl.fromJson;
 
   @override
 
@@ -5083,7 +5097,7 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
   Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorialUiActionEventModelCopyWith<_$_TutorialUiActionEventModel>
+  _$$TutorialUiActionEventModelImplCopyWith<_$TutorialUiActionEventModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -5154,12 +5168,12 @@ class _$TutorialEventsCollectionModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TutorialEventsCollectionModelCopyWith<$Res>
+abstract class _$$TutorialEventsCollectionModelImplCopyWith<$Res>
     implements $TutorialEventsCollectionModelCopyWith<$Res> {
-  factory _$$_TutorialEventsCollectionModelCopyWith(
-          _$_TutorialEventsCollectionModel value,
-          $Res Function(_$_TutorialEventsCollectionModel) then) =
-      __$$_TutorialEventsCollectionModelCopyWithImpl<$Res>;
+  factory _$$TutorialEventsCollectionModelImplCopyWith(
+          _$TutorialEventsCollectionModelImpl value,
+          $Res Function(_$TutorialEventsCollectionModelImpl) then) =
+      __$$TutorialEventsCollectionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -5169,13 +5183,13 @@ abstract class _$$_TutorialEventsCollectionModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_TutorialEventsCollectionModelCopyWithImpl<$Res>
+class __$$TutorialEventsCollectionModelImplCopyWithImpl<$Res>
     extends _$TutorialEventsCollectionModelCopyWithImpl<$Res,
-        _$_TutorialEventsCollectionModel>
-    implements _$$_TutorialEventsCollectionModelCopyWith<$Res> {
-  __$$_TutorialEventsCollectionModelCopyWithImpl(
-      _$_TutorialEventsCollectionModel _value,
-      $Res Function(_$_TutorialEventsCollectionModel) _then)
+        _$TutorialEventsCollectionModelImpl>
+    implements _$$TutorialEventsCollectionModelImplCopyWith<$Res> {
+  __$$TutorialEventsCollectionModelImplCopyWithImpl(
+      _$TutorialEventsCollectionModelImpl _value,
+      $Res Function(_$TutorialEventsCollectionModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -5185,7 +5199,7 @@ class __$$_TutorialEventsCollectionModelCopyWithImpl<$Res>
     Object? name = null,
     Object? currentIndex = null,
   }) {
-    return _then(_$_TutorialEventsCollectionModel(
+    return _then(_$TutorialEventsCollectionModelImpl(
       events: null == events
           ? _value._events
           : events // ignore: cast_nullable_to_non_nullable
@@ -5205,17 +5219,18 @@ class __$$_TutorialEventsCollectionModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_TutorialEventsCollectionModel extends _TutorialEventsCollectionModel {
-  const _$_TutorialEventsCollectionModel(
+class _$TutorialEventsCollectionModelImpl
+    extends _TutorialEventsCollectionModel {
+  const _$TutorialEventsCollectionModelImpl(
       {required final List<TutorialEventModel> events,
       required this.name,
       required this.currentIndex})
       : _events = events,
         super._();
 
-  factory _$_TutorialEventsCollectionModel.fromJson(
+  factory _$TutorialEventsCollectionModelImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TutorialEventsCollectionModelFromJson(json);
+      _$$TutorialEventsCollectionModelImplFromJson(json);
 
   final List<TutorialEventModel> _events;
   @override
@@ -5239,7 +5254,7 @@ class _$_TutorialEventsCollectionModel extends _TutorialEventsCollectionModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TutorialEventsCollectionModel &&
+            other is _$TutorialEventsCollectionModelImpl &&
             const DeepCollectionEquality().equals(other._events, _events) &&
             (identical(other.name, name) || other.name == name) &&
             (identical(other.currentIndex, currentIndex) ||
@@ -5254,13 +5269,14 @@ class _$_TutorialEventsCollectionModel extends _TutorialEventsCollectionModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TutorialEventsCollectionModelCopyWith<_$_TutorialEventsCollectionModel>
-      get copyWith => __$$_TutorialEventsCollectionModelCopyWithImpl<
-          _$_TutorialEventsCollectionModel>(this, _$identity);
+  _$$TutorialEventsCollectionModelImplCopyWith<
+          _$TutorialEventsCollectionModelImpl>
+      get copyWith => __$$TutorialEventsCollectionModelImplCopyWithImpl<
+          _$TutorialEventsCollectionModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TutorialEventsCollectionModelToJson(
+    return _$$TutorialEventsCollectionModelImplToJson(
       this,
     );
   }
@@ -5271,11 +5287,11 @@ abstract class _TutorialEventsCollectionModel
   const factory _TutorialEventsCollectionModel(
       {required final List<TutorialEventModel> events,
       required final TutorialCollectionsName name,
-      required final int currentIndex}) = _$_TutorialEventsCollectionModel;
+      required final int currentIndex}) = _$TutorialEventsCollectionModelImpl;
   const _TutorialEventsCollectionModel._() : super._();
 
   factory _TutorialEventsCollectionModel.fromJson(Map<String, dynamic> json) =
-      _$_TutorialEventsCollectionModel.fromJson;
+      _$TutorialEventsCollectionModelImpl.fromJson;
 
   @override
   List<TutorialEventModel> get events;
@@ -5285,7 +5301,8 @@ abstract class _TutorialEventsCollectionModel
   int get currentIndex;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorialEventsCollectionModelCopyWith<_$_TutorialEventsCollectionModel>
+  _$$TutorialEventsCollectionModelImplCopyWith<
+          _$TutorialEventsCollectionModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -5344,25 +5361,25 @@ class _$TutorialCollectionsProgressModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TutorialCollectionsProgressModelCopyWith<$Res>
+abstract class _$$TutorialCollectionsProgressModelImplCopyWith<$Res>
     implements $TutorialCollectionsProgressModelCopyWith<$Res> {
-  factory _$$_TutorialCollectionsProgressModelCopyWith(
-          _$_TutorialCollectionsProgressModel value,
-          $Res Function(_$_TutorialCollectionsProgressModel) then) =
-      __$$_TutorialCollectionsProgressModelCopyWithImpl<$Res>;
+  factory _$$TutorialCollectionsProgressModelImplCopyWith(
+          _$TutorialCollectionsProgressModelImpl value,
+          $Res Function(_$TutorialCollectionsProgressModelImpl) then) =
+      __$$TutorialCollectionsProgressModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Map<TutorialCollectionsName, int> indexes});
 }
 
 /// @nodoc
-class __$$_TutorialCollectionsProgressModelCopyWithImpl<$Res>
+class __$$TutorialCollectionsProgressModelImplCopyWithImpl<$Res>
     extends _$TutorialCollectionsProgressModelCopyWithImpl<$Res,
-        _$_TutorialCollectionsProgressModel>
-    implements _$$_TutorialCollectionsProgressModelCopyWith<$Res> {
-  __$$_TutorialCollectionsProgressModelCopyWithImpl(
-      _$_TutorialCollectionsProgressModel _value,
-      $Res Function(_$_TutorialCollectionsProgressModel) _then)
+        _$TutorialCollectionsProgressModelImpl>
+    implements _$$TutorialCollectionsProgressModelImplCopyWith<$Res> {
+  __$$TutorialCollectionsProgressModelImplCopyWithImpl(
+      _$TutorialCollectionsProgressModelImpl _value,
+      $Res Function(_$TutorialCollectionsProgressModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -5370,7 +5387,7 @@ class __$$_TutorialCollectionsProgressModelCopyWithImpl<$Res>
   $Res call({
     Object? indexes = null,
   }) {
-    return _then(_$_TutorialCollectionsProgressModel(
+    return _then(_$TutorialCollectionsProgressModelImpl(
       indexes: null == indexes
           ? _value._indexes
           : indexes // ignore: cast_nullable_to_non_nullable
@@ -5382,16 +5399,16 @@ class __$$_TutorialCollectionsProgressModelCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_TutorialCollectionsProgressModel
+class _$TutorialCollectionsProgressModelImpl
     extends _TutorialCollectionsProgressModel {
-  const _$_TutorialCollectionsProgressModel(
+  const _$TutorialCollectionsProgressModelImpl(
       {required final Map<TutorialCollectionsName, int> indexes})
       : _indexes = indexes,
         super._();
 
-  factory _$_TutorialCollectionsProgressModel.fromJson(
+  factory _$TutorialCollectionsProgressModelImpl.fromJson(
           Map<String, dynamic> json) =>
-      _$$_TutorialCollectionsProgressModelFromJson(json);
+      _$$TutorialCollectionsProgressModelImplFromJson(json);
 
   /// Key - [TutorialCollectionsName]
   /// Value - int index from [TutorialEventsCollectionModel.events]
@@ -5415,7 +5432,7 @@ class _$_TutorialCollectionsProgressModel
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TutorialCollectionsProgressModel &&
+            other is _$TutorialCollectionsProgressModelImpl &&
             const DeepCollectionEquality().equals(other._indexes, _indexes));
   }
 
@@ -5427,14 +5444,14 @@ class _$_TutorialCollectionsProgressModel
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TutorialCollectionsProgressModelCopyWith<
-          _$_TutorialCollectionsProgressModel>
-      get copyWith => __$$_TutorialCollectionsProgressModelCopyWithImpl<
-          _$_TutorialCollectionsProgressModel>(this, _$identity);
+  _$$TutorialCollectionsProgressModelImplCopyWith<
+          _$TutorialCollectionsProgressModelImpl>
+      get copyWith => __$$TutorialCollectionsProgressModelImplCopyWithImpl<
+          _$TutorialCollectionsProgressModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TutorialCollectionsProgressModelToJson(
+    return _$$TutorialCollectionsProgressModelImplToJson(
       this,
     );
   }
@@ -5444,11 +5461,12 @@ abstract class _TutorialCollectionsProgressModel
     extends TutorialCollectionsProgressModel {
   const factory _TutorialCollectionsProgressModel(
           {required final Map<TutorialCollectionsName, int> indexes}) =
-      _$_TutorialCollectionsProgressModel;
+      _$TutorialCollectionsProgressModelImpl;
   const _TutorialCollectionsProgressModel._() : super._();
 
   factory _TutorialCollectionsProgressModel.fromJson(
-      Map<String, dynamic> json) = _$_TutorialCollectionsProgressModel.fromJson;
+          Map<String, dynamic> json) =
+      _$TutorialCollectionsProgressModelImpl.fromJson;
 
   @override
 
@@ -5457,8 +5475,8 @@ abstract class _TutorialCollectionsProgressModel
   Map<TutorialCollectionsName, int> get indexes;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorialCollectionsProgressModelCopyWith<
-          _$_TutorialCollectionsProgressModel>
+  _$$TutorialCollectionsProgressModelImplCopyWith<
+          _$TutorialCollectionsProgressModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -5515,25 +5533,25 @@ class _$TutorialCollectionsDataModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_TutorialCollectionsDataModelCopyWith<$Res>
+abstract class _$$TutorialCollectionsDataModelImplCopyWith<$Res>
     implements $TutorialCollectionsDataModelCopyWith<$Res> {
-  factory _$$_TutorialCollectionsDataModelCopyWith(
-          _$_TutorialCollectionsDataModel value,
-          $Res Function(_$_TutorialCollectionsDataModel) then) =
-      __$$_TutorialCollectionsDataModelCopyWithImpl<$Res>;
+  factory _$$TutorialCollectionsDataModelImplCopyWith(
+          _$TutorialCollectionsDataModelImpl value,
+          $Res Function(_$TutorialCollectionsDataModelImpl) then) =
+      __$$TutorialCollectionsDataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Map<TutorialCollectionsName, List<TutorialEventModel>> events});
 }
 
 /// @nodoc
-class __$$_TutorialCollectionsDataModelCopyWithImpl<$Res>
+class __$$TutorialCollectionsDataModelImplCopyWithImpl<$Res>
     extends _$TutorialCollectionsDataModelCopyWithImpl<$Res,
-        _$_TutorialCollectionsDataModel>
-    implements _$$_TutorialCollectionsDataModelCopyWith<$Res> {
-  __$$_TutorialCollectionsDataModelCopyWithImpl(
-      _$_TutorialCollectionsDataModel _value,
-      $Res Function(_$_TutorialCollectionsDataModel) _then)
+        _$TutorialCollectionsDataModelImpl>
+    implements _$$TutorialCollectionsDataModelImplCopyWith<$Res> {
+  __$$TutorialCollectionsDataModelImplCopyWithImpl(
+      _$TutorialCollectionsDataModelImpl _value,
+      $Res Function(_$TutorialCollectionsDataModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -5541,7 +5559,7 @@ class __$$_TutorialCollectionsDataModelCopyWithImpl<$Res>
   $Res call({
     Object? events = null,
   }) {
-    return _then(_$_TutorialCollectionsDataModel(
+    return _then(_$TutorialCollectionsDataModelImpl(
       events: null == events
           ? _value._events
           : events // ignore: cast_nullable_to_non_nullable
@@ -5552,15 +5570,16 @@ class __$$_TutorialCollectionsDataModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TutorialCollectionsDataModel extends _TutorialCollectionsDataModel {
-  const _$_TutorialCollectionsDataModel(
+class _$TutorialCollectionsDataModelImpl extends _TutorialCollectionsDataModel {
+  const _$TutorialCollectionsDataModelImpl(
       {required final Map<TutorialCollectionsName, List<TutorialEventModel>>
           events})
       : _events = events,
         super._();
 
-  factory _$_TutorialCollectionsDataModel.fromJson(Map<String, dynamic> json) =>
-      _$$_TutorialCollectionsDataModelFromJson(json);
+  factory _$TutorialCollectionsDataModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$TutorialCollectionsDataModelImplFromJson(json);
 
   final Map<TutorialCollectionsName, List<TutorialEventModel>> _events;
   @override
@@ -5579,7 +5598,7 @@ class _$_TutorialCollectionsDataModel extends _TutorialCollectionsDataModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_TutorialCollectionsDataModel &&
+            other is _$TutorialCollectionsDataModelImpl &&
             const DeepCollectionEquality().equals(other._events, _events));
   }
 
@@ -5591,13 +5610,14 @@ class _$_TutorialCollectionsDataModel extends _TutorialCollectionsDataModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TutorialCollectionsDataModelCopyWith<_$_TutorialCollectionsDataModel>
-      get copyWith => __$$_TutorialCollectionsDataModelCopyWithImpl<
-          _$_TutorialCollectionsDataModel>(this, _$identity);
+  _$$TutorialCollectionsDataModelImplCopyWith<
+          _$TutorialCollectionsDataModelImpl>
+      get copyWith => __$$TutorialCollectionsDataModelImplCopyWithImpl<
+          _$TutorialCollectionsDataModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TutorialCollectionsDataModelToJson(
+    return _$$TutorialCollectionsDataModelImplToJson(
       this,
     );
   }
@@ -5607,17 +5627,18 @@ abstract class _TutorialCollectionsDataModel
     extends TutorialCollectionsDataModel {
   const factory _TutorialCollectionsDataModel(
       {required final Map<TutorialCollectionsName, List<TutorialEventModel>>
-          events}) = _$_TutorialCollectionsDataModel;
+          events}) = _$TutorialCollectionsDataModelImpl;
   const _TutorialCollectionsDataModel._() : super._();
 
   factory _TutorialCollectionsDataModel.fromJson(Map<String, dynamic> json) =
-      _$_TutorialCollectionsDataModel.fromJson;
+      _$TutorialCollectionsDataModelImpl.fromJson;
 
   @override
   Map<TutorialCollectionsName, List<TutorialEventModel>> get events;
   @override
   @JsonKey(ignore: true)
-  _$$_TutorialCollectionsDataModelCopyWith<_$_TutorialCollectionsDataModel>
+  _$$TutorialCollectionsDataModelImplCopyWith<
+          _$TutorialCollectionsDataModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -5669,22 +5690,22 @@ class _$WorldDateTimeModelCopyWithImpl<$Res, $Val extends WorldDateTimeModel>
 }
 
 /// @nodoc
-abstract class _$$_WorldDateTimeCopyWith<$Res>
+abstract class _$$WorldDateTimeImplCopyWith<$Res>
     implements $WorldDateTimeModelCopyWith<$Res> {
-  factory _$$_WorldDateTimeCopyWith(
-          _$_WorldDateTime value, $Res Function(_$_WorldDateTime) then) =
-      __$$_WorldDateTimeCopyWithImpl<$Res>;
+  factory _$$WorldDateTimeImplCopyWith(
+          _$WorldDateTimeImpl value, $Res Function(_$WorldDateTimeImpl) then) =
+      __$$WorldDateTimeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int second});
 }
 
 /// @nodoc
-class __$$_WorldDateTimeCopyWithImpl<$Res>
-    extends _$WorldDateTimeModelCopyWithImpl<$Res, _$_WorldDateTime>
-    implements _$$_WorldDateTimeCopyWith<$Res> {
-  __$$_WorldDateTimeCopyWithImpl(
-      _$_WorldDateTime _value, $Res Function(_$_WorldDateTime) _then)
+class __$$WorldDateTimeImplCopyWithImpl<$Res>
+    extends _$WorldDateTimeModelCopyWithImpl<$Res, _$WorldDateTimeImpl>
+    implements _$$WorldDateTimeImplCopyWith<$Res> {
+  __$$WorldDateTimeImplCopyWithImpl(
+      _$WorldDateTimeImpl _value, $Res Function(_$WorldDateTimeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -5692,7 +5713,7 @@ class __$$_WorldDateTimeCopyWithImpl<$Res>
   $Res call({
     Object? second = null,
   }) {
-    return _then(_$_WorldDateTime(
+    return _then(_$WorldDateTimeImpl(
       second: null == second
           ? _value.second
           : second // ignore: cast_nullable_to_non_nullable
@@ -5704,11 +5725,11 @@ class __$$_WorldDateTimeCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_WorldDateTime extends _WorldDateTime {
-  const _$_WorldDateTime({this.second = 0}) : super._();
+class _$WorldDateTimeImpl extends _WorldDateTime {
+  const _$WorldDateTimeImpl({this.second = 0}) : super._();
 
-  factory _$_WorldDateTime.fromJson(Map<String, dynamic> json) =>
-      _$$_WorldDateTimeFromJson(json);
+  factory _$WorldDateTimeImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WorldDateTimeImplFromJson(json);
 
   @override
   @JsonKey()
@@ -5723,7 +5744,7 @@ class _$_WorldDateTime extends _WorldDateTime {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WorldDateTime &&
+            other is _$WorldDateTimeImpl &&
             (identical(other.second, second) || other.second == second));
   }
 
@@ -5734,28 +5755,28 @@ class _$_WorldDateTime extends _WorldDateTime {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WorldDateTimeCopyWith<_$_WorldDateTime> get copyWith =>
-      __$$_WorldDateTimeCopyWithImpl<_$_WorldDateTime>(this, _$identity);
+  _$$WorldDateTimeImplCopyWith<_$WorldDateTimeImpl> get copyWith =>
+      __$$WorldDateTimeImplCopyWithImpl<_$WorldDateTimeImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WorldDateTimeToJson(
+    return _$$WorldDateTimeImplToJson(
       this,
     );
   }
 }
 
 abstract class _WorldDateTime extends WorldDateTimeModel {
-  const factory _WorldDateTime({final int second}) = _$_WorldDateTime;
+  const factory _WorldDateTime({final int second}) = _$WorldDateTimeImpl;
   const _WorldDateTime._() : super._();
 
   factory _WorldDateTime.fromJson(Map<String, dynamic> json) =
-      _$_WorldDateTime.fromJson;
+      _$WorldDateTimeImpl.fromJson;
 
   @override
   int get second;
   @override
   @JsonKey(ignore: true)
-  _$$_WorldDateTimeCopyWith<_$_WorldDateTime> get copyWith =>
+  _$$WorldDateTimeImplCopyWith<_$WorldDateTimeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
