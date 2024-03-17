@@ -10,13 +10,13 @@ import '../../wbw_core.dart';
 
 part 'app_settings_model.dart';
 part 'current_word_model.dart';
+part 'data_models.freezed.dart';
+part 'data_models.g.dart';
 part 'game_save_model.dart';
 part 'level_characters_model.dart';
 part 'level_model.dart';
 part 'level_players_model.dart';
 part 'local_dictionary_model.dart';
-part 'models.freezed.dart';
-part 'models.g.dart';
 part 'player_character_model.dart';
 part 'player_profile_model.dart';
 part 'score_model.dart';

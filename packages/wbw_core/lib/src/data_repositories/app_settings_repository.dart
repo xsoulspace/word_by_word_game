@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:provider/provider.dart';
 
+import '../data_models/data_models.dart';
 import '../data_sources/data_sources.dart';
-import '../models/models.dart';
 import 'base_repository.dart';
 
 final class AppSettingsRepository

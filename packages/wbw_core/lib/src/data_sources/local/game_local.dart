@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 
-import '../../models/models.dart';
+import '../../data_models/data_models.dart';
 import '../interfaces/interfaces.dart';
 
 class GameLocalDataSourceImpl implements GameLocalDataSource {

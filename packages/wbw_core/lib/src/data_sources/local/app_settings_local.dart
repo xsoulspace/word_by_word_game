@@ -1,7 +1,7 @@
 import 'dart:ui';
 
+import '../../data_models/data_models.dart';
 import '../../localization/localization.dart';
-import '../../models/models.dart';
 import '../interfaces/interfaces.dart';
 
 class AppSettingsLocalDataSourceImpl implements AppSettingsLocalDataSource {

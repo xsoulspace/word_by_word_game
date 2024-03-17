@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../models/models.dart';
+import '../../data_models/data_models.dart';
 
 abstract interface class AppSettingsLocalDataSource {
   Future<void> setBrightness(final BrightnessMode brightness);

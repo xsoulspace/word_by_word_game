@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-part of 'models.dart';
+part of 'data_models.dart';
 
 /// This DateTime has no specific number to year / month convertion
 /// as it will be depends from the planet now on

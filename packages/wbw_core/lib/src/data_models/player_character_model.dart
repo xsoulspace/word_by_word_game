@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-part of 'models.dart';
+part of 'data_models.dart';
 
 // TODO(arenukvern): rename to VehicleModel - or something similar
 /// Character - is a game entity, that has its own properties

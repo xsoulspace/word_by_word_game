@@ -1,4 +1,4 @@
-import '../../models/models.dart';
+import '../../data_models/data_models.dart';
 import '../bloc/tutorial_bloc.dart';
 
 class TutorialMechanics {

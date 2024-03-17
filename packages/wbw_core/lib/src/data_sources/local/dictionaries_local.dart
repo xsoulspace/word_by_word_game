@@ -3,8 +3,8 @@ import 'dart:convert';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
+import '../../data_models/data_models.dart';
 import '../../gen/assets.gen.dart';
-import '../../models/models.dart';
 import '../interfaces/interfaces.dart';
 
 class DictionariesLocalDataSourceImpl implements DictionariesLocalDataSource {

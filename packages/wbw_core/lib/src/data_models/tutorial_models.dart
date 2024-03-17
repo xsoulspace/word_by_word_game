@@ -1,6 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
-part of 'models.dart';
+part of 'data_models.dart';
 
 @immutable
 @freezed
@@ -80,7 +80,7 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
     final TutorialUiItem? uiItem,
     @Default(false) final bool isCompleted,
     @Default({})
-        final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
+    final Map<PrimitiveBool, List<TutorialGameEffectModel>> boolConsquenses,
   }) = _TutorialUiActionEventModel;
 
   const TutorialUiActionEventModel._();

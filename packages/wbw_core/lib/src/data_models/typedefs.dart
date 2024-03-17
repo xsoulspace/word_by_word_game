@@ -1,4 +1,4 @@
-part of 'models.dart';
+part of 'data_models.dart';
 
 typedef BoolCallback = bool Function();
 typedef FutureBoolCallback = Future<bool> Function();

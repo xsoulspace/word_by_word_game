@@ -1,4 +1,4 @@
-part of 'models.dart';
+part of 'data_models.dart';
 
 const kScoreFactor = 10;
 
