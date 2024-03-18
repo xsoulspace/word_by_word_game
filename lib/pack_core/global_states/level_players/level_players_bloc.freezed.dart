@@ -106,10 +106,11 @@ class _$LevelPlayerEventCopyWithImpl<$Res, $Val extends LevelPlayerEvent>
 }
 
 /// @nodoc
-abstract class _$$InitLevelPlayersEventCopyWith<$Res> {
-  factory _$$InitLevelPlayersEventCopyWith(_$InitLevelPlayersEvent value,
-          $Res Function(_$InitLevelPlayersEvent) then) =
-      __$$InitLevelPlayersEventCopyWithImpl<$Res>;
+abstract class _$$InitLevelPlayersEventImplCopyWith<$Res> {
+  factory _$$InitLevelPlayersEventImplCopyWith(
+          _$InitLevelPlayersEventImpl value,
+          $Res Function(_$InitLevelPlayersEventImpl) then) =
+      __$$InitLevelPlayersEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {LevelPlayersModel playersModel, LevelCharactersModel charactersModel});
@@ -119,11 +120,11 @@ abstract class _$$InitLevelPlayersEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$InitLevelPlayersEventCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$InitLevelPlayersEvent>
-    implements _$$InitLevelPlayersEventCopyWith<$Res> {
-  __$$InitLevelPlayersEventCopyWithImpl(_$InitLevelPlayersEvent _value,
-      $Res Function(_$InitLevelPlayersEvent) _then)
+class __$$InitLevelPlayersEventImplCopyWithImpl<$Res>
+    extends _$LevelPlayerEventCopyWithImpl<$Res, _$InitLevelPlayersEventImpl>
+    implements _$$InitLevelPlayersEventImplCopyWith<$Res> {
+  __$$InitLevelPlayersEventImplCopyWithImpl(_$InitLevelPlayersEventImpl _value,
+      $Res Function(_$InitLevelPlayersEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -132,7 +133,7 @@ class __$$InitLevelPlayersEventCopyWithImpl<$Res>
     Object? playersModel = null,
     Object? charactersModel = null,
   }) {
-    return _then(_$InitLevelPlayersEvent(
+    return _then(_$InitLevelPlayersEventImpl(
       playersModel: null == playersModel
           ? _value.playersModel
           : playersModel // ignore: cast_nullable_to_non_nullable
@@ -163,8 +164,8 @@ class __$$InitLevelPlayersEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
-  const _$InitLevelPlayersEvent(
+class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
+  const _$InitLevelPlayersEventImpl(
       {required this.playersModel, required this.charactersModel});
 
   @override
@@ -181,7 +182,7 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InitLevelPlayersEvent &&
+            other is _$InitLevelPlayersEventImpl &&
             (identical(other.playersModel, playersModel) ||
                 other.playersModel == playersModel) &&
             (identical(other.charactersModel, charactersModel) ||
@@ -194,9 +195,9 @@ class _$InitLevelPlayersEvent implements InitLevelPlayersEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitLevelPlayersEventCopyWith<_$InitLevelPlayersEvent> get copyWith =>
-      __$$InitLevelPlayersEventCopyWithImpl<_$InitLevelPlayersEvent>(
-          this, _$identity);
+  _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
+      get copyWith => __$$InitLevelPlayersEventImplCopyWithImpl<
+          _$InitLevelPlayersEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -296,35 +297,37 @@ abstract class InitLevelPlayersEvent implements LevelPlayerEvent {
   const factory InitLevelPlayersEvent(
           {required final LevelPlayersModel playersModel,
           required final LevelCharactersModel charactersModel}) =
-      _$InitLevelPlayersEvent;
+      _$InitLevelPlayersEventImpl;
 
   LevelPlayersModel get playersModel;
   LevelCharactersModel get charactersModel;
   @JsonKey(ignore: true)
-  _$$InitLevelPlayersEventCopyWith<_$InitLevelPlayersEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SwitchToNextPlayerEventCopyWith<$Res> {
-  factory _$$SwitchToNextPlayerEventCopyWith(_$SwitchToNextPlayerEvent value,
-          $Res Function(_$SwitchToNextPlayerEvent) then) =
-      __$$SwitchToNextPlayerEventCopyWithImpl<$Res>;
+abstract class _$$SwitchToNextPlayerEventImplCopyWith<$Res> {
+  factory _$$SwitchToNextPlayerEventImplCopyWith(
+          _$SwitchToNextPlayerEventImpl value,
+          $Res Function(_$SwitchToNextPlayerEventImpl) then) =
+      __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SwitchToNextPlayerEventCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$SwitchToNextPlayerEvent>
-    implements _$$SwitchToNextPlayerEventCopyWith<$Res> {
-  __$$SwitchToNextPlayerEventCopyWithImpl(_$SwitchToNextPlayerEvent _value,
-      $Res Function(_$SwitchToNextPlayerEvent) _then)
+class __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>
+    extends _$LevelPlayerEventCopyWithImpl<$Res, _$SwitchToNextPlayerEventImpl>
+    implements _$$SwitchToNextPlayerEventImplCopyWith<$Res> {
+  __$$SwitchToNextPlayerEventImplCopyWithImpl(
+      _$SwitchToNextPlayerEventImpl _value,
+      $Res Function(_$SwitchToNextPlayerEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
-  const _$SwitchToNextPlayerEvent();
+class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
+  const _$SwitchToNextPlayerEventImpl();
 
   @override
   String toString() {
@@ -335,7 +338,7 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SwitchToNextPlayerEvent);
+            other is _$SwitchToNextPlayerEventImpl);
   }
 
   @override
@@ -436,26 +439,27 @@ class _$SwitchToNextPlayerEvent implements SwitchToNextPlayerEvent {
 }
 
 abstract class SwitchToNextPlayerEvent implements LevelPlayerEvent {
-  const factory SwitchToNextPlayerEvent() = _$SwitchToNextPlayerEvent;
+  const factory SwitchToNextPlayerEvent() = _$SwitchToNextPlayerEventImpl;
 }
 
 /// @nodoc
-abstract class _$$ChangeCharacterPositionEventCopyWith<$Res> {
-  factory _$$ChangeCharacterPositionEventCopyWith(
-          _$ChangeCharacterPositionEvent value,
-          $Res Function(_$ChangeCharacterPositionEvent) then) =
-      __$$ChangeCharacterPositionEventCopyWithImpl<$Res>;
+abstract class _$$ChangeCharacterPositionEventImplCopyWith<$Res> {
+  factory _$$ChangeCharacterPositionEventImplCopyWith(
+          _$ChangeCharacterPositionEventImpl value,
+          $Res Function(_$ChangeCharacterPositionEventImpl) then) =
+      __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Vector2 position});
 }
 
 /// @nodoc
-class __$$ChangeCharacterPositionEventCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$ChangeCharacterPositionEvent>
-    implements _$$ChangeCharacterPositionEventCopyWith<$Res> {
-  __$$ChangeCharacterPositionEventCopyWithImpl(
-      _$ChangeCharacterPositionEvent _value,
-      $Res Function(_$ChangeCharacterPositionEvent) _then)
+class __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>
+    extends _$LevelPlayerEventCopyWithImpl<$Res,
+        _$ChangeCharacterPositionEventImpl>
+    implements _$$ChangeCharacterPositionEventImplCopyWith<$Res> {
+  __$$ChangeCharacterPositionEventImplCopyWithImpl(
+      _$ChangeCharacterPositionEventImpl _value,
+      $Res Function(_$ChangeCharacterPositionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -463,7 +467,7 @@ class __$$ChangeCharacterPositionEventCopyWithImpl<$Res>
   $Res call({
     Object? position = null,
   }) {
-    return _then(_$ChangeCharacterPositionEvent(
+    return _then(_$ChangeCharacterPositionEventImpl(
       position: null == position
           ? _value.position
           : position // ignore: cast_nullable_to_non_nullable
@@ -474,8 +478,9 @@ class __$$ChangeCharacterPositionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
-  const _$ChangeCharacterPositionEvent({required this.position});
+class _$ChangeCharacterPositionEventImpl
+    implements ChangeCharacterPositionEvent {
+  const _$ChangeCharacterPositionEventImpl({required this.position});
 
   @override
   final Vector2 position;
@@ -489,7 +494,7 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ChangeCharacterPositionEvent &&
+            other is _$ChangeCharacterPositionEventImpl &&
             (identical(other.position, position) ||
                 other.position == position));
   }
@@ -500,9 +505,10 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$ChangeCharacterPositionEventCopyWith<_$ChangeCharacterPositionEvent>
-      get copyWith => __$$ChangeCharacterPositionEventCopyWithImpl<
-          _$ChangeCharacterPositionEvent>(this, _$identity);
+  _$$ChangeCharacterPositionEventImplCopyWith<
+          _$ChangeCharacterPositionEventImpl>
+      get copyWith => __$$ChangeCharacterPositionEventImplCopyWithImpl<
+          _$ChangeCharacterPositionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -600,19 +606,20 @@ class _$ChangeCharacterPositionEvent implements ChangeCharacterPositionEvent {
 
 abstract class ChangeCharacterPositionEvent implements LevelPlayerEvent {
   const factory ChangeCharacterPositionEvent(
-      {required final Vector2 position}) = _$ChangeCharacterPositionEvent;
+      {required final Vector2 position}) = _$ChangeCharacterPositionEventImpl;
 
   Vector2 get position;
   @JsonKey(ignore: true)
-  _$$ChangeCharacterPositionEventCopyWith<_$ChangeCharacterPositionEvent>
+  _$$ChangeCharacterPositionEventImplCopyWith<
+          _$ChangeCharacterPositionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$RefuelStorageEventCopyWith<$Res> {
-  factory _$$RefuelStorageEventCopyWith(_$RefuelStorageEvent value,
-          $Res Function(_$RefuelStorageEvent) then) =
-      __$$RefuelStorageEventCopyWithImpl<$Res>;
+abstract class _$$RefuelStorageEventImplCopyWith<$Res> {
+  factory _$$RefuelStorageEventImplCopyWith(_$RefuelStorageEventImpl value,
+          $Res Function(_$RefuelStorageEventImpl) then) =
+      __$$RefuelStorageEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ScoreModel score});
 
@@ -620,11 +627,11 @@ abstract class _$$RefuelStorageEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$RefuelStorageEventCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$RefuelStorageEvent>
-    implements _$$RefuelStorageEventCopyWith<$Res> {
-  __$$RefuelStorageEventCopyWithImpl(
-      _$RefuelStorageEvent _value, $Res Function(_$RefuelStorageEvent) _then)
+class __$$RefuelStorageEventImplCopyWithImpl<$Res>
+    extends _$LevelPlayerEventCopyWithImpl<$Res, _$RefuelStorageEventImpl>
+    implements _$$RefuelStorageEventImplCopyWith<$Res> {
+  __$$RefuelStorageEventImplCopyWithImpl(_$RefuelStorageEventImpl _value,
+      $Res Function(_$RefuelStorageEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -632,7 +639,7 @@ class __$$RefuelStorageEventCopyWithImpl<$Res>
   $Res call({
     Object? score = null,
   }) {
-    return _then(_$RefuelStorageEvent(
+    return _then(_$RefuelStorageEventImpl(
       score: null == score
           ? _value.score
           : score // ignore: cast_nullable_to_non_nullable
@@ -651,8 +658,8 @@ class __$$RefuelStorageEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$RefuelStorageEvent implements RefuelStorageEvent {
-  const _$RefuelStorageEvent({required this.score});
+class _$RefuelStorageEventImpl implements RefuelStorageEvent {
+  const _$RefuelStorageEventImpl({required this.score});
 
   @override
   final ScoreModel score;
@@ -666,7 +673,7 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$RefuelStorageEvent &&
+            other is _$RefuelStorageEventImpl &&
             (identical(other.score, score) || other.score == score));
   }
 
@@ -676,8 +683,8 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$RefuelStorageEventCopyWith<_$RefuelStorageEvent> get copyWith =>
-      __$$RefuelStorageEventCopyWithImpl<_$RefuelStorageEvent>(
+  _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
+      __$$RefuelStorageEventImplCopyWithImpl<_$RefuelStorageEventImpl>(
           this, _$identity);
 
   @override
@@ -776,20 +783,20 @@ class _$RefuelStorageEvent implements RefuelStorageEvent {
 
 abstract class RefuelStorageEvent implements LevelPlayerEvent {
   const factory RefuelStorageEvent({required final ScoreModel score}) =
-      _$RefuelStorageEvent;
+      _$RefuelStorageEventImpl;
 
   ScoreModel get score;
   @JsonKey(ignore: true)
-  _$$RefuelStorageEventCopyWith<_$RefuelStorageEvent> get copyWith =>
+  _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$UpdatePlayerHighscoreEventCopyWith<$Res> {
-  factory _$$UpdatePlayerHighscoreEventCopyWith(
-          _$UpdatePlayerHighscoreEvent value,
-          $Res Function(_$UpdatePlayerHighscoreEvent) then) =
-      __$$UpdatePlayerHighscoreEventCopyWithImpl<$Res>;
+abstract class _$$UpdatePlayerHighscoreEventImplCopyWith<$Res> {
+  factory _$$UpdatePlayerHighscoreEventImplCopyWith(
+          _$UpdatePlayerHighscoreEventImpl value,
+          $Res Function(_$UpdatePlayerHighscoreEventImpl) then) =
+      __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String playerId, ScoreModel score, String? word});
 
@@ -797,12 +804,13 @@ abstract class _$$UpdatePlayerHighscoreEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$UpdatePlayerHighscoreEventCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$UpdatePlayerHighscoreEvent>
-    implements _$$UpdatePlayerHighscoreEventCopyWith<$Res> {
-  __$$UpdatePlayerHighscoreEventCopyWithImpl(
-      _$UpdatePlayerHighscoreEvent _value,
-      $Res Function(_$UpdatePlayerHighscoreEvent) _then)
+class __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>
+    extends _$LevelPlayerEventCopyWithImpl<$Res,
+        _$UpdatePlayerHighscoreEventImpl>
+    implements _$$UpdatePlayerHighscoreEventImplCopyWith<$Res> {
+  __$$UpdatePlayerHighscoreEventImplCopyWithImpl(
+      _$UpdatePlayerHighscoreEventImpl _value,
+      $Res Function(_$UpdatePlayerHighscoreEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -812,7 +820,7 @@ class __$$UpdatePlayerHighscoreEventCopyWithImpl<$Res>
     Object? score = null,
     Object? word = freezed,
   }) {
-    return _then(_$UpdatePlayerHighscoreEvent(
+    return _then(_$UpdatePlayerHighscoreEventImpl(
       playerId: null == playerId
           ? _value.playerId
           : playerId // ignore: cast_nullable_to_non_nullable
@@ -839,8 +847,8 @@ class __$$UpdatePlayerHighscoreEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
-  const _$UpdatePlayerHighscoreEvent(
+class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
+  const _$UpdatePlayerHighscoreEventImpl(
       {required this.playerId, required this.score, this.word});
 
   @override
@@ -859,7 +867,7 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdatePlayerHighscoreEvent &&
+            other is _$UpdatePlayerHighscoreEventImpl &&
             (identical(other.playerId, playerId) ||
                 other.playerId == playerId) &&
             (identical(other.score, score) || other.score == score) &&
@@ -872,9 +880,9 @@ class _$UpdatePlayerHighscoreEvent implements UpdatePlayerHighscoreEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdatePlayerHighscoreEventCopyWith<_$UpdatePlayerHighscoreEvent>
-      get copyWith => __$$UpdatePlayerHighscoreEventCopyWithImpl<
-          _$UpdatePlayerHighscoreEvent>(this, _$identity);
+  _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
+      get copyWith => __$$UpdatePlayerHighscoreEventImplCopyWithImpl<
+          _$UpdatePlayerHighscoreEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -974,13 +982,13 @@ abstract class UpdatePlayerHighscoreEvent implements LevelPlayerEvent {
   const factory UpdatePlayerHighscoreEvent(
       {required final String playerId,
       required final ScoreModel score,
-      final String? word}) = _$UpdatePlayerHighscoreEvent;
+      final String? word}) = _$UpdatePlayerHighscoreEventImpl;
 
   String get playerId;
   ScoreModel get score;
   String? get word;
   @JsonKey(ignore: true)
-  _$$UpdatePlayerHighscoreEventCopyWith<_$UpdatePlayerHighscoreEvent>
+  _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1054,11 +1062,12 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_LevelPlayersBlocStateCopyWith<$Res>
+abstract class _$$LevelPlayersBlocStateImplCopyWith<$Res>
     implements $LevelPlayersBlocStateCopyWith<$Res> {
-  factory _$$_LevelPlayersBlocStateCopyWith(_$_LevelPlayersBlocState value,
-          $Res Function(_$_LevelPlayersBlocState) then) =
-      __$$_LevelPlayersBlocStateCopyWithImpl<$Res>;
+  factory _$$LevelPlayersBlocStateImplCopyWith(
+          _$LevelPlayersBlocStateImpl value,
+          $Res Function(_$LevelPlayersBlocStateImpl) then) =
+      __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1071,11 +1080,12 @@ abstract class _$$_LevelPlayersBlocStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LevelPlayersBlocStateCopyWithImpl<$Res>
-    extends _$LevelPlayersBlocStateCopyWithImpl<$Res, _$_LevelPlayersBlocState>
-    implements _$$_LevelPlayersBlocStateCopyWith<$Res> {
-  __$$_LevelPlayersBlocStateCopyWithImpl(_$_LevelPlayersBlocState _value,
-      $Res Function(_$_LevelPlayersBlocState) _then)
+class __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>
+    extends _$LevelPlayersBlocStateCopyWithImpl<$Res,
+        _$LevelPlayersBlocStateImpl>
+    implements _$$LevelPlayersBlocStateImplCopyWith<$Res> {
+  __$$LevelPlayersBlocStateImplCopyWithImpl(_$LevelPlayersBlocStateImpl _value,
+      $Res Function(_$LevelPlayersBlocStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1085,7 +1095,7 @@ class __$$_LevelPlayersBlocStateCopyWithImpl<$Res>
     Object? currentPlayerId = null,
     Object? playerCharacter = null,
   }) {
-    return _then(_$_LevelPlayersBlocState(
+    return _then(_$LevelPlayersBlocStateImpl(
       players: null == players
           ? _value._players
           : players // ignore: cast_nullable_to_non_nullable
@@ -1104,8 +1114,8 @@ class __$$_LevelPlayersBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LevelPlayersBlocState extends _LevelPlayersBlocState {
-  const _$_LevelPlayersBlocState(
+class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
+  const _$LevelPlayersBlocStateImpl(
       {final List<PlayerProfileModel> players = const [],
       this.currentPlayerId = '',
       this.playerCharacter = PlayerCharacterModel.empty})
@@ -1137,7 +1147,7 @@ class _$_LevelPlayersBlocState extends _LevelPlayersBlocState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LevelPlayersBlocState &&
+            other is _$LevelPlayersBlocStateImpl &&
             const DeepCollectionEquality().equals(other._players, _players) &&
             (identical(other.currentPlayerId, currentPlayerId) ||
                 other.currentPlayerId == currentPlayerId) &&
@@ -1155,16 +1165,17 @@ class _$_LevelPlayersBlocState extends _LevelPlayersBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LevelPlayersBlocStateCopyWith<_$_LevelPlayersBlocState> get copyWith =>
-      __$$_LevelPlayersBlocStateCopyWithImpl<_$_LevelPlayersBlocState>(
-          this, _$identity);
+  _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
+      get copyWith => __$$LevelPlayersBlocStateImplCopyWithImpl<
+          _$LevelPlayersBlocStateImpl>(this, _$identity);
 }
 
 abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
   const factory _LevelPlayersBlocState(
-      {final List<PlayerProfileModel> players,
-      final String currentPlayerId,
-      final PlayerCharacterModel playerCharacter}) = _$_LevelPlayersBlocState;
+          {final List<PlayerProfileModel> players,
+          final String currentPlayerId,
+          final PlayerCharacterModel playerCharacter}) =
+      _$LevelPlayersBlocStateImpl;
   const _LevelPlayersBlocState._() : super._();
 
   @override
@@ -1175,6 +1186,6 @@ abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
   PlayerCharacterModel get playerCharacter;
   @override
   @JsonKey(ignore: true)
-  _$$_LevelPlayersBlocStateCopyWith<_$_LevelPlayersBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

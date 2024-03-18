@@ -1,7 +1,7 @@
 export 'src/data_models/data_models.dart';
 export 'src/data_repositories/data_repositories.dart';
 export 'src/data_sources/data_sources.dart';
-export 'src/foundation/extensions/extensions.dart';
+export 'src/foundation/foundation.dart';
 export 'src/hooks/hooks.dart';
 export 'src/localization/localization.dart';
 export 'src/mechanics/mechanics.dart';

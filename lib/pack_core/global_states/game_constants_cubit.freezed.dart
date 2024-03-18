@@ -68,11 +68,12 @@ class _$GameConstantsCubitStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_GameConstantsCubitStateCopyWith<$Res>
+abstract class _$$GameConstantsCubitStateImplCopyWith<$Res>
     implements $GameConstantsCubitStateCopyWith<$Res> {
-  factory _$$_GameConstantsCubitStateCopyWith(_$_GameConstantsCubitState value,
-          $Res Function(_$_GameConstantsCubitState) then) =
-      __$$_GameConstantsCubitStateCopyWithImpl<$Res>;
+  factory _$$GameConstantsCubitStateImplCopyWith(
+          _$GameConstantsCubitStateImpl value,
+          $Res Function(_$GameConstantsCubitStateImpl) then) =
+      __$$GameConstantsCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ForcesConstantsModel forces});
@@ -82,12 +83,13 @@ abstract class _$$_GameConstantsCubitStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GameConstantsCubitStateCopyWithImpl<$Res>
+class __$$GameConstantsCubitStateImplCopyWithImpl<$Res>
     extends _$GameConstantsCubitStateCopyWithImpl<$Res,
-        _$_GameConstantsCubitState>
-    implements _$$_GameConstantsCubitStateCopyWith<$Res> {
-  __$$_GameConstantsCubitStateCopyWithImpl(_$_GameConstantsCubitState _value,
-      $Res Function(_$_GameConstantsCubitState) _then)
+        _$GameConstantsCubitStateImpl>
+    implements _$$GameConstantsCubitStateImplCopyWith<$Res> {
+  __$$GameConstantsCubitStateImplCopyWithImpl(
+      _$GameConstantsCubitStateImpl _value,
+      $Res Function(_$GameConstantsCubitStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +97,7 @@ class __$$_GameConstantsCubitStateCopyWithImpl<$Res>
   $Res call({
     Object? forces = null,
   }) {
-    return _then(_$_GameConstantsCubitState(
+    return _then(_$GameConstantsCubitStateImpl(
       forces: null == forces
           ? _value.forces
           : forces // ignore: cast_nullable_to_non_nullable
@@ -106,8 +108,8 @@ class __$$_GameConstantsCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GameConstantsCubitState implements _GameConstantsCubitState {
-  const _$_GameConstantsCubitState(
+class _$GameConstantsCubitStateImpl implements _GameConstantsCubitState {
+  const _$GameConstantsCubitStateImpl(
       {this.forces = ForcesConstantsModel.initial});
 
   @override
@@ -123,7 +125,7 @@ class _$_GameConstantsCubitState implements _GameConstantsCubitState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GameConstantsCubitState &&
+            other is _$GameConstantsCubitStateImpl &&
             (identical(other.forces, forces) || other.forces == forces));
   }
 
@@ -133,20 +135,19 @@ class _$_GameConstantsCubitState implements _GameConstantsCubitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GameConstantsCubitStateCopyWith<_$_GameConstantsCubitState>
-      get copyWith =>
-          __$$_GameConstantsCubitStateCopyWithImpl<_$_GameConstantsCubitState>(
-              this, _$identity);
+  _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
+      get copyWith => __$$GameConstantsCubitStateImplCopyWithImpl<
+          _$GameConstantsCubitStateImpl>(this, _$identity);
 }
 
 abstract class _GameConstantsCubitState implements GameConstantsCubitState {
   const factory _GameConstantsCubitState({final ForcesConstantsModel forces}) =
-      _$_GameConstantsCubitState;
+      _$GameConstantsCubitStateImpl;
 
   @override
   ForcesConstantsModel get forces;
   @override
   @JsonKey(ignore: true)
-  _$$_GameConstantsCubitStateCopyWith<_$_GameConstantsCubitState>
+  _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

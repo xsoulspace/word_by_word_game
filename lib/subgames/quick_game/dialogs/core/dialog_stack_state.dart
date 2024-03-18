@@ -12,13 +12,13 @@ DialogStackState _useDialogStackState({
   required final Locator read,
 }) =>
     use(
-      LifeHook(
+      life_hooks.LifeHook(
         debugLabel: '_DialogStackState',
         state: DialogStackState(diDto: _DialogStackDiDto.use(read)),
       ),
     );
 
-class DialogStackState extends LifeState with ChangeNotifier {
+class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   DialogStackState({
     required this.diDto,
   });

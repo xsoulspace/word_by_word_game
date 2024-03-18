@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 part 'app/colors.dart';
 part 'app/theme_data.dart';
@@ -32,7 +33,7 @@ class UiThemeScheme with _$UiThemeScheme {
   factory UiThemeScheme.m3(final BuildContext context) {
     const spacing = UiSpacing.m3;
     return UiThemeScheme(
-      text: UiTextTheme.of(context),
+      text: UiTextTheme(context),
       customizableFormFactors: UiCustomizableFormFactors.ofTargetPlatform(),
       circularRadius: UiRadius.circularBySpacing(spacing: spacing),
       spacing: spacing,

@@ -53,5 +53,5 @@ class DictionariesLocalDataSourceImpl implements DictionariesLocalDataSource {
 
   @override
   Future<bool> verifyWord(final String word) async =>
-      _wrongWords.containsKey(word);
+      !_wrongWords.containsKey(word.toLowerCase());
 }
