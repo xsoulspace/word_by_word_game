@@ -9,7 +9,7 @@
       "name": "desktop prod",
       "request": "launch",
       "type": "dart",
-      "args": ["--dart-define-from-file=configs/envs/prod.json"],
+      "args": ["--dart-define-from-file=configs/prod.json"],
       "flutterMode": "debug"
     },
     {
@@ -17,7 +17,15 @@
       "name": "desktop ",
       "request": "launch",
       "type": "dart",
-      "args": ["--dart-define-from-file=configs/envs/prod.json"],
+      "args": ["--dart-define-from-file=configs/prod.json"],
+      "flutterMode": "debug"
+    },
+    {
+      "program": "lib/main_prod.dart",
+      "name": "web",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=configs/prod.json", "--web-port=3000"],
       "flutterMode": "debug"
     }
   ]

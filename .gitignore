@@ -53,7 +53,7 @@ ios/Runner/GoogleService-Info.plist
 lib/firebase_options.dart
 macos/firebase_app_id_file.json
 macos/Runner/GoogleService-Info.plist
-# .vscode/launch.json
+.vscode/launch.json
 ios/firebase_app_id_file.json
 ios/Runner/GoogleService-Info.plist
 lib/firebase_options.dart
