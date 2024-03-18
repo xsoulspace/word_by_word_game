@@ -8,15 +8,15 @@ class Envs {
   /// ********************************************
 
   static const yandexFlexibleMobile =
-      String.fromEnvironment('yandex-flexible-mobile');
+      String.fromEnvironment('YANDEX_FLEXIBLE_MOBILE');
   static const yandexFlexibleMobileWeb =
-      String.fromEnvironment('yandex-flexible-mobile-web');
+      String.fromEnvironment('YANDEX_FLEXIBLE_MOBILE_WEB');
   static const yandexFlexibleDesktopWeb =
-      String.fromEnvironment('yandex-flexible-desktop-web');
+      String.fromEnvironment('YANDEX_FLEXIBLE_DESKTOP_WEB');
   static const yandexFullscreenYGMobileWeb =
-      String.fromEnvironment('yandex-fullscreen-yg-mobile-web');
+      String.fromEnvironment('YANDEX_FULLSCREEN_YG_MOBILE_WEB');
   static const yandexFullscreenYGDesktopWeb =
-      String.fromEnvironment('yandex-fullscreen-yg-desktop-web');
+      String.fromEnvironment('YANDEX_FULLSCREEN_YG_DESKTOP_WEB');
   static final store = StoreType.fromEnv();
   static const isMarketingMode = bool.fromEnvironment('IS_MARKETING_MODE');
   static const isDebugAds = bool.fromEnvironment('IS_DEBUG_ADS');

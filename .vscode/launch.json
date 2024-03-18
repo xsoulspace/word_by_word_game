@@ -1,0 +1,24 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "program": "lib/main_prod.dart",
+      "name": "desktop prod",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=configs/envs/prod.json"],
+      "flutterMode": "debug"
+    },
+    {
+      "program": "lib/main_prod.dart",
+      "name": "desktop ",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=configs/envs/prod.json"],
+      "flutterMode": "debug"
+    }
+  ]
+}

@@ -60,7 +60,7 @@ class PauseScreen extends HookWidget {
                           icon: Icons.settings,
                           text: S.of(context).settings,
                           onPressed: state.onToSettings,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
@@ -71,7 +71,7 @@ class PauseScreen extends HookWidget {
                               ? S.of(context).playersAndHighscoreYandex
                               : S.of(context).playersAndHighscore,
                           onPressed: state.onToPlayersAndHighscore,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
@@ -80,7 +80,7 @@ class PauseScreen extends HookWidget {
                           icon: Icons.question_mark_rounded,
                           text: S.of(context).about,
                           onPressed: state.onShowAbout,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
@@ -89,7 +89,7 @@ class PauseScreen extends HookWidget {
                           UiTextButton.text(
                             text: S.of(context).privacyPolicy,
                             onPressed: state.onPrivacyPolicy,
-                          ).animate().then(delay: 500.milliseconds).fadeIn(
+                          ).animate(delay: 500.milliseconds).fadeIn(
                                 curve: Curves.easeIn,
                                 duration: 450.milliseconds,
                               ),

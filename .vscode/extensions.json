@@ -1,3 +1,18 @@
 {
-  "recommendations": ["aaron-bond.better-comments", "naumovs.color-highlight"]
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "naumovs.color-highlight",
+    "dart-code.dart-code",
+    "shakram02.bash-beautify",
+    "usernamehw.errorlens",
+    "withfig.fig",
+    "dart-code.flutter",
+    "mhutchie.git-graph",
+    "blaugold.melos-code",
+    "ms-vsliveshare.vsliveshare",
+    "ms-vsliveshare.vsliveshare-pack",
+    "esbenp.prettier-vscode",
+    "jeroen-meijer.pubspec-assist",
+    "redhat.vscode-yaml"
+  ]
 }
