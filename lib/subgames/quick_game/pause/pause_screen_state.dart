@@ -66,7 +66,7 @@ class PauseScreenState extends ContextfulLifeState {
   Future<void> onShowAbout() async {
     final context = getContext();
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final s = S.of(context);
     final madeWith = '${const LocalizedMap(
       value: {

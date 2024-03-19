@@ -58,7 +58,7 @@ class _Statistics extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [

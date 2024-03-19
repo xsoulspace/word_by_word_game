@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:wbw_core/wbw_core.dart';
 
 part 'app/colors.dart';
 part 'app/theme_data.dart';
@@ -41,23 +40,4 @@ class UiThemeScheme with _$UiThemeScheme {
       verticalBoxes: UiBoxSpacing.vertical(spacing: spacing),
     );
   }
-}
-
-class UiTheme extends InheritedWidget {
-  const UiTheme({
-    required this.scheme,
-    required super.child,
-    super.key,
-  });
-
-  final UiThemeScheme scheme;
-
-  static UiThemeScheme of(final BuildContext context) {
-    final widget = context.dependOnInheritedWidgetOfExactType<UiTheme>();
-    return widget!.scheme;
-  }
-
-  @override
-  bool updateShouldNotify(covariant final UiTheme oldWidget) =>
-      scheme != oldWidget.scheme;
 }

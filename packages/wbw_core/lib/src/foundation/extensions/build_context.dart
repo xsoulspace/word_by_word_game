@@ -6,6 +6,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 extension BuildContextX on BuildContext {
   S get l10n => S.of(this);
   ThemeData get theme => Theme.of(this);
+  UiThemeScheme get uiTheme => read<UiThemeScheme>();
   TextTheme get textTheme => theme.textTheme;
   TextTheme get errorTextTheme => read<UiTextTheme>().error;
   ColorScheme get colorScheme => theme.colorScheme;

@@ -18,7 +18,7 @@ class HighscoreScreen extends HookWidget {
   });
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
     final players = context.select<GlobalGameBloc, List<PlayerProfileModel>>(
       (final value) {

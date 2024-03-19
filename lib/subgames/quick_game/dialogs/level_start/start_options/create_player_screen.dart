@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -19,7 +18,7 @@ class CreatePlayerScreen extends HookWidget {
   final ValueChanged<PlayerProfileModel> onPlayerCreated;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final globalGameBloc = context.watch<GlobalGameBloc>();
     final liveState = globalGameBloc.state;
     final isPlayersEmpty = liveState.playersCollection.isEmpty;
@@ -52,25 +51,12 @@ class CreatePlayerScreen extends HookWidget {
         TextFieldWithKeyboard(
           controller: notifier.nameController,
           autofocus: true,
+          errorMessage: widgetState.nameErrorMessage,
           decoration: InputDecoration.collapsed(
             hintText: S.of(context).username,
           ),
         ),
         const Gap(2),
-        Builder(
-          builder: (final context) {
-            final errorMessage = widgetState.nameErrorMessage;
-            return AnimatedSize(
-              duration: 150.milliseconds,
-              child: errorMessage.isNotEmpty
-                  ? Text(
-                      widgetState.nameErrorMessage,
-                      style: context.errorTextTheme.bodySmall,
-                    )
-                  : const SizedBox(),
-            );
-          },
-        ),
         const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,

@@ -27,7 +27,7 @@ class UiFuelFrame extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
 
@@ -183,7 +183,7 @@ class _UiActionButtonState extends State<UiActionButton>
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final colorScheme = theme.colorScheme;
     final surfaces = theme.extension<SurfaceColorScheme>()!;
     final borderRadius = _isOnHold

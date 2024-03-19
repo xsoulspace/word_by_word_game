@@ -32,7 +32,7 @@ class PauseScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = _usePauseScreenState(read: context.read);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
 
     return Provider(
       create: (final context) => state,

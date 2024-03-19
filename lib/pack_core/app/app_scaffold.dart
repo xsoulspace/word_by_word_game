@@ -75,8 +75,11 @@ class AppScaffoldBuilder extends HookWidget {
     final state = useAppScaffoldBodyState(context.read);
     final settingsNotifier = context.watch<AppSettingsCubit>();
 
-    return Provider(
-      create: UiTextTheme.new,
+    return MultiProvider(
+      providers: [
+        Provider(create: UiThemeScheme.m3),
+        Provider(create: (final context) => context.read<UiThemeScheme>().text),
+      ],
       builder: (final context, final child) => MaterialApp.router(
         debugShowCheckedModeBanner: false,
         theme: AppThemeData.brandLight,
@@ -115,15 +118,12 @@ class AppScaffoldBuilder extends HookWidget {
           return defaultLocale;
         },
         supportedLocales: Locales.values,
-        builder: (final context, final child) => UiTheme(
-          scheme: UiThemeScheme.m3(context),
-          child: StateLoader(
-            initializer: GlobalStateInitializer(
-              servicesDto: servicesDto,
-            ),
-            loader: const LoadingScreen(),
-            child: child ?? const SizedBox(),
+        builder: (final context, final child) => StateLoader(
+          initializer: GlobalStateInitializer(
+            servicesDto: servicesDto,
           ),
+          loader: const LoadingScreen(),
+          child: child ?? const SizedBox(),
         ),
       ),
     );

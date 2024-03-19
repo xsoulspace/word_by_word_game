@@ -15,7 +15,7 @@ class UiWordActions extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionCubit>();
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
@@ -51,8 +51,8 @@ class UiWordActions extends StatelessWidget {
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        textScaleFactor: 1,
         devicePixelRatio: 1,
+        textScaler: TextScaler.noScaling,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,

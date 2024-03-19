@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -55,7 +55,7 @@ class _LastWordTextState extends State<LastWordText> {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final radius = uiTheme.circularRadius;
     final theme = Theme.of(context);
     final textStyle = theme.textTheme.labelMedium;

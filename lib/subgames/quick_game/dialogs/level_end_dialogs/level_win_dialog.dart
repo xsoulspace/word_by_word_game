@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
@@ -20,7 +20,7 @@ class LevelWinDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final playersState =
         context.select<LevelPlayersBloc, LevelPlayersBlocState>(
       (final value) => value.state,
