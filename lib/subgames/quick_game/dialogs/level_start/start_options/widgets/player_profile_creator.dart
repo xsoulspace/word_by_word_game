@@ -30,9 +30,9 @@ enum PlayerProfileCreatorError {
       Languages.it: 'Il nome non puè essere vuoto',
     },
     invalidName: {
-      Languages.en: 'Invalid name',
-      Languages.ru: 'Некорректное имя',
-      Languages.it: 'Nome non valido',
+      Languages.en: 'Try another name',
+      Languages.ru: 'Попробуйте другое имя',
+      Languages.it: 'Prova un altro nome',
     },
   };
 
