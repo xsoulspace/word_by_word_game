@@ -42,7 +42,7 @@ class DictionariesLocalDataSourceImpl implements DictionariesLocalDataSource {
       Assets.dictionaries.wrongWords,
       (final value) async => compute(
         (final v) {
-          final list = jsonDecode(v) as List<String>;
+          final list = List.castFrom<dynamic, String>(jsonDecode(v));
           return Map.fromEntries(list.map((final e) => MapEntry(e, true)));
         },
         value,
@@ -52,6 +52,8 @@ class DictionariesLocalDataSourceImpl implements DictionariesLocalDataSource {
   }
 
   @override
-  Future<bool> verifyWord(final String word) async =>
-      !_wrongWords.containsKey(word.toLowerCase());
+  Future<bool> verifyWord(final String word) async {
+    final isWrong = _wrongWords.containsKey(word.toLowerCase());
+    return !isWrong;
+  }
 }

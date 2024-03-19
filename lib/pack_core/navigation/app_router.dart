@@ -21,6 +21,7 @@ class NavigationRoutes {
 }
 
 class AppRouterController extends RouterController {
+  const AppRouterController(super.routeState);
   AppRouterController.use(super.read) : super.use();
   void toPlayableLevel({required final CanvasDataModelId id}) =>
       to(NavigationRoutes.toPlayableLevel(id: id));

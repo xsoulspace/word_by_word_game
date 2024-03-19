@@ -22,14 +22,10 @@ class AppScaffold extends StatelessWidget {
   Widget build(final BuildContext context) => AppDiProvider(
         diDto: servicesDto,
         child: Builder(
-          builder: (final context) => StateLoader(
-            initializer: GlobalSettingsInitializer(),
-            loader: const LoadingScreen(),
-            child: RouterScaffold(
-              builder: (final context, final parser) => AppScaffoldBuilder(
-                routeParser: parser,
-                servicesDto: servicesDto,
-              ),
+          builder: (final context) => RouterScaffold(
+            builder: (final context, final parser) => AppScaffoldBuilder(
+              routeParser: parser,
+              servicesDto: servicesDto,
             ),
           ),
         ),
@@ -74,56 +70,58 @@ class AppScaffoldBuilder extends HookWidget {
   Widget build(final BuildContext context) {
     final state = useAppScaffoldBodyState(context.read);
     final settingsNotifier = context.watch<AppSettingsCubit>();
-
-    return MultiProvider(
-      providers: [
-        Provider(create: UiThemeScheme.m3),
-        Provider(create: (final context) => context.read<UiThemeScheme>().text),
-      ],
-      builder: (final context, final child) => MaterialApp.router(
-        debugShowCheckedModeBanner: false,
-        theme: AppThemeData.brandLight,
-        themeMode: ThemeMode.light,
-        routeInformationParser: routeParser,
-        routerDelegate: state.routerDelegate,
-        localizationsDelegates: const [
-          ...S.localizationsDelegates,
-        ],
-        locale: settingsNotifier.locale,
-        localeListResolutionCallback: (final locales, final supportedLocales) {
-          final defaultLocale = () {
-            if (locales == null || locales.isEmpty) return null;
-            for (final locale in locales) {
-              if (S.delegate.isSupported(locale)) {
-                return locale;
-              }
-            }
-          }();
-
-          // /// in case if we will needed preferrable system locale
-          // settingsNotifier.systemLocale = Locale.fromSubtags(
-          //   languageCode: defaultLocale?.languageCode ?? 'en',
-          // );
-          void setIntlLocale(final Locale? newLocale) {
-            final intlDefaultLocale = Intl.defaultLocale;
-            Intl.defaultLocale = newLocale?.languageCode ?? intlDefaultLocale;
-          }
-
-          /// if language is set by user, then use it
-          if (settingsNotifier.locale != null) {
-            setIntlLocale(settingsNotifier.locale);
-            return settingsNotifier.locale;
-          }
-          setIntlLocale(defaultLocale);
-          return defaultLocale;
-        },
-        supportedLocales: Locales.values,
-        builder: (final context, final child) => StateLoader(
-          initializer: GlobalStateInitializer(
-            servicesDto: servicesDto,
+    return StateLoader(
+      initializer: GlobalStateInitializer(
+        servicesDto: servicesDto,
+        appRouterController: AppRouterController.use(context.read),
+      ),
+      loader: const LoadingScreen(),
+      child: MultiProvider(
+        providers: [
+          Provider(create: UiThemeScheme.m3),
+          Provider(
+            create: (final context) => context.read<UiThemeScheme>().text,
           ),
-          loader: const LoadingScreen(),
-          child: child ?? const SizedBox(),
+        ],
+        builder: (final context, final child) => MaterialApp.router(
+          debugShowCheckedModeBanner: false,
+          theme: AppThemeData.brandLight,
+          themeMode: ThemeMode.light,
+          routeInformationParser: routeParser,
+          routerDelegate: state.routerDelegate,
+          localizationsDelegates: const [
+            ...S.localizationsDelegates,
+          ],
+          locale: settingsNotifier.locale,
+          localeListResolutionCallback:
+              (final locales, final supportedLocales) {
+            final defaultLocale = () {
+              if (locales == null || locales.isEmpty) return null;
+              for (final locale in locales) {
+                if (S.delegate.isSupported(locale)) {
+                  return locale;
+                }
+              }
+            }();
+
+            // /// in case if we will needed preferrable system locale
+            // settingsNotifier.systemLocale = Locale.fromSubtags(
+            //   languageCode: defaultLocale?.languageCode ?? 'en',
+            // );
+            void setIntlLocale(final Locale? newLocale) {
+              final intlDefaultLocale = Intl.defaultLocale;
+              Intl.defaultLocale = newLocale?.languageCode ?? intlDefaultLocale;
+            }
+
+            /// if language is set by user, then use it
+            if (settingsNotifier.locale != null) {
+              setIntlLocale(settingsNotifier.locale);
+              return settingsNotifier.locale;
+            }
+            setIntlLocale(defaultLocale);
+            return defaultLocale;
+          },
+          supportedLocales: Locales.values,
         ),
       ),
     );

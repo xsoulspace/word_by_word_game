@@ -12,37 +12,33 @@ import 'package:word_by_word_game/pack_core/app/app_di.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 
-class GlobalSettingsInitializer implements StateInitializer {
-  @override
-  Future<void> onLoad(final BuildContext context) async {
-    final read = context.read;
-    final appSettingsNotifier = read<AppSettingsCubit>();
-    await appSettingsNotifier.onLoad();
-  }
-}
-
 class GlobalStateInitializer implements StateInitializer {
   GlobalStateInitializer({
     required this.servicesDto,
+    required this.appRouterController,
   });
   final AppDiProviderDto servicesDto;
+  final AppRouterController appRouterController;
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
     final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
+    final dictionariesRepository = read<DictionariesRespository>();
     final services = read<ServicesCollection>();
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
+    final appSettingsNotifier = read<AppSettingsCubit>();
+    await appSettingsNotifier.onLoad();
     final localDictionary =
         await services.dictionariesRepository.loadDictionary();
     await dictionariesBloc.onLoad(localDictionary: localDictionary);
     await canvasCubit.loadInitialData();
-    final appRouterController = AppRouterController.use(read);
     final initGame = await GameInitializer().loadGameModel(
       services: services,
     );
+    await dictionariesRepository.preloadWrongWordsDictionary();
     await globalGameBloc.onInitGlobalGame(initGame);
     await servicesDto.firebaseInitializer?.onDelayedLoad();
     await analyticsService.onDelayedLoad();
