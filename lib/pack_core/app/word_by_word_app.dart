@@ -8,25 +8,23 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/app/app_di.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_state_initializer.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states_initializer.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states_provider.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 
-part 'app_scaffold_state.dart';
+part 'word_by_word_app_state.dart';
 
-class AppScaffold extends StatelessWidget {
-  const AppScaffold({required this.servicesDto, super.key});
-  final AppDiProviderDto servicesDto;
+class WordByWordApp extends StatelessWidget {
+  const WordByWordApp({required this.initializer, super.key});
+  final GlobalServicesInitializer initializer;
   @override
-  Widget build(final BuildContext context) => AppDiProvider(
-        diDto: servicesDto,
-        child: Builder(
-          builder: (final context) => RouterScaffold(
-            builder: (final context, final parser) => AppScaffoldBuilder(
-              routeParser: parser,
-              servicesDto: servicesDto,
-            ),
+  Widget build(final BuildContext context) => GlobalStatesProvider(
+        initializer: initializer,
+        builder: (final context) => RouterScaffold(
+          builder: (final context, final parser) => AppScaffoldBuilder(
+            routeParser: parser,
           ),
         ),
       );
@@ -61,18 +59,15 @@ class RouterScaffold extends HookWidget {
 class AppScaffoldBuilder extends HookWidget {
   const AppScaffoldBuilder({
     required this.routeParser,
-    required this.servicesDto,
     super.key,
   });
   final TemplateRouteParser routeParser;
-  final AppDiProviderDto servicesDto;
   @override
   Widget build(final BuildContext context) {
     final state = useAppScaffoldBodyState(context.read);
     final settingsNotifier = context.watch<AppSettingsCubit>();
     return StateLoader(
-      initializer: GlobalStateInitializer(
-        servicesDto: servicesDto,
+      initializer: GlobalStatesInitializer(
         appRouterController: AppRouterController.use(context.read),
       ),
       loader: const LoadingScreen(),

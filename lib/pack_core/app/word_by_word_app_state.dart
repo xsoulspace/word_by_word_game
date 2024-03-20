@@ -1,4 +1,4 @@
-part of 'app_scaffold.dart';
+part of 'word_by_word_app.dart';
 
 AppScaffoldState useAppScaffoldState() => use(
       ContextfulLifeHook(

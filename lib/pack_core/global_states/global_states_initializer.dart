@@ -8,16 +8,13 @@ import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
-import 'package:word_by_word_game/pack_core/app/app_di.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 
-class GlobalStateInitializer implements StateInitializer {
-  GlobalStateInitializer({
-    required this.servicesDto,
+class GlobalStatesInitializer implements StateInitializer {
+  GlobalStatesInitializer({
     required this.appRouterController,
   });
-  final AppDiProviderDto servicesDto;
   final AppRouterController appRouterController;
   @override
   Future<void> onLoad(final BuildContext context) async {
@@ -40,7 +37,6 @@ class GlobalStateInitializer implements StateInitializer {
     );
     await dictionariesRepository.preloadWrongWordsDictionary();
     await globalGameBloc.onInitGlobalGame(initGame);
-    await servicesDto.firebaseInitializer?.onDelayedLoad();
     await analyticsService.onDelayedLoad();
     await adManager.onLoad();
     final event = () {

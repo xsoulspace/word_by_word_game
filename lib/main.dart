@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:word_by_word_game/bootstrap_global.dart';
-import 'package:word_by_word_game/pack_core/app/app.dart';
+import 'package:word_by_word_game/bootstrap.dart';
 
-Future<void> main() async => bootstrapGlobal(AppScaffold.new);
+Future<void> main() async => bootstrap();

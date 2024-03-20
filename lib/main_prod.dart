@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:word_by_word_game/bootstrap.dart';
-import 'package:word_by_word_game/pack_core/app/app.dart';
+import 'package:word_by_word_game/firebase_options.dart';
 
-Future<void> main() async => bootstrap(AppScaffold.new);
+Future<void> main() async => bootstrap(
+      firebaseOptions: DefaultFirebaseOptions.currentPlatform,
+    );
