@@ -2,8 +2,6 @@
 
 part of 'pause_screen.dart';
 
-bool get kLinksAreAllowed => true;
-
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
       : routeState = read(),
@@ -89,7 +87,7 @@ class PauseScreenState extends ContextfulLifeState {
             Text(s.creatingGame),
             uiTheme.verticalBoxes.medium,
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 child: Padding(
                   padding: const EdgeInsets.all(8),
@@ -102,7 +100,7 @@ class PauseScreenState extends ContextfulLifeState {
             ),
             uiTheme.verticalBoxes.small,
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 onPressed: () =>
                     launchUrlString('https://boosty.to/arenukvern'),
@@ -116,7 +114,7 @@ class PauseScreenState extends ContextfulLifeState {
             Text(S.of(context).graphicsCreditsThanks),
             uiTheme.verticalBoxes.medium,
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 onPressed: () => launchUrlString('https://sonnenstein.itch.io'),
                 child: const Padding(
@@ -126,7 +124,7 @@ class PauseScreenState extends ContextfulLifeState {
               ),
             ),
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 onPressed: () =>
                     launchUrlString('https://pixelfrog-assets.itch.io'),
@@ -189,7 +187,7 @@ class PauseScreenState extends ContextfulLifeState {
             },
           ).getValue()
         : 'Word By Word';
-    if (kLinksAreAllowed) {
+    if (Envs.isLinksAllowed) {
       showAboutDialog(
         applicationName: applicationName,
         applicationIcon: icon,

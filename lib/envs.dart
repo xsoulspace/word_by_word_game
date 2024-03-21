@@ -22,6 +22,7 @@ class Envs {
   static const isDebugAds = bool.fromEnvironment('IS_DEBUG_ADS');
   static const isAnalyticsEnabled =
       bool.fromEnvironment('IS_ANALYTICS_ENABLED');
+  static const isLinksAllowed = bool.fromEnvironment('IS_LINKS_ALLOWED');
   static const isCrashlyticsEnabled =
       bool.fromEnvironment('IS_CRASHLYTICS_ENABLED');
   static const wiredashProjectId =

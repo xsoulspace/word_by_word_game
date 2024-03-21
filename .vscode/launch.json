@@ -6,7 +6,7 @@
   "configurations": [
     {
       "program": "lib/main_prod.dart",
-      "name": "desktop prod",
+      "name": "desktop",
       "request": "launch",
       "type": "dart",
       "args": ["--dart-define-from-file=configs/prod.json"],
@@ -14,10 +14,13 @@
     },
     {
       "program": "lib/main_prod.dart",
-      "name": "desktop ",
+      "name": "desktop restricted stores",
       "request": "launch",
       "type": "dart",
-      "args": ["--dart-define-from-file=configs/prod.json"],
+      "args": [
+        "--dart-define-from-file=configs/prod.json",
+        "--dart-define=IS_LINKS_ALLOWED=false"
+      ],
       "flutterMode": "debug"
     },
     {
@@ -26,6 +29,18 @@
       "request": "launch",
       "type": "dart",
       "args": ["--dart-define-from-file=configs/prod.json", "--web-port=3000"],
+      "flutterMode": "debug"
+    },
+    {
+      "program": "lib/main_prod.dart",
+      "name": "web restricted stores",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define-from-file=configs/prod.json",
+        "--web-port=3000",
+        "--dart-define=IS_LINKS_ALLOWED=false"
+      ],
       "flutterMode": "debug"
     }
   ]

@@ -13,6 +13,11 @@ build-google-play:
 	fvm flutter build appbundle --dart-define-from-file=configs/envs/prod.json --dart-define=STORE=googlePlay -t lib/main_prod.dart
 build-rustore:
 	fvm flutter build apk --dart-define-from-file=configs/envs/prod.json --dart-define=STORE=rustore -t lib/main_prod.dart
+build-crazy-games:
+	fvm flutter build web --csp --dart-define-from-file=configs/envs/prod.json --dart-define=STORE=crazyGames -t lib/main_prod.dart  --dart-define=IS_LINKS_ALLOWED=false
+build-yandex-games:
+	fvm flutter build web --csp --dart-define-from-file=configs/envs/prod.json --dart-define=STORE=yandexGames -t lib/main_prod.dart  --dart-define=IS_LINKS_ALLOWED=false
+
 # pass 
 # as argument: make v="3.19." run
 # or be defined as environment: wid="" wis="" v="3.19." make run build-snap

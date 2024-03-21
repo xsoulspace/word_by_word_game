@@ -52,7 +52,6 @@ Future<void> bootstrap({
         final license = await rootBundle.loadString('google_fonts/OFL.txt');
         yield LicenseEntryWithLineBreaks(['google_fonts'], license);
       });
-      WidgetsFlutterBinding.ensureInitialized();
       unawaited(initializer.onLoad());
 
       Bloc.observer = AppBlocObserver(

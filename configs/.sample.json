@@ -8,6 +8,7 @@
   "IS_DEBUG_ADS": false,
   "IS_ANALYTICS_ENABLED": true,
   "IS_CRASHLYTICS_ENABLED": true,
+  "IS_LINKS_ALLOWED": true,
   "WIREDASH_PROJECT_ID": "",
   "WIREDASH_PROJECT_SECRET": "",
   "STORE": "snapstore"
