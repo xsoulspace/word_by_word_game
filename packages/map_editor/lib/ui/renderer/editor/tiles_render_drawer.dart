@@ -206,7 +206,8 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     required final double tileRows,
     required final double windowWidth,
   }) {
-    if (canvasData.tilesetType != _tilesetType) {
+    if (canvasData.tilesetType != _tilesetType || _spriteImage == null) {
+      print('render atlas called');
       _tilesetType = canvasData.tilesetType;
       _spriteImage = null;
       _runtimeCache.clear();
@@ -331,7 +332,15 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
         }
       }
       final atlasImage = _spriteImage;
-      if (atlasImage == null) return;
+      if (atlasImage == null) {
+        print('atlas image is null');
+        return;
+      } else if (atlasImage.debugDisposed) {
+        print('atlas image disposed');
+        _spriteImage = null;
+        return;
+      }
+
       canvas.drawAtlas(
         atlasImage,
         atlasRsTransforms,
