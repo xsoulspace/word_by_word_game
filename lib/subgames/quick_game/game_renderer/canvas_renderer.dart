@@ -17,7 +17,7 @@ import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class CanvasRenderer extends Component
     with DragCallbacks, HasGameRef<CanvasRendererGame>, HoverCallbacks {
-  CanvasCubit get canvasCubit => game.diDto.canvasCubit;
+  CanvasCubit get canvasCubit => game.dto.canvasCubit;
   DrawerCubitState get canvasCubitState => canvasCubit.state;
   Vector2 get origin => canvasCubitState.origin;
   set origin(final Vector2 value) => canvasCubit.changeOrigin(value);
@@ -58,7 +58,7 @@ class CanvasRenderer extends Component
 
   @override
   void onDragUpdate(final DragUpdateEvent event) {
-    if (!game.diDto.debugCubit.state.isCameraFollowingPlayer) {
+    if (!game.dto.debugCubit.state.isCameraFollowingPlayer) {
       final eventPosition = event.canvasPosition;
       origin = eventPosition - _dragOffset;
       mousePosition = eventPosition;
@@ -106,7 +106,7 @@ class CanvasRenderer extends Component
 
   @override
   void update(final double dt) {
-    if (game.diDto.debugCubit.state.isCameraFollowingPlayer) {
+    if (game.dto.debugCubit.state.isCameraFollowingPlayer) {
       final player = canvasObjectsDrawer.player;
       if (player != null) {
         final screenSize = game.size;
@@ -129,7 +129,7 @@ class CanvasRenderer extends Component
 mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   CanvasRenderer? _canvasRenderer;
   CanvasRenderer get canvasRenderer => _canvasRenderer ??= game.canvasRenderer;
-  CanvasCubit get canvasCubit => game.diDto.canvasCubit;
+  CanvasCubit get canvasCubit => game.dto.canvasCubit;
   Vector2 get origin => canvasRenderer.origin;
   @useResult
   Vector2 getOffsetOrigin() => canvasRenderer.getOffsetOrigin();
@@ -180,7 +180,7 @@ class CanvasTilesRenderer extends Component
   void render(final Canvas canvas) {
     _painter.render(
       canvas: canvas,
-      tilesetConstants: game.diDto.canvasCubit.resourcesLoader.tilesetConstants,
+      tilesetConstants: game.dto.canvasCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
       tilesResources: allTiles,
@@ -217,6 +217,6 @@ class CanvasDebugSurface extends Component
   void render(final material.Canvas canvas) {
     super.render(canvas);
     if (!debugMode) return;
-    // _renderLines(canvas);
+    if (game.dto.debugCubit.state.isDebugLinesVisible) _renderLines(canvas);
   }
 }

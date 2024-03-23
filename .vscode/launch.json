@@ -13,6 +13,13 @@
       "flutterMode": "debug"
     },
     {
+      "program": "packages/map_editor/lib/main.dart",
+      "name": "editor",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug"
+    },
+    {
       "program": "lib/main_prod.dart",
       "name": "desktop restricted stores",
       "request": "launch",

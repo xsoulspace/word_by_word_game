@@ -35,12 +35,12 @@ class CanvasRendererGame extends FlameGame
     required final BuildContext context,
     required final ThemeData theme,
     required final DialogController dialogController,
-  }) : diDto = GameRendererDiDto.use(
+  }) : dto = GameRendererDiDto.use(
           context: context,
           theme: theme,
           dialogController: dialogController,
         );
-  final GameRendererDiDto diDto;
+  final GameRendererDiDto dto;
 
   late CameraComponent worldCamera;
   @override
@@ -50,7 +50,7 @@ class CanvasRendererGame extends FlameGame
 
   late ObstacleLevelHelper obstacleLevelHelper;
 
-  bool get timePaused => diDto.mechanics.worldTime.paused;
+  bool get timePaused => dto.mechanics.worldTime.paused;
 
   @override
   Future<void> onLoad() async {
@@ -65,10 +65,10 @@ class CanvasRendererGame extends FlameGame
 
     world = World();
     worldCamera = await _initCamera();
-    await diDto.canvasCubit.loadCache(images: images);
+    await dto.canvasCubit.loadCache(images: images);
 
-    diDto.mechanics.worldTime.addListener(_onWorldTimeChange);
-    providersComponent = diDto.getBlocsProviderComponent(
+    dto.mechanics.worldTime.addListener(_onWorldTimeChange);
+    providersComponent = dto.getBlocsProviderComponent(
       children: [
         world,
         worldCamera,

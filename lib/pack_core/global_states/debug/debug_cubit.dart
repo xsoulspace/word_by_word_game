@@ -9,6 +9,7 @@ class DebugCubitState with _$DebugCubitState {
   const factory DebugCubitState({
     @Default(true) final bool isCameraFollowingPlayer,
     @Default(kDebugMode) final bool isDebugPaneVisible,
+    @Default(kDebugMode) final bool isDebugLinesVisible,
   }) = _DebugCubitState;
 }
 

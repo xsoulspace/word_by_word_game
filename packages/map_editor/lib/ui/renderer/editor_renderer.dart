@@ -20,6 +20,7 @@ class Palette {
   Palette._();
   static const white = BasicPalette.white;
   static const red = PaletteEntry(Color(0xFFAC3232));
+  static const red90 = PaletteEntry(Color(0xE3AC3232));
   static const grey = PaletteEntry(Color(0xFF404040));
   static const green = PaletteEntry(Color(0xFF54a286));
   static const blue = PaletteEntry(Color.fromARGB(255, 33, 176, 201));
