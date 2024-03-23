@@ -102,7 +102,7 @@ class CanvasRendererGame extends FlameGame
       ..clear()
       // Enable initial overlays and old ones
       ..addAll([
-        GameOverlaysRoutes.levelsHud.name,
+        GameOverlaysRoutes.notifications.name,
         ...oldOverlays,
       ]);
     // assets loading

@@ -51,17 +51,17 @@ class DefaultDialogOverlayController extends HookWidget {
 
 class DialogStack extends HookWidget {
   const DialogStack({
-    required this.child,
+    required this.children,
     super.key,
   });
-  final Widget child;
+  final List<Widget> children;
   @override
   Widget build(final BuildContext context) {
     final state = context.watch<DialogStackState>();
     return Stack(
       fit: StackFit.expand,
       children: [
-        child,
+        ...children,
         DialogBarrier(
           isVisible: state.dialogType != GameDialogType.none,
           child: switch (state.dialogType) {

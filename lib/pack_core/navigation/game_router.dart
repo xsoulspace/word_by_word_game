@@ -6,7 +6,7 @@ import 'package:word_by_word_game/subgames/quick_game/overlays/overlays.dart';
 
 enum GameRoutes { level }
 
-enum GameOverlaysRoutes { levelsHud, debug, dialog }
+enum GameOverlaysRoutes { notifications, debug, gui }
 
 class GameOverlayBuilderMapRouter {
   const GameOverlayBuilderMapRouter();
@@ -14,10 +14,10 @@ class GameOverlayBuilderMapRouter {
       _build().map((final key, final value) => MapEntry(key.name, value));
   Map<GameOverlaysRoutes, OverlayWidgetBuilder<CanvasRendererGame>> _build() =>
       {
-        GameOverlaysRoutes.dialog: (final context, final game) =>
+        GameOverlaysRoutes.gui: (final context, final game) =>
             const GuiOverlay(),
-        GameOverlaysRoutes.levelsHud: (final context, final game) =>
-            const HudOverlay(),
+        GameOverlaysRoutes.notifications: (final context, final game) =>
+            const NotificationsOverlay(),
         GameOverlaysRoutes.debug: (final context, final game) =>
             WbwGameProvider(
               game: game,
