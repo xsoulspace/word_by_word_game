@@ -98,7 +98,7 @@ class CanvasRenderer extends Component
   void render(final material.Canvas canvas) {
     super.render(canvas);
 
-    if (debugMode) {
+    if (game.dto.debugCubit.state.isDebugLinesVisible) {
       _renderOrigin(canvas);
       _renderOffsetOrigin(canvas);
     }

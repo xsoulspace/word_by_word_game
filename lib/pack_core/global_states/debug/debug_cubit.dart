@@ -29,6 +29,12 @@ class DebugCubit extends Cubit<DebugCubitState> {
     emit(state.copyWith(isCameraFollowingPlayer: isFollowing));
   }
 
+  // ignore: avoid_positional_boolean_parameters
+  void switchIsFpsEnabledChange([final bool? value]) {
+    final isFpsEnabled = value ?? !state.isFpsEnabled;
+    emit(state.copyWith(isFpsEnabled: isFpsEnabled));
+  }
+
   int _countdown = 5;
   void tryOpenDebugPane() {
     _countdown--;

@@ -75,9 +75,6 @@ class CanvasRendererGame extends FlameGame
       ],
     );
 
-    final style = material.TextStyle(color: BasicPalette.red.color);
-    final regular = TextPaint(style: style);
-
     await add(providersComponent);
     await world.addAll([
       FlameBlocListener<GlobalGameBloc, GlobalGameBlocState>(
@@ -86,15 +83,10 @@ class CanvasRendererGame extends FlameGame
       FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
         onNewState: _handleLevelStateChanges,
       ),
+      FlameBlocListener<DebugCubit, DebugCubitState>(
+        onNewState: _handleDebugStateChanges,
+      ),
       // temporary enabling it
-      if (dto.debugCubit.state.isFpsEnabled)
-        FpsTextComponent(
-          textRenderer: regular,
-          priority: 100,
-        )
-          ..anchor = Anchor.topLeft
-          ..x = 32
-          ..y = 32.0,
       canvasRenderer,
     ]);
     final oldOverlays = [...overlays.activeOverlays];
@@ -108,14 +100,34 @@ class CanvasRendererGame extends FlameGame
     // assets loading
 
     // await images.load(kDefaultTilesetPath);
+    if (dto.debugCubit.state.isFpsEnabled) unawaited(_createFpsComponent());
 
     return super.onLoad();
   }
 
+  FpsTextComponent? _fpsComponent;
+  void _removeFpsComponent() {
+    if (_fpsComponent == null) return;
+    world.remove(_fpsComponent!);
+    _fpsComponent = null;
+  }
+
+  Future<void> _createFpsComponent() async {
+    _removeFpsComponent();
+    final style = material.TextStyle(color: BasicPalette.red.color);
+    final regular = TextPaint(style: style);
+    final newComponent = _fpsComponent = FpsTextComponent(
+      textRenderer: regular,
+      priority: 100,
+    )
+      ..anchor = Anchor.topLeft
+      ..x = 32
+      ..y = 32.0;
+    return world.add(newComponent);
+  }
+
   Future<CameraComponent> _initCamera() async {
-    final camera = CameraComponent(
-      world: world,
-    );
+    final camera = CameraComponent(world: world);
 
     camera.viewfinder.anchor = Anchor.topLeft;
     return camera;
@@ -133,6 +145,13 @@ class CanvasRendererGame extends FlameGame
 
   void _handleGlobalStateChanges(final GlobalGameBlocState gameBlocState) {
     // canvasObjectsDrawer.onOriginUpdate();
+  }
+  void _handleDebugStateChanges(final DebugCubitState debugState) {
+    if (debugState.isFpsEnabled) {
+      unawaited(_createFpsComponent());
+    } else {
+      _removeFpsComponent();
+    }
   }
 
   Future<void> _handleLevelStateChanges(

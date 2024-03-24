@@ -131,8 +131,9 @@ class WeatherBar extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.watch<WeatherCubit>().state;
-    final weather = state.weather;
-    final wind = state.wind;
+    final nextWeathers = [...state.weathers].skip(1);
+    final currentWeather = state.weather;
+    final currentWind = state.wind;
     final borderColor = context.colorScheme.onBackground.withOpacity(0.2);
     final borderSide = BorderSide(color: borderColor);
     return Container(
@@ -151,19 +152,14 @@ class WeatherBar extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(weather.windScale.emojiRepresentation),
+            Text(
+              currentWeather.windScale.emojiRepresentation,
+              style: context.textTheme.titleLarge,
+            ),
             const Gap(2),
-            Tooltip(
-              // TODO(arenukvern): l10n
-              message: 'Current wind type',
-              child: Text(
-                weather.windScale
-                    .toLocalizedName(context)
-                    .toUpperCase()
-                    .split(' ')
-                    .join('\n'),
-                style: context.textThemeBold.labelMedium,
-              ),
+            _CurrentWeatherText(
+              tooltipMessage: 'Current wind type',
+              weather: currentWeather,
             ),
             const Gap(4),
 
@@ -181,7 +177,7 @@ class WeatherBar extends StatelessWidget {
                 child: Column(
                   children: [
                     WindDirectionBadge(
-                      value: wind.force.x,
+                      value: currentWind.force.x,
                       // TODO(arenukvern): l10n
                       tooltipMessage: 'Horizontal wind force',
                       direction: Axis.horizontal,
@@ -195,7 +191,7 @@ class WeatherBar extends StatelessWidget {
                       // TODO(arenukvern): l10n
                       tooltipMessage:
                           'Vertical wind force, can blow up or down',
-                      value: wind.force.y,
+                      value: currentWind.force.y,
                       direction: Axis.vertical,
                     ),
                   ],
@@ -220,12 +216,54 @@ class WeatherBar extends StatelessWidget {
               ),
             ),
             const Gap(4),
+
             // TODO(arenukvern): add winds queue
           ],
         ),
       ),
     );
   }
+}
+
+class _NextWeatherItem extends StatelessWidget {
+  const _NextWeatherItem({
+    required this.weather,
+    required this.tooltipMessage,
+    super.key,
+  });
+  final WeatherModel weather;
+  final String tooltipMessage;
+
+  @override
+  Widget build(final BuildContext context) => Column(
+        children: [
+          Text(weather.windScale.emojiRepresentation),
+          Text(weather.windScale.toLocalizedName(context)),
+        ],
+      );
+}
+
+class _CurrentWeatherText extends StatelessWidget {
+  const _CurrentWeatherText({
+    required this.weather,
+    required this.tooltipMessage,
+    super.key,
+  });
+  final WeatherModel weather;
+  final String tooltipMessage;
+  @override
+  Widget build(final BuildContext context) => Tooltip(
+        // TODO(arenukvern): l10n
+        message: tooltipMessage,
+        child: Text(
+          weather.windScale
+              .toLocalizedName(context)
+              .toUpperCase()
+              .split(' ')
+              .join('\n'),
+          style: context.textThemeBold.labelMedium,
+        ),
+      );
 }
 
 class WindDirectionBadge extends StatelessWidget {
