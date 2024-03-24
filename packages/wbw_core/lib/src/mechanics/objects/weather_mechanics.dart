@@ -83,6 +83,21 @@ enum WindScale {
   static final weightedValues = values
       .expand((final e) => List.generate(e.weight, (final i) => e))
       .toList();
+  String get emojiRepresentation => switch (this) {
+        WindScale.calm => '☀️',
+        WindScale.lightAir => '☀️',
+        WindScale.lightBreeze => '🌤️',
+        WindScale.gentleBreeze => '🌤️',
+        WindScale.moderateBreeze => '🌥️',
+        WindScale.freshBreeze => '💨',
+        WindScale.strongBreeze => '💨',
+        WindScale.highWind => '🌧️',
+        WindScale.gale => '🌩️',
+        WindScale.severeGale => '⛈️',
+        WindScale.storm => '⛈️',
+        WindScale.violentStorm => '⛈️',
+        WindScale.hurricane => '🌪️',
+      };
   String toLocalizedName(final BuildContext context) => switch (this) {
         WindScale.calm => S.of(context).windCalm,
         WindScale.lightAir => S.of(context).windLightAir,

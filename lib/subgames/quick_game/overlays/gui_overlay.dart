@@ -151,20 +151,23 @@ class WeatherBar extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text('💨'),
+            Text(weather.windScale.emojiRepresentation),
             const Gap(2),
-            Text(
-              weather.windScale
-                  .toLocalizedName(context)
-                  .toUpperCase()
-                  .split(' ')
-                  .join('\n'),
-              style: context.textThemeBold.labelMedium,
+            Tooltip(
+              // TODO(arenukvern): l10n
+              message: 'Current wind type',
+              child: Text(
+                weather.windScale
+                    .toLocalizedName(context)
+                    .toUpperCase()
+                    .split(' ')
+                    .join('\n'),
+                style: context.textThemeBold.labelMedium,
+              ),
             ),
             const Gap(4),
 
             /// wind direction
-            // TODO(arenukvern): add on hover explanation
             ConstrainedBox(
               constraints: const BoxConstraints(
                 minWidth: 50,
@@ -179,6 +182,8 @@ class WeatherBar extends StatelessWidget {
                   children: [
                     WindDirectionBadge(
                       value: wind.force.x,
+                      // TODO(arenukvern): l10n
+                      tooltipMessage: 'Horizontal wind force',
                       direction: Axis.horizontal,
                     ),
                     Divider(
@@ -187,6 +192,9 @@ class WeatherBar extends StatelessWidget {
                       thickness: 1,
                     ),
                     WindDirectionBadge(
+                      // TODO(arenukvern): l10n
+                      tooltipMessage:
+                          'Vertical wind force, can blow up or down',
                       value: wind.force.y,
                       direction: Axis.vertical,
                     ),
@@ -224,36 +232,41 @@ class WindDirectionBadge extends StatelessWidget {
   const WindDirectionBadge({
     required this.value,
     required this.direction,
+    required this.tooltipMessage,
     super.key,
   });
   final double value;
   final Axis direction;
+  final String tooltipMessage;
   @override
-  Widget build(final BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Expanded(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              child: Text(
-                (value.sign * value * 100).round().toString(),
-                style: context.textTheme.labelSmall,
+  Widget build(final BuildContext context) => Tooltip(
+        message: tooltipMessage,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Expanded(
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  (value.sign * value * 100).round().toString(),
+                  style: context.textTheme.labelSmall,
+                ),
               ),
             ),
-          ),
-          Transform.rotate(
-            angle: () {
-              final effectiveAngle =
-                  (direction == Axis.vertical ? 90 : 0) * math.pi / 180;
-              return value < 0 ? effectiveAngle : -effectiveAngle;
-            }(),
-            child: Icon(
-              Icons.arrow_right_alt_rounded,
-              color: context.colorScheme.tertiary,
-              size: 16,
+            Transform.rotate(
+              angle: () {
+                final effectiveAngle =
+                    (direction == Axis.vertical ? 90 : 0) * math.pi / 180;
+                return value < 0 ? effectiveAngle : -effectiveAngle;
+              }(),
+              child: Icon(
+                Icons.arrow_right_alt_rounded,
+                color: context.colorScheme.tertiary,
+                size: 16,
+              ),
             ),
-          ),
-          const Gap(2),
-        ],
+            const Gap(2),
+          ],
+        ),
       );
 }
