@@ -87,7 +87,7 @@ class CanvasRendererGame extends FlameGame
         onNewState: _handleLevelStateChanges,
       ),
       // temporary enabling it
-      if (debugMode)
+      if (dto.debugCubit.state.isFpsEnabled)
         FpsTextComponent(
           textRenderer: regular,
           priority: 100,

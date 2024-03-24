@@ -133,21 +133,38 @@ class WeatherBar extends StatelessWidget {
     final state = context.watch<WeatherCubit>().state;
     final weather = state.weather;
     final wind = state.wind;
+    final borderColor = context.colorScheme.onBackground.withOpacity(0.2);
+    final borderSide = BorderSide(color: borderColor);
     return Container(
       decoration: BoxDecoration(
-        color: context.colorScheme.tertiaryContainer.withOpacity(0.5),
-        borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+        color: context.colorScheme.background.withOpacity(0.7),
+        border: Border(right: borderSide, bottom: borderSide),
+        borderRadius: const BorderRadius.only(
+          bottomRight: Radius.elliptical(8, 8),
+        ),
       ),
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4)
+          .copyWith(left: 2),
       child: TutorialFrame(
         highlightPosition: Alignment.bottomRight,
         uiKey: TutorialUiItem.currentWind,
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // TODO(arenukvern): l10n
-            Text('${weather.windScale.toLocalizedName(context)} 💨'),
-            const Gap(3),
+            const Text('💨'),
+            const Gap(2),
+            Text(
+              weather.windScale
+                  .toLocalizedName(context)
+                  .toUpperCase()
+                  .split(' ')
+                  .join('\n'),
+              style: context.textThemeBold.labelMedium,
+            ),
+            const Gap(4),
+
+            /// wind direction
+            // TODO(arenukvern): add on hover explanation
             ConstrainedBox(
               constraints: const BoxConstraints(
                 minWidth: 50,
@@ -155,10 +172,9 @@ class WeatherBar extends StatelessWidget {
               ),
               child: Container(
                 decoration: BoxDecoration(
-                  color: context.colorScheme.background.withOpacity(0.8),
-                  borderRadius: BorderRadius.circular(12),
+                  border: Border.symmetric(vertical: borderSide),
                 ),
-                padding: const EdgeInsets.only(left: 8, right: 8),
+                margin: const EdgeInsets.only(left: 8, right: 6),
                 child: Column(
                   children: [
                     WindDirectionBadge(
@@ -166,7 +182,7 @@ class WeatherBar extends StatelessWidget {
                       direction: Axis.horizontal,
                     ),
                     Divider(
-                      color: context.colorScheme.tertiary.withOpacity(0.2),
+                      color: borderColor,
                       height: 1,
                       thickness: 1,
                     ),
@@ -178,6 +194,7 @@ class WeatherBar extends StatelessWidget {
                 ),
               ),
             ),
+            // TODO(arenukvern): add summary wind direction
             const Gap(8),
             TutorialFrame(
               highlightPosition: Alignment.bottomRight,
@@ -185,12 +202,17 @@ class WeatherBar extends StatelessWidget {
               child: Column(
                 children: [
                   // TODO(arenukvern): l10n
-                  const Text('NEXT'),
-                  Text('${state.weather.durationInGameSeconds} '),
+                  Text('NEXT', style: context.textTheme.labelSmall),
+                  Text(
+                    // TODO(arenukvern): l10n
+                    'IN ${state.weather.durationInGameSeconds} ',
+                    style: context.textTheme.labelSmall,
+                  ),
                 ],
               ),
             ),
             const Gap(4),
+            // TODO(arenukvern): add winds queue
           ],
         ),
       ),
@@ -231,6 +253,7 @@ class WindDirectionBadge extends StatelessWidget {
               size: 16,
             ),
           ),
+          const Gap(2),
         ],
       );
 }

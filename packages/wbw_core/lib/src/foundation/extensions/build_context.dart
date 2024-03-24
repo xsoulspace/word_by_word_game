@@ -8,6 +8,7 @@ extension BuildContextX on BuildContext {
   ThemeData get theme => Theme.of(this);
   UiThemeScheme get uiTheme => read<UiThemeScheme>();
   TextTheme get textTheme => theme.textTheme;
+  TextTheme get textThemeBold => read<UiTextTheme>().bold;
   TextTheme get errorTextTheme => read<UiTextTheme>().error;
   ColorScheme get colorScheme => theme.colorScheme;
   // GoRouter get router => GoRouter.of(this);
