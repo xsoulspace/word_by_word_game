@@ -61,9 +61,9 @@ enum WindScale {
   moderateBreeze(xMin: 5.5, xMax: 7.9, yMin: -0.12, yMax: 0.15, weight: 50),
   freshBreeze(xMin: 8, xMax: 10.7, yMin: -0.12, yMax: 0.17, weight: 10),
   strongBreeze(xMin: 10.8, xMax: 13.8, yMin: -0.15, yMax: 0.2, weight: 5),
-  highWind(xMin: 13.9, xMax: 17.1, yMin: -0.18, yMax: 0.3, weight: 1),
-  gale(xMin: 17.2, xMax: 20.7, yMin: -0.3, yMax: 0.35, weight: 1),
-  severeGale(xMin: 20.8, xMax: 24.4, yMin: -0.5, yMax: 0.5, weight: 1),
+  highWind(xMin: 13.9, xMax: 17.1, yMin: -0.18, yMax: 0.3, weight: 4),
+  gale(xMin: 17.2, xMax: 20.7, yMin: -0.3, yMax: 0.35, weight: 3),
+  severeGale(xMin: 20.8, xMax: 24.4, yMin: -0.5, yMax: 0.5, weight: 2),
   storm(xMin: 24.5, xMax: 28.4, yMin: -1, yMax: 1, weight: 1),
   violentStorm(xMin: 28.5, xMax: 32.6, yMin: -2.5, yMax: 2.5, weight: 1),
   hurricane(xMin: 32.7, xMax: 50, yMin: -5, yMax: 5, weight: 1);

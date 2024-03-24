@@ -1,3 +1,6 @@
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/models/models.dart';
@@ -24,7 +27,7 @@ class GuiOverlay extends StatelessWidget {
       (final bloc) => bloc.state.currentLevelId,
     );
     final screenSize = MediaQuery.sizeOf(context);
-
+    final uiTheme = context.uiTheme;
     return DialogStack(
       children: [
         Positioned(
@@ -35,10 +38,18 @@ class GuiOverlay extends StatelessWidget {
             children: [UiPauseButton()],
           ),
         ),
-        const Positioned(
+        Positioned(
           left: 0,
-          top: 20,
-          child: _Statistics(),
+          top: 0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const SafeArea(bottom: false, child: SizedBox()),
+              const WeatherBar(),
+              uiTheme.verticalBoxes.medium,
+              const _Statistics(),
+            ],
+          ),
         ),
         Builder(
           builder: (final context) {
@@ -77,41 +88,10 @@ class _Statistics extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        if (DeviceRuntimeType.isMobile) const SizedBox(height: 24),
         const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
         uiTheme.verticalBoxes.medium,
         const UIPlayersSideBar(),
-        const Gap(16),
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: BlocBuilder<WeatherCubit, WeatherCubitState>(
-            builder: (final context, final state) => Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                TutorialFrame(
-                  highlightPosition: Alignment.bottomRight,
-                  uiKey: TutorialUiItem.currentWind,
-                  child: Text(
-                    // ignore: lines_longer_than_80_chars
-                    '${S.of(context).wind}: ${state.weather.windScale.toLocalizedName(context)} '
-                    // ignore: lines_longer_than_80_chars
-                    '| ${state.wind.force.x.toStringAsFixed(2)} ${state.wind.force.y.toStringAsFixed(2)}',
-                  ),
-                ),
-                const Gap(8),
-                TutorialFrame(
-                  highlightPosition: Alignment.bottomRight,
-                  uiKey: TutorialUiItem.currentWeather,
-                  child: Text(
-                    // ignore: lines_longer_than_80_chars
-                    '${S.of(context).nextWeatherIn}: ${state.weather.durationInGameSeconds} ',
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
+        uiTheme.verticalBoxes.medium,
         Padding(
           padding: const EdgeInsets.all(8),
           child: BlocSelector<LevelPlayersBloc, LevelPlayersBlocState,
@@ -143,4 +123,114 @@ class _Statistics extends StatelessWidget {
       ],
     );
   }
+}
+
+class WeatherBar extends StatelessWidget {
+  const WeatherBar({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final state = context.watch<WeatherCubit>().state;
+    final weather = state.weather;
+    final wind = state.wind;
+    return Container(
+      decoration: BoxDecoration(
+        color: context.colorScheme.tertiaryContainer.withOpacity(0.5),
+        borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      child: TutorialFrame(
+        highlightPosition: Alignment.bottomRight,
+        uiKey: TutorialUiItem.currentWind,
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            // TODO(arenukvern): l10n
+            Text('${weather.windScale.toLocalizedName(context)} 💨'),
+            const Gap(3),
+            ConstrainedBox(
+              constraints: const BoxConstraints(
+                minWidth: 50,
+                maxWidth: 60,
+              ),
+              child: Container(
+                decoration: BoxDecoration(
+                  color: context.colorScheme.background.withOpacity(0.8),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                padding: const EdgeInsets.only(left: 8, right: 8),
+                child: Column(
+                  children: [
+                    WindDirectionBadge(
+                      value: wind.force.x,
+                      direction: Axis.horizontal,
+                    ),
+                    Divider(
+                      color: context.colorScheme.tertiary.withOpacity(0.2),
+                      height: 1,
+                      thickness: 1,
+                    ),
+                    WindDirectionBadge(
+                      value: wind.force.y,
+                      direction: Axis.vertical,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const Gap(8),
+            TutorialFrame(
+              highlightPosition: Alignment.bottomRight,
+              uiKey: TutorialUiItem.currentWeather,
+              child: Column(
+                children: [
+                  // TODO(arenukvern): l10n
+                  const Text('NEXT'),
+                  Text('${state.weather.durationInGameSeconds} '),
+                ],
+              ),
+            ),
+            const Gap(4),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class WindDirectionBadge extends StatelessWidget {
+  const WindDirectionBadge({
+    required this.value,
+    required this.direction,
+    super.key,
+  });
+  final double value;
+  final Axis direction;
+  @override
+  Widget build(final BuildContext context) => Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Expanded(
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(
+                (value.sign * value * 100).round().toString(),
+                style: context.textTheme.labelSmall,
+              ),
+            ),
+          ),
+          Transform.rotate(
+            angle: () {
+              final effectiveAngle =
+                  (direction == Axis.vertical ? 90 : 0) * math.pi / 180;
+              return value < 0 ? effectiveAngle : -effectiveAngle;
+            }(),
+            child: Icon(
+              Icons.arrow_right_alt_rounded,
+              color: context.colorScheme.tertiary,
+              size: 16,
+            ),
+          ),
+        ],
+      );
 }
