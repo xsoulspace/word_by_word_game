@@ -170,7 +170,7 @@ class WindModel with _$WindModel {
 class WeatherMechanics {
   final _random = Randomizer();
   List<WeatherModel> generateWeather({
-    final int count = 3,
+    final int count = 4,
   }) =>
       List.generate(
         count,
