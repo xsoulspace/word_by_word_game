@@ -1,5 +1,6 @@
 import 'dart:math' as math;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -88,12 +89,12 @@ class _Statistics extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const _PowerBar(),
+        uiTheme.verticalBoxes.medium,
         const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
         uiTheme.verticalBoxes.medium,
         const UIPlayersSideBar(),
         uiTheme.verticalBoxes.medium,
-        // '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
-        const _PowerBar(),
       ],
     );
   }
@@ -102,94 +103,87 @@ class _Statistics extends StatelessWidget {
 class _PowerBar extends StatelessWidget {
   const _PowerBar({super.key});
 
-  static const widths = [6, 9, 10, 11, 11, 10, 9, 8, 6, 5, 3];
   @override
   Widget build(final BuildContext context) {
     final playerParams = context.select<LevelPlayersBloc, PlayerCharacterModel>(
       (final value) => value.state.playerCharacter,
     );
+    final powers = playerParams.balloonPowers;
+    final size = MediaQuery.sizeOf(context);
     final currentPower = playerParams.balloonPowers.power;
-    final count = widths.length;
-    final cellGrade = playerParams.balloonParams.maxPower / count;
-    return TutorialFrame(
-      highlightPosition: MediaQuery.sizeOf(context).width >
-              WidthFormFactor.mobileTutorialMaxWidth
-          ? Alignment.centerRight
-          : Alignment.bottomCenter,
-      uiKey: TutorialUiItem.baloonPower,
-      child: SizedBox(
-        height: 80,
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(24),
+    final maxPower = playerParams.balloonParams.maxPower;
+    final power =
+        clampDouble(currentPower, 0, playerParams.balloonParams.maxPower);
+    final powerRatio = power / maxPower;
+    final maxWidth = clampDouble(size.width * 0.5, 160, 180);
+    return GestureDetector(
+      onTap: () {
+        context.read<DebugCubit>().tryOpenDebugPane();
+      },
+      child: Tooltip(
+        message:
+            // TODO(arenukvern): l10n
+            'Power. This force creates the lift force that moves the balloon upwards.',
+        child: Row(
+          children: [
+            const Gap(4),
+            Icon(
+              Icons.fireplace,
+              color: context.colorScheme.error,
             ),
-            child: GestureDetector(
-              onTap: () {
-                context.read<DebugCubit>().tryOpenDebugPane();
-              },
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: List.generate(
-                  count,
-                  (final i) {
-                    final index = i;
-                    final isFirst = i == 0;
-                    final isLast = i == (count - 1);
-                    final isFilled =
-                        currentPower > 0 && currentPower >= cellGrade * index;
-                    final width = widths[i];
-                    return Container(
-                      width: 16 * width * 0.8,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        color:
-                            isFilled ? Colors.redAccent[200] : Colors.red[100],
-                        borderRadius: () {
-                          if (isFirst) {
-                            return const BorderRadius.only(
-                              topLeft: Radius.elliptical(32, 32),
-                              topRight: Radius.elliptical(32, 32),
-                            );
-                          } else if (index == 1) {
-                            return const BorderRadius.only(
-                              topLeft: Radius.elliptical(32, 32),
-                              topRight: Radius.elliptical(32, 32),
-                            );
-                          } else if (index == 2) {
-                            return const BorderRadius.only(
-                              topLeft: Radius.elliptical(6, 6),
-                              topRight: Radius.elliptical(6, 6),
-                            );
-                          } else if (index == 3) {
-                            return const BorderRadius.only(
-                              topLeft: Radius.elliptical(6, 6),
-                              topRight: Radius.elliptical(6, 6),
-                            );
-                          } else if (index == 4) {
-                            return const BorderRadius.only(
-                              bottomLeft: Radius.elliptical(9, 9),
-                              bottomRight: Radius.elliptical(9, 9),
-                            );
-                          } else if (isLast) {
-                            return const BorderRadius.only(
-                              bottomLeft: Radius.circular(12),
-                              bottomRight: Radius.circular(12),
-                            );
-                          }
-                          return const BorderRadius.only(
-                            bottomLeft: Radius.elliptical(9, 9),
-                            bottomRight: Radius.elliptical(9, 9),
-                          );
-                        }(),
+            const Gap(4),
+            TutorialFrame(
+              highlightPosition: MediaQuery.sizeOf(context).width >
+                      WidthFormFactor.mobileTutorialMaxWidth
+                  ? Alignment.centerRight
+                  : Alignment.bottomCenter,
+              uiKey: TutorialUiItem.baloonPower,
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: BoxDecoration(
+                      borderRadius: const BorderRadius.all(
+                        Radius.elliptical(52, 52),
                       ),
-                    );
-                  },
-                ),
+                      color: context.colorScheme.error.withOpacity(0.3),
+                      border: Border.all(color: context.colorScheme.error),
+                    ),
+                    height: 24,
+                    width: maxWidth,
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    bottom: 0,
+                    child: AnimatedContainer(
+                      duration: 20.milliseconds,
+                      width: powerRatio * maxWidth,
+                      decoration: BoxDecoration(
+                        color: context.colorScheme.error.withOpacity(0.6),
+                        borderRadius: const BorderRadius.all(
+                          Radius.elliptical(52, 52),
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 8,
+                    bottom: 0,
+                    child: Center(
+                      child: Text(
+                        '${playerParams.balloonParams.maxPower ~/ kScoreFactor} / ${powers.power ~/ kScoreFactor}',
+                        style: context.textThemeBold.bodyMedium?.copyWith(
+                          color:
+                              context.colorScheme.background.withOpacity(0.8),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

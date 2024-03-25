@@ -122,7 +122,7 @@ class CanvasRendererGame extends FlameGame
     )
       ..anchor = Anchor.topLeft
       ..x = 32
-      ..y = 32.0;
+      ..y = 200.0;
     return world.add(newComponent);
   }
 
