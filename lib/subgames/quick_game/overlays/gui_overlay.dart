@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
@@ -93,35 +92,106 @@ class _Statistics extends StatelessWidget {
         uiTheme.verticalBoxes.medium,
         const UIPlayersSideBar(),
         uiTheme.verticalBoxes.medium,
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: BlocSelector<LevelPlayersBloc, LevelPlayersBlocState,
-              BalloonLiftPowersModel>(
-            selector: (final state) => state.playerCharacter.balloonPowers,
-            builder: (final context, final powers) => Column(
-              children: [
-                const Gap(8),
-                TutorialFrame(
-                  highlightPosition: MediaQuery.sizeOf(context).width >
-                          WidthFormFactor.mobileTutorialMaxWidth
-                      ? Alignment.centerRight
-                      : Alignment.bottomCenter,
-                  uiKey: TutorialUiItem.baloonPower,
-                  child: GestureDetector(
-                    onTap: () {
-                      context.read<DebugCubit>().tryOpenDebugPane();
-                    },
-                    child: Text(
-                      // ignore: lines_longer_than_80_chars
-                      '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
-                    ),
-                  ),
+        // '${S.of(context).power}: ${powers.power ~/ kScoreFactor} ',
+        const _PowerBar(),
+      ],
+    );
+  }
+}
+
+class _PowerBar extends StatelessWidget {
+  const _PowerBar({super.key});
+
+  static const widths = [6, 9, 10, 11, 11, 10, 9, 8, 6, 5, 3];
+  @override
+  Widget build(final BuildContext context) {
+    final playerParams = context.select<LevelPlayersBloc, PlayerCharacterModel>(
+      (final value) => value.state.playerCharacter,
+    );
+    final currentPower = playerParams.balloonPowers.power;
+    final count = widths.length;
+    final cellGrade = playerParams.balloonParams.maxPower / count;
+    return TutorialFrame(
+      highlightPosition: MediaQuery.sizeOf(context).width >
+              WidthFormFactor.mobileTutorialMaxWidth
+          ? Alignment.centerRight
+          : Alignment.bottomCenter,
+      uiKey: TutorialUiItem.baloonPower,
+      child: SizedBox(
+        height: 80,
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(24),
+            ),
+            child: GestureDetector(
+              onTap: () {
+                context.read<DebugCubit>().tryOpenDebugPane();
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: List.generate(
+                  count,
+                  (final i) {
+                    final index = i;
+                    final isFirst = i == 0;
+                    final isLast = i == (count - 1);
+                    final isFilled =
+                        currentPower > 0 && currentPower >= cellGrade * index;
+                    final width = widths[i];
+                    return Container(
+                      width: 16 * width * 0.8,
+                      height: 16,
+                      decoration: BoxDecoration(
+                        color:
+                            isFilled ? Colors.redAccent[200] : Colors.red[100],
+                        borderRadius: () {
+                          if (isFirst) {
+                            return const BorderRadius.only(
+                              topLeft: Radius.elliptical(32, 32),
+                              topRight: Radius.elliptical(32, 32),
+                            );
+                          } else if (index == 1) {
+                            return const BorderRadius.only(
+                              topLeft: Radius.elliptical(32, 32),
+                              topRight: Radius.elliptical(32, 32),
+                            );
+                          } else if (index == 2) {
+                            return const BorderRadius.only(
+                              topLeft: Radius.elliptical(6, 6),
+                              topRight: Radius.elliptical(6, 6),
+                            );
+                          } else if (index == 3) {
+                            return const BorderRadius.only(
+                              topLeft: Radius.elliptical(6, 6),
+                              topRight: Radius.elliptical(6, 6),
+                            );
+                          } else if (index == 4) {
+                            return const BorderRadius.only(
+                              bottomLeft: Radius.elliptical(9, 9),
+                              bottomRight: Radius.elliptical(9, 9),
+                            );
+                          } else if (isLast) {
+                            return const BorderRadius.only(
+                              bottomLeft: Radius.circular(12),
+                              bottomRight: Radius.circular(12),
+                            );
+                          }
+                          return const BorderRadius.only(
+                            bottomLeft: Radius.elliptical(9, 9),
+                            bottomRight: Radius.elliptical(9, 9),
+                          );
+                        }(),
+                      ),
+                    );
+                  },
                 ),
-              ],
+              ),
             ),
           ),
         ),
-      ],
+      ),
     );
   }
 }
