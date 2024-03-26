@@ -79,8 +79,8 @@ dependencies:
     path: packages/wbw_design_core
   wbw_locale:
     path: packages/wbw_locale
-  yandex_ads_sdk:
-    path: packages/yandex_ads_sdk
+  # yandex_ads_sdk:
+  #   path: packages/yandex_ads_sdk
 
 dev_dependencies:
   build_runner: ^2.4.6
