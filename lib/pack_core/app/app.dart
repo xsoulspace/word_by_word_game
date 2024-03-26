@@ -1,1 +1,1 @@
-export 'app_scaffold.dart';
+export 'word_by_word_app.dart';

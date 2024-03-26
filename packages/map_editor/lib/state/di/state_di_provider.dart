@@ -8,7 +8,7 @@ import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-class EditorStateInitializer extends StateInitializer {
+class EditorStateInitializer implements StateInitializer {
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
@@ -27,11 +27,9 @@ class StateDiProvider extends StatelessWidget {
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
           Provider<LocalDbDataSource>(
-            create: (final context) => SharedPreferencesDbDataSourceImpl(),
+            create: SharedPreferencesDbDataSourceImpl.new,
           ),
-          Provider(
-            create: (final context) => EditorMechanicsCollection.v1(),
-          ),
+          Provider(create: EditorMechanicsCollection.v1),
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [

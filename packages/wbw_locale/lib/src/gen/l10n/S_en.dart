@@ -22,6 +22,9 @@ class SEn extends S {
   String get resetEnding => 'Reset ending';
 
   @override
+  String get congratulationsYouPassedTheLandscape => 'Congratulations! You passed this landscape!';
+
+  @override
   String get congratulations => 'Congratulations!';
 
   @override
@@ -77,6 +80,9 @@ class SEn extends S {
 
   @override
   String get playersAndHighscore => 'Players & Highscore';
+
+  @override
+  String get playersAndHighscoreYandex => 'Players & Highscore';
 
   @override
   String get startNewGame => 'Quick Start';

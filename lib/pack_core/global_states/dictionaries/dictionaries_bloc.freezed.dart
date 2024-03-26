@@ -69,11 +69,12 @@ class _$DictionariesBlocStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_DictionariesBlocStateCopyWith<$Res>
+abstract class _$$DictionariesBlocStateImplCopyWith<$Res>
     implements $DictionariesBlocStateCopyWith<$Res> {
-  factory _$$_DictionariesBlocStateCopyWith(_$_DictionariesBlocState value,
-          $Res Function(_$_DictionariesBlocState) then) =
-      __$$_DictionariesBlocStateCopyWithImpl<$Res>;
+  factory _$$DictionariesBlocStateImplCopyWith(
+          _$DictionariesBlocStateImpl value,
+          $Res Function(_$DictionariesBlocStateImpl) then) =
+      __$$DictionariesBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({LocalDictionaryModel localDictionary});
@@ -83,11 +84,12 @@ abstract class _$$_DictionariesBlocStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DictionariesBlocStateCopyWithImpl<$Res>
-    extends _$DictionariesBlocStateCopyWithImpl<$Res, _$_DictionariesBlocState>
-    implements _$$_DictionariesBlocStateCopyWith<$Res> {
-  __$$_DictionariesBlocStateCopyWithImpl(_$_DictionariesBlocState _value,
-      $Res Function(_$_DictionariesBlocState) _then)
+class __$$DictionariesBlocStateImplCopyWithImpl<$Res>
+    extends _$DictionariesBlocStateCopyWithImpl<$Res,
+        _$DictionariesBlocStateImpl>
+    implements _$$DictionariesBlocStateImplCopyWith<$Res> {
+  __$$DictionariesBlocStateImplCopyWithImpl(_$DictionariesBlocStateImpl _value,
+      $Res Function(_$DictionariesBlocStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -95,7 +97,7 @@ class __$$_DictionariesBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? localDictionary = null,
   }) {
-    return _then(_$_DictionariesBlocState(
+    return _then(_$DictionariesBlocStateImpl(
       localDictionary: null == localDictionary
           ? _value.localDictionary
           : localDictionary // ignore: cast_nullable_to_non_nullable
@@ -106,8 +108,8 @@ class __$$_DictionariesBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DictionariesBlocState implements _DictionariesBlocState {
-  const _$_DictionariesBlocState(
+class _$DictionariesBlocStateImpl implements _DictionariesBlocState {
+  const _$DictionariesBlocStateImpl(
       {this.localDictionary = const LocalDictionaryModel()});
 
   @override
@@ -123,7 +125,7 @@ class _$_DictionariesBlocState implements _DictionariesBlocState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DictionariesBlocState &&
+            other is _$DictionariesBlocStateImpl &&
             (identical(other.localDictionary, localDictionary) ||
                 other.localDictionary == localDictionary));
   }
@@ -134,19 +136,20 @@ class _$_DictionariesBlocState implements _DictionariesBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DictionariesBlocStateCopyWith<_$_DictionariesBlocState> get copyWith =>
-      __$$_DictionariesBlocStateCopyWithImpl<_$_DictionariesBlocState>(
-          this, _$identity);
+  _$$DictionariesBlocStateImplCopyWith<_$DictionariesBlocStateImpl>
+      get copyWith => __$$DictionariesBlocStateImplCopyWithImpl<
+          _$DictionariesBlocStateImpl>(this, _$identity);
 }
 
 abstract class _DictionariesBlocState implements DictionariesBlocState {
   const factory _DictionariesBlocState(
-      {final LocalDictionaryModel localDictionary}) = _$_DictionariesBlocState;
+          {final LocalDictionaryModel localDictionary}) =
+      _$DictionariesBlocStateImpl;
 
   @override
   LocalDictionaryModel get localDictionary;
   @override
   @JsonKey(ignore: true)
-  _$$_DictionariesBlocStateCopyWith<_$_DictionariesBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$DictionariesBlocStateImplCopyWith<_$DictionariesBlocStateImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

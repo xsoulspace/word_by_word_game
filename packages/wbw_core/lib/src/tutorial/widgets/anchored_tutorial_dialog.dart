@@ -170,7 +170,7 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     // final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final screenSize = MediaQuery.sizeOf(context);
     Widget child;
     if (builder != null) {

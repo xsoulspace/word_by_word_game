@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/word_field.dart';
@@ -13,6 +14,7 @@ class TextFieldWithKeyboard extends StatefulWidget {
     required this.controller,
     this.autofocus = false,
     this.focusNode,
+    this.errorMessage = '',
     this.decoration,
     super.key,
   });
@@ -20,6 +22,7 @@ class TextFieldWithKeyboard extends StatefulWidget {
   final bool autofocus;
   final TextEditingController controller;
   final InputDecoration? decoration;
+  final String errorMessage;
   @override
   State<TextFieldWithKeyboard> createState() => _TextFieldWithKeyboardState();
 }
@@ -106,6 +109,7 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
   @override
   Widget build(final BuildContext context) {
     const inputHeight = 30.0;
+    final errorMessage = widget.errorMessage;
     return InputKeyboardListener(
       focusNode: focusNode,
       caretIndex: _caretIndex,
@@ -129,7 +133,25 @@ class _TextFieldWithKeyboardState extends State<TextFieldWithKeyboard> {
               onItemsChanged: _onItemsChanged,
             ),
             Divider(color: Theme.of(context).colorScheme.onPrimary),
-            const Gap(16),
+            Builder(
+              builder: (final context) {
+                final textStyle = context.errorTextTheme.labelSmall!;
+                final height =
+                    (textStyle.height ?? 1) * (textStyle.fontSize ?? 24);
+                return AnimatedContainer(
+                  duration: 150.milliseconds,
+                  height: height,
+                  padding: const EdgeInsets.symmetric(horizontal: 12),
+                  alignment: Alignment.topCenter,
+                  child: errorMessage.isNotEmpty
+                      ? Text(
+                          errorMessage,
+                          style: textStyle,
+                        )
+                      : const SizedBox(),
+                );
+              },
+            ),
             const UiKeyboard(),
           ],
         ),

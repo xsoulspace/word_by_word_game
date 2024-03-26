@@ -1,4 +1,4 @@
 gen:
 	fvm dart run build_runner build
-gen-conflicting:
+gen-rewrite:
 	fvm dart run build_runner build --delete-conflicting-outputs

@@ -13,7 +13,7 @@ class CardFrostedBackground extends StatelessWidget {
   final BoxConstraints? constraints;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final livePlayerColor = context.select<LevelPlayersBloc, Color>(
       (final cubit) => cubit.state.currentPlayer.color,
     );

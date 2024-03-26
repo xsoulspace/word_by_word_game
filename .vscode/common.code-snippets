@@ -19,9 +19,13 @@
     "prefix": "todo",
     "body": "// TODO(${1:username}): ${2:description}"
   },
+  
   "todo(arenukvern):description": {
     "prefix": "tdar",
     "body": "// TODO(arenukvern): ${1:description}"
+  }, "todo(arenukvern):l10n": {
+    "prefix": "tln",
+    "body": "// TODO(arenukvern): l10n"
   },
   "fixme(username):description": {
     "prefix": "fixme",

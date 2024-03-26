@@ -196,16 +196,18 @@ class KeyboardLetters extends StatelessWidget {
         ),
         const Gap(5),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             LanguageSwitcher(
               lettersCount: lettersCount,
               onChanged: onLanguageChanged,
               value: language,
             ),
-            Expanded(
+            Flexible(
               flex: lettersCount,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
                 children: [
                   for (final e in rows[2])
                     Flexible(

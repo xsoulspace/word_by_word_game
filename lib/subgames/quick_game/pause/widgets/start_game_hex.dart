@@ -20,7 +20,7 @@ class StartGameHex extends StatelessWidget {
     final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
     final levelId = CanvasDataModelId.fromJson(routeArgs.levelId);
     final isLevelRunning = levelId.isNotEmpty;
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
 
     return Provider(
       create: (final context) => state,

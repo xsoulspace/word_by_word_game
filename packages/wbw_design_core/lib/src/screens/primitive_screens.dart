@@ -1,4 +1,6 @@
-import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
+
+import '../../wbw_design_core.dart';
 
 class EmptyScreen extends StatelessWidget {
   const EmptyScreen({super.key});
@@ -16,20 +18,22 @@ class LoadingScreen extends StatelessWidget {
   const LoadingScreen({super.key});
 
   @override
-  Widget build(final BuildContext context) => const Center(
-        child: Column(
+  Widget build(final BuildContext context) => Container(
+        color: BrandColorSchemes.light.background,
+        alignment: Alignment.center,
+        child: const Column(
           mainAxisSize: MainAxisSize.min,
-          children: [
-            CircularProgress(),
-          ],
+          children: [UiCircularProgress()],
         ),
       );
 }
 
-class CircularProgress extends StatelessWidget {
-  const CircularProgress({super.key});
+class UiCircularProgress extends StatelessWidget {
+  const UiCircularProgress({super.key});
 
   @override
-  Widget build(final BuildContext context) =>
-      const CircularProgressIndicator.adaptive();
+  Widget build(final BuildContext context) => Center(
+        child:
+            CupertinoActivityIndicator(color: BrandColorSchemes.light.primary),
+      );
 }

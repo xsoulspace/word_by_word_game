@@ -9,6 +9,8 @@ class DebugCubitState with _$DebugCubitState {
   const factory DebugCubitState({
     @Default(true) final bool isCameraFollowingPlayer,
     @Default(kDebugMode) final bool isDebugPaneVisible,
+    @Default(false) final bool isDebugLinesVisible,
+    @Default(kDebugMode) final bool isFpsEnabled,
   }) = _DebugCubitState;
 }
 
@@ -25,6 +27,12 @@ class DebugCubit extends Cubit<DebugCubitState> {
   void switchIsCameraFollowingPlayerChange([final bool? value]) {
     final isFollowing = value ?? !state.isCameraFollowingPlayer;
     emit(state.copyWith(isCameraFollowingPlayer: isFollowing));
+  }
+
+  // ignore: avoid_positional_boolean_parameters
+  void switchIsFpsEnabledChange([final bool? value]) {
+    final isFpsEnabled = value ?? !state.isFpsEnabled;
+    emit(state.copyWith(isFpsEnabled: isFpsEnabled));
   }
 
   int _countdown = 5;

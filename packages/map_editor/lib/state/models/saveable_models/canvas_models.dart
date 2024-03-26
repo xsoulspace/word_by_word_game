@@ -66,8 +66,7 @@ class CanvasDataModel with _$CanvasDataModel {
 
     /// can be negative and positive. Should be absolute tile index.
     @Default(GravityModel.initial) final GravityModel gravity,
-    @Default(TechnologyTreeModel.empty)
-    final TechnologyTreeModel technologyTree,
+    @Default([]) final List<TechnologyModel> technologies,
     @Default(TilesetType.colourful) final TilesetType tilesetType,
   }) = _CanvasDataModel;
   const CanvasDataModel._();

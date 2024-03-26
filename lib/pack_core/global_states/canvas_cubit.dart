@@ -56,7 +56,7 @@ final class CanvasCubit extends DrawerCubit {
     final tilesetConfig = getTilesetConfig(type: eCanvasData.tilesetType);
     await loadTileset(tilesetConfig);
     final player = eCanvasData.playerObject;
-    if (!state.tileResources.players.containsKey(player.id)) {
+    if (!state.tileResources.players.containsKey(player.tileId)) {
       final firstPlayer = state.tileResources.players.values.first;
       eCanvasData = eCanvasData.copyWith(
         playerObject: player.copyWith(

@@ -6,12 +6,13 @@ part of 'models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_LevelRouteArgs _$$_LevelRouteArgsFromJson(Map<String, dynamic> json) =>
-    _$_LevelRouteArgs(
+_$LevelRouteArgsImpl _$$LevelRouteArgsImplFromJson(Map<String, dynamic> json) =>
+    _$LevelRouteArgsImpl(
       levelId: json['levelId'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$_LevelRouteArgsToJson(_$_LevelRouteArgs instance) =>
+Map<String, dynamic> _$$LevelRouteArgsImplToJson(
+        _$LevelRouteArgsImpl instance) =>
     <String, dynamic>{
       'levelId': instance.levelId,
     };

@@ -1,2 +1,2 @@
-export '../overlays/hud_overlay.dart';
+export '../overlays/notifications_overlay.dart';
 export 'elements/elements.dart';

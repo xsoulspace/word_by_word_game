@@ -1,4 +1,4 @@
-part of 'hud_overlay.dart';
+part of 'notifications_overlay.dart';
 
 class _LevelsHudScreenOverlayDiDto {
   _LevelsHudScreenOverlayDiDto.use(final Locator read)

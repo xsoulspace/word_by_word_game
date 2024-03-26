@@ -4,8 +4,8 @@ version: 0.0.1
 publish_to: none
 # homepage:
 environment:
-  sdk: ">=2.18.2 <3.0.0"
-  flutter: ">=3.3.0"
+  sdk: ">=3.1.2 <4.0.0"
+  flutter: ">=3.13.6"
 
 dependencies:
   flutter:
@@ -16,11 +16,11 @@ dependencies:
   pointer_interceptor: ^0.9.3+3
   # yandex_mobileads: ^1.1.0
 dev_dependencies:
-  flutter_lints: ^2.0.2
+  flutter_lints: ^3.0.0
   flutter_test:
     sdk: flutter
   pigeon: ^4.2.3
-  xsoulspace_lints: ^0.0.9
+  xsoulspace_lints: ^0.0.10
 
 dependency_overrides:
   collection: 1.18.0
