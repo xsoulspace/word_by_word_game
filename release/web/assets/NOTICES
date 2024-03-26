@@ -8331,7 +8331,6 @@ path_provider_platform_interface
 path_provider_windows
 platform
 plugin_platform_interface
-pointer_interceptor
 process
 shared_preferences
 shared_preferences_android
@@ -32880,7 +32879,6 @@ map_editor
 wbw_core
 wbw_design_core
 wbw_locale
-yandex_ads_sdk
 
 TODO: Add your license here.
 
