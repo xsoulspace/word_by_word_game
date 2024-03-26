@@ -2,7 +2,7 @@ group 'dev.xsoulspace.yandex_ads_sdk'
 version '1.0-SNAPSHOT'
 
 buildscript {
-    ext.kotlin_version = '1.9.0'
+    ext.kotlin_version = '1.8.0'
     repositories {
         google()
         mavenCentral()

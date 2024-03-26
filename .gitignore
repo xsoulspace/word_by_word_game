@@ -62,3 +62,4 @@ lib/firebase_options.dart
 .fvm/
 configs/local.json
 configs/prod.json
+android/app/key.jks
