@@ -30,10 +30,10 @@ _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
       gravity: json['gravity'] == null
           ? GravityModel.initial
           : GravityModel.fromJson(json['gravity'] as Map<String, dynamic>),
-      technologyTree: json['technologyTree'] == null
-          ? TechnologyTreeModel.empty
-          : TechnologyTreeModel.fromJson(
-              json['technologyTree'] as Map<String, dynamic>),
+      technologies: (json['technologies'] as List<dynamic>?)
+              ?.map((e) => TechnologyModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
       tilesetType:
           $enumDecodeNullable(_$TilesetTypeEnumMap, json['tilesetType']) ??
               TilesetType.colourful,
@@ -48,7 +48,7 @@ Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
       'playerObject': instance.playerObject,
       'skyYTilePosition': instance.skyYTilePosition,
       'gravity': instance.gravity,
-      'technologyTree': instance.technologyTree,
+      'technologies': instance.technologies,
       'tilesetType': _$TilesetTypeEnumMap[instance.tilesetType]!,
     };
 

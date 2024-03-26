@@ -86,11 +86,11 @@ class _$ParsedRouteCopyWithImpl<$Res, $Val extends ParsedRoute>
 }
 
 /// @nodoc
-abstract class _$$_ParsedRouteCopyWith<$Res>
+abstract class _$$ParsedRouteImplCopyWith<$Res>
     implements $ParsedRouteCopyWith<$Res> {
-  factory _$$_ParsedRouteCopyWith(
-          _$_ParsedRoute value, $Res Function(_$_ParsedRoute) then) =
-      __$$_ParsedRouteCopyWithImpl<$Res>;
+  factory _$$ParsedRouteImplCopyWith(
+          _$ParsedRouteImpl value, $Res Function(_$ParsedRouteImpl) then) =
+      __$$ParsedRouteImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -101,11 +101,11 @@ abstract class _$$_ParsedRouteCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ParsedRouteCopyWithImpl<$Res>
-    extends _$ParsedRouteCopyWithImpl<$Res, _$_ParsedRoute>
-    implements _$$_ParsedRouteCopyWith<$Res> {
-  __$$_ParsedRouteCopyWithImpl(
-      _$_ParsedRoute _value, $Res Function(_$_ParsedRoute) _then)
+class __$$ParsedRouteImplCopyWithImpl<$Res>
+    extends _$ParsedRouteCopyWithImpl<$Res, _$ParsedRouteImpl>
+    implements _$$ParsedRouteImplCopyWith<$Res> {
+  __$$ParsedRouteImplCopyWithImpl(
+      _$ParsedRouteImpl _value, $Res Function(_$ParsedRouteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -116,7 +116,7 @@ class __$$_ParsedRouteCopyWithImpl<$Res>
     Object? parameters = null,
     Object? queryParameters = null,
   }) {
-    return _then(_$_ParsedRoute(
+    return _then(_$ParsedRouteImpl(
       path: null == path
           ? _value.path
           : path // ignore: cast_nullable_to_non_nullable
@@ -140,8 +140,8 @@ class __$$_ParsedRouteCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_ParsedRoute extends _ParsedRoute with DiagnosticableTreeMixin {
-  const _$_ParsedRoute(
+class _$ParsedRouteImpl extends _ParsedRoute with DiagnosticableTreeMixin {
+  const _$ParsedRouteImpl(
       {required this.path,
       required this.pathTemplate,
       required final Map<String, String> parameters,
@@ -200,7 +200,7 @@ class _$_ParsedRoute extends _ParsedRoute with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ParsedRoute &&
+            other is _$ParsedRouteImpl &&
             (identical(other.path, path) || other.path == path) &&
             (identical(other.pathTemplate, pathTemplate) ||
                 other.pathTemplate == pathTemplate) &&
@@ -221,8 +221,8 @@ class _$_ParsedRoute extends _ParsedRoute with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ParsedRouteCopyWith<_$_ParsedRoute> get copyWith =>
-      __$$_ParsedRouteCopyWithImpl<_$_ParsedRoute>(this, _$identity);
+  _$$ParsedRouteImplCopyWith<_$ParsedRouteImpl> get copyWith =>
+      __$$ParsedRouteImplCopyWithImpl<_$ParsedRouteImpl>(this, _$identity);
 }
 
 abstract class _ParsedRoute extends ParsedRoute {
@@ -230,7 +230,7 @@ abstract class _ParsedRoute extends ParsedRoute {
       {required final String path,
       required final String pathTemplate,
       required final Map<String, String> parameters,
-      required final Map<String, String> queryParameters}) = _$_ParsedRoute;
+      required final Map<String, String> queryParameters}) = _$ParsedRouteImpl;
   const _ParsedRoute._() : super._();
 
   @override
@@ -251,6 +251,6 @@ abstract class _ParsedRoute extends ParsedRoute {
   Map<String, String> get queryParameters;
   @override
   @JsonKey(ignore: true)
-  _$$_ParsedRouteCopyWith<_$_ParsedRoute> get copyWith =>
+  _$$ParsedRouteImplCopyWith<_$ParsedRouteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

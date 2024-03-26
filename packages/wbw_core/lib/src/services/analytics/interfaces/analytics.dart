@@ -1,7 +1,8 @@
 // ignore_for_file: avoid_annotating_with_dynamic
 
 import 'package:flutter/foundation.dart';
-import 'package:life_hooks/life_hooks.dart';
+
+import '../../../foundation/foundation.dart';
 
 enum AnalyticEvents {
   usedInAndroid,
@@ -9,9 +10,14 @@ enum AnalyticEvents {
   usedInWeb,
 }
 
-abstract class AnalyticsService implements Loadable, Disposable {
+abstract class AnalyticsService extends AnalyticsServicePlugin {
+  void upsertPlugin<T extends AnalyticsServicePlugin>(final T plugin);
+}
+
+abstract class AnalyticsServicePlugin implements Loadable, Disposable {
+  void reportIntededException([final dynamic value]) {}
   Future<void> logAnalyticEvent(final AnalyticEvents event);
-  // ignore: long-parameter-list
+  Future<void> onDelayedLoad();
   Future<void> recordError(
     final dynamic exception,
     final StackTrace? stack, {
@@ -20,15 +26,42 @@ abstract class AnalyticsService implements Loadable, Disposable {
     final bool fatal = false,
     final bool? printDetails,
   });
+
   Future<void> recordFlutterError(
     final FlutterErrorDetails flutterErrorDetails, {
     final bool fatal = false,
   });
-  void log(final String value) {}
-  void dynamicLog(final dynamic value) {}
-  void dynamicInfoLog(final dynamic value) {}
-  void dynamicErrorLog(final dynamic value) {}
+
   @override
   Future<void> onLoad();
-  Future<void> onDelayedLoad();
+
+  /// noop implementation
+  void dynamicLog(
+    final dynamic value, {
+    final String message = '',
+    final StackTrace? stackTrace,
+  }) {}
+  void dynamicWarningLog(
+    final dynamic value, {
+    final String message = '',
+    final StackTrace? stackTrace,
+  }) {}
+
+  /// noop implementation
+  void dynamicInfoLog(
+    final dynamic value, {
+    final String message = '',
+    final StackTrace? stackTrace,
+  }) {}
+
+  /// noop implementation
+  void dynamicErrorLog(
+    final dynamic value, {
+    final String message = '',
+    final StackTrace? stackTrace,
+  }) {}
+
+  @override
+  @mustCallSuper
+  void dispose() {}
 }

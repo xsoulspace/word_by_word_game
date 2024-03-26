@@ -55,7 +55,7 @@ class WeatherCubit extends Cubit<WeatherCubitState> {
 
   /// use to switch weather forcefully
   void nextWeather() {
-    if (state.weathers.length == 1) {
+    if (state.weathers.length == 2) {
       _generateWeather();
       _generateWindForce();
     } else {

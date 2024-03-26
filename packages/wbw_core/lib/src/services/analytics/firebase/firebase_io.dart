@@ -29,7 +29,7 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
   Future<void> onDelayedLoad() async {}
 }
 
-class FirebaseAnalyticsPlugin extends AnalyticsService {
+class FirebaseAnalyticsPlugin extends AnalyticsServicePlugin {
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
   bool _isEnabled = false;
   bool _shouldRecordErrors = false;
@@ -45,9 +45,9 @@ class FirebaseAnalyticsPlugin extends AnalyticsService {
 
   @override
   Future<void> recordError(
-    final exception,
+    final dynamic exception,
     final StackTrace? stack, {
-    final reason,
+    final dynamic reason,
     final Iterable<DiagnosticsNode> information = const [],
     final bool fatal = false,
     final bool? printDetails,
@@ -93,12 +93,9 @@ class FirebaseAnalyticsPlugin extends AnalyticsService {
     if (!_isEnabled) return;
     await analytics.logEvent(name: event.name);
   }
-
-  @override
-  void dispose() {}
 }
 
-class FirebaseCrashlyticsPlugin extends AnalyticsService {
+class FirebaseCrashlyticsPlugin extends AnalyticsServicePlugin {
   FirebaseCrashlytics crashlitics = FirebaseCrashlytics.instance;
   bool isEnabled = false;
   @override
@@ -136,9 +133,9 @@ class FirebaseCrashlyticsPlugin extends AnalyticsService {
 
   @override
   Future<void> recordError(
-    final exception,
+    final dynamic exception,
     final StackTrace? stack, {
-    final reason,
+    final dynamic reason,
     final Iterable<DiagnosticsNode> information = const [],
     final bool fatal = false,
     final bool? printDetails,
@@ -176,7 +173,4 @@ class FirebaseCrashlyticsPlugin extends AnalyticsService {
       print(list[100]);
     });
   }
-
-  @override
-  void dispose() {}
 }

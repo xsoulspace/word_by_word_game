@@ -12,6 +12,7 @@
     "type": "text"
   },
   "graphicsCreditsThanks": "Crediti grafici e ringraziamenti:",
+  "congratulationsYouPassedTheLandscape": "Congratulazioni! Avete superato questo paesaggio!",
   "hideKeyboard": "Nascondi tastiera",
   "showKeyboard": "Mostra tastiera",
   "wordIsNotCorrect": "Non riusciamo a trovare la parola {word} nel nostro dizionario! Prova un'altra parola o aggiungila.",
@@ -58,6 +59,7 @@
   },
   "showPane": "Mostra riquadro",
   "playersAndHighscore": "Giocatori e punteggio",
+  "playersAndHighscoreYandex": "Giocatori e punteggio",
   "about": "Di",
   "startNewGame": "Avvio Rapido",
   "powerOfEnteredWord": "potere della parola inserita",

@@ -1,6 +1,7 @@
 part of 'router.dart';
 
 class RouterController {
+  const RouterController(this.routeState);
   RouterController.use(final Locator read) : routeState = read<RouteState>();
   final RouteState routeState;
 

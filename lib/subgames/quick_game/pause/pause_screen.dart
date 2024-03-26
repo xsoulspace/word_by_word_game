@@ -32,7 +32,7 @@ class PauseScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = _usePauseScreenState(read: context.read);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
 
     return Provider(
       create: (final context) => state,
@@ -60,16 +60,18 @@ class PauseScreen extends HookWidget {
                           icon: Icons.settings,
                           text: S.of(context).settings,
                           onPressed: state.onToSettings,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
                         uiTheme.horizontalBoxes.medium,
                         UiFilledButton.icon(
                           icon: Icons.scoreboard_rounded,
-                          text: S.of(context).playersAndHighscore,
+                          text: Envs.store.isYandexGames
+                              ? S.of(context).playersAndHighscoreYandex
+                              : S.of(context).playersAndHighscore,
                           onPressed: state.onToPlayersAndHighscore,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
@@ -78,7 +80,7 @@ class PauseScreen extends HookWidget {
                           icon: Icons.question_mark_rounded,
                           text: S.of(context).about,
                           onPressed: state.onShowAbout,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
@@ -87,7 +89,7 @@ class PauseScreen extends HookWidget {
                           UiTextButton.text(
                             text: S.of(context).privacyPolicy,
                             onPressed: state.onPrivacyPolicy,
-                          ).animate().then(delay: 500.milliseconds).fadeIn(
+                          ).animate(delay: 500.milliseconds).fadeIn(
                                 curve: Curves.easeIn,
                                 duration: 450.milliseconds,
                               ),

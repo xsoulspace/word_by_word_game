@@ -127,7 +127,7 @@ class GameCanvasObject extends Component
     //   if (hitbox != null) {
     //     canvas.drawRect(
     //       hitbox,
-    //       Palette.red.paint(),
+    //       Palette.red90.paint(),
     //     );
     //   }
     // }

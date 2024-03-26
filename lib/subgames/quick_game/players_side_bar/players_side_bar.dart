@@ -8,7 +8,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class UiPlayersStateDiDto {
@@ -135,7 +134,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     // final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
@@ -233,7 +232,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final radius = uiTheme.circularRadius;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;

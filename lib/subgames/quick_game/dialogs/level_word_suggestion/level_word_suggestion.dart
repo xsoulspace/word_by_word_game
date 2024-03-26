@@ -3,7 +3,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
@@ -88,7 +87,7 @@ class LevelWordSuggestionDialog extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
 
     final state = _useDialogState(read: context.read);
     final cancelButton = TextButton(

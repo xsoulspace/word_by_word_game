@@ -72,7 +72,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   ) async {
     final liveGame = GlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
-    final allLevels = await diDto.services.levelsRepository.getLevels();
+    final allLevels =
+        await diDto.services.levelsRepository.getDefaultTemplateLevels();
     emit(liveGame.copyWith(allCanvasData: allLevels));
 
     LevelModel? level;

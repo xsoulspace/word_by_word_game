@@ -13,10 +13,8 @@
   "@resetEnding": {
     "type": "text"
   },
+  "congratulationsYouPassedTheLandscape": "Congratulations! You passed this landscape!",
   "congratulations": "Congratulations!",
-  "@congratulations": {
-    "type": "text"
-  },
   "maxHighscoreIs": "Max highscore is ",
   "@maxHighscoreIs": {
     "type": "text"
@@ -41,6 +39,7 @@
   "chooseYourCharacter": "Choose Your Character",
   "chooseLandscape": "Choose a Landscape",
   "playersAndHighscore": "Players & Highscore",
+  "playersAndHighscoreYandex": "Players & Highscore",
   "startNewGame": "Quick Start",
   "startAgain": "Start again ",
   "@startAgain": {

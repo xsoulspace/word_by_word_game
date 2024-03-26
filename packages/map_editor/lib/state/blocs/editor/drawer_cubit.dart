@@ -107,10 +107,8 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
       emit(state.copyWith(tileResources: presetResources));
 
   CanvasDataModel get canvasData => state.canvasData;
-
-  set canvasData(final CanvasDataModel value) {
-    emit(state.copyWith(canvasData: value));
-  }
+  set canvasData(final CanvasDataModel value) =>
+      emit(state.copyWith(canvasData: value));
 
   Map<Gid, RenderObjectModel> get objects => {
         ...canvasData.objects,
@@ -125,9 +123,15 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
   }
 
   List<LayerModel> get layers => state.canvasData.layers;
-  set layers(final List<LayerModel> layers) => emit(
+  set layers(final List<LayerModel> value) => emit(
         state.copyWith(
-          canvasData: state.canvasData.copyWith(layers: layers),
+          canvasData: state.canvasData.copyWith(layers: value),
+        ),
+      );
+  List<TechnologyModel> get techologies => state.canvasData.technologies;
+  set techologies(final List<TechnologyModel> values) => emit(
+        state.copyWith(
+          canvasData: state.canvasData.copyWith(technologies: values),
         ),
       );
 }
@@ -359,6 +363,25 @@ final class EditorDrawerCubit extends DrawerCubit {
 
   void reorderLayers(final int oldIndex, final int newIndex) {
     layers = [...layers]..reorder(oldIndex, newIndex);
+  }
+
+  void reorderTechnologies(final int oldIndex, final int newIndex) {
+    techologies = [...techologies]..reorder(oldIndex, newIndex);
+  }
+
+  void onResetTechnology(final int index) {
+    final tech = techologies[index];
+    techologies = techologies
+      ..[index] = TechnologyModel(
+        id: tech.id,
+        title: LocalizedMap.fromLanguages(),
+        unlockCondition:
+            const TechnologyUnlockConditionModel(languageWords: {}),
+      );
+  }
+
+  void onTechnologyChanged(final TechnologyModel technology, final int index) {
+    techologies = [...techologies]..[index] = technology;
   }
 
   void changeLayer({

@@ -72,12 +72,12 @@ class _$StatesStatusesCubitStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_StatesStatusesCubitStateCopyWith<$Res>
+abstract class _$$StatesStatusesCubitStateImplCopyWith<$Res>
     implements $StatesStatusesCubitStateCopyWith<$Res> {
-  factory _$$_StatesStatusesCubitStateCopyWith(
-          _$_StatesStatusesCubitState value,
-          $Res Function(_$_StatesStatusesCubitState) then) =
-      __$$_StatesStatusesCubitStateCopyWithImpl<$Res>;
+  factory _$$StatesStatusesCubitStateImplCopyWith(
+          _$StatesStatusesCubitStateImpl value,
+          $Res Function(_$StatesStatusesCubitStateImpl) then) =
+      __$$StatesStatusesCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -85,12 +85,13 @@ abstract class _$$_StatesStatusesCubitStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_StatesStatusesCubitStateCopyWithImpl<$Res>
+class __$$StatesStatusesCubitStateImplCopyWithImpl<$Res>
     extends _$StatesStatusesCubitStateCopyWithImpl<$Res,
-        _$_StatesStatusesCubitState>
-    implements _$$_StatesStatusesCubitStateCopyWith<$Res> {
-  __$$_StatesStatusesCubitStateCopyWithImpl(_$_StatesStatusesCubitState _value,
-      $Res Function(_$_StatesStatusesCubitState) _then)
+        _$StatesStatusesCubitStateImpl>
+    implements _$$StatesStatusesCubitStateImplCopyWith<$Res> {
+  __$$StatesStatusesCubitStateImplCopyWithImpl(
+      _$StatesStatusesCubitStateImpl _value,
+      $Res Function(_$StatesStatusesCubitStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -99,7 +100,7 @@ class __$$_StatesStatusesCubitStateCopyWithImpl<$Res>
     Object? loadedLevelParts = null,
     Object? levelStateStatus = null,
   }) {
-    return _then(_$_StatesStatusesCubitState(
+    return _then(_$StatesStatusesCubitStateImpl(
       loadedLevelParts: null == loadedLevelParts
           ? _value._loadedLevelParts
           : loadedLevelParts // ignore: cast_nullable_to_non_nullable
@@ -114,8 +115,8 @@ class __$$_StatesStatusesCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_StatesStatusesCubitState implements _StatesStatusesCubitState {
-  const _$_StatesStatusesCubitState(
+class _$StatesStatusesCubitStateImpl implements _StatesStatusesCubitState {
+  const _$StatesStatusesCubitStateImpl(
       {final Set<LevelPartName> loadedLevelParts = const {},
       this.levelStateStatus = LevelStateStatus.loading})
       : _loadedLevelParts = loadedLevelParts;
@@ -157,7 +158,7 @@ class _$_StatesStatusesCubitState implements _StatesStatusesCubitState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_StatesStatusesCubitState &&
+            other is _$StatesStatusesCubitStateImpl &&
             const DeepCollectionEquality()
                 .equals(other._loadedLevelParts, _loadedLevelParts) &&
             (identical(other.levelStateStatus, levelStateStatus) ||
@@ -171,15 +172,16 @@ class _$_StatesStatusesCubitState implements _StatesStatusesCubitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_StatesStatusesCubitStateCopyWith<_$_StatesStatusesCubitState>
-      get copyWith => __$$_StatesStatusesCubitStateCopyWithImpl<
-          _$_StatesStatusesCubitState>(this, _$identity);
+  _$$StatesStatusesCubitStateImplCopyWith<_$StatesStatusesCubitStateImpl>
+      get copyWith => __$$StatesStatusesCubitStateImplCopyWithImpl<
+          _$StatesStatusesCubitStateImpl>(this, _$identity);
 }
 
 abstract class _StatesStatusesCubitState implements StatesStatusesCubitState {
   const factory _StatesStatusesCubitState(
-      {final Set<LevelPartName> loadedLevelParts,
-      final LevelStateStatus levelStateStatus}) = _$_StatesStatusesCubitState;
+          {final Set<LevelPartName> loadedLevelParts,
+          final LevelStateStatus levelStateStatus}) =
+      _$StatesStatusesCubitStateImpl;
 
   @override
 
@@ -195,6 +197,6 @@ abstract class _StatesStatusesCubitState implements StatesStatusesCubitState {
   LevelStateStatus get levelStateStatus;
   @override
   @JsonKey(ignore: true)
-  _$$_StatesStatusesCubitStateCopyWith<_$_StatesStatusesCubitState>
+  _$$StatesStatusesCubitStateImplCopyWith<_$StatesStatusesCubitStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

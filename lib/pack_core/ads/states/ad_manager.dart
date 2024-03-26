@@ -14,7 +14,7 @@ class AdManager implements Loadable, Disposable {
       return;
     }
     if (kIsWeb) {
-      if (Envs.isYandexGames) {
+      if (Envs.store.isYandexGames) {
         permissions = AdPermissions.yandexGamesAds;
       } else {
         permissions = AdPermissions.webAndroidAds;

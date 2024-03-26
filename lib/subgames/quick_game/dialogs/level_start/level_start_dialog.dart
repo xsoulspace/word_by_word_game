@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 import 'package:life_hooks/life_hooks.dart';
@@ -61,7 +62,7 @@ class LevelStartDialogButton extends HookWidget {
             visible: uiState.isVisible,
             child: _DialogScreen(
               level: level,
-            ),
+            ).animate().fadeIn(duration: 50.milliseconds),
           ),
           child: UiFilledButton.text(
             text: S.of(context).startNewGame,
@@ -96,19 +97,16 @@ class _DialogScreen extends HookWidget {
                   : null,
               child: ValueListenableBuilder(
                 valueListenable: widgetUiState.currentViewNotifier,
-                builder: (final context, final currentView, final child) {
-                  switch (currentView) {
-                    case LevelStartDialogView.choosePlayers:
-                      return LevelOptionsScreen(
-                        level: level,
-                        onCreatePlayer: widgetUiState.onCreatePlayer,
-                      );
-                    case LevelStartDialogView.createPlayer:
-                      return CreatePlayerScreen(
-                        onCancel: widgetUiState.onChoosePlayers,
-                        onPlayerCreated: widgetUiState.onPlayerCreated,
-                      );
-                  }
+                builder: (final context, final currentView, final child) =>
+                    switch (currentView) {
+                  LevelStartDialogView.choosePlayers => LevelOptionsScreen(
+                      level: level,
+                      onCreatePlayer: widgetUiState.onCreatePlayer,
+                    ),
+                  LevelStartDialogView.createPlayer => CreatePlayerScreen(
+                      onCancel: widgetUiState.onChoosePlayers,
+                      onPlayerCreated: widgetUiState.onPlayerCreated,
+                    ),
                 },
               ),
             ),

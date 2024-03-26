@@ -3,11 +3,12 @@ package dev.xsoulspace.yandex_ads_sdk.view
 import android.content.Context
 import android.util.Log
 import android.view.View
-import com.yandex.mobile.ads.banner.AdSize
 import com.yandex.mobile.ads.banner.BannerAdEventListener
+import com.yandex.mobile.ads.banner.BannerAdSize
 import com.yandex.mobile.ads.banner.BannerAdView
 import com.yandex.mobile.ads.common.AdRequest
 import com.yandex.mobile.ads.common.AdRequestError
+import com.yandex.mobile.ads.common.AdSize
 import com.yandex.mobile.ads.common.ImpressionData
 import dev.xsoulspace.yandex_ads_sdk.YandexAdEventHandlerImpl
 import dev.xsoulspace.yandex_ads_sdk.YandexAdsApiImpl
@@ -23,7 +24,7 @@ internal class YandexAdsBannerNativeView(
 	private val apiEmitter: YandexAdEventHandlerImpl
 		get() = yandexApi.emitter
 
-	private val banner: BannerAdView
+	private val banner: BannerAdView = BannerAdView(context)
 	private val bannerAdEventListener = BannerAdYandexAdsEventListener()
 	override fun getView(): View {
 		return banner
@@ -34,8 +35,7 @@ internal class YandexAdsBannerNativeView(
 	}
 
 	init {
-		banner = BannerAdView(context)
-		banner.setAdSize(AdSize.flexibleSize(width, height))
+		banner.setAdSize(BannerAdSize.fixedSize(context, width, height))
 		banner.setAdUnitId(adUnitId)
 		banner.setBannerAdEventListener(bannerAdEventListener)
 		val request: AdRequest = AdRequest.Builder().build()

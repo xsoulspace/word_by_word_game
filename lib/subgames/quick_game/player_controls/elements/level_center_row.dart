@@ -28,7 +28,7 @@ class UILevelCenterBar extends StatelessWidget {
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
         devicePixelRatio: 1,
-        textScaler: TextScaler.noScaling,
+        textScaleFactor: 1,
       ),
       child: Column(
         children: [

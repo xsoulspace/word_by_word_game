@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -19,6 +20,7 @@ class Palette {
   Palette._();
   static const white = BasicPalette.white;
   static const red = PaletteEntry(Color(0xFFAC3232));
+  static const red90 = PaletteEntry(Color(0xE3AC3232));
   static const grey = PaletteEntry(Color(0xFF404040));
   static const green = PaletteEntry(Color(0xFF54a286));
   static const blue = PaletteEntry(Color.fromARGB(255, 33, 176, 201));
@@ -43,7 +45,7 @@ class EditorRendererGame extends FlameGame
         HasCollisionDetection,
         SingleGameInstance,
         // replace to MouseMovementDetector (?)
-        HasHoverables {
+        MouseMovementDetector {
   EditorRendererGame.use({
     required final Locator read,
     required final material.ThemeData theme,
@@ -57,6 +59,7 @@ class EditorRendererGame extends FlameGame
   late final RouterComponent router;
 
   late CameraComponent worldCamera;
+  @override
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final editor = EditorRendererComponent();

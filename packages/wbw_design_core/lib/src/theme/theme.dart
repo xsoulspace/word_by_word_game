@@ -32,7 +32,7 @@ class UiThemeScheme with _$UiThemeScheme {
   factory UiThemeScheme.m3(final BuildContext context) {
     const spacing = UiSpacing.m3;
     return UiThemeScheme(
-      text: UiTextTheme.of(context),
+      text: UiTextTheme(context),
       customizableFormFactors: UiCustomizableFormFactors.ofTargetPlatform(),
       circularRadius: UiRadius.circularBySpacing(spacing: spacing),
       spacing: spacing,
@@ -40,23 +40,4 @@ class UiThemeScheme with _$UiThemeScheme {
       verticalBoxes: UiBoxSpacing.vertical(spacing: spacing),
     );
   }
-}
-
-class UiTheme extends InheritedWidget {
-  const UiTheme({
-    required this.scheme,
-    required super.child,
-    super.key,
-  });
-
-  final UiThemeScheme scheme;
-
-  static UiThemeScheme of(final BuildContext context) {
-    final widget = context.dependOnInheritedWidgetOfExactType<UiTheme>();
-    return widget!.scheme;
-  }
-
-  @override
-  bool updateShouldNotify(covariant final UiTheme oldWidget) =>
-      scheme != oldWidget.scheme;
 }

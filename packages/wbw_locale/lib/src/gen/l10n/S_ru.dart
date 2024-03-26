@@ -22,6 +22,9 @@ class SRu extends S {
   String get resetEnding => 'Сбросить слово';
 
   @override
+  String get congratulationsYouPassedTheLandscape => 'Поздравляем! Вы прошли этот ландшафт!';
+
+  @override
   String get congratulations => 'Поздравляем!';
 
   @override
@@ -49,7 +52,7 @@ class SRu extends S {
   String get profileCreator => 'Создатель профиля';
 
   @override
-  String get returnToLandscapes => 'Вернуться к Местам';
+  String get returnToLandscapes => 'Вернуться к местам';
 
   @override
   String get about => 'Об игре';
@@ -73,10 +76,13 @@ class SRu extends S {
   String get chooseYourCharacter => 'Выбери своего персонажа';
 
   @override
-  String get chooseLandscape => 'Выбери Место';
+  String get chooseLandscape => 'Выбери место';
 
   @override
   String get playersAndHighscore => 'Игроки & Опыт';
+
+  @override
+  String get playersAndHighscoreYandex => 'Игроки и опыт';
 
   @override
   String get startNewGame => 'Быстрая игра';
@@ -246,7 +252,7 @@ class SRu extends S {
   String get createNewPlayerTooltip => 'Нажми, чтобы создать профиль нового игрока.';
 
   @override
-  String get createNewFirstPlayerTitle => 'Создай профиль игрока чтобы начать игру.';
+  String get createNewFirstPlayerTitle => 'Создай профиль игрока, чтобы начать игру.';
 
   @override
   String get createNewPlayerTitle => 'Создай профиль нового игрока.';

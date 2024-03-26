@@ -1,3 +1,5 @@
+import 'package:wbw_core/wbw_core.dart';
+
 import '../../../wbw_design_core.dart';
 
 class UICenterFrame extends StatelessWidget {
@@ -12,7 +14,7 @@ class UICenterFrame extends StatelessWidget {
   final Widget rightButton;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     const height = 108.0;
     return Stack(
       children: [

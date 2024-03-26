@@ -4,6 +4,8 @@ packages:
   - ./*
   - packages/*
 
+sdkPath: ./.fvm/flutter_sdk
+
 scripts:
   get: fvm flutter pub get && fvm dart run melos bootstrap
   clean: fvm dart run melos clean
