@@ -57,7 +57,8 @@ class PauseScreenState extends ContextfulLifeState {
   Future<void> onPrivacyPolicy() async {
     // launchUrlString('https://xsoulspace.dev/game/wbw/privacy');
     await launchUrlString(
-      'https://github.com/xsoulspace/word_by_word_game/blob/master/PRIVACY_POLICY.md',
+      'https://xsoulspace.dev/#/home/p/TjPS8bk5XNT85GIva57K/privacy',
+      // 'https://github.com/xsoulspace/word_by_word_game/blob/master/PRIVACY_POLICY.md',
     );
   }
 
