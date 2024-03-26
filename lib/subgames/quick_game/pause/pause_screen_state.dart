@@ -31,11 +31,11 @@ class PauseScreenState extends ContextfulLifeState {
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
-  @override
-  void initState() {
-    super.initState();
-    if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
+  // }
 
   Future<void> onContinue({
     required final CanvasDataModelId id,
