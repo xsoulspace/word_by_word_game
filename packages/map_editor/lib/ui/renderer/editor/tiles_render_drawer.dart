@@ -467,7 +467,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
 abstract interface class TilesPainterInterface {
   // ignore: unused_element
   TilesPainterInterface._();
-  factory TilesPainterInterface.getImpl() => DeviceRuntimeType.isMobileWeb
+  factory TilesPainterInterface.getImpl() => DeviceRuntimeType.isWeb
       ? TilesPainterImagesImpl()
       : TilesPainterAtlasImpl();
   void render({

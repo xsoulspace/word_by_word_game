@@ -38,6 +38,7 @@ class WbwGameWidget extends HookWidget {
               loadingBuilder: (final context) => const LoadingScreen(),
               initialActiveOverlays: [
                 GameOverlaysRoutes.gui.name,
+                GameOverlaysRoutes.notifications.name,
                 GameOverlaysRoutes.debug.name,
               ],
               overlayBuilderMap: const GameOverlayBuilderMapRouter().build(),
