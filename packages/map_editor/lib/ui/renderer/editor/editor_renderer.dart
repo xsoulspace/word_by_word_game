@@ -7,10 +7,9 @@ import 'package:flame/cache.dart';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
-import 'package:flame/input.dart';
+// ignore: implementation_imports
 import 'package:flame/src/events/messages/position_event.dart';
 import 'package:flame_bloc/flame_bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
@@ -27,7 +26,7 @@ part 'editor_canvas_object.dart';
 part 'tiles_render_drawer.dart';
 
 class EditorRendererComponent extends Component
-    with DragCallbacks, HasGameRef<EditorRendererGame>, Hoverable {
+    with DragCallbacks, HasGameRef<EditorRendererGame>, HoverCallbacks {
   DrawerCubit get drawerCubit => game.diDto.drawerCubit;
   DrawerCubitState get drawerCubitState => drawerCubit.state;
   Vector2 get origin => drawerCubitState.origin;
@@ -56,7 +55,7 @@ class EditorRendererComponent extends Component
       debugSurface,
       tilesDrawer,
       canvasObjectsDrawer,
-      cursor,
+      // cursor,
       // LOGIC
       animationUpdater,
     ]);
@@ -104,12 +103,10 @@ class EditorRendererComponent extends Component
 
   /// For cursor rendering
   Vector2 mousePosition = Vector2.zero();
-
   @override
-  // ignore: invalid_override_of_non_virtual_member
-  bool handleMouseMovement(final PointerHoverInfo info) {
-    mousePosition = info.eventPosition.viewport;
-    return super.handleMouseMovement(info);
+  void onPointerMove(final PointerMoveEvent event) {
+    mousePosition = event.canvasPosition;
+    super.onPointerMove(event);
   }
 
   @override
@@ -127,7 +124,7 @@ class EditorRendererComponent extends Component
 mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   EditorRendererComponent? _editor;
   EditorRendererComponent get editor => _editor ??= game.editor;
-  DrawerCubit get drawerCubit => game.diDto.drawerCubit;
+  EditorDrawerCubit get drawerCubit => game.diDto.drawerCubit;
   Vector2 get origin => editor.origin;
   @useResult
   Vector2 getOffsetOrigin() => editor.getOffsetOrigin();
@@ -144,7 +141,8 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
       );
   CanvasDataModel get canvasData => drawerCubit.canvasData;
   set canvasData(final CanvasDataModel value) => drawerCubit.canvasData = value;
-  TilesPresetResources get presetResources => drawerCubit.tilesResources;
+  TilesetPresetResources get presetResources =>
+      drawerCubit.tilesPresetResources;
   Map<TileId, PresetTileResource> get tilesResources => presetResources.tiles;
 
   /// as temporary solution

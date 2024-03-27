@@ -3,7 +3,7 @@ import 'dart:math' as math;
 import 'package:english_words/english_words.dart' as english_words;
 import 'package:russian_words/russian_words.dart' as russian_words;
 
-import '../models/models.dart';
+import '../data_models/data_models.dart';
 
 extension RandomListItem<T> on List<T> {
   T randomItem() => this[math.Random().nextInt(length)];
@@ -19,7 +19,7 @@ class DictionaryMechanics {
   String getWordSuggestion({
     required final String characters,
     required final Iterable<String> exceptions,
-    final int maxSuggestions = 10,
+    final int maxSuggestions = 20,
   }) {
     List<String> words = searchWords(
       dictionaryWords: english_words.nouns,
@@ -68,8 +68,9 @@ class DictionaryMechanics {
   }) {
     final cleanWord = word.fullWord;
     final isEnglishWord = english_words.nouns.contains(cleanWord);
+    if (isEnglishWord) return true;
     final isRussianWord = russian_words.nouns.contains(cleanWord);
-    if (isEnglishWord || isRussianWord) return true;
+    if (isRussianWord) return true;
 
     return localDictionary.words.contains(cleanWord);
   }

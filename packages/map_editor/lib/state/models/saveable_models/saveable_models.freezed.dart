@@ -118,217 +118,6 @@ abstract class _CanvasDataModelId extends CanvasDataModelId {
       throw _privateConstructorUsedError;
 }
 
-CanvasDataReferenceModel _$CanvasDataReferenceModelFromJson(
-    Map<String, dynamic> json) {
-  return _CanvasDataReferenceModel.fromJson(json);
-}
-
-/// @nodoc
-mixin _$CanvasDataReferenceModel {
-  @JsonKey(
-      fromJson: CanvasDataModelId.fromJson,
-      toJson: CanvasDataModelId.toJsonString)
-  CanvasDataModelId get id => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
-  LocalizedMap get name => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $CanvasDataReferenceModelCopyWith<CanvasDataReferenceModel> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $CanvasDataReferenceModelCopyWith<$Res> {
-  factory $CanvasDataReferenceModelCopyWith(CanvasDataReferenceModel value,
-          $Res Function(CanvasDataReferenceModel) then) =
-      _$CanvasDataReferenceModelCopyWithImpl<$Res, CanvasDataReferenceModel>;
-  @useResult
-  $Res call(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          CanvasDataModelId id,
-      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
-          LocalizedMap name});
-
-  $CanvasDataModelIdCopyWith<$Res> get id;
-  $LocalizedMapCopyWith<$Res> get name;
-}
-
-/// @nodoc
-class _$CanvasDataReferenceModelCopyWithImpl<$Res,
-        $Val extends CanvasDataReferenceModel>
-    implements $CanvasDataReferenceModelCopyWith<$Res> {
-  _$CanvasDataReferenceModelCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as CanvasDataModelId,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as LocalizedMap,
-    ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CanvasDataModelIdCopyWith<$Res> get id {
-    return $CanvasDataModelIdCopyWith<$Res>(_value.id, (value) {
-      return _then(_value.copyWith(id: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LocalizedMapCopyWith<$Res> get name {
-    return $LocalizedMapCopyWith<$Res>(_value.name, (value) {
-      return _then(_value.copyWith(name: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$_CanvasDataReferenceModelCopyWith<$Res>
-    implements $CanvasDataReferenceModelCopyWith<$Res> {
-  factory _$$_CanvasDataReferenceModelCopyWith(
-          _$_CanvasDataReferenceModel value,
-          $Res Function(_$_CanvasDataReferenceModel) then) =
-      __$$_CanvasDataReferenceModelCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          CanvasDataModelId id,
-      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
-          LocalizedMap name});
-
-  @override
-  $CanvasDataModelIdCopyWith<$Res> get id;
-  @override
-  $LocalizedMapCopyWith<$Res> get name;
-}
-
-/// @nodoc
-class __$$_CanvasDataReferenceModelCopyWithImpl<$Res>
-    extends _$CanvasDataReferenceModelCopyWithImpl<$Res,
-        _$_CanvasDataReferenceModel>
-    implements _$$_CanvasDataReferenceModelCopyWith<$Res> {
-  __$$_CanvasDataReferenceModelCopyWithImpl(_$_CanvasDataReferenceModel _value,
-      $Res Function(_$_CanvasDataReferenceModel) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? id = null,
-    Object? name = null,
-  }) {
-    return _then(_$_CanvasDataReferenceModel(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as CanvasDataModelId,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as LocalizedMap,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$_CanvasDataReferenceModel extends _CanvasDataReferenceModel {
-  const _$_CanvasDataReferenceModel(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          this.id = CanvasDataModelId.empty,
-      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
-          this.name = LocalizedMap.empty})
-      : super._();
-
-  factory _$_CanvasDataReferenceModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CanvasDataReferenceModelFromJson(json);
-
-  @override
-  @JsonKey(
-      fromJson: CanvasDataModelId.fromJson,
-      toJson: CanvasDataModelId.toJsonString)
-  final CanvasDataModelId id;
-  @override
-  @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
-  final LocalizedMap name;
-
-  @override
-  String toString() {
-    return 'CanvasDataReferenceModel(id: $id, name: $name)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_CanvasDataReferenceModel &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.name, name) || other.name == name));
-  }
-
-  @JsonKey(ignore: true)
-  @override
-  int get hashCode => Object.hash(runtimeType, id, name);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_CanvasDataReferenceModelCopyWith<_$_CanvasDataReferenceModel>
-      get copyWith => __$$_CanvasDataReferenceModelCopyWithImpl<
-          _$_CanvasDataReferenceModel>(this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$_CanvasDataReferenceModelToJson(
-      this,
-    );
-  }
-}
-
-abstract class _CanvasDataReferenceModel extends CanvasDataReferenceModel {
-  const factory _CanvasDataReferenceModel(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          final CanvasDataModelId id,
-      @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
-          final LocalizedMap name}) = _$_CanvasDataReferenceModel;
-  const _CanvasDataReferenceModel._() : super._();
-
-  factory _CanvasDataReferenceModel.fromJson(Map<String, dynamic> json) =
-      _$_CanvasDataReferenceModel.fromJson;
-
-  @override
-  @JsonKey(
-      fromJson: CanvasDataModelId.fromJson,
-      toJson: CanvasDataModelId.toJsonString)
-  CanvasDataModelId get id;
-  @override
-  @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)
-  LocalizedMap get name;
-  @override
-  @JsonKey(ignore: true)
-  _$$_CanvasDataReferenceModelCopyWith<_$_CanvasDataReferenceModel>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
 CanvasDataModel _$CanvasDataModelFromJson(Map<String, dynamic> json) {
   return _CanvasDataModel.fromJson(json);
 }
@@ -364,6 +153,8 @@ mixin _$CanvasDataModel {
 
   /// can be negative and positive. Should be absolute tile index.
   GravityModel get gravity => throw _privateConstructorUsedError;
+  List<TechnologyModel> get technologies => throw _privateConstructorUsedError;
+  TilesetType get tilesetType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -378,16 +169,24 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       _$CanvasDataModelCopyWithImpl<$Res, CanvasDataModel>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          CanvasDataModelId id,
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          LocalizedMap name,
+      {@JsonKey(
+          fromJson: CanvasDataModelId.fromJson,
+          toJson: CanvasDataModelId.toJsonString)
+      CanvasDataModelId id,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      LocalizedMap name,
       List<LayerModel> layers,
-      @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
-          Map<Gid, RenderObjectModel> objects,
+      @JsonKey(
+          fromJson: CanvasDataModel._objectsFromJson,
+          toJson: CanvasDataModel._objectsToJson)
+      Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
       int skyYTilePosition,
-      GravityModel gravity});
+      GravityModel gravity,
+      List<TechnologyModel> technologies,
+      TilesetType tilesetType});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get name;
@@ -415,6 +214,8 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     Object? playerObject = null,
     Object? skyYTilePosition = null,
     Object? gravity = null,
+    Object? technologies = null,
+    Object? tilesetType = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -445,6 +246,14 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
           ? _value.gravity
           : gravity // ignore: cast_nullable_to_non_nullable
               as GravityModel,
+      technologies: null == technologies
+          ? _value.technologies
+          : technologies // ignore: cast_nullable_to_non_nullable
+              as List<TechnologyModel>,
+      tilesetType: null == tilesetType
+          ? _value.tilesetType
+          : tilesetType // ignore: cast_nullable_to_non_nullable
+              as TilesetType,
     ) as $Val);
   }
 
@@ -490,16 +299,24 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          CanvasDataModelId id,
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          LocalizedMap name,
+      {@JsonKey(
+          fromJson: CanvasDataModelId.fromJson,
+          toJson: CanvasDataModelId.toJsonString)
+      CanvasDataModelId id,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      LocalizedMap name,
       List<LayerModel> layers,
-      @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
-          Map<Gid, RenderObjectModel> objects,
+      @JsonKey(
+          fromJson: CanvasDataModel._objectsFromJson,
+          toJson: CanvasDataModel._objectsToJson)
+      Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
       int skyYTilePosition,
-      GravityModel gravity});
+      GravityModel gravity,
+      List<TechnologyModel> technologies,
+      TilesetType tilesetType});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get id;
@@ -529,6 +346,8 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
     Object? playerObject = null,
     Object? skyYTilePosition = null,
     Object? gravity = null,
+    Object? technologies = null,
+    Object? tilesetType = null,
   }) {
     return _then(_$_CanvasDataModel(
       id: null == id
@@ -559,6 +378,14 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
           ? _value.gravity
           : gravity // ignore: cast_nullable_to_non_nullable
               as GravityModel,
+      technologies: null == technologies
+          ? _value._technologies
+          : technologies // ignore: cast_nullable_to_non_nullable
+              as List<TechnologyModel>,
+      tilesetType: null == tilesetType
+          ? _value.tilesetType
+          : tilesetType // ignore: cast_nullable_to_non_nullable
+              as TilesetType,
     ));
   }
 }
@@ -567,18 +394,27 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_CanvasDataModel extends _CanvasDataModel {
   const _$_CanvasDataModel(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          this.id = CanvasDataModelId.empty,
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          this.name = LocalizedMap.empty,
+      {@JsonKey(
+          fromJson: CanvasDataModelId.fromJson,
+          toJson: CanvasDataModelId.toJsonString)
+      this.id = CanvasDataModelId.empty,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      this.name = LocalizedMap.empty,
       final List<LayerModel> layers = const [],
-      @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
-          final Map<Gid, RenderObjectModel> objects = const {},
+      @JsonKey(
+          fromJson: CanvasDataModel._objectsFromJson,
+          toJson: CanvasDataModel._objectsToJson)
+      final Map<Gid, RenderObjectModel> objects = const {},
       this.playerObject = RenderObjectModel.empty,
       this.skyYTilePosition = 0,
-      this.gravity = GravityModel.initial})
+      this.gravity = GravityModel.initial,
+      final List<TechnologyModel> technologies = const [],
+      this.tilesetType = TilesetType.colourful})
       : _layers = layers,
         _objects = objects,
+        _technologies = technologies,
         super._();
 
   factory _$_CanvasDataModel.fromJson(Map<String, dynamic> json) =>
@@ -641,10 +477,22 @@ class _$_CanvasDataModel extends _CanvasDataModel {
   @override
   @JsonKey()
   final GravityModel gravity;
+  final List<TechnologyModel> _technologies;
+  @override
+  @JsonKey()
+  List<TechnologyModel> get technologies {
+    if (_technologies is EqualUnmodifiableListView) return _technologies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_technologies);
+  }
+
+  @override
+  @JsonKey()
+  final TilesetType tilesetType;
 
   @override
   String toString() {
-    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYTilePosition: $skyYTilePosition, gravity: $gravity)';
+    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYTilePosition: $skyYTilePosition, gravity: $gravity, technologies: $technologies, tilesetType: $tilesetType)';
   }
 
   @override
@@ -660,7 +508,11 @@ class _$_CanvasDataModel extends _CanvasDataModel {
                 other.playerObject == playerObject) &&
             (identical(other.skyYTilePosition, skyYTilePosition) ||
                 other.skyYTilePosition == skyYTilePosition) &&
-            (identical(other.gravity, gravity) || other.gravity == gravity));
+            (identical(other.gravity, gravity) || other.gravity == gravity) &&
+            const DeepCollectionEquality()
+                .equals(other._technologies, _technologies) &&
+            (identical(other.tilesetType, tilesetType) ||
+                other.tilesetType == tilesetType));
   }
 
   @JsonKey(ignore: true)
@@ -673,7 +525,9 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       const DeepCollectionEquality().hash(_objects),
       playerObject,
       skyYTilePosition,
-      gravity);
+      gravity,
+      const DeepCollectionEquality().hash(_technologies),
+      tilesetType);
 
   @JsonKey(ignore: true)
   @override
@@ -691,16 +545,24 @@ class _$_CanvasDataModel extends _CanvasDataModel {
 
 abstract class _CanvasDataModel extends CanvasDataModel {
   const factory _CanvasDataModel(
-      {@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)
-          final CanvasDataModelId id,
-      @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap)
-          final LocalizedMap name,
+      {@JsonKey(
+          fromJson: CanvasDataModelId.fromJson,
+          toJson: CanvasDataModelId.toJsonString)
+      final CanvasDataModelId id,
+      @JsonKey(
+          fromJson: LocalizedMap.fromJsonValueMap,
+          toJson: LocalizedMap.toJsonValueMap)
+      final LocalizedMap name,
       final List<LayerModel> layers,
-      @JsonKey(fromJson: CanvasDataModel._objectsFromJson, toJson: CanvasDataModel._objectsToJson)
-          final Map<Gid, RenderObjectModel> objects,
+      @JsonKey(
+          fromJson: CanvasDataModel._objectsFromJson,
+          toJson: CanvasDataModel._objectsToJson)
+      final Map<Gid, RenderObjectModel> objects,
       final RenderObjectModel playerObject,
       final int skyYTilePosition,
-      final GravityModel gravity}) = _$_CanvasDataModel;
+      final GravityModel gravity,
+      final List<TechnologyModel> technologies,
+      final TilesetType tilesetType}) = _$_CanvasDataModel;
   const _CanvasDataModel._() : super._();
 
   factory _CanvasDataModel.fromJson(Map<String, dynamic> json) =
@@ -742,6 +604,10 @@ abstract class _CanvasDataModel extends CanvasDataModel {
 
   /// can be negative and positive. Should be absolute tile index.
   GravityModel get gravity;
+  @override
+  List<TechnologyModel> get technologies;
+  @override
+  TilesetType get tilesetType;
   @override
   @JsonKey(ignore: true)
   _$$_CanvasDataModelCopyWith<_$_CanvasDataModel> get copyWith =>
@@ -1026,11 +892,13 @@ abstract class $LayerModelCopyWith<$Res> {
       _$LayerModelCopyWithImpl<$Res, LayerModel>;
   @useResult
   $Res call(
-      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
-          LayerModelId id,
+      {@JsonKey(
+          fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+      LayerModelId id,
       String title,
-      @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          Map<CellPointModel, CellTileModel> tiles,
+      @JsonKey(
+          fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
+      Map<CellPointModel, CellTileModel> tiles,
       bool isCollidable,
       CollisionConsequence collisionConsequence,
       bool isVisible});
@@ -1104,11 +972,13 @@ abstract class _$$_LayerModelCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
-          LayerModelId id,
+      {@JsonKey(
+          fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+      LayerModelId id,
       String title,
-      @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          Map<CellPointModel, CellTileModel> tiles,
+      @JsonKey(
+          fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
+      Map<CellPointModel, CellTileModel> tiles,
       bool isCollidable,
       CollisionConsequence collisionConsequence,
       bool isVisible});
@@ -1168,11 +1038,13 @@ class __$$_LayerModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_LayerModel extends _LayerModel {
   const _$_LayerModel(
-      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
-          required this.id,
+      {@JsonKey(
+          fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+      required this.id,
       this.title = '',
-      @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          final Map<CellPointModel, CellTileModel> tiles = const {},
+      @JsonKey(
+          fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
+      final Map<CellPointModel, CellTileModel> tiles = const {},
       this.isCollidable = false,
       this.collisionConsequence = CollisionConsequence.none,
       this.isVisible = true})
@@ -1257,11 +1129,13 @@ class _$_LayerModel extends _LayerModel {
 
 abstract class _LayerModel extends LayerModel {
   const factory _LayerModel(
-      {@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
-          required final LayerModelId id,
+      {@JsonKey(
+          fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
+      required final LayerModelId id,
       final String title,
-      @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
-          final Map<CellPointModel, CellTileModel> tiles,
+      @JsonKey(
+          fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
+      final Map<CellPointModel, CellTileModel> tiles,
       final bool isCollidable,
       final CollisionConsequence collisionConsequence,
       final bool isVisible}) = _$_LayerModel;

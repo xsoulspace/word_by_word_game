@@ -34,13 +34,12 @@ class LevelStartDialogUxState extends LifeState {
   final CanvasDataModel canvasData;
   final _LevelStartDialogUxStateDiDto diDto;
 
-  Gid? characterId;
-
+  PlayerCharacterModel? character;
   @override
   void initState() {
     super.initState();
     final liveState = diDto.globalGameBloc.state;
-    characterId = liveState.playersCharacters.first.id;
+    character = liveState.playersCharacters.first;
     final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
       progress: diDto.tutorialBloc.getLiveProgress(),
       tutorial: TutorialCollectionsName.levelIntroduction,
@@ -48,10 +47,10 @@ class LevelStartDialogUxState extends LifeState {
     shouldStartTutorial = !isTutorialPlayed;
   }
 
-  bool checkIsCharacterSelected(final PlayerCharacterModel character) =>
-      characterId == character.id;
-  void onCharacterPressed(final PlayerCharacterModel character) {
-    characterId = character.id;
+  bool checkIsCharacterSelected(final PlayerCharacterModel char) =>
+      character?.id == char.id;
+  void onCharacterPressed(final PlayerCharacterModel newCharacter) {
+    character = newCharacter;
     setState();
   }
 
@@ -85,36 +84,12 @@ class LevelStartDialogUxState extends LifeState {
   }
 
   Future<void> onPlay() async {
-    final liveState = diDto.globalGameBloc.state;
-    final charactersCollection = liveState.playersCharacters;
-    final playersCollection = liveState.playersCollection;
-    final levelPlayers = playersIds.map(
-      (final id) => playersCollection.firstWhere(
-        (final player) => player.id == id,
-      ),
-    );
-    final levelCharecters = charactersCollection.firstWhere(
-      (final character) => character.id == characterId,
-    );
-
-    final level = LevelModel(
-      characters: LevelCharactersModel(
-        playerCharacter: levelCharecters,
-      ),
-      players: LevelPlayersModel(
-        currentPlayerId: playersIds.first,
-        players: levelPlayers
-            .map(
-              (final e) => e.copyWith(
-                highscore: PlayerHighscoreModel.empty,
-              ),
-            )
-            .toList(),
-      ),
+    final level = diDto.globalGameBloc.createLevel(
       canvasDataId: canvasData.id,
+      playersIds: playersIds,
+      characterId: character!.id,
     );
-
-    diDto.globalGameBloc
+    await diDto.globalGameBloc
         .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
     await diDto.globalGameBloc.onStartPlayingLevel(
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),

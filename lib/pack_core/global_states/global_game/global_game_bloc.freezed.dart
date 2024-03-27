@@ -26,7 +26,6 @@ mixin _$GameEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -39,7 +38,6 @@ mixin _$GameEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -52,7 +50,6 @@ mixin _$GameEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -68,7 +65,6 @@ mixin _$GameEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -80,7 +76,6 @@ mixin _$GameEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -92,7 +87,6 @@ mixin _$GameEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -116,20 +110,22 @@ class _$GameEventCopyWithImpl<$Res, $Val extends GameEvent>
 }
 
 /// @nodoc
-abstract class _$$StartPlayingLevelEventCopyWith<$Res> {
-  factory _$$StartPlayingLevelEventCopyWith(_$StartPlayingLevelEvent value,
-          $Res Function(_$StartPlayingLevelEvent) then) =
-      __$$StartPlayingLevelEventCopyWithImpl<$Res>;
+abstract class _$$StartPlayingLevelEventImplCopyWith<$Res> {
+  factory _$$StartPlayingLevelEventImplCopyWith(
+          _$StartPlayingLevelEventImpl value,
+          $Res Function(_$StartPlayingLevelEventImpl) then) =
+      __$$StartPlayingLevelEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool shouldRestartTutorial});
 }
 
 /// @nodoc
-class __$$StartPlayingLevelEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$StartPlayingLevelEvent>
-    implements _$$StartPlayingLevelEventCopyWith<$Res> {
-  __$$StartPlayingLevelEventCopyWithImpl(_$StartPlayingLevelEvent _value,
-      $Res Function(_$StartPlayingLevelEvent) _then)
+class __$$StartPlayingLevelEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$StartPlayingLevelEventImpl>
+    implements _$$StartPlayingLevelEventImplCopyWith<$Res> {
+  __$$StartPlayingLevelEventImplCopyWithImpl(
+      _$StartPlayingLevelEventImpl _value,
+      $Res Function(_$StartPlayingLevelEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -137,7 +133,7 @@ class __$$StartPlayingLevelEventCopyWithImpl<$Res>
   $Res call({
     Object? shouldRestartTutorial = null,
   }) {
-    return _then(_$StartPlayingLevelEvent(
+    return _then(_$StartPlayingLevelEventImpl(
       shouldRestartTutorial: null == shouldRestartTutorial
           ? _value.shouldRestartTutorial
           : shouldRestartTutorial // ignore: cast_nullable_to_non_nullable
@@ -148,8 +144,8 @@ class __$$StartPlayingLevelEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
-  const _$StartPlayingLevelEvent({this.shouldRestartTutorial = true});
+class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
+  const _$StartPlayingLevelEventImpl({this.shouldRestartTutorial = true});
 
   @override
   @JsonKey()
@@ -164,7 +160,7 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StartPlayingLevelEvent &&
+            other is _$StartPlayingLevelEventImpl &&
             (identical(other.shouldRestartTutorial, shouldRestartTutorial) ||
                 other.shouldRestartTutorial == shouldRestartTutorial));
   }
@@ -175,9 +171,9 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$StartPlayingLevelEventCopyWith<_$StartPlayingLevelEvent> get copyWith =>
-      __$$StartPlayingLevelEventCopyWithImpl<_$StartPlayingLevelEvent>(
-          this, _$identity);
+  _$$StartPlayingLevelEventImplCopyWith<_$StartPlayingLevelEventImpl>
+      get copyWith => __$$StartPlayingLevelEventImplCopyWithImpl<
+          _$StartPlayingLevelEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -190,7 +186,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return startPlayingLevel(shouldRestartTutorial);
   }
@@ -206,7 +201,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return startPlayingLevel?.call(shouldRestartTutorial);
   }
@@ -222,7 +216,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (startPlayingLevel != null) {
@@ -244,7 +237,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return startPlayingLevel(this);
   }
@@ -259,7 +251,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return startPlayingLevel?.call(this);
   }
@@ -274,7 +265,6 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (startPlayingLevel != null) {
@@ -286,19 +276,20 @@ class _$StartPlayingLevelEvent implements StartPlayingLevelEvent {
 
 abstract class StartPlayingLevelEvent implements GameEvent {
   const factory StartPlayingLevelEvent({final bool shouldRestartTutorial}) =
-      _$StartPlayingLevelEvent;
+      _$StartPlayingLevelEventImpl;
 
   bool get shouldRestartTutorial;
   @JsonKey(ignore: true)
-  _$$StartPlayingLevelEventCopyWith<_$StartPlayingLevelEvent> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$StartPlayingLevelEventImplCopyWith<_$StartPlayingLevelEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$InitGlobalGameLevelEventCopyWith<$Res> {
-  factory _$$InitGlobalGameLevelEventCopyWith(_$InitGlobalGameLevelEvent value,
-          $Res Function(_$InitGlobalGameLevelEvent) then) =
-      __$$InitGlobalGameLevelEventCopyWithImpl<$Res>;
+abstract class _$$InitGlobalGameLevelEventImplCopyWith<$Res> {
+  factory _$$InitGlobalGameLevelEventImplCopyWith(
+          _$InitGlobalGameLevelEventImpl value,
+          $Res Function(_$InitGlobalGameLevelEventImpl) then) =
+      __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({LevelModel levelModel, bool isNewStart});
 
@@ -306,11 +297,12 @@ abstract class _$$InitGlobalGameLevelEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$InitGlobalGameLevelEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$InitGlobalGameLevelEvent>
-    implements _$$InitGlobalGameLevelEventCopyWith<$Res> {
-  __$$InitGlobalGameLevelEventCopyWithImpl(_$InitGlobalGameLevelEvent _value,
-      $Res Function(_$InitGlobalGameLevelEvent) _then)
+class __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$InitGlobalGameLevelEventImpl>
+    implements _$$InitGlobalGameLevelEventImplCopyWith<$Res> {
+  __$$InitGlobalGameLevelEventImplCopyWithImpl(
+      _$InitGlobalGameLevelEventImpl _value,
+      $Res Function(_$InitGlobalGameLevelEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -319,7 +311,7 @@ class __$$InitGlobalGameLevelEventCopyWithImpl<$Res>
     Object? levelModel = null,
     Object? isNewStart = null,
   }) {
-    return _then(_$InitGlobalGameLevelEvent(
+    return _then(_$InitGlobalGameLevelEventImpl(
       levelModel: null == levelModel
           ? _value.levelModel
           : levelModel // ignore: cast_nullable_to_non_nullable
@@ -342,8 +334,8 @@ class __$$InitGlobalGameLevelEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
-  const _$InitGlobalGameLevelEvent(
+class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
+  const _$InitGlobalGameLevelEventImpl(
       {required this.levelModel, this.isNewStart = true});
 
   @override
@@ -361,7 +353,7 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$InitGlobalGameLevelEvent &&
+            other is _$InitGlobalGameLevelEventImpl &&
             (identical(other.levelModel, levelModel) ||
                 other.levelModel == levelModel) &&
             (identical(other.isNewStart, isNewStart) ||
@@ -374,10 +366,9 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$InitGlobalGameLevelEventCopyWith<_$InitGlobalGameLevelEvent>
-      get copyWith =>
-          __$$InitGlobalGameLevelEventCopyWithImpl<_$InitGlobalGameLevelEvent>(
-              this, _$identity);
+  _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
+      get copyWith => __$$InitGlobalGameLevelEventImplCopyWithImpl<
+          _$InitGlobalGameLevelEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -390,7 +381,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return initGlobalGameLevel(levelModel, isNewStart);
   }
@@ -406,7 +396,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return initGlobalGameLevel?.call(levelModel, isNewStart);
   }
@@ -422,7 +411,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (initGlobalGameLevel != null) {
@@ -444,7 +432,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return initGlobalGameLevel(this);
   }
@@ -459,7 +446,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return initGlobalGameLevel?.call(this);
   }
@@ -474,7 +460,6 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (initGlobalGameLevel != null) {
@@ -487,20 +472,21 @@ class _$InitGlobalGameLevelEvent implements InitGlobalGameLevelEvent {
 abstract class InitGlobalGameLevelEvent implements GameEvent {
   const factory InitGlobalGameLevelEvent(
       {required final LevelModel levelModel,
-      final bool isNewStart}) = _$InitGlobalGameLevelEvent;
+      final bool isNewStart}) = _$InitGlobalGameLevelEventImpl;
 
   LevelModel get levelModel;
   bool get isNewStart;
   @JsonKey(ignore: true)
-  _$$InitGlobalGameLevelEventCopyWith<_$InitGlobalGameLevelEvent>
+  _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DeletePlayerProfileEventCopyWith<$Res> {
-  factory _$$DeletePlayerProfileEventCopyWith(_$DeletePlayerProfileEvent value,
-          $Res Function(_$DeletePlayerProfileEvent) then) =
-      __$$DeletePlayerProfileEventCopyWithImpl<$Res>;
+abstract class _$$DeletePlayerProfileEventImplCopyWith<$Res> {
+  factory _$$DeletePlayerProfileEventImplCopyWith(
+          _$DeletePlayerProfileEventImpl value,
+          $Res Function(_$DeletePlayerProfileEventImpl) then) =
+      __$$DeletePlayerProfileEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PlayerProfileModel profile});
 
@@ -508,11 +494,12 @@ abstract class _$$DeletePlayerProfileEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$DeletePlayerProfileEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$DeletePlayerProfileEvent>
-    implements _$$DeletePlayerProfileEventCopyWith<$Res> {
-  __$$DeletePlayerProfileEventCopyWithImpl(_$DeletePlayerProfileEvent _value,
-      $Res Function(_$DeletePlayerProfileEvent) _then)
+class __$$DeletePlayerProfileEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$DeletePlayerProfileEventImpl>
+    implements _$$DeletePlayerProfileEventImplCopyWith<$Res> {
+  __$$DeletePlayerProfileEventImplCopyWithImpl(
+      _$DeletePlayerProfileEventImpl _value,
+      $Res Function(_$DeletePlayerProfileEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -520,7 +507,7 @@ class __$$DeletePlayerProfileEventCopyWithImpl<$Res>
   $Res call({
     Object? profile = null,
   }) {
-    return _then(_$DeletePlayerProfileEvent(
+    return _then(_$DeletePlayerProfileEventImpl(
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -539,8 +526,8 @@ class __$$DeletePlayerProfileEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
-  const _$DeletePlayerProfileEvent({required this.profile});
+class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
+  const _$DeletePlayerProfileEventImpl({required this.profile});
 
   @override
   final PlayerProfileModel profile;
@@ -554,7 +541,7 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DeletePlayerProfileEvent &&
+            other is _$DeletePlayerProfileEventImpl &&
             (identical(other.profile, profile) || other.profile == profile));
   }
 
@@ -564,10 +551,9 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$DeletePlayerProfileEventCopyWith<_$DeletePlayerProfileEvent>
-      get copyWith =>
-          __$$DeletePlayerProfileEventCopyWithImpl<_$DeletePlayerProfileEvent>(
-              this, _$identity);
+  _$$DeletePlayerProfileEventImplCopyWith<_$DeletePlayerProfileEventImpl>
+      get copyWith => __$$DeletePlayerProfileEventImplCopyWithImpl<
+          _$DeletePlayerProfileEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -580,7 +566,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return deletePlayerProfile(profile);
   }
@@ -596,7 +581,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return deletePlayerProfile?.call(profile);
   }
@@ -612,7 +596,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (deletePlayerProfile != null) {
@@ -634,7 +617,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return deletePlayerProfile(this);
   }
@@ -649,7 +631,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return deletePlayerProfile?.call(this);
   }
@@ -664,7 +645,6 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (deletePlayerProfile != null) {
@@ -676,19 +656,21 @@ class _$DeletePlayerProfileEvent implements DeletePlayerProfileEvent {
 
 abstract class DeletePlayerProfileEvent implements GameEvent {
   const factory DeletePlayerProfileEvent(
-      {required final PlayerProfileModel profile}) = _$DeletePlayerProfileEvent;
+          {required final PlayerProfileModel profile}) =
+      _$DeletePlayerProfileEventImpl;
 
   PlayerProfileModel get profile;
   @JsonKey(ignore: true)
-  _$$DeletePlayerProfileEventCopyWith<_$DeletePlayerProfileEvent>
+  _$$DeletePlayerProfileEventImplCopyWith<_$DeletePlayerProfileEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$CreatePlayerProfileEventCopyWith<$Res> {
-  factory _$$CreatePlayerProfileEventCopyWith(_$CreatePlayerProfileEvent value,
-          $Res Function(_$CreatePlayerProfileEvent) then) =
-      __$$CreatePlayerProfileEventCopyWithImpl<$Res>;
+abstract class _$$CreatePlayerProfileEventImplCopyWith<$Res> {
+  factory _$$CreatePlayerProfileEventImplCopyWith(
+          _$CreatePlayerProfileEventImpl value,
+          $Res Function(_$CreatePlayerProfileEventImpl) then) =
+      __$$CreatePlayerProfileEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({PlayerProfileModel profile});
 
@@ -696,11 +678,12 @@ abstract class _$$CreatePlayerProfileEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$CreatePlayerProfileEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$CreatePlayerProfileEvent>
-    implements _$$CreatePlayerProfileEventCopyWith<$Res> {
-  __$$CreatePlayerProfileEventCopyWithImpl(_$CreatePlayerProfileEvent _value,
-      $Res Function(_$CreatePlayerProfileEvent) _then)
+class __$$CreatePlayerProfileEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$CreatePlayerProfileEventImpl>
+    implements _$$CreatePlayerProfileEventImplCopyWith<$Res> {
+  __$$CreatePlayerProfileEventImplCopyWithImpl(
+      _$CreatePlayerProfileEventImpl _value,
+      $Res Function(_$CreatePlayerProfileEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -708,7 +691,7 @@ class __$$CreatePlayerProfileEventCopyWithImpl<$Res>
   $Res call({
     Object? profile = null,
   }) {
-    return _then(_$CreatePlayerProfileEvent(
+    return _then(_$CreatePlayerProfileEventImpl(
       profile: null == profile
           ? _value.profile
           : profile // ignore: cast_nullable_to_non_nullable
@@ -727,8 +710,8 @@ class __$$CreatePlayerProfileEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
-  const _$CreatePlayerProfileEvent({required this.profile});
+class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
+  const _$CreatePlayerProfileEventImpl({required this.profile});
 
   @override
   final PlayerProfileModel profile;
@@ -742,7 +725,7 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$CreatePlayerProfileEvent &&
+            other is _$CreatePlayerProfileEventImpl &&
             (identical(other.profile, profile) || other.profile == profile));
   }
 
@@ -752,10 +735,9 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$CreatePlayerProfileEventCopyWith<_$CreatePlayerProfileEvent>
-      get copyWith =>
-          __$$CreatePlayerProfileEventCopyWithImpl<_$CreatePlayerProfileEvent>(
-              this, _$identity);
+  _$$CreatePlayerProfileEventImplCopyWith<_$CreatePlayerProfileEventImpl>
+      get copyWith => __$$CreatePlayerProfileEventImplCopyWithImpl<
+          _$CreatePlayerProfileEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -768,7 +750,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return createPlayerProfile(profile);
   }
@@ -784,7 +765,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return createPlayerProfile?.call(profile);
   }
@@ -800,7 +780,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (createPlayerProfile != null) {
@@ -822,7 +801,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return createPlayerProfile(this);
   }
@@ -837,7 +815,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return createPlayerProfile?.call(this);
   }
@@ -852,7 +829,6 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (createPlayerProfile != null) {
@@ -864,34 +840,35 @@ class _$CreatePlayerProfileEvent implements CreatePlayerProfileEvent {
 
 abstract class CreatePlayerProfileEvent implements GameEvent {
   const factory CreatePlayerProfileEvent(
-      {required final PlayerProfileModel profile}) = _$CreatePlayerProfileEvent;
+          {required final PlayerProfileModel profile}) =
+      _$CreatePlayerProfileEventImpl;
 
   PlayerProfileModel get profile;
   @JsonKey(ignore: true)
-  _$$CreatePlayerProfileEventCopyWith<_$CreatePlayerProfileEvent>
+  _$$CreatePlayerProfileEventImplCopyWith<_$CreatePlayerProfileEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$SaveGameEventCopyWith<$Res> {
-  factory _$$SaveGameEventCopyWith(
-          _$SaveGameEvent value, $Res Function(_$SaveGameEvent) then) =
-      __$$SaveGameEventCopyWithImpl<$Res>;
+abstract class _$$SaveGameEventImplCopyWith<$Res> {
+  factory _$$SaveGameEventImplCopyWith(
+          _$SaveGameEventImpl value, $Res Function(_$SaveGameEventImpl) then) =
+      __$$SaveGameEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SaveGameEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$SaveGameEvent>
-    implements _$$SaveGameEventCopyWith<$Res> {
-  __$$SaveGameEventCopyWithImpl(
-      _$SaveGameEvent _value, $Res Function(_$SaveGameEvent) _then)
+class __$$SaveGameEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$SaveGameEventImpl>
+    implements _$$SaveGameEventImplCopyWith<$Res> {
+  __$$SaveGameEventImplCopyWithImpl(
+      _$SaveGameEventImpl _value, $Res Function(_$SaveGameEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SaveGameEvent implements SaveGameEvent {
-  const _$SaveGameEvent();
+class _$SaveGameEventImpl implements SaveGameEvent {
+  const _$SaveGameEventImpl();
 
   @override
   String toString() {
@@ -901,7 +878,7 @@ class _$SaveGameEvent implements SaveGameEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SaveGameEvent);
+        (other.runtimeType == runtimeType && other is _$SaveGameEventImpl);
   }
 
   @override
@@ -918,7 +895,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return saveGame();
   }
@@ -934,7 +910,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return saveGame?.call();
   }
@@ -950,7 +925,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (saveGame != null) {
@@ -972,7 +946,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return saveGame(this);
   }
@@ -987,7 +960,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return saveGame?.call(this);
   }
@@ -1002,7 +974,6 @@ class _$SaveGameEvent implements SaveGameEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (saveGame != null) {
@@ -1013,29 +984,30 @@ class _$SaveGameEvent implements SaveGameEvent {
 }
 
 abstract class SaveGameEvent implements GameEvent {
-  const factory SaveGameEvent() = _$SaveGameEvent;
+  const factory SaveGameEvent() = _$SaveGameEventImpl;
 }
 
 /// @nodoc
-abstract class _$$SaveCurrentLevelEventCopyWith<$Res> {
-  factory _$$SaveCurrentLevelEventCopyWith(_$SaveCurrentLevelEvent value,
-          $Res Function(_$SaveCurrentLevelEvent) then) =
-      __$$SaveCurrentLevelEventCopyWithImpl<$Res>;
+abstract class _$$SaveCurrentLevelEventImplCopyWith<$Res> {
+  factory _$$SaveCurrentLevelEventImplCopyWith(
+          _$SaveCurrentLevelEventImpl value,
+          $Res Function(_$SaveCurrentLevelEventImpl) then) =
+      __$$SaveCurrentLevelEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$SaveCurrentLevelEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$SaveCurrentLevelEvent>
-    implements _$$SaveCurrentLevelEventCopyWith<$Res> {
-  __$$SaveCurrentLevelEventCopyWithImpl(_$SaveCurrentLevelEvent _value,
-      $Res Function(_$SaveCurrentLevelEvent) _then)
+class __$$SaveCurrentLevelEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$SaveCurrentLevelEventImpl>
+    implements _$$SaveCurrentLevelEventImplCopyWith<$Res> {
+  __$$SaveCurrentLevelEventImplCopyWithImpl(_$SaveCurrentLevelEventImpl _value,
+      $Res Function(_$SaveCurrentLevelEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
-  const _$SaveCurrentLevelEvent();
+class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
+  const _$SaveCurrentLevelEventImpl();
 
   @override
   String toString() {
@@ -1045,7 +1017,8 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$SaveCurrentLevelEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$SaveCurrentLevelEventImpl);
   }
 
   @override
@@ -1062,7 +1035,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return saveCurrentLevel();
   }
@@ -1078,7 +1050,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return saveCurrentLevel?.call();
   }
@@ -1094,7 +1065,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (saveCurrentLevel != null) {
@@ -1116,7 +1086,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return saveCurrentLevel(this);
   }
@@ -1131,7 +1100,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return saveCurrentLevel?.call(this);
   }
@@ -1146,7 +1114,6 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (saveCurrentLevel != null) {
@@ -1157,24 +1124,24 @@ class _$SaveCurrentLevelEvent implements SaveCurrentLevelEvent {
 }
 
 abstract class SaveCurrentLevelEvent implements GameEvent {
-  const factory SaveCurrentLevelEvent() = _$SaveCurrentLevelEvent;
+  const factory SaveCurrentLevelEvent() = _$SaveCurrentLevelEventImpl;
 }
 
 /// @nodoc
-abstract class _$$EndLevelEventCopyWith<$Res> {
-  factory _$$EndLevelEventCopyWith(
-          _$EndLevelEvent value, $Res Function(_$EndLevelEvent) then) =
-      __$$EndLevelEventCopyWithImpl<$Res>;
+abstract class _$$EndLevelEventImplCopyWith<$Res> {
+  factory _$$EndLevelEventImplCopyWith(
+          _$EndLevelEventImpl value, $Res Function(_$EndLevelEventImpl) then) =
+      __$$EndLevelEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({bool isWon, double maxDistance});
 }
 
 /// @nodoc
-class __$$EndLevelEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$EndLevelEvent>
-    implements _$$EndLevelEventCopyWith<$Res> {
-  __$$EndLevelEventCopyWithImpl(
-      _$EndLevelEvent _value, $Res Function(_$EndLevelEvent) _then)
+class __$$EndLevelEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$EndLevelEventImpl>
+    implements _$$EndLevelEventImplCopyWith<$Res> {
+  __$$EndLevelEventImplCopyWithImpl(
+      _$EndLevelEventImpl _value, $Res Function(_$EndLevelEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1183,7 +1150,7 @@ class __$$EndLevelEventCopyWithImpl<$Res>
     Object? isWon = null,
     Object? maxDistance = null,
   }) {
-    return _then(_$EndLevelEvent(
+    return _then(_$EndLevelEventImpl(
       isWon: null == isWon
           ? _value.isWon
           : isWon // ignore: cast_nullable_to_non_nullable
@@ -1198,8 +1165,8 @@ class __$$EndLevelEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$EndLevelEvent implements EndLevelEvent {
-  const _$EndLevelEvent({required this.isWon, required this.maxDistance});
+class _$EndLevelEventImpl implements EndLevelEvent {
+  const _$EndLevelEventImpl({required this.isWon, required this.maxDistance});
 
   @override
   final bool isWon;
@@ -1215,7 +1182,7 @@ class _$EndLevelEvent implements EndLevelEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$EndLevelEvent &&
+            other is _$EndLevelEventImpl &&
             (identical(other.isWon, isWon) || other.isWon == isWon) &&
             (identical(other.maxDistance, maxDistance) ||
                 other.maxDistance == maxDistance));
@@ -1227,8 +1194,8 @@ class _$EndLevelEvent implements EndLevelEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$EndLevelEventCopyWith<_$EndLevelEvent> get copyWith =>
-      __$$EndLevelEventCopyWithImpl<_$EndLevelEvent>(this, _$identity);
+  _$$EndLevelEventImplCopyWith<_$EndLevelEventImpl> get copyWith =>
+      __$$EndLevelEventImplCopyWithImpl<_$EndLevelEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1241,7 +1208,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
     required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
   }) {
     return endLevel(isWon, maxDistance);
   }
@@ -1257,7 +1223,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
     TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
   }) {
     return endLevel?.call(isWon, maxDistance);
   }
@@ -1273,7 +1238,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
     TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
     required TResult orElse(),
   }) {
     if (endLevel != null) {
@@ -1295,7 +1259,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     required TResult Function(SaveGameEvent value) saveGame,
     required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
     required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
   }) {
     return endLevel(this);
   }
@@ -1310,7 +1273,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult? Function(SaveGameEvent value)? saveGame,
     TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
   }) {
     return endLevel?.call(this);
   }
@@ -1325,7 +1287,6 @@ class _$EndLevelEvent implements EndLevelEvent {
     TResult Function(SaveGameEvent value)? saveGame,
     TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
     TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
     required TResult orElse(),
   }) {
     if (endLevel != null) {
@@ -1338,157 +1299,13 @@ class _$EndLevelEvent implements EndLevelEvent {
 abstract class EndLevelEvent implements GameEvent {
   const factory EndLevelEvent(
       {required final bool isWon,
-      required final double maxDistance}) = _$EndLevelEvent;
+      required final double maxDistance}) = _$EndLevelEventImpl;
 
   bool get isWon;
   double get maxDistance;
   @JsonKey(ignore: true)
-  _$$EndLevelEventCopyWith<_$EndLevelEvent> get copyWith =>
+  _$$EndLevelEventImplCopyWith<_$EndLevelEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$RestartLevelEventCopyWith<$Res> {
-  factory _$$RestartLevelEventCopyWith(
-          _$RestartLevelEvent value, $Res Function(_$RestartLevelEvent) then) =
-      __$$RestartLevelEventCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$RestartLevelEventCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$RestartLevelEvent>
-    implements _$$RestartLevelEventCopyWith<$Res> {
-  __$$RestartLevelEventCopyWithImpl(
-      _$RestartLevelEvent _value, $Res Function(_$RestartLevelEvent) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$RestartLevelEvent implements RestartLevelEvent {
-  const _$RestartLevelEvent();
-
-  @override
-  String toString() {
-    return 'GameEvent.restartLevel()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$RestartLevelEvent);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
-        initGlobalGameLevel,
-    required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
-    required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function() saveGame,
-    required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
-    required TResult Function() restartLevel,
-  }) {
-    return restartLevel();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function()? saveGame,
-    TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
-    TResult? Function()? restartLevel,
-  }) {
-    return restartLevel?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function()? saveGame,
-    TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
-    TResult Function()? restartLevel,
-    required TResult orElse(),
-  }) {
-    if (restartLevel != null) {
-      return restartLevel();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
-    required TResult Function(InitGlobalGameLevelEvent value)
-        initGlobalGameLevel,
-    required TResult Function(DeletePlayerProfileEvent value)
-        deletePlayerProfile,
-    required TResult Function(CreatePlayerProfileEvent value)
-        createPlayerProfile,
-    required TResult Function(SaveGameEvent value) saveGame,
-    required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
-    required TResult Function(EndLevelEvent value) endLevel,
-    required TResult Function(RestartLevelEvent value) restartLevel,
-  }) {
-    return restartLevel(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(SaveGameEvent value)? saveGame,
-    TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult? Function(EndLevelEvent value)? endLevel,
-    TResult? Function(RestartLevelEvent value)? restartLevel,
-  }) {
-    return restartLevel?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(SaveGameEvent value)? saveGame,
-    TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult Function(EndLevelEvent value)? endLevel,
-    TResult Function(RestartLevelEvent value)? restartLevel,
-    required TResult orElse(),
-  }) {
-    if (restartLevel != null) {
-      return restartLevel(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RestartLevelEvent implements GameEvent {
-  const factory RestartLevelEvent() = _$RestartLevelEvent;
 }
 
 /// @nodoc
@@ -1661,11 +1478,11 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
 }
 
 /// @nodoc
-abstract class _$$_GlobalGameBlocStateCopyWith<$Res>
+abstract class _$$GlobalGameBlocStateImplCopyWith<$Res>
     implements $GlobalGameBlocStateCopyWith<$Res> {
-  factory _$$_GlobalGameBlocStateCopyWith(_$_GlobalGameBlocState value,
-          $Res Function(_$_GlobalGameBlocState) then) =
-      __$$_GlobalGameBlocStateCopyWithImpl<$Res>;
+  factory _$$GlobalGameBlocStateImplCopyWith(_$GlobalGameBlocStateImpl value,
+          $Res Function(_$GlobalGameBlocStateImpl) then) =
+      __$$GlobalGameBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1691,11 +1508,11 @@ abstract class _$$_GlobalGameBlocStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
-    extends _$GlobalGameBlocStateCopyWithImpl<$Res, _$_GlobalGameBlocState>
-    implements _$$_GlobalGameBlocStateCopyWith<$Res> {
-  __$$_GlobalGameBlocStateCopyWithImpl(_$_GlobalGameBlocState _value,
-      $Res Function(_$_GlobalGameBlocState) _then)
+class __$$GlobalGameBlocStateImplCopyWithImpl<$Res>
+    extends _$GlobalGameBlocStateCopyWithImpl<$Res, _$GlobalGameBlocStateImpl>
+    implements _$$GlobalGameBlocStateImplCopyWith<$Res> {
+  __$$GlobalGameBlocStateImplCopyWithImpl(_$GlobalGameBlocStateImpl _value,
+      $Res Function(_$GlobalGameBlocStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1712,7 +1529,7 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
     Object? savedLevels = null,
     Object? dateTimeDelta = null,
   }) {
-    return _then(_$_GlobalGameBlocState(
+    return _then(_$GlobalGameBlocStateImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1759,14 +1576,14 @@ class __$$_GlobalGameBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GlobalGameBlocState extends _GlobalGameBlocState {
-  const _$_GlobalGameBlocState(
+class _$GlobalGameBlocStateImpl extends _GlobalGameBlocState {
+  const _$GlobalGameBlocStateImpl(
       {this.id = '',
       this.currentLevelId = CanvasDataModelId.empty,
       final Map<CanvasDataModelId, CanvasDataModel> allCanvasData = const {},
       this.currentLevelModel,
-      this.dateTime = const WorldDateTimeModel(),
-      this.lastDateTime = const WorldDateTimeModel(),
+      this.dateTime = WorldDateTimeModel.zero,
+      this.lastDateTime = WorldDateTimeModel.zero,
       final List<PlayerProfileModel> playersCollection = const [],
       final List<PlayerCharacterModel> playersCharacters = const [],
       final Map<CanvasDataModelId, LevelModel> savedLevels = const {},
@@ -1863,7 +1680,7 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GlobalGameBlocState &&
+            other is _$GlobalGameBlocStateImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.currentLevelId, currentLevelId) ||
                 other.currentLevelId == currentLevelId) &&
@@ -1902,8 +1719,8 @@ class _$_GlobalGameBlocState extends _GlobalGameBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GlobalGameBlocStateCopyWith<_$_GlobalGameBlocState> get copyWith =>
-      __$$_GlobalGameBlocStateCopyWithImpl<_$_GlobalGameBlocState>(
+  _$$GlobalGameBlocStateImplCopyWith<_$GlobalGameBlocStateImpl> get copyWith =>
+      __$$GlobalGameBlocStateImplCopyWithImpl<_$GlobalGameBlocStateImpl>(
           this, _$identity);
 }
 
@@ -1918,7 +1735,7 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
       final List<PlayerProfileModel> playersCollection,
       final List<PlayerCharacterModel> playersCharacters,
       final Map<CanvasDataModelId, LevelModel> savedLevels,
-      final int dateTimeDelta}) = _$_GlobalGameBlocState;
+      final int dateTimeDelta}) = _$GlobalGameBlocStateImpl;
   const _GlobalGameBlocState._() : super._();
 
   @override
@@ -1962,6 +1779,6 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   int get dateTimeDelta;
   @override
   @JsonKey(ignore: true)
-  _$$_GlobalGameBlocStateCopyWith<_$_GlobalGameBlocState> get copyWith =>
+  _$$GlobalGameBlocStateImplCopyWith<_$GlobalGameBlocStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

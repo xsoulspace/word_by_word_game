@@ -1,35 +1,18 @@
-import '../datasources/datasources.dart';
-import '../repositories/repositories.dart';
+import 'package:flutter/widgets.dart';
+import 'package:provider/provider.dart';
+
+import '../data_repositories/data_repositories.dart';
+import '../data_sources/data_sources.dart';
 
 export 'analytics/analytics.dart';
 
 class ServicesCollection {
-  const ServicesCollection._({
-    required this.gameRepository,
-    required this.localDataService,
-    required this.dictionariesRepository,
-    required this.appSettingsRepository,
-    required this.levelsRepository,
-  });
-
-  static final v1 = () {
-    final LocalDbDataSource localDb = SharedPreferencesDbDataSourceImpl();
-    return ServicesCollection._(
-      localDataService: localDb,
-      levelsRepository: LevelsRepository(
-        localAssets: LevelsLocalDataSourceAssetsImpl(),
-      ),
-      gameRepository: GameRespository(
-        local: GameLocalDataSourceImpl(localDb: localDb),
-      ),
-      dictionariesRepository: DictionariesRespository(
-        local: DictionariesLocalDataSourceImpl(localDb: localDb),
-      ),
-      appSettingsRepository: AppSettingsRepository(
-        local: AppSettingsLocalDataSourceImpl(localDb: localDb),
-      ),
-    );
-  }();
+  ServicesCollection(final BuildContext context)
+      : gameRepository = context.read(),
+        localDataService = context.read(),
+        dictionariesRepository = context.read(),
+        appSettingsRepository = context.read(),
+        levelsRepository = context.read();
 
   final LocalDbDataSource localDataService;
   final DictionariesRespository dictionariesRepository;

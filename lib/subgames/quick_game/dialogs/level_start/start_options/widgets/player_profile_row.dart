@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class PlayerProfileRow extends StatelessWidget {
@@ -15,7 +14,7 @@ class PlayerProfileRow extends StatelessWidget {
   final CheckFunction<PlayerProfileModel> checkIsPlayerSelected;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     return BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
       builder: (final context, final state) {
         final players = state.playersCollection;
@@ -56,7 +55,7 @@ class PlayerProfileCard extends StatelessWidget {
   final bool? selected;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     return Center(
       child: FocusableActionDetector(
         mouseCursor: SystemMouseCursors.click,
@@ -103,7 +102,7 @@ class PlayerProfileTile extends StatelessWidget {
   final bool? selected;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [

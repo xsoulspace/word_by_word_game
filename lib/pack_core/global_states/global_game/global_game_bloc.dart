@@ -1,9 +1,10 @@
 import 'dart:async';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -71,20 +72,30 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   ) async {
     final liveGame = GlobalGameBlocState.fromModel(gameModel);
     emit(liveGame);
-    final allLevels = await diDto.services.levelsRepository.getLevels();
+    final allLevels =
+        await diDto.services.levelsRepository.getDefaultTemplateLevels();
     emit(liveGame.copyWith(allCanvasData: allLevels));
 
-    LevelModel? levelModel;
+    LevelModel? level;
     if (liveGame.currentLevelId.isNotEmpty &&
         gameModel.savedLevels.isNotEmpty) {
-      levelModel = gameModel.savedLevels[liveGame.currentLevelId];
+      level = gameModel.savedLevels[liveGame.currentLevelId];
     }
-    if (levelModel != null) {
-      /// resume latest game
-      onInitGlobalGameLevel(
-        InitGlobalGameLevelEvent(levelModel: levelModel, isNewStart: false),
-      );
-    }
+    final isNewStart = level == null;
+
+    /// add level data to display something for start screen
+    level ??= createLevel(
+      canvasDataId: allLevels.values
+          .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack)
+          .id,
+      characterId: liveGame.playersCharacters.first.id,
+      playersIds: [],
+    );
+
+    /// resume latest game
+    await onInitGlobalGameLevel(
+      InitGlobalGameLevelEvent(levelModel: level, isNewStart: isNewStart),
+    );
 
     await diDto.mechanics.worldTime.onLoad();
     diDto.tutorialBloc.onLoadTutorialsProgress(
@@ -95,15 +106,64 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
   }
 
-  void onRestartLevel(
-    final RestartLevelEvent event,
-  ) {
+  LevelModel createLevel({
+    required final CanvasDataModelId canvasDataId,
+    required final List<PlayerProfileModelId> playersIds,
+    required final Gid characterId,
+  }) {
+    final liveState = state;
+    final charactersCollection = liveState.playersCharacters;
+    final playersCollection = liveState.playersCollection;
+    final levelPlayers = playersIds
+        .map(
+          (final id) => playersCollection.firstWhereOrNull(
+            (final player) => player.id == id,
+          ),
+        )
+        .nonNulls
+        .toList();
+
+    /// adding empty player just show in start screen
+    if (levelPlayers.isEmpty) {
+      levelPlayers.add(PlayerProfileModel.empty);
+    }
+    final levelCharecters = charactersCollection.firstWhere(
+      (final character) => character.id == characterId,
+    );
+
+    return LevelModel(
+      characters: LevelCharactersModel(
+        playerCharacter: levelCharecters,
+      ),
+      players: LevelPlayersModel(
+        currentPlayerId: levelPlayers.first.id,
+        players: levelPlayers
+            .map(
+              (final e) => e.copyWith(
+                highscore: PlayerHighscoreModel.empty,
+              ),
+            )
+            .toList(),
+      ),
+      canvasDataId: canvasDataId,
+    );
+  }
+
+  Future<void> onRestartLevel(final EndLevelEvent event) async {
+    /// saving current level
     final levelModel = state.currentLevelModel;
+
+    /// saving level results
+    await onLevelEnd(event);
+
+    /// restarting current level
     if (levelModel == null) {
       // TODO(arenuvkern): description
       throw UnimplementedError('onRestartLevel $levelModel');
     } else {
-      onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: levelModel));
+      await onInitGlobalGameLevel(
+        InitGlobalGameLevelEvent(levelModel: levelModel),
+      );
       unawaited(
         onStartPlayingLevel(
           const StartPlayingLevelEvent(
@@ -123,20 +183,25 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   /// The [onStartPlayingLevel] is waiting for the completer future
   Completer? _globalLevelLoadCompleter;
 
-  void onInitGlobalGameLevel(
+  Future<void> onInitGlobalGameLevel(
     final InitGlobalGameLevelEvent event,
-  ) {
+  ) async {
     diDto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.loading,
     );
     _globalLevelLoadCompleter = Completer();
     LevelModel level = event.levelModel;
 
-    GlobalGameBlocState updatedState = _getResetedLevelLoad();
+    diDto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
+    GlobalGameBlocState updatedState = state;
+
     if (event.isNewStart) {
       diDto.weatherCubit.regenerateWeather();
       updatedState = updatedState.copyWith(
         currentLevelModel: level,
+        currentLevelId: level.id,
       );
       emit(updatedState);
     } else {
@@ -146,19 +211,29 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       );
     }
 
-    CanvasDataModel? canvasData;
-    canvasData = state.allCanvasData[level.id];
+    /// preloading resources which should be the same for all levels
+    await diDto.canvasCubit.prepareTilesetForLevel(level: level);
+
+    // load canvasCubit with graphics, but no more then it
+    CanvasDataModel? newCanvasData = state.allCanvasData[level.id];
 
     /// level should be reloaded according to the canvas data
-    if (canvasData == null) {
-      canvasData = state.allCanvasData.values.first;
+    if (newCanvasData == null) {
+      newCanvasData = state.allCanvasData.values.first;
       level = level.copyWith(
-        canvasDataId: canvasData.id,
+        canvasDataId: newCanvasData.id,
       );
     }
-
+    if (!event.isNewStart) {
+      final character = level.characters.playerCharacter;
+      newCanvasData = newCanvasData.copyWith(
+        playerObject: newCanvasData.playerObject.copyWith(
+          distanceToOrigin: character.distanceToOrigin,
+        ),
+      );
+    }
+    await diDto.canvasCubit.loadCanvasData(canvasData: newCanvasData);
     diDto
-      ..canvasCubit.loadCanvasData(canvasData: canvasData)
       ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: level))
       ..levelPlayersBloc.onInitLevelPlayers(
         InitLevelPlayersEvent(
@@ -166,13 +241,6 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
           charactersModel: level.characters,
         ),
       );
-  }
-
-  GlobalGameBlocState _getResetedLevelLoad() {
-    diDto.statesStatusesCubit.onChangeLevelStateStatus(
-      status: LevelStateStatus.loading,
-    );
-    return state;
   }
 
   Future<void> _onStatusChanged(
@@ -266,6 +334,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
     final updatedState = state.copyWith(
       playersCollection: updatedPlayers,
+      currentLevelId: CanvasDataModelId.empty,
+      currentLevelModel: null,
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
@@ -336,9 +406,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       savedLevels: liveState.savedLevels,
       currentLevel: liveState.currentLevelModel,
       currentLevelId: liveState.currentLevelId,
-      dateTime: liveState.dateTime,
       tutorialProgress: tutorialProgress,
-      lastDateTime: liveState.lastDateTime,
       playersCharacters: liveState.playersCharacters,
       playersCollection: liveState.playersCollection,
     );
@@ -362,6 +430,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         currentPlayerId: playersState.currentPlayerId,
         players: playersState.players,
       ),
+      dateTime: state.dateTime,
+      lastDateTime: state.lastDateTime,
     );
   }
 

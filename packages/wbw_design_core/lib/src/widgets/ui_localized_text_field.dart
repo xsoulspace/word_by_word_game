@@ -6,7 +6,7 @@ import 'ui_text_field.dart';
 class UiLocalizedTextField extends StatefulWidget {
   const UiLocalizedTextField({
     required this.fieldConstraints,
-    required this.initialValue,
+    required this.value,
     required this.onChanged,
     this.labelText,
     this.focusedBorder,
@@ -20,7 +20,7 @@ class UiLocalizedTextField extends StatefulWidget {
   const UiLocalizedTextField.underlined({
     required this.onChanged,
     required this.fieldConstraints,
-    required this.initialValue,
+    required this.value,
     this.labelText,
     this.onEditingComplete,
     this.onFieldSubmitted,
@@ -33,7 +33,7 @@ class UiLocalizedTextField extends StatefulWidget {
   final String? labelText;
   final ValueChanged<LocalizedMap> onChanged;
   final InputBorder? focusedBorder;
-  final LocalizedMap initialValue;
+  final LocalizedMap value;
   final bool obscureText;
   final BoxConstraints fieldConstraints;
   final FormFieldValidator? validator;
@@ -47,21 +47,26 @@ class UiLocalizedTextField extends StatefulWidget {
 
 class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   late final _textController = TextEditingController(
-    text: widget.initialValue.getValue(),
+    text: widget.value.value.isEmpty ? null : widget.value.getValue(),
   );
-  late LocalizedMap _value = widget.initialValue;
-  Languages _language = Languages.en;
-
-  @override
-  void initState() {
-    _language = LocalizedMap.getCurrentLanugage();
-    super.initState();
-  }
+  late LocalizedMap _value = widget.value;
+  Languages _language = LocalizedMap.getCurrentLanugage();
 
   @override
   void dispose() {
     _textController.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(covariant final UiLocalizedTextField oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    final newText = widget.value.value.isEmpty ? '' : widget.value.getValue();
+    if (widget.value != _value || newText != _textController.text) {
+      _value = widget.value;
+      _textController.text =
+          _value.value.isEmpty ? '' : _value.getValue(_language);
+    }
   }
 
   @override
@@ -90,31 +95,46 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
       mainAxisSize: MainAxisSize.min,
       children: [
         child,
-        MenuAnchor(
-          menuChildren: Languages.values
-              .map(
-                (final lang) => MenuItemButton(
-                  child: Text(lang.name),
-                  onPressed: () {
-                    _language = lang;
-                    _textController.text = _value.getValue(_language);
-                    setState(() {});
-                  },
-                ),
-              )
-              .toList(),
-          builder: (final context, final controller, final child) => TextButton(
-            onPressed: () {
-              if (controller.isOpen) {
-                controller.close();
-              } else {
-                controller.open();
-              }
-            },
-            child: Text(_language.name),
-          ),
+        LanguageSwitcher(
+          onChanged: (final lang) {
+            _language = lang;
+            _textController.text = _value.getValue(_language);
+            setState(() {});
+          },
+          value: _language,
         ),
       ],
     );
   }
+}
+
+class LanguageSwitcher extends StatelessWidget {
+  const LanguageSwitcher({
+    required this.value,
+    required this.onChanged,
+    super.key,
+  });
+  final Languages value;
+  final ValueChanged<Languages> onChanged;
+  @override
+  Widget build(final BuildContext context) => MenuAnchor(
+        menuChildren: Languages.values
+            .map(
+              (final lang) => MenuItemButton(
+                child: Text(lang.name),
+                onPressed: () => onChanged(lang),
+              ),
+            )
+            .toList(),
+        builder: (final context, final controller, final child) => TextButton(
+          onPressed: () {
+            if (controller.isOpen) {
+              controller.close();
+            } else {
+              controller.open();
+            }
+          },
+          child: Text(value.name),
+        ),
+      );
 }

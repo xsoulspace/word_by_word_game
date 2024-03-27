@@ -1,12 +1,12 @@
 // copied from https://github.com/nathanael540/admanager_web/blob/main/lib/src/adblock.dart
 // ignore: avoid_web_libraries_in_flutter
 import 'dart:html' as html;
+import 'dart:ui_web';
 
 // ignore: avoid_web_libraries_in_flutter
 
 import 'package:flutter/material.dart';
-// ignore: implementation_imports
-import 'package:pointer_interceptor/src/shim/dart_ui.dart' as ui;
+// import 'package:pointer_interceptor/src/shim/dart_ui.dart' as ui;
 
 /// A widget that displays an Ad from AdManager in a Flutter Web app
 ///
@@ -21,7 +21,7 @@ class YandexFlexiblePlatformBanner extends StatelessWidget {
     super.key,
   }) {
     /// We create a DivElement to hold our ad ;)
-    ui.platformViewRegistry.registerViewFactory(renderTo, (final viewId) {
+    platformViewRegistry.registerViewFactory(renderTo, (final viewId) {
       final rootDiv = html.DivElement();
       final scriptDiv = html.ScriptElement();
       final div = html.DivElement()..id = renderTo;

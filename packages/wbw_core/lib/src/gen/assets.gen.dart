@@ -9,19 +9,39 @@
 
 import 'package:flutter/widgets.dart';
 
+class $AssetsDictionariesGen {
+  const $AssetsDictionariesGen();
+
+  /// File path: assets/dictionaries/wrong_words.json
+  String get wrongWords =>
+      'packages/wbw_core/assets/dictionaries/wrong_words.json';
+
+  /// List of all assets
+  List<String> get values => [wrongWords];
+}
+
 class $AssetsLevelsGen {
   const $AssetsLevelsGen();
 
-  /// File path: assets/levels/lvl_0.json
-  String get lvl0 => 'packages/wbw_core/assets/levels/lvl_0.json';
+  /// File path: assets/levels/lvl_colourful.json
+  String get lvlColourful =>
+      'packages/wbw_core/assets/levels/lvl_colourful.json';
+
+  /// File path: assets/levels/lvl_evening.json
+  String get lvlEvening => 'packages/wbw_core/assets/levels/lvl_evening.json';
+
+  /// File path: assets/levels/lvl_white_black.json
+  String get lvlWhiteBlack =>
+      'packages/wbw_core/assets/levels/lvl_white_black.json';
 
   /// List of all assets
-  List<String> get values => [lvl0];
+  List<String> get values => [lvlColourful, lvlEvening, lvlWhiteBlack];
 }
 
 class Assets {
   Assets._();
 
+  static const $AssetsDictionariesGen dictionaries = $AssetsDictionariesGen();
   static const $AssetsLevelsGen levels = $AssetsLevelsGen();
 }
 

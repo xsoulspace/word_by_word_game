@@ -1,6 +1,6 @@
 **Privacy Policy**
 
-Anton Malofeev, Irina Veter built the Word By Word app as a Freemium app. This SERVICE is provided by Anton Malofeev, Irina Veter at no cost and is intended for use as is.
+Anton Malofeev, Irina Veter built the Word By Word Game as a Freemium app. This SERVICE is provided by Anton Malofeev, Irina Veter at no cost and is intended for use as is.
 
 This page is used to inform visitors regarding my policies with the collection, use, and disclosure of Personal Information if anyone decided to use my Service.
 
@@ -16,10 +16,10 @@ The app does use third-party services that may collect information used to ident
 
 Link to the privacy policy of third-party service providers used by the app
 
-*   [Google Play Services](https://www.google.com/policies/privacy/)
-*   [Google Analytics for Firebase](https://firebase.google.com/policies/analytics)
-*   [Firebase Crashlytics](https://firebase.google.com/support/privacy/)
-*   [RevenueCat](https://www.revenuecat.com/privacy)
+- [Google Play Services](https://www.google.com/policies/privacy/)
+- [Google Analytics for Firebase](https://firebase.google.com/policies/analytics)
+- [Firebase Crashlytics](https://firebase.google.com/support/privacy/)
+- [YandexAds](https://yandex.ru/legal/confidential/?lang=en/)
 
 **Log Data**
 
@@ -35,10 +35,10 @@ This Service does not use these “cookies” explicitly. However, the app may u
 
 I may employ third-party companies and individuals due to the following reasons:
 
-*   To facilitate our Service;
-*   To provide the Service on our behalf;
-*   To perform Service-related services; or
-*   To assist us in analyzing how our Service is used.
+- To facilitate our Service;
+- To provide the Service on our behalf;
+- To perform Service-related services; or
+- To assist us in analyzing how our Service is used.
 
 I want to inform users of this Service that these third parties have access to their Personal Information. The reason is to perform the tasks assigned to them on our behalf. However, they are obligated not to disclose or use the information for any other purpose.
 

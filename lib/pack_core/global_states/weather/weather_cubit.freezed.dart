@@ -75,11 +75,11 @@ class _$WeatherCubitStateCopyWithImpl<$Res, $Val extends WeatherCubitState>
 }
 
 /// @nodoc
-abstract class _$$_WeatherCubitStateCopyWith<$Res>
+abstract class _$$WeatherCubitStateImplCopyWith<$Res>
     implements $WeatherCubitStateCopyWith<$Res> {
-  factory _$$_WeatherCubitStateCopyWith(_$_WeatherCubitState value,
-          $Res Function(_$_WeatherCubitState) then) =
-      __$$_WeatherCubitStateCopyWithImpl<$Res>;
+  factory _$$WeatherCubitStateImplCopyWith(_$WeatherCubitStateImpl value,
+          $Res Function(_$WeatherCubitStateImpl) then) =
+      __$$WeatherCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<WeatherModel> weathers, WindModel wind});
@@ -89,11 +89,11 @@ abstract class _$$_WeatherCubitStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WeatherCubitStateCopyWithImpl<$Res>
-    extends _$WeatherCubitStateCopyWithImpl<$Res, _$_WeatherCubitState>
-    implements _$$_WeatherCubitStateCopyWith<$Res> {
-  __$$_WeatherCubitStateCopyWithImpl(
-      _$_WeatherCubitState _value, $Res Function(_$_WeatherCubitState) _then)
+class __$$WeatherCubitStateImplCopyWithImpl<$Res>
+    extends _$WeatherCubitStateCopyWithImpl<$Res, _$WeatherCubitStateImpl>
+    implements _$$WeatherCubitStateImplCopyWith<$Res> {
+  __$$WeatherCubitStateImplCopyWithImpl(_$WeatherCubitStateImpl _value,
+      $Res Function(_$WeatherCubitStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -102,7 +102,7 @@ class __$$_WeatherCubitStateCopyWithImpl<$Res>
     Object? weathers = null,
     Object? wind = null,
   }) {
-    return _then(_$_WeatherCubitState(
+    return _then(_$WeatherCubitStateImpl(
       weathers: null == weathers
           ? _value._weathers
           : weathers // ignore: cast_nullable_to_non_nullable
@@ -117,8 +117,9 @@ class __$$_WeatherCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WeatherCubitState extends _WeatherCubitState {
-  const _$_WeatherCubitState(
+class _$WeatherCubitStateImpl extends _WeatherCubitState
+    with DiagnosticableTreeMixin {
+  const _$WeatherCubitStateImpl(
       {final List<WeatherModel> weathers = const [],
       this.wind = WindModel.zero})
       : _weathers = weathers,
@@ -143,15 +144,24 @@ class _$_WeatherCubitState extends _WeatherCubitState {
   final WindModel wind;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'WeatherCubitState(weathers: $weathers, wind: $wind)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'WeatherCubitState'))
+      ..add(DiagnosticsProperty('weathers', weathers))
+      ..add(DiagnosticsProperty('wind', wind));
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WeatherCubitState &&
+            other is _$WeatherCubitStateImpl &&
             const DeepCollectionEquality().equals(other._weathers, _weathers) &&
             (identical(other.wind, wind) || other.wind == wind));
   }
@@ -163,15 +173,15 @@ class _$_WeatherCubitState extends _WeatherCubitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WeatherCubitStateCopyWith<_$_WeatherCubitState> get copyWith =>
-      __$$_WeatherCubitStateCopyWithImpl<_$_WeatherCubitState>(
+  _$$WeatherCubitStateImplCopyWith<_$WeatherCubitStateImpl> get copyWith =>
+      __$$WeatherCubitStateImplCopyWithImpl<_$WeatherCubitStateImpl>(
           this, _$identity);
 }
 
 abstract class _WeatherCubitState extends WeatherCubitState {
   const factory _WeatherCubitState(
       {final List<WeatherModel> weathers,
-      final WindModel wind}) = _$_WeatherCubitState;
+      final WindModel wind}) = _$WeatherCubitStateImpl;
   const _WeatherCubitState._() : super._();
 
   @override
@@ -183,6 +193,6 @@ abstract class _WeatherCubitState extends WeatherCubitState {
   WindModel get wind;
   @override
   @JsonKey(ignore: true)
-  _$$_WeatherCubitStateCopyWith<_$_WeatherCubitState> get copyWith =>
+  _$$WeatherCubitStateImplCopyWith<_$WeatherCubitStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

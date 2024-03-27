@@ -12,13 +12,13 @@ DialogStackState _useDialogStackState({
   required final Locator read,
 }) =>
     use(
-      LifeHook(
+      life_hooks.LifeHook(
         debugLabel: '_DialogStackState',
         state: DialogStackState(diDto: _DialogStackDiDto.use(read)),
       ),
     );
 
-class DialogStackState extends LifeState with ChangeNotifier {
+class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   DialogStackState({
     required this.diDto,
   });
@@ -73,13 +73,45 @@ class DialogStackState extends LifeState with ChangeNotifier {
     this.endLevelEvent = endLevelEvent;
   }
 
-  void _showLevelWinDialog() {
+  void onEndLevel() {
+    final event =
+        endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
+    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+
+    _closeDialog();
+  }
+
+  void onRestartLevel() {
+    final event =
+        endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
+    unawaited(diDto.globalGameBloc.onRestartLevel(event));
+
+    _closeDialog();
+  }
+
+  void onResume() {
+    _closeDialog();
+    _resume();
+  }
+
+  void onSaveResults() {
+    final event =
+        endLevelEvent ?? const EndLevelEvent(isWon: true, maxDistance: 0);
+    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+  }
+
+  Future<void> _showLevelWinDialog(final EndLevelEvent endLevelEvent) async {
+    this.endLevelEvent = endLevelEvent;
     dialogType = GameDialogType.levelWin;
   }
 
   void _showLevelWordSuggestionDialog() {
     dialogType = GameDialogType.levelWordSuggestion;
+    _pause();
   }
+
+  void _pause() => diDto.globalGameBloc.diDto.mechanics.worldTime.pause();
+  void _resume() => diDto.globalGameBloc.diDto.mechanics.worldTime.resume();
 
   void _closeDialog() {
     dialogType = GameDialogType.none;
@@ -121,14 +153,6 @@ class DialogStackState extends LifeState with ChangeNotifier {
 
   void _showTutorialBoolDialog() {
     dialogType = GameDialogType.tutorialBool;
-  }
-
-  Future<void> onSendEndLevelEvent() async {
-    final event = endLevelEvent;
-    if (event != null) {
-      unawaited(diDto.globalGameBloc.onLevelEnd(event));
-      endLevelEvent = null;
-    }
   }
 }
 

@@ -2,7 +2,6 @@ import 'dart:async' as lib_async;
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:life_hooks/life_hooks.dart';
 
 import '../../wbw_core.dart';
 
@@ -49,7 +48,7 @@ class WorldTimeMechanics implements Loadable {
     }
   }
 
-  WorldDateTimeModel _datetime = const WorldDateTimeModel();
+  WorldDateTimeModel _datetime = WorldDateTimeModel.zero;
   WorldDateTimeModel get dateTime => _datetime;
   void useDateTime(final WorldDateTimeModel datetime) {
     _datetime = datetime;

@@ -6,24 +6,6 @@ part of 'saveable_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CanvasDataReferenceModel _$$_CanvasDataReferenceModelFromJson(
-        Map<String, dynamic> json) =>
-    _$_CanvasDataReferenceModel(
-      id: json['id'] == null
-          ? CanvasDataModelId.empty
-          : CanvasDataModelId.fromJson(json['id'] as String),
-      name: json['name'] == null
-          ? LocalizedMap.empty
-          : LocalizedMap.fromJson(json['name'] as Map<String, dynamic>),
-    );
-
-Map<String, dynamic> _$$_CanvasDataReferenceModelToJson(
-        _$_CanvasDataReferenceModel instance) =>
-    <String, dynamic>{
-      'id': CanvasDataModelId.toJsonString(instance.id),
-      'name': LocalizedMap.toJsonValueMap(instance.name),
-    };
-
 _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
     _$_CanvasDataModel(
       id: json['id'] == null
@@ -48,6 +30,13 @@ _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
       gravity: json['gravity'] == null
           ? GravityModel.initial
           : GravityModel.fromJson(json['gravity'] as Map<String, dynamic>),
+      technologies: (json['technologies'] as List<dynamic>?)
+              ?.map((e) => TechnologyModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+      tilesetType:
+          $enumDecodeNullable(_$TilesetTypeEnumMap, json['tilesetType']) ??
+              TilesetType.colourful,
     );
 
 Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
@@ -59,7 +48,15 @@ Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
       'playerObject': instance.playerObject,
       'skyYTilePosition': instance.skyYTilePosition,
       'gravity': instance.gravity,
+      'technologies': instance.technologies,
+      'tilesetType': _$TilesetTypeEnumMap[instance.tilesetType]!,
     };
+
+const _$TilesetTypeEnumMap = {
+  TilesetType.colourful: 'colourful',
+  TilesetType.whiteBlack: 'white_black',
+  TilesetType.evening: 'evening',
+};
 
 _$_GravityModel _$$_GravityModelFromJson(Map<String, dynamic> json) =>
     _$_GravityModel(

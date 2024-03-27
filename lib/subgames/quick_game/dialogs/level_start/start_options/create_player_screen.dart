@@ -18,13 +18,16 @@ class CreatePlayerScreen extends HookWidget {
   final ValueChanged<PlayerProfileModel> onPlayerCreated;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final globalGameBloc = context.watch<GlobalGameBloc>();
     final liveState = globalGameBloc.state;
     final isPlayersEmpty = liveState.playersCollection.isEmpty;
     // final screenSize = MediaQuery.of(context).size;
     final theme = Theme.of(context);
-    final widgetState = usePlayerProfileCreatorState(read: context.read);
+    final notifier = useStateBuilder(
+      () => PlayerProfileCreatorNotifier(context),
+    );
+    final widgetState = notifier.value;
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -46,12 +49,14 @@ class CreatePlayerScreen extends HookWidget {
         ),
         const Spacer(),
         TextFieldWithKeyboard(
-          controller: widgetState.nameController,
+          controller: notifier.nameController,
           autofocus: true,
+          errorMessage: widgetState.nameErrorMessage,
           decoration: InputDecoration.collapsed(
             hintText: S.of(context).username,
           ),
         ),
+        const Gap(2),
         const Spacer(),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -66,8 +71,8 @@ class CreatePlayerScreen extends HookWidget {
               text: S.of(context).createPlayer,
               isLongButton: true,
               mainAlignment: MainAxisAlignment.center,
-              onPressed: () {
-                final profile = widgetState.onCreateProfile();
+              onPressed: () async {
+                final profile = await notifier.onCreateProfile();
                 if (profile == null) return;
                 onPlayerCreated(profile);
               },

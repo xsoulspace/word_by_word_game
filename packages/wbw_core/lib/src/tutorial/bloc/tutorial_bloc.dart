@@ -6,9 +6,9 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 
+import '../../data_models/data_models.dart';
 import '../../localization/localization.dart';
 import '../../mechanics/mechanics.dart';
-import '../../models/models.dart';
 
 part './tutorial_listener.dart';
 part 'tutorial_bloc.freezed.dart';

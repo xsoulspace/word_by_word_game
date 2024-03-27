@@ -58,25 +58,25 @@ class _$WordCompositionCubitStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_WordCompositionCubitStateCopyWith<$Res>
+abstract class _$$WordCompositionCubitStateImplCopyWith<$Res>
     implements $WordCompositionCubitStateCopyWith<$Res> {
-  factory _$$_WordCompositionCubitStateCopyWith(
-          _$_WordCompositionCubitState value,
-          $Res Function(_$_WordCompositionCubitState) then) =
-      __$$_WordCompositionCubitStateCopyWithImpl<$Res>;
+  factory _$$WordCompositionCubitStateImplCopyWith(
+          _$WordCompositionCubitStateImpl value,
+          $Res Function(_$WordCompositionCubitStateImpl) then) =
+      __$$WordCompositionCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isCardVisible});
 }
 
 /// @nodoc
-class __$$_WordCompositionCubitStateCopyWithImpl<$Res>
+class __$$WordCompositionCubitStateImplCopyWithImpl<$Res>
     extends _$WordCompositionCubitStateCopyWithImpl<$Res,
-        _$_WordCompositionCubitState>
-    implements _$$_WordCompositionCubitStateCopyWith<$Res> {
-  __$$_WordCompositionCubitStateCopyWithImpl(
-      _$_WordCompositionCubitState _value,
-      $Res Function(_$_WordCompositionCubitState) _then)
+        _$WordCompositionCubitStateImpl>
+    implements _$$WordCompositionCubitStateImplCopyWith<$Res> {
+  __$$WordCompositionCubitStateImplCopyWithImpl(
+      _$WordCompositionCubitStateImpl _value,
+      $Res Function(_$WordCompositionCubitStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -84,7 +84,7 @@ class __$$_WordCompositionCubitStateCopyWithImpl<$Res>
   $Res call({
     Object? isCardVisible = null,
   }) {
-    return _then(_$_WordCompositionCubitState(
+    return _then(_$WordCompositionCubitStateImpl(
       isCardVisible: null == isCardVisible
           ? _value.isCardVisible
           : isCardVisible // ignore: cast_nullable_to_non_nullable
@@ -95,8 +95,8 @@ class __$$_WordCompositionCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WordCompositionCubitState implements _WordCompositionCubitState {
-  const _$_WordCompositionCubitState({this.isCardVisible = true});
+class _$WordCompositionCubitStateImpl implements _WordCompositionCubitState {
+  const _$WordCompositionCubitStateImpl({this.isCardVisible = true});
 
   @override
   @JsonKey()
@@ -111,7 +111,7 @@ class _$_WordCompositionCubitState implements _WordCompositionCubitState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WordCompositionCubitState &&
+            other is _$WordCompositionCubitStateImpl &&
             (identical(other.isCardVisible, isCardVisible) ||
                 other.isCardVisible == isCardVisible));
   }
@@ -122,19 +122,19 @@ class _$_WordCompositionCubitState implements _WordCompositionCubitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WordCompositionCubitStateCopyWith<_$_WordCompositionCubitState>
-      get copyWith => __$$_WordCompositionCubitStateCopyWithImpl<
-          _$_WordCompositionCubitState>(this, _$identity);
+  _$$WordCompositionCubitStateImplCopyWith<_$WordCompositionCubitStateImpl>
+      get copyWith => __$$WordCompositionCubitStateImplCopyWithImpl<
+          _$WordCompositionCubitStateImpl>(this, _$identity);
 }
 
 abstract class _WordCompositionCubitState implements WordCompositionCubitState {
   const factory _WordCompositionCubitState({final bool isCardVisible}) =
-      _$_WordCompositionCubitState;
+      _$WordCompositionCubitStateImpl;
 
   @override
   bool get isCardVisible;
   @override
   @JsonKey(ignore: true)
-  _$$_WordCompositionCubitStateCopyWith<_$_WordCompositionCubitState>
+  _$$WordCompositionCubitStateImplCopyWith<_$WordCompositionCubitStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

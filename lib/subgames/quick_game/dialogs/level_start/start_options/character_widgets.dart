@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class CharactersDialog extends StatelessWidget {
@@ -58,7 +57,7 @@ class CharacterAvatarButton extends StatelessWidget {
     final liveState = globalGameBloc.state;
     final playersCharacters = liveState.playersCharacters;
     if (!isDefault) throw UnsupportedError('isNotDefault character');
-    // TODO(arenukvern):
+    // TODO(arenukvern): add default character
     /// Add deafult character selection
     final character = playersCharacters.first;
     const dimension = 48.0;
@@ -87,7 +86,7 @@ class CharacterAvatarButton extends StatelessWidget {
             ),
           ),
         ),
-        Text(character.localizedName.getValue())
+        Text(character.localizedName.getValue()),
       ],
     );
   }
@@ -105,7 +104,7 @@ class CharacterCard extends StatelessWidget {
   final bool selected;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
     return Card(
       elevation: selected ? 12.0 : 1.0,

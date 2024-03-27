@@ -47,7 +47,6 @@ abstract class $UiThemeSchemeCopyWith<$Res> {
   $UiBoxSpacingCopyWith<$Res> get horizontalBoxes;
   $UiBoxSpacingCopyWith<$Res> get verticalBoxes;
   $UiRadiusCopyWith<$Res> get circularRadius;
-  $UiTextThemeCopyWith<$Res> get text;
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors;
 }
 
@@ -133,14 +132,6 @@ class _$UiThemeSchemeCopyWithImpl<$Res, $Val extends UiThemeScheme>
 
   @override
   @pragma('vm:prefer-inline')
-  $UiTextThemeCopyWith<$Res> get text {
-    return $UiTextThemeCopyWith<$Res>(_value.text, (value) {
-      return _then(_value.copyWith(text: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors {
     return $UiCustomizableFormFactorsCopyWith<$Res>(
         _value.customizableFormFactors, (value) {
@@ -150,11 +141,11 @@ class _$UiThemeSchemeCopyWithImpl<$Res, $Val extends UiThemeScheme>
 }
 
 /// @nodoc
-abstract class _$$_UiThemeSchemeCopyWith<$Res>
+abstract class _$$UiThemeSchemeImplCopyWith<$Res>
     implements $UiThemeSchemeCopyWith<$Res> {
-  factory _$$_UiThemeSchemeCopyWith(
-          _$_UiThemeScheme value, $Res Function(_$_UiThemeScheme) then) =
-      __$$_UiThemeSchemeCopyWithImpl<$Res>;
+  factory _$$UiThemeSchemeImplCopyWith(
+          _$UiThemeSchemeImpl value, $Res Function(_$UiThemeSchemeImpl) then) =
+      __$$UiThemeSchemeImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -174,17 +165,15 @@ abstract class _$$_UiThemeSchemeCopyWith<$Res>
   @override
   $UiRadiusCopyWith<$Res> get circularRadius;
   @override
-  $UiTextThemeCopyWith<$Res> get text;
-  @override
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors;
 }
 
 /// @nodoc
-class __$$_UiThemeSchemeCopyWithImpl<$Res>
-    extends _$UiThemeSchemeCopyWithImpl<$Res, _$_UiThemeScheme>
-    implements _$$_UiThemeSchemeCopyWith<$Res> {
-  __$$_UiThemeSchemeCopyWithImpl(
-      _$_UiThemeScheme _value, $Res Function(_$_UiThemeScheme) _then)
+class __$$UiThemeSchemeImplCopyWithImpl<$Res>
+    extends _$UiThemeSchemeCopyWithImpl<$Res, _$UiThemeSchemeImpl>
+    implements _$$UiThemeSchemeImplCopyWith<$Res> {
+  __$$UiThemeSchemeImplCopyWithImpl(
+      _$UiThemeSchemeImpl _value, $Res Function(_$UiThemeSchemeImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -197,7 +186,7 @@ class __$$_UiThemeSchemeCopyWithImpl<$Res>
     Object? text = null,
     Object? customizableFormFactors = null,
   }) {
-    return _then(_$_UiThemeScheme(
+    return _then(_$UiThemeSchemeImpl(
       spacing: null == spacing
           ? _value.spacing
           : spacing // ignore: cast_nullable_to_non_nullable
@@ -228,8 +217,8 @@ class __$$_UiThemeSchemeCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UiThemeScheme extends _UiThemeScheme with DiagnosticableTreeMixin {
-  const _$_UiThemeScheme(
+class _$UiThemeSchemeImpl extends _UiThemeScheme with DiagnosticableTreeMixin {
+  const _$UiThemeSchemeImpl(
       {required this.spacing,
       required this.horizontalBoxes,
       required this.verticalBoxes,
@@ -274,7 +263,7 @@ class _$_UiThemeScheme extends _UiThemeScheme with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UiThemeScheme &&
+            other is _$UiThemeSchemeImpl &&
             (identical(other.spacing, spacing) || other.spacing == spacing) &&
             (identical(other.horizontalBoxes, horizontalBoxes) ||
                 other.horizontalBoxes == horizontalBoxes) &&
@@ -295,8 +284,8 @@ class _$_UiThemeScheme extends _UiThemeScheme with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UiThemeSchemeCopyWith<_$_UiThemeScheme> get copyWith =>
-      __$$_UiThemeSchemeCopyWithImpl<_$_UiThemeScheme>(this, _$identity);
+  _$$UiThemeSchemeImplCopyWith<_$UiThemeSchemeImpl> get copyWith =>
+      __$$UiThemeSchemeImplCopyWithImpl<_$UiThemeSchemeImpl>(this, _$identity);
 }
 
 abstract class _UiThemeScheme extends UiThemeScheme {
@@ -307,7 +296,7 @@ abstract class _UiThemeScheme extends UiThemeScheme {
           required final UiRadius circularRadius,
           required final UiTextTheme text,
           required final UiCustomizableFormFactors customizableFormFactors}) =
-      _$_UiThemeScheme;
+      _$UiThemeSchemeImpl;
   const _UiThemeScheme._() : super._();
 
   @override
@@ -324,7 +313,7 @@ abstract class _UiThemeScheme extends UiThemeScheme {
   UiCustomizableFormFactors get customizableFormFactors;
   @override
   @JsonKey(ignore: true)
-  _$$_UiThemeSchemeCopyWith<_$_UiThemeScheme> get copyWith =>
+  _$$UiThemeSchemeImplCopyWith<_$UiThemeSchemeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -387,11 +376,12 @@ class _$UiPersistentFormFactorsCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_UiPersistentFormFactorsCopyWith<$Res>
+abstract class _$$UiPersistentFormFactorsImplCopyWith<$Res>
     implements $UiPersistentFormFactorsCopyWith<$Res> {
-  factory _$$_UiPersistentFormFactorsCopyWith(_$_UiPersistentFormFactors value,
-          $Res Function(_$_UiPersistentFormFactors) then) =
-      __$$_UiPersistentFormFactorsCopyWithImpl<$Res>;
+  factory _$$UiPersistentFormFactorsImplCopyWith(
+          _$UiPersistentFormFactorsImpl value,
+          $Res Function(_$UiPersistentFormFactorsImpl) then) =
+      __$$UiPersistentFormFactorsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -401,12 +391,13 @@ abstract class _$$_UiPersistentFormFactorsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UiPersistentFormFactorsCopyWithImpl<$Res>
+class __$$UiPersistentFormFactorsImplCopyWithImpl<$Res>
     extends _$UiPersistentFormFactorsCopyWithImpl<$Res,
-        _$_UiPersistentFormFactors>
-    implements _$$_UiPersistentFormFactorsCopyWith<$Res> {
-  __$$_UiPersistentFormFactorsCopyWithImpl(_$_UiPersistentFormFactors _value,
-      $Res Function(_$_UiPersistentFormFactors) _then)
+        _$UiPersistentFormFactorsImpl>
+    implements _$$UiPersistentFormFactorsImplCopyWith<$Res> {
+  __$$UiPersistentFormFactorsImplCopyWithImpl(
+      _$UiPersistentFormFactorsImpl _value,
+      $Res Function(_$UiPersistentFormFactorsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -416,7 +407,7 @@ class __$$_UiPersistentFormFactorsCopyWithImpl<$Res>
     Object? deviceWindow = null,
     Object? screenSize = null,
   }) {
-    return _then(_$_UiPersistentFormFactors(
+    return _then(_$UiPersistentFormFactorsImpl(
       width: null == width
           ? _value.width
           : width // ignore: cast_nullable_to_non_nullable
@@ -435,9 +426,9 @@ class __$$_UiPersistentFormFactorsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UiPersistentFormFactors extends _UiPersistentFormFactors
+class _$UiPersistentFormFactorsImpl extends _UiPersistentFormFactors
     with DiagnosticableTreeMixin {
-  const _$_UiPersistentFormFactors(
+  const _$UiPersistentFormFactorsImpl(
       {required this.width,
       required this.deviceWindow,
       required this.screenSize})
@@ -469,7 +460,7 @@ class _$_UiPersistentFormFactors extends _UiPersistentFormFactors
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UiPersistentFormFactors &&
+            other is _$UiPersistentFormFactorsImpl &&
             (identical(other.width, width) || other.width == width) &&
             (identical(other.deviceWindow, deviceWindow) ||
                 other.deviceWindow == deviceWindow) &&
@@ -483,17 +474,16 @@ class _$_UiPersistentFormFactors extends _UiPersistentFormFactors
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UiPersistentFormFactorsCopyWith<_$_UiPersistentFormFactors>
-      get copyWith =>
-          __$$_UiPersistentFormFactorsCopyWithImpl<_$_UiPersistentFormFactors>(
-              this, _$identity);
+  _$$UiPersistentFormFactorsImplCopyWith<_$UiPersistentFormFactorsImpl>
+      get copyWith => __$$UiPersistentFormFactorsImplCopyWithImpl<
+          _$UiPersistentFormFactorsImpl>(this, _$identity);
 }
 
 abstract class _UiPersistentFormFactors extends UiPersistentFormFactors {
   const factory _UiPersistentFormFactors(
       {required final WidthFormFactor width,
       required final DeviceWindowFormFactor deviceWindow,
-      required final Size screenSize}) = _$_UiPersistentFormFactors;
+      required final Size screenSize}) = _$UiPersistentFormFactorsImpl;
   const _UiPersistentFormFactors._() : super._();
 
   @override
@@ -504,7 +494,7 @@ abstract class _UiPersistentFormFactors extends UiPersistentFormFactors {
   Size get screenSize;
   @override
   @JsonKey(ignore: true)
-  _$$_UiPersistentFormFactorsCopyWith<_$_UiPersistentFormFactors>
+  _$$UiPersistentFormFactorsImplCopyWith<_$UiPersistentFormFactorsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -558,25 +548,25 @@ class _$UiCustomizableFormFactorsCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_UiCustomizableFormFactorsCopyWith<$Res>
+abstract class _$$UiCustomizableFormFactorsImplCopyWith<$Res>
     implements $UiCustomizableFormFactorsCopyWith<$Res> {
-  factory _$$_UiCustomizableFormFactorsCopyWith(
-          _$_UiCustomizableFormFactors value,
-          $Res Function(_$_UiCustomizableFormFactors) then) =
-      __$$_UiCustomizableFormFactorsCopyWithImpl<$Res>;
+  factory _$$UiCustomizableFormFactorsImplCopyWith(
+          _$UiCustomizableFormFactorsImpl value,
+          $Res Function(_$UiCustomizableFormFactorsImpl) then) =
+      __$$UiCustomizableFormFactorsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PerformanceFormFactor performance, ControlsFormFactor controls});
 }
 
 /// @nodoc
-class __$$_UiCustomizableFormFactorsCopyWithImpl<$Res>
+class __$$UiCustomizableFormFactorsImplCopyWithImpl<$Res>
     extends _$UiCustomizableFormFactorsCopyWithImpl<$Res,
-        _$_UiCustomizableFormFactors>
-    implements _$$_UiCustomizableFormFactorsCopyWith<$Res> {
-  __$$_UiCustomizableFormFactorsCopyWithImpl(
-      _$_UiCustomizableFormFactors _value,
-      $Res Function(_$_UiCustomizableFormFactors) _then)
+        _$UiCustomizableFormFactorsImpl>
+    implements _$$UiCustomizableFormFactorsImplCopyWith<$Res> {
+  __$$UiCustomizableFormFactorsImplCopyWithImpl(
+      _$UiCustomizableFormFactorsImpl _value,
+      $Res Function(_$UiCustomizableFormFactorsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -585,7 +575,7 @@ class __$$_UiCustomizableFormFactorsCopyWithImpl<$Res>
     Object? performance = null,
     Object? controls = null,
   }) {
-    return _then(_$_UiCustomizableFormFactors(
+    return _then(_$UiCustomizableFormFactorsImpl(
       performance: null == performance
           ? _value.performance
           : performance // ignore: cast_nullable_to_non_nullable
@@ -600,9 +590,9 @@ class __$$_UiCustomizableFormFactorsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UiCustomizableFormFactors extends _UiCustomizableFormFactors
+class _$UiCustomizableFormFactorsImpl extends _UiCustomizableFormFactors
     with DiagnosticableTreeMixin {
-  const _$_UiCustomizableFormFactors(
+  const _$UiCustomizableFormFactorsImpl(
       {required this.performance, required this.controls})
       : super._();
 
@@ -629,7 +619,7 @@ class _$_UiCustomizableFormFactors extends _UiCustomizableFormFactors
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UiCustomizableFormFactors &&
+            other is _$UiCustomizableFormFactorsImpl &&
             (identical(other.performance, performance) ||
                 other.performance == performance) &&
             (identical(other.controls, controls) ||
@@ -642,16 +632,16 @@ class _$_UiCustomizableFormFactors extends _UiCustomizableFormFactors
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UiCustomizableFormFactorsCopyWith<_$_UiCustomizableFormFactors>
-      get copyWith => __$$_UiCustomizableFormFactorsCopyWithImpl<
-          _$_UiCustomizableFormFactors>(this, _$identity);
+  _$$UiCustomizableFormFactorsImplCopyWith<_$UiCustomizableFormFactorsImpl>
+      get copyWith => __$$UiCustomizableFormFactorsImplCopyWithImpl<
+          _$UiCustomizableFormFactorsImpl>(this, _$identity);
 }
 
 abstract class _UiCustomizableFormFactors extends UiCustomizableFormFactors {
   const factory _UiCustomizableFormFactors(
           {required final PerformanceFormFactor performance,
           required final ControlsFormFactor controls}) =
-      _$_UiCustomizableFormFactors;
+      _$UiCustomizableFormFactorsImpl;
   const _UiCustomizableFormFactors._() : super._();
 
   @override
@@ -660,7 +650,7 @@ abstract class _UiCustomizableFormFactors extends UiCustomizableFormFactors {
   ControlsFormFactor get controls;
   @override
   @JsonKey(ignore: true)
-  _$$_UiCustomizableFormFactorsCopyWith<_$_UiCustomizableFormFactors>
+  _$$UiCustomizableFormFactorsImplCopyWith<_$UiCustomizableFormFactorsImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -749,10 +739,11 @@ class _$UiSpacingCopyWithImpl<$Res, $Val extends UiSpacing>
 }
 
 /// @nodoc
-abstract class _$$_UiSpacingCopyWith<$Res> implements $UiSpacingCopyWith<$Res> {
-  factory _$$_UiSpacingCopyWith(
-          _$_UiSpacing value, $Res Function(_$_UiSpacing) then) =
-      __$$_UiSpacingCopyWithImpl<$Res>;
+abstract class _$$UiSpacingImplCopyWith<$Res>
+    implements $UiSpacingCopyWith<$Res> {
+  factory _$$UiSpacingImplCopyWith(
+          _$UiSpacingImpl value, $Res Function(_$UiSpacingImpl) then) =
+      __$$UiSpacingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -766,11 +757,11 @@ abstract class _$$_UiSpacingCopyWith<$Res> implements $UiSpacingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UiSpacingCopyWithImpl<$Res>
-    extends _$UiSpacingCopyWithImpl<$Res, _$_UiSpacing>
-    implements _$$_UiSpacingCopyWith<$Res> {
-  __$$_UiSpacingCopyWithImpl(
-      _$_UiSpacing _value, $Res Function(_$_UiSpacing) _then)
+class __$$UiSpacingImplCopyWithImpl<$Res>
+    extends _$UiSpacingCopyWithImpl<$Res, _$UiSpacingImpl>
+    implements _$$UiSpacingImplCopyWith<$Res> {
+  __$$UiSpacingImplCopyWithImpl(
+      _$UiSpacingImpl _value, $Res Function(_$UiSpacingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -784,7 +775,7 @@ class __$$_UiSpacingCopyWithImpl<$Res>
     Object? extraLarge = null,
     Object? full = null,
   }) {
-    return _then(_$_UiSpacing(
+    return _then(_$UiSpacingImpl(
       none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
@@ -819,8 +810,8 @@ class __$$_UiSpacingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UiSpacing extends _UiSpacing with DiagnosticableTreeMixin {
-  const _$_UiSpacing(
+class _$UiSpacingImpl extends _UiSpacing with DiagnosticableTreeMixin {
+  const _$UiSpacingImpl(
       {required this.none,
       required this.extraSmall,
       required this.small,
@@ -868,7 +859,7 @@ class _$_UiSpacing extends _UiSpacing with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UiSpacing &&
+            other is _$UiSpacingImpl &&
             (identical(other.none, none) || other.none == none) &&
             (identical(other.extraSmall, extraSmall) ||
                 other.extraSmall == extraSmall) &&
@@ -887,8 +878,8 @@ class _$_UiSpacing extends _UiSpacing with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UiSpacingCopyWith<_$_UiSpacing> get copyWith =>
-      __$$_UiSpacingCopyWithImpl<_$_UiSpacing>(this, _$identity);
+  _$$UiSpacingImplCopyWith<_$UiSpacingImpl> get copyWith =>
+      __$$UiSpacingImplCopyWithImpl<_$UiSpacingImpl>(this, _$identity);
 }
 
 abstract class _UiSpacing extends UiSpacing {
@@ -899,7 +890,7 @@ abstract class _UiSpacing extends UiSpacing {
       required final double medium,
       required final double large,
       required final double extraLarge,
-      required final double full}) = _$_UiSpacing;
+      required final double full}) = _$UiSpacingImpl;
   const _UiSpacing._() : super._();
 
   @override
@@ -918,7 +909,7 @@ abstract class _UiSpacing extends UiSpacing {
   double get full;
   @override
   @JsonKey(ignore: true)
-  _$$_UiSpacingCopyWith<_$_UiSpacing> get copyWith =>
+  _$$UiSpacingImplCopyWith<_$UiSpacingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1007,10 +998,11 @@ class _$UiRadiusCopyWithImpl<$Res, $Val extends UiRadius>
 }
 
 /// @nodoc
-abstract class _$$_UiRadiusCopyWith<$Res> implements $UiRadiusCopyWith<$Res> {
-  factory _$$_UiRadiusCopyWith(
-          _$_UiRadius value, $Res Function(_$_UiRadius) then) =
-      __$$_UiRadiusCopyWithImpl<$Res>;
+abstract class _$$UiRadiusImplCopyWith<$Res>
+    implements $UiRadiusCopyWith<$Res> {
+  factory _$$UiRadiusImplCopyWith(
+          _$UiRadiusImpl value, $Res Function(_$UiRadiusImpl) then) =
+      __$$UiRadiusImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1024,11 +1016,11 @@ abstract class _$$_UiRadiusCopyWith<$Res> implements $UiRadiusCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_UiRadiusCopyWithImpl<$Res>
-    extends _$UiRadiusCopyWithImpl<$Res, _$_UiRadius>
-    implements _$$_UiRadiusCopyWith<$Res> {
-  __$$_UiRadiusCopyWithImpl(
-      _$_UiRadius _value, $Res Function(_$_UiRadius) _then)
+class __$$UiRadiusImplCopyWithImpl<$Res>
+    extends _$UiRadiusCopyWithImpl<$Res, _$UiRadiusImpl>
+    implements _$$UiRadiusImplCopyWith<$Res> {
+  __$$UiRadiusImplCopyWithImpl(
+      _$UiRadiusImpl _value, $Res Function(_$UiRadiusImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1042,7 +1034,7 @@ class __$$_UiRadiusCopyWithImpl<$Res>
     Object? extraLarge = null,
     Object? full = null,
   }) {
-    return _then(_$_UiRadius(
+    return _then(_$UiRadiusImpl(
       none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
@@ -1077,8 +1069,8 @@ class __$$_UiRadiusCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UiRadius extends _UiRadius with DiagnosticableTreeMixin {
-  const _$_UiRadius(
+class _$UiRadiusImpl extends _UiRadius with DiagnosticableTreeMixin {
+  const _$UiRadiusImpl(
       {required this.none,
       required this.extraSmall,
       required this.small,
@@ -1126,7 +1118,7 @@ class _$_UiRadius extends _UiRadius with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UiRadius &&
+            other is _$UiRadiusImpl &&
             (identical(other.none, none) || other.none == none) &&
             (identical(other.extraSmall, extraSmall) ||
                 other.extraSmall == extraSmall) &&
@@ -1145,8 +1137,8 @@ class _$_UiRadius extends _UiRadius with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UiRadiusCopyWith<_$_UiRadius> get copyWith =>
-      __$$_UiRadiusCopyWithImpl<_$_UiRadius>(this, _$identity);
+  _$$UiRadiusImplCopyWith<_$UiRadiusImpl> get copyWith =>
+      __$$UiRadiusImplCopyWithImpl<_$UiRadiusImpl>(this, _$identity);
 }
 
 abstract class _UiRadius extends UiRadius {
@@ -1157,7 +1149,7 @@ abstract class _UiRadius extends UiRadius {
       required final Radius medium,
       required final Radius large,
       required final Radius extraLarge,
-      required final Radius full}) = _$_UiRadius;
+      required final Radius full}) = _$UiRadiusImpl;
   const _UiRadius._() : super._();
 
   @override
@@ -1176,7 +1168,7 @@ abstract class _UiRadius extends UiRadius {
   Radius get full;
   @override
   @JsonKey(ignore: true)
-  _$$_UiRadiusCopyWith<_$_UiRadius> get copyWith =>
+  _$$UiRadiusImplCopyWith<_$UiRadiusImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1266,11 +1258,11 @@ class _$UiBoxSpacingCopyWithImpl<$Res, $Val extends UiBoxSpacing>
 }
 
 /// @nodoc
-abstract class _$$_UiBoxSpacingCopyWith<$Res>
+abstract class _$$UiBoxSpacingImplCopyWith<$Res>
     implements $UiBoxSpacingCopyWith<$Res> {
-  factory _$$_UiBoxSpacingCopyWith(
-          _$_UiBoxSpacing value, $Res Function(_$_UiBoxSpacing) then) =
-      __$$_UiBoxSpacingCopyWithImpl<$Res>;
+  factory _$$UiBoxSpacingImplCopyWith(
+          _$UiBoxSpacingImpl value, $Res Function(_$UiBoxSpacingImpl) then) =
+      __$$UiBoxSpacingImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1284,11 +1276,11 @@ abstract class _$$_UiBoxSpacingCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_UiBoxSpacingCopyWithImpl<$Res>
-    extends _$UiBoxSpacingCopyWithImpl<$Res, _$_UiBoxSpacing>
-    implements _$$_UiBoxSpacingCopyWith<$Res> {
-  __$$_UiBoxSpacingCopyWithImpl(
-      _$_UiBoxSpacing _value, $Res Function(_$_UiBoxSpacing) _then)
+class __$$UiBoxSpacingImplCopyWithImpl<$Res>
+    extends _$UiBoxSpacingCopyWithImpl<$Res, _$UiBoxSpacingImpl>
+    implements _$$UiBoxSpacingImplCopyWith<$Res> {
+  __$$UiBoxSpacingImplCopyWithImpl(
+      _$UiBoxSpacingImpl _value, $Res Function(_$UiBoxSpacingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1302,7 +1294,7 @@ class __$$_UiBoxSpacingCopyWithImpl<$Res>
     Object? extraLarge = null,
     Object? full = null,
   }) {
-    return _then(_$_UiBoxSpacing(
+    return _then(_$UiBoxSpacingImpl(
       none: null == none
           ? _value.none
           : none // ignore: cast_nullable_to_non_nullable
@@ -1337,8 +1329,8 @@ class __$$_UiBoxSpacingCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_UiBoxSpacing extends _UiBoxSpacing with DiagnosticableTreeMixin {
-  const _$_UiBoxSpacing(
+class _$UiBoxSpacingImpl extends _UiBoxSpacing with DiagnosticableTreeMixin {
+  const _$UiBoxSpacingImpl(
       {required this.none,
       required this.extraSmall,
       required this.small,
@@ -1386,7 +1378,7 @@ class _$_UiBoxSpacing extends _UiBoxSpacing with DiagnosticableTreeMixin {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_UiBoxSpacing &&
+            other is _$UiBoxSpacingImpl &&
             (identical(other.none, none) || other.none == none) &&
             (identical(other.extraSmall, extraSmall) ||
                 other.extraSmall == extraSmall) &&
@@ -1405,8 +1397,8 @@ class _$_UiBoxSpacing extends _UiBoxSpacing with DiagnosticableTreeMixin {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_UiBoxSpacingCopyWith<_$_UiBoxSpacing> get copyWith =>
-      __$$_UiBoxSpacingCopyWithImpl<_$_UiBoxSpacing>(this, _$identity);
+  _$$UiBoxSpacingImplCopyWith<_$UiBoxSpacingImpl> get copyWith =>
+      __$$UiBoxSpacingImplCopyWithImpl<_$UiBoxSpacingImpl>(this, _$identity);
 }
 
 abstract class _UiBoxSpacing extends UiBoxSpacing {
@@ -1417,7 +1409,7 @@ abstract class _UiBoxSpacing extends UiBoxSpacing {
       required final SizedBox medium,
       required final SizedBox large,
       required final SizedBox extraLarge,
-      required final SizedBox full}) = _$_UiBoxSpacing;
+      required final SizedBox full}) = _$UiBoxSpacingImpl;
   const _UiBoxSpacing._() : super._();
 
   @override
@@ -1436,132 +1428,6 @@ abstract class _UiBoxSpacing extends UiBoxSpacing {
   SizedBox get full;
   @override
   @JsonKey(ignore: true)
-  _$$_UiBoxSpacingCopyWith<_$_UiBoxSpacing> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$UiTextTheme {
-  TextTheme get error => throw _privateConstructorUsedError;
-
-  @JsonKey(ignore: true)
-  $UiTextThemeCopyWith<UiTextTheme> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $UiTextThemeCopyWith<$Res> {
-  factory $UiTextThemeCopyWith(
-          UiTextTheme value, $Res Function(UiTextTheme) then) =
-      _$UiTextThemeCopyWithImpl<$Res, UiTextTheme>;
-  @useResult
-  $Res call({TextTheme error});
-}
-
-/// @nodoc
-class _$UiTextThemeCopyWithImpl<$Res, $Val extends UiTextTheme>
-    implements $UiTextThemeCopyWith<$Res> {
-  _$UiTextThemeCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_value.copyWith(
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as TextTheme,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$_UiTextThemeCopyWith<$Res>
-    implements $UiTextThemeCopyWith<$Res> {
-  factory _$$_UiTextThemeCopyWith(
-          _$_UiTextTheme value, $Res Function(_$_UiTextTheme) then) =
-      __$$_UiTextThemeCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({TextTheme error});
-}
-
-/// @nodoc
-class __$$_UiTextThemeCopyWithImpl<$Res>
-    extends _$UiTextThemeCopyWithImpl<$Res, _$_UiTextTheme>
-    implements _$$_UiTextThemeCopyWith<$Res> {
-  __$$_UiTextThemeCopyWithImpl(
-      _$_UiTextTheme _value, $Res Function(_$_UiTextTheme) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = null,
-  }) {
-    return _then(_$_UiTextTheme(
-      error: null == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as TextTheme,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$_UiTextTheme extends _UiTextTheme with DiagnosticableTreeMixin {
-  const _$_UiTextTheme({required this.error}) : super._();
-
-  @override
-  final TextTheme error;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UiTextTheme(error: $error)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'UiTextTheme'))
-      ..add(DiagnosticsProperty('error', error));
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$_UiTextTheme &&
-            (identical(other.error, error) || other.error == error));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$_UiTextThemeCopyWith<_$_UiTextTheme> get copyWith =>
-      __$$_UiTextThemeCopyWithImpl<_$_UiTextTheme>(this, _$identity);
-}
-
-abstract class _UiTextTheme extends UiTextTheme {
-  const factory _UiTextTheme({required final TextTheme error}) = _$_UiTextTheme;
-  const _UiTextTheme._() : super._();
-
-  @override
-  TextTheme get error;
-  @override
-  @JsonKey(ignore: true)
-  _$$_UiTextThemeCopyWith<_$_UiTextTheme> get copyWith =>
+  _$$UiBoxSpacingImplCopyWith<_$UiBoxSpacingImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -23,7 +23,7 @@ class MiddleWordPartActions extends StatelessWidget {
   final ValueChanged<int> onLetterPressed;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final spacing = uiTheme.spacing;
 
     final player = context.select<LevelPlayersBloc, PlayerProfileModel>(

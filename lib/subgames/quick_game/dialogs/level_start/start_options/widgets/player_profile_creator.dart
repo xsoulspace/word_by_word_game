@@ -1,74 +1,81 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:wbw_locale/wbw_locale.dart';
 
-part 'player_profile_creator_state.dart';
+part 'player_profile_creator.freezed.dart';
 
-class PlayerProfileCreator extends HookWidget {
-  const PlayerProfileCreator({
-    required this.onPlayerCreated,
-    super.key,
-  });
-  final ValueChanged<PlayerProfileModel> onPlayerCreated;
-  @override
-  Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
-    final state = usePlayerProfileCreatorState(read: context.read);
-    return Card(
-      child: Padding(
-        padding: EdgeInsets.all(uiTheme.spacing.small),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(S.of(context).profileCreator),
-            uiTheme.verticalBoxes.large,
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                AnimatedContainer(
-                  decoration: BoxDecoration(
-                    color: state.color,
-                    borderRadius: BorderRadius.circular(14),
-                  ),
-                  duration: const Duration(milliseconds: 250),
-                  width: 65,
-                  height: 65,
-                ),
-                uiTheme.horizontalBoxes.large,
-                SizedBox(
-                  width: 140,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      TextField(
-                        controller: state.nameController,
-                        decoration: InputDecoration.collapsed(
-                          hintText: S.of(context).username,
-                        ),
-                      ),
-                      uiTheme.verticalBoxes.large,
-                      TextButton(
-                        onPressed: () {
-                          final profile = state.onCreateProfile();
-                          if (profile == null) return;
-                          onPlayerCreated(profile);
-                        },
-                        child: Text(S.of(context).createProfile),
-                      )
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ],
-        ),
-      ),
+@freezed
+class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
+  const factory PlayerProfileCreatorState({
+    @Default('') final String nameErrorMessage,
+    @Default(Colors.teal) final Color color,
+  }) = _PlayerProfileCreatorState;
+}
+
+class PlayerProfileCreatorNotifierDto {
+  PlayerProfileCreatorNotifierDto(final BuildContext context)
+      : dictionariesRespository = context.read();
+  final DictionariesRespository dictionariesRespository;
+}
+
+enum PlayerProfileCreatorError {
+  cannotBeEmpty,
+  invalidName;
+
+  static const locales = <PlayerProfileCreatorError, Map<Languages, String>>{
+    cannotBeEmpty: {
+      Languages.en: 'Name cannot be empty',
+      Languages.ru: 'Имя не может быть пустым',
+      Languages.it: 'Il nome non puè essere vuoto',
+    },
+    invalidName: {
+      Languages.en: 'Try another name',
+      Languages.ru: 'Попробуйте другое имя',
+      Languages.it: 'Prova un altro nome',
+    },
+  };
+
+  String get localized => LocalizedMap(value: locales[this]!).getValue();
+}
+
+class PlayerProfileCreatorNotifier
+    extends ValueNotifier<PlayerProfileCreatorState> {
+  PlayerProfileCreatorNotifier(final BuildContext context)
+      : _dto = PlayerProfileCreatorNotifierDto(context),
+        super(const PlayerProfileCreatorState());
+  final PlayerProfileCreatorNotifierDto _dto;
+  final nameController = TextEditingController();
+  Color get color => value.color;
+  set color(final Color newColor) => value = value.copyWith(color: newColor);
+
+  Future<PlayerProfileCreatorError?> _validateName() async {
+    final name = nameController.text;
+    if (name.isEmpty) return PlayerProfileCreatorError.cannotBeEmpty;
+    final isValid = await _dto.dictionariesRespository.verifyWord(name);
+    if (isValid) return null;
+    return PlayerProfileCreatorError.invalidName;
+  }
+
+  Future<PlayerProfileModel?> onCreateProfile() async {
+    final errorMessage = await _validateName();
+    if (errorMessage != null) {
+      value = value.copyWith(nameErrorMessage: errorMessage.localized);
+      return null;
+    }
+    final player = PlayerProfileModel.create(
+      name: nameController.text,
+      colorValue: value.color.value,
     );
+
+    value = const PlayerProfileCreatorState();
+
+    return player;
+  }
+
+  @override
+  void dispose() {
+    nameController.dispose();
+    super.dispose();
   }
 }

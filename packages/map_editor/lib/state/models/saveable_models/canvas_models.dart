@@ -20,30 +20,14 @@ class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
   List<Object?> get props => [value];
 }
 
-@freezed
-class CanvasDataReferenceModel with _$CanvasDataReferenceModel {
-  const factory CanvasDataReferenceModel({
-    @JsonKey(
-      fromJson: CanvasDataModelId.fromJson,
-      toJson: CanvasDataModelId.toJsonString,
-    )
-    @Default(CanvasDataModelId.empty)
-    final CanvasDataModelId id,
-    @JsonKey(
-      fromJson: LocalizedMap.fromJson,
-      toJson: LocalizedMap.toJsonValueMap,
-    )
-    @Default(LocalizedMap.empty)
-    final LocalizedMap name,
-  }) = _CanvasDataReferenceModel;
-  const CanvasDataReferenceModel._();
-  factory CanvasDataReferenceModel.fromJson(
-    final Map<String, dynamic> json,
-  ) =>
-      _$CanvasDataReferenceModelFromJson(json);
-  static const empty = CanvasDataReferenceModel();
-}
-
+/// Canvas data is what is displayed on the screen
+/// It can be changed from the editor.
+///
+/// Currently immutable from whithin the game.
+///
+/// In future:
+/// It can be changed during the game. If this will be
+/// implemented, then it should be saved with the level.
 @freezed
 class CanvasDataModel with _$CanvasDataModel {
   const factory CanvasDataModel({
@@ -82,12 +66,16 @@ class CanvasDataModel with _$CanvasDataModel {
 
     /// can be negative and positive. Should be absolute tile index.
     @Default(GravityModel.initial) final GravityModel gravity,
+    @Default([]) final List<TechnologyModel> technologies,
+    @Default(TilesetType.colourful) final TilesetType tilesetType,
   }) = _CanvasDataModel;
   const CanvasDataModel._();
   factory CanvasDataModel.fromJson(
     final Map<String, dynamic> json,
   ) =>
       _$CanvasDataModelFromJson(json);
+  factory CanvasDataModel.create() =>
+      CanvasDataModel(id: CanvasDataModelId(value: IdCreator.create()));
   static const empty = CanvasDataModel();
 
   static Map<Gid, RenderObjectModel> _objectsFromJson(

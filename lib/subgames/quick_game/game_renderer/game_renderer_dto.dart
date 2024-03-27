@@ -34,9 +34,8 @@ class GameRendererDiDto {
     required final List<Component>? children,
   }) {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
-      FlameBlocProvider<LevelBloc, LevelBlocState>.value(
-        value: levelBloc,
-      ),
+      FlameBlocProvider<LevelBloc, LevelBlocState>.value(value: levelBloc),
+      FlameBlocProvider<DebugCubit, DebugCubitState>.value(value: debugCubit),
       FlameBlocProvider<CanvasCubit, DrawerCubitState>.value(
         value: canvasCubit,
       ),

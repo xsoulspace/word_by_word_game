@@ -8,21 +8,51 @@ class Envs {
   /// ********************************************
 
   static const yandexFlexibleMobile =
-      String.fromEnvironment('yandex-flexible-mobile');
+      String.fromEnvironment('YANDEX_FLEXIBLE_MOBILE');
   static const yandexFlexibleMobileWeb =
-      String.fromEnvironment('yandex-flexible-mobile-web');
+      String.fromEnvironment('YANDEX_FLEXIBLE_MOBILE_WEB');
   static const yandexFlexibleDesktopWeb =
-      String.fromEnvironment('yandex-flexible-desktop-web');
+      String.fromEnvironment('YANDEX_FLEXIBLE_DESKTOP_WEB');
   static const yandexFullscreenYGMobileWeb =
-      String.fromEnvironment('yandex-fullscreen-yg-mobile-web');
+      String.fromEnvironment('YANDEX_FULLSCREEN_YG_MOBILE_WEB');
   static const yandexFullscreenYGDesktopWeb =
-      String.fromEnvironment('yandex-fullscreen-yg-desktop-web');
-
-  static const isYandexGames = bool.fromEnvironment('is-yandex-games');
-  static const isMarketingMode = bool.fromEnvironment('is-marketing-mode');
-  static const isDebugAds = bool.fromEnvironment('is-debug-ads');
+      String.fromEnvironment('YANDEX_FULLSCREEN_YG_DESKTOP_WEB');
+  static final store = StoreType.fromEnv();
+  static const isMarketingMode = bool.fromEnvironment('IS_MARKETING_MODE');
+  static const isDebugAds = bool.fromEnvironment('IS_DEBUG_ADS');
   static const isAnalyticsEnabled =
-      bool.fromEnvironment('is-analytics-enabled');
+      bool.fromEnvironment('IS_ANALYTICS_ENABLED');
+  static const isLinksAllowed = bool.fromEnvironment('IS_LINKS_ALLOWED');
   static const isCrashlyticsEnabled =
-      bool.fromEnvironment('is-crashlytics-enabled');
+      bool.fromEnvironment('IS_CRASHLYTICS_ENABLED');
+  static const wiredashProjectId =
+      String.fromEnvironment('WIREDASH_PROJECT_ID');
+  static const wiredashProjectSecret =
+      String.fromEnvironment('WIREDASH_PROJECT_SECRET');
+}
+
+enum StoreType {
+  googlePlay,
+  rustore,
+  huawaiStore,
+  appleStore,
+  windowsStore,
+  snapstore,
+  crazyGames,
+  yandexGames,
+  xsoulspaceWebsite;
+
+  bool get isGooglePlay => this == StoreType.googlePlay;
+  bool get isRustore => this == StoreType.rustore;
+  bool get isHuaweiStore => this == StoreType.huawaiStore;
+  bool get isAppleStore => this == StoreType.appleStore;
+  bool get isWindowsStore => this == StoreType.windowsStore;
+  bool get isSnapStore => this == StoreType.snapstore;
+  bool get isCrazyGames => this == StoreType.crazyGames;
+  bool get isYandexGames => this == StoreType.yandexGames;
+  bool get isXsoulspaceWebsite => this == StoreType.xsoulspaceWebsite;
+
+  static StoreType fromEnv() => values.byName(
+        const String.fromEnvironment('STORE', defaultValue: 'snapstore'),
+      );
 }
