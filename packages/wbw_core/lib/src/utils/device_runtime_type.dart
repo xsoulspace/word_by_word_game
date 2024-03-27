@@ -2,7 +2,6 @@ import 'package:flutter/foundation.dart';
 
 class DeviceRuntimeType {
   DeviceRuntimeType._();
-  static final _instance = DeviceRuntimeType._();
   static const _desktopPlatforms = [
     TargetPlatform.macOS,
     TargetPlatform.windows,
