@@ -8,3 +8,4 @@ export 'interfaces.dart';
 
 part 'foundation.freezed.dart';
 part 'models.dart';
+part 'value_notifier_hook.dart';
