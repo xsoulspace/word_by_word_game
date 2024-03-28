@@ -359,25 +359,6 @@ Map<String, dynamic> _$$ScoreModelImplToJson(_$ScoreModelImpl instance) =>
       'value': instance.value,
     };
 
-_$TechnologyModelIdImpl _$$TechnologyModelIdImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TechnologyModelIdImpl(
-      value: $enumDecode(_$TechnologyTypeEnumMap, json['value']),
-    );
-
-Map<String, dynamic> _$$TechnologyModelIdImplToJson(
-        _$TechnologyModelIdImpl instance) =>
-    <String, dynamic>{
-      'value': _$TechnologyTypeEnumMap[instance.value]!,
-    };
-
-const _$TechnologyTypeEnumMap = {
-  TechnologyType.safeLanding: 'safeLanding',
-  TechnologyType.emergencyLanding: 'emergencyLanding',
-  TechnologyType.ascending: 'ascending',
-  TechnologyType.descending: 'descending',
-};
-
 _$TechnologyTreeProgressModelImpl _$$TechnologyTreeProgressModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TechnologyTreeProgressModelImpl(
@@ -397,7 +378,7 @@ Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
 _$TechnologyProgressModelImpl _$$TechnologyProgressModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TechnologyProgressModelImpl(
-      id: TechnologyModelId.fromJson(json['id'] as Map<String, dynamic>),
+      id: TechnologyModelId.fromJson(json['id'] as String),
       unlockCondition: TechnologyUnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
     );
@@ -412,15 +393,14 @@ Map<String, dynamic> _$$TechnologyProgressModelImplToJson(
 _$TechnologyModelImpl _$$TechnologyModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TechnologyModelImpl(
-      id: TechnologyModelId.fromJson(json['id'] as Map<String, dynamic>),
+      id: TechnologyModelId.fromJson(json['id'] as String),
       title: LocalizedMap.fromJson(json['title'] as Map<String, dynamic>),
       unlockCondition: TechnologyUnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
       index: json['index'] as int? ?? 0,
       parentTechnologyId: json['parentTechnologyId'] == null
           ? null
-          : TechnologyModelId.fromJson(
-              json['parentTechnologyId'] as Map<String, dynamic>),
+          : TechnologyModelId.fromJson(json['parentTechnologyId'] as String),
     );
 
 Map<String, dynamic> _$$TechnologyModelImplToJson(
@@ -444,6 +424,7 @@ _$TechnologyUnlockConditionModelImpl
                         UsefulWordModel.fromJson(e as Map<String, dynamic>))
                     .toList()),
           ),
+          wordsUnlockThreshold: json['wordsUnlockThreshold'] as int? ?? 3,
         );
 
 Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(
@@ -451,6 +432,7 @@ Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(
     <String, dynamic>{
       'languageWords': instance.languageWords
           .map((k, e) => MapEntry(_$LanguagesEnumMap[k]!, e)),
+      'wordsUnlockThreshold': instance.wordsUnlockThreshold,
     };
 
 const _$LanguagesEnumMap = {

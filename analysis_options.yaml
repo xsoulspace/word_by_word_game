@@ -10,6 +10,8 @@
 include: package:xsoulspace_lints/app.yaml
 
 analyzer:
+  enable-experiment:
+    - inline-class
   exclude:
     - lib/**/**.gen.dart
     - lib/**/**.g.dart

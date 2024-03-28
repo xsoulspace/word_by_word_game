@@ -78,10 +78,11 @@ class TechnologyModel with _$TechnologyModel {
 @freezed
 class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
   const factory TechnologyUnlockConditionModel({
-    /// Principle: if all words for one language in [languageWords] are used
+    /// Principle: if several words for one language in [languageWords] are used
     /// then [TechnologyModel] is unlocked
     /// for that certain language.
     required final Map<Languages, List<UsefulWordModel>> languageWords,
+    @Default(3) final int wordsUnlockThreshold,
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(
     final Map<String, dynamic> json,

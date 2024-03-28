@@ -3307,128 +3307,6 @@ abstract class _ScoreModel extends ScoreModel {
       throw _privateConstructorUsedError;
 }
 
-TechnologyModelId _$TechnologyModelIdFromJson(Map<String, dynamic> json) {
-  return _TechnologyModelId.fromJson(json);
-}
-
-/// @nodoc
-mixin _$TechnologyModelId {
-  TechnologyType get value => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $TechnologyModelIdCopyWith<TechnologyModelId> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TechnologyModelIdCopyWith<$Res> {
-  factory $TechnologyModelIdCopyWith(
-          TechnologyModelId value, $Res Function(TechnologyModelId) then) =
-      _$TechnologyModelIdCopyWithImpl<$Res, TechnologyModelId>;
-  @useResult
-  $Res call({TechnologyType value});
-}
-
-/// @nodoc
-class _$TechnologyModelIdCopyWithImpl<$Res, $Val extends TechnologyModelId>
-    implements $TechnologyModelIdCopyWith<$Res> {
-  _$TechnologyModelIdCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as TechnologyType,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$TechnologyModelIdImplCopyWith<$Res>
-    implements $TechnologyModelIdCopyWith<$Res> {
-  factory _$$TechnologyModelIdImplCopyWith(_$TechnologyModelIdImpl value,
-          $Res Function(_$TechnologyModelIdImpl) then) =
-      __$$TechnologyModelIdImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({TechnologyType value});
-}
-
-/// @nodoc
-class __$$TechnologyModelIdImplCopyWithImpl<$Res>
-    extends _$TechnologyModelIdCopyWithImpl<$Res, _$TechnologyModelIdImpl>
-    implements _$$TechnologyModelIdImplCopyWith<$Res> {
-  __$$TechnologyModelIdImplCopyWithImpl(_$TechnologyModelIdImpl _value,
-      $Res Function(_$TechnologyModelIdImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$TechnologyModelIdImpl(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as TechnologyType,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$TechnologyModelIdImpl extends _TechnologyModelId {
-  const _$TechnologyModelIdImpl({required this.value}) : super._();
-
-  factory _$TechnologyModelIdImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TechnologyModelIdImplFromJson(json);
-
-  @override
-  final TechnologyType value;
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TechnologyModelIdImplCopyWith<_$TechnologyModelIdImpl> get copyWith =>
-      __$$TechnologyModelIdImplCopyWithImpl<_$TechnologyModelIdImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TechnologyModelIdImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _TechnologyModelId extends TechnologyModelId {
-  const factory _TechnologyModelId({required final TechnologyType value}) =
-      _$TechnologyModelIdImpl;
-  const _TechnologyModelId._() : super._();
-
-  factory _TechnologyModelId.fromJson(Map<String, dynamic> json) =
-      _$TechnologyModelIdImpl.fromJson;
-
-  @override
-  TechnologyType get value;
-  @override
-  @JsonKey(ignore: true)
-  _$$TechnologyModelIdImplCopyWith<_$TechnologyModelIdImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 TechnologyTreeProgressModel _$TechnologyTreeProgressModelFromJson(
     Map<String, dynamic> json) {
   return _TechnologyTreeProgressModel.fromJson(json);
@@ -3639,7 +3517,6 @@ abstract class $TechnologyProgressModelCopyWith<$Res> {
   $Res call(
       {TechnologyModelId id, TechnologyUnlockConditionModel unlockCondition});
 
-  $TechnologyModelIdCopyWith<$Res> get id;
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
 }
 
@@ -3674,14 +3551,6 @@ class _$TechnologyProgressModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $TechnologyModelIdCopyWith<$Res> get id {
-    return $TechnologyModelIdCopyWith<$Res>(_value.id, (value) {
-      return _then(_value.copyWith(id: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition {
     return $TechnologyUnlockConditionModelCopyWith<$Res>(_value.unlockCondition,
         (value) {
@@ -3702,8 +3571,6 @@ abstract class _$$TechnologyProgressModelImplCopyWith<$Res>
   $Res call(
       {TechnologyModelId id, TechnologyUnlockConditionModel unlockCondition});
 
-  @override
-  $TechnologyModelIdCopyWith<$Res> get id;
   @override
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
 }
@@ -3840,10 +3707,8 @@ abstract class $TechnologyModelCopyWith<$Res> {
       int index,
       TechnologyModelId? parentTechnologyId});
 
-  $TechnologyModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get title;
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
-  $TechnologyModelIdCopyWith<$Res>? get parentTechnologyId;
 }
 
 /// @nodoc
@@ -3891,14 +3756,6 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $TechnologyModelIdCopyWith<$Res> get id {
-    return $TechnologyModelIdCopyWith<$Res>(_value.id, (value) {
-      return _then(_value.copyWith(id: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get title {
     return $LocalizedMapCopyWith<$Res>(_value.title, (value) {
       return _then(_value.copyWith(title: value) as $Val);
@@ -3911,19 +3768,6 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
     return $TechnologyUnlockConditionModelCopyWith<$Res>(_value.unlockCondition,
         (value) {
       return _then(_value.copyWith(unlockCondition: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TechnologyModelIdCopyWith<$Res>? get parentTechnologyId {
-    if (_value.parentTechnologyId == null) {
-      return null;
-    }
-
-    return $TechnologyModelIdCopyWith<$Res>(_value.parentTechnologyId!,
-        (value) {
-      return _then(_value.copyWith(parentTechnologyId: value) as $Val);
     });
   }
 }
@@ -3944,13 +3788,9 @@ abstract class _$$TechnologyModelImplCopyWith<$Res>
       TechnologyModelId? parentTechnologyId});
 
   @override
-  $TechnologyModelIdCopyWith<$Res> get id;
-  @override
   $LocalizedMapCopyWith<$Res> get title;
   @override
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
-  @override
-  $TechnologyModelIdCopyWith<$Res>? get parentTechnologyId;
 }
 
 /// @nodoc
@@ -4096,8 +3936,12 @@ TechnologyUnlockConditionModel _$TechnologyUnlockConditionModelFromJson(
 
 /// @nodoc
 mixin _$TechnologyUnlockConditionModel {
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   Map<Languages, List<UsefulWordModel>> get languageWords =>
       throw _privateConstructorUsedError;
+  int get wordsUnlockThreshold => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4113,7 +3957,9 @@ abstract class $TechnologyUnlockConditionModelCopyWith<$Res> {
       _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
           TechnologyUnlockConditionModel>;
   @useResult
-  $Res call({Map<Languages, List<UsefulWordModel>> languageWords});
+  $Res call(
+      {Map<Languages, List<UsefulWordModel>> languageWords,
+      int wordsUnlockThreshold});
 }
 
 /// @nodoc
@@ -4131,12 +3977,17 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? languageWords = null,
+    Object? wordsUnlockThreshold = null,
   }) {
     return _then(_value.copyWith(
       languageWords: null == languageWords
           ? _value.languageWords
           : languageWords // ignore: cast_nullable_to_non_nullable
               as Map<Languages, List<UsefulWordModel>>,
+      wordsUnlockThreshold: null == wordsUnlockThreshold
+          ? _value.wordsUnlockThreshold
+          : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
     ) as $Val);
   }
 }
@@ -4150,7 +4001,9 @@ abstract class _$$TechnologyUnlockConditionModelImplCopyWith<$Res>
       __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<Languages, List<UsefulWordModel>> languageWords});
+  $Res call(
+      {Map<Languages, List<UsefulWordModel>> languageWords,
+      int wordsUnlockThreshold});
 }
 
 /// @nodoc
@@ -4167,12 +4020,17 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? languageWords = null,
+    Object? wordsUnlockThreshold = null,
   }) {
     return _then(_$TechnologyUnlockConditionModelImpl(
       languageWords: null == languageWords
           ? _value._languageWords
           : languageWords // ignore: cast_nullable_to_non_nullable
               as Map<Languages, List<UsefulWordModel>>,
+      wordsUnlockThreshold: null == wordsUnlockThreshold
+          ? _value.wordsUnlockThreshold
+          : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
   }
 }
@@ -4182,7 +4040,8 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
 class _$TechnologyUnlockConditionModelImpl
     extends _TechnologyUnlockConditionModel {
   const _$TechnologyUnlockConditionModelImpl(
-      {required final Map<Languages, List<UsefulWordModel>> languageWords})
+      {required final Map<Languages, List<UsefulWordModel>> languageWords,
+      this.wordsUnlockThreshold = 3})
       : _languageWords = languageWords,
         super._();
 
@@ -4190,7 +4049,14 @@ class _$TechnologyUnlockConditionModelImpl
           Map<String, dynamic> json) =>
       _$$TechnologyUnlockConditionModelImplFromJson(json);
 
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   final Map<Languages, List<UsefulWordModel>> _languageWords;
+
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   @override
   Map<Languages, List<UsefulWordModel>> get languageWords {
     if (_languageWords is EqualUnmodifiableMapView) return _languageWords;
@@ -4199,8 +4065,12 @@ class _$TechnologyUnlockConditionModelImpl
   }
 
   @override
+  @JsonKey()
+  final int wordsUnlockThreshold;
+
+  @override
   String toString() {
-    return 'TechnologyUnlockConditionModel(languageWords: $languageWords)';
+    return 'TechnologyUnlockConditionModel(languageWords: $languageWords, wordsUnlockThreshold: $wordsUnlockThreshold)';
   }
 
   @override
@@ -4209,13 +4079,17 @@ class _$TechnologyUnlockConditionModelImpl
         (other.runtimeType == runtimeType &&
             other is _$TechnologyUnlockConditionModelImpl &&
             const DeepCollectionEquality()
-                .equals(other._languageWords, _languageWords));
+                .equals(other._languageWords, _languageWords) &&
+            (identical(other.wordsUnlockThreshold, wordsUnlockThreshold) ||
+                other.wordsUnlockThreshold == wordsUnlockThreshold));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_languageWords));
+      runtimeType,
+      const DeepCollectionEquality().hash(_languageWords),
+      wordsUnlockThreshold);
 
   @JsonKey(ignore: true)
   @override
@@ -4236,15 +4110,21 @@ class _$TechnologyUnlockConditionModelImpl
 abstract class _TechnologyUnlockConditionModel
     extends TechnologyUnlockConditionModel {
   const factory _TechnologyUnlockConditionModel(
-      {required final Map<Languages, List<UsefulWordModel>>
-          languageWords}) = _$TechnologyUnlockConditionModelImpl;
+      {required final Map<Languages, List<UsefulWordModel>> languageWords,
+      final int wordsUnlockThreshold}) = _$TechnologyUnlockConditionModelImpl;
   const _TechnologyUnlockConditionModel._() : super._();
 
   factory _TechnologyUnlockConditionModel.fromJson(Map<String, dynamic> json) =
       _$TechnologyUnlockConditionModelImpl.fromJson;
 
   @override
+
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   Map<Languages, List<UsefulWordModel>> get languageWords;
+  @override
+  int get wordsUnlockThreshold;
   @override
   @JsonKey(ignore: true)
   _$$TechnologyUnlockConditionModelImplCopyWith<
