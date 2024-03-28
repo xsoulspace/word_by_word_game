@@ -2,17 +2,10 @@
 
 part of 'data_models.dart';
 
-@immutable
-@Freezed(equal: false)
-class TechnologyModelId with _$TechnologyModelId, EquatableMixin {
-  const factory TechnologyModelId({
-    required final TechnologyType value,
-  }) = _TechnologyModelId;
-  const TechnologyModelId._();
-  factory TechnologyModelId.fromJson(final Map<String, dynamic> json) =>
-      _$TechnologyModelIdFromJson(json);
-  @override
-  List<Object?> get props => [value];
+extension type const TechnologyModelId(TechnologyType value) {
+  factory TechnologyModelId.fromJson(final String value) =>
+      TechnologyModelId(TechnologyType.values.byName(value));
+  String toJson() => value.name;
 }
 
 @freezed
@@ -85,6 +78,9 @@ class TechnologyModel with _$TechnologyModel {
 @freezed
 class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
   const factory TechnologyUnlockConditionModel({
+    /// Principle: if all words for one language in [languageWords] are used
+    /// then [TechnologyModel] is unlocked
+    /// for that certain language.
     required final Map<Languages, List<UsefulWordModel>> languageWords,
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(

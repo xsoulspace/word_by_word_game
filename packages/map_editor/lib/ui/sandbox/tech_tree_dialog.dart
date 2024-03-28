@@ -18,7 +18,7 @@ Future<void> showTechnologiesTreeDialog({
     } else {
       newTechs.add(
         TechnologyModel(
-          id: TechnologyModelId(value: e),
+          id: TechnologyModelId(e),
           title: LocalizedMap.fromLanguages(),
           unlockCondition: const TechnologyUnlockConditionModel(
             languageWords: {},
