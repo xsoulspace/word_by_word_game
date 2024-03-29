@@ -3407,7 +3407,8 @@ class __$$TechnologyTreeProgressModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
   const _$TechnologyTreeProgressModelImpl(
       {@JsonKey(
@@ -3605,7 +3606,8 @@ class __$$TechnologyProgressModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyProgressModelImpl extends _TechnologyProgressModel {
   const _$TechnologyProgressModelImpl(
       {required this.id, required this.unlockCondition})
@@ -3836,7 +3838,8 @@ class __$$TechnologyModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyModelImpl extends _TechnologyModel {
   const _$TechnologyModelImpl(
       {required this.id,
@@ -4036,7 +4039,8 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyUnlockConditionModelImpl
     extends _TechnologyUnlockConditionModel {
   const _$TechnologyUnlockConditionModelImpl(
@@ -4224,7 +4228,8 @@ class __$$UsefulWordModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$UsefulWordModelImpl extends _UsefulWordModel {
   const _$UsefulWordModelImpl({required this.word, this.isUsed = false})
       : super._();

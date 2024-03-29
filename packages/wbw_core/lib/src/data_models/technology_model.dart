@@ -3,13 +3,23 @@
 part of 'data_models.dart';
 
 extension type const TechnologyModelId(TechnologyType value) {
-  factory TechnologyModelId.fromJson(final String value) =>
-      TechnologyModelId(TechnologyType.values.byName(value));
-  String toJson() => value.name;
+  factory TechnologyModelId.fromJson(final value) {
+    final String val;
+    if (value case {'value': final String value}) {
+      val = value;
+    } else if (value case final String value) {
+      val = value;
+    } else {
+      throw UnsupportedError(value);
+    }
+    return TechnologyModelId(TechnologyType.values.byName(val));
+  }
+  dynamic toJson() => value.name;
 }
 
 @freezed
 class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyTreeProgressModel({
     @JsonKey(
       fromJson: TechnologyTreeProgressModel._technologiesFromJson,
@@ -46,6 +56,7 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
 /// and only to store progress.
 @freezed
 class TechnologyProgressModel with _$TechnologyProgressModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyProgressModel({
     required final TechnologyModelId id,
     required final TechnologyUnlockConditionModel unlockCondition,
@@ -61,6 +72,7 @@ class TechnologyProgressModel with _$TechnologyProgressModel {
 /// To save changes for [unlockCondition] use [TechnologyProgressModel]
 @freezed
 class TechnologyModel with _$TechnologyModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyModel({
     required final TechnologyModelId id,
     required final LocalizedMap title,
@@ -77,6 +89,7 @@ class TechnologyModel with _$TechnologyModel {
 
 @freezed
 class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyUnlockConditionModel({
     /// Principle: if several words for one language in [languageWords] are used
     /// then [TechnologyModel] is unlocked
@@ -102,6 +115,7 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
 
 @freezed
 class UsefulWordModel with _$UsefulWordModel {
+  @JsonSerializable(explicitToJson: true)
   const factory UsefulWordModel({
     required final FullWordString word,
     @Default(false) final bool isUsed,
