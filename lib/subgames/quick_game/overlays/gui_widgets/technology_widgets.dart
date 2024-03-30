@@ -21,7 +21,8 @@ class CurrentTechnologyButton extends StatelessWidget {
             ? CupertinoIcons.lab_flask
             : CupertinoIcons.lab_flask_solid,
       ),
-      label: Text(currentTechnology?.title.getValue() ?? 'Select research'),
+      // TODO(arenukvern): l10n
+      label: Text(currentTechnology?.title.getValue() ?? 'Not researching'),
     );
   }
 }

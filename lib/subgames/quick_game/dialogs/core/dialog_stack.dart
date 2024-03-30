@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart' as life_hooks;
 import 'package:provider/provider.dart';
@@ -80,9 +79,7 @@ class DialogStack extends HookWidget {
               ),
             GameDialogType.tutorialBool => const TutorialBoolDialog(),
             GameDialogType.tutorialOk => const TutorialOkDialog(),
-          }
-              .animate()
-              .fadeIn(),
+          },
         ),
         if (state.isWinLoseDialog)
           const Positioned(
