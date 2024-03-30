@@ -28,6 +28,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
     showLevelWinDialog: _showLevelWinDialog,
     showLevelWordSuggestionDialog: _showLevelWordSuggestionDialog,
     showTechnologiesTree: _showTechnologiesTree,
+    closeDialogAndResume: onResume,
   );
   late final _tutorialSubscriber = _TutorialSubscriber(
     diDto: diDto,

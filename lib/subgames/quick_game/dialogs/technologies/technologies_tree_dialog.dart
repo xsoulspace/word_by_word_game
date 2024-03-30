@@ -25,7 +25,7 @@ class TechnologiesTreeDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const Spacer(),
-            CloseButton(onPressed: dialogController.closeDialog),
+            CloseButton(onPressed: dialogController.closeDialogAndResume),
           ],
         ),
         const Gap(3),
