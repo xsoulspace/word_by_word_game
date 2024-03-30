@@ -24,9 +24,9 @@ class TutorialBlocDiDto {
 }
 
 class TutorialBloc extends Cubit<TutorialBlocState> {
-  TutorialBloc({
-    required this.diDto,
-  }) : super(const TutorialBlocStateEmpty()) {
+  TutorialBloc(final BuildContext context)
+      : diDto = TutorialBlocDiDto.use(context),
+        super(const TutorialBlocStateEmpty()) {
     notifier = TutorialStateNotifier.listen(bloc: this);
   }
   @override

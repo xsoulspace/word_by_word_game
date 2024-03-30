@@ -20,9 +20,9 @@ class LevelPlayersBlocDiDto {
 }
 
 class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
-  LevelPlayersBloc({
-    required this.diDto,
-  }) : super(LevelPlayersBlocState.empty);
+  LevelPlayersBloc(final BuildContext context)
+      : diDto = LevelPlayersBlocDiDto.use(context),
+        super(LevelPlayersBlocState.empty);
   final LevelPlayersBlocDiDto diDto;
 
   void onInitLevelPlayers(

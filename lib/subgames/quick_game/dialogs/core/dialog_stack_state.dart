@@ -27,6 +27,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
     closeDialog: _closeDialog,
     showLevelWinDialog: _showLevelWinDialog,
     showLevelWordSuggestionDialog: _showLevelWordSuggestionDialog,
+    showTechnologiesTree: _showTechnologiesTree,
   );
   late final _tutorialSubscriber = _TutorialSubscriber(
     diDto: diDto,
@@ -36,18 +37,15 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   GameDialogType _dialogType = GameDialogType.none;
 
   GameDialogType get dialogType => _dialogType;
-  bool get isWinLoseDialog {
-    switch (dialogType) {
-      case GameDialogType.levelLost:
-      case GameDialogType.levelWin:
-        return true;
-      case GameDialogType.none:
-      case GameDialogType.levelWordSuggestion:
-      case GameDialogType.tutorialBool:
-      case GameDialogType.tutorialOk:
-    }
-    return false;
-  }
+  bool get isWinLoseDialog => switch (dialogType) {
+        GameDialogType.levelLost || GameDialogType.levelWin => true,
+        GameDialogType.none ||
+        GameDialogType.technologiesTree ||
+        GameDialogType.levelWordSuggestion ||
+        GameDialogType.tutorialBool ||
+        GameDialogType.tutorialOk =>
+          false,
+      };
 
   set dialogType(final GameDialogType dialogType) {
     _dialogType = dialogType;
@@ -110,8 +108,13 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
     _pause();
   }
 
-  void _pause() => diDto.globalGameBloc.diDto.mechanics.worldTime.pause();
-  void _resume() => diDto.globalGameBloc.diDto.mechanics.worldTime.resume();
+  void _showTechnologiesTree() {
+    dialogType = GameDialogType.technologiesTree;
+    _pause();
+  }
+
+  void _pause() => diDto.globalGameBloc.dto.mechanics.worldTime.pause();
+  void _resume() => diDto.globalGameBloc.dto.mechanics.worldTime.resume();
 
   void _closeDialog() {
     dialogType = GameDialogType.none;

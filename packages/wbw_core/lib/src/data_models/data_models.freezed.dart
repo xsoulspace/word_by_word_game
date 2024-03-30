@@ -3319,6 +3319,8 @@ mixin _$TechnologyTreeProgressModel {
       toJson: TechnologyTreeProgressModel._technologiesToJson)
   Map<TechnologyModelId, TechnologyProgressModel> get technologies =>
       throw _privateConstructorUsedError;
+  TechnologyModelId? get researchingTechnologyId =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3338,7 +3340,8 @@ abstract class $TechnologyTreeProgressModelCopyWith<$Res> {
       {@JsonKey(
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
-      Map<TechnologyModelId, TechnologyProgressModel> technologies});
+      Map<TechnologyModelId, TechnologyProgressModel> technologies,
+      TechnologyModelId? researchingTechnologyId});
 }
 
 /// @nodoc
@@ -3356,12 +3359,17 @@ class _$TechnologyTreeProgressModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? technologies = null,
+    Object? researchingTechnologyId = freezed,
   }) {
     return _then(_value.copyWith(
       technologies: null == technologies
           ? _value.technologies
           : technologies // ignore: cast_nullable_to_non_nullable
               as Map<TechnologyModelId, TechnologyProgressModel>,
+      researchingTechnologyId: freezed == researchingTechnologyId
+          ? _value.researchingTechnologyId
+          : researchingTechnologyId // ignore: cast_nullable_to_non_nullable
+              as TechnologyModelId?,
     ) as $Val);
   }
 }
@@ -3379,7 +3387,8 @@ abstract class _$$TechnologyTreeProgressModelImplCopyWith<$Res>
       {@JsonKey(
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
-      Map<TechnologyModelId, TechnologyProgressModel> technologies});
+      Map<TechnologyModelId, TechnologyProgressModel> technologies,
+      TechnologyModelId? researchingTechnologyId});
 }
 
 /// @nodoc
@@ -3396,12 +3405,17 @@ class __$$TechnologyTreeProgressModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? technologies = null,
+    Object? researchingTechnologyId = freezed,
   }) {
     return _then(_$TechnologyTreeProgressModelImpl(
       technologies: null == technologies
           ? _value._technologies
           : technologies // ignore: cast_nullable_to_non_nullable
               as Map<TechnologyModelId, TechnologyProgressModel>,
+      researchingTechnologyId: freezed == researchingTechnologyId
+          ? _value.researchingTechnologyId
+          : researchingTechnologyId // ignore: cast_nullable_to_non_nullable
+              as TechnologyModelId?,
     ));
   }
 }
@@ -3415,7 +3429,8 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
       final Map<TechnologyModelId, TechnologyProgressModel> technologies =
-          const {}})
+          const {},
+      this.researchingTechnologyId})
       : _technologies = technologies,
         super._();
 
@@ -3435,8 +3450,11 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
   }
 
   @override
+  final TechnologyModelId? researchingTechnologyId;
+
+  @override
   String toString() {
-    return 'TechnologyTreeProgressModel(technologies: $technologies)';
+    return 'TechnologyTreeProgressModel(technologies: $technologies, researchingTechnologyId: $researchingTechnologyId)';
   }
 
   @override
@@ -3445,13 +3463,18 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
         (other.runtimeType == runtimeType &&
             other is _$TechnologyTreeProgressModelImpl &&
             const DeepCollectionEquality()
-                .equals(other._technologies, _technologies));
+                .equals(other._technologies, _technologies) &&
+            (identical(
+                    other.researchingTechnologyId, researchingTechnologyId) ||
+                other.researchingTechnologyId == researchingTechnologyId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_technologies));
+      runtimeType,
+      const DeepCollectionEquality().hash(_technologies),
+      researchingTechnologyId);
 
   @JsonKey(ignore: true)
   @override
@@ -3474,7 +3497,8 @@ abstract class _TechnologyTreeProgressModel
           {@JsonKey(
               fromJson: TechnologyTreeProgressModel._technologiesFromJson,
               toJson: TechnologyTreeProgressModel._technologiesToJson)
-          final Map<TechnologyModelId, TechnologyProgressModel> technologies}) =
+          final Map<TechnologyModelId, TechnologyProgressModel> technologies,
+          final TechnologyModelId? researchingTechnologyId}) =
       _$TechnologyTreeProgressModelImpl;
   const _TechnologyTreeProgressModel._() : super._();
 
@@ -3486,6 +3510,8 @@ abstract class _TechnologyTreeProgressModel
       fromJson: TechnologyTreeProgressModel._technologiesFromJson,
       toJson: TechnologyTreeProgressModel._technologiesToJson)
   Map<TechnologyModelId, TechnologyProgressModel> get technologies;
+  @override
+  TechnologyModelId? get researchingTechnologyId;
   @override
   @JsonKey(ignore: true)
   _$$TechnologyTreeProgressModelImplCopyWith<_$TechnologyTreeProgressModelImpl>

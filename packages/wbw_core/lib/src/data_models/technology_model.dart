@@ -27,6 +27,7 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
     )
     @Default({})
     final Map<TechnologyModelId, TechnologyProgressModel> technologies,
+    final TechnologyModelId? researchingTechnologyId,
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
     final Map<String, dynamic> json,

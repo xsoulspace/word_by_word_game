@@ -7,9 +7,11 @@ class DialogController {
     required this.showLevelWinDialog,
     required this.showLevelWordSuggestionDialog,
     required this.closeDialog,
+    required this.showTechnologiesTree,
   });
   ValueChanged<EndLevelEvent> showLevelLostDialog;
   ValueChanged<EndLevelEvent> showLevelWinDialog;
   VoidCallback closeDialog;
   VoidCallback showLevelWordSuggestionDialog;
+  VoidCallback showTechnologiesTree;
 }

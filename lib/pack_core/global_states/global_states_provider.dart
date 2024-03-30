@@ -60,36 +60,13 @@ class GlobalStatesProvider extends StatelessWidget {
                 drawerCubit: DrawerCubitDto.use(context: context),
               ),
             ),
-            BlocProvider(
-              create: (final context) => DictionariesBloc(
-                diDto: DictionariesBlocDiDto.use(context),
-              ),
-            ),
-            BlocProvider(
-              create: (final context) => LevelPlayersBloc(
-                diDto: LevelPlayersBlocDiDto.use(context),
-              ),
-            ),
-            BlocProvider<LevelBloc>(
-              create: (final context) => LevelBloc(
-                diDto: LevelBlocDiDto.use(context),
-              ),
-            ),
-            BlocProvider(
-              create: (final context) => TutorialBloc(
-                diDto: TutorialBlocDiDto.use(context),
-              ),
-            ),
-            BlocProvider(
-              create: (final context) => WeatherCubit(
-                dto: WeatherCubitDto(context: context),
-              ),
-            ),
-            BlocProvider<GlobalGameBloc>(
-              create: (final context) => GlobalGameBloc(
-                diDto: GlobalGameBlocDiDto.use(context: context),
-              ),
-            ),
+            const BlocProvider(create: DictionariesBloc.new),
+            const BlocProvider(create: LevelPlayersBloc.new),
+            const BlocProvider<LevelBloc>(create: LevelBloc.new),
+            const BlocProvider(create: TutorialBloc.new),
+            const BlocProvider(create: WeatherCubit.new),
+            const BlocProvider(create: TechnologiesCubit.new),
+            const BlocProvider<GlobalGameBloc>(create: GlobalGameBloc.new),
             BlocProvider(
               create: (final context) => AppSettingsCubit(
                 dto: AppSettingsCubitDto(context: context),

@@ -25,9 +25,9 @@ class LevelBlocDiDto {
 }
 
 class LevelBloc extends Cubit<LevelBlocState> {
-  LevelBloc({
-    required this.diDto,
-  }) : super(const LevelBlocState());
+  LevelBloc(final BuildContext context)
+      : diDto = LevelBlocDiDto.use(context),
+        super(const LevelBlocState());
 
   static bool Function(
     LevelBlocState previous,

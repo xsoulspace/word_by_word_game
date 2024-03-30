@@ -366,6 +366,9 @@ _$TechnologyTreeProgressModelImpl _$$TechnologyTreeProgressModelImplFromJson(
           ? const {}
           : TechnologyTreeProgressModel._technologiesFromJson(
               json['technologies'] as Map<String, dynamic>),
+      researchingTechnologyId: json['researchingTechnologyId'] == null
+          ? null
+          : TechnologyModelId.fromJson(json['researchingTechnologyId']),
     );
 
 Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
@@ -373,6 +376,7 @@ Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
     <String, dynamic>{
       'technologies': TechnologyTreeProgressModel._technologiesToJson(
           instance.technologies),
+      'researchingTechnologyId': instance.researchingTechnologyId?.toJson(),
     };
 
 _$TechnologyProgressModelImpl _$$TechnologyProgressModelImplFromJson(

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart' as life_hooks;
 import 'package:provider/provider.dart';
@@ -8,10 +9,8 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/ads/ads.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/level_end_dialogs/level_end_dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion/level_word_suggestion.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/tutorial_dialogs/tutorial_dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 part 'dialog_stack_state.dart';
 
@@ -22,6 +21,7 @@ enum GameDialogType {
   levelWordSuggestion,
   tutorialBool,
   tutorialOk,
+  technologiesTree,
 }
 
 class DefaultDialogOverlayController extends HookWidget {
@@ -66,6 +66,7 @@ class DialogStack extends HookWidget {
           isVisible: state.dialogType != GameDialogType.none,
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
+            GameDialogType.technologiesTree => const TechnologiesTreeDialog(),
             GameDialogType.levelLost => LevelLostDialog(
                 onEndLevel: state.onEndLevel,
                 onRestartLevel: state.onRestartLevel,
@@ -79,7 +80,9 @@ class DialogStack extends HookWidget {
               ),
             GameDialogType.tutorialBool => const TutorialBoolDialog(),
             GameDialogType.tutorialOk => const TutorialOkDialog(),
-          },
+          }
+              .animate()
+              .fadeIn(),
         ),
         if (state.isWinLoseDialog)
           const Positioned(
