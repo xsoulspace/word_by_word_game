@@ -22,6 +22,11 @@ mixin _$TechnologiesCubitState {
   TechnologyTreeProgressModel get progress =>
       throw _privateConstructorUsedError;
 
+  /// when user is starting a game
+  /// he may want to start simple game, without
+  /// any "adventure" features, as technologies
+  bool get isTechnologiesFeatureEnabled => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $TechnologiesCubitStateCopyWith<TechnologiesCubitState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -35,7 +40,8 @@ abstract class $TechnologiesCubitStateCopyWith<$Res> {
   @useResult
   $Res call(
       {Map<TechnologyModelId, TechnologyModel> technologies,
-      TechnologyTreeProgressModel progress});
+      TechnologyTreeProgressModel progress,
+      bool isTechnologiesFeatureEnabled});
 
   $TechnologyTreeProgressModelCopyWith<$Res> get progress;
 }
@@ -56,6 +62,7 @@ class _$TechnologiesCubitStateCopyWithImpl<$Res,
   $Res call({
     Object? technologies = null,
     Object? progress = null,
+    Object? isTechnologiesFeatureEnabled = null,
   }) {
     return _then(_value.copyWith(
       technologies: null == technologies
@@ -66,6 +73,10 @@ class _$TechnologiesCubitStateCopyWithImpl<$Res,
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as TechnologyTreeProgressModel,
+      isTechnologiesFeatureEnabled: null == isTechnologiesFeatureEnabled
+          ? _value.isTechnologiesFeatureEnabled
+          : isTechnologiesFeatureEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ) as $Val);
   }
 
@@ -89,7 +100,8 @@ abstract class _$$TechnologiesCubitStateImplCopyWith<$Res>
   @useResult
   $Res call(
       {Map<TechnologyModelId, TechnologyModel> technologies,
-      TechnologyTreeProgressModel progress});
+      TechnologyTreeProgressModel progress,
+      bool isTechnologiesFeatureEnabled});
 
   @override
   $TechnologyTreeProgressModelCopyWith<$Res> get progress;
@@ -110,6 +122,7 @@ class __$$TechnologiesCubitStateImplCopyWithImpl<$Res>
   $Res call({
     Object? technologies = null,
     Object? progress = null,
+    Object? isTechnologiesFeatureEnabled = null,
   }) {
     return _then(_$TechnologiesCubitStateImpl(
       technologies: null == technologies
@@ -120,6 +133,10 @@ class __$$TechnologiesCubitStateImplCopyWithImpl<$Res>
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
               as TechnologyTreeProgressModel,
+      isTechnologiesFeatureEnabled: null == isTechnologiesFeatureEnabled
+          ? _value.isTechnologiesFeatureEnabled
+          : isTechnologiesFeatureEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -129,7 +146,8 @@ class __$$TechnologiesCubitStateImplCopyWithImpl<$Res>
 class _$TechnologiesCubitStateImpl extends _TechnologiesCubitState {
   const _$TechnologiesCubitStateImpl(
       {final Map<TechnologyModelId, TechnologyModel> technologies = const {},
-      this.progress = TechnologyTreeProgressModel.empty})
+      this.progress = TechnologyTreeProgressModel.empty,
+      this.isTechnologiesFeatureEnabled = false})
       : _technologies = technologies,
         super._();
 
@@ -149,9 +167,16 @@ class _$TechnologiesCubitStateImpl extends _TechnologiesCubitState {
   @JsonKey()
   final TechnologyTreeProgressModel progress;
 
+  /// when user is starting a game
+  /// he may want to start simple game, without
+  /// any "adventure" features, as technologies
+  @override
+  @JsonKey()
+  final bool isTechnologiesFeatureEnabled;
+
   @override
   String toString() {
-    return 'TechnologiesCubitState(technologies: $technologies, progress: $progress)';
+    return 'TechnologiesCubitState(technologies: $technologies, progress: $progress, isTechnologiesFeatureEnabled: $isTechnologiesFeatureEnabled)';
   }
 
   @override
@@ -162,12 +187,19 @@ class _$TechnologiesCubitStateImpl extends _TechnologiesCubitState {
             const DeepCollectionEquality()
                 .equals(other._technologies, _technologies) &&
             (identical(other.progress, progress) ||
-                other.progress == progress));
+                other.progress == progress) &&
+            (identical(other.isTechnologiesFeatureEnabled,
+                    isTechnologiesFeatureEnabled) ||
+                other.isTechnologiesFeatureEnabled ==
+                    isTechnologiesFeatureEnabled));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_technologies), progress);
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(_technologies),
+      progress,
+      isTechnologiesFeatureEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -179,9 +211,9 @@ class _$TechnologiesCubitStateImpl extends _TechnologiesCubitState {
 
 abstract class _TechnologiesCubitState extends TechnologiesCubitState {
   const factory _TechnologiesCubitState(
-          {final Map<TechnologyModelId, TechnologyModel> technologies,
-          final TechnologyTreeProgressModel progress}) =
-      _$TechnologiesCubitStateImpl;
+      {final Map<TechnologyModelId, TechnologyModel> technologies,
+      final TechnologyTreeProgressModel progress,
+      final bool isTechnologiesFeatureEnabled}) = _$TechnologiesCubitStateImpl;
   const _TechnologiesCubitState._() : super._();
 
   @override
@@ -190,6 +222,12 @@ abstract class _TechnologiesCubitState extends TechnologiesCubitState {
   Map<TechnologyModelId, TechnologyModel> get technologies;
   @override
   TechnologyTreeProgressModel get progress;
+  @override
+
+  /// when user is starting a game
+  /// he may want to start simple game, without
+  /// any "adventure" features, as technologies
+  bool get isTechnologiesFeatureEnabled;
   @override
   @JsonKey(ignore: true)
   _$$TechnologiesCubitStateImplCopyWith<_$TechnologiesCubitStateImpl>

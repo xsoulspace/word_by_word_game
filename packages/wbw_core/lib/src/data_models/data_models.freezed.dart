@@ -3970,7 +3970,14 @@ mixin _$TechnologyUnlockConditionModel {
   /// for that certain language.
   Map<Languages, List<UsefulWordModel>> get languageWords =>
       throw _privateConstructorUsedError;
+
+  /// one idea is to have minimum words to unlock the technology
   int get wordsUnlockThreshold => throw _privateConstructorUsedError;
+
+  /// other idea is to have [researchPoints] to unlock the technology
+  /// and when word is used, it fill research points for this
+  /// technology
+  int get researchPoints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -3988,7 +3995,8 @@ abstract class $TechnologyUnlockConditionModelCopyWith<$Res> {
   @useResult
   $Res call(
       {Map<Languages, List<UsefulWordModel>> languageWords,
-      int wordsUnlockThreshold});
+      int wordsUnlockThreshold,
+      int researchPoints});
 }
 
 /// @nodoc
@@ -4007,6 +4015,7 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
   $Res call({
     Object? languageWords = null,
     Object? wordsUnlockThreshold = null,
+    Object? researchPoints = null,
   }) {
     return _then(_value.copyWith(
       languageWords: null == languageWords
@@ -4016,6 +4025,10 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
       wordsUnlockThreshold: null == wordsUnlockThreshold
           ? _value.wordsUnlockThreshold
           : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
+      researchPoints: null == researchPoints
+          ? _value.researchPoints
+          : researchPoints // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -4032,7 +4045,8 @@ abstract class _$$TechnologyUnlockConditionModelImplCopyWith<$Res>
   @useResult
   $Res call(
       {Map<Languages, List<UsefulWordModel>> languageWords,
-      int wordsUnlockThreshold});
+      int wordsUnlockThreshold,
+      int researchPoints});
 }
 
 /// @nodoc
@@ -4050,6 +4064,7 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
   $Res call({
     Object? languageWords = null,
     Object? wordsUnlockThreshold = null,
+    Object? researchPoints = null,
   }) {
     return _then(_$TechnologyUnlockConditionModelImpl(
       languageWords: null == languageWords
@@ -4059,6 +4074,10 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
       wordsUnlockThreshold: null == wordsUnlockThreshold
           ? _value.wordsUnlockThreshold
           : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
+      researchPoints: null == researchPoints
+          ? _value.researchPoints
+          : researchPoints // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -4071,7 +4090,8 @@ class _$TechnologyUnlockConditionModelImpl
     extends _TechnologyUnlockConditionModel {
   const _$TechnologyUnlockConditionModelImpl(
       {required final Map<Languages, List<UsefulWordModel>> languageWords,
-      this.wordsUnlockThreshold = 3})
+      this.wordsUnlockThreshold = 3,
+      this.researchPoints = 8})
       : _languageWords = languageWords,
         super._();
 
@@ -4094,13 +4114,21 @@ class _$TechnologyUnlockConditionModelImpl
     return EqualUnmodifiableMapView(_languageWords);
   }
 
+  /// one idea is to have minimum words to unlock the technology
   @override
   @JsonKey()
   final int wordsUnlockThreshold;
 
+  /// other idea is to have [researchPoints] to unlock the technology
+  /// and when word is used, it fill research points for this
+  /// technology
+  @override
+  @JsonKey()
+  final int researchPoints;
+
   @override
   String toString() {
-    return 'TechnologyUnlockConditionModel(languageWords: $languageWords, wordsUnlockThreshold: $wordsUnlockThreshold)';
+    return 'TechnologyUnlockConditionModel(languageWords: $languageWords, wordsUnlockThreshold: $wordsUnlockThreshold, researchPoints: $researchPoints)';
   }
 
   @override
@@ -4111,7 +4139,9 @@ class _$TechnologyUnlockConditionModelImpl
             const DeepCollectionEquality()
                 .equals(other._languageWords, _languageWords) &&
             (identical(other.wordsUnlockThreshold, wordsUnlockThreshold) ||
-                other.wordsUnlockThreshold == wordsUnlockThreshold));
+                other.wordsUnlockThreshold == wordsUnlockThreshold) &&
+            (identical(other.researchPoints, researchPoints) ||
+                other.researchPoints == researchPoints));
   }
 
   @JsonKey(ignore: true)
@@ -4119,7 +4149,8 @@ class _$TechnologyUnlockConditionModelImpl
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_languageWords),
-      wordsUnlockThreshold);
+      wordsUnlockThreshold,
+      researchPoints);
 
   @JsonKey(ignore: true)
   @override
@@ -4141,7 +4172,8 @@ abstract class _TechnologyUnlockConditionModel
     extends TechnologyUnlockConditionModel {
   const factory _TechnologyUnlockConditionModel(
       {required final Map<Languages, List<UsefulWordModel>> languageWords,
-      final int wordsUnlockThreshold}) = _$TechnologyUnlockConditionModelImpl;
+      final int wordsUnlockThreshold,
+      final int researchPoints}) = _$TechnologyUnlockConditionModelImpl;
   const _TechnologyUnlockConditionModel._() : super._();
 
   factory _TechnologyUnlockConditionModel.fromJson(Map<String, dynamic> json) =
@@ -4154,7 +4186,15 @@ abstract class _TechnologyUnlockConditionModel
   /// for that certain language.
   Map<Languages, List<UsefulWordModel>> get languageWords;
   @override
+
+  /// one idea is to have minimum words to unlock the technology
   int get wordsUnlockThreshold;
+  @override
+
+  /// other idea is to have [researchPoints] to unlock the technology
+  /// and when word is used, it fill research points for this
+  /// technology
+  int get researchPoints;
   @override
   @JsonKey(ignore: true)
   _$$TechnologyUnlockConditionModelImplCopyWith<

@@ -96,20 +96,37 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
     /// then [TechnologyModel] is unlocked
     /// for that certain language.
     required final Map<Languages, List<UsefulWordModel>> languageWords,
+
+    /// one idea is to have minimum words to unlock the technology
     @Default(3) final int wordsUnlockThreshold,
+
+    /// other idea is to have [researchPoints] to unlock the technology
+    /// and when word is used, it fill research points for this
+    /// technology
+    @Default(8) final int researchPoints,
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(
     final Map<String, dynamic> json,
   ) =>
       _$TechnologyUnlockConditionModelFromJson(json);
   const TechnologyUnlockConditionModel._();
-  bool get isUnlocked {
+  bool get isUnlockedForAllLanguages {
     for (final language in Languages.values) {
-      final isAllWordsUsed = languageWords[language]!.every(
+      final isAllWordsUsed = languageWords[language]?.every(
         (final word) => word.isUsed,
       );
-      if (isAllWordsUsed) return true;
+      if (isAllWordsUsed == true) return true;
     }
+    return false;
+  }
+
+  bool getIsUnlockedForLanguage() {
+    final isAllWordsUsed =
+        languageWords[LocalizedMap.getCurrentLanugage()]?.every(
+      (final word) => word.isUsed,
+    );
+    if (isAllWordsUsed == true) return true;
+
     return false;
   }
 }

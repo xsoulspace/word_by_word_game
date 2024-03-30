@@ -12,14 +12,17 @@ class CurrentTechnologyButton extends StatelessWidget {
     final technologyCubit = context.watch<TechnologiesCubit>();
     final state = technologyCubit.state;
     final currentTechnology = state.researchingTechnology;
+    if (!technologyCubit.state.isTechnologiesFeatureEnabled) {
+      return const SizedBox();
+    }
     return TextButton.icon(
       onPressed: () {
         context.read<DialogController>().showTechnologiesTree();
       },
       icon: Icon(
-        currentTechnology == null
-            ? CupertinoIcons.lab_flask
-            : CupertinoIcons.lab_flask_solid,
+        currentTechnology?.unlockCondition.getIsUnlockedForLanguage() == true
+            ? CupertinoIcons.lab_flask_solid
+            : CupertinoIcons.lab_flask,
       ),
       // TODO(arenukvern): l10n
       label: Text(currentTechnology?.title.getValue() ?? 'Not researching'),

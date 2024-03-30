@@ -14,6 +14,12 @@ class TechnologiesCubitState with _$TechnologiesCubitState {
     @Default({}) final Map<TechnologyModelId, TechnologyModel> technologies,
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel progress,
+
+    // TODO(arenukvern): add feature flag to game settings
+    /// when user is starting a game
+    /// he may want to start simple game, without
+    /// any "adventure" features, as technologies
+    @Default(false) final bool isTechnologiesFeatureEnabled,
   }) = _TechnologiesCubitState;
   const TechnologiesCubitState._();
 
@@ -40,6 +46,36 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
   final TechnologiesCubitDto dto;
   @override
   void onConsumeTickEvent() {}
+  void onResearchingTechnologyChanged(
+    final TechnologyModelId id,
+    // ignore: avoid_positional_boolean_parameters
+    final bool isSelected,
+  ) {
+    if (isSelected) {
+      updateProgress(
+        (final oldProgress) =>
+            oldProgress.copyWith(researchingTechnologyId: id),
+      );
+    } else {
+      updateProgress(
+        (final oldProgress) =>
+            oldProgress.copyWith(researchingTechnologyId: null),
+      );
+    }
+  }
+
+  void onWordUsed(final String word) {
+    // TODO(arenukvern): check all words
+    // TODO(arenukvern): create inverted map? word: id?
+  }
+
+  void updateProgress(
+    final TechnologyTreeProgressModel Function(
+      TechnologyTreeProgressModel oldProgress,
+    ) updateCallback,
+  ) =>
+      emit(state.copyWith(progress: updateCallback(state.progress)));
+
   void loadTechnologies({
     required final Map<TechnologyModelId, TechnologyModel> technologies,
     required final TechnologyTreeProgressModel progress,
