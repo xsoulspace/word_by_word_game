@@ -43,9 +43,26 @@ class LevelModel with _$LevelModel {
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel lastDateTime,
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel technologyTreeProgress,
+    @Default(LevelFeaturesSettingsModel.empty)
+    final LevelFeaturesSettingsModel featuresSettings,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
       _$LevelModelFromJson(json);
   CanvasDataModelId get id => canvasDataId;
+}
+
+@freezed
+class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
+  const factory LevelFeaturesSettingsModel({
+    @Default(false) final bool isTechnologiesEnabled,
+  }) = _LevelFeaturesSettingsModel;
+  factory LevelFeaturesSettingsModel.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$LevelFeaturesSettingsModelFromJson(json);
+  static const empty = LevelFeaturesSettingsModel();
+  static const allEnabled = LevelFeaturesSettingsModel(
+    isTechnologiesEnabled: true,
+  );
 }

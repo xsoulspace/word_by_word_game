@@ -21,7 +21,7 @@ class LevelOptionsScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
-    final widgetUxState = context.read<LevelStartDialogUxState>();
+    final widgetUxState = context.read<LevelStartDialogUxNotifier>();
     final theme = Theme.of(context);
 
     return Column(
@@ -45,6 +45,16 @@ class LevelOptionsScreen extends HookWidget {
           value: widgetUxState.shouldStartTutorial,
           onChanged: widgetUxState.changeShouldStartTutorial,
           title: Text(S.of(context).enableTutorial),
+        ),
+        uiTheme.verticalBoxes.medium,
+        CheckboxListTile(
+          value: widgetUxState.featuresSettings.isTechnologiesEnabled,
+          onChanged: (final isEnabled) => widgetUxState.changeFeaturesSettings(
+            (final old) =>
+                old.copyWith(isTechnologiesEnabled: isEnabled == true),
+          ),
+          // TODO(arenukvern): l10n
+          title: const Text('Technologies (Experimental)'),
         ),
         uiTheme.verticalBoxes.medium,
         Row(

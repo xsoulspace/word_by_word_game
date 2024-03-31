@@ -15,7 +15,6 @@ class TechnologiesCubitState with _$TechnologiesCubitState {
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel progress,
 
-    // TODO(arenukvern): add feature flag to game settings
     /// when user is starting a game
     /// he may want to start simple game, without
     /// any "adventure" features, as technologies
@@ -76,9 +75,6 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
   ) =>
       emit(state.copyWith(progress: updateCallback(state.progress)));
 
-  void loadTechnologies({
-    required final Map<TechnologyModelId, TechnologyModel> technologies,
-    required final TechnologyTreeProgressModel progress,
-  }) =>
-      emit(state.copyWith(technologies: technologies, progress: progress));
+  void reloadState({required final TechnologiesCubitState state}) =>
+      emit(state);
 }

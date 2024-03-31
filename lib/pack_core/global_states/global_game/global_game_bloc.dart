@@ -88,6 +88,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
           .id,
       characterId: liveGame.playersCharacters.first.id,
       playersIds: [],
+      featuresSettings: LevelFeaturesSettingsModel.allEnabled,
     );
 
     /// resume latest game
@@ -108,6 +109,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     required final CanvasDataModelId canvasDataId,
     required final List<PlayerProfileModelId> playersIds,
     required final Gid characterId,
+    required final LevelFeaturesSettingsModel featuresSettings,
   }) {
     final liveState = state;
     final charactersCollection = liveState.playersCharacters;
@@ -133,6 +135,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),
+      featuresSettings: featuresSettings,
       players: LevelPlayersModel(
         currentPlayerId: levelPlayers.first.id,
         players: levelPlayers
@@ -232,10 +235,14 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
     await dto.canvasCubit.loadCanvasData(canvasData: newCanvasData);
 
-    dto.technologiesCubit.loadTechnologies(
-      technologies: newCanvasData.technologies
-          .toMap(toKey: (final i) => i.id, toValue: (final v) => v),
-      progress: level.technologyTreeProgress,
+    dto.technologiesCubit.reloadState(
+      state: TechnologiesCubitState(
+        technologies: newCanvasData.technologies
+            .toMap(toKey: (final i) => i.id, toValue: (final v) => v),
+        progress: level.technologyTreeProgress,
+        isTechnologiesFeatureEnabled:
+            level.featuresSettings.isTechnologiesEnabled,
+      ),
     );
 
     dto

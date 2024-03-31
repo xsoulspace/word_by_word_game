@@ -949,6 +949,8 @@ mixin _$LevelModel {
   WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
   TechnologyTreeProgressModel get technologyTreeProgress =>
       throw _privateConstructorUsedError;
+  LevelFeaturesSettingsModel get featuresSettings =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -976,7 +978,8 @@ abstract class $LevelModelCopyWith<$Res> {
       EnergyMultiplierType actionMultiplier,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      TechnologyTreeProgressModel technologyTreeProgress});
+      TechnologyTreeProgressModel technologyTreeProgress,
+      LevelFeaturesSettingsModel featuresSettings});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
@@ -986,6 +989,7 @@ abstract class $LevelModelCopyWith<$Res> {
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
   $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 }
 
 /// @nodoc
@@ -1015,6 +1019,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? dateTime = null,
     Object? lastDateTime = null,
     Object? technologyTreeProgress = null,
+    Object? featuresSettings = null,
   }) {
     return _then(_value.copyWith(
       players: null == players
@@ -1073,6 +1078,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.technologyTreeProgress
           : technologyTreeProgress // ignore: cast_nullable_to_non_nullable
               as TechnologyTreeProgressModel,
+      featuresSettings: null == featuresSettings
+          ? _value.featuresSettings
+          : featuresSettings // ignore: cast_nullable_to_non_nullable
+              as LevelFeaturesSettingsModel,
     ) as $Val);
   }
 
@@ -1140,6 +1149,15 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
       return _then(_value.copyWith(technologyTreeProgress: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
+    return $LevelFeaturesSettingsModelCopyWith<$Res>(_value.featuresSettings,
+        (value) {
+      return _then(_value.copyWith(featuresSettings: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1164,7 +1182,8 @@ abstract class _$$LevelModelImplCopyWith<$Res>
       EnergyMultiplierType actionMultiplier,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      TechnologyTreeProgressModel technologyTreeProgress});
+      TechnologyTreeProgressModel technologyTreeProgress,
+      LevelFeaturesSettingsModel featuresSettings});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1182,6 +1201,8 @@ abstract class _$$LevelModelImplCopyWith<$Res>
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
   @override
   $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;
+  @override
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 }
 
 /// @nodoc
@@ -1209,6 +1230,7 @@ class __$$LevelModelImplCopyWithImpl<$Res>
     Object? dateTime = null,
     Object? lastDateTime = null,
     Object? technologyTreeProgress = null,
+    Object? featuresSettings = null,
   }) {
     return _then(_$LevelModelImpl(
       players: null == players
@@ -1267,6 +1289,10 @@ class __$$LevelModelImplCopyWithImpl<$Res>
           ? _value.technologyTreeProgress
           : technologyTreeProgress // ignore: cast_nullable_to_non_nullable
               as TechnologyTreeProgressModel,
+      featuresSettings: null == featuresSettings
+          ? _value.featuresSettings
+          : featuresSettings // ignore: cast_nullable_to_non_nullable
+              as LevelFeaturesSettingsModel,
     ));
   }
 }
@@ -1289,7 +1315,8 @@ class _$LevelModelImpl extends _LevelModel {
       this.actionMultiplier = EnergyMultiplierType.m1,
       this.dateTime = WorldDateTimeModel.zero,
       this.lastDateTime = WorldDateTimeModel.zero,
-      this.technologyTreeProgress = TechnologyTreeProgressModel.empty})
+      this.technologyTreeProgress = TechnologyTreeProgressModel.empty,
+      this.featuresSettings = LevelFeaturesSettingsModel.empty})
       : _weathers = weathers,
         _words = words,
         super._();
@@ -1352,10 +1379,13 @@ class _$LevelModelImpl extends _LevelModel {
   @override
   @JsonKey()
   final TechnologyTreeProgressModel technologyTreeProgress;
+  @override
+  @JsonKey()
+  final LevelFeaturesSettingsModel featuresSettings;
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress)';
+    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings)';
   }
 
   @override
@@ -1386,7 +1416,9 @@ class _$LevelModelImpl extends _LevelModel {
             (identical(other.lastDateTime, lastDateTime) ||
                 other.lastDateTime == lastDateTime) &&
             (identical(other.technologyTreeProgress, technologyTreeProgress) ||
-                other.technologyTreeProgress == technologyTreeProgress));
+                other.technologyTreeProgress == technologyTreeProgress) &&
+            (identical(other.featuresSettings, featuresSettings) ||
+                other.featuresSettings == featuresSettings));
   }
 
   @JsonKey(ignore: true)
@@ -1406,7 +1438,8 @@ class _$LevelModelImpl extends _LevelModel {
       actionMultiplier,
       dateTime,
       lastDateTime,
-      technologyTreeProgress);
+      technologyTreeProgress,
+      featuresSettings);
 
   @JsonKey(ignore: true)
   @override
@@ -1424,21 +1457,21 @@ class _$LevelModelImpl extends _LevelModel {
 
 abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
-          {required final LevelPlayersModel players,
-          required final LevelCharactersModel characters,
-          final TilesetType tilesetType,
-          final List<WeatherModel> weathers,
-          final WindModel wind,
-          final CanvasDataModelId canvasDataId,
-          final CurrentWordModel currentWord,
-          final Map<String, String> words,
-          final String latestWord,
-          final GamePhaseType phaseType,
-          final EnergyMultiplierType actionMultiplier,
-          final WorldDateTimeModel dateTime,
-          final WorldDateTimeModel lastDateTime,
-          final TechnologyTreeProgressModel technologyTreeProgress}) =
-      _$LevelModelImpl;
+      {required final LevelPlayersModel players,
+      required final LevelCharactersModel characters,
+      final TilesetType tilesetType,
+      final List<WeatherModel> weathers,
+      final WindModel wind,
+      final CanvasDataModelId canvasDataId,
+      final CurrentWordModel currentWord,
+      final Map<String, String> words,
+      final String latestWord,
+      final GamePhaseType phaseType,
+      final EnergyMultiplierType actionMultiplier,
+      final WorldDateTimeModel dateTime,
+      final WorldDateTimeModel lastDateTime,
+      final TechnologyTreeProgressModel technologyTreeProgress,
+      final LevelFeaturesSettingsModel featuresSettings}) = _$LevelModelImpl;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1476,9 +1509,159 @@ abstract class _LevelModel extends LevelModel {
   @override
   TechnologyTreeProgressModel get technologyTreeProgress;
   @override
+  LevelFeaturesSettingsModel get featuresSettings;
+  @override
   @JsonKey(ignore: true)
   _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+LevelFeaturesSettingsModel _$LevelFeaturesSettingsModelFromJson(
+    Map<String, dynamic> json) {
+  return _LevelFeaturesSettingsModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LevelFeaturesSettingsModel {
+  bool get isTechnologiesEnabled => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LevelFeaturesSettingsModelCopyWith<LevelFeaturesSettingsModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LevelFeaturesSettingsModelCopyWith<$Res> {
+  factory $LevelFeaturesSettingsModelCopyWith(LevelFeaturesSettingsModel value,
+          $Res Function(LevelFeaturesSettingsModel) then) =
+      _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
+          LevelFeaturesSettingsModel>;
+  @useResult
+  $Res call({bool isTechnologiesEnabled});
+}
+
+/// @nodoc
+class _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
+        $Val extends LevelFeaturesSettingsModel>
+    implements $LevelFeaturesSettingsModelCopyWith<$Res> {
+  _$LevelFeaturesSettingsModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTechnologiesEnabled = null,
+  }) {
+    return _then(_value.copyWith(
+      isTechnologiesEnabled: null == isTechnologiesEnabled
+          ? _value.isTechnologiesEnabled
+          : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LevelFeaturesSettingsModelImplCopyWith<$Res>
+    implements $LevelFeaturesSettingsModelCopyWith<$Res> {
+  factory _$$LevelFeaturesSettingsModelImplCopyWith(
+          _$LevelFeaturesSettingsModelImpl value,
+          $Res Function(_$LevelFeaturesSettingsModelImpl) then) =
+      __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isTechnologiesEnabled});
+}
+
+/// @nodoc
+class __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>
+    extends _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
+        _$LevelFeaturesSettingsModelImpl>
+    implements _$$LevelFeaturesSettingsModelImplCopyWith<$Res> {
+  __$$LevelFeaturesSettingsModelImplCopyWithImpl(
+      _$LevelFeaturesSettingsModelImpl _value,
+      $Res Function(_$LevelFeaturesSettingsModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTechnologiesEnabled = null,
+  }) {
+    return _then(_$LevelFeaturesSettingsModelImpl(
+      isTechnologiesEnabled: null == isTechnologiesEnabled
+          ? _value.isTechnologiesEnabled
+          : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LevelFeaturesSettingsModelImpl implements _LevelFeaturesSettingsModel {
+  const _$LevelFeaturesSettingsModelImpl({this.isTechnologiesEnabled = false});
+
+  factory _$LevelFeaturesSettingsModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$LevelFeaturesSettingsModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool isTechnologiesEnabled;
+
+  @override
+  String toString() {
+    return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LevelFeaturesSettingsModelImpl &&
+            (identical(other.isTechnologiesEnabled, isTechnologiesEnabled) ||
+                other.isTechnologiesEnabled == isTechnologiesEnabled));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, isTechnologiesEnabled);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LevelFeaturesSettingsModelImplCopyWith<_$LevelFeaturesSettingsModelImpl>
+      get copyWith => __$$LevelFeaturesSettingsModelImplCopyWithImpl<
+          _$LevelFeaturesSettingsModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LevelFeaturesSettingsModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LevelFeaturesSettingsModel
+    implements LevelFeaturesSettingsModel {
+  const factory _LevelFeaturesSettingsModel(
+      {final bool isTechnologiesEnabled}) = _$LevelFeaturesSettingsModelImpl;
+
+  factory _LevelFeaturesSettingsModel.fromJson(Map<String, dynamic> json) =
+      _$LevelFeaturesSettingsModelImpl.fromJson;
+
+  @override
+  bool get isTechnologiesEnabled;
+  @override
+  @JsonKey(ignore: true)
+  _$$LevelFeaturesSettingsModelImplCopyWith<_$LevelFeaturesSettingsModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LevelPlayersModel _$LevelPlayersModelFromJson(Map<String, dynamic> json) {

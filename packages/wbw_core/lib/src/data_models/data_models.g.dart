@@ -155,6 +155,10 @@ _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>
           ? TechnologyTreeProgressModel.empty
           : TechnologyTreeProgressModel.fromJson(
               json['technologyTreeProgress'] as Map<String, dynamic>),
+      featuresSettings: json['featuresSettings'] == null
+          ? LevelFeaturesSettingsModel.empty
+          : LevelFeaturesSettingsModel.fromJson(
+              json['featuresSettings'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
@@ -174,6 +178,7 @@ Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
       'technologyTreeProgress': instance.technologyTreeProgress.toJson(),
+      'featuresSettings': instance.featuresSettings.toJson(),
     };
 
 const _$TilesetTypeEnumMap = {
@@ -192,6 +197,18 @@ const _$EnergyMultiplierTypeEnumMap = {
   EnergyMultiplierType.m2: 'm2',
   EnergyMultiplierType.m3: 'm3',
 };
+
+_$LevelFeaturesSettingsModelImpl _$$LevelFeaturesSettingsModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LevelFeaturesSettingsModelImpl(
+      isTechnologiesEnabled: json['isTechnologiesEnabled'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$LevelFeaturesSettingsModelImplToJson(
+        _$LevelFeaturesSettingsModelImpl instance) =>
+    <String, dynamic>{
+      'isTechnologiesEnabled': instance.isTechnologiesEnabled,
+    };
 
 _$LevelPlayersModelImpl _$$LevelPlayersModelImplFromJson(
         Map<String, dynamic> json) =>
