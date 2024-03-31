@@ -189,7 +189,7 @@ const _$TilesetTypeEnumMap = {
 
 const _$GamePhaseTypeEnumMap = {
   GamePhaseType.entryWord: 'entryWord',
-  GamePhaseType.selectFuel: 'selectFuel',
+  GamePhaseType.selectAction: 'selectAction',
 };
 
 const _$EnergyMultiplierTypeEnumMap = {

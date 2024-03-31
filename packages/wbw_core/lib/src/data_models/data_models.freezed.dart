@@ -3893,6 +3893,7 @@ mixin _$TechnologyModel {
   TechnologyModelId get id => throw _privateConstructorUsedError;
   LocalizedMap get title =>
       throw _privateConstructorUsedError; // TODO(antmalofeev): add icon?
+  /// use [TechnologyProgressModel] to store/retrieve actual progress
   TechnologyUnlockConditionModel get unlockCondition =>
       throw _privateConstructorUsedError;
   int get index => throw _privateConstructorUsedError;
@@ -4066,6 +4067,7 @@ class _$TechnologyModelImpl extends _TechnologyModel {
   @override
   final LocalizedMap title;
 // TODO(antmalofeev): add icon?
+  /// use [TechnologyProgressModel] to store/retrieve actual progress
   @override
   final TechnologyUnlockConditionModel unlockCondition;
   @override
@@ -4130,6 +4132,7 @@ abstract class _TechnologyModel extends TechnologyModel {
   @override
   LocalizedMap get title;
   @override // TODO(antmalofeev): add icon?
+  /// use [TechnologyProgressModel] to store/retrieve actual progress
   TechnologyUnlockConditionModel get unlockCondition;
   @override
   int get index;

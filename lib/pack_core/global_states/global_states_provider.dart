@@ -56,12 +56,12 @@ class GlobalStatesProvider extends StatelessWidget {
                 drawerCubit: DrawerCubitDto.use(context: context),
               ),
             ),
+            const BlocProvider(create: TechnologiesCubit.new),
             const BlocProvider(create: DictionariesBloc.new),
             const BlocProvider(create: LevelPlayersBloc.new),
             const BlocProvider<LevelBloc>(create: LevelBloc.new),
             const BlocProvider(create: TutorialBloc.new),
             const BlocProvider(create: WeatherCubit.new),
-            const BlocProvider(create: TechnologiesCubit.new),
             const BlocProvider<GlobalGameBloc>(create: GlobalGameBloc.new),
             BlocProvider(
               create: (final context) => AppSettingsCubit(
