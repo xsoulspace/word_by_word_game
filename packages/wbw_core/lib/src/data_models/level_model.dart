@@ -2,7 +2,7 @@
 
 part of 'data_models.dart';
 
-enum GamePhaseType { entryWord, selectFuel }
+enum GamePhaseType { entryWord, selectAction }
 
 enum EnergyMultiplierType {
   m1(namedPart: '1/3'),
@@ -52,6 +52,9 @@ class LevelModel with _$LevelModel {
   CanvasDataModelId get id => canvasDataId;
 }
 
+/// Ensures that when user is starting a game
+/// he can start simple game, without
+/// any "adventure" features, as technologies, etc
 @freezed
 class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
   const factory LevelFeaturesSettingsModel({

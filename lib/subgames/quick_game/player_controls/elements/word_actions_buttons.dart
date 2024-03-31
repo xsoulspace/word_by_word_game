@@ -45,7 +45,7 @@ class UiWordActions extends StatelessWidget {
           else
             uiTheme.verticalBoxes.medium,
         ]);
-      case GamePhaseType.selectFuel:
+      case GamePhaseType.selectAction:
         break;
     }
 

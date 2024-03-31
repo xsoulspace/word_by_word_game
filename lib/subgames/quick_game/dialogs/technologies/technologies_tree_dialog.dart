@@ -12,8 +12,6 @@ class TechnologiesTreeDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final technologiesCubit = context.watch<TechnologiesCubit>();
-    final technologiesState = technologiesCubit.state;
-    final settings = context.watch<AppSettingsCubit>();
     final dialogController = context.read<DialogController>();
     return DialogScaffold(
       children: [
@@ -28,27 +26,34 @@ class TechnologiesTreeDialog extends StatelessWidget {
             CloseButton(onPressed: dialogController.closeDialogAndResume),
           ],
         ),
-        const Gap(3),
-        const Text(
-          'To change currently researched technology enter new word and '
-          'choose select technology action',
+        const Card.filled(
+          child: Column(
+            children: [
+              Gap(3),
+              Text(
+                'To change currently researched technology enter new word and '
+                'choose select technology action',
+              ),
+              Text('Use words from any technology to reasearch it faster.'),
+              Gap(3),
+            ],
+          ),
         ),
-        const Text('Use words from any technology to reasearch it faster.'),
-        const Gap(4),
         ListTile(
           title: Text(
-            technologiesState.researchingTechnology?.title.getValue() ??
+            technologiesCubit.researchingTechnology?.title.getValue() ??
                 'Not researching',
           ),
           subtitle: const Text('Current Research'),
         ),
         const Gap(8),
-        ...technologiesState.technologies.values.map(
+        ...technologiesCubit.technologies.values.map(
           (final e) => _TechnologyTile(
             key: ValueKey(e.id),
-            selectedId: technologiesState.researchingTechnology?.id,
+            selectedId: technologiesCubit.researchingTechnology?.id,
             onSelectedChanged: technologiesCubit.onResearchingTechnologyChanged,
             value: e,
+            progress: technologiesCubit.progress.technologies[e.id],
           ),
         ),
       ],
@@ -59,16 +64,21 @@ class TechnologiesTreeDialog extends StatelessWidget {
 class _TechnologyTile extends StatelessWidget {
   const _TechnologyTile({
     required this.value,
+    required this.progress,
     required this.onSelectedChanged,
     required this.selectedId,
     super.key,
   });
   final TechnologyModel value;
+  final TechnologyProgressModel? progress;
   // ignore: avoid_positional_boolean_parameters
   final void Function(TechnologyModelId id, bool isSelected) onSelectedChanged;
   final TechnologyModelId? selectedId;
   @override
   Widget build(final BuildContext context) {
+    final unlockCondition = progress?.unlockCondition;
+    final wordsProgress =
+        unlockCondition?.languageWords[LocalizedMap.getCurrentLanugage()];
     final isSelected = selectedId == value.id;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -87,7 +97,7 @@ class _TechnologyTile extends StatelessWidget {
             const Spacer(),
             // TODO(arenukvern): l10n
             Text(
-              value.unlockCondition.getIsUnlockedForLanguage()
+              unlockCondition?.getIsUnlockedForLanguage() == true
                   ? 'Researched'
                   : 'Not researched',
             ),
@@ -99,10 +109,10 @@ class _TechnologyTile extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: value.unlockCondition
                 .languageWords[LocalizedMap.getCurrentLanugage()]!
-                .map(
-                  (final word) => InputChip(
+                .mapIndexed(
+                  (final index, final word) => InputChip(
                     label: Text(word.word),
-                    selected: word.isUsed,
+                    selected: wordsProgress?[index].isUsed == true,
                   ),
                 )
                 .toList(),

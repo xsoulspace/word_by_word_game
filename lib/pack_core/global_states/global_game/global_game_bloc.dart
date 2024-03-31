@@ -236,12 +236,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     await dto.canvasCubit.loadCanvasData(canvasData: newCanvasData);
 
     dto.technologiesCubit.reloadState(
+      technologies: newCanvasData.technologies
+          .toMap(toKey: (final i) => i.id, toValue: (final v) => v),
       state: TechnologiesCubitState(
-        technologies: newCanvasData.technologies
-            .toMap(toKey: (final i) => i.id, toValue: (final v) => v),
         progress: level.technologyTreeProgress,
-        isTechnologiesFeatureEnabled:
-            level.featuresSettings.isTechnologiesEnabled,
       ),
     );
 
@@ -433,6 +431,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final levelState = dto.levelBloc.state;
     final playersState = dto.levelPlayersBloc.state;
     final weatherState = dto.weatherCubit.state;
+    final technologiesState = dto.technologiesCubit.state;
+    final canvasCubitState = dto.canvasCubit.state;
     return LevelModel(
       weathers: weatherState.weathers,
       wind: weatherState.wind,
@@ -449,6 +449,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       ),
       dateTime: state.dateTime,
       lastDateTime: state.lastDateTime,
+      featuresSettings: levelState.featuresSettings,
+      technologyTreeProgress: technologiesState.progress,
+      tilesetType: canvasCubitState.canvasData.tilesetType,
     );
   }
 
@@ -461,5 +464,6 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
 }
 
 abstract interface class WorldTickConsumable {
+  WorldTickConsumable._();
   void onConsumeTickEvent();
 }

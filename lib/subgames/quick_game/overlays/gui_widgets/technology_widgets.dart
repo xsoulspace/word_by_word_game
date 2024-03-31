@@ -9,10 +9,10 @@ class CurrentTechnologyButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final levelCubit = context.watch<LevelBloc>();
     final technologyCubit = context.watch<TechnologiesCubit>();
-    final state = technologyCubit.state;
-    final currentTechnology = state.researchingTechnology;
-    if (!technologyCubit.state.isTechnologiesFeatureEnabled) {
+    final currentTechnology = technologyCubit.researchingTechnology;
+    if (!levelCubit.state.featuresSettings.isTechnologiesEnabled) {
       return const SizedBox();
     }
     return TextButton.icon(

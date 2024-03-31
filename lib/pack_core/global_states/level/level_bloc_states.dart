@@ -12,22 +12,25 @@ class LevelBlocState with _$LevelBlocState {
     @Default('') final String latestWord,
     @Default(GamePhaseType.entryWord) final GamePhaseType phaseType,
     @Default(EnergyMultiplierType.m1)
-    final EnergyMultiplierType actionMultiplier,
+    final EnergyMultiplierType energyMultiplier,
 
     /// ********************************************
     /// *      NON PERSISTENT
     /// ********************************************
     @Default(WordWarning.none) final WordWarning wordWarning,
+    @Default(LevelFeaturesSettingsModel.empty)
+    final LevelFeaturesSettingsModel featuresSettings,
   }) = _LevelBlocState;
   // ignore: prefer_constructors_over_static_methods
   static LevelBlocState liveFromModel(final LevelModel levelModel) =>
       LevelBlocState(
         phaseType: levelModel.phaseType,
-        actionMultiplier: levelModel.actionMultiplier,
+        energyMultiplier: levelModel.actionMultiplier,
         currentWord: levelModel.currentWord,
         latestWord: levelModel.latestWord,
         words: levelModel.words,
         id: levelModel.id,
+        featuresSettings: levelModel.featuresSettings,
       );
 }
 

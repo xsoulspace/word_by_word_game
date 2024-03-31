@@ -51,7 +51,7 @@ class UILevelCenterBar extends StatelessWidget {
                 Positioned.fill(
                   child: AnimatedAlign(
                     duration: 220.milliseconds,
-                    alignment: phaseType == GamePhaseType.selectFuel
+                    alignment: phaseType == GamePhaseType.selectAction
                         ? Alignment.center
                         : Alignment.centerLeft,
                     child: const UIMobilePlayerScore(),
@@ -78,7 +78,7 @@ class UILevelCenterBar extends StatelessWidget {
           const Gap(8),
           switch (phaseType) {
             GamePhaseType.entryWord => const UiWordCompositionBar(),
-            GamePhaseType.selectFuel => const UiFuelBar(),
+            GamePhaseType.selectAction => const UiActionFrame(),
           },
         ],
       ),

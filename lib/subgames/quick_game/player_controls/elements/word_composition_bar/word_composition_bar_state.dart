@@ -110,7 +110,7 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
   final wordFocusNode = FocusNode();
   final WordFieldController wordController;
 
-  void onSelectActionMultiplier(final EnergyMultiplierType multiplier) {
+  void onSelectEnergyMultiplier(final EnergyMultiplierType multiplier) {
     diDto.levelBloc.onLevelPlayerSelectActionMultiplier(
       LevelBlocEventSelectActionMultiplier(
         multiplier: multiplier,

@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,26 +8,19 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 part 'technologies_cubit.freezed.dart';
 
+typedef _WordTechnologyPairTuple = ({
+  TechnologyModelId id,
+  int index,
+  Languages language
+});
+
 @freezed
 class TechnologiesCubitState with _$TechnologiesCubitState {
   const factory TechnologiesCubitState({
-    /// all available technologies in level
-    @Default({}) final Map<TechnologyModelId, TechnologyModel> technologies,
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel progress,
-
-    /// when user is starting a game
-    /// he may want to start simple game, without
-    /// any "adventure" features, as technologies
-    @Default(false) final bool isTechnologiesFeatureEnabled,
   }) = _TechnologiesCubitState;
   const TechnologiesCubitState._();
-
-  /// single technology, which is currently researching actively
-  TechnologyModel? get researchingTechnology =>
-      technologies[progress.researchingTechnologyId];
-  TechnologyProgressModel? get researchingTechnologyProgress =>
-      progress.technologies[progress.researchingTechnologyId];
 }
 
 class TechnologiesCubitDto {
@@ -49,23 +43,58 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
     final TechnologyModelId id,
     // ignore: avoid_positional_boolean_parameters
     final bool isSelected,
-  ) {
-    if (isSelected) {
+  ) =>
       updateProgress(
-        (final oldProgress) =>
-            oldProgress.copyWith(researchingTechnologyId: id),
+        (final oldProgress) => oldProgress.copyWith(
+          researchingTechnologyId: isSelected ? id : null,
+        ),
       );
-    } else {
-      updateProgress(
-        (final oldProgress) =>
-            oldProgress.copyWith(researchingTechnologyId: null),
-      );
-    }
-  }
 
-  void onWordUsed(final String word) {
-    // TODO(arenukvern): check all words
-    // TODO(arenukvern): create inverted map? word: id?
+  void onWordAccepted(final String word) {
+    final pair = _wordTechnologyPair[word];
+    if (pair == null) return;
+    final (:id, :index, :language) = pair;
+    updateProgress(
+      (final oldProgress) {
+        TechnologyProgressModel? techProgress = oldProgress.technologies[id];
+        if (techProgress == null) {
+          final technology = _technologies[id];
+          if (technology == null) {
+            assert(false, 'no technology with id $id');
+          } else {
+            techProgress = TechnologyProgressModel(
+              id: id,
+              unlockCondition: technology.unlockCondition,
+            );
+          }
+        }
+        if (techProgress != null) {
+          final languageWordsMap = {
+            ...techProgress.unlockCondition.languageWords,
+          };
+          final languageWords = languageWordsMap[language] ?? [];
+          if (languageWords.length > index) {
+            final languageWord = languageWords[index];
+            languageWords[index] = languageWord.copyWith(isUsed: true);
+            languageWordsMap[language] = languageWords;
+          } else {
+            assert(false, 'index out of bounds');
+          }
+          final unlockCondition = techProgress.unlockCondition.copyWith(
+            languageWords: languageWordsMap,
+          );
+          techProgress =
+              techProgress.copyWith(unlockCondition: unlockCondition);
+        }
+
+        return oldProgress.copyWith(
+          technologies: {
+            ...oldProgress.technologies,
+            if (techProgress != null) id: techProgress,
+          },
+        );
+      },
+    );
   }
 
   void updateProgress(
@@ -73,8 +102,51 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
       TechnologyTreeProgressModel oldProgress,
     ) updateCallback,
   ) =>
-      emit(state.copyWith(progress: updateCallback(state.progress)));
+      emit(state.copyWith(progress: updateCallback(progress)));
 
-  void reloadState({required final TechnologiesCubitState state}) =>
-      emit(state);
+  void reloadState({
+    required final TechnologiesCubitState state,
+    required final Map<TechnologyModelId, TechnologyModel> technologies,
+  }) {
+    _wordTechnologiesPairsCache = null;
+    emit(state);
+  }
+
+  TechnologyTreeProgressModel get progress => state.progress;
+
+  /// single technology, which is currently researching actively
+  TechnologyModel? get researchingTechnology =>
+      _technologies[progress.researchingTechnologyId];
+
+  TechnologyProgressModel? get researchingTechnologyProgress =>
+      progress.technologies[progress.researchingTechnologyId];
+
+  final _technologies = <TechnologyModelId, TechnologyModel>{};
+  Map<TechnologyModelId, TechnologyModel> get technologies => _technologies;
+
+  /// all available technologies in level
+  Map<String, _WordTechnologyPairTuple> get _wordTechnologyPair =>
+      _wordTechnologiesPairsCache ??= _calculateWordTechnologiesPairs();
+  Map<String, _WordTechnologyPairTuple>? _wordTechnologiesPairsCache;
+  Map<String, _WordTechnologyPairTuple> _calculateWordTechnologiesPairs() {
+    final map = <String, _WordTechnologyPairTuple>{};
+
+    for (final MapEntry(:key, :value) in _technologies.entries) {
+      for (final MapEntry(key: language, value: words)
+          in value.unlockCondition.languageWords.entries) {
+        final entries = words.mapIndexed(
+          (final index, final word) => MapEntry(
+            word.word,
+            (
+              id: key,
+              index: index,
+              language: language,
+            ),
+          ),
+        );
+        map.addEntries(entries);
+      }
+    }
+    return map;
+  }
 }

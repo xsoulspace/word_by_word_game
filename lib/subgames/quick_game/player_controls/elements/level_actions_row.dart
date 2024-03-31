@@ -1,29 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-class UiFuelBar extends HookWidget {
-  const UiFuelBar({super.key});
+class UiActionFrame extends StatelessWidget {
+  const UiActionFrame({super.key});
 
   @override
-  Widget build(final BuildContext context) =>
-      BlocBuilder<LevelBloc, LevelBlocState>(
-        buildWhen: LevelBloc.useCheckStateEqualityBuilder(
-          checkLiveState: (final previous, final current) =>
-              previous.actionMultiplier != current.actionMultiplier,
-        ),
-        builder: (final context, final levelState) => const UiFuelFrame(),
-      );
+  Widget build(final BuildContext context) {
+    final technologiesCubit = context.watch<LevelBloc>();
+    if (technologiesCubit.state.featuresSettings.isTechnologiesEnabled) {
+      return const _UiActionFrameAdvanced();
+    } else {
+      return const _UiActionFrameSimple();
+    }
+  }
 }
 
-class UiFuelFrame extends StatelessWidget {
-  const UiFuelFrame({super.key});
+class _UiActionFrameAdvanced extends StatelessWidget {
+  const _UiActionFrameAdvanced({super.key});
+
+  @override
+  Widget build(final BuildContext context) => const Placeholder();
+}
+
+class _UiActionFrameSimple extends StatelessWidget {
+  const _UiActionFrameSimple({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -31,43 +37,53 @@ class UiFuelFrame extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
 
+    return Column(
+      children: [
+        Text(
+          S.of(context).applyFuelOption,
+          style: textTheme.titleMedium,
+        ),
+        Divider(color: theme.colorScheme.tertiary),
+        uiTheme.verticalBoxes.small,
+        const _EnergyCards(),
+      ],
+    );
+  }
+}
+
+class _EnergyCards extends StatelessWidget {
+  const _EnergyCards({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final uiTheme = context.uiTheme;
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
         checkLiveState: (final previous, final current) =>
-            previous.actionMultiplier != current.actionMultiplier,
+            previous.energyMultiplier != current.energyMultiplier,
       ),
-      builder: (final context, final levelState) => Column(
-        children: [
-          Text(
-            S.of(context).applyFuelOption,
-            style: textTheme.titleMedium,
-          ),
-          Divider(color: theme.colorScheme.tertiary),
-          uiTheme.verticalBoxes.small,
-          TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.selectRefuelOption,
-            child: ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 100),
-              child: ListView.separated(
-                shrinkWrap: true,
-                padding: EdgeInsets.zero,
-                itemBuilder: (final context, final index) {
-                  final type = EnergyMultiplierType.values[index];
+      builder: (final context, final levelState) => TutorialFrame(
+        highlightPosition: Alignment.topCenter,
+        uiKey: TutorialUiItem.selectRefuelOption,
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxHeight: 100),
+          child: ListView.separated(
+            shrinkWrap: true,
+            padding: EdgeInsets.zero,
+            itemBuilder: (final context, final index) {
+              final type = EnergyMultiplierType.values[index];
 
-                  return UIEnergyOptionCard(
-                    levelState: levelState,
-                    type: type,
-                  );
-                },
-                separatorBuilder: (final context, final index) =>
-                    uiTheme.horizontalBoxes.medium,
-                scrollDirection: Axis.horizontal,
-                itemCount: EnergyMultiplierType.values.length,
-              ),
-            ).animate().fadeIn().slideY(begin: 0.1),
+              return UIEnergyOptionCard(
+                levelState: levelState,
+                type: type,
+              );
+            },
+            separatorBuilder: (final context, final index) =>
+                uiTheme.horizontalBoxes.medium,
+            scrollDirection: Axis.horizontal,
+            itemCount: EnergyMultiplierType.values.length,
           ),
-        ],
+        ).animate().fadeIn().slideY(begin: 0.1),
       ),
     );
   }
@@ -102,14 +118,14 @@ class UIEnergyOptionCard extends StatelessWidget {
     // );
     // final uiTheme = UiTheme.of(context);
     // final bool isSelected =
-    //     isAllowedToUse && levelState.actionMultiplier == type;
+    //     isAllowedToUse && levelState.energyMultiplier == type;
     final theme = Theme.of(context);
     // final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     final widgetState = context.read<WordCompositionCubit>();
     // final borderRadius = BorderRadius.circular(100);
     void onApply() {
-      widgetState.onSelectActionMultiplier(type);
+      widgetState.onSelectEnergyMultiplier(type);
       TutorialFrame.sendOnClickEvent(
         uiKey: TutorialUiItem.selectRefuelOption,
         context: context,

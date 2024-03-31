@@ -13,20 +13,22 @@ part 'level_bloc_events.dart';
 part 'level_bloc_states.dart';
 
 class LevelBlocDiDto {
-  LevelBlocDiDto.use(final BuildContext context)
-      : mechanics = context.read(),
-        levelPlayersBloc = context.read(),
-        dictionaryBloc = context.read(),
-        statesStatusesCubit = context.read();
+  LevelBlocDiDto.use(final Locator read)
+      : mechanics = read(),
+        levelPlayersBloc = read(),
+        dictionaryBloc = read(),
+        technologiesCubit = read(),
+        statesStatusesCubit = read();
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
   final LevelPlayersBloc levelPlayersBloc;
+  final TechnologiesCubit technologiesCubit;
   final DictionariesBloc dictionaryBloc;
 }
 
 class LevelBloc extends Cubit<LevelBlocState> {
   LevelBloc(final BuildContext context)
-      : diDto = LevelBlocDiDto.use(context),
+      : dto = LevelBlocDiDto.use(context.read),
         super(const LevelBlocState());
 
   static bool Function(
@@ -40,14 +42,14 @@ class LevelBloc extends Cubit<LevelBlocState> {
   }) =>
       (final previous, final current) => checkLiveState(current, previous);
 
-  final LevelBlocDiDto diDto;
+  final LevelBlocDiDto dto;
 
   void onInitLevel(
     final LevelBlocEventInit event,
   ) {
     final liveLevel = LevelBlocState.liveFromModel(event.levelModel);
     emit(liveLevel);
-    diDto.statesStatusesCubit.onLevelPartLoaded(
+    dto.statesStatusesCubit.onLevelPartLoaded(
       levelPartName: LevelPartName.level,
     );
   }
@@ -81,7 +83,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
   WordWarning _checkNewWord(
     final CurrentWordModel word,
   ) {
-    final dicionaryMechanics = diDto.mechanics.dictionary;
+    final dicionaryMechanics = dto.mechanics.dictionary;
     final isWritten = dicionaryMechanics.checkIsWordIsWritten(
       word: word,
       words: state.words,
@@ -95,7 +97,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
     }
     final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(
       word: word,
-      localDictionary: diDto.dictionaryBloc.state.localDictionary,
+      localDictionary: dto.dictionaryBloc.state.localDictionary,
     );
     if (!isCorrect) {
       return WordWarning.isNotCorrect;
@@ -108,7 +110,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
   ) {
     final liveState = state;
     unawaited(
-      diDto.dictionaryBloc.onAddWord(
+      dto.dictionaryBloc.onAddWord(
         word: liveState.currentWord.fullWord,
       ),
     );
@@ -129,20 +131,20 @@ class LevelBloc extends Cubit<LevelBlocState> {
 
     final wordWarning = _checkNewWord(currentWord);
     if (wordWarning == WordWarning.none) {
-      final levelPlayersBloc = diDto.levelPlayersBloc;
+      final levelPlayersBloc = dto.levelPlayersBloc;
       final updatedWords = {
         ...liveState.words,
       }..[newWord] = levelPlayersBloc.state.currentPlayerId;
       final updatedState = liveState.copyWith(
         latestWord: newWord,
-        currentWord: diDto.mechanics.wordComposition
+        currentWord: dto.mechanics.wordComposition
             .createNextCurrentWord(word: currentWord),
         words: updatedWords,
         wordWarning: wordWarning,
-        phaseType: GamePhaseType.selectFuel,
+        phaseType: GamePhaseType.selectAction,
       );
       emit(updatedState);
-      final score = diDto.mechanics.score.getScoreFromWord(word: newWord);
+      final score = dto.mechanics.score.getScoreFromWord(word: newWord);
       final playerId = levelPlayersBloc.state.currentPlayerId;
       levelPlayersBloc.onUpdatePlayerHighscore(
         UpdatePlayerHighscoreEvent(
@@ -151,6 +153,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
           playerId: playerId,
         ),
       );
+      dto.technologiesCubit.onWordAccepted(newWord);
     } else {
       emit(
         liveState.copyWith(
@@ -166,7 +169,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
   ) {
     final liveState = state;
     final updatedState = liveState.copyWith(
-      actionMultiplier: event.multiplier,
+      energyMultiplier: event.multiplier,
     );
     emit(updatedState);
   }
@@ -180,12 +183,12 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
     emit(updatedState);
 
-    final levelPlayersBloc = diDto.levelPlayersBloc;
+    final levelPlayersBloc = dto.levelPlayersBloc;
     final liveLevelPlayerState = levelPlayersBloc.state;
-    final scoreMechanics = diDto.mechanics.score;
+    final scoreMechanics = dto.mechanics.score;
 
     final appliedScore = scoreMechanics.getScoreForStorageEnergyByModifier(
-      multiplier: liveState.actionMultiplier,
+      multiplier: liveState.energyMultiplier,
       availableScore: liveLevelPlayerState.currentPlayer.highscore.score,
     );
     levelPlayersBloc.onRefuelStorage(RefuelStorageEvent(score: appliedScore));
@@ -203,7 +206,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
 
   String getWordSuggestion() {
     final liveState = state;
-    return diDto.mechanics.dictionary.getWordSuggestion(
+    return dto.mechanics.dictionary.getWordSuggestion(
       exceptions: liveState.words.keys,
       characters: liveState.currentWord.middlePart,
     );
@@ -212,7 +215,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
   void onUnblockIndex({
     required final int index,
   }) {
-    final updatedWord = diDto.mechanics.wordComposition.unblockInactiveIndex(
+    final updatedWord = dto.mechanics.wordComposition.unblockInactiveIndex(
       index: index,
       currentWord: state.currentWord,
     );
@@ -221,9 +224,9 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
 
     emit(updatedState);
-    final playerId = diDto.levelPlayersBloc.state.currentPlayerId;
-    final score = diDto.mechanics.score.getDecreaseScore(lettersCount: 1);
-    diDto.levelPlayersBloc.onUpdatePlayerHighscore(
+    final playerId = dto.levelPlayersBloc.state.currentPlayerId;
+    final score = dto.mechanics.score.getDecreaseScore(lettersCount: 1);
+    dto.levelPlayersBloc.onUpdatePlayerHighscore(
       UpdatePlayerHighscoreEvent(
         score: score,
         playerId: playerId,

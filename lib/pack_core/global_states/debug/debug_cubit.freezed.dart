@@ -139,7 +139,7 @@ class _$DebugCubitStateImpl
       {this.isCameraFollowingPlayer = true,
       this.isDebugPaneVisible = kDebugMode,
       this.isDebugLinesVisible = false,
-      this.isFpsEnabled = kDebugMode});
+      this.isFpsEnabled = false});
 
   @override
   @JsonKey()

@@ -78,6 +78,7 @@ class TechnologyModel with _$TechnologyModel {
     required final TechnologyModelId id,
     required final LocalizedMap title,
     // TODO(antmalofeev): add icon?
+    /// use [TechnologyProgressModel] to store/retrieve actual progress
     required final TechnologyUnlockConditionModel unlockCondition,
     @Default(0) final int index,
     final TechnologyModelId? parentTechnologyId,

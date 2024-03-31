@@ -49,11 +49,7 @@ class GlobalStatesProvider extends StatelessWidget {
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [
-            BlocProvider(
-              create: (final context) => DebugCubit(
-                dto: DebugCubitDto(),
-              ),
-            ),
+            const BlocProvider(create: DebugCubit.new),
             BlocProvider(
               create: (final context) => CanvasCubit(
                 canvasDto: CanvasCubitDto(),
