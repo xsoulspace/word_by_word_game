@@ -101,13 +101,14 @@ class UiConfirmWordButton extends StatelessWidget {
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
     final isPressable = warning != WordWarning.isNotCorrect;
-    return Column(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Tooltip(
           message: S.of(context).powerOfEnteredWord,
           child: Text('+${score.value ~/ kScoreFactor}'),
         ),
+        const Gap(6),
         FloatingActionButton.small(
           tooltip: S.of(context).confirm,
           elevation: 1,

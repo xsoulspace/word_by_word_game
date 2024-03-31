@@ -109,6 +109,7 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
     required final Map<TechnologyModelId, TechnologyModel> technologies,
   }) {
     _wordTechnologiesPairsCache = null;
+    _technologies = technologies;
     emit(state);
   }
 
@@ -121,7 +122,7 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
   TechnologyProgressModel? get researchingTechnologyProgress =>
       progress.technologies[progress.researchingTechnologyId];
 
-  final _technologies = <TechnologyModelId, TechnologyModel>{};
+  var _technologies = <TechnologyModelId, TechnologyModel>{};
   Map<TechnologyModelId, TechnologyModel> get technologies => _technologies;
 
   /// all available technologies in level

@@ -5,37 +5,17 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/level_actions_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
-class UiActionFrame extends StatelessWidget {
-  const UiActionFrame({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    final technologiesCubit = context.watch<LevelBloc>();
-    if (technologiesCubit.state.featuresSettings.isTechnologiesEnabled) {
-      return const _UiActionFrameAdvanced();
-    } else {
-      return const _UiActionFrameSimple();
-    }
-  }
-}
-
-class _UiActionFrameAdvanced extends StatelessWidget {
-  const _UiActionFrameAdvanced({super.key});
-
-  @override
-  Widget build(final BuildContext context) => const Placeholder();
-}
-
-class _UiActionFrameSimple extends StatelessWidget {
-  const _UiActionFrameSimple({super.key});
+class UiActionFrameSimple extends StatelessWidget {
+  const UiActionFrameSimple({super.key});
 
   @override
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
-    final theme = Theme.of(context);
-    final textTheme = theme.textTheme;
+    final textTheme = context.textTheme;
+    final colorScheme = context.colorScheme;
 
     return Column(
       children: [
@@ -43,16 +23,16 @@ class _UiActionFrameSimple extends StatelessWidget {
           S.of(context).applyFuelOption,
           style: textTheme.titleMedium,
         ),
-        Divider(color: theme.colorScheme.tertiary),
+        Divider(color: colorScheme.tertiary),
         uiTheme.verticalBoxes.small,
-        const _EnergyCards(),
+        const UiEnergyCards(),
       ],
     );
   }
 }
 
-class _EnergyCards extends StatelessWidget {
-  const _EnergyCards({super.key});
+class UiEnergyCards extends StatelessWidget {
+  const UiEnergyCards({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -120,10 +100,8 @@ class UIEnergyOptionCard extends StatelessWidget {
     // final bool isSelected =
     //     isAllowedToUse && levelState.energyMultiplier == type;
     final theme = Theme.of(context);
-    // final colorScheme = theme.colorScheme;
     final textTheme = theme.textTheme;
     final widgetState = context.read<WordCompositionCubit>();
-    // final borderRadius = BorderRadius.circular(100);
     void onApply() {
       widgetState.onSelectEnergyMultiplier(type);
       TutorialFrame.sendOnClickEvent(
@@ -156,9 +134,7 @@ class UIEnergyOptionCard extends StatelessWidget {
               decoration: BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                    UiAssetHelper.useImagePath(
-                      UiIcons.fire.path,
-                    ),
+                    UiAssetHelper.useImagePath(UiIcons.fire.path),
                   ),
                   fit: BoxFit.fill,
                 ),
@@ -166,96 +142,6 @@ class UIEnergyOptionCard extends StatelessWidget {
             ),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class UiActionButton extends StatefulWidget {
-  const UiActionButton({
-    required this.onCompleted,
-    required this.child,
-    super.key,
-  });
-  final Widget child;
-  final VoidCallback onCompleted;
-
-  @override
-  State<UiActionButton> createState() => _UiActionButtonState();
-}
-
-class _UiActionButtonState extends State<UiActionButton>
-    with SingleTickerProviderStateMixin {
-  bool _isHovered = false;
-  bool _isOnHold = false;
-
-  bool get isOnHold => _isOnHold;
-
-  set isOnHold(final bool isHolding) {
-    _isOnHold = isHolding;
-    if (mounted) setState(() {});
-  }
-
-  @override
-  Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
-    final colorScheme = theme.colorScheme;
-    final surfaces = theme.extension<SurfaceColorScheme>()!;
-    final borderRadius = _isOnHold
-        ? BorderRadius.all(uiTheme.circularRadius.medium)
-        : BorderRadius.all(uiTheme.circularRadius.medium);
-
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 70),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTapDown: (final _) => isOnHold = true,
-            onTapUp: (final _) {
-              isOnHold = false;
-              widget.onCompleted();
-            },
-            onTapCancel: () => isOnHold = false,
-            child: FocusableActionDetector(
-              onShowHoverHighlight: (final value) {
-                _isHovered = value;
-                setState(() {});
-              },
-              mouseCursor: SystemMouseCursors.click,
-              child: Transform.scale(
-                scale: _isOnHold ? 0.9 : 1,
-                child: AnimatedContainer(
-                  duration: 50.milliseconds,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    color: () {
-                      if (_isOnHold) return surfaces.surface5;
-                      if (_isHovered) return surfaces.surface1;
-
-                      return surfaces.surface3;
-                    }(),
-                    border: Border.all(
-                      color: colorScheme.tertiary,
-                      width: _isHovered ? 2.5 : 1,
-                    ),
-                    borderRadius: borderRadius,
-                  ),
-                  margin: EdgeInsets.only(
-                    top: () {
-                      if (_isOnHold) return 8.toDouble();
-                      if (_isHovered) return 4.toDouble();
-                      return 8.toDouble();
-                    }(),
-                  ),
-                  padding: const EdgeInsets.all(12),
-                  child: widget.child,
-                ),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }
