@@ -98,6 +98,7 @@ class UiConfirmWordButton extends StatelessWidget {
     final currentWord = context.select<LevelBloc, String>(
       (final s) => s.state.currentWord.fullWord,
     );
+    final textTheme = context.textTheme;
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
     final isPressable = warning != WordWarning.isNotCorrect;
@@ -106,7 +107,12 @@ class UiConfirmWordButton extends StatelessWidget {
       children: [
         Tooltip(
           message: S.of(context).powerOfEnteredWord,
-          child: Text('+${score.value ~/ kScoreFactor}'),
+          child: Text(
+            '+${score.value ~/ kScoreFactor}',
+            style: textTheme.bodySmall?.copyWith(
+              color: context.colorScheme.tertiary,
+            ),
+          ),
         ),
         const Gap(6),
         FloatingActionButton.small(

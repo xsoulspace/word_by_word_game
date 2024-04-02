@@ -45,7 +45,7 @@ class UILevelCenterBar extends StatelessWidget {
                   children: [
                     switch (phaseType) {
                       GamePhaseType.entryWord =>
-                        Text('', style: textTheme.titleLarge),
+                        Text('', style: textTheme.displaySmall),
                       GamePhaseType.selectAction =>
                         Text('', style: textTheme.displaySmall),
                     },

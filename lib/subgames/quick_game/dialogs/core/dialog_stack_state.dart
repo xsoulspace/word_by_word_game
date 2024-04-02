@@ -14,13 +14,13 @@ DialogStackState _useDialogStackState({
     use(
       life_hooks.LifeHook(
         debugLabel: '_DialogStackState',
-        state: DialogStackState(diDto: _DialogStackDiDto.use(read)),
+        state: DialogStackState(dto: _DialogStackDiDto.use(read)),
       ),
     );
 
 class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   DialogStackState({
-    required this.diDto,
+    required this.dto,
   });
   late final dialogController = DialogController(
     showLevelLostDialog: _showLevelLostDialog,
@@ -31,10 +31,10 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
     closeDialogAndResume: onResume,
   );
   late final _tutorialSubscriber = _TutorialSubscriber(
-    diDto: diDto,
+    diDto: dto,
     onTutorialChanged: _onTutorialChanged,
   );
-  final _DialogStackDiDto diDto;
+  final _DialogStackDiDto dto;
   GameDialogType _dialogType = GameDialogType.none;
 
   GameDialogType get dialogType => _dialogType;
@@ -75,7 +75,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   void onEndLevel() {
     final event =
         endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
-    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+    unawaited(dto.globalGameBloc.onLevelEnd(event));
 
     _closeDialog();
   }
@@ -83,7 +83,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   void onRestartLevel() {
     final event =
         endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
-    unawaited(diDto.globalGameBloc.onRestartLevel(event));
+    unawaited(dto.globalGameBloc.onRestartLevel(event));
 
     _closeDialog();
   }
@@ -96,7 +96,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   void onSaveResults() {
     final event =
         endLevelEvent ?? const EndLevelEvent(isWon: true, maxDistance: 0);
-    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+    unawaited(dto.globalGameBloc.onLevelEnd(event));
   }
 
   Future<void> _showLevelWinDialog(final EndLevelEvent endLevelEvent) async {
@@ -114,8 +114,8 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
     _pause();
   }
 
-  void _pause() => diDto.globalGameBloc.dto.mechanics.worldTime.pause();
-  void _resume() => diDto.globalGameBloc.dto.mechanics.worldTime.resume();
+  void _pause() => dto.globalGameBloc.dto.mechanics.worldTime.pause();
+  void _resume() => dto.globalGameBloc.dto.mechanics.worldTime.resume();
 
   void _closeDialog() {
     dialogType = GameDialogType.none;

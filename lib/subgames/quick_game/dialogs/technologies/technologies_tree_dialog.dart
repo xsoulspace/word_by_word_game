@@ -6,13 +6,33 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 
-class TechnologiesTreeDialog extends StatelessWidget {
-  const TechnologiesTreeDialog({super.key});
+class TechnologiesTreeDialogOverlay extends StatelessWidget {
+  const TechnologiesTreeDialogOverlay({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    final technologiesCubit = context.watch<TechnologiesCubit>();
     final dialogController = context.read<DialogController>();
+    return TechnologiesTreeDialog(
+      onClose: dialogController.closeDialogAndResume,
+
+      /// switching manually is only for debug
+      /// because it kills the idea of wording
+      isSelectionAllowed: kDebugMode,
+    );
+  }
+}
+
+class TechnologiesTreeDialog extends StatelessWidget {
+  const TechnologiesTreeDialog({
+    required this.isSelectionAllowed,
+    this.onClose,
+    super.key,
+  });
+  final VoidCallback? onClose;
+  final bool isSelectionAllowed;
+  @override
+  Widget build(final BuildContext context) {
+    final technologiesCubit = context.watch<TechnologiesCubit>();
     return DialogScaffold(
       children: [
         Row(
@@ -23,7 +43,7 @@ class TechnologiesTreeDialog extends StatelessWidget {
               textAlign: TextAlign.center,
             ),
             const Spacer(),
-            CloseButton(onPressed: dialogController.closeDialogAndResume),
+            CloseButton(onPressed: onClose),
           ],
         ),
         const Card.filled(
@@ -50,6 +70,7 @@ class TechnologiesTreeDialog extends StatelessWidget {
         ...technologiesCubit.technologies.values.map(
           (final e) => _TechnologyTile(
             key: ValueKey(e.id),
+            isSelectionAllowed: isSelectionAllowed,
             selectedId: technologiesCubit.researchingTechnology?.id,
             onSelectedChanged: technologiesCubit.onResearchingTechnologyChanged,
             value: e,
@@ -67,9 +88,11 @@ class _TechnologyTile extends StatelessWidget {
     required this.progress,
     required this.onSelectedChanged,
     required this.selectedId,
+    required this.isSelectionAllowed,
     super.key,
   });
   final TechnologyModel value;
+  final bool isSelectionAllowed;
   final TechnologyProgressModel? progress;
   // ignore: avoid_positional_boolean_parameters
   final void Function(TechnologyModelId id, bool isSelected) onSelectedChanged;
@@ -85,9 +108,7 @@ class _TechnologyTile extends StatelessWidget {
       children: [
         Row(
           children: [
-            /// switching manually is only for debug
-            /// because it kills the idea of wording
-            if (kDebugMode)
+            if (isSelectionAllowed)
               Switch.adaptive(
                 value: isSelected,
                 onChanged: (final isSelected) =>

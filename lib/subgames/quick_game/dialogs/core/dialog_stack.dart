@@ -37,6 +37,7 @@ class DefaultDialogOverlayController extends HookWidget {
 
     return MultiProvider(
       providers: [
+        // TODO(arenukvern): move state and dialog controller to all providers
         Provider<DialogController>.value(value: state.dialogController),
         ChangeNotifierProvider<DialogStackState>.value(
           value: state,
@@ -65,7 +66,8 @@ class DialogStack extends HookWidget {
           isVisible: state.dialogType != GameDialogType.none,
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
-            GameDialogType.technologiesTree => const TechnologiesTreeDialog(),
+            GameDialogType.technologiesTree =>
+              const TechnologiesTreeDialogOverlay(),
             GameDialogType.levelLost => LevelLostDialog(
                 onEndLevel: state.onEndLevel,
                 onRestartLevel: state.onRestartLevel,

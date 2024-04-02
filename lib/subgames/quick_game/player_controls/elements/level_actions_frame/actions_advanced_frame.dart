@@ -1,9 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/technologies/technologies.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/level_actions_row.dart';
 
 class UIActionFrameAdvanced extends StatelessWidget {
   const UIActionFrameAdvanced({super.key});
@@ -70,11 +74,45 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     const UiEnergyCards(),
                   ],
                 ),
-                const Column(),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _SelectTechnologyCard(),
+                  ],
+                ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _SelectTechnologyCard extends StatelessWidget {
+  const _SelectTechnologyCard({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final technologiesCubit = context.watch<TechnologiesCubit>();
+    final technology = technologiesCubit.researchingTechnology;
+    final technologyProgress = technologiesCubit.researchingTechnologyProgress;
+
+    return UiActionButton(
+      onCompleted: () async {
+        // TODO(arenukvern): description
+        await Modals.of(context).show(
+          (final context) => TechnologiesTreeDialog(
+            isSelectionAllowed: true,
+            onClose: () => Navigator.pop(context),
+          ),
+        );
+      },
+      child: Text(
+        technology == null
+            // TODO(arenukvern): l10n
+            ? 'Research Technology'
+            : 'Researching \n${technology.title.getValue()}',
       ),
     );
   }
