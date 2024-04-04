@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart' as life_hooks;
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -11,7 +10,7 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/tutorial_dialogs/tutorial_dialogs.dart';
 
-part 'dialog_stack_state.dart';
+part 'dialog_stack_notifier.dart';
 
 enum GameDialogType {
   none,
@@ -23,32 +22,6 @@ enum GameDialogType {
   technologiesTree,
 }
 
-class DefaultDialogOverlayController extends HookWidget {
-  const DefaultDialogOverlayController({
-    required this.builder,
-    super.key,
-  });
-
-  final Widget Function(BuildContext context, DialogController dialogController)
-      builder;
-  @override
-  Widget build(final BuildContext context) {
-    final state = _useDialogStackState(read: context.read);
-
-    return MultiProvider(
-      providers: [
-        // TODO(arenukvern): move state and dialog controller to all providers
-        Provider<DialogController>.value(value: state.dialogController),
-        ChangeNotifierProvider<DialogStackState>.value(
-          value: state,
-        ),
-      ],
-      builder: (final context, final child) =>
-          builder(context, state.dialogController),
-    );
-  }
-}
-
 class DialogStack extends HookWidget {
   const DialogStack({
     required this.children,
@@ -57,7 +30,7 @@ class DialogStack extends HookWidget {
   final List<Widget> children;
   @override
   Widget build(final BuildContext context) {
-    final state = context.watch<DialogStackState>();
+    final state = context.watch<DialogStackNotifier>();
     return Stack(
       fit: StackFit.expand,
       children: [

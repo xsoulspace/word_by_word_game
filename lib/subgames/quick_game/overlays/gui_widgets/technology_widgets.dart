@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -12,13 +13,14 @@ class CurrentTechnologyButton extends StatelessWidget {
     final levelCubit = context.watch<LevelBloc>();
     final technologyCubit = context.watch<TechnologiesCubit>();
     final currentTechnology = technologyCubit.researchingTechnology;
+    final dialogController = context.read<DialogController>();
     if (!levelCubit.state.featuresSettings.isTechnologiesEnabled) {
       return const SizedBox();
     }
     return TextButton.icon(
-      onPressed: () {
-        context.read<DialogController>().showTechnologiesTree();
-      },
+      onPressed: () =>
+          dialogController.showTechnologiesTree(selectable: kDebugMode),
+
       icon: Icon(
         currentTechnology?.unlockCondition.getIsUnlockedForLanguage() == true
             ? CupertinoIcons.lab_flask_solid

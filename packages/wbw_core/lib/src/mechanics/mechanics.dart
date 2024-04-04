@@ -1,3 +1,5 @@
+import 'package:wbw_design_core/wbw_design_core.dart';
+
 import '../../wbw_core.dart';
 
 export './dictionary_mechanics.dart';
@@ -16,15 +18,16 @@ class MechanicsCollection {
     required this.weather,
     required this.hotAirBalloon,
   });
-  static final v1 = MechanicsCollection._(
-    wordComposition: WordCompositionMechanics(),
-    worldTime: WorldTimeMechanics(),
-    score: ScoreMechanics(),
-    dictionary: DictionaryMechanics(),
-    tutorial: TutorialMechanics(),
-    weather: WeatherMechanics(),
-    hotAirBalloon: HotAirBalloonMechanics(),
-  );
+  factory MechanicsCollection.getV1(final BuildContext context) =>
+      MechanicsCollection._(
+        wordComposition: WordCompositionMechanics(),
+        worldTime: WorldTimeMechanics(),
+        score: ScoreMechanics(),
+        dictionary: DictionaryMechanics(),
+        tutorial: TutorialMechanics(),
+        weather: WeatherMechanics(),
+        hotAirBalloon: HotAirBalloonMechanics(),
+      );
   final WeatherMechanics weather;
   final HotAirBalloonMechanics hotAirBalloon;
   final DictionaryMechanics dictionary;

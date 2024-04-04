@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 
 part 'game_constants_cubit.freezed.dart';
 
@@ -17,9 +18,10 @@ class GameConstantsCubitDto {
 }
 
 class GameConstantsCubit extends Cubit<GameConstantsCubitState> {
-  GameConstantsCubit({
-    required this.dto,
-  }) : super(GameConstantsCubitState.initial);
+  // ignore: avoid_unused_constructor_parameters
+  GameConstantsCubit(final BuildContext context)
+      : dto = GameConstantsCubitDto(),
+        super(GameConstantsCubitState.initial);
   final GameConstantsCubitDto dto;
 
   void changeState(final GameConstantsCubitState newState) {

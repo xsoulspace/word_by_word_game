@@ -15,5 +15,5 @@ class DialogController {
   VoidCallback closeDialog;
   VoidCallback closeDialogAndResume;
   VoidCallback showLevelWordSuggestionDialog;
-  VoidCallback showTechnologiesTree;
+  void Function({bool selectable}) showTechnologiesTree;
 }

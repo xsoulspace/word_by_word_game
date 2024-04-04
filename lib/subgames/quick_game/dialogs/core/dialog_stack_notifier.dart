@@ -8,20 +8,13 @@ class _DialogStackDiDto {
   final TutorialBloc tutorialBloc;
 }
 
-DialogStackState _useDialogStackState({
-  required final Locator read,
-}) =>
-    use(
-      life_hooks.LifeHook(
-        debugLabel: '_DialogStackState',
-        state: DialogStackState(dto: _DialogStackDiDto.use(read)),
-      ),
-    );
-
-class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
-  DialogStackState({
-    required this.dto,
-  });
+class DialogStackNotifier extends ChangeNotifier {
+  DialogStackNotifier(final BuildContext context)
+      : dto = _DialogStackDiDto.use(context.read) {
+    unawaited(_tutorialSubscriber.onLoad());
+  }
+  static DialogController getDialogController(final BuildContext context) =>
+      context.read<DialogStackNotifier>().dialogController;
   late final dialogController = DialogController(
     showLevelLostDialog: _showLevelLostDialog,
     closeDialog: _closeDialog,
@@ -51,12 +44,6 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   set dialogType(final GameDialogType dialogType) {
     _dialogType = dialogType;
     notifyListeners();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    unawaited(_tutorialSubscriber.onLoad());
   }
 
   @override
@@ -109,7 +96,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
     _pause();
   }
 
-  void _showTechnologiesTree() {
+  void _showTechnologiesTree({final bool selectable = false}) {
     dialogType = GameDialogType.technologiesTree;
     _pause();
   }
