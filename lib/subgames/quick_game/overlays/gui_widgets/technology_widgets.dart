@@ -20,7 +20,8 @@ class CurrentTechnologyButton extends StatelessWidget {
       onPressed: () => dialogController
           .showTechnologiesTree(TechnologiesTreeDialogDto.nonSelectable),
       icon: Icon(
-        currentTechnology?.unlockCondition.getIsUnlockedForLanguage() == true
+        currentTechnology?.unlockCondition.getIsUnlockedForCurrentLanguage() ==
+                true
             ? CupertinoIcons.lab_flask_solid
             : CupertinoIcons.lab_flask,
       ),

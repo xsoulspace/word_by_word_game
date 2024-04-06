@@ -3,8 +3,8 @@ targets:
     builders:
       freezed:
         options:
-          fromJson: false
-          toJson: false
+          fromJson: true
+          toJson: true
           equal: true
           addImplicitFinal: true
           copyWith: true

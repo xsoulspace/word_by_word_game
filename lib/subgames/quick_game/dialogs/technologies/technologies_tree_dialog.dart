@@ -150,7 +150,8 @@ class _TechnologyTile extends StatelessWidget {
     final wordsProgress =
         unlockCondition?.languageWords[LocalizedMap.getCurrentLanugage()];
     final isSelected = selectedId == value.id;
-    final isUnlocked = unlockCondition?.getIsUnlockedForLanguage() == true;
+    final isUnlocked =
+        unlockCondition?.getIsUnlockedForCurrentLanguage() == true;
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -1,6 +1,7 @@
 import 'package:wbw_design_core/wbw_design_core.dart';
 
 import '../../wbw_core.dart';
+import 'technology_mechanics.dart';
 
 export './dictionary_mechanics.dart';
 export './score_mechanics.dart';
@@ -17,17 +18,23 @@ class MechanicsCollection {
     required this.tutorial,
     required this.weather,
     required this.hotAirBalloon,
+    required this.technology,
   });
-  factory MechanicsCollection.getV1(final BuildContext context) =>
-      MechanicsCollection._(
-        wordComposition: WordCompositionMechanics(),
-        worldTime: WorldTimeMechanics(),
-        score: ScoreMechanics(),
-        dictionary: DictionaryMechanics(),
-        tutorial: TutorialMechanics(),
-        weather: WeatherMechanics(),
-        hotAirBalloon: HotAirBalloonMechanics(),
-      );
+  // ignore: avoid_unused_constructor_parameters
+  factory MechanicsCollection.getV1(final BuildContext context) {
+    final score = ScoreMechanics();
+    return MechanicsCollection._(
+      wordComposition: WordCompositionMechanics(),
+      worldTime: WorldTimeMechanics(),
+      score: ScoreMechanics(),
+      dictionary: DictionaryMechanics(),
+      tutorial: TutorialMechanics(),
+      weather: WeatherMechanics(),
+      hotAirBalloon: HotAirBalloonMechanics(),
+      technology: TechnologyMechanics(scoreMechanics: score),
+    );
+  }
+  final TechnologyMechanics technology;
   final WeatherMechanics weather;
   final HotAirBalloonMechanics hotAirBalloon;
   final DictionaryMechanics dictionary;

@@ -202,7 +202,8 @@ class _ResearchMultiplierCards extends StatelessWidget {
     final technology = technologiesCubit.researchingTechnology;
     final technologyProgress = technologiesCubit.researchingTechnologyProgress;
     final isUnlocked =
-        technologyProgress?.unlockCondition.getIsUnlockedForLanguage() == true;
+        technologyProgress?.unlockCondition.getIsUnlockedForCurrentLanguage() ==
+            true;
     return Row(
       children: [
         Flexible(

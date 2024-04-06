@@ -16,7 +16,7 @@ class LevelPlayerEvent with _$LevelPlayerEvent {
   }) = RefuelStorageEvent;
   const factory LevelPlayerEvent.researchTechnology({
     required final ScoreModel score,
-  }) = RefuelStorageEvent;
+  }) = ResearchTechnologyEvent;
   const factory LevelPlayerEvent.updatePlayerHighscore({
     required final PlayerProfileModelId playerId,
     required final ScoreModel score,

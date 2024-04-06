@@ -24,6 +24,7 @@ mixin _$LevelPlayerEvent {
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
+    required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
         updatePlayerHighscore,
   }) =>
@@ -36,6 +37,7 @@ mixin _$LevelPlayerEvent {
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
+    TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
   }) =>
@@ -48,6 +50,7 @@ mixin _$LevelPlayerEvent {
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
+    TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
     required TResult orElse(),
@@ -60,6 +63,7 @@ mixin _$LevelPlayerEvent {
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
+    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
         updatePlayerHighscore,
   }) =>
@@ -71,6 +75,7 @@ mixin _$LevelPlayerEvent {
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
+    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
   }) =>
       throw _privateConstructorUsedError;
@@ -81,6 +86,7 @@ mixin _$LevelPlayerEvent {
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
+    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
     required TResult orElse(),
   }) =>
@@ -208,6 +214,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
+    required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
         updatePlayerHighscore,
   }) {
@@ -223,6 +230,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
+    TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
   }) {
@@ -238,6 +246,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
+    TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
     required TResult orElse(),
@@ -256,6 +265,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
+    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
         updatePlayerHighscore,
   }) {
@@ -270,6 +280,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
+    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
   }) {
     return init?.call(this);
@@ -283,6 +294,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
+    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
     required TResult orElse(),
   }) {
@@ -353,6 +365,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
+    required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
         updatePlayerHighscore,
   }) {
@@ -368,6 +381,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
+    TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
   }) {
@@ -383,6 +397,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
+    TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
     required TResult orElse(),
@@ -401,6 +416,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
+    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
         updatePlayerHighscore,
   }) {
@@ -415,6 +431,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
+    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
   }) {
     return switchToNextPlayer?.call(this);
@@ -428,6 +445,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
+    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
     required TResult orElse(),
   }) {
@@ -519,6 +537,7 @@ class _$ChangeCharacterPositionEventImpl
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
+    required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
         updatePlayerHighscore,
   }) {
@@ -534,6 +553,7 @@ class _$ChangeCharacterPositionEventImpl
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
+    TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
   }) {
@@ -549,6 +569,7 @@ class _$ChangeCharacterPositionEventImpl
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
+    TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
     required TResult orElse(),
@@ -567,6 +588,7 @@ class _$ChangeCharacterPositionEventImpl
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
+    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
         updatePlayerHighscore,
   }) {
@@ -581,6 +603,7 @@ class _$ChangeCharacterPositionEventImpl
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
+    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
   }) {
     return changeCharacterPosition?.call(this);
@@ -594,6 +617,7 @@ class _$ChangeCharacterPositionEventImpl
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
+    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
     required TResult orElse(),
   }) {
@@ -696,6 +720,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
+    required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
         updatePlayerHighscore,
   }) {
@@ -711,6 +736,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
+    TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
   }) {
@@ -726,6 +752,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
+    TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
     required TResult orElse(),
@@ -744,6 +771,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
+    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
         updatePlayerHighscore,
   }) {
@@ -758,6 +786,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
+    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
   }) {
     return refuelStorage?.call(this);
@@ -771,6 +800,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
+    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
     required TResult orElse(),
   }) {
@@ -789,6 +819,190 @@ abstract class RefuelStorageEvent implements LevelPlayerEvent {
   @JsonKey(ignore: true)
   _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$ResearchTechnologyEventImplCopyWith<$Res> {
+  factory _$$ResearchTechnologyEventImplCopyWith(
+          _$ResearchTechnologyEventImpl value,
+          $Res Function(_$ResearchTechnologyEventImpl) then) =
+      __$$ResearchTechnologyEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({ScoreModel score});
+
+  $ScoreModelCopyWith<$Res> get score;
+}
+
+/// @nodoc
+class __$$ResearchTechnologyEventImplCopyWithImpl<$Res>
+    extends _$LevelPlayerEventCopyWithImpl<$Res, _$ResearchTechnologyEventImpl>
+    implements _$$ResearchTechnologyEventImplCopyWith<$Res> {
+  __$$ResearchTechnologyEventImplCopyWithImpl(
+      _$ResearchTechnologyEventImpl _value,
+      $Res Function(_$ResearchTechnologyEventImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? score = null,
+  }) {
+    return _then(_$ResearchTechnologyEventImpl(
+      score: null == score
+          ? _value.score
+          : score // ignore: cast_nullable_to_non_nullable
+              as ScoreModel,
+    ));
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $ScoreModelCopyWith<$Res> get score {
+    return $ScoreModelCopyWith<$Res>(_value.score, (value) {
+      return _then(_value.copyWith(score: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
+  const _$ResearchTechnologyEventImpl({required this.score});
+
+  @override
+  final ScoreModel score;
+
+  @override
+  String toString() {
+    return 'LevelPlayerEvent.researchTechnology(score: $score)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$ResearchTechnologyEventImpl &&
+            (identical(other.score, score) || other.score == score));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, score);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
+      get copyWith => __$$ResearchTechnologyEventImplCopyWithImpl<
+          _$ResearchTechnologyEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(LevelPlayersModel playersModel,
+            LevelCharactersModel charactersModel)
+        init,
+    required TResult Function() switchToNextPlayer,
+    required TResult Function(Vector2 position) changeCharacterPosition,
+    required TResult Function(ScoreModel score) refuelStorage,
+    required TResult Function(ScoreModel score) researchTechnology,
+    required TResult Function(String playerId, ScoreModel score, String? word)
+        updatePlayerHighscore,
+  }) {
+    return researchTechnology(score);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(LevelPlayersModel playersModel,
+            LevelCharactersModel charactersModel)?
+        init,
+    TResult? Function()? switchToNextPlayer,
+    TResult? Function(Vector2 position)? changeCharacterPosition,
+    TResult? Function(ScoreModel score)? refuelStorage,
+    TResult? Function(ScoreModel score)? researchTechnology,
+    TResult? Function(String playerId, ScoreModel score, String? word)?
+        updatePlayerHighscore,
+  }) {
+    return researchTechnology?.call(score);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(LevelPlayersModel playersModel,
+            LevelCharactersModel charactersModel)?
+        init,
+    TResult Function()? switchToNextPlayer,
+    TResult Function(Vector2 position)? changeCharacterPosition,
+    TResult Function(ScoreModel score)? refuelStorage,
+    TResult Function(ScoreModel score)? researchTechnology,
+    TResult Function(String playerId, ScoreModel score, String? word)?
+        updatePlayerHighscore,
+    required TResult orElse(),
+  }) {
+    if (researchTechnology != null) {
+      return researchTechnology(score);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitLevelPlayersEvent value) init,
+    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
+    required TResult Function(ChangeCharacterPositionEvent value)
+        changeCharacterPosition,
+    required TResult Function(RefuelStorageEvent value) refuelStorage,
+    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
+    required TResult Function(UpdatePlayerHighscoreEvent value)
+        updatePlayerHighscore,
+  }) {
+    return researchTechnology(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InitLevelPlayersEvent value)? init,
+    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
+    TResult? Function(ChangeCharacterPositionEvent value)?
+        changeCharacterPosition,
+    TResult? Function(RefuelStorageEvent value)? refuelStorage,
+    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
+    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
+  }) {
+    return researchTechnology?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitLevelPlayersEvent value)? init,
+    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
+    TResult Function(ChangeCharacterPositionEvent value)?
+        changeCharacterPosition,
+    TResult Function(RefuelStorageEvent value)? refuelStorage,
+    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
+    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
+    required TResult orElse(),
+  }) {
+    if (researchTechnology != null) {
+      return researchTechnology(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ResearchTechnologyEvent implements LevelPlayerEvent {
+  const factory ResearchTechnologyEvent({required final ScoreModel score}) =
+      _$ResearchTechnologyEventImpl;
+
+  ScoreModel get score;
+  @JsonKey(ignore: true)
+  _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -893,6 +1107,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
+    required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
         updatePlayerHighscore,
   }) {
@@ -908,6 +1123,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
+    TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
   }) {
@@ -923,6 +1139,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
+    TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
         updatePlayerHighscore,
     required TResult orElse(),
@@ -941,6 +1158,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     required TResult Function(ChangeCharacterPositionEvent value)
         changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
+    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
         updatePlayerHighscore,
   }) {
@@ -955,6 +1173,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     TResult? Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
+    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
   }) {
     return updatePlayerHighscore?.call(this);
@@ -968,6 +1187,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     TResult Function(ChangeCharacterPositionEvent value)?
         changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
+    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
     required TResult orElse(),
   }) {
