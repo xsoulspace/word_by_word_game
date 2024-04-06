@@ -1,50 +1,46 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 
-class TechnologiesTreeDialogDto {
-  const TechnologiesTreeDialogDto({
-    this.isSelectionAllowed = false,
-    this.isHintVisible = false,
-  });
-  final bool isSelectionAllowed;
-  final bool isHintVisible;
+part 'technologies_tree_dialog.freezed.dart';
+
+@freezed
+class TechnologiesTreeDialogDto with _$TechnologiesTreeDialogDto {
+  const factory TechnologiesTreeDialogDto({
+    @Default(false) final bool isSelectionAllowed,
+    @Default(false) final bool isHintVisible,
+    final VoidCallback? onCloseIfChanged,
+  }) = _TechnologiesTreeDialogDto;
   static const nonSelectable = TechnologiesTreeDialogDto(isHintVisible: true);
   static const selectable = TechnologiesTreeDialogDto(isSelectionAllowed: true);
 }
 
-class TechnologiesTreeDialogOverlay extends StatelessWidget {
-  const TechnologiesTreeDialogOverlay({
-    required this.dto,
-    super.key,
-  });
-  final TechnologiesTreeDialogDto dto;
-  @override
-  Widget build(final BuildContext context) {
-    final dialogController = context.read<DialogController>();
-    return TechnologiesTreeDialog(
-      onClose: dialogController.closeDialogAndResume,
-      dto: dto,
-    );
-  }
-}
-
-class TechnologiesTreeDialog extends StatelessWidget {
+class TechnologiesTreeDialog extends HookWidget {
   const TechnologiesTreeDialog({
     required this.dto,
-    this.onClose,
+    required this.onClose,
     super.key,
   });
-  final VoidCallback? onClose;
+  final VoidCallback onClose;
   final TechnologiesTreeDialogDto dto;
 
   @override
   Widget build(final BuildContext context) {
     final technologiesCubit = context.watch<TechnologiesCubit>();
+    final initialTechnologyState =
+        useState<TechnologyModel?>(technologiesCubit.researchingTechnology);
     final currentTechnology = technologiesCubit.researchingTechnology;
+    void onClose() {
+      this.onClose();
+      if (initialTechnologyState.value != currentTechnology) {
+        dto.onCloseIfChanged?.call();
+      }
+    }
 
     /// switching manually should be available only in debug mode,
     /// because it kills the idea of wording
@@ -88,14 +84,19 @@ class TechnologiesTreeDialog extends StatelessWidget {
                 const Gap(6),
                 if (isHintVisible)
                   // TODO(arenukvern): l10n
+                  ...[
                   const Text(
-                    'To change researching technology enter new word and '
+                    'Tip: to change researching technology enter new word and '
                     'choose select technology action',
+                    textAlign: TextAlign.center,
                   ),
-                const Gap(2),
+                  const Gap(12),
+                ],
+
                 // TODO(arenukvern): l10n
                 const Text(
-                  'Use words from any technology to research it faster.',
+                  'Tip: use words to research technology faster.',
+                  textAlign: TextAlign.center,
                 ),
                 const Gap(6),
               ],
@@ -152,27 +153,38 @@ class _TechnologyTile extends StatelessWidget {
     final isUnlocked = unlockCondition?.getIsUnlockedForLanguage() == true;
     return Column(
       mainAxisSize: MainAxisSize.min,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Row(
+        Wrap(
+          crossAxisAlignment: WrapCrossAlignment.center,
+          alignment: WrapAlignment.spaceBetween,
           children: [
-            if (isSelectionAllowed)
-              Switch.adaptive(
-                value: isSelected,
-                onChanged: (final isSelected) =>
-                    onSelectedChanged(value.id, isSelected),
-              ),
-            UiBaseButton(
-              onPressed: () => onSelectedChanged(value.id, !isSelected),
-              child: Text(
-                value.title.getValue(),
-                style: context.textTheme.titleMedium?.copyWith(
-                  color: isSelected
-                      ? context.colorScheme.onPrimaryContainer
-                      : context.colorScheme.onPrimaryContainer.withOpacity(0.4),
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (isSelectionAllowed)
+                  Switch.adaptive(
+                    value: isSelected,
+                    onChanged: (final isSelected) =>
+                        onSelectedChanged(value.id, isSelected),
+                  ),
+                UiBaseButton(
+                  onPressed: isSelectionAllowed
+                      ? () => onSelectedChanged(value.id, !isSelected)
+                      : () {},
+                  child: Text(
+                    value.title.getValue(),
+                    style: context.textTheme.titleMedium?.copyWith(
+                      color: isSelected
+                          ? context.colorScheme.onPrimaryContainer
+                          : context.colorScheme.onPrimaryContainer
+                              .withOpacity(0.4),
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-            const Spacer(),
+
             // TODO(arenukvern): l10n
             Text(
               isUnlocked ? 'Researched' : 'Not researched',
@@ -194,6 +206,7 @@ class _TechnologyTile extends StatelessWidget {
                 .mapIndexed(
                   (final index, final word) => InputChip(
                     label: Text(word.word),
+                    key: ValueKey(word),
                     selected: wordsProgress?[index].isUsed == true,
                   ),
                 )

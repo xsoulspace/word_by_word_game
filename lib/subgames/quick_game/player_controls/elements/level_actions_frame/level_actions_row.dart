@@ -32,10 +32,14 @@ class UiActionButton extends StatefulWidget {
   const UiActionButton({
     required this.onCompleted,
     required this.child,
+    this.tooltipMessage = '',
+    this.constraints = const BoxConstraints(minWidth: 70),
     super.key,
   });
   final Widget child;
   final VoidCallback onCompleted;
+  final String tooltipMessage;
+  final BoxConstraints constraints;
 
   @override
   State<UiActionButton> createState() => _UiActionButtonState();
@@ -63,56 +67,59 @@ class _UiActionButtonState extends State<UiActionButton>
         ? BorderRadius.all(uiTheme.circularRadius.medium)
         : BorderRadius.all(uiTheme.circularRadius.medium);
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(minWidth: 70),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          GestureDetector(
-            onTapDown: (final _) => isOnHold = true,
-            onTapUp: (final _) {
-              isOnHold = false;
-              widget.onCompleted();
-            },
-            onTapCancel: () => isOnHold = false,
-            child: FocusableActionDetector(
-              onShowHoverHighlight: (final value) {
-                _isHovered = value;
-                setState(() {});
+    return Tooltip(
+      message: widget.tooltipMessage,
+      child: ConstrainedBox(
+        constraints: widget.constraints,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            GestureDetector(
+              onTapDown: (final _) => isOnHold = true,
+              onTapUp: (final _) {
+                isOnHold = false;
+                widget.onCompleted();
               },
-              mouseCursor: SystemMouseCursors.click,
-              child: Transform.scale(
-                scale: _isOnHold ? 0.9 : 1,
-                child: AnimatedContainer(
-                  duration: 50.milliseconds,
-                  clipBehavior: Clip.antiAlias,
-                  decoration: BoxDecoration(
-                    color: () {
-                      if (_isOnHold) return surfaces.surface5;
-                      if (_isHovered) return surfaces.surface1;
+              onTapCancel: () => isOnHold = false,
+              child: FocusableActionDetector(
+                onShowHoverHighlight: (final value) {
+                  _isHovered = value;
+                  setState(() {});
+                },
+                mouseCursor: SystemMouseCursors.click,
+                child: Transform.scale(
+                  scale: _isOnHold ? 0.9 : 1,
+                  child: AnimatedContainer(
+                    duration: 50.milliseconds,
+                    clipBehavior: Clip.antiAlias,
+                    decoration: BoxDecoration(
+                      color: () {
+                        if (_isOnHold) return surfaces.surface5;
+                        if (_isHovered) return surfaces.surface1;
 
-                      return surfaces.surface3;
-                    }(),
-                    border: Border.all(
-                      color: colorScheme.tertiary,
-                      width: _isHovered ? 2.5 : 1,
+                        return surfaces.surface3;
+                      }(),
+                      border: Border.all(
+                        color: colorScheme.tertiary,
+                        width: _isHovered ? 2.5 : 1,
+                      ),
+                      borderRadius: borderRadius,
                     ),
-                    borderRadius: borderRadius,
+                    margin: EdgeInsets.only(
+                      top: () {
+                        if (_isOnHold) return 8.toDouble();
+                        if (_isHovered) return 4.toDouble();
+                        return 8.toDouble();
+                      }(),
+                    ),
+                    padding: const EdgeInsets.all(12),
+                    child: widget.child,
                   ),
-                  margin: EdgeInsets.only(
-                    top: () {
-                      if (_isOnHold) return 8.toDouble();
-                      if (_isHovered) return 4.toDouble();
-                      return 8.toDouble();
-                    }(),
-                  ),
-                  padding: const EdgeInsets.all(12),
-                  child: widget.child,
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

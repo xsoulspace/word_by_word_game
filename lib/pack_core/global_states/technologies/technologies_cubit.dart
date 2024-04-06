@@ -49,7 +49,9 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
           researchingTechnologyId: isSelected ? id : null,
         ),
       );
-
+  void onResearchTechnology(final ResearchTechnologyEvent event) {
+    // TODO(arenukvern): description
+  }
   void onWordAccepted(final String word) {
     final pair = _wordTechnologyPair[word];
     if (pair == null) return;

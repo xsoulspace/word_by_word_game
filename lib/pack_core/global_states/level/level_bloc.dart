@@ -15,13 +15,13 @@ part 'level_bloc_states.dart';
 class LevelBlocDiDto {
   LevelBlocDiDto.use(final Locator read)
       : mechanics = read(),
-        levelPlayersBloc = read(),
+        levelPlayersCubit = read(),
         dictionaryBloc = read(),
         technologiesCubit = read(),
         statesStatusesCubit = read();
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
-  final LevelPlayersBloc levelPlayersBloc;
+  final LevelPlayersBloc levelPlayersCubit;
   final TechnologiesCubit technologiesCubit;
   final DictionariesBloc dictionaryBloc;
 }
@@ -131,7 +131,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
 
     final wordWarning = _checkNewWord(currentWord);
     if (wordWarning == WordWarning.none) {
-      final levelPlayersBloc = dto.levelPlayersBloc;
+      final levelPlayersBloc = dto.levelPlayersCubit;
       final updatedWords = {
         ...liveState.words,
       }..[newWord] = levelPlayersBloc.state.currentPlayerId;
@@ -183,18 +183,28 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
     emit(updatedState);
 
-    final levelPlayersBloc = dto.levelPlayersBloc;
-    final liveLevelPlayerState = levelPlayersBloc.state;
+    final levelPlayersCubit = dto.levelPlayersCubit;
+    final technologiesCubit = dto.technologiesCubit;
+    final liveLevelPlayerState = levelPlayersCubit.state;
     final scoreMechanics = dto.mechanics.score;
 
     final appliedScore = scoreMechanics.getScoreForStorageEnergyByModifier(
       multiplier: liveState.energyMultiplier,
       availableScore: liveLevelPlayerState.currentPlayer.highscore.score,
     );
-    levelPlayersBloc.onRefuelStorage(RefuelStorageEvent(score: appliedScore));
+    switch (event.energyApplicationType) {
+      case EnergyApplicationType.refueling:
+        levelPlayersCubit
+            .onRefuelStorage(RefuelStorageEvent(score: appliedScore));
+      case EnergyApplicationType.researchingTechnology:
+        technologiesCubit.onResearchTechnology(
+          ResearchTechnologyEvent(score: appliedScore),
+        );
+      case EnergyApplicationType.noop:
+    }
 
-    final playerId = levelPlayersBloc.state.currentPlayerId;
-    levelPlayersBloc
+    final playerId = levelPlayersCubit.state.currentPlayerId;
+    levelPlayersCubit
       ..onUpdatePlayerHighscore(
         UpdatePlayerHighscoreEvent(
           score: appliedScore * -1,
@@ -224,9 +234,9 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
 
     emit(updatedState);
-    final playerId = dto.levelPlayersBloc.state.currentPlayerId;
+    final playerId = dto.levelPlayersCubit.state.currentPlayerId;
     final score = dto.mechanics.score.getDecreaseScore(lettersCount: 1);
-    dto.levelPlayersBloc.onUpdatePlayerHighscore(
+    dto.levelPlayersCubit.onUpdatePlayerHighscore(
       UpdatePlayerHighscoreEvent(
         score: score,
         playerId: playerId,

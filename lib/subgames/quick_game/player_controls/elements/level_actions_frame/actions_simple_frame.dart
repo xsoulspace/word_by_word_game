@@ -80,18 +80,8 @@ class UIEnergyOptionCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final mechanics = context.read<MechanicsCollection>();
-
-    final player = context.select<LevelPlayersBloc, PlayerProfileModel>(
-      (final bloc) => bloc.state.currentPlayer,
-    );
-    final applyingScore = mechanics.score
-        .getScoreForStorageEnergyByModifier(
-          multiplier: type,
-          availableScore: player.highscore.score,
-        )
-        .value
-        .toInt();
+    final (:applyingScore, :compositionState) =
+        useApplyingScoreComposable(type: type, context: context);
     // final isAllowedToUse = mechanics.score.checkPlayerAbilityToUseScore(
     //   player: player,
     //   score: applyingScore,
@@ -101,48 +91,68 @@ class UIEnergyOptionCard extends StatelessWidget {
     //     isAllowedToUse && levelState.energyMultiplier == type;
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
-    final widgetState = context.read<WordCompositionCubit>();
     void onApply() {
-      widgetState.onSelectEnergyMultiplier(type);
+      compositionState.onSelectEnergyMultiplier(type);
       TutorialFrame.sendOnClickEvent(
         uiKey: TutorialUiItem.selectRefuelOption,
         context: context,
       );
     }
 
-    return Tooltip(
-      message: '',
-      child: UiActionButton(
-        onCompleted: onApply,
-        child: Column(
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Flexible(
-                  child: Text(
-                    '${applyingScore ~/ kScoreFactor}',
-                    style: textTheme.headlineSmall,
-                  ),
-                ),
-              ],
-            ),
-            const Spacer(),
-            Container(
-              width: 30,
-              height: 30,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    UiAssetHelper.useImagePath(UiIcons.fire.path),
-                  ),
-                  fit: BoxFit.fill,
+    return UiActionButton(
+      onCompleted: onApply,
+      child: Column(
+        children: [
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Flexible(
+                child: Text(
+                  '${applyingScore.formattedScore}',
+                  style: textTheme.headlineSmall,
                 ),
               ),
+            ],
+          ),
+          const Spacer(),
+          Container(
+            width: 30,
+            height: 30,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage(
+                  UiAssetHelper.useImagePath(UiIcons.fire.path),
+                ),
+                fit: BoxFit.fill,
+              ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
+}
+
+({int applyingScore, WordCompositionCubit compositionState})
+    useApplyingScoreComposable({
+  required final BuildContext context,
+  required final EnergyMultiplierType type,
+}) {
+  final mechanics = context.read<MechanicsCollection>();
+  final compositionState = context.read<WordCompositionCubit>();
+
+  final player = context.select<LevelPlayersBloc, PlayerProfileModel>(
+    (final bloc) => bloc.state.currentPlayer,
+  );
+  final applyingScore = mechanics.score
+      .getScoreForStorageEnergyByModifier(
+        multiplier: type,
+        availableScore: player.highscore.score,
+      )
+      .value
+      .toInt();
+  return (
+    applyingScore: applyingScore,
+    compositionState: compositionState,
+  );
 }

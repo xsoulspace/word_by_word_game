@@ -31,6 +31,7 @@ class DialogStack extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.watch<DialogStackNotifier>();
+    final dialogController = context.read<DialogController>();
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -39,8 +40,9 @@ class DialogStack extends HookWidget {
           isVisible: state.dialogType != GameDialogType.none,
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
-            GameDialogType.technologiesTree => TechnologiesTreeDialogOverlay(
+            GameDialogType.technologiesTree => TechnologiesTreeDialog(
                 dto: state.technologiesTreeDto,
+                onClose: dialogController.closeDialogAndResume,
               ),
             GameDialogType.levelLost => LevelLostDialog(
                 onEndLevel: state.onEndLevel,

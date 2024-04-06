@@ -1,5 +1,11 @@
 part of 'level_bloc.dart';
 
+enum EnergyApplicationType {
+  refueling,
+  researchingTechnology,
+  noop,
+}
+
 @freezed
 class LevelBlocEvent with _$LevelBlocEvent {
   const factory LevelBlocEvent.init({
@@ -13,7 +19,10 @@ class LevelBlocEvent with _$LevelBlocEvent {
   const factory LevelBlocEvent.changeCurrentWord({
     required final CurrentWordModel word,
   }) = LevelBlocEventChangeCurrentWord;
-  const factory LevelBlocEvent.endTurn() = LevelBlocEventEndTurn;
+  const factory LevelBlocEvent.endTurn({
+    @Default(EnergyApplicationType.noop)
+    final EnergyApplicationType energyApplicationType,
+  }) = LevelBlocEventEndTurn;
   const factory LevelBlocEvent.selectActionMultiplier({
     required final EnergyMultiplierType multiplier,
   }) = LevelBlocEventSelectActionMultiplier;
