@@ -68,7 +68,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     Text(
                       S.of(context).applyFuelOption,
                       style: textTheme.titleSmall?.copyWith(
-                        color: colorScheme.onBackground.withOpacity(0.6),
+                        color: colorScheme.onSurface.withOpacity(0.6),
                       ),
                     ),
                     const UiEnergyCards(),
@@ -100,7 +100,7 @@ class _SelectTechnologyCard extends StatelessWidget {
     final dialogController = context.read<DialogController>();
     return UiActionButton(
       onCompleted: () async => dialogController.showTechnologiesTree(
-        selectable: true,
+        TechnologiesTreeDialogDto.selectable,
       ),
       child: Text(
         technology == null
