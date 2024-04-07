@@ -1,5 +1,3 @@
-import 'dart:collection';
-
 import '../../wbw_core.dart';
 
 class TechnologyMechanics {
@@ -34,16 +32,15 @@ class TechnologyMechanics {
     return false;
   }
 
-  ({double min, double max, bool isUnlocked, DoubleLinkedQueue summaryScore})
+  ({double min, double max, bool isUnlocked, double summaryScore})
       getResearchPointsToUnlock({
-    required final TechnologyModel technology,
+    required final TechnologyUnlockConditionModel unlockCondition,
   }) {
-    final unlockCondition = technology.unlockCondition;
     const double summaryScore = 0;
     double min = 0;
     double max = 0;
     double maxInvestedScore = 0;
-    for (final MapEntry(key: lang, value: words)
+    for (final MapEntry(value: words)
         in unlockCondition.languageWords.entries) {
       double requiredScore = 0;
       double investedScore = 0;
@@ -58,7 +55,9 @@ class TechnologyMechanics {
       if (requiredScore < min) min = requiredScore;
       if (investedScore > maxInvestedScore) maxInvestedScore = investedScore;
     }
-    final isUnlocked = maxInvestedScore >= min;
+    final isUnlocked =
+        (unlockCondition.investedResearchPoints + maxInvestedScore) >= min;
+
     return (
       min: min,
       max: max,

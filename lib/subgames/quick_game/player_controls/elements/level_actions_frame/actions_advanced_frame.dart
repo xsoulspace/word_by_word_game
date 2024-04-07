@@ -201,9 +201,12 @@ class _ResearchMultiplierCards extends StatelessWidget {
     final technologiesCubit = context.watch<TechnologiesCubit>();
     final technology = technologiesCubit.researchingTechnology;
     final technologyProgress = technologiesCubit.researchingTechnologyProgress;
-    final isUnlocked =
-        technologyProgress?.unlockCondition.getIsUnlockedForCurrentLanguage() ==
-            true;
+    final mechanics = context.read<MechanicsCollection>();
+    final unlockCondition = technologyProgress?.unlockCondition;
+    final isUnlocked = unlockCondition != null &&
+        mechanics.technology.checkIsUnlockedInSomeLanguages(
+          unlockCondition: unlockCondition,
+        );
     return Row(
       children: [
         Flexible(

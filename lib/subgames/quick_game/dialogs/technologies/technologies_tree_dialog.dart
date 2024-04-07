@@ -46,7 +46,7 @@ class TechnologiesTreeDialog extends HookWidget {
     /// because it kills the idea of wording
     final bool isSelectionAllowed = dto.isSelectionAllowed;
     final bool isHintVisible = dto.isHintVisible;
-
+    final language = LocalizedMap.getCurrentLanugage();
     return DialogScaffold(
       children: [
         Row(
@@ -117,6 +117,7 @@ class TechnologiesTreeDialog extends HookWidget {
         ...technologiesCubit.technologies.values.map(
           (final e) => _TechnologyTile(
             key: ValueKey(e.id),
+            language: language,
             isSelectionAllowed: isSelectionAllowed,
             selectedId: technologiesCubit.researchingTechnology?.id,
             onSelectedChanged: technologiesCubit.onResearchingTechnologyChanged,
@@ -136,6 +137,7 @@ class _TechnologyTile extends StatelessWidget {
     required this.onSelectedChanged,
     required this.selectedId,
     required this.isSelectionAllowed,
+    required this.language,
     super.key,
   });
   final TechnologyModel value;
@@ -144,12 +146,12 @@ class _TechnologyTile extends StatelessWidget {
   // ignore: avoid_positional_boolean_parameters
   final void Function(TechnologyModelId id, bool isSelected) onSelectedChanged;
   final TechnologyModelId? selectedId;
+  final Languages language;
   @override
   Widget build(final BuildContext context) {
     final mechanics = context.read<MechanicsCollection>();
     final unlockCondition = progress?.unlockCondition;
-    final wordsProgress =
-        unlockCondition?.languageWords[LocalizedMap.getCurrentLanugage()];
+    final wordsProgress = unlockCondition?.languageWords[language];
     final isSelected = selectedId == value.id;
     final isUnlocked = unlockCondition != null &&
         mechanics.technology.checkIsUnlockedInSomeLanguages(
