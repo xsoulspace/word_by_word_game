@@ -1,5 +1,4 @@
 // ignore_for_file: invalid_annotation_target
-
 part of 'data_models.dart';
 
 extension type const TechnologyModelId(TechnologyType value) {
@@ -99,37 +98,17 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
     required final Map<Languages, List<UsefulWordModel>> languageWords,
 
     /// one idea is to have minimum words to unlock the technology
-    @Default(3) final int wordsUnlockThreshold,
+    @Default(0) final int wordsUnlockThreshold,
 
-    /// other idea is to have [researchPoints] to unlock the technology
-    /// and when word is used, it fill research points for this
-    /// technology
-    @Default(8) final int researchPoints,
+    /// total amount of research points invested by user
+    /// when he decided to research this technology
+    @Default(0) final int investedResearchPoints,
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(
     final Map<String, dynamic> json,
   ) =>
       _$TechnologyUnlockConditionModelFromJson(json);
   const TechnologyUnlockConditionModel._();
-  bool get isUnlockedForAllLanguages {
-    for (final language in Languages.values) {
-      final isAllWordsUsed = languageWords[language]?.every(
-        (final word) => word.isUsed,
-      );
-      if (isAllWordsUsed == true) return true;
-    }
-    return false;
-  }
-
-  bool getIsUnlockedForLanguage() {
-    final isAllWordsUsed =
-        languageWords[LocalizedMap.getCurrentLanugage()]?.every(
-      (final word) => word.isUsed,
-    );
-    if (isAllWordsUsed == true) return true;
-
-    return false;
-  }
 }
 
 @freezed

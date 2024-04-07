@@ -12,7 +12,7 @@ part of 'level_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LevelBlocEvent {
@@ -168,7 +168,7 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventInitImpl &&
@@ -346,7 +346,7 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventConsumeTickImpl &&
@@ -507,7 +507,7 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventHideWarningImpl);
@@ -681,7 +681,7 @@ class _$LevelBlocEventChangeCurrentWordImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventChangeCurrentWordImpl &&
@@ -861,7 +861,7 @@ class _$LevelBlocEventEndTurnImpl implements LevelBlocEventEndTurn {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventEndTurnImpl &&
@@ -1041,7 +1041,7 @@ class _$LevelBlocEventSelectActionMultiplierImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventSelectActionMultiplierImpl &&
@@ -1205,7 +1205,7 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventAddNewWordToDictionaryImpl);
@@ -1586,7 +1586,7 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocStateImpl &&

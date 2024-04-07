@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+// part of 'data_models.dart';
 part of 'data_models.dart';
 
 enum GamePhaseType { entryWord, selectAction }
@@ -20,9 +21,7 @@ enum EnergyMultiplierType {
 @immutable
 @freezed
 class LevelModel with _$LevelModel {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
+  @JsonSerializable(explicitToJson: true)
   const factory LevelModel({
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,

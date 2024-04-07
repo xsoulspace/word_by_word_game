@@ -8,10 +8,10 @@ class TechnologyMechanics {
   });
   final ScoreMechanics scoreMechanics;
 
-  bool checkIsUnlockedForAllLanguages({
-    required final TechnologyModel technology,
+  /// returns if even one language is unlocked
+  bool checkIsUnlockedInSomeLanguages({
+    required final TechnologyUnlockConditionModel unlockCondition,
   }) {
-    final unlockCondition = technology.unlockCondition;
     for (final language in Languages.values) {
       final isAllWordsUsed = unlockCondition.languageWords[language]?.every(
         (final word) => word.isUsed,
@@ -22,10 +22,9 @@ class TechnologyMechanics {
   }
 
   bool getIsUnlockedForCurrentLanguage({
-    required final TechnologyModel technology,
+    required final TechnologyUnlockConditionModel unlockCondition,
     final Languages? language,
   }) {
-    final unlockCondition = technology.unlockCondition;
     final lang = language ?? LocalizedMap.getCurrentLanugage();
     final isAllWordsUsed = unlockCondition.languageWords[lang]?.every(
       (final word) => word.isUsed,

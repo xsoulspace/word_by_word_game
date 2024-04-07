@@ -2,6 +2,7 @@
 
 part of 'data_models.dart';
 
+// extension type FullWordString(String value) {}
 typedef FullWordString = String;
 
 @immutable

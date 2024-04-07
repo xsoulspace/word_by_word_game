@@ -12,7 +12,7 @@ part of 'data_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) {
   return _AppSettingsModel.fromJson(json);
@@ -137,7 +137,7 @@ class _$AppSettingsModelImpl extends _AppSettingsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppSettingsModelImpl &&
@@ -308,7 +308,7 @@ class _$CurrentWordModelImpl extends _CurrentWordModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CurrentWordModelImpl &&
@@ -670,7 +670,7 @@ class _$GameModelImpl extends _GameModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GameModelImpl &&
@@ -879,7 +879,7 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelCharactersModelImpl &&
@@ -1389,7 +1389,7 @@ class _$LevelModelImpl extends _LevelModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelModelImpl &&
@@ -1621,7 +1621,7 @@ class _$LevelFeaturesSettingsModelImpl implements _LevelFeaturesSettingsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelFeaturesSettingsModelImpl &&
@@ -1785,7 +1785,7 @@ class _$LevelPlayersModelImpl extends _LevelPlayersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelPlayersModelImpl &&
@@ -1939,7 +1939,7 @@ class _$LocalDictionaryModelImpl implements _LocalDictionaryModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocalDictionaryModelImpl &&
@@ -2325,7 +2325,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerCharacterModelImpl &&
@@ -2543,7 +2543,7 @@ class _$SerializedVector2Impl extends _SerializedVector2 {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SerializedVector2Impl &&
@@ -2785,7 +2785,7 @@ class _$PlayerProfileModelImpl extends _PlayerProfileModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerProfileModelImpl &&
@@ -3038,7 +3038,7 @@ class _$PlayerHighscoreModelImpl extends _PlayerHighscoreModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerHighscoreModelImpl &&
@@ -3290,7 +3290,7 @@ class _$PlayerLevelHighscoreModelImpl extends _PlayerLevelHighscoreModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerLevelHighscoreModelImpl &&
@@ -3450,7 +3450,7 @@ class _$ScoreModelImpl extends _ScoreModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScoreModelImpl &&
@@ -3641,7 +3641,7 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyTreeProgressModelImpl &&
@@ -3836,7 +3836,7 @@ class _$TechnologyProgressModelImpl extends _TechnologyProgressModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyProgressModelImpl &&
@@ -4082,7 +4082,7 @@ class _$TechnologyModelImpl extends _TechnologyModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyModelImpl &&
@@ -4160,10 +4160,9 @@ mixin _$TechnologyUnlockConditionModel {
   /// one idea is to have minimum words to unlock the technology
   int get wordsUnlockThreshold => throw _privateConstructorUsedError;
 
-  /// other idea is to have [researchPoints] to unlock the technology
-  /// and when word is used, it fill research points for this
-  /// technology
-  int get researchPoints => throw _privateConstructorUsedError;
+  /// total amount of research points invested by user
+  /// when he decided to research this technology
+  int get investedResearchPoints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4182,7 +4181,7 @@ abstract class $TechnologyUnlockConditionModelCopyWith<$Res> {
   $Res call(
       {Map<Languages, List<UsefulWordModel>> languageWords,
       int wordsUnlockThreshold,
-      int researchPoints});
+      int investedResearchPoints});
 }
 
 /// @nodoc
@@ -4201,7 +4200,7 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
   $Res call({
     Object? languageWords = null,
     Object? wordsUnlockThreshold = null,
-    Object? researchPoints = null,
+    Object? investedResearchPoints = null,
   }) {
     return _then(_value.copyWith(
       languageWords: null == languageWords
@@ -4212,9 +4211,9 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
           ? _value.wordsUnlockThreshold
           : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
               as int,
-      researchPoints: null == researchPoints
-          ? _value.researchPoints
-          : researchPoints // ignore: cast_nullable_to_non_nullable
+      investedResearchPoints: null == investedResearchPoints
+          ? _value.investedResearchPoints
+          : investedResearchPoints // ignore: cast_nullable_to_non_nullable
               as int,
     ) as $Val);
   }
@@ -4232,7 +4231,7 @@ abstract class _$$TechnologyUnlockConditionModelImplCopyWith<$Res>
   $Res call(
       {Map<Languages, List<UsefulWordModel>> languageWords,
       int wordsUnlockThreshold,
-      int researchPoints});
+      int investedResearchPoints});
 }
 
 /// @nodoc
@@ -4250,7 +4249,7 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
   $Res call({
     Object? languageWords = null,
     Object? wordsUnlockThreshold = null,
-    Object? researchPoints = null,
+    Object? investedResearchPoints = null,
   }) {
     return _then(_$TechnologyUnlockConditionModelImpl(
       languageWords: null == languageWords
@@ -4261,9 +4260,9 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
           ? _value.wordsUnlockThreshold
           : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
               as int,
-      researchPoints: null == researchPoints
-          ? _value.researchPoints
-          : researchPoints // ignore: cast_nullable_to_non_nullable
+      investedResearchPoints: null == investedResearchPoints
+          ? _value.investedResearchPoints
+          : investedResearchPoints // ignore: cast_nullable_to_non_nullable
               as int,
     ));
   }
@@ -4276,8 +4275,8 @@ class _$TechnologyUnlockConditionModelImpl
     extends _TechnologyUnlockConditionModel {
   const _$TechnologyUnlockConditionModelImpl(
       {required final Map<Languages, List<UsefulWordModel>> languageWords,
-      this.wordsUnlockThreshold = 3,
-      this.researchPoints = 8})
+      this.wordsUnlockThreshold = 0,
+      this.investedResearchPoints = 0})
       : _languageWords = languageWords,
         super._();
 
@@ -4305,20 +4304,19 @@ class _$TechnologyUnlockConditionModelImpl
   @JsonKey()
   final int wordsUnlockThreshold;
 
-  /// other idea is to have [researchPoints] to unlock the technology
-  /// and when word is used, it fill research points for this
-  /// technology
+  /// total amount of research points invested by user
+  /// when he decided to research this technology
   @override
   @JsonKey()
-  final int researchPoints;
+  final int investedResearchPoints;
 
   @override
   String toString() {
-    return 'TechnologyUnlockConditionModel(languageWords: $languageWords, wordsUnlockThreshold: $wordsUnlockThreshold, researchPoints: $researchPoints)';
+    return 'TechnologyUnlockConditionModel(languageWords: $languageWords, wordsUnlockThreshold: $wordsUnlockThreshold, investedResearchPoints: $investedResearchPoints)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyUnlockConditionModelImpl &&
@@ -4326,8 +4324,8 @@ class _$TechnologyUnlockConditionModelImpl
                 .equals(other._languageWords, _languageWords) &&
             (identical(other.wordsUnlockThreshold, wordsUnlockThreshold) ||
                 other.wordsUnlockThreshold == wordsUnlockThreshold) &&
-            (identical(other.researchPoints, researchPoints) ||
-                other.researchPoints == researchPoints));
+            (identical(other.investedResearchPoints, investedResearchPoints) ||
+                other.investedResearchPoints == investedResearchPoints));
   }
 
   @JsonKey(ignore: true)
@@ -4336,7 +4334,7 @@ class _$TechnologyUnlockConditionModelImpl
       runtimeType,
       const DeepCollectionEquality().hash(_languageWords),
       wordsUnlockThreshold,
-      researchPoints);
+      investedResearchPoints);
 
   @JsonKey(ignore: true)
   @override
@@ -4359,7 +4357,7 @@ abstract class _TechnologyUnlockConditionModel
   const factory _TechnologyUnlockConditionModel(
       {required final Map<Languages, List<UsefulWordModel>> languageWords,
       final int wordsUnlockThreshold,
-      final int researchPoints}) = _$TechnologyUnlockConditionModelImpl;
+      final int investedResearchPoints}) = _$TechnologyUnlockConditionModelImpl;
   const _TechnologyUnlockConditionModel._() : super._();
 
   factory _TechnologyUnlockConditionModel.fromJson(Map<String, dynamic> json) =
@@ -4377,10 +4375,9 @@ abstract class _TechnologyUnlockConditionModel
   int get wordsUnlockThreshold;
   @override
 
-  /// other idea is to have [researchPoints] to unlock the technology
-  /// and when word is used, it fill research points for this
-  /// technology
-  int get researchPoints;
+  /// total amount of research points invested by user
+  /// when he decided to research this technology
+  int get investedResearchPoints;
   @override
   @JsonKey(ignore: true)
   _$$TechnologyUnlockConditionModelImplCopyWith<
@@ -4501,7 +4498,7 @@ class _$UsefulWordModelImpl extends _UsefulWordModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UsefulWordModelImpl &&
@@ -4775,7 +4772,7 @@ class _$TutorialEventModelImpl extends _TutorialEventModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialEventModelImpl &&
@@ -4957,7 +4954,7 @@ class _$TutorialGameEffectModelImpl extends _TutorialGameEffectModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialGameEffectModelImpl &&
@@ -5175,7 +5172,7 @@ class _$TutorialUiActionEventModelImpl extends _TutorialUiActionEventModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialUiActionEventModelImpl &&
@@ -5388,7 +5385,7 @@ class _$TutorialEventsCollectionModelImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialEventsCollectionModelImpl &&
@@ -5566,7 +5563,7 @@ class _$TutorialCollectionsProgressModelImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialCollectionsProgressModelImpl &&
@@ -5732,7 +5729,7 @@ class _$TutorialCollectionsDataModelImpl extends _TutorialCollectionsDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialCollectionsDataModelImpl &&
@@ -5878,7 +5875,7 @@ class _$WorldDateTimeImpl extends _WorldDateTime {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WorldDateTimeImpl &&

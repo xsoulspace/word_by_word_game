@@ -146,12 +146,15 @@ class _TechnologyTile extends StatelessWidget {
   final TechnologyModelId? selectedId;
   @override
   Widget build(final BuildContext context) {
+    final mechanics = context.read<MechanicsCollection>();
     final unlockCondition = progress?.unlockCondition;
     final wordsProgress =
         unlockCondition?.languageWords[LocalizedMap.getCurrentLanugage()];
     final isSelected = selectedId == value.id;
-    final isUnlocked =
-        unlockCondition?.getIsUnlockedForCurrentLanguage() == true;
+    final isUnlocked = unlockCondition != null &&
+        mechanics.technology.checkIsUnlockedInSomeLanguages(
+          unlockCondition: unlockCondition,
+        );
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,

@@ -1,5 +1,6 @@
 // ignore_for_file: invalid_annotation_target
 
+// part of 'data_models.dart';
 part of 'data_models.dart';
 
 @immutable
@@ -134,12 +135,8 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
     required final TutorialCollectionsDataModel data,
     required final TutorialCollectionsName name,
   }) {
-    final int? currentIndex;
-    final List<TutorialEventModel>? events;
-
-    currentIndex = progress.indexes[name] ?? 0;
-
-    events = data.events[name];
+    final currentIndex = progress.indexes[name] ?? 0;
+    final events = data.events[name];
     if (events == null) return null;
 
     return TutorialEventsCollectionModel(

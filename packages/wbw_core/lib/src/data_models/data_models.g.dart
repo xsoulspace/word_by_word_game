@@ -445,8 +445,8 @@ _$TechnologyUnlockConditionModelImpl
                         UsefulWordModel.fromJson(e as Map<String, dynamic>))
                     .toList()),
           ),
-          wordsUnlockThreshold: json['wordsUnlockThreshold'] as int? ?? 3,
-          researchPoints: json['researchPoints'] as int? ?? 8,
+          wordsUnlockThreshold: json['wordsUnlockThreshold'] as int? ?? 0,
+          investedResearchPoints: json['investedResearchPoints'] as int? ?? 0,
         );
 
 Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(
@@ -455,7 +455,7 @@ Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(
       'languageWords': instance.languageWords.map((k, e) =>
           MapEntry(_$LanguagesEnumMap[k]!, e.map((e) => e.toJson()).toList())),
       'wordsUnlockThreshold': instance.wordsUnlockThreshold,
-      'researchPoints': instance.researchPoints,
+      'investedResearchPoints': instance.investedResearchPoints,
     };
 
 const _$LanguagesEnumMap = {

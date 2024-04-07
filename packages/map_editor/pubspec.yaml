@@ -55,13 +55,14 @@ dependencies:
   wbw_design_core:
     path: ../wbw_design_core
 dev_dependencies:
-  build_runner: ^2.4.6
-  flutter_gen: ^5.3.1
-  flutter_gen_runner: ^5.3.1
-  flutter_lints: ^3.0.0
+  analyzer: ^6.4.1
+  build_runner: ^2.4.9
+  flutter_gen: ^5.4.0
+  flutter_gen_runner: ^5.4.0
+  flutter_lints: ^3.0.2
   flutter_test:
     sdk: flutter
-  freezed: ^2.3.5
+  freezed: 2.4.7
   json_serializable: ^6.7.1
   xsoulspace_lints: ^0.0.10
 

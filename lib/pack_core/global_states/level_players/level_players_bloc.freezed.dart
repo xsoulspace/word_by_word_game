@@ -12,7 +12,7 @@ part of 'level_players_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LevelPlayerEvent {
@@ -185,7 +185,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitLevelPlayersEventImpl &&
@@ -347,7 +347,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SwitchToNextPlayerEventImpl);
@@ -509,7 +509,7 @@ class _$ChangeCharacterPositionEventImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ChangeCharacterPositionEventImpl &&
@@ -694,7 +694,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RefuelStorageEventImpl &&
@@ -878,7 +878,7 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ResearchTechnologyEventImpl &&
@@ -1078,7 +1078,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UpdatePlayerHighscoreEventImpl &&
@@ -1364,7 +1364,7 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelPlayersBlocStateImpl &&
