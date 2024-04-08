@@ -18,7 +18,7 @@ build-itch:
 build-vk-play:
 	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=vkPlay -t lib/main_prod.dart --pwa-strategy=offline-first
 build-crazy-games:
-	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=crazyGames -t lib/main_prod.dart
+	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=crazyGames -t lib/main_prod.dart --pwa-strategy=offline-first
 build-yandex-games:
 	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=yandexGames -t lib/main_prod.dart
 
