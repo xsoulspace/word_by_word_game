@@ -6,8 +6,9 @@ part of 'saveable_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
-    _$_CanvasDataModel(
+_$CanvasDataModelImpl _$$CanvasDataModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$CanvasDataModelImpl(
       id: json['id'] == null
           ? CanvasDataModelId.empty
           : CanvasDataModelId.fromJson(json['id'] as String),
@@ -39,7 +40,8 @@ _$_CanvasDataModel _$$_CanvasDataModelFromJson(Map<String, dynamic> json) =>
               TilesetType.colourful,
     );
 
-Map<String, dynamic> _$$_CanvasDataModelToJson(_$_CanvasDataModel instance) =>
+Map<String, dynamic> _$$CanvasDataModelImplToJson(
+        _$CanvasDataModelImpl instance) =>
     <String, dynamic>{
       'id': CanvasDataModelId.toJsonString(instance.id),
       'name': LocalizedMap.toJsonValueMap(instance.name),
@@ -58,18 +60,18 @@ const _$TilesetTypeEnumMap = {
   TilesetType.evening: 'evening',
 };
 
-_$_GravityModel _$$_GravityModelFromJson(Map<String, dynamic> json) =>
-    _$_GravityModel(
+_$GravityModelImpl _$$GravityModelImplFromJson(Map<String, dynamic> json) =>
+    _$GravityModelImpl(
       yTilePosition: json['yTilePosition'] as int,
     );
 
-Map<String, dynamic> _$$_GravityModelToJson(_$_GravityModel instance) =>
+Map<String, dynamic> _$$GravityModelImplToJson(_$GravityModelImpl instance) =>
     <String, dynamic>{
       'yTilePosition': instance.yTilePosition,
     };
 
-_$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>
-    _$_LayerModel(
+_$LayerModelImpl _$$LayerModelImplFromJson(Map<String, dynamic> json) =>
+    _$LayerModelImpl(
       id: LayerModelId.fromJson(json['id'] as String),
       title: json['title'] as String? ?? '',
       tiles: json['tiles'] == null
@@ -82,7 +84,7 @@ _$_LayerModel _$$_LayerModelFromJson(Map<String, dynamic> json) =>
       isVisible: json['isVisible'] as bool? ?? true,
     );
 
-Map<String, dynamic> _$$_LayerModelToJson(_$_LayerModel instance) =>
+Map<String, dynamic> _$$LayerModelImplToJson(_$LayerModelImpl instance) =>
     <String, dynamic>{
       'id': LayerModelId.toJsonString(instance.id),
       'title': instance.title,
@@ -99,8 +101,8 @@ const _$CollisionConsequenceEnumMap = {
   CollisionConsequence.lose: 'lose',
 };
 
-_$_CellTileModel _$$_CellTileModelFromJson(Map<String, dynamic> json) =>
-    _$_CellTileModel(
+_$CellTileModelImpl _$$CellTileModelImplFromJson(Map<String, dynamic> json) =>
+    _$CellTileModelImpl(
       tileId: json['tileId'] == null
           ? TileId.empty
           : TileId.fromJson(json['tileId'] as String),
@@ -119,7 +121,7 @@ _$_CellTileModel _$$_CellTileModelFromJson(Map<String, dynamic> json) =>
           const [],
     );
 
-Map<String, dynamic> _$$_CellTileModelToJson(_$_CellTileModel instance) =>
+Map<String, dynamic> _$$CellTileModelImplToJson(_$CellTileModelImpl instance) =>
     <String, dynamic>{
       'tileId': instance.tileId,
       'tileNeighbours': instance.tileNeighbours,
@@ -127,8 +129,9 @@ Map<String, dynamic> _$$_CellTileModelToJson(_$_CellTileModel instance) =>
       'npcs': instance.npcs,
     };
 
-_$_RenderObjectModel _$$_RenderObjectModelFromJson(Map<String, dynamic> json) =>
-    _$_RenderObjectModel(
+_$RenderObjectModelImpl _$$RenderObjectModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$RenderObjectModelImpl(
       id: Gid.fromJson(json['id'] as String),
       tileId: TileId.fromJson(json['tileId'] as String),
       position: json['position'] == null
@@ -148,8 +151,8 @@ _$_RenderObjectModel _$$_RenderObjectModelFromJson(Map<String, dynamic> json) =>
           TileBehaviourType.idle,
     );
 
-Map<String, dynamic> _$$_RenderObjectModelToJson(
-        _$_RenderObjectModel instance) =>
+Map<String, dynamic> _$$RenderObjectModelImplToJson(
+        _$RenderObjectModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'tileId': instance.tileId,
@@ -168,49 +171,50 @@ const _$TileBehaviourTypeEnumMap = {
   TileBehaviourType.flyRight: 'fly_right',
 };
 
-_$_Gid _$$_GidFromJson(Map<String, dynamic> json) => _$_Gid(
+_$GidImpl _$$GidImplFromJson(Map<String, dynamic> json) => _$GidImpl(
       value: json['value'] as String,
     );
 
-Map<String, dynamic> _$$_GidToJson(_$_Gid instance) => <String, dynamic>{
+Map<String, dynamic> _$$GidImplToJson(_$GidImpl instance) => <String, dynamic>{
       'value': instance.value,
     };
 
-_$_PlayerModel _$$_PlayerModelFromJson(Map<String, dynamic> json) =>
-    _$_PlayerModel(
+_$PlayerModelImpl _$$PlayerModelImplFromJson(Map<String, dynamic> json) =>
+    _$PlayerModelImpl(
       id: Gid.fromJson(json['id'] as String),
     );
 
-Map<String, dynamic> _$$_PlayerModelToJson(_$_PlayerModel instance) =>
+Map<String, dynamic> _$$PlayerModelImplToJson(_$PlayerModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
     };
 
-_$_TileNeighbourTitle _$$_TileNeighbourTitleFromJson(
+_$TileNeighbourTitleImpl _$$TileNeighbourTitleImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TileNeighbourTitle(
+    _$TileNeighbourTitleImpl(
       value: json['value'] as String,
     );
 
-Map<String, dynamic> _$$_TileNeighbourTitleToJson(
-        _$_TileNeighbourTitle instance) =>
+Map<String, dynamic> _$$TileNeighbourTitleImplToJson(
+        _$TileNeighbourTitleImpl instance) =>
     <String, dynamic>{
       'value': instance.value,
     };
 
-_$_CellDataModel _$$_CellDataModelFromJson(Map<String, dynamic> json) =>
-    _$_CellDataModel();
+_$CellDataModelImpl _$$CellDataModelImplFromJson(Map<String, dynamic> json) =>
+    _$CellDataModelImpl();
 
-Map<String, dynamic> _$$_CellDataModelToJson(_$_CellDataModel instance) =>
+Map<String, dynamic> _$$CellDataModelImplToJson(_$CellDataModelImpl instance) =>
     <String, dynamic>{};
 
-_$_CellPointModel _$$_CellPointModelFromJson(Map<String, dynamic> json) =>
-    _$_CellPointModel(
+_$CellPointModelImpl _$$CellPointModelImplFromJson(Map<String, dynamic> json) =>
+    _$CellPointModelImpl(
       json['x'] as int,
       json['y'] as int,
     );
 
-Map<String, dynamic> _$$_CellPointModelToJson(_$_CellPointModel instance) =>
+Map<String, dynamic> _$$CellPointModelImplToJson(
+        _$CellPointModelImpl instance) =>
     <String, dynamic>{
       'x': instance.x,
       'y': instance.y,

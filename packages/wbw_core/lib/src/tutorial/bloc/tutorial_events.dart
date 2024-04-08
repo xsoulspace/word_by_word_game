@@ -1,6 +1,6 @@
 part of 'tutorial_bloc.dart';
 
-@freezed
+@Freezed(toJson: false, fromJson: false)
 class TutorialEvent with _$TutorialEvent {
   const factory TutorialEvent.complete() = CompleteTutorialEvent;
   const factory TutorialEvent.loadTutorialProgress({

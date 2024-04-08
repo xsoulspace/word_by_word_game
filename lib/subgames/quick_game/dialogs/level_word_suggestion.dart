@@ -6,7 +6,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 class _DialogStateDiDto {
   _DialogStateDiDto.use(final Locator read)
@@ -78,20 +77,16 @@ class _DialogState extends LifeState {
 }
 
 class LevelWordSuggestionDialog extends HookWidget {
-  const LevelWordSuggestionDialog({
-    required this.onResume,
-    super.key,
-  });
-  final VoidCallback onResume;
+  const LevelWordSuggestionDialog({super.key});
 
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final uiTheme = context.uiTheme;
-
+    final dialogController = context.read<DialogController>();
     final state = _useDialogState(read: context.read);
     final cancelButton = TextButton(
-      onPressed: onResume,
+      onPressed: dialogController.closeDialogAndResume,
       child: Text(S.of(context).close),
     );
     return DialogScaffold(
@@ -137,7 +132,7 @@ class LevelWordSuggestionDialog extends HookWidget {
               ),
               uiTheme.verticalBoxes.extraLarge,
               TextButton(
-                onPressed: onResume,
+                onPressed: dialogController.closeDialogAndResume,
                 child: Text(S.of(context).ok),
               ),
             ],

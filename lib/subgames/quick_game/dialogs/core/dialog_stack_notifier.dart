@@ -8,56 +8,42 @@ class _DialogStackDiDto {
   final TutorialBloc tutorialBloc;
 }
 
-DialogStackState _useDialogStackState({
-  required final Locator read,
-}) =>
-    use(
-      life_hooks.LifeHook(
-        debugLabel: '_DialogStackState',
-        state: DialogStackState(diDto: _DialogStackDiDto.use(read)),
-      ),
-    );
-
-class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
-  DialogStackState({
-    required this.diDto,
-  });
+class DialogStackNotifier extends ChangeNotifier {
+  DialogStackNotifier(final BuildContext context)
+      : dto = _DialogStackDiDto.use(context.read) {
+    unawaited(_tutorialSubscriber.onLoad());
+  }
+  static DialogController getDialogController(final BuildContext context) =>
+      context.read<DialogStackNotifier>().dialogController;
   late final dialogController = DialogController(
     showLevelLostDialog: _showLevelLostDialog,
     closeDialog: _closeDialog,
     showLevelWinDialog: _showLevelWinDialog,
     showLevelWordSuggestionDialog: _showLevelWordSuggestionDialog,
+    showTechnologiesTree: _showTechnologiesTree,
+    closeDialogAndResume: onResume,
   );
   late final _tutorialSubscriber = _TutorialSubscriber(
-    diDto: diDto,
+    diDto: dto,
     onTutorialChanged: _onTutorialChanged,
   );
-  final _DialogStackDiDto diDto;
+  final _DialogStackDiDto dto;
   GameDialogType _dialogType = GameDialogType.none;
 
   GameDialogType get dialogType => _dialogType;
-  bool get isWinLoseDialog {
-    switch (dialogType) {
-      case GameDialogType.levelLost:
-      case GameDialogType.levelWin:
-        return true;
-      case GameDialogType.none:
-      case GameDialogType.levelWordSuggestion:
-      case GameDialogType.tutorialBool:
-      case GameDialogType.tutorialOk:
-    }
-    return false;
-  }
+  bool get isWinLoseDialog => switch (dialogType) {
+        GameDialogType.levelLost || GameDialogType.levelWin => true,
+        GameDialogType.none ||
+        GameDialogType.technologiesTree ||
+        GameDialogType.levelWordSuggestion ||
+        GameDialogType.tutorialBool ||
+        GameDialogType.tutorialOk =>
+          false,
+      };
 
   set dialogType(final GameDialogType dialogType) {
     _dialogType = dialogType;
     notifyListeners();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    unawaited(_tutorialSubscriber.onLoad());
   }
 
   @override
@@ -76,7 +62,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   void onEndLevel() {
     final event =
         endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
-    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+    unawaited(dto.globalGameBloc.onLevelEnd(event));
 
     _closeDialog();
   }
@@ -84,7 +70,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   void onRestartLevel() {
     final event =
         endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
-    unawaited(diDto.globalGameBloc.onRestartLevel(event));
+    unawaited(dto.globalGameBloc.onRestartLevel(event));
 
     _closeDialog();
   }
@@ -97,7 +83,7 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
   void onSaveResults() {
     final event =
         endLevelEvent ?? const EndLevelEvent(isWon: true, maxDistance: 0);
-    unawaited(diDto.globalGameBloc.onLevelEnd(event));
+    unawaited(dto.globalGameBloc.onLevelEnd(event));
   }
 
   Future<void> _showLevelWinDialog(final EndLevelEvent endLevelEvent) async {
@@ -110,12 +96,22 @@ class DialogStackState extends life_hooks.LifeState with ChangeNotifier {
     _pause();
   }
 
-  void _pause() => diDto.globalGameBloc.diDto.mechanics.worldTime.pause();
-  void _resume() => diDto.globalGameBloc.diDto.mechanics.worldTime.resume();
+  TechnologiesTreeDialogDto technologiesTreeDto =
+      TechnologiesTreeDialogDto.nonSelectable;
+
+  void _showTechnologiesTree(final TechnologiesTreeDialogDto dto) {
+    technologiesTreeDto = dto;
+    dialogType = GameDialogType.technologiesTree;
+    _pause();
+  }
+
+  void _pause() => dto.globalGameBloc.dto.mechanics.worldTime.pause();
+  void _resume() => dto.globalGameBloc.dto.mechanics.worldTime.resume();
 
   void _closeDialog() {
     dialogType = GameDialogType.none;
     endLevelEvent = null;
+    technologiesTreeDto = TechnologiesTreeDialogDto.nonSelectable;
   }
 
   void _onTutorialChanged(final TutorialBlocState tutorialState) {

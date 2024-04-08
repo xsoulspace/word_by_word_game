@@ -15,9 +15,9 @@ class DictionariesBlocDiDto {
 }
 
 class DictionariesBloc extends Cubit<DictionariesBlocState> {
-  DictionariesBloc({
-    required this.diDto,
-  }) : super(const DictionariesBlocState());
+  DictionariesBloc(final BuildContext context)
+      : diDto = DictionariesBlocDiDto.use(context),
+        super(const DictionariesBlocState());
   final DictionariesBlocDiDto diDto;
   Future<void> onLoad({
     required final LocalDictionaryModel localDictionary,

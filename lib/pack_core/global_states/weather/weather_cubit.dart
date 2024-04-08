@@ -21,23 +21,22 @@ class WeatherCubitState with _$WeatherCubitState {
 }
 
 class WeatherCubitDto {
-  WeatherCubitDto({
-    required final BuildContext context,
-  })  : mechanics = context.read(),
+  WeatherCubitDto(final BuildContext context)
+      : mechanics = context.read(),
         statesStatusesCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
 }
 
-class WeatherCubit extends Cubit<WeatherCubitState> {
-  WeatherCubit({
-    required this.dto,
-  }) : super(const WeatherCubitState());
+class WeatherCubit extends Cubit<WeatherCubitState>
+    implements WorldTickConsumable {
+  WeatherCubit(final BuildContext context)
+      : dto = WeatherCubitDto(context),
+        super(const WeatherCubitState());
   final WeatherCubitDto dto;
   WeatherMechanics get mechanics => dto.mechanics.weather;
-  void onConsumeTickEvent() {
-    _runWeatherTick();
-  }
+  @override
+  void onConsumeTickEvent() => _runWeatherTick();
 
   /// Call this method on game.update
   void _runWeatherTick() {

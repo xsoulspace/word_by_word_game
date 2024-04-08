@@ -12,7 +12,7 @@ part of 'global_game_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$GameEvent {
@@ -157,7 +157,7 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StartPlayingLevelEventImpl &&
@@ -350,7 +350,7 @@ class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$InitGlobalGameLevelEventImpl &&
@@ -538,7 +538,7 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DeletePlayerProfileEventImpl &&
@@ -722,7 +722,7 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CreatePlayerProfileEventImpl &&
@@ -876,7 +876,7 @@ class _$SaveGameEventImpl implements SaveGameEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$SaveGameEventImpl);
   }
@@ -1015,7 +1015,7 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SaveCurrentLevelEventImpl);
@@ -1179,7 +1179,7 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EndLevelEventImpl &&
@@ -1677,7 +1677,7 @@ class _$GlobalGameBlocStateImpl extends _GlobalGameBlocState {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GlobalGameBlocStateImpl &&

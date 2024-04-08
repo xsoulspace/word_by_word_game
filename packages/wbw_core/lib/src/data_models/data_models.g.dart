@@ -155,6 +155,10 @@ _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>
           ? TechnologyTreeProgressModel.empty
           : TechnologyTreeProgressModel.fromJson(
               json['technologyTreeProgress'] as Map<String, dynamic>),
+      featuresSettings: json['featuresSettings'] == null
+          ? LevelFeaturesSettingsModel.empty
+          : LevelFeaturesSettingsModel.fromJson(
+              json['featuresSettings'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
@@ -174,6 +178,7 @@ Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
       'dateTime': instance.dateTime.toJson(),
       'lastDateTime': instance.lastDateTime.toJson(),
       'technologyTreeProgress': instance.technologyTreeProgress.toJson(),
+      'featuresSettings': instance.featuresSettings.toJson(),
     };
 
 const _$TilesetTypeEnumMap = {
@@ -184,7 +189,7 @@ const _$TilesetTypeEnumMap = {
 
 const _$GamePhaseTypeEnumMap = {
   GamePhaseType.entryWord: 'entryWord',
-  GamePhaseType.selectFuel: 'selectFuel',
+  GamePhaseType.selectAction: 'selectAction',
 };
 
 const _$EnergyMultiplierTypeEnumMap = {
@@ -192,6 +197,18 @@ const _$EnergyMultiplierTypeEnumMap = {
   EnergyMultiplierType.m2: 'm2',
   EnergyMultiplierType.m3: 'm3',
 };
+
+_$LevelFeaturesSettingsModelImpl _$$LevelFeaturesSettingsModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$LevelFeaturesSettingsModelImpl(
+      isTechnologiesEnabled: json['isTechnologiesEnabled'] as bool? ?? false,
+    );
+
+Map<String, dynamic> _$$LevelFeaturesSettingsModelImplToJson(
+        _$LevelFeaturesSettingsModelImpl instance) =>
+    <String, dynamic>{
+      'isTechnologiesEnabled': instance.isTechnologiesEnabled,
+    };
 
 _$LevelPlayersModelImpl _$$LevelPlayersModelImplFromJson(
         Map<String, dynamic> json) =>
@@ -359,25 +376,6 @@ Map<String, dynamic> _$$ScoreModelImplToJson(_$ScoreModelImpl instance) =>
       'value': instance.value,
     };
 
-_$TechnologyModelIdImpl _$$TechnologyModelIdImplFromJson(
-        Map<String, dynamic> json) =>
-    _$TechnologyModelIdImpl(
-      value: $enumDecode(_$TechnologyTypeEnumMap, json['value']),
-    );
-
-Map<String, dynamic> _$$TechnologyModelIdImplToJson(
-        _$TechnologyModelIdImpl instance) =>
-    <String, dynamic>{
-      'value': _$TechnologyTypeEnumMap[instance.value]!,
-    };
-
-const _$TechnologyTypeEnumMap = {
-  TechnologyType.safeLanding: 'safeLanding',
-  TechnologyType.emergencyLanding: 'emergencyLanding',
-  TechnologyType.ascending: 'ascending',
-  TechnologyType.descending: 'descending',
-};
-
 _$TechnologyTreeProgressModelImpl _$$TechnologyTreeProgressModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TechnologyTreeProgressModelImpl(
@@ -385,6 +383,9 @@ _$TechnologyTreeProgressModelImpl _$$TechnologyTreeProgressModelImplFromJson(
           ? const {}
           : TechnologyTreeProgressModel._technologiesFromJson(
               json['technologies'] as Map<String, dynamic>),
+      researchingTechnologyId: json['researchingTechnologyId'] == null
+          ? null
+          : TechnologyModelId.fromJson(json['researchingTechnologyId']),
     );
 
 Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
@@ -392,12 +393,13 @@ Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
     <String, dynamic>{
       'technologies': TechnologyTreeProgressModel._technologiesToJson(
           instance.technologies),
+      'researchingTechnologyId': instance.researchingTechnologyId?.toJson(),
     };
 
 _$TechnologyProgressModelImpl _$$TechnologyProgressModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TechnologyProgressModelImpl(
-      id: TechnologyModelId.fromJson(json['id'] as Map<String, dynamic>),
+      id: TechnologyModelId.fromJson(json['id']),
       unlockCondition: TechnologyUnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
     );
@@ -405,32 +407,31 @@ _$TechnologyProgressModelImpl _$$TechnologyProgressModelImplFromJson(
 Map<String, dynamic> _$$TechnologyProgressModelImplToJson(
         _$TechnologyProgressModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'unlockCondition': instance.unlockCondition,
+      'id': instance.id.toJson(),
+      'unlockCondition': instance.unlockCondition.toJson(),
     };
 
 _$TechnologyModelImpl _$$TechnologyModelImplFromJson(
         Map<String, dynamic> json) =>
     _$TechnologyModelImpl(
-      id: TechnologyModelId.fromJson(json['id'] as Map<String, dynamic>),
+      id: TechnologyModelId.fromJson(json['id']),
       title: LocalizedMap.fromJson(json['title'] as Map<String, dynamic>),
       unlockCondition: TechnologyUnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
       index: json['index'] as int? ?? 0,
       parentTechnologyId: json['parentTechnologyId'] == null
           ? null
-          : TechnologyModelId.fromJson(
-              json['parentTechnologyId'] as Map<String, dynamic>),
+          : TechnologyModelId.fromJson(json['parentTechnologyId']),
     );
 
 Map<String, dynamic> _$$TechnologyModelImplToJson(
         _$TechnologyModelImpl instance) =>
     <String, dynamic>{
-      'id': instance.id,
-      'title': instance.title,
-      'unlockCondition': instance.unlockCondition,
+      'id': instance.id.toJson(),
+      'title': instance.title.toJson(),
+      'unlockCondition': instance.unlockCondition.toJson(),
       'index': instance.index,
-      'parentTechnologyId': instance.parentTechnologyId,
+      'parentTechnologyId': instance.parentTechnologyId?.toJson(),
     };
 
 _$TechnologyUnlockConditionModelImpl
@@ -444,13 +445,18 @@ _$TechnologyUnlockConditionModelImpl
                         UsefulWordModel.fromJson(e as Map<String, dynamic>))
                     .toList()),
           ),
+          wordsUnlockThreshold: json['wordsUnlockThreshold'] as int? ?? 0,
+          investedResearchPoints:
+              (json['investedResearchPoints'] as num?)?.toDouble() ?? 0.0,
         );
 
 Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(
         _$TechnologyUnlockConditionModelImpl instance) =>
     <String, dynamic>{
-      'languageWords': instance.languageWords
-          .map((k, e) => MapEntry(_$LanguagesEnumMap[k]!, e)),
+      'languageWords': instance.languageWords.map((k, e) =>
+          MapEntry(_$LanguagesEnumMap[k]!, e.map((e) => e.toJson()).toList())),
+      'wordsUnlockThreshold': instance.wordsUnlockThreshold,
+      'investedResearchPoints': instance.investedResearchPoints,
     };
 
 const _$LanguagesEnumMap = {

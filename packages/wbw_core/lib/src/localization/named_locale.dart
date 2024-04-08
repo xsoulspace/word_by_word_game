@@ -1,5 +1,4 @@
 // ignore_for_file: invalid_annotation_target
-
 part of 'localization.dart';
 
 /// Use this class to show user a list of supported [Languages]

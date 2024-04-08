@@ -12,7 +12,7 @@ part of 'character_mechanics.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LiftForceModel {
@@ -131,7 +131,7 @@ class _$LiftForceModelImpl implements _LiftForceModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LiftForceModelImpl &&
@@ -265,7 +265,8 @@ class __$$BalloonLiftPowersModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$BalloonLiftPowersModelImpl implements _BalloonLiftPowersModel {
   const _$BalloonLiftPowersModelImpl({required this.power, this.volume = 0});
 
@@ -284,7 +285,7 @@ class _$BalloonLiftPowersModelImpl implements _BalloonLiftPowersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BalloonLiftPowersModelImpl &&
@@ -437,7 +438,8 @@ class __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$BalloonLiftParamsModelImpl implements _BalloonLiftParamsModel {
   const _$BalloonLiftParamsModelImpl(
       {required this.maxVolume,
@@ -460,7 +462,7 @@ class _$BalloonLiftParamsModelImpl implements _BalloonLiftParamsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$BalloonLiftParamsModelImpl &&
@@ -644,6 +646,7 @@ class __$$ForcesConstantsModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 
+@JsonSerializable(explicitToJson: true)
 class _$ForcesConstantsModelImpl implements _ForcesConstantsModel {
   const _$ForcesConstantsModelImpl(
       {required this.gravityForce,
@@ -669,7 +672,7 @@ class _$ForcesConstantsModelImpl implements _ForcesConstantsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ForcesConstantsModelImpl &&

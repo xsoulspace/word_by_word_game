@@ -1,22 +1,24 @@
 // ignore_for_file: invalid_annotation_target
-
 part of 'data_models.dart';
 
-@immutable
-@Freezed(equal: false)
-class TechnologyModelId with _$TechnologyModelId, EquatableMixin {
-  const factory TechnologyModelId({
-    required final TechnologyType value,
-  }) = _TechnologyModelId;
-  const TechnologyModelId._();
-  factory TechnologyModelId.fromJson(final Map<String, dynamic> json) =>
-      _$TechnologyModelIdFromJson(json);
-  @override
-  List<Object?> get props => [value];
+extension type const TechnologyModelId(TechnologyType value) {
+  factory TechnologyModelId.fromJson(final value) {
+    final String val;
+    if (value case {'value': final String value}) {
+      val = value;
+    } else if (value case final String value) {
+      val = value;
+    } else {
+      throw UnsupportedError(value);
+    }
+    return TechnologyModelId(TechnologyType.values.byName(val));
+  }
+  dynamic toJson() => value.name;
 }
 
 @freezed
 class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyTreeProgressModel({
     @JsonKey(
       fromJson: TechnologyTreeProgressModel._technologiesFromJson,
@@ -24,6 +26,7 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
     )
     @Default({})
     final Map<TechnologyModelId, TechnologyProgressModel> technologies,
+    final TechnologyModelId? researchingTechnologyId,
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
     final Map<String, dynamic> json,
@@ -53,6 +56,7 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
 /// and only to store progress.
 @freezed
 class TechnologyProgressModel with _$TechnologyProgressModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyProgressModel({
     required final TechnologyModelId id,
     required final TechnologyUnlockConditionModel unlockCondition,
@@ -68,10 +72,12 @@ class TechnologyProgressModel with _$TechnologyProgressModel {
 /// To save changes for [unlockCondition] use [TechnologyProgressModel]
 @freezed
 class TechnologyModel with _$TechnologyModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyModel({
     required final TechnologyModelId id,
     required final LocalizedMap title,
     // TODO(antmalofeev): add icon?
+    /// use [TechnologyProgressModel] to store/retrieve actual progress
     required final TechnologyUnlockConditionModel unlockCondition,
     @Default(0) final int index,
     final TechnologyModelId? parentTechnologyId,
@@ -84,27 +90,30 @@ class TechnologyModel with _$TechnologyModel {
 
 @freezed
 class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
+  @JsonSerializable(explicitToJson: true)
   const factory TechnologyUnlockConditionModel({
+    /// Principle: if several words for one language in [languageWords] are used
+    /// then [TechnologyModel] is unlocked
+    /// for that certain language.
     required final Map<Languages, List<UsefulWordModel>> languageWords,
+
+    /// one idea is to have minimum words to unlock the technology
+    @Default(0) final int wordsUnlockThreshold,
+
+    /// total amount of research points invested by user
+    /// when he decided to research this technology
+    @Default(0.0) final double investedResearchPoints,
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(
     final Map<String, dynamic> json,
   ) =>
       _$TechnologyUnlockConditionModelFromJson(json);
   const TechnologyUnlockConditionModel._();
-  bool get isUnlocked {
-    for (final language in Languages.values) {
-      final isAllWordsUsed = languageWords[language]!.every(
-        (final word) => word.isUsed,
-      );
-      if (isAllWordsUsed) return true;
-    }
-    return false;
-  }
 }
 
 @freezed
 class UsefulWordModel with _$UsefulWordModel {
+  @JsonSerializable(explicitToJson: true)
   const factory UsefulWordModel({
     required final FullWordString word,
     @Default(false) final bool isUsed,

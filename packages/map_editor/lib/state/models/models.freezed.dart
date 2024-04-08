@@ -69,22 +69,22 @@ class _$AnimationEntryModelCopyWithImpl<$Res, $Val extends AnimationEntryModel>
 }
 
 /// @nodoc
-abstract class _$$_AnimationEntryModelCopyWith<$Res>
+abstract class _$$AnimationEntryModelImplCopyWith<$Res>
     implements $AnimationEntryModelCopyWith<$Res> {
-  factory _$$_AnimationEntryModelCopyWith(_$_AnimationEntryModel value,
-          $Res Function(_$_AnimationEntryModel) then) =
-      __$$_AnimationEntryModelCopyWithImpl<$Res>;
+  factory _$$AnimationEntryModelImplCopyWith(_$AnimationEntryModelImpl value,
+          $Res Function(_$AnimationEntryModelImpl) then) =
+      __$$AnimationEntryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double frameIndex, int framesLength, List<String> framesPaths});
 }
 
 /// @nodoc
-class __$$_AnimationEntryModelCopyWithImpl<$Res>
-    extends _$AnimationEntryModelCopyWithImpl<$Res, _$_AnimationEntryModel>
-    implements _$$_AnimationEntryModelCopyWith<$Res> {
-  __$$_AnimationEntryModelCopyWithImpl(_$_AnimationEntryModel _value,
-      $Res Function(_$_AnimationEntryModel) _then)
+class __$$AnimationEntryModelImplCopyWithImpl<$Res>
+    extends _$AnimationEntryModelCopyWithImpl<$Res, _$AnimationEntryModelImpl>
+    implements _$$AnimationEntryModelImplCopyWith<$Res> {
+  __$$AnimationEntryModelImplCopyWithImpl(_$AnimationEntryModelImpl _value,
+      $Res Function(_$AnimationEntryModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -94,7 +94,7 @@ class __$$_AnimationEntryModelCopyWithImpl<$Res>
     Object? framesLength = null,
     Object? framesPaths = null,
   }) {
-    return _then(_$_AnimationEntryModel(
+    return _then(_$AnimationEntryModelImpl(
       frameIndex: null == frameIndex
           ? _value.frameIndex
           : frameIndex // ignore: cast_nullable_to_non_nullable
@@ -113,8 +113,8 @@ class __$$_AnimationEntryModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AnimationEntryModel extends _AnimationEntryModel {
-  const _$_AnimationEntryModel(
+class _$AnimationEntryModelImpl extends _AnimationEntryModel {
+  const _$AnimationEntryModelImpl(
       {this.frameIndex = 0,
       this.framesLength = 0,
       final List<String> framesPaths = const []})
@@ -145,7 +145,7 @@ class _$_AnimationEntryModel extends _AnimationEntryModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AnimationEntryModel &&
+            other is _$AnimationEntryModelImpl &&
             (identical(other.frameIndex, frameIndex) ||
                 other.frameIndex == frameIndex) &&
             (identical(other.framesLength, framesLength) ||
@@ -161,8 +161,8 @@ class _$_AnimationEntryModel extends _AnimationEntryModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AnimationEntryModelCopyWith<_$_AnimationEntryModel> get copyWith =>
-      __$$_AnimationEntryModelCopyWithImpl<_$_AnimationEntryModel>(
+  _$$AnimationEntryModelImplCopyWith<_$AnimationEntryModelImpl> get copyWith =>
+      __$$AnimationEntryModelImplCopyWithImpl<_$AnimationEntryModelImpl>(
           this, _$identity);
 }
 
@@ -170,7 +170,7 @@ abstract class _AnimationEntryModel extends AnimationEntryModel {
   const factory _AnimationEntryModel(
       {final double frameIndex,
       final int framesLength,
-      final List<String> framesPaths}) = _$_AnimationEntryModel;
+      final List<String> framesPaths}) = _$AnimationEntryModelImpl;
   const _AnimationEntryModel._() : super._();
 
   @override
@@ -181,7 +181,7 @@ abstract class _AnimationEntryModel extends AnimationEntryModel {
   List<String> get framesPaths;
   @override
   @JsonKey(ignore: true)
-  _$$_AnimationEntryModelCopyWith<_$_AnimationEntryModel> get copyWith =>
+  _$$AnimationEntryModelImplCopyWith<_$AnimationEntryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -228,22 +228,22 @@ class _$GameRendererConfigCopyWithImpl<$Res, $Val extends GameRendererConfig>
 }
 
 /// @nodoc
-abstract class _$$_GameRendererConfigCopyWith<$Res>
+abstract class _$$GameRendererConfigImplCopyWith<$Res>
     implements $GameRendererConfigCopyWith<$Res> {
-  factory _$$_GameRendererConfigCopyWith(_$_GameRendererConfig value,
-          $Res Function(_$_GameRendererConfig) then) =
-      __$$_GameRendererConfigCopyWithImpl<$Res>;
+  factory _$$GameRendererConfigImplCopyWith(_$GameRendererConfigImpl value,
+          $Res Function(_$GameRendererConfigImpl) then) =
+      __$$GameRendererConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int animationSpeed});
 }
 
 /// @nodoc
-class __$$_GameRendererConfigCopyWithImpl<$Res>
-    extends _$GameRendererConfigCopyWithImpl<$Res, _$_GameRendererConfig>
-    implements _$$_GameRendererConfigCopyWith<$Res> {
-  __$$_GameRendererConfigCopyWithImpl(
-      _$_GameRendererConfig _value, $Res Function(_$_GameRendererConfig) _then)
+class __$$GameRendererConfigImplCopyWithImpl<$Res>
+    extends _$GameRendererConfigCopyWithImpl<$Res, _$GameRendererConfigImpl>
+    implements _$$GameRendererConfigImplCopyWith<$Res> {
+  __$$GameRendererConfigImplCopyWithImpl(_$GameRendererConfigImpl _value,
+      $Res Function(_$GameRendererConfigImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -251,7 +251,7 @@ class __$$_GameRendererConfigCopyWithImpl<$Res>
   $Res call({
     Object? animationSpeed = null,
   }) {
-    return _then(_$_GameRendererConfig(
+    return _then(_$GameRendererConfigImpl(
       animationSpeed: null == animationSpeed
           ? _value.animationSpeed
           : animationSpeed // ignore: cast_nullable_to_non_nullable
@@ -262,8 +262,8 @@ class __$$_GameRendererConfigCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_GameRendererConfig implements _GameRendererConfig {
-  const _$_GameRendererConfig({this.animationSpeed = 8});
+class _$GameRendererConfigImpl implements _GameRendererConfig {
+  const _$GameRendererConfigImpl({this.animationSpeed = 8});
 
   @override
   @JsonKey()
@@ -278,7 +278,7 @@ class _$_GameRendererConfig implements _GameRendererConfig {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GameRendererConfig &&
+            other is _$GameRendererConfigImpl &&
             (identical(other.animationSpeed, animationSpeed) ||
                 other.animationSpeed == animationSpeed));
   }
@@ -289,19 +289,19 @@ class _$_GameRendererConfig implements _GameRendererConfig {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GameRendererConfigCopyWith<_$_GameRendererConfig> get copyWith =>
-      __$$_GameRendererConfigCopyWithImpl<_$_GameRendererConfig>(
+  _$$GameRendererConfigImplCopyWith<_$GameRendererConfigImpl> get copyWith =>
+      __$$GameRendererConfigImplCopyWithImpl<_$GameRendererConfigImpl>(
           this, _$identity);
 }
 
 abstract class _GameRendererConfig implements GameRendererConfig {
   const factory _GameRendererConfig({final int animationSpeed}) =
-      _$_GameRendererConfig;
+      _$GameRendererConfigImpl;
 
   @override
   int get animationSpeed;
   @override
   @JsonKey(ignore: true)
-  _$$_GameRendererConfigCopyWith<_$_GameRendererConfig> get copyWith =>
+  _$$GameRendererConfigImplCopyWith<_$GameRendererConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

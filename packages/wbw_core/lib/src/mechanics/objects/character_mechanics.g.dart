@@ -35,3 +35,24 @@ Map<String, dynamic> _$$BalloonLiftParamsModelImplToJson(
       'maxPower': instance.maxPower,
       'powerUsage': instance.powerUsage,
     };
+
+_$ForcesConstantsModelImpl _$$ForcesConstantsModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$ForcesConstantsModelImpl(
+      gravityForce: (json['gravityForce'] as num).toDouble(),
+      volumeDecreaseRatio: (json['volumeDecreaseRatio'] as num).toDouble(),
+      volumeIncreaseRatio: (json['volumeIncreaseRatio'] as num).toDouble(),
+      volumeIncreaseRatioMax:
+          (json['volumeIncreaseRatioMax'] as num).toDouble(),
+      volumeToLiftRatio: (json['volumeToLiftRatio'] as num).toDouble(),
+    );
+
+Map<String, dynamic> _$$ForcesConstantsModelImplToJson(
+        _$ForcesConstantsModelImpl instance) =>
+    <String, dynamic>{
+      'gravityForce': instance.gravityForce,
+      'volumeDecreaseRatio': instance.volumeDecreaseRatio,
+      'volumeIncreaseRatio': instance.volumeIncreaseRatio,
+      'volumeIncreaseRatioMax': instance.volumeIncreaseRatioMax,
+      'volumeToLiftRatio': instance.volumeToLiftRatio,
+    };

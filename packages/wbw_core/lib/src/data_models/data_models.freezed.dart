@@ -12,7 +12,7 @@ part of 'data_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) {
   return _AppSettingsModel.fromJson(json);
@@ -137,7 +137,7 @@ class _$AppSettingsModelImpl extends _AppSettingsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$AppSettingsModelImpl &&
@@ -308,7 +308,7 @@ class _$CurrentWordModelImpl extends _CurrentWordModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CurrentWordModelImpl &&
@@ -670,7 +670,7 @@ class _$GameModelImpl extends _GameModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GameModelImpl &&
@@ -879,7 +879,7 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelCharactersModelImpl &&
@@ -949,6 +949,8 @@ mixin _$LevelModel {
   WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
   TechnologyTreeProgressModel get technologyTreeProgress =>
       throw _privateConstructorUsedError;
+  LevelFeaturesSettingsModel get featuresSettings =>
+      throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -976,7 +978,8 @@ abstract class $LevelModelCopyWith<$Res> {
       EnergyMultiplierType actionMultiplier,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      TechnologyTreeProgressModel technologyTreeProgress});
+      TechnologyTreeProgressModel technologyTreeProgress,
+      LevelFeaturesSettingsModel featuresSettings});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
@@ -986,6 +989,7 @@ abstract class $LevelModelCopyWith<$Res> {
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
   $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 }
 
 /// @nodoc
@@ -1015,6 +1019,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? dateTime = null,
     Object? lastDateTime = null,
     Object? technologyTreeProgress = null,
+    Object? featuresSettings = null,
   }) {
     return _then(_value.copyWith(
       players: null == players
@@ -1073,6 +1078,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.technologyTreeProgress
           : technologyTreeProgress // ignore: cast_nullable_to_non_nullable
               as TechnologyTreeProgressModel,
+      featuresSettings: null == featuresSettings
+          ? _value.featuresSettings
+          : featuresSettings // ignore: cast_nullable_to_non_nullable
+              as LevelFeaturesSettingsModel,
     ) as $Val);
   }
 
@@ -1140,6 +1149,15 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
       return _then(_value.copyWith(technologyTreeProgress: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
+    return $LevelFeaturesSettingsModelCopyWith<$Res>(_value.featuresSettings,
+        (value) {
+      return _then(_value.copyWith(featuresSettings: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1164,7 +1182,8 @@ abstract class _$$LevelModelImplCopyWith<$Res>
       EnergyMultiplierType actionMultiplier,
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
-      TechnologyTreeProgressModel technologyTreeProgress});
+      TechnologyTreeProgressModel technologyTreeProgress,
+      LevelFeaturesSettingsModel featuresSettings});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1182,6 +1201,8 @@ abstract class _$$LevelModelImplCopyWith<$Res>
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
   @override
   $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;
+  @override
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 }
 
 /// @nodoc
@@ -1209,6 +1230,7 @@ class __$$LevelModelImplCopyWithImpl<$Res>
     Object? dateTime = null,
     Object? lastDateTime = null,
     Object? technologyTreeProgress = null,
+    Object? featuresSettings = null,
   }) {
     return _then(_$LevelModelImpl(
       players: null == players
@@ -1267,6 +1289,10 @@ class __$$LevelModelImplCopyWithImpl<$Res>
           ? _value.technologyTreeProgress
           : technologyTreeProgress // ignore: cast_nullable_to_non_nullable
               as TechnologyTreeProgressModel,
+      featuresSettings: null == featuresSettings
+          ? _value.featuresSettings
+          : featuresSettings // ignore: cast_nullable_to_non_nullable
+              as LevelFeaturesSettingsModel,
     ));
   }
 }
@@ -1289,7 +1315,8 @@ class _$LevelModelImpl extends _LevelModel {
       this.actionMultiplier = EnergyMultiplierType.m1,
       this.dateTime = WorldDateTimeModel.zero,
       this.lastDateTime = WorldDateTimeModel.zero,
-      this.technologyTreeProgress = TechnologyTreeProgressModel.empty})
+      this.technologyTreeProgress = TechnologyTreeProgressModel.empty,
+      this.featuresSettings = LevelFeaturesSettingsModel.empty})
       : _weathers = weathers,
         _words = words,
         super._();
@@ -1352,14 +1379,17 @@ class _$LevelModelImpl extends _LevelModel {
   @override
   @JsonKey()
   final TechnologyTreeProgressModel technologyTreeProgress;
+  @override
+  @JsonKey()
+  final LevelFeaturesSettingsModel featuresSettings;
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress)';
+    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelModelImpl &&
@@ -1386,7 +1416,9 @@ class _$LevelModelImpl extends _LevelModel {
             (identical(other.lastDateTime, lastDateTime) ||
                 other.lastDateTime == lastDateTime) &&
             (identical(other.technologyTreeProgress, technologyTreeProgress) ||
-                other.technologyTreeProgress == technologyTreeProgress));
+                other.technologyTreeProgress == technologyTreeProgress) &&
+            (identical(other.featuresSettings, featuresSettings) ||
+                other.featuresSettings == featuresSettings));
   }
 
   @JsonKey(ignore: true)
@@ -1406,7 +1438,8 @@ class _$LevelModelImpl extends _LevelModel {
       actionMultiplier,
       dateTime,
       lastDateTime,
-      technologyTreeProgress);
+      technologyTreeProgress,
+      featuresSettings);
 
   @JsonKey(ignore: true)
   @override
@@ -1424,21 +1457,21 @@ class _$LevelModelImpl extends _LevelModel {
 
 abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
-          {required final LevelPlayersModel players,
-          required final LevelCharactersModel characters,
-          final TilesetType tilesetType,
-          final List<WeatherModel> weathers,
-          final WindModel wind,
-          final CanvasDataModelId canvasDataId,
-          final CurrentWordModel currentWord,
-          final Map<String, String> words,
-          final String latestWord,
-          final GamePhaseType phaseType,
-          final EnergyMultiplierType actionMultiplier,
-          final WorldDateTimeModel dateTime,
-          final WorldDateTimeModel lastDateTime,
-          final TechnologyTreeProgressModel technologyTreeProgress}) =
-      _$LevelModelImpl;
+      {required final LevelPlayersModel players,
+      required final LevelCharactersModel characters,
+      final TilesetType tilesetType,
+      final List<WeatherModel> weathers,
+      final WindModel wind,
+      final CanvasDataModelId canvasDataId,
+      final CurrentWordModel currentWord,
+      final Map<String, String> words,
+      final String latestWord,
+      final GamePhaseType phaseType,
+      final EnergyMultiplierType actionMultiplier,
+      final WorldDateTimeModel dateTime,
+      final WorldDateTimeModel lastDateTime,
+      final TechnologyTreeProgressModel technologyTreeProgress,
+      final LevelFeaturesSettingsModel featuresSettings}) = _$LevelModelImpl;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1476,9 +1509,159 @@ abstract class _LevelModel extends LevelModel {
   @override
   TechnologyTreeProgressModel get technologyTreeProgress;
   @override
+  LevelFeaturesSettingsModel get featuresSettings;
+  @override
   @JsonKey(ignore: true)
   _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+LevelFeaturesSettingsModel _$LevelFeaturesSettingsModelFromJson(
+    Map<String, dynamic> json) {
+  return _LevelFeaturesSettingsModel.fromJson(json);
+}
+
+/// @nodoc
+mixin _$LevelFeaturesSettingsModel {
+  bool get isTechnologiesEnabled => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $LevelFeaturesSettingsModelCopyWith<LevelFeaturesSettingsModel>
+      get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $LevelFeaturesSettingsModelCopyWith<$Res> {
+  factory $LevelFeaturesSettingsModelCopyWith(LevelFeaturesSettingsModel value,
+          $Res Function(LevelFeaturesSettingsModel) then) =
+      _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
+          LevelFeaturesSettingsModel>;
+  @useResult
+  $Res call({bool isTechnologiesEnabled});
+}
+
+/// @nodoc
+class _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
+        $Val extends LevelFeaturesSettingsModel>
+    implements $LevelFeaturesSettingsModelCopyWith<$Res> {
+  _$LevelFeaturesSettingsModelCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTechnologiesEnabled = null,
+  }) {
+    return _then(_value.copyWith(
+      isTechnologiesEnabled: null == isTechnologiesEnabled
+          ? _value.isTechnologiesEnabled
+          : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$LevelFeaturesSettingsModelImplCopyWith<$Res>
+    implements $LevelFeaturesSettingsModelCopyWith<$Res> {
+  factory _$$LevelFeaturesSettingsModelImplCopyWith(
+          _$LevelFeaturesSettingsModelImpl value,
+          $Res Function(_$LevelFeaturesSettingsModelImpl) then) =
+      __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({bool isTechnologiesEnabled});
+}
+
+/// @nodoc
+class __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>
+    extends _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
+        _$LevelFeaturesSettingsModelImpl>
+    implements _$$LevelFeaturesSettingsModelImplCopyWith<$Res> {
+  __$$LevelFeaturesSettingsModelImplCopyWithImpl(
+      _$LevelFeaturesSettingsModelImpl _value,
+      $Res Function(_$LevelFeaturesSettingsModelImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? isTechnologiesEnabled = null,
+  }) {
+    return _then(_$LevelFeaturesSettingsModelImpl(
+      isTechnologiesEnabled: null == isTechnologiesEnabled
+          ? _value.isTechnologiesEnabled
+          : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$LevelFeaturesSettingsModelImpl implements _LevelFeaturesSettingsModel {
+  const _$LevelFeaturesSettingsModelImpl({this.isTechnologiesEnabled = false});
+
+  factory _$LevelFeaturesSettingsModelImpl.fromJson(
+          Map<String, dynamic> json) =>
+      _$$LevelFeaturesSettingsModelImplFromJson(json);
+
+  @override
+  @JsonKey()
+  final bool isTechnologiesEnabled;
+
+  @override
+  String toString() {
+    return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$LevelFeaturesSettingsModelImpl &&
+            (identical(other.isTechnologiesEnabled, isTechnologiesEnabled) ||
+                other.isTechnologiesEnabled == isTechnologiesEnabled));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, isTechnologiesEnabled);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$LevelFeaturesSettingsModelImplCopyWith<_$LevelFeaturesSettingsModelImpl>
+      get copyWith => __$$LevelFeaturesSettingsModelImplCopyWithImpl<
+          _$LevelFeaturesSettingsModelImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$LevelFeaturesSettingsModelImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _LevelFeaturesSettingsModel
+    implements LevelFeaturesSettingsModel {
+  const factory _LevelFeaturesSettingsModel(
+      {final bool isTechnologiesEnabled}) = _$LevelFeaturesSettingsModelImpl;
+
+  factory _LevelFeaturesSettingsModel.fromJson(Map<String, dynamic> json) =
+      _$LevelFeaturesSettingsModelImpl.fromJson;
+
+  @override
+  bool get isTechnologiesEnabled;
+  @override
+  @JsonKey(ignore: true)
+  _$$LevelFeaturesSettingsModelImplCopyWith<_$LevelFeaturesSettingsModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 LevelPlayersModel _$LevelPlayersModelFromJson(Map<String, dynamic> json) {
@@ -1602,7 +1785,7 @@ class _$LevelPlayersModelImpl extends _LevelPlayersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelPlayersModelImpl &&
@@ -1756,7 +1939,7 @@ class _$LocalDictionaryModelImpl implements _LocalDictionaryModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LocalDictionaryModelImpl &&
@@ -2142,7 +2325,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerCharacterModelImpl &&
@@ -2360,7 +2543,7 @@ class _$SerializedVector2Impl extends _SerializedVector2 {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$SerializedVector2Impl &&
@@ -2602,7 +2785,7 @@ class _$PlayerProfileModelImpl extends _PlayerProfileModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerProfileModelImpl &&
@@ -2855,7 +3038,7 @@ class _$PlayerHighscoreModelImpl extends _PlayerHighscoreModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerHighscoreModelImpl &&
@@ -3107,7 +3290,7 @@ class _$PlayerLevelHighscoreModelImpl extends _PlayerLevelHighscoreModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerLevelHighscoreModelImpl &&
@@ -3267,7 +3450,7 @@ class _$ScoreModelImpl extends _ScoreModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$ScoreModelImpl &&
@@ -3307,128 +3490,6 @@ abstract class _ScoreModel extends ScoreModel {
       throw _privateConstructorUsedError;
 }
 
-TechnologyModelId _$TechnologyModelIdFromJson(Map<String, dynamic> json) {
-  return _TechnologyModelId.fromJson(json);
-}
-
-/// @nodoc
-mixin _$TechnologyModelId {
-  TechnologyType get value => throw _privateConstructorUsedError;
-
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
-  $TechnologyModelIdCopyWith<TechnologyModelId> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TechnologyModelIdCopyWith<$Res> {
-  factory $TechnologyModelIdCopyWith(
-          TechnologyModelId value, $Res Function(TechnologyModelId) then) =
-      _$TechnologyModelIdCopyWithImpl<$Res, TechnologyModelId>;
-  @useResult
-  $Res call({TechnologyType value});
-}
-
-/// @nodoc
-class _$TechnologyModelIdCopyWithImpl<$Res, $Val extends TechnologyModelId>
-    implements $TechnologyModelIdCopyWith<$Res> {
-  _$TechnologyModelIdCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_value.copyWith(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as TechnologyType,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$TechnologyModelIdImplCopyWith<$Res>
-    implements $TechnologyModelIdCopyWith<$Res> {
-  factory _$$TechnologyModelIdImplCopyWith(_$TechnologyModelIdImpl value,
-          $Res Function(_$TechnologyModelIdImpl) then) =
-      __$$TechnologyModelIdImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({TechnologyType value});
-}
-
-/// @nodoc
-class __$$TechnologyModelIdImplCopyWithImpl<$Res>
-    extends _$TechnologyModelIdCopyWithImpl<$Res, _$TechnologyModelIdImpl>
-    implements _$$TechnologyModelIdImplCopyWith<$Res> {
-  __$$TechnologyModelIdImplCopyWithImpl(_$TechnologyModelIdImpl _value,
-      $Res Function(_$TechnologyModelIdImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? value = null,
-  }) {
-    return _then(_$TechnologyModelIdImpl(
-      value: null == value
-          ? _value.value
-          : value // ignore: cast_nullable_to_non_nullable
-              as TechnologyType,
-    ));
-  }
-}
-
-/// @nodoc
-@JsonSerializable()
-class _$TechnologyModelIdImpl extends _TechnologyModelId {
-  const _$TechnologyModelIdImpl({required this.value}) : super._();
-
-  factory _$TechnologyModelIdImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TechnologyModelIdImplFromJson(json);
-
-  @override
-  final TechnologyType value;
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TechnologyModelIdImplCopyWith<_$TechnologyModelIdImpl> get copyWith =>
-      __$$TechnologyModelIdImplCopyWithImpl<_$TechnologyModelIdImpl>(
-          this, _$identity);
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TechnologyModelIdImplToJson(
-      this,
-    );
-  }
-}
-
-abstract class _TechnologyModelId extends TechnologyModelId {
-  const factory _TechnologyModelId({required final TechnologyType value}) =
-      _$TechnologyModelIdImpl;
-  const _TechnologyModelId._() : super._();
-
-  factory _TechnologyModelId.fromJson(Map<String, dynamic> json) =
-      _$TechnologyModelIdImpl.fromJson;
-
-  @override
-  TechnologyType get value;
-  @override
-  @JsonKey(ignore: true)
-  _$$TechnologyModelIdImplCopyWith<_$TechnologyModelIdImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
 TechnologyTreeProgressModel _$TechnologyTreeProgressModelFromJson(
     Map<String, dynamic> json) {
   return _TechnologyTreeProgressModel.fromJson(json);
@@ -3440,6 +3501,8 @@ mixin _$TechnologyTreeProgressModel {
       fromJson: TechnologyTreeProgressModel._technologiesFromJson,
       toJson: TechnologyTreeProgressModel._technologiesToJson)
   Map<TechnologyModelId, TechnologyProgressModel> get technologies =>
+      throw _privateConstructorUsedError;
+  TechnologyModelId? get researchingTechnologyId =>
       throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -3460,7 +3523,8 @@ abstract class $TechnologyTreeProgressModelCopyWith<$Res> {
       {@JsonKey(
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
-      Map<TechnologyModelId, TechnologyProgressModel> technologies});
+      Map<TechnologyModelId, TechnologyProgressModel> technologies,
+      TechnologyModelId? researchingTechnologyId});
 }
 
 /// @nodoc
@@ -3478,12 +3542,17 @@ class _$TechnologyTreeProgressModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? technologies = null,
+    Object? researchingTechnologyId = freezed,
   }) {
     return _then(_value.copyWith(
       technologies: null == technologies
           ? _value.technologies
           : technologies // ignore: cast_nullable_to_non_nullable
               as Map<TechnologyModelId, TechnologyProgressModel>,
+      researchingTechnologyId: freezed == researchingTechnologyId
+          ? _value.researchingTechnologyId
+          : researchingTechnologyId // ignore: cast_nullable_to_non_nullable
+              as TechnologyModelId?,
     ) as $Val);
   }
 }
@@ -3501,7 +3570,8 @@ abstract class _$$TechnologyTreeProgressModelImplCopyWith<$Res>
       {@JsonKey(
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
-      Map<TechnologyModelId, TechnologyProgressModel> technologies});
+      Map<TechnologyModelId, TechnologyProgressModel> technologies,
+      TechnologyModelId? researchingTechnologyId});
 }
 
 /// @nodoc
@@ -3518,25 +3588,32 @@ class __$$TechnologyTreeProgressModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? technologies = null,
+    Object? researchingTechnologyId = freezed,
   }) {
     return _then(_$TechnologyTreeProgressModelImpl(
       technologies: null == technologies
           ? _value._technologies
           : technologies // ignore: cast_nullable_to_non_nullable
               as Map<TechnologyModelId, TechnologyProgressModel>,
+      researchingTechnologyId: freezed == researchingTechnologyId
+          ? _value.researchingTechnologyId
+          : researchingTechnologyId // ignore: cast_nullable_to_non_nullable
+              as TechnologyModelId?,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
   const _$TechnologyTreeProgressModelImpl(
       {@JsonKey(
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
       final Map<TechnologyModelId, TechnologyProgressModel> technologies =
-          const {}})
+          const {},
+      this.researchingTechnologyId})
       : _technologies = technologies,
         super._();
 
@@ -3556,23 +3633,31 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
   }
 
   @override
+  final TechnologyModelId? researchingTechnologyId;
+
+  @override
   String toString() {
-    return 'TechnologyTreeProgressModel(technologies: $technologies)';
+    return 'TechnologyTreeProgressModel(technologies: $technologies, researchingTechnologyId: $researchingTechnologyId)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyTreeProgressModelImpl &&
             const DeepCollectionEquality()
-                .equals(other._technologies, _technologies));
+                .equals(other._technologies, _technologies) &&
+            (identical(
+                    other.researchingTechnologyId, researchingTechnologyId) ||
+                other.researchingTechnologyId == researchingTechnologyId));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_technologies));
+      runtimeType,
+      const DeepCollectionEquality().hash(_technologies),
+      researchingTechnologyId);
 
   @JsonKey(ignore: true)
   @override
@@ -3595,7 +3680,8 @@ abstract class _TechnologyTreeProgressModel
           {@JsonKey(
               fromJson: TechnologyTreeProgressModel._technologiesFromJson,
               toJson: TechnologyTreeProgressModel._technologiesToJson)
-          final Map<TechnologyModelId, TechnologyProgressModel> technologies}) =
+          final Map<TechnologyModelId, TechnologyProgressModel> technologies,
+          final TechnologyModelId? researchingTechnologyId}) =
       _$TechnologyTreeProgressModelImpl;
   const _TechnologyTreeProgressModel._() : super._();
 
@@ -3607,6 +3693,8 @@ abstract class _TechnologyTreeProgressModel
       fromJson: TechnologyTreeProgressModel._technologiesFromJson,
       toJson: TechnologyTreeProgressModel._technologiesToJson)
   Map<TechnologyModelId, TechnologyProgressModel> get technologies;
+  @override
+  TechnologyModelId? get researchingTechnologyId;
   @override
   @JsonKey(ignore: true)
   _$$TechnologyTreeProgressModelImplCopyWith<_$TechnologyTreeProgressModelImpl>
@@ -3639,7 +3727,6 @@ abstract class $TechnologyProgressModelCopyWith<$Res> {
   $Res call(
       {TechnologyModelId id, TechnologyUnlockConditionModel unlockCondition});
 
-  $TechnologyModelIdCopyWith<$Res> get id;
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
 }
 
@@ -3674,14 +3761,6 @@ class _$TechnologyProgressModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
-  $TechnologyModelIdCopyWith<$Res> get id {
-    return $TechnologyModelIdCopyWith<$Res>(_value.id, (value) {
-      return _then(_value.copyWith(id: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition {
     return $TechnologyUnlockConditionModelCopyWith<$Res>(_value.unlockCondition,
         (value) {
@@ -3702,8 +3781,6 @@ abstract class _$$TechnologyProgressModelImplCopyWith<$Res>
   $Res call(
       {TechnologyModelId id, TechnologyUnlockConditionModel unlockCondition});
 
-  @override
-  $TechnologyModelIdCopyWith<$Res> get id;
   @override
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
 }
@@ -3738,7 +3815,8 @@ class __$$TechnologyProgressModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyProgressModelImpl extends _TechnologyProgressModel {
   const _$TechnologyProgressModelImpl(
       {required this.id, required this.unlockCondition})
@@ -3758,7 +3836,7 @@ class _$TechnologyProgressModelImpl extends _TechnologyProgressModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyProgressModelImpl &&
@@ -3815,6 +3893,7 @@ mixin _$TechnologyModel {
   TechnologyModelId get id => throw _privateConstructorUsedError;
   LocalizedMap get title =>
       throw _privateConstructorUsedError; // TODO(antmalofeev): add icon?
+  /// use [TechnologyProgressModel] to store/retrieve actual progress
   TechnologyUnlockConditionModel get unlockCondition =>
       throw _privateConstructorUsedError;
   int get index => throw _privateConstructorUsedError;
@@ -3840,10 +3919,8 @@ abstract class $TechnologyModelCopyWith<$Res> {
       int index,
       TechnologyModelId? parentTechnologyId});
 
-  $TechnologyModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get title;
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
-  $TechnologyModelIdCopyWith<$Res>? get parentTechnologyId;
 }
 
 /// @nodoc
@@ -3891,14 +3968,6 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
 
   @override
   @pragma('vm:prefer-inline')
-  $TechnologyModelIdCopyWith<$Res> get id {
-    return $TechnologyModelIdCopyWith<$Res>(_value.id, (value) {
-      return _then(_value.copyWith(id: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get title {
     return $LocalizedMapCopyWith<$Res>(_value.title, (value) {
       return _then(_value.copyWith(title: value) as $Val);
@@ -3911,19 +3980,6 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
     return $TechnologyUnlockConditionModelCopyWith<$Res>(_value.unlockCondition,
         (value) {
       return _then(_value.copyWith(unlockCondition: value) as $Val);
-    });
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TechnologyModelIdCopyWith<$Res>? get parentTechnologyId {
-    if (_value.parentTechnologyId == null) {
-      return null;
-    }
-
-    return $TechnologyModelIdCopyWith<$Res>(_value.parentTechnologyId!,
-        (value) {
-      return _then(_value.copyWith(parentTechnologyId: value) as $Val);
     });
   }
 }
@@ -3944,13 +4000,9 @@ abstract class _$$TechnologyModelImplCopyWith<$Res>
       TechnologyModelId? parentTechnologyId});
 
   @override
-  $TechnologyModelIdCopyWith<$Res> get id;
-  @override
   $LocalizedMapCopyWith<$Res> get title;
   @override
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
-  @override
-  $TechnologyModelIdCopyWith<$Res>? get parentTechnologyId;
 }
 
 /// @nodoc
@@ -3996,7 +4048,8 @@ class __$$TechnologyModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyModelImpl extends _TechnologyModel {
   const _$TechnologyModelImpl(
       {required this.id,
@@ -4014,6 +4067,7 @@ class _$TechnologyModelImpl extends _TechnologyModel {
   @override
   final LocalizedMap title;
 // TODO(antmalofeev): add icon?
+  /// use [TechnologyProgressModel] to store/retrieve actual progress
   @override
   final TechnologyUnlockConditionModel unlockCondition;
   @override
@@ -4028,7 +4082,7 @@ class _$TechnologyModelImpl extends _TechnologyModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyModelImpl &&
@@ -4078,6 +4132,7 @@ abstract class _TechnologyModel extends TechnologyModel {
   @override
   LocalizedMap get title;
   @override // TODO(antmalofeev): add icon?
+  /// use [TechnologyProgressModel] to store/retrieve actual progress
   TechnologyUnlockConditionModel get unlockCondition;
   @override
   int get index;
@@ -4096,8 +4151,18 @@ TechnologyUnlockConditionModel _$TechnologyUnlockConditionModelFromJson(
 
 /// @nodoc
 mixin _$TechnologyUnlockConditionModel {
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   Map<Languages, List<UsefulWordModel>> get languageWords =>
       throw _privateConstructorUsedError;
+
+  /// one idea is to have minimum words to unlock the technology
+  int get wordsUnlockThreshold => throw _privateConstructorUsedError;
+
+  /// total amount of research points invested by user
+  /// when he decided to research this technology
+  double get investedResearchPoints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4113,7 +4178,10 @@ abstract class $TechnologyUnlockConditionModelCopyWith<$Res> {
       _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
           TechnologyUnlockConditionModel>;
   @useResult
-  $Res call({Map<Languages, List<UsefulWordModel>> languageWords});
+  $Res call(
+      {Map<Languages, List<UsefulWordModel>> languageWords,
+      int wordsUnlockThreshold,
+      double investedResearchPoints});
 }
 
 /// @nodoc
@@ -4131,12 +4199,22 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? languageWords = null,
+    Object? wordsUnlockThreshold = null,
+    Object? investedResearchPoints = null,
   }) {
     return _then(_value.copyWith(
       languageWords: null == languageWords
           ? _value.languageWords
           : languageWords // ignore: cast_nullable_to_non_nullable
               as Map<Languages, List<UsefulWordModel>>,
+      wordsUnlockThreshold: null == wordsUnlockThreshold
+          ? _value.wordsUnlockThreshold
+          : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
+      investedResearchPoints: null == investedResearchPoints
+          ? _value.investedResearchPoints
+          : investedResearchPoints // ignore: cast_nullable_to_non_nullable
+              as double,
     ) as $Val);
   }
 }
@@ -4150,7 +4228,10 @@ abstract class _$$TechnologyUnlockConditionModelImplCopyWith<$Res>
       __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({Map<Languages, List<UsefulWordModel>> languageWords});
+  $Res call(
+      {Map<Languages, List<UsefulWordModel>> languageWords,
+      int wordsUnlockThreshold,
+      double investedResearchPoints});
 }
 
 /// @nodoc
@@ -4167,22 +4248,35 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? languageWords = null,
+    Object? wordsUnlockThreshold = null,
+    Object? investedResearchPoints = null,
   }) {
     return _then(_$TechnologyUnlockConditionModelImpl(
       languageWords: null == languageWords
           ? _value._languageWords
           : languageWords // ignore: cast_nullable_to_non_nullable
               as Map<Languages, List<UsefulWordModel>>,
+      wordsUnlockThreshold: null == wordsUnlockThreshold
+          ? _value.wordsUnlockThreshold
+          : wordsUnlockThreshold // ignore: cast_nullable_to_non_nullable
+              as int,
+      investedResearchPoints: null == investedResearchPoints
+          ? _value.investedResearchPoints
+          : investedResearchPoints // ignore: cast_nullable_to_non_nullable
+              as double,
     ));
   }
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$TechnologyUnlockConditionModelImpl
     extends _TechnologyUnlockConditionModel {
   const _$TechnologyUnlockConditionModelImpl(
-      {required final Map<Languages, List<UsefulWordModel>> languageWords})
+      {required final Map<Languages, List<UsefulWordModel>> languageWords,
+      this.wordsUnlockThreshold = 0,
+      this.investedResearchPoints = 0.0})
       : _languageWords = languageWords,
         super._();
 
@@ -4190,7 +4284,14 @@ class _$TechnologyUnlockConditionModelImpl
           Map<String, dynamic> json) =>
       _$$TechnologyUnlockConditionModelImplFromJson(json);
 
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   final Map<Languages, List<UsefulWordModel>> _languageWords;
+
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   @override
   Map<Languages, List<UsefulWordModel>> get languageWords {
     if (_languageWords is EqualUnmodifiableMapView) return _languageWords;
@@ -4198,24 +4299,42 @@ class _$TechnologyUnlockConditionModelImpl
     return EqualUnmodifiableMapView(_languageWords);
   }
 
+  /// one idea is to have minimum words to unlock the technology
+  @override
+  @JsonKey()
+  final int wordsUnlockThreshold;
+
+  /// total amount of research points invested by user
+  /// when he decided to research this technology
+  @override
+  @JsonKey()
+  final double investedResearchPoints;
+
   @override
   String toString() {
-    return 'TechnologyUnlockConditionModel(languageWords: $languageWords)';
+    return 'TechnologyUnlockConditionModel(languageWords: $languageWords, wordsUnlockThreshold: $wordsUnlockThreshold, investedResearchPoints: $investedResearchPoints)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TechnologyUnlockConditionModelImpl &&
             const DeepCollectionEquality()
-                .equals(other._languageWords, _languageWords));
+                .equals(other._languageWords, _languageWords) &&
+            (identical(other.wordsUnlockThreshold, wordsUnlockThreshold) ||
+                other.wordsUnlockThreshold == wordsUnlockThreshold) &&
+            (identical(other.investedResearchPoints, investedResearchPoints) ||
+                other.investedResearchPoints == investedResearchPoints));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_languageWords));
+      runtimeType,
+      const DeepCollectionEquality().hash(_languageWords),
+      wordsUnlockThreshold,
+      investedResearchPoints);
 
   @JsonKey(ignore: true)
   @override
@@ -4236,15 +4355,30 @@ class _$TechnologyUnlockConditionModelImpl
 abstract class _TechnologyUnlockConditionModel
     extends TechnologyUnlockConditionModel {
   const factory _TechnologyUnlockConditionModel(
-      {required final Map<Languages, List<UsefulWordModel>>
-          languageWords}) = _$TechnologyUnlockConditionModelImpl;
+          {required final Map<Languages, List<UsefulWordModel>> languageWords,
+          final int wordsUnlockThreshold,
+          final double investedResearchPoints}) =
+      _$TechnologyUnlockConditionModelImpl;
   const _TechnologyUnlockConditionModel._() : super._();
 
   factory _TechnologyUnlockConditionModel.fromJson(Map<String, dynamic> json) =
       _$TechnologyUnlockConditionModelImpl.fromJson;
 
   @override
+
+  /// Principle: if several words for one language in [languageWords] are used
+  /// then [TechnologyModel] is unlocked
+  /// for that certain language.
   Map<Languages, List<UsefulWordModel>> get languageWords;
+  @override
+
+  /// one idea is to have minimum words to unlock the technology
+  int get wordsUnlockThreshold;
+  @override
+
+  /// total amount of research points invested by user
+  /// when he decided to research this technology
+  double get investedResearchPoints;
   @override
   @JsonKey(ignore: true)
   _$$TechnologyUnlockConditionModelImplCopyWith<
@@ -4344,7 +4478,8 @@ class __$$UsefulWordModelImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$UsefulWordModelImpl extends _UsefulWordModel {
   const _$UsefulWordModelImpl({required this.word, this.isUsed = false})
       : super._();
@@ -4364,7 +4499,7 @@ class _$UsefulWordModelImpl extends _UsefulWordModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$UsefulWordModelImpl &&
@@ -4638,7 +4773,7 @@ class _$TutorialEventModelImpl extends _TutorialEventModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialEventModelImpl &&
@@ -4820,7 +4955,7 @@ class _$TutorialGameEffectModelImpl extends _TutorialGameEffectModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialGameEffectModelImpl &&
@@ -5038,7 +5173,7 @@ class _$TutorialUiActionEventModelImpl extends _TutorialUiActionEventModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialUiActionEventModelImpl &&
@@ -5251,7 +5386,7 @@ class _$TutorialEventsCollectionModelImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialEventsCollectionModelImpl &&
@@ -5429,7 +5564,7 @@ class _$TutorialCollectionsProgressModelImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialCollectionsProgressModelImpl &&
@@ -5595,7 +5730,7 @@ class _$TutorialCollectionsDataModelImpl extends _TutorialCollectionsDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialCollectionsDataModelImpl &&
@@ -5741,7 +5876,7 @@ class _$WorldDateTimeImpl extends _WorldDateTime {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WorldDateTimeImpl &&
