@@ -446,7 +446,8 @@ _$TechnologyUnlockConditionModelImpl
                     .toList()),
           ),
           wordsUnlockThreshold: json['wordsUnlockThreshold'] as int? ?? 0,
-          investedResearchPoints: json['investedResearchPoints'] as int? ?? 0,
+          investedResearchPoints:
+              (json['investedResearchPoints'] as num?)?.toDouble() ?? 0.0,
         );
 
 Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(

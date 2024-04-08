@@ -4162,7 +4162,7 @@ mixin _$TechnologyUnlockConditionModel {
 
   /// total amount of research points invested by user
   /// when he decided to research this technology
-  int get investedResearchPoints => throw _privateConstructorUsedError;
+  double get investedResearchPoints => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -4181,7 +4181,7 @@ abstract class $TechnologyUnlockConditionModelCopyWith<$Res> {
   $Res call(
       {Map<Languages, List<UsefulWordModel>> languageWords,
       int wordsUnlockThreshold,
-      int investedResearchPoints});
+      double investedResearchPoints});
 }
 
 /// @nodoc
@@ -4214,7 +4214,7 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
       investedResearchPoints: null == investedResearchPoints
           ? _value.investedResearchPoints
           : investedResearchPoints // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ) as $Val);
   }
 }
@@ -4231,7 +4231,7 @@ abstract class _$$TechnologyUnlockConditionModelImplCopyWith<$Res>
   $Res call(
       {Map<Languages, List<UsefulWordModel>> languageWords,
       int wordsUnlockThreshold,
-      int investedResearchPoints});
+      double investedResearchPoints});
 }
 
 /// @nodoc
@@ -4263,7 +4263,7 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
       investedResearchPoints: null == investedResearchPoints
           ? _value.investedResearchPoints
           : investedResearchPoints // ignore: cast_nullable_to_non_nullable
-              as int,
+              as double,
     ));
   }
 }
@@ -4276,7 +4276,7 @@ class _$TechnologyUnlockConditionModelImpl
   const _$TechnologyUnlockConditionModelImpl(
       {required final Map<Languages, List<UsefulWordModel>> languageWords,
       this.wordsUnlockThreshold = 0,
-      this.investedResearchPoints = 0})
+      this.investedResearchPoints = 0.0})
       : _languageWords = languageWords,
         super._();
 
@@ -4308,7 +4308,7 @@ class _$TechnologyUnlockConditionModelImpl
   /// when he decided to research this technology
   @override
   @JsonKey()
-  final int investedResearchPoints;
+  final double investedResearchPoints;
 
   @override
   String toString() {
@@ -4355,9 +4355,10 @@ class _$TechnologyUnlockConditionModelImpl
 abstract class _TechnologyUnlockConditionModel
     extends TechnologyUnlockConditionModel {
   const factory _TechnologyUnlockConditionModel(
-      {required final Map<Languages, List<UsefulWordModel>> languageWords,
-      final int wordsUnlockThreshold,
-      final int investedResearchPoints}) = _$TechnologyUnlockConditionModelImpl;
+          {required final Map<Languages, List<UsefulWordModel>> languageWords,
+          final int wordsUnlockThreshold,
+          final double investedResearchPoints}) =
+      _$TechnologyUnlockConditionModelImpl;
   const _TechnologyUnlockConditionModel._() : super._();
 
   factory _TechnologyUnlockConditionModel.fromJson(Map<String, dynamic> json) =
@@ -4377,7 +4378,7 @@ abstract class _TechnologyUnlockConditionModel
 
   /// total amount of research points invested by user
   /// when he decided to research this technology
-  int get investedResearchPoints;
+  double get investedResearchPoints;
   @override
   @JsonKey(ignore: true)
   _$$TechnologyUnlockConditionModelImplCopyWith<

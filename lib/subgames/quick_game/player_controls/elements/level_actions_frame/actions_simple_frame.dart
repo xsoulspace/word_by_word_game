@@ -92,7 +92,7 @@ class UIEnergyOptionCard extends StatelessWidget {
     final theme = Theme.of(context);
     final textTheme = theme.textTheme;
     void onApply() {
-      compositionState.onSelectEnergyMultiplier(type);
+      compositionState.onPowerSelected(type);
       TutorialFrame.sendOnClickEvent(
         uiKey: TutorialUiItem.selectRefuelOption,
         context: context,

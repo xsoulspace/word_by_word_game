@@ -49,27 +49,62 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
           researchingTechnologyId: isSelected ? id : null,
         ),
       );
-  void onResearchTechnology(final ResearchTechnologyEvent event) {
-    // TODO(arenukvern): description
+  void onResearchTechnology(final ResearchTechnologyEvent event) =>
+      updateProgress((final oldProgressTree) {
+        final technologyId = researchingTechnology?.id;
+        if (technologyId == null) {
+          assert(false, 'no technology selected');
+          return oldProgressTree;
+        }
+        final techProgress = _getTechnologyProgress(
+          technologyId: technologyId,
+          progressTree: oldProgressTree,
+        );
+        if (techProgress == null) {
+          assert(false, 'no technology selected');
+          return oldProgressTree;
+        }
+        final investedResearchPoints =
+            (techProgress.unlockCondition.investedResearchPoints) +
+                event.score.value;
+        final updatedProgress = techProgress.copyWith.unlockCondition
+            .call(investedResearchPoints: investedResearchPoints);
+        final updatedAllProgresses = oldProgressTree.copyWith(
+          technologies: {...oldProgressTree.technologies}..[techProgress.id] =
+              updatedProgress,
+        );
+        return updatedAllProgresses;
+      });
+  TechnologyProgressModel? _getTechnologyProgress({
+    required final TechnologyModelId technologyId,
+    required final TechnologyTreeProgressModel progressTree,
+  }) {
+    TechnologyProgressModel? techProgress =
+        progressTree.technologies[technologyId];
+    if (techProgress == null) {
+      final technology = _technologies[technologyId];
+      if (technology == null) {
+        assert(false, 'no technology with id $technologyId');
+      } else {
+        techProgress = TechnologyProgressModel(
+          id: technologyId,
+          unlockCondition: technology.unlockCondition,
+        );
+      }
+    }
+    return techProgress;
   }
+
   void onWordAccepted(final String word) {
     final pair = _wordTechnologyPair[word];
     if (pair == null) return;
     final (:id, :index, :language) = pair;
     updateProgress(
-      (final oldProgress) {
-        TechnologyProgressModel? techProgress = oldProgress.technologies[id];
-        if (techProgress == null) {
-          final technology = _technologies[id];
-          if (technology == null) {
-            assert(false, 'no technology with id $id');
-          } else {
-            techProgress = TechnologyProgressModel(
-              id: id,
-              unlockCondition: technology.unlockCondition,
-            );
-          }
-        }
+      (final oldProgressTree) {
+        var techProgress = _getTechnologyProgress(
+          technologyId: id,
+          progressTree: oldProgressTree,
+        );
         if (techProgress != null) {
           final languageWordsMap = {
             ...techProgress.unlockCondition.languageWords,
@@ -89,9 +124,9 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
               techProgress.copyWith(unlockCondition: unlockCondition);
         }
 
-        return oldProgress.copyWith(
+        return oldProgressTree.copyWith(
           technologies: {
-            ...oldProgress.technologies,
+            ...oldProgressTree.technologies,
             if (techProgress != null) id: techProgress,
           },
         );

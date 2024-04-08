@@ -19,10 +19,6 @@ class LevelBlocEvent with _$LevelBlocEvent {
   const factory LevelBlocEvent.changeCurrentWord({
     required final CurrentWordModel word,
   }) = LevelBlocEventChangeCurrentWord;
-  const factory LevelBlocEvent.endTurn({
-    @Default(EnergyApplicationType.noop)
-    final EnergyApplicationType energyApplicationType,
-  }) = LevelBlocEventEndTurn;
   const factory LevelBlocEvent.selectActionMultiplier({
     required final EnergyMultiplierType multiplier,
   }) = LevelBlocEventSelectActionMultiplier;

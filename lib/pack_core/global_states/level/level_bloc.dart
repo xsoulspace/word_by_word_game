@@ -175,7 +175,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
   }
 
   void onLevelPlayerEndTurnAction(
-    final LevelBlocEventEndTurn event,
+    final EnergyApplicationType energyApplicationType,
   ) {
     final liveState = state;
     final updatedState = liveState.copyWith(
@@ -192,7 +192,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
       multiplier: liveState.energyMultiplier,
       availableScore: liveLevelPlayerState.currentPlayer.highscore.score,
     );
-    switch (event.energyApplicationType) {
+    switch (energyApplicationType) {
       case EnergyApplicationType.refueling:
         levelPlayersCubit
             .onRefuelStorage(RefuelStorageEvent(score: appliedScore));

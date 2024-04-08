@@ -102,7 +102,7 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
 
     /// total amount of research points invested by user
     /// when he decided to research this technology
-    @Default(0) final int investedResearchPoints,
+    @Default(0.0) final double investedResearchPoints,
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(
     final Map<String, dynamic> json,

@@ -22,8 +22,6 @@ mixin _$LevelBlocEvent {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -35,7 +33,6 @@ mixin _$LevelBlocEvent {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) =>
@@ -46,7 +43,6 @@ mixin _$LevelBlocEvent {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -59,7 +55,6 @@ mixin _$LevelBlocEvent {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -72,7 +67,6 @@ mixin _$LevelBlocEvent {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -85,7 +79,6 @@ mixin _$LevelBlocEvent {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -193,8 +186,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -209,7 +200,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -223,7 +213,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -242,7 +231,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -258,7 +246,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -274,7 +261,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -371,8 +357,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -387,7 +371,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -401,7 +384,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -420,7 +402,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -436,7 +417,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -452,7 +432,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -523,8 +502,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -539,7 +516,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -553,7 +529,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -572,7 +547,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -588,7 +562,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -604,7 +577,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -706,8 +678,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -722,7 +692,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -736,7 +705,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -755,7 +723,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -771,7 +738,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -787,7 +753,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -810,185 +775,6 @@ abstract class LevelBlocEventChangeCurrentWord implements LevelBlocEvent {
   @JsonKey(ignore: true)
   _$$LevelBlocEventChangeCurrentWordImplCopyWith<
           _$LevelBlocEventChangeCurrentWordImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LevelBlocEventEndTurnImplCopyWith<$Res> {
-  factory _$$LevelBlocEventEndTurnImplCopyWith(
-          _$LevelBlocEventEndTurnImpl value,
-          $Res Function(_$LevelBlocEventEndTurnImpl) then) =
-      __$$LevelBlocEventEndTurnImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({EnergyApplicationType energyApplicationType});
-}
-
-/// @nodoc
-class __$$LevelBlocEventEndTurnImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res, _$LevelBlocEventEndTurnImpl>
-    implements _$$LevelBlocEventEndTurnImplCopyWith<$Res> {
-  __$$LevelBlocEventEndTurnImplCopyWithImpl(_$LevelBlocEventEndTurnImpl _value,
-      $Res Function(_$LevelBlocEventEndTurnImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? energyApplicationType = null,
-  }) {
-    return _then(_$LevelBlocEventEndTurnImpl(
-      energyApplicationType: null == energyApplicationType
-          ? _value.energyApplicationType
-          : energyApplicationType // ignore: cast_nullable_to_non_nullable
-              as EnergyApplicationType,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$LevelBlocEventEndTurnImpl implements LevelBlocEventEndTurn {
-  const _$LevelBlocEventEndTurnImpl(
-      {this.energyApplicationType = EnergyApplicationType.noop});
-
-  @override
-  @JsonKey()
-  final EnergyApplicationType energyApplicationType;
-
-  @override
-  String toString() {
-    return 'LevelBlocEvent.endTurn(energyApplicationType: $energyApplicationType)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventEndTurnImpl &&
-            (identical(other.energyApplicationType, energyApplicationType) ||
-                other.energyApplicationType == energyApplicationType));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, energyApplicationType);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelBlocEventEndTurnImplCopyWith<_$LevelBlocEventEndTurnImpl>
-      get copyWith => __$$LevelBlocEventEndTurnImplCopyWithImpl<
-          _$LevelBlocEventEndTurnImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return endTurn(energyApplicationType);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return endTurn?.call(energyApplicationType);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (endTurn != null) {
-      return endTurn(energyApplicationType);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return endTurn(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return endTurn?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (endTurn != null) {
-      return endTurn(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LevelBlocEventEndTurn implements LevelBlocEvent {
-  const factory LevelBlocEventEndTurn(
-          {final EnergyApplicationType energyApplicationType}) =
-      _$LevelBlocEventEndTurnImpl;
-
-  EnergyApplicationType get energyApplicationType;
-  @JsonKey(ignore: true)
-  _$$LevelBlocEventEndTurnImplCopyWith<_$LevelBlocEventEndTurnImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1067,8 +853,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -1083,7 +867,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -1097,7 +880,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -1116,7 +898,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -1132,7 +913,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -1148,7 +928,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -1221,8 +1000,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function(EnergyApplicationType energyApplicationType)
-        endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -1237,7 +1014,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -1251,7 +1027,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function(EnergyApplicationType energyApplicationType)? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -1270,7 +1045,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -1286,7 +1060,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -1302,7 +1075,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?

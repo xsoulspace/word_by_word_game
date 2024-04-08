@@ -182,7 +182,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
   void onChangeTechnology() => dialogController.showTechnologiesTree(
         TechnologiesTreeDialogDto.selectable.copyWith(
           onCloseIfChanged: () {
-            compositionCubit.onSelectEnergyMultiplier(multiplier);
+            compositionCubit.onPowerSelected(multiplier);
             // TutorialFrame.sendOnClickEvent(
             //   uiKey: TutorialUiItem.selectRefuelOption,
             //   context: context,
@@ -203,10 +203,13 @@ class _ResearchMultiplierCards extends StatelessWidget {
     final technologyProgress = technologiesCubit.researchingTechnologyProgress;
     final mechanics = context.read<MechanicsCollection>();
     final unlockCondition = technologyProgress?.unlockCondition;
-    final isUnlocked = unlockCondition != null &&
-        mechanics.technology.checkIsUnlockedInSomeLanguages(
-          unlockCondition: unlockCondition,
-        );
+    final (:isUnlocked, :percentage) = () {
+      if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
+      return mechanics.technology.checkIsUnlockedForLanguage(
+        unlockCondition: unlockCondition,
+      );
+    }();
+
     return Row(
       children: [
         Flexible(
@@ -238,6 +241,10 @@ class _ResearchMultiplierCards extends StatelessWidget {
                             style: context.textThemeBold.titleLarge,
                           ),
                         ),
+                        if (!isUnlocked) ...[
+                          const Gap(8),
+                          UiTechnologyLinearProgress(percentage: percentage),
+                        ],
                       ],
                     ),
                   ),
@@ -289,6 +296,19 @@ class _ResearchMultiplierCards extends StatelessWidget {
   }
 }
 
+class UiTechnologyLinearProgress extends StatelessWidget {
+  const UiTechnologyLinearProgress({
+    required this.percentage,
+    super.key,
+  });
+  final double percentage;
+  @override
+  Widget build(final BuildContext context) => LinearProgressIndicator(
+        value: percentage,
+        borderRadius: BorderRadius.circular(8),
+      ).animate().fadeIn();
+}
+
 class _TechnologyMultiplierCard extends StatelessWidget {
   const _TechnologyMultiplierCard({
     required this.type,
@@ -302,7 +322,7 @@ class _TechnologyMultiplierCard extends StatelessWidget {
     return UiActionButton(
       constraints: const BoxConstraints(minWidth: 30),
       onCompleted: () =>
-          composable.compositionState.onSelectEnergyMultiplier(type),
+          composable.compositionState.onInvestToResearchSelected(type),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
