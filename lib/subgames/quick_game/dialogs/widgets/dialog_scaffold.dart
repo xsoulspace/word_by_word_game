@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 class DialogScaffold extends StatelessWidget {
@@ -25,7 +26,8 @@ class DialogScaffold extends StatelessWidget {
         children: children!,
       );
     }
-    return ConstrainedBox(
+    return AnimatedContainer(
+      duration: 50.milliseconds,
       constraints: const BoxConstraints(
         maxWidth: 450,
       ),

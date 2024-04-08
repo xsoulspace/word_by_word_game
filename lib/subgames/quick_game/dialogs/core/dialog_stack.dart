@@ -1,19 +1,16 @@
 import 'dart:async';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart' as life_hooks;
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/ads/ads.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/level_end_dialogs/level_end_dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion/level_word_suggestion.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/tutorial_dialogs/tutorial_dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
-part 'dialog_stack_state.dart';
+part 'dialog_stack_notifier.dart';
 
 enum GameDialogType {
   none,
@@ -22,31 +19,7 @@ enum GameDialogType {
   levelWordSuggestion,
   tutorialBool,
   tutorialOk,
-}
-
-class DefaultDialogOverlayController extends HookWidget {
-  const DefaultDialogOverlayController({
-    required this.builder,
-    super.key,
-  });
-
-  final Widget Function(BuildContext context, DialogController dialogController)
-      builder;
-  @override
-  Widget build(final BuildContext context) {
-    final state = _useDialogStackState(read: context.read);
-
-    return MultiProvider(
-      providers: [
-        Provider<DialogController>.value(value: state.dialogController),
-        ChangeNotifierProvider<DialogStackState>.value(
-          value: state,
-        ),
-      ],
-      builder: (final context, final child) =>
-          builder(context, state.dialogController),
-    );
-  }
+  technologiesTree,
 }
 
 class DialogStack extends HookWidget {
@@ -57,7 +30,8 @@ class DialogStack extends HookWidget {
   final List<Widget> children;
   @override
   Widget build(final BuildContext context) {
-    final state = context.watch<DialogStackState>();
+    final state = context.watch<DialogStackNotifier>();
+    final dialogController = context.read<DialogController>();
     return Stack(
       fit: StackFit.expand,
       children: [
@@ -66,6 +40,10 @@ class DialogStack extends HookWidget {
           isVisible: state.dialogType != GameDialogType.none,
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
+            GameDialogType.technologiesTree => TechnologiesTreeDialog(
+                dto: state.technologiesTreeDto,
+                onClose: dialogController.closeDialogAndResume,
+              ),
             GameDialogType.levelLost => LevelLostDialog(
                 onEndLevel: state.onEndLevel,
                 onRestartLevel: state.onRestartLevel,
@@ -74,9 +52,8 @@ class DialogStack extends HookWidget {
                 onRestart: state.onRestartLevel,
                 onSaveResults: state.onSaveResults,
               ),
-            GameDialogType.levelWordSuggestion => LevelWordSuggestionDialog(
-                onResume: state.onResume,
-              ),
+            GameDialogType.levelWordSuggestion =>
+              const LevelWordSuggestionDialog(),
             GameDialogType.tutorialBool => const TutorialBoolDialog(),
             GameDialogType.tutorialOk => const TutorialOkDialog(),
           },

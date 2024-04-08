@@ -2,6 +2,7 @@ import 'package:flame/cache.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 
 class CanvasCubitDto {
   CanvasCubitDto();
@@ -9,11 +10,10 @@ class CanvasCubitDto {
 
 /// Class for canvas data rendering
 final class CanvasCubit extends DrawerCubit {
-  CanvasCubit({
-    required this.canvasDto,
-    required final DrawerCubitDto drawerCubit,
-  }) : super(
-          dto: drawerCubit,
+  CanvasCubit(final BuildContext context)
+      : canvasDto = CanvasCubitDto(),
+        super(
+          dto: DrawerCubitDto.use(context: context),
           resourcesLoader: ResourcesLoader(
             tilesetAssets: AssetsCache(
               prefix: 'packages/map_editor/assets/images/',

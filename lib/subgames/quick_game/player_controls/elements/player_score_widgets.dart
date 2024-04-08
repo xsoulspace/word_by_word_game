@@ -34,7 +34,7 @@ class UIMobilePlayerScore extends StatelessWidget {
       (final bloc) => bloc.state.currentPlayer.highscore.score.value.toInt(),
     );
     final isHighlighted = context.select<LevelBloc, bool>(
-      (final s) => s.state.phaseType == GamePhaseType.selectFuel,
+      (final s) => s.state.phaseType == GamePhaseType.selectAction,
     );
     final eScore = score ~/ kScoreFactor;
     return _LabelText(

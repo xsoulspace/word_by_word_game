@@ -1,9 +1,10 @@
 name: word-by-word-game
-version: 3.2.0+45
-summary: Word Arcade-> write word based on last 3 letters of last word & pass Landscape
+version: 3.2.1+46
+summary: Word Adventure-> write word based on 3 letters of last word & pass Landscape
 description: |
   Please note: the game is in active development.
   Actual DevLog is available on https://arenukvern.itch.io/word-by-word-game and in Discord server https://discord.com/invite/y54DpJwmAn
+  Or in Discord - https://discord.gg/y54DpJwmAn
 
   You can see also short video updates by the link below:
   https://youtube.com/playlist?list=PLz4tcEeusgWJeJO6RvOxOkfD3XE1pDKFg
@@ -18,10 +19,6 @@ description: |
   - You can play together with friends on the same device.
   - The game remembers the progress - if you press the menu (pause button in the center), the current game will be saved and you can continue later.
   - You can learn new words:)
-
-  ## Have an idea, improvements, or bugs?
-
-  Join Discord - https://discord.gg/y54DpJwmAn
 
   Have fun and a great time!
 icon: snap/gui/word-by-word-game.png

@@ -1,3 +1,5 @@
+// ignore_for_file: invalid_annotation_target
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'character_mechanics.freezed.dart';
@@ -95,6 +97,7 @@ class LiftForceModel with _$LiftForceModel {
 
 @freezed
 class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
+  @JsonSerializable(explicitToJson: true)
   const factory BalloonLiftPowersModel({
     required final double power,
     @Default(0) final double volume,
@@ -108,6 +111,7 @@ class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
 
 @Freezed()
 class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
+  @JsonSerializable(explicitToJson: true)
   const factory BalloonLiftParamsModel({
     required final double maxVolume,
     required final double maxPower,
@@ -124,6 +128,7 @@ class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
 
 @Freezed()
 class ForcesConstantsModel with _$ForcesConstantsModel {
+  @JsonSerializable(explicitToJson: true)
   const factory ForcesConstantsModel({
     required final double gravityForce,
     required final double volumeDecreaseRatio,

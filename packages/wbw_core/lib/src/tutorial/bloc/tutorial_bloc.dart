@@ -12,7 +12,6 @@ import '../../mechanics/mechanics.dart';
 
 part './tutorial_listener.dart';
 part 'tutorial_bloc.freezed.dart';
-part 'tutorial_bloc.g.dart';
 part 'tutorial_data.dart';
 part 'tutorial_events.dart';
 part 'tutorial_states.dart';
@@ -24,9 +23,9 @@ class TutorialBlocDiDto {
 }
 
 class TutorialBloc extends Cubit<TutorialBlocState> {
-  TutorialBloc({
-    required this.diDto,
-  }) : super(const TutorialBlocStateEmpty()) {
+  TutorialBloc(final BuildContext context)
+      : diDto = TutorialBlocDiDto.use(context),
+        super(const TutorialBlocStateEmpty()) {
     notifier = TutorialStateNotifier.listen(bloc: this);
   }
   @override

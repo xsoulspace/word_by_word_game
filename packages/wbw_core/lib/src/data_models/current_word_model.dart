@@ -2,14 +2,13 @@
 
 part of 'data_models.dart';
 
+// extension type FullWordString(String value) {}
 typedef FullWordString = String;
 
 @immutable
 @freezed
 class CurrentWordModel with _$CurrentWordModel {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
+  @JsonSerializable(explicitToJson: true)
   const factory CurrentWordModel({
     @Default([]) final List<int> inactiveIndexes,
     @Default('') final FullWordString fullWord,

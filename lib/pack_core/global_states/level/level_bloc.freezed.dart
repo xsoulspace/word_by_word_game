@@ -12,7 +12,7 @@ part of 'level_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LevelBlocEvent {
@@ -22,7 +22,6 @@ mixin _$LevelBlocEvent {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -34,7 +33,6 @@ mixin _$LevelBlocEvent {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) =>
@@ -45,7 +43,6 @@ mixin _$LevelBlocEvent {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -58,7 +55,6 @@ mixin _$LevelBlocEvent {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -71,7 +67,6 @@ mixin _$LevelBlocEvent {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -84,7 +79,6 @@ mixin _$LevelBlocEvent {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -167,7 +161,7 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventInitImpl &&
@@ -192,7 +186,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -207,7 +200,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -221,7 +213,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -240,7 +231,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -256,7 +246,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -272,7 +261,6 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -344,7 +332,7 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventConsumeTickImpl &&
@@ -369,7 +357,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -384,7 +371,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -398,7 +384,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -417,7 +402,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -433,7 +417,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -449,7 +432,6 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -504,7 +486,7 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventHideWarningImpl);
@@ -520,7 +502,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -535,7 +516,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -549,7 +529,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -568,7 +547,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -584,7 +562,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -600,7 +577,6 @@ class _$LevelBlocEventHideWarningImpl implements LevelBlocEventHideWarning {
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -677,7 +653,7 @@ class _$LevelBlocEventChangeCurrentWordImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventChangeCurrentWordImpl &&
@@ -702,7 +678,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -717,7 +692,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -731,7 +705,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -750,7 +723,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -766,7 +738,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -782,7 +753,6 @@ class _$LevelBlocEventChangeCurrentWordImpl
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -806,148 +776,6 @@ abstract class LevelBlocEventChangeCurrentWord implements LevelBlocEvent {
   _$$LevelBlocEventChangeCurrentWordImplCopyWith<
           _$LevelBlocEventChangeCurrentWordImpl>
       get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$LevelBlocEventEndTurnImplCopyWith<$Res> {
-  factory _$$LevelBlocEventEndTurnImplCopyWith(
-          _$LevelBlocEventEndTurnImpl value,
-          $Res Function(_$LevelBlocEventEndTurnImpl) then) =
-      __$$LevelBlocEventEndTurnImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LevelBlocEventEndTurnImplCopyWithImpl<$Res>
-    extends _$LevelBlocEventCopyWithImpl<$Res, _$LevelBlocEventEndTurnImpl>
-    implements _$$LevelBlocEventEndTurnImplCopyWith<$Res> {
-  __$$LevelBlocEventEndTurnImplCopyWithImpl(_$LevelBlocEventEndTurnImpl _value,
-      $Res Function(_$LevelBlocEventEndTurnImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$LevelBlocEventEndTurnImpl implements LevelBlocEventEndTurn {
-  const _$LevelBlocEventEndTurnImpl();
-
-  @override
-  String toString() {
-    return 'LevelBlocEvent.endTurn()';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelBlocEventEndTurnImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(LevelModel levelModel) init,
-    required TResult Function(int timeDeltaInSeconds) consumeTick,
-    required TResult Function() hideWarning,
-    required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
-    required TResult Function(EnergyMultiplierType multiplier)
-        selectActionMultiplier,
-    required TResult Function() addNewWordToDictionary,
-  }) {
-    return endTurn();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelModel levelModel)? init,
-    TResult? Function(int timeDeltaInSeconds)? consumeTick,
-    TResult? Function()? hideWarning,
-    TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
-    TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult? Function()? addNewWordToDictionary,
-  }) {
-    return endTurn?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelModel levelModel)? init,
-    TResult Function(int timeDeltaInSeconds)? consumeTick,
-    TResult Function()? hideWarning,
-    TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
-    TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
-    TResult Function()? addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (endTurn != null) {
-      return endTurn();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(LevelBlocEventInit value) init,
-    required TResult Function(LevelBlocEventConsumeTick value) consumeTick,
-    required TResult Function(LevelBlocEventHideWarning value) hideWarning,
-    required TResult Function(LevelBlocEventChangeCurrentWord value)
-        changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
-    required TResult Function(LevelBlocEventSelectActionMultiplier value)
-        selectActionMultiplier,
-    required TResult Function(LevelBlocEventAddNewWordToDictionary value)
-        addNewWordToDictionary,
-  }) {
-    return endTurn(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(LevelBlocEventInit value)? init,
-    TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
-    TResult? Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-  }) {
-    return endTurn?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(LevelBlocEventInit value)? init,
-    TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
-    TResult Function(LevelBlocEventHideWarning value)? hideWarning,
-    TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
-    TResult Function(LevelBlocEventSelectActionMultiplier value)?
-        selectActionMultiplier,
-    TResult Function(LevelBlocEventAddNewWordToDictionary value)?
-        addNewWordToDictionary,
-    required TResult orElse(),
-  }) {
-    if (endTurn != null) {
-      return endTurn(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class LevelBlocEventEndTurn implements LevelBlocEvent {
-  const factory LevelBlocEventEndTurn() = _$LevelBlocEventEndTurnImpl;
 }
 
 /// @nodoc
@@ -999,7 +827,7 @@ class _$LevelBlocEventSelectActionMultiplierImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventSelectActionMultiplierImpl &&
@@ -1025,7 +853,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -1040,7 +867,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -1054,7 +880,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -1073,7 +898,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -1089,7 +913,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -1105,7 +928,6 @@ class _$LevelBlocEventSelectActionMultiplierImpl
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -1162,7 +984,7 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocEventAddNewWordToDictionaryImpl);
@@ -1178,7 +1000,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     required TResult Function(int timeDeltaInSeconds) consumeTick,
     required TResult Function() hideWarning,
     required TResult Function(CurrentWordModel word) changeCurrentWord,
-    required TResult Function() endTurn,
     required TResult Function(EnergyMultiplierType multiplier)
         selectActionMultiplier,
     required TResult Function() addNewWordToDictionary,
@@ -1193,7 +1014,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult? Function(int timeDeltaInSeconds)? consumeTick,
     TResult? Function()? hideWarning,
     TResult? Function(CurrentWordModel word)? changeCurrentWord,
-    TResult? Function()? endTurn,
     TResult? Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult? Function()? addNewWordToDictionary,
   }) {
@@ -1207,7 +1027,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult Function(int timeDeltaInSeconds)? consumeTick,
     TResult Function()? hideWarning,
     TResult Function(CurrentWordModel word)? changeCurrentWord,
-    TResult Function()? endTurn,
     TResult Function(EnergyMultiplierType multiplier)? selectActionMultiplier,
     TResult Function()? addNewWordToDictionary,
     required TResult orElse(),
@@ -1226,7 +1045,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     required TResult Function(LevelBlocEventHideWarning value) hideWarning,
     required TResult Function(LevelBlocEventChangeCurrentWord value)
         changeCurrentWord,
-    required TResult Function(LevelBlocEventEndTurn value) endTurn,
     required TResult Function(LevelBlocEventSelectActionMultiplier value)
         selectActionMultiplier,
     required TResult Function(LevelBlocEventAddNewWordToDictionary value)
@@ -1242,7 +1060,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult? Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult? Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult? Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult? Function(LevelBlocEventEndTurn value)? endTurn,
     TResult? Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult? Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -1258,7 +1075,6 @@ class _$LevelBlocEventAddNewWordToDictionaryImpl
     TResult Function(LevelBlocEventConsumeTick value)? consumeTick,
     TResult Function(LevelBlocEventHideWarning value)? hideWarning,
     TResult Function(LevelBlocEventChangeCurrentWord value)? changeCurrentWord,
-    TResult Function(LevelBlocEventEndTurn value)? endTurn,
     TResult Function(LevelBlocEventSelectActionMultiplier value)?
         selectActionMultiplier,
     TResult Function(LevelBlocEventAddNewWordToDictionary value)?
@@ -1284,13 +1100,15 @@ mixin _$LevelBlocState {
   Map<String, String> get words => throw _privateConstructorUsedError;
   String get latestWord => throw _privateConstructorUsedError;
   GamePhaseType get phaseType => throw _privateConstructorUsedError;
-  EnergyMultiplierType get actionMultiplier =>
+  EnergyMultiplierType get energyMultiplier =>
       throw _privateConstructorUsedError;
 
   /// ********************************************
   /// *      NON PERSISTENT
   /// ********************************************
   WordWarning get wordWarning => throw _privateConstructorUsedError;
+  LevelFeaturesSettingsModel get featuresSettings =>
+      throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LevelBlocStateCopyWith<LevelBlocState> get copyWith =>
@@ -1309,11 +1127,13 @@ abstract class $LevelBlocStateCopyWith<$Res> {
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      EnergyMultiplierType actionMultiplier,
-      WordWarning wordWarning});
+      EnergyMultiplierType energyMultiplier,
+      WordWarning wordWarning,
+      LevelFeaturesSettingsModel featuresSettings});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $CurrentWordModelCopyWith<$Res> get currentWord;
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 }
 
 /// @nodoc
@@ -1334,8 +1154,9 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
     Object? words = null,
     Object? latestWord = null,
     Object? phaseType = null,
-    Object? actionMultiplier = null,
+    Object? energyMultiplier = null,
     Object? wordWarning = null,
+    Object? featuresSettings = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1358,14 +1179,18 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
           ? _value.phaseType
           : phaseType // ignore: cast_nullable_to_non_nullable
               as GamePhaseType,
-      actionMultiplier: null == actionMultiplier
-          ? _value.actionMultiplier
-          : actionMultiplier // ignore: cast_nullable_to_non_nullable
+      energyMultiplier: null == energyMultiplier
+          ? _value.energyMultiplier
+          : energyMultiplier // ignore: cast_nullable_to_non_nullable
               as EnergyMultiplierType,
       wordWarning: null == wordWarning
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
               as WordWarning,
+      featuresSettings: null == featuresSettings
+          ? _value.featuresSettings
+          : featuresSettings // ignore: cast_nullable_to_non_nullable
+              as LevelFeaturesSettingsModel,
     ) as $Val);
   }
 
@@ -1384,6 +1209,15 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
       return _then(_value.copyWith(currentWord: value) as $Val);
     });
   }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
+    return $LevelFeaturesSettingsModelCopyWith<$Res>(_value.featuresSettings,
+        (value) {
+      return _then(_value.copyWith(featuresSettings: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -1400,13 +1234,16 @@ abstract class _$$LevelBlocStateImplCopyWith<$Res>
       Map<String, String> words,
       String latestWord,
       GamePhaseType phaseType,
-      EnergyMultiplierType actionMultiplier,
-      WordWarning wordWarning});
+      EnergyMultiplierType energyMultiplier,
+      WordWarning wordWarning,
+      LevelFeaturesSettingsModel featuresSettings});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get id;
   @override
   $CurrentWordModelCopyWith<$Res> get currentWord;
+  @override
+  $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 }
 
 /// @nodoc
@@ -1425,8 +1262,9 @@ class __$$LevelBlocStateImplCopyWithImpl<$Res>
     Object? words = null,
     Object? latestWord = null,
     Object? phaseType = null,
-    Object? actionMultiplier = null,
+    Object? energyMultiplier = null,
     Object? wordWarning = null,
+    Object? featuresSettings = null,
   }) {
     return _then(_$LevelBlocStateImpl(
       id: null == id
@@ -1449,14 +1287,18 @@ class __$$LevelBlocStateImplCopyWithImpl<$Res>
           ? _value.phaseType
           : phaseType // ignore: cast_nullable_to_non_nullable
               as GamePhaseType,
-      actionMultiplier: null == actionMultiplier
-          ? _value.actionMultiplier
-          : actionMultiplier // ignore: cast_nullable_to_non_nullable
+      energyMultiplier: null == energyMultiplier
+          ? _value.energyMultiplier
+          : energyMultiplier // ignore: cast_nullable_to_non_nullable
               as EnergyMultiplierType,
       wordWarning: null == wordWarning
           ? _value.wordWarning
           : wordWarning // ignore: cast_nullable_to_non_nullable
               as WordWarning,
+      featuresSettings: null == featuresSettings
+          ? _value.featuresSettings
+          : featuresSettings // ignore: cast_nullable_to_non_nullable
+              as LevelFeaturesSettingsModel,
     ));
   }
 }
@@ -1470,8 +1312,9 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
       final Map<String, String> words = const {},
       this.latestWord = '',
       this.phaseType = GamePhaseType.entryWord,
-      this.actionMultiplier = EnergyMultiplierType.m1,
-      this.wordWarning = WordWarning.none})
+      this.energyMultiplier = EnergyMultiplierType.m1,
+      this.wordWarning = WordWarning.none,
+      this.featuresSettings = LevelFeaturesSettingsModel.empty})
       : _words = words;
 
   @override
@@ -1497,7 +1340,7 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
   final GamePhaseType phaseType;
   @override
   @JsonKey()
-  final EnergyMultiplierType actionMultiplier;
+  final EnergyMultiplierType energyMultiplier;
 
   /// ********************************************
   /// *      NON PERSISTENT
@@ -1505,14 +1348,17 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
   @override
   @JsonKey()
   final WordWarning wordWarning;
+  @override
+  @JsonKey()
+  final LevelFeaturesSettingsModel featuresSettings;
 
   @override
   String toString() {
-    return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, wordWarning: $wordWarning)';
+    return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, energyMultiplier: $energyMultiplier, wordWarning: $wordWarning, featuresSettings: $featuresSettings)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LevelBlocStateImpl &&
@@ -1524,10 +1370,12 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
                 other.latestWord == latestWord) &&
             (identical(other.phaseType, phaseType) ||
                 other.phaseType == phaseType) &&
-            (identical(other.actionMultiplier, actionMultiplier) ||
-                other.actionMultiplier == actionMultiplier) &&
+            (identical(other.energyMultiplier, energyMultiplier) ||
+                other.energyMultiplier == energyMultiplier) &&
             (identical(other.wordWarning, wordWarning) ||
-                other.wordWarning == wordWarning));
+                other.wordWarning == wordWarning) &&
+            (identical(other.featuresSettings, featuresSettings) ||
+                other.featuresSettings == featuresSettings));
   }
 
   @override
@@ -1538,8 +1386,9 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
       const DeepCollectionEquality().hash(_words),
       latestWord,
       phaseType,
-      actionMultiplier,
-      wordWarning);
+      energyMultiplier,
+      wordWarning,
+      featuresSettings);
 
   @JsonKey(ignore: true)
   @override
@@ -1551,13 +1400,15 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
 
 abstract class _LevelBlocState implements LevelBlocState {
   const factory _LevelBlocState(
-      {final CanvasDataModelId id,
-      final CurrentWordModel currentWord,
-      final Map<String, String> words,
-      final String latestWord,
-      final GamePhaseType phaseType,
-      final EnergyMultiplierType actionMultiplier,
-      final WordWarning wordWarning}) = _$LevelBlocStateImpl;
+          {final CanvasDataModelId id,
+          final CurrentWordModel currentWord,
+          final Map<String, String> words,
+          final String latestWord,
+          final GamePhaseType phaseType,
+          final EnergyMultiplierType energyMultiplier,
+          final WordWarning wordWarning,
+          final LevelFeaturesSettingsModel featuresSettings}) =
+      _$LevelBlocStateImpl;
 
   @override
   CanvasDataModelId get id;
@@ -1570,13 +1421,15 @@ abstract class _LevelBlocState implements LevelBlocState {
   @override
   GamePhaseType get phaseType;
   @override
-  EnergyMultiplierType get actionMultiplier;
+  EnergyMultiplierType get energyMultiplier;
   @override
 
   /// ********************************************
   /// *      NON PERSISTENT
   /// ********************************************
   WordWarning get wordWarning;
+  @override
+  LevelFeaturesSettingsModel get featuresSettings;
   @override
   @JsonKey(ignore: true)
   _$$LevelBlocStateImplCopyWith<_$LevelBlocStateImpl> get copyWith =>

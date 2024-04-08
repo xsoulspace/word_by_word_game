@@ -6,8 +6,9 @@ part of 'preset_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_PresetTileModel _$$_PresetTileModelFromJson(Map<String, dynamic> json) =>
-    _$_PresetTileModel(
+_$PresetTileModelImpl _$$PresetTileModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$PresetTileModelImpl(
       id: TileId.fromJson(json['id'] as String),
       type: $enumDecode(_$TileTypeEnumMap, json['type']),
       category: $enumDecode(_$DataCategoryTypeEnumMap, json['category']),
@@ -19,7 +20,8 @@ _$_PresetTileModel _$$_PresetTileModelFromJson(Map<String, dynamic> json) =>
               json['properties'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_PresetTileModelToJson(_$_PresetTileModel instance) =>
+Map<String, dynamic> _$$PresetTileModelImplToJson(
+        _$PresetTileModelImpl instance) =>
     <String, dynamic>{
       'id': instance.id,
       'type': _$TileTypeEnumMap[instance.type]!,
@@ -43,9 +45,9 @@ const _$DataCategoryTypeEnumMap = {
   DataCategoryType.other: 'other',
 };
 
-_$_PresetTilePropertiesModel _$$_PresetTilePropertiesModelFromJson(
+_$PresetTilePropertiesModelImpl _$$PresetTilePropertiesModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_PresetTilePropertiesModel(
+    _$PresetTilePropertiesModelImpl(
       title: json['title'] as String? ?? '',
       thumbnailPath: json['thumbnail_path'] as String? ?? '',
       description: json['description'] == null
@@ -54,17 +56,17 @@ _$_PresetTilePropertiesModel _$$_PresetTilePropertiesModelFromJson(
               json['description'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_PresetTilePropertiesModelToJson(
-        _$_PresetTilePropertiesModel instance) =>
+Map<String, dynamic> _$$PresetTilePropertiesModelImplToJson(
+        _$PresetTilePropertiesModelImpl instance) =>
     <String, dynamic>{
       'title': instance.title,
       'thumbnail_path': instance.thumbnailPath,
       'description': LocalizedMap.toJsonValueMap(instance.description),
     };
 
-_$_PresetTileGraphicsModel _$$_PresetTileGraphicsModelFromJson(
+_$PresetTileGraphicsModelImpl _$$PresetTileGraphicsModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_PresetTileGraphicsModel(
+    _$PresetTileGraphicsModelImpl(
       type: $enumDecode(_$TileGraphicsTypeEnumMap, json['type']),
       animated: json['animated'] as bool? ?? false,
       behaviours: (json['behaviours'] as List<dynamic>?)
@@ -73,8 +75,8 @@ _$_PresetTileGraphicsModel _$$_PresetTileGraphicsModelFromJson(
           const [],
     );
 
-Map<String, dynamic> _$$_PresetTileGraphicsModelToJson(
-        _$_PresetTileGraphicsModel instance) =>
+Map<String, dynamic> _$$PresetTileGraphicsModelImplToJson(
+        _$PresetTileGraphicsModelImpl instance) =>
     <String, dynamic>{
       'type': _$TileGraphicsTypeEnumMap[instance.type]!,
       'animated': instance.animated,
@@ -97,9 +99,9 @@ const _$TileBehaviourTypeEnumMap = {
   TileBehaviourType.flyRight: 'fly_right',
 };
 
-_$_TilesetPresetDataModel _$$_TilesetPresetDataModelFromJson(
+_$TilesetPresetDataModelImpl _$$TilesetPresetDataModelImplFromJson(
         Map<String, dynamic> json) =>
-    _$_TilesetPresetDataModel(
+    _$TilesetPresetDataModelImpl(
       tiles: json['tiles'] == null
           ? const {}
           : TilesetPresetDataModel._tilesFromJson(
@@ -135,8 +137,8 @@ _$_TilesetPresetDataModel _$$_TilesetPresetDataModelFromJson(
           : TilesetThemeModel.fromJson(json['theme'] as Map<String, dynamic>),
     );
 
-Map<String, dynamic> _$$_TilesetPresetDataModelToJson(
-        _$_TilesetPresetDataModel instance) =>
+Map<String, dynamic> _$$TilesetPresetDataModelImplToJson(
+        _$TilesetPresetDataModelImpl instance) =>
     <String, dynamic>{
       'tiles': TilesetPresetDataModel._tilesToJson(instance.tiles),
       'objects': TilesetPresetDataModel._tilesToJson(instance.objects),
@@ -172,13 +174,14 @@ const _$TilesetTypeEnumMap = {
   TilesetType.evening: 'evening',
 };
 
-_$_TilesetThemeModel _$$_TilesetThemeModelFromJson(Map<String, dynamic> json) =>
-    _$_TilesetThemeModel(
+_$TilesetThemeModelImpl _$$TilesetThemeModelImplFromJson(
+        Map<String, dynamic> json) =>
+    _$TilesetThemeModelImpl(
       backgroundSkyColorHex: json['backgroundSkyColorHex'] as String,
     );
 
-Map<String, dynamic> _$$_TilesetThemeModelToJson(
-        _$_TilesetThemeModel instance) =>
+Map<String, dynamic> _$$TilesetThemeModelImplToJson(
+        _$TilesetThemeModelImpl instance) =>
     <String, dynamic>{
       'backgroundSkyColorHex': instance.backgroundSkyColorHex,
     };

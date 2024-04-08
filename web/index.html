@@ -39,14 +39,8 @@
     <title>Word by Word Game</title>
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" type="text/css" href="./styles.css" />
-    <script>
-      // The value below is injected by flutter build, do not touch.
-      var serviceWorkerVersion = null;
-    </script>
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"></script>
-    <!-- This script adds the flutter initialization JS code -->
-    <script src="flutter.js" defer></script>
+    <!-- <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.14.0/firebase-analytics.js"></script> -->
     <script src="https://sdk.crazygames.com/crazygames-sdk-v2.js"></script>
   </head>
   <body>
@@ -60,29 +54,6 @@
       <span class="loader" alt="Loading indicator..."></span>
     </main>
 
-    <script>
-      window.addEventListener("load", function (ev) {
-        window.CrazyGames.SDK.game.sdkGameLoadingStart();
-        var loading = document.querySelector("#loading");
-
-        // Download main.dart.js
-        _flutter.loader.loadEntrypoint({
-          serviceWorker: {
-            serviceWorkerVersion: serviceWorkerVersion,
-          },
-          onEntrypointLoaded: async function (engineInitializer) {
-            loading.classList.add("main_done");
-            let appRunner = await engineInitializer.initializeEngine();
-
-            loading.classList.add("init_done");
-            await appRunner.runApp();
-            window.setTimeout(function () {
-              loading.remove();
-              window.CrazyGames.SDK.game.sdkGameLoadingStop();
-            }, 200);
-          },
-        });
-      });
-    </script>
+    <script src="flutter_bootstrap.js" async></script>
   </body>
 </html>

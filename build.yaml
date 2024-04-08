@@ -9,3 +9,5 @@ targets:
           addImplicitFinal: true
           copyWith: true
           unionValueCase: pascal
+          # enable for production only
+          # format: false

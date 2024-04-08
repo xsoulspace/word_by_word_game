@@ -18,41 +18,40 @@ class WbwGameWidget extends HookWidget {
     final backgroundColor = context.select<CanvasCubit, Color>(
       (final cubit) => cubit.tilesPresetResources.theme.backgroundSkyColor,
     );
+    final dialogController = context.read<DialogController>();
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: backgroundColor,
       body: Portal(
-        child: DefaultDialogOverlayController(
-          builder: (final context, final dialogController) => MouseRegion(
-            onEnter: (final event) {
-              if (!gameFocusNode.hasFocus) gameFocusNode.requestFocus();
-            },
-            child: GameWidget<CanvasRendererGame>.controlled(
-              focusNode: gameFocusNode,
-              gameFactory: () => CanvasRendererGame.use(
-                context: context,
-                dialogController: dialogController,
-                theme: Theme.of(context),
-              ),
-              //Work in progress loading screen on game start
-              loadingBuilder: (final context) => const LoadingScreen(),
-              initialActiveOverlays: [
-                GameOverlaysRoutes.gui.name,
-                GameOverlaysRoutes.notifications.name,
-                GameOverlaysRoutes.debug.name,
-              ],
-              overlayBuilderMap: const GameOverlayBuilderMapRouter().build(),
-              //Work in progress error handling
-              errorBuilder: (final context, final ex) {
-                //Print the error in th dev console
-                debugPrint(ex.toString());
-                return const Center(
-                  child: Text(
-                    'Sorry, something went wrong. Reload me',
-                  ),
-                );
-              },
+        child: MouseRegion(
+          onEnter: (final event) {
+            if (!gameFocusNode.hasFocus) gameFocusNode.requestFocus();
+          },
+          child: GameWidget<CanvasRendererGame>.controlled(
+            focusNode: gameFocusNode,
+            gameFactory: () => CanvasRendererGame.use(
+              context: context,
+              dialogController: dialogController,
+              theme: Theme.of(context),
             ),
+            //Work in progress loading screen on game start
+            loadingBuilder: (final context) => const LoadingScreen(),
+            initialActiveOverlays: [
+              GameOverlaysRoutes.gui.name,
+              GameOverlaysRoutes.notifications.name,
+              GameOverlaysRoutes.debug.name,
+            ],
+            overlayBuilderMap: const GameOverlayBuilderMapRouter().build(),
+            //Work in progress error handling
+            errorBuilder: (final context, final ex) {
+              //Print the error in th dev console
+              debugPrint(ex.toString());
+              return const Center(
+                child: Text(
+                  'Sorry, something went wrong. Reload me',
+                ),
+              );
+            },
           ),
         ),
       ),

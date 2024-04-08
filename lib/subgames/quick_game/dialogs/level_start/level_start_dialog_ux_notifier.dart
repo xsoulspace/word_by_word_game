@@ -12,32 +12,17 @@ class _LevelStartDialogUxStateDiDto {
   final MechanicsCollection mechanics;
 }
 
-LevelStartDialogUxState _useLevelStartDialogUxState({
-  required final Locator read,
-  required final CanvasDataModel canvasData,
-}) =>
-    use(
-      LifeHook(
-        debugLabel: 'LevelStartDialogUxState',
-        state: LevelStartDialogUxState(
-          diDto: _LevelStartDialogUxStateDiDto.use(read),
-          canvasData: canvasData,
-        ),
-      ),
-    );
-
-class LevelStartDialogUxState extends LifeState {
-  LevelStartDialogUxState({
-    required this.diDto,
+class LevelStartDialogUxNotifier extends ValueNotifier<String> {
+  LevelStartDialogUxNotifier({
+    required final BuildContext context,
     required this.canvasData,
-  });
+  })  : diDto = _LevelStartDialogUxStateDiDto.use(context.read),
+        super('') {
+    onLoad();
+  }
   final CanvasDataModel canvasData;
   final _LevelStartDialogUxStateDiDto diDto;
-
-  PlayerCharacterModel? character;
-  @override
-  void initState() {
-    super.initState();
+  void onLoad() {
     final liveState = diDto.globalGameBloc.state;
     character = liveState.playersCharacters.first;
     final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
@@ -47,11 +32,13 @@ class LevelStartDialogUxState extends LifeState {
     shouldStartTutorial = !isTutorialPlayed;
   }
 
+  PlayerCharacterModel? character;
+
   bool checkIsCharacterSelected(final PlayerCharacterModel char) =>
       character?.id == char.id;
   void onCharacterPressed(final PlayerCharacterModel newCharacter) {
     character = newCharacter;
-    setState();
+    notifyListeners();
   }
 
   final playersIds = <PlayerProfileModelId>[];
@@ -62,7 +49,7 @@ class LevelStartDialogUxState extends LifeState {
     } else {
       playersIds.add(profile.id);
     }
-    setState();
+    notifyListeners();
   }
 
   bool checkIsPlayerSelected(final PlayerProfileModel player) =>
@@ -80,7 +67,17 @@ class LevelStartDialogUxState extends LifeState {
   // ignore: avoid_positional_boolean_parameters
   void changeShouldStartTutorial(final bool? isTutorialEnabled) {
     shouldStartTutorial = isTutorialEnabled ?? false;
-    setState();
+    notifyListeners();
+  }
+
+  LevelFeaturesSettingsModel featuresSettings =
+      LevelFeaturesSettingsModel.empty;
+  void changeFeaturesSettings(
+    final LevelFeaturesSettingsModel Function(LevelFeaturesSettingsModel old)
+        update,
+  ) {
+    featuresSettings = update(featuresSettings);
+    notifyListeners();
   }
 
   Future<void> onPlay() async {
@@ -88,6 +85,7 @@ class LevelStartDialogUxState extends LifeState {
       canvasDataId: canvasData.id,
       playersIds: playersIds,
       characterId: character!.id,
+      featuresSettings: featuresSettings,
     );
     await diDto.globalGameBloc
         .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));

@@ -158,11 +158,11 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
 }
 
 /// @nodoc
-abstract class _$$_DrawerCubitStateCopyWith<$Res>
+abstract class _$$DrawerCubitStateImplCopyWith<$Res>
     implements $DrawerCubitStateCopyWith<$Res> {
-  factory _$$_DrawerCubitStateCopyWith(
-          _$_DrawerCubitState value, $Res Function(_$_DrawerCubitState) then) =
-      __$$_DrawerCubitStateCopyWithImpl<$Res>;
+  factory _$$DrawerCubitStateImplCopyWith(_$DrawerCubitStateImpl value,
+          $Res Function(_$DrawerCubitStateImpl) then) =
+      __$$DrawerCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -186,11 +186,11 @@ abstract class _$$_DrawerCubitStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_DrawerCubitStateCopyWithImpl<$Res>
-    extends _$DrawerCubitStateCopyWithImpl<$Res, _$_DrawerCubitState>
-    implements _$$_DrawerCubitStateCopyWith<$Res> {
-  __$$_DrawerCubitStateCopyWithImpl(
-      _$_DrawerCubitState _value, $Res Function(_$_DrawerCubitState) _then)
+class __$$DrawerCubitStateImplCopyWithImpl<$Res>
+    extends _$DrawerCubitStateCopyWithImpl<$Res, _$DrawerCubitStateImpl>
+    implements _$$DrawerCubitStateImplCopyWith<$Res> {
+  __$$DrawerCubitStateImplCopyWithImpl(_$DrawerCubitStateImpl _value,
+      $Res Function(_$DrawerCubitStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -205,7 +205,7 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
     Object? tileResources = null,
     Object? tilesetsConfigs = null,
   }) {
-    return _then(_$_DrawerCubitState(
+    return _then(_$DrawerCubitStateImpl(
       origin: null == origin
           ? _value.origin
           : origin // ignore: cast_nullable_to_non_nullable
@@ -244,8 +244,8 @@ class __$$_DrawerCubitStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_DrawerCubitState extends _DrawerCubitState {
-  const _$_DrawerCubitState(
+class _$DrawerCubitStateImpl extends _DrawerCubitState {
+  const _$DrawerCubitStateImpl(
       {required this.origin,
       this.tileToDraw,
       this.isDeleteSelection = false,
@@ -302,7 +302,7 @@ class _$_DrawerCubitState extends _DrawerCubitState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_DrawerCubitState &&
+            other is _$DrawerCubitStateImpl &&
             (identical(other.origin, origin) || other.origin == origin) &&
             (identical(other.tileToDraw, tileToDraw) ||
                 other.tileToDraw == tileToDraw) &&
@@ -337,8 +337,9 @@ class _$_DrawerCubitState extends _DrawerCubitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>
-      __$$_DrawerCubitStateCopyWithImpl<_$_DrawerCubitState>(this, _$identity);
+  _$$DrawerCubitStateImplCopyWith<_$DrawerCubitStateImpl> get copyWith =>
+      __$$DrawerCubitStateImplCopyWithImpl<_$DrawerCubitStateImpl>(
+          this, _$identity);
 }
 
 abstract class _DrawerCubitState extends DrawerCubitState {
@@ -350,7 +351,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
       final CanvasDataModel canvasData,
       final LayerModelId drawLayerId,
       final TilesetPresetResources tileResources,
-      final List<TilesetConfigModel> tilesetsConfigs}) = _$_DrawerCubitState;
+      final List<TilesetConfigModel> tilesetsConfigs}) = _$DrawerCubitStateImpl;
   const _DrawerCubitState._() : super._();
 
   @override
@@ -380,7 +381,7 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   List<TilesetConfigModel> get tilesetsConfigs;
   @override
   @JsonKey(ignore: true)
-  _$$_DrawerCubitStateCopyWith<_$_DrawerCubitState> get copyWith =>
+  _$$DrawerCubitStateImplCopyWith<_$DrawerCubitStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -427,22 +428,22 @@ class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
 }
 
 /// @nodoc
-abstract class _$$_MapEditorBlocStateCopyWith<$Res>
+abstract class _$$MapEditorBlocStateImplCopyWith<$Res>
     implements $MapEditorBlocStateCopyWith<$Res> {
-  factory _$$_MapEditorBlocStateCopyWith(_$_MapEditorBlocState value,
-          $Res Function(_$_MapEditorBlocState) then) =
-      __$$_MapEditorBlocStateCopyWithImpl<$Res>;
+  factory _$$MapEditorBlocStateImplCopyWith(_$MapEditorBlocStateImpl value,
+          $Res Function(_$MapEditorBlocStateImpl) then) =
+      __$$MapEditorBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isEditing});
 }
 
 /// @nodoc
-class __$$_MapEditorBlocStateCopyWithImpl<$Res>
-    extends _$MapEditorBlocStateCopyWithImpl<$Res, _$_MapEditorBlocState>
-    implements _$$_MapEditorBlocStateCopyWith<$Res> {
-  __$$_MapEditorBlocStateCopyWithImpl(
-      _$_MapEditorBlocState _value, $Res Function(_$_MapEditorBlocState) _then)
+class __$$MapEditorBlocStateImplCopyWithImpl<$Res>
+    extends _$MapEditorBlocStateCopyWithImpl<$Res, _$MapEditorBlocStateImpl>
+    implements _$$MapEditorBlocStateImplCopyWith<$Res> {
+  __$$MapEditorBlocStateImplCopyWithImpl(_$MapEditorBlocStateImpl _value,
+      $Res Function(_$MapEditorBlocStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -450,7 +451,7 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
   $Res call({
     Object? isEditing = null,
   }) {
-    return _then(_$_MapEditorBlocState(
+    return _then(_$MapEditorBlocStateImpl(
       isEditing: null == isEditing
           ? _value.isEditing
           : isEditing // ignore: cast_nullable_to_non_nullable
@@ -461,8 +462,8 @@ class __$$_MapEditorBlocStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_MapEditorBlocState implements _MapEditorBlocState {
-  const _$_MapEditorBlocState({this.isEditing = false});
+class _$MapEditorBlocStateImpl implements _MapEditorBlocState {
+  const _$MapEditorBlocStateImpl({this.isEditing = false});
 
   @override
   @JsonKey()
@@ -477,7 +478,7 @@ class _$_MapEditorBlocState implements _MapEditorBlocState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_MapEditorBlocState &&
+            other is _$MapEditorBlocStateImpl &&
             (identical(other.isEditing, isEditing) ||
                 other.isEditing == isEditing));
   }
@@ -488,20 +489,20 @@ class _$_MapEditorBlocState implements _MapEditorBlocState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_MapEditorBlocStateCopyWith<_$_MapEditorBlocState> get copyWith =>
-      __$$_MapEditorBlocStateCopyWithImpl<_$_MapEditorBlocState>(
+  _$$MapEditorBlocStateImplCopyWith<_$MapEditorBlocStateImpl> get copyWith =>
+      __$$MapEditorBlocStateImplCopyWithImpl<_$MapEditorBlocStateImpl>(
           this, _$identity);
 }
 
 abstract class _MapEditorBlocState implements MapEditorBlocState {
   const factory _MapEditorBlocState({final bool isEditing}) =
-      _$_MapEditorBlocState;
+      _$MapEditorBlocStateImpl;
 
   @override
   bool get isEditing;
   @override
   @JsonKey(ignore: true)
-  _$$_MapEditorBlocStateCopyWith<_$_MapEditorBlocState> get copyWith =>
+  _$$MapEditorBlocStateImplCopyWith<_$MapEditorBlocStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -582,11 +583,11 @@ class _$WorldStateCopyWithImpl<$Res, $Val extends WorldState>
 }
 
 /// @nodoc
-abstract class _$$_WorldStateCopyWith<$Res>
+abstract class _$$WorldStateImplCopyWith<$Res>
     implements $WorldStateCopyWith<$Res> {
-  factory _$$_WorldStateCopyWith(
-          _$_WorldState value, $Res Function(_$_WorldState) then) =
-      __$$_WorldStateCopyWithImpl<$Res>;
+  factory _$$WorldStateImplCopyWith(
+          _$WorldStateImpl value, $Res Function(_$WorldStateImpl) then) =
+      __$$WorldStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -601,11 +602,11 @@ abstract class _$$_WorldStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_WorldStateCopyWithImpl<$Res>
-    extends _$WorldStateCopyWithImpl<$Res, _$_WorldState>
-    implements _$$_WorldStateCopyWith<$Res> {
-  __$$_WorldStateCopyWithImpl(
-      _$_WorldState _value, $Res Function(_$_WorldState) _then)
+class __$$WorldStateImplCopyWithImpl<$Res>
+    extends _$WorldStateCopyWithImpl<$Res, _$WorldStateImpl>
+    implements _$$WorldStateImplCopyWith<$Res> {
+  __$$WorldStateImplCopyWithImpl(
+      _$WorldStateImpl _value, $Res Function(_$WorldStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -615,7 +616,7 @@ class __$$_WorldStateCopyWithImpl<$Res>
     Object? lastDateTime = null,
     Object? dateTimeDelta = null,
   }) {
-    return _then(_$_WorldState(
+    return _then(_$WorldStateImpl(
       dateTime: null == dateTime
           ? _value.dateTime
           : dateTime // ignore: cast_nullable_to_non_nullable
@@ -634,8 +635,8 @@ class __$$_WorldStateCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_WorldState extends _WorldState {
-  const _$_WorldState(
+class _$WorldStateImpl extends _WorldState {
+  const _$WorldStateImpl(
       {this.dateTime = WorldDateTimeModel.zero,
       this.lastDateTime = WorldDateTimeModel.zero,
       this.dateTimeDelta = 0})
@@ -660,7 +661,7 @@ class _$_WorldState extends _WorldState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WorldState &&
+            other is _$WorldStateImpl &&
             (identical(other.dateTime, dateTime) ||
                 other.dateTime == dateTime) &&
             (identical(other.lastDateTime, lastDateTime) ||
@@ -676,15 +677,15 @@ class _$_WorldState extends _WorldState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WorldStateCopyWith<_$_WorldState> get copyWith =>
-      __$$_WorldStateCopyWithImpl<_$_WorldState>(this, _$identity);
+  _$$WorldStateImplCopyWith<_$WorldStateImpl> get copyWith =>
+      __$$WorldStateImplCopyWithImpl<_$WorldStateImpl>(this, _$identity);
 }
 
 abstract class _WorldState extends WorldState {
   const factory _WorldState(
       {final WorldDateTimeModel dateTime,
       final WorldDateTimeModel lastDateTime,
-      final int dateTimeDelta}) = _$_WorldState;
+      final int dateTimeDelta}) = _$WorldStateImpl;
   const _WorldState._() : super._();
 
   @override
@@ -695,6 +696,6 @@ abstract class _WorldState extends WorldState {
   int get dateTimeDelta;
   @override
   @JsonKey(ignore: true)
-  _$$_WorldStateCopyWith<_$_WorldState> get copyWith =>
+  _$$WorldStateImplCopyWith<_$WorldStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
