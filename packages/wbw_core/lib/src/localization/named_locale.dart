@@ -1,5 +1,4 @@
 // ignore_for_file: invalid_annotation_target
-
 part of 'localization.dart';
 
 /// Use this class to show user a list of supported [Languages]
@@ -76,6 +75,11 @@ class LocalizedMap with _$LocalizedMap {
       return LocalizedMap.fromJson({'value': json});
     }
   }
+  factory LocalizedMap.fromLanguages() => LocalizedMap(
+        value: Map.fromEntries(
+          Languages.values.map((final e) => MapEntry(e, '')),
+        ),
+      );
   static Map<String, dynamic> toJsonValueMap(final LocalizedMap map) =>
       map.toJson()['value'];
   static const empty = LocalizedMap(value: {});

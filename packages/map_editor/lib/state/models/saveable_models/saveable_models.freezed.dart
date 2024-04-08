@@ -57,22 +57,22 @@ class _$CanvasDataModelIdCopyWithImpl<$Res, $Val extends CanvasDataModelId>
 }
 
 /// @nodoc
-abstract class _$$_CanvasDataModelIdCopyWith<$Res>
+abstract class _$$CanvasDataModelIdImplCopyWith<$Res>
     implements $CanvasDataModelIdCopyWith<$Res> {
-  factory _$$_CanvasDataModelIdCopyWith(_$_CanvasDataModelId value,
-          $Res Function(_$_CanvasDataModelId) then) =
-      __$$_CanvasDataModelIdCopyWithImpl<$Res>;
+  factory _$$CanvasDataModelIdImplCopyWith(_$CanvasDataModelIdImpl value,
+          $Res Function(_$CanvasDataModelIdImpl) then) =
+      __$$CanvasDataModelIdImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$_CanvasDataModelIdCopyWithImpl<$Res>
-    extends _$CanvasDataModelIdCopyWithImpl<$Res, _$_CanvasDataModelId>
-    implements _$$_CanvasDataModelIdCopyWith<$Res> {
-  __$$_CanvasDataModelIdCopyWithImpl(
-      _$_CanvasDataModelId _value, $Res Function(_$_CanvasDataModelId) _then)
+class __$$CanvasDataModelIdImplCopyWithImpl<$Res>
+    extends _$CanvasDataModelIdCopyWithImpl<$Res, _$CanvasDataModelIdImpl>
+    implements _$$CanvasDataModelIdImplCopyWith<$Res> {
+  __$$CanvasDataModelIdImplCopyWithImpl(_$CanvasDataModelIdImpl _value,
+      $Res Function(_$CanvasDataModelIdImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -80,7 +80,7 @@ class __$$_CanvasDataModelIdCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_CanvasDataModelId(
+    return _then(_$CanvasDataModelIdImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -91,8 +91,8 @@ class __$$_CanvasDataModelIdCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_CanvasDataModelId extends _CanvasDataModelId {
-  const _$_CanvasDataModelId({required this.value}) : super._();
+class _$CanvasDataModelIdImpl extends _CanvasDataModelId {
+  const _$CanvasDataModelIdImpl({required this.value}) : super._();
 
   @override
   final String value;
@@ -100,21 +100,21 @@ class _$_CanvasDataModelId extends _CanvasDataModelId {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CanvasDataModelIdCopyWith<_$_CanvasDataModelId> get copyWith =>
-      __$$_CanvasDataModelIdCopyWithImpl<_$_CanvasDataModelId>(
+  _$$CanvasDataModelIdImplCopyWith<_$CanvasDataModelIdImpl> get copyWith =>
+      __$$CanvasDataModelIdImplCopyWithImpl<_$CanvasDataModelIdImpl>(
           this, _$identity);
 }
 
 abstract class _CanvasDataModelId extends CanvasDataModelId {
   const factory _CanvasDataModelId({required final String value}) =
-      _$_CanvasDataModelId;
+      _$CanvasDataModelIdImpl;
   const _CanvasDataModelId._() : super._();
 
   @override
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$_CanvasDataModelIdCopyWith<_$_CanvasDataModelId> get copyWith =>
+  _$$CanvasDataModelIdImplCopyWith<_$CanvasDataModelIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -153,7 +153,7 @@ mixin _$CanvasDataModel {
 
   /// can be negative and positive. Should be absolute tile index.
   GravityModel get gravity => throw _privateConstructorUsedError;
-  TechnologyTreeModel get technologyTree => throw _privateConstructorUsedError;
+  List<TechnologyModel> get technologies => throw _privateConstructorUsedError;
   TilesetType get tilesetType => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -185,14 +185,13 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       RenderObjectModel playerObject,
       int skyYTilePosition,
       GravityModel gravity,
-      TechnologyTreeModel technologyTree,
+      List<TechnologyModel> technologies,
       TilesetType tilesetType});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $LocalizedMapCopyWith<$Res> get name;
   $RenderObjectModelCopyWith<$Res> get playerObject;
   $GravityModelCopyWith<$Res> get gravity;
-  $TechnologyTreeModelCopyWith<$Res> get technologyTree;
 }
 
 /// @nodoc
@@ -215,7 +214,7 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     Object? playerObject = null,
     Object? skyYTilePosition = null,
     Object? gravity = null,
-    Object? technologyTree = null,
+    Object? technologies = null,
     Object? tilesetType = null,
   }) {
     return _then(_value.copyWith(
@@ -247,10 +246,10 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
           ? _value.gravity
           : gravity // ignore: cast_nullable_to_non_nullable
               as GravityModel,
-      technologyTree: null == technologyTree
-          ? _value.technologyTree
-          : technologyTree // ignore: cast_nullable_to_non_nullable
-              as TechnologyTreeModel,
+      technologies: null == technologies
+          ? _value.technologies
+          : technologies // ignore: cast_nullable_to_non_nullable
+              as List<TechnologyModel>,
       tilesetType: null == tilesetType
           ? _value.tilesetType
           : tilesetType // ignore: cast_nullable_to_non_nullable
@@ -289,22 +288,14 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
       return _then(_value.copyWith(gravity: value) as $Val);
     });
   }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $TechnologyTreeModelCopyWith<$Res> get technologyTree {
-    return $TechnologyTreeModelCopyWith<$Res>(_value.technologyTree, (value) {
-      return _then(_value.copyWith(technologyTree: value) as $Val);
-    });
-  }
 }
 
 /// @nodoc
-abstract class _$$_CanvasDataModelCopyWith<$Res>
+abstract class _$$CanvasDataModelImplCopyWith<$Res>
     implements $CanvasDataModelCopyWith<$Res> {
-  factory _$$_CanvasDataModelCopyWith(
-          _$_CanvasDataModel value, $Res Function(_$_CanvasDataModel) then) =
-      __$$_CanvasDataModelCopyWithImpl<$Res>;
+  factory _$$CanvasDataModelImplCopyWith(_$CanvasDataModelImpl value,
+          $Res Function(_$CanvasDataModelImpl) then) =
+      __$$CanvasDataModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -324,7 +315,7 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
       RenderObjectModel playerObject,
       int skyYTilePosition,
       GravityModel gravity,
-      TechnologyTreeModel technologyTree,
+      List<TechnologyModel> technologies,
       TilesetType tilesetType});
 
   @override
@@ -335,16 +326,14 @@ abstract class _$$_CanvasDataModelCopyWith<$Res>
   $RenderObjectModelCopyWith<$Res> get playerObject;
   @override
   $GravityModelCopyWith<$Res> get gravity;
-  @override
-  $TechnologyTreeModelCopyWith<$Res> get technologyTree;
 }
 
 /// @nodoc
-class __$$_CanvasDataModelCopyWithImpl<$Res>
-    extends _$CanvasDataModelCopyWithImpl<$Res, _$_CanvasDataModel>
-    implements _$$_CanvasDataModelCopyWith<$Res> {
-  __$$_CanvasDataModelCopyWithImpl(
-      _$_CanvasDataModel _value, $Res Function(_$_CanvasDataModel) _then)
+class __$$CanvasDataModelImplCopyWithImpl<$Res>
+    extends _$CanvasDataModelCopyWithImpl<$Res, _$CanvasDataModelImpl>
+    implements _$$CanvasDataModelImplCopyWith<$Res> {
+  __$$CanvasDataModelImplCopyWithImpl(
+      _$CanvasDataModelImpl _value, $Res Function(_$CanvasDataModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -357,10 +346,10 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
     Object? playerObject = null,
     Object? skyYTilePosition = null,
     Object? gravity = null,
-    Object? technologyTree = null,
+    Object? technologies = null,
     Object? tilesetType = null,
   }) {
-    return _then(_$_CanvasDataModel(
+    return _then(_$CanvasDataModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -389,10 +378,10 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
           ? _value.gravity
           : gravity // ignore: cast_nullable_to_non_nullable
               as GravityModel,
-      technologyTree: null == technologyTree
-          ? _value.technologyTree
-          : technologyTree // ignore: cast_nullable_to_non_nullable
-              as TechnologyTreeModel,
+      technologies: null == technologies
+          ? _value._technologies
+          : technologies // ignore: cast_nullable_to_non_nullable
+              as List<TechnologyModel>,
       tilesetType: null == tilesetType
           ? _value.tilesetType
           : tilesetType // ignore: cast_nullable_to_non_nullable
@@ -403,8 +392,8 @@ class __$$_CanvasDataModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CanvasDataModel extends _CanvasDataModel {
-  const _$_CanvasDataModel(
+class _$CanvasDataModelImpl extends _CanvasDataModel {
+  const _$CanvasDataModelImpl(
       {@JsonKey(
           fromJson: CanvasDataModelId.fromJson,
           toJson: CanvasDataModelId.toJsonString)
@@ -421,14 +410,15 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       this.playerObject = RenderObjectModel.empty,
       this.skyYTilePosition = 0,
       this.gravity = GravityModel.initial,
-      this.technologyTree = TechnologyTreeModel.empty,
+      final List<TechnologyModel> technologies = const [],
       this.tilesetType = TilesetType.colourful})
       : _layers = layers,
         _objects = objects,
+        _technologies = technologies,
         super._();
 
-  factory _$_CanvasDataModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CanvasDataModelFromJson(json);
+  factory _$CanvasDataModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CanvasDataModelImplFromJson(json);
 
   @override
   @JsonKey(
@@ -487,23 +477,29 @@ class _$_CanvasDataModel extends _CanvasDataModel {
   @override
   @JsonKey()
   final GravityModel gravity;
+  final List<TechnologyModel> _technologies;
   @override
   @JsonKey()
-  final TechnologyTreeModel technologyTree;
+  List<TechnologyModel> get technologies {
+    if (_technologies is EqualUnmodifiableListView) return _technologies;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_technologies);
+  }
+
   @override
   @JsonKey()
   final TilesetType tilesetType;
 
   @override
   String toString() {
-    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYTilePosition: $skyYTilePosition, gravity: $gravity, technologyTree: $technologyTree, tilesetType: $tilesetType)';
+    return 'CanvasDataModel(id: $id, name: $name, layers: $layers, objects: $objects, playerObject: $playerObject, skyYTilePosition: $skyYTilePosition, gravity: $gravity, technologies: $technologies, tilesetType: $tilesetType)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CanvasDataModel &&
+            other is _$CanvasDataModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.name, name) || other.name == name) &&
             const DeepCollectionEquality().equals(other._layers, _layers) &&
@@ -513,8 +509,8 @@ class _$_CanvasDataModel extends _CanvasDataModel {
             (identical(other.skyYTilePosition, skyYTilePosition) ||
                 other.skyYTilePosition == skyYTilePosition) &&
             (identical(other.gravity, gravity) || other.gravity == gravity) &&
-            (identical(other.technologyTree, technologyTree) ||
-                other.technologyTree == technologyTree) &&
+            const DeepCollectionEquality()
+                .equals(other._technologies, _technologies) &&
             (identical(other.tilesetType, tilesetType) ||
                 other.tilesetType == tilesetType));
   }
@@ -530,18 +526,19 @@ class _$_CanvasDataModel extends _CanvasDataModel {
       playerObject,
       skyYTilePosition,
       gravity,
-      technologyTree,
+      const DeepCollectionEquality().hash(_technologies),
       tilesetType);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CanvasDataModelCopyWith<_$_CanvasDataModel> get copyWith =>
-      __$$_CanvasDataModelCopyWithImpl<_$_CanvasDataModel>(this, _$identity);
+  _$$CanvasDataModelImplCopyWith<_$CanvasDataModelImpl> get copyWith =>
+      __$$CanvasDataModelImplCopyWithImpl<_$CanvasDataModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CanvasDataModelToJson(
+    return _$$CanvasDataModelImplToJson(
       this,
     );
   }
@@ -565,12 +562,12 @@ abstract class _CanvasDataModel extends CanvasDataModel {
       final RenderObjectModel playerObject,
       final int skyYTilePosition,
       final GravityModel gravity,
-      final TechnologyTreeModel technologyTree,
-      final TilesetType tilesetType}) = _$_CanvasDataModel;
+      final List<TechnologyModel> technologies,
+      final TilesetType tilesetType}) = _$CanvasDataModelImpl;
   const _CanvasDataModel._() : super._();
 
   factory _CanvasDataModel.fromJson(Map<String, dynamic> json) =
-      _$_CanvasDataModel.fromJson;
+      _$CanvasDataModelImpl.fromJson;
 
   @override
   @JsonKey(
@@ -609,12 +606,12 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   /// can be negative and positive. Should be absolute tile index.
   GravityModel get gravity;
   @override
-  TechnologyTreeModel get technologyTree;
+  List<TechnologyModel> get technologies;
   @override
   TilesetType get tilesetType;
   @override
   @JsonKey(ignore: true)
-  _$$_CanvasDataModelCopyWith<_$_CanvasDataModel> get copyWith =>
+  _$$CanvasDataModelImplCopyWith<_$CanvasDataModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -667,22 +664,22 @@ class _$GravityModelCopyWithImpl<$Res, $Val extends GravityModel>
 }
 
 /// @nodoc
-abstract class _$$_GravityModelCopyWith<$Res>
+abstract class _$$GravityModelImplCopyWith<$Res>
     implements $GravityModelCopyWith<$Res> {
-  factory _$$_GravityModelCopyWith(
-          _$_GravityModel value, $Res Function(_$_GravityModel) then) =
-      __$$_GravityModelCopyWithImpl<$Res>;
+  factory _$$GravityModelImplCopyWith(
+          _$GravityModelImpl value, $Res Function(_$GravityModelImpl) then) =
+      __$$GravityModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int yTilePosition});
 }
 
 /// @nodoc
-class __$$_GravityModelCopyWithImpl<$Res>
-    extends _$GravityModelCopyWithImpl<$Res, _$_GravityModel>
-    implements _$$_GravityModelCopyWith<$Res> {
-  __$$_GravityModelCopyWithImpl(
-      _$_GravityModel _value, $Res Function(_$_GravityModel) _then)
+class __$$GravityModelImplCopyWithImpl<$Res>
+    extends _$GravityModelCopyWithImpl<$Res, _$GravityModelImpl>
+    implements _$$GravityModelImplCopyWith<$Res> {
+  __$$GravityModelImplCopyWithImpl(
+      _$GravityModelImpl _value, $Res Function(_$GravityModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -690,7 +687,7 @@ class __$$_GravityModelCopyWithImpl<$Res>
   $Res call({
     Object? yTilePosition = null,
   }) {
-    return _then(_$_GravityModel(
+    return _then(_$GravityModelImpl(
       yTilePosition: null == yTilePosition
           ? _value.yTilePosition
           : yTilePosition // ignore: cast_nullable_to_non_nullable
@@ -701,11 +698,11 @@ class __$$_GravityModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_GravityModel extends _GravityModel {
-  const _$_GravityModel({required this.yTilePosition}) : super._();
+class _$GravityModelImpl extends _GravityModel {
+  const _$GravityModelImpl({required this.yTilePosition}) : super._();
 
-  factory _$_GravityModel.fromJson(Map<String, dynamic> json) =>
-      _$$_GravityModelFromJson(json);
+  factory _$GravityModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$GravityModelImplFromJson(json);
 
   ///absolute tile position. may be negative and positive
   @override
@@ -720,7 +717,7 @@ class _$_GravityModel extends _GravityModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_GravityModel &&
+            other is _$GravityModelImpl &&
             (identical(other.yTilePosition, yTilePosition) ||
                 other.yTilePosition == yTilePosition));
   }
@@ -732,12 +729,12 @@ class _$_GravityModel extends _GravityModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GravityModelCopyWith<_$_GravityModel> get copyWith =>
-      __$$_GravityModelCopyWithImpl<_$_GravityModel>(this, _$identity);
+  _$$GravityModelImplCopyWith<_$GravityModelImpl> get copyWith =>
+      __$$GravityModelImplCopyWithImpl<_$GravityModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_GravityModelToJson(
+    return _$$GravityModelImplToJson(
       this,
     );
   }
@@ -745,11 +742,11 @@ class _$_GravityModel extends _GravityModel {
 
 abstract class _GravityModel extends GravityModel {
   const factory _GravityModel({required final int yTilePosition}) =
-      _$_GravityModel;
+      _$GravityModelImpl;
   const _GravityModel._() : super._();
 
   factory _GravityModel.fromJson(Map<String, dynamic> json) =
-      _$_GravityModel.fromJson;
+      _$GravityModelImpl.fromJson;
 
   @override
 
@@ -757,7 +754,7 @@ abstract class _GravityModel extends GravityModel {
   int get yTilePosition;
   @override
   @JsonKey(ignore: true)
-  _$$_GravityModelCopyWith<_$_GravityModel> get copyWith =>
+  _$$GravityModelImplCopyWith<_$GravityModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -804,22 +801,22 @@ class _$LayerModelIdCopyWithImpl<$Res, $Val extends LayerModelId>
 }
 
 /// @nodoc
-abstract class _$$_LayerModelIdCopyWith<$Res>
+abstract class _$$LayerModelIdImplCopyWith<$Res>
     implements $LayerModelIdCopyWith<$Res> {
-  factory _$$_LayerModelIdCopyWith(
-          _$_LayerModelId value, $Res Function(_$_LayerModelId) then) =
-      __$$_LayerModelIdCopyWithImpl<$Res>;
+  factory _$$LayerModelIdImplCopyWith(
+          _$LayerModelIdImpl value, $Res Function(_$LayerModelIdImpl) then) =
+      __$$LayerModelIdImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$_LayerModelIdCopyWithImpl<$Res>
-    extends _$LayerModelIdCopyWithImpl<$Res, _$_LayerModelId>
-    implements _$$_LayerModelIdCopyWith<$Res> {
-  __$$_LayerModelIdCopyWithImpl(
-      _$_LayerModelId _value, $Res Function(_$_LayerModelId) _then)
+class __$$LayerModelIdImplCopyWithImpl<$Res>
+    extends _$LayerModelIdCopyWithImpl<$Res, _$LayerModelIdImpl>
+    implements _$$LayerModelIdImplCopyWith<$Res> {
+  __$$LayerModelIdImplCopyWithImpl(
+      _$LayerModelIdImpl _value, $Res Function(_$LayerModelIdImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -827,7 +824,7 @@ class __$$_LayerModelIdCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_LayerModelId(
+    return _then(_$LayerModelIdImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -838,8 +835,8 @@ class __$$_LayerModelIdCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LayerModelId extends _LayerModelId {
-  const _$_LayerModelId({required this.value}) : super._();
+class _$LayerModelIdImpl extends _LayerModelId {
+  const _$LayerModelIdImpl({required this.value}) : super._();
 
   @override
   final String value;
@@ -847,19 +844,20 @@ class _$_LayerModelId extends _LayerModelId {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LayerModelIdCopyWith<_$_LayerModelId> get copyWith =>
-      __$$_LayerModelIdCopyWithImpl<_$_LayerModelId>(this, _$identity);
+  _$$LayerModelIdImplCopyWith<_$LayerModelIdImpl> get copyWith =>
+      __$$LayerModelIdImplCopyWithImpl<_$LayerModelIdImpl>(this, _$identity);
 }
 
 abstract class _LayerModelId extends LayerModelId {
-  const factory _LayerModelId({required final String value}) = _$_LayerModelId;
+  const factory _LayerModelId({required final String value}) =
+      _$LayerModelIdImpl;
   const _LayerModelId._() : super._();
 
   @override
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$_LayerModelIdCopyWith<_$_LayerModelId> get copyWith =>
+  _$$LayerModelIdImplCopyWith<_$LayerModelIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -968,11 +966,11 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
 }
 
 /// @nodoc
-abstract class _$$_LayerModelCopyWith<$Res>
+abstract class _$$LayerModelImplCopyWith<$Res>
     implements $LayerModelCopyWith<$Res> {
-  factory _$$_LayerModelCopyWith(
-          _$_LayerModel value, $Res Function(_$_LayerModel) then) =
-      __$$_LayerModelCopyWithImpl<$Res>;
+  factory _$$LayerModelImplCopyWith(
+          _$LayerModelImpl value, $Res Function(_$LayerModelImpl) then) =
+      __$$LayerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -992,11 +990,11 @@ abstract class _$$_LayerModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LayerModelCopyWithImpl<$Res>
-    extends _$LayerModelCopyWithImpl<$Res, _$_LayerModel>
-    implements _$$_LayerModelCopyWith<$Res> {
-  __$$_LayerModelCopyWithImpl(
-      _$_LayerModel _value, $Res Function(_$_LayerModel) _then)
+class __$$LayerModelImplCopyWithImpl<$Res>
+    extends _$LayerModelCopyWithImpl<$Res, _$LayerModelImpl>
+    implements _$$LayerModelImplCopyWith<$Res> {
+  __$$LayerModelImplCopyWithImpl(
+      _$LayerModelImpl _value, $Res Function(_$LayerModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1009,7 +1007,7 @@ class __$$_LayerModelCopyWithImpl<$Res>
     Object? collisionConsequence = null,
     Object? isVisible = null,
   }) {
-    return _then(_$_LayerModel(
+    return _then(_$LayerModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1040,8 +1038,8 @@ class __$$_LayerModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_LayerModel extends _LayerModel {
-  const _$_LayerModel(
+class _$LayerModelImpl extends _LayerModel {
+  const _$LayerModelImpl(
       {@JsonKey(
           fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
       required this.id,
@@ -1055,8 +1053,8 @@ class _$_LayerModel extends _LayerModel {
       : _tiles = tiles,
         super._();
 
-  factory _$_LayerModel.fromJson(Map<String, dynamic> json) =>
-      _$$_LayerModelFromJson(json);
+  factory _$LayerModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LayerModelImplFromJson(json);
 
   @override
   @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
@@ -1094,7 +1092,7 @@ class _$_LayerModel extends _LayerModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LayerModel &&
+            other is _$LayerModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.title, title) || other.title == title) &&
             const DeepCollectionEquality().equals(other._tiles, _tiles) &&
@@ -1120,12 +1118,12 @@ class _$_LayerModel extends _LayerModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LayerModelCopyWith<_$_LayerModel> get copyWith =>
-      __$$_LayerModelCopyWithImpl<_$_LayerModel>(this, _$identity);
+  _$$LayerModelImplCopyWith<_$LayerModelImpl> get copyWith =>
+      __$$LayerModelImplCopyWithImpl<_$LayerModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LayerModelToJson(
+    return _$$LayerModelImplToJson(
       this,
     );
   }
@@ -1142,11 +1140,11 @@ abstract class _LayerModel extends LayerModel {
       final Map<CellPointModel, CellTileModel> tiles,
       final bool isCollidable,
       final CollisionConsequence collisionConsequence,
-      final bool isVisible}) = _$_LayerModel;
+      final bool isVisible}) = _$LayerModelImpl;
   const _LayerModel._() : super._();
 
   factory _LayerModel.fromJson(Map<String, dynamic> json) =
-      _$_LayerModel.fromJson;
+      _$LayerModelImpl.fromJson;
 
   @override
   @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
@@ -1167,7 +1165,7 @@ abstract class _LayerModel extends LayerModel {
   bool get isVisible;
   @override
   @JsonKey(ignore: true)
-  _$$_LayerModelCopyWith<_$_LayerModel> get copyWith =>
+  _$$LayerModelImplCopyWith<_$LayerModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1253,11 +1251,11 @@ class _$CellTileModelCopyWithImpl<$Res, $Val extends CellTileModel>
 }
 
 /// @nodoc
-abstract class _$$_CellTileModelCopyWith<$Res>
+abstract class _$$CellTileModelImplCopyWith<$Res>
     implements $CellTileModelCopyWith<$Res> {
-  factory _$$_CellTileModelCopyWith(
-          _$_CellTileModel value, $Res Function(_$_CellTileModel) then) =
-      __$$_CellTileModelCopyWithImpl<$Res>;
+  factory _$$CellTileModelImplCopyWith(
+          _$CellTileModelImpl value, $Res Function(_$CellTileModelImpl) then) =
+      __$$CellTileModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1271,11 +1269,11 @@ abstract class _$$_CellTileModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_CellTileModelCopyWithImpl<$Res>
-    extends _$CellTileModelCopyWithImpl<$Res, _$_CellTileModel>
-    implements _$$_CellTileModelCopyWith<$Res> {
-  __$$_CellTileModelCopyWithImpl(
-      _$_CellTileModel _value, $Res Function(_$_CellTileModel) _then)
+class __$$CellTileModelImplCopyWithImpl<$Res>
+    extends _$CellTileModelCopyWithImpl<$Res, _$CellTileModelImpl>
+    implements _$$CellTileModelImplCopyWith<$Res> {
+  __$$CellTileModelImplCopyWithImpl(
+      _$CellTileModelImpl _value, $Res Function(_$CellTileModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1286,7 +1284,7 @@ class __$$_CellTileModelCopyWithImpl<$Res>
     Object? objects = null,
     Object? npcs = null,
   }) {
-    return _then(_$_CellTileModel(
+    return _then(_$CellTileModelImpl(
       tileId: null == tileId
           ? _value.tileId
           : tileId // ignore: cast_nullable_to_non_nullable
@@ -1309,8 +1307,8 @@ class __$$_CellTileModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CellTileModel extends _CellTileModel {
-  const _$_CellTileModel(
+class _$CellTileModelImpl extends _CellTileModel {
+  const _$CellTileModelImpl(
       {this.tileId = TileId.empty,
       final List<TileNeighbourTitle> tileNeighbours = const [],
       final List<Gid> objects = const [],
@@ -1320,8 +1318,8 @@ class _$_CellTileModel extends _CellTileModel {
         _npcs = npcs,
         super._();
 
-  factory _$_CellTileModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CellTileModelFromJson(json);
+  factory _$CellTileModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CellTileModelImplFromJson(json);
 
   /// to remove tile just set [TileId.empty] and recalculate [tileNeighbours]
   @override
@@ -1363,7 +1361,7 @@ class _$_CellTileModel extends _CellTileModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_CellTileModel &&
+            other is _$CellTileModelImpl &&
             (identical(other.tileId, tileId) || other.tileId == tileId) &&
             const DeepCollectionEquality()
                 .equals(other._tileNeighbours, _tileNeighbours) &&
@@ -1383,12 +1381,12 @@ class _$_CellTileModel extends _CellTileModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CellTileModelCopyWith<_$_CellTileModel> get copyWith =>
-      __$$_CellTileModelCopyWithImpl<_$_CellTileModel>(this, _$identity);
+  _$$CellTileModelImplCopyWith<_$CellTileModelImpl> get copyWith =>
+      __$$CellTileModelImplCopyWithImpl<_$CellTileModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CellTileModelToJson(
+    return _$$CellTileModelImplToJson(
       this,
     );
   }
@@ -1399,11 +1397,11 @@ abstract class _CellTileModel extends CellTileModel {
       {final TileId tileId,
       final List<TileNeighbourTitle> tileNeighbours,
       final List<Gid> objects,
-      final List<Gid> npcs}) = _$_CellTileModel;
+      final List<Gid> npcs}) = _$CellTileModelImpl;
   const _CellTileModel._() : super._();
 
   factory _CellTileModel.fromJson(Map<String, dynamic> json) =
-      _$_CellTileModel.fromJson;
+      _$CellTileModelImpl.fromJson;
 
   @override
 
@@ -1417,7 +1415,7 @@ abstract class _CellTileModel extends CellTileModel {
   List<Gid> get npcs;
   @override
   @JsonKey(ignore: true)
-  _$$_CellTileModelCopyWith<_$_CellTileModel> get copyWith =>
+  _$$CellTileModelImplCopyWith<_$CellTileModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1563,11 +1561,11 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
 }
 
 /// @nodoc
-abstract class _$$_RenderObjectModelCopyWith<$Res>
+abstract class _$$RenderObjectModelImplCopyWith<$Res>
     implements $RenderObjectModelCopyWith<$Res> {
-  factory _$$_RenderObjectModelCopyWith(_$_RenderObjectModel value,
-          $Res Function(_$_RenderObjectModel) then) =
-      __$$_RenderObjectModelCopyWithImpl<$Res>;
+  factory _$$RenderObjectModelImplCopyWith(_$RenderObjectModelImpl value,
+          $Res Function(_$RenderObjectModelImpl) then) =
+      __$$RenderObjectModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -1591,11 +1589,11 @@ abstract class _$$_RenderObjectModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_RenderObjectModelCopyWithImpl<$Res>
-    extends _$RenderObjectModelCopyWithImpl<$Res, _$_RenderObjectModel>
-    implements _$$_RenderObjectModelCopyWith<$Res> {
-  __$$_RenderObjectModelCopyWithImpl(
-      _$_RenderObjectModel _value, $Res Function(_$_RenderObjectModel) _then)
+class __$$RenderObjectModelImplCopyWithImpl<$Res>
+    extends _$RenderObjectModelCopyWithImpl<$Res, _$RenderObjectModelImpl>
+    implements _$$RenderObjectModelImplCopyWith<$Res> {
+  __$$RenderObjectModelImplCopyWithImpl(_$RenderObjectModelImpl _value,
+      $Res Function(_$RenderObjectModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1608,7 +1606,7 @@ class __$$_RenderObjectModelCopyWithImpl<$Res>
     Object? distanceToTileLeftTopCorner = null,
     Object? animationBehaviour = null,
   }) {
-    return _then(_$_RenderObjectModel(
+    return _then(_$RenderObjectModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1639,8 +1637,8 @@ class __$$_RenderObjectModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_RenderObjectModel implements _RenderObjectModel {
-  const _$_RenderObjectModel(
+class _$RenderObjectModelImpl implements _RenderObjectModel {
+  const _$RenderObjectModelImpl(
       {required this.id,
       required this.tileId,
       this.position = SerializedVector2.zero,
@@ -1648,8 +1646,8 @@ class _$_RenderObjectModel implements _RenderObjectModel {
       this.distanceToTileLeftTopCorner = SerializedVector2.zero,
       this.animationBehaviour = TileBehaviourType.idle});
 
-  factory _$_RenderObjectModel.fromJson(Map<String, dynamic> json) =>
-      _$$_RenderObjectModelFromJson(json);
+  factory _$RenderObjectModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$RenderObjectModelImplFromJson(json);
 
   /// Since tileId can be used several times
   /// It cannot be used as gid.
@@ -1686,7 +1684,7 @@ class _$_RenderObjectModel implements _RenderObjectModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_RenderObjectModel &&
+            other is _$RenderObjectModelImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.tileId, tileId) || other.tileId == tileId) &&
             (identical(other.position, position) ||
@@ -1709,13 +1707,13 @@ class _$_RenderObjectModel implements _RenderObjectModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_RenderObjectModelCopyWith<_$_RenderObjectModel> get copyWith =>
-      __$$_RenderObjectModelCopyWithImpl<_$_RenderObjectModel>(
+  _$$RenderObjectModelImplCopyWith<_$RenderObjectModelImpl> get copyWith =>
+      __$$RenderObjectModelImplCopyWithImpl<_$RenderObjectModelImpl>(
           this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_RenderObjectModelToJson(
+    return _$$RenderObjectModelImplToJson(
       this,
     );
   }
@@ -1728,10 +1726,10 @@ abstract class _RenderObjectModel implements RenderObjectModel {
       final SerializedVector2 position,
       final SerializedVector2 distanceToOrigin,
       final SerializedVector2 distanceToTileLeftTopCorner,
-      final TileBehaviourType animationBehaviour}) = _$_RenderObjectModel;
+      final TileBehaviourType animationBehaviour}) = _$RenderObjectModelImpl;
 
   factory _RenderObjectModel.fromJson(Map<String, dynamic> json) =
-      _$_RenderObjectModel.fromJson;
+      _$RenderObjectModelImpl.fromJson;
 
   @override
 
@@ -1757,7 +1755,7 @@ abstract class _RenderObjectModel implements RenderObjectModel {
   TileBehaviourType get animationBehaviour;
   @override
   @JsonKey(ignore: true)
-  _$$_RenderObjectModelCopyWith<_$_RenderObjectModel> get copyWith =>
+  _$$RenderObjectModelImplCopyWith<_$RenderObjectModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -1801,18 +1799,18 @@ class _$GidCopyWithImpl<$Res, $Val extends Gid> implements $GidCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$$_GidCopyWith<$Res> implements $GidCopyWith<$Res> {
-  factory _$$_GidCopyWith(_$_Gid value, $Res Function(_$_Gid) then) =
-      __$$_GidCopyWithImpl<$Res>;
+abstract class _$$GidImplCopyWith<$Res> implements $GidCopyWith<$Res> {
+  factory _$$GidImplCopyWith(_$GidImpl value, $Res Function(_$GidImpl) then) =
+      __$$GidImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$_GidCopyWithImpl<$Res> extends _$GidCopyWithImpl<$Res, _$_Gid>
-    implements _$$_GidCopyWith<$Res> {
-  __$$_GidCopyWithImpl(_$_Gid _value, $Res Function(_$_Gid) _then)
+class __$$GidImplCopyWithImpl<$Res> extends _$GidCopyWithImpl<$Res, _$GidImpl>
+    implements _$$GidImplCopyWith<$Res> {
+  __$$GidImplCopyWithImpl(_$GidImpl _value, $Res Function(_$GidImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1820,7 +1818,7 @@ class __$$_GidCopyWithImpl<$Res> extends _$GidCopyWithImpl<$Res, _$_Gid>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_Gid(
+    return _then(_$GidImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -1832,8 +1830,8 @@ class __$$_GidCopyWithImpl<$Res> extends _$GidCopyWithImpl<$Res, _$_Gid>
 /// @nodoc
 
 @JsonSerializable()
-class _$_Gid extends _Gid {
-  const _$_Gid({required this.value}) : super._();
+class _$GidImpl extends _Gid {
+  const _$GidImpl({required this.value}) : super._();
 
   @override
   final String value;
@@ -1841,19 +1839,20 @@ class _$_Gid extends _Gid {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_GidCopyWith<_$_Gid> get copyWith =>
-      __$$_GidCopyWithImpl<_$_Gid>(this, _$identity);
+  _$$GidImplCopyWith<_$GidImpl> get copyWith =>
+      __$$GidImplCopyWithImpl<_$GidImpl>(this, _$identity);
 }
 
 abstract class _Gid extends Gid {
-  const factory _Gid({required final String value}) = _$_Gid;
+  const factory _Gid({required final String value}) = _$GidImpl;
   const _Gid._() : super._();
 
   @override
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$_GidCopyWith<_$_Gid> get copyWith => throw _privateConstructorUsedError;
+  _$$GidImplCopyWith<_$GidImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 PlayerModel _$PlayerModelFromJson(Map<String, dynamic> json) {
@@ -1916,11 +1915,11 @@ class _$PlayerModelCopyWithImpl<$Res, $Val extends PlayerModel>
 }
 
 /// @nodoc
-abstract class _$$_PlayerModelCopyWith<$Res>
+abstract class _$$PlayerModelImplCopyWith<$Res>
     implements $PlayerModelCopyWith<$Res> {
-  factory _$$_PlayerModelCopyWith(
-          _$_PlayerModel value, $Res Function(_$_PlayerModel) then) =
-      __$$_PlayerModelCopyWithImpl<$Res>;
+  factory _$$PlayerModelImplCopyWith(
+          _$PlayerModelImpl value, $Res Function(_$PlayerModelImpl) then) =
+      __$$PlayerModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({Gid id});
@@ -1930,11 +1929,11 @@ abstract class _$$_PlayerModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PlayerModelCopyWithImpl<$Res>
-    extends _$PlayerModelCopyWithImpl<$Res, _$_PlayerModel>
-    implements _$$_PlayerModelCopyWith<$Res> {
-  __$$_PlayerModelCopyWithImpl(
-      _$_PlayerModel _value, $Res Function(_$_PlayerModel) _then)
+class __$$PlayerModelImplCopyWithImpl<$Res>
+    extends _$PlayerModelCopyWithImpl<$Res, _$PlayerModelImpl>
+    implements _$$PlayerModelImplCopyWith<$Res> {
+  __$$PlayerModelImplCopyWithImpl(
+      _$PlayerModelImpl _value, $Res Function(_$PlayerModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1942,7 +1941,7 @@ class __$$_PlayerModelCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
   }) {
-    return _then(_$_PlayerModel(
+    return _then(_$PlayerModelImpl(
       id: null == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
@@ -1953,11 +1952,11 @@ class __$$_PlayerModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_PlayerModel extends _PlayerModel {
-  const _$_PlayerModel({required this.id}) : super._();
+class _$PlayerModelImpl extends _PlayerModel {
+  const _$PlayerModelImpl({required this.id}) : super._();
 
-  factory _$_PlayerModel.fromJson(Map<String, dynamic> json) =>
-      _$$_PlayerModelFromJson(json);
+  factory _$PlayerModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$PlayerModelImplFromJson(json);
 
   /// to get access to [RenderObjectModel]
   /// just use [CanvasDataModel.player] with gid verification
@@ -1973,7 +1972,7 @@ class _$_PlayerModel extends _PlayerModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PlayerModel &&
+            other is _$PlayerModelImpl &&
             (identical(other.id, id) || other.id == id));
   }
 
@@ -1984,23 +1983,23 @@ class _$_PlayerModel extends _PlayerModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PlayerModelCopyWith<_$_PlayerModel> get copyWith =>
-      __$$_PlayerModelCopyWithImpl<_$_PlayerModel>(this, _$identity);
+  _$$PlayerModelImplCopyWith<_$PlayerModelImpl> get copyWith =>
+      __$$PlayerModelImplCopyWithImpl<_$PlayerModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_PlayerModelToJson(
+    return _$$PlayerModelImplToJson(
       this,
     );
   }
 }
 
 abstract class _PlayerModel extends PlayerModel {
-  const factory _PlayerModel({required final Gid id}) = _$_PlayerModel;
+  const factory _PlayerModel({required final Gid id}) = _$PlayerModelImpl;
   const _PlayerModel._() : super._();
 
   factory _PlayerModel.fromJson(Map<String, dynamic> json) =
-      _$_PlayerModel.fromJson;
+      _$PlayerModelImpl.fromJson;
 
   @override
 
@@ -2009,7 +2008,7 @@ abstract class _PlayerModel extends PlayerModel {
   Gid get id;
   @override
   @JsonKey(ignore: true)
-  _$$_PlayerModelCopyWith<_$_PlayerModel> get copyWith =>
+  _$$PlayerModelImplCopyWith<_$PlayerModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2092,22 +2091,22 @@ class _$TileNeighbourTitleCopyWithImpl<$Res, $Val extends TileNeighbourTitle>
 }
 
 /// @nodoc
-abstract class _$$_TileNeighbourTitleCopyWith<$Res>
+abstract class _$$TileNeighbourTitleImplCopyWith<$Res>
     implements $TileNeighbourTitleCopyWith<$Res> {
-  factory _$$_TileNeighbourTitleCopyWith(_$_TileNeighbourTitle value,
-          $Res Function(_$_TileNeighbourTitle) then) =
-      __$$_TileNeighbourTitleCopyWithImpl<$Res>;
+  factory _$$TileNeighbourTitleImplCopyWith(_$TileNeighbourTitleImpl value,
+          $Res Function(_$TileNeighbourTitleImpl) then) =
+      __$$TileNeighbourTitleImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String value});
 }
 
 /// @nodoc
-class __$$_TileNeighbourTitleCopyWithImpl<$Res>
-    extends _$TileNeighbourTitleCopyWithImpl<$Res, _$_TileNeighbourTitle>
-    implements _$$_TileNeighbourTitleCopyWith<$Res> {
-  __$$_TileNeighbourTitleCopyWithImpl(
-      _$_TileNeighbourTitle _value, $Res Function(_$_TileNeighbourTitle) _then)
+class __$$TileNeighbourTitleImplCopyWithImpl<$Res>
+    extends _$TileNeighbourTitleCopyWithImpl<$Res, _$TileNeighbourTitleImpl>
+    implements _$$TileNeighbourTitleImplCopyWith<$Res> {
+  __$$TileNeighbourTitleImplCopyWithImpl(_$TileNeighbourTitleImpl _value,
+      $Res Function(_$TileNeighbourTitleImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2115,7 +2114,7 @@ class __$$_TileNeighbourTitleCopyWithImpl<$Res>
   $Res call({
     Object? value = null,
   }) {
-    return _then(_$_TileNeighbourTitle(
+    return _then(_$TileNeighbourTitleImpl(
       value: null == value
           ? _value.value
           : value // ignore: cast_nullable_to_non_nullable
@@ -2126,11 +2125,11 @@ class __$$_TileNeighbourTitleCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_TileNeighbourTitle extends _TileNeighbourTitle {
-  const _$_TileNeighbourTitle({required this.value}) : super._();
+class _$TileNeighbourTitleImpl extends _TileNeighbourTitle {
+  const _$TileNeighbourTitleImpl({required this.value}) : super._();
 
-  factory _$_TileNeighbourTitle.fromJson(Map<String, dynamic> json) =>
-      _$$_TileNeighbourTitleFromJson(json);
+  factory _$TileNeighbourTitleImpl.fromJson(Map<String, dynamic> json) =>
+      _$$TileNeighbourTitleImplFromJson(json);
 
   @override
   final String value;
@@ -2138,8 +2137,8 @@ class _$_TileNeighbourTitle extends _TileNeighbourTitle {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_TileNeighbourTitleCopyWith<_$_TileNeighbourTitle> get copyWith =>
-      __$$_TileNeighbourTitleCopyWithImpl<_$_TileNeighbourTitle>(
+  _$$TileNeighbourTitleImplCopyWith<_$TileNeighbourTitleImpl> get copyWith =>
+      __$$TileNeighbourTitleImplCopyWithImpl<_$TileNeighbourTitleImpl>(
           this, _$identity);
 
   @override
@@ -2200,7 +2199,7 @@ class _$_TileNeighbourTitle extends _TileNeighbourTitle {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_TileNeighbourTitleToJson(
+    return _$$TileNeighbourTitleImplToJson(
       this,
     );
   }
@@ -2208,17 +2207,17 @@ class _$_TileNeighbourTitle extends _TileNeighbourTitle {
 
 abstract class _TileNeighbourTitle extends TileNeighbourTitle {
   const factory _TileNeighbourTitle({required final String value}) =
-      _$_TileNeighbourTitle;
+      _$TileNeighbourTitleImpl;
   const _TileNeighbourTitle._() : super._();
 
   factory _TileNeighbourTitle.fromJson(Map<String, dynamic> json) =
-      _$_TileNeighbourTitle.fromJson;
+      _$TileNeighbourTitleImpl.fromJson;
 
   @override
   String get value;
   @override
   @JsonKey(ignore: true)
-  _$$_TileNeighbourTitleCopyWith<_$_TileNeighbourTitle> get copyWith =>
+  _$$TileNeighbourTitleImplCopyWith<_$TileNeighbourTitleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -2250,28 +2249,28 @@ class _$CellDataModelCopyWithImpl<$Res, $Val extends CellDataModel>
 }
 
 /// @nodoc
-abstract class _$$_CellDataModelCopyWith<$Res> {
-  factory _$$_CellDataModelCopyWith(
-          _$_CellDataModel value, $Res Function(_$_CellDataModel) then) =
-      __$$_CellDataModelCopyWithImpl<$Res>;
+abstract class _$$CellDataModelImplCopyWith<$Res> {
+  factory _$$CellDataModelImplCopyWith(
+          _$CellDataModelImpl value, $Res Function(_$CellDataModelImpl) then) =
+      __$$CellDataModelImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$_CellDataModelCopyWithImpl<$Res>
-    extends _$CellDataModelCopyWithImpl<$Res, _$_CellDataModel>
-    implements _$$_CellDataModelCopyWith<$Res> {
-  __$$_CellDataModelCopyWithImpl(
-      _$_CellDataModel _value, $Res Function(_$_CellDataModel) _then)
+class __$$CellDataModelImplCopyWithImpl<$Res>
+    extends _$CellDataModelCopyWithImpl<$Res, _$CellDataModelImpl>
+    implements _$$CellDataModelImplCopyWith<$Res> {
+  __$$CellDataModelImplCopyWithImpl(
+      _$CellDataModelImpl _value, $Res Function(_$CellDataModelImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_CellDataModel implements _CellDataModel {
-  const _$_CellDataModel();
+class _$CellDataModelImpl implements _CellDataModel {
+  const _$CellDataModelImpl();
 
-  factory _$_CellDataModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CellDataModelFromJson(json);
+  factory _$CellDataModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CellDataModelImplFromJson(json);
 
   @override
   String toString() {
@@ -2281,7 +2280,7 @@ class _$_CellDataModel implements _CellDataModel {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$_CellDataModel);
+        (other.runtimeType == runtimeType && other is _$CellDataModelImpl);
   }
 
   @JsonKey(ignore: true)
@@ -2290,17 +2289,17 @@ class _$_CellDataModel implements _CellDataModel {
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CellDataModelToJson(
+    return _$$CellDataModelImplToJson(
       this,
     );
   }
 }
 
 abstract class _CellDataModel implements CellDataModel {
-  const factory _CellDataModel() = _$_CellDataModel;
+  const factory _CellDataModel() = _$CellDataModelImpl;
 
   factory _CellDataModel.fromJson(Map<String, dynamic> json) =
-      _$_CellDataModel.fromJson;
+      _$CellDataModelImpl.fromJson;
 }
 
 CellPointModel _$CellPointModelFromJson(Map<String, dynamic> json) {
@@ -2357,22 +2356,22 @@ class _$CellPointModelCopyWithImpl<$Res, $Val extends CellPointModel>
 }
 
 /// @nodoc
-abstract class _$$_CellPointModelCopyWith<$Res>
+abstract class _$$CellPointModelImplCopyWith<$Res>
     implements $CellPointModelCopyWith<$Res> {
-  factory _$$_CellPointModelCopyWith(
-          _$_CellPointModel value, $Res Function(_$_CellPointModel) then) =
-      __$$_CellPointModelCopyWithImpl<$Res>;
+  factory _$$CellPointModelImplCopyWith(_$CellPointModelImpl value,
+          $Res Function(_$CellPointModelImpl) then) =
+      __$$CellPointModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int x, int y});
 }
 
 /// @nodoc
-class __$$_CellPointModelCopyWithImpl<$Res>
-    extends _$CellPointModelCopyWithImpl<$Res, _$_CellPointModel>
-    implements _$$_CellPointModelCopyWith<$Res> {
-  __$$_CellPointModelCopyWithImpl(
-      _$_CellPointModel _value, $Res Function(_$_CellPointModel) _then)
+class __$$CellPointModelImplCopyWithImpl<$Res>
+    extends _$CellPointModelCopyWithImpl<$Res, _$CellPointModelImpl>
+    implements _$$CellPointModelImplCopyWith<$Res> {
+  __$$CellPointModelImplCopyWithImpl(
+      _$CellPointModelImpl _value, $Res Function(_$CellPointModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -2381,7 +2380,7 @@ class __$$_CellPointModelCopyWithImpl<$Res>
     Object? x = null,
     Object? y = null,
   }) {
-    return _then(_$_CellPointModel(
+    return _then(_$CellPointModelImpl(
       null == x
           ? _value.x
           : x // ignore: cast_nullable_to_non_nullable
@@ -2396,11 +2395,11 @@ class __$$_CellPointModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_CellPointModel extends _CellPointModel {
-  const _$_CellPointModel(this.x, this.y) : super._();
+class _$CellPointModelImpl extends _CellPointModel {
+  const _$CellPointModelImpl(this.x, this.y) : super._();
 
-  factory _$_CellPointModel.fromJson(Map<String, dynamic> json) =>
-      _$$_CellPointModelFromJson(json);
+  factory _$CellPointModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CellPointModelImplFromJson(json);
 
   @override
   final int x;
@@ -2410,23 +2409,25 @@ class _$_CellPointModel extends _CellPointModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CellPointModelCopyWith<_$_CellPointModel> get copyWith =>
-      __$$_CellPointModelCopyWithImpl<_$_CellPointModel>(this, _$identity);
+  _$$CellPointModelImplCopyWith<_$CellPointModelImpl> get copyWith =>
+      __$$CellPointModelImplCopyWithImpl<_$CellPointModelImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CellPointModelToJson(
+    return _$$CellPointModelImplToJson(
       this,
     );
   }
 }
 
 abstract class _CellPointModel extends CellPointModel {
-  const factory _CellPointModel(final int x, final int y) = _$_CellPointModel;
+  const factory _CellPointModel(final int x, final int y) =
+      _$CellPointModelImpl;
   const _CellPointModel._() : super._();
 
   factory _CellPointModel.fromJson(Map<String, dynamic> json) =
-      _$_CellPointModel.fromJson;
+      _$CellPointModelImpl.fromJson;
 
   @override
   int get x;
@@ -2434,6 +2435,6 @@ abstract class _CellPointModel extends CellPointModel {
   int get y;
   @override
   @JsonKey(ignore: true)
-  _$$_CellPointModelCopyWith<_$_CellPointModel> get copyWith =>
+  _$$CellPointModelImplCopyWith<_$CellPointModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

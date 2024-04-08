@@ -97,6 +97,12 @@ class UiDebugSideBarBody extends StatelessWidget {
             value: debugCubit.state.isCameraFollowingPlayer,
             onChanged: debugCubit.switchIsCameraFollowingPlayerChange,
           ),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('FPS visible'),
+            value: debugCubit.state.isFpsEnabled,
+            onChanged: debugCubit.switchIsFpsEnabledChange,
+          ),
           Row(
             children: [
               const Text('Volume: '),

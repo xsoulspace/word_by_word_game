@@ -16,9 +16,9 @@ class AppSettingsCubitDto {
 }
 
 class AppSettingsCubit extends Cubit<AppSettingsModel> {
-  AppSettingsCubit({
-    required this.dto,
-  }) : super(AppSettingsModel.empty);
+  AppSettingsCubit(final BuildContext context)
+      : dto = AppSettingsCubitDto(context: context),
+        super(AppSettingsModel.empty);
   final AppSettingsCubitDto dto;
 
   AppSettingsModel get settings => state;

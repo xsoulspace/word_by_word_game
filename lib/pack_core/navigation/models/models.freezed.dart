@@ -12,7 +12,7 @@ part of 'models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 LevelRouteArgs _$LevelRouteArgsFromJson(Map<String, dynamic> json) {
   return _LevelRouteArgs.fromJson(json);
@@ -62,22 +62,22 @@ class _$LevelRouteArgsCopyWithImpl<$Res, $Val extends LevelRouteArgs>
 }
 
 /// @nodoc
-abstract class _$$_LevelRouteArgsCopyWith<$Res>
+abstract class _$$LevelRouteArgsImplCopyWith<$Res>
     implements $LevelRouteArgsCopyWith<$Res> {
-  factory _$$_LevelRouteArgsCopyWith(
-          _$_LevelRouteArgs value, $Res Function(_$_LevelRouteArgs) then) =
-      __$$_LevelRouteArgsCopyWithImpl<$Res>;
+  factory _$$LevelRouteArgsImplCopyWith(_$LevelRouteArgsImpl value,
+          $Res Function(_$LevelRouteArgsImpl) then) =
+      __$$LevelRouteArgsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String levelId});
 }
 
 /// @nodoc
-class __$$_LevelRouteArgsCopyWithImpl<$Res>
-    extends _$LevelRouteArgsCopyWithImpl<$Res, _$_LevelRouteArgs>
-    implements _$$_LevelRouteArgsCopyWith<$Res> {
-  __$$_LevelRouteArgsCopyWithImpl(
-      _$_LevelRouteArgs _value, $Res Function(_$_LevelRouteArgs) _then)
+class __$$LevelRouteArgsImplCopyWithImpl<$Res>
+    extends _$LevelRouteArgsCopyWithImpl<$Res, _$LevelRouteArgsImpl>
+    implements _$$LevelRouteArgsImplCopyWith<$Res> {
+  __$$LevelRouteArgsImplCopyWithImpl(
+      _$LevelRouteArgsImpl _value, $Res Function(_$LevelRouteArgsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -85,7 +85,7 @@ class __$$_LevelRouteArgsCopyWithImpl<$Res>
   $Res call({
     Object? levelId = null,
   }) {
-    return _then(_$_LevelRouteArgs(
+    return _then(_$LevelRouteArgsImpl(
       levelId: null == levelId
           ? _value.levelId
           : levelId // ignore: cast_nullable_to_non_nullable
@@ -97,11 +97,11 @@ class __$$_LevelRouteArgsCopyWithImpl<$Res>
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$_LevelRouteArgs extends _LevelRouteArgs {
-  const _$_LevelRouteArgs({this.levelId = ''}) : super._();
+class _$LevelRouteArgsImpl extends _LevelRouteArgs {
+  const _$LevelRouteArgsImpl({this.levelId = ''}) : super._();
 
-  factory _$_LevelRouteArgs.fromJson(Map<String, dynamic> json) =>
-      _$$_LevelRouteArgsFromJson(json);
+  factory _$LevelRouteArgsImpl.fromJson(Map<String, dynamic> json) =>
+      _$$LevelRouteArgsImplFromJson(json);
 
   @override
   @JsonKey()
@@ -113,10 +113,10 @@ class _$_LevelRouteArgs extends _LevelRouteArgs {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LevelRouteArgs &&
+            other is _$LevelRouteArgsImpl &&
             (identical(other.levelId, levelId) || other.levelId == levelId));
   }
 
@@ -127,28 +127,29 @@ class _$_LevelRouteArgs extends _LevelRouteArgs {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LevelRouteArgsCopyWith<_$_LevelRouteArgs> get copyWith =>
-      __$$_LevelRouteArgsCopyWithImpl<_$_LevelRouteArgs>(this, _$identity);
+  _$$LevelRouteArgsImplCopyWith<_$LevelRouteArgsImpl> get copyWith =>
+      __$$LevelRouteArgsImplCopyWithImpl<_$LevelRouteArgsImpl>(
+          this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_LevelRouteArgsToJson(
+    return _$$LevelRouteArgsImplToJson(
       this,
     );
   }
 }
 
 abstract class _LevelRouteArgs extends LevelRouteArgs {
-  const factory _LevelRouteArgs({final String levelId}) = _$_LevelRouteArgs;
+  const factory _LevelRouteArgs({final String levelId}) = _$LevelRouteArgsImpl;
   const _LevelRouteArgs._() : super._();
 
   factory _LevelRouteArgs.fromJson(Map<String, dynamic> json) =
-      _$_LevelRouteArgs.fromJson;
+      _$LevelRouteArgsImpl.fromJson;
 
   @override
   String get levelId;
   @override
   @JsonKey(ignore: true)
-  _$$_LevelRouteArgsCopyWith<_$_LevelRouteArgs> get copyWith =>
+  _$$LevelRouteArgsImplCopyWith<_$LevelRouteArgsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,7 +12,7 @@ part of 'character_mechanics.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$LiftForceModel {
@@ -74,11 +74,11 @@ class _$LiftForceModelCopyWithImpl<$Res, $Val extends LiftForceModel>
 }
 
 /// @nodoc
-abstract class _$$_LiftForceModelCopyWith<$Res>
+abstract class _$$LiftForceModelImplCopyWith<$Res>
     implements $LiftForceModelCopyWith<$Res> {
-  factory _$$_LiftForceModelCopyWith(
-          _$_LiftForceModel value, $Res Function(_$_LiftForceModel) then) =
-      __$$_LiftForceModelCopyWithImpl<$Res>;
+  factory _$$LiftForceModelImplCopyWith(_$LiftForceModelImpl value,
+          $Res Function(_$LiftForceModelImpl) then) =
+      __$$LiftForceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double liftPower, BalloonLiftPowersModel updatedPowers});
@@ -88,11 +88,11 @@ abstract class _$$_LiftForceModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_LiftForceModelCopyWithImpl<$Res>
-    extends _$LiftForceModelCopyWithImpl<$Res, _$_LiftForceModel>
-    implements _$$_LiftForceModelCopyWith<$Res> {
-  __$$_LiftForceModelCopyWithImpl(
-      _$_LiftForceModel _value, $Res Function(_$_LiftForceModel) _then)
+class __$$LiftForceModelImplCopyWithImpl<$Res>
+    extends _$LiftForceModelCopyWithImpl<$Res, _$LiftForceModelImpl>
+    implements _$$LiftForceModelImplCopyWith<$Res> {
+  __$$LiftForceModelImplCopyWithImpl(
+      _$LiftForceModelImpl _value, $Res Function(_$LiftForceModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -101,7 +101,7 @@ class __$$_LiftForceModelCopyWithImpl<$Res>
     Object? liftPower = null,
     Object? updatedPowers = null,
   }) {
-    return _then(_$_LiftForceModel(
+    return _then(_$LiftForceModelImpl(
       liftPower: null == liftPower
           ? _value.liftPower
           : liftPower // ignore: cast_nullable_to_non_nullable
@@ -116,8 +116,8 @@ class __$$_LiftForceModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_LiftForceModel implements _LiftForceModel {
-  const _$_LiftForceModel(
+class _$LiftForceModelImpl implements _LiftForceModel {
+  const _$LiftForceModelImpl(
       {required this.liftPower, required this.updatedPowers});
 
   @override
@@ -131,10 +131,10 @@ class _$_LiftForceModel implements _LiftForceModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_LiftForceModel &&
+            other is _$LiftForceModelImpl &&
             (identical(other.liftPower, liftPower) ||
                 other.liftPower == liftPower) &&
             (identical(other.updatedPowers, updatedPowers) ||
@@ -147,14 +147,16 @@ class _$_LiftForceModel implements _LiftForceModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_LiftForceModelCopyWith<_$_LiftForceModel> get copyWith =>
-      __$$_LiftForceModelCopyWithImpl<_$_LiftForceModel>(this, _$identity);
+  _$$LiftForceModelImplCopyWith<_$LiftForceModelImpl> get copyWith =>
+      __$$LiftForceModelImplCopyWithImpl<_$LiftForceModelImpl>(
+          this, _$identity);
 }
 
 abstract class _LiftForceModel implements LiftForceModel {
   const factory _LiftForceModel(
-      {required final double liftPower,
-      required final BalloonLiftPowersModel updatedPowers}) = _$_LiftForceModel;
+          {required final double liftPower,
+          required final BalloonLiftPowersModel updatedPowers}) =
+      _$LiftForceModelImpl;
 
   @override
   double get liftPower;
@@ -162,7 +164,7 @@ abstract class _LiftForceModel implements LiftForceModel {
   BalloonLiftPowersModel get updatedPowers;
   @override
   @JsonKey(ignore: true)
-  _$$_LiftForceModelCopyWith<_$_LiftForceModel> get copyWith =>
+  _$$LiftForceModelImplCopyWith<_$LiftForceModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -222,23 +224,25 @@ class _$BalloonLiftPowersModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_BalloonLiftPowersModelCopyWith<$Res>
+abstract class _$$BalloonLiftPowersModelImplCopyWith<$Res>
     implements $BalloonLiftPowersModelCopyWith<$Res> {
-  factory _$$_BalloonLiftPowersModelCopyWith(_$_BalloonLiftPowersModel value,
-          $Res Function(_$_BalloonLiftPowersModel) then) =
-      __$$_BalloonLiftPowersModelCopyWithImpl<$Res>;
+  factory _$$BalloonLiftPowersModelImplCopyWith(
+          _$BalloonLiftPowersModelImpl value,
+          $Res Function(_$BalloonLiftPowersModelImpl) then) =
+      __$$BalloonLiftPowersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double power, double volume});
 }
 
 /// @nodoc
-class __$$_BalloonLiftPowersModelCopyWithImpl<$Res>
+class __$$BalloonLiftPowersModelImplCopyWithImpl<$Res>
     extends _$BalloonLiftPowersModelCopyWithImpl<$Res,
-        _$_BalloonLiftPowersModel>
-    implements _$$_BalloonLiftPowersModelCopyWith<$Res> {
-  __$$_BalloonLiftPowersModelCopyWithImpl(_$_BalloonLiftPowersModel _value,
-      $Res Function(_$_BalloonLiftPowersModel) _then)
+        _$BalloonLiftPowersModelImpl>
+    implements _$$BalloonLiftPowersModelImplCopyWith<$Res> {
+  __$$BalloonLiftPowersModelImplCopyWithImpl(
+      _$BalloonLiftPowersModelImpl _value,
+      $Res Function(_$BalloonLiftPowersModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -247,7 +251,7 @@ class __$$_BalloonLiftPowersModelCopyWithImpl<$Res>
     Object? power = null,
     Object? volume = null,
   }) {
-    return _then(_$_BalloonLiftPowersModel(
+    return _then(_$BalloonLiftPowersModelImpl(
       power: null == power
           ? _value.power
           : power // ignore: cast_nullable_to_non_nullable
@@ -261,12 +265,13 @@ class __$$_BalloonLiftPowersModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
-  const _$_BalloonLiftPowersModel({required this.power, this.volume = 0});
 
-  factory _$_BalloonLiftPowersModel.fromJson(Map<String, dynamic> json) =>
-      _$$_BalloonLiftPowersModelFromJson(json);
+@JsonSerializable(explicitToJson: true)
+class _$BalloonLiftPowersModelImpl implements _BalloonLiftPowersModel {
+  const _$BalloonLiftPowersModelImpl({required this.power, this.volume = 0});
+
+  factory _$BalloonLiftPowersModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BalloonLiftPowersModelImplFromJson(json);
 
   @override
   final double power;
@@ -280,10 +285,10 @@ class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BalloonLiftPowersModel &&
+            other is _$BalloonLiftPowersModelImpl &&
             (identical(other.power, power) || other.power == power) &&
             (identical(other.volume, volume) || other.volume == volume));
   }
@@ -295,13 +300,13 @@ class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BalloonLiftPowersModelCopyWith<_$_BalloonLiftPowersModel> get copyWith =>
-      __$$_BalloonLiftPowersModelCopyWithImpl<_$_BalloonLiftPowersModel>(
-          this, _$identity);
+  _$$BalloonLiftPowersModelImplCopyWith<_$BalloonLiftPowersModelImpl>
+      get copyWith => __$$BalloonLiftPowersModelImplCopyWithImpl<
+          _$BalloonLiftPowersModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BalloonLiftPowersModelToJson(
+    return _$$BalloonLiftPowersModelImplToJson(
       this,
     );
   }
@@ -310,10 +315,10 @@ class _$_BalloonLiftPowersModel implements _BalloonLiftPowersModel {
 abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
   const factory _BalloonLiftPowersModel(
       {required final double power,
-      final double volume}) = _$_BalloonLiftPowersModel;
+      final double volume}) = _$BalloonLiftPowersModelImpl;
 
   factory _BalloonLiftPowersModel.fromJson(Map<String, dynamic> json) =
-      _$_BalloonLiftPowersModel.fromJson;
+      _$BalloonLiftPowersModelImpl.fromJson;
 
   @override
   double get power;
@@ -321,8 +326,8 @@ abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
   double get volume;
   @override
   @JsonKey(ignore: true)
-  _$$_BalloonLiftPowersModelCopyWith<_$_BalloonLiftPowersModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$BalloonLiftPowersModelImplCopyWith<_$BalloonLiftPowersModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 BalloonLiftParamsModel _$BalloonLiftParamsModelFromJson(
@@ -387,23 +392,25 @@ class _$BalloonLiftParamsModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_BalloonLiftParamsModelCopyWith<$Res>
+abstract class _$$BalloonLiftParamsModelImplCopyWith<$Res>
     implements $BalloonLiftParamsModelCopyWith<$Res> {
-  factory _$$_BalloonLiftParamsModelCopyWith(_$_BalloonLiftParamsModel value,
-          $Res Function(_$_BalloonLiftParamsModel) then) =
-      __$$_BalloonLiftParamsModelCopyWithImpl<$Res>;
+  factory _$$BalloonLiftParamsModelImplCopyWith(
+          _$BalloonLiftParamsModelImpl value,
+          $Res Function(_$BalloonLiftParamsModelImpl) then) =
+      __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double maxVolume, double maxPower, double powerUsage});
 }
 
 /// @nodoc
-class __$$_BalloonLiftParamsModelCopyWithImpl<$Res>
+class __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>
     extends _$BalloonLiftParamsModelCopyWithImpl<$Res,
-        _$_BalloonLiftParamsModel>
-    implements _$$_BalloonLiftParamsModelCopyWith<$Res> {
-  __$$_BalloonLiftParamsModelCopyWithImpl(_$_BalloonLiftParamsModel _value,
-      $Res Function(_$_BalloonLiftParamsModel) _then)
+        _$BalloonLiftParamsModelImpl>
+    implements _$$BalloonLiftParamsModelImplCopyWith<$Res> {
+  __$$BalloonLiftParamsModelImplCopyWithImpl(
+      _$BalloonLiftParamsModelImpl _value,
+      $Res Function(_$BalloonLiftParamsModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -413,7 +420,7 @@ class __$$_BalloonLiftParamsModelCopyWithImpl<$Res>
     Object? maxPower = null,
     Object? powerUsage = null,
   }) {
-    return _then(_$_BalloonLiftParamsModel(
+    return _then(_$BalloonLiftParamsModelImpl(
       maxVolume: null == maxVolume
           ? _value.maxVolume
           : maxVolume // ignore: cast_nullable_to_non_nullable
@@ -431,15 +438,16 @@ class __$$_BalloonLiftParamsModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
-  const _$_BalloonLiftParamsModel(
+
+@JsonSerializable(explicitToJson: true)
+class _$BalloonLiftParamsModelImpl implements _BalloonLiftParamsModel {
+  const _$BalloonLiftParamsModelImpl(
       {required this.maxVolume,
       required this.maxPower,
       required this.powerUsage});
 
-  factory _$_BalloonLiftParamsModel.fromJson(Map<String, dynamic> json) =>
-      _$$_BalloonLiftParamsModelFromJson(json);
+  factory _$BalloonLiftParamsModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$BalloonLiftParamsModelImplFromJson(json);
 
   @override
   final double maxVolume;
@@ -454,10 +462,10 @@ class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_BalloonLiftParamsModel &&
+            other is _$BalloonLiftParamsModelImpl &&
             (identical(other.maxVolume, maxVolume) ||
                 other.maxVolume == maxVolume) &&
             (identical(other.maxPower, maxPower) ||
@@ -473,13 +481,13 @@ class _$_BalloonLiftParamsModel implements _BalloonLiftParamsModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_BalloonLiftParamsModelCopyWith<_$_BalloonLiftParamsModel> get copyWith =>
-      __$$_BalloonLiftParamsModelCopyWithImpl<_$_BalloonLiftParamsModel>(
-          this, _$identity);
+  _$$BalloonLiftParamsModelImplCopyWith<_$BalloonLiftParamsModelImpl>
+      get copyWith => __$$BalloonLiftParamsModelImplCopyWithImpl<
+          _$BalloonLiftParamsModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_BalloonLiftParamsModelToJson(
+    return _$$BalloonLiftParamsModelImplToJson(
       this,
     );
   }
@@ -489,10 +497,10 @@ abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
   const factory _BalloonLiftParamsModel(
       {required final double maxVolume,
       required final double maxPower,
-      required final double powerUsage}) = _$_BalloonLiftParamsModel;
+      required final double powerUsage}) = _$BalloonLiftParamsModelImpl;
 
   factory _BalloonLiftParamsModel.fromJson(Map<String, dynamic> json) =
-      _$_BalloonLiftParamsModel.fromJson;
+      _$BalloonLiftParamsModelImpl.fromJson;
 
   @override
   double get maxVolume;
@@ -502,8 +510,8 @@ abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
   double get powerUsage;
   @override
   @JsonKey(ignore: true)
-  _$$_BalloonLiftParamsModelCopyWith<_$_BalloonLiftParamsModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$BalloonLiftParamsModelImplCopyWith<_$BalloonLiftParamsModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -579,11 +587,11 @@ class _$ForcesConstantsModelCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$_ForcesConstantsModelCopyWith<$Res>
+abstract class _$$ForcesConstantsModelImplCopyWith<$Res>
     implements $ForcesConstantsModelCopyWith<$Res> {
-  factory _$$_ForcesConstantsModelCopyWith(_$_ForcesConstantsModel value,
-          $Res Function(_$_ForcesConstantsModel) then) =
-      __$$_ForcesConstantsModelCopyWithImpl<$Res>;
+  factory _$$ForcesConstantsModelImplCopyWith(_$ForcesConstantsModelImpl value,
+          $Res Function(_$ForcesConstantsModelImpl) then) =
+      __$$ForcesConstantsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -595,11 +603,11 @@ abstract class _$$_ForcesConstantsModelCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_ForcesConstantsModelCopyWithImpl<$Res>
-    extends _$ForcesConstantsModelCopyWithImpl<$Res, _$_ForcesConstantsModel>
-    implements _$$_ForcesConstantsModelCopyWith<$Res> {
-  __$$_ForcesConstantsModelCopyWithImpl(_$_ForcesConstantsModel _value,
-      $Res Function(_$_ForcesConstantsModel) _then)
+class __$$ForcesConstantsModelImplCopyWithImpl<$Res>
+    extends _$ForcesConstantsModelCopyWithImpl<$Res, _$ForcesConstantsModelImpl>
+    implements _$$ForcesConstantsModelImplCopyWith<$Res> {
+  __$$ForcesConstantsModelImplCopyWithImpl(_$ForcesConstantsModelImpl _value,
+      $Res Function(_$ForcesConstantsModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -611,7 +619,7 @@ class __$$_ForcesConstantsModelCopyWithImpl<$Res>
     Object? volumeIncreaseRatioMax = null,
     Object? volumeToLiftRatio = null,
   }) {
-    return _then(_$_ForcesConstantsModel(
+    return _then(_$ForcesConstantsModelImpl(
       gravityForce: null == gravityForce
           ? _value.gravityForce
           : gravityForce // ignore: cast_nullable_to_non_nullable
@@ -638,8 +646,9 @@ class __$$_ForcesConstantsModelCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_ForcesConstantsModel implements _ForcesConstantsModel {
-  const _$_ForcesConstantsModel(
+@JsonSerializable(explicitToJson: true)
+class _$ForcesConstantsModelImpl implements _ForcesConstantsModel {
+  const _$ForcesConstantsModelImpl(
       {required this.gravityForce,
       required this.volumeDecreaseRatio,
       required this.volumeIncreaseRatio,
@@ -663,10 +672,10 @@ class _$_ForcesConstantsModel implements _ForcesConstantsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_ForcesConstantsModel &&
+            other is _$ForcesConstantsModelImpl &&
             (identical(other.gravityForce, gravityForce) ||
                 other.gravityForce == gravityForce) &&
             (identical(other.volumeDecreaseRatio, volumeDecreaseRatio) ||
@@ -691,9 +700,10 @@ class _$_ForcesConstantsModel implements _ForcesConstantsModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_ForcesConstantsModelCopyWith<_$_ForcesConstantsModel> get copyWith =>
-      __$$_ForcesConstantsModelCopyWithImpl<_$_ForcesConstantsModel>(
-          this, _$identity);
+  _$$ForcesConstantsModelImplCopyWith<_$ForcesConstantsModelImpl>
+      get copyWith =>
+          __$$ForcesConstantsModelImplCopyWithImpl<_$ForcesConstantsModelImpl>(
+              this, _$identity);
 }
 
 abstract class _ForcesConstantsModel implements ForcesConstantsModel {
@@ -702,7 +712,7 @@ abstract class _ForcesConstantsModel implements ForcesConstantsModel {
       required final double volumeDecreaseRatio,
       required final double volumeIncreaseRatio,
       required final double volumeIncreaseRatioMax,
-      required final double volumeToLiftRatio}) = _$_ForcesConstantsModel;
+      required final double volumeToLiftRatio}) = _$ForcesConstantsModelImpl;
 
   @override
   double get gravityForce;
@@ -716,6 +726,6 @@ abstract class _ForcesConstantsModel implements ForcesConstantsModel {
   double get volumeToLiftRatio;
   @override
   @JsonKey(ignore: true)
-  _$$_ForcesConstantsModelCopyWith<_$_ForcesConstantsModel> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$ForcesConstantsModelImplCopyWith<_$ForcesConstantsModelImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

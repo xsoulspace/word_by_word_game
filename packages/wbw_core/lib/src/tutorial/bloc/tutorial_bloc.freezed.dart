@@ -12,7 +12,7 @@ part of 'tutorial_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TutorialEvent {
@@ -109,25 +109,26 @@ class _$TutorialEventCopyWithImpl<$Res, $Val extends TutorialEvent>
 }
 
 /// @nodoc
-abstract class _$$CompleteTutorialEventCopyWith<$Res> {
-  factory _$$CompleteTutorialEventCopyWith(_$CompleteTutorialEvent value,
-          $Res Function(_$CompleteTutorialEvent) then) =
-      __$$CompleteTutorialEventCopyWithImpl<$Res>;
+abstract class _$$CompleteTutorialEventImplCopyWith<$Res> {
+  factory _$$CompleteTutorialEventImplCopyWith(
+          _$CompleteTutorialEventImpl value,
+          $Res Function(_$CompleteTutorialEventImpl) then) =
+      __$$CompleteTutorialEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$CompleteTutorialEventCopyWithImpl<$Res>
-    extends _$TutorialEventCopyWithImpl<$Res, _$CompleteTutorialEvent>
-    implements _$$CompleteTutorialEventCopyWith<$Res> {
-  __$$CompleteTutorialEventCopyWithImpl(_$CompleteTutorialEvent _value,
-      $Res Function(_$CompleteTutorialEvent) _then)
+class __$$CompleteTutorialEventImplCopyWithImpl<$Res>
+    extends _$TutorialEventCopyWithImpl<$Res, _$CompleteTutorialEventImpl>
+    implements _$$CompleteTutorialEventImplCopyWith<$Res> {
+  __$$CompleteTutorialEventImplCopyWithImpl(_$CompleteTutorialEventImpl _value,
+      $Res Function(_$CompleteTutorialEventImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$CompleteTutorialEvent implements CompleteTutorialEvent {
-  const _$CompleteTutorialEvent();
+class _$CompleteTutorialEventImpl implements CompleteTutorialEvent {
+  const _$CompleteTutorialEventImpl();
 
   @override
   String toString() {
@@ -135,9 +136,10 @@ class _$CompleteTutorialEvent implements CompleteTutorialEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$CompleteTutorialEvent);
+        (other.runtimeType == runtimeType &&
+            other is _$CompleteTutorialEventImpl);
   }
 
   @override
@@ -241,15 +243,15 @@ class _$CompleteTutorialEvent implements CompleteTutorialEvent {
 }
 
 abstract class CompleteTutorialEvent implements TutorialEvent {
-  const factory CompleteTutorialEvent() = _$CompleteTutorialEvent;
+  const factory CompleteTutorialEvent() = _$CompleteTutorialEventImpl;
 }
 
 /// @nodoc
-abstract class _$$LoadTutorialsProgressEventCopyWith<$Res> {
-  factory _$$LoadTutorialsProgressEventCopyWith(
-          _$LoadTutorialsProgressEvent value,
-          $Res Function(_$LoadTutorialsProgressEvent) then) =
-      __$$LoadTutorialsProgressEventCopyWithImpl<$Res>;
+abstract class _$$LoadTutorialsProgressEventImplCopyWith<$Res> {
+  factory _$$LoadTutorialsProgressEventImplCopyWith(
+          _$LoadTutorialsProgressEventImpl value,
+          $Res Function(_$LoadTutorialsProgressEventImpl) then) =
+      __$$LoadTutorialsProgressEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({TutorialCollectionsProgressModel progress});
 
@@ -257,12 +259,12 @@ abstract class _$$LoadTutorialsProgressEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$LoadTutorialsProgressEventCopyWithImpl<$Res>
-    extends _$TutorialEventCopyWithImpl<$Res, _$LoadTutorialsProgressEvent>
-    implements _$$LoadTutorialsProgressEventCopyWith<$Res> {
-  __$$LoadTutorialsProgressEventCopyWithImpl(
-      _$LoadTutorialsProgressEvent _value,
-      $Res Function(_$LoadTutorialsProgressEvent) _then)
+class __$$LoadTutorialsProgressEventImplCopyWithImpl<$Res>
+    extends _$TutorialEventCopyWithImpl<$Res, _$LoadTutorialsProgressEventImpl>
+    implements _$$LoadTutorialsProgressEventImplCopyWith<$Res> {
+  __$$LoadTutorialsProgressEventImplCopyWithImpl(
+      _$LoadTutorialsProgressEventImpl _value,
+      $Res Function(_$LoadTutorialsProgressEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -270,7 +272,7 @@ class __$$LoadTutorialsProgressEventCopyWithImpl<$Res>
   $Res call({
     Object? progress = null,
   }) {
-    return _then(_$LoadTutorialsProgressEvent(
+    return _then(_$LoadTutorialsProgressEventImpl(
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -290,8 +292,8 @@ class __$$LoadTutorialsProgressEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$LoadTutorialsProgressEvent implements LoadTutorialsProgressEvent {
-  const _$LoadTutorialsProgressEvent({required this.progress});
+class _$LoadTutorialsProgressEventImpl implements LoadTutorialsProgressEvent {
+  const _$LoadTutorialsProgressEventImpl({required this.progress});
 
   @override
   final TutorialCollectionsProgressModel progress;
@@ -302,10 +304,10 @@ class _$LoadTutorialsProgressEvent implements LoadTutorialsProgressEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$LoadTutorialsProgressEvent &&
+            other is _$LoadTutorialsProgressEventImpl &&
             (identical(other.progress, progress) ||
                 other.progress == progress));
   }
@@ -316,9 +318,9 @@ class _$LoadTutorialsProgressEvent implements LoadTutorialsProgressEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$LoadTutorialsProgressEventCopyWith<_$LoadTutorialsProgressEvent>
-      get copyWith => __$$LoadTutorialsProgressEventCopyWithImpl<
-          _$LoadTutorialsProgressEvent>(this, _$identity);
+  _$$LoadTutorialsProgressEventImplCopyWith<_$LoadTutorialsProgressEventImpl>
+      get copyWith => __$$LoadTutorialsProgressEventImplCopyWithImpl<
+          _$LoadTutorialsProgressEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -420,19 +422,19 @@ class _$LoadTutorialsProgressEvent implements LoadTutorialsProgressEvent {
 abstract class LoadTutorialsProgressEvent implements TutorialEvent {
   const factory LoadTutorialsProgressEvent(
           {required final TutorialCollectionsProgressModel progress}) =
-      _$LoadTutorialsProgressEvent;
+      _$LoadTutorialsProgressEventImpl;
 
   TutorialCollectionsProgressModel get progress;
   @JsonKey(ignore: true)
-  _$$LoadTutorialsProgressEventCopyWith<_$LoadTutorialsProgressEvent>
+  _$$LoadTutorialsProgressEventImplCopyWith<_$LoadTutorialsProgressEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$StartTutorialEventCopyWith<$Res> {
-  factory _$$StartTutorialEventCopyWith(_$StartTutorialEvent value,
-          $Res Function(_$StartTutorialEvent) then) =
-      __$$StartTutorialEventCopyWithImpl<$Res>;
+abstract class _$$StartTutorialEventImplCopyWith<$Res> {
+  factory _$$StartTutorialEventImplCopyWith(_$StartTutorialEventImpl value,
+          $Res Function(_$StartTutorialEventImpl) then) =
+      __$$StartTutorialEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {TutorialCollectionsName tutorialName,
@@ -441,11 +443,11 @@ abstract class _$$StartTutorialEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$StartTutorialEventCopyWithImpl<$Res>
-    extends _$TutorialEventCopyWithImpl<$Res, _$StartTutorialEvent>
-    implements _$$StartTutorialEventCopyWith<$Res> {
-  __$$StartTutorialEventCopyWithImpl(
-      _$StartTutorialEvent _value, $Res Function(_$StartTutorialEvent) _then)
+class __$$StartTutorialEventImplCopyWithImpl<$Res>
+    extends _$TutorialEventCopyWithImpl<$Res, _$StartTutorialEventImpl>
+    implements _$$StartTutorialEventImplCopyWith<$Res> {
+  __$$StartTutorialEventImplCopyWithImpl(_$StartTutorialEventImpl _value,
+      $Res Function(_$StartTutorialEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -455,7 +457,7 @@ class __$$StartTutorialEventCopyWithImpl<$Res>
     Object? shouldContinueIfPlayed = null,
     Object? shouldStartFromBeginning = null,
   }) {
-    return _then(_$StartTutorialEvent(
+    return _then(_$StartTutorialEventImpl(
       tutorialName: null == tutorialName
           ? _value.tutorialName
           : tutorialName // ignore: cast_nullable_to_non_nullable
@@ -474,8 +476,8 @@ class __$$StartTutorialEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$StartTutorialEvent implements StartTutorialEvent {
-  const _$StartTutorialEvent(
+class _$StartTutorialEventImpl implements StartTutorialEvent {
+  const _$StartTutorialEventImpl(
       {required this.tutorialName,
       required this.shouldContinueIfPlayed,
       required this.shouldStartFromBeginning});
@@ -493,10 +495,10 @@ class _$StartTutorialEvent implements StartTutorialEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$StartTutorialEvent &&
+            other is _$StartTutorialEventImpl &&
             (identical(other.tutorialName, tutorialName) ||
                 other.tutorialName == tutorialName) &&
             (identical(other.shouldContinueIfPlayed, shouldContinueIfPlayed) ||
@@ -513,8 +515,8 @@ class _$StartTutorialEvent implements StartTutorialEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$StartTutorialEventCopyWith<_$StartTutorialEvent> get copyWith =>
-      __$$StartTutorialEventCopyWithImpl<_$StartTutorialEvent>(
+  _$$StartTutorialEventImplCopyWith<_$StartTutorialEventImpl> get copyWith =>
+      __$$StartTutorialEventImplCopyWithImpl<_$StartTutorialEventImpl>(
           this, _$identity);
 
   @override
@@ -621,31 +623,31 @@ abstract class StartTutorialEvent implements TutorialEvent {
   const factory StartTutorialEvent(
       {required final TutorialCollectionsName tutorialName,
       required final bool shouldContinueIfPlayed,
-      required final bool shouldStartFromBeginning}) = _$StartTutorialEvent;
+      required final bool shouldStartFromBeginning}) = _$StartTutorialEventImpl;
 
   TutorialCollectionsName get tutorialName;
   bool get shouldContinueIfPlayed;
   bool get shouldStartFromBeginning;
   @JsonKey(ignore: true)
-  _$$StartTutorialEventCopyWith<_$StartTutorialEvent> get copyWith =>
+  _$$StartTutorialEventImplCopyWith<_$StartTutorialEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$NextTutorialEventCopyWith<$Res> {
-  factory _$$NextTutorialEventCopyWith(
-          _$NextTutorialEvent value, $Res Function(_$NextTutorialEvent) then) =
-      __$$NextTutorialEventCopyWithImpl<$Res>;
+abstract class _$$NextTutorialEventImplCopyWith<$Res> {
+  factory _$$NextTutorialEventImplCopyWith(_$NextTutorialEventImpl value,
+          $Res Function(_$NextTutorialEventImpl) then) =
+      __$$NextTutorialEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({NextTutorialEventType action});
 }
 
 /// @nodoc
-class __$$NextTutorialEventCopyWithImpl<$Res>
-    extends _$TutorialEventCopyWithImpl<$Res, _$NextTutorialEvent>
-    implements _$$NextTutorialEventCopyWith<$Res> {
-  __$$NextTutorialEventCopyWithImpl(
-      _$NextTutorialEvent _value, $Res Function(_$NextTutorialEvent) _then)
+class __$$NextTutorialEventImplCopyWithImpl<$Res>
+    extends _$TutorialEventCopyWithImpl<$Res, _$NextTutorialEventImpl>
+    implements _$$NextTutorialEventImplCopyWith<$Res> {
+  __$$NextTutorialEventImplCopyWithImpl(_$NextTutorialEventImpl _value,
+      $Res Function(_$NextTutorialEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -653,7 +655,7 @@ class __$$NextTutorialEventCopyWithImpl<$Res>
   $Res call({
     Object? action = null,
   }) {
-    return _then(_$NextTutorialEvent(
+    return _then(_$NextTutorialEventImpl(
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -664,8 +666,8 @@ class __$$NextTutorialEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$NextTutorialEvent implements NextTutorialEvent {
-  const _$NextTutorialEvent({this.action = NextTutorialEventType.next});
+class _$NextTutorialEventImpl implements NextTutorialEvent {
+  const _$NextTutorialEventImpl({this.action = NextTutorialEventType.next});
 
   @override
   @JsonKey()
@@ -677,10 +679,10 @@ class _$NextTutorialEvent implements NextTutorialEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$NextTutorialEvent &&
+            other is _$NextTutorialEventImpl &&
             (identical(other.action, action) || other.action == action));
   }
 
@@ -690,8 +692,9 @@ class _$NextTutorialEvent implements NextTutorialEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$NextTutorialEventCopyWith<_$NextTutorialEvent> get copyWith =>
-      __$$NextTutorialEventCopyWithImpl<_$NextTutorialEvent>(this, _$identity);
+  _$$NextTutorialEventImplCopyWith<_$NextTutorialEventImpl> get copyWith =>
+      __$$NextTutorialEventImplCopyWithImpl<_$NextTutorialEventImpl>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -792,19 +795,20 @@ class _$NextTutorialEvent implements NextTutorialEvent {
 
 abstract class NextTutorialEvent implements TutorialEvent {
   const factory NextTutorialEvent({final NextTutorialEventType action}) =
-      _$NextTutorialEvent;
+      _$NextTutorialEventImpl;
 
   NextTutorialEventType get action;
   @JsonKey(ignore: true)
-  _$$NextTutorialEventCopyWith<_$NextTutorialEvent> get copyWith =>
+  _$$NextTutorialEventImplCopyWith<_$NextTutorialEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TutorialUiActionEventCopyWith<$Res> {
-  factory _$$TutorialUiActionEventCopyWith(_$TutorialUiActionEvent value,
-          $Res Function(_$TutorialUiActionEvent) then) =
-      __$$TutorialUiActionEventCopyWithImpl<$Res>;
+abstract class _$$TutorialUiActionEventImplCopyWith<$Res> {
+  factory _$$TutorialUiActionEventImplCopyWith(
+          _$TutorialUiActionEventImpl value,
+          $Res Function(_$TutorialUiActionEventImpl) then) =
+      __$$TutorialUiActionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {TutorialCompleteAction action,
@@ -814,11 +818,11 @@ abstract class _$$TutorialUiActionEventCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$TutorialUiActionEventCopyWithImpl<$Res>
-    extends _$TutorialEventCopyWithImpl<$Res, _$TutorialUiActionEvent>
-    implements _$$TutorialUiActionEventCopyWith<$Res> {
-  __$$TutorialUiActionEventCopyWithImpl(_$TutorialUiActionEvent _value,
-      $Res Function(_$TutorialUiActionEvent) _then)
+class __$$TutorialUiActionEventImplCopyWithImpl<$Res>
+    extends _$TutorialEventCopyWithImpl<$Res, _$TutorialUiActionEventImpl>
+    implements _$$TutorialUiActionEventImplCopyWith<$Res> {
+  __$$TutorialUiActionEventImplCopyWithImpl(_$TutorialUiActionEventImpl _value,
+      $Res Function(_$TutorialUiActionEventImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -829,7 +833,7 @@ class __$$TutorialUiActionEventCopyWithImpl<$Res>
     Object? stringValue = null,
     Object? boolValue = null,
   }) {
-    return _then(_$TutorialUiActionEvent(
+    return _then(_$TutorialUiActionEventImpl(
       action: null == action
           ? _value.action
           : action // ignore: cast_nullable_to_non_nullable
@@ -852,8 +856,8 @@ class __$$TutorialUiActionEventCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TutorialUiActionEvent implements TutorialUiActionEvent {
-  const _$TutorialUiActionEvent(
+class _$TutorialUiActionEventImpl implements TutorialUiActionEvent {
+  const _$TutorialUiActionEventImpl(
       {required this.action,
       this.key,
       this.stringValue = '',
@@ -876,10 +880,10 @@ class _$TutorialUiActionEvent implements TutorialUiActionEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TutorialUiActionEvent &&
+            other is _$TutorialUiActionEventImpl &&
             (identical(other.action, action) || other.action == action) &&
             (identical(other.key, key) || other.key == key) &&
             (identical(other.stringValue, stringValue) ||
@@ -895,9 +899,9 @@ class _$TutorialUiActionEvent implements TutorialUiActionEvent {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TutorialUiActionEventCopyWith<_$TutorialUiActionEvent> get copyWith =>
-      __$$TutorialUiActionEventCopyWithImpl<_$TutorialUiActionEvent>(
-          this, _$identity);
+  _$$TutorialUiActionEventImplCopyWith<_$TutorialUiActionEventImpl>
+      get copyWith => __$$TutorialUiActionEventImplCopyWithImpl<
+          _$TutorialUiActionEventImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1001,30 +1005,15 @@ abstract class TutorialUiActionEvent implements TutorialEvent {
       {required final TutorialCompleteAction action,
       final TutorialUiItem? key,
       final String stringValue,
-      final bool boolValue}) = _$TutorialUiActionEvent;
+      final bool boolValue}) = _$TutorialUiActionEventImpl;
 
   TutorialCompleteAction get action;
   TutorialUiItem? get key;
   String get stringValue;
   bool get boolValue;
   @JsonKey(ignore: true)
-  _$$TutorialUiActionEventCopyWith<_$TutorialUiActionEvent> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-TutorialBlocState _$TutorialBlocStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'empty':
-      return TutorialBlocStateEmpty.fromJson(json);
-    case 'pending':
-      return TutorialBlocStatePending.fromJson(json);
-    case 'live':
-      return TutorialBlocStateLive.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'TutorialBlocState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
+  _$$TutorialUiActionEventImplCopyWith<_$TutorialUiActionEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1080,7 +1069,6 @@ mixin _$TutorialBlocState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1102,32 +1090,27 @@ class _$TutorialBlocStateCopyWithImpl<$Res, $Val extends TutorialBlocState>
 }
 
 /// @nodoc
-abstract class _$$TutorialBlocStateEmptyCopyWith<$Res> {
-  factory _$$TutorialBlocStateEmptyCopyWith(_$TutorialBlocStateEmpty value,
-          $Res Function(_$TutorialBlocStateEmpty) then) =
-      __$$TutorialBlocStateEmptyCopyWithImpl<$Res>;
+abstract class _$$TutorialBlocStateEmptyImplCopyWith<$Res> {
+  factory _$$TutorialBlocStateEmptyImplCopyWith(
+          _$TutorialBlocStateEmptyImpl value,
+          $Res Function(_$TutorialBlocStateEmptyImpl) then) =
+      __$$TutorialBlocStateEmptyImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$TutorialBlocStateEmptyCopyWithImpl<$Res>
-    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStateEmpty>
-    implements _$$TutorialBlocStateEmptyCopyWith<$Res> {
-  __$$TutorialBlocStateEmptyCopyWithImpl(_$TutorialBlocStateEmpty _value,
-      $Res Function(_$TutorialBlocStateEmpty) _then)
+class __$$TutorialBlocStateEmptyImplCopyWithImpl<$Res>
+    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStateEmptyImpl>
+    implements _$$TutorialBlocStateEmptyImplCopyWith<$Res> {
+  __$$TutorialBlocStateEmptyImplCopyWithImpl(
+      _$TutorialBlocStateEmptyImpl _value,
+      $Res Function(_$TutorialBlocStateEmptyImpl) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$TutorialBlocStateEmpty implements TutorialBlocStateEmpty {
-  const _$TutorialBlocStateEmpty({final String? $type})
-      : $type = $type ?? 'empty';
 
-  factory _$TutorialBlocStateEmpty.fromJson(Map<String, dynamic> json) =>
-      _$$TutorialBlocStateEmptyFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+class _$TutorialBlocStateEmptyImpl implements TutorialBlocStateEmpty {
+  const _$TutorialBlocStateEmptyImpl();
 
   @override
   String toString() {
@@ -1135,12 +1118,12 @@ class _$TutorialBlocStateEmpty implements TutorialBlocStateEmpty {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$TutorialBlocStateEmpty);
+        (other.runtimeType == runtimeType &&
+            other is _$TutorialBlocStateEmptyImpl);
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -1218,27 +1201,18 @@ class _$TutorialBlocStateEmpty implements TutorialBlocStateEmpty {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TutorialBlocStateEmptyToJson(
-      this,
-    );
-  }
 }
 
 abstract class TutorialBlocStateEmpty implements TutorialBlocState {
-  const factory TutorialBlocStateEmpty() = _$TutorialBlocStateEmpty;
-
-  factory TutorialBlocStateEmpty.fromJson(Map<String, dynamic> json) =
-      _$TutorialBlocStateEmpty.fromJson;
+  const factory TutorialBlocStateEmpty() = _$TutorialBlocStateEmptyImpl;
 }
 
 /// @nodoc
-abstract class _$$TutorialBlocStatePendingCopyWith<$Res> {
-  factory _$$TutorialBlocStatePendingCopyWith(_$TutorialBlocStatePending value,
-          $Res Function(_$TutorialBlocStatePending) then) =
-      __$$TutorialBlocStatePendingCopyWithImpl<$Res>;
+abstract class _$$TutorialBlocStatePendingImplCopyWith<$Res> {
+  factory _$$TutorialBlocStatePendingImplCopyWith(
+          _$TutorialBlocStatePendingImpl value,
+          $Res Function(_$TutorialBlocStatePendingImpl) then) =
+      __$$TutorialBlocStatePendingImplCopyWithImpl<$Res>;
   @useResult
   $Res call({TutorialCollectionsProgressModel progress});
 
@@ -1246,11 +1220,13 @@ abstract class _$$TutorialBlocStatePendingCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$TutorialBlocStatePendingCopyWithImpl<$Res>
-    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStatePending>
-    implements _$$TutorialBlocStatePendingCopyWith<$Res> {
-  __$$TutorialBlocStatePendingCopyWithImpl(_$TutorialBlocStatePending _value,
-      $Res Function(_$TutorialBlocStatePending) _then)
+class __$$TutorialBlocStatePendingImplCopyWithImpl<$Res>
+    extends _$TutorialBlocStateCopyWithImpl<$Res,
+        _$TutorialBlocStatePendingImpl>
+    implements _$$TutorialBlocStatePendingImplCopyWith<$Res> {
+  __$$TutorialBlocStatePendingImplCopyWithImpl(
+      _$TutorialBlocStatePendingImpl _value,
+      $Res Function(_$TutorialBlocStatePendingImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1258,7 +1234,7 @@ class __$$TutorialBlocStatePendingCopyWithImpl<$Res>
   $Res call({
     Object? progress = null,
   }) {
-    return _then(_$TutorialBlocStatePending(
+    return _then(_$TutorialBlocStatePendingImpl(
       progress: null == progress
           ? _value.progress
           : progress // ignore: cast_nullable_to_non_nullable
@@ -1277,21 +1253,13 @@ class __$$TutorialBlocStatePendingCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$TutorialBlocStatePending implements TutorialBlocStatePending {
-  const _$TutorialBlocStatePending(
-      {required this.progress, final String? $type})
-      : $type = $type ?? 'pending';
 
-  factory _$TutorialBlocStatePending.fromJson(Map<String, dynamic> json) =>
-      _$$TutorialBlocStatePendingFromJson(json);
+class _$TutorialBlocStatePendingImpl implements TutorialBlocStatePending {
+  const _$TutorialBlocStatePendingImpl({required this.progress});
 
   /// progress for all tutorials
   @override
   final TutorialCollectionsProgressModel progress;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -1299,25 +1267,23 @@ class _$TutorialBlocStatePending implements TutorialBlocStatePending {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TutorialBlocStatePending &&
+            other is _$TutorialBlocStatePendingImpl &&
             (identical(other.progress, progress) ||
                 other.progress == progress));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, progress);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TutorialBlocStatePendingCopyWith<_$TutorialBlocStatePending>
-      get copyWith =>
-          __$$TutorialBlocStatePendingCopyWithImpl<_$TutorialBlocStatePending>(
-              this, _$identity);
+  _$$TutorialBlocStatePendingImplCopyWith<_$TutorialBlocStatePendingImpl>
+      get copyWith => __$$TutorialBlocStatePendingImplCopyWithImpl<
+          _$TutorialBlocStatePendingImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1393,35 +1359,26 @@ class _$TutorialBlocStatePending implements TutorialBlocStatePending {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TutorialBlocStatePendingToJson(
-      this,
-    );
-  }
 }
 
 abstract class TutorialBlocStatePending implements TutorialBlocState {
   const factory TutorialBlocStatePending(
           {required final TutorialCollectionsProgressModel progress}) =
-      _$TutorialBlocStatePending;
-
-  factory TutorialBlocStatePending.fromJson(Map<String, dynamic> json) =
-      _$TutorialBlocStatePending.fromJson;
+      _$TutorialBlocStatePendingImpl;
 
   /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
   @JsonKey(ignore: true)
-  _$$TutorialBlocStatePendingCopyWith<_$TutorialBlocStatePending>
+  _$$TutorialBlocStatePendingImplCopyWith<_$TutorialBlocStatePendingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$TutorialBlocStateLiveCopyWith<$Res> {
-  factory _$$TutorialBlocStateLiveCopyWith(_$TutorialBlocStateLive value,
-          $Res Function(_$TutorialBlocStateLive) then) =
-      __$$TutorialBlocStateLiveCopyWithImpl<$Res>;
+abstract class _$$TutorialBlocStateLiveImplCopyWith<$Res> {
+  factory _$$TutorialBlocStateLiveImplCopyWith(
+          _$TutorialBlocStateLiveImpl value,
+          $Res Function(_$TutorialBlocStateLiveImpl) then) =
+      __$$TutorialBlocStateLiveImplCopyWithImpl<$Res>;
   @useResult
   $Res call(
       {TutorialEventsCollectionModel tutorial,
@@ -1432,11 +1389,11 @@ abstract class _$$TutorialBlocStateLiveCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$TutorialBlocStateLiveCopyWithImpl<$Res>
-    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStateLive>
-    implements _$$TutorialBlocStateLiveCopyWith<$Res> {
-  __$$TutorialBlocStateLiveCopyWithImpl(_$TutorialBlocStateLive _value,
-      $Res Function(_$TutorialBlocStateLive) _then)
+class __$$TutorialBlocStateLiveImplCopyWithImpl<$Res>
+    extends _$TutorialBlocStateCopyWithImpl<$Res, _$TutorialBlocStateLiveImpl>
+    implements _$$TutorialBlocStateLiveImplCopyWith<$Res> {
+  __$$TutorialBlocStateLiveImplCopyWithImpl(_$TutorialBlocStateLiveImpl _value,
+      $Res Function(_$TutorialBlocStateLiveImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -1445,7 +1402,7 @@ class __$$TutorialBlocStateLiveCopyWithImpl<$Res>
     Object? tutorial = null,
     Object? progress = null,
   }) {
-    return _then(_$TutorialBlocStateLive(
+    return _then(_$TutorialBlocStateLiveImpl(
       tutorial: null == tutorial
           ? _value.tutorial
           : tutorial // ignore: cast_nullable_to_non_nullable
@@ -1477,14 +1434,10 @@ class __$$TutorialBlocStateLiveCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$TutorialBlocStateLive implements TutorialBlocStateLive {
-  const _$TutorialBlocStateLive(
-      {required this.tutorial, required this.progress, final String? $type})
-      : $type = $type ?? 'live';
 
-  factory _$TutorialBlocStateLive.fromJson(Map<String, dynamic> json) =>
-      _$$TutorialBlocStateLiveFromJson(json);
+class _$TutorialBlocStateLiveImpl implements TutorialBlocStateLive {
+  const _$TutorialBlocStateLiveImpl(
+      {required this.tutorial, required this.progress});
 
   @override
   final TutorialEventsCollectionModel tutorial;
@@ -1493,35 +1446,31 @@ class _$TutorialBlocStateLive implements TutorialBlocStateLive {
   @override
   final TutorialCollectionsProgressModel progress;
 
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
   @override
   String toString() {
     return 'TutorialBlocState.live(tutorial: $tutorial, progress: $progress)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TutorialBlocStateLive &&
+            other is _$TutorialBlocStateLiveImpl &&
             (identical(other.tutorial, tutorial) ||
                 other.tutorial == tutorial) &&
             (identical(other.progress, progress) ||
                 other.progress == progress));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, tutorial, progress);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$TutorialBlocStateLiveCopyWith<_$TutorialBlocStateLive> get copyWith =>
-      __$$TutorialBlocStateLiveCopyWithImpl<_$TutorialBlocStateLive>(
-          this, _$identity);
+  _$$TutorialBlocStateLiveImplCopyWith<_$TutorialBlocStateLiveImpl>
+      get copyWith => __$$TutorialBlocStateLiveImplCopyWithImpl<
+          _$TutorialBlocStateLiveImpl>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1597,29 +1546,19 @@ class _$TutorialBlocStateLive implements TutorialBlocStateLive {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TutorialBlocStateLiveToJson(
-      this,
-    );
-  }
 }
 
 abstract class TutorialBlocStateLive implements TutorialBlocState {
   const factory TutorialBlocStateLive(
           {required final TutorialEventsCollectionModel tutorial,
           required final TutorialCollectionsProgressModel progress}) =
-      _$TutorialBlocStateLive;
-
-  factory TutorialBlocStateLive.fromJson(Map<String, dynamic> json) =
-      _$TutorialBlocStateLive.fromJson;
+      _$TutorialBlocStateLiveImpl;
 
   TutorialEventsCollectionModel get tutorial;
 
   /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
   @JsonKey(ignore: true)
-  _$$TutorialBlocStateLiveCopyWith<_$TutorialBlocStateLive> get copyWith =>
-      throw _privateConstructorUsedError;
+  _$$TutorialBlocStateLiveImplCopyWith<_$TutorialBlocStateLiveImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }

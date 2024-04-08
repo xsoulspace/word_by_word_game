@@ -87,9 +87,11 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
 }
 
 enum TilesetType {
+  @JsonValue('colourful')
   colourful,
   @JsonValue('white_black')
   whiteBlack,
+  @JsonValue('evening')
   evening,
 }
 

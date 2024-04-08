@@ -42,13 +42,13 @@ class TilesetConstants {
         encoded: false,
       );
     }
-    if (DeviceRuntimeType.isMobileWeb) {
+    if (DeviceRuntimeType.isWeb) {
       await preloadImages();
     }
   }
 
   Future<void> preloadImages() async {
-    if (DeviceRuntimeType.isMobileWeb) {
+    if (DeviceRuntimeType.isWeb) {
       await cacheFileSpriteImages();
     } else {
       await cacheAtlasSpriteImages();

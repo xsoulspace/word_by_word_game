@@ -2,7 +2,7 @@ part of 'global_game_bloc.dart';
 
 @immutable
 @freezed
-class GameEvent with _$GameEvent {
+sealed class GameEvent with _$GameEvent {
   const factory GameEvent.startPlayingLevel({
     @Default(true) final bool shouldRestartTutorial,
   }) = StartPlayingLevelEvent;

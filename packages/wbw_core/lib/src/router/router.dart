@@ -6,7 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:path_to_regexp/path_to_regexp.dart';
 import 'package:provider/provider.dart';
 
-import '../models/models.dart';
+import '../data_models/data_models.dart';
 
 part 'delegate.dart';
 part 'models/parsed_route.dart';

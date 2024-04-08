@@ -83,7 +83,7 @@ class GameCanvasObjectsDrawer extends Component
     final newPlayer = PlayerGameCanvasObject.fromCanvasCubit(
       canvasCubit: canvasCubit,
       game: game,
-      levelPlayersBloc: game.diDto.levelPlayersBloc,
+      levelPlayersBloc: game.dto.levelPlayersBloc,
     );
     player = newPlayer;
     return newPlayer;

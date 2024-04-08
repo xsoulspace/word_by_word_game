@@ -1,6 +1,6 @@
-part of 'pause_screen.dart';
+// ignore_for_file: use_build_context_synchronously
 
-bool get kLinksAreAllowed => true;
+part of 'pause_screen.dart';
 
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final Locator read)
@@ -31,11 +31,11 @@ class PauseScreenState extends ContextfulLifeState {
     required this.diDto,
   });
   final _PauseScreenStateDiDto diDto;
-  @override
-  void initState() {
-    super.initState();
-    if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
+  // }
 
   Future<void> onContinue({
     required final CanvasDataModelId id,
@@ -57,14 +57,15 @@ class PauseScreenState extends ContextfulLifeState {
   Future<void> onPrivacyPolicy() async {
     // launchUrlString('https://xsoulspace.dev/game/wbw/privacy');
     await launchUrlString(
-      'https://github.com/xsoulspace/word_by_word_game/blob/master/PRIVACY_POLICY.md',
+      'https://xsoulspace.dev/#/home/p/TjPS8bk5XNT85GIva57K/privacy',
+      // 'https://github.com/xsoulspace/word_by_word_game/blob/master/PRIVACY_POLICY.md',
     );
   }
 
   Future<void> onShowAbout() async {
     final context = getContext();
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final s = S.of(context);
     final madeWith = '${const LocalizedMap(
       value: {
@@ -87,7 +88,7 @@ class PauseScreenState extends ContextfulLifeState {
             Text(s.creatingGame),
             uiTheme.verticalBoxes.medium,
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 child: Padding(
                   padding: const EdgeInsets.all(8),
@@ -100,7 +101,7 @@ class PauseScreenState extends ContextfulLifeState {
             ),
             uiTheme.verticalBoxes.small,
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 onPressed: () =>
                     launchUrlString('https://boosty.to/arenukvern'),
@@ -114,7 +115,7 @@ class PauseScreenState extends ContextfulLifeState {
             Text(S.of(context).graphicsCreditsThanks),
             uiTheme.verticalBoxes.medium,
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 onPressed: () => launchUrlString('https://sonnenstein.itch.io'),
                 child: const Padding(
@@ -124,7 +125,7 @@ class PauseScreenState extends ContextfulLifeState {
               ),
             ),
             Visibility(
-              visible: kLinksAreAllowed,
+              visible: Envs.isLinksAllowed,
               child: TextButton(
                 onPressed: () =>
                     launchUrlString('https://pixelfrog-assets.itch.io'),
@@ -178,7 +179,7 @@ class PauseScreenState extends ContextfulLifeState {
       height: 64,
     );
     if (!mounted) return;
-    final applicationName = Envs.isYandexGames
+    final applicationName = Envs.store.isYandexGames
         ? const LocalizedMap(
             value: {
               Languages.en: 'Word By Word Adventure',
@@ -187,7 +188,7 @@ class PauseScreenState extends ContextfulLifeState {
             },
           ).getValue()
         : 'Word By Word';
-    if (kLinksAreAllowed) {
+    if (Envs.isLinksAllowed) {
       showAboutDialog(
         applicationName: applicationName,
         applicationIcon: icon,

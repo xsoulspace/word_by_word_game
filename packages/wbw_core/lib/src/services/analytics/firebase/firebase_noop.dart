@@ -22,7 +22,7 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
   }
 }
 
-class FirebaseAnalyticsPlugin extends AnalyticsService {
+class FirebaseAnalyticsPlugin extends AnalyticsServicePlugin {
   bool isSupported = false;
   @override
   Future<void> onLoad() async {}
@@ -48,12 +48,9 @@ class FirebaseAnalyticsPlugin extends AnalyticsService {
 
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {}
-
-  @override
-  void dispose() {}
 }
 
-class FirebaseCrashlyticsPlugin extends AnalyticsService {
+class FirebaseCrashlyticsPlugin extends AnalyticsServicePlugin {
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {}
 
@@ -78,7 +75,4 @@ class FirebaseCrashlyticsPlugin extends AnalyticsService {
     final FlutterErrorDetails flutterErrorDetails, {
     final bool fatal = false,
   }) async {}
-
-  @override
-  void dispose() {}
 }

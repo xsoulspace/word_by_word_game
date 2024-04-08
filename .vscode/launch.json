@@ -1,0 +1,54 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "program": "lib/main_prod.dart",
+      "name": "desktop",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=configs/prod.json"],
+      "flutterMode": "debug"
+    },
+    {
+      "program": "packages/map_editor/lib/main.dart",
+      "name": "editor",
+      "request": "launch",
+      "type": "dart",
+      "flutterMode": "debug"
+    },
+    {
+      "program": "lib/main_prod.dart",
+      "name": "desktop restricted stores",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define-from-file=configs/prod.json",
+        "--dart-define=IS_LINKS_ALLOWED=false"
+      ],
+      "flutterMode": "debug"
+    },
+    {
+      "program": "lib/main_prod.dart",
+      "name": "web",
+      "request": "launch",
+      "type": "dart",
+      "args": ["--dart-define-from-file=configs/prod.json", "--web-port=3000"],
+      "flutterMode": "debug"
+    },
+    {
+      "program": "lib/main_prod.dart",
+      "name": "web restricted stores",
+      "request": "launch",
+      "type": "dart",
+      "args": [
+        "--dart-define-from-file=configs/web_prod.json",
+        "--web-port=3000",
+        "--dart-define=IS_LINKS_ALLOWED=false"
+      ],
+      "flutterMode": "debug"
+    }
+  ]
+}

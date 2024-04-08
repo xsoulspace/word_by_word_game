@@ -15,26 +15,21 @@ class GameBottomBar extends StatelessWidget {
   const GameBottomBar({super.key});
 
   @override
-  Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
-
-    return BlocProvider(
-      create: (final context) => WordCompositionCubit(
-        diDto: WordCompositionStateDiDto.use(context.read),
-      ),
-      child: Builder(
-        builder: (final context) => _Card(
-          builder: (final context) => Column(
-            children: [
-              const UILevelCenterBar(),
-              uiTheme.verticalBoxes.medium,
-              const UiWordActions(),
-            ],
+  Widget build(final BuildContext context) => BlocProvider(
+        create: (final context) => WordCompositionCubit(
+          diDto: WordCompositionStateDiDto.use(context.read),
+        ),
+        child: Builder(
+          builder: (final context) => _Card(
+            builder: (final context) => const Column(
+              children: [
+                UILevelCenterBar(),
+                UiWordActions(),
+              ],
+            ),
           ),
         ),
-      ),
-    );
-  }
+      );
 }
 
 class _Card extends StatelessWidget {
@@ -62,7 +57,7 @@ class _Card extends StatelessWidget {
       (final cubit) => cubit.state.isCardVisible,
     );
     final effectiveIsCardVisible = isCardVisible && isAllowedToBeVisible;
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
 
     return SafeArea(
       top: false,

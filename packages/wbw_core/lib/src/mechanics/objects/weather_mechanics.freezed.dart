@@ -12,7 +12,7 @@ part of 'weather_mechanics.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) {
   return _WeatherModel.fromJson(json);
@@ -68,22 +68,22 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
 }
 
 /// @nodoc
-abstract class _$$_WeatherModelCopyWith<$Res>
+abstract class _$$WeatherModelImplCopyWith<$Res>
     implements $WeatherModelCopyWith<$Res> {
-  factory _$$_WeatherModelCopyWith(
-          _$_WeatherModel value, $Res Function(_$_WeatherModel) then) =
-      __$$_WeatherModelCopyWithImpl<$Res>;
+  factory _$$WeatherModelImplCopyWith(
+          _$WeatherModelImpl value, $Res Function(_$WeatherModelImpl) then) =
+      __$$WeatherModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({WindScale windScale, int durationInGameSeconds});
 }
 
 /// @nodoc
-class __$$_WeatherModelCopyWithImpl<$Res>
-    extends _$WeatherModelCopyWithImpl<$Res, _$_WeatherModel>
-    implements _$$_WeatherModelCopyWith<$Res> {
-  __$$_WeatherModelCopyWithImpl(
-      _$_WeatherModel _value, $Res Function(_$_WeatherModel) _then)
+class __$$WeatherModelImplCopyWithImpl<$Res>
+    extends _$WeatherModelCopyWithImpl<$Res, _$WeatherModelImpl>
+    implements _$$WeatherModelImplCopyWith<$Res> {
+  __$$WeatherModelImplCopyWithImpl(
+      _$WeatherModelImpl _value, $Res Function(_$WeatherModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -92,7 +92,7 @@ class __$$_WeatherModelCopyWithImpl<$Res>
     Object? windScale = null,
     Object? durationInGameSeconds = null,
   }) {
-    return _then(_$_WeatherModel(
+    return _then(_$WeatherModelImpl(
       windScale: null == windScale
           ? _value.windScale
           : windScale // ignore: cast_nullable_to_non_nullable
@@ -107,13 +107,13 @@ class __$$_WeatherModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WeatherModel extends _WeatherModel {
-  const _$_WeatherModel(
+class _$WeatherModelImpl extends _WeatherModel {
+  const _$WeatherModelImpl(
       {this.windScale = WindScale.calm, this.durationInGameSeconds = 20})
       : super._();
 
-  factory _$_WeatherModel.fromJson(Map<String, dynamic> json) =>
-      _$$_WeatherModelFromJson(json);
+  factory _$WeatherModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WeatherModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -128,10 +128,10 @@ class _$_WeatherModel extends _WeatherModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WeatherModel &&
+            other is _$WeatherModelImpl &&
             (identical(other.windScale, windScale) ||
                 other.windScale == windScale) &&
             (identical(other.durationInGameSeconds, durationInGameSeconds) ||
@@ -146,12 +146,12 @@ class _$_WeatherModel extends _WeatherModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WeatherModelCopyWith<_$_WeatherModel> get copyWith =>
-      __$$_WeatherModelCopyWithImpl<_$_WeatherModel>(this, _$identity);
+  _$$WeatherModelImplCopyWith<_$WeatherModelImpl> get copyWith =>
+      __$$WeatherModelImplCopyWithImpl<_$WeatherModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WeatherModelToJson(
+    return _$$WeatherModelImplToJson(
       this,
     );
   }
@@ -160,11 +160,11 @@ class _$_WeatherModel extends _WeatherModel {
 abstract class _WeatherModel extends WeatherModel {
   const factory _WeatherModel(
       {final WindScale windScale,
-      final int durationInGameSeconds}) = _$_WeatherModel;
+      final int durationInGameSeconds}) = _$WeatherModelImpl;
   const _WeatherModel._() : super._();
 
   factory _WeatherModel.fromJson(Map<String, dynamic> json) =
-      _$_WeatherModel.fromJson;
+      _$WeatherModelImpl.fromJson;
 
   @override
   WindScale get windScale;
@@ -172,7 +172,7 @@ abstract class _WeatherModel extends WeatherModel {
   int get durationInGameSeconds;
   @override
   @JsonKey(ignore: true)
-  _$$_WeatherModelCopyWith<_$_WeatherModel> get copyWith =>
+  _$$WeatherModelImplCopyWith<_$WeatherModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -233,10 +233,11 @@ class _$WindModelCopyWithImpl<$Res, $Val extends WindModel>
 }
 
 /// @nodoc
-abstract class _$$_WindModelCopyWith<$Res> implements $WindModelCopyWith<$Res> {
-  factory _$$_WindModelCopyWith(
-          _$_WindModel value, $Res Function(_$_WindModel) then) =
-      __$$_WindModelCopyWithImpl<$Res>;
+abstract class _$$WindModelImplCopyWith<$Res>
+    implements $WindModelCopyWith<$Res> {
+  factory _$$WindModelImplCopyWith(
+          _$WindModelImpl value, $Res Function(_$WindModelImpl) then) =
+      __$$WindModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({SerializedVector2 force});
@@ -246,11 +247,11 @@ abstract class _$$_WindModelCopyWith<$Res> implements $WindModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_WindModelCopyWithImpl<$Res>
-    extends _$WindModelCopyWithImpl<$Res, _$_WindModel>
-    implements _$$_WindModelCopyWith<$Res> {
-  __$$_WindModelCopyWithImpl(
-      _$_WindModel _value, $Res Function(_$_WindModel) _then)
+class __$$WindModelImplCopyWithImpl<$Res>
+    extends _$WindModelCopyWithImpl<$Res, _$WindModelImpl>
+    implements _$$WindModelImplCopyWith<$Res> {
+  __$$WindModelImplCopyWithImpl(
+      _$WindModelImpl _value, $Res Function(_$WindModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -258,7 +259,7 @@ class __$$_WindModelCopyWithImpl<$Res>
   $Res call({
     Object? force = null,
   }) {
-    return _then(_$_WindModel(
+    return _then(_$WindModelImpl(
       force: null == force
           ? _value.force
           : force // ignore: cast_nullable_to_non_nullable
@@ -269,11 +270,11 @@ class __$$_WindModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_WindModel implements _WindModel {
-  const _$_WindModel({this.force = SerializedVector2.zero});
+class _$WindModelImpl implements _WindModel {
+  const _$WindModelImpl({this.force = SerializedVector2.zero});
 
-  factory _$_WindModel.fromJson(Map<String, dynamic> json) =>
-      _$$_WindModelFromJson(json);
+  factory _$WindModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$WindModelImplFromJson(json);
 
   @override
   @JsonKey()
@@ -285,10 +286,10 @@ class _$_WindModel implements _WindModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_WindModel &&
+            other is _$WindModelImpl &&
             (identical(other.force, force) || other.force == force));
   }
 
@@ -299,27 +300,27 @@ class _$_WindModel implements _WindModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_WindModelCopyWith<_$_WindModel> get copyWith =>
-      __$$_WindModelCopyWithImpl<_$_WindModel>(this, _$identity);
+  _$$WindModelImplCopyWith<_$WindModelImpl> get copyWith =>
+      __$$WindModelImplCopyWithImpl<_$WindModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_WindModelToJson(
+    return _$$WindModelImplToJson(
       this,
     );
   }
 }
 
 abstract class _WindModel implements WindModel {
-  const factory _WindModel({final SerializedVector2 force}) = _$_WindModel;
+  const factory _WindModel({final SerializedVector2 force}) = _$WindModelImpl;
 
   factory _WindModel.fromJson(Map<String, dynamic> json) =
-      _$_WindModel.fromJson;
+      _$WindModelImpl.fromJson;
 
   @override
   SerializedVector2 get force;
   @override
   @JsonKey(ignore: true)
-  _$$_WindModelCopyWith<_$_WindModel> get copyWith =>
+  _$$WindModelImplCopyWith<_$WindModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

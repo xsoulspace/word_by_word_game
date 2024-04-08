@@ -8,6 +8,7 @@ import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/sandbox/level_layers_dialog.dart';
+import 'package:map_editor/ui/sandbox/tech_tree_dialog.dart';
 import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
 import 'package:recase/recase.dart';
@@ -107,7 +108,8 @@ class TileButtons extends StatelessWidget {
                               }
                             },
                             child: Text(
-                              name.value.isEmpty ? 'noname' : name.getValue(),
+                              // ignore: lines_longer_than_80_chars
+                              'Map: ${name.value.isEmpty ? 'noname' : name.getValue()}',
                             ),
                           ),
                         );
@@ -116,10 +118,12 @@ class TileButtons extends StatelessWidget {
                   ),
                   const Gap(2),
                   IconButton(
+                    tooltip: 'Add new map',
                     icon: const Icon(Icons.add),
                     onPressed: drawerCubit.addLevelMap,
                   ),
                   IconButton(
+                    tooltip: 'Delete current map',
                     icon: const Icon(Icons.remove),
                     onPressed: () async => drawerCubit.removeLevelMap(context),
                   ),
@@ -136,7 +140,7 @@ class TileButtons extends StatelessWidget {
               TextButton(
                 onPressed: () async =>
                     showTilesetDirectionGenerator(context: context),
-                child: const Text('Tileset Directions gen'),
+                child: const Text('Tileset Directions Generator'),
               ),
               MenuAnchor(
                 menuChildren: drawerCubit.state.tilesetsConfigs
@@ -157,8 +161,15 @@ class TileButtons extends StatelessWidget {
                       controller.open();
                     }
                   },
-                  child: Text(drawerCubit.state.canvasData.tilesetType.name),
+                  child: Text(
+                    'Tileset: ${drawerCubit.state.canvasData.tilesetType.name}',
+                  ),
                 ),
+              ),
+              TextButton(
+                onPressed: () async =>
+                    showTechnologiesTreeDialog(context: context),
+                child: const Text('Technology tree'),
               ),
             ],
           ),
@@ -290,8 +301,8 @@ class TileButtons extends StatelessWidget {
                     );
                   }
                 },
-                icon: const Icon(Icons.paste),
-                label: const Text('Save tpics'),
+                icon: const Icon(Icons.image),
+                label: const Text('Save pics'),
               ),
               UiLocalizedTextField(
                 fieldConstraints: const BoxConstraints(maxWidth: 140),

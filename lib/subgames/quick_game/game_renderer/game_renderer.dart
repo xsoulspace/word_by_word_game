@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/components.dart';
 import 'package:flame/game.dart';
+import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/foundation.dart';
@@ -14,7 +15,6 @@ import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
-import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
@@ -28,27 +28,28 @@ class CanvasRendererGame extends FlameGame
     with
         HasCollisionDetection, // replace to MouseMovementDetector (?)
         SingleGameInstance,
-        // replace to MouseMovementDetector (?)
-        HasHoverables {
+        // TODO(arenukvern): replace to MouseMovementDetector (?)
+        MouseMovementDetector {
   CanvasRendererGame.use({
     required final BuildContext context,
     required final ThemeData theme,
     required final DialogController dialogController,
-  }) : diDto = GameRendererDiDto.use(
+  }) : dto = GameRendererDiDto.use(
           context: context,
           theme: theme,
           dialogController: dialogController,
         );
-  final GameRendererDiDto diDto;
+  final GameRendererDiDto dto;
 
   late CameraComponent worldCamera;
+  @override
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final canvasRenderer = CanvasRenderer();
 
   late ObstacleLevelHelper obstacleLevelHelper;
 
-  bool get timePaused => diDto.mechanics.worldTime.paused;
+  bool get timePaused => dto.mechanics.worldTime.paused;
 
   @override
   Future<void> onLoad() async {
@@ -63,18 +64,15 @@ class CanvasRendererGame extends FlameGame
 
     world = World();
     worldCamera = await _initCamera();
-    await diDto.canvasCubit.loadCache(images: images);
+    await dto.canvasCubit.loadCache(images: images);
 
-    diDto.mechanics.worldTime.addListener(_onWorldTimeChange);
-    providersComponent = diDto.getBlocsProviderComponent(
+    dto.mechanics.worldTime.addListener(_onWorldTimeChange);
+    providersComponent = dto.getBlocsProviderComponent(
       children: [
         world,
         worldCamera,
       ],
     );
-
-    final style = material.TextStyle(color: BasicPalette.red.color);
-    final regular = TextPaint(style: style);
 
     await add(providersComponent);
     await world.addAll([
@@ -84,36 +82,48 @@ class CanvasRendererGame extends FlameGame
       FlameBlocListener<StatesStatusesCubit, StatesStatusesCubitState>(
         onNewState: _handleLevelStateChanges,
       ),
+      FlameBlocListener<DebugCubit, DebugCubitState>(
+        onNewState: _handleDebugStateChanges,
+      ),
       // temporary enabling it
-      if (debugMode)
-        FpsTextComponent(
-          textRenderer: regular,
-          priority: 100,
-        )
-          ..anchor = Anchor.topLeft
-          ..x = 32
-          ..y = 32.0,
       canvasRenderer,
     ]);
     final oldOverlays = [...overlays.activeOverlays];
     overlays
       ..clear()
       // Enable initial overlays and old ones
-      ..addAll([
-        GameOverlaysRoutes.levelsHud.name,
-        ...oldOverlays,
-      ]);
+      ..addAll([...oldOverlays]);
     // assets loading
 
     // await images.load(kDefaultTilesetPath);
+    if (dto.debugCubit.state.isFpsEnabled) unawaited(_createFpsComponent());
 
     return super.onLoad();
   }
 
+  FpsTextComponent? _fpsComponent;
+  void _removeFpsComponent() {
+    if (_fpsComponent == null) return;
+    world.remove(_fpsComponent!);
+    _fpsComponent = null;
+  }
+
+  Future<void> _createFpsComponent() async {
+    _removeFpsComponent();
+    final style = material.TextStyle(color: BasicPalette.red.color);
+    final regular = TextPaint(style: style);
+    final newComponent = _fpsComponent = FpsTextComponent(
+      textRenderer: regular,
+      priority: 100,
+    )
+      ..anchor = Anchor.topLeft
+      ..x = 32
+      ..y = 200.0;
+    return world.add(newComponent);
+  }
+
   Future<CameraComponent> _initCamera() async {
-    final camera = CameraComponent(
-      world: world,
-    );
+    final camera = CameraComponent(world: world);
 
     camera.viewfinder.anchor = Anchor.topLeft;
     return camera;
@@ -131,6 +141,13 @@ class CanvasRendererGame extends FlameGame
 
   void _handleGlobalStateChanges(final GlobalGameBlocState gameBlocState) {
     // canvasObjectsDrawer.onOriginUpdate();
+  }
+  void _handleDebugStateChanges(final DebugCubitState debugState) {
+    if (debugState.isFpsEnabled) {
+      unawaited(_createFpsComponent());
+    } else {
+      _removeFpsComponent();
+    }
   }
 
   Future<void> _handleLevelStateChanges(

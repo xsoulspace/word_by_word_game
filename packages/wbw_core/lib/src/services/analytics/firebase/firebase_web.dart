@@ -26,7 +26,7 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
   }
 }
 
-class FirebaseAnalyticsPlugin extends AnalyticsService {
+class FirebaseAnalyticsPlugin extends AnalyticsServicePlugin {
   FirebaseAnalyticsWeb analytics = FirebaseAnalyticsWeb();
   bool _isEnabled = false;
   bool _shouldRecordErrors = false;
@@ -92,12 +92,9 @@ class FirebaseAnalyticsPlugin extends AnalyticsService {
     if (!_isEnabled) return;
     await analytics.logEvent(name: event.name);
   }
-
-  @override
-  void dispose() {}
 }
 
-class FirebaseCrashlyticsPlugin extends AnalyticsService {
+class FirebaseCrashlyticsPlugin extends AnalyticsServicePlugin {
   @override
   Future<void> logAnalyticEvent(final AnalyticEvents event) async {}
 
@@ -122,7 +119,4 @@ class FirebaseCrashlyticsPlugin extends AnalyticsService {
     final FlutterErrorDetails flutterErrorDetails, {
     final bool fatal = false,
   }) async {}
-
-  @override
-  void dispose() {}
 }

@@ -51,15 +51,15 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     );
   }
   HotAirBalloonMechanics get hotAirBalloonMechanics =>
-      game.diDto.mechanics.hotAirBalloon;
+      game.dto.mechanics.hotAirBalloon;
 
   final PlayerCharacterModel characterModel;
 
-  void _pauseGame() => game.diDto.mechanics.worldTime.pause();
+  void _pauseGame() => game.dto.mechanics.worldTime.pause();
 
   void _showLevelLostDialog() {
     _pauseGame();
-    gameRef.diDto.dialogController.showLevelLostDialog(
+    gameRef.dto.dialogController.showLevelLostDialog(
       EndLevelEvent(
         isWon: false,
         maxDistance: maxDistance.toDouble(),
@@ -71,7 +71,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   void _showLevelWinDialog() {
     _pauseGame();
-    gameRef.diDto.dialogController.showLevelWinDialog(
+    gameRef.dto.dialogController.showLevelWinDialog(
       EndLevelEvent(
         isWon: true,
         maxDistance: maxDistance.toDouble(),
@@ -87,10 +87,10 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       // do nothing
     } else {
       final collisionConsequences =
-          game.diDto.canvasCubit.checkIsCollidingWithTiles(
+          game.dto.canvasCubit.checkIsCollidingWithTiles(
         hitboxCells: hitboxCells,
       );
-      if (collisionConsequences.isNotEmpty) {
+      if (collisionConsequences.isNotEmpty && hitboxCells.isNotEmpty) {
         /// means we have at least one collision
         for (final consequence in collisionConsequences) {
           switch (consequence) {
@@ -113,8 +113,8 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   }
 
   void _onMove(final double dt, {final bool isCollided = false}) {
-    final gameConstantsCubit = game.diDto.gameConstantsCubit;
-    final character = game.diDto.levelPlayersBloc.state.playerCharacter;
+    final gameConstantsCubit = game.dto.gameConstantsCubit;
+    final character = game.dto.levelPlayersBloc.state.playerCharacter;
     final gameConstants = gameConstantsCubit.state;
 
     LiftForceModel liftForce;
@@ -135,7 +135,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     final height = gravity.getHeight(distanceToOrigin);
     final heightInTiles = gravity.getHeightInTiles(distanceToOrigin);
     final windOffset =
-        game.diDto.weatherCubit.generateWindForce(heightInTiles: heightInTiles);
+        game.dto.weatherCubit.generateWindForce(heightInTiles: heightInTiles);
     if (heightInTiles < 0 || isCollided) {
       // do not update position
       // update position if needed
@@ -165,7 +165,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       setPosition(newPosition + windOffset);
     }
 
-    gameRef.diDto.levelPlayersBloc.onChangeCharacterPosition(
+    gameRef.dto.levelPlayersBloc.onChangeCharacterPosition(
       distanceToOrigin: distanceToOrigin.toVector2(),
       liftForce: liftForce,
     );

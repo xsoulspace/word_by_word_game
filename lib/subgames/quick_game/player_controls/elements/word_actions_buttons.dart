@@ -15,7 +15,7 @@ class UiWordActions extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<WordCompositionCubit>();
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
@@ -45,14 +45,14 @@ class UiWordActions extends StatelessWidget {
           else
             uiTheme.verticalBoxes.medium,
         ]);
-      case GamePhaseType.selectFuel:
+      case GamePhaseType.selectAction:
         break;
     }
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
-        textScaler: TextScaler.noScaling,
         devicePixelRatio: 1,
+        textScaler: TextScaler.noScaling,
       ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,16 +98,23 @@ class UiConfirmWordButton extends StatelessWidget {
     final currentWord = context.select<LevelBloc, String>(
       (final s) => s.state.currentWord.fullWord,
     );
+    final textTheme = context.textTheme;
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
     final isPressable = warning != WordWarning.isNotCorrect;
-    return Column(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Tooltip(
           message: S.of(context).powerOfEnteredWord,
-          child: Text('+${score.value ~/ kScoreFactor}'),
+          child: Text(
+            '+${score.value ~/ kScoreFactor}',
+            style: textTheme.bodySmall?.copyWith(
+              color: context.colorScheme.tertiary,
+            ),
+          ),
         ),
+        const Gap(6),
         FloatingActionButton.small(
           tooltip: S.of(context).confirm,
           elevation: 1,

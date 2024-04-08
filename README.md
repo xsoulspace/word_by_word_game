@@ -40,9 +40,10 @@ Join Discord - https://discord.gg/y54DpJwmAn
 
 Have fun and a great time!
 
-## Donations / Sponsor
+## Support Development
 
-Please sponsor or donate to the creator on [Boosty](https://boosty.to/arenukvern) or [CloudTips](https://pay.cloudtips.ru/p/1629cd27).
+You can support this app development by [giving a star its GitHub repository](https://github.com/xsoulspace/last_answer) or
+be donate to the creator on [Boosty](https://boosty.to/arenukvern) or [Patreon](https://patreon.com/arenukvern).
 
 Thank you for your support and have a great day! 🌄
 

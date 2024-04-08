@@ -125,6 +125,12 @@ abstract class S {
   /// **'Reset ending'**
   String get resetEnding;
 
+  /// No description provided for @congratulationsYouPassedTheLandscape.
+  ///
+  /// In en, this message translates to:
+  /// **'Congratulations! You passed this landscape!'**
+  String get congratulationsYouPassedTheLandscape;
+
   /// No description provided for @congratulations.
   ///
   /// In en, this message translates to:
@@ -238,6 +244,12 @@ abstract class S {
   /// In en, this message translates to:
   /// **'Players & Highscore'**
   String get playersAndHighscore;
+
+  /// No description provided for @playersAndHighscoreYandex.
+  ///
+  /// In en, this message translates to:
+  /// **'Players & Highscore'**
+  String get playersAndHighscoreYandex;
 
   /// No description provided for @startNewGame.
   ///

@@ -78,11 +78,11 @@ class OriginVectorUtils {
     return getCellByDistance(distanceToOrigin);
   }
 
-  math.Point<int> getCurrentCellByTap(final PositionEvent eventPosition) {
-    final distanceToOrigin = eventPosition.canvasPosition - origin;
+  math.Point<int> getCurrentCellByTap(final Vector2 canvasPosition) {
+    final distanceToOrigin = canvasPosition - origin;
     return getCellByDistance(distanceToOrigin);
   }
 
-  Vector2 getCurrentPositionByTap(final PositionEvent eventPosition) =>
-      eventPosition.canvasPosition - origin;
+  Vector2 getCurrentPositionByTap(final Vector2 canvasPosition) =>
+      canvasPosition - origin;
 }

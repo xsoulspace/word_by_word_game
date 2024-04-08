@@ -24,7 +24,8 @@ class UILevelCenterBar extends StatelessWidget {
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
-
+    final textTheme = context.textTheme;
+    final uiTheme = context.uiTheme;
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
         devicePixelRatio: 1,
@@ -33,12 +34,23 @@ class UILevelCenterBar extends StatelessWidget {
       child: Column(
         children: [
           Container(
-            constraints: const BoxConstraints(maxHeight: 68),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 10,
             ),
             child: Stack(
               children: [
+                Row(
+                  children: [
+                    switch (phaseType) {
+                      GamePhaseType.entryWord =>
+                        Text('', style: textTheme.displaySmall),
+                      GamePhaseType.selectAction =>
+                        Text('', style: textTheme.displaySmall),
+                    },
+                  ],
+                ),
                 Positioned.fill(
                   child: AnimatedAlign(
                     duration: 250.milliseconds,
@@ -51,7 +63,7 @@ class UILevelCenterBar extends StatelessWidget {
                 Positioned.fill(
                   child: AnimatedAlign(
                     duration: 220.milliseconds,
-                    alignment: phaseType == GamePhaseType.selectFuel
+                    alignment: phaseType == GamePhaseType.selectAction
                         ? Alignment.center
                         : Alignment.centerLeft,
                     child: const UIMobilePlayerScore(),
@@ -75,10 +87,13 @@ class UILevelCenterBar extends StatelessWidget {
               ],
             ),
           ),
-          const Gap(8),
-          switch (phaseType) {
-            GamePhaseType.entryWord => const UiWordCompositionBar(),
-            GamePhaseType.selectFuel => const UiFuelBar(),
+          ...switch (phaseType) {
+            GamePhaseType.entryWord => [
+                const Gap(8),
+                const UiWordCompositionBar(),
+                uiTheme.verticalBoxes.medium,
+              ],
+            GamePhaseType.selectAction => [const UiActionFrame()],
           },
         ],
       ),

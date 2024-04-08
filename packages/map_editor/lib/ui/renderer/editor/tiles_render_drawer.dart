@@ -17,7 +17,7 @@ class TilesDrawer extends Component
     event.continuePropagation = true;
     super.onDragUpdate(event);
     if (game.diDto.mapEditorBloc.state.isEditing) {
-      _onTap(event);
+      _onTap(event.canvasStartPosition);
     }
   }
 
@@ -25,7 +25,7 @@ class TilesDrawer extends Component
   void onTapDown(final TapDownEvent event) {
     event.continuePropagation = true;
     if (game.diDto.mapEditorBloc.state.isEditing) {
-      _onTap(event);
+      _onTap(event.canvasPosition);
     }
     return super.onTapDown(event);
   }
@@ -80,9 +80,9 @@ class TilesDrawer extends Component
   }
 
   math.Point<int>? _lastSelectedCell;
-  void _onTap(final PositionEvent event) {
+  void _onTap(final Vector2 canvasPosition) {
     final originUtils = OriginVectorUtils.use(origin);
-    final cell = originUtils.getCurrentCellByTap(event);
+    final cell = originUtils.getCurrentCellByTap(canvasPosition);
     final effectiveLayerTiles = {...layerTiles};
     final cellPoint = cell.toCellPoint();
     final tileToDraw = drawerCubit.tileToDraw;
@@ -206,7 +206,8 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     required final double tileRows,
     required final double windowWidth,
   }) {
-    if (canvasData.tilesetType != _tilesetType) {
+    if (canvasData.tilesetType != _tilesetType || _spriteImage == null) {
+      print('render atlas called');
       _tilesetType = canvasData.tilesetType;
       _spriteImage = null;
       _runtimeCache.clear();
@@ -331,7 +332,15 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
         }
       }
       final atlasImage = _spriteImage;
-      if (atlasImage == null) return;
+      if (atlasImage == null) {
+        print('atlas image is null');
+        return;
+      } else if (atlasImage.debugDisposed) {
+        print('atlas image disposed');
+        _spriteImage = null;
+        return;
+      }
+
       canvas.drawAtlas(
         atlasImage,
         atlasRsTransforms,
@@ -458,7 +467,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
 abstract interface class TilesPainterInterface {
   // ignore: unused_element
   TilesPainterInterface._();
-  factory TilesPainterInterface.getImpl() => DeviceRuntimeType.isMobileWeb
+  factory TilesPainterInterface.getImpl() => DeviceRuntimeType.isWeb
       ? TilesPainterImagesImpl()
       : TilesPainterAtlasImpl();
   void render({

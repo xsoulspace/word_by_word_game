@@ -6,9 +6,15 @@ class AppThemeData {
     required final ColorScheme colorScheme,
     required final SurfaceColorScheme surfaceColorScheme,
   }) {
-    final theme = ThemeData.from(colorScheme: colorScheme, useMaterial3: true);
+    final theme = ThemeData.from(
+      colorScheme: colorScheme,
+      useMaterial3: true,
+      textTheme: Typography.material2021(
+        platform: defaultTargetPlatform,
+        colorScheme: colorScheme,
+      ).englishLike.merge(GoogleFonts.openSansTextTheme()),
+    );
     return theme.copyWith(
-      textTheme: GoogleFonts.openSansTextTheme(theme.textTheme),
       extensions: [surfaceColorScheme],
     );
   }

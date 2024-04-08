@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
@@ -19,7 +20,7 @@ class LevelWinDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     final playersState =
         context.select<LevelPlayersBloc, LevelPlayersBlocState>(
       (final value) => value.state,
@@ -28,7 +29,7 @@ class LevelWinDialog extends StatelessWidget {
     return DialogScaffold(
       children: [
         Text(
-          'Congratulations! You passed this landscape!',
+          S.of(context).congratulationsYouPassedTheLandscape,
           style: theme.textTheme.titleLarge,
         ),
         uiTheme.verticalBoxes.extraLarge,
@@ -45,11 +46,11 @@ class LevelWinDialog extends StatelessWidget {
                 AppRouterController.use(context.read).toRoot();
                 context.read<DialogController>().closeDialog();
               },
-              child: const Text('To Landscapes'),
+              child: Text(S.of(context).toLandscapes),
             ),
             TextButton(
               onPressed: onRestart,
-              child: const Text('Start Again'),
+              child: Text(S.of(context).startAgain),
             ),
           ],
         ),

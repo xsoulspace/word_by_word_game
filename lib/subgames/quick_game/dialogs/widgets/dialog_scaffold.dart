@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:flutter_animate/flutter_animate.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 class DialogScaffold extends StatelessWidget {
   const DialogScaffold({
@@ -14,7 +15,7 @@ class DialogScaffold extends StatelessWidget {
   final WidgetBuilder? builder;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
     Widget child;
     if (builder != null) {
       child = Builder(builder: builder!);
@@ -25,7 +26,8 @@ class DialogScaffold extends StatelessWidget {
         children: children!,
       );
     }
-    return ConstrainedBox(
+    return AnimatedContainer(
+      duration: 50.milliseconds,
       constraints: const BoxConstraints(
         maxWidth: 450,
       ),

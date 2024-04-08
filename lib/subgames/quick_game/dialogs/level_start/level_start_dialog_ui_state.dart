@@ -10,7 +10,7 @@ class _LevelStartDialogUiStateDiDto {
 
 LevelStartDialogUiState _useLevelStartUiState({
   required final Locator read,
-  required final LevelStartDialogUxState uxState,
+  required final LevelStartDialogUxNotifier uxState,
 }) =>
     use(
       ContextfulLifeHook(
@@ -32,7 +32,7 @@ class LevelStartDialogUiState extends ContextfulLifeState {
     required this.diDto,
     required this.uxState,
   });
-  final LevelStartDialogUxState uxState;
+  final LevelStartDialogUxNotifier uxState;
   final _LevelStartDialogUiStateDiDto diDto;
 
   bool isVisible = false;

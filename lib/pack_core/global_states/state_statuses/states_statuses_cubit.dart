@@ -45,9 +45,9 @@ class StatesStatusesCubitDto {
 }
 
 class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
-  StatesStatusesCubit({
-    required this.dto,
-  }) : super(const StatesStatusesCubitState());
+  StatesStatusesCubit(final BuildContext context)
+      : dto = StatesStatusesCubitDto(context: context),
+        super(const StatesStatusesCubitState());
   final StatesStatusesCubitDto dto;
   // ignore: avoid_setters_without_getters
   set _state(final StatesStatusesCubitState value) => emit(value);

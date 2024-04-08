@@ -8,7 +8,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
-import 'package:universal_io/io.dart';
+// import 'package:universal_io/io.dart';
 import 'package:url_launcher/url_launcher_string.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -19,7 +19,8 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
-import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
+
+// import 'package:yandex_ads_sdk/yandex_ads_sdk.dart';
 
 part 'pause_screen_state.dart';
 
@@ -32,7 +33,7 @@ class PauseScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final state = _usePauseScreenState(read: context.read);
-    final uiTheme = UiTheme.of(context);
+    final uiTheme = context.uiTheme;
 
     return Provider(
       create: (final context) => state,
@@ -60,16 +61,18 @@ class PauseScreen extends HookWidget {
                           icon: Icons.settings,
                           text: S.of(context).settings,
                           onPressed: state.onToSettings,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
                         uiTheme.horizontalBoxes.medium,
                         UiFilledButton.icon(
                           icon: Icons.scoreboard_rounded,
-                          text: S.of(context).playersAndHighscore,
+                          text: Envs.store.isYandexGames
+                              ? S.of(context).playersAndHighscoreYandex
+                              : S.of(context).playersAndHighscore,
                           onPressed: state.onToPlayersAndHighscore,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
@@ -78,7 +81,7 @@ class PauseScreen extends HookWidget {
                           icon: Icons.question_mark_rounded,
                           text: S.of(context).about,
                           onPressed: state.onShowAbout,
-                        ).animate().then(delay: 500.milliseconds).fadeIn(
+                        ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
                             ),
@@ -87,7 +90,7 @@ class PauseScreen extends HookWidget {
                           UiTextButton.text(
                             text: S.of(context).privacyPolicy,
                             onPressed: state.onPrivacyPolicy,
-                          ).animate().then(delay: 500.milliseconds).fadeIn(
+                          ).animate(delay: 500.milliseconds).fadeIn(
                                 curve: Curves.easeIn,
                                 duration: 450.milliseconds,
                               ),

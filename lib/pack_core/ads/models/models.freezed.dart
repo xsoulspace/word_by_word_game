@@ -12,7 +12,7 @@ part of 'models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AdPermissions {
@@ -79,11 +79,11 @@ class _$AdPermissionsCopyWithImpl<$Res, $Val extends AdPermissions>
 }
 
 /// @nodoc
-abstract class _$$_AdPermissionsCopyWith<$Res>
+abstract class _$$AdPermissionsImplCopyWith<$Res>
     implements $AdPermissionsCopyWith<$Res> {
-  factory _$$_AdPermissionsCopyWith(
-          _$_AdPermissions value, $Res Function(_$_AdPermissions) then) =
-      __$$_AdPermissionsCopyWithImpl<$Res>;
+  factory _$$AdPermissionsImplCopyWith(
+          _$AdPermissionsImpl value, $Res Function(_$AdPermissionsImpl) then) =
+      __$$AdPermissionsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -94,11 +94,11 @@ abstract class _$$_AdPermissionsCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_AdPermissionsCopyWithImpl<$Res>
-    extends _$AdPermissionsCopyWithImpl<$Res, _$_AdPermissions>
-    implements _$$_AdPermissionsCopyWith<$Res> {
-  __$$_AdPermissionsCopyWithImpl(
-      _$_AdPermissions _value, $Res Function(_$_AdPermissions) _then)
+class __$$AdPermissionsImplCopyWithImpl<$Res>
+    extends _$AdPermissionsCopyWithImpl<$Res, _$AdPermissionsImpl>
+    implements _$$AdPermissionsImplCopyWith<$Res> {
+  __$$AdPermissionsImplCopyWithImpl(
+      _$AdPermissionsImpl _value, $Res Function(_$AdPermissionsImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -109,7 +109,7 @@ class __$$_AdPermissionsCopyWithImpl<$Res>
     Object? levelEndScreenBannerEnabled = null,
     Object? onContinueLevelVideoEnabled = null,
   }) {
-    return _then(_$_AdPermissions(
+    return _then(_$AdPermissionsImpl(
       adsAllowed: null == adsAllowed
           ? _value.adsAllowed
           : adsAllowed // ignore: cast_nullable_to_non_nullable
@@ -132,8 +132,8 @@ class __$$_AdPermissionsCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_AdPermissions extends _AdPermissions {
-  const _$_AdPermissions(
+class _$AdPermissionsImpl extends _AdPermissions {
+  const _$AdPermissionsImpl(
       {this.adsAllowed = false,
       this.pauseGameScreenBannerEnabled = false,
       this.levelEndScreenBannerEnabled = false,
@@ -159,10 +159,10 @@ class _$_AdPermissions extends _AdPermissions {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AdPermissions &&
+            other is _$AdPermissionsImpl &&
             (identical(other.adsAllowed, adsAllowed) ||
                 other.adsAllowed == adsAllowed) &&
             (identical(other.pauseGameScreenBannerEnabled,
@@ -190,8 +190,8 @@ class _$_AdPermissions extends _AdPermissions {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AdPermissionsCopyWith<_$_AdPermissions> get copyWith =>
-      __$$_AdPermissionsCopyWithImpl<_$_AdPermissions>(this, _$identity);
+  _$$AdPermissionsImplCopyWith<_$AdPermissionsImpl> get copyWith =>
+      __$$AdPermissionsImplCopyWithImpl<_$AdPermissionsImpl>(this, _$identity);
 }
 
 abstract class _AdPermissions extends AdPermissions {
@@ -199,7 +199,7 @@ abstract class _AdPermissions extends AdPermissions {
       {final bool adsAllowed,
       final bool pauseGameScreenBannerEnabled,
       final bool levelEndScreenBannerEnabled,
-      final bool onContinueLevelVideoEnabled}) = _$_AdPermissions;
+      final bool onContinueLevelVideoEnabled}) = _$AdPermissionsImpl;
   const _AdPermissions._() : super._();
 
   @override
@@ -212,6 +212,6 @@ abstract class _AdPermissions extends AdPermissions {
   bool get onContinueLevelVideoEnabled;
   @override
   @JsonKey(ignore: true)
-  _$$_AdPermissionsCopyWith<_$_AdPermissions> get copyWith =>
+  _$$AdPermissionsImplCopyWith<_$AdPermissionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
