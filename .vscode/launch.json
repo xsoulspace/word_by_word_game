@@ -44,7 +44,7 @@
       "request": "launch",
       "type": "dart",
       "args": [
-        "--dart-define-from-file=configs/prod.json",
+        "--dart-define-from-file=configs/web_prod.json",
         "--web-port=3000",
         "--dart-define=IS_LINKS_ALLOWED=false"
       ],
