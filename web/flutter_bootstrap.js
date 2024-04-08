@@ -1,6 +1,8 @@
 {{flutter_js}}
 {{flutter_build_config}}
 
+window.CrazyGames.SDK.game.sdkGameLoadingStart();
+
 // https://github.com/flutter/website/pull/10256/files
 // https://github.com/flutter/flutter/issues/145559
 var loading = document.querySelector("#loading");
@@ -13,5 +15,6 @@ _flutter.loader.load({
     loading.classList.add("init_done");
     await appRunner.runApp();
     loading.remove();
+    window.CrazyGames.SDK.game.sdkGameLoadingStop();
   },
 });
