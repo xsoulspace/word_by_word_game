@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -52,8 +54,13 @@ class TechnologiesTreeDialog extends HookWidget {
         Row(
           children: [
             Text(
-              // TODO(arenukvern): l10n
-              'Technology Tree',
+              const LocalizedMap(
+                value: {
+                  Languages.en: 'Technology Tree',
+                  Languages.ru: 'Дерево технологий',
+                  Languages.it: 'Albero tecnologie',
+                },
+              ).getValue(),
               style: context.textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -82,20 +89,33 @@ class TechnologiesTreeDialog extends HookWidget {
             child: Column(
               children: [
                 const Gap(6),
-                if (isHintVisible)
-                  // TODO(arenukvern): l10n
-                  ...[
-                  const Text(
-                    'Tip: to change researching technology enter new word and '
-                    'choose select technology action',
+                if (isHintVisible) ...[
+                  Text(
+                    const LocalizedMap(
+                      value: {
+                        Languages.en:
+                            'Tip: to change researching technology enter new word and choose select technology action',
+                        Languages.ru:
+                            'Подсказка: для изменения текущей технологии введите новое слово и выберите действие "Выбрать технологию"',
+                        Languages.it:
+                            'Suggerimento: per modificare la tecnologia corrente, inserisci una nuova parola e scegli l\'azione "Seleziona tecnologia"',
+                      },
+                    ).getValue(),
                     textAlign: TextAlign.center,
                   ),
                   const Gap(12),
                 ],
-
-                // TODO(arenukvern): l10n
-                const Text(
-                  'Tip: use words to research technology faster.',
+                Text(
+                  const LocalizedMap(
+                    value: {
+                      Languages.en:
+                          'Tip: use words to research technology faster.',
+                      Languages.ru:
+                          'Подсказка: использовать слова для быстрого исследования технологий.',
+                      Languages.it:
+                          'Suggerimento: usare parole per un ricerche veloce della tecnologia.',
+                    },
+                  ).getValue(),
                   textAlign: TextAlign.center,
                 ),
                 const Gap(6),
@@ -106,12 +126,24 @@ class TechnologiesTreeDialog extends HookWidget {
         const Gap(18),
         ListTile(
           title: Text(
-            // TODO(arenukvern): l10n
             technologiesCubit.researchingTechnology?.title.getValue() ??
-                'Not researching',
+                const LocalizedMap(
+                  value: {
+                    Languages.en: 'Not researching',
+                    Languages.ru: 'Не исследуется',
+                    Languages.it: 'Non ricerco',
+                  },
+                ).getValue(),
           ),
-          // TODO(arenukvern): l10n
-          subtitle: const Text('Current Research'),
+          subtitle: Text(
+            const LocalizedMap(
+              value: {
+                Languages.en: 'Current Research',
+                Languages.ru: 'Текущее исследование',
+                Languages.it: 'Ricerche correnti',
+              },
+            ).getValue(),
+          ),
         ),
         const Gap(32),
         ...technologiesCubit.technologies.values.map(
@@ -190,10 +222,22 @@ class _TechnologyTile extends StatelessWidget {
                 ),
               ],
             ),
-
-            // TODO(arenukvern): l10n
             Text(
-              isUnlocked ? 'Researched' : 'Not researched',
+              isUnlocked
+                  ? const LocalizedMap(
+                      value: {
+                        Languages.en: 'Researched',
+                        Languages.ru: 'Исследовано',
+                        Languages.it: 'Ricerco',
+                      },
+                    ).getValue()
+                  : const LocalizedMap(
+                      value: {
+                        Languages.en: 'Not researched',
+                        Languages.ru: 'Не исследовано',
+                        Languages.it: 'Non ricerco',
+                      },
+                    ).getValue(),
               style: context.textTheme.labelMedium?.copyWith(
                 color: (isUnlocked
                         ? context.colorScheme.surfaceTint

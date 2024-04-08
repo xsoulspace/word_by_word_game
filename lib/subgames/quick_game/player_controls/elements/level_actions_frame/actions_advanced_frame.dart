@@ -28,7 +28,13 @@ class UIActionFrameAdvanced extends StatelessWidget {
             labelPadding: EdgeInsets.zero,
             tabs: [
               (
-                title: 'Energy',
+                title: const LocalizedMap(
+                  value: {
+                    Languages.en: 'Energy',
+                    Languages.ru: 'Энергия',
+                    Languages.it: 'Energia',
+                  },
+                ).getValue(),
                 iconChildren: [
                   Image.asset(
                     UiAssetHelper.useImagePath(UiIcons.fire.path),
@@ -38,7 +44,13 @@ class UIActionFrameAdvanced extends StatelessWidget {
                 ],
               ),
               (
-                title: 'Technology',
+                title: const LocalizedMap(
+                  value: {
+                    Languages.en: 'Technology',
+                    Languages.ru: 'Технология',
+                    Languages.it: 'Tecnologia',
+                  },
+                ).getValue(),
                 iconChildren: [
                   const Icon(CupertinoIcons.lab_flask, size: 18),
                   const Gap(2),
@@ -128,8 +140,13 @@ class _SelectTechnologyCard extends StatelessWidget {
           ),
           const Gap(12),
           Text(
-            // TODO(arenukvern): l10n
-            'Research Technology',
+            const LocalizedMap(
+              value: {
+                Languages.en: 'Research Technology',
+                Languages.ru: 'Исследовать технологию',
+                Languages.it: 'Ricercare tecnologia',
+              },
+            ).getValue(),
             style: context.textTheme.titleMedium,
           ),
         ],
@@ -154,13 +171,25 @@ class _ChangeResearchingTechnology extends StatelessWidget {
     );
 
     return UiActionButton(
-      tooltipMessage:
-          // TODO(arenukvern): l10n
-          'Change technology for faster research',
+      tooltipMessage: const LocalizedMap(
+        value: {
+          Languages.en: 'Change technology for faster research',
+          Languages.ru: 'Изменить технологию для быстрого исследования',
+          Languages.it: 'Cambia la tecnologia per un ricerche veloce',
+        },
+      ).getValue(),
       onCompleted: onChangeTechnology,
       child: Row(
         children: [
-          const Text('Change'),
+          Text(
+            const LocalizedMap(
+              value: {
+                Languages.en: 'Change',
+                Languages.ru: 'Изменить',
+                Languages.it: 'Cambia',
+              },
+            ).getValue(),
+          ),
           const Gap(8),
           Text(
             '${applyingScore.formattedScore}',
@@ -228,7 +257,21 @@ class _ResearchMultiplierCards extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text(
-                          isUnlocked ? 'Researched' : 'Researching',
+                          isUnlocked
+                              ? const LocalizedMap(
+                                  value: {
+                                    Languages.en: 'Researched',
+                                    Languages.ru: 'Исследовано',
+                                    Languages.it: 'Ricercato',
+                                  },
+                                ).getValue()
+                              : const LocalizedMap(
+                                  value: {
+                                    Languages.en: 'Researching',
+                                    Languages.ru: 'Исследуется',
+                                    Languages.it: 'Ricercando',
+                                  },
+                                ).getValue(),
                           style: context.textTheme.labelMedium?.copyWith(
                             color: context.colorScheme.tertiary,
                           ),

@@ -56,8 +56,15 @@ class LevelOptionsScreen extends HookWidget {
               (final old) =>
                   old.copyWith(isTechnologiesEnabled: isEnabled == true),
             ),
-            // TODO(arenukvern): l10n
-            title: const Text('Technologies (Experimental)'),
+            title: Text(
+              const LocalizedMap(
+                value: {
+                  Languages.en: 'Technologies (Experimental)',
+                  Languages.ru: 'Технологии (Экспериментально)',
+                  Languages.it: 'Tecnologie (Esperimentale)',
+                },
+              ).getValue(),
+            ),
           ),
         ],
         uiTheme.verticalBoxes.medium,

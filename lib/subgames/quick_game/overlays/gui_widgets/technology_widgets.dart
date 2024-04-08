@@ -38,12 +38,20 @@ class CurrentTechnologyButton extends StatelessWidget {
               : CupertinoIcons.lab_flask,
         ),
       ),
-      // TODO(arenukvern): l10n
       label: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisSize: MainAxisSize.min,
         children: [
-          Text(currentTechnology?.title.getValue() ?? 'Not researching'),
+          Text(
+            currentTechnology?.title.getValue() ??
+                const LocalizedMap(
+                  value: {
+                    Languages.en: 'Not researching',
+                    Languages.ru: 'Не исследуется',
+                    Languages.it: 'Non studiata',
+                  },
+                ).getValue(),
+          ),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 100),
             child: UiTechnologyLinearProgress(percentage: percentage),

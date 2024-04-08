@@ -1,3 +1,5 @@
+// ignore_for_file: lines_longer_than_80_chars
+
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -14,13 +16,13 @@ class UIWeatherBar extends StatelessWidget {
     final state = context.watch<WeatherCubit>().state;
     final currentWeather = state.weather;
     final currentWind = state.wind;
-    final borderColor = context.colorScheme.onBackground.withOpacity(0.2);
+    final borderColor = context.colorScheme.onSurface.withOpacity(0.2);
     final borderSide = BorderSide(color: borderColor);
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,
       child: Container(
         decoration: BoxDecoration(
-          color: context.colorScheme.background.withOpacity(0.7),
+          color: context.colorScheme.surface.withOpacity(0.7),
           border: Border(right: borderSide, bottom: borderSide),
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.elliptical(8, 8),
@@ -35,8 +37,13 @@ class UIWeatherBar extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               _CurrentWeatherText(
-                // TODO(arenukvern): l10n
-                tooltipMessage: 'Current wind type',
+                tooltipMessage: const LocalizedMap(
+                  value: {
+                    Languages.en: 'Current weather type',
+                    Languages.ru: 'Текущий тип погоды',
+                    Languages.it: 'Tipo di previsione attuale',
+                  },
+                ).getValue(),
                 weather: currentWeather,
               ),
 
@@ -55,8 +62,13 @@ class UIWeatherBar extends StatelessWidget {
                     children: [
                       WindDirectionBadge(
                         value: currentWind.force.x,
-                        // TODO(arenukvern): l10n
-                        tooltipMessage: 'Horizontal wind force',
+                        tooltipMessage: const LocalizedMap(
+                          value: {
+                            Languages.en: 'Horizontal wind force',
+                            Languages.ru: 'Горизонтальная сила ветера',
+                            Languages.it: 'Forza del vento orizzontale',
+                          },
+                        ).getValue(),
                         direction: Axis.horizontal,
                       ),
                       Divider(
@@ -65,9 +77,16 @@ class UIWeatherBar extends StatelessWidget {
                         thickness: 1,
                       ),
                       WindDirectionBadge(
-                        // TODO(arenukvern): l10n
-                        tooltipMessage:
-                            'Vertical wind force, can blow up or down',
+                        tooltipMessage: const LocalizedMap(
+                          value: {
+                            Languages.en:
+                                'Vertical wind force, can blow up or down',
+                            Languages.ru:
+                                'Вертикальная сила ветера, может дуть вниз или вверх',
+                            Languages.it:
+                                'Forza del vento verticale, puô essere sopra o sotto',
+                          },
+                        ).getValue(),
                         value: currentWind.force.y,
                         direction: Axis.vertical,
                       ),
@@ -102,16 +121,26 @@ class _NextWeathersRow extends StatelessWidget {
       children: [
         if (firstWeather != null)
           Tooltip(
-            // TODO(arenukvern): l10n
-            message: 'Next weather predictions',
+            message: const LocalizedMap(
+              value: {
+                Languages.en: 'Next weather predictions',
+                Languages.ru: 'Предсказания погоды',
+                Languages.it: 'Previsioni della prossima previsione',
+              },
+            ).getValue(),
             child: TutorialFrame(
               highlightPosition: Alignment.bottomRight,
               uiKey: TutorialUiItem.currentWeather,
               child: Column(
                 children: [
                   Text(
-                    // TODO(arenukvern): l10n
-                    '${firstWeather.windScale.emojiRepresentation}in ${state.weather.durationInGameSeconds}',
+                    '${firstWeather.windScale.emojiRepresentation}${const LocalizedMap(
+                      value: {
+                        Languages.en: 'in',
+                        Languages.ru: 'в',
+                        Languages.it: 'in',
+                      },
+                    ).getValue()} ${state.weather.durationInGameSeconds}',
                     style: context.textTheme.labelSmall,
                   ),
                   Text(
@@ -131,7 +160,7 @@ class _NextWeathersRow extends StatelessWidget {
         DecoratedBox(
           decoration: BoxDecoration(
             border: Border(
-              top: BorderSide(color: context.colorScheme.onBackground),
+              top: BorderSide(color: context.colorScheme.onSurface),
             ),
             borderRadius: BorderRadius.circular(4),
           ),
@@ -149,7 +178,7 @@ class _NextWeathersRow extends StatelessWidget {
                             width: 1,
                             height: 6,
                             decoration: BoxDecoration(
-                              color: context.colorScheme.onBackground,
+                              color: context.colorScheme.onSurface,
                               borderRadius: BorderRadius.circular(24),
                             ),
                           ),

@@ -29,9 +29,19 @@ class UIPowerBar extends StatelessWidget {
         context.read<DebugCubit>().tryOpenDebugPane();
       },
       child: Tooltip(
-        message:
-            // TODO(arenukvern): l10n
-            'Power. This force creates the lift force that moves the balloon upwards.',
+        message: const LocalizedMap(
+          value: {
+            Languages.en:
+                // ignore: lines_longer_than_80_chars
+                'Power. This force creates the lift force that moves the balloon upwards.',
+            Languages.ru:
+                // ignore: lines_longer_than_80_chars
+                'Сила. Создает подъёмную силу, которая перемещает баллон вверх.',
+            Languages.it:
+                // ignore: lines_longer_than_80_chars
+                'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
+          },
+        ).getValue(),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -83,8 +93,7 @@ class UIPowerBar extends StatelessWidget {
                       child: Text(
                         '${playerParams.balloonParams.maxPower ~/ kScoreFactor} / ${powers.power ~/ kScoreFactor}',
                         style: context.textThemeBold.bodyMedium?.copyWith(
-                          color:
-                              context.colorScheme.background.withOpacity(0.8),
+                          color: context.colorScheme.surface.withOpacity(0.8),
                         ),
                       ),
                     ),
