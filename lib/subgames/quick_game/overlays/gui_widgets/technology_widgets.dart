@@ -11,6 +11,7 @@ class CurrentTechnologyButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final locale = useLocale(context);
     final levelCubit = context.watch<LevelBloc>();
     final mechanics = context.read<MechanicsCollection>();
     final technologyCubit = context.watch<TechnologiesCubit>();
@@ -43,14 +44,14 @@ class CurrentTechnologyButton extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            currentTechnology?.title.getValue() ??
+            currentTechnology?.title.getValue(locale) ??
                 const LocalizedMap(
                   value: {
                     Languages.en: 'Not researching',
                     Languages.ru: 'Не исследуется',
                     Languages.it: 'Non studiata',
                   },
-                ).getValue(),
+                ).getValue(locale),
           ),
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 100),

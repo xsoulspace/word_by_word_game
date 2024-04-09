@@ -47,7 +47,7 @@ class UiLocalizedTextField extends StatefulWidget {
 
 class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   late final _textController = TextEditingController(
-    text: widget.value.value.isEmpty ? null : widget.value.getValue(),
+    text: widget.value.value.isEmpty ? null : widget.value.getValueByLanguage(),
   );
   late LocalizedMap _value = widget.value;
   Languages _language = LocalizedMap.getCurrentLanugage();
@@ -61,11 +61,12 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   @override
   void didUpdateWidget(covariant final UiLocalizedTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final newText = widget.value.value.isEmpty ? '' : widget.value.getValue();
+    final newText =
+        widget.value.value.isEmpty ? '' : widget.value.getValueByLanguage();
     if (widget.value != _value || newText != _textController.text) {
       _value = widget.value;
       _textController.text =
-          _value.value.isEmpty ? '' : _value.getValue(_language);
+          _value.value.isEmpty ? '' : _value.getValueByLanguage(_language);
     }
   }
 
@@ -98,7 +99,7 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
         LanguageSwitcher(
           onChanged: (final lang) {
             _language = lang;
-            _textController.text = _value.getValue(_language);
+            _textController.text = _value.getValueByLanguage(_language);
             setState(() {});
           },
           value: _language,

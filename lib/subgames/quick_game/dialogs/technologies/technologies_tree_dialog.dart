@@ -44,6 +44,8 @@ class TechnologiesTreeDialog extends HookWidget {
       }
     }
 
+    final locale = useLocale(context);
+
     /// switching manually should be available only in debug mode,
     /// because it kills the idea of wording
     final bool isSelectionAllowed = dto.isSelectionAllowed;
@@ -60,7 +62,7 @@ class TechnologiesTreeDialog extends HookWidget {
                   Languages.ru: 'Дерево технологий',
                   Languages.it: 'Albero tecnologie',
                 },
-              ).getValue(),
+              ).getValue(locale),
               style: context.textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -100,7 +102,7 @@ class TechnologiesTreeDialog extends HookWidget {
                         Languages.it:
                             'Suggerimento: per modificare la tecnologia corrente, inserisci una nuova parola e scegli l\'azione "Seleziona tecnologia"',
                       },
-                    ).getValue(),
+                    ).getValue(locale),
                     textAlign: TextAlign.center,
                   ),
                   const Gap(12),
@@ -115,7 +117,7 @@ class TechnologiesTreeDialog extends HookWidget {
                       Languages.it:
                           'Suggerimento: usare parole per un ricerche veloce della tecnologia.',
                     },
-                  ).getValue(),
+                  ).getValue(locale),
                   textAlign: TextAlign.center,
                 ),
                 const Gap(6),
@@ -126,14 +128,14 @@ class TechnologiesTreeDialog extends HookWidget {
         const Gap(18),
         ListTile(
           title: Text(
-            technologiesCubit.researchingTechnology?.title.getValue() ??
+            technologiesCubit.researchingTechnology?.title.getValue(locale) ??
                 const LocalizedMap(
                   value: {
                     Languages.en: 'Not researching',
                     Languages.ru: 'Не исследуется',
                     Languages.it: 'Non ricerco',
                   },
-                ).getValue(),
+                ).getValue(locale),
           ),
           subtitle: Text(
             const LocalizedMap(
@@ -142,7 +144,7 @@ class TechnologiesTreeDialog extends HookWidget {
                 Languages.ru: 'Текущее исследование',
                 Languages.it: 'Ricerche correnti',
               },
-            ).getValue(),
+            ).getValue(locale),
           ),
         ),
         const Gap(32),
@@ -189,6 +191,7 @@ class _TechnologyTile extends StatelessWidget {
         mechanics.technology.checkIsUnlockedInSomeLanguages(
           unlockCondition: unlockCondition,
         );
+    final locale = useLocale(context);
     return Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -211,7 +214,7 @@ class _TechnologyTile extends StatelessWidget {
                       ? () => onSelectedChanged(value.id, !isSelected)
                       : () {},
                   child: Text(
-                    value.title.getValue(),
+                    value.title.getValue(locale),
                     style: context.textTheme.titleMedium?.copyWith(
                       color: isSelected
                           ? context.colorScheme.onPrimaryContainer
@@ -230,14 +233,14 @@ class _TechnologyTile extends StatelessWidget {
                         Languages.ru: 'Исследовано',
                         Languages.it: 'Ricerco',
                       },
-                    ).getValue()
+                    ).getValue(locale)
                   : const LocalizedMap(
                       value: {
                         Languages.en: 'Not researched',
                         Languages.ru: 'Не исследовано',
                         Languages.it: 'Non ricerco',
                       },
-                    ).getValue(),
+                    ).getValue(locale),
               style: context.textTheme.labelMedium?.copyWith(
                 color: (isUnlocked
                         ? context.colorScheme.surfaceTint

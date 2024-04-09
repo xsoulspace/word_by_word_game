@@ -22,6 +22,7 @@ class GlobalStatesProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
+          ChangeNotifierProvider.value(value: uiLocaleNotifier),
           Provider(create: (final context) => initializer.analyticsService),
           Provider<LocalDbDataSource>(
             create: SharedPreferencesDbDataSourceImpl.new,
@@ -46,7 +47,7 @@ class GlobalStatesProvider extends StatelessWidget {
             const BlocProvider(create: TutorialBloc.new),
             const BlocProvider(create: WeatherCubit.new),
             const BlocProvider(create: GlobalGameBloc.new),
-            const BlocProvider(create: AppSettingsCubit.new),
+            ChangeNotifierProvider(create: AppSettingsNotifier.new),
             const BlocProvider(create: GameConstantsCubit.new),
             const BlocProvider(create: UiKeyboardController.new),
             ChangeNotifierProvider(create: DialogStackNotifier.new),

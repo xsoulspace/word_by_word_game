@@ -114,7 +114,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
   final _nameController = TextEditingController();
   @override
   void initState() {
-    _nameController.text = widget.initialTechnology.title.getValue(
+    _nameController.text = widget.initialTechnology.title.getValueByLanguage(
       widget.language,
     );
     super.initState();
@@ -123,7 +123,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
   @override
   void didUpdateWidget(covariant final TechnologyInput oldWidget) {
     if (widget.language != oldWidget.language) {
-      _nameController.text = widget.initialTechnology.title.getValue(
+      _nameController.text = widget.initialTechnology.title.getValueByLanguage(
         widget.language,
       );
     }

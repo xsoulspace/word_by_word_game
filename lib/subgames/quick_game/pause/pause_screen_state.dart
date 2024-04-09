@@ -64,6 +64,7 @@ class PauseScreenState extends ContextfulLifeState {
 
   Future<void> onShowAbout() async {
     final context = getContext();
+    final locale = useLocale(context);
     final theme = Theme.of(context);
     final uiTheme = context.uiTheme;
     final s = S.of(context);
@@ -73,7 +74,7 @@ class PauseScreenState extends ContextfulLifeState {
         Languages.ru: 'Сделано с помощью',
         Languages.it: 'Fatto con',
       },
-    ).getValue()} '
+    ).getValue(locale)} '
         'Flame Engine, Flutter & Dart.';
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
@@ -141,7 +142,7 @@ class PauseScreenState extends ContextfulLifeState {
                             // ignore: lines_longer_than_80_chars
                             'Utilizzato questo pacchetto durante lo sviluppo della v3',
                       },
-                    ).getValue()})',
+                    ).getValue(locale)})',
                   ),
                 ),
               ),
@@ -161,7 +162,7 @@ class PauseScreenState extends ContextfulLifeState {
         Languages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер',
         Languages.it: 'Gioco di Anton Malofeev, Irina Veter',
       },
-    ).getValue()}';
+    ).getValue(locale)}';
 
     final packageInfo = await PackageInfo.fromPlatform();
     final applicationVersion =
@@ -186,7 +187,7 @@ class PauseScreenState extends ContextfulLifeState {
               Languages.ru: 'Слово после слова Приключение',
               Languages.it: 'Parola dopo parola Avventura',
             },
-          ).getValue()
+          ).getValue(locale)
         : 'Word By Word';
     if (Envs.isLinksAllowed) {
       showAboutDialog(
