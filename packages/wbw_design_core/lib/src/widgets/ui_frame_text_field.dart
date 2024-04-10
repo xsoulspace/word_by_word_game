@@ -25,10 +25,10 @@ class UiFrameTextField extends StatelessWidget {
     const height = 34.0;
     const width = 88.0;
     final theme = Theme.of(context);
-    return RawKeyboardListener(
+    return KeyboardListener(
       focusNode: keyFocusNode,
-      onKey: (final event) {
-        if (event.logicalKey == LogicalKeyboardKey.enter) {
+      onKeyEvent: (final value) {
+        if (value.logicalKey == LogicalKeyboardKey.enter) {
           onEnterPressed?.call();
         }
       },

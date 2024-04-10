@@ -18,7 +18,7 @@ class RouteState extends ChangeNotifier {
   }
 
   Future<void> go(final String route) async {
-    this.route =
-        await parser.parseRouteInformation(RouteInformation(location: route));
+    this.route = await parser
+        .parseRouteInformation(RouteInformation(uri: Uri.parse(route)));
   }
 }

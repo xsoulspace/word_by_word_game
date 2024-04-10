@@ -38,11 +38,15 @@ enum StoreType {
   appleStore,
   windowsStore,
   snapstore,
+  vkPlay,
+  itch,
   crazyGames,
   yandexGames,
   xsoulspaceWebsite;
 
   bool get isGooglePlay => this == StoreType.googlePlay;
+  bool get isItch => this == StoreType.itch;
+  bool get isVkPlay => this == StoreType.vkPlay;
   bool get isRustore => this == StoreType.rustore;
   bool get isHuaweiStore => this == StoreType.huawaiStore;
   bool get isAppleStore => this == StoreType.appleStore;

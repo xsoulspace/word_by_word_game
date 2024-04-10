@@ -27,9 +27,8 @@ class GameLocalDataSourceImpl implements GameLocalDataSource {
       // TODO(arenukvern): add correct exception
     } catch (e) {
       // TODO(arenukvern): replace with analytics service
-      if (kDebugMode) {
-        print(e);
-      }
+      if (kDebugMode) print(e);
+
       return null;
     }
   }

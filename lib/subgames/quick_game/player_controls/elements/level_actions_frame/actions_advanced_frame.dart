@@ -17,7 +17,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
-    final colorScheme = context.colorScheme;
+    final locale = useLocale(context);
     final textTheme = context.textTheme;
     return DefaultTabController(
       length: 2,
@@ -34,7 +34,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     Languages.ru: 'Энергия',
                     Languages.it: 'Energia',
                   },
-                ).getValue(),
+                ).getValue(locale),
                 iconChildren: [
                   Image.asset(
                     UiAssetHelper.useImagePath(UiIcons.fire.path),
@@ -50,7 +50,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     Languages.ru: 'Технология',
                     Languages.it: 'Tecnologia',
                   },
-                ).getValue(),
+                ).getValue(locale),
                 iconChildren: [
                   const Icon(CupertinoIcons.lab_flask, size: 18),
                   const Gap(2),
@@ -99,7 +99,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
 }
 
 class _TechnologyTabView extends StatelessWidget {
-  const _TechnologyTabView({super.key});
+  const _TechnologyTabView();
 
   @override
   Widget build(final BuildContext context) {
@@ -115,7 +115,7 @@ class _TechnologyTabView extends StatelessWidget {
 }
 
 class _SelectTechnologyCard extends StatelessWidget {
-  const _SelectTechnologyCard({super.key});
+  const _SelectTechnologyCard();
   static const multiplier = EnergyMultiplierType.m2;
   @override
   Widget build(final BuildContext context) {
@@ -128,6 +128,7 @@ class _SelectTechnologyCard extends StatelessWidget {
       context: context,
       multiplier: multiplier,
     );
+    final locale = useLocale(context);
 
     return UiActionButton(
       onCompleted: onChangeTechnology,
@@ -146,7 +147,7 @@ class _SelectTechnologyCard extends StatelessWidget {
                 Languages.ru: 'Исследовать технологию',
                 Languages.it: 'Ricercare tecnologia',
               },
-            ).getValue(),
+            ).getValue(locale),
             style: context.textTheme.titleMedium,
           ),
         ],
@@ -156,7 +157,7 @@ class _SelectTechnologyCard extends StatelessWidget {
 }
 
 class _ChangeResearchingTechnology extends StatelessWidget {
-  const _ChangeResearchingTechnology({super.key});
+  const _ChangeResearchingTechnology();
 
   @override
   Widget build(final BuildContext context) {
@@ -169,6 +170,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
       context: context,
       multiplier: _SelectTechnologyCard.multiplier,
     );
+    final locale = useLocale(context);
 
     return UiActionButton(
       tooltipMessage: const LocalizedMap(
@@ -177,7 +179,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
           Languages.ru: 'Изменить технологию для быстрого исследования',
           Languages.it: 'Cambia la tecnologia per un ricerche veloce',
         },
-      ).getValue(),
+      ).getValue(locale),
       onCompleted: onChangeTechnology,
       child: Row(
         children: [
@@ -188,7 +190,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
                 Languages.ru: 'Изменить',
                 Languages.it: 'Cambia',
               },
-            ).getValue(),
+            ).getValue(locale),
           ),
           const Gap(8),
           Text(
@@ -223,7 +225,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
 }
 
 class _ResearchMultiplierCards extends StatelessWidget {
-  const _ResearchMultiplierCards({super.key});
+  const _ResearchMultiplierCards();
 
   @override
   Widget build(final BuildContext context) {
@@ -232,6 +234,7 @@ class _ResearchMultiplierCards extends StatelessWidget {
     final technologyProgress = technologiesCubit.researchingTechnologyProgress;
     final mechanics = context.read<MechanicsCollection>();
     final unlockCondition = technologyProgress?.unlockCondition;
+    final locale = useLocale(context);
     final (:isUnlocked, :percentage) = () {
       if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
       return mechanics.technology.checkIsUnlockedForLanguage(
@@ -264,14 +267,14 @@ class _ResearchMultiplierCards extends StatelessWidget {
                                     Languages.ru: 'Исследовано',
                                     Languages.it: 'Ricercato',
                                   },
-                                ).getValue()
+                                ).getValue(locale)
                               : const LocalizedMap(
                                   value: {
                                     Languages.en: 'Researching',
                                     Languages.ru: 'Исследуется',
                                     Languages.it: 'Ricercando',
                                   },
-                                ).getValue(),
+                                ).getValue(locale),
                           style: context.textTheme.labelMedium?.copyWith(
                             color: context.colorScheme.tertiary,
                           ),
@@ -280,7 +283,7 @@ class _ResearchMultiplierCards extends StatelessWidget {
                         FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                            '${technology?.title.getValue()}',
+                            '${technology?.title.getValue(locale)}',
                             style: context.textThemeBold.titleLarge,
                           ),
                         ),
@@ -355,7 +358,6 @@ class UiTechnologyLinearProgress extends StatelessWidget {
 class _TechnologyMultiplierCard extends StatelessWidget {
   const _TechnologyMultiplierCard({
     required this.type,
-    super.key,
   });
   final EnergyMultiplierType type;
   @override

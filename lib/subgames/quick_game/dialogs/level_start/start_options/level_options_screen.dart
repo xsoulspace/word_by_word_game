@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 
@@ -24,6 +25,7 @@ class LevelOptionsScreen extends HookWidget {
     final uiTheme = context.uiTheme;
     final widgetUxState = context.read<LevelStartDialogUxNotifier>();
     final theme = Theme.of(context);
+    final locale = useLocale(context);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -63,7 +65,7 @@ class LevelOptionsScreen extends HookWidget {
                   Languages.ru: 'Технологии (Экспериментально)',
                   Languages.it: 'Tecnologie (Esperimentale)',
                 },
-              ).getValue(),
+              ).getValue(locale),
             ),
           ),
         ],

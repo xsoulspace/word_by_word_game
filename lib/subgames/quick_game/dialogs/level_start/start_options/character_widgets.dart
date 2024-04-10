@@ -55,6 +55,7 @@ class CharacterAvatarButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final globalGameBloc = context.watch<GlobalGameBloc>();
     final liveState = globalGameBloc.state;
+    final locale = useLocale(context);
     final playersCharacters = liveState.playersCharacters;
     if (!isDefault) throw UnsupportedError('isNotDefault character');
     // TODO(arenukvern): add default character
@@ -86,7 +87,7 @@ class CharacterAvatarButton extends StatelessWidget {
             ),
           ),
         ),
-        Text(character.localizedName.getValue()),
+        Text(character.localizedName.getValue(locale)),
       ],
     );
   }
@@ -106,6 +107,7 @@ class CharacterCard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
+    final locale = useLocale(context);
     return Card(
       elevation: selected ? 12.0 : 1.0,
       color: selected ? theme.colorScheme.onTertiary : null,
@@ -132,7 +134,7 @@ class CharacterCard extends StatelessWidget {
             ),
             Padding(
               padding: EdgeInsets.all(uiTheme.spacing.medium),
-              child: Text(character.localizedName.getValue()),
+              child: Text(character.localizedName.getValue(locale)),
             ),
           ],
         ),

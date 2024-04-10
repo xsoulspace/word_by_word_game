@@ -13,8 +13,12 @@ build-rustore:
 	fvm flutter build apk --dart-define-from-file=configs/prod.json --dart-define=STORE=rustore -t lib/main_prod.dart
 build-web-pwa:
 	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=xsoulspaceWebsite -t lib/main_prod.dart --pwa-strategy=offline-first && rm -rf release/web && mv build/web release
+build-itch:
+	fvm flutter build web --csp --dart-define-from-file=configs/itch_prod.json --dart-define=STORE=itch -t lib/main_prod.dart --pwa-strategy=offline-first
+build-vk-play:
+	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=vkPlay -t lib/main_prod.dart --pwa-strategy=offline-first
 build-crazy-games:
-	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=crazyGames -t lib/main_prod.dart
+	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=crazyGames -t lib/main_prod.dart --pwa-strategy=offline-first
 build-yandex-games:
 	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=yandexGames -t lib/main_prod.dart
 

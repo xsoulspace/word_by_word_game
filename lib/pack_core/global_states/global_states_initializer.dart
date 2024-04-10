@@ -26,7 +26,7 @@ class GlobalStatesInitializer implements StateInitializer {
     final services = read<ServicesCollection>();
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
-    final appSettingsNotifier = read<AppSettingsCubit>();
+    final appSettingsNotifier = read<AppSettingsNotifier>();
     await appSettingsNotifier.onLoad();
     final localDictionary =
         await services.dictionariesRepository.loadDictionary();

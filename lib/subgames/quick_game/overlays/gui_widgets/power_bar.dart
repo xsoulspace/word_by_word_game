@@ -13,6 +13,7 @@ class UIPowerBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final locale = useLocale(context);
     final playerParams = context.select<LevelPlayersBloc, PlayerCharacterModel>(
       (final value) => value.state.playerCharacter,
     );
@@ -41,7 +42,7 @@ class UIPowerBar extends StatelessWidget {
                 // ignore: lines_longer_than_80_chars
                 'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
           },
-        ).getValue(),
+        ).getValue(locale),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [

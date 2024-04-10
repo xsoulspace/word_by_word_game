@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:intl/intl.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -77,45 +76,25 @@ class AppScaffoldBuilder extends HookWidget {
   final TemplateRouteParser routeParser;
   @override
   Widget build(final BuildContext context) {
+    final locale = context.select<AppSettingsNotifier, Locale>(
+      (final c) => c.locale.value,
+    );
     final state = useAppScaffoldBodyState(context.read);
-    final settingsNotifier = context.watch<AppSettingsCubit>();
+    // final settingsNotifier = context.watch<AppSettingsNotifier>();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+
+      /// Providing a restorationScopeId allows the Navigator built by
+      /// the MaterialApp to restore the navigation stack when a user
+      /// leaves and returns to the app after it has been killed while
+      /// running in the background.
+      restorationScopeId: 'app',
       theme: AppThemeData.brandLight,
       themeMode: ThemeMode.light,
       routeInformationParser: routeParser,
       routerDelegate: state.routerDelegate,
-      localizationsDelegates: const [
-        ...S.localizationsDelegates,
-      ],
-      locale: settingsNotifier.locale,
-      localeListResolutionCallback: (final locales, final supportedLocales) {
-        final defaultLocale = () {
-          if (locales == null || locales.isEmpty) return null;
-          for (final locale in locales) {
-            if (S.delegate.isSupported(locale)) {
-              return locale;
-            }
-          }
-        }();
-
-        // /// in case if we will needed preferrable system locale
-        // settingsNotifier.systemLocale = Locale.fromSubtags(
-        //   languageCode: defaultLocale?.languageCode ?? 'en',
-        // );
-        void setIntlLocale(final Locale? newLocale) {
-          final intlDefaultLocale = Intl.defaultLocale;
-          Intl.defaultLocale = newLocale?.languageCode ?? intlDefaultLocale;
-        }
-
-        /// if language is set by user, then use it
-        if (settingsNotifier.locale != null) {
-          setIntlLocale(settingsNotifier.locale);
-          return settingsNotifier.locale;
-        }
-        setIntlLocale(defaultLocale);
-        return defaultLocale;
-      },
+      localizationsDelegates: S.localizationsDelegates,
+      locale: locale,
       supportedLocales: Locales.values,
     );
   }
