@@ -22,15 +22,15 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
         super(AppSettingsModel.empty);
   final AppSettingsCubitDto dto;
 
-  AppSettingsModel get settings => value;
-  set settings(final AppSettingsModel value) {
+  Future<void> _updateSettings(final AppSettingsModel value) async {
     this.value = value;
-    unawaited(dto.appSettingsRepository.setSettings(value));
-    unawaited(updateLocale(value.locale));
+    await dto.appSettingsRepository.setSettings(value);
   }
 
   Future<void> onLoad() async {
-    settings = await dto.appSettingsRepository.getSettings();
+    final settings = await dto.appSettingsRepository.getSettings();
+    await _updateSettings(settings);
+    await updateLocale(value.locale);
   }
 
   ValueListenable<Locale> get locale => uiLocaleNotifier;
@@ -38,17 +38,18 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
   Future<void> updateLocale(final Locale? locale) async {
     final result = await LocaleLogic().updateLocale(
       newLocale: locale,
-      oldLocale: settings.locale,
+      oldLocale: value.locale,
       uiLocale: uiLocaleNotifier.value,
     );
     if (result == null) return;
     uiLocaleNotifier.value = result.uiLocale;
     notifyListeners();
-    settings = settings.copyWith(locale: result.updatedLocale);
+    if (value.locale == result.updatedLocale) return;
+    await _updateSettings(value.copyWith(locale: result.updatedLocale));
   }
 }
 
 Locale useLocale(final BuildContext context) =>
     context.select<AppSettingsNotifier, Locale>(
-      (final c) => uiLocaleNotifier.value,
+      (final c) => c.locale.value,
     );
