@@ -36,9 +36,7 @@ class StartGameHex extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 uiTheme.verticalBoxes.large,
-                LevelStartDialogButton(
-                  level: canvasData,
-                )
+                LevelStartDialogButton(level: canvasData)
                     .animate()
                     .then(duration: 150.milliseconds)
                     .fadeIn()

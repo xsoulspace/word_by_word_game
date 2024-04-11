@@ -26,73 +26,89 @@ class LevelOptionsScreen extends HookWidget {
     final widgetUxState = context.read<LevelStartDialogUxNotifier>();
     final theme = Theme.of(context);
     final locale = useLocale(context);
+    final unblockerNotifier = useState(0);
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        uiTheme.verticalBoxes.medium,
-        Text(
-          S.of(context).selectPlayers.toUpperCase(),
-          style: theme.textTheme.bodyLarge,
-          textAlign: TextAlign.center,
-        ),
-        uiTheme.verticalBoxes.medium,
-        Expanded(
-          child: PlayerProfileRow(
-            checkIsPlayerSelected: widgetUxState.checkIsPlayerSelected,
-            onSelected: widgetUxState.onPlayerSelected,
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          uiTheme.verticalBoxes.medium,
+          GestureDetector(
+            onTap: () => unblockerNotifier.value++,
+            child: Text(
+              S.of(context).selectPlayers.toUpperCase(),
+              style: theme.textTheme.bodyLarge,
+              textAlign: TextAlign.center,
+            ),
           ),
-        ),
-        uiTheme.verticalBoxes.medium,
-        CheckboxListTile(
-          value: widgetUxState.shouldStartTutorial,
-          onChanged: widgetUxState.changeShouldStartTutorial,
-          title: Text(S.of(context).enableTutorial),
-        ),
-        if (kDebugMode) ...[
+          uiTheme.verticalBoxes.medium,
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxHeight: 140),
+            child: PlayerProfileRow(
+              checkIsPlayerSelected: widgetUxState.checkIsPlayerSelected,
+              onSelected: widgetUxState.onPlayerSelected,
+            ),
+          ),
           uiTheme.verticalBoxes.medium,
           CheckboxListTile(
-            value: widgetUxState.featuresSettings.isTechnologiesEnabled,
-            onChanged: (final isEnabled) =>
-                widgetUxState.changeFeaturesSettings(
-              (final old) =>
-                  old.copyWith(isTechnologiesEnabled: isEnabled == true),
-            ),
-            title: Text(
+            value: widgetUxState.shouldStartTutorial,
+            onChanged: widgetUxState.changeShouldStartTutorial,
+            title: Text(S.of(context).enableTutorial),
+          ),
+          if (kDebugMode || unblockerNotifier.value > 10) ...[
+            uiTheme.verticalBoxes.medium,
+            Text(
               const LocalizedMap(
                 value: {
-                  Languages.en: 'Technologies (Experimental)',
-                  Languages.ru: 'Технологии (Экспериментально)',
-                  Languages.it: 'Tecnologie (Esperimentale)',
+                  Languages.en: 'Experiments',
+                  Languages.ru: 'Эксперименты',
+                  Languages.it: 'Esperimenti',
                 },
               ).getValue(locale),
+              style: context.textThemeBold.titleMedium,
             ),
-          ),
-        ],
-        uiTheme.verticalBoxes.medium,
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Tooltip(
-              message: S.of(context).createNewPlayerTooltip,
-              child: TextButton.icon(
-                onPressed: onCreatePlayer,
-                icon: const Icon(Icons.add),
-                label: Text(S.of(context).createPlayer),
+            CheckboxListTile(
+              value: widgetUxState.featuresSettings.isTechnologiesEnabled,
+              onChanged: (final isEnabled) =>
+                  widgetUxState.changeFeaturesSettings(
+                (final old) =>
+                    old.copyWith(isTechnologiesEnabled: isEnabled == true),
+              ),
+              title: Text(
+                const LocalizedMap(
+                  value: {
+                    Languages.en: 'Technologies',
+                    Languages.ru: 'Технологии',
+                    Languages.it: 'Tecnologie',
+                  },
+                ).getValue(locale),
               ),
             ),
-            UiTextButton.text(
-              text: S.of(context).play,
-              isLongButton: true,
-              mainAlignment: MainAxisAlignment.center,
-              onPressed: widgetUxState.playersIds.isEmpty
-                  ? null
-                  : widgetUxState.onPlay,
-            ),
           ],
-        ),
-        uiTheme.verticalBoxes.medium,
-      ],
+          uiTheme.verticalBoxes.medium,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Tooltip(
+                message: S.of(context).createNewPlayerTooltip,
+                child: TextButton.icon(
+                  onPressed: onCreatePlayer,
+                  icon: const Icon(Icons.add),
+                  label: Text(S.of(context).createPlayer),
+                ),
+              ),
+              UiTextButton.text(
+                text: S.of(context).play,
+                isLongButton: true,
+                mainAlignment: MainAxisAlignment.center,
+                onPressed: widgetUxState.playersIds.isEmpty
+                    ? null
+                    : widgetUxState.onPlay,
+              ),
+            ],
+          ),
+          uiTheme.verticalBoxes.medium,
+        ],
+      ),
     );
   }
 }

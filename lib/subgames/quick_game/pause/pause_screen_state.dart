@@ -74,8 +74,7 @@ class PauseScreenState extends ContextfulLifeState {
         Languages.ru: 'Сделано с помощью',
         Languages.it: 'Fatto con',
       },
-    ).getValue(locale)} '
-        'Flame Engine, Flutter & Dart.';
+    ).getValue(locale)} Flame Engine, Flutter & Dart.';
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
         constraints: const BoxConstraints(
@@ -188,7 +187,7 @@ class PauseScreenState extends ContextfulLifeState {
               Languages.it: 'Parola dopo parola Avventura',
             },
           ).getValue(locale)
-        : 'Word By Word';
+        : 'Word By Word: Adventure';
     if (Envs.isLinksAllowed) {
       showAboutDialog(
         applicationName: applicationName,
