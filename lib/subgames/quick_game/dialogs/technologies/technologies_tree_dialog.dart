@@ -37,8 +37,9 @@ class TechnologiesTreeDialog extends HookWidget {
     final technologiesCubit = context.watch<TechnologiesCubit>();
 
     final locale = useLocale(context);
-    // TODO(arenukvern): replace by select from level
-    final wordsLanguage = useState<Languages>(locale.language);
+    final levelCubit = context.read<LevelBloc>();
+    final wordsLanguage = context
+        .select<LevelBloc, Languages>((final c) => c.state.wordsLanguage);
 
     /// to save initial state, and compare with final state
     final initialTechnologyState =
@@ -136,11 +137,8 @@ class TechnologiesTreeDialog extends HookWidget {
             'Words Language',
           ),
           trailing: WordsLanguageSwitcher(
-            onChanged: (final value) {
-              // TODO(arenukvern): change level words language
-              wordsLanguage.value = value;
-            },
-            value: wordsLanguage.value,
+            onChanged: levelCubit.onChangeWordsLanguage,
+            value: wordsLanguage,
           ),
         ),
         const Gap(6),
@@ -169,7 +167,7 @@ class TechnologiesTreeDialog extends HookWidget {
         ...technologiesCubit.technologies.values.map(
           (final e) => _TechnologyTile(
             key: ValueKey(e.id),
-            language: wordsLanguage.value,
+            language: wordsLanguage,
             isSelectionAllowed: isSelectionAllowed,
             selectedId: technologiesCubit.researchingTechnology?.id,
             onSelectedChanged: technologiesCubit.onResearchingTechnologyChanged,

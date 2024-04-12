@@ -9,6 +9,8 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
 import 'package:word_by_word_game/subgames/quick_game/tutorial/tutorial_listener.dart';
 
 part 'global_game_bloc.freezed.dart';
@@ -16,7 +18,7 @@ part 'global_game_events.dart';
 part 'global_game_states.dart';
 
 class GlobalGameBlocDiDto {
-  GlobalGameBlocDiDto.use({required this.context})
+  GlobalGameBlocDiDto.use(final BuildContext context)
       : mechanics = context.read(),
         levelBloc = context.read(),
         levelPlayersBloc = context.read(),
@@ -26,11 +28,12 @@ class GlobalGameBlocDiDto {
         canvasCubit = context.read(),
         technologiesCubit = context.read(),
         weatherCubit = context.read(),
+        uiKeyboardController = context.read(),
         debugCubit = context.read();
   final DebugCubit debugCubit;
   final WeatherCubit weatherCubit;
+  final UiKeyboardController uiKeyboardController;
   final TechnologiesCubit technologiesCubit;
-  final BuildContext context;
   final CanvasCubit canvasCubit;
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
@@ -42,9 +45,9 @@ class GlobalGameBlocDiDto {
 
 class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   GlobalGameBloc(final BuildContext context)
-      : dto = GlobalGameBlocDiDto.use(context: context),
+      : dto = GlobalGameBlocDiDto.use(context),
         super(const GlobalGameBlocState()) {
-    _tutorialEventsListener = GameTutorialEventListener(read: dto.context.read);
+    _tutorialEventsListener = GameTutorialEventListener(read: context.read);
     dto.mechanics.worldTime.addListener(onWorldTick);
     _statesStatusesCubitSubscription =
         dto.statesStatusesCubit.stream.listen(_onStatusChanged);
@@ -249,6 +252,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
 
     dto
+      ..uiKeyboardController
+          .onChangeLanguage(level.wordsLanguage.toKeyboardLanguage())
       ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: level))
       ..levelPlayersBloc.onInitLevelPlayers(
         InitLevelPlayersEvent(
@@ -440,6 +445,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final canvasCubitState = dto.canvasCubit.state;
     return LevelModel(
       weathers: weatherState.weathers,
+      wordsLanguage: levelState.wordsLanguage,
       wind: weatherState.wind,
       currentWord: levelState.currentWord,
       latestWord: levelState.latestWord,

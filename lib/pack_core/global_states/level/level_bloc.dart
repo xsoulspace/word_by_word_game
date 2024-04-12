@@ -54,6 +54,13 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
   }
 
+  void onChangeWordsLanguage(final Languages language) {
+    final updatedState = state.copyWith(
+      wordsLanguage: language,
+    );
+    emit(updatedState);
+  }
+
   void onConsumeTickEvent(
     final LevelBlocEventConsumeTick event,
   ) {

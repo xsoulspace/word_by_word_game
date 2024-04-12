@@ -1109,6 +1109,7 @@ mixin _$LevelBlocState {
   WordWarning get wordWarning => throw _privateConstructorUsedError;
   LevelFeaturesSettingsModel get featuresSettings =>
       throw _privateConstructorUsedError;
+  Languages get wordsLanguage => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $LevelBlocStateCopyWith<LevelBlocState> get copyWith =>
@@ -1129,7 +1130,8 @@ abstract class $LevelBlocStateCopyWith<$Res> {
       GamePhaseType phaseType,
       EnergyMultiplierType energyMultiplier,
       WordWarning wordWarning,
-      LevelFeaturesSettingsModel featuresSettings});
+      LevelFeaturesSettingsModel featuresSettings,
+      Languages wordsLanguage});
 
   $CanvasDataModelIdCopyWith<$Res> get id;
   $CurrentWordModelCopyWith<$Res> get currentWord;
@@ -1157,6 +1159,7 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
     Object? energyMultiplier = null,
     Object? wordWarning = null,
     Object? featuresSettings = null,
+    Object? wordsLanguage = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -1191,6 +1194,10 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
           ? _value.featuresSettings
           : featuresSettings // ignore: cast_nullable_to_non_nullable
               as LevelFeaturesSettingsModel,
+      wordsLanguage: null == wordsLanguage
+          ? _value.wordsLanguage
+          : wordsLanguage // ignore: cast_nullable_to_non_nullable
+              as Languages,
     ) as $Val);
   }
 
@@ -1236,7 +1243,8 @@ abstract class _$$LevelBlocStateImplCopyWith<$Res>
       GamePhaseType phaseType,
       EnergyMultiplierType energyMultiplier,
       WordWarning wordWarning,
-      LevelFeaturesSettingsModel featuresSettings});
+      LevelFeaturesSettingsModel featuresSettings,
+      Languages wordsLanguage});
 
   @override
   $CanvasDataModelIdCopyWith<$Res> get id;
@@ -1265,6 +1273,7 @@ class __$$LevelBlocStateImplCopyWithImpl<$Res>
     Object? energyMultiplier = null,
     Object? wordWarning = null,
     Object? featuresSettings = null,
+    Object? wordsLanguage = null,
   }) {
     return _then(_$LevelBlocStateImpl(
       id: null == id
@@ -1299,6 +1308,10 @@ class __$$LevelBlocStateImplCopyWithImpl<$Res>
           ? _value.featuresSettings
           : featuresSettings // ignore: cast_nullable_to_non_nullable
               as LevelFeaturesSettingsModel,
+      wordsLanguage: null == wordsLanguage
+          ? _value.wordsLanguage
+          : wordsLanguage // ignore: cast_nullable_to_non_nullable
+              as Languages,
     ));
   }
 }
@@ -1314,7 +1327,8 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
       this.phaseType = GamePhaseType.entryWord,
       this.energyMultiplier = EnergyMultiplierType.m1,
       this.wordWarning = WordWarning.none,
-      this.featuresSettings = LevelFeaturesSettingsModel.empty})
+      this.featuresSettings = LevelFeaturesSettingsModel.empty,
+      this.wordsLanguage = Languages.en})
       : _words = words;
 
   @override
@@ -1351,10 +1365,13 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
   @override
   @JsonKey()
   final LevelFeaturesSettingsModel featuresSettings;
+  @override
+  @JsonKey()
+  final Languages wordsLanguage;
 
   @override
   String toString() {
-    return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, energyMultiplier: $energyMultiplier, wordWarning: $wordWarning, featuresSettings: $featuresSettings)';
+    return 'LevelBlocState(id: $id, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, energyMultiplier: $energyMultiplier, wordWarning: $wordWarning, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage)';
   }
 
   @override
@@ -1375,7 +1392,9 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
             (identical(other.wordWarning, wordWarning) ||
                 other.wordWarning == wordWarning) &&
             (identical(other.featuresSettings, featuresSettings) ||
-                other.featuresSettings == featuresSettings));
+                other.featuresSettings == featuresSettings) &&
+            (identical(other.wordsLanguage, wordsLanguage) ||
+                other.wordsLanguage == wordsLanguage));
   }
 
   @override
@@ -1388,7 +1407,8 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
       phaseType,
       energyMultiplier,
       wordWarning,
-      featuresSettings);
+      featuresSettings,
+      wordsLanguage);
 
   @JsonKey(ignore: true)
   @override
@@ -1400,15 +1420,15 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
 
 abstract class _LevelBlocState implements LevelBlocState {
   const factory _LevelBlocState(
-          {final CanvasDataModelId id,
-          final CurrentWordModel currentWord,
-          final Map<String, String> words,
-          final String latestWord,
-          final GamePhaseType phaseType,
-          final EnergyMultiplierType energyMultiplier,
-          final WordWarning wordWarning,
-          final LevelFeaturesSettingsModel featuresSettings}) =
-      _$LevelBlocStateImpl;
+      {final CanvasDataModelId id,
+      final CurrentWordModel currentWord,
+      final Map<String, String> words,
+      final String latestWord,
+      final GamePhaseType phaseType,
+      final EnergyMultiplierType energyMultiplier,
+      final WordWarning wordWarning,
+      final LevelFeaturesSettingsModel featuresSettings,
+      final Languages wordsLanguage}) = _$LevelBlocStateImpl;
 
   @override
   CanvasDataModelId get id;
@@ -1430,6 +1450,8 @@ abstract class _LevelBlocState implements LevelBlocState {
   WordWarning get wordWarning;
   @override
   LevelFeaturesSettingsModel get featuresSettings;
+  @override
+  Languages get wordsLanguage;
   @override
   @JsonKey(ignore: true)
   _$$LevelBlocStateImplCopyWith<_$LevelBlocStateImpl> get copyWith =>

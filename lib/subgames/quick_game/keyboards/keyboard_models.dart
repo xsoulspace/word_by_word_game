@@ -44,6 +44,14 @@ enum KeyboardLanguage {
       };
 }
 
+extension LanguagesX on Languages {
+  KeyboardLanguage toKeyboardLanguage() => switch (this) {
+        Languages.en => KeyboardLanguage.en,
+        Languages.ru => KeyboardLanguage.ru,
+        Languages.it => KeyboardLanguage.en,
+      };
+}
+
 @freezed
 class UiKeyboardControllerState with _$UiKeyboardControllerState {
   const factory UiKeyboardControllerState({
