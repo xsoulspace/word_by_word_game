@@ -200,7 +200,7 @@ class KeyboardLetters extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LanguageSwitcher(
+            KeyboardLanguageSwitcher(
               lettersCount: lettersCount,
               onChanged: onLanguageChanged,
               value: language,
@@ -273,8 +273,8 @@ class InputCaret extends StatelessWidget {
           );
 }
 
-class LanguageSwitcher extends StatelessWidget {
-  const LanguageSwitcher({
+class KeyboardLanguageSwitcher extends StatelessWidget {
+  const KeyboardLanguageSwitcher({
     required this.onChanged,
     required this.value,
     required this.lettersCount,

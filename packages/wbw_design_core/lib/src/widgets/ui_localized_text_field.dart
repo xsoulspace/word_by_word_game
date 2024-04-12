@@ -96,7 +96,7 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
       mainAxisSize: MainAxisSize.min,
       children: [
         child,
-        LanguageSwitcher(
+        LanguageSwitcherMenu(
           onChanged: (final lang) {
             _language = lang;
             _textController.text = _value.getValueByLanguage(_language);
@@ -109,33 +109,103 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   }
 }
 
-class LanguageSwitcher extends StatelessWidget {
-  const LanguageSwitcher({
+class LanguageSwitcherMenu extends StatelessWidget {
+  const LanguageSwitcherMenu({
     required this.value,
     required this.onChanged,
+    this.isShortAbbreviationUsed = true,
+    this.languages = const [],
     super.key,
   });
   final Languages value;
+  final List<Languages> languages;
   final ValueChanged<Languages> onChanged;
+  final bool isShortAbbreviationUsed;
   @override
-  Widget build(final BuildContext context) => MenuAnchor(
-        menuChildren: Languages.values
+  Widget build(final BuildContext context) {
+    final effectiveValues = (languages.isNotEmpty ? languages : Languages.all);
+    final List<Widget> menuChildren;
+
+    if (isShortAbbreviationUsed) {
+      menuChildren = effectiveValues
+          .map(
+            (final lang) => MenuItemButton(
+              child: Text(lang.name),
+              onPressed: () => onChanged(lang),
+            ),
+          )
+          .toList();
+    } else {
+      menuChildren = namedLocalesMap.entries
+          .where((final e) => effectiveValues.contains(e.key))
+          .map(
+            (final e) => MenuItemButton(
+              child: Text(e.value.name),
+              onPressed: () => onChanged(e.key),
+            ),
+          )
+          .toList();
+    }
+    return MenuAnchor(
+      menuChildren: menuChildren,
+      builder: (final context, final controller, final child) => TextButton(
+        onPressed: () {
+          if (controller.isOpen) {
+            controller.close();
+          } else {
+            controller.open();
+          }
+        },
+        child: Text(
+          isShortAbbreviationUsed ? value.name : namedLocalesMap[value]!.name,
+        ),
+      ),
+    );
+  }
+}
+
+/// maybe remove in future
+class LanguageSwitcherMenuOld extends StatelessWidget {
+  const LanguageSwitcherMenuOld({
+    required this.languages,
+    required this.initLanguage,
+    required this.onSelected,
+    super.key,
+  });
+  final List<Languages> languages;
+  final Languages initLanguage;
+  final ValueChanged<Languages?> onSelected;
+
+  @override
+  Widget build(final BuildContext context) => DropdownMenu<Languages>(
+        menuStyle: _defaultDropdownMenuStyle,
+        textStyle: context.textTheme.bodyMedium,
+        inputDecorationTheme: _defaultDropdownMenuInputTheme,
+        initialSelection: initLanguage,
+        onSelected: onSelected,
+        dropdownMenuEntries: namedLocalesMap.entries
+            .where((final e) => languages.contains(e.key))
             .map(
-              (final lang) => MenuItemButton(
-                child: Text(lang.name),
-                onPressed: () => onChanged(lang),
+              (final e) => DropdownMenuEntry(
+                value: e.key,
+                label: e.value.name,
               ),
             )
             .toList(),
-        builder: (final context, final controller, final child) => TextButton(
-          onPressed: () {
-            if (controller.isOpen) {
-              controller.close();
-            } else {
-              controller.open();
-            }
-          },
-          child: Text(value.name),
-        ),
       );
 }
+
+final _defaultDropdownMenuStyle = MenuStyle(
+  shape: WidgetStatePropertyAll(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(9),
+    ),
+  ),
+);
+
+const _defaultDropdownMenuInputTheme = InputDecorationTheme(
+  border: InputBorder.none,
+  isCollapsed: true,
+  isDense: true,
+  contentPadding: EdgeInsets.symmetric(vertical: 5),
+);

@@ -951,6 +951,7 @@ mixin _$LevelModel {
       throw _privateConstructorUsedError;
   LevelFeaturesSettingsModel get featuresSettings =>
       throw _privateConstructorUsedError;
+  Languages get wordsLanguage => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -979,7 +980,8 @@ abstract class $LevelModelCopyWith<$Res> {
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       TechnologyTreeProgressModel technologyTreeProgress,
-      LevelFeaturesSettingsModel featuresSettings});
+      LevelFeaturesSettingsModel featuresSettings,
+      Languages wordsLanguage});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
@@ -1020,6 +1022,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? lastDateTime = null,
     Object? technologyTreeProgress = null,
     Object? featuresSettings = null,
+    Object? wordsLanguage = null,
   }) {
     return _then(_value.copyWith(
       players: null == players
@@ -1082,6 +1085,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.featuresSettings
           : featuresSettings // ignore: cast_nullable_to_non_nullable
               as LevelFeaturesSettingsModel,
+      wordsLanguage: null == wordsLanguage
+          ? _value.wordsLanguage
+          : wordsLanguage // ignore: cast_nullable_to_non_nullable
+              as Languages,
     ) as $Val);
   }
 
@@ -1183,7 +1190,8 @@ abstract class _$$LevelModelImplCopyWith<$Res>
       WorldDateTimeModel dateTime,
       WorldDateTimeModel lastDateTime,
       TechnologyTreeProgressModel technologyTreeProgress,
-      LevelFeaturesSettingsModel featuresSettings});
+      LevelFeaturesSettingsModel featuresSettings,
+      Languages wordsLanguage});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1231,6 +1239,7 @@ class __$$LevelModelImplCopyWithImpl<$Res>
     Object? lastDateTime = null,
     Object? technologyTreeProgress = null,
     Object? featuresSettings = null,
+    Object? wordsLanguage = null,
   }) {
     return _then(_$LevelModelImpl(
       players: null == players
@@ -1293,6 +1302,10 @@ class __$$LevelModelImplCopyWithImpl<$Res>
           ? _value.featuresSettings
           : featuresSettings // ignore: cast_nullable_to_non_nullable
               as LevelFeaturesSettingsModel,
+      wordsLanguage: null == wordsLanguage
+          ? _value.wordsLanguage
+          : wordsLanguage // ignore: cast_nullable_to_non_nullable
+              as Languages,
     ));
   }
 }
@@ -1316,7 +1329,8 @@ class _$LevelModelImpl extends _LevelModel {
       this.dateTime = WorldDateTimeModel.zero,
       this.lastDateTime = WorldDateTimeModel.zero,
       this.technologyTreeProgress = TechnologyTreeProgressModel.empty,
-      this.featuresSettings = LevelFeaturesSettingsModel.empty})
+      this.featuresSettings = LevelFeaturesSettingsModel.empty,
+      this.wordsLanguage = Languages.en})
       : _weathers = weathers,
         _words = words,
         super._();
@@ -1382,10 +1396,13 @@ class _$LevelModelImpl extends _LevelModel {
   @override
   @JsonKey()
   final LevelFeaturesSettingsModel featuresSettings;
+  @override
+  @JsonKey()
+  final Languages wordsLanguage;
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings)';
+    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage)';
   }
 
   @override
@@ -1418,7 +1435,9 @@ class _$LevelModelImpl extends _LevelModel {
             (identical(other.technologyTreeProgress, technologyTreeProgress) ||
                 other.technologyTreeProgress == technologyTreeProgress) &&
             (identical(other.featuresSettings, featuresSettings) ||
-                other.featuresSettings == featuresSettings));
+                other.featuresSettings == featuresSettings) &&
+            (identical(other.wordsLanguage, wordsLanguage) ||
+                other.wordsLanguage == wordsLanguage));
   }
 
   @JsonKey(ignore: true)
@@ -1439,7 +1458,8 @@ class _$LevelModelImpl extends _LevelModel {
       dateTime,
       lastDateTime,
       technologyTreeProgress,
-      featuresSettings);
+      featuresSettings,
+      wordsLanguage);
 
   @JsonKey(ignore: true)
   @override
@@ -1471,7 +1491,8 @@ abstract class _LevelModel extends LevelModel {
       final WorldDateTimeModel dateTime,
       final WorldDateTimeModel lastDateTime,
       final TechnologyTreeProgressModel technologyTreeProgress,
-      final LevelFeaturesSettingsModel featuresSettings}) = _$LevelModelImpl;
+      final LevelFeaturesSettingsModel featuresSettings,
+      final Languages wordsLanguage}) = _$LevelModelImpl;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1510,6 +1531,8 @@ abstract class _LevelModel extends LevelModel {
   TechnologyTreeProgressModel get technologyTreeProgress;
   @override
   LevelFeaturesSettingsModel get featuresSettings;
+  @override
+  Languages get wordsLanguage;
   @override
   @JsonKey(ignore: true)
   _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>

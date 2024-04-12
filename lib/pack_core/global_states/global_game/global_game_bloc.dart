@@ -83,6 +83,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
 
     /// add level data to display something for start screen
     level ??= createLevel(
+      wordsLanguage: Languages.en,
       canvasDataId: allLevels.values
           .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack)
           .id,
@@ -110,6 +111,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     required final List<PlayerProfileModelId> playersIds,
     required final Gid characterId,
     required final LevelFeaturesSettingsModel featuresSettings,
+    required final Languages wordsLanguage,
   }) {
     final liveState = state;
     final charactersCollection = liveState.playersCharacters;
@@ -135,13 +137,16 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       characters: LevelCharactersModel(
         playerCharacter: levelCharecters,
       ),
+      wordsLanguage: wordsLanguage,
       featuresSettings: featuresSettings,
       players: LevelPlayersModel(
         currentPlayerId: levelPlayers.first.id,
         players: levelPlayers
             .map(
               (final e) => e.copyWith(
-                highscore: PlayerHighscoreModel.empty,
+                /// this amount of score player will use
+                /// to fix word or get a suggestion
+                highscore: PlayerHighscoreModel.levelPreset,
               ),
             )
             .toList(),

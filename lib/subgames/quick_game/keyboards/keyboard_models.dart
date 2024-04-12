@@ -37,7 +37,7 @@ enum KeyboardLanguage {
         KeyboardLanguage.en => KeyboardLanguage.ru,
         KeyboardLanguage.ru => KeyboardLanguage.en,
       };
-  static KeyboardLanguage fromlanguage(final Languages? language) =>
+  static KeyboardLanguage fromLanguage(final Languages? language) =>
       switch (language) {
         null || Languages.en || Languages.it => KeyboardLanguage.en,
         Languages.ru => KeyboardLanguage.ru

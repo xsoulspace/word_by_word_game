@@ -36,7 +36,7 @@ class LevelOptionsScreen extends HookWidget {
             onTap: () => unblockerNotifier.value++,
             child: Text(
               S.of(context).selectPlayers.toUpperCase(),
-              style: theme.textTheme.bodyLarge,
+              style: context.textThemeBold.bodyLarge,
               textAlign: TextAlign.center,
             ),
           ),
@@ -63,7 +63,7 @@ class LevelOptionsScreen extends HookWidget {
                   Languages.ru: 'Эксперименты',
                   Languages.it: 'Esperimenti',
                 },
-              ).getValue(locale),
+              ).getValue(locale).toUpperCase(),
               style: context.textThemeBold.titleMedium,
             ),
             CheckboxListTile(
@@ -81,6 +81,15 @@ class LevelOptionsScreen extends HookWidget {
                     Languages.it: 'Tecnologie',
                   },
                 ).getValue(locale),
+              ),
+            ),
+            // TODO(arenukvern): add explanation
+            ListTile(
+              // TODO(arenukvern): l10n
+              title: const Text('Words Language'),
+              trailing: WordsLanguageSwitcher(
+                onChanged: widgetUxState.changeWordsLanguage,
+                value: widgetUxState.wordsLanguage,
               ),
             ),
           ],
@@ -109,6 +118,26 @@ class LevelOptionsScreen extends HookWidget {
           uiTheme.verticalBoxes.medium,
         ],
       ),
+    );
+  }
+}
+
+class WordsLanguageSwitcher extends StatelessWidget {
+  const WordsLanguageSwitcher({
+    required this.value,
+    required this.onChanged,
+    super.key,
+  });
+  final Languages value;
+  final ValueChanged<Languages> onChanged;
+  @override
+  Widget build(final BuildContext context) {
+    final wordsLanguages = [Languages.en, Languages.ru];
+    return LanguageSwitcherMenu(
+      isShortAbbreviationUsed: false,
+      languages: wordsLanguages,
+      onChanged: onChanged,
+      value: value,
     );
   }
 }

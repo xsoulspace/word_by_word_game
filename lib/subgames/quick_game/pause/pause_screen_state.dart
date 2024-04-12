@@ -64,7 +64,7 @@ class PauseScreenState extends ContextfulLifeState {
 
   Future<void> onShowAbout() async {
     final context = getContext();
-    final locale = useLocale(context);
+    final locale = useLocale(context, listen: false);
     final theme = Theme.of(context);
     final uiTheme = context.uiTheme;
     final s = S.of(context);
