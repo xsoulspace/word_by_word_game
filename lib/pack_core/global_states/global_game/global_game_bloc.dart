@@ -162,31 +162,6 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
   }
 
-  Future<void> onRestartLevel(final EndLevelEvent event) async {
-    /// saving current level
-    final levelModel = state.currentLevelModel;
-
-    /// saving level results
-    await onLevelEnd(event);
-
-    /// restarting current level
-    if (levelModel == null) {
-      // TODO(arenuvkern): description
-      throw UnimplementedError('onRestartLevel $levelModel');
-    } else {
-      await onInitGlobalGameLevel(
-        InitGlobalGameLevelEvent(levelModel: levelModel),
-      );
-      unawaited(
-        onStartPlayingLevel(
-          const StartPlayingLevelEvent(
-            shouldRestartTutorial: false,
-          ),
-        ),
-      );
-    }
-  }
-
   /// This completer exists because we need to wait until the game will be
   /// loaded completely.
   /// The inital game level load function is [onInitGlobalGameLevel]
@@ -328,8 +303,27 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     _shareNewDateTime(newState);
   }
 
-  // TODO(arenukvern): add empty level and run it
-  Future<void> onLevelEnd(
+  Future<void> onLevelEnd({
+    required final EndLevelEvent event,
+    required final bool isPaused,
+  }) async {
+    /// saving level results
+    final initGameEvent = await _handleLevelEnd(event);
+
+    /// restarting current level
+    await onInitGlobalGameLevel(initGameEvent);
+    if (!isPaused) {
+      unawaited(
+        onStartPlayingLevel(
+          const StartPlayingLevelEvent(
+            shouldRestartTutorial: false,
+          ),
+        ),
+      );
+    }
+  }
+
+  Future<InitGlobalGameLevelEvent> _handleLevelEnd(
     final EndLevelEvent event,
   ) async {
     final currentLevelModel = _getCurrentLevelModel();
@@ -340,7 +334,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
           dto.mechanics.score.countPlayerLevelHighscore(
         player: player,
         levelId: currentLevelModel.id,
-        isLevelFinished: event.isWon,
+        isLevelPassed: event.isPassed,
         maxDistance: event.maxDistance,
       );
       final index = updatedPlayers.indexWhere(
@@ -357,13 +351,23 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         updatedPlayers[index] = updatedPlayer;
       }
     }
+
     final updatedState = state.copyWith(
       playersCollection: updatedPlayers,
-      currentLevelId: CanvasDataModelId.empty,
-      currentLevelModel: null,
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
+    final initEvent = InitGlobalGameLevelEvent(
+      levelModel: currentLevelModel,
+
+      /// If level was passed then:
+      ///
+      /// in future - change main direction of movement
+      /// in current - reset position in any cases
+      // TODO(arenukvern): change main direction
+      // isNewStart: !event.isPassed,
+    );
+    return initEvent;
   }
 
   void _shareNewDateTime(final GlobalGameBlocState newState) {

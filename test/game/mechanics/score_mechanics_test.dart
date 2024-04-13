@@ -89,7 +89,7 @@ void main() {
     test('countPlayerLevelHighscore - when level is finished', () {
       final updatedPlayer = scoreMechanics.countPlayerLevelHighscore(
         player: player,
-        isLevelFinished: true,
+        isLevelPassed: true,
         levelId: CanvasDataModelId.fromJson('1'),
         maxDistance: 200,
       );
@@ -109,7 +109,7 @@ void main() {
     test('countPlayerLevelHighscore - when level is not finished', () {
       final updatedPlayer = scoreMechanics.countPlayerLevelHighscore(
         player: player,
-        isLevelFinished: false,
+        isLevelPassed: false,
         levelId: CanvasDataModelId.fromJson('1'),
         maxDistance: 200,
       );

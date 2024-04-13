@@ -69,9 +69,8 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
 
   void onChangeCharacter(
     final PlayerCharacterModel value,
-  ) {
-    emit(state.copyWith(playerCharacter: value));
-  }
+  ) =>
+      emit(state.copyWith(playerCharacter: value));
 
   void onChangeCharacterPosition({
     required final Vector2 distanceToOrigin,

@@ -61,7 +61,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     _pauseGame();
     gameRef.dto.dialogController.showLevelLostDialog(
       EndLevelEvent(
-        isWon: false,
+        isPassed: false,
         maxDistance: maxDistance.toDouble(),
       ),
     );
@@ -73,7 +73,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     _pauseGame();
     gameRef.dto.dialogController.showLevelWinDialog(
       EndLevelEvent(
-        isWon: true,
+        isPassed: true,
         maxDistance: maxDistance.toDouble(),
       ),
     );

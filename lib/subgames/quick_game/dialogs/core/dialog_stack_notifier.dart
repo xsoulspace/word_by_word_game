@@ -52,25 +52,37 @@ class DialogStackNotifier extends ChangeNotifier {
     super.dispose();
   }
 
-  EndLevelEvent? endLevelEvent;
+  EndLevelEvent endLevelEvent = GameEvent.nonPassedEndLevel;
 
-  void _showLevelLostDialog(final EndLevelEvent endLevelEvent) {
+  void _showLevelLostDialog(final EndLevelEvent event) {
+    endLevelEvent = event;
     dialogType = GameDialogType.levelLost;
-    this.endLevelEvent = endLevelEvent;
   }
 
-  void onEndLevel() {
-    final event =
-        endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
-    unawaited(dto.globalGameBloc.onLevelEnd(event));
+  Future<void> _showLevelWinDialog(final EndLevelEvent event) async {
+    endLevelEvent = event;
+    dialogType = GameDialogType.levelWin;
+  }
+
+  void onRestartContinueLevel() {
+    unawaited(
+      dto.globalGameBloc.onLevelEnd(
+        event: endLevelEvent,
+        isPaused: false,
+      ),
+    );
 
     _closeDialog();
   }
 
-  void onRestartLevel() {
-    final event =
-        endLevelEvent ?? const EndLevelEvent(isWon: false, maxDistance: 0);
-    unawaited(dto.globalGameBloc.onRestartLevel(event));
+  /// used to stop game from running and show levels list
+  void onExitLevel() {
+    unawaited(
+      dto.globalGameBloc.onLevelEnd(
+        event: endLevelEvent,
+        isPaused: true,
+      ),
+    );
 
     _closeDialog();
   }
@@ -78,17 +90,6 @@ class DialogStackNotifier extends ChangeNotifier {
   void onResume() {
     _closeDialog();
     _resume();
-  }
-
-  void onSaveResults() {
-    final event =
-        endLevelEvent ?? const EndLevelEvent(isWon: true, maxDistance: 0);
-    unawaited(dto.globalGameBloc.onLevelEnd(event));
-  }
-
-  Future<void> _showLevelWinDialog(final EndLevelEvent endLevelEvent) async {
-    this.endLevelEvent = endLevelEvent;
-    dialogType = GameDialogType.levelWin;
   }
 
   void _showLevelWordSuggestionDialog() {
@@ -110,7 +111,7 @@ class DialogStackNotifier extends ChangeNotifier {
 
   void _closeDialog() {
     dialogType = GameDialogType.none;
-    endLevelEvent = null;
+    endLevelEvent = GameEvent.nonPassedEndLevel;
     technologiesTreeDto = TechnologiesTreeDialogDto.nonSelectable;
   }
 

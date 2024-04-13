@@ -125,10 +125,10 @@ class AppPathsController {
   final BuildContext context;
   void toPlayableLevel({required final CanvasDataModelId id}) =>
       to(ScreenPaths.toPlayableLevel(id: id));
-  void toLastLevel() {
+  void toLevels() {
     final gameBloc = context.read<GlobalGameBloc>();
     final currentLevelId = gameBloc.state.currentLevelId;
-    to(ScreenPaths.toPlayableLevel(id: currentLevelId));
+    to(ScreenPaths.toPause(id: currentLevelId));
   }
 
   void toPlayersAndHighscore() =>
@@ -143,7 +143,7 @@ class AppPathsController {
     if (isGameIsRunning) {
       toPause(id: levelId);
     } else {
-      toLastLevel();
+      toLevels();
     }
   }
 

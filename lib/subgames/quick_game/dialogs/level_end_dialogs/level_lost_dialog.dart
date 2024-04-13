@@ -9,12 +9,12 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.da
 
 class LevelLostDialog extends StatelessWidget {
   const LevelLostDialog({
-    required this.onEndLevel,
-    required this.onRestartLevel,
+    required this.onToLevels,
+    required this.onRestart,
     super.key,
   });
-  final VoidCallback onEndLevel;
-  final VoidCallback onRestartLevel;
+  final VoidCallback onToLevels;
+  final VoidCallback onRestart;
 
   @override
   Widget build(final BuildContext context) {
@@ -45,6 +45,7 @@ class LevelLostDialog extends StatelessWidget {
         ),
         uiTheme.verticalBoxes.extraLarge,
         if (false)
+          // TODO(arenukvern): add revive
           // ignore: dead_code
           TextButton(
             onPressed: () {
@@ -58,13 +59,13 @@ class LevelLostDialog extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                onEndLevel();
-                AppPathsController.of(context).toLastLevel();
+                AppPathsController.of(context).toLevels();
+                onToLevels();
               },
               child: Text(S.of(context).toLandscapes),
             ),
             TextButton(
-              onPressed: onRestartLevel,
+              onPressed: onRestart,
               child: Text(S.of(context).startAgain),
             ),
           ],

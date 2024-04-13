@@ -9,12 +9,12 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_
 
 class LevelWinDialog extends StatelessWidget {
   const LevelWinDialog({
-    required this.onRestart,
-    required this.onSaveResults,
+    required this.onContinue,
+    required this.onToLevels,
     super.key,
   });
-  final VoidCallback onRestart;
-  final VoidCallback onSaveResults;
+  final VoidCallback onContinue;
+  final VoidCallback onToLevels;
 
   @override
   Widget build(final BuildContext context) {
@@ -41,16 +41,17 @@ class LevelWinDialog extends StatelessWidget {
           children: [
             TextButton(
               onPressed: () {
-                onSaveResults();
-                AppPathsController.of(context).toLastLevel();
-                context.read<DialogController>().closeDialog();
+                AppPathsController.of(context).toLevels();
+                onToLevels();
               },
               child: Text(S.of(context).toLandscapes),
             ),
             TextButton(
-              onPressed: onRestart,
+              onPressed: onContinue,
+              // TODO(arenukvern): replace to continue
               child: Text(S.of(context).startAgain),
             ),
+            // TODO(arenukvern): maybe add reset level button
           ],
         ),
       ],

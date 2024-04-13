@@ -106,6 +106,6 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   }
 
   void onReturnToLevels(final BuildContext context) {
-    AppPathsController.of(context).toLastLevel();
+    AppPathsController.of(context).toLevels();
   }
 }
