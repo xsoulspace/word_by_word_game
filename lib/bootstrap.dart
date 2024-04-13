@@ -6,8 +6,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/pack_core/app/word_by_word_app.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
+import 'package:word_by_word_game/pack_core/word_by_word_app.dart';
 
 class AppBlocObserver extends BlocObserver {
   AppBlocObserver({

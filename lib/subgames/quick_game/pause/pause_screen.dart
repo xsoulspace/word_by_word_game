@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -16,7 +17,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/ads/ads.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
 
@@ -25,14 +26,12 @@ import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_h
 part 'pause_screen_state.dart';
 
 class PauseScreen extends HookWidget {
-  const PauseScreen({
-    super.key,
-  });
+  const PauseScreen({super.key});
   static const _kIsPrivacyPolicyEnabled = false;
   static const _kIsCharacterVisible = false;
   @override
   Widget build(final BuildContext context) {
-    final state = _usePauseScreenState(read: context.read);
+    final state = _usePauseScreenState(context: context);
     final uiTheme = context.uiTheme;
 
     return Provider(
@@ -43,6 +42,7 @@ class PauseScreen extends HookWidget {
         body: Portal(
           child: Stack(
             children: [
+              Positioned.fill(child: Container().blurred()),
               Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -60,7 +60,7 @@ class PauseScreen extends HookWidget {
                         UiFilledButton.icon(
                           icon: Icons.settings,
                           text: S.of(context).settings,
-                          onPressed: state.onToSettings,
+                          onPressed: () => state.onToSettings(context),
                         ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
@@ -71,7 +71,8 @@ class PauseScreen extends HookWidget {
                           text: Envs.store.isYandexGames
                               ? S.of(context).playersAndHighscoreYandex
                               : S.of(context).playersAndHighscore,
-                          onPressed: state.onToPlayersAndHighscore,
+                          onPressed: () =>
+                              state.onToPlayersAndHighscore(context),
                         ).animate(delay: 500.milliseconds).fadeIn(
                               curve: Curves.easeIn,
                               duration: 450.milliseconds,
@@ -109,7 +110,6 @@ class PauseScreen extends HookWidget {
                 ),
 
               /// left for test cases
-              // Positioned.fill(child: Container().blurred()),
               // const Positioned.fill(
               //   child: Column(
               //     children: [

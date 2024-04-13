@@ -8,6 +8,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 
 part 'technologies_tree_dialog.freezed.dart';
 
@@ -34,9 +35,21 @@ class TechnologiesTreeDialog extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final technologiesCubit = context.watch<TechnologiesCubit>();
+
+    final locale = useLocale(context);
+    final levelCubit = context.read<LevelBloc>();
+    final wordsLanguage = context
+        .select<LevelBloc, Languages>((final c) => c.state.wordsLanguage);
+
+    /// to save initial state, and compare with final state
     final initialTechnologyState =
         useState<TechnologyModel?>(technologiesCubit.researchingTechnology);
     final currentTechnology = technologiesCubit.researchingTechnology;
+
+    /// switching manually should be available only in debug mode,
+    /// because it kills the idea of wording
+    final bool isSelectionAllowed = dto.isSelectionAllowed;
+    final bool isHintVisible = dto.isHintVisible;
     void onClose() {
       this.onClose();
       if (initialTechnologyState.value != currentTechnology) {
@@ -44,13 +57,6 @@ class TechnologiesTreeDialog extends HookWidget {
       }
     }
 
-    final locale = useLocale(context);
-
-    /// switching manually should be available only in debug mode,
-    /// because it kills the idea of wording
-    final bool isSelectionAllowed = dto.isSelectionAllowed;
-    final bool isHintVisible = dto.isHintVisible;
-    final language = LocalizedMap.getCurrentLanugage();
     return DialogScaffold(
       children: [
         Row(
@@ -125,7 +131,17 @@ class TechnologiesTreeDialog extends HookWidget {
             ),
           ),
         ),
-        const Gap(18),
+        const Gap(12),
+        ListTile(
+          title: const Text(
+            'Words Language',
+          ),
+          trailing: WordsLanguageSwitcher(
+            onChanged: levelCubit.onChangeWordsLanguage,
+            value: wordsLanguage,
+          ),
+        ),
+        const Gap(6),
         ListTile(
           title: Text(
             technologiesCubit.researchingTechnology?.title.getValue(locale) ??
@@ -151,7 +167,7 @@ class TechnologiesTreeDialog extends HookWidget {
         ...technologiesCubit.technologies.values.map(
           (final e) => _TechnologyTile(
             key: ValueKey(e.id),
-            language: language,
+            language: wordsLanguage,
             isSelectionAllowed: isSelectionAllowed,
             selectedId: technologiesCubit.researchingTechnology?.id,
             onSelectedChanged: technologiesCubit.onResearchingTechnologyChanged,
@@ -186,6 +202,7 @@ class _TechnologyTile extends StatelessWidget {
     final mechanics = context.read<MechanicsCollection>();
     final unlockCondition = progress?.unlockCondition;
     final wordsProgress = unlockCondition?.languageWords[language];
+    final allWords = value.unlockCondition.languageWords[language]!;
     final isSelected = selectedId == value.id;
     final isUnlocked = unlockCondition != null &&
         mechanics.technology.checkIsUnlockedInSomeLanguages(
@@ -254,8 +271,7 @@ class _TechnologyTile extends StatelessWidget {
           height: 48,
           child: ListView(
             scrollDirection: Axis.horizontal,
-            children: value.unlockCondition
-                .languageWords[LocalizedMap.getCurrentLanugage()]!
+            children: allWords
                 .mapIndexed(
                   (final index, final word) => InputChip(
                     label: Text(word.word),

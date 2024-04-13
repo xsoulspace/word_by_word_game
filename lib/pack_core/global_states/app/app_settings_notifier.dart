@@ -7,7 +7,11 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/app/locale_logic.dart';
 
-final uiLocaleNotifier = ValueNotifier(Locales.en);
+class UiLocaleNotifier extends ValueNotifier<Locale> {
+  UiLocaleNotifier(super.value);
+}
+
+final uiLocaleNotifier = UiLocaleNotifier(Locales.en);
 
 class AppSettingsCubitDto {
   AppSettingsCubitDto({
@@ -34,7 +38,7 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
   }
 
   ValueListenable<Locale> get locale => uiLocaleNotifier;
-
+  Languages get language => locale.value.language;
   Future<void> updateLocale(final Locale? locale) async {
     final result = await LocaleLogic().updateLocale(
       newLocale: locale,
@@ -49,7 +53,12 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
   }
 }
 
-Locale useLocale(final BuildContext context) =>
-    context.select<AppSettingsNotifier, Locale>(
-      (final c) => c.locale.value,
-    );
+Locale useLocale(
+  final BuildContext context, {
+  final bool listen = true,
+}) =>
+    Provider.of<UiLocaleNotifier>(context, listen: listen).value;
+
+extension LocaleX on Locale {
+  Languages get language => Languages.byLanguageCode(languageCode);
+}

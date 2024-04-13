@@ -1,7 +1,7 @@
 clean:
 	fvm flutter clean
 get:
-	fvm flutter pub get && fvm dart run melos bootstrap 
+	fvm dart run melos bootstrap 
 gen:
 	fvm dart run build_runner build
 gen-rewrite:

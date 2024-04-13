@@ -272,9 +272,7 @@ class _WordFieldState extends State<WordField> {
       child: Container(
         constraints: DeviceRuntimeType.isMobile
             ? null
-            : const BoxConstraints(
-                maxWidth: kKeyboardWidth,
-              ),
+            : const BoxConstraints(maxWidth: kKeyboardWidth),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [

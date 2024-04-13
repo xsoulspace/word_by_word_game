@@ -1,14 +1,14 @@
 part of 'level_start_dialog.dart';
 
 class _LevelStartDialogUxStateDiDto {
-  _LevelStartDialogUxStateDiDto.use(final Locator read)
-      : appRouterController = AppRouterController.use(read),
-        globalGameBloc = read(),
-        mechanics = read(),
-        tutorialBloc = read();
-  final AppRouterController appRouterController;
+  _LevelStartDialogUxStateDiDto.use(final BuildContext context)
+      : globalGameBloc = context.read(),
+        mechanics = context.read(),
+        appSettingsNotifier = context.read(),
+        tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
+  final AppSettingsNotifier appSettingsNotifier;
   final MechanicsCollection mechanics;
 }
 
@@ -16,17 +16,17 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   LevelStartDialogUxNotifier({
     required final BuildContext context,
     required this.canvasData,
-  })  : diDto = _LevelStartDialogUxStateDiDto.use(context.read),
+  })  : dto = _LevelStartDialogUxStateDiDto.use(context),
         super('') {
     onLoad();
   }
   final CanvasDataModel canvasData;
-  final _LevelStartDialogUxStateDiDto diDto;
+  final _LevelStartDialogUxStateDiDto dto;
   void onLoad() {
-    final liveState = diDto.globalGameBloc.state;
+    final liveState = dto.globalGameBloc.state;
     character = liveState.playersCharacters.first;
-    final isTutorialPlayed = diDto.mechanics.tutorial.checkIsTutorialPlayed(
-      progress: diDto.tutorialBloc.getLiveProgress(),
+    final isTutorialPlayed = dto.mechanics.tutorial.checkIsTutorialPlayed(
+      progress: dto.tutorialBloc.getLiveProgress(),
       tutorial: TutorialCollectionsName.levelIntroduction,
     );
     shouldStartTutorial = !isTutorialPlayed;
@@ -57,7 +57,7 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
     unawaited(
-      diDto.globalGameBloc
+      dto.globalGameBloc
           .onCreatePlayerProfile(CreatePlayerProfileEvent(profile: profile)),
     );
     onPlayerSelected(profile);
@@ -80,22 +80,32 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  Future<void> onPlay() async {
-    final level = diDto.globalGameBloc.createLevel(
+  /// target language is used to show associated words in that language
+  /// for example in technologies
+  late Languages wordsLanguage = dto.appSettingsNotifier.language;
+  void changeWordsLanguage(final Languages lang) {
+    wordsLanguage = lang;
+    notifyListeners();
+  }
+
+  Future<void> onPlay(final BuildContext context) async {
+    final pathsController = AppPathsController.of(context);
+    final level = dto.globalGameBloc.createLevel(
       canvasDataId: canvasData.id,
       playersIds: playersIds,
+      wordsLanguage: wordsLanguage,
       characterId: character!.id,
       featuresSettings: featuresSettings,
     );
-    await diDto.globalGameBloc
+    await dto.globalGameBloc
         .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
-    await diDto.globalGameBloc.onStartPlayingLevel(
+    await dto.globalGameBloc.onStartPlayingLevel(
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
-    diDto.appRouterController.toPlayableLevel(id: level.id);
+    pathsController.toPlayableLevel(id: level.id);
   }
 
-  void onReturnToLevels() {
-    diDto.appRouterController.toRoot();
+  void onReturnToLevels(final BuildContext context) {
+    AppPathsController.of(context).toLevels();
   }
 }

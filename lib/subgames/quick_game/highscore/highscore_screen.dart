@@ -9,7 +9,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 
 class HighscoreScreen extends HookWidget {
@@ -39,7 +39,7 @@ class HighscoreScreen extends HookWidget {
             children: [
               GameBackButton(
                 onPressed: () {
-                  AppRouterController.use(context.read).toPauseOrRoot(
+                  AppPathsController.of(context).toPauseOrRoot(
                     globalGameBloc: context.read(),
                   );
                 },
