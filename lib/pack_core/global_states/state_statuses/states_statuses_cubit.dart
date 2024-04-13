@@ -52,7 +52,10 @@ class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
   final StatesStatusesCubitDto dto;
   // ignore: avoid_setters_without_getters
   set _state(final StatesStatusesCubitState value) => emit(value);
-
+  bool get isLoading => switch (state.levelStateStatus) {
+        LevelStateStatus.levelReady || LevelStateStatus.paused => false,
+        LevelStateStatus.playing || LevelStateStatus.loading => true,
+      };
   void onLevelPartLoaded({
     required final LevelPartName levelPartName,
   }) {

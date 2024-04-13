@@ -26,6 +26,7 @@ class LevelOptionsScreen extends HookWidget {
     final widgetUxState = context.read<LevelStartDialogUxNotifier>();
     final locale = useLocale(context);
     final unblockerNotifier = useState(0);
+    final statusCubit = context.watch<StatesStatusesCubit>();
 
     return SingleChildScrollView(
       child: Column(
@@ -106,6 +107,7 @@ class LevelOptionsScreen extends HookWidget {
               ),
               UiTextButton.text(
                 text: S.of(context).play,
+                isLoading: statusCubit.isLoading,
                 isLongButton: true,
                 mainAlignment: MainAxisAlignment.center,
                 onPressed: widgetUxState.playersIds.isEmpty
