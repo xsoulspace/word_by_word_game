@@ -7,6 +7,7 @@ part 'states_statuses_cubit.freezed.dart';
 enum LevelStateStatus {
   loading,
   paused,
+  levelReady,
   playing;
 }
 
@@ -58,7 +59,7 @@ class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
     final loadedLevelParts = {...state.loadedLevelParts, levelPartName};
     _state = state.copyWith(loadedLevelParts: loadedLevelParts);
     if (LevelPartName.containsAll(loadedLevelParts)) {
-      _state = state.copyWith(levelStateStatus: LevelStateStatus.paused);
+      _state = state.copyWith(levelStateStatus: LevelStateStatus.levelReady);
     }
   }
 
@@ -71,7 +72,9 @@ class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
     switch (status) {
       case LevelStateStatus.loading:
         _state = state.copyWith(loadedLevelParts: {});
-      case LevelStateStatus.paused || LevelStateStatus.playing:
+      case LevelStateStatus.paused ||
+            LevelStateStatus.levelReady ||
+            LevelStateStatus.playing:
     }
     _state = state.copyWith(levelStateStatus: status);
   }

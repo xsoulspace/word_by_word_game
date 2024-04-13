@@ -33,10 +33,14 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     return super.close();
   }
 
+  bool get isPlayersEmpty =>
+      state.players.isEmpty || state.players.first.name.isEmpty;
+  bool get isPlayersNotEmpty => !isPlayersEmpty;
+
   void onInitLevelPlayers(
     final InitLevelPlayersEvent event,
   ) {
-    _log.d('distanceToOrigin: ${diDto.canvasCubit.player.distanceToOrigin}');
+    // _log.d('distanceToOrigin: ${diDto.canvasCubit.player.distanceToOrigin}');
     final liveState = LevelPlayersBlocState.fromModel(
       levelPlayersModel: event.playersModel,
       levelCharactersModel: event.charactersModel.copyWith.playerCharacter(

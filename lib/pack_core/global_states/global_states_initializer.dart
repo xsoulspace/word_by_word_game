@@ -96,22 +96,14 @@ class GameInitializer {
             currentLevel: null,
             playersCharacters: presetCharacters,
           );
-        case GameVersion.$3:
-          game = game.copyWith(
-            version: GameVersion.$4,
-            currentLevelId: CanvasDataModelId.empty,
-            currentLevel: null,
-            playersCharacters: presetCharacters,
-          );
-        case GameVersion.$4:
-        case GameVersion.$5:
+        case GameVersion.$3 || GameVersion.$4:
           game = game.copyWith(
             version: GameVersion.$5,
             currentLevelId: CanvasDataModelId.empty,
             currentLevel: null,
             playersCharacters: presetCharacters,
-            savedLevels: {},
           );
+        case GameVersion.$5:
       }
     }
     return game;

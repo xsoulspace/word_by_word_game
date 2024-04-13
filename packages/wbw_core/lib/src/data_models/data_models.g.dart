@@ -94,6 +94,7 @@ const _$GameVersionEnumMap = {
   GameVersion.$2: r'$2',
   GameVersion.$3: r'$3',
   GameVersion.$4: r'$4',
+  GameVersion.$5: r'$5',
 };
 
 _$LevelCharactersModelImpl _$$LevelCharactersModelImplFromJson(

@@ -17,10 +17,12 @@ class StartGameHex extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<PauseScreenState>();
+    final levelPlayersBloc = context.watch<LevelPlayersBloc>();
     final params = context.routeParams;
     final routeArgs = LevelRouteArgs.fromJson(params);
     final levelId = CanvasDataModelId.fromJson(routeArgs.levelId);
-    final isLevelRunning = levelId.isNotEmpty;
+    final isLevelRunning =
+        levelId.isNotEmpty && levelPlayersBloc.isPlayersNotEmpty;
     final uiTheme = context.uiTheme;
 
     return Provider(

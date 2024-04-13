@@ -1,4 +1,5 @@
 import 'package:flame/extensions.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -22,6 +23,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         game.canvasRenderer.origin + player.distanceToOrigin.toVector2();
     final serializedPosition = position.toSerializedVector2();
     if (player.id.isEmpty) {
+      if (kDebugMode) print(['Player id is empty. Adding...']);
       final firstPlayer = canvasCubit.tilesPresetResources.players.values.first;
       player = RenderObjectModel(
         id: firstPlayer.id.toGid(),
@@ -29,11 +31,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         tileId: firstPlayer.id,
         position: serializedPosition,
       );
-
-      /// creating player if it is empty
-      canvasCubit.player = player;
     } else {
-      player = player.copyWith(position: serializedPosition);
+      player = player.copyWith(
+        position: serializedPosition,
+        distanceToOrigin: SerializedVector2.zero,
+        distanceToTileLeftTopCorner: SerializedVector2.zero,
+      );
     }
     levelPlayersBloc.onChangeCharacter(
       levelPlayersBloc.state.playerCharacter.copyWith(
