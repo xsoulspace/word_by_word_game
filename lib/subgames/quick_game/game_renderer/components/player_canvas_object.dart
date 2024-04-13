@@ -23,7 +23,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     final serializedPosition = position.toSerializedVector2();
     if (player.id.isEmpty) {
       final firstPlayer = canvasCubit.tilesPresetResources.players.values.first;
-      final updatedPlayer = RenderObjectModel(
+      player = RenderObjectModel(
         id: firstPlayer.id.toGid(),
         animationBehaviour: TileBehaviourType.idleRight,
         tileId: firstPlayer.id,
@@ -31,8 +31,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       );
 
       /// creating player if it is empty
-      canvasCubit.player = updatedPlayer;
-      player = updatedPlayer;
+      canvasCubit.player = player;
     } else {
       player = player.copyWith(position: serializedPosition);
     }

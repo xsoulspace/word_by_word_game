@@ -104,6 +104,14 @@ class GameInitializer {
             playersCharacters: presetCharacters,
           );
         case GameVersion.$4:
+        case GameVersion.$5:
+          game = game.copyWith(
+            version: GameVersion.$5,
+            currentLevelId: CanvasDataModelId.empty,
+            currentLevel: null,
+            playersCharacters: presetCharacters,
+            savedLevels: {},
+          );
       }
     }
     return game;

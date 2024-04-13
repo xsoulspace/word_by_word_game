@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
@@ -52,6 +53,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     _statesStatusesCubitSubscription =
         dto.statesStatusesCubit.stream.listen(_onStatusChanged);
   }
+  final _log = Logger();
   final GlobalGameBlocDiDto dto;
   GameTutorialEventListener? _tutorialEventsListener;
   StreamSubscription<StatesStatusesCubitState>?
@@ -64,7 +66,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     if (_tutorialEventsListener != null) {
       dto.tutorialBloc.notifier.removeListener(_tutorialEventsListener!);
     }
-
+    _log.close();
     return super.close();
   }
 
@@ -184,40 +186,40 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       status: LevelStateStatus.loading,
     );
     GlobalGameBlocState updatedState = state;
-
+    _log
+      ..d('level isNewStart ${event.isNewStart}')
+      ..d('level id ${level.id}');
     if (event.isNewStart) {
       dto.weatherCubit.regenerateWeather();
-      updatedState = updatedState.copyWith(
-        currentLevelModel: level,
-        currentLevelId: level.id,
-      );
-      emit(updatedState);
     } else {
       dto.weatherCubit.loadWeather(
         weathers: level.weathers,
         wind: level.wind,
       );
     }
+    // FIXME(username): description
+    updatedState = updatedState.copyWith(
+      currentLevelModel: level,
+      currentLevelId: level.id,
+    );
+    emit(updatedState);
 
     /// preloading resources which should be the same for all levels
     await dto.canvasCubit.prepareTilesetForLevel(level: level);
 
     // load canvasCubit with graphics, but no more then it
-    CanvasDataModel? newCanvasData = state.allCanvasData[level.id];
+    CanvasDataModel? newCanvasData = getCanvasDataById(id: level.id);
 
     /// level should be reloaded according to the canvas data
     if (newCanvasData == null) {
       newCanvasData = state.allCanvasData.values.first;
-      level = level.copyWith(
-        canvasDataId: newCanvasData.id,
-      );
+      level = level.copyWith(canvasDataId: newCanvasData.id);
     }
+    // _log.d('newCanvasData.playerObject: ${newCanvasData.playerObject}');
     if (!event.isNewStart) {
       final character = level.characters.playerCharacter;
-      newCanvasData = newCanvasData.copyWith(
-        playerObject: newCanvasData.playerObject.copyWith(
-          distanceToOrigin: character.distanceToOrigin,
-        ),
+      newCanvasData = newCanvasData.copyWith.playerObject(
+        distanceToOrigin: character.distanceToOrigin,
       );
     }
     await dto.canvasCubit.loadCanvasData(canvasData: newCanvasData);
