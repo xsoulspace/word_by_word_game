@@ -34,14 +34,9 @@ class StartGameHex extends StatelessWidget {
         return AnimatedCrossFade(
           alignment: Alignment.center,
           duration: 350.milliseconds,
-          crossFadeState: switch (statusCubit.state.levelStateStatus) {
-            LevelStateStatus.levelReady ||
-            LevelStateStatus.paused =>
-              CrossFadeState.showFirst,
-            LevelStateStatus.playing ||
-            LevelStateStatus.loading =>
-              CrossFadeState.showSecond,
-          },
+          crossFadeState: statusCubit.isLoading
+              ? CrossFadeState.showSecond
+              : CrossFadeState.showFirst,
           firstChild: Column(
             key: ValueKey(canvasData),
             mainAxisSize: MainAxisSize.min,

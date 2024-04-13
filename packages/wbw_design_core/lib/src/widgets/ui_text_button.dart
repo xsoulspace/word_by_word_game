@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../wbw_design_core.dart';
@@ -12,11 +13,13 @@ class UiTextButton extends HookWidget {
     this.tooltip = '',
     this.mainAlignment = MainAxisAlignment.start,
     this.isLongButton = false,
+    this.isLoading = false,
     super.key,
   });
   const UiTextButton.text({
     required this.text,
     this.isLongButton = false,
+    this.isLoading = false,
     this.icon,
     this.onPressed,
     this.mainAlignment = MainAxisAlignment.start,
@@ -24,6 +27,7 @@ class UiTextButton extends HookWidget {
     this.tooltip = '',
     super.key,
   });
+  final bool isLoading;
   final UiIcons? icon;
   final String text;
   final double? width;
@@ -31,7 +35,7 @@ class UiTextButton extends HookWidget {
   final MainAxisAlignment mainAlignment;
   final bool isLongButton;
   final String tooltip;
-  bool get isEnabled => onPressed != null;
+  bool get isEnabled => !isLoading && onPressed != null;
   @override
   Widget build(final BuildContext context) {
     final state = useUiIconButtonState(
@@ -91,7 +95,10 @@ class UiTextButton extends HookWidget {
                       ),
                     ),
                   ],
-                  Text(text),
+                  AnimatedSwitcher(
+                    duration: 250.milliseconds,
+                    child: isLoading ? const UiCircularProgress() : Text(text),
+                  ),
                 ],
               ),
             ),
