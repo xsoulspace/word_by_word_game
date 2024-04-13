@@ -1,11 +1,11 @@
 {
-  "name": "word_by_word_game",
-  "short_name": "word_by_word_game",
+  "name": "WordByWord",
+  "short_name": "Word by Word: Adventure",
   "start_url": ".",
   "display": "standalone",
   "background_color": "#FCFDF6",
   "theme_color": "#FCFDF6",
-  "description": "A new Flutter project.",
+  "description": "Word Arcade -> write word based on last 3 letters of last word & pass Landscape",
   "orientation": "portrait-primary",
   "prefer_related_applications": false,
   "icons": [

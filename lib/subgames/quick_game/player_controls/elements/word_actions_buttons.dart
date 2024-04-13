@@ -4,7 +4,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
+import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -45,7 +45,7 @@ class UiWordActions extends StatelessWidget {
           else
             uiTheme.verticalBoxes.medium,
         ]);
-      case GamePhaseType.selectFuel:
+      case GamePhaseType.selectAction:
         break;
     }
 
@@ -98,16 +98,23 @@ class UiConfirmWordButton extends StatelessWidget {
     final currentWord = context.select<LevelBloc, String>(
       (final s) => s.state.currentWord.fullWord,
     );
+    final textTheme = context.textTheme;
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
     final isPressable = warning != WordWarning.isNotCorrect;
-    return Column(
+    return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
         Tooltip(
           message: S.of(context).powerOfEnteredWord,
-          child: Text('+${score.value ~/ kScoreFactor}'),
+          child: Text(
+            '+${score.value ~/ kScoreFactor}',
+            style: textTheme.bodySmall?.copyWith(
+              color: context.colorScheme.tertiary,
+            ),
+          ),
         ),
+        const Gap(6),
         FloatingActionButton.small(
           tooltip: S.of(context).confirm,
           elevation: 1,
@@ -178,7 +185,7 @@ class UiPauseButton extends StatelessWidget {
           onPressed: () async {
             final globalGameBloc = context.read<GlobalGameBloc>();
             final levelBloc = context.read<LevelBloc>();
-            final appRouterController = context.read<AppRouterController>();
+            final appRouterController = AppPathsController.of(context);
 
             context.read<StatesStatusesCubit>().pause();
 

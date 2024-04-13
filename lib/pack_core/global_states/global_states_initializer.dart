@@ -9,16 +9,15 @@ import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/router.dart';
 
 class GlobalStatesInitializer implements StateInitializer {
-  GlobalStatesInitializer({
-    required this.appRouterController,
-  });
-  final AppRouterController appRouterController;
+  GlobalStatesInitializer();
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
+    final appRouterController = AppPathsController.of(context);
+    final appStatusNotifier = read<AppStatusNotifier>();
     final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
@@ -26,7 +25,7 @@ class GlobalStatesInitializer implements StateInitializer {
     final services = read<ServicesCollection>();
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
-    final appSettingsNotifier = read<AppSettingsCubit>();
+    final appSettingsNotifier = read<AppSettingsNotifier>();
     await appSettingsNotifier.onLoad();
     final localDictionary =
         await services.dictionariesRepository.loadDictionary();
@@ -36,7 +35,7 @@ class GlobalStatesInitializer implements StateInitializer {
       services: services,
     );
     await dictionariesRepository.preloadWrongWordsDictionary();
-    await globalGameBloc.onInitGlobalGame(initGame);
+    final levelId = await globalGameBloc.onInitGlobalGame(initGame);
     await analyticsService.onDelayedLoad();
     await adManager.onLoad();
     final event = () {
@@ -45,12 +44,10 @@ class GlobalStatesInitializer implements StateInitializer {
     }();
     if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
 
-    final currentLevelId = initGame.currentLevelId;
-    if (currentLevelId.isNotEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
-        appRouterController.toPause(id: currentLevelId);
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
+      appStatusNotifier.value = AppStatus.online;
+      appRouterController.toPause(id: levelId);
+    });
   }
 }
 
@@ -85,28 +82,17 @@ class GameInitializer {
     GameSaveModel game = savedGame;
     for (var i = savedGame.version.index; i < GameVersion.values.length; i++) {
       switch (savedGame.version) {
-        case GameVersion.$1:
+        case GameVersion.$1 ||
+              GameVersion.$2 ||
+              GameVersion.$3 ||
+              GameVersion.$4:
           game = game.copyWith(
-            version: GameVersion.$3,
-            currentLevelId: CanvasDataModelId.empty,
-            currentLevel: null,
-            playersCharacters: characters,
-          );
-        case GameVersion.$2:
-          game = game.copyWith(
-            version: GameVersion.$3,
+            version: GameVersion.$5,
             currentLevelId: CanvasDataModelId.empty,
             currentLevel: null,
             playersCharacters: presetCharacters,
           );
-        case GameVersion.$3:
-          game = game.copyWith(
-            version: GameVersion.$4,
-            currentLevelId: CanvasDataModelId.empty,
-            currentLevel: null,
-            playersCharacters: presetCharacters,
-          );
-        case GameVersion.$4:
+        case GameVersion.$5:
       }
     }
     return game;

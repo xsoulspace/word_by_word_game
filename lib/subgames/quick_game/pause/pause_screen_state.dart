@@ -3,25 +3,21 @@
 part of 'pause_screen.dart';
 
 class _PauseScreenStateDiDto {
-  _PauseScreenStateDiDto.use(final Locator read)
-      : routeState = read(),
-        appRouterController = AppRouterController.use(read),
-        mechanics = read(),
-        globalGameBloc = read();
-  final RouteState routeState;
+  _PauseScreenStateDiDto.use(final BuildContext context)
+      : mechanics = context.read(),
+        globalGameBloc = context.read();
   final GlobalGameBloc globalGameBloc;
-  final AppRouterController appRouterController;
   final MechanicsCollection mechanics;
 }
 
 PauseScreenState _usePauseScreenState({
-  required final Locator read,
+  required final BuildContext context,
 }) =>
     use(
       ContextfulLifeHook(
         debugLabel: '_PauseScreenState',
         state: PauseScreenState(
-          diDto: _PauseScreenStateDiDto.use(read),
+          diDto: _PauseScreenStateDiDto.use(context),
         ),
       ),
     );
@@ -39,19 +35,21 @@ class PauseScreenState extends ContextfulLifeState {
 
   Future<void> onContinue({
     required final CanvasDataModelId id,
+    required final BuildContext context,
   }) async {
+    final pathsController = AppPathsController.of(context);
     await diDto.globalGameBloc.onStartPlayingLevel(
       const StartPlayingLevelEvent(shouldRestartTutorial: false),
     );
-    diDto.appRouterController.toPlayableLevel(id: id);
+    pathsController.toPlayableLevel(id: id);
   }
 
-  void onToPlayersAndHighscore() {
-    diDto.appRouterController.toPlayersAndHighscore();
+  void onToPlayersAndHighscore(final BuildContext context) {
+    AppPathsController.of(context).toPlayersAndHighscore();
   }
 
-  void onToSettings() {
-    diDto.appRouterController.toSettings();
+  void onToSettings(final BuildContext context) {
+    AppPathsController.of(context).toSettings();
   }
 
   Future<void> onPrivacyPolicy() async {
@@ -64,6 +62,7 @@ class PauseScreenState extends ContextfulLifeState {
 
   Future<void> onShowAbout() async {
     final context = getContext();
+    final locale = useLocale(context, listen: false);
     final theme = Theme.of(context);
     final uiTheme = context.uiTheme;
     final s = S.of(context);
@@ -73,8 +72,7 @@ class PauseScreenState extends ContextfulLifeState {
         Languages.ru: 'Сделано с помощью',
         Languages.it: 'Fatto con',
       },
-    ).getValue()} '
-        'Flame Engine, Flutter & Dart.';
+    ).getValue(locale)} Flame Engine, Flutter & Dart.';
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
         constraints: const BoxConstraints(
@@ -141,7 +139,7 @@ class PauseScreenState extends ContextfulLifeState {
                             // ignore: lines_longer_than_80_chars
                             'Utilizzato questo pacchetto durante lo sviluppo della v3',
                       },
-                    ).getValue()})',
+                    ).getValue(locale)})',
                   ),
                 ),
               ),
@@ -161,7 +159,7 @@ class PauseScreenState extends ContextfulLifeState {
         Languages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер',
         Languages.it: 'Gioco di Anton Malofeev, Irina Veter',
       },
-    ).getValue()}';
+    ).getValue(locale)}';
 
     final packageInfo = await PackageInfo.fromPlatform();
     final applicationVersion =
@@ -186,8 +184,8 @@ class PauseScreenState extends ContextfulLifeState {
               Languages.ru: 'Слово после слова Приключение',
               Languages.it: 'Parola dopo parola Avventura',
             },
-          ).getValue()
-        : 'Word By Word';
+          ).getValue(locale)
+        : 'Word By Word: Adventure';
     if (Envs.isLinksAllowed) {
       showAboutDialog(
         applicationName: applicationName,

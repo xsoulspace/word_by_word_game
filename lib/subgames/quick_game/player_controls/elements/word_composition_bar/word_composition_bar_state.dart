@@ -45,14 +45,12 @@ class WordCompositionStateDiDto {
       : levelBloc = read(),
         tutorialBloc = read(),
         mechanics = read(),
-        appRouterController = read(),
         globalGameBloc = read(),
         dialogController = read();
   final Locator read;
   final LevelBloc levelBloc;
   final TutorialBloc tutorialBloc;
   final MechanicsCollection mechanics;
-  final AppRouterController appRouterController;
   final GlobalGameBloc globalGameBloc;
   final DialogController dialogController;
 }
@@ -109,14 +107,19 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
 
   final wordFocusNode = FocusNode();
   final WordFieldController wordController;
+  void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.researchingTechnology);
+  }
 
-  void onSelectActionMultiplier(final EnergyMultiplierType multiplier) {
-    diDto.levelBloc.onLevelPlayerSelectActionMultiplier(
-      LevelBlocEventSelectActionMultiplier(
-        multiplier: multiplier,
-      ),
-    );
-    onToEndTurn();
+  void _selectMultiplier(final EnergyMultiplierType multiplier) =>
+      diDto.levelBloc.onLevelPlayerSelectActionMultiplier(
+        LevelBlocEventSelectActionMultiplier(multiplier: multiplier),
+      );
+
+  void onPowerSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.refueling);
   }
 
   void onToSelectActionPhase() {
@@ -127,8 +130,8 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
     emit(state.copyWith(isCardVisible: !state.isCardVisible));
   }
 
-  void onToEndTurn() {
-    diDto.levelBloc.onLevelPlayerEndTurnAction(const LevelBlocEventEndTurn());
+  void _onToEndTurn(final EnergyApplicationType energyApplicationType) {
+    diDto.levelBloc.onLevelPlayerEndTurnAction(energyApplicationType);
     onRequestTextFocus();
   }
 

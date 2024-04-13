@@ -156,21 +156,13 @@ class CanvasRendererGame extends FlameGame
     switch (state.levelStateStatus) {
       case LevelStateStatus.loading:
         unloadLevel();
+      case LevelStateStatus.levelReady:
+        await onLoadLevel();
       case LevelStateStatus.paused || LevelStateStatus.playing:
-        if (!isLevelLoaded) await onLoadLevel();
     }
   }
 
-  // PlayerGameCanvasObject? character;
-  bool get isLevelLoaded =>
-      // character != null &&
-      !isLevelLoading;
-  bool isLevelLoading = false;
-  Future<void> onLoadLevel() async {
-    if (isLevelLoading) return;
-    isLevelLoading = true;
-    isLevelLoading = false;
-  }
+  Future<void> onLoadLevel() async {}
 
   /// Unloads current level, unassignes character from the camera
   void unloadLevel() {}

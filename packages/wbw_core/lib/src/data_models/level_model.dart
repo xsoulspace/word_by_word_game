@@ -1,8 +1,9 @@
 // ignore_for_file: invalid_annotation_target
 
+// part of 'data_models.dart';
 part of 'data_models.dart';
 
-enum GamePhaseType { entryWord, selectFuel }
+enum GamePhaseType { entryWord, selectAction }
 
 enum EnergyMultiplierType {
   m1(namedPart: '1/3'),
@@ -20,9 +21,7 @@ enum EnergyMultiplierType {
 @immutable
 @freezed
 class LevelModel with _$LevelModel {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
+  @JsonSerializable(explicitToJson: true)
   const factory LevelModel({
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
@@ -43,9 +42,30 @@ class LevelModel with _$LevelModel {
     @Default(WorldDateTimeModel.zero) final WorldDateTimeModel lastDateTime,
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel technologyTreeProgress,
+    @Default(LevelFeaturesSettingsModel.empty)
+    final LevelFeaturesSettingsModel featuresSettings,
+    @Default(Languages.en) final Languages wordsLanguage,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
       _$LevelModelFromJson(json);
   CanvasDataModelId get id => canvasDataId;
+}
+
+/// Ensures that when user is starting a game
+/// he can start simple game, without
+/// any "adventure" features, as technologies, etc
+@freezed
+class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
+  const factory LevelFeaturesSettingsModel({
+    @Default(false) final bool isTechnologiesEnabled,
+  }) = _LevelFeaturesSettingsModel;
+  factory LevelFeaturesSettingsModel.fromJson(
+    final Map<String, dynamic> json,
+  ) =>
+      _$LevelFeaturesSettingsModelFromJson(json);
+  static const empty = LevelFeaturesSettingsModel();
+  static const allEnabled = LevelFeaturesSettingsModel(
+    isTechnologiesEnabled: true,
+  );
 }

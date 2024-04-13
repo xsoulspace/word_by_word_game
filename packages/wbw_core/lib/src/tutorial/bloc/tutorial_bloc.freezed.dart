@@ -12,7 +12,7 @@ part of 'tutorial_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TutorialEvent {
@@ -136,7 +136,7 @@ class _$CompleteTutorialEventImpl implements CompleteTutorialEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CompleteTutorialEventImpl);
@@ -304,7 +304,7 @@ class _$LoadTutorialsProgressEventImpl implements LoadTutorialsProgressEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LoadTutorialsProgressEventImpl &&
@@ -495,7 +495,7 @@ class _$StartTutorialEventImpl implements StartTutorialEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StartTutorialEventImpl &&
@@ -679,7 +679,7 @@ class _$NextTutorialEventImpl implements NextTutorialEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NextTutorialEventImpl &&
@@ -880,7 +880,7 @@ class _$TutorialUiActionEventImpl implements TutorialUiActionEvent {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialUiActionEventImpl &&
@@ -1016,21 +1016,6 @@ abstract class TutorialUiActionEvent implements TutorialEvent {
       get copyWith => throw _privateConstructorUsedError;
 }
 
-TutorialBlocState _$TutorialBlocStateFromJson(Map<String, dynamic> json) {
-  switch (json['runtimeType']) {
-    case 'empty':
-      return TutorialBlocStateEmpty.fromJson(json);
-    case 'pending':
-      return TutorialBlocStatePending.fromJson(json);
-    case 'live':
-      return TutorialBlocStateLive.fromJson(json);
-
-    default:
-      throw CheckedFromJsonException(json, 'runtimeType', 'TutorialBlocState',
-          'Invalid union type "${json['runtimeType']}"!');
-  }
-}
-
 /// @nodoc
 mixin _$TutorialBlocState {
   @optionalTypeArgs
@@ -1084,7 +1069,6 @@ mixin _$TutorialBlocState {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1124,16 +1108,9 @@ class __$$TutorialBlocStateEmptyImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$TutorialBlocStateEmptyImpl implements TutorialBlocStateEmpty {
-  const _$TutorialBlocStateEmptyImpl({final String? $type})
-      : $type = $type ?? 'empty';
-
-  factory _$TutorialBlocStateEmptyImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TutorialBlocStateEmptyImplFromJson(json);
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
+  const _$TutorialBlocStateEmptyImpl();
 
   @override
   String toString() {
@@ -1141,13 +1118,12 @@ class _$TutorialBlocStateEmptyImpl implements TutorialBlocStateEmpty {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialBlocStateEmptyImpl);
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -1225,20 +1201,10 @@ class _$TutorialBlocStateEmptyImpl implements TutorialBlocStateEmpty {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TutorialBlocStateEmptyImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class TutorialBlocStateEmpty implements TutorialBlocState {
   const factory TutorialBlocStateEmpty() = _$TutorialBlocStateEmptyImpl;
-
-  factory TutorialBlocStateEmpty.fromJson(Map<String, dynamic> json) =
-      _$TutorialBlocStateEmptyImpl.fromJson;
 }
 
 /// @nodoc
@@ -1287,21 +1253,13 @@ class __$$TutorialBlocStatePendingImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
-class _$TutorialBlocStatePendingImpl implements TutorialBlocStatePending {
-  const _$TutorialBlocStatePendingImpl(
-      {required this.progress, final String? $type})
-      : $type = $type ?? 'pending';
 
-  factory _$TutorialBlocStatePendingImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TutorialBlocStatePendingImplFromJson(json);
+class _$TutorialBlocStatePendingImpl implements TutorialBlocStatePending {
+  const _$TutorialBlocStatePendingImpl({required this.progress});
 
   /// progress for all tutorials
   @override
   final TutorialCollectionsProgressModel progress;
-
-  @JsonKey(name: 'runtimeType')
-  final String $type;
 
   @override
   String toString() {
@@ -1309,7 +1267,7 @@ class _$TutorialBlocStatePendingImpl implements TutorialBlocStatePending {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialBlocStatePendingImpl &&
@@ -1317,7 +1275,6 @@ class _$TutorialBlocStatePendingImpl implements TutorialBlocStatePending {
                 other.progress == progress));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, progress);
 
@@ -1402,22 +1359,12 @@ class _$TutorialBlocStatePendingImpl implements TutorialBlocStatePending {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TutorialBlocStatePendingImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class TutorialBlocStatePending implements TutorialBlocState {
   const factory TutorialBlocStatePending(
           {required final TutorialCollectionsProgressModel progress}) =
       _$TutorialBlocStatePendingImpl;
-
-  factory TutorialBlocStatePending.fromJson(Map<String, dynamic> json) =
-      _$TutorialBlocStatePendingImpl.fromJson;
 
   /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
@@ -1487,14 +1434,10 @@ class __$$TutorialBlocStateLiveImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
 class _$TutorialBlocStateLiveImpl implements TutorialBlocStateLive {
   const _$TutorialBlocStateLiveImpl(
-      {required this.tutorial, required this.progress, final String? $type})
-      : $type = $type ?? 'live';
-
-  factory _$TutorialBlocStateLiveImpl.fromJson(Map<String, dynamic> json) =>
-      _$$TutorialBlocStateLiveImplFromJson(json);
+      {required this.tutorial, required this.progress});
 
   @override
   final TutorialEventsCollectionModel tutorial;
@@ -1503,16 +1446,13 @@ class _$TutorialBlocStateLiveImpl implements TutorialBlocStateLive {
   @override
   final TutorialCollectionsProgressModel progress;
 
-  @JsonKey(name: 'runtimeType')
-  final String $type;
-
   @override
   String toString() {
     return 'TutorialBlocState.live(tutorial: $tutorial, progress: $progress)';
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TutorialBlocStateLiveImpl &&
@@ -1522,7 +1462,6 @@ class _$TutorialBlocStateLiveImpl implements TutorialBlocStateLive {
                 other.progress == progress));
   }
 
-  @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, tutorial, progress);
 
@@ -1607,13 +1546,6 @@ class _$TutorialBlocStateLiveImpl implements TutorialBlocStateLive {
     }
     return orElse();
   }
-
-  @override
-  Map<String, dynamic> toJson() {
-    return _$$TutorialBlocStateLiveImplToJson(
-      this,
-    );
-  }
 }
 
 abstract class TutorialBlocStateLive implements TutorialBlocState {
@@ -1621,9 +1553,6 @@ abstract class TutorialBlocStateLive implements TutorialBlocState {
           {required final TutorialEventsCollectionModel tutorial,
           required final TutorialCollectionsProgressModel progress}) =
       _$TutorialBlocStateLiveImpl;
-
-  factory TutorialBlocStateLive.fromJson(Map<String, dynamic> json) =
-      _$TutorialBlocStateLiveImpl.fromJson;
 
   TutorialEventsCollectionModel get tutorial;
 

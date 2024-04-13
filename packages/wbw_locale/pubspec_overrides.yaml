@@ -1,4 +1,5 @@
-# melos_managed_dependency_overrides: http,collection
+# melos_managed_dependency_overrides: http,collection,intl
 dependency_overrides:
   http: 1.0.0
   collection: 1.18.0
+  intl: ^0.19.0

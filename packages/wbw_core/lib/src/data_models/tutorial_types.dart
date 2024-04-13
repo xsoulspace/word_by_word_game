@@ -1,9 +1,8 @@
 // ignore_for_file: invalid_annotation_target
 
-part of 'data_models.dart';
+// part of 'data_models.dart';
 
 /// The goal of the game is to reach far end of the level with air balloon.
-
 enum TutorialUiItem {
   pauseIconButton,
 

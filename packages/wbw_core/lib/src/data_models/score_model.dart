@@ -1,3 +1,4 @@
+// part of 'data_models.dart';
 part of 'data_models.dart';
 
 const kScoreFactor = 10;
@@ -5,6 +6,7 @@ const kScoreFactor = 10;
 @immutable
 @freezed
 class ScoreModel with _$ScoreModel {
+  /// to create use [ScoreMechanics.getScoreFromWord]
   const factory ScoreModel({
     required final double value,
   }) = _ScoreModel;
@@ -20,4 +22,8 @@ class ScoreModel with _$ScoreModel {
   ScoreModel operator +(final num factor) => ScoreModel(value: value + factor);
 
   bool operator >=(final num factor) => value >= factor;
+
+  bool operator <=(final num factor) => value <= factor;
+
+  bool get isZero => value == 0;
 }

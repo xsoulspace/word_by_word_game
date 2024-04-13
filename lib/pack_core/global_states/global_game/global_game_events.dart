@@ -2,7 +2,7 @@ part of 'global_game_bloc.dart';
 
 @immutable
 @freezed
-class GameEvent with _$GameEvent {
+sealed class GameEvent with _$GameEvent {
   const factory GameEvent.startPlayingLevel({
     @Default(true) final bool shouldRestartTutorial,
   }) = StartPlayingLevelEvent;
@@ -19,7 +19,12 @@ class GameEvent with _$GameEvent {
   const factory GameEvent.saveGame() = SaveGameEvent;
   const factory GameEvent.saveCurrentLevel() = SaveCurrentLevelEvent;
   const factory GameEvent.endLevel({
-    required final bool isWon,
+    required final bool isPassed,
     required final double maxDistance,
   }) = EndLevelEvent;
+
+  static const nonPassedEndLevel = EndLevelEvent(
+    isPassed: false,
+    maxDistance: 0,
+  );
 }

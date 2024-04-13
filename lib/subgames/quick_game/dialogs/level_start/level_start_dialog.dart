@@ -12,12 +12,12 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/navigation/navigation.dart';
+import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
 
 part 'level_start_dialog_ui_state.dart';
-part 'level_start_dialog_ux_state.dart';
+part 'level_start_dialog_ux_notifier.dart';
 
 class LevelStartDialogButton extends HookWidget {
   const LevelStartDialogButton({
@@ -27,9 +27,11 @@ class LevelStartDialogButton extends HookWidget {
   final CanvasDataModel level;
   @override
   Widget build(final BuildContext context) {
-    final uxState = _useLevelStartDialogUxState(
-      read: context.read,
-      canvasData: level,
+    final uxState = useStateBuilder(
+      () => LevelStartDialogUxNotifier(
+        context: context,
+        canvasData: level,
+      ),
     );
 
     final uiState = _useLevelStartUiState(
@@ -39,8 +41,8 @@ class LevelStartDialogButton extends HookWidget {
 
     return MultiProvider(
       providers: [
-        Provider(create: (final context) => uiState),
-        Provider(create: (final context) => uxState),
+        Provider.value(value: uiState),
+        ChangeNotifierProvider.value(value: uxState),
       ],
       builder: (final context, final child) => PortalTarget(
         portalFollower: Visibility(

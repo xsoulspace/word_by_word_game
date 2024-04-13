@@ -84,11 +84,11 @@ class _$PresetTileResourceCopyWithImpl<$Res, $Val extends PresetTileResource>
 }
 
 /// @nodoc
-abstract class _$$_PresetTileResourceCopyWith<$Res>
+abstract class _$$PresetTileResourceImplCopyWith<$Res>
     implements $PresetTileResourceCopyWith<$Res> {
-  factory _$$_PresetTileResourceCopyWith(_$_PresetTileResource value,
-          $Res Function(_$_PresetTileResource) then) =
-      __$$_PresetTileResourceCopyWithImpl<$Res>;
+  factory _$$PresetTileResourceImplCopyWith(_$PresetTileResourceImpl value,
+          $Res Function(_$PresetTileResourceImpl) then) =
+      __$$PresetTileResourceImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -101,11 +101,11 @@ abstract class _$$_PresetTileResourceCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$_PresetTileResourceCopyWithImpl<$Res>
-    extends _$PresetTileResourceCopyWithImpl<$Res, _$_PresetTileResource>
-    implements _$$_PresetTileResourceCopyWith<$Res> {
-  __$$_PresetTileResourceCopyWithImpl(
-      _$_PresetTileResource _value, $Res Function(_$_PresetTileResource) _then)
+class __$$PresetTileResourceImplCopyWithImpl<$Res>
+    extends _$PresetTileResourceCopyWithImpl<$Res, _$PresetTileResourceImpl>
+    implements _$$PresetTileResourceImplCopyWith<$Res> {
+  __$$PresetTileResourceImplCopyWithImpl(_$PresetTileResourceImpl _value,
+      $Res Function(_$PresetTileResourceImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -115,7 +115,7 @@ class __$$_PresetTileResourceCopyWithImpl<$Res>
     Object? behaviourPaths = null,
     Object? directionalPaths = null,
   }) {
-    return _then(_$_PresetTileResource(
+    return _then(_$PresetTileResourceImpl(
       tile: null == tile
           ? _value.tile
           : tile // ignore: cast_nullable_to_non_nullable
@@ -134,8 +134,8 @@ class __$$_PresetTileResourceCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$_PresetTileResource extends _PresetTileResource {
-  const _$_PresetTileResource(
+class _$PresetTileResourceImpl extends _PresetTileResource {
+  const _$PresetTileResourceImpl(
       {required this.tile,
       final Map<TileBehaviourType, AnimationEntryModel> behaviourPaths =
           const {},
@@ -173,7 +173,7 @@ class _$_PresetTileResource extends _PresetTileResource {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_PresetTileResource &&
+            other is _$PresetTileResourceImpl &&
             (identical(other.tile, tile) || other.tile == tile) &&
             const DeepCollectionEquality()
                 .equals(other._behaviourPaths, _behaviourPaths) &&
@@ -191,8 +191,8 @@ class _$_PresetTileResource extends _PresetTileResource {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_PresetTileResourceCopyWith<_$_PresetTileResource> get copyWith =>
-      __$$_PresetTileResourceCopyWithImpl<_$_PresetTileResource>(
+  _$$PresetTileResourceImplCopyWith<_$PresetTileResourceImpl> get copyWith =>
+      __$$PresetTileResourceImplCopyWithImpl<_$PresetTileResourceImpl>(
           this, _$identity);
 }
 
@@ -201,7 +201,7 @@ abstract class _PresetTileResource extends PresetTileResource {
           {required final PresetTileModel tile,
           final Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
           final Map<String, AnimationEntryModel> directionalPaths}) =
-      _$_PresetTileResource;
+      _$PresetTileResourceImpl;
   const _PresetTileResource._() : super._();
 
   @override
@@ -212,6 +212,6 @@ abstract class _PresetTileResource extends PresetTileResource {
   Map<String, AnimationEntryModel> get directionalPaths;
   @override
   @JsonKey(ignore: true)
-  _$$_PresetTileResourceCopyWith<_$_PresetTileResource> get copyWith =>
+  _$$PresetTileResourceImplCopyWith<_$PresetTileResourceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

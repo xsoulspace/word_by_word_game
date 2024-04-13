@@ -181,7 +181,7 @@ class Assets {
   static const $GoogleFontsGen googleFonts = $GoogleFontsGen();
 
   /// List of all assets
-  List<AssetGenImage> get values => [icon];
+  static List<AssetGenImage> get values => [icon];
 }
 
 class AssetGenImage {

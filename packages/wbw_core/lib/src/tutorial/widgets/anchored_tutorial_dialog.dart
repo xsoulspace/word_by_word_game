@@ -121,7 +121,7 @@ class _AnchoredTutorialIdleDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => AnchoredTutorialDialogScaffold(
         children: [
-          Text(tutorialEvent.localizedMap.getValue()),
+          Text(tutorialEvent.localizedMap.getValueByLanguage()),
         ],
       );
 }
@@ -134,7 +134,7 @@ class _AnchoredTutorialOkDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => AnchoredTutorialDialogScaffold(
         children: [
-          Text(tutorialEvent.localizedMap.getValue()),
+          Text(tutorialEvent.localizedMap.getValueByLanguage()),
           Row(
             children: [
               Expanded(

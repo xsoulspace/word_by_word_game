@@ -180,8 +180,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
           Text(
             player.name,
             style: theme.textTheme.labelMedium?.copyWith(
-              color:
-                  isCurrent ? null : colorScheme.onBackground.withOpacity(0.6),
+              color: isCurrent ? null : colorScheme.onSurface.withOpacity(0.6),
             ),
 
             /// textStyle,
@@ -267,7 +266,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
               style: theme.textTheme.labelMedium?.copyWith(
                 color: selected
                     ? colorScheme.onPrimary
-                    : colorScheme.onBackground.withOpacity(0.6),
+                    : colorScheme.onSurface.withOpacity(0.6),
               ),
 
               // style: widget.textStyle,

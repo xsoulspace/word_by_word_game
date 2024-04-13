@@ -1,7 +1,9 @@
 import 'package:flame/cache.dart';
+import 'package:logger/logger.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 
 class CanvasCubitDto {
   CanvasCubitDto();
@@ -9,11 +11,10 @@ class CanvasCubitDto {
 
 /// Class for canvas data rendering
 final class CanvasCubit extends DrawerCubit {
-  CanvasCubit({
-    required this.canvasDto,
-    required final DrawerCubitDto drawerCubit,
-  }) : super(
-          dto: drawerCubit,
+  CanvasCubit(final BuildContext context)
+      : canvasDto = CanvasCubitDto(),
+        super(
+          dto: DrawerCubitDto.use(context: context),
           resourcesLoader: ResourcesLoader(
             tilesetAssets: AssetsCache(
               prefix: 'packages/map_editor/assets/images/',
@@ -21,8 +22,14 @@ final class CanvasCubit extends DrawerCubit {
           ),
           rootPath: 'packages/map_editor/',
         );
-
+  final _log = Logger();
   final CanvasCubitDto canvasDto;
+  @override
+  Future<void> close() {
+    _log.close();
+    return super.close();
+  }
+
   @override
   Future<void> loadInitialData() async {
     await loadResourcesData();
@@ -52,19 +59,24 @@ final class CanvasCubit extends DrawerCubit {
   Future<void> loadCanvasData({
     required final CanvasDataModel canvasData,
   }) async {
-    CanvasDataModel eCanvasData = canvasData;
+    final CanvasDataModel eCanvasData = canvasData;
     final tilesetConfig = getTilesetConfig(type: eCanvasData.tilesetType);
     await loadTileset(tilesetConfig);
-    final player = eCanvasData.playerObject;
-    if (!state.tileResources.players.containsKey(player.tileId)) {
+    // _log.d('Loading canvas data...');
+    final playerObj = eCanvasData.playerObject;
+    // _log.d('Player tile id: ${playerObj.tileId}');
+    emit(state.copyWith(canvasData: eCanvasData));
+
+    // _log.d('Distance to origin: ${playerObj.distanceToOrigin}');
+
+    /// case if tile is not correctly loaded
+    if (!state.tileResources.players.containsKey(playerObj.tileId)) {
+      // _log.d('Player tile id is not in tile resources. Adding...');
       final firstPlayer = state.tileResources.players.values.first;
-      eCanvasData = eCanvasData.copyWith(
-        playerObject: player.copyWith(
-          id: firstPlayer.id.toGid(),
-          tileId: firstPlayer.tile.id,
-        ),
+      player = playerObj.copyWith(
+        id: firstPlayer.id.toGid(),
+        tileId: firstPlayer.tile.id,
       );
     }
-    emit(state.copyWith(canvasData: eCanvasData));
   }
 }

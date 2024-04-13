@@ -12,7 +12,9 @@ import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.
 const kKeyboardWidth = 320.0;
 
 class UiKeyboardController extends Cubit<UiKeyboardControllerState> {
-  UiKeyboardController() : super(const UiKeyboardControllerState());
+  // ignore: avoid_unused_constructor_parameters
+  UiKeyboardController(final BuildContext context)
+      : super(const UiKeyboardControllerState());
 
   final _controller = StreamController<UiKeyboardEvent>.broadcast();
   Stream<UiKeyboardEvent> get keyEventsStream => _controller.stream;
@@ -198,7 +200,7 @@ class KeyboardLetters extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LanguageSwitcher(
+            KeyboardLanguageSwitcher(
               lettersCount: lettersCount,
               onChanged: onLanguageChanged,
               value: language,
@@ -271,8 +273,8 @@ class InputCaret extends StatelessWidget {
           );
 }
 
-class LanguageSwitcher extends StatelessWidget {
-  const LanguageSwitcher({
+class KeyboardLanguageSwitcher extends StatelessWidget {
+  const KeyboardLanguageSwitcher({
     required this.onChanged,
     required this.value,
     required this.lettersCount,

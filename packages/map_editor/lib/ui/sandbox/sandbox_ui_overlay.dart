@@ -13,6 +13,7 @@ import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
 import 'package:recase/recase.dart';
 import 'package:universal_io/io.dart' as io;
+import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
@@ -51,6 +52,7 @@ class TileButtons extends StatelessWidget {
     final drawerCubit = context.watch<EditorDrawerCubit>();
     final mapEditorBloc = context.watch<MapEditorCubit>();
     final tilesResources = drawerCubit.tilesPresetResources;
+    // final locale = useLocale(context);
 
     return CupertinoScrollbar(
       thumbVisibility: true,
@@ -88,7 +90,9 @@ class TileButtons extends StatelessWidget {
                           menuChildren: levels
                               .map(
                                 (final canvasData) => MenuItemButton(
-                                  child: Text(canvasData.name.getValue()),
+                                  child: Text(
+                                    canvasData.name.getValue(Locales.en),
+                                  ),
                                   onPressed: () async => drawerCubit
                                       .changeCurrentLevelMap(canvasData),
                                 ),
@@ -109,7 +113,7 @@ class TileButtons extends StatelessWidget {
                             },
                             child: Text(
                               // ignore: lines_longer_than_80_chars
-                              'Map: ${name.value.isEmpty ? 'noname' : name.getValue()}',
+                              'Map: ${name.value.isEmpty ? 'noname' : name.getValue(Locales.en)}',
                             ),
                           ),
                         );

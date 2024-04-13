@@ -2,7 +2,7 @@
 
 part of 'tutorial_bloc.dart';
 
-@freezed
+@Freezed(fromJson: false, toJson: false)
 sealed class TutorialBlocState with _$TutorialBlocState {
   const factory TutorialBlocState.empty() = TutorialBlocStateEmpty;
   const factory TutorialBlocState.pending({
@@ -15,8 +15,6 @@ sealed class TutorialBlocState with _$TutorialBlocState {
     /// progress for all tutorials
     required final TutorialCollectionsProgressModel progress,
   }) = TutorialBlocStateLive;
-  factory TutorialBlocState.fromJson(final Map<String, dynamic> json) =>
-      _$TutorialBlocStateFromJson(json);
   static TutorialBlocStateLive? fromProgressModel({
     required final TutorialCollectionsDataModel data,
     required final TutorialCollectionsProgressModel progress,

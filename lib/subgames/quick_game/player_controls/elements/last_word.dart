@@ -83,7 +83,7 @@ class _LastWordTextState extends State<LastWordText> {
           Text(
             S.of(context).previousWord,
             style: textStyle?.copyWith(
-              color: colorScheme.onBackground.withOpacity(0.8),
+              color: colorScheme.onSurface.withOpacity(0.8),
             ),
           ),
           uiTheme.horizontalBoxes.small,

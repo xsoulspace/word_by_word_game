@@ -18,7 +18,7 @@ Future<void> showTechnologiesTreeDialog({
     } else {
       newTechs.add(
         TechnologyModel(
-          id: TechnologyModelId(value: e),
+          id: TechnologyModelId(e),
           title: LocalizedMap.fromLanguages(),
           unlockCondition: const TechnologyUnlockConditionModel(
             languageWords: {},
@@ -57,7 +57,8 @@ class _TechnologyTreeDialogState extends State<TechnologyTreeDialog> {
             leading: const CloseButton(),
             title: const Text('Technology Tree'),
           ),
-          LanguageSwitcher(
+          LanguageSwitcherMenu(
+            isShortAbbreviationUsed: false,
             onChanged: (final value) {
               _language = value;
               setState(() {});
@@ -114,7 +115,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
   final _nameController = TextEditingController();
   @override
   void initState() {
-    _nameController.text = widget.initialTechnology.title.getValue(
+    _nameController.text = widget.initialTechnology.title.getValueByLanguage(
       widget.language,
     );
     super.initState();
@@ -123,7 +124,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
   @override
   void didUpdateWidget(covariant final TechnologyInput oldWidget) {
     if (widget.language != oldWidget.language) {
-      _nameController.text = widget.initialTechnology.title.getValue(
+      _nameController.text = widget.initialTechnology.title.getValueByLanguage(
         widget.language,
       );
     }

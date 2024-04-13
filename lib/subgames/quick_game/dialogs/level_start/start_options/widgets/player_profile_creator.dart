@@ -36,7 +36,8 @@ enum PlayerProfileCreatorError {
     },
   };
 
-  String get localized => LocalizedMap(value: locales[this]!).getValue();
+  String getLocalized(final Locale locale) =>
+      LocalizedMap(value: locales[this]!).getValue(locale);
 }
 
 class PlayerProfileCreatorNotifier
@@ -57,10 +58,13 @@ class PlayerProfileCreatorNotifier
     return PlayerProfileCreatorError.invalidName;
   }
 
-  Future<PlayerProfileModel?> onCreateProfile() async {
+  Future<PlayerProfileModel?> onCreateProfile({
+    required final Locale locale,
+  }) async {
     final errorMessage = await _validateName();
     if (errorMessage != null) {
-      value = value.copyWith(nameErrorMessage: errorMessage.localized);
+      value =
+          value.copyWith(nameErrorMessage: errorMessage.getLocalized(locale));
       return null;
     }
     final player = PlayerProfileModel.create(

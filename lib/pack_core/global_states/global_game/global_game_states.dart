@@ -13,7 +13,8 @@ class GlobalGameBlocState with _$GlobalGameBlocState {
     @Default('') final GameSaveModelId id,
     @Default(CanvasDataModelId.empty) final CanvasDataModelId currentLevelId,
 
-    /// Should be loaded independently
+    /// Should be loaded independently, should never be updated
+    /// Immutable
     @Default({}) final Map<CanvasDataModelId, CanvasDataModel> allCanvasData,
 
     /// Current Level Model is a model with all level configurations
