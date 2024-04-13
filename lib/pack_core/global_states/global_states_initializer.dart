@@ -12,13 +12,11 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/router.dart';
 
 class GlobalStatesInitializer implements StateInitializer {
-  GlobalStatesInitializer({
-    required this.appRouterController,
-  });
-  final AppPathsController appRouterController;
+  GlobalStatesInitializer();
   @override
   Future<void> onLoad(final BuildContext context) async {
     final read = context.read;
+    final appRouterController = AppPathsController.of(context);
     final appStatusNotifier = read<AppStatusNotifier>();
     final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
@@ -37,7 +35,7 @@ class GlobalStatesInitializer implements StateInitializer {
       services: services,
     );
     await dictionariesRepository.preloadWrongWordsDictionary();
-    await globalGameBloc.onInitGlobalGame(initGame);
+    final levelId = await globalGameBloc.onInitGlobalGame(initGame);
     await analyticsService.onDelayedLoad();
     await adManager.onLoad();
     final event = () {
@@ -46,13 +44,10 @@ class GlobalStatesInitializer implements StateInitializer {
     }();
     if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
 
-    final currentLevelId = initGame.currentLevelId;
-    if (currentLevelId.isNotEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
-        appStatusNotifier.value = AppStatus.online;
-        appRouterController.toPause(id: currentLevelId);
-      });
-    }
+    WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
+      appStatusNotifier.value = AppStatus.online;
+      appRouterController.toPause(id: levelId);
+    });
   }
 }
 

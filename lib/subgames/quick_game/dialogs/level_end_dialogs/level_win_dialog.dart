@@ -42,7 +42,7 @@ class LevelWinDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 onSaveResults();
-                AppPathsController.of(context).toRoot();
+                AppPathsController.of(context).toLastLevel();
                 context.read<DialogController>().closeDialog();
               },
               child: Text(S.of(context).toLandscapes),

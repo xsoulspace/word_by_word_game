@@ -4,7 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/preloading_screen.dart';
+import 'package:word_by_word_game/pack_core/pack_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/highscore/highscore_screen.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 import 'package:word_by_word_game/subgames/quick_game/settings/settings_screen.dart';
@@ -125,7 +125,12 @@ class AppPathsController {
   final BuildContext context;
   void toPlayableLevel({required final CanvasDataModelId id}) =>
       to(ScreenPaths.toPlayableLevel(id: id));
-  void toRoot() => to(ScreenPaths.root);
+  void toLastLevel() {
+    final gameBloc = context.read<GlobalGameBloc>();
+    final currentLevelId = gameBloc.state.currentLevelId;
+    to(ScreenPaths.toPlayableLevel(id: currentLevelId));
+  }
+
   void toPlayersAndHighscore() =>
       to('/${ScreenPaths.playableLevel}/${ScreenPaths.highscore}');
   void toSettings() =>
@@ -138,7 +143,7 @@ class AppPathsController {
     if (isGameIsRunning) {
       toPause(id: levelId);
     } else {
-      toRoot();
+      toLastLevel();
     }
   }
 

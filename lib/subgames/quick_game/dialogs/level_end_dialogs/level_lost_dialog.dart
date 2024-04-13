@@ -59,7 +59,7 @@ class LevelLostDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 onEndLevel();
-                AppPathsController.of(context).toRoot();
+                AppPathsController.of(context).toLastLevel();
               },
               child: Text(S.of(context).toLandscapes),
             ),

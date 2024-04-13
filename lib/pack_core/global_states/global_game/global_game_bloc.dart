@@ -68,7 +68,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     return super.close();
   }
 
-  Future<void> onInitGlobalGame(
+  Future<CanvasDataModelId> onInitGlobalGame(
     final GameSaveModel gameModel,
   ) async {
     final liveGame = GlobalGameBlocState.fromModel(gameModel);
@@ -85,15 +85,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final isNewStart = level == null;
 
     /// add level data to display something for start screen
-    level ??= createLevel(
-      wordsLanguage: Languages.en,
-      canvasDataId: allLevels.values
-          .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack)
-          .id,
-      characterId: liveGame.playersCharacters.first.id,
-      playersIds: [],
-      featuresSettings: LevelFeaturesSettingsModel.allEnabled,
-    );
+    level ??= _createEmptyLevel();
 
     /// resume latest game
     await onInitGlobalGameLevel(
@@ -107,7 +99,19 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     if (_tutorialEventsListener != null) {
       dto.tutorialBloc.notifier.addListener(_tutorialEventsListener!);
     }
+
+    return level.id;
   }
+
+  LevelModel _createEmptyLevel() => createLevel(
+        wordsLanguage: Languages.en,
+        canvasDataId: state.allCanvasData.values
+            .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack)
+            .id,
+        characterId: state.playersCharacters.first.id,
+        playersIds: [],
+        featuresSettings: LevelFeaturesSettingsModel.allEnabled,
+      );
 
   LevelModel createLevel({
     required final CanvasDataModelId canvasDataId,
@@ -324,6 +328,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     _shareNewDateTime(newState);
   }
 
+  // TODO(arenukvern): add empty level and run it
   Future<void> onLevelEnd(
     final EndLevelEvent event,
   ) async {

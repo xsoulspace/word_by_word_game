@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states_initializer.dart';
-import 'package:word_by_word_game/router.dart';
 
 class PreloadingScreen extends StatefulWidget {
   const PreloadingScreen({super.key});
@@ -16,9 +15,7 @@ class _PreloadingScreenState extends State<PreloadingScreen> {
   void initState() {
     super.initState();
     unawaited(
-      GlobalStatesInitializer(
-        appRouterController: AppPathsController.of(context),
-      ).onLoad(context),
+      GlobalStatesInitializer().onLoad(context),
     );
   }
 
