@@ -1,13 +1,11 @@
 part of 'level_start_dialog.dart';
 
 class _LevelStartDialogUxStateDiDto {
-  _LevelStartDialogUxStateDiDto.use(final Locator read)
-      : appRouterController = AppRouterController.use(read),
-        globalGameBloc = read(),
-        mechanics = read(),
-        appSettingsNotifier = read(),
-        tutorialBloc = read();
-  final AppRouterController appRouterController;
+  _LevelStartDialogUxStateDiDto.use(final BuildContext context)
+      : globalGameBloc = context.read(),
+        mechanics = context.read(),
+        appSettingsNotifier = context.read(),
+        tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
   final AppSettingsNotifier appSettingsNotifier;
@@ -18,7 +16,7 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   LevelStartDialogUxNotifier({
     required final BuildContext context,
     required this.canvasData,
-  })  : dto = _LevelStartDialogUxStateDiDto.use(context.read),
+  })  : dto = _LevelStartDialogUxStateDiDto.use(context),
         super('') {
     onLoad();
   }
@@ -90,7 +88,8 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  Future<void> onPlay() async {
+  Future<void> onPlay(final BuildContext context) async {
+    final pathsController = AppPathsController.of(context);
     final level = dto.globalGameBloc.createLevel(
       canvasDataId: canvasData.id,
       playersIds: playersIds,
@@ -103,10 +102,10 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     await dto.globalGameBloc.onStartPlayingLevel(
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
-    dto.appRouterController.toPlayableLevel(id: level.id);
+    pathsController.toPlayableLevel(id: level.id);
   }
 
-  void onReturnToLevels() {
-    dto.appRouterController.toRoot();
+  void onReturnToLevels(final BuildContext context) {
+    AppPathsController.of(context).toRoot();
   }
 }

@@ -7,6 +7,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
 
@@ -16,8 +17,8 @@ class StartGameHex extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<PauseScreenState>();
-    final routeState = context.watch<RouteState>();
-    final routeArgs = LevelRouteArgs.fromJson(routeState.route.parameters);
+    final params = context.routeParams;
+    final routeArgs = LevelRouteArgs.fromJson(params);
     final levelId = CanvasDataModelId.fromJson(routeArgs.levelId);
     final isLevelRunning = levelId.isNotEmpty;
     final uiTheme = context.uiTheme;
@@ -45,7 +46,10 @@ class StartGameHex extends StatelessWidget {
                 if (isLevelRunning)
                   UiFilledButton.text(
                     text: S.of(context).continueGame,
-                    onPressed: () async => state.onContinue(id: levelId),
+                    onPressed: () async => state.onContinue(
+                      context: context,
+                      id: levelId,
+                    ),
                   )
                       .animate()
                       .then(duration: 450.milliseconds)

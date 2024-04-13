@@ -45,14 +45,12 @@ class WordCompositionStateDiDto {
       : levelBloc = read(),
         tutorialBloc = read(),
         mechanics = read(),
-        appRouterController = read(),
         globalGameBloc = read(),
         dialogController = read();
   final Locator read;
   final LevelBloc levelBloc;
   final TutorialBloc tutorialBloc;
   final MechanicsCollection mechanics;
-  final AppRouterController appRouterController;
   final GlobalGameBloc globalGameBloc;
   final DialogController dialogController;
 }

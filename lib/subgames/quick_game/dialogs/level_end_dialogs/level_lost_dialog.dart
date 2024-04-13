@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
@@ -59,7 +59,7 @@ class LevelLostDialog extends StatelessWidget {
             TextButton(
               onPressed: () {
                 onEndLevel();
-                AppRouterController.use(context.read).toRoot();
+                AppPathsController.of(context).toRoot();
               },
               child: Text(S.of(context).toLandscapes),
             ),

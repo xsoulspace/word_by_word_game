@@ -1,7 +1,7 @@
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
@@ -22,6 +22,7 @@ class GlobalStatesProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
+          ChangeNotifierProvider(create: AppStatusNotifier.new),
           ChangeNotifierProvider.value(value: uiLocaleNotifier),
           Provider(create: (final context) => initializer.analyticsService),
           Provider<LocalDbDataSource>(
@@ -35,6 +36,10 @@ class GlobalStatesProvider extends StatelessWidget {
           Provider(create: (final context) => AdManager()),
           const BlocProvider(create: StatesStatusesCubit.new),
           Provider(create: ServicesCollection.new),
+          Provider(create: UiThemeScheme.m3),
+          Provider(
+            create: (final context) => context.read<UiThemeScheme>().text,
+          ),
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [

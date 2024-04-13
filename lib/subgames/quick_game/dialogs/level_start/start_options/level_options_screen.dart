@@ -24,7 +24,6 @@ class LevelOptionsScreen extends HookWidget {
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
     final widgetUxState = context.read<LevelStartDialogUxNotifier>();
-    final theme = Theme.of(context);
     final locale = useLocale(context);
     final unblockerNotifier = useState(0);
 
@@ -111,7 +110,7 @@ class LevelOptionsScreen extends HookWidget {
                 mainAlignment: MainAxisAlignment.center,
                 onPressed: widgetUxState.playersIds.isEmpty
                     ? null
-                    : widgetUxState.onPlay,
+                    : () async => widgetUxState.onPlay(context),
               ),
             ],
           ),
