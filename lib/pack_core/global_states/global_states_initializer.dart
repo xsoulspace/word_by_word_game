@@ -82,21 +82,10 @@ class GameInitializer {
     GameSaveModel game = savedGame;
     for (var i = savedGame.version.index; i < GameVersion.values.length; i++) {
       switch (savedGame.version) {
-        case GameVersion.$1:
-          game = game.copyWith(
-            version: GameVersion.$3,
-            currentLevelId: CanvasDataModelId.empty,
-            currentLevel: null,
-            playersCharacters: characters,
-          );
-        case GameVersion.$2:
-          game = game.copyWith(
-            version: GameVersion.$3,
-            currentLevelId: CanvasDataModelId.empty,
-            currentLevel: null,
-            playersCharacters: presetCharacters,
-          );
-        case GameVersion.$3 || GameVersion.$4:
+        case GameVersion.$1 ||
+              GameVersion.$2 ||
+              GameVersion.$3 ||
+              GameVersion.$4:
           game = game.copyWith(
             version: GameVersion.$5,
             currentLevelId: CanvasDataModelId.empty,
