@@ -46,7 +46,10 @@ class WbwDictionaryDataSource {
     required final String meaning,
   }) {}
 
-  String getMeaning(final WordMeaningTuple tuple) {}
+  String getWordMeaning(final WordMeaningTuple tuple) {}
+
+  /// returns valid or not
+  bool checkWord(final WordMeaningTuple tuple) {}
 }
 
 typedef WordMeaningTuple = ({String language, String word});
