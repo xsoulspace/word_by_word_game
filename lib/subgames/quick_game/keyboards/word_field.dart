@@ -266,7 +266,7 @@ class _WordFieldState extends State<WordField> {
       onCaretIndexChanged: _onCaretIndexChanged,
       onCharacter: _onLetterPressed,
       onDelete: _onDelete,
-      onComplete: () => UILevelCenterBar.onConfirmWord(context),
+      onComplete: () async => UILevelCenterBar.onConfirmWord(context),
 
       /// container is needed to get focus
       child: Container(

@@ -77,6 +77,8 @@ dependencies:
     path: packages/wbw_core
   wbw_design_core:
     path: packages/wbw_design_core
+  wbw_dictionaries:
+    path: ./packages/wbw_dictionaries
   wbw_locale:
     path: packages/wbw_locale
 dev_dependencies:

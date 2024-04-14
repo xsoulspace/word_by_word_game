@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:english_words/english_words.dart' as english_words;
 import 'package:russian_words/russian_words.dart' as russian_words;
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 
 import '../data_models/data_models.dart';
 
@@ -62,16 +63,23 @@ class DictionaryMechanics {
     return words;
   }
 
-  bool checkIsWordIsCorrect({
+  Future<bool> checkIsWordIsCorrect({
     required final CurrentWordModel word,
     required final WordsType localWords,
-  }) {
+    required final WbwDictionary wbwDictionary,
+  }) async {
+    /// during huge dictionaries loading, small dictionaries available
     final cleanWord = word.fullWord;
-    final isEnglishWord = english_words.nouns.contains(cleanWord);
+    final isEnglishWord = english_words.all.contains(cleanWord);
     if (isEnglishWord) return true;
-    final isRussianWord = russian_words.nouns.contains(cleanWord);
+    final isRussianWord = russian_words.allWords.contains(cleanWord);
     if (isRussianWord) return true;
 
+    /// check within huge dictionaries when they are loaded
+    final isExists = await wbwDictionary.checkWord(cleanWord);
+    if (isExists) return true;
+
+    /// check with user writeen words
     return localWords.words.contains(cleanWord);
   }
 }

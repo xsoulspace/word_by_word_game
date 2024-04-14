@@ -7,6 +7,7 @@ import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
 import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/router.dart';
@@ -18,6 +19,7 @@ class GlobalStatesInitializer implements StateInitializer {
     final read = context.read;
     final appRouterController = AppPathsController.of(context);
     final appStatusNotifier = read<AppStatusNotifier>();
+    final wbwDictionary = read<WbwDictionary>();
     final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
@@ -42,6 +44,10 @@ class GlobalStatesInitializer implements StateInitializer {
       if (Platform.isAndroid) return AnalyticEvents.usedInAndroid;
     }();
     if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
+
+    /// can be loaded even before start, to not slow down
+    /// the game startup time
+    unawaited(wbwDictionary.onLoad());
 
     WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
       appStatusNotifier.value = AppStatus.online;

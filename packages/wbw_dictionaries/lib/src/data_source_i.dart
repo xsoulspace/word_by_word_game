@@ -11,7 +11,7 @@ abstract base class WbwDictionaryDataSourceBase {
   static const _path = 'dic_storage.db';
   DatabaseFactory get dbFactory;
   late final Database _db;
-  StoreRef<String, Map<String, String>> get _store => StoreRef.main();
+  StoreRef<String, Map<String, Object?>> get _store => StoreRef.main();
 
   Future<void> onLoad() async {
     _db = await dbFactory.openDatabase(_path);
@@ -32,7 +32,8 @@ abstract base class WbwDictionaryDataSourceBase {
 
   Future<String> getWordMeaning(final WordMeaningTuple tuple) async {
     final record = await _store.record(tuple._dbKey).get(_db);
-    return record?['meaning'] ?? '';
+    final meaning = record?['meaning'];
+    return meaning == null || meaning is! String ? '' : meaning;
   }
 
   /// returns valid or not
