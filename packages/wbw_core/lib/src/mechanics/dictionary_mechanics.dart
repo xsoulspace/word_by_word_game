@@ -64,7 +64,7 @@ class DictionaryMechanics {
 
   bool checkIsWordIsCorrect({
     required final CurrentWordModel word,
-    required final LocalDictionaryModel localDictionary,
+    required final WordsType localWords,
   }) {
     final cleanWord = word.fullWord;
     final isEnglishWord = english_words.nouns.contains(cleanWord);
@@ -72,6 +72,6 @@ class DictionaryMechanics {
     final isRussianWord = russian_words.nouns.contains(cleanWord);
     if (isRussianWord) return true;
 
-    return localDictionary.words.contains(cleanWord);
+    return localWords.words.contains(cleanWord);
   }
 }

@@ -104,7 +104,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
     }
     final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(
       word: word,
-      localDictionary: dto.dictionaryBloc.state.localDictionary,
+      localWords: dto.dictionaryBloc.state.wordsType,
     );
     if (!isCorrect) {
       return WordWarning.isNotCorrect;

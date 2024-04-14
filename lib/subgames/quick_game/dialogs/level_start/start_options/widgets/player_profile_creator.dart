@@ -16,7 +16,7 @@ class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
 class PlayerProfileCreatorNotifierDto {
   PlayerProfileCreatorNotifierDto(final BuildContext context)
       : dictionariesRespository = context.read();
-  final DictionariesRespository dictionariesRespository;
+  final UserWordsRespository dictionariesRespository;
 }
 
 enum PlayerProfileCreatorError {

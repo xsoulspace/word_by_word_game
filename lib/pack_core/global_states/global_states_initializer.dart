@@ -21,15 +21,14 @@ class GlobalStatesInitializer implements StateInitializer {
     final adManager = read<AdManager>();
     final dictionariesBloc = read<DictionariesBloc>();
     final globalGameBloc = read<GlobalGameBloc>();
-    final dictionariesRepository = read<DictionariesRespository>();
+    final dictionariesRepository = read<UserWordsRespository>();
     final services = read<ServicesCollection>();
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
     final appSettingsNotifier = read<AppSettingsNotifier>();
     await appSettingsNotifier.onLoad();
-    final localDictionary =
-        await services.dictionariesRepository.loadDictionary();
-    await dictionariesBloc.onLoad(localDictionary: localDictionary);
+    final wordsType = await services.userWordsRepository.loadDictionary();
+    await dictionariesBloc.onLoad(wordsType: wordsType);
     await canvasCubit.loadInitialData();
     final initGame = await GameInitializer().loadGameModel(
       services: services,

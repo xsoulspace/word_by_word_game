@@ -30,7 +30,7 @@ class GlobalStatesProvider extends StatelessWidget {
           ),
           Provider(create: LevelsRepository.new),
           Provider(create: GameRespository.new),
-          Provider(create: DictionariesRespository.new),
+          Provider(create: UserWordsRespository.new),
           Provider(create: AppSettingsRepository.new),
           Provider(create: MechanicsCollection.getV1),
           Provider(create: (final context) => AdManager()),

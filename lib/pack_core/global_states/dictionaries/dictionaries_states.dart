@@ -3,9 +3,9 @@
 part of 'dictionaries_bloc.dart';
 
 @immutable
-@freezed
+@Freezed(fromJson: false, toJson: false)
 class DictionariesBlocState with _$DictionariesBlocState {
   const factory DictionariesBlocState({
-    @Default(LocalDictionaryModel()) final LocalDictionaryModel localDictionary,
+    @Default(WordsType({})) final WordsType wordsType,
   }) = _DictionariesBlocState;
 }
