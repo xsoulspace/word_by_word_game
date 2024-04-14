@@ -23,14 +23,14 @@ class DictionaryMechanics {
     final int maxSuggestions = 20,
   }) {
     List<String> words = searchWords(
-      dictionaryWords: english_words.nouns,
+      dictionaryWords: english_words.all,
       exceptions: exceptions,
       letters: characters,
       maxSuggestions: maxSuggestions,
     );
     if (words.isEmpty) {
       words = searchWords(
-        dictionaryWords: russian_words.nouns,
+        dictionaryWords: russian_words.allWords,
         exceptions: exceptions,
         letters: characters,
         maxSuggestions: maxSuggestions,

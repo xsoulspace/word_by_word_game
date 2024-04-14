@@ -1,6 +1,9 @@
+// ignore_for_file: avoid_print
+
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:archive/archive_io.dart';
 import 'package:csv/csv.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -8,7 +11,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tar/tar.dart';
-import 'package:universal_io/io.dart';
+// import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import 'data_source.dart';
@@ -89,19 +92,27 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
 
     value = WbwDictionariesLoadingStatus.loading;
     _startStopwatch();
-
-    await local.setupDb();
+    print('caching dictionaries started');
 
     /// check is update needed
     final versionName = await simpleLocal.getString(key: _kVersionKey);
     final version = versionName.isEmpty
         ? null
         : WbwDictionariesVersion.values.byName(versionName);
-    if (shouldForceUpdate ||
+    final requiresUpdate = shouldForceUpdate ||
         version == null ||
-        version != WbwDictionariesVersion.latest) {
+        version != WbwDictionariesVersion.latest;
+    print('dictionaries version $version requiresUpdate: $requiresUpdate');
+    if (requiresUpdate) await local.deleteDb();
+
+    await local.setupDb();
+    print('dictionaries source loaded');
+
+    if (requiresUpdate) {
+      print('dictionaries update needed');
       // should update db
       for (final tuple in _paths) {
+        print('caching dictionary ${tuple.language}');
         await unpackDictionariesAndCache(tuple);
       }
       await simpleLocal.setString(
@@ -111,6 +122,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     } else {
       // noop
     }
+    print('caching dictionaries completed');
     _stopStopwatch();
     value = WbwDictionariesLoadingStatus.loaded;
   }
@@ -140,7 +152,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     // tar.gz
     final buffer = await assetBundle.load(tuple.archivePath);
     final uint8List = Uint8List.sublistView(buffer);
-    final unzipped = gzip.decode(uint8List);
+    final unzipped = GZipDecoder().decodeBytes(uint8List);
     final stream = Stream.value(unzipped);
     final reader = TarReader(stream);
     const converter = CsvToListConverter(fieldDelimiter: ';');

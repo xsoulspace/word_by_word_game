@@ -8,6 +8,7 @@ environment:
   flutter: ">=3.19.3"
 
 dependencies:
+  archive: ^3.4.10
   csv: ^6.0.0
   flutter:
     sdk: flutter

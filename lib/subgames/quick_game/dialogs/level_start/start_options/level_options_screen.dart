@@ -91,13 +91,11 @@ class LevelOptionsScreen extends HookWidget {
 class _ExperimentsListView extends HookWidget {
   const _ExperimentsListView({
     required this.unblockerNotifier,
-    super.key,
   });
   final ValueNotifier<int> unblockerNotifier;
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final uxState = context.read<LevelStartDialogUxNotifier>();
     final locale = useLocale(context);
     useListenable(uxState.isDictionariesLoading);
@@ -148,11 +146,14 @@ class _ExperimentsListView extends HookWidget {
             const LocalizedMap(
               value: {
                 Languages.en:
-                    'Notice: this feature requires to preload additional dictionaries, so first level loading will take some time (minutes).',
+                    // ignore: lines_longer_than_80_chars
+                    'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading will take several minutes.',
                 Languages.ru:
-                    'Примечание: данная функция требует предварительного загрузки дополнительных словарей, поэтому первая загрузка уровня займет некоторое время (минут).',
+                    // ignore: lines_longer_than_80_chars
+                    'Примечание: данная функция требует предварительного большой загрузки дополнительных словарей (около 30 мб), поэтому первая загрузка уровня займет несколько минут.',
                 Languages.it:
-                    'Nota: questa funzione richiede di caricare ulteriori dizionari, pertanto il caricamento del primo livello richiede un po’ di tempo (minuti).',
+                    // ignore: lines_longer_than_80_chars
+                    'Nota: questa funzione richiede di caricare un grande numero di dizionari (circa 30 mb), pertanto il caricamento del primo livello potrebbe richiedere alcuni minuti.',
               },
             ).getValue(locale),
           ),

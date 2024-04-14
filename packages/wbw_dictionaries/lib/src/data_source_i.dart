@@ -10,15 +10,26 @@ abstract base class WbwDictionaryDataSourceBase {
   WbwDictionaryDataSourceBase();
   static const _path = 'dic_storage.db';
   DatabaseFactory get dbFactory;
-  late final Database _db;
+  Database? _db;
   StoreRef<String, Map<String, Object?>> get _store => StoreRef.main();
-
+  bool _isInitialized = false;
   Future<void> setupDb() async {
+    if (_isInitialized) return;
+    _isInitialized = true;
     _db = await dbFactory.openDatabase(_path);
   }
 
+  Future<void> deleteDb() async {
+    await dispose();
+    await dbFactory.deleteDatabase(_path);
+  }
+
   Future<void> cleanup() => dbFactory.deleteDatabase(_path);
-  Future<void> dispose() => _db.close();
+  Future<void> dispose() async => _db?.close();
+  Database get _eDb {
+    if (_db == null) throw Exception('db not initialized');
+    return _db!;
+  }
 
   Future<void> writeWords<T>({
     required final String language,
@@ -30,7 +41,7 @@ abstract base class WbwDictionaryDataSourceBase {
             Function(T)
         converter,
   }) async =>
-      _db.transaction(
+      _eDb.transaction(
         (final txn) async => callback().forEach((final e) async {
           final tuple = converter(e);
           if (tuple == null) return;
@@ -46,7 +57,7 @@ abstract base class WbwDictionaryDataSourceBase {
     final WordMeaningTuple tuple, {
     required final String meaning,
   }) async {
-    await _store.record(tuple._dbKey).put(_db, {
+    await _store.record(tuple._dbKey).put(_eDb, {
       'language': tuple.language,
       'word': tuple.word,
       'meaning': meaning,
@@ -54,14 +65,14 @@ abstract base class WbwDictionaryDataSourceBase {
   }
 
   Future<String> getWordMeaning(final WordMeaningTuple tuple) async {
-    final record = await _store.record(tuple._dbKey).get(_db);
+    final record = await _store.record(tuple._dbKey).get(_eDb);
     final meaning = record?['meaning'];
     return meaning == null || meaning is! String ? '' : meaning;
   }
 
   /// returns valid or not
   Future<bool> checkWord(final WordMeaningTuple tuple) async {
-    final record = await _store.record(tuple._dbKey).get(_db);
+    final record = await _store.record(tuple._dbKey).get(_eDb);
     return record != null;
   }
 }
