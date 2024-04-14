@@ -31,7 +31,34 @@ abstract base class WbwDictionaryDataSourceBase {
     return _db!;
   }
 
-  Future<void> writeWords<T>({
+  Future<void> writeWordsList<T>({
+    required final String language,
+    required final List<T> data,
+    required final ({
+      String word,
+      String meaning,
+    })?
+            Function(T)
+        converter,
+  }) async =>
+      _eDb.transaction(
+        // ignore: avoid_function_literals_in_foreach_calls
+        (final txn) async {
+          final futures = <Future>{};
+          for (final row in data) {
+            final tuple = converter(row);
+            if (tuple == null) return;
+            final future = _store.record('$language:${tuple.word}').put(txn, {
+              'language': language,
+              'word': tuple.word,
+              'meaning': tuple.meaning,
+            });
+            futures.add(future);
+          }
+          await Future.wait(futures);
+        },
+      );
+  Future<void> writeWordsStream<T>({
     required final String language,
     required final Stream<T> Function() callback,
     required final ({

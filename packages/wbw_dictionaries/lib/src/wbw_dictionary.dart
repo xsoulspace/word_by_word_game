@@ -31,7 +31,11 @@ enum WbwDictionariesLoadingStatus {
   loaded,
 }
 
-typedef WbwDictionaryEntryTuple = ({String language, String archivePath});
+typedef WbwDictionaryEntryTuple = ({
+  String language,
+  String archivePath,
+  String csvPath
+});
 const _kVersionKey = 'wbw_dictionary_version';
 const _kWasCalledToLoadKey = 'wbw_dictionary_load_called';
 
@@ -80,10 +84,15 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     debugLoadingTimeInSeconds = _stopwatch.elapsed.inSeconds;
   }
 
+  // TODO(arenukvern): implement online check-in:
+  /// check if user is online, then download dictionaries
+  /// with chunks and with requests, it would be better for performance
+  /// and memory usage
+  ///
   /// can be called anytime, as once it is cached,
   /// it is very fast operation.
   Future<void> loadAndCache({
-    final bool shouldForceUpdate = false,
+    final bool shouldForceUpdate = true,
   }) async {
     if (isLoading) return;
     final isAllowedToBeLoaded =
@@ -103,7 +112,9 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
         version == null ||
         version != WbwDictionariesVersion.latest;
     print('dictionaries version $version requiresUpdate: $requiresUpdate');
-    if (requiresUpdate) await local.deleteDb();
+
+    /// need to check but maybe don't need to delete the whole db
+    // if (requiresUpdate) await local.deleteDb();
 
     await local.setupDb();
     print('dictionaries source loaded');
@@ -113,7 +124,11 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       // should update db
       for (final tuple in _paths) {
         print('caching dictionary ${tuple.language}');
-        await unpackDictionariesAndCache(tuple);
+        if (kIsWeb) {
+          await _cacheDictionariesCsv(tuple);
+        } else {
+          await _unzipDictionariesAndCache(tuple);
+        }
       }
       await simpleLocal.setString(
         key: _kVersionKey,
@@ -130,6 +145,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   late final _paths = <WbwDictionaryEntryTuple>[
     (
       archivePath: Assets.archives.engDicTar,
+      csvPath: Assets.src.engDic,
       // TODO(arenukvern): add enum
       language: 'en',
     ),
@@ -139,14 +155,48 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   Future<bool> checkWord(final String word) async {
     if (isLoading) return false;
 
-    for (final (:language, archivePath: _) in _paths) {
-      final isCorrect = await local.checkWord((language: language, word: word));
+    for (final path in _paths) {
+      final isCorrect =
+          await local.checkWord((language: path.language, word: word));
       if (isCorrect) return true;
     }
     return false;
   }
 
-  Future<void> unpackDictionariesAndCache(
+  Future<void> _cacheDictionariesCsv(
+    final WbwDictionaryEntryTuple tuple,
+  ) async {
+    // tar.gz
+    final csvStr = await assetBundle.loadString(tuple.csvPath, cache: false);
+    // TODO(arenukvern): since compute didn't implemented on web
+    /// then web worker may help. Or may not 😅
+    final csv = await compute(
+      (final e) => const CsvToListConverter(fieldDelimiter: ';').convert(e),
+      csvStr,
+    );
+    // var i = 0;
+    await local.writeWordsList(
+      language: tuple.language,
+      data: csv,
+      converter: (final row) {
+        if (row.length < 3) return null;
+        final word = '${row[0]}';
+        final meaning = '${row[2]}';
+
+        /// debug lines
+        // if (i < 5) {
+        //   print(word);
+        //   print(meaning);
+        //   i++;
+        // }
+        if (word.isEmpty) return null;
+        return (word: word, meaning: meaning);
+      },
+    );
+  }
+
+  /// use on native
+  Future<void> _unzipDictionariesAndCache(
     final WbwDictionaryEntryTuple tuple,
   ) async {
     // tar.gz
@@ -161,7 +211,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       while (await reader.moveNext()) {
         final entry = reader.current;
         final contents = entry.contents;
-        await local.writeWords(
+        await local.writeWordsStream(
           language: tuple.language,
           callback: () => contents
               .transform(const Utf8Decoder(allowMalformed: true))

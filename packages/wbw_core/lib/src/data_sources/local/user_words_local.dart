@@ -19,17 +19,17 @@ class UserWordsLocalDataSourceImpl implements UserWordsLocalDataSource {
   @override
   Future<WordsType> loadUserWords() async {
     final jsonMap = await localDb.getMap(_persistenceKey);
-    if (jsonMap.isEmpty) return WordsType({});
+    if (jsonMap.isEmpty) return const WordsType({});
     try {
       return switch (jsonMap) {
         {'words': final Set<String> words} => WordsType(words),
         final List<String> words => WordsType(words.toSet()),
-        _ => WordsType({}),
+        _ => const WordsType({}),
       };
       // ignore: avoid_catches_without_on_clauses
     } catch (e, st) {
       if (kDebugMode) print({e, st});
-      return WordsType({});
+      return const WordsType({});
     }
   }
 

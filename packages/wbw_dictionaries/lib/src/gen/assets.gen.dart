@@ -18,10 +18,21 @@ class $AssetsArchivesGen {
   List<String> get values => [engDicTar];
 }
 
+class $AssetsSrcGen {
+  const $AssetsSrcGen();
+
+  /// File path: assets/src/eng_dic.csv
+  String get engDic => 'packages/wbw_dictionaries/assets/src/eng_dic.csv';
+
+  /// List of all assets
+  List<String> get values => [engDic];
+}
+
 class Assets {
   Assets._();
 
   static const String package = 'wbw_dictionaries';
 
   static const $AssetsArchivesGen archives = $AssetsArchivesGen();
+  static const $AssetsSrcGen src = $AssetsSrcGen();
 }
