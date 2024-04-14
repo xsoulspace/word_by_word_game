@@ -15,7 +15,7 @@ class ServicesCollection {
         levelsRepository = context.read();
 
   final LocalDbDataSource localDataService;
-  final UserWordsRespository userWordsRepository;
+  final WordsRespository userWordsRepository;
   final LevelsRepository levelsRepository;
   final GameRespository gameRepository;
   final AppSettingsRepository appSettingsRepository;

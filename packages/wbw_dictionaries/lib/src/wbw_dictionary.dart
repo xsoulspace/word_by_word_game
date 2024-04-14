@@ -60,6 +60,8 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   bool get isLoading => value == WbwDictionariesLoadingStatus.loading;
   bool get isNotLoaded => value == WbwDictionariesLoadingStatus.notLoaded;
   int debugLoadingTimeInSeconds = 0;
+  late final getWordMeaning = local.getWordMeaning;
+  late final getDictionaryLength = local.getDictionaryLength;
 
   /// allows to start dictionaries loading
   /// as it is heavy operation, and therefore user should
@@ -148,6 +150,12 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       csvPath: Assets.src.engDic,
       // TODO(arenukvern): add enum
       language: 'en',
+    ),
+    (
+      archivePath: Assets.archives.ruDicTar,
+      csvPath: Assets.src.ruDic,
+      // TODO(arenukvern): add enum
+      language: 'ru',
     ),
   ];
 

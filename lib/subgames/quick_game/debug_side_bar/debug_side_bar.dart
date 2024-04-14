@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
@@ -179,8 +180,33 @@ class UiDebugSideBarBody extends StatelessWidget {
             '| ${wbwDictionary.debugLoadingTimeInSeconds} seconds',
           ),
           const Gap(16),
+          FilledButton.tonal(
+            onPressed: () async => context
+                .read<WbwDictionary>()
+                .loadAndCache(shouldForceUpdate: true),
+            child: const Text('Reload dictionaries'),
+          ),
+          const Gap(16),
+          const _DictionaryLengthButton(),
+          const Gap(16),
         ],
       ),
+    );
+  }
+}
+
+class _DictionaryLengthButton extends HookWidget {
+  const _DictionaryLengthButton({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final lengthNotifier = useState(0);
+    return FilledButton.tonal(
+      onPressed: () async {
+        lengthNotifier.value =
+            await context.read<WbwDictionary>().getDictionaryLength();
+      },
+      child: Text('Get dictionary length (${lengthNotifier.value})'),
     );
   }
 }

@@ -32,7 +32,7 @@ class GlobalStatesProvider extends StatelessWidget {
           ChangeNotifierProvider(create: WbwDictionary.provide),
           Provider(create: LevelsRepository.new),
           Provider(create: GameRespository.new),
-          Provider(create: UserWordsRespository.new),
+          Provider(create: WordsRespository.new),
           Provider(create: AppSettingsRepository.new),
           Provider(create: MechanicsCollection.getV1),
           Provider(create: (final context) => AdManager()),

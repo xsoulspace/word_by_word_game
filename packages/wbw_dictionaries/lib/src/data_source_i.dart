@@ -97,6 +97,8 @@ abstract base class WbwDictionaryDataSourceBase {
     return meaning == null || meaning is! String ? '' : meaning;
   }
 
+  Future<int> getDictionaryLength() => _store.query().count(_eDb);
+
   /// returns valid or not
   Future<bool> checkWord(final WordMeaningTuple tuple) async {
     final record = await _store.record(tuple._dbKey).get(_eDb);
