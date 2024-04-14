@@ -92,7 +92,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   /// can be called anytime, as once it is cached,
   /// it is very fast operation.
   Future<void> loadAndCache({
-    final bool shouldForceUpdate = true,
+    final bool shouldForceUpdate = false,
   }) async {
     if (isLoading) return;
     final isAllowedToBeLoaded =
