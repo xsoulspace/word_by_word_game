@@ -4,29 +4,39 @@ import 'package:csv/csv.dart';
 import 'package:tar/tar.dart';
 import 'package:universal_io/io.dart';
 
+import 'data_source.dart';
+// TODO(arenukvern): add enum
+/// en, ru, etc
+
+typedef WbwDictionaryEntryTuple = ({String language, String archivePath});
+
 class WbwDictionary {
   WbwDictionary({
     final WbwDictionaryDataSource? local,
   }) : local = local ?? WbwDictionaryDataSource();
   final WbwDictionaryDataSource local;
-  Future<void> unpackDictionariesAndCache({
-    required final String archivePath,
-    // TODO(arenukvern): add enum
-    /// en, ru, etc
-    required final String language,
-  }) async {
-    final inputStream = File(archivePath).openRead();
+  Future<void> onLoad() async {
+    final paths = <WbwDictionaryEntryTuple>[];
+    await local.onLoad();
+    for (final tuple in paths) {
+      await unpackDictionariesAndCache(tuple);
+    }
+  }
+
+  Future<void> unpackDictionariesAndCache(
+    final WbwDictionaryEntryTuple tuple,
+  ) async {
+    final inputStream = File(tuple.archivePath).openRead();
     const converter = CsvToListConverter();
     await TarReader.forEach(inputStream, (final entry) async {
       final stream = entry.contents;
       final csvRowStream = stream.transform(utf8.decoder).transform(converter);
       await for (final row in csvRowStream) {
-        if (row.length < 3) {
-          continue;
-        }
-        local.writeWord(
+        if (row.length < 3) continue;
+
+        await local.writeWord(
           (
-            language: language,
+            language: tuple.language,
             word: row[0],
           ),
           meaning: row[2],
@@ -35,21 +45,3 @@ class WbwDictionary {
     });
   }
 }
-
-class WbwDictionaryDataSource {
-  WbwDictionaryDataSource();
-
-  void onLoad() {}
-
-  void writeWord(
-    final WordMeaningTuple tuple, {
-    required final String meaning,
-  }) {}
-
-  String getWordMeaning(final WordMeaningTuple tuple) {}
-
-  /// returns valid or not
-  bool checkWord(final WordMeaningTuple tuple) {}
-}
-
-typedef WordMeaningTuple = ({String language, String word});
