@@ -5,6 +5,7 @@ import 'package:tar/tar.dart';
 import 'package:universal_io/io.dart';
 
 import 'data_source.dart';
+import 'gen/assets.gen.dart';
 // TODO(arenukvern): add enum
 /// en, ru, etc
 
@@ -16,7 +17,12 @@ class WbwDictionary {
   }) : local = local ?? WbwDictionaryDataSource();
   final WbwDictionaryDataSource local;
   Future<void> onLoad() async {
-    final paths = <WbwDictionaryEntryTuple>[];
+    final paths = <WbwDictionaryEntryTuple>[
+      (
+        archivePath: Assets.archives.engDicTar,
+        language: 'en',
+      ),
+    ];
     await local.onLoad();
     for (final tuple in paths) {
       await unpackDictionariesAndCache(tuple);
