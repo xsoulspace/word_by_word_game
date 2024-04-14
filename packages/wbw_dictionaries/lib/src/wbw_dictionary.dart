@@ -1,6 +1,8 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:csv/csv.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
@@ -20,18 +22,24 @@ enum WbwDictionariesVersion {
   static const latest = $1;
 }
 
-typedef WbwDictionaryEntryTuple = ({String language, String archivePath});
-extension type IsLoadedType(bool value) {}
-const _kVersionKey = 'wbw_dictionary_version';
+enum WbwDictionariesLoadingStatus {
+  notLoaded,
+  loading,
+  loaded,
+}
 
-class WbwDictionary extends ValueNotifier<IsLoadedType> {
+typedef WbwDictionaryEntryTuple = ({String language, String archivePath});
+const _kVersionKey = 'wbw_dictionary_version';
+const _kWasCalledToLoadKey = 'wbw_dictionary_load_called';
+
+class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   WbwDictionary({
     required this.simpleLocal,
     final WbwDictionaryDataSource? localDb,
     final AssetBundle? assetBundle,
   })  : local = localDb ?? WbwDictionaryDataSource(),
         assetBundle = assetBundle ?? rootBundle,
-        super(IsLoadedType(false));
+        super(WbwDictionariesLoadingStatus.notLoaded);
 
   // ignore: avoid_unused_constructor_parameters
   factory WbwDictionary.provide(final BuildContext context) => WbwDictionary(
@@ -41,17 +49,57 @@ class WbwDictionary extends ValueNotifier<IsLoadedType> {
   final LocalDbDataSource simpleLocal;
   final AssetBundle assetBundle;
   final WbwDictionaryDataSource local;
-  bool get isLoaded => value.value;
-  bool get isLoading => !isLoaded;
+  bool get isLoaded => value == WbwDictionariesLoadingStatus.loaded;
+  bool get isLoading => value == WbwDictionariesLoadingStatus.loading;
+  bool get isNotLoaded => value == WbwDictionariesLoadingStatus.notLoaded;
   int debugLoadingTimeInSeconds = 0;
-  Future<void> onLoad() async {
-    final stopwatch = Stopwatch()..start();
-    await local.onLoad();
+
+  /// allows to start dictionaries loading
+  /// as it is heavy operation, and therefore user should
+  /// be prepared to wait
+  Future<void> startLoadingAndCaching() async {
+    await simpleLocal.setBool(key: _kWasCalledToLoadKey, value: true);
+    await loadAndCache();
+  }
+
+  @override
+  void dispose() {
+    _stopStopwatch();
+    super.dispose();
+  }
+
+  final _stopwatch = Stopwatch();
+  void _startStopwatch() => _stopwatch
+    ..reset()
+    ..start();
+  void _stopStopwatch() {
+    _stopwatch.stop();
+    debugLoadingTimeInSeconds = _stopwatch.elapsed.inSeconds;
+  }
+
+  /// can be called anytime, as once it is cached,
+  /// it is very fast operation.
+  Future<void> loadAndCache({
+    final bool shouldForceUpdate = false,
+  }) async {
+    if (isLoading) return;
+    final isAllowedToBeLoaded =
+        await simpleLocal.getBool(key: _kWasCalledToLoadKey);
+    if (!isAllowedToBeLoaded) return;
+
+    value = WbwDictionariesLoadingStatus.loading;
+    _startStopwatch();
+
+    await local.setupDb();
+
+    /// check is update needed
     final versionName = await simpleLocal.getString(key: _kVersionKey);
     final version = versionName.isEmpty
         ? null
         : WbwDictionariesVersion.values.byName(versionName);
-    if (version == null || version != WbwDictionariesVersion.latest) {
+    if (shouldForceUpdate ||
+        version == null ||
+        version != WbwDictionariesVersion.latest) {
       // should update db
       for (final tuple in _paths) {
         await unpackDictionariesAndCache(tuple);
@@ -63,9 +111,8 @@ class WbwDictionary extends ValueNotifier<IsLoadedType> {
     } else {
       // noop
     }
-    stopwatch.stop();
-    debugLoadingTimeInSeconds = stopwatch.elapsed.inSeconds;
-    value = IsLoadedType(true);
+    _stopStopwatch();
+    value = WbwDictionariesLoadingStatus.loaded;
   }
 
   late final _paths = <WbwDictionaryEntryTuple>[
@@ -92,38 +139,37 @@ class WbwDictionary extends ValueNotifier<IsLoadedType> {
   ) async {
     // tar.gz
     final buffer = await assetBundle.load(tuple.archivePath);
-    final unzipped = gzip.decode(Uint8List.sublistView(buffer));
-    final reader = TarReader(Stream.value(unzipped));
+    final uint8List = Uint8List.sublistView(buffer);
+    final unzipped = gzip.decode(uint8List);
+    final stream = Stream.value(unzipped);
+    final reader = TarReader(stream);
     const converter = CsvToListConverter(fieldDelimiter: ';');
     // var i = 0;
     try {
       while (await reader.moveNext()) {
         final entry = reader.current;
         final contents = entry.contents;
+        await local.writeWords(
+          language: tuple.language,
+          callback: () => contents
+              .transform(const Utf8Decoder(allowMalformed: true))
+              .transform(converter),
+          converter: (final row) {
+            if (row.length < 3) return null;
+            final word = '${row[0]}';
+            final meaning = '${row[2]}';
 
-        final csvRowStream = contents
-            .transform(const Utf8Decoder(allowMalformed: true))
-            .transform(converter);
-        await for (final row in csvRowStream) {
-          if (row.length < 3) continue;
-          final word = '${row[0]}';
-          final meaning = '${row[2]}';
+            /// debug lines
+            // if (i < 5) {
+            //   print(word);
+            //   print(meaning);
+            //   i++;
+            // }
+            if (word.isEmpty) return null;
 
-          /// debug lines
-          // if (i < 5) {
-          //   print(word);
-          //   print(meaning);
-          //   i++;
-          // }
-          if (word.isEmpty) continue;
-          await local.writeWord(
-            (
-              language: tuple.language,
-              word: word,
-            ),
-            meaning: meaning,
-          );
-        }
+            return (word: word, meaning: meaning);
+          },
+        );
       }
     } finally {
       await reader.cancel();

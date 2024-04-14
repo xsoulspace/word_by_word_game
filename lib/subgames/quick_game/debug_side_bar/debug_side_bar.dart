@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
@@ -49,6 +50,7 @@ class UiDebugSideBarBody extends StatelessWidget {
     final screenSize = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
     final worldBloc = context.watch<GlobalGameBloc>();
+    final wbwDictionary = context.watch<WbwDictionary>();
     return SizedBox(
       width: 200,
       height: (screenSize.height / 2) + (screenSize.height / 3),
@@ -169,6 +171,12 @@ class UiDebugSideBarBody extends StatelessWidget {
             onChanged: screenCubit.onVolumeToLiftRatioChange,
             keyboardType: TextInputType.number,
             labelText: 'volumeToLiftRatio',
+          ),
+          const Gap(8),
+          Text(
+            'Dictionaries: '
+            '${wbwDictionary.isLoading ? 'loading' : 'loaded'}'
+            '| ${wbwDictionary.debugLoadingTimeInSeconds} seconds',
           ),
           const Gap(16),
         ],

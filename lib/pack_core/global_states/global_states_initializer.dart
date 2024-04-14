@@ -45,13 +45,14 @@ class GlobalStatesInitializer implements StateInitializer {
     }();
     if (event != null) unawaited(analyticsService.logAnalyticEvent(event));
 
-    /// can be loaded even before start, to not slow down
-    /// the game startup time
-    unawaited(wbwDictionary.onLoad());
-
     WidgetsBinding.instance.addPostFrameCallback((final timeStamp) {
       appStatusNotifier.value = AppStatus.online;
       appRouterController.toPause(id: levelId);
+
+      // TODO(arenukvern): maybe add independent loader
+      /// can be loaded even before start, to not slow down
+      /// the game startup time
+      unawaited(wbwDictionary.loadAndCache());
     });
   }
 }
