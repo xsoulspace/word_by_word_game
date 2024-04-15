@@ -187,18 +187,18 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       language: tuple.language,
       data: csv,
       converter: (final row) {
-        if (row.length < 3) return null;
-        final word = '${row[0]}';
-        final meaning = '${row[2]}';
+        if (row case [final String word, final String meaning]) {
+          if (word.isEmpty) return null;
 
-        /// debug lines
-        // if (i < 5) {
-        //   print(word);
-        //   print(meaning);
-        //   i++;
-        // }
-        if (word.isEmpty) return null;
-        return (word: word, meaning: meaning);
+          /// debug lines
+          // if (i < 5) {
+          //   print(word);
+          //   print(meaning);
+          //   i++;
+          // }
+          return (word: word, meaning: meaning);
+        }
+        return null;
       },
     );
   }
@@ -225,19 +225,18 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
               .transform(const Utf8Decoder(allowMalformed: true))
               .transform(converter),
           converter: (final row) {
-            if (row.length < 3) return null;
-            final word = '${row[0]}';
-            final meaning = '${row[2]}';
+            if (row case [final String word, final String meaning]) {
+              if (word.isEmpty) return null;
 
-            /// debug lines
-            // if (i < 5) {
-            //   print(word);
-            //   print(meaning);
-            //   i++;
-            // }
-            if (word.isEmpty) return null;
-
-            return (word: word, meaning: meaning);
+              /// debug lines
+              // if (i < 5) {
+              //   print(word);
+              //   print(meaning);
+              //   i++;
+              // }
+              return (word: word, meaning: meaning);
+            }
+            return null;
           },
         );
       }
