@@ -16,8 +16,7 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DictionariesBlocState {
-  LocalDictionaryModel get localDictionary =>
-      throw _privateConstructorUsedError;
+  WordsType get wordsType => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $DictionariesBlocStateCopyWith<DictionariesBlocState> get copyWith =>
@@ -30,9 +29,7 @@ abstract class $DictionariesBlocStateCopyWith<$Res> {
           $Res Function(DictionariesBlocState) then) =
       _$DictionariesBlocStateCopyWithImpl<$Res, DictionariesBlocState>;
   @useResult
-  $Res call({LocalDictionaryModel localDictionary});
-
-  $LocalDictionaryModelCopyWith<$Res> get localDictionary;
+  $Res call({WordsType wordsType});
 }
 
 /// @nodoc
@@ -49,22 +46,14 @@ class _$DictionariesBlocStateCopyWithImpl<$Res,
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? localDictionary = null,
+    Object? wordsType = null,
   }) {
     return _then(_value.copyWith(
-      localDictionary: null == localDictionary
-          ? _value.localDictionary
-          : localDictionary // ignore: cast_nullable_to_non_nullable
-              as LocalDictionaryModel,
+      wordsType: null == wordsType
+          ? _value.wordsType
+          : wordsType // ignore: cast_nullable_to_non_nullable
+              as WordsType,
     ) as $Val);
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LocalDictionaryModelCopyWith<$Res> get localDictionary {
-    return $LocalDictionaryModelCopyWith<$Res>(_value.localDictionary, (value) {
-      return _then(_value.copyWith(localDictionary: value) as $Val);
-    });
   }
 }
 
@@ -77,10 +66,7 @@ abstract class _$$DictionariesBlocStateImplCopyWith<$Res>
       __$$DictionariesBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({LocalDictionaryModel localDictionary});
-
-  @override
-  $LocalDictionaryModelCopyWith<$Res> get localDictionary;
+  $Res call({WordsType wordsType});
 }
 
 /// @nodoc
@@ -95,13 +81,13 @@ class __$$DictionariesBlocStateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? localDictionary = null,
+    Object? wordsType = null,
   }) {
     return _then(_$DictionariesBlocStateImpl(
-      localDictionary: null == localDictionary
-          ? _value.localDictionary
-          : localDictionary // ignore: cast_nullable_to_non_nullable
-              as LocalDictionaryModel,
+      wordsType: null == wordsType
+          ? _value.wordsType
+          : wordsType // ignore: cast_nullable_to_non_nullable
+              as WordsType,
     ));
   }
 }
@@ -109,16 +95,15 @@ class __$$DictionariesBlocStateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$DictionariesBlocStateImpl implements _DictionariesBlocState {
-  const _$DictionariesBlocStateImpl(
-      {this.localDictionary = const LocalDictionaryModel()});
+  const _$DictionariesBlocStateImpl({this.wordsType = const WordsType({})});
 
   @override
   @JsonKey()
-  final LocalDictionaryModel localDictionary;
+  final WordsType wordsType;
 
   @override
   String toString() {
-    return 'DictionariesBlocState(localDictionary: $localDictionary)';
+    return 'DictionariesBlocState(wordsType: $wordsType)';
   }
 
   @override
@@ -126,12 +111,12 @@ class _$DictionariesBlocStateImpl implements _DictionariesBlocState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DictionariesBlocStateImpl &&
-            (identical(other.localDictionary, localDictionary) ||
-                other.localDictionary == localDictionary));
+            (identical(other.wordsType, wordsType) ||
+                other.wordsType == wordsType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, localDictionary);
+  int get hashCode => Object.hash(runtimeType, wordsType);
 
   @JsonKey(ignore: true)
   @override
@@ -142,12 +127,11 @@ class _$DictionariesBlocStateImpl implements _DictionariesBlocState {
 }
 
 abstract class _DictionariesBlocState implements DictionariesBlocState {
-  const factory _DictionariesBlocState(
-          {final LocalDictionaryModel localDictionary}) =
+  const factory _DictionariesBlocState({final WordsType wordsType}) =
       _$DictionariesBlocStateImpl;
 
   @override
-  LocalDictionaryModel get localDictionary;
+  WordsType get wordsType;
   @override
   @JsonKey(ignore: true)
   _$$DictionariesBlocStateImplCopyWith<_$DictionariesBlocStateImpl>

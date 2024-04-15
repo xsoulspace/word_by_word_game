@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
@@ -23,9 +24,9 @@ class LevelOptionsScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
-    final widgetUxState = context.read<LevelStartDialogUxNotifier>();
-    final locale = useLocale(context);
+    final uxState = context.read<LevelStartDialogUxNotifier>();
     final unblockerNotifier = useState(0);
+    useListenable(uxState.isDictionariesLoading);
     final statusCubit = context.watch<StatesStatusesCubit>();
 
     return SingleChildScrollView(
@@ -44,55 +45,18 @@ class LevelOptionsScreen extends HookWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxHeight: 140),
             child: PlayerProfileRow(
-              checkIsPlayerSelected: widgetUxState.checkIsPlayerSelected,
-              onSelected: widgetUxState.onPlayerSelected,
+              checkIsPlayerSelected: uxState.checkIsPlayerSelected,
+              onSelected: uxState.onPlayerSelected,
             ),
           ),
           uiTheme.verticalBoxes.medium,
           CheckboxListTile(
-            value: widgetUxState.shouldStartTutorial,
-            onChanged: widgetUxState.changeShouldStartTutorial,
+            value: uxState.shouldStartTutorial,
+            onChanged: uxState.changeShouldStartTutorial,
             title: Text(S.of(context).enableTutorial),
           ),
-          if (kDebugMode || unblockerNotifier.value > 10) ...[
-            uiTheme.verticalBoxes.medium,
-            Text(
-              const LocalizedMap(
-                value: {
-                  Languages.en: 'Experiments',
-                  Languages.ru: 'Эксперименты',
-                  Languages.it: 'Esperimenti',
-                },
-              ).getValue(locale).toUpperCase(),
-              style: context.textThemeBold.titleMedium,
-            ),
-            CheckboxListTile(
-              value: widgetUxState.featuresSettings.isTechnologiesEnabled,
-              onChanged: (final isEnabled) =>
-                  widgetUxState.changeFeaturesSettings(
-                (final old) =>
-                    old.copyWith(isTechnologiesEnabled: isEnabled == true),
-              ),
-              title: Text(
-                const LocalizedMap(
-                  value: {
-                    Languages.en: 'Technologies',
-                    Languages.ru: 'Технологии',
-                    Languages.it: 'Tecnologie',
-                  },
-                ).getValue(locale),
-              ),
-            ),
-            // TODO(arenukvern): add explanation
-            ListTile(
-              // TODO(arenukvern): l10n
-              title: const Text('Words Language'),
-              trailing: WordsLanguageSwitcher(
-                onChanged: widgetUxState.changeWordsLanguage,
-                value: widgetUxState.wordsLanguage,
-              ),
-            ),
-          ],
+          uiTheme.verticalBoxes.medium,
+          _ExperimentsListView(unblockerNotifier: unblockerNotifier),
           uiTheme.verticalBoxes.medium,
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -107,18 +71,104 @@ class LevelOptionsScreen extends HookWidget {
               ),
               UiTextButton.text(
                 text: S.of(context).play,
-                isLoading: statusCubit.isLoading,
+                isLoading: uxState.isDictionariesLoading.value ||
+                    statusCubit.isLoading,
                 isLongButton: true,
                 mainAlignment: MainAxisAlignment.center,
-                onPressed: widgetUxState.playersIds.isEmpty
+                onPressed: uxState.playersIds.isEmpty
                     ? null
-                    : () async => widgetUxState.onPlay(context),
+                    : () async => uxState.onPlay(context),
               ),
             ],
           ),
           uiTheme.verticalBoxes.medium,
         ],
       ),
+    );
+  }
+}
+
+class _ExperimentsListView extends HookWidget {
+  const _ExperimentsListView({
+    required this.unblockerNotifier,
+  });
+  final ValueNotifier<int> unblockerNotifier;
+
+  @override
+  Widget build(final BuildContext context) {
+    final uxState = context.read<LevelStartDialogUxNotifier>();
+    final locale = useLocale(context);
+    useListenable(uxState.isDictionariesLoading);
+    final isVisible = kDebugMode || unblockerNotifier.value > 10;
+    if (!isVisible) return const SizedBox();
+
+    final isTechnologiesEnabled =
+        uxState.featuresSettings.isTechnologiesEnabled;
+    final isDictionariesLoading = uxState.isDictionariesLoading.value;
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(
+          const LocalizedMap(
+            value: {
+              Languages.en: 'Experiments',
+              Languages.ru: 'Эксперименты',
+              Languages.it: 'Esperimenti',
+            },
+          ).getValue(locale).toUpperCase(),
+          style: context.textThemeBold.titleMedium,
+        ),
+        CheckboxListTile(
+          value: isTechnologiesEnabled,
+          onChanged: (final isEnabled) => uxState.changeFeaturesSettings(
+            (final old) =>
+                old.copyWith(isTechnologiesEnabled: isEnabled == true),
+          ),
+          title: Row(
+            children: [
+              Text(
+                const LocalizedMap(
+                  value: {
+                    Languages.en: 'Technologies',
+                    Languages.ru: 'Технологии',
+                    Languages.it: 'Tecnologie',
+                  },
+                ).getValue(locale),
+              ),
+              if (isDictionariesLoading) ...[
+                const Gap(12),
+                const UiCircularProgress(),
+              ],
+            ],
+          ),
+          enabled: !isDictionariesLoading,
+          subtitle: Text(
+            const LocalizedMap(
+              value: {
+                Languages.en:
+                    // ignore: lines_longer_than_80_chars
+                    'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading will take several minutes.',
+                Languages.ru:
+                    // ignore: lines_longer_than_80_chars
+                    'Примечание: данная функция требует предварительного большой загрузки дополнительных словарей (около 30 мб), поэтому первая загрузка уровня займет несколько минут.',
+                Languages.it:
+                    // ignore: lines_longer_than_80_chars
+                    'Nota: questa funzione richiede di caricare un grande numero di dizionari (circa 30 mb), pertanto il caricamento del primo livello potrebbe richiedere alcuni minuti.',
+              },
+            ).getValue(locale),
+          ),
+        ),
+        if (isTechnologiesEnabled)
+          ListTile(
+            // TODO(arenukvern): add explanation
+            // TODO(arenukvern): l10n
+            title: const Text('Words Language'),
+            trailing: WordsLanguageSwitcher(
+              onChanged: uxState.changeWordsLanguage,
+              value: uxState.wordsLanguage,
+            ),
+          ).animate().fadeIn(),
+      ],
     );
   }
 }

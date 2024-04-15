@@ -16,7 +16,7 @@ class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
 class PlayerProfileCreatorNotifierDto {
   PlayerProfileCreatorNotifierDto(final BuildContext context)
       : dictionariesRespository = context.read();
-  final DictionariesRespository dictionariesRespository;
+  final WordsRespository dictionariesRespository;
 }
 
 enum PlayerProfileCreatorError {
@@ -53,7 +53,8 @@ class PlayerProfileCreatorNotifier
   Future<PlayerProfileCreatorError?> _validateName() async {
     final name = nameController.text;
     if (name.isEmpty) return PlayerProfileCreatorError.cannotBeEmpty;
-    final isValid = await _dto.dictionariesRespository.verifyWord(name);
+    final isValid =
+        await _dto.dictionariesRespository.verifyNonProfanityWord(name);
     if (isValid) return null;
     return PlayerProfileCreatorError.invalidName;
   }

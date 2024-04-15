@@ -2,6 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
@@ -28,9 +29,10 @@ class GlobalStatesProvider extends StatelessWidget {
           Provider<LocalDbDataSource>(
             create: SharedPreferencesDbDataSourceImpl.new,
           ),
+          ChangeNotifierProvider(create: WbwDictionary.provide),
           Provider(create: LevelsRepository.new),
           Provider(create: GameRespository.new),
-          Provider(create: DictionariesRespository.new),
+          Provider(create: WordsRespository.new),
           Provider(create: AppSettingsRepository.new),
           Provider(create: MechanicsCollection.getV1),
           Provider(create: (final context) => AdManager()),

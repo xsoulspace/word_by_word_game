@@ -20,28 +20,23 @@ class DictionariesBloc extends Cubit<DictionariesBlocState> {
         super(const DictionariesBlocState());
   final DictionariesBlocDiDto diDto;
   Future<void> onLoad({
-    required final LocalDictionaryModel localDictionary,
+    required final WordsType wordsType,
   }) async {
     emit(
-      DictionariesBlocState(localDictionary: localDictionary),
+      DictionariesBlocState(wordsType: wordsType),
     );
   }
 
   Future<void> onSave() async {
-    await diDto.services.dictionariesRepository.saveDictionary(
-      dictionary: state.localDictionary,
-    );
+    await diDto.services.userWordsRepository.saveUserWords(state.wordsType);
   }
 
   Future<void> onAddWord({
     required final String word,
   }) async {
-    final dictionary = state.localDictionary;
-    final updatedDictionary =
-        dictionary.copyWith(words: {...dictionary.words, word});
-    final updatedState = state.copyWith(
-      localDictionary: updatedDictionary,
-    );
+    final wordsType = state.wordsType;
+    final updatedWords = WordsType({...wordsType.words, word});
+    final updatedState = state.copyWith(wordsType: updatedWords);
     emit(updatedState);
     unawaited(onSave());
   }
