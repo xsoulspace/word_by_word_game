@@ -157,6 +157,7 @@ class TechnologiesTreeDialog extends HookWidget {
         const Gap(12),
         ListTile(
           title: const Text(
+            // TODO(arenukvern): l10n
             'Words Language',
           ),
           trailing: WordsLanguageSwitcher(
@@ -240,6 +241,9 @@ class _TechnologyTile extends StatelessWidget {
         mechanics.technology.checkIsUnlockedInSomeLanguages(
           unlockCondition: unlockCondition,
         );
+    final textColor = isSelected
+        ? context.colorScheme.onPrimaryContainer
+        : context.colorScheme.onPrimaryContainer.withOpacity(0.4);
     void onTechnologyPressed() =>
         onHover((technology: value, uiWord: null, languageWord: null));
     return FocusableActionDetector(
@@ -271,17 +275,14 @@ class _TechnologyTile extends StatelessWidget {
                     child: Text(
                       value.title.getValue(locale),
                       style: context.textTheme.titleMedium?.copyWith(
-                        color: isSelected
-                            ? context.colorScheme.onPrimaryContainer
-                            : context.colorScheme.onPrimaryContainer
-                                .withOpacity(0.4),
+                        color: textColor,
                       ),
                     ),
                   ),
                   const Gap(8),
                   UiBaseButton(
                     onPressed: onTechnologyPressed,
-                    child: const Icon(Icons.info_outline),
+                    child: Icon(Icons.info_outline, color: textColor),
                   ),
                 ],
               ),
@@ -360,7 +361,6 @@ class _TechnologyTile extends StatelessWidget {
 class _TechnologyPanelView extends StatefulWidget {
   const _TechnologyPanelView({
     required this.technologyWord,
-    super.key,
   });
   final TechnologyWordInfoTuple? technologyWord;
 
@@ -390,6 +390,7 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
         ),
       );
     } else {
+      // TODO(arenukvern): l10n
       _wordMeaning = 'No meaning found (>_<)';
     }
     // if (kDebugMode) {
@@ -412,16 +413,19 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
   Widget build(final BuildContext context) {
     final technology = widget.technologyWord?.technology;
     final locale = useLocale(context);
-    return AnimatedSize(
-      duration: 250.milliseconds,
-      child: Card.filled(
-        elevation: 12,
-        margin: EdgeInsets.zero,
+    return Card.filled(
+      elevation: 12,
+      margin: EdgeInsets.zero,
+      child: AnimatedSize(
+        duration: 100.milliseconds,
+        curve: Curves.easeInOut,
+        alignment: Alignment.bottomCenter,
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
+            mainAxisAlignment: MainAxisAlignment.end,
             children: technology == null
                 ? []
                 : [

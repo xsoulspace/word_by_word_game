@@ -196,7 +196,7 @@ class UiDebugSideBarBody extends StatelessWidget {
 }
 
 class _DictionaryLengthButton extends HookWidget {
-  const _DictionaryLengthButton({super.key});
+  const _DictionaryLengthButton();
 
   @override
   Widget build(final BuildContext context) {

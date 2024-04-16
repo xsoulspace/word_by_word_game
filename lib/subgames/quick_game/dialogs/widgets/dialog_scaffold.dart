@@ -26,18 +26,14 @@ class DialogScaffold extends StatelessWidget {
     if (builder != null) {
       child = Builder(builder: builder!);
     } else {
+      final body = ListView(
+        shrinkWrap: true,
+        padding: padding,
+        children: children!,
+      );
       child = Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          Flexible(
-            child: ListView(
-              shrinkWrap: true,
-              padding: padding,
-              children: children!,
-            ),
-          ),
-          if (side != null) side,
-        ],
+        children: side != null ? [Expanded(child: body), side] : [body],
       );
     }
     return AnimatedContainer(
