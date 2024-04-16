@@ -7,6 +7,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
@@ -29,9 +30,11 @@ class GlobalGameBlocDiDto {
         canvasCubit = context.read(),
         technologiesCubit = context.read(),
         weatherCubit = context.read(),
+        wbwDictionary = context.read(),
         uiKeyboardController = context.read(),
         debugCubit = context.read();
   final DebugCubit debugCubit;
+  final WbwDictionary wbwDictionary;
   final WeatherCubit weatherCubit;
   final UiKeyboardController uiKeyboardController;
   final TechnologiesCubit technologiesCubit;
@@ -287,7 +290,13 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   Future<void> onStartPlayingLevel(
     final StartPlayingLevelEvent event,
   ) async {
+    dto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
     await _globalLevelLoadCompleter!.future;
+    if (dto.levelBloc.state.featuresSettings.isTechnologiesEnabled) {
+      await dto.wbwDictionary.loadAndCache();
+    }
     dto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.playing,
     );
