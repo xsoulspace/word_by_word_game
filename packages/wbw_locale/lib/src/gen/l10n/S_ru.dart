@@ -133,9 +133,7 @@ class SRu extends S {
   String get tryAnotherWord => 'Попробовать другое слово';
 
   @override
-  String notEnoughKnowledgeToRevealWord(int costOfWord, int userPoints) {
-    return 'Не хватает очков ($costOfWord/$userPoints)';
-  }
+  String get notEnoughKnowledgeToRevealWord => 'Не хватает очков';
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {

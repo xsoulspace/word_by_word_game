@@ -133,7 +133,7 @@ class _UiBaseButtonState extends State<UiBaseButton>
     final bool enabled = widget.enabled;
 
     final child = MouseRegion(
-      cursor: enabled && kIsWeb ? SystemMouseCursors.click : MouseCursor.defer,
+      cursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTapDown: enabled ? _handleTapDown : null,

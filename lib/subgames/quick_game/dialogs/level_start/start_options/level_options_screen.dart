@@ -182,13 +182,10 @@ class WordsLanguageSwitcher extends StatelessWidget {
   final Languages value;
   final ValueChanged<Languages> onChanged;
   @override
-  Widget build(final BuildContext context) {
-    final wordsLanguages = [Languages.en, Languages.ru];
-    return LanguageSwitcherMenu(
-      isShortAbbreviationUsed: false,
-      languages: wordsLanguages,
-      onChanged: onChanged,
-      value: value,
-    );
-  }
+  Widget build(final BuildContext context) => LanguageSwitcherMenu(
+        isShortAbbreviationUsed: false,
+        languages: wordsLanguages,
+        onChanged: onChanged,
+        value: value,
+      );
 }

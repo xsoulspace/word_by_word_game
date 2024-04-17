@@ -1,9 +1,12 @@
 import 'package:sembast/sembast.dart';
+import 'package:wbw_core/wbw_core.dart';
 
-typedef WordMeaningTuple = ({String language, String word});
+typedef WordMeaningRequestTuple = ({Languages language, String word});
+typedef WordMeaningTuple = ({String word, String meaning});
+typedef WordMeaningLanguageTuple = ({Languages language, String meaning});
 
-extension WordMeaningTupleExt on WordMeaningTuple {
-  String get _dbKey => '$language:$word';
+extension WordMeaningTupleExt on WordMeaningRequestTuple {
+  String get _dbKey => '${language.value}:$word';
 }
 
 abstract base class WbwDictionaryDataSourceBase {
@@ -32,14 +35,9 @@ abstract base class WbwDictionaryDataSourceBase {
   }
 
   Future<void> writeWordsList<T>({
-    required final String language,
+    required final Languages language,
     required final List<T> data,
-    required final ({
-      String word,
-      String meaning,
-    })?
-            Function(T)
-        converter,
+    required final WordMeaningTuple? Function(T) converter,
   }) async =>
       _eDb.transaction(
         // ignore: avoid_function_literals_in_foreach_calls
@@ -48,8 +46,10 @@ abstract base class WbwDictionaryDataSourceBase {
           for (final row in data) {
             final tuple = converter(row);
             if (tuple == null) return;
-            final future = _store.record('$language:${tuple.word}').put(txn, {
-              'language': language,
+            final future = _store
+                .record(_getRecordKeyByMeaning(language, tuple))
+                .put(txn, {
+              'language': language.value,
               'word': tuple.word,
               'meaning': tuple.meaning,
             });
@@ -58,22 +58,26 @@ abstract base class WbwDictionaryDataSourceBase {
           await Future.wait(futures);
         },
       );
+
+  String _getRecordKeyByMeaning(
+    final Languages language,
+    final WordMeaningTuple tuple,
+  ) =>
+      '${language.value}:${tuple.word}';
+
   Future<void> writeWordsStream<T>({
-    required final String language,
+    required final Languages language,
     required final Stream<T> Function() callback,
-    required final ({
-      String word,
-      String meaning,
-    })?
-            Function(T)
-        converter,
+    required final WordMeaningTuple? Function(T) converter,
   }) async =>
       _eDb.transaction(
         (final txn) async => callback().forEach((final e) async {
           final tuple = converter(e);
           if (tuple == null) return;
-          await _store.record('$language:${tuple.word}').put(txn, {
-            'language': language,
+          await _store
+              .record(_getRecordKeyByMeaning(language, tuple))
+              .put(txn, {
+            'language': language.value,
             'word': tuple.word,
             'meaning': tuple.meaning,
           });
@@ -81,7 +85,7 @@ abstract base class WbwDictionaryDataSourceBase {
       );
 
   Future<void> writeWord(
-    final WordMeaningTuple tuple, {
+    final WordMeaningRequestTuple tuple, {
     required final String meaning,
   }) async {
     await _store.record(tuple._dbKey).put(_eDb, {
@@ -91,16 +95,18 @@ abstract base class WbwDictionaryDataSourceBase {
     });
   }
 
-  Future<String> getWordMeaning(final WordMeaningTuple tuple) async {
+  Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) async {
     final record = await _store.record(tuple._dbKey).get(_eDb);
     final meaning = record?['meaning'];
-    return meaning == null || meaning is! String ? '' : meaning;
+    final m = meaning == null || meaning is! String ? '' : meaning;
+    if (m.isEmpty) return m;
+    return m.clearWhitespaces();
   }
 
   Future<int> getDictionaryLength() => _store.query().count(_eDb);
 
   /// returns valid or not
-  Future<bool> checkWord(final WordMeaningTuple tuple) async {
+  Future<bool> checkWord(final WordMeaningRequestTuple tuple) async {
     final record = await _store.record(tuple._dbKey).get(_eDb);
     return record != null;
   }

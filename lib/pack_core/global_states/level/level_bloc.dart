@@ -46,7 +46,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
       (final previous, final current) => checkLiveState(current, previous);
 
   final LevelBlocDiDto dto;
-
+  LevelFeaturesSettingsModel get featuresSettings => state.featuresSettings;
   void onInitLevel(
     final LevelBlocEventInit event,
   ) {
@@ -230,6 +230,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
     return dto.mechanics.dictionary.getWordSuggestion(
       exceptions: liveState.words.keys,
       characters: liveState.currentWord.middlePart,
+      wordsLanguage: liveState.wordsLanguage,
     );
   }
 
