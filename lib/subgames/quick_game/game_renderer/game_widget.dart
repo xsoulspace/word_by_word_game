@@ -11,7 +11,6 @@ import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_rendere
 
 class WbwGameWidget extends HookWidget {
   const WbwGameWidget({super.key});
-
   @override
   Widget build(final BuildContext context) {
     final gameFocusNode = useFocusNode();

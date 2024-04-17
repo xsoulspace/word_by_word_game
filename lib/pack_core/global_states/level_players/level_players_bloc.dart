@@ -2,6 +2,7 @@ import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -24,17 +25,27 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
       : diDto = LevelPlayersBlocDiDto.use(context),
         super(LevelPlayersBlocState.empty);
   final LevelPlayersBlocDiDto diDto;
+  final _log = Logger();
+
+  @override
+  Future<void> close() {
+    _log.close();
+    return super.close();
+  }
+
+  bool get isPlayersEmpty =>
+      state.players.isEmpty || state.players.first.name.isEmpty;
+  bool get isPlayersNotEmpty => !isPlayersEmpty;
 
   void onInitLevelPlayers(
     final InitLevelPlayersEvent event,
   ) {
+    // _log.d('distanceToOrigin: ${diDto.canvasCubit.player.distanceToOrigin}');
     final liveState = LevelPlayersBlocState.fromModel(
       levelPlayersModel: event.playersModel,
-      levelCharactersModel: event.charactersModel.copyWith(
-        playerCharacter: event.charactersModel.playerCharacter.copyWith(
-          gid: diDto.canvasCubit.player.id,
-          distanceToOrigin: diDto.canvasCubit.player.distanceToOrigin,
-        ),
+      levelCharactersModel: event.charactersModel.copyWith.playerCharacter(
+        gid: diDto.canvasCubit.player.id,
+        distanceToOrigin: diDto.canvasCubit.player.distanceToOrigin,
       ),
     );
     emit(liveState);
@@ -69,9 +80,8 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
 
   void onChangeCharacter(
     final PlayerCharacterModel value,
-  ) {
-    emit(state.copyWith(playerCharacter: value));
-  }
+  ) =>
+      emit(state.copyWith(playerCharacter: value));
 
   void onChangeCharacterPosition({
     required final Vector2 distanceToOrigin,

@@ -44,6 +44,7 @@ class LevelModel with _$LevelModel {
     final TechnologyTreeProgressModel technologyTreeProgress,
     @Default(LevelFeaturesSettingsModel.empty)
     final LevelFeaturesSettingsModel featuresSettings,
+    @Default(Languages.en) final Languages wordsLanguage,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>

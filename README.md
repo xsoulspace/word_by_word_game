@@ -63,6 +63,8 @@ All [comments](https://github.com/xsoulspace/word_by_word_game/issues) and [pull
 
 ## Huge thank you for contributions!
 
+@mixv - for huge help in testing and various feedback starting from first version | https://github.com/mixev
+
 @albanobattistella - for initial Italian translation (v1) | https://github.com/albanobattistella
 
 ## Getting Help

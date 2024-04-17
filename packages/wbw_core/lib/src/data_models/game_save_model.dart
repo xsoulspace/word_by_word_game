@@ -4,9 +4,9 @@ part of 'data_models.dart';
 
 typedef GameSaveModelId = String;
 
-enum GameVersion { $1, $2, $3, $4 }
+enum GameVersion { $1, $2, $3, $4, $5 }
 
-const kLatestGameVersion = GameVersion.$4;
+const kLatestGameVersion = GameVersion.$5;
 
 @immutable
 @freezed

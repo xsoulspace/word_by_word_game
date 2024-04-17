@@ -74,6 +74,9 @@ class PlayerHighscoreModel with _$PlayerHighscoreModel {
       _$PlayerHighscoreModelFromJson(json);
 
   static const empty = PlayerHighscoreModel();
+  static const levelPreset = PlayerHighscoreModel(
+    score: ScoreModel(value: 200),
+  );
 }
 
 @immutable

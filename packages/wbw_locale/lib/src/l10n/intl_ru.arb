@@ -109,17 +109,6 @@
     "type": "text"
   },
   "tryAnotherWord": "Попробовать другое слово",
-  "notEnoughKnowledgeToRevealWord": "Не хватает очков ({costOfWord}/{userPoints})",
-  "@notEnoughKnowledgeToRevealWord": {
-    "placeholders": {
-      "costOfWord": {
-        "type": "int"
-      },
-      "userPoints": {
-        "type": "int"
-      }
-    }
-  },
   "useCostKnowledgePoints": "Использовать очки знаний: {costOfWord}",
   "revealSuggestedWord": "Открыть слово-подсказку?",
   "ok": "Отлично",

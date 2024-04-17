@@ -4,6 +4,7 @@ import 'package:collection/collection.dart';
 import 'package:flame/components.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
@@ -26,7 +27,12 @@ class GameCanvasObjectsDrawer extends Component
   Future<void> _removeCanvasObjects(
     final Iterable<GameCanvasObject?> objects,
   ) async {
-    removeAll(objects.whereNotNull());
+    try {
+      removeAll(objects.whereNotNull());
+      // ignore: avoid_catches_without_on_clauses, empty_catches
+    } catch (e) {
+      if (kDebugMode) print(e);
+    }
   }
 
   List<GameCanvasObject> get canvasObjects =>
@@ -55,18 +61,12 @@ class GameCanvasObjectsDrawer extends Component
   Future<void> _handleGameStatusChanged(
     final StatesStatusesCubitState statusState,
   ) async {
-    final oldPlayer = player;
     switch (statusState.levelStateStatus) {
-      case LevelStateStatus.loading:
-        if (oldPlayer != null) {
-          await _removeCanvasObjects(canvasObjects);
-          player = null;
-        }
-
-      case LevelStateStatus.paused || LevelStateStatus.playing:
-        if (oldPlayer == null) {
-          await _loadObjects();
-        }
+      case LevelStateStatus.levelReady || LevelStateStatus.playing:
+        await _loadObjects();
+      case LevelStateStatus.loading ||
+            LevelStateStatus.paused ||
+            LevelStateStatus.playing:
     }
   }
 

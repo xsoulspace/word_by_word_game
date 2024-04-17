@@ -14,7 +14,7 @@ class UiActionFrame extends StatelessWidget {
   Widget build(final BuildContext context) {
     final levelCubit = context.watch<LevelBloc>();
     final uiTheme = context.uiTheme;
-    if (levelCubit.state.featuresSettings.isTechnologiesEnabled) {
+    if (levelCubit.featuresSettings.isTechnologiesEnabled) {
       return const UIActionFrameAdvanced();
     } else {
       return Column(

@@ -45,14 +45,12 @@ class WordCompositionStateDiDto {
       : levelBloc = read(),
         tutorialBloc = read(),
         mechanics = read(),
-        appRouterController = read(),
         globalGameBloc = read(),
         dialogController = read();
   final Locator read;
   final LevelBloc levelBloc;
   final TutorialBloc tutorialBloc;
   final MechanicsCollection mechanics;
-  final AppRouterController appRouterController;
   final GlobalGameBloc globalGameBloc;
   final DialogController dialogController;
 }
@@ -124,9 +122,8 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
     _onToEndTurn(EnergyApplicationType.refueling);
   }
 
-  void onToSelectActionPhase() {
-    diDto.levelBloc.onAcceptNewWord();
-  }
+  Future<void> onToSelectActionPhase() async =>
+      diDto.levelBloc.onAcceptNewWord();
 
   void changeCardVisibility() {
     emit(state.copyWith(isCardVisible: !state.isCardVisible));
@@ -137,10 +134,8 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
     onRequestTextFocus();
   }
 
-  void onAddWordToDictionary() {
-    diDto.levelBloc
-        .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
-  }
+  Future<void> onAddWordToDictionary() async => diDto.levelBloc
+      .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
 
   void onRequestTextFocus() {
     WidgetsBinding.instance.addPostFrameCallback((final _) {

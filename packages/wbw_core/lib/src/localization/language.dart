@@ -28,6 +28,19 @@ class Locales {
 
 typedef LanguageName = String;
 
+final wordsLanguages = [Languages.en, Languages.ru];
+
+enum KeyboardLanguage {
+  en,
+  ru;
+
+  factory KeyboardLanguage.fromLanguage(final Languages? language) =>
+      switch (language) {
+        null || Languages.en || Languages.it => KeyboardLanguage.en,
+        Languages.ru => KeyboardLanguage.ru
+      };
+}
+
 enum Languages {
   ru('ru'),
   en('en'),

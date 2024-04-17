@@ -59,7 +59,7 @@ class CanvasRenderer extends Component
   @override
   void onDragUpdate(final DragUpdateEvent event) {
     if (!game.dto.debugCubit.state.isCameraFollowingPlayer) {
-      final eventPosition = event.canvasPosition;
+      final eventPosition = event.canvasStartPosition;
       origin = eventPosition - _dragOffset;
       mousePosition = eventPosition;
       canvasObjectsDrawer.onOriginUpdate();
@@ -216,7 +216,6 @@ class CanvasDebugSurface extends Component
   @override
   void render(final material.Canvas canvas) {
     super.render(canvas);
-    if (!debugMode) return;
     if (game.dto.debugCubit.state.isDebugLinesVisible) _renderLines(canvas);
   }
 }

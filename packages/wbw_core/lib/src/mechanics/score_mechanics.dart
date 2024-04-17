@@ -99,12 +99,12 @@ class ScoreMechanics {
   /// This method should be called when the player is ended the level.
   ///
   /// In case if the player is not finished the level and landed
-  /// somewhere then [isLevelFinished] = false. Otherwise
-  /// [isLevelFinished] = true
+  /// somewhere then [isLevelPassed] = false. Otherwise
+  /// [isLevelPassed] = true
   PlayerProfileModel countPlayerLevelHighscore({
     required final PlayerProfileModel player,
     required final CanvasDataModelId levelId,
-    required final bool isLevelFinished,
+    required final bool isLevelPassed,
     required final double maxDistance,
   }) {
     final levelsHighscores = {...player.levelsHighscores};
@@ -118,7 +118,7 @@ class ScoreMechanics {
     levelHighscore = levelHighscore.copyWith(
       // TODO(arenukvern): add a way to count flight time
       // flightTime: ,
-      landingsCount: isLevelFinished
+      landingsCount: isLevelPassed
           ? levelHighscore.landingsCount + 1
           : levelHighscore.landingsCount,
       maxDistance: newMaxDistance,
