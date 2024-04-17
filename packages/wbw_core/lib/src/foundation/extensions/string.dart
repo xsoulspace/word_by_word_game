@@ -28,4 +28,7 @@ extension StringX on String {
 
   @useResult
   String? getNullable() => isEmpty ? null : this;
+  static final _whitespaceCleanerRegExp = RegExp(r'\s+');
+  @useResult
+  String clearWhitespaces() => replaceAll(_whitespaceCleanerRegExp, ' ');
 }

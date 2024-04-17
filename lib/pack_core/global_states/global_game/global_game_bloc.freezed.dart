@@ -1318,7 +1318,8 @@ mixin _$GlobalGameBlocState {
   String get id => throw _privateConstructorUsedError;
   CanvasDataModelId get currentLevelId => throw _privateConstructorUsedError;
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   Map<CanvasDataModelId, CanvasDataModel> get allCanvasData =>
       throw _privateConstructorUsedError;
 
@@ -1606,10 +1607,12 @@ class _$GlobalGameBlocStateImpl extends _GlobalGameBlocState {
   @JsonKey()
   final CanvasDataModelId currentLevelId;
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   final Map<CanvasDataModelId, CanvasDataModel> _allCanvasData;
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   @override
   @JsonKey()
   Map<CanvasDataModelId, CanvasDataModel> get allCanvasData {
@@ -1750,7 +1753,8 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   CanvasDataModelId get currentLevelId;
   @override
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   Map<CanvasDataModelId, CanvasDataModel> get allCanvasData;
   @override
 

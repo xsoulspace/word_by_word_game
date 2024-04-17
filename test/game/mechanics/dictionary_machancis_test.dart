@@ -1,13 +1,19 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
+
+class FakeLocalDbDataSource extends Fake implements LocalDbDataSource {}
 
 void main() {
   group('DictionaryMechanics', () {
     final dictionaryMechanics = DictionaryMechanics();
+    final wbwDictionary = WbwDictionary(
+      simpleLocal: FakeLocalDbDataSource(),
+    );
     const newWord = CurrentWordModel(fullWord: 'life');
     const writtenWord = CurrentWordModel(fullWord: 'PumA');
     const incorrectWord = CurrentWordModel(fullWord: 'lvl');
-    const dictionary = LocalDictionaryModel();
+    const dictionary = WordsType({});
     final Map<FullWordString, PlayerProfileModelId> words = {
       writtenWord.fullWord: 'profileid',
     };
@@ -25,17 +31,19 @@ void main() {
       );
       expect(isWritten, isFalse);
     });
-    test('checkIsWordIsCorrect - returns true', () {
-      final isCorrect = dictionaryMechanics.checkIsWordIsCorrect(
-        localDictionary: dictionary,
+    test('checkIsWordIsCorrect - returns true', () async {
+      final isCorrect = await dictionaryMechanics.checkIsWordIsCorrect(
+        localWords: dictionary,
         word: newWord,
+        wbwDictionary: wbwDictionary,
       );
       expect(isCorrect, isTrue);
     });
-    test('checkIsWordIsCorrect - returns false', () {
-      final isCorrect = dictionaryMechanics.checkIsWordIsCorrect(
-        localDictionary: dictionary,
+    test('checkIsWordIsCorrect - returns false', () async {
+      final isCorrect = await dictionaryMechanics.checkIsWordIsCorrect(
+        localWords: dictionary,
         word: incorrectWord,
+        wbwDictionary: wbwDictionary,
       );
       expect(isCorrect, isFalse);
     });

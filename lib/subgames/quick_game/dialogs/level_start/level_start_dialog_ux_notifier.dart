@@ -5,11 +5,13 @@ class _LevelStartDialogUxStateDiDto {
       : globalGameBloc = context.read(),
         mechanics = context.read(),
         appSettingsNotifier = context.read(),
+        wbwDictionary = context.read(),
         tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
   final AppSettingsNotifier appSettingsNotifier;
   final MechanicsCollection mechanics;
+  final WbwDictionary wbwDictionary;
 }
 
 class LevelStartDialogUxNotifier extends ValueNotifier<String> {
@@ -71,7 +73,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   }
 
   LevelFeaturesSettingsModel featuresSettings =
-      LevelFeaturesSettingsModel.empty;
+      LevelFeaturesSettingsModel.empty.copyWith(
+    isTechnologiesEnabled: kDebugMode,
+  );
   void changeFeaturesSettings(
     final LevelFeaturesSettingsModel Function(LevelFeaturesSettingsModel old)
         update,
@@ -90,6 +94,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   Future<void> onPlay(final BuildContext context) async {
     final pathsController = AppPathsController.of(context);
+    if (featuresSettings.isTechnologiesEnabled) {
+      await onLoadDictionaries();
+    }
     final level = dto.globalGameBloc.createLevel(
       canvasDataId: canvasData.id,
       playersIds: playersIds,
@@ -107,5 +114,13 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   void onReturnToLevels(final BuildContext context) {
     AppPathsController.of(context).toLevels();
+  }
+
+  final isDictionariesLoading = ValueNotifier(false);
+
+  Future<void> onLoadDictionaries() async {
+    isDictionariesLoading.value = true;
+    await dto.wbwDictionary.startLoadingAndCaching();
+    isDictionariesLoading.value = false;
   }
 }

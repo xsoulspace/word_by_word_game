@@ -41,6 +41,8 @@ dependencies:
   uuid: ^3.0.7
   wbw_design_core:
     path: ../wbw_design_core
+  wbw_dictionaries:
+    path: ../wbw_dictionaries
   wbw_locale:
     path: ../wbw_locale
 

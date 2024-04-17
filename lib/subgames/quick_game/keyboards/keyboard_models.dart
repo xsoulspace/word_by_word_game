@@ -12,10 +12,7 @@ sealed class UiKeyboardEvent with _$UiKeyboardEvent {
       UiKeyboardEventRemoveCharacter;
 }
 
-enum KeyboardLanguage {
-  en,
-  ru;
-
+extension KeyboardLanguageX on KeyboardLanguage {
   static const enLetters = [
     ['q', 'w', 'e', 'r', 't', 'y', 'u', 'i', 'o', 'p'],
     ['a', 's', 'd', 'f', 'g', 'h', 'j', 'k', 'l'],
@@ -36,11 +33,6 @@ enum KeyboardLanguage {
   KeyboardLanguage next() => switch (this) {
         KeyboardLanguage.en => KeyboardLanguage.ru,
         KeyboardLanguage.ru => KeyboardLanguage.en,
-      };
-  static KeyboardLanguage fromLanguage(final Languages? language) =>
-      switch (language) {
-        null || Languages.en || Languages.it => KeyboardLanguage.en,
-        Languages.ru => KeyboardLanguage.ru
       };
 }
 

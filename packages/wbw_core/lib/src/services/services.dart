@@ -10,12 +10,12 @@ class ServicesCollection {
   ServicesCollection(final BuildContext context)
       : gameRepository = context.read(),
         localDataService = context.read(),
-        dictionariesRepository = context.read(),
+        userWordsRepository = context.read(),
         appSettingsRepository = context.read(),
         levelsRepository = context.read();
 
   final LocalDbDataSource localDataService;
-  final DictionariesRespository dictionariesRepository;
+  final WordsRespository userWordsRepository;
   final LevelsRepository levelsRepository;
   final GameRespository gameRepository;
   final AppSettingsRepository appSettingsRepository;

@@ -237,20 +237,6 @@ Map<String, dynamic> _$$LevelPlayersModelImplToJson(
       'currentPlayerId': instance.currentPlayerId,
     };
 
-_$LocalDictionaryModelImpl _$$LocalDictionaryModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LocalDictionaryModelImpl(
-      words:
-          (json['words'] as List<dynamic>?)?.map((e) => e as String).toSet() ??
-              const {},
-    );
-
-Map<String, dynamic> _$$LocalDictionaryModelImplToJson(
-        _$LocalDictionaryModelImpl instance) =>
-    <String, dynamic>{
-      'words': instance.words.toList(),
-    };
-
 _$PlayerCharacterModelImpl _$$PlayerCharacterModelImplFromJson(
         Map<String, dynamic> json) =>
     _$PlayerCharacterModelImpl(
