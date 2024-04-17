@@ -89,6 +89,7 @@ class LevelWordSuggestionDialog extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
+    final locale = useLocale(context);
     final uiTheme = context.uiTheme;
     final dialogController = context.read<DialogController>();
     final state = useStateBuilder(
@@ -109,8 +110,13 @@ class LevelWordSuggestionDialog extends HookWidget {
                     Expanded(child: Divider(color: fadeColor)),
                     const Gap(16),
                     Text(
-                      // TODO(arenukvern): l10n
-                      'Meaning',
+                      const LocalizedMap(
+                        value: {
+                          Languages.en: 'Meaning',
+                          Languages.ru: 'Значение',
+                          Languages.it: 'Meaning',
+                        },
+                      ).getValue(locale),
                       style: context.textTheme.labelMedium?.copyWith(
                         color: fadeColor,
                       ),
@@ -220,8 +226,13 @@ class LevelWordSuggestionDialog extends HookWidget {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                // TODO(arenukvern): l10n
-                                'Use Score',
+                                const LocalizedMap(
+                                  value: {
+                                    Languages.en: 'Use Score',
+                                    Languages.ru: 'Применить очки',
+                                    Languages.it: 'Usa punteggio',
+                                  },
+                                ).getValue(locale),
                                 style: context.textTheme.labelLarge,
                               ),
                             ],
@@ -234,13 +245,19 @@ class LevelWordSuggestionDialog extends HookWidget {
                           constraints: const BoxConstraints(maxWidth: 200),
                           child: TextButton(
                             onPressed: state.onTryAnotherWord,
-                            child: const Row(
+                            child: Row(
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Flexible(
                                   child: Text(
-                                    'Roll a Chance',
+                                    const LocalizedMap(
+                                      value: {
+                                        Languages.en: 'Roll a Chance',
+                                        Languages.ru: 'Бросить шанс',
+                                        Languages.it: 'Tira la possibilità',
+                                      },
+                                    ).getValue(locale),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -299,13 +316,19 @@ class _UsePointsButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final wordCost = costOfWord ~/ kScoreFactor;
     final fadeColor = context.colorScheme.onPrimaryContainer.withOpacity(0.6);
+    final locale = useLocale(context);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
           child: Text(
-            // TODO(arenukvern): l10n
-            'Your Score',
+            const LocalizedMap(
+              value: {
+                Languages.en: 'Your Score',
+                Languages.ru: 'Твои очки',
+                Languages.it: 'Punteggio',
+              },
+            ).getValue(locale),
             style: context.textThemeBold.labelLarge?.copyWith(
               color: fadeColor,
             ),
@@ -329,8 +352,13 @@ class _UsePointsButton extends StatelessWidget {
         const Gap(12),
         Expanded(
           child: Text(
-            // TODO(arenukvern): l10n
-            'Word Score',
+            const LocalizedMap(
+              value: {
+                Languages.en: 'Word Score',
+                Languages.ru: 'Очки слова',
+                Languages.it: 'Punteggio Parola',
+              },
+            ).getValue(locale),
             style: context.textThemeBold.labelLarge?.copyWith(
               color: fadeColor,
             ),
