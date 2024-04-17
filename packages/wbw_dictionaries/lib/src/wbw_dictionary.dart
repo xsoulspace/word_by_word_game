@@ -15,6 +15,7 @@ import 'package:tar/tar.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import 'data_source.dart';
+import 'data_source_i.dart';
 import 'gen/assets.gen.dart';
 // TODO(arenukvern): add enum
 /// en, ru, etc
@@ -32,7 +33,7 @@ enum WbwDictionariesLoadingStatus {
 }
 
 typedef WbwDictionaryEntryTuple = ({
-  String language,
+  Languages language,
   String archivePath,
   String csvPath
 });
@@ -61,6 +62,27 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   bool get isNotLoaded => value == WbwDictionariesLoadingStatus.notLoaded;
   int debugLoadingTimeInSeconds = 0;
   late final getWordMeaning = local.getWordMeaning;
+
+  /// checks all languages
+  ///
+  /// can be tricky in future, because language of word may not
+  /// be as language of meaning
+  Future<WordMeaningLanguageTuple?> getWordMeaningCheckAll(
+    final String word,
+  ) async {
+    for (final lang in _paths) {
+      final result =
+          await getWordMeaning((language: lang.language, word: word));
+      if (result.isNotEmpty) {
+        return (
+          meaning: result,
+          language: lang.language,
+        );
+      }
+    }
+    return null;
+  }
+
   late final getDictionaryLength = local.getDictionaryLength;
 
   /// allows to start dictionaries loading
@@ -149,13 +171,13 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       archivePath: Assets.archives.engDicTar,
       csvPath: Assets.src.engDic,
       // TODO(arenukvern): add enum
-      language: 'en',
+      language: Languages.en,
     ),
     (
       archivePath: Assets.archives.ruDicTar,
       csvPath: Assets.src.ruDic,
       // TODO(arenukvern): add enum
-      language: 'ru',
+      language: Languages.ru,
     ),
   ];
 

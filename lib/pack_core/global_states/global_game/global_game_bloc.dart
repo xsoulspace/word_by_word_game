@@ -294,7 +294,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       status: LevelStateStatus.loading,
     );
     await _globalLevelLoadCompleter!.future;
-    if (dto.levelBloc.state.featuresSettings.isTechnologiesEnabled) {
+    if (dto.levelBloc.featuresSettings.isTechnologiesEnabled) {
       await dto.wbwDictionary.loadAndCache();
     }
     dto.statesStatusesCubit.onChangeLevelStateStatus(

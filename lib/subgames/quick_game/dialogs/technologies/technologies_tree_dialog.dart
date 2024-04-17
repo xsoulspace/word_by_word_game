@@ -382,21 +382,27 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
     final language = _appSettingsNotifier.language;
     _languageWord = languageWord;
     _uiWord = uiWord;
+    void setEmptyMeaning() {
+      // TODO(arenukvern): l10n
+      _wordMeaning = 'No meaning found (>_<)';
+
+      if (mounted) setState(() {});
+    }
+
     if (uiWord != null) {
       _wordMeaning = await _wbwDictionary.getWordMeaning(
         (
-          language: language.value,
+          language: language,
           word: uiWord.word,
         ),
       );
+      if (_wordMeaning == '') setEmptyMeaning();
     } else {
-      // TODO(arenukvern): l10n
-      _wordMeaning = 'No meaning found (>_<)';
+      setEmptyMeaning();
     }
     // if (kDebugMode) {
     //   print('$language word: $word | word meaning: $_wordMeaning');
     // }
-    if (mounted) setState(() {});
   }
 
   @override
@@ -472,6 +478,9 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
                       Text(
                         _wordMeaning,
                         textAlign: TextAlign.end,
+                        style: context.textTheme.labelMedium?.copyWith(
+                          fontStyle: FontStyle.italic,
+                        ),
                       ),
                     ],
                   ],

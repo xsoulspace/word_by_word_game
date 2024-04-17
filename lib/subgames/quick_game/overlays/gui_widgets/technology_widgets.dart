@@ -17,7 +17,7 @@ class CurrentTechnologyButton extends StatelessWidget {
     final technologyCubit = context.watch<TechnologiesCubit>();
     final currentTechnology = technologyCubit.researchingTechnology;
     final dialogController = context.read<DialogController>();
-    if (!levelCubit.state.featuresSettings.isTechnologiesEnabled) {
+    if (!levelCubit.featuresSettings.isTechnologiesEnabled) {
       return const SizedBox();
     }
     final technologyProgress = technologyCubit.researchingTechnologyProgress;
