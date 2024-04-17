@@ -164,25 +164,18 @@ class LevelWordSuggestionDialog extends HookWidget {
                   padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
                   children: [
                     Text(
-                      S.of(context).suggestedWord,
-                      style: theme.textTheme.titleMedium,
+                      S.of(context).suggestedWord.toUpperCase(),
+                      style: theme.textTheme.titleSmall,
                       textAlign: TextAlign.center,
                     ),
                     uiTheme.verticalBoxes.large,
                     Text(
-                      state._suggestedWord,
-                      style: theme.textTheme.headlineSmall?.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      state._suggestedWord.toUpperCase(),
+                      style: context.textThemeBold.headlineSmall,
                       textAlign: TextAlign.center,
                     ),
                     uiTheme.verticalBoxes.large,
                     wordMeaning,
-                    uiTheme.verticalBoxes.extraLarge,
-                    TextButton(
-                      onPressed: dialogController.closeDialogAndResume,
-                      child: Text(S.of(context).ok),
-                    ),
                   ],
                 );
               }
@@ -207,39 +200,54 @@ class LevelWordSuggestionDialog extends HookWidget {
                     textAlign: TextAlign.center,
                   ),
                   wordMeaning,
+                  uiTheme.verticalBoxes.medium,
                   _UsePointsButton(
+                    word: state._suggestedWord,
                     onPressed: state.onRevealWord,
                     isUsageAvailable: state.isUsageAvailable,
                     costOfWord: state.costOfWord,
                     userScore: state.userScore,
                   ),
-                  uiTheme.verticalBoxes.medium,
+                  uiTheme.verticalBoxes.large,
                   Row(
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      UiOutlinedButton(
-                        onPressed: null,
-                        child: Row(
-                          children: [
-                            if (state.isUsageAvailable) ...[
-                              const Icon(Icons.remove_red_eye_outlined),
-                              const Gap(8),
+                      Expanded(
+                        child: UiOutlinedButton(
+                          onPressed: state.isUsageAvailable
+                              ? state.onRevealWord
+                              : null,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                // TODO(arenukvern): l10n
+                                'Use Score',
+                                style: context.textTheme.labelLarge,
+                              ),
                             ],
-                            Text(
-                              // TODO(arenukvern): l10n
-                              (state.isUsageAvailable
-                                      ? 'Use Score'
-                                      : 'Not enough Score')
-                                  .toUpperCase(),
-                              style: context.textTheme.labelLarge,
-                            ),
-                          ],
+                          ),
                         ),
                       ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: state.onTryAnotherWord,
-                        child: Text(S.of(context).tryAnotherWord),
+                      const Gap(24),
+                      Expanded(
+                        child: Container(
+                          constraints: const BoxConstraints(maxWidth: 200),
+                          child: TextButton(
+                            onPressed: state.onTryAnotherWord,
+                            child: const Row(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    'Roll a Chance',
+                                    textAlign: TextAlign.center,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
@@ -258,7 +266,12 @@ class LevelWordSuggestionDialog extends HookWidget {
               elevation: 2,
               child: IconButton.outlined(
                 onPressed: dialogController.closeDialogAndResume,
-                icon: const Icon(Icons.close),
+                icon: AnimatedSwitcher(
+                  duration: 250.milliseconds,
+                  child: state._isWordRevealed
+                      ? const Icon(Icons.done)
+                      : const Icon(Icons.close),
+                ),
               ),
             ),
           ),
@@ -274,27 +287,54 @@ class _UsePointsButton extends StatelessWidget {
     required this.userScore,
     required this.isUsageAvailable,
     required this.onPressed,
+    required this.word,
   });
   final VoidCallback onPressed;
   final bool isUsageAvailable;
   final int costOfWord;
   final int userScore;
+  final String word;
 
   @override
   Widget build(final BuildContext context) {
     final wordCost = costOfWord ~/ kScoreFactor;
+    final fadeColor = context.colorScheme.onPrimaryContainer.withOpacity(0.6);
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(
-          // TODO(arenukvern): l10n
-          'Score Cost',
-          style: context.textTheme.labelLarge,
+        Expanded(
+          child: Text(
+            // TODO(arenukvern): l10n
+            'Your Score',
+            style: context.textThemeBold.labelLarge?.copyWith(
+              color: fadeColor,
+            ),
+            textAlign: TextAlign.right,
+          ),
         ),
         const Gap(12),
         Text(
-          isUsageAvailable ? '$wordCost' : '$userScore / $wordCost',
-          style: context.textTheme.headlineSmall,
+          '$userScore / $wordCost',
+          style: context.textTheme.headlineMedium?.copyWith(
+            color: isUsageAvailable
+                ? context.colorScheme.primary
+                : context.colorScheme.error.withOpacity(0.8),
+          ),
+        )
+            .animate(
+              key: ValueKey(word),
+              autoPlay: !isUsageAvailable,
+            )
+            .shake(),
+        const Gap(12),
+        Expanded(
+          child: Text(
+            // TODO(arenukvern): l10n
+            'Word Score',
+            style: context.textThemeBold.labelLarge?.copyWith(
+              color: fadeColor,
+            ),
+          ),
         ),
       ],
     );
@@ -311,14 +351,22 @@ class UiOutlinedButton extends StatelessWidget {
   final Widget child;
 
   @override
-  Widget build(final BuildContext context) => UiBaseButton(
-        onPressed: onPressed,
-        child: Card.outlined(
-          elevation: onPressed == null ? null : 4,
-          child: Container(
-            padding: const EdgeInsets.all(8),
-            alignment: Alignment.center,
-            child: child,
+  Widget build(final BuildContext context) => AnimatedOpacity(
+        duration: 250.milliseconds,
+        opacity: onPressed == null ? 0.2 : 1,
+        child: UiBaseButton(
+          onPressed: onPressed,
+          child: Card.outlined(
+            elevation: onPressed == null ? null : 1,
+            shape: BeveledRectangleBorder(
+              side: BorderSide(color: context.colorScheme.primary),
+              borderRadius: BorderRadius.circular(4),
+            ),
+            child: Container(
+              padding: const EdgeInsets.all(8),
+              alignment: Alignment.center,
+              child: child,
+            ),
           ),
         ),
       );

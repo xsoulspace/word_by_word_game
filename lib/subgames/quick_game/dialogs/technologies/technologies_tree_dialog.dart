@@ -385,8 +385,6 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
     void setEmptyMeaning() {
       // TODO(arenukvern): l10n
       _wordMeaning = 'No meaning found (>_<)';
-
-      if (mounted) setState(() {});
     }
 
     if (uiWord != null) {
@@ -400,6 +398,8 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
     } else {
       setEmptyMeaning();
     }
+    if (mounted) setState(() {});
+    // print({language, _languageWord, _uiWord, _wordMeaning});
     // if (kDebugMode) {
     //   print('$language word: $word | word meaning: $_wordMeaning');
     // }
