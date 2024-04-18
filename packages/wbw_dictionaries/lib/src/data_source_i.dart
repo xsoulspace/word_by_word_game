@@ -16,6 +16,7 @@ abstract base class WbwDictionaryDataSourceBase {
   Database? _db;
   StoreRef<String, Map<String, Object?>> get _store => StoreRef.main();
   bool _isInitialized = false;
+  bool get _isNotInitialized => !_isInitialized;
   Future<void> setupDb() async {
     if (_isInitialized) return;
     _isInitialized = true;
@@ -38,26 +39,46 @@ abstract base class WbwDictionaryDataSourceBase {
     required final Languages language,
     required final List<T> data,
     required final WordMeaningTuple? Function(T) converter,
-  }) async =>
-      _eDb.transaction(
-        // ignore: avoid_function_literals_in_foreach_calls
-        (final txn) async {
-          final futures = <Future>{};
-          for (final row in data) {
-            final tuple = converter(row);
-            if (tuple == null) return;
-            final future = _store
-                .record(_getRecordKeyByMeaning(language, tuple))
-                .put(txn, {
-              'language': language.value,
-              'word': tuple.word,
-              'meaning': tuple.meaning,
-            });
-            futures.add(future);
-          }
-          await Future.wait(futures);
-        },
-      );
+  }) async {
+    if (_isNotInitialized) return;
+    return _eDb.transaction(
+      // ignore: avoid_function_literals_in_foreach_calls
+      (final txn) async {
+        final futures = <Future>{};
+        for (final row in data) {
+          final tuple = converter(row);
+          if (tuple == null) return;
+          final future =
+              _store.record(_getRecordKeyByMeaning(language, tuple)).put(txn, {
+            'language': language.value,
+            'word': tuple.word,
+            'meaning': tuple.meaning,
+          });
+          futures.add(future);
+        }
+        await Future.wait(futures);
+      },
+    );
+  }
+
+  Future<void> writeWordsStream<T>({
+    required final Languages language,
+    required final Stream<T> Function() callback,
+    required final WordMeaningTuple? Function(T) converter,
+  }) async {
+    if (_isNotInitialized) return;
+    return _eDb.transaction(
+      (final txn) async => callback().forEach((final e) async {
+        final tuple = converter(e);
+        if (tuple == null) return;
+        await _store.record(_getRecordKeyByMeaning(language, tuple)).put(txn, {
+          'language': language.value,
+          'word': tuple.word,
+          'meaning': tuple.meaning,
+        });
+      }),
+    );
+  }
 
   String _getRecordKeyByMeaning(
     final Languages language,
@@ -65,29 +86,11 @@ abstract base class WbwDictionaryDataSourceBase {
   ) =>
       '${language.value}:${tuple.word}';
 
-  Future<void> writeWordsStream<T>({
-    required final Languages language,
-    required final Stream<T> Function() callback,
-    required final WordMeaningTuple? Function(T) converter,
-  }) async =>
-      _eDb.transaction(
-        (final txn) async => callback().forEach((final e) async {
-          final tuple = converter(e);
-          if (tuple == null) return;
-          await _store
-              .record(_getRecordKeyByMeaning(language, tuple))
-              .put(txn, {
-            'language': language.value,
-            'word': tuple.word,
-            'meaning': tuple.meaning,
-          });
-        }),
-      );
-
   Future<void> writeWord(
     final WordMeaningRequestTuple tuple, {
     required final String meaning,
   }) async {
+    if (_isNotInitialized) return;
     await _store.record(tuple._dbKey).put(_eDb, {
       'language': tuple.language,
       'word': tuple.word,
@@ -96,6 +99,7 @@ abstract base class WbwDictionaryDataSourceBase {
   }
 
   Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) async {
+    if (_isNotInitialized) return '';
     final record = await _store.record(tuple._dbKey).get(_eDb);
     final meaning = record?['meaning'];
     final m = meaning == null || meaning is! String ? '' : meaning;
@@ -107,6 +111,7 @@ abstract base class WbwDictionaryDataSourceBase {
 
   /// returns valid or not
   Future<bool> checkWord(final WordMeaningRequestTuple tuple) async {
+    if (_isNotInitialized) return false;
     final record = await _store.record(tuple._dbKey).get(_eDb);
     return record != null;
   }

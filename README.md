@@ -13,22 +13,27 @@
 
 # About
 
-Please note: new version is completely rewritten and is in active development.
+Please note: the game is in active development.
 Actual DevLog is available on https://arenukvern.itch.io/word-by-word-game and in Discord server https://discord.com/invite/y54DpJwmAn
 
 You can see also short video updates by the link below:
 https://youtube.com/playlist?list=PLz4tcEeusgWJeJO6RvOxOkfD3XE1pDKFg
 
 ----- Description -----
+Imagine - you want to play with words (and learn some!) but at the same time you want to play some rpg-like runner.
+If you like this vision - join the game and control the hot air balloon by entering unique words (within the level) based on the last 3 letters of the last word and bring it as far as you can!
 
-Control the hot air balloon by entering unique words (within the level) based on the last 3 letters of the last word and bring it as far as you can!
+This game is developing slowly by solo indie developer - but over the years I'm trying to bring this vision to reality.
 
-Features:
+Current Features are:
 
 - There is support for checking words in two languages (Russian and English). But if the word is not in the dictionary - you can add it.
 - You can play together with friends on the same device.
+- Weather - it is random, and every session is unique - you can crash in trees in the beginning, or stale for a minute above the mountain:)
 - The game remembers the progress - if you press the menu (pause button in the center), the current game will be saved and you can continue later.
 - You can learn new words:)
+
+If like this, but feel that the game currently lack of features - keep version of game to check for updates in future:)
 
 ## Privacy Policy & Terms and Conditions:
 
