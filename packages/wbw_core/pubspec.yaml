@@ -36,9 +36,15 @@ dependencies:
   provider: ^6.0.5
   quiver: ^3.2.1
   russian_words: ^0.2.0
+  # serverpod_flutter: ^1.2.6
   shared_preferences: ^2.2.0
   universal_io: ^2.2.2
   uuid: ^3.0.7
+  # wbw_client:
+  #   git:
+  #     url: git@github.com:xsoulspace/word_by_word_backend.git
+  #     ref: private
+  #     path: wbw_client
   wbw_design_core:
     path: ../wbw_design_core
   wbw_dictionaries:

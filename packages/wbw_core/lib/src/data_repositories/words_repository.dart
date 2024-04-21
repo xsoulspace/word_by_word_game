@@ -9,6 +9,7 @@ final class WordsRespository
     extends BaseLocalRepository<UserWordsLocalDataSource> {
   WordsRespository(final BuildContext context)
       : wbwDictionary = context.read(),
+        serverpodClient = context.read(),
         super(
           local: UserWordsLocalDataSourceImpl(
             localDb: context.read(),
@@ -16,6 +17,7 @@ final class WordsRespository
           ),
         );
   final WbwDictionary wbwDictionary;
+  final ServerpodClient serverpodClient;
   late final loadUserWords = local.loadUserWords;
   late final saveUserWords = local.saveUserWords;
   late final preloadWrongWordsDictionary = local.preloadProfanities;
