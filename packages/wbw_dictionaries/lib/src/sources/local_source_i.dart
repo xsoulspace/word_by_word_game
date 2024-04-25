@@ -9,8 +9,8 @@ extension WordMeaningTupleExt on WordMeaningRequestTuple {
   String get _dbKey => '${language.value}:$word';
 }
 
-abstract base class WbwDictionaryDataSourceBase {
-  WbwDictionaryDataSourceBase();
+abstract base class WbwDictionaryLocalSourceBase {
+  WbwDictionaryLocalSourceBase();
   static const _path = 'dic_storage.db';
   DatabaseFactory get dbFactory;
   Database? _db;

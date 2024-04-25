@@ -1,10 +1,10 @@
 import 'package:sembast/sembast.dart';
 import 'package:sembast/sembast_io.dart';
 
-import 'data_source_i.dart';
+import 'local_source_i.dart';
 
-final class WbwDictionaryDataSource extends WbwDictionaryDataSourceBase {
-  WbwDictionaryDataSource();
+final class WbwDictionaryLocalSource extends WbwDictionaryLocalSourceBase {
+  WbwDictionaryLocalSource();
   @override
   DatabaseFactory dbFactory = databaseFactoryIo;
 }

@@ -14,11 +14,9 @@ import 'package:tar/tar.dart';
 // import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-import 'data_source.dart';
-import 'data_source_i.dart';
 import 'gen/assets.gen.dart';
-// TODO(arenukvern): add enum
-/// en, ru, etc
+import 'sources/local_source.dart';
+import 'sources/local_source_i.dart';
 
 enum WbwDictionariesVersion {
   $1;
@@ -43,9 +41,9 @@ const _kWasCalledToLoadKey = 'wbw_dictionary_load_called';
 class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   WbwDictionary({
     required this.simpleLocal,
-    final WbwDictionaryDataSource? localDb,
+    final WbwDictionaryLocalSource? localDb,
     final AssetBundle? assetBundle,
-  })  : local = localDb ?? WbwDictionaryDataSource(),
+  })  : local = localDb ?? WbwDictionaryLocalSource(),
         assetBundle = assetBundle ?? rootBundle,
         super(WbwDictionariesLoadingStatus.notLoaded);
 
@@ -56,10 +54,11 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       );
   final LocalDbDataSource simpleLocal;
   final AssetBundle assetBundle;
-  final WbwDictionaryDataSource local;
+  final WbwDictionaryLocalSource local;
   bool get isLoaded => value == WbwDictionariesLoadingStatus.loaded;
   bool get isLoading => value == WbwDictionariesLoadingStatus.loading;
-  bool get isNotLoaded => value == WbwDictionariesLoadingStatus.notLoaded;
+  bool get isNotLoaded =>
+      value == WbwDictionariesLoadingStatus.notLoaded || isLoading;
   int debugLoadingTimeInSeconds = 0;
   late final getWordMeaning = local.getWordMeaning;
 
@@ -70,6 +69,8 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   Future<WordMeaningLanguageTuple?> getWordMeaningCheckAll(
     final String word,
   ) async {
+    if (isNotLoaded) return null;
+
     for (final lang in _paths) {
       final result =
           await getWordMeaning((language: lang.language, word: word));
@@ -170,20 +171,18 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     (
       archivePath: Assets.archives.engDicTar,
       csvPath: Assets.src.engDic,
-      // TODO(arenukvern): add enum
       language: Languages.en,
     ),
     (
       archivePath: Assets.archives.ruDicTar,
       csvPath: Assets.src.ruDic,
-      // TODO(arenukvern): add enum
       language: Languages.ru,
     ),
   ];
 
   /// checks for all languages
   Future<bool> checkWord(final String word) async {
-    if (isLoading) return false;
+    if (isNotLoaded) return false;
 
     for (final path in _paths) {
       final isCorrect =
