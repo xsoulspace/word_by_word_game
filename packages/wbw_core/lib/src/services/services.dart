@@ -5,6 +5,7 @@ import '../data_repositories/data_repositories.dart';
 import '../data_sources/data_sources.dart';
 
 export 'analytics/analytics.dart';
+export 'online_status_service.dart';
 
 class ServicesCollection {
   ServicesCollection(final BuildContext context)

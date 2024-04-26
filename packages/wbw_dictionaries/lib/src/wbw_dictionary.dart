@@ -191,11 +191,10 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     }
     return false;
   }
-
+  /// use on web
   Future<void> _cacheDictionariesCsv(
     final WbwDictionaryEntryTuple tuple,
   ) async {
-    // tar.gz
     final csvStr = await assetBundle.loadString(tuple.csvPath, cache: false);
     // TODO(arenukvern): since compute didn't implemented on web
     /// then web worker may help. Or may not 😅

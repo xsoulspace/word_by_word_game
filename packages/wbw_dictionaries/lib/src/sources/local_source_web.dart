@@ -4,7 +4,6 @@ import 'package:sembast_web/sembast_web.dart';
 import 'local_source_i.dart';
 
 final class WbwDictionaryLocalSource extends WbwDictionaryLocalSourceBase {
-  WbwDictionaryLocalSource();
   @override
   DatabaseFactory dbFactory = databaseFactoryWeb;
 }

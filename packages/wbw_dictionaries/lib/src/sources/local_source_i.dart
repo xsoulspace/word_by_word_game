@@ -10,7 +10,6 @@ extension WordMeaningTupleExt on WordMeaningRequestTuple {
 }
 
 abstract base class WbwDictionaryLocalSourceBase {
-  WbwDictionaryLocalSourceBase();
   static const _path = 'dic_storage.db';
   DatabaseFactory get dbFactory;
   Database? _db;
