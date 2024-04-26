@@ -10,7 +10,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'dart:async' as _i2;
-import 'protocol.dart' as _i3;
+import 'package:wbw_client/src/protocol/word_request.dart' as _i3;
+import 'protocol.dart' as _i4;
 
 /// {@category Endpoint}
 class EndpointWord extends _i1.EndpointRef {
@@ -19,10 +20,18 @@ class EndpointWord extends _i1.EndpointRef {
   @override
   String get name => 'word';
 
-  _i2.Future<String> hello(String name) => caller.callServerEndpoint<String>(
+  _i2.Future<String> getWordMeaning(_i3.WordRequest wordRequest) =>
+      caller.callServerEndpoint<String>(
         'word',
-        'hello',
-        {'name': name},
+        'getWordMeaning',
+        {'wordRequest': wordRequest},
+      );
+
+  _i2.Future<bool> checkWord(_i3.WordRequest wordRequest) =>
+      caller.callServerEndpoint<bool>(
+        'word',
+        'checkWord',
+        {'wordRequest': wordRequest},
       );
 }
 
@@ -35,7 +44,7 @@ class Client extends _i1.ServerpodClient {
     Duration? connectionTimeout,
   }) : super(
           host,
-          _i3.Protocol(),
+          _i4.Protocol(),
           securityContext: securityContext,
           authenticationKeyManager: authenticationKeyManager,
           streamingConnectionTimeout: streamingConnectionTimeout,

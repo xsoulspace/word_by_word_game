@@ -19,7 +19,7 @@ dependencies:
   russian_words: ^0.2.0
   sembast: ^3.7.1
   sembast_web: ^2.3.0
-  serverpod_flutter: ^1.2.6
+  serverpod_flutter: 1.2.6
   tar: ^1.0.4
   universal_io: ^2.2.2
   wbw_client:

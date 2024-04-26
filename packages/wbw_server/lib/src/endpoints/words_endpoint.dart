@@ -1,4 +1,5 @@
 import 'package:serverpod/serverpod.dart';
+import 'package:wbw_server/src/generated/protocol.dart';
 
 // This is an example endpoint of your server. It's best practice to use the
 // `Endpoint` ending of the class name, but it will be removed when accessing
@@ -15,7 +16,14 @@ class WordEndpoint extends Endpoint {
   // The methods should return a typed future; the same types as for the parameters are
   // supported. The `session` object provides access to the database, logging,
   // passwords, and information about the request being made to the server.
-  Future<String> hello(Session session, String name) async {
-    return 'Hello $name';
+  Future<String> getWordMeaning(
+    Session session,
+    WordRequest wordRequest,
+  ) async {
+    return '';
+  }
+
+  Future<bool> checkWord(Session session, WordRequest wordRequest) async {
+    return false;
   }
 }

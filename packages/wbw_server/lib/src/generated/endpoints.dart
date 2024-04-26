@@ -10,6 +10,7 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
 import '../endpoints/words_endpoint.dart' as _i2;
+import 'package:wbw_server/src/generated/word_request.dart' as _i3;
 
 class Endpoints extends _i1.EndpointDispatch {
   @override
@@ -26,12 +27,12 @@ class Endpoints extends _i1.EndpointDispatch {
       name: 'word',
       endpoint: endpoints['word']!,
       methodConnectors: {
-        'hello': _i1.MethodConnector(
-          name: 'hello',
+        'getWordMeaning': _i1.MethodConnector(
+          name: 'getWordMeaning',
           params: {
-            'name': _i1.ParameterDescription(
-              name: 'name',
-              type: _i1.getType<String>(),
+            'wordRequest': _i1.ParameterDescription(
+              name: 'wordRequest',
+              type: _i1.getType<_i3.WordRequest>(),
               nullable: false,
             )
           },
@@ -39,11 +40,29 @@ class Endpoints extends _i1.EndpointDispatch {
             _i1.Session session,
             Map<String, dynamic> params,
           ) async =>
-              (endpoints['word'] as _i2.WordEndpoint).hello(
+              (endpoints['word'] as _i2.WordEndpoint).getWordMeaning(
             session,
-            params['name'],
+            params['wordRequest'],
           ),
-        )
+        ),
+        'checkWord': _i1.MethodConnector(
+          name: 'checkWord',
+          params: {
+            'wordRequest': _i1.ParameterDescription(
+              name: 'wordRequest',
+              type: _i1.getType<_i3.WordRequest>(),
+              nullable: false,
+            )
+          },
+          call: (
+            _i1.Session session,
+            Map<String, dynamic> params,
+          ) async =>
+              (endpoints['word'] as _i2.WordEndpoint).checkWord(
+            session,
+            params['wordRequest'],
+          ),
+        ),
       },
     );
   }
