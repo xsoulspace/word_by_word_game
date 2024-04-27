@@ -11,5 +11,6 @@
   "IS_LINKS_ALLOWED": true,
   "WIREDASH_PROJECT_ID": "",
   "WIREDASH_PROJECT_SECRET": "",
-  "STORE": "snapstore"
+  "STORE": "snapstore",
+  "SERVER_URL": ""
 }

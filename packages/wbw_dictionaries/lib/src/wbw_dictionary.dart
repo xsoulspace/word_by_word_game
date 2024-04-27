@@ -15,8 +15,9 @@ import 'package:tar/tar.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import 'gen/assets.gen.dart';
-import 'sources/local_source.dart';
 import 'sources/local_source_i.dart';
+import 'sources/remote_source.dart';
+import 'sources/repository.dart';
 
 enum WbwDictionariesVersion {
   $1;
@@ -41,26 +42,31 @@ const _kWasCalledToLoadKey = 'wbw_dictionary_load_called';
 class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   WbwDictionary({
     required this.simpleLocal,
-    final WbwDictionaryLocalSource? localDb,
+    required this.repository,
     final AssetBundle? assetBundle,
-  })  : local = localDb ?? WbwDictionaryLocalSource(),
-        assetBundle = assetBundle ?? rootBundle,
+  })  : assetBundle = assetBundle ?? rootBundle,
         super(WbwDictionariesLoadingStatus.notLoaded);
 
   // ignore: avoid_unused_constructor_parameters
   factory WbwDictionary.provide(final BuildContext context) => WbwDictionary(
         assetBundle: DefaultAssetBundle.of(context),
         simpleLocal: context.read(),
+        repository: WbwDictionaryRepository(
+          remote: WbwDictionaryRemoteSource(
+            client: context.read(),
+          ),
+          onlineStatusService: context.read(),
+        ),
       );
   final LocalDbDataSource simpleLocal;
   final AssetBundle assetBundle;
-  final WbwDictionaryLocalSource local;
+  final WbwDictionaryRepository repository;
   bool get isLoaded => value == WbwDictionariesLoadingStatus.loaded;
   bool get isLoading => value == WbwDictionariesLoadingStatus.loading;
   bool get isNotLoaded =>
       value == WbwDictionariesLoadingStatus.notLoaded || isLoading;
   int debugLoadingTimeInSeconds = 0;
-  late final getWordMeaning = local.getWordMeaning;
+  late final getWordMeaning = repository.getWordMeaning;
 
   /// checks all languages
   ///
@@ -84,7 +90,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     return null;
   }
 
-  late final getDictionaryLength = local.getDictionaryLength;
+  late final getDictionaryLength = repository.local.getDictionaryLength;
 
   /// allows to start dictionaries loading
   /// as it is heavy operation, and therefore user should
@@ -141,7 +147,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     /// need to check but maybe don't need to delete the whole db
     // if (requiresUpdate) await local.deleteDb();
 
-    await local.setupDb();
+    await repository.local.setupDb();
     print('dictionaries source loaded');
 
     if (requiresUpdate) {
@@ -186,11 +192,12 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
 
     for (final path in _paths) {
       final isCorrect =
-          await local.checkWord((language: path.language, word: word));
+          await repository.checkWord((language: path.language, word: word));
       if (isCorrect) return true;
     }
     return false;
   }
+
   /// use on web
   Future<void> _cacheDictionariesCsv(
     final WbwDictionaryEntryTuple tuple,
@@ -203,7 +210,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       csvStr,
     );
     // var i = 0;
-    await local.writeWordsList(
+    await repository.local.writeWordsList(
       language: tuple.language,
       data: csv,
       converter: (final row) {
@@ -239,7 +246,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       while (await reader.moveNext()) {
         final entry = reader.current;
         final contents = entry.contents;
-        await local.writeWordsStream(
+        await repository.local.writeWordsStream(
           language: tuple.language,
           callback: () => contents
               .transform(const Utf8Decoder(allowMalformed: true))

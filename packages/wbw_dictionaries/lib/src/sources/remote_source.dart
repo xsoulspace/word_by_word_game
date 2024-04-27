@@ -1,4 +1,4 @@
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_client/wbw_client.dart';
 
 import 'local_source_i.dart';
 import 'sources.dart';
@@ -6,26 +6,19 @@ import 'sources.dart';
 class WbwDictionaryRemoteSource {
   const WbwDictionaryRemoteSource({
     required this.client,
-    required this.onlineStatusService,
   });
-  final ServerpodClient client;
+  final AppServerpodClient client;
 
-  final OnlineStatusService onlineStatusService;
-  Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) async {
-    if (onlineStatusService.isConnected) {
-      final result = onlineStatusService.onRequest(
-        () => client,
-      );
-    }
-    return '';
-  }
+  Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) async =>
+      client.word.getWordMeaning(tuple.toWordRequest());
 
-  Future<bool> checkWord(final WordMeaningRequestTuple tuple) async {
-    if (onlineStatusService.isConnected) {
-      final result = onlineStatusService.onRequest(
-        () => client,
+  Future<bool> checkWord(final WordMeaningRequestTuple tuple) async =>
+      client.word.checkWord(tuple.toWordRequest());
+}
+
+extension WordMeaningRequestTupleX on WordMeaningRequestTuple {
+  WordRequest toWordRequest() => WordRequest(
+        language: language.value,
+        word: word,
       );
-    }
-    return false;
-  }
 }

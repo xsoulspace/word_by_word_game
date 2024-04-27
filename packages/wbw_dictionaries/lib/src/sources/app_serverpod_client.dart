@@ -2,8 +2,8 @@ import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:wbw_client/wbw_client.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-class ServerpodClient implements Disposable {
-  ServerpodClient({
+class AppServerpodClient implements Disposable {
+  AppServerpodClient({
     required this.url,
   });
   final String url;
@@ -14,6 +14,8 @@ class ServerpodClient implements Disposable {
   // production servers.
   late final _client = Client(url.whenEmptyUse('http://$localhost:8080/'))
     ..connectivityMonitor = FlutterConnectivityMonitor();
+
+  EndpointWord get word => _client.word;
 
   @override
   void dispose() => _client.close();

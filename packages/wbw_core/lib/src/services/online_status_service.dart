@@ -1,10 +1,13 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import 'package:universal_io/io.dart';
 
-class OnlineStatusService {
-  OnlineStatusService() {
+class OnlineStatusService extends ChangeNotifier {
+  // ignore: avoid_unused_constructor_parameters
+  OnlineStatusService(final BuildContext context) {
+    if (!kIsWeb) return;
     unawaited(_checkConnection());
     // Schedule a new timer every 5 seconds to check the internet connection.
     _timer = Timer.periodic(
@@ -13,7 +16,7 @@ class OnlineStatusService {
     );
   }
 
-  bool _isConnected = true;
+  bool _isConnected = false;
   bool get isConnected => _isConnected;
 
   Timer? _timer;
@@ -27,18 +30,23 @@ class OnlineStatusService {
     }
   }
 
-  T? onRequest<T>(final T Function() request) {
+  T onRequest<T>(
+    final ValueGetter<T> request, {
+    required final T negativeResponse,
+  }) {
     try {
       return request();
       // ignore: avoid_catches_without_on_clauses
     } catch (e) {
       if (kDebugMode) print(e);
       _isConnected = false;
-      return null;
+      return negativeResponse;
     }
   }
 
+  @override
   void dispose() {
     _timer?.cancel();
+    super.dispose();
   }
 }
