@@ -25,6 +25,7 @@ class GlobalStatesProvider extends StatelessWidget {
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: AppStatusNotifier.new),
+          ChangeNotifierProvider.value(value: uiLocaleNotifier),
           ChangeNotifierProvider(create: OnlineStatusService.new),
           Provider(
             create: (final context) => AppServerpodClient(url: Envs.serverUrl),

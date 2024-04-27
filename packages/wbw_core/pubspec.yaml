@@ -45,6 +45,7 @@ dependencies:
     path: ../wbw_dictionaries
   wbw_locale:
     path: ../wbw_locale
+  web: ^0.5.1
 
 dev_dependencies:
   analyzer: ^6.4.1
