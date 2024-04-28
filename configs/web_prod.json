@@ -12,5 +12,5 @@
   "WIREDASH_PROJECT_ID": "",
   "WIREDASH_PROJECT_SECRET": "",
   "STORE": "xsoulspaceWebsite",
-  "SERVER_URL": ""
+  "SERVER_URL": "https://wbw.xsoulspace.dev/api/"
 }

@@ -121,9 +121,6 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   final isDictionariesLoading = ValueNotifier(false);
 
   Future<void> onLoadDictionaries() async {
-    if (dto.onlineStatusService.isConnected) {
-      if (WbwDictionaryRepository.isAllowedToUseRemote) return;
-    }
     isDictionariesLoading.value = true;
     await dto.wbwDictionary.startLoadingAndCaching();
     isDictionariesLoading.value = false;

@@ -22,8 +22,8 @@ COPY --from=build /app/bin/main /app/bin/main
 COPY --from=build /app/config/ config/
 COPY --from=build /app/web/ web/
 
-EXPOSE 8080
-EXPOSE 8081
-EXPOSE 8082
+EXPOSE 8100
+EXPOSE 8101
+EXPOSE 8102
 
 CMD app/bin/main --mode $runmode --server-id $serverid --logging $logging --role $role
