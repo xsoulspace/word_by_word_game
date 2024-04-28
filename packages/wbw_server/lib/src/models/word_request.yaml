@@ -19,5 +19,5 @@ class: WordRequest
 # Eg. `List<int>?` or `List<MyOtherClass?>`.
 fields:
   # en, ru
-  language: String
+  language: WordLanguage
   word: String

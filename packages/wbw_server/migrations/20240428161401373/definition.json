@@ -18,7 +18,7 @@
           "name": "language",
           "columnType": 0,
           "isNullable": false,
-          "dartType": "String"
+          "dartType": "protocol:WordLanguage"
         },
         {
           "name": "word",
@@ -1274,7 +1274,7 @@
   "installedModules": [
     {
       "module": "wbw",
-      "version": "20240427214147501"
+      "version": "20240428161401373"
     },
     {
       "module": "serverpod",

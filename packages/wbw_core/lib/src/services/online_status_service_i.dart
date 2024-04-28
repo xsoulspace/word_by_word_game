@@ -17,9 +17,9 @@ abstract class BaseOnlineStatusService extends ChangeNotifier {
     notifyListeners();
   }
 
-  T onRequest<T>(
-    final ValueGetter<T> request, {
-    required final T negativeResponse,
+  Future<T> onRequest<T>(
+    final AsyncValueGetter<T> request, {
+    required final Future<T> negativeResponse,
   }) {
     try {
       return request();

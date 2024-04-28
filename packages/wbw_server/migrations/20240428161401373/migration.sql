@@ -268,9 +268,9 @@ ALTER TABLE ONLY "serverpod_query_log"
 -- MIGRATION VERSION FOR wbw
 --
 INSERT INTO "serverpod_migrations" ("module", "version", "timestamp")
-    VALUES ('wbw', '20240427214147501', now())
+    VALUES ('wbw', '20240428161401373', now())
     ON CONFLICT ("module")
-    DO UPDATE SET "version" = '20240427214147501', "timestamp" = now();
+    DO UPDATE SET "version" = '20240428161401373', "timestamp" = now();
 
 --
 -- MIGRATION VERSION FOR serverpod

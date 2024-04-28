@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 abstract class WordModel extends _i1.TableRow {
   WordModel._({
@@ -20,7 +21,7 @@ abstract class WordModel extends _i1.TableRow {
 
   factory WordModel({
     int? id,
-    required String language,
+    required _i2.WordLanguage language,
     required String word,
     required String meaning,
   }) = _WordModelImpl;
@@ -32,7 +33,7 @@ abstract class WordModel extends _i1.TableRow {
     return WordModel(
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       language: serializationManager
-          .deserialize<String>(jsonSerialization['language']),
+          .deserialize<_i2.WordLanguage>(jsonSerialization['language']),
       word: serializationManager.deserialize<String>(jsonSerialization['word']),
       meaning: serializationManager
           .deserialize<String>(jsonSerialization['meaning']),
@@ -43,7 +44,7 @@ abstract class WordModel extends _i1.TableRow {
 
   static const db = WordModelRepository._();
 
-  String language;
+  _i2.WordLanguage language;
 
   String word;
 
@@ -54,7 +55,7 @@ abstract class WordModel extends _i1.TableRow {
 
   WordModel copyWith({
     int? id,
-    String? language,
+    _i2.WordLanguage? language,
     String? word,
     String? meaning,
   });
@@ -62,7 +63,7 @@ abstract class WordModel extends _i1.TableRow {
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      'language': language,
+      'language': language.toJson(),
       'word': word,
       'meaning': meaning,
     };
@@ -83,7 +84,7 @@ abstract class WordModel extends _i1.TableRow {
   Map<String, dynamic> allToJson() {
     return {
       if (id != null) 'id': id,
-      'language': language,
+      'language': language.toJson(),
       'word': word,
       'meaning': meaning,
     };
@@ -260,7 +261,7 @@ class _Undefined {}
 class _WordModelImpl extends WordModel {
   _WordModelImpl({
     int? id,
-    required String language,
+    required _i2.WordLanguage language,
     required String word,
     required String meaning,
   }) : super._(
@@ -273,7 +274,7 @@ class _WordModelImpl extends WordModel {
   @override
   WordModel copyWith({
     Object? id = _Undefined,
-    String? language,
+    _i2.WordLanguage? language,
     String? word,
     String? meaning,
   }) {
@@ -288,9 +289,10 @@ class _WordModelImpl extends WordModel {
 
 class WordModelTable extends _i1.Table {
   WordModelTable({super.tableRelation}) : super(tableName: 'words') {
-    language = _i1.ColumnString(
+    language = _i1.ColumnEnum(
       'language',
       this,
+      _i1.EnumSerialization.byName,
     );
     word = _i1.ColumnString(
       'word',
@@ -302,7 +304,7 @@ class WordModelTable extends _i1.Table {
     );
   }
 
-  late final _i1.ColumnString language;
+  late final _i1.ColumnEnum<_i2.WordLanguage> language;
 
   late final _i1.ColumnString word;
 

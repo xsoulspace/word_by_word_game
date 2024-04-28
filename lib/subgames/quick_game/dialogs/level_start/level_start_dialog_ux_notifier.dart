@@ -5,12 +5,14 @@ class _LevelStartDialogUxStateDiDto {
       : globalGameBloc = context.read(),
         mechanics = context.read(),
         appSettingsNotifier = context.read(),
+        onlineStatusService = context.read(),
         wbwDictionary = context.read(),
         tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
   final AppSettingsNotifier appSettingsNotifier;
   final MechanicsCollection mechanics;
+  final OnlineStatusService onlineStatusService;
   final WbwDictionary wbwDictionary;
 }
 
@@ -119,6 +121,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   final isDictionariesLoading = ValueNotifier(false);
 
   Future<void> onLoadDictionaries() async {
+    if (dto.onlineStatusService.isConnected) {
+      if (WbwDictionaryRepository.isAllowedToUseRemote) return;
+    }
     isDictionariesLoading.value = true;
     await dto.wbwDictionary.startLoadingAndCaching();
     isDictionariesLoading.value = false;

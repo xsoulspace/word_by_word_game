@@ -8,29 +8,29 @@
 
 # Configuration for the main API server.
 apiServer:
-  port: 8080
+  port: 8100
   publicHost: localhost
-  publicPort: 8080
+  publicPort: 8100
   publicScheme: http
 
 # Configuration for the Insights server.
 insightsServer:
-  port: 8081
+  port: 8101
   publicHost: localhost
-  publicPort: 8081
+  publicPort: 8101
   publicScheme: http
 
 # Configuration for the web server.
 webServer:
-  port: 8082
+  port: 8102
   publicHost: localhost
-  publicPort: 8082
+  publicPort: 8102
   publicScheme: http
 
 # This is the database setup for your server.
 database:
   host: localhost
-  port: 8090
+  port: 8103
   name: wbw
   user: postgres
 
@@ -38,4 +38,4 @@ database:
 redis:
   enabled: false
   host: localhost
-  port: 8091
+  port: 8104

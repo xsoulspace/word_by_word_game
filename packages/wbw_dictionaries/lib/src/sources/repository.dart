@@ -14,7 +14,7 @@ class WbwDictionaryRepository {
   final WbwDictionaryLocalSource local;
   final WbwDictionaryRemoteSource remote;
   final OnlineStatusService onlineStatusService;
-  static const bool isAllowedToUseRemote = kIsWeb;
+  static const bool isAllowedToUseRemote = kDebugMode || kIsWeb;
 
   Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) async {
     if (isAllowedToUseRemote) {

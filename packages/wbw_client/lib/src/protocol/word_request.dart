@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 abstract class WordRequest extends _i1.SerializableEntity {
   WordRequest._({
@@ -17,7 +18,7 @@ abstract class WordRequest extends _i1.SerializableEntity {
   });
 
   factory WordRequest({
-    required String language,
+    required _i2.WordLanguage language,
     required String word,
   }) = _WordRequestImpl;
 
@@ -27,23 +28,23 @@ abstract class WordRequest extends _i1.SerializableEntity {
   ) {
     return WordRequest(
       language: serializationManager
-          .deserialize<String>(jsonSerialization['language']),
+          .deserialize<_i2.WordLanguage>(jsonSerialization['language']),
       word: serializationManager.deserialize<String>(jsonSerialization['word']),
     );
   }
 
-  String language;
+  _i2.WordLanguage language;
 
   String word;
 
   WordRequest copyWith({
-    String? language,
+    _i2.WordLanguage? language,
     String? word,
   });
   @override
   Map<String, dynamic> toJson() {
     return {
-      'language': language,
+      'language': language.toJson(),
       'word': word,
     };
   }
@@ -51,7 +52,7 @@ abstract class WordRequest extends _i1.SerializableEntity {
 
 class _WordRequestImpl extends WordRequest {
   _WordRequestImpl({
-    required String language,
+    required _i2.WordLanguage language,
     required String word,
   }) : super._(
           language: language,
@@ -60,7 +61,7 @@ class _WordRequestImpl extends WordRequest {
 
   @override
   WordRequest copyWith({
-    String? language,
+    _i2.WordLanguage? language,
     String? word,
   }) {
     return WordRequest(

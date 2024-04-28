@@ -11,3 +11,7 @@ reset: ## reset the server
 	docker compose down --volumes --remove-orphans
 	docker compose up --build --detach
 	dart run bin/main.dart --role maintenance --apply-migrations
+
+reset-run:
+	make reset
+	make run

@@ -19,7 +19,7 @@
             "name": "language",
             "columnType": 0,
             "isNullable": false,
-            "dartType": "String"
+            "dartType": "protocol:WordLanguage"
           },
           {
             "name": "word",

@@ -20,10 +20,24 @@ class WordEndpoint extends Endpoint {
     Session session,
     WordRequest wordRequest,
   ) async {
-    return '';
+    final words = await WordModel.db.find(
+      session,
+      where: (p0) =>
+          p0.language.equals(wordRequest.language) &
+          p0.word.equals(wordRequest.word),
+      limit: 5,
+    );
+    return words.firstOrNull?.word ?? '';
   }
 
   Future<bool> checkWord(Session session, WordRequest wordRequest) async {
-    return false;
+    final words = await WordModel.db.find(
+      session,
+      where: (p0) =>
+          p0.language.equals(wordRequest.language) &
+          p0.word.equals(wordRequest.word),
+      limit: 1,
+    );
+    return words.isNotEmpty;
   }
 }

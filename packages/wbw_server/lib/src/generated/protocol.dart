@@ -11,8 +11,10 @@ library protocol; // ignore_for_file: no_leading_underscores_for_library_prefixe
 
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
-import 'word_model.dart' as _i3;
-import 'word_request.dart' as _i4;
+import 'word_language.dart' as _i3;
+import 'word_model.dart' as _i4;
+import 'word_request.dart' as _i5;
+export 'word_language.dart';
 export 'word_model.dart';
 export 'word_request.dart';
 
@@ -43,7 +45,7 @@ class Protocol extends _i1.SerializationManagerServer {
           name: 'language',
           columnType: _i2.ColumnType.text,
           isNullable: false,
-          dartType: 'String',
+          dartType: 'protocol:WordLanguage',
         ),
         _i2.ColumnDefinition(
           name: 'word',
@@ -105,17 +107,23 @@ class Protocol extends _i1.SerializationManagerServer {
     if (customConstructors.containsKey(t)) {
       return customConstructors[t]!(data, this) as T;
     }
-    if (t == _i3.WordModel) {
-      return _i3.WordModel.fromJson(data, this) as T;
+    if (t == _i3.WordLanguage) {
+      return _i3.WordLanguage.fromJson(data) as T;
     }
-    if (t == _i4.WordRequest) {
-      return _i4.WordRequest.fromJson(data, this) as T;
+    if (t == _i4.WordModel) {
+      return _i4.WordModel.fromJson(data, this) as T;
     }
-    if (t == _i1.getType<_i3.WordModel?>()) {
-      return (data != null ? _i3.WordModel.fromJson(data, this) : null) as T;
+    if (t == _i5.WordRequest) {
+      return _i5.WordRequest.fromJson(data, this) as T;
     }
-    if (t == _i1.getType<_i4.WordRequest?>()) {
-      return (data != null ? _i4.WordRequest.fromJson(data, this) : null) as T;
+    if (t == _i1.getType<_i3.WordLanguage?>()) {
+      return (data != null ? _i3.WordLanguage.fromJson(data) : null) as T;
+    }
+    if (t == _i1.getType<_i4.WordModel?>()) {
+      return (data != null ? _i4.WordModel.fromJson(data, this) : null) as T;
+    }
+    if (t == _i1.getType<_i5.WordRequest?>()) {
+      return (data != null ? _i5.WordRequest.fromJson(data, this) : null) as T;
     }
     try {
       return _i2.Protocol().deserialize<T>(data, t);
@@ -125,10 +133,13 @@ class Protocol extends _i1.SerializationManagerServer {
 
   @override
   String? getClassNameForObject(Object data) {
-    if (data is _i3.WordModel) {
+    if (data is _i3.WordLanguage) {
+      return 'WordLanguage';
+    }
+    if (data is _i4.WordModel) {
       return 'WordModel';
     }
-    if (data is _i4.WordRequest) {
+    if (data is _i5.WordRequest) {
       return 'WordRequest';
     }
     return super.getClassNameForObject(data);
@@ -136,11 +147,14 @@ class Protocol extends _i1.SerializationManagerServer {
 
   @override
   dynamic deserializeByClassName(Map<String, dynamic> data) {
+    if (data['className'] == 'WordLanguage') {
+      return deserialize<_i3.WordLanguage>(data['data']);
+    }
     if (data['className'] == 'WordModel') {
-      return deserialize<_i3.WordModel>(data['data']);
+      return deserialize<_i4.WordModel>(data['data']);
     }
     if (data['className'] == 'WordRequest') {
-      return deserialize<_i4.WordRequest>(data['data']);
+      return deserialize<_i5.WordRequest>(data['data']);
     }
     return super.deserializeByClassName(data);
   }
@@ -154,8 +168,8 @@ class Protocol extends _i1.SerializationManagerServer {
       }
     }
     switch (t) {
-      case _i3.WordModel:
-        return _i3.WordModel.t;
+      case _i4.WordModel:
+        return _i4.WordModel.t;
     }
     return null;
   }

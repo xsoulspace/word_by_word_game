@@ -1,4 +1,5 @@
 import 'package:wbw_client/wbw_client.dart';
+import 'package:wbw_core/wbw_core.dart';
 
 import 'local_source_i.dart';
 import 'sources.dart';
@@ -18,7 +19,15 @@ class WbwDictionaryRemoteSource {
 
 extension WordMeaningRequestTupleX on WordMeaningRequestTuple {
   WordRequest toWordRequest() => WordRequest(
-        language: language.value,
+        language: language.toLanguage(),
         word: word,
       );
+}
+
+extension _LanguagesX on Languages {
+  WordLanguage toLanguage() => switch (this) {
+        Languages.en => WordLanguage.eng,
+        Languages.ru => WordLanguage.ru,
+        Languages.it => throw UnimplementedError(),
+      };
 }

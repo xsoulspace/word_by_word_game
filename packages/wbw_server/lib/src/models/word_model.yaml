@@ -19,9 +19,12 @@ table: words
 # Eg. `List<int>?` or `List<MyOtherClass?>`.
 fields:
   # en, ru
-  language: String
+  language: WordLanguage
   word: String
   meaning: String
 indexes:
   word_lang_idx:
     fields: word, language
+    # TODO(arenukvern): change in future for unique, when
+    # every word for language will be unique
+    unique: false

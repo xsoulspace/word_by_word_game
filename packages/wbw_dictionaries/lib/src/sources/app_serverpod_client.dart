@@ -12,7 +12,7 @@ class AppServerpodClient implements Disposable {
   // The client is set up to connect to a Serverpod running on a local server on
   // the default port. You will need to modify this to connect to staging or
   // production servers.
-  late final _client = Client(url.whenEmptyUse('http://$localhost:8080/'))
+  late final _client = Client(url.whenEmptyUse('http://$localhost:8100/'))
     ..connectivityMonitor = FlutterConnectivityMonitor();
 
   EndpointWord get word => _client.word;

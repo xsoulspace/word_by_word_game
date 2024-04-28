@@ -9,6 +9,7 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
+import 'protocol.dart' as _i2;
 
 abstract class WordModel extends _i1.SerializableEntity {
   WordModel._({
@@ -20,7 +21,7 @@ abstract class WordModel extends _i1.SerializableEntity {
 
   factory WordModel({
     int? id,
-    required String language,
+    required _i2.WordLanguage language,
     required String word,
     required String meaning,
   }) = _WordModelImpl;
@@ -32,7 +33,7 @@ abstract class WordModel extends _i1.SerializableEntity {
     return WordModel(
       id: serializationManager.deserialize<int?>(jsonSerialization['id']),
       language: serializationManager
-          .deserialize<String>(jsonSerialization['language']),
+          .deserialize<_i2.WordLanguage>(jsonSerialization['language']),
       word: serializationManager.deserialize<String>(jsonSerialization['word']),
       meaning: serializationManager
           .deserialize<String>(jsonSerialization['meaning']),
@@ -44,7 +45,7 @@ abstract class WordModel extends _i1.SerializableEntity {
   /// the id will be null.
   int? id;
 
-  String language;
+  _i2.WordLanguage language;
 
   String word;
 
@@ -52,7 +53,7 @@ abstract class WordModel extends _i1.SerializableEntity {
 
   WordModel copyWith({
     int? id,
-    String? language,
+    _i2.WordLanguage? language,
     String? word,
     String? meaning,
   });
@@ -60,7 +61,7 @@ abstract class WordModel extends _i1.SerializableEntity {
   Map<String, dynamic> toJson() {
     return {
       if (id != null) 'id': id,
-      'language': language,
+      'language': language.toJson(),
       'word': word,
       'meaning': meaning,
     };
@@ -72,7 +73,7 @@ class _Undefined {}
 class _WordModelImpl extends WordModel {
   _WordModelImpl({
     int? id,
-    required String language,
+    required _i2.WordLanguage language,
     required String word,
     required String meaning,
   }) : super._(
@@ -85,7 +86,7 @@ class _WordModelImpl extends WordModel {
   @override
   WordModel copyWith({
     Object? id = _Undefined,
-    String? language,
+    _i2.WordLanguage? language,
     String? word,
     String? meaning,
   }) {
