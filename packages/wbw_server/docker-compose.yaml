@@ -1,6 +1,18 @@
 version: "3.7"
 
 services:
+  # server:
+  #   build: .
+  #   ports:
+  #     - "8100:8100"
+  #     - "8101:8101"
+  #     - "8102:8102"
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #   networks:
+  #     - backend
+  #     - frontend
   postgres:
     image: postgres:14.1
     ports:
@@ -11,6 +23,8 @@ services:
       POSTGRES_PASSWORD: "NDQNBbQHwQ5vLM47zp0yQutjQj0O-QZn"
     volumes:
       - wbw_data:/var/lib/postgresql/data
+    # networks:
+    #   - backend
   redis:
     image: redis:6.2.6
     ports:
@@ -18,5 +32,10 @@ services:
     command: redis-server --requirepass "0B8olsw61swzX02_Ae3Xb1Q6bM6anoSs"
     environment:
       - REDIS_REPLICATION_MODE=master
+    # networks:
+    #   - backend
 volumes:
   wbw_data:
+# networks:
+#   backend:
+#   frontend:

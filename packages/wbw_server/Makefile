@@ -15,3 +15,8 @@ reset: ## reset the server
 reset-run:
 	make reset
 	make run
+
+run-prod:
+	docker build -t wbw-dart-server . && docker run -it wbw-dart-server
+kill-prod:
+	docker rmi wbw-dart-server
