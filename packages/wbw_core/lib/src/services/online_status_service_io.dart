@@ -32,23 +32,6 @@ class OnlineStatusService extends BaseOnlineStatusService {
   }
 
   @override
-  Future<T> onRequest<T>(
-    final AsyncValueGetter<T> request, {
-    required final Future<T> negativeResponse,
-  }) async {
-    if (!isConnected) return negativeResponse;
-    try {
-      final response = await request();
-      return response;
-      // ignore: avoid_catches_without_on_clauses
-    } catch (e) {
-      if (kDebugMode) print(e);
-      isConnected = false;
-      return negativeResponse;
-    }
-  }
-
-  @override
   void dispose() {
     _timer?.cancel();
     super.dispose();
