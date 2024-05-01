@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-import 'local_source.dart';
-import 'local_source_i.dart';
-import 'remote_source.dart';
+import 'wbw_local_source.dart';
+import 'wbw_local_source_i.dart';
+import 'wbw_remote_source.dart';
 
 class WbwDictionaryRepository {
   WbwDictionaryRepository({
@@ -35,7 +35,7 @@ class WbwDictionaryRepository {
         negativeResponse: Future.value(false),
       );
 
-      if (result == true) return true;
+      if (result) return true;
     }
     return local.checkWord(tuple);
   }

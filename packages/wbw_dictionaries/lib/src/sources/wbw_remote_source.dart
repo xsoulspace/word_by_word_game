@@ -1,8 +1,8 @@
 import 'package:wbw_client/wbw_client.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-import 'local_source_i.dart';
 import 'sources.dart';
+import 'wbw_local_source_i.dart';
 
 class WbwDictionaryRemoteSource {
   const WbwDictionaryRemoteSource({

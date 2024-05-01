@@ -15,9 +15,9 @@ import 'package:tar/tar.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import 'gen/assets.gen.dart';
-import 'sources/local_source_i.dart';
-import 'sources/remote_source.dart';
-import 'sources/repository.dart';
+import 'sources/wbw_local_source_i.dart';
+import 'sources/wbw_remote_source.dart';
+import 'sources/wbw_repository.dart';
 
 enum WbwDictionariesVersion {
   $1;
