@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:serverpod/serverpod.dart';
-import 'package:wbw_server/src/future_calls/seed_future_call.dart';
 import 'package:wbw_server/src/web/routes/root.dart';
 
 import 'src/generated/endpoints.dart';
@@ -32,6 +31,6 @@ Future<void> run(List<String> args) async {
   // Start the server.
   await pod.start();
 
-  pod.registerFutureCall(SeedCall(), 'seedCall');
-  await pod.futureCallWithDelay('seedCall', null, Duration(seconds: 1));
+  // pod.registerFutureCall(SeedCall(), 'seedCall');
+  // await pod.futureCallWithDelay('seedCall', null, Duration(seconds: 1));
 }

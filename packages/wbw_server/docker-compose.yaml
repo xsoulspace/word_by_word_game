@@ -11,8 +11,7 @@ services:
   #     - postgres
   #     - redis
   #   networks:
-  #     - backend
-  #     - frontend
+  #     - wbwapp
   postgres:
     image: postgres:14.1
     ports:
@@ -23,19 +22,19 @@ services:
       POSTGRES_PASSWORD: "NDQNBbQHwQ5vLM47zp0yQutjQj0O-QZn"
     volumes:
       - wbw_data:/var/lib/postgresql/data
-    # networks:
-    #   - backend
-  redis:
-    image: redis:6.2.6
-    ports:
-      - "8104:6379"
-    command: redis-server --requirepass "0B8olsw61swzX02_Ae3Xb1Q6bM6anoSs"
-    environment:
-      - REDIS_REPLICATION_MODE=master
-    # networks:
-    #   - backend
+    networks:
+      - wbwapp
+  # redis:
+  #   image: redis:6.2.6
+  #   ports:
+  #     - "8104:6379"
+  #   command: redis-server --requirepass "0B8olsw61swzX02_Ae3Xb1Q6bM6anoSs"
+  #   environment:
+  #     - REDIS_REPLICATION_MODE=master
+  #   networks:
+  #     - wbwapp
 volumes:
   wbw_data:
-# networks:
-#   backend:
+networks:
+  wbwapp:
 #   frontend:
