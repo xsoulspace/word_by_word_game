@@ -31,6 +31,8 @@ Future<void> run(List<String> args) async {
   // Start the server.
   await pod.start();
 
+  // For local population of the database
+  // For remote - use backup from local db
   // pod.registerFutureCall(SeedCall(), 'seedCall');
   // await pod.futureCallWithDelay('seedCall', null, Duration(seconds: 1));
 }
