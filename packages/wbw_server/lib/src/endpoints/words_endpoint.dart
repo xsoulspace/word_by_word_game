@@ -27,7 +27,7 @@ class WordEndpoint extends Endpoint {
           p0.word.equals(wordRequest.word),
       limit: 5,
     );
-    return words.firstOrNull?.word ?? '';
+    return words.firstOrNull?.meaning ?? '';
   }
 
   Future<bool> checkWord(Session session, WordRequest wordRequest) async {
