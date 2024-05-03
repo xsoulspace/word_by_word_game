@@ -298,7 +298,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     await _globalLevelLoadCompleter!.future;
     if (dto.levelBloc.featuresSettings.isTechnologiesEnabled) {
       final shouldUseServer = dto.onlineStatusService.isConnected &&
-          WbwDictionaryRepository.isAllowedToUseRemote;
+          dto.wbwDictionary.repository.isAllowedToUseRemote;
       if (!shouldUseServer) {
         await dto.wbwDictionary.loadAndCache();
       }

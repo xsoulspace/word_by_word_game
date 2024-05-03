@@ -52,9 +52,11 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
         assetBundle: DefaultAssetBundle.of(context),
         simpleLocal: context.read(),
         repository: WbwDictionaryRepository(
-          remote: WbwDictionaryRemoteSource(
-            client: context.read(),
-          ),
+          remote: WbwDictionaryRemoteSource(client: context.read()),
+          // TODO(arenukvern): maybe restrict some clients.. not sure about
+          /// will server be able to hold.
+          isAllowedToUseRemote:
+              DeviceRuntimeType.isNativeMobile || DeviceRuntimeType.isWeb,
           onlineStatusService: context.read(),
         ),
       );
@@ -66,7 +68,8 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   bool get isNotLoaded =>
       value == WbwDictionariesLoadingStatus.notLoaded || isLoading;
   int debugLoadingTimeInSeconds = 0;
-  late final getWordMeaning = repository.getWordMeaning;
+  Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) =>
+      repository.getWordMeaning(tuple, isLocalAllowed: isLoaded);
 
   /// checks all languages
   ///
@@ -75,8 +78,6 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   Future<WordMeaningLanguageTuple?> getWordMeaningCheckAll(
     final String word,
   ) async {
-    if (isNotLoaded) return null;
-
     for (final lang in _paths) {
       final result =
           await getWordMeaning((language: lang.language, word: word));
@@ -191,8 +192,10 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     if (isNotLoaded) return false;
 
     for (final path in _paths) {
-      final isCorrect =
-          await repository.checkWord((language: path.language, word: word));
+      final isCorrect = await repository.checkWord(
+        (language: path.language, word: word),
+        isLocalAllowed: isLoaded,
+      );
       if (isCorrect) return true;
     }
     return false;
