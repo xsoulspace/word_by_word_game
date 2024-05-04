@@ -296,12 +296,18 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       status: LevelStateStatus.loading,
     );
     await _globalLevelLoadCompleter!.future;
-    if (dto.levelBloc.featuresSettings.isTechnologiesEnabled) {
+    Future<void> runCache() async {
       final shouldUseServer = dto.onlineStatusService.isConnected &&
           dto.wbwDictionary.repository.isAllowedToUseRemote;
-      if (!shouldUseServer) {
-        await dto.wbwDictionary.loadAndCache();
+      if (!shouldUseServer) await dto.wbwDictionary.loadAndCache();
+    }
+
+    if (DeviceRuntimeType.isWeb) {
+      if (dto.levelBloc.featuresSettings.isTechnologiesEnabled) {
+        await runCache();
       }
+    } else {
+      await runCache();
     }
     dto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.playing,
