@@ -17,6 +17,7 @@ void main() {
       repository: WbwDictionaryRepository(
         onlineStatusService: FakeOnlineStatusService(),
         remote: FakeWbwDictionaryRemoteSource(),
+        isAllowedToUseRemote: false,
       ),
     );
     const newWord = CurrentWordModel(fullWord: 'life');
