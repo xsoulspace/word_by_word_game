@@ -68,8 +68,9 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   bool get isNotLoaded =>
       value == WbwDictionariesLoadingStatus.notLoaded || isLoading;
   int debugLoadingTimeInSeconds = 0;
-  Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) =>
-      repository.getWordMeaning(tuple, isLocalAllowed: isLoaded);
+  Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) async =>
+      (await repository.getWordMeaning(tuple, isLocalAllowed: isLoaded))
+          .clearWhitespaces();
 
   /// checks all languages
   ///

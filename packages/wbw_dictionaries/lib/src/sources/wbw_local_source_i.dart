@@ -103,7 +103,7 @@ abstract base class WbwDictionaryLocalSourceBase {
     final meaning = record?['meaning'];
     final m = meaning == null || meaning is! String ? '' : meaning;
     if (m.isEmpty) return m;
-    return m.clearWhitespaces();
+    return m;
   }
 
   Future<int> getDictionaryLength() => _store.query().count(_eDb);
