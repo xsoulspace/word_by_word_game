@@ -4,11 +4,21 @@ import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 
 class FakeLocalDbDataSource extends Fake implements LocalDbDataSource {}
 
+class FakeWbwDictionaryRemoteSource extends Fake
+    implements WbwDictionaryRemoteSource {}
+
+class FakeOnlineStatusService extends Fake implements OnlineStatusService {}
+
 void main() {
   group('DictionaryMechanics', () {
     final dictionaryMechanics = DictionaryMechanics();
     final wbwDictionary = WbwDictionary(
       simpleLocal: FakeLocalDbDataSource(),
+      repository: WbwDictionaryRepository(
+        onlineStatusService: FakeOnlineStatusService(),
+        remote: FakeWbwDictionaryRemoteSource(),
+        isAllowedToUseRemote: false,
+      ),
     );
     const newWord = CurrentWordModel(fullWord: 'life');
     const writtenWord = CurrentWordModel(fullWord: 'PumA');

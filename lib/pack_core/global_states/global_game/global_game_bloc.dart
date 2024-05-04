@@ -32,8 +32,10 @@ class GlobalGameBlocDiDto {
         weatherCubit = context.read(),
         wbwDictionary = context.read(),
         uiKeyboardController = context.read(),
+        onlineStatusService = context.read(),
         debugCubit = context.read();
   final DebugCubit debugCubit;
+  final OnlineStatusService onlineStatusService;
   final WbwDictionary wbwDictionary;
   final WeatherCubit weatherCubit;
   final UiKeyboardController uiKeyboardController;
@@ -294,8 +296,18 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       status: LevelStateStatus.loading,
     );
     await _globalLevelLoadCompleter!.future;
-    if (dto.levelBloc.featuresSettings.isTechnologiesEnabled) {
-      await dto.wbwDictionary.loadAndCache();
+    Future<void> runCache() async {
+      final shouldUseServer = dto.onlineStatusService.isConnected &&
+          dto.wbwDictionary.repository.isAllowedToUseRemote;
+      if (!shouldUseServer) await dto.wbwDictionary.loadAndCache();
+    }
+
+    if (DeviceRuntimeType.isWeb) {
+      if (dto.levelBloc.featuresSettings.isTechnologiesEnabled) {
+        await runCache();
+      }
+    } else {
+      await runCache();
     }
     dto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.playing,

@@ -29,6 +29,7 @@ class Envs {
       String.fromEnvironment('WIREDASH_PROJECT_ID');
   static const wiredashProjectSecret =
       String.fromEnvironment('WIREDASH_PROJECT_SECRET');
+  static const serverUrl = String.fromEnvironment('SERVER_URL');
 }
 
 enum StoreType {

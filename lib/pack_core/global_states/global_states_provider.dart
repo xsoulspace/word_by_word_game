@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
+import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
@@ -25,6 +26,10 @@ class GlobalStatesProvider extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: AppStatusNotifier.new),
           ChangeNotifierProvider.value(value: uiLocaleNotifier),
+          ChangeNotifierProvider(create: OnlineStatusService.new),
+          Provider(
+            create: (final context) => AppServerpodClient(url: Envs.serverUrl),
+          ),
           Provider(create: (final context) => initializer.analyticsService),
           Provider<LocalDbDataSource>(
             create: SharedPreferencesDbDataSourceImpl.new,
