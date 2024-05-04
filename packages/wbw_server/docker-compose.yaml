@@ -1,0 +1,40 @@
+version: "3.7"
+
+services:
+  # server:
+  #   build: .
+  #   ports:
+  #     - "8100:8100"
+  #     - "8101:8101"
+  #     - "8102:8102"
+  #   depends_on:
+  #     - postgres
+  #     - redis
+  #   networks:
+  #     - wbwapp
+  postgres:
+    image: postgres:14.1
+    ports:
+      - "8103:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: wbw
+      POSTGRES_PASSWORD: "NDQNBbQHwQ5vLM47zp0yQutjQj0O-QZn"
+    volumes:
+      - wbw_data:/var/lib/postgresql/data
+    networks:
+      - wbwapp
+  # redis:
+  #   image: redis:6.2.6
+  #   ports:
+  #     - "8104:6379"
+  #   command: redis-server --requirepass "0B8olsw61swzX02_Ae3Xb1Q6bM6anoSs"
+  #   environment:
+  #     - REDIS_REPLICATION_MODE=master
+  #   networks:
+  #     - wbwapp
+volumes:
+  wbw_data:
+networks:
+  wbwapp:
+#   frontend:
