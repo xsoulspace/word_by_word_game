@@ -262,7 +262,9 @@ class _TechnologyTile extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (isSelectionAllowed)
+                  if (isUnlocked)
+                    const Icon(Icons.done)
+                  else if (isSelectionAllowed)
                     Switch.adaptive(
                       value: isSelected,
                       onChanged: (final isSelected) =>
