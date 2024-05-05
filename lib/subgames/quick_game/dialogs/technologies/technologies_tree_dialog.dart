@@ -273,7 +273,7 @@ class _TechnologyTile extends StatelessWidget {
                   else if (isSelected)
                     const Icon(Icons.arrow_right),
                   UiBaseButton(
-                    onPressed: isSelectionAllowed
+                    onPressed: isSelectionAllowed && !isUnlocked
                         ? () => onSelectedChanged(value.id, !isSelected)
                         : () {},
                     child: Text(

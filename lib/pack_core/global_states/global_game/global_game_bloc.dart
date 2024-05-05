@@ -221,7 +221,16 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
             )
             .toList(),
       );
+
+      /// resetting other properties
+      level = level.copyWith(
+        currentWord: const CurrentWordModel(),
+        latestWord: '',
+        words: {},
+        technologyTreeProgress: TechnologyTreeProgressModel.empty,
+      );
     }
+
     updatedState = updatedState.copyWith(
       currentLevelModel: level,
       currentLevelId: level.id,
