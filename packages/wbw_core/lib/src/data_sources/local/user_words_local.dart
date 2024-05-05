@@ -18,10 +18,24 @@ class UserWordsLocalDataSourceImpl implements UserWordsLocalDataSource {
   static const _persistenceKey = 'localdictionary';
   @override
   Future<WordsType> loadUserWords() async {
-    final jsonMap = await localDb.getMap(_persistenceKey);
-    if (jsonMap.isEmpty) return const WordsType({});
+    /// old implementation
+    dynamic json;
     try {
-      return switch (jsonMap) {
+      json = await localDb.getMap(_persistenceKey);
+      // ignore: avoid_catches_without_on_clauses, empty_catches
+    } catch (e) {}
+
+    /// new implementation
+    if (json == null) {
+      try {
+        json = await localDb.getStringsIterable(key: _persistenceKey);
+        // ignore: avoid_catches_without_on_clauses, empty_catches
+      } catch (e) {}
+    }
+
+    if (json == null) return const WordsType({});
+    try {
+      return switch (json) {
         {'words': final Set<String> words} => WordsType(words),
         final List<String> words => WordsType(words.toSet()),
         _ => const WordsType({}),

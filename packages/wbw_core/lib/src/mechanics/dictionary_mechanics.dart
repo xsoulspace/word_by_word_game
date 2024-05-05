@@ -17,7 +17,7 @@ class DictionaryMechanics {
   }) =>
       words.containsKey(word.fullWord);
   final _shuffledEnglishWords = english_words.all.toList()..shuffle();
-  final _shuffledRussianWords = english_words.all.toList()..shuffle();
+  final _shuffledRussianWords = russian_words.allWords.toList()..shuffle();
 
   /// As WBW uses custom keyboarad, we always know,
   /// what keyboard language is used.

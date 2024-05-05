@@ -7,6 +7,8 @@ gen:
 gen-rewrite:
 	fvm dart run build_runner build --delete-conflicting-outputs
 
+build-huawai:
+	fvm flutter build appbundle --dart-define-from-file=configs/prod.json --dart-define=STORE=huawaiStore -t lib/main_prod.dart
 build-google-play:
 	fvm flutter build appbundle --dart-define-from-file=configs/prod.json --dart-define=STORE=googlePlay -t lib/main_prod.dart
 build-rustore:

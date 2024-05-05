@@ -35,13 +35,18 @@ class FirebaseAnalyticsPlugin extends AnalyticsServicePlugin {
   Future<void> onLoad() async {}
   @override
   Future<void> onDelayedLoad() async {
-    _isEnabled = kTestingAnalytics || await analytics.isSupported();
-    if (_isEnabled) {
-      /// Logs the standard `app_open` event.
-      ///
-      /// See: https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event.html#APP_OPEN
-      await analytics.logEvent(name: 'app_open');
-      _shouldRecordErrors = true;
+    try {
+      _isEnabled = kTestingAnalytics || await analytics.isSupported();
+      if (_isEnabled) {
+        /// Logs the standard `app_open` event.
+        ///
+        /// See: https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.Event.html#APP_OPEN
+        await analytics.logEvent(name: 'app_open');
+        _shouldRecordErrors = true;
+      }
+      // ignore: avoid_catches_without_on_clauses, empty_catches
+    } catch (e) {
+      // case if offline
     }
   }
 

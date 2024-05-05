@@ -38,13 +38,14 @@ dependencies:
   russian_words: ^0.2.0
   shared_preferences: ^2.2.0
   universal_io: ^2.2.2
-  uuid: ^3.0.7
-  wbw_design_core:
-    path: ../wbw_design_core
+  uuid: ^4.4.0
+  wbw_client:
+    path: ../wbw_client
   wbw_dictionaries:
     path: ../wbw_dictionaries
   wbw_locale:
     path: ../wbw_locale
+  web: ^0.5.1
 
 dev_dependencies:
   analyzer: ^6.4.1
