@@ -20,7 +20,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
     final locale = useLocale(context);
     final textTheme = context.textTheme;
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Column(
         children: [
           TabBar(
@@ -34,7 +34,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     Languages.ru: 'Энергия',
                     Languages.it: 'Energia',
                   },
-                ).getValue(locale),
+                ),
                 iconChildren: [
                   Image.asset(
                     UiAssetHelper.useImagePath(UiIcons.fire.path),
@@ -46,11 +46,24 @@ class UIActionFrameAdvanced extends StatelessWidget {
               (
                 title: const LocalizedMap(
                   value: {
+                    Languages.en: 'Actions',
+                    Languages.ru: 'Действия',
+                    Languages.it: 'Azioni',
+                  },
+                ),
+                iconChildren: [
+                  const Icon(CupertinoIcons.book, size: 18),
+                  const Gap(2),
+                ]
+              ),
+              (
+                title: const LocalizedMap(
+                  value: {
                     Languages.en: 'Technology',
                     Languages.ru: 'Технология',
                     Languages.it: 'Tecnologia',
                   },
-                ).getValue(locale),
+                ),
                 iconChildren: [
                   const Icon(CupertinoIcons.lab_flask, size: 18),
                   const Gap(2),
@@ -65,7 +78,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...e.iconChildren,
-                        Text(e.title),
+                        Text(e.title.getValue(locale)),
                       ],
                     ),
                   ),
@@ -88,6 +101,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     const UiEnergyCards(),
                   ],
                 ),
+                const _ActionsTabView(),
                 const _TechnologyTabView(),
               ],
             ),
@@ -388,6 +402,202 @@ class _TechnologyMultiplierCard extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _ActionsTabView extends StatelessWidget {
+  const _ActionsTabView({super.key});
+
+  @override
+  Widget build(final BuildContext context) => const Row(
+        children: [Flexible(child: HeatEnginePanel())],
+      );
+}
+
+// TODO(arenukvern): add as freezed
+class EngineCrystalModel {
+  EngineCrystalModel({
+    required this.id,
+  });
+  final String id;
+}
+
+class HeatEnginePanel extends StatefulWidget {
+  const HeatEnginePanel({super.key});
+
+  @override
+  State<HeatEnginePanel> createState() => _HeatEnginePanelState();
+}
+
+class _HeatEnginePanelState extends State<HeatEnginePanel> {
+  final _cellsCrystals = <EngineCrystalModel?>[
+    EngineCrystalModel(id: '1'),
+    EngineCrystalModel(id: '2'),
+  ];
+  late final _engineCrystals = List<EngineCrystalModel?>.generate(
+    _cellsCrystals.length,
+    (final index) => null,
+  );
+  @override
+  Widget build(final BuildContext context) => Column(
+        children: [
+          const Text('Engine panel'),
+          Card.outlined(
+            color: Colors.transparent,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Gap(8),
+                Column(
+                  children: [
+                    const Gap(4),
+                    ...List.generate(
+                      _cellsCrystals.length,
+                      (final index) {
+                        final crystal = _cellsCrystals[index];
+                        return _EngineCrystalCell(
+                          crystal: crystal,
+                          index: index,
+                          key: ValueKey(index),
+                          onCrystalPlaced: (final crystal) {
+                            _cellsCrystals[index] = crystal;
+                            _engineCrystals[index] = null;
+                            setState(() {});
+                          },
+                        );
+                      },
+                    ),
+                    const Gap(4),
+                  ],
+                ),
+                const Gap(8),
+                Card(
+                  child: Column(
+                    children: [
+                      ...List.generate(
+                        _engineCrystals.length,
+                        (final index) {
+                          final crystal = _engineCrystals[index];
+                          return _EngineWaveRow(
+                            key: ValueKey(index),
+                            crystal: crystal,
+                            index: index,
+                            onCrystalPlaced: (final crystal) {
+                              _engineCrystals[index] = crystal;
+                              _cellsCrystals[index] = null;
+                              setState(() {});
+                            },
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Text('Heat power'),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 150),
+            child: LinearProgressIndicator(
+              color: Colors.green[600],
+              value: _engineCrystals.nonNulls.length / _cellsCrystals.length,
+            ),
+          ),
+        ],
+      );
+}
+
+class _EngineCrystalCell extends StatelessWidget {
+  const _EngineCrystalCell({
+    required this.index,
+    required this.crystal,
+    required this.onCrystalPlaced,
+    super.key,
+  });
+  final int index;
+  final EngineCrystalModel? crystal;
+  final ValueChanged<EngineCrystalModel> onCrystalPlaced;
+
+  @override
+  Widget build(final BuildContext context) {
+    final isFilled = crystal != null;
+    return DragTarget<EngineCrystalModel>(
+      builder: (final context, final candidateData, final rejectedData) =>
+          Card.outlined(
+        elevation: candidateData.isNotEmpty ? 4 : 0,
+        margin: const EdgeInsets.all(2),
+        child: SizedBox(
+          width: 28,
+          height: 28,
+          child: isFilled ? _EngineCrystalWidget(crystal: crystal!) : null,
+        ),
+      ),
+      onAcceptWithDetails: (final details) {
+        if (isFilled) return;
+        final newCrystal = details.data;
+        onCrystalPlaced(newCrystal);
+      },
+    );
+  }
+}
+
+class _EngineCrystalWidget extends StatelessWidget {
+  const _EngineCrystalWidget({
+    required this.crystal,
+    super.key,
+  });
+
+  final EngineCrystalModel crystal;
+
+  @override
+  Widget build(final BuildContext context) {
+    final crystalWidget = Container(
+      width: 24,
+      height: 24,
+      color: Colors.amber,
+    );
+    return Draggable(
+      feedback: crystalWidget,
+      data: crystal,
+      axis: Axis.horizontal,
+      childWhenDragging: const SizedBox(),
+      child: crystalWidget,
+    );
+  }
+}
+
+class _EngineWaveRow extends StatelessWidget {
+  const _EngineWaveRow({
+    required this.index,
+    required this.crystal,
+    required this.onCrystalPlaced,
+    super.key,
+  });
+  final int index;
+  final EngineCrystalModel? crystal;
+  final ValueChanged<EngineCrystalModel> onCrystalPlaced;
+
+  @override
+  Widget build(final BuildContext context) {
+    final isFilled = crystal != null;
+    return DragTarget<EngineCrystalModel>(
+      builder: (final context, final candidateData, final rejectedData) =>
+          Card.outlined(
+        elevation: candidateData.isNotEmpty ? 4 : 0,
+        margin: const EdgeInsets.all(2),
+        child: SizedBox(
+          width: 28,
+          height: 28,
+          child: isFilled ? _EngineCrystalWidget(crystal: crystal!) : null,
+        ),
+      ),
+      onAcceptWithDetails: (final details) {
+        if (isFilled) return;
+        final newCrystal = details.data;
+        onCrystalPlaced(newCrystal);
+      },
     );
   }
 }
