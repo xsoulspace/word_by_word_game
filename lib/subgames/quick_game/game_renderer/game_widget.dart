@@ -36,6 +36,7 @@ class WbwGameWidget extends HookWidget {
             //Work in progress loading screen on game start
             loadingBuilder: (final context) => const LoadingScreen(),
             initialActiveOverlays: [
+              GameOverlaysRoutes.weather.name,
               GameOverlaysRoutes.gui.name,
               GameOverlaysRoutes.notifications.name,
               GameOverlaysRoutes.debug.name,

@@ -221,7 +221,16 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
             )
             .toList(),
       );
+
+      /// resetting other properties
+      level = level.copyWith(
+        currentWord: const CurrentWordModel(),
+        latestWord: '',
+        words: {},
+        technologyTreeProgress: TechnologyTreeProgressModel.empty,
+      );
     }
+
     updatedState = updatedState.copyWith(
       currentLevelModel: level,
       currentLevelId: level.id,
@@ -297,8 +306,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     await _globalLevelLoadCompleter!.future;
     Future<void> runCache() async {
-      final shouldUseServer = dto.onlineStatusService.isConnected &&
-          dto.wbwDictionary.repository.isAllowedToUseRemote;
+      final shouldUseServer = dto.wbwDictionary.repository.isAllowedToUseRemote;
       if (!shouldUseServer) await dto.wbwDictionary.loadAndCache();
     }
 

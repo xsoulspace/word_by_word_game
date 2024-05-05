@@ -132,6 +132,9 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
         await simpleLocal.getBool(key: _kWasCalledToLoadKey);
     if (!isAllowedToBeLoaded) return;
 
+    /// do not load if user is online
+    if (repository.onlineStatusService.isConnected) return;
+
     value = WbwDictionariesLoadingStatus.loading;
     _startStopwatch();
     print('caching dictionaries started');
