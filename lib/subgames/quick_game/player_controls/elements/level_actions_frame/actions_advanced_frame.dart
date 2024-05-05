@@ -224,6 +224,19 @@ class _ChangeResearchingTechnology extends StatelessWidget {
   return (onChangeTechnology: onChangeTechnology);
 }
 
+({bool isUnlocked, double percentage}) _useTechIsUnlocked(
+  final BuildContext context,
+) {
+  final mechanics = context.read<MechanicsCollection>();
+  final technologiesCubit = context.watch<TechnologiesCubit>();
+  final technologyProgress = technologiesCubit.researchingTechnologyProgress;
+  final unlockCondition = technologyProgress?.unlockCondition;
+  if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
+  return mechanics.technology.checkIsUnlockedForLanguage(
+    unlockCondition: unlockCondition,
+  );
+}
+
 class _ResearchMultiplierCards extends StatelessWidget {
   const _ResearchMultiplierCards();
 
@@ -231,16 +244,8 @@ class _ResearchMultiplierCards extends StatelessWidget {
   Widget build(final BuildContext context) {
     final technologiesCubit = context.watch<TechnologiesCubit>();
     final technology = technologiesCubit.researchingTechnology;
-    final technologyProgress = technologiesCubit.researchingTechnologyProgress;
-    final mechanics = context.read<MechanicsCollection>();
-    final unlockCondition = technologyProgress?.unlockCondition;
     final locale = useLocale(context);
-    final (:isUnlocked, :percentage) = () {
-      if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
-      return mechanics.technology.checkIsUnlockedForLanguage(
-        unlockCondition: unlockCondition,
-      );
-    }();
+    final (:isUnlocked, :percentage) = _useTechIsUnlocked(context);
 
     return Row(
       children: [
@@ -296,47 +301,52 @@ class _ResearchMultiplierCards extends StatelessWidget {
                   ),
                 ),
               ),
-              const _ChangeResearchingTechnology(),
+              if (!isUnlocked) const _ChangeResearchingTechnology(),
             ],
           ),
         ).animate().fadeIn(),
-        Flexible(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _TechnologyMultiplierCard(type: EnergyMultiplierType.m1),
-                    Gap(4),
-                    _TechnologyMultiplierCard(type: EnergyMultiplierType.m2),
-                    Gap(4),
-                    _TechnologyMultiplierCard(type: EnergyMultiplierType.m3),
-                  ],
+        if (!isUnlocked)
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _TechnologyMultiplierCard(type: EnergyMultiplierType.m1),
+                      Gap(4),
+                      _TechnologyMultiplierCard(type: EnergyMultiplierType.m2),
+                      Gap(4),
+                      _TechnologyMultiplierCard(type: EnergyMultiplierType.m3),
+                    ],
+                  ),
                 ),
-              ),
-              const Gap(12),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 150),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        'Use points to research faster',
-                        textAlign: TextAlign.center,
-                        style: context.textTheme.labelMedium?.copyWith(
-                          color: context.colorScheme.tertiary,
-                        ),
-                      ).animate().fadeIn(),
-                    ),
-                  ],
+                const Gap(12),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 150),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'Use points to research faster',
+                          textAlign: TextAlign.center,
+                          style: context.textTheme.labelMedium?.copyWith(
+                            color: context.colorScheme.tertiary,
+                          ),
+                        ).animate().fadeIn(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const Gap(8),
-            ],
-          ),
-        ),
+                const Gap(8),
+              ],
+            ),
+          )
+        else ...[
+          const _SelectTechnologyCard(),
+          const Gap(8),
+        ],
       ],
     );
   }

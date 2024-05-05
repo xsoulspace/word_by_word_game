@@ -267,7 +267,9 @@ class _TechnologyTile extends StatelessWidget {
                       value: isSelected,
                       onChanged: (final isSelected) =>
                           onSelectedChanged(value.id, isSelected),
-                    ),
+                    )
+                  else if (isSelected)
+                    const Icon(Icons.arrow_right),
                   UiBaseButton(
                     onPressed: isSelectionAllowed
                         ? () => onSelectedChanged(value.id, !isSelected)
@@ -287,21 +289,22 @@ class _TechnologyTile extends StatelessWidget {
                 ],
               ),
               Text(
-                isUnlocked
-                    ? const LocalizedMap(
-                        value: {
-                          Languages.en: 'Researched',
-                          Languages.ru: 'Исследовано',
-                          Languages.it: 'Ricerco',
-                        },
-                      ).getValue(locale)
-                    : const LocalizedMap(
-                        value: {
-                          Languages.en: 'Not researched',
-                          Languages.ru: 'Не исследовано',
-                          Languages.it: 'Non ricerco',
-                        },
-                      ).getValue(locale),
+                (isUnlocked
+                        ? const LocalizedMap(
+                            value: {
+                              Languages.en: 'Researched',
+                              Languages.ru: 'Исследовано',
+                              Languages.it: 'Ricerco',
+                            },
+                          )
+                        : const LocalizedMap(
+                            value: {
+                              Languages.en: 'Not researched',
+                              Languages.ru: 'Не исследовано',
+                              Languages.it: 'Non ricerco',
+                            },
+                          ))
+                    .getValue(locale),
                 style: context.textTheme.labelMedium?.copyWith(
                   color: (isUnlocked
                           ? context.colorScheme.surfaceTint
