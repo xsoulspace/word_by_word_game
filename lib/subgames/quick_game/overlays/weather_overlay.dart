@@ -110,9 +110,7 @@ class _WeatherOverlayBodyState extends State<_WeatherOverlayBody> {
         ),
         AnimatedContainer(
           duration: 1500.milliseconds,
-          decoration: BoxDecoration(
-            color: color,
-          ),
+          decoration: BoxDecoration(color: color),
         ),
       ],
     );

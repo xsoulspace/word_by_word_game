@@ -297,8 +297,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     await _globalLevelLoadCompleter!.future;
     Future<void> runCache() async {
-      final shouldUseServer = dto.onlineStatusService.isConnected &&
-          dto.wbwDictionary.repository.isAllowedToUseRemote;
+      final shouldUseServer = dto.wbwDictionary.repository.isAllowedToUseRemote;
       if (!shouldUseServer) await dto.wbwDictionary.loadAndCache();
     }
 
