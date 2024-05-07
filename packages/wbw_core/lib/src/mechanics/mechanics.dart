@@ -7,10 +7,12 @@ export './dictionary_mechanics.dart';
 export './score_mechanics.dart';
 export './word_composition_mechanics.dart';
 export './world_time_mechanics.dart';
+export 'engine_mechanics.dart';
 export 'objects/objects.dart';
 
 class MechanicsCollection {
   MechanicsCollection._({
+    required this.engine,
     required this.wordComposition,
     required this.worldTime,
     required this.score,
@@ -24,6 +26,7 @@ class MechanicsCollection {
   factory MechanicsCollection.getV1(final BuildContext context) {
     final score = ScoreMechanics();
     return MechanicsCollection._(
+      engine: EngineMechanics(),
       wordComposition: WordCompositionMechanics(),
       worldTime: WorldTimeMechanics(),
       score: ScoreMechanics(),
@@ -34,6 +37,7 @@ class MechanicsCollection {
       technology: TechnologyMechanics(scoreMechanics: score),
     );
   }
+  final EngineMechanics engine;
   final TechnologyMechanics technology;
   final WeatherMechanics weather;
   final HotAirBalloonMechanics hotAirBalloon;

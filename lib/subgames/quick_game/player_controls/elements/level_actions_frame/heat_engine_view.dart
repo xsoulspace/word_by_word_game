@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 // TODO(arenukvern): add as freezed
 class EngineCrystalModel {
@@ -18,19 +21,69 @@ class HeatEngineView extends StatefulWidget {
 }
 
 class _HeatEngineViewState extends State<HeatEngineView> {
-  final _cellsCrystals = <EngineCrystalModel?>[
-    EngineCrystalModel(id: '1'),
-    EngineCrystalModel(id: '2'),
-  ];
-  late final _engineCrystals = List<EngineCrystalModel?>.generate(
-    _cellsCrystals.length,
-    (final index) => null,
-  );
   static const _crystalCellDimension = 34.0;
+  // TODO(arenukvern): save engine crystal
+  final List<EngineCrystalModel?> _cellsCrystals = [];
+  final List<EngineCrystalModel?> _engineCrystals = [];
+  EngineMechanics get _engineMechanics =>
+      context.read<MechanicsCollection>().engine;
+
+  LevelPlayersBloc get _levelPlayerBloc => context.read<LevelPlayersBloc>();
+
+  @override
+  void initState() {
+    super.initState();
+    final engineCrystalsCount = _engineMechanics
+        .convertPowerUsageToCrystalCount(_levelPlayerBloc.powerUsage);
+    final totalCrystalsCount = _engineMechanics.crystalsCount;
+    _cellsCrystals.length = _engineMechanics.crystalsCount;
+    _engineCrystals.length = _engineMechanics.crystalsCount;
+    final crystals = List<EngineCrystalModel?>.generate(
+      totalCrystalsCount,
+      (final i) => EngineCrystalModel(id: '$i'),
+    );
+    for (var i = 0; i < totalCrystalsCount; i++) {
+      final crystal = crystals[i];
+      if (i < engineCrystalsCount) {
+        _engineCrystals[i] = crystal;
+      } else {
+        _cellsCrystals[i] = crystal;
+      }
+    }
+  }
+
+  void _onCrystalPlacedToEngine(
+    final int index,
+    final EngineCrystalModel crystal,
+  ) {
+    _engineCrystals[index] = crystal;
+    _cellsCrystals[index] = null;
+    setState(() {});
+    _changePower();
+  }
+
+  void _onCrystalPlacedToStorage(
+    final int index,
+    final EngineCrystalModel crystal,
+  ) {
+    _cellsCrystals[index] = crystal;
+    _engineCrystals[index] = null;
+    setState(() {});
+    _changePower();
+  }
+
+  void _changePower() {
+    final powerUsage = _engineMechanics
+        .convertCrystalCountToPowerUsage(_engineCrystals.nonNulls.length);
+    _levelPlayerBloc.onPowerUsageChange('$powerUsage');
+  }
+
   @override
   Widget build(final BuildContext context) => Column(
         children: [
-          const Text('Engine panel'),
+          const Gap(8),
+          const Text('Heat generator'),
+          const Spacer(),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -50,11 +103,8 @@ class _HeatEngineViewState extends State<HeatEngineView> {
                             crystal: crystal,
                             index: index,
                             cellDimension: _crystalCellDimension,
-                            onCrystalPlaced: (final crystal) {
-                              _cellsCrystals[index] = crystal;
-                              _engineCrystals[index] = null;
-                              setState(() {});
-                            },
+                            onCrystalPlaced: (final crystal) =>
+                                _onCrystalPlacedToStorage(index, crystal),
                           );
                         },
                       ),
@@ -79,11 +129,8 @@ class _HeatEngineViewState extends State<HeatEngineView> {
                                 cellDimension: _crystalCellDimension,
                                 crystal: crystal,
                                 index: index,
-                                onCrystalPlaced: (final crystal) {
-                                  _engineCrystals[index] = crystal;
-                                  _cellsCrystals[index] = null;
-                                  setState(() {});
-                                },
+                                onCrystalPlaced: (final crystal) =>
+                                    _onCrystalPlacedToEngine(index, crystal),
                               );
                             },
                           ),
@@ -108,6 +155,7 @@ class _HeatEngineViewState extends State<HeatEngineView> {
               const Gap(8),
             ],
           ),
+          const Spacer(),
         ],
       );
 }

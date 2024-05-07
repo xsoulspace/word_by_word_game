@@ -46,7 +46,7 @@ class UiDebugSideBarBody extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final screenCubit = context.watch<UiDebugSideBarCubit>();
-    context.watch<LevelPlayersBloc>();
+    final levelPlayerBloc = context.watch<LevelPlayersBloc>();
     final debugCubit = context.watch<DebugCubit>();
     final screenSize = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
@@ -144,8 +144,8 @@ class UiDebugSideBarBody extends StatelessWidget {
             labelText: 'maxPower',
           ),
           UiTextField.underlined(
-            value: screenCubit.powerUsage.toString(),
-            onChanged: screenCubit.onPowerUsageChange,
+            value: levelPlayerBloc.powerUsage.toString(),
+            onChanged: levelPlayerBloc.onPowerUsageChange,
             keyboardType: TextInputType.number,
             labelText: 'powerUsage',
           ),

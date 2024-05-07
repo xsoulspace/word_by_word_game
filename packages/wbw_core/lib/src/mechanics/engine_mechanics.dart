@@ -30,4 +30,29 @@
 ///   - https://teletype.in/@maria-blog/IngTWsw5
 class EngineMechanics {
   EngineMechanics();
+  static const _crystalCountToPowerUsageMap = <int, double>{
+    0: 0,
+    1: 0.4,
+    2: 0.75,
+  };
+  static final _powerUsageToCrystalCount = Map.fromIterable(
+    _crystalCountToPowerUsageMap.entries.map(
+      (final e) => MapEntry(e.value, e.key),
+    ),
+  );
+  int get crystalsCount => _crystalCountToPowerUsageMap.length - 1;
+
+  /// above 0.75 or volumeIncreaseRatio or maxVolume
+  /// should be increased
+  ///
+  /// 0.75, max
+  /// 0.4, flight min
+  /// 0, min
+  double convertCrystalCountToPowerUsage(final int count) => switch (count) {
+        <= 2 => _crystalCountToPowerUsageMap[count] ?? 0,
+        _ => _crystalCountToPowerUsageMap.values.last,
+      };
+
+  int convertPowerUsageToCrystalCount(final double value) =>
+      _powerUsageToCrystalCount[value] ?? 0;
 }
