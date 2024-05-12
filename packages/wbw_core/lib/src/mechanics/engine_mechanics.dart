@@ -35,7 +35,7 @@ class EngineMechanics {
     1: 0.4,
     2: 0.75,
   };
-  static final _powerUsageToCrystalCount = Map.fromIterable(
+  final _powerUsageToCrystalCount = Map<double, int>.fromEntries(
     _crystalCountToPowerUsageMap.entries.map(
       (final e) => MapEntry(e.value, e.key),
     ),
