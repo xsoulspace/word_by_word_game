@@ -17,7 +17,7 @@ class GameBottomBar extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => BlocProvider(
         create: (final context) => WordCompositionCubit(
-          diDto: WordCompositionStateDiDto.use(context.read),
+          dto: WordCompositionStateDiDto.use(context.read),
         ),
         child: Builder(
           builder: (final context) => _Card(

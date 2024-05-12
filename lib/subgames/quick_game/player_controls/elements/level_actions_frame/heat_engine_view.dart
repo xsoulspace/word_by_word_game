@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 // TODO(arenukvern): add as freezed
 class EngineCrystalModel {
@@ -13,7 +16,7 @@ class EngineCrystalModel {
   final String id;
 }
 
-class HeatEngineView extends StatefulWidget {
+class HeatEngineView extends StatefulHookWidget {
   const HeatEngineView({super.key});
 
   @override
@@ -29,6 +32,8 @@ class _HeatEngineViewState extends State<HeatEngineView> {
       context.read<MechanicsCollection>().engine;
 
   LevelPlayersBloc get _levelPlayerBloc => context.read<LevelPlayersBloc>();
+  WordCompositionCubit get _wordCompositionCubit =>
+      context.read<WordCompositionCubit>();
 
   @override
   void initState() {
@@ -52,20 +57,20 @@ class _HeatEngineViewState extends State<HeatEngineView> {
     }
   }
 
-  void _onCrystalPlacedToEngine(
-    final int index,
-    final EngineCrystalModel crystal,
-  ) {
+  void _onCrystalPlacedToEngine({
+    required final int index,
+    required final EngineCrystalModel crystal,
+  }) {
     _engineCrystals[index] = crystal;
     _cellsCrystals[index] = null;
     setState(() {});
     _changePower();
   }
 
-  void _onCrystalPlacedToStorage(
-    final int index,
-    final EngineCrystalModel crystal,
-  ) {
+  void _onCrystalPlacedToStorage({
+    required final int index,
+    required final EngineCrystalModel crystal,
+  }) {
     _cellsCrystals[index] = crystal;
     _engineCrystals[index] = null;
     setState(() {});
@@ -76,88 +81,106 @@ class _HeatEngineViewState extends State<HeatEngineView> {
     final powerUsage = _engineMechanics
         .convertCrystalCountToPowerUsage(_engineCrystals.nonNulls.length);
     _levelPlayerBloc.onPowerUsageChange('$powerUsage');
+    _wordCompositionCubit.onCrystalMoved(_kMovementMultiplier);
   }
 
+  static const _kMovementMultiplier = EnergyMultiplierType.m1;
   @override
-  Widget build(final BuildContext context) => Column(
-        children: [
-          const Gap(8),
-          const Text('Heat generator'),
-          const Spacer(),
-          Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const Gap(8),
-              Card.outlined(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 4),
-                  child: Column(
-                    children: [
-                      const Gap(4),
-                      ...List.generate(
-                        _cellsCrystals.length,
-                        (final index) {
-                          final crystal = _cellsCrystals[index];
-                          return _EngineCrystalCell(
-                            key: ValueKey(index),
-                            crystal: crystal,
+  Widget build(final BuildContext context) {
+    final composable = useApplyingScoreComposable(
+      type: _kMovementMultiplier,
+      context: context,
+    );
+    final movementScore = composable.applyingScore;
+
+    return Column(
+      children: [
+        const Spacer(),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Gap(8),
+            Card.outlined(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: Column(
+                  children: [
+                    const Gap(4),
+                    ...List.generate(
+                      _cellsCrystals.length,
+                      (final index) {
+                        final crystal = _cellsCrystals[index];
+                        return _EngineCrystalCell(
+                          key: ValueKey(index),
+                          crystal: crystal,
+                          index: index,
+                          movementScore: movementScore,
+                          cellDimension: _crystalCellDimension,
+                          onCrystalPlaced: (final crystal) =>
+                              _onCrystalPlacedToStorage(
                             index: index,
-                            cellDimension: _crystalCellDimension,
-                            onCrystalPlaced: (final crystal) =>
-                                _onCrystalPlacedToStorage(index, crystal),
-                          );
-                        },
-                      ),
-                      const Gap(4),
-                    ],
-                  ),
-                ),
-              ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(4),
-                  child: Row(
-                    children: [
-                      Column(
-                        children: [
-                          ...List.generate(
-                            _engineCrystals.length,
-                            (final index) {
-                              final crystal = _engineCrystals[index];
-                              return _EngineWaveRow(
-                                key: ValueKey(index),
-                                cellDimension: _crystalCellDimension,
-                                crystal: crystal,
-                                index: index,
-                                onCrystalPlaced: (final crystal) =>
-                                    _onCrystalPlacedToEngine(index, crystal),
-                              );
-                            },
+                            crystal: crystal,
                           ),
-                        ],
-                      ),
-                      const Gap(8),
-                      const Text('Heat\npower'),
-                      const Gap(8),
-                      AnimatedProgressBar(
-                        backgroundColor: Colors.green[200],
-                        color: Colors.green[600],
-                        value: _engineCrystals.nonNulls.length /
-                            _cellsCrystals.length,
-                        height: 70,
-                        width: 12,
-                      ),
-                      const Gap(4),
-                    ],
-                  ),
+                        );
+                      },
+                    ),
+                    const Gap(4),
+                  ],
                 ),
               ),
-              const Gap(8),
-            ],
-          ),
-          const Spacer(),
-        ],
-      );
+            ),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(4),
+                child: Row(
+                  children: [
+                    Column(
+                      children: [
+                        ...List.generate(
+                          _engineCrystals.length,
+                          (final index) {
+                            final crystal = _engineCrystals[index];
+                            return _EngineWaveRow(
+                              key: ValueKey(index),
+                              cellDimension: _crystalCellDimension,
+                              movementScore: movementScore,
+                              crystal: crystal,
+                              index: index,
+                              onCrystalPlaced: (final crystal) =>
+                                  _onCrystalPlacedToEngine(
+                                index: index,
+                                crystal: crystal,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                    const Gap(8),
+                    const Text('Heat\npower'),
+                    const Gap(8),
+                    AnimatedProgressBar(
+                      backgroundColor: Colors.green[200],
+                      color: Colors.green[600],
+                      value: _engineCrystals.nonNulls.length /
+                          _cellsCrystals.length,
+                      height: 70,
+                      width: 12,
+                    ),
+                    const Gap(4),
+                  ],
+                ),
+              ),
+            ),
+            const Gap(8),
+          ],
+        ),
+        const Spacer(),
+        const Text('Heat generator'),
+        const Gap(8),
+      ],
+    );
+  }
 }
 
 class _EngineCrystalCell extends StatelessWidget {
@@ -166,9 +189,11 @@ class _EngineCrystalCell extends StatelessWidget {
     required this.crystal,
     required this.onCrystalPlaced,
     required this.cellDimension,
+    required this.movementScore,
     super.key,
   });
   final int index;
+  final int movementScore;
   final EngineCrystalModel? crystal;
   final ValueChanged<EngineCrystalModel> onCrystalPlaced;
   final double cellDimension;
@@ -183,6 +208,7 @@ class _EngineCrystalCell extends StatelessWidget {
           crystal: crystal,
           isActive: isActive,
           isFilled: isFilled,
+          movementScore: movementScore,
           isForEngine: false,
         );
       },
@@ -202,12 +228,14 @@ class _CrystalCell extends StatelessWidget {
     required this.cellDimension,
     required this.crystal,
     required this.isForEngine,
+    required this.movementScore,
     super.key,
   });
   final bool isActive;
   final bool isFilled;
   final bool isForEngine;
   final EngineCrystalModel? crystal;
+  final int movementScore;
   final double cellDimension;
   @override
   Widget build(final BuildContext context) {
@@ -235,6 +263,7 @@ class _CrystalCell extends StatelessWidget {
             ? _EngineCrystalWidget(
                 crystal: crystal!,
                 isActive: isForEngine,
+                movementScore: movementScore,
               )
             : null,
       ),
@@ -246,11 +275,13 @@ class _EngineCrystalWidget extends StatelessWidget {
   const _EngineCrystalWidget({
     required this.crystal,
     required this.isActive,
+    required this.movementScore,
     this.dimension = 32,
     super.key,
   });
   final double dimension;
   final EngineCrystalModel crystal;
+  final int movementScore;
   final bool isActive;
 
   @override
@@ -265,6 +296,12 @@ class _EngineCrystalWidget extends StatelessWidget {
         decoration: BoxDecoration(
           borderRadius: borderRadius,
           color: isActive ? Colors.green.shade400 : Colors.lightBlue.shade200,
+        ),
+        alignment: Alignment.center,
+        child: Text(
+          '${movementScore.formattedScore}',
+          textAlign: TextAlign.center,
+          style: context.textThemeBold.titleSmall,
         ),
       ),
     );
@@ -288,12 +325,14 @@ class _EngineWaveRow extends StatelessWidget {
     required this.crystal,
     required this.onCrystalPlaced,
     required this.cellDimension,
+    required this.movementScore,
     super.key,
   });
   final int index;
   final double cellDimension;
   final EngineCrystalModel? crystal;
   final ValueChanged<EngineCrystalModel> onCrystalPlaced;
+  final int movementScore;
 
   @override
   Widget build(final BuildContext context) {
@@ -306,6 +345,7 @@ class _EngineWaveRow extends StatelessWidget {
           crystal: crystal,
           isActive: isActive,
           isFilled: isFilled,
+          movementScore: movementScore,
           isForEngine: true,
         );
       },
