@@ -207,6 +207,17 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       level = level.copyWith(canvasDataId: newCanvasData.id);
     }
     if (event.isNewStart) {
+      if (level.featuresSettings.isTechnologiesEnabled) {
+        level = level.copyWith.characters.playerCharacter(
+          balloonParams: BalloonLiftParamsModel.initial,
+        );
+      } else {
+        level = level.copyWith.characters.playerCharacter(
+          balloonParams: BalloonLiftParamsModel.initial.copyWith(
+            powerUsage: dto.mechanics.engine.maxPowerUsage,
+          ),
+        );
+      }
       level = level.copyWith.characters.playerCharacter(
         balloonPowers: BalloonLiftPowersModel.initial,
       );
