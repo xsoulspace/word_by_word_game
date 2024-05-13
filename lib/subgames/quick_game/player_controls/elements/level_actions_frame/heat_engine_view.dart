@@ -81,7 +81,10 @@ class _HeatEngineViewState extends State<HeatEngineView> {
     final powerUsage = _engineMechanics
         .convertCrystalCountToPowerUsage(_engineCrystals.nonNulls.length);
     _levelPlayerBloc.onPowerUsageChange('$powerUsage');
-    _wordCompositionCubit.onCrystalMoved(_kMovementMultiplier);
+    WidgetsBinding.instance.addPostFrameCallback((final _) async {
+      await Future.delayed(500.milliseconds);
+      _wordCompositionCubit.onCrystalMoved(_kMovementMultiplier);
+    });
   }
 
   static const _kMovementMultiplier = EnergyMultiplierType.m1;

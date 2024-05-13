@@ -29,60 +29,63 @@ class LevelOptionsScreen extends HookWidget {
     useListenable(uxState.isDictionariesLoading);
     final statusCubit = context.watch<StatesStatusesCubit>();
 
-    return SingleChildScrollView(
-      child: Column(
-        children: [
-          uiTheme.verticalBoxes.medium,
-          GestureDetector(
-            onTap: () => unblockerNotifier.value++,
-            child: Text(
-              S.of(context).selectPlayers.toUpperCase(),
-              style: context.textThemeBold.bodyLarge,
-              textAlign: TextAlign.center,
+    return Scrollbar(
+      thumbVisibility: true,
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            uiTheme.verticalBoxes.medium,
+            GestureDetector(
+              onTap: () => unblockerNotifier.value++,
+              child: Text(
+                S.of(context).selectPlayers.toUpperCase(),
+                style: context.textThemeBold.bodyLarge,
+                textAlign: TextAlign.center,
+              ),
             ),
-          ),
-          uiTheme.verticalBoxes.medium,
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 140),
-            child: PlayerProfileRow(
-              checkIsPlayerSelected: uxState.checkIsPlayerSelected,
-              onSelected: uxState.onPlayerSelected,
+            uiTheme.verticalBoxes.medium,
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 140),
+              child: PlayerProfileRow(
+                checkIsPlayerSelected: uxState.checkIsPlayerSelected,
+                onSelected: uxState.onPlayerSelected,
+              ),
             ),
-          ),
-          uiTheme.verticalBoxes.medium,
-          CheckboxListTile(
-            value: uxState.shouldStartTutorial,
-            onChanged: uxState.changeShouldStartTutorial,
-            title: Text(S.of(context).enableTutorial),
-          ),
-          uiTheme.verticalBoxes.medium,
-          _ExperimentsListView(unblockerNotifier: unblockerNotifier),
-          uiTheme.verticalBoxes.medium,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Tooltip(
-                message: S.of(context).createNewPlayerTooltip,
-                child: TextButton.icon(
-                  onPressed: onCreatePlayer,
-                  icon: const Icon(Icons.add),
-                  label: Text(S.of(context).createPlayer),
+            uiTheme.verticalBoxes.medium,
+            CheckboxListTile(
+              value: uxState.shouldStartTutorial,
+              onChanged: uxState.changeShouldStartTutorial,
+              title: Text(S.of(context).enableTutorial),
+            ),
+            uiTheme.verticalBoxes.medium,
+            _ExperimentsListView(unblockerNotifier: unblockerNotifier),
+            uiTheme.verticalBoxes.medium,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Tooltip(
+                  message: S.of(context).createNewPlayerTooltip,
+                  child: TextButton.icon(
+                    onPressed: onCreatePlayer,
+                    icon: const Icon(Icons.add),
+                    label: Text(S.of(context).createPlayer),
+                  ),
                 ),
-              ),
-              UiTextButton.text(
-                text: S.of(context).play,
-                isLoading: uxState.isDictionariesLoading.value ||
-                    statusCubit.isLoading,
-                isLongButton: true,
-                mainAlignment: MainAxisAlignment.center,
-                onPressed: uxState.playersIds.isEmpty
-                    ? null
-                    : () async => uxState.onPlay(context),
-              ),
-            ],
-          ),
-          uiTheme.verticalBoxes.medium,
-        ],
+                UiTextButton.text(
+                  text: S.of(context).play,
+                  isLoading: uxState.isDictionariesLoading.value ||
+                      statusCubit.isLoading,
+                  isLongButton: true,
+                  mainAlignment: MainAxisAlignment.center,
+                  onPressed: uxState.playersIds.isEmpty
+                      ? null
+                      : () async => uxState.onPlay(context),
+                ),
+              ],
+            ),
+            uiTheme.verticalBoxes.medium,
+          ],
+        ),
       ),
     );
   }
