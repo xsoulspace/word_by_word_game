@@ -39,6 +39,19 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
   final TechnologiesCubitDto dto;
   @override
   void onConsumeTickEvent() {}
+  bool checkIsTechnologyResearchedByType(final TechnologyType type) =>
+      checkIsTechnologyResearched(id: TechnologyModelId(type));
+  bool checkIsTechnologyResearched({required final TechnologyModelId id}) {
+    final techProgress = _getTechnologyProgress(
+      technologyId: id,
+      progressTree: state.progress,
+    );
+    if (techProgress == null) return false;
+    return dto.mechanics.technology.checkIsUnlockedInSomeLanguages(
+      unlockCondition: techProgress.unlockCondition,
+    );
+  }
+
   void onResearchingTechnologyChanged(
     final TechnologyModelId id,
     // ignore: avoid_positional_boolean_parameters

@@ -1,3 +1,4 @@
+import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,14 +17,79 @@ class EngineCrystalModel {
   final String id;
 }
 
-class HeatEngineView extends StatefulHookWidget {
+class HeatEngineView extends StatelessWidget {
   const HeatEngineView({super.key});
 
   @override
-  State<HeatEngineView> createState() => _HeatEngineViewState();
+  Widget build(final BuildContext context) {
+    final technologiesCubit = context.watch<TechnologiesCubit>();
+    final isAscendingResearched =
+        technologiesCubit.checkIsTechnologyResearchedByType(
+      TechnologyType.ascending,
+    );
+    final isDescendingResearched =
+        technologiesCubit.checkIsTechnologyResearchedByType(
+      TechnologyType.ascending,
+    );
+    return Stack(
+      children: [
+        const HeatEngineViewBody(),
+        TechnologyLockedCard(
+          isLocked: !isDescendingResearched || !isAscendingResearched,
+          children: [
+            const Text('Requires technologies:'),
+            if (!isAscendingResearched) const Text('Ascending'),
+            if (!isDescendingResearched) const Text('Descending'),
+          ],
+        ),
+      ],
+    );
+  }
 }
 
-class _HeatEngineViewState extends State<HeatEngineView> {
+class TechnologyLockedCard extends StatelessWidget {
+  const TechnologyLockedCard({
+    required this.children,
+    required this.isLocked,
+    super.key,
+  });
+  final List<Widget> children;
+  final bool isLocked;
+  @override
+  Widget build(final BuildContext context) => Visibility(
+        visible: isLocked,
+        child: Stack(
+          children: [
+            Positioned.fill(child: const SizedBox().blurred(blur: 0.4)),
+            DefaultTextStyle.merge(
+              style: context.textTheme.bodyMedium,
+              child: Container(
+                alignment: Alignment.center,
+                // color: context.colorScheme.secondaryContainer.wit,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    // TODO(arenukvern): l10n
+                    const Text('Locked'),
+                    const Gap(8),
+                    ...children,
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+}
+
+class HeatEngineViewBody extends StatefulHookWidget {
+  const HeatEngineViewBody({super.key});
+
+  @override
+  State<HeatEngineViewBody> createState() => _HeatEngineViewBodyState();
+}
+
+class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
   static const _crystalCellDimension = 34.0;
   // TODO(arenukvern): save engine crystal
   final List<EngineCrystalModel?> _cellsCrystals = [];
