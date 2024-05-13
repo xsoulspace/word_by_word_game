@@ -23,28 +23,59 @@ class HeatEngineView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final technologiesCubit = context.watch<TechnologiesCubit>();
+    final wordsLanguage =
+        context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
     final isAscendingResearched =
         technologiesCubit.checkIsTechnologyResearchedByType(
-      TechnologyType.ascending,
+      type: TechnologyType.ascending,
+      language: wordsLanguage,
     );
     final isDescendingResearched =
         technologiesCubit.checkIsTechnologyResearchedByType(
-      TechnologyType.ascending,
+      type: TechnologyType.descending,
+      language: wordsLanguage,
     );
     return Stack(
       children: [
         const HeatEngineViewBody(),
         TechnologyLockedCard(
-          isLocked: !isDescendingResearched || !isAscendingResearched,
+          isLocked: !(isDescendingResearched && isAscendingResearched),
           children: [
-            const Text('Requires technologies:'),
-            if (!isAscendingResearched) const Text('Ascending'),
-            if (!isDescendingResearched) const Text('Descending'),
+            Wrap(
+              spacing: 8,
+              children: [
+                _CompletableText(
+                  text: 'Ascending',
+                  isCompleted: isAscendingResearched,
+                ),
+                const Text('|'),
+                _CompletableText(
+                  text: 'Descending',
+                  isCompleted: isDescendingResearched,
+                ),
+              ],
+            ),
           ],
         ),
       ],
     );
   }
+}
+
+class _CompletableText extends StatelessWidget {
+  const _CompletableText({
+    required this.text,
+    required this.isCompleted,
+  });
+  final bool isCompleted;
+  final String text;
+  @override
+  Widget build(final BuildContext context) => Text(
+        text,
+        style: DefaultTextStyle.of(context).style.copyWith(
+              decoration: isCompleted ? TextDecoration.lineThrough : null,
+            ),
+      );
 }
 
 class TechnologyLockedCard extends StatelessWidget {
@@ -60,18 +91,37 @@ class TechnologyLockedCard extends StatelessWidget {
         visible: isLocked,
         child: Stack(
           children: [
-            Positioned.fill(child: const SizedBox().blurred(blur: 0.4)),
+            Positioned.fill(
+              child: const SizedBox().blurred(
+                blurColor: context.colorScheme.tertiary,
+                colorOpacity: 0.7,
+                blur: 2,
+              ),
+            ),
             DefaultTextStyle.merge(
-              style: context.textTheme.bodyMedium,
+              style: context.textThemeBold.bodyLarge?.copyWith(
+                color: context.colorScheme.onTertiary,
+                decorationColor: context.colorScheme.tertiary,
+                decorationThickness: 5,
+              ),
               child: Container(
                 alignment: Alignment.center,
                 // color: context.colorScheme.secondaryContainer.wit,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    // TODO(arenukvern): l10n
-                    const Text('Locked'),
+                    Icon(
+                      Icons.lock_outline_rounded,
+                      color: context.colorScheme.onTertiary,
+                    ),
                     const Gap(8),
+                    Text(
+                      'Requires technologies',
+                      style: context.textTheme.bodyMedium?.copyWith(
+                        color: context.colorScheme.onTertiary,
+                      ),
+                    ),
+                    const Gap(4),
                     ...children,
                   ],
                 ),

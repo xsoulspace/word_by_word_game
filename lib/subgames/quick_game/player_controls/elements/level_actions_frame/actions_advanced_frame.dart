@@ -23,10 +23,12 @@ class UIActionFrameAdvanced extends StatelessWidget {
     return DefaultTabController(
       length: 3,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TabBar(
+            tabAlignment: TabAlignment.center,
             padding: EdgeInsets.zero,
-            labelPadding: EdgeInsets.zero,
+            isScrollable: true,
             tabs: [
               (
                 title: const LocalizedMap(
@@ -244,11 +246,14 @@ class _ChangeResearchingTechnology extends StatelessWidget {
 ) {
   final mechanics = context.read<MechanicsCollection>();
   final technologiesCubit = context.watch<TechnologiesCubit>();
+  final wordsLanguage =
+      context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
   final technologyProgress = technologiesCubit.researchingTechnologyProgress;
   final unlockCondition = technologyProgress?.unlockCondition;
   if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
   return mechanics.technology.checkIsUnlockedForLanguage(
     unlockCondition: unlockCondition,
+    language: wordsLanguage,
   );
 }
 

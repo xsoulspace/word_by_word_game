@@ -57,8 +57,8 @@ class TechnologiesTreeDialog extends HookWidget {
 
     final locale = useLocale(context);
     final levelCubit = context.read<LevelBloc>();
-    final wordsLanguage = context
-        .select<LevelBloc, Languages>((final c) => c.state.wordsLanguage);
+    final wordsLanguage =
+        context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
 
     /// to save initial state, and compare with final state
     final initialTechnologyState =

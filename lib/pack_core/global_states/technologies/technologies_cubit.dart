@@ -39,17 +39,42 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
   final TechnologiesCubitDto dto;
   @override
   void onConsumeTickEvent() {}
-  bool checkIsTechnologyResearchedByType(final TechnologyType type) =>
-      checkIsTechnologyResearched(id: TechnologyModelId(type));
-  bool checkIsTechnologyResearched({required final TechnologyModelId id}) {
+
+  /// since ascending and descending are most primitive technologies
+  /// if they are unlocked, we can make visible actions tab
+  bool checkIsActionsViewUnblocked({final Languages? language}) => [
+        TechnologyType.ascending,
+        TechnologyType.descending,
+      ].every(
+        (final type) => checkIsTechnologyResearchedByType(
+          type: type,
+          language: language,
+        ),
+      );
+
+  bool checkIsTechnologyResearchedByType({
+    required final TechnologyType type,
+    final Languages? language,
+  }) =>
+      checkIsTechnologyResearched(
+        id: TechnologyModelId(type),
+        language: language,
+      );
+  bool checkIsTechnologyResearched({
+    required final TechnologyModelId id,
+    final Languages? language,
+  }) {
     final techProgress = _getTechnologyProgress(
       technologyId: id,
       progressTree: state.progress,
     );
     if (techProgress == null) return false;
-    return dto.mechanics.technology.checkIsUnlockedInSomeLanguages(
-      unlockCondition: techProgress.unlockCondition,
-    );
+    return dto.mechanics.technology
+        .checkIsUnlockedForLanguage(
+          unlockCondition: techProgress.unlockCondition,
+          language: language,
+        )
+        .isUnlocked;
   }
 
   void onResearchingTechnologyChanged(

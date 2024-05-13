@@ -57,6 +57,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
   }
 
+  Languages get wordsLanguage => state.wordsLanguage;
   void onChangeWordsLanguage(final Languages language) {
     final updatedState = state.copyWith(
       wordsLanguage: language,
