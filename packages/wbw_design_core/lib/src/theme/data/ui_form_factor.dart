@@ -79,6 +79,8 @@ enum WidthFormFactor {
   });
   final double max;
   static bool checkIsXs(final Size size) => size.width <= xs.max;
+  static bool checkIsXsByContext(final BuildContext context) =>
+      checkIsXs(MediaQuery.sizeOf(context));
   static const double mobileTutorialMaxWidth = 700;
 }
 

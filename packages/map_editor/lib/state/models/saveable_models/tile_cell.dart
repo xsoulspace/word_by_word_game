@@ -29,7 +29,7 @@ const tilesNeighbourDirections = <TileNeighbourDirection, CellPointModel>{
   TileNeighbourDirection.e: CellPointModel(0, 1),
   TileNeighbourDirection.f: CellPointModel(-1, 1),
   TileNeighbourDirection.g: CellPointModel(-1, 0),
-  TileNeighbourDirection.h: CellPointModel(-1, -1)
+  TileNeighbourDirection.h: CellPointModel(-1, -1),
 };
 
 @freezed

@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -11,8 +13,8 @@ class UILevelCenterBar extends StatelessWidget {
     super.key,
   });
 
-  static void onConfirmWord(final BuildContext context) {
-    context.read<WordCompositionCubit>().onToSelectActionPhase();
+  static Future<void> onConfirmWord(final BuildContext context) async {
+    unawaited(context.read<WordCompositionCubit>().onToSelectActionPhase());
     TutorialFrame.sendOnClickEvent(
       uiKey: TutorialUiItem.confirmWordButton,
       context: context,
@@ -78,7 +80,7 @@ class UILevelCenterBar extends StatelessWidget {
                             highlightPosition: Alignment.topCenter,
                             uiKey: TutorialUiItem.confirmWordButton,
                             child: UiConfirmWordButton(
-                              onPressed: () => onConfirmWord(context),
+                              onPressed: () async => onConfirmWord(context),
                             ).animate().fadeIn(),
                           )
                         : const SizedBox(),

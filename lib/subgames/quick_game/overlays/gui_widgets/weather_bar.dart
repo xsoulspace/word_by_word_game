@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 
 class UIWeatherBar extends StatelessWidget {
@@ -13,6 +14,7 @@ class UIWeatherBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final locale = useLocale(context);
     final state = context.watch<WeatherCubit>().state;
     final currentWeather = state.weather;
     final currentWind = state.wind;
@@ -43,7 +45,7 @@ class UIWeatherBar extends StatelessWidget {
                     Languages.ru: 'Текущий тип погоды',
                     Languages.it: 'Tipo di previsione attuale',
                   },
-                ).getValue(),
+                ).getValue(locale),
                 weather: currentWeather,
               ),
 
@@ -68,7 +70,7 @@ class UIWeatherBar extends StatelessWidget {
                             Languages.ru: 'Горизонтальная сила ветера',
                             Languages.it: 'Forza del vento orizzontale',
                           },
-                        ).getValue(),
+                        ).getValue(locale),
                         direction: Axis.horizontal,
                       ),
                       Divider(
@@ -86,7 +88,7 @@ class UIWeatherBar extends StatelessWidget {
                             Languages.it:
                                 'Forza del vento verticale, puô essere sopra o sotto',
                           },
-                        ).getValue(),
+                        ).getValue(locale),
                         value: currentWind.force.y,
                         direction: Axis.vertical,
                       ),
@@ -107,13 +109,13 @@ class UIWeatherBar extends StatelessWidget {
 class _NextWeathersRow extends StatelessWidget {
   const _NextWeathersRow({
     required this.weathers,
-    super.key,
   });
   final List<WeatherModel> weathers;
 
   @override
   Widget build(final BuildContext context) {
     Iterable<WeatherModel> allNextWeathers = [...weathers].skip(1);
+    final locale = useLocale(context);
     final state = context.watch<WeatherCubit>().state;
     final firstWeather = allNextWeathers.firstOrNull;
     allNextWeathers = allNextWeathers.skip(1).take(3);
@@ -127,7 +129,7 @@ class _NextWeathersRow extends StatelessWidget {
                 Languages.ru: 'Предсказания погоды',
                 Languages.it: 'Previsioni della prossima previsione',
               },
-            ).getValue(),
+            ).getValue(locale),
             child: TutorialFrame(
               highlightPosition: Alignment.bottomRight,
               uiKey: TutorialUiItem.currentWeather,
@@ -140,7 +142,7 @@ class _NextWeathersRow extends StatelessWidget {
                         Languages.ru: 'в',
                         Languages.it: 'in',
                       },
-                    ).getValue()} ${state.weather.durationInGameSeconds}',
+                    ).getValue(locale)} ${state.weather.durationInGameSeconds}',
                     style: context.textTheme.labelSmall,
                   ),
                   Text(
@@ -203,7 +205,6 @@ class _CurrentWeatherText extends StatelessWidget {
   const _CurrentWeatherText({
     required this.weather,
     required this.tooltipMessage,
-    super.key,
   });
   final WeatherModel weather;
   final String tooltipMessage;

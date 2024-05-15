@@ -94,6 +94,7 @@ const _$GameVersionEnumMap = {
   GameVersion.$2: r'$2',
   GameVersion.$3: r'$3',
   GameVersion.$4: r'$4',
+  GameVersion.$5: r'$5',
 };
 
 _$LevelCharactersModelImpl _$$LevelCharactersModelImplFromJson(
@@ -159,6 +160,9 @@ _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>
           ? LevelFeaturesSettingsModel.empty
           : LevelFeaturesSettingsModel.fromJson(
               json['featuresSettings'] as Map<String, dynamic>),
+      wordsLanguage:
+          $enumDecodeNullable(_$LanguagesEnumMap, json['wordsLanguage']) ??
+              Languages.en,
     );
 
 Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
@@ -179,6 +183,7 @@ Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
       'lastDateTime': instance.lastDateTime.toJson(),
       'technologyTreeProgress': instance.technologyTreeProgress.toJson(),
       'featuresSettings': instance.featuresSettings.toJson(),
+      'wordsLanguage': _$LanguagesEnumMap[instance.wordsLanguage]!,
     };
 
 const _$TilesetTypeEnumMap = {
@@ -196,6 +201,12 @@ const _$EnergyMultiplierTypeEnumMap = {
   EnergyMultiplierType.m1: 'm1',
   EnergyMultiplierType.m2: 'm2',
   EnergyMultiplierType.m3: 'm3',
+};
+
+const _$LanguagesEnumMap = {
+  Languages.ru: 'ru',
+  Languages.en: 'en',
+  Languages.it: 'it',
 };
 
 _$LevelFeaturesSettingsModelImpl _$$LevelFeaturesSettingsModelImplFromJson(
@@ -224,20 +235,6 @@ Map<String, dynamic> _$$LevelPlayersModelImplToJson(
     <String, dynamic>{
       'players': instance.players.map((e) => e.toJson()).toList(),
       'currentPlayerId': instance.currentPlayerId,
-    };
-
-_$LocalDictionaryModelImpl _$$LocalDictionaryModelImplFromJson(
-        Map<String, dynamic> json) =>
-    _$LocalDictionaryModelImpl(
-      words:
-          (json['words'] as List<dynamic>?)?.map((e) => e as String).toSet() ??
-              const {},
-    );
-
-Map<String, dynamic> _$$LocalDictionaryModelImplToJson(
-        _$LocalDictionaryModelImpl instance) =>
-    <String, dynamic>{
-      'words': instance.words.toList(),
     };
 
 _$PlayerCharacterModelImpl _$$PlayerCharacterModelImplFromJson(
@@ -458,12 +455,6 @@ Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(
       'wordsUnlockThreshold': instance.wordsUnlockThreshold,
       'investedResearchPoints': instance.investedResearchPoints,
     };
-
-const _$LanguagesEnumMap = {
-  Languages.ru: 'ru',
-  Languages.en: 'en',
-  Languages.it: 'it',
-};
 
 _$UsefulWordModelImpl _$$UsefulWordModelImplFromJson(
         Map<String, dynamic> json) =>

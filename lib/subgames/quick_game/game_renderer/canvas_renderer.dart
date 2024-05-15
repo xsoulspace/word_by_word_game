@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
@@ -59,7 +60,7 @@ class CanvasRenderer extends Component
   @override
   void onDragUpdate(final DragUpdateEvent event) {
     if (!game.dto.debugCubit.state.isCameraFollowingPlayer) {
-      final eventPosition = event.canvasPosition;
+      final eventPosition = event.canvasStartPosition;
       origin = eventPosition - _dragOffset;
       mousePosition = eventPosition;
       canvasObjectsDrawer.onOriginUpdate();
@@ -110,9 +111,12 @@ class CanvasRenderer extends Component
       final player = canvasObjectsDrawer.player;
       if (player != null) {
         final screenSize = game.size;
-        Offset offset =
-            ((player.position.toVector2() / 2.2) - (screenSize / 11))
-                .toOffset();
+        Offset offset = (player.position.toVector2() -
+                Vector2(
+                  screenSize.x / 3,
+                  math.max(200, screenSize.y / 2 - 60),
+                ))
+            .toOffset();
         offset = origin.toOffset() - offset;
         origin = offset.toVector2();
         canvasObjectsDrawer.onOriginUpdate();
@@ -216,7 +220,6 @@ class CanvasDebugSurface extends Component
   @override
   void render(final material.Canvas canvas) {
     super.render(canvas);
-    if (!debugMode) return;
     if (game.dto.debugCubit.state.isDebugLinesVisible) _renderLines(canvas);
   }
 }

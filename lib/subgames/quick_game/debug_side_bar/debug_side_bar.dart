@@ -1,8 +1,10 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
@@ -44,11 +46,12 @@ class UiDebugSideBarBody extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final screenCubit = context.watch<UiDebugSideBarCubit>();
-    context.watch<LevelPlayersBloc>();
+    final levelPlayerBloc = context.watch<LevelPlayersBloc>();
     final debugCubit = context.watch<DebugCubit>();
     final screenSize = MediaQuery.sizeOf(context);
     final theme = Theme.of(context);
     final worldBloc = context.watch<GlobalGameBloc>();
+    final wbwDictionary = context.watch<WbwDictionary>();
     return SizedBox(
       width: 200,
       height: (screenSize.height / 2) + (screenSize.height / 3),
@@ -141,8 +144,8 @@ class UiDebugSideBarBody extends StatelessWidget {
             labelText: 'maxPower',
           ),
           UiTextField.underlined(
-            value: screenCubit.powerUsage.toString(),
-            onChanged: screenCubit.onPowerUsageChange,
+            value: levelPlayerBloc.powerUsage.toString(),
+            onChanged: levelPlayerBloc.onPowerUsageChange,
             keyboardType: TextInputType.number,
             labelText: 'powerUsage',
           ),
@@ -170,9 +173,40 @@ class UiDebugSideBarBody extends StatelessWidget {
             keyboardType: TextInputType.number,
             labelText: 'volumeToLiftRatio',
           ),
+          const Gap(8),
+          Text(
+            'Dictionaries: '
+            '${wbwDictionary.isLoading ? 'loading' : 'loaded'}'
+            '| ${wbwDictionary.debugLoadingTimeInSeconds} seconds',
+          ),
+          const Gap(16),
+          FilledButton.tonal(
+            onPressed: () async => context
+                .read<WbwDictionary>()
+                .loadAndCache(shouldForceUpdate: true),
+            child: const Text('Reload dictionaries'),
+          ),
+          const Gap(16),
+          const _DictionaryLengthButton(),
           const Gap(16),
         ],
       ),
+    );
+  }
+}
+
+class _DictionaryLengthButton extends HookWidget {
+  const _DictionaryLengthButton();
+
+  @override
+  Widget build(final BuildContext context) {
+    final lengthNotifier = useState(0);
+    return FilledButton.tonal(
+      onPressed: () async {
+        lengthNotifier.value =
+            await context.read<WbwDictionary>().getDictionaryLength();
+      },
+      child: Text('Get dictionary length (${lengthNotifier.value})'),
     );
   }
 }

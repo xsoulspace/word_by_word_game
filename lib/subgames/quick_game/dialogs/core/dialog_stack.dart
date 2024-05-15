@@ -45,12 +45,12 @@ class DialogStack extends HookWidget {
                 onClose: dialogController.closeDialogAndResume,
               ),
             GameDialogType.levelLost => LevelLostDialog(
-                onEndLevel: state.onEndLevel,
-                onRestartLevel: state.onRestartLevel,
+                onRestart: state.onRestartContinueLevel,
+                onToLevels: state.onExitLevel,
               ),
             GameDialogType.levelWin => LevelWinDialog(
-                onRestart: state.onRestartLevel,
-                onSaveResults: state.onSaveResults,
+                onContinue: state.onRestartContinueLevel,
+                onToLevels: state.onExitLevel,
               ),
             GameDialogType.levelWordSuggestion =>
               const LevelWordSuggestionDialog(),

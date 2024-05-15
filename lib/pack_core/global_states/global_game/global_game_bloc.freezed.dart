@@ -25,7 +25,7 @@ mixin _$GameEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -37,7 +37,7 @@ mixin _$GameEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -49,7 +49,7 @@ mixin _$GameEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -185,7 +185,7 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) {
     return startPlayingLevel(shouldRestartTutorial);
   }
@@ -200,7 +200,7 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) {
     return startPlayingLevel?.call(shouldRestartTutorial);
   }
@@ -215,7 +215,7 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) {
     if (startPlayingLevel != null) {
@@ -380,7 +380,7 @@ class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) {
     return initGlobalGameLevel(levelModel, isNewStart);
   }
@@ -395,7 +395,7 @@ class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) {
     return initGlobalGameLevel?.call(levelModel, isNewStart);
   }
@@ -410,7 +410,7 @@ class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) {
     if (initGlobalGameLevel != null) {
@@ -565,7 +565,7 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) {
     return deletePlayerProfile(profile);
   }
@@ -580,7 +580,7 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) {
     return deletePlayerProfile?.call(profile);
   }
@@ -595,7 +595,7 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) {
     if (deletePlayerProfile != null) {
@@ -749,7 +749,7 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) {
     return createPlayerProfile(profile);
   }
@@ -764,7 +764,7 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) {
     return createPlayerProfile?.call(profile);
   }
@@ -779,7 +779,7 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) {
     if (createPlayerProfile != null) {
@@ -894,7 +894,7 @@ class _$SaveGameEventImpl implements SaveGameEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) {
     return saveGame();
   }
@@ -909,7 +909,7 @@ class _$SaveGameEventImpl implements SaveGameEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) {
     return saveGame?.call();
   }
@@ -924,7 +924,7 @@ class _$SaveGameEventImpl implements SaveGameEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) {
     if (saveGame != null) {
@@ -1034,7 +1034,7 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) {
     return saveCurrentLevel();
   }
@@ -1049,7 +1049,7 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) {
     return saveCurrentLevel?.call();
   }
@@ -1064,7 +1064,7 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) {
     if (saveCurrentLevel != null) {
@@ -1133,7 +1133,7 @@ abstract class _$$EndLevelEventImplCopyWith<$Res> {
           _$EndLevelEventImpl value, $Res Function(_$EndLevelEventImpl) then) =
       __$$EndLevelEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({bool isWon, double maxDistance});
+  $Res call({bool isPassed, double maxDistance});
 }
 
 /// @nodoc
@@ -1147,13 +1147,13 @@ class __$$EndLevelEventImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isWon = null,
+    Object? isPassed = null,
     Object? maxDistance = null,
   }) {
     return _then(_$EndLevelEventImpl(
-      isWon: null == isWon
-          ? _value.isWon
-          : isWon // ignore: cast_nullable_to_non_nullable
+      isPassed: null == isPassed
+          ? _value.isPassed
+          : isPassed // ignore: cast_nullable_to_non_nullable
               as bool,
       maxDistance: null == maxDistance
           ? _value.maxDistance
@@ -1166,16 +1166,17 @@ class __$$EndLevelEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$EndLevelEventImpl implements EndLevelEvent {
-  const _$EndLevelEventImpl({required this.isWon, required this.maxDistance});
+  const _$EndLevelEventImpl(
+      {required this.isPassed, required this.maxDistance});
 
   @override
-  final bool isWon;
+  final bool isPassed;
   @override
   final double maxDistance;
 
   @override
   String toString() {
-    return 'GameEvent.endLevel(isWon: $isWon, maxDistance: $maxDistance)';
+    return 'GameEvent.endLevel(isPassed: $isPassed, maxDistance: $maxDistance)';
   }
 
   @override
@@ -1183,13 +1184,14 @@ class _$EndLevelEventImpl implements EndLevelEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$EndLevelEventImpl &&
-            (identical(other.isWon, isWon) || other.isWon == isWon) &&
+            (identical(other.isPassed, isPassed) ||
+                other.isPassed == isPassed) &&
             (identical(other.maxDistance, maxDistance) ||
                 other.maxDistance == maxDistance));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isWon, maxDistance);
+  int get hashCode => Object.hash(runtimeType, isPassed, maxDistance);
 
   @JsonKey(ignore: true)
   @override
@@ -1207,9 +1209,9 @@ class _$EndLevelEventImpl implements EndLevelEvent {
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
     required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isWon, double maxDistance) endLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
   }) {
-    return endLevel(isWon, maxDistance);
+    return endLevel(isPassed, maxDistance);
   }
 
   @override
@@ -1222,9 +1224,9 @@ class _$EndLevelEventImpl implements EndLevelEvent {
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
     TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isWon, double maxDistance)? endLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
   }) {
-    return endLevel?.call(isWon, maxDistance);
+    return endLevel?.call(isPassed, maxDistance);
   }
 
   @override
@@ -1237,11 +1239,11 @@ class _$EndLevelEventImpl implements EndLevelEvent {
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
     TResult Function()? saveCurrentLevel,
-    TResult Function(bool isWon, double maxDistance)? endLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
     required TResult orElse(),
   }) {
     if (endLevel != null) {
-      return endLevel(isWon, maxDistance);
+      return endLevel(isPassed, maxDistance);
     }
     return orElse();
   }
@@ -1298,10 +1300,10 @@ class _$EndLevelEventImpl implements EndLevelEvent {
 
 abstract class EndLevelEvent implements GameEvent {
   const factory EndLevelEvent(
-      {required final bool isWon,
+      {required final bool isPassed,
       required final double maxDistance}) = _$EndLevelEventImpl;
 
-  bool get isWon;
+  bool get isPassed;
   double get maxDistance;
   @JsonKey(ignore: true)
   _$$EndLevelEventImplCopyWith<_$EndLevelEventImpl> get copyWith =>
@@ -1316,7 +1318,8 @@ mixin _$GlobalGameBlocState {
   String get id => throw _privateConstructorUsedError;
   CanvasDataModelId get currentLevelId => throw _privateConstructorUsedError;
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   Map<CanvasDataModelId, CanvasDataModel> get allCanvasData =>
       throw _privateConstructorUsedError;
 
@@ -1604,10 +1607,12 @@ class _$GlobalGameBlocStateImpl extends _GlobalGameBlocState {
   @JsonKey()
   final CanvasDataModelId currentLevelId;
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   final Map<CanvasDataModelId, CanvasDataModel> _allCanvasData;
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   @override
   @JsonKey()
   Map<CanvasDataModelId, CanvasDataModel> get allCanvasData {
@@ -1748,7 +1753,8 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
   CanvasDataModelId get currentLevelId;
   @override
 
-  /// Should be loaded independently
+  /// Should be loaded independently, should never be updated
+  /// Immutable
   Map<CanvasDataModelId, CanvasDataModel> get allCanvasData;
   @override
 

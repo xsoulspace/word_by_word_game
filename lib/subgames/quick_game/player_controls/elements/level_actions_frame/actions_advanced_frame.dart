@@ -8,6 +8,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/level_actions_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -17,15 +18,17 @@ class UIActionFrameAdvanced extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
-    final colorScheme = context.colorScheme;
+    final locale = useLocale(context);
     final textTheme = context.textTheme;
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TabBar(
+            tabAlignment: TabAlignment.center,
             padding: EdgeInsets.zero,
-            labelPadding: EdgeInsets.zero,
+            isScrollable: true,
             tabs: [
               (
                 title: const LocalizedMap(
@@ -34,7 +37,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     Languages.ru: 'Энергия',
                     Languages.it: 'Energia',
                   },
-                ).getValue(),
+                ),
                 iconChildren: [
                   Image.asset(
                     UiAssetHelper.useImagePath(UiIcons.fire.path),
@@ -46,11 +49,24 @@ class UIActionFrameAdvanced extends StatelessWidget {
               (
                 title: const LocalizedMap(
                   value: {
+                    Languages.en: 'Actions',
+                    Languages.ru: 'Действия',
+                    Languages.it: 'Azioni',
+                  },
+                ),
+                iconChildren: [
+                  const Icon(CupertinoIcons.book, size: 18),
+                  const Gap(2),
+                ]
+              ),
+              (
+                title: const LocalizedMap(
+                  value: {
                     Languages.en: 'Technology',
                     Languages.ru: 'Технология',
                     Languages.it: 'Tecnologia',
                   },
-                ).getValue(),
+                ),
                 iconChildren: [
                   const Icon(CupertinoIcons.lab_flask, size: 18),
                   const Gap(2),
@@ -65,7 +81,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...e.iconChildren,
-                        Text(e.title),
+                        Text(e.title.getValue(locale)),
                       ],
                     ),
                   ),
@@ -88,6 +104,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     const UiEnergyCards(),
                   ],
                 ),
+                const _ActionsTabView(),
                 const _TechnologyTabView(),
               ],
             ),
@@ -99,7 +116,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
 }
 
 class _TechnologyTabView extends StatelessWidget {
-  const _TechnologyTabView({super.key});
+  const _TechnologyTabView();
 
   @override
   Widget build(final BuildContext context) {
@@ -115,7 +132,7 @@ class _TechnologyTabView extends StatelessWidget {
 }
 
 class _SelectTechnologyCard extends StatelessWidget {
-  const _SelectTechnologyCard({super.key});
+  const _SelectTechnologyCard();
   static const multiplier = EnergyMultiplierType.m2;
   @override
   Widget build(final BuildContext context) {
@@ -128,6 +145,7 @@ class _SelectTechnologyCard extends StatelessWidget {
       context: context,
       multiplier: multiplier,
     );
+    final locale = useLocale(context);
 
     return UiActionButton(
       onCompleted: onChangeTechnology,
@@ -146,7 +164,7 @@ class _SelectTechnologyCard extends StatelessWidget {
                 Languages.ru: 'Исследовать технологию',
                 Languages.it: 'Ricercare tecnologia',
               },
-            ).getValue(),
+            ).getValue(locale),
             style: context.textTheme.titleMedium,
           ),
         ],
@@ -156,7 +174,7 @@ class _SelectTechnologyCard extends StatelessWidget {
 }
 
 class _ChangeResearchingTechnology extends StatelessWidget {
-  const _ChangeResearchingTechnology({super.key});
+  const _ChangeResearchingTechnology();
 
   @override
   Widget build(final BuildContext context) {
@@ -169,6 +187,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
       context: context,
       multiplier: _SelectTechnologyCard.multiplier,
     );
+    final locale = useLocale(context);
 
     return UiActionButton(
       tooltipMessage: const LocalizedMap(
@@ -177,7 +196,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
           Languages.ru: 'Изменить технологию для быстрого исследования',
           Languages.it: 'Cambia la tecnologia per un ricerche veloce',
         },
-      ).getValue(),
+      ).getValue(locale),
       onCompleted: onChangeTechnology,
       child: Row(
         children: [
@@ -188,7 +207,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
                 Languages.ru: 'Изменить',
                 Languages.it: 'Cambia',
               },
-            ).getValue(),
+            ).getValue(locale),
           ),
           const Gap(8),
           Text(
@@ -222,22 +241,31 @@ class _ChangeResearchingTechnology extends StatelessWidget {
   return (onChangeTechnology: onChangeTechnology);
 }
 
+({bool isUnlocked, double percentage}) _useTechIsUnlocked(
+  final BuildContext context,
+) {
+  final mechanics = context.read<MechanicsCollection>();
+  final technologiesCubit = context.watch<TechnologiesCubit>();
+  final wordsLanguage =
+      context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
+  final technologyProgress = technologiesCubit.researchingTechnologyProgress;
+  final unlockCondition = technologyProgress?.unlockCondition;
+  if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
+  return mechanics.technology.checkIsUnlockedForLanguage(
+    unlockCondition: unlockCondition,
+    language: wordsLanguage,
+  );
+}
+
 class _ResearchMultiplierCards extends StatelessWidget {
-  const _ResearchMultiplierCards({super.key});
+  const _ResearchMultiplierCards();
 
   @override
   Widget build(final BuildContext context) {
     final technologiesCubit = context.watch<TechnologiesCubit>();
     final technology = technologiesCubit.researchingTechnology;
-    final technologyProgress = technologiesCubit.researchingTechnologyProgress;
-    final mechanics = context.read<MechanicsCollection>();
-    final unlockCondition = technologyProgress?.unlockCondition;
-    final (:isUnlocked, :percentage) = () {
-      if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
-      return mechanics.technology.checkIsUnlockedForLanguage(
-        unlockCondition: unlockCondition,
-      );
-    }();
+    final locale = useLocale(context);
+    final (:isUnlocked, :percentage) = _useTechIsUnlocked(context);
 
     return Row(
       children: [
@@ -264,14 +292,14 @@ class _ResearchMultiplierCards extends StatelessWidget {
                                     Languages.ru: 'Исследовано',
                                     Languages.it: 'Ricercato',
                                   },
-                                ).getValue()
+                                ).getValue(locale)
                               : const LocalizedMap(
                                   value: {
                                     Languages.en: 'Researching',
                                     Languages.ru: 'Исследуется',
                                     Languages.it: 'Ricercando',
                                   },
-                                ).getValue(),
+                                ).getValue(locale),
                           style: context.textTheme.labelMedium?.copyWith(
                             color: context.colorScheme.tertiary,
                           ),
@@ -280,7 +308,7 @@ class _ResearchMultiplierCards extends StatelessWidget {
                         FittedBox(
                           fit: BoxFit.fitWidth,
                           child: Text(
-                            '${technology?.title.getValue()}',
+                            '${technology?.title.getValue(locale)}',
                             style: context.textThemeBold.titleLarge,
                           ),
                         ),
@@ -293,47 +321,52 @@ class _ResearchMultiplierCards extends StatelessWidget {
                   ),
                 ),
               ),
-              const _ChangeResearchingTechnology(),
+              if (!isUnlocked) const _ChangeResearchingTechnology(),
             ],
           ),
         ).animate().fadeIn(),
-        Flexible(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    _TechnologyMultiplierCard(type: EnergyMultiplierType.m1),
-                    Gap(4),
-                    _TechnologyMultiplierCard(type: EnergyMultiplierType.m2),
-                    Gap(4),
-                    _TechnologyMultiplierCard(type: EnergyMultiplierType.m3),
-                  ],
+        if (!isUnlocked)
+          Flexible(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      _TechnologyMultiplierCard(type: EnergyMultiplierType.m1),
+                      Gap(4),
+                      _TechnologyMultiplierCard(type: EnergyMultiplierType.m2),
+                      Gap(4),
+                      _TechnologyMultiplierCard(type: EnergyMultiplierType.m3),
+                    ],
+                  ),
                 ),
-              ),
-              const Gap(12),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 150),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Text(
-                        'Use points to research faster',
-                        textAlign: TextAlign.center,
-                        style: context.textTheme.labelMedium?.copyWith(
-                          color: context.colorScheme.tertiary,
-                        ),
-                      ).animate().fadeIn(),
-                    ),
-                  ],
+                const Gap(12),
+                ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 150),
+                  child: Row(
+                    children: [
+                      Flexible(
+                        child: Text(
+                          'Use points to research faster',
+                          textAlign: TextAlign.center,
+                          style: context.textTheme.labelMedium?.copyWith(
+                            color: context.colorScheme.tertiary,
+                          ),
+                        ).animate().fadeIn(),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-              const Gap(8),
-            ],
-          ),
-        ),
+                const Gap(8),
+              ],
+            ),
+          )
+        else ...[
+          const _SelectTechnologyCard(),
+          const Gap(8),
+        ],
       ],
     );
   }
@@ -355,7 +388,6 @@ class UiTechnologyLinearProgress extends StatelessWidget {
 class _TechnologyMultiplierCard extends StatelessWidget {
   const _TechnologyMultiplierCard({
     required this.type,
-    super.key,
   });
   final EnergyMultiplierType type;
   @override
@@ -378,4 +410,13 @@ class _TechnologyMultiplierCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ActionsTabView extends StatelessWidget {
+  const _ActionsTabView({super.key});
+
+  @override
+  Widget build(final BuildContext context) => const Row(
+        children: [Flexible(child: HeatEngineView())],
+      );
 }

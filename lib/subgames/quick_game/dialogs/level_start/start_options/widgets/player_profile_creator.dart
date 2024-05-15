@@ -16,7 +16,7 @@ class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
 class PlayerProfileCreatorNotifierDto {
   PlayerProfileCreatorNotifierDto(final BuildContext context)
       : dictionariesRespository = context.read();
-  final DictionariesRespository dictionariesRespository;
+  final WordsRespository dictionariesRespository;
 }
 
 enum PlayerProfileCreatorError {
@@ -36,7 +36,8 @@ enum PlayerProfileCreatorError {
     },
   };
 
-  String get localized => LocalizedMap(value: locales[this]!).getValue();
+  String getLocalized(final Locale locale) =>
+      LocalizedMap(value: locales[this]!).getValue(locale);
 }
 
 class PlayerProfileCreatorNotifier
@@ -52,15 +53,19 @@ class PlayerProfileCreatorNotifier
   Future<PlayerProfileCreatorError?> _validateName() async {
     final name = nameController.text;
     if (name.isEmpty) return PlayerProfileCreatorError.cannotBeEmpty;
-    final isValid = await _dto.dictionariesRespository.verifyWord(name);
+    final isValid =
+        await _dto.dictionariesRespository.verifyNonProfanityWord(name);
     if (isValid) return null;
     return PlayerProfileCreatorError.invalidName;
   }
 
-  Future<PlayerProfileModel?> onCreateProfile() async {
+  Future<PlayerProfileModel?> onCreateProfile({
+    required final Locale locale,
+  }) async {
     final errorMessage = await _validateName();
     if (errorMessage != null) {
-      value = value.copyWith(nameErrorMessage: errorMessage.localized);
+      value =
+          value.copyWith(nameErrorMessage: errorMessage.getLocalized(locale));
       return null;
     }
     final player = PlayerProfileModel.create(

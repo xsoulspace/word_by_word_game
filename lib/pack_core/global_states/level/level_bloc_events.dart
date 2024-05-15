@@ -3,6 +3,7 @@ part of 'level_bloc.dart';
 enum EnergyApplicationType {
   refueling,
   researchingTechnology,
+  crystalMove,
   noop,
 }
 

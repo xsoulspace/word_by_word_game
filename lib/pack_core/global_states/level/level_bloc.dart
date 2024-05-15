@@ -6,6 +6,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 part 'level_bloc.freezed.dart';
@@ -18,11 +19,13 @@ class LevelBlocDiDto {
         levelPlayersCubit = read(),
         dictionaryBloc = read(),
         technologiesCubit = read(),
+        wbwDictionary = read(),
         statesStatusesCubit = read();
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
   final LevelPlayersBloc levelPlayersCubit;
   final TechnologiesCubit technologiesCubit;
+  final WbwDictionary wbwDictionary;
   final DictionariesBloc dictionaryBloc;
 }
 
@@ -43,7 +46,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
       (final previous, final current) => checkLiveState(current, previous);
 
   final LevelBlocDiDto dto;
-
+  LevelFeaturesSettingsModel get featuresSettings => state.featuresSettings;
   void onInitLevel(
     final LevelBlocEventInit event,
   ) {
@@ -52,6 +55,14 @@ class LevelBloc extends Cubit<LevelBlocState> {
     dto.statesStatusesCubit.onLevelPartLoaded(
       levelPartName: LevelPartName.level,
     );
+  }
+
+  Languages get wordsLanguage => state.wordsLanguage;
+  void onChangeWordsLanguage(final Languages language) {
+    final updatedState = state.copyWith(
+      wordsLanguage: language,
+    );
+    emit(updatedState);
   }
 
   void onConsumeTickEvent(
@@ -80,9 +91,9 @@ class LevelBloc extends Cubit<LevelBlocState> {
     emit(newState);
   }
 
-  WordWarning _checkNewWord(
+  Future<WordWarning> _checkNewWord(
     final CurrentWordModel word,
-  ) {
+  ) async {
     final dicionaryMechanics = dto.mechanics.dictionary;
     final isWritten = dicionaryMechanics.checkIsWordIsWritten(
       word: word,
@@ -95,9 +106,10 @@ class LevelBloc extends Cubit<LevelBlocState> {
     if (isWritten) {
       return WordWarning.isWritten;
     }
-    final isCorrect = dicionaryMechanics.checkIsWordIsCorrect(
+    final isCorrect = await dicionaryMechanics.checkIsWordIsCorrect(
       word: word,
-      localDictionary: dto.dictionaryBloc.state.localDictionary,
+      localWords: dto.dictionaryBloc.state.wordsType,
+      wbwDictionary: dto.wbwDictionary,
     );
     if (!isCorrect) {
       return WordWarning.isNotCorrect;
@@ -105,19 +117,19 @@ class LevelBloc extends Cubit<LevelBlocState> {
     return WordWarning.none;
   }
 
-  void onAddNewWordToDictionary(
+  Future<void> onAddNewWordToDictionary(
     final LevelBlocEventAddNewWordToDictionary event,
-  ) {
+  ) async {
     final liveState = state;
     unawaited(
       dto.dictionaryBloc.onAddWord(
         word: liveState.currentWord.fullWord,
       ),
     );
-    onAcceptNewWord();
+    return onAcceptNewWord();
   }
 
-  void onAcceptNewWord() {
+  Future<void> onAcceptNewWord() async {
     final liveState = state;
     final currentWord = liveState.currentWord;
     final newWord = currentWord.fullWord;
@@ -129,7 +141,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
       );
     }
 
-    final wordWarning = _checkNewWord(currentWord);
+    final wordWarning = await _checkNewWord(currentWord);
     if (wordWarning == WordWarning.none) {
       final levelPlayersBloc = dto.levelPlayersCubit;
       final updatedWords = {
@@ -182,6 +194,14 @@ class LevelBloc extends Cubit<LevelBlocState> {
       phaseType: GamePhaseType.entryWord,
     );
     emit(updatedState);
+    _onApplyMultiplier(energyApplicationType);
+    dto.levelPlayersCubit.onSwitchToNextPlayer(const SwitchToNextPlayerEvent());
+  }
+
+  void _onApplyMultiplier(
+    final EnergyApplicationType energyApplicationType,
+  ) {
+    final liveState = state;
 
     final levelPlayersCubit = dto.levelPlayersCubit;
     final technologiesCubit = dto.technologiesCubit;
@@ -200,18 +220,16 @@ class LevelBloc extends Cubit<LevelBlocState> {
         technologiesCubit.onResearchTechnology(
           ResearchTechnologyEvent(score: appliedScore),
         );
-      case EnergyApplicationType.noop:
+      case EnergyApplicationType.crystalMove || EnergyApplicationType.noop:
     }
 
     final playerId = levelPlayersCubit.state.currentPlayerId;
-    levelPlayersCubit
-      ..onUpdatePlayerHighscore(
-        UpdatePlayerHighscoreEvent(
-          score: appliedScore * -1,
-          playerId: playerId,
-        ),
-      )
-      ..onSwitchToNextPlayer(const SwitchToNextPlayerEvent());
+    levelPlayersCubit.onUpdatePlayerHighscore(
+      UpdatePlayerHighscoreEvent(
+        score: appliedScore * -1,
+        playerId: playerId,
+      ),
+    );
   }
 
   String getWordSuggestion() {
@@ -219,6 +237,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
     return dto.mechanics.dictionary.getWordSuggestion(
       exceptions: liveState.words.keys,
       characters: liveState.currentWord.middlePart,
+      wordsLanguage: liveState.wordsLanguage,
     );
   }
 

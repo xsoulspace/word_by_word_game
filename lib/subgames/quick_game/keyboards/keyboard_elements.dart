@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:provider/provider.dart';
+import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
@@ -200,7 +201,7 @@ class KeyboardLetters extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            LanguageSwitcher(
+            KeyboardLanguageSwitcher(
               lettersCount: lettersCount,
               onChanged: onLanguageChanged,
               value: language,
@@ -273,8 +274,8 @@ class InputCaret extends StatelessWidget {
           );
 }
 
-class LanguageSwitcher extends StatelessWidget {
-  const LanguageSwitcher({
+class KeyboardLanguageSwitcher extends StatelessWidget {
+  const KeyboardLanguageSwitcher({
     required this.onChanged,
     required this.value,
     required this.lettersCount,

@@ -6,8 +6,8 @@ publish_to: none
 # publish_to: "none"
 # homepage:
 environment:
-  sdk: ">=3.3.1 <4.0.0"
-  flutter: ">=3.19.3"
+  sdk: ">=3.4.0 <4.0.0"
+  flutter: ">=3.22.0"
 
 dependencies:
   animate_do: ^3.0.2
@@ -22,8 +22,8 @@ dependencies:
   firebase_core: ^2.14.0
   firebase_core_web: ^2.6.0
   firebase_crashlytics: ^3.3.3
-  flame: ^1.16.0
-  flame_bloc: ^1.11.0
+  flame: ^1.17.0
+  flame_bloc: ^1.11.1
   flame_fire_atlas: ^1.4.1
   flutter:
     sdk: flutter

@@ -133,9 +133,7 @@ class SIt extends S {
   String get tryAnotherWord => 'Prova un\'altra parola';
 
   @override
-  String notEnoughKnowledgeToRevealWord(int costOfWord, int userPoints) {
-    return 'Punti insufficienti ($costOfWord/$userPoints)';
-  }
+  String get notEnoughKnowledgeToRevealWord => 'Punti insufficienti';
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {

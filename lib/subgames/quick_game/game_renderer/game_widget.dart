@@ -11,7 +11,6 @@ import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_rendere
 
 class WbwGameWidget extends HookWidget {
   const WbwGameWidget({super.key});
-
   @override
   Widget build(final BuildContext context) {
     final gameFocusNode = useFocusNode();
@@ -37,6 +36,7 @@ class WbwGameWidget extends HookWidget {
             //Work in progress loading screen on game start
             loadingBuilder: (final context) => const LoadingScreen(),
             initialActiveOverlays: [
+              GameOverlaysRoutes.weather.name,
               GameOverlaysRoutes.gui.name,
               GameOverlaysRoutes.notifications.name,
               GameOverlaysRoutes.debug.name,

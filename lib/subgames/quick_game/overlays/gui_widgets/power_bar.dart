@@ -1,18 +1,19 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
 
 class UIPowerBar extends StatelessWidget {
   const UIPowerBar({super.key});
 
   @override
   Widget build(final BuildContext context) {
+    final locale = useLocale(context);
     final playerParams = context.select<LevelPlayersBloc, PlayerCharacterModel>(
       (final value) => value.state.playerCharacter,
     );
@@ -41,7 +42,7 @@ class UIPowerBar extends StatelessWidget {
                 // ignore: lines_longer_than_80_chars
                 'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
           },
-        ).getValue(),
+        ).getValue(locale),
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -59,31 +60,14 @@ class UIPowerBar extends StatelessWidget {
               uiKey: TutorialUiItem.baloonPower,
               child: Stack(
                 children: [
-                  Container(
-                    decoration: BoxDecoration(
-                      borderRadius: const BorderRadius.all(
-                        Radius.elliptical(52, 52),
-                      ),
-                      color: context.colorScheme.error.withOpacity(0.3),
-                      border: Border.all(color: context.colorScheme.error),
-                    ),
+                  AnimatedProgressBar(
                     height: 24,
                     width: maxWidth,
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 0,
-                    bottom: 0,
-                    child: AnimatedContainer(
-                      duration: 20.milliseconds,
-                      width: powerRatio * maxWidth,
-                      decoration: BoxDecoration(
-                        color: context.colorScheme.error.withOpacity(0.6),
-                        borderRadius: const BorderRadius.all(
-                          Radius.elliptical(52, 52),
-                        ),
-                      ),
-                    ),
+                    value: powerRatio,
+                    backgroundColor: context.colorScheme.error.withOpacity(0.3),
+                    color: context.colorScheme.error.withOpacity(0.6),
+                    borderRadiusValue: 52,
+                    border: Border.all(color: context.colorScheme.error),
                   ),
                   Positioned(
                     top: 0,

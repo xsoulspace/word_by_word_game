@@ -45,14 +45,12 @@ class WordCompositionStateDiDto {
       : levelBloc = read(),
         tutorialBloc = read(),
         mechanics = read(),
-        appRouterController = read(),
         globalGameBloc = read(),
         dialogController = read();
   final Locator read;
   final LevelBloc levelBloc;
   final TutorialBloc tutorialBloc;
   final MechanicsCollection mechanics;
-  final AppRouterController appRouterController;
   final GlobalGameBloc globalGameBloc;
   final DialogController dialogController;
 }
@@ -66,26 +64,26 @@ class WordCompositionCubitState with _$WordCompositionCubitState {
 
 class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
   WordCompositionCubit({
-    required this.diDto,
+    required this.dto,
   })  : wordController = WordFieldController(
-          currentWord: diDto.levelBloc.state.currentWord,
+          currentWord: dto.levelBloc.state.currentWord,
         ),
         super(const WordCompositionCubitState()) {
     onLoad();
   }
   late final _tutorialEventsListener = WordCompositionTutorialEventListener(
-    read: diDto.read,
+    read: dto.read,
     onRequestWordFieldFocus: onRequestTextFocus,
   );
   String _latestWord = '';
   StreamSubscription<LevelBlocState>? _levelBlocSubscription;
   final _wordUpdatesController = StreamController<CurrentWordModel>();
-  final WordCompositionStateDiDto diDto;
+  final WordCompositionStateDiDto dto;
 
   void onLoad() {
-    _latestWord = diDto.levelBloc.state.latestWord;
+    _latestWord = dto.levelBloc.state.latestWord;
     _levelBlocSubscription =
-        diDto.levelBloc.stream.distinct().listen((final newState) {
+        dto.levelBloc.stream.distinct().listen((final newState) {
       if (_latestWord != newState.latestWord) {
         _latestWord = newState.latestWord;
         wordController.currentWord = newState.currentWord;
@@ -97,7 +95,7 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
       }
     });
     wordController.addListener(_onPartChanged);
-    diDto.tutorialBloc.notifier.addListener(_tutorialEventsListener);
+    dto.tutorialBloc.notifier.addListener(_tutorialEventsListener);
     unawaited(
       _wordUpdatesController.stream
           .sampleTime(
@@ -105,42 +103,43 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
           )
           .forEach(_changeFullWord),
     );
+    onRequestTextFocus();
   }
 
   final wordFocusNode = FocusNode();
   final WordFieldController wordController;
+  void _selectMultiplier(final EnergyMultiplierType multiplier) =>
+      dto.levelBloc.onLevelPlayerSelectActionMultiplier(
+        LevelBlocEventSelectActionMultiplier(multiplier: multiplier),
+      );
   void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
     _selectMultiplier(multiplier);
     _onToEndTurn(EnergyApplicationType.researchingTechnology);
   }
 
-  void _selectMultiplier(final EnergyMultiplierType multiplier) =>
-      diDto.levelBloc.onLevelPlayerSelectActionMultiplier(
-        LevelBlocEventSelectActionMultiplier(multiplier: multiplier),
-      );
+  void onCrystalMoved(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.crystalMove);
+  }
 
   void onPowerSelected(final EnergyMultiplierType multiplier) {
     _selectMultiplier(multiplier);
     _onToEndTurn(EnergyApplicationType.refueling);
   }
 
-  void onToSelectActionPhase() {
-    diDto.levelBloc.onAcceptNewWord();
-  }
+  Future<void> onToSelectActionPhase() async => dto.levelBloc.onAcceptNewWord();
 
   void changeCardVisibility() {
     emit(state.copyWith(isCardVisible: !state.isCardVisible));
   }
 
   void _onToEndTurn(final EnergyApplicationType energyApplicationType) {
-    diDto.levelBloc.onLevelPlayerEndTurnAction(energyApplicationType);
+    dto.levelBloc.onLevelPlayerEndTurnAction(energyApplicationType);
     onRequestTextFocus();
   }
 
-  void onAddWordToDictionary() {
-    diDto.levelBloc
-        .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
-  }
+  Future<void> onAddWordToDictionary() async => dto.levelBloc
+      .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
 
   void onRequestTextFocus() {
     WidgetsBinding.instance.addPostFrameCallback((final _) {
@@ -153,22 +152,22 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
 
   void _changeFullWord(final CurrentWordModel word) {
     final event = LevelBlocEventChangeCurrentWord(word: word);
-    diDto.levelBloc.onChangeCurrentWord(event);
+    dto.levelBloc.onChangeCurrentWord(event);
     final tutorialEvent = TutorialUiActionEvent(
       action: TutorialCompleteAction.onEdit,
       stringValue: event.word.fullWord,
       key: TutorialUiItem.wordField,
     );
-    diDto.tutorialBloc.onTutorialUiAction(tutorialEvent);
+    dto.tutorialBloc.onTutorialUiAction(tutorialEvent);
   }
 
   void onUnblockIndex(final int index) {
-    diDto.levelBloc.onUnblockIndex(index: index);
+    dto.levelBloc.onUnblockIndex(index: index);
   }
 
   @override
   Future<void> close() async {
-    diDto.tutorialBloc.notifier.removeListener(_tutorialEventsListener);
+    dto.tutorialBloc.notifier.removeListener(_tutorialEventsListener);
     wordController
       ..removeListener(_onPartChanged)
       ..dispose();

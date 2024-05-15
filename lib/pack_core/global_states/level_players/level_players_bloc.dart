@@ -2,6 +2,7 @@ import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:logger/logger.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -24,17 +25,28 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
       : diDto = LevelPlayersBlocDiDto.use(context),
         super(LevelPlayersBlocState.empty);
   final LevelPlayersBlocDiDto diDto;
+  final _log = Logger();
+  PlayerCharacterModel get playerCharacter => state.playerCharacter;
+
+  @override
+  Future<void> close() {
+    _log.close();
+    return super.close();
+  }
+
+  bool get isPlayersEmpty =>
+      state.players.isEmpty || state.players.first.name.isEmpty;
+  bool get isPlayersNotEmpty => !isPlayersEmpty;
 
   void onInitLevelPlayers(
     final InitLevelPlayersEvent event,
   ) {
+    // _log.d('distanceToOrigin: ${diDto.canvasCubit.player.distanceToOrigin}');
     final liveState = LevelPlayersBlocState.fromModel(
       levelPlayersModel: event.playersModel,
-      levelCharactersModel: event.charactersModel.copyWith(
-        playerCharacter: event.charactersModel.playerCharacter.copyWith(
-          gid: diDto.canvasCubit.player.id,
-          distanceToOrigin: diDto.canvasCubit.player.distanceToOrigin,
-        ),
+      levelCharactersModel: event.charactersModel.copyWith.playerCharacter(
+        gid: diDto.canvasCubit.player.id,
+        distanceToOrigin: diDto.canvasCubit.player.distanceToOrigin,
       ),
     );
     emit(liveState);
@@ -69,19 +81,23 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
 
   void onChangeCharacter(
     final PlayerCharacterModel value,
-  ) {
-    emit(state.copyWith(playerCharacter: value));
-  }
+  ) =>
+      emit(state.copyWith(playerCharacter: value));
+
+  double get powerUsage => playerCharacter.balloonParams.powerUsage;
+  void onPowerUsageChange(final String? value) => onChangeCharacter(
+        playerCharacter.copyWith.balloonParams(
+          powerUsage: double.tryParse(value ?? '') ?? 0,
+        ),
+      );
 
   void onChangeCharacterPosition({
     required final Vector2 distanceToOrigin,
     required final LiftForceModel liftForce,
   }) {
-    final updatedState = state.copyWith(
-      playerCharacter: state.playerCharacter.copyWith(
-        distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-        balloonPowers: liftForce.updatedPowers,
-      ),
+    final updatedState = state.copyWith.playerCharacter(
+      distanceToOrigin: distanceToOrigin.toSerializedVector2(),
+      balloonPowers: liftForce.updatedPowers,
     );
 
     emit(updatedState);
@@ -94,11 +110,9 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     final power = scoreMechanics.convertScoreToPower(
       score: event.score,
     );
-    final updatedState = state.copyWith(
-      playerCharacter: state.playerCharacter.copyWith(
-        balloonPowers: state.playerCharacter.balloonPowers.copyWith(
-          power: state.playerCharacter.balloonPowers.power + power,
-        ),
+    final updatedState = state.copyWith.playerCharacter(
+      balloonPowers: playerCharacter.balloonPowers.copyWith(
+        power: playerCharacter.balloonPowers.power + power,
       ),
     );
     emit(updatedState);

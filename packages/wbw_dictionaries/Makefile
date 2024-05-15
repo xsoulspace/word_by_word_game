@@ -1,0 +1,9 @@
+gen: 
+	flutter pub run build_runner build
+	
+archive:
+	# TODO(arenukvern): add sh script	or mason or dart program
+	tar czf ./assets/archives/eng_dic.tar.gz ./assets/src/eng_dic.csv
+	tar czf ./assets/archives/ru_dic.tar.gz ./assets/src/ru_dic.csv
+	cp ./assets/src/eng_dic.csv ../wbw_server/assets/src/eng_dic.csv
+	cp ./assets/src/ru_dic.csv ../wbw_server/assets/src/ru_dic.csv
