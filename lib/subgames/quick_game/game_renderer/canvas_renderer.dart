@@ -114,7 +114,7 @@ class CanvasRenderer extends Component
         Offset offset = (player.position.toVector2() -
                 Vector2(
                   screenSize.x / 3,
-                  math.max(170, math.max(200, screenSize.y / 2 - 60)),
+                  math.max(200, screenSize.y / 2 - 60),
                 ))
             .toOffset();
         offset = origin.toOffset() - offset;

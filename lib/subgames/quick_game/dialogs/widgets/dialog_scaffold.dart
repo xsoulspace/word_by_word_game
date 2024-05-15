@@ -36,11 +36,13 @@ class DialogScaffold extends StatelessWidget {
       );
       child = Column(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          if (top != null) top,
-          Expanded(child: body),
-          if (bottom != null) bottom,
-        ],
+        children: top != null || bottom != null
+            ? [
+                if (top != null) top,
+                Expanded(child: body),
+                if (bottom != null) bottom,
+              ]
+            : [body],
       );
     }
     return AnimatedContainer(
