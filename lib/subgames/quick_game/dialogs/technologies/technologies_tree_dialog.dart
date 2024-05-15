@@ -78,11 +78,12 @@ class TechnologiesTreeDialog extends HookWidget {
 
     return DialogScaffold(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      side: _TechnologyPanelView(
+      bottom: _TechnologyPanelView(
         technologyWord: technologyForInfoNotifier.value,
       ),
-      children: [
-        Row(
+      top: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Row(
           children: [
             Text(
               const LocalizedMap(
@@ -113,6 +114,8 @@ class TechnologiesTreeDialog extends HookWidget {
               ),
           ],
         ),
+      ),
+      children: [
         const Gap(16),
         Card.outlined(
           child: Padding(
@@ -188,20 +191,23 @@ class TechnologiesTreeDialog extends HookWidget {
           ),
         ),
         const Gap(32),
-        ...technologiesCubit.technologies.values.map(
-          (final e) => _TechnologyTile(
-            key: ValueKey(e.id),
-            onHover: (final technologyWord) {
-              technologyForInfoNotifier.value = technologyWord;
-            },
-            language: wordsLanguage,
-            isSelectionAllowed: isSelectionAllowed,
-            selectedId: technologiesCubit.researchingTechnology?.id,
-            onSelectedChanged: technologiesCubit.onResearchingTechnologyChanged,
-            value: e,
-            progress: technologiesCubit.progress.technologies[e.id],
-          ),
-        ),
+        ...technologiesCubit.technologies.values
+            .where((final e) => TechnologyType.checkIsActive(e.type))
+            .map(
+              (final e) => _TechnologyTile(
+                key: ValueKey(e.id),
+                onHover: (final technologyWord) {
+                  technologyForInfoNotifier.value = technologyWord;
+                },
+                language: wordsLanguage,
+                isSelectionAllowed: isSelectionAllowed,
+                selectedId: technologiesCubit.researchingTechnology?.id,
+                onSelectedChanged:
+                    technologiesCubit.onResearchingTechnologyChanged,
+                value: e,
+                progress: technologiesCubit.progress.technologies[e.id],
+              ),
+            ),
       ],
     );
   }

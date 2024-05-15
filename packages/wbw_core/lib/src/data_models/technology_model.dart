@@ -127,5 +127,12 @@ enum TechnologyType {
   safeLanding,
   emergencyLanding,
   ascending,
-  descending,
+  descending;
+
+  static const Set<TechnologyType> _active = {
+    TechnologyType.ascending,
+    TechnologyType.descending,
+  };
+  static bool checkIsActive(final TechnologyType type) =>
+      _active.contains(type);
 }

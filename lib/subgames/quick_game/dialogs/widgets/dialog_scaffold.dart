@@ -6,7 +6,8 @@ class DialogScaffold extends StatelessWidget {
   const DialogScaffold({
     this.children,
     this.builder,
-    this.side,
+    this.bottom,
+    this.top,
     this.padding,
     super.key,
   }) : assert(
@@ -14,13 +15,15 @@ class DialogScaffold extends StatelessWidget {
           'Children or builder should be provided',
         );
   final List<Widget>? children;
-  final Widget? side;
+  final Widget? bottom;
+  final Widget? top;
   final WidgetBuilder? builder;
   final EdgeInsets? padding;
   @override
   Widget build(final BuildContext context) {
-    final side = this.side;
     final uiTheme = context.uiTheme;
+    final bottom = this.bottom;
+    final top = this.top;
     final padding = this.padding ?? EdgeInsets.all(uiTheme.spacing.extraLarge);
     Widget child;
     if (builder != null) {
@@ -33,7 +36,11 @@ class DialogScaffold extends StatelessWidget {
       );
       child = Column(
         mainAxisSize: MainAxisSize.min,
-        children: side != null ? [Expanded(child: body), side] : [body],
+        children: [
+          if (top != null) top,
+          Expanded(child: body),
+          if (bottom != null) bottom,
+        ],
       );
     }
     return AnimatedContainer(
