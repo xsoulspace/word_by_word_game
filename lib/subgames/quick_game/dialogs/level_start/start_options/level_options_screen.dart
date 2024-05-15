@@ -150,7 +150,7 @@ class _ExperimentsListView extends HookWidget {
               value: {
                 Languages.en:
                     // ignore: lines_longer_than_80_chars
-                    'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading will take several minutes.',
+                    'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading may take a few minutes.',
                 Languages.ru:
                     // ignore: lines_longer_than_80_chars
                     'Примечание: данная функция требует предварительного большой загрузки дополнительных словарей (около 30 мб), поэтому первая загрузка уровня займет несколько минут.',
