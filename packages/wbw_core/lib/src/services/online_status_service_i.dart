@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 abstract class BaseOnlineStatusService extends ChangeNotifier {
   // ignore: avoid_unused_constructor_parameters
   BaseOnlineStatusService(final BuildContext context);
-
+  Future<void> onLoad();
   bool _isConnected = false;
 
   bool get isConnected => _isConnected;
