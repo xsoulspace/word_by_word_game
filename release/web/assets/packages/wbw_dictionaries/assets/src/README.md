@@ -11,6 +11,11 @@ https://github.com/Layerex/ozhegov-dict/tree/master
 - remove words:
   Admin, <=, ==, =>, Spec, Maxime, Colloq, Lib
 
+For researching:
+https://norvig.com/ngrams/
+https://norvig.com/ngrams/sowpods.txt
+https://codelabs.developers.google.com/codelabs/flutter-word-puzzle#2
+
 # How to save csv correctly:
 
 - download csv
