@@ -6,13 +6,14 @@ import 'package:universal_io/io.dart';
 import 'online_status_service_i.dart';
 
 class OnlineStatusService extends BaseOnlineStatusService {
-  OnlineStatusService(super.context) {
-    unawaited(_checkConnection());
+  OnlineStatusService(super.context);
+  Future<void> onLoad() async {
+    await _checkConnection();
     // Schedule a new timer every 5 seconds to check the internet connection.
-    _timer = Timer.periodic(
-      const Duration(seconds: 5),
-      (final _) async => _checkConnection(),
-    );
+    // _timer = Timer.periodic(
+    //   const Duration(seconds: 5),
+    //   (final _) async => _checkConnection(),
+    // );
   }
 
   Timer? _timer;

@@ -57,6 +57,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
   }
 
+  Languages get wordsLanguage => state.wordsLanguage;
   void onChangeWordsLanguage(final Languages language) {
     final updatedState = state.copyWith(
       wordsLanguage: language,
@@ -193,6 +194,14 @@ class LevelBloc extends Cubit<LevelBlocState> {
       phaseType: GamePhaseType.entryWord,
     );
     emit(updatedState);
+    _onApplyMultiplier(energyApplicationType);
+    dto.levelPlayersCubit.onSwitchToNextPlayer(const SwitchToNextPlayerEvent());
+  }
+
+  void _onApplyMultiplier(
+    final EnergyApplicationType energyApplicationType,
+  ) {
+    final liveState = state;
 
     final levelPlayersCubit = dto.levelPlayersCubit;
     final technologiesCubit = dto.technologiesCubit;
@@ -211,18 +220,16 @@ class LevelBloc extends Cubit<LevelBlocState> {
         technologiesCubit.onResearchTechnology(
           ResearchTechnologyEvent(score: appliedScore),
         );
-      case EnergyApplicationType.noop:
+      case EnergyApplicationType.crystalMove || EnergyApplicationType.noop:
     }
 
     final playerId = levelPlayersCubit.state.currentPlayerId;
-    levelPlayersCubit
-      ..onUpdatePlayerHighscore(
-        UpdatePlayerHighscoreEvent(
-          score: appliedScore * -1,
-          playerId: playerId,
-        ),
-      )
-      ..onSwitchToNextPlayer(const SwitchToNextPlayerEvent());
+    levelPlayersCubit.onUpdatePlayerHighscore(
+      UpdatePlayerHighscoreEvent(
+        score: appliedScore * -1,
+        playerId: playerId,
+      ),
+    );
   }
 
   String getWordSuggestion() {

@@ -57,15 +57,6 @@ class UiDebugSideBarCubit extends Cubit<UiDebugSideBarCubitState> {
     );
   }
 
-  double get powerUsage => _character.balloonParams.powerUsage;
-  void onPowerUsageChange(final String? value) {
-    changeParams(
-      _character.balloonParams.copyWith(
-        powerUsage: double.tryParse(value ?? '') ?? 0,
-      ),
-    );
-  }
-
   double get gravityForce => _gameConstants.forces.gravityForce;
   void onGravityForceChange(final String? value) {
     changeForces(

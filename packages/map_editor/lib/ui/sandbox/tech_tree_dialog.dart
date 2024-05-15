@@ -44,7 +44,7 @@ class TechnologyTreeDialog extends StatefulWidget {
 }
 
 class _TechnologyTreeDialogState extends State<TechnologyTreeDialog> {
-  Languages _language = LocalizedMap.getCurrentLanugage();
+  late Languages _language = context.read();
   @override
   Widget build(final BuildContext context) {
     final drawerCubit = context.watch<EditorDrawerCubit>();

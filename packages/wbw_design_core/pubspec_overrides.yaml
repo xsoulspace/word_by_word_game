@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: map_editor,wbw_core,wbw_locale,http,collection,intl
+# melos_managed_dependency_overrides: map_editor,wbw_core,wbw_locale,http,collection,intl,wbw_client,wbw_dictionaries
 dependency_overrides:
   map_editor:
     path: ../map_editor
@@ -9,3 +9,7 @@ dependency_overrides:
   http: 1.0.0
   collection: 1.18.0
   intl: ^0.19.0
+  wbw_client:
+    path: ../wbw_client
+  wbw_dictionaries:
+    path: ../wbw_dictionaries

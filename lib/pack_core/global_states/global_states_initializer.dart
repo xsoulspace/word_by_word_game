@@ -28,7 +28,12 @@ class GlobalStatesInitializer implements StateInitializer {
     final analyticsService = read<AnalyticsService>();
     final canvasCubit = read<CanvasCubit>();
     final appSettingsNotifier = read<AppSettingsNotifier>();
-    await appSettingsNotifier.onLoad();
+    final onlineStatusService = read<OnlineStatusService>();
+    await Future.wait([
+      onlineStatusService.onLoad(),
+      appSettingsNotifier.onLoad(),
+    ]);
+
     final wordsType = await services.userWordsRepository.loadUserWords();
     await dictionariesBloc.onLoad(wordsType: wordsType);
     await canvasCubit.loadInitialData();
