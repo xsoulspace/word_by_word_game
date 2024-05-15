@@ -4,16 +4,16 @@
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
-    "editor.rulers": [
-      80
-    ]
+    "editor.rulers": [80]
   },
-  "dart.flutterSdkPath": ".fvm/versions/master",
+  "dart.flutterSdkPath": ".fvm/versions/3.22.0",
   "search.exclude": {
     "**/.fvm": true
   },
   "files.watcherExclude": {
     "**/.fvm": true
   },
-  "dart.runPubGetOnPubspecChanges": "never"
+  "dart.runPubGetOnPubspecChanges": "never",
+  "IDX.aI.enableInlineCompletion": true,
+  "IDX.aI.enableCodebaseIndexing": true
 }

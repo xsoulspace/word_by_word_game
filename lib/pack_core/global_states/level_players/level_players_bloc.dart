@@ -26,6 +26,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
         super(LevelPlayersBlocState.empty);
   final LevelPlayersBlocDiDto diDto;
   final _log = Logger();
+  PlayerCharacterModel get playerCharacter => state.playerCharacter;
 
   @override
   Future<void> close() {
@@ -83,15 +84,20 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   ) =>
       emit(state.copyWith(playerCharacter: value));
 
+  double get powerUsage => playerCharacter.balloonParams.powerUsage;
+  void onPowerUsageChange(final String? value) => onChangeCharacter(
+        playerCharacter.copyWith.balloonParams(
+          powerUsage: double.tryParse(value ?? '') ?? 0,
+        ),
+      );
+
   void onChangeCharacterPosition({
     required final Vector2 distanceToOrigin,
     required final LiftForceModel liftForce,
   }) {
-    final updatedState = state.copyWith(
-      playerCharacter: state.playerCharacter.copyWith(
-        distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-        balloonPowers: liftForce.updatedPowers,
-      ),
+    final updatedState = state.copyWith.playerCharacter(
+      distanceToOrigin: distanceToOrigin.toSerializedVector2(),
+      balloonPowers: liftForce.updatedPowers,
     );
 
     emit(updatedState);
@@ -104,11 +110,9 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     final power = scoreMechanics.convertScoreToPower(
       score: event.score,
     );
-    final updatedState = state.copyWith(
-      playerCharacter: state.playerCharacter.copyWith(
-        balloonPowers: state.playerCharacter.balloonPowers.copyWith(
-          power: state.playerCharacter.balloonPowers.power + power,
-        ),
+    final updatedState = state.copyWith.playerCharacter(
+      balloonPowers: playerCharacter.balloonPowers.copyWith(
+        power: playerCharacter.balloonPowers.power + power,
       ),
     );
     emit(updatedState);

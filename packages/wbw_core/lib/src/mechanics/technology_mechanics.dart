@@ -11,11 +11,11 @@ class TechnologyMechanics {
     required final TechnologyUnlockConditionModel unlockCondition,
   }) {
     for (final language in Languages.values) {
-      final (:isUnlocked, :percentage) = checkIsUnlockedForLanguage(
+      final result = checkIsUnlockedForLanguage(
         unlockCondition: unlockCondition,
         language: language,
       );
-      if (isUnlocked) return true;
+      if (result.isUnlocked) return true;
     }
     return false;
   }

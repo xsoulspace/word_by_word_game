@@ -95,6 +95,9 @@ class LevelWordSuggestionDialog extends HookWidget {
     final state = useStateBuilder(
       () => _DialogState(dto: _DialogStateDiDto.use(context.read)),
     );
+    final currentWord = context.select<LevelBloc, CurrentWordModel>(
+      (final c) => c.state.currentWord,
+    );
     final fadeColor = context.colorScheme.onPrimaryContainer.withOpacity(0.6);
     final wordMeaning = AnimatedSize(
       duration: 350.milliseconds,
@@ -195,16 +198,54 @@ class LevelWordSuggestionDialog extends HookWidget {
                     textAlign: TextAlign.center,
                   ),
                   uiTheme.verticalBoxes.large,
-                  Text(
-                    List.generate(
-                      state._suggestedWord.length,
-                      (final index) => '*',
-                    ).join(),
+                  DefaultTextStyle.merge(
                     style: theme.textTheme.headlineSmall?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
-                    textAlign: TextAlign.center,
+                    child: Builder(
+                      builder: (final context) {
+                        final children = <Widget>[];
+                        final parts = state._suggestedWord
+                            .split(currentWord.middlePart)
+                            .map(
+                              (final e) => Padding(
+                                padding: const EdgeInsets.only(top: 5),
+                                child: Text(
+                                  e.characters.map((final e) => '*').join(),
+                                ),
+                              ),
+                            );
+                        children
+                          ..add(parts.first)
+                          ..add(
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 2),
+                              child: Text(currentWord.middlePart),
+                            ),
+                          );
+                        if (parts.length > 1) {
+                          children.add(parts.last);
+                        }
+
+                        return Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: children,
+                        );
+                      },
+                    ),
                   ),
+                  // Text(
+
+                  //       ,
+                  //   // List.generate(
+                  //   //   state._suggestedWord.length,
+                  //   //   (final index) => '*',
+                  //   // ).join(),
+
+                  //   textAlign: TextAlign.center,
+                  // ),
                   wordMeaning,
                   uiTheme.verticalBoxes.medium,
                   _UsePointsButton(

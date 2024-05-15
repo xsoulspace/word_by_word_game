@@ -99,20 +99,22 @@ class _WeatherOverlayBodyState extends State<_WeatherOverlayBody> {
   Widget build(final BuildContext context) {
     final color =
         const Color.fromARGB(255, 1, 20, 17).withOpacity(_maxTargetOpacity);
-    return Stack(
-      fit: StackFit.expand,
-      children: [
-        AnimatedContainer(
-          duration: 1800.milliseconds,
-          decoration: BoxDecoration(
-            color: Colors.amber[200]!.withOpacity(0.1),
+    return IgnorePointer(
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          AnimatedContainer(
+            duration: 1800.milliseconds,
+            decoration: BoxDecoration(
+              color: Colors.amber[200]!.withOpacity(0.1),
+            ),
           ),
-        ),
-        AnimatedContainer(
-          duration: 1500.milliseconds,
-          decoration: BoxDecoration(color: color),
-        ),
-      ],
+          AnimatedContainer(
+            duration: 1500.milliseconds,
+            decoration: BoxDecoration(color: color),
+          ),
+        ],
+      ),
     );
   }
 }

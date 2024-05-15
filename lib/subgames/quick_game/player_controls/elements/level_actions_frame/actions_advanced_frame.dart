@@ -8,6 +8,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/level_actions_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -20,12 +21,14 @@ class UIActionFrameAdvanced extends StatelessWidget {
     final locale = useLocale(context);
     final textTheme = context.textTheme;
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           TabBar(
+            tabAlignment: TabAlignment.center,
             padding: EdgeInsets.zero,
-            labelPadding: EdgeInsets.zero,
+            isScrollable: true,
             tabs: [
               (
                 title: const LocalizedMap(
@@ -34,7 +37,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     Languages.ru: 'Энергия',
                     Languages.it: 'Energia',
                   },
-                ).getValue(locale),
+                ),
                 iconChildren: [
                   Image.asset(
                     UiAssetHelper.useImagePath(UiIcons.fire.path),
@@ -46,11 +49,24 @@ class UIActionFrameAdvanced extends StatelessWidget {
               (
                 title: const LocalizedMap(
                   value: {
+                    Languages.en: 'Actions',
+                    Languages.ru: 'Действия',
+                    Languages.it: 'Azioni',
+                  },
+                ),
+                iconChildren: [
+                  const Icon(CupertinoIcons.book, size: 18),
+                  const Gap(2),
+                ]
+              ),
+              (
+                title: const LocalizedMap(
+                  value: {
                     Languages.en: 'Technology',
                     Languages.ru: 'Технология',
                     Languages.it: 'Tecnologia',
                   },
-                ).getValue(locale),
+                ),
                 iconChildren: [
                   const Icon(CupertinoIcons.lab_flask, size: 18),
                   const Gap(2),
@@ -65,7 +81,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         ...e.iconChildren,
-                        Text(e.title),
+                        Text(e.title.getValue(locale)),
                       ],
                     ),
                   ),
@@ -88,6 +104,7 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     const UiEnergyCards(),
                   ],
                 ),
+                const _ActionsTabView(),
                 const _TechnologyTabView(),
               ],
             ),
@@ -229,11 +246,14 @@ class _ChangeResearchingTechnology extends StatelessWidget {
 ) {
   final mechanics = context.read<MechanicsCollection>();
   final technologiesCubit = context.watch<TechnologiesCubit>();
+  final wordsLanguage =
+      context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
   final technologyProgress = technologiesCubit.researchingTechnologyProgress;
   final unlockCondition = technologyProgress?.unlockCondition;
   if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
   return mechanics.technology.checkIsUnlockedForLanguage(
     unlockCondition: unlockCondition,
+    language: wordsLanguage,
   );
 }
 
@@ -390,4 +410,13 @@ class _TechnologyMultiplierCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ActionsTabView extends StatelessWidget {
+  const _ActionsTabView({super.key});
+
+  @override
+  Widget build(final BuildContext context) => const Row(
+        children: [Flexible(child: HeatEngineView())],
+      );
 }

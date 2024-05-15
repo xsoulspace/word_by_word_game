@@ -133,7 +133,8 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     if (!isAllowedToBeLoaded) return;
 
     /// do not load if user is online
-    if (repository.onlineStatusService.isConnected) return;
+    if (repository.onlineStatusService.isConnected &&
+        repository.isAllowedToUseRemote) return;
 
     value = WbwDictionariesLoadingStatus.loading;
     _startStopwatch();
