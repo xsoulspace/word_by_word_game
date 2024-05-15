@@ -5,10 +5,7 @@ import 'package:web/web.dart' as web;
 import 'online_status_service_i.dart';
 
 class OnlineStatusService extends BaseOnlineStatusService {
-  OnlineStatusService(super.context) {
-    isConnected = web.window.navigator.onLine;
-    _startListening();
-  }
+  OnlineStatusService(super.context);
 
   void _startListening() => web.window
     ..addEventListener('online', _onOnline.toJS)
@@ -23,5 +20,11 @@ class OnlineStatusService extends BaseOnlineStatusService {
       ..removeEventListener('online', _onOnline.toJS)
       ..removeEventListener('offline', _onOffline.toJS);
     super.dispose();
+  }
+
+  @override
+  Future<void> onLoad() async {
+    isConnected = web.window.navigator.onLine;
+    _startListening();
   }
 }
