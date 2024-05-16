@@ -15,7 +15,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/envs.dart';
-import 'package:word_by_word_game/pack_core/ads/ads.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
@@ -43,64 +42,72 @@ class PauseScreen extends HookWidget {
           child: Stack(
             children: [
               Positioned.fill(child: Container().blurred()),
-              Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const TopSafeArea(),
-                    const AdPauseScreenBanner(),
-                    const Spacer(),
-                    const StartGameHex(),
-                    const Spacer(),
-                    Wrap(
-                      alignment: WrapAlignment.center,
-                      spacing: 2,
-                      runSpacing: 12,
-                      children: [
-                        UiFilledButton.icon(
-                          icon: Icons.settings,
-                          text: S.of(context).settings,
-                          onPressed: () => state.onToSettings(context),
-                        ).animate(delay: 500.milliseconds).fadeIn(
-                              curve: Curves.easeIn,
-                              duration: 450.milliseconds,
-                            ),
-                        uiTheme.horizontalBoxes.medium,
-                        UiFilledButton.icon(
-                          icon: Icons.scoreboard_rounded,
-                          text: Envs.store.isYandexGames
-                              ? S.of(context).playersAndHighscoreYandex
-                              : S.of(context).playersAndHighscore,
-                          onPressed: () =>
-                              state.onToPlayersAndHighscore(context),
-                        ).animate(delay: 500.milliseconds).fadeIn(
-                              curve: Curves.easeIn,
-                              duration: 450.milliseconds,
-                            ),
-                        uiTheme.horizontalBoxes.medium,
-                        UiFilledButton.icon(
-                          icon: Icons.question_mark_rounded,
-                          text: S.of(context).about,
-                          onPressed: state.onShowAbout,
-                        ).animate(delay: 500.milliseconds).fadeIn(
-                              curve: Curves.easeIn,
-                              duration: 450.milliseconds,
-                            ),
-                        uiTheme.horizontalBoxes.medium,
-                        if (_kIsPrivacyPolicyEnabled)
-                          UiTextButton.text(
-                            text: S.of(context).privacyPolicy,
-                            onPressed: state.onPrivacyPolicy,
-                          ).animate(delay: 500.milliseconds).fadeIn(
-                                curve: Curves.easeIn,
-                                duration: 450.milliseconds,
-                              ),
+              Column(
+                children: [
+                  Expanded(
+                    child: CustomScrollView(
+                      slivers: [
+                        const TopSafeArea().toSliver(),
+                        const SliverFillRemaining(
+                          hasScrollBody: false,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              QuickStartGameButtons(),
+                              LevelsView(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                    uiTheme.verticalBoxes.extraLarge,
-                    const BottomSafeArea(),
-                  ],
-                ),
+                  ),
+                  Wrap(
+                    alignment: WrapAlignment.center,
+                    spacing: 2,
+                    runSpacing: 12,
+                    children: [
+                      UiFilledButton.icon(
+                        icon: Icons.settings,
+                        text: S.of(context).settings,
+                        onPressed: () => state.onToSettings(context),
+                      ).animate(delay: 500.milliseconds).fadeIn(
+                            curve: Curves.easeIn,
+                            duration: 450.milliseconds,
+                          ),
+                      uiTheme.horizontalBoxes.medium,
+                      UiFilledButton.icon(
+                        icon: Icons.scoreboard_rounded,
+                        text: Envs.store.isYandexGames
+                            ? S.of(context).playersAndHighscoreYandex
+                            : S.of(context).playersAndHighscore,
+                        onPressed: () => state.onToPlayersAndHighscore(context),
+                      ).animate(delay: 500.milliseconds).fadeIn(
+                            curve: Curves.easeIn,
+                            duration: 450.milliseconds,
+                          ),
+                      uiTheme.horizontalBoxes.medium,
+                      UiFilledButton.icon(
+                        icon: Icons.question_mark_rounded,
+                        text: S.of(context).about,
+                        onPressed: state.onShowAbout,
+                      ).animate(delay: 500.milliseconds).fadeIn(
+                            curve: Curves.easeIn,
+                            duration: 450.milliseconds,
+                          ),
+                      uiTheme.horizontalBoxes.medium,
+                      if (_kIsPrivacyPolicyEnabled)
+                        UiTextButton.text(
+                          text: S.of(context).privacyPolicy,
+                          onPressed: state.onPrivacyPolicy,
+                        ).animate(delay: 500.milliseconds).fadeIn(
+                              curve: Curves.easeIn,
+                              duration: 450.milliseconds,
+                            ),
+                    ],
+                  ),
+                  uiTheme.verticalBoxes.extraLarge,
+                  const BottomSafeArea(),
+                ],
               ),
               if (_kIsCharacterVisible)
                 Positioned(

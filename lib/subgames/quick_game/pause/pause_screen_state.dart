@@ -33,6 +33,12 @@ class PauseScreenState extends ContextfulLifeState {
   //   if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
   // }
 
+  Future<void> onStart({
+    required final BuildContext context,
+    required final CanvasDataModelId id,
+    final bool restart = false,
+  }) async {}
+
   Future<void> onContinue({
     required final CanvasDataModelId id,
     required final BuildContext context,

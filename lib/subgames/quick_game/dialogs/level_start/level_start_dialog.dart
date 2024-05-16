@@ -21,8 +21,8 @@ import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
 part 'level_start_dialog_ui_state.dart';
 part 'level_start_dialog_ux_notifier.dart';
 
-class LevelStartDialogButton extends HookWidget {
-  const LevelStartDialogButton({
+class LevelRestartDialogButton extends HookWidget {
+  const LevelRestartDialogButton({
     required this.level,
     super.key,
   });
