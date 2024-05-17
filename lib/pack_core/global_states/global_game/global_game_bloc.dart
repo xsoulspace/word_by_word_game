@@ -308,6 +308,20 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
   }
 
+  Future<void> onRemoveLevelSave(final CanvasDataModelId canvasDataId) async {
+    var newState = state;
+    if (state.currentLevelId == canvasDataId) {
+      newState = state.copyWith(
+        currentLevelModel: null,
+      );
+    }
+    newState = state.copyWith(
+      savedLevels: {...state.savedLevels}..remove(canvasDataId),
+    );
+    emit(newState);
+    await _saveGame();
+  }
+
   /// Before calling this method, [onInitGlobalGameLevel] must be called
   Future<void> onStartPlayingLevel(
     final StartPlayingLevelEvent event,

@@ -241,7 +241,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
   return (onChangeTechnology: onChangeTechnology);
 }
 
-({bool isUnlocked, double percentage}) _useTechIsUnlocked(
+TechUnlockStatusTuple _useTechIsUnlocked(
   final BuildContext context,
 ) {
   final mechanics = context.read<MechanicsCollection>();
@@ -250,7 +250,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
       context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
   final technologyProgress = technologiesCubit.researchingTechnologyProgress;
   final unlockCondition = technologyProgress?.unlockCondition;
-  if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
+
   return mechanics.technology.checkIsUnlockedForLanguage(
     unlockCondition: unlockCondition,
     language: wordsLanguage,
@@ -265,7 +265,8 @@ class _ResearchMultiplierCards extends StatelessWidget {
     final technologiesCubit = context.watch<TechnologiesCubit>();
     final technology = technologiesCubit.researchingTechnology;
     final locale = useLocale(context);
-    final (:isUnlocked, :percentage) = _useTechIsUnlocked(context);
+    final (:isUnlocked, :percentage, :investedScore, :requiredScore) =
+        _useTechIsUnlocked(context);
 
     return Row(
       children: [
@@ -313,8 +314,11 @@ class _ResearchMultiplierCards extends StatelessWidget {
                           ),
                         ),
                         if (!isUnlocked) ...[
-                          const Gap(8),
-                          UiTechnologyLinearProgress(percentage: percentage),
+                          UiTechnologyLinearProgress(
+                            percentage: percentage,
+                            investedScore: investedScore,
+                            requiredScore: requiredScore,
+                          ),
                         ],
                       ],
                     ),
@@ -375,14 +379,36 @@ class _ResearchMultiplierCards extends StatelessWidget {
 class UiTechnologyLinearProgress extends StatelessWidget {
   const UiTechnologyLinearProgress({
     required this.percentage,
+    required this.investedScore,
+    required this.requiredScore,
     super.key,
   });
   final double percentage;
+  final double investedScore;
+  final double requiredScore;
   @override
-  Widget build(final BuildContext context) => LinearProgressIndicator(
-        value: percentage,
-        borderRadius: BorderRadius.circular(8),
-      ).animate().fadeIn();
+  Widget build(final BuildContext context) {
+    var pointsLeft = requiredScore - investedScore;
+    pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
+    return Row(
+      children: [
+        Flexible(
+          child: LinearProgressIndicator(
+            value: percentage,
+            borderRadius: BorderRadius.circular(8),
+          ).animate().fadeIn(),
+        ),
+        const Gap(8),
+        Text(
+          '${pointsLeft.formattedScore} left',
+          // '${investedScore.formattedScore}/${requiredScore.formattedScore}',
+          style: context.textTheme.labelMedium?.copyWith(
+            color: context.colorScheme.tertiary,
+          ),
+        ),
+      ],
+    );
+  }
 }
 
 class _TechnologyMultiplierCard extends StatelessWidget {

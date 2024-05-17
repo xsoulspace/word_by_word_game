@@ -1,7 +1,6 @@
 import 'package:wbw_design_core/wbw_design_core.dart';
 
 import '../../wbw_core.dart';
-import 'technology_mechanics.dart';
 
 export './dictionary_mechanics.dart';
 export './score_mechanics.dart';
@@ -9,6 +8,7 @@ export './word_composition_mechanics.dart';
 export './world_time_mechanics.dart';
 export 'engine_mechanics.dart';
 export 'objects/objects.dart';
+export 'technology_mechanics.dart';
 
 class MechanicsCollection {
   MechanicsCollection._({

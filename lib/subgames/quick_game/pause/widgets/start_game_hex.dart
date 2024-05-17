@@ -18,7 +18,7 @@ class QuickStartGameButtons extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<PauseScreenState>();
     final levelPlayersBloc = context.watch<LevelPlayersBloc>();
-    final statusCubit = context.watch<StatesStatusesCubit>();
+
     final params = context.routeParams;
     final routeArgs = LevelRouteArgs.fromJson(params);
     final levelId = CanvasDataModelId.fromJson(routeArgs.levelId);
@@ -26,45 +26,46 @@ class QuickStartGameButtons extends StatelessWidget {
         levelId.isNotEmpty && levelPlayersBloc.isPlayersNotEmpty;
     final uiTheme = context.uiTheme;
     final globalGameCubit = context.watch<GlobalGameBloc>();
+    context.watch<LevelStartDialogUiState>();
+
     return Provider(
       create: (final context) => state,
       builder: (final context, final child) {
         final canvasData = globalGameCubit.state.allCanvasData.values
             .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack);
 
-        return AnimatedCrossFade(
-          alignment: Alignment.center,
-          duration: 350.milliseconds,
-          crossFadeState: statusCubit.isLoading
-              ? CrossFadeState.showSecond
-              : CrossFadeState.showFirst,
-          firstChild: Column(
-            key: ValueKey(canvasData),
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              uiTheme.verticalBoxes.large,
-              LevelRestartDialogButton(level: canvasData)
+        return Column(
+          key: ValueKey(canvasData),
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            uiTheme.verticalBoxes.large,
+            UiFilledButton.text(
+              text: S.of(context).startNewGame,
+              onPressed: () async => state.onShowStartDialog(
+                canvasDataId: canvasData.id,
+                context: context,
+                restart: true,
+              ),
+            )
+                .animate()
+                .then(duration: 150.milliseconds)
+                .fadeIn()
+                .slideY(begin: -0.1),
+            uiTheme.verticalBoxes.large,
+            if (isLevelRunning)
+              UiFilledButton.text(
+                text: S.of(context).continueGame,
+                onPressed: () async => state.onContinue(
+                  context: context,
+                  id: levelId,
+                ),
+              )
                   .animate()
-                  .then(duration: 150.milliseconds)
+                  .then(duration: 450.milliseconds)
                   .fadeIn()
                   .slideY(begin: -0.1),
-              uiTheme.verticalBoxes.large,
-              if (isLevelRunning)
-                UiFilledButton.text(
-                  text: S.of(context).continueGame,
-                  onPressed: () async => state.onContinue(
-                    context: context,
-                    id: levelId,
-                  ),
-                )
-                    .animate()
-                    .then(duration: 450.milliseconds)
-                    .fadeIn()
-                    .slideY(begin: -0.1),
-              uiTheme.verticalBoxes.medium,
-            ],
-          ),
-          secondChild: const UiCircularProgress(),
+            uiTheme.verticalBoxes.medium,
+          ],
         );
       },
     );
@@ -92,7 +93,11 @@ class LevelsView extends StatelessWidget {
       children: [
         const Gap(24),
         // TODO(arenukvern): l10n
-        Text('Worlds', style: context.textThemeBold.headlineLarge),
+        Text('Worlds', style: context.textThemeBold.headlineLarge)
+            .animate()
+            .then(duration: 150.milliseconds)
+            .fadeIn()
+            .slideY(begin: -0.1),
         const Gap(24),
         Center(
           child: SizedBox(
@@ -107,12 +112,13 @@ class LevelsView extends StatelessWidget {
                   canvasId: canvasId,
                   levelSave: levelSaves[canvasId],
                   isCurrent: currentLevelId == canvasId,
-                  onStart: () async =>
-                      state.onStart(context: context, id: canvasId),
-                  onRestart: () async => state.onStart(
+                  onStart: () async => state.onShowStartDialog(
                     context: context,
-                    id: canvasId,
-                    restart: true,
+                    canvasDataId: canvasId,
+                  ),
+                  onOpenNewGameDialog: () async => state.onShowStartDialog(
+                    context: context,
+                    canvasDataId: canvasId,
                   ),
                   onContinue: () async =>
                       state.onContinue(context: context, id: canvasId),
@@ -122,7 +128,11 @@ class LevelsView extends StatelessWidget {
               itemCount: canvasIds.length,
             ),
           ),
-        ),
+        )
+            .animate()
+            .then(duration: 450.milliseconds)
+            .fadeIn()
+            .slideY(begin: -0.1),
       ],
     );
   }
@@ -135,14 +145,14 @@ class _LevelCard extends StatelessWidget {
     required this.isCurrent,
     required this.onStart,
     required this.onContinue,
-    required this.onRestart,
+    required this.onOpenNewGameDialog,
     super.key,
   });
   final CanvasDataModelId canvasId;
   final LevelModel? levelSave;
   final VoidCallback onStart;
   final VoidCallback onContinue;
-  final VoidCallback onRestart;
+  final VoidCallback onOpenNewGameDialog;
 
   final bool isCurrent;
   static const dimension = 170.0;
@@ -152,7 +162,7 @@ class _LevelCard extends StatelessWidget {
         context.read<GlobalGameBloc>().state.allCanvasData[canvasId];
     if (canvasData == null) return const SizedBox();
     final levelSave = this.levelSave;
-
+    // TODO(arenukvern): l10n
     return UiBaseButton(
       onPressed: () {
         if (levelSave == null) {
@@ -182,9 +192,9 @@ class _LevelCard extends StatelessWidget {
                   child: const Text('Continue'),
                 ),
                 TextButton(
-                  onPressed: onRestart,
+                  onPressed: onOpenNewGameDialog,
                   child: Text(
-                    'Restart',
+                    'Start Anew',
                     style: context.errorTextTheme.bodyMedium,
                   ),
                 ),

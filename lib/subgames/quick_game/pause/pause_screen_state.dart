@@ -10,22 +10,15 @@ class _PauseScreenStateDiDto {
   final MechanicsCollection mechanics;
 }
 
-PauseScreenState _usePauseScreenState({
-  required final BuildContext context,
-}) =>
-    use(
-      ContextfulLifeHook(
-        debugLabel: '_PauseScreenState',
-        state: PauseScreenState(
-          diDto: _PauseScreenStateDiDto.use(context),
-        ),
-      ),
-    );
-
-class PauseScreenState extends ContextfulLifeState {
+class PauseScreenState extends ValueNotifier<void> {
   PauseScreenState({
-    required this.diDto,
-  });
+    required final BuildContext context,
+    required this.uxState,
+    required this.uiState,
+  })  : diDto = _PauseScreenStateDiDto.use(context),
+        super(null);
+  final LevelStartDialogUxNotifier uxState;
+  final LevelStartDialogUiState uiState;
   final _PauseScreenStateDiDto diDto;
   // @override
   // void initState() {
@@ -33,11 +26,18 @@ class PauseScreenState extends ContextfulLifeState {
   //   if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
   // }
 
-  Future<void> onStart({
+  Future<void> onShowStartDialog({
     required final BuildContext context,
-    required final CanvasDataModelId id,
+    required final CanvasDataModelId canvasDataId,
     final bool restart = false,
-  }) async {}
+  }) async {
+    if (restart) {
+      await diDto.globalGameBloc.onRemoveLevelSave(canvasDataId);
+    }
+
+    uxState.canvasDataId = canvasDataId;
+    uiState.onSwitchDialogVisiblity();
+  }
 
   Future<void> onContinue({
     required final CanvasDataModelId id,
@@ -66,8 +66,7 @@ class PauseScreenState extends ContextfulLifeState {
     );
   }
 
-  Future<void> onShowAbout() async {
-    final context = getContext();
+  Future<void> onShowAbout(final BuildContext context) async {
     final locale = useLocale(context, listen: false);
     final theme = Theme.of(context);
     final uiTheme = context.uiTheme;
@@ -182,7 +181,6 @@ class PauseScreenState extends ContextfulLifeState {
       width: 64,
       height: 64,
     );
-    if (!mounted) return;
     final applicationName = Envs.store.isYandexGames
         ? const LocalizedMap(
             value: {

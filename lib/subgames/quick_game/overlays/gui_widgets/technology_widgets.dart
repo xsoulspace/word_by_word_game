@@ -23,12 +23,10 @@ class CurrentTechnologyButton extends StatelessWidget {
     }
     final technologyProgress = technologyCubit.researchingTechnologyProgress;
     final unlockCondition = technologyProgress?.unlockCondition;
-    final (:isUnlocked, :percentage) = () {
-      if (unlockCondition == null) return (isUnlocked: false, percentage: 0.0);
-      return mechanics.technology.checkIsUnlockedForLanguage(
-        unlockCondition: unlockCondition,
-      );
-    }();
+    final (:isUnlocked, :percentage, :investedScore, :requiredScore) =
+        mechanics.technology.checkIsUnlockedForLanguage(
+      unlockCondition: unlockCondition,
+    );
     return UiBaseButton(
       onPressed: () => dialogController
           .showTechnologiesTree(TechnologiesTreeDialogDto.nonSelectable),
@@ -69,7 +67,11 @@ class CurrentTechnologyButton extends StatelessWidget {
                 const Gap(2),
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 110),
-                  child: UiTechnologyLinearProgress(percentage: percentage),
+                  child: UiTechnologyLinearProgress(
+                    percentage: percentage,
+                    investedScore: investedScore,
+                    requiredScore: requiredScore,
+                  ),
                 ),
               ],
             ),

@@ -19,13 +19,15 @@ class _LevelStartDialogUxStateDiDto {
 class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   LevelStartDialogUxNotifier({
     required final BuildContext context,
-    required this.canvasData,
   })  : dto = _LevelStartDialogUxStateDiDto.use(context),
         super('') {
     onLoad();
   }
-  final CanvasDataModel canvasData;
+
   final _LevelStartDialogUxStateDiDto dto;
+
+  /// use canvas data for starting a world
+  CanvasDataModelId? canvasDataId;
   void onLoad() {
     final liveState = dto.globalGameBloc.state;
     character = liveState.playersCharacters.first;
@@ -94,13 +96,17 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  Future<void> onPlay(final BuildContext context) async {
+  Future<void> onPlay({
+    required final BuildContext context,
+  }) async {
+    final canvasDataId = this.canvasDataId;
+    if (canvasDataId == null) throw ArgumentError.notNull('canvasData');
     final pathsController = AppPathsController.of(context);
     if (featuresSettings.isTechnologiesEnabled) {
       await onLoadDictionaries();
     }
     final level = dto.globalGameBloc.createLevel(
-      canvasDataId: canvasData.id,
+      canvasDataId: canvasDataId,
       playersIds: playersIds,
       wordsLanguage: wordsLanguage,
       characterId: character!.id,

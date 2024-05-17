@@ -1,5 +1,12 @@
 import '../../wbw_core.dart';
 
+typedef TechUnlockStatusTuple = ({
+  bool isUnlocked,
+  double percentage,
+  double requiredScore,
+  double investedScore,
+});
+
 class TechnologyMechanics {
   TechnologyMechanics({
     required this.scoreMechanics,
@@ -20,17 +27,21 @@ class TechnologyMechanics {
     return false;
   }
 
-  ({
-    bool isUnlocked,
-    double percentage,
-  }) checkIsUnlockedForLanguage({
-    required final TechnologyUnlockConditionModel unlockCondition,
+  TechUnlockStatusTuple checkIsUnlockedForLanguage({
+    required final TechnologyUnlockConditionModel? unlockCondition,
     final Languages? language,
   }) {
     final lang = language ?? LocalizedMap.getCurrentLanugage();
-    final words = unlockCondition.languageWords[lang];
+    final words = unlockCondition?.languageWords[lang];
     // TODO(arenukvern): maybe check other languages
-    if (words == null) return (isUnlocked: false, percentage: 0);
+    if (words == null || unlockCondition == null) {
+      return (
+        isUnlocked: false,
+        percentage: 0,
+        investedScore: 0,
+        requiredScore: 0
+      );
+    }
     final (:investedScore, :requiredScore) =
         _calculateResearchPointsToUnlock(words: words);
     final summaryInvestedScore =
@@ -43,6 +54,8 @@ class TechnologyMechanics {
     return (
       isUnlocked: summaryInvestedScore >= requiredScore,
       percentage: summaryInvestedScore / requiredScore,
+      requiredScore: requiredScore,
+      investedScore: summaryInvestedScore,
     );
   }
 
