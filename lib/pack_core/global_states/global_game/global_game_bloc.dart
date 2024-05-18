@@ -96,7 +96,14 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
 
     /// resume latest game
     await onInitGlobalGameLevel(
-      InitGlobalGameLevelEvent(levelModel: level, isNewStart: isNewStart),
+      InitGlobalGameLevelEvent(
+        levelModel: level,
+        isNewStart: isNewStart,
+        playerStartPoint: isNewStart
+            ? PlayerStartPointType.fromSpawnPoint
+            : level.playerStartPoint,
+        windDirection: level.wind.windDirection,
+      ),
     );
 
     await dto.mechanics.worldTime.onLoad();
@@ -425,15 +432,21 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
+    // TODO(arenukvern): description
+    // ignore: unused_local_variable
+    const isPlayerHasSavePoints = false;
     final initEvent = InitGlobalGameLevelEvent(
       levelModel: level,
+      isNewStart: false,
+      windDirection: event.isPassed
+          ? level.wind.windDirection.opposite
+          : level.wind.windDirection,
+      playerStartPoint: () {
+        // ignore: dead_code
+        if (isPlayerHasSavePoints) return PlayerStartPointType.fromSavePoint;
 
-      /// If level was passed then:
-      ///
-      /// in future - change main direction of movement
-      /// in current - reset position in any cases
-      // TODO(arenukvern): change main direction
-      // isNewStart: !event.isPassed,
+        return PlayerStartPointType.fromSpawnPoint;
+      }(),
     );
     return initEvent;
   }

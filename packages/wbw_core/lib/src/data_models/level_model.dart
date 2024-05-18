@@ -14,6 +14,18 @@ enum EnergyMultiplierType {
   final String namedPart;
 }
 
+enum PlayerStartPointType {
+  fromSamePlace,
+
+  /// wilderness hut (or other sort of hut),
+  /// technology should be researched, and then
+  /// player can create the new hut, whenever he wants
+  fromSavePoint,
+
+  /// first point, should be presented in level map
+  fromSpawnPoint,
+}
+
 /// maybe rename to world level model
 ///
 /// !Warning: do not make fields required, as the model will not be
@@ -45,6 +57,8 @@ class LevelModel with _$LevelModel {
     @Default(LevelFeaturesSettingsModel.empty)
     final LevelFeaturesSettingsModel featuresSettings,
     @Default(Languages.en) final Languages wordsLanguage,
+    @Default(PlayerStartPointType.fromSpawnPoint)
+    final PlayerStartPointType playerStartPoint,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>
@@ -60,6 +74,7 @@ class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
   const factory LevelFeaturesSettingsModel({
     @Default(false) final bool isTechnologiesEnabled,
   }) = _LevelFeaturesSettingsModel;
+  const LevelFeaturesSettingsModel._();
   factory LevelFeaturesSettingsModel.fromJson(
     final Map<String, dynamic> json,
   ) =>
@@ -68,4 +83,5 @@ class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
   static const allEnabled = LevelFeaturesSettingsModel(
     isTechnologiesEnabled: true,
   );
+  bool get isAdvencedGame => isTechnologiesEnabled;
 }

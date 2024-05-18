@@ -25,7 +25,8 @@ class CurrentTechnologyButton extends StatelessWidget {
     final unlockCondition = technologyProgress?.unlockCondition;
     final (:isUnlocked, :percentage, :investedScore, :requiredScore) =
         mechanics.technology.checkIsUnlockedForLanguage(
-      unlockCondition: unlockCondition,
+      unlockCondition: unlockCondition ??
+          technologyCubit.researchingTechnology?.unlockCondition,
     );
     return UiBaseButton(
       onPressed: () => dialogController

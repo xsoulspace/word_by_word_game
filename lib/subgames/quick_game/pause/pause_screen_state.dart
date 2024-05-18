@@ -15,11 +15,11 @@ class PauseScreenState extends ValueNotifier<void> {
     required final BuildContext context,
     required this.uxState,
     required this.uiState,
-  })  : diDto = _PauseScreenStateDiDto.use(context),
+  })  : dto = _PauseScreenStateDiDto.use(context),
         super(null);
   final LevelStartDialogUxNotifier uxState;
   final LevelStartDialogUiState uiState;
-  final _PauseScreenStateDiDto diDto;
+  final _PauseScreenStateDiDto dto;
   // @override
   // void initState() {
   //   super.initState();
@@ -32,23 +32,14 @@ class PauseScreenState extends ValueNotifier<void> {
     final bool restart = false,
   }) async {
     if (restart) {
-      await diDto.globalGameBloc.onRemoveLevelSave(canvasDataId);
+      await dto.globalGameBloc.onRemoveLevelSave(canvasDataId);
     }
 
     uxState.canvasDataId = canvasDataId;
     uiState.onSwitchDialogVisiblity();
   }
 
-  Future<void> onContinue({
-    required final CanvasDataModelId id,
-    required final BuildContext context,
-  }) async {
-    final pathsController = AppPathsController.of(context);
-    await diDto.globalGameBloc.onStartPlayingLevel(
-      const StartPlayingLevelEvent(shouldRestartTutorial: false),
-    );
-    pathsController.toPlayableLevel(id: id);
-  }
+  late final onContinueFromSamePlace = uxState.onContinueFromSamePlace;
 
   void onToPlayersAndHighscore(final BuildContext context) {
     AppPathsController.of(context).toPlayersAndHighscore();

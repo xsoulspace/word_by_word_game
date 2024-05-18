@@ -40,9 +40,18 @@ _$WindModelImpl _$$WindModelImplFromJson(Map<String, dynamic> json) =>
       force: json['force'] == null
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(json['force'] as Map<String, dynamic>),
+      windDirection:
+          $enumDecodeNullable(_$WindDirectionEnumMap, json['windDirection']) ??
+              WindDirection.defaultDirection,
     );
 
 Map<String, dynamic> _$$WindModelImplToJson(_$WindModelImpl instance) =>
     <String, dynamic>{
       'force': instance.force,
+      'windDirection': _$WindDirectionEnumMap[instance.windDirection]!,
     };
+
+const _$WindDirectionEnumMap = {
+  WindDirection.right: 'right',
+  WindDirection.left: 'left',
+};

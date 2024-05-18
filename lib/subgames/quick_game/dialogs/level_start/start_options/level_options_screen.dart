@@ -76,7 +76,7 @@ class LevelOptionsScreen extends HookWidget {
                   mainAlignment: MainAxisAlignment.center,
                   onPressed: uxState.playersIds.isEmpty
                       ? null
-                      : () async => uxState.onPlay(context: context),
+                      : () async => uxState.onStartNewGame(context: context),
                 ),
               ],
             ),

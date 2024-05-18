@@ -183,6 +183,7 @@ WindModel _$WindModelFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$WindModel {
   SerializedVector2 get force => throw _privateConstructorUsedError;
+  WindDirection get windDirection => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -195,7 +196,7 @@ abstract class $WindModelCopyWith<$Res> {
   factory $WindModelCopyWith(WindModel value, $Res Function(WindModel) then) =
       _$WindModelCopyWithImpl<$Res, WindModel>;
   @useResult
-  $Res call({SerializedVector2 force});
+  $Res call({SerializedVector2 force, WindDirection windDirection});
 
   $SerializedVector2CopyWith<$Res> get force;
 }
@@ -214,12 +215,17 @@ class _$WindModelCopyWithImpl<$Res, $Val extends WindModel>
   @override
   $Res call({
     Object? force = null,
+    Object? windDirection = null,
   }) {
     return _then(_value.copyWith(
       force: null == force
           ? _value.force
           : force // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
+      windDirection: null == windDirection
+          ? _value.windDirection
+          : windDirection // ignore: cast_nullable_to_non_nullable
+              as WindDirection,
     ) as $Val);
   }
 
@@ -240,7 +246,7 @@ abstract class _$$WindModelImplCopyWith<$Res>
       __$$WindModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({SerializedVector2 force});
+  $Res call({SerializedVector2 force, WindDirection windDirection});
 
   @override
   $SerializedVector2CopyWith<$Res> get force;
@@ -258,12 +264,17 @@ class __$$WindModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? force = null,
+    Object? windDirection = null,
   }) {
     return _then(_$WindModelImpl(
       force: null == force
           ? _value.force
           : force // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
+      windDirection: null == windDirection
+          ? _value.windDirection
+          : windDirection // ignore: cast_nullable_to_non_nullable
+              as WindDirection,
     ));
   }
 }
@@ -271,7 +282,9 @@ class __$$WindModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$WindModelImpl implements _WindModel {
-  const _$WindModelImpl({this.force = SerializedVector2.zero});
+  const _$WindModelImpl(
+      {this.force = SerializedVector2.zero,
+      this.windDirection = WindDirection.defaultDirection});
 
   factory _$WindModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$WindModelImplFromJson(json);
@@ -279,10 +292,13 @@ class _$WindModelImpl implements _WindModel {
   @override
   @JsonKey()
   final SerializedVector2 force;
+  @override
+  @JsonKey()
+  final WindDirection windDirection;
 
   @override
   String toString() {
-    return 'WindModel(force: $force)';
+    return 'WindModel(force: $force, windDirection: $windDirection)';
   }
 
   @override
@@ -290,12 +306,14 @@ class _$WindModelImpl implements _WindModel {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$WindModelImpl &&
-            (identical(other.force, force) || other.force == force));
+            (identical(other.force, force) || other.force == force) &&
+            (identical(other.windDirection, windDirection) ||
+                other.windDirection == windDirection));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, force);
+  int get hashCode => Object.hash(runtimeType, force, windDirection);
 
   @JsonKey(ignore: true)
   @override
@@ -312,13 +330,17 @@ class _$WindModelImpl implements _WindModel {
 }
 
 abstract class _WindModel implements WindModel {
-  const factory _WindModel({final SerializedVector2 force}) = _$WindModelImpl;
+  const factory _WindModel(
+      {final SerializedVector2 force,
+      final WindDirection windDirection}) = _$WindModelImpl;
 
   factory _WindModel.fromJson(Map<String, dynamic> json) =
       _$WindModelImpl.fromJson;
 
   @override
   SerializedVector2 get force;
+  @override
+  WindDirection get windDirection;
   @override
   @JsonKey(ignore: true)
   _$$WindModelImplCopyWith<_$WindModelImpl> get copyWith =>

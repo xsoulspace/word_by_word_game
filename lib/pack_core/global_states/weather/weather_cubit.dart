@@ -111,6 +111,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     final windForce = dto.mechanics.weather.getWindByWeather(
       weather: state.weather,
       heightInTiles: _previousHeightInTiles,
+      windDirection: state.wind.windDirection,
     );
     emit(state.copyWith(wind: windForce));
     _currentWindOffsetCache = null;

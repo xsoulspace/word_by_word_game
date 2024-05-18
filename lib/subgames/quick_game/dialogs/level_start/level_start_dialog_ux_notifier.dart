@@ -96,7 +96,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  Future<void> onPlay({
+  /// !imporant:
+  /// this function will always start completely new game
+  Future<void> onStartNewGame({
     required final BuildContext context,
   }) async {
     final canvasDataId = this.canvasDataId;
@@ -118,6 +120,36 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
     pathsController.toPlayableLevel(id: level.id);
+  }
+
+  Future<void> onContinueFromSamePlace({
+    required final CanvasDataModelId id,
+    required final BuildContext context,
+  }) async {
+    final pathsController = AppPathsController.of(context);
+    final LevelModel level;
+
+    if (dto.globalGameBloc.state.currentLevelId == id) {
+      level = dto.globalGameBloc.state.currentLevelModel!;
+    } else {
+      level = dto.globalGameBloc.state.savedLevels[id]!;
+    }
+    if (level.featuresSettings.isTechnologiesEnabled) {
+      await onLoadDictionaries();
+    }
+    await dto.globalGameBloc.onInitGlobalGameLevel(
+      InitGlobalGameLevelEvent(
+        levelModel: level,
+        isNewStart: false,
+        playerStartPoint: PlayerStartPointType.fromSamePlace,
+        windDirection: level.wind.windDirection,
+      ),
+    );
+
+    await dto.globalGameBloc.onStartPlayingLevel(
+      const StartPlayingLevelEvent(shouldRestartTutorial: false),
+    );
+    pathsController.toPlayableLevel(id: id);
   }
 
   void onReturnToLevels(final BuildContext context) {

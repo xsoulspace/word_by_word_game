@@ -163,6 +163,9 @@ _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>
       wordsLanguage:
           $enumDecodeNullable(_$LanguagesEnumMap, json['wordsLanguage']) ??
               Languages.en,
+      playerStartPoint: $enumDecodeNullable(
+              _$PlayerStartPointTypeEnumMap, json['playerStartPoint']) ??
+          PlayerStartPointType.fromSpawnPoint,
     );
 
 Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
@@ -184,6 +187,8 @@ Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
       'technologyTreeProgress': instance.technologyTreeProgress.toJson(),
       'featuresSettings': instance.featuresSettings.toJson(),
       'wordsLanguage': _$LanguagesEnumMap[instance.wordsLanguage]!,
+      'playerStartPoint':
+          _$PlayerStartPointTypeEnumMap[instance.playerStartPoint]!,
     };
 
 const _$TilesetTypeEnumMap = {
@@ -207,6 +212,12 @@ const _$LanguagesEnumMap = {
   Languages.ru: 'ru',
   Languages.en: 'en',
   Languages.it: 'it',
+};
+
+const _$PlayerStartPointTypeEnumMap = {
+  PlayerStartPointType.fromSamePlace: 'fromSamePlace',
+  PlayerStartPointType.fromSavePoint: 'fromSavePoint',
+  PlayerStartPointType.fromSpawnPoint: 'fromSpawnPoint',
 };
 
 _$LevelFeaturesSettingsModelImpl _$$LevelFeaturesSettingsModelImplFromJson(

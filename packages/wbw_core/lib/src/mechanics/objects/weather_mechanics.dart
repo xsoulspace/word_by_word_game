@@ -135,13 +135,29 @@ class WeatherModel with _$WeatherModel {
   static const initial = WeatherModel();
 }
 
-/// The wind can blow right, top, bottom.
-/// The force vector2 should never blow left
-/// as user will never be able to reach the end of level.
+enum WindDirection {
+  right,
+  left;
+
+  static const defaultDirection = right;
+  WindDirection get opposite => switch (this) {
+        WindDirection.right => left,
+        WindDirection.left => right,
+      };
+  int get sign => switch (this) {
+        WindDirection.right => 1,
+        WindDirection.left => -1,
+      };
+}
+
+/// The wind can blow right, left, top, bottom.
+/// The force vector2 should never blow left, or right
+/// during the flight
 @freezed
 class WindModel with _$WindModel {
   const factory WindModel({
     @Default(SerializedVector2.zero) final SerializedVector2 force,
+    @Default(WindDirection.defaultDirection) final WindDirection windDirection,
   }) = _WindModel;
   factory WindModel.fromJson(final Map<String, dynamic> json) =>
       _$WindModelFromJson(json);
@@ -188,12 +204,18 @@ class WeatherMechanics {
 
   WindModel getWindByWeather({
     required final WeatherModel weather,
+    required final WindDirection windDirection,
     required final int heightInTiles,
   }) =>
-      getWind(heightInTiles: heightInTiles, scale: weather.windScale);
+      getWind(
+        heightInTiles: heightInTiles,
+        scale: weather.windScale,
+        windDirection: windDirection,
+      );
   WindModel getWind({
     required final WindScale scale,
     required final int heightInTiles,
+    required final WindDirection windDirection,
   }) {
     final yDirection = _random.nextBool() ? -1 : 1;
     final y = _random.nextInt(
@@ -209,7 +231,7 @@ class WeatherMechanics {
     const realityModifier = 10;
     return WindModel(
       force: SerializedVector2(
-        x: x / realityModifier,
+        x: x / realityModifier * windDirection.sign,
         y: y * yDirection / realityModifier,
       ),
     );

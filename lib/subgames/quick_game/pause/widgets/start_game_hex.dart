@@ -55,7 +55,7 @@ class QuickStartGameButtons extends StatelessWidget {
             if (isLevelRunning)
               UiFilledButton.text(
                 text: S.of(context).continueGame,
-                onPressed: () async => state.onContinue(
+                onPressed: () async => state.onContinueFromSamePlace(
                   context: context,
                   id: levelId,
                 ),
@@ -120,8 +120,8 @@ class LevelsView extends StatelessWidget {
                     context: context,
                     canvasDataId: canvasId,
                   ),
-                  onContinue: () async =>
-                      state.onContinue(context: context, id: canvasId),
+                  onContinue: () async => state.onContinueFromSamePlace(
+                      context: context, id: canvasId),
                 );
               },
               separatorBuilder: (final context, final index) => const Gap(16),
