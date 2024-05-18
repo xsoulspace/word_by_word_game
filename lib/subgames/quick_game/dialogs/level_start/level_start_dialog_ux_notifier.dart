@@ -7,6 +7,7 @@ class _LevelStartDialogUxStateDiDto {
         appSettingsNotifier = context.read(),
         onlineStatusService = context.read(),
         wbwDictionary = context.read(),
+        statesStatusesCubit = context.read(),
         tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
@@ -14,6 +15,7 @@ class _LevelStartDialogUxStateDiDto {
   final MechanicsCollection mechanics;
   final OnlineStatusService onlineStatusService;
   final WbwDictionary wbwDictionary;
+  final StatesStatusesCubit statesStatusesCubit;
 }
 
 class LevelStartDialogUxNotifier extends ValueNotifier<String> {
@@ -103,6 +105,10 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   }) async {
     final canvasDataId = this.canvasDataId;
     if (canvasDataId == null) throw ArgumentError.notNull('canvasData');
+
+    dto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
     final pathsController = AppPathsController.of(context);
     if (featuresSettings.isTechnologiesEnabled) {
       await onLoadDictionaries();
@@ -126,6 +132,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     required final CanvasDataModelId id,
     required final BuildContext context,
   }) async {
+    dto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
     final pathsController = AppPathsController.of(context);
     final LevelModel level;
 

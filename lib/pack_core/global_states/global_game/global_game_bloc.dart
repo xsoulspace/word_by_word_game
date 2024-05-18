@@ -263,19 +263,29 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       // noop
     } else {
       final character = level.characters.playerCharacter;
-      newCanvasData = newCanvasData.copyWith.playerObject(
-        distanceToOrigin: character.distanceToOrigin,
-      );
+      switch (level.playerStartPoint) {
+        case PlayerStartPointType.fromSpawnPoint:
+          newCanvasData = newCanvasData.copyWith.playerObject(
+            distanceToOrigin: character.distanceToOrigin,
+          );
+
+        case PlayerStartPointType.fromSavePoint:
+          throw UnimplementedError();
+        case PlayerStartPointType.fromSamePlace:
+      }
     }
     await dto.canvasCubit.loadCanvasData(canvasData: newCanvasData);
 
-    dto.technologiesCubit.reloadState(
-      technologies: newCanvasData.technologies
-          .toMap(toKey: (final i) => i.id, toValue: (final v) => v),
-      state: TechnologiesCubitState(
-        progress: level.technologyTreeProgress,
-      ),
-    );
+    /// reset technologies only if it is a new game
+    if (event.isNewStart) {
+      dto.technologiesCubit.reloadState(
+        technologies: newCanvasData.technologies
+            .toMap(toKey: (final i) => i.id, toValue: (final v) => v),
+        state: TechnologiesCubitState(
+          progress: level.technologyTreeProgress,
+        ),
+      );
+    }
 
     dto
       ..uiKeyboardController
@@ -533,6 +543,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final weatherState = dto.weatherCubit.state;
     final technologiesState = dto.technologiesCubit.state;
     final canvasCubitState = dto.canvasCubit.state;
+
     return LevelModel(
       weathers: weatherState.weathers,
       wordsLanguage: levelState.wordsLanguage,
@@ -540,6 +551,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       currentWord: levelState.currentWord,
       latestWord: levelState.latestWord,
       words: levelState.words,
+      playerStartPoint: PlayerStartPointType.fromSamePlace,
       characters: LevelCharactersModel(
         playerCharacter: playersState.playerCharacter,
       ),

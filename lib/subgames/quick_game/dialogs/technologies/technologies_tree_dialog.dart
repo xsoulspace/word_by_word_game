@@ -2,6 +2,7 @@
 
 import 'dart:async';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -239,6 +240,7 @@ class _TechnologyTile extends StatelessWidget {
     final wordsProgress = unlockCondition?.languageWords[language];
     final allWords = value.unlockCondition.languageWords[language]!;
     final locale = useLocale(context);
+    context.watch<TechnologiesCubit>();
 
     /// used to provide fast translation and meaning
     final allUiWords = value.unlockCondition.languageWords[locale.language]!;
@@ -294,6 +296,18 @@ class _TechnologyTile extends StatelessWidget {
                     onPressed: onTechnologyPressed,
                     child: Icon(Icons.info_outline, color: textColor),
                   ),
+                  if (kDebugMode)
+                    IconButton(
+                      onPressed: () => context
+                          .read<TechnologiesCubit>()
+                          .onResearchSpecificTechnology(
+                            event: const ResearchTechnologyEvent(
+                              score: ScoreModel(value: 5000),
+                            ),
+                            technologyId: value.id,
+                          ),
+                      icon: const Icon(Icons.lock_open_rounded),
+                    ),
                 ],
               ),
               Text(

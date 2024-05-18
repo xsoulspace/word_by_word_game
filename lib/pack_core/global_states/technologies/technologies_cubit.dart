@@ -87,9 +87,11 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
           researchingTechnologyId: isSelected ? id : null,
         ),
       );
-  void onResearchTechnology(final ResearchTechnologyEvent event) =>
+  void onResearchSpecificTechnology({
+    required final TechnologyModelId? technologyId,
+    required final ResearchTechnologyEvent event,
+  }) =>
       updateProgress((final oldProgressTree) {
-        final technologyId = researchingTechnology?.id;
         if (technologyId == null) {
           assert(false, 'no technology selected');
           return oldProgressTree;
@@ -113,6 +115,12 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
         );
         return updatedAllProgresses;
       });
+  void onResearchTechnology(final ResearchTechnologyEvent event) =>
+      onResearchSpecificTechnology(
+        technologyId: researchingTechnology?.id,
+        event: event,
+      );
+
   TechnologyProgressModel? _getTechnologyProgress({
     required final TechnologyModelId technologyId,
     required final TechnologyTreeProgressModel progressTree,
