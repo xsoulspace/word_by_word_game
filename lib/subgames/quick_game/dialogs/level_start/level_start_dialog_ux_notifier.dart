@@ -110,9 +110,12 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
       status: LevelStateStatus.loading,
     );
     final pathsController = AppPathsController.of(context);
-    if (featuresSettings.isTechnologiesEnabled) {
-      await onLoadDictionaries();
-    }
+
+    await Future.wait([
+      dto.globalGameBloc.onRemoveLevelSave(canvasDataId),
+      if (featuresSettings.isTechnologiesEnabled) onLoadDictionaries(),
+    ]);
+
     final level = dto.globalGameBloc.createLevel(
       canvasDataId: canvasDataId,
       playersIds: playersIds,

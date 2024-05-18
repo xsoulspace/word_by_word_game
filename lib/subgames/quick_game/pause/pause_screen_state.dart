@@ -29,12 +29,7 @@ class PauseScreenState extends ValueNotifier<void> {
   Future<void> onShowStartDialog({
     required final BuildContext context,
     required final CanvasDataModelId canvasDataId,
-    final bool restart = false,
   }) async {
-    if (restart) {
-      await dto.globalGameBloc.onRemoveLevelSave(canvasDataId);
-    }
-
     uxState.canvasDataId = canvasDataId;
     uiState.onSwitchDialogVisiblity();
   }

@@ -276,18 +276,14 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
     await dto.canvasCubit.loadCanvasData(canvasData: newCanvasData);
 
-    /// reset technologies only if it is a new game
-    if (event.isNewStart) {
-      dto.technologiesCubit.reloadState(
+    dto
+      ..technologiesCubit.reloadState(
         technologies: newCanvasData.technologies
             .toMap(toKey: (final i) => i.id, toValue: (final v) => v),
         state: TechnologiesCubitState(
           progress: level.technologyTreeProgress,
         ),
-      );
-    }
-
-    dto
+      )
       ..uiKeyboardController
           .onChangeLanguage(level.wordsLanguage.toKeyboardLanguage())
       ..levelBloc.onInitLevel(LevelBlocEventInit(levelModel: level))
@@ -518,6 +514,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         _getCurrentLevelModel();
     final updatedState = state.copyWith(
       savedLevels: savedLevels,
+      currentLevelModel: _getCurrentLevelModel(),
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
