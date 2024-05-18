@@ -63,7 +63,6 @@ class UIWeatherBar extends StatelessWidget {
                   child: Column(
                     children: [
                       WindDirectionBadge(
-                        value: currentWind.force.x,
                         tooltipMessage: const LocalizedMap(
                           value: {
                             Languages.en: 'Horizontal wind force',
@@ -71,6 +70,7 @@ class UIWeatherBar extends StatelessWidget {
                             Languages.it: 'Forza del vento orizzontale',
                           },
                         ).getValue(locale),
+                        value: currentWind.force.x,
                         direction: Axis.horizontal,
                       ),
                       Divider(
@@ -262,8 +262,12 @@ class WindDirectionBadge extends StatelessWidget {
             ),
             Transform.rotate(
               angle: () {
-                final effectiveAngle =
-                    (direction == Axis.vertical ? 90 : 0) * math.pi / 180;
+                final degree = switch (direction) {
+                  Axis.vertical => 90,
+                  Axis.horizontal => value > 0 ? 0 : 180,
+                };
+                final effectiveAngle = degree * math.pi / 180;
+
                 return value < 0 ? effectiveAngle : -effectiveAngle;
               }(),
               child: Icon(

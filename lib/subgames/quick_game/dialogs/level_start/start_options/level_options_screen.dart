@@ -169,17 +169,15 @@ class _ExperimentsListView extends HookWidget {
             ),
           ).animate().fadeIn(),
         if (isAdvancedGame)
-          ListTile(
+          SwitchListTile.adaptive(
             // TODO(arenukvern): add explanation
             // TODO(arenukvern): l10n
             title: const Text('Wind can change direction'),
-            trailing: Switch.adaptive(
-              onChanged: (final isEnabled) => uxState.changeFeaturesSettings(
-                (final old) => old.copyWith(
-                  isWindDirectionChangeEnabled: isEnabled,
-                ),
+            value: isWindDirectionChangeEnabled,
+            onChanged: (final isEnabled) => uxState.changeFeaturesSettings(
+              (final old) => old.copyWith(
+                isWindDirectionChangeEnabled: isEnabled,
               ),
-              value: isWindDirectionChangeEnabled,
             ),
           ).animate().fadeIn(),
       ],

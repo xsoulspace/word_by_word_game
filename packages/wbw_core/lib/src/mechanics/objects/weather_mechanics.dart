@@ -92,7 +92,7 @@ enum WindScale {
   /// Every weight has WindScale.
   /// If wind scale chosen by the random index, the same as requested
   /// wind scale, then change the wind direction.
-  static final _directionWeightedValues = values
+  static List<WindScale> get _directionWeightedValues => values
       .expand(
         (final c) => List.generate(
           c.directionWeight,
@@ -102,20 +102,21 @@ enum WindScale {
       .toList()
     ..shuffle();
 
+  // TODO(arenuvkern): make rebalance
   int get directionWeight => switch (this) {
-        WindScale.calm => 5,
-        WindScale.lightAir => 5,
+        WindScale.calm => 1,
+        WindScale.lightAir => 1,
         WindScale.lightBreeze => 2,
-        WindScale.gentleBreeze => 8,
-        WindScale.moderateBreeze => 10,
-        WindScale.freshBreeze => 30,
-        WindScale.strongBreeze => 50,
-        WindScale.highWind => 70,
-        WindScale.gale => 80,
-        WindScale.severeGale => 80,
-        WindScale.storm => 100,
-        WindScale.violentStorm => 100,
-        WindScale.hurricane => 150,
+        WindScale.gentleBreeze => 2,
+        WindScale.moderateBreeze => 3,
+        WindScale.freshBreeze => 3,
+        WindScale.strongBreeze => 3,
+        WindScale.highWind => 3,
+        WindScale.gale => 3,
+        WindScale.severeGale => 4,
+        WindScale.storm => 4,
+        WindScale.violentStorm => 6,
+        WindScale.hurricane => 6,
       };
 
   String get emojiRepresentation => switch (this) {
@@ -244,6 +245,7 @@ class WeatherMechanics {
       max: WindScale._directionWeightedValues.length,
     );
     final windScale = WindScale._directionWeightedValues[randomIndex];
+    print('generateWindDirection: $windScale $scale');
     if (windScale == scale) return windDirection.opposite;
     return windDirection;
   }
