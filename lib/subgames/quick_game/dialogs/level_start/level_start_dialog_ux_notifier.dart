@@ -113,7 +113,7 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
     await Future.wait([
       dto.globalGameBloc.onRemoveLevelSave(canvasDataId),
-      if (featuresSettings.isTechnologiesEnabled) onLoadDictionaries(),
+      if (featuresSettings.isAdvencedGame) onLoadDictionaries(),
     ]);
 
     final level = dto.globalGameBloc.createLevel(
@@ -146,7 +146,7 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     } else {
       level = dto.globalGameBloc.state.savedLevels[id]!;
     }
-    if (level.featuresSettings.isTechnologiesEnabled) {
+    if (level.featuresSettings.isAdvencedGame) {
       await onLoadDictionaries();
     }
     await dto.globalGameBloc.onInitGlobalGameLevel(

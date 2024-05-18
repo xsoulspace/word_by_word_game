@@ -214,7 +214,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       level = level.copyWith(canvasDataId: newCanvasData.id);
     }
     if (event.isNewStart) {
-      if (level.featuresSettings.isTechnologiesEnabled) {
+      if (level.featuresSettings.isAdvencedGame) {
         level = level.copyWith.characters.playerCharacter(
           balloonParams: BalloonLiftParamsModel.initial,
         );
@@ -349,7 +349,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
 
     if (DeviceRuntimeType.isWeb) {
-      if (dto.levelBloc.featuresSettings.isTechnologiesEnabled) {
+      if (dto.levelBloc.featuresSettings.isAdvencedGame) {
         await runCache();
       }
     } else {

@@ -44,7 +44,6 @@ class QuickStartGameButtons extends StatelessWidget {
               onPressed: () async => state.onShowStartDialog(
                 canvasDataId: canvasData.id,
                 context: context,
-                restart: true,
               ),
             )
                 .animate()
@@ -121,7 +120,9 @@ class LevelsView extends StatelessWidget {
                     canvasDataId: canvasId,
                   ),
                   onContinue: () async => state.onContinueFromSamePlace(
-                      context: context, id: canvasId),
+                    context: context,
+                    id: canvasId,
+                  ),
                 );
               },
               separatorBuilder: (final context, final index) => const Gap(16),
