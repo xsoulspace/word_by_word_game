@@ -1572,6 +1572,10 @@ LevelFeaturesSettingsModel _$LevelFeaturesSettingsModelFromJson(
 mixin _$LevelFeaturesSettingsModel {
   bool get isTechnologiesEnabled => throw _privateConstructorUsedError;
 
+  /// if enabled, then wind can be changed in both directions
+  /// left, or right during the flight
+  bool get isWindDirectionChangeEnabled => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LevelFeaturesSettingsModelCopyWith<LevelFeaturesSettingsModel>
@@ -1585,7 +1589,7 @@ abstract class $LevelFeaturesSettingsModelCopyWith<$Res> {
       _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
           LevelFeaturesSettingsModel>;
   @useResult
-  $Res call({bool isTechnologiesEnabled});
+  $Res call({bool isTechnologiesEnabled, bool isWindDirectionChangeEnabled});
 }
 
 /// @nodoc
@@ -1603,11 +1607,16 @@ class _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? isTechnologiesEnabled = null,
+    Object? isWindDirectionChangeEnabled = null,
   }) {
     return _then(_value.copyWith(
       isTechnologiesEnabled: null == isTechnologiesEnabled
           ? _value.isTechnologiesEnabled
           : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isWindDirectionChangeEnabled: null == isWindDirectionChangeEnabled
+          ? _value.isWindDirectionChangeEnabled
+          : isWindDirectionChangeEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -1622,7 +1631,7 @@ abstract class _$$LevelFeaturesSettingsModelImplCopyWith<$Res>
       __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isTechnologiesEnabled});
+  $Res call({bool isTechnologiesEnabled, bool isWindDirectionChangeEnabled});
 }
 
 /// @nodoc
@@ -1639,11 +1648,16 @@ class __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? isTechnologiesEnabled = null,
+    Object? isWindDirectionChangeEnabled = null,
   }) {
     return _then(_$LevelFeaturesSettingsModelImpl(
       isTechnologiesEnabled: null == isTechnologiesEnabled
           ? _value.isTechnologiesEnabled
           : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isWindDirectionChangeEnabled: null == isWindDirectionChangeEnabled
+          ? _value.isWindDirectionChangeEnabled
+          : isWindDirectionChangeEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -1652,7 +1666,9 @@ class __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$LevelFeaturesSettingsModelImpl extends _LevelFeaturesSettingsModel {
-  const _$LevelFeaturesSettingsModelImpl({this.isTechnologiesEnabled = false})
+  const _$LevelFeaturesSettingsModelImpl(
+      {this.isTechnologiesEnabled = false,
+      this.isWindDirectionChangeEnabled = false})
       : super._();
 
   factory _$LevelFeaturesSettingsModelImpl.fromJson(
@@ -1663,9 +1679,15 @@ class _$LevelFeaturesSettingsModelImpl extends _LevelFeaturesSettingsModel {
   @JsonKey()
   final bool isTechnologiesEnabled;
 
+  /// if enabled, then wind can be changed in both directions
+  /// left, or right during the flight
+  @override
+  @JsonKey()
+  final bool isWindDirectionChangeEnabled;
+
   @override
   String toString() {
-    return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled)';
+    return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled, isWindDirectionChangeEnabled: $isWindDirectionChangeEnabled)';
   }
 
   @override
@@ -1674,12 +1696,17 @@ class _$LevelFeaturesSettingsModelImpl extends _LevelFeaturesSettingsModel {
         (other.runtimeType == runtimeType &&
             other is _$LevelFeaturesSettingsModelImpl &&
             (identical(other.isTechnologiesEnabled, isTechnologiesEnabled) ||
-                other.isTechnologiesEnabled == isTechnologiesEnabled));
+                other.isTechnologiesEnabled == isTechnologiesEnabled) &&
+            (identical(other.isWindDirectionChangeEnabled,
+                    isWindDirectionChangeEnabled) ||
+                other.isWindDirectionChangeEnabled ==
+                    isWindDirectionChangeEnabled));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, isTechnologiesEnabled);
+  int get hashCode => Object.hash(
+      runtimeType, isTechnologiesEnabled, isWindDirectionChangeEnabled);
 
   @JsonKey(ignore: true)
   @override
@@ -1698,7 +1725,9 @@ class _$LevelFeaturesSettingsModelImpl extends _LevelFeaturesSettingsModel {
 
 abstract class _LevelFeaturesSettingsModel extends LevelFeaturesSettingsModel {
   const factory _LevelFeaturesSettingsModel(
-      {final bool isTechnologiesEnabled}) = _$LevelFeaturesSettingsModelImpl;
+          {final bool isTechnologiesEnabled,
+          final bool isWindDirectionChangeEnabled}) =
+      _$LevelFeaturesSettingsModelImpl;
   const _LevelFeaturesSettingsModel._() : super._();
 
   factory _LevelFeaturesSettingsModel.fromJson(Map<String, dynamic> json) =
@@ -1706,6 +1735,11 @@ abstract class _LevelFeaturesSettingsModel extends LevelFeaturesSettingsModel {
 
   @override
   bool get isTechnologiesEnabled;
+  @override
+
+  /// if enabled, then wind can be changed in both directions
+  /// left, or right during the flight
+  bool get isWindDirectionChangeEnabled;
   @override
   @JsonKey(ignore: true)
   _$$LevelFeaturesSettingsModelImplCopyWith<_$LevelFeaturesSettingsModelImpl>

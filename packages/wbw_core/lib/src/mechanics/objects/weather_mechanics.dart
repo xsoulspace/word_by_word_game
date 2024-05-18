@@ -53,6 +53,8 @@ part 'weather_mechanics.g.dart';
 ///
 /// Running the code will generate 10 random numbers
 /// with the desired probability distribution.
+///
+/// directionChange weight
 enum WindScale {
   calm(xMin: 0, xMax: 0.5, yMin: -0.01, yMax: 0.01, weight: 50),
   lightAir(xMin: 0.5, xMax: 1.5, yMin: -0.03, yMax: 0.05, weight: 100),
@@ -80,9 +82,42 @@ enum WindScale {
   final double xMax;
   final double yMin;
   final double yMax;
-  static final weightedValues = values
+  static final _weightedValues = values
       .expand((final e) => List.generate(e.weight, (final i) => e))
       .toList();
+
+  /// logic:
+  ///
+  /// Create list of all weights
+  /// Every weight has WindScale.
+  /// If wind scale chosen by the random index, the same as requested
+  /// wind scale, then change the wind direction.
+  static final _directionWeightedValues = values
+      .expand(
+        (final c) => List.generate(
+          c.directionWeight,
+          (final i) => c,
+        ),
+      )
+      .toList()
+    ..shuffle();
+
+  int get directionWeight => switch (this) {
+        WindScale.calm => 5,
+        WindScale.lightAir => 5,
+        WindScale.lightBreeze => 2,
+        WindScale.gentleBreeze => 8,
+        WindScale.moderateBreeze => 10,
+        WindScale.freshBreeze => 30,
+        WindScale.strongBreeze => 50,
+        WindScale.highWind => 70,
+        WindScale.gale => 80,
+        WindScale.severeGale => 80,
+        WindScale.storm => 100,
+        WindScale.violentStorm => 100,
+        WindScale.hurricane => 150,
+      };
+
   String get emojiRepresentation => switch (this) {
         WindScale.calm => '☀️',
         WindScale.lightAir => '☀️',
@@ -192,30 +227,45 @@ class WeatherMechanics {
         count,
         (final i) {
           final randomIndex = _random.nextInt(
-            max: WindScale.weightedValues.length,
+            max: WindScale._weightedValues.length,
           );
-          final windScale = WindScale.weightedValues[randomIndex];
+          final windScale = WindScale._weightedValues[randomIndex];
           return WeatherModel(
             windScale: windScale,
             durationInGameSeconds: _random.nextInt(max: 40, min: 10),
           );
         },
       );
+  WindDirection generateWindDirection({
+    required final WindScale scale,
+    required final WindDirection windDirection,
+  }) {
+    final randomIndex = _random.nextInt(
+      max: WindScale._directionWeightedValues.length,
+    );
+    final windScale = WindScale._directionWeightedValues[randomIndex];
+    if (windScale == scale) return windDirection.opposite;
+    return windDirection;
+  }
 
   WindModel getWindByWeather({
     required final WeatherModel weather,
     required final WindDirection windDirection,
     required final int heightInTiles,
+    required final bool isWindDirectionChangeEnabled,
   }) =>
       getWind(
         heightInTiles: heightInTiles,
         scale: weather.windScale,
         windDirection: windDirection,
+        isWindDirectionChangeEnabled: isWindDirectionChangeEnabled,
       );
+
   WindModel getWind({
     required final WindScale scale,
     required final int heightInTiles,
     required final WindDirection windDirection,
+    required final bool isWindDirectionChangeEnabled,
   }) {
     final yDirection = _random.nextBool() ? -1 : 1;
     final y = _random.nextInt(
@@ -229,9 +279,16 @@ class WeatherMechanics {
         ) /
         1000;
     const realityModifier = 10;
+    final newWindDirection = isWindDirectionChangeEnabled
+        ? generateWindDirection(
+            scale: scale,
+            windDirection: windDirection,
+          )
+        : windDirection;
     return WindModel(
+      windDirection: newWindDirection,
       force: SerializedVector2(
-        x: x / realityModifier * windDirection.sign,
+        x: x / realityModifier * newWindDirection.sign,
         y: y * yDirection / realityModifier,
       ),
     );

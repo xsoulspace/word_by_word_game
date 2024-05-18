@@ -23,8 +23,10 @@ class WeatherCubitState with _$WeatherCubitState {
 class WeatherCubitDto {
   WeatherCubitDto(final BuildContext context)
       : mechanics = context.read(),
+        levelFeaturesNotifier = context.read(),
         statesStatusesCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
+  final LevelFeaturesNotifier levelFeaturesNotifier;
   final MechanicsCollection mechanics;
 }
 
@@ -112,6 +114,8 @@ class WeatherCubit extends Cubit<WeatherCubitState>
       weather: state.weather,
       heightInTiles: _previousHeightInTiles,
       windDirection: state.wind.windDirection,
+      isWindDirectionChangeEnabled:
+          dto.levelFeaturesNotifier.features.isWindDirectionChangeEnabled,
     );
     emit(state.copyWith(wind: windForce));
     _currentWindOffsetCache = null;

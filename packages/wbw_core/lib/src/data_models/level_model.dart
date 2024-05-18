@@ -73,6 +73,10 @@ class LevelModel with _$LevelModel {
 class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
   const factory LevelFeaturesSettingsModel({
     @Default(false) final bool isTechnologiesEnabled,
+
+    /// if enabled, then wind can be changed in both directions
+    /// left, or right during the flight
+    @Default(false) final bool isWindDirectionChangeEnabled,
   }) = _LevelFeaturesSettingsModel;
   const LevelFeaturesSettingsModel._();
   factory LevelFeaturesSettingsModel.fromJson(
@@ -83,5 +87,5 @@ class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
   static const allEnabled = LevelFeaturesSettingsModel(
     isTechnologiesEnabled: true,
   );
-  bool get isAdvencedGame => isTechnologiesEnabled;
+  bool get isAdvancedGame => isTechnologiesEnabled;
 }

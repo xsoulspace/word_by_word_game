@@ -10,8 +10,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 
-part 'level_options_screen_state.dart';
-
 class LevelOptionsScreen extends HookWidget {
   const LevelOptionsScreen({
     required this.onCreatePlayer,
@@ -101,9 +99,11 @@ class _ExperimentsListView extends HookWidget {
     useListenable(uxState.isDictionariesLoading);
     final isVisible = kDebugMode || unblockerNotifier.value > 10;
     if (!isVisible) return const SizedBox();
-
-    final isTechnologiesEnabled =
-        uxState.featuresSettings.isTechnologiesEnabled;
+    final featuresSettings = uxState.featuresSettings;
+    final isAdvancedGame = featuresSettings.isAdvancedGame;
+    final isWindDirectionChangeEnabled =
+        featuresSettings.isWindDirectionChangeEnabled;
+    final isTechnologiesEnabled = featuresSettings.isTechnologiesEnabled;
     final isDictionariesLoading = uxState.isDictionariesLoading.value;
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -158,7 +158,7 @@ class _ExperimentsListView extends HookWidget {
             ).getValue(locale),
           ),
         ),
-        if (isTechnologiesEnabled)
+        if (isAdvancedGame)
           ListTile(
             // TODO(arenukvern): add explanation
             // TODO(arenukvern): l10n
@@ -166,6 +166,20 @@ class _ExperimentsListView extends HookWidget {
             trailing: WordsLanguageSwitcher(
               onChanged: uxState.changeWordsLanguage,
               value: uxState.wordsLanguage,
+            ),
+          ).animate().fadeIn(),
+        if (isAdvancedGame)
+          ListTile(
+            // TODO(arenukvern): add explanation
+            // TODO(arenukvern): l10n
+            title: const Text('Wind can change direction'),
+            trailing: Switch.adaptive(
+              onChanged: (final isEnabled) => uxState.changeFeaturesSettings(
+                (final old) => old.copyWith(
+                  isWindDirectionChangeEnabled: isEnabled,
+                ),
+              ),
+              value: isWindDirectionChangeEnabled,
             ),
           ).animate().fadeIn(),
       ],

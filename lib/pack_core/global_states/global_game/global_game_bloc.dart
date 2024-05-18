@@ -33,6 +33,7 @@ class GlobalGameBlocDiDto {
         wbwDictionary = context.read(),
         uiKeyboardController = context.read(),
         onlineStatusService = context.read(),
+        levelFeaturesNotifier = context.read(),
         debugCubit = context.read();
   final DebugCubit debugCubit;
   final OnlineStatusService onlineStatusService;
@@ -40,6 +41,7 @@ class GlobalGameBlocDiDto {
   final WeatherCubit weatherCubit;
   final UiKeyboardController uiKeyboardController;
   final TechnologiesCubit technologiesCubit;
+  final LevelFeaturesNotifier levelFeaturesNotifier;
   final CanvasCubit canvasCubit;
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
@@ -214,7 +216,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       level = level.copyWith(canvasDataId: newCanvasData.id);
     }
     if (event.isNewStart) {
-      if (level.featuresSettings.isAdvencedGame) {
+      if (level.featuresSettings.isAdvancedGame) {
         level = level.copyWith.characters.playerCharacter(
           balloonParams: BalloonLiftParamsModel.initial,
         );
@@ -248,7 +250,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         technologyTreeProgress: TechnologyTreeProgressModel.empty,
       );
     }
-
+    dto.levelFeaturesNotifier.reloadState(level.featuresSettings);
     updatedState = updatedState.copyWith(
       currentLevelModel: level,
       currentLevelId: level.id,
@@ -349,7 +351,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     }
 
     if (DeviceRuntimeType.isWeb) {
-      if (dto.levelBloc.featuresSettings.isAdvencedGame) {
+      if (dto.levelBloc.featuresSettings.isAdvancedGame) {
         await runCache();
       }
     } else {
@@ -438,18 +440,27 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
-    // TODO(arenukvern): description
+    // TODO(arenukvern): add save points
     // ignore: unused_local_variable
     const isPlayerHasSavePoints = false;
     final initEvent = InitGlobalGameLevelEvent(
       levelModel: level,
       isNewStart: false,
-      windDirection: event.isPassed
-          ? level.wind.windDirection.opposite
-          : level.wind.windDirection,
+      windDirection: () {
+        if (level.featuresSettings.isWindDirectionChangeEnabled) {
+          return level.wind.windDirection;
+        } else {
+          return WindDirection.right;
+        }
+      }(),
       playerStartPoint: () {
+        // TODO(arenukvern): add save points
         // ignore: dead_code
-        if (isPlayerHasSavePoints) return PlayerStartPointType.fromSavePoint;
+        if (isPlayerHasSavePoints &&
+            // ignore: dead_code
+            level.featuresSettings.isWindDirectionChangeEnabled) {
+          return PlayerStartPointType.fromSavePoint;
+        }
 
         return PlayerStartPointType.fromSpawnPoint;
       }(),

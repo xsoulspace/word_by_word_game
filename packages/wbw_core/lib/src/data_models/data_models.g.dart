@@ -224,12 +224,15 @@ _$LevelFeaturesSettingsModelImpl _$$LevelFeaturesSettingsModelImplFromJson(
         Map<String, dynamic> json) =>
     _$LevelFeaturesSettingsModelImpl(
       isTechnologiesEnabled: json['isTechnologiesEnabled'] as bool? ?? false,
+      isWindDirectionChangeEnabled:
+          json['isWindDirectionChangeEnabled'] as bool? ?? false,
     );
 
 Map<String, dynamic> _$$LevelFeaturesSettingsModelImplToJson(
         _$LevelFeaturesSettingsModelImpl instance) =>
     <String, dynamic>{
       'isTechnologiesEnabled': instance.isTechnologiesEnabled,
+      'isWindDirectionChangeEnabled': instance.isWindDirectionChangeEnabled,
     };
 
 _$LevelPlayersModelImpl _$$LevelPlayersModelImplFromJson(
