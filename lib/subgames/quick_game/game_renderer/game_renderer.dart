@@ -40,6 +40,8 @@ class CanvasRendererGame extends FlameGame
           dialogController: dialogController,
         );
   final GameRendererDiDto dto;
+  LevelFeaturesSettingsModel get featureSettings =>
+      dto.levelBloc.featuresSettings;
 
   late CameraComponent worldCamera;
   @override

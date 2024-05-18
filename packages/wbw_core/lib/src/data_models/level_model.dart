@@ -76,6 +76,10 @@ class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
 
     /// if enabled, then wind can be changed in both directions
     /// left, or right during the flight
+    ///
+    /// In the same time, if this feature enabled,
+    /// then there is no win scenario, since
+    /// it makes no sense.
     @Default(false) final bool isWindDirectionChangeEnabled,
   }) = _LevelFeaturesSettingsModel;
   const LevelFeaturesSettingsModel._();

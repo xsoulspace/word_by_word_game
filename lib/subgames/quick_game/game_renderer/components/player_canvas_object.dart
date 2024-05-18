@@ -100,7 +100,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
               _showLevelLostDialog();
               return;
             case CollisionConsequence.win:
-              _showLevelWinDialog();
+              if (!game.featureSettings.isWindDirectionChangeEnabled) {
+                _showLevelWinDialog();
+              }
 
             case CollisionConsequence.none:
               _onCollision(dt);
