@@ -11,7 +11,14 @@ extension type const TechnologyModelId(TechnologyType value) {
     } else {
       throw UnsupportedError(value);
     }
-    return TechnologyModelId(TechnologyType.values.byName(val));
+    TechnologyType type;
+    try {
+      type = TechnologyType.values.byName(val);
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
+      type = TechnologyType.unknown;
+    }
+    return TechnologyModelId(type);
   }
   dynamic toJson() => value.name;
 }
@@ -124,14 +131,17 @@ class UsefulWordModel with _$UsefulWordModel {
 }
 
 enum TechnologyType {
-  safeLanding,
-  emergencyLanding,
+  unknown, // use for all unknown technologies
+  safeLanding, // not used
+  emergencyLanding, // not used
   ascending,
-  descending;
+  descending,
+  buildingTent;
 
   static const Set<TechnologyType> _active = {
     TechnologyType.ascending,
     TechnologyType.descending,
+    TechnologyType.buildingTent,
   };
   static bool checkIsActive(final TechnologyType type) =>
       _active.contains(type);

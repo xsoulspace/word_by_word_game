@@ -140,11 +140,11 @@ class _TechnologyInputState extends State<TechnologyInput> {
 
   late Map<Languages, List<UsefulWordModel>> wordsMap =
       _initTechnology.unlockCondition.languageWords;
-  List<UsefulWordModel> get words => wordsMap[widget.language] ?? [];
+  List<UsefulWordModel> get languageWords => wordsMap[widget.language] ?? [];
 
   TechnologyModel get _initTechnology => widget.initialTechnology;
   void _onDeleteWord(final int index) {
-    final updatedWords = [...words]..removeAt(index);
+    final updatedWords = [...languageWords]..removeAt(index);
     _onWordsChanged(updatedWords);
   }
 
@@ -153,7 +153,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
     if (text.isEmpty) return;
     _newWordController.clear();
     final word = UsefulWordModel(word: text);
-    final updatedWords = {...words, word}.toList();
+    final updatedWords = {...languageWords, word}.toList();
     _onWordsChanged(updatedWords);
   }
 
@@ -239,7 +239,7 @@ class _TechnologyInputState extends State<TechnologyInput> {
               ),
               const Gap(8),
               Wrap(
-                children: words.indexed
+                children: languageWords.indexed
                     .map(
                       (final e) => InputChip(
                         label: Text(e.$2.word),
