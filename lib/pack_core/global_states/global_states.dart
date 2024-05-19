@@ -5,6 +5,7 @@ export 'canvas_cubit.dart';
 export 'dictionaries/dictionaries_bloc.dart';
 export 'game_constants_cubit.dart';
 export 'global_game/global_game_bloc.dart';
+export 'gui_building_notifier.dart';
 export 'level/level_bloc.dart';
 export 'level_features_notifier.dart';
 export 'level_players/level_players_bloc.dart';

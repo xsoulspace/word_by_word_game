@@ -121,7 +121,7 @@ class GameCanvasObjectsDrawer extends Component
 
   @override
   void render(final Canvas canvas) {
-    if (debugMode) _renderGravitationLine(canvas);
+    // if (debugMode) _renderGravitationLine(canvas);
     // TODO(arenukvern): restore
     // _renderSkyHorizon(canvas);
     super.render(canvas);
@@ -129,6 +129,7 @@ class GameCanvasObjectsDrawer extends Component
 
   GravityModel get gravity => GravityModel.initial;
   final _gravitationLinePaint = Palette.red.paint()..strokeWidth = 2;
+  // ignore: unused_element
   void _renderGravitationLine(final Canvas canvas) {
     final dy = gravity.tileDistance.toDouble() + origin.y;
     canvas.drawLine(
@@ -139,6 +140,7 @@ class GameCanvasObjectsDrawer extends Component
   }
 
   final _skyHorizonPaint = Palette.blue.paint()..strokeWidth = 2;
+  // ignore: unused_element
   void _renderSkyHorizon(final Canvas canvas) {
     final dy = (_skyHandle?.position.dy ?? 0) + 20;
 

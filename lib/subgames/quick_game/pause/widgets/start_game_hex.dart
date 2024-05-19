@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
@@ -11,9 +12,11 @@ import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
 
+const _kQuickGameMapId =
+    CanvasDataModelId(value: '823ea880-44c3-11ee-a8e7-c3f4020ba610');
+
 class QuickStartGameButtons extends StatelessWidget {
   const QuickStartGameButtons({super.key});
-
   @override
   Widget build(final BuildContext context) {
     final state = context.read<PauseScreenState>();
@@ -31,8 +34,10 @@ class QuickStartGameButtons extends StatelessWidget {
     return Provider(
       create: (final context) => state,
       builder: (final context, final child) {
-        final canvasData = globalGameCubit.state.allCanvasData.values
-            .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack);
+        final canvasData =
+            globalGameCubit.state.allCanvasData.values.firstWhere(
+          (final e) => e.id == _kQuickGameMapId,
+        );
 
         return Column(
           key: ValueKey(canvasData),
@@ -78,7 +83,9 @@ class LevelsView extends StatelessWidget {
   Widget build(final BuildContext context) {
     final state = context.read<PauseScreenState>();
     final canvasIds = context.select<GlobalGameBloc, List<CanvasDataModelId>>(
-      (final c) => c.state.allCanvasData.keys.toList(),
+      (final c) => c.state.allCanvasData.keys
+          .whereNot((final id) => id == _kQuickGameMapId)
+          .toList(),
     );
     final levelSaves =
         context.select<GlobalGameBloc, Map<CanvasDataModelId, LevelModel>>(

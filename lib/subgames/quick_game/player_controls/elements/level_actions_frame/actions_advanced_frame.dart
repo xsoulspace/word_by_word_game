@@ -9,6 +9,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/land_actions_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/level_actions_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -443,6 +444,9 @@ class _ActionsTabView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => const Row(
-        children: [Flexible(child: HeatEngineView())],
+        children: [
+          Flexible(child: HeatEngineView()),
+          LandActionsView(),
+        ],
       );
 }

@@ -8,6 +8,7 @@ import 'package:word_by_word_game/pack_core/ads/states/states.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/pack_core/global_states/gui_building_notifier.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
@@ -65,6 +66,7 @@ class GlobalStatesProvider extends StatelessWidget {
             const BlocProvider(create: GameConstantsCubit.new),
             ChangeNotifierProvider(create: DialogStackNotifier.new),
             Provider(create: DialogStackNotifier.getDialogController),
+            const BlocProvider(create: GuiBuildingNotifier.new),
           ],
           child: Builder(builder: builder),
         ),

@@ -13,6 +13,7 @@ class GameRendererDiDto {
         debugCubit = context.read(),
         statesStatusesCubit = context.read(),
         gameConstantsCubit = context.read(),
+        buildingCubit = context.read(),
         weatherCubit = context.read();
 
   /// ********************************************
@@ -20,6 +21,7 @@ class GameRendererDiDto {
   /// ********************************************
   final LevelBloc levelBloc;
   final DebugCubit debugCubit;
+  final GuiBuildingNotifier buildingCubit;
   final LevelPlayersBloc levelPlayersBloc;
   final StatesStatusesCubit statesStatusesCubit;
   final GameConstantsCubit gameConstantsCubit;
@@ -36,6 +38,9 @@ class GameRendererDiDto {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
       FlameBlocProvider<LevelBloc, LevelBlocState>.value(value: levelBloc),
       FlameBlocProvider<DebugCubit, DebugCubitState>.value(value: debugCubit),
+      FlameBlocProvider<GuiBuildingNotifier, GuiBuildingNotifierState>.value(
+        value: buildingCubit,
+      ),
       FlameBlocProvider<CanvasCubit, DrawerCubitState>.value(
         value: canvasCubit,
       ),

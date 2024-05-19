@@ -123,7 +123,9 @@ class __$$TechnologiesTreeDialogDtoImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$TechnologiesTreeDialogDtoImpl implements _TechnologiesTreeDialogDto {
+class _$TechnologiesTreeDialogDtoImpl
+    with DiagnosticableTreeMixin
+    implements _TechnologiesTreeDialogDto {
   const _$TechnologiesTreeDialogDtoImpl(
       {this.isSelectionAllowed = false,
       this.isHintVisible = false,
@@ -139,8 +141,18 @@ class _$TechnologiesTreeDialogDtoImpl implements _TechnologiesTreeDialogDto {
   final VoidCallback? onCloseIfChanged;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'TechnologiesTreeDialogDto(isSelectionAllowed: $isSelectionAllowed, isHintVisible: $isHintVisible, onCloseIfChanged: $onCloseIfChanged)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'TechnologiesTreeDialogDto'))
+      ..add(DiagnosticsProperty('isSelectionAllowed', isSelectionAllowed))
+      ..add(DiagnosticsProperty('isHintVisible', isHintVisible))
+      ..add(DiagnosticsProperty('onCloseIfChanged', onCloseIfChanged));
   }
 
   @override

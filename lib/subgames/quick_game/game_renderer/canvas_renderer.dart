@@ -31,6 +31,7 @@ class CanvasRenderer extends Component
   double get tileColumns => (windowWidth / kTileDimension) + 1;
   double get tileRows => (windowHeight / kTileDimension) + 1;
   final debugSurface = CanvasDebugSurface();
+  final buildingSurfaceDrawer = BuildingSurfaceDrawer();
   final tilesRenderer = CanvasTilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
   // final animationUpdater = AnimationUpdater();
@@ -43,6 +44,7 @@ class CanvasRenderer extends Component
       tilesRenderer,
       debugSurface,
       canvasObjectsDrawer,
+      buildingSurfaceDrawer,
       // cursor,
       // LOGIC
       // animationUpdater,

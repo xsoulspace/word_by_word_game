@@ -9,6 +9,7 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 // ignore: implementation_imports
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
