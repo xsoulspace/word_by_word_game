@@ -245,7 +245,6 @@ class WeatherMechanics {
       max: WindScale._directionWeightedValues.length,
     );
     final windScale = WindScale._directionWeightedValues[randomIndex];
-    print('generateWindDirection: $windScale $scale');
     if (windScale == scale) return windDirection.opposite;
     return windDirection;
   }
