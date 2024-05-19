@@ -215,11 +215,15 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       newCanvasData = state.allCanvasData.values.first;
       level = level.copyWith(canvasDataId: newCanvasData.id);
     }
+    void resetAdvancedGameCharacter() {
+      level = level.copyWith.characters.playerCharacter(
+        balloonParams: BalloonLiftParamsModel.initial,
+      );
+    }
+
     if (event.isNewStart) {
       if (level.featuresSettings.isAdvancedGame) {
-        level = level.copyWith.characters.playerCharacter(
-          balloonParams: BalloonLiftParamsModel.initial,
-        );
+        resetAdvancedGameCharacter();
       } else {
         level = level.copyWith.characters.playerCharacter(
           balloonParams: BalloonLiftParamsModel.initial.copyWith(
@@ -249,6 +253,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         words: {},
         technologyTreeProgress: TechnologyTreeProgressModel.empty,
       );
+    } else {
+      if (level.featuresSettings.isAdvancedGame) {
+        resetAdvancedGameCharacter();
+      }
     }
     dto.levelFeaturesNotifier.reloadState(level.featuresSettings);
     updatedState = updatedState.copyWith(
