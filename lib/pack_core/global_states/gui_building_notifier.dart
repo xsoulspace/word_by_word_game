@@ -32,14 +32,14 @@ class GuiBuildingNotifierDto {
 }
 
 /// this state should not be saved, as it is itermediate state
-class GuiBuildingNotifier extends Cubit<GuiBuildingNotifierState> {
+class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
   GuiBuildingNotifier(final BuildContext context)
       : dto = GuiBuildingNotifierDto(context: context),
         super(GuiBuildingNotifierState.idle);
   final GuiBuildingNotifierDto dto;
-  bool get isPlacing => state.status == GuiBuildingStatusEnum.placing;
+  bool get isPlacing => value.status == GuiBuildingStatusEnum.placing;
   void cancelPlacing() {
-    emit(GuiBuildingNotifierState.idle);
+    value = GuiBuildingNotifierState.idle;
   }
 
   void confirmPlacing() {
@@ -50,10 +50,8 @@ class GuiBuildingNotifier extends Cubit<GuiBuildingNotifierState> {
   void startPlacing({
     required final GuiBuildingTypeEnum type,
   }) =>
-      emit(
-        GuiBuildingNotifierState(
-          status: GuiBuildingStatusEnum.placing,
-          type: type,
-        ),
+      value = GuiBuildingNotifierState(
+        status: GuiBuildingStatusEnum.placing,
+        type: type,
       );
 }

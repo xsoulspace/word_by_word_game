@@ -29,6 +29,7 @@ class Palette {
 }
 
 int get kTileDimension => 32;
+double get kTileDimensionDouble => kTileDimension.toDouble();
 
 int get kVisibleTilesColumns => 20;
 int get kVisibleTilesRows => 12;

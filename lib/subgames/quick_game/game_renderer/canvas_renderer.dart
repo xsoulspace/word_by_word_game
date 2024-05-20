@@ -149,6 +149,8 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   TilesetPresetResources get presetResources =>
       canvasCubit.tilesPresetResources;
   Map<TileId, PresetTileResource> get tilesResources => presetResources.tiles;
+  PlayerGameCanvasObject? get player =>
+      canvasRenderer.canvasObjectsDrawer.player;
 
   /// as temporary solution
   ///

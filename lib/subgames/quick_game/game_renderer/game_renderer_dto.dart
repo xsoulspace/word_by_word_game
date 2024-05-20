@@ -38,9 +38,6 @@ class GameRendererDiDto {
     final providers = <FlameBlocProvider<BlocBase<dynamic>, dynamic>>[
       FlameBlocProvider<LevelBloc, LevelBlocState>.value(value: levelBloc),
       FlameBlocProvider<DebugCubit, DebugCubitState>.value(value: debugCubit),
-      FlameBlocProvider<GuiBuildingNotifier, GuiBuildingNotifierState>.value(
-        value: buildingCubit,
-      ),
       FlameBlocProvider<CanvasCubit, DrawerCubitState>.value(
         value: canvasCubit,
       ),
