@@ -48,7 +48,9 @@ class BuildingSurfaceDrawer extends Component
   /// Check which tiles available to be shown
   /// Draw lines
   Future<void> _checkAndAddObjects() async {
-    final playerPosition = player?.position;
+    final playerPosition =
+        player?.shiftedHitbox?.bottomLeft.translate(0, -kTileDimensionDouble);
+
     if (playerPosition == null) return;
     final drawableObjects = <_PlacingSurfaceComponent>[];
     final originUtils = OriginVectorUtils.use(origin);
