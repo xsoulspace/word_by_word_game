@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 import 'package:flame/cache.dart';
 import 'package:logger/logger.dart';
 import 'package:map_editor/state/models/models.dart';
@@ -5,15 +6,10 @@ import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 
-class CanvasCubitDto {
-  CanvasCubitDto();
-}
-
 /// Class for canvas data rendering
 final class CanvasCubit extends DrawerCubit {
   CanvasCubit(final BuildContext context)
-      : canvasDto = CanvasCubitDto(),
-        super(
+      : super(
           dto: DrawerCubitDto.use(context: context),
           resourcesLoader: ResourcesLoader(
             tilesetAssets: AssetsCache(
@@ -23,7 +19,6 @@ final class CanvasCubit extends DrawerCubit {
           rootPath: 'packages/map_editor/',
         );
   final _log = Logger();
-  final CanvasCubitDto canvasDto;
   @override
   Future<void> close() {
     _log.close();
@@ -34,6 +29,54 @@ final class CanvasCubit extends DrawerCubit {
   Future<void> loadInitialData() async {
     await loadResourcesData();
     loadTilesets();
+  }
+
+  /// Places a building object on the canvas at the specified cell position.
+  ///
+  /// The [cell] parameter specifies the position of the cell where
+  /// the building object should be placed.
+  /// The [object] parameter specifies the rendering object
+  /// to be placed on the canvas.
+  ///
+  /// This function modifies the state of the canvas by adding the new
+  /// building object to the existing layers and objects.
+  /// It creates a new layer if the layer with ID [kDrawerBuildingsLayerId]
+  /// does not exist, otherwise it updates the existing layer.
+  /// The function updates the tiles in the layer to include the new building
+  /// object at the specified cell position.
+  /// It also updates the objects in the canvas data to include
+  /// the new building object.
+  void placeBuildingObject({
+    required final CellPointModel cell,
+    required final RenderObjectModel object,
+  }) {
+    final layers = state.canvasData.layers.toList();
+    final layer =
+        layers.firstWhereOrNull((final e) => e.id == kDrawerBuildingsLayerId) ??
+            LayerModel.empty.copyWith(
+              id: kDrawerBuildingsLayerId,
+              isVisible: true,
+              isCollidable: false,
+            );
+    final layerIndex = layers.indexOf(layer);
+
+    final newObjects = {...state.canvasData.objects}..[object.id] = object;
+    final newCellTile = layer.tiles[cell] ??
+        CellTileModel.empty.copyWith(
+          objects: [...layer.tiles[cell]?.objects ?? [], object.id],
+        );
+
+    final newLayer = layer.copyWith(
+      tiles: {...layer.tiles}..[cell] = newCellTile,
+    );
+
+    final newCanvasData = state.canvasData.copyWith(
+      objects: newObjects,
+      layers: layerIndex < 0 ? [...layers, newLayer] : [...layers]
+        ..[layerIndex] = newLayer,
+    );
+
+    emit(state.copyWith(canvasData: newCanvasData));
   }
 
   // TODO(arenukvern): cache it

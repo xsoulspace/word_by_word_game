@@ -9,6 +9,8 @@ class DrawerCubitDto {
 
 String get _levelsMapsPersistanceKet => 'maps_saves';
 
+const kDrawerBuildingsLayerId = LayerModelId(value: 'buildings');
+
 /// Base class for canvas resources
 abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
   DrawerCubit({

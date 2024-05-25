@@ -14,6 +14,7 @@ class LandActionsView extends StatelessWidget {
         if (buildingNotifier.isPlacing) const Text('Placing'),
         Row(
           children: [
+            // TODO(arenukvern): make it more generic. Or not.
             TextButton.icon(
               onPressed: () {
                 if (buildingNotifier.isPlacing) {

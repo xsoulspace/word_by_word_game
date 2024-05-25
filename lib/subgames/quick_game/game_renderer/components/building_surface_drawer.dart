@@ -18,22 +18,22 @@ import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 class BuildingSurfaceDrawer extends Component
     with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
   static material.Paint get _paint => Palette.grey.withAlpha(60).paint();
-
+  GuiBuildingNotifier get _buildingCubit => game.dto.buildingCubit;
   @override
   FutureOr<void> onLoad() {
-    game.dto.buildingCubit.addListener(_handleGuiChanges);
+    _buildingCubit.addListener(_handleGuiChanges);
     return super.onLoad();
   }
 
   @override
   void onRemove() {
-    game.dto.buildingCubit.removeListener(_handleGuiChanges);
+    _buildingCubit.removeListener(_handleGuiChanges);
     super.onRemove();
   }
 
   GuiBuildingStatusEnum _lastState = GuiBuildingStatusEnum.idle;
   void _handleGuiChanges() {
-    final newState = game.dto.buildingCubit.value;
+    final newState = _buildingCubit.value;
     if (_lastState == newState.status) return;
     _lastState = newState.status;
     if (newState.status == GuiBuildingStatusEnum.placing) {
@@ -68,12 +68,21 @@ class BuildingSurfaceDrawer extends Component
         hitboxCells: [gameCellPoint.toCellPoint()],
       );
 
+      final distanceToOrigin = originUtils.getDistanceToOrigin(
+        gameCellPoint.toVector2(),
+      );
+
       if (collisionConsequences.isEmpty) {
         drawableObjects.add(
           _PlacingSurfaceComponent(
             position: canvasCell.toVector2(),
             parent: this,
             index: index,
+            onSelect: () => _onSelect(
+              index: index,
+              distanceToOrigin: distanceToOrigin.toSerializedVector2(),
+              cellPoint: canvasCell,
+            ),
           ),
         );
       }
@@ -95,9 +104,16 @@ class BuildingSurfaceDrawer extends Component
 
   int? _selectedIndex;
   // ignore: use_setters_to_change_properties
-  void _onSelect(final int index) {
+  void _onSelect({
+    required final int index,
+    required final SerializedVector2 distanceToOrigin,
+    required final CellPointModel cellPoint,
+  }) {
     _selectedIndex = index;
-    // TODO(arenukvern): change status
+    game.dto.buildingCubit.usePlace(
+      cellPoint: cellPoint,
+      distanceToOrigin: distanceToOrigin,
+    );
   }
 
   void _deleteObjects() {
@@ -111,6 +127,7 @@ class _PlacingSurfaceComponent extends PositionComponent
   _PlacingSurfaceComponent({
     required this.parent,
     required this.index,
+    required this.onSelect,
     super.position,
   }) : super() {
     _setHovered(false);
@@ -119,6 +136,7 @@ class _PlacingSurfaceComponent extends PositionComponent
   final int index;
   @override
   final BuildingSurfaceDrawer parent;
+  final VoidCallback onSelect;
 
   @override
   void onHoverEnter() {
@@ -169,7 +187,7 @@ class _PlacingSurfaceComponent extends PositionComponent
 
   @override
   void onTapUp(final TapUpEvent event) {
-    parent._onSelect(index);
+    onSelect();
     super.onTapUp(event);
   }
 }

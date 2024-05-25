@@ -18,6 +18,8 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GuiBuildingNotifierState {
   GuiBuildingStatusEnum get status => throw _privateConstructorUsedError;
   GuiBuildingTypeEnum get type => throw _privateConstructorUsedError;
+  SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
+  CellPointModel? get cellPoint => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $GuiBuildingNotifierStateCopyWith<GuiBuildingNotifierState> get copyWith =>
@@ -30,7 +32,14 @@ abstract class $GuiBuildingNotifierStateCopyWith<$Res> {
           $Res Function(GuiBuildingNotifierState) then) =
       _$GuiBuildingNotifierStateCopyWithImpl<$Res, GuiBuildingNotifierState>;
   @useResult
-  $Res call({GuiBuildingStatusEnum status, GuiBuildingTypeEnum type});
+  $Res call(
+      {GuiBuildingStatusEnum status,
+      GuiBuildingTypeEnum type,
+      SerializedVector2 distanceToOrigin,
+      CellPointModel? cellPoint});
+
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  $CellPointModelCopyWith<$Res>? get cellPoint;
 }
 
 /// @nodoc
@@ -49,6 +58,8 @@ class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
   $Res call({
     Object? status = null,
     Object? type = null,
+    Object? distanceToOrigin = null,
+    Object? cellPoint = freezed,
   }) {
     return _then(_value.copyWith(
       status: null == status
@@ -59,7 +70,35 @@ class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as GuiBuildingTypeEnum,
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      cellPoint: freezed == cellPoint
+          ? _value.cellPoint
+          : cellPoint // ignore: cast_nullable_to_non_nullable
+              as CellPointModel?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin {
+    return $SerializedVector2CopyWith<$Res>(_value.distanceToOrigin, (value) {
+      return _then(_value.copyWith(distanceToOrigin: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $CellPointModelCopyWith<$Res>? get cellPoint {
+    if (_value.cellPoint == null) {
+      return null;
+    }
+
+    return $CellPointModelCopyWith<$Res>(_value.cellPoint!, (value) {
+      return _then(_value.copyWith(cellPoint: value) as $Val);
+    });
   }
 }
 
@@ -72,7 +111,16 @@ abstract class _$$GuiBuildingNotifierStateImplCopyWith<$Res>
       __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({GuiBuildingStatusEnum status, GuiBuildingTypeEnum type});
+  $Res call(
+      {GuiBuildingStatusEnum status,
+      GuiBuildingTypeEnum type,
+      SerializedVector2 distanceToOrigin,
+      CellPointModel? cellPoint});
+
+  @override
+  $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  @override
+  $CellPointModelCopyWith<$Res>? get cellPoint;
 }
 
 /// @nodoc
@@ -90,6 +138,8 @@ class __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>
   $Res call({
     Object? status = null,
     Object? type = null,
+    Object? distanceToOrigin = null,
+    Object? cellPoint = freezed,
   }) {
     return _then(_$GuiBuildingNotifierStateImpl(
       status: null == status
@@ -100,6 +150,14 @@ class __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as GuiBuildingTypeEnum,
+      distanceToOrigin: null == distanceToOrigin
+          ? _value.distanceToOrigin
+          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      cellPoint: freezed == cellPoint
+          ? _value.cellPoint
+          : cellPoint // ignore: cast_nullable_to_non_nullable
+              as CellPointModel?,
     ));
   }
 }
@@ -109,7 +167,9 @@ class __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>
 class _$GuiBuildingNotifierStateImpl implements _GuiBuildingNotifierState {
   const _$GuiBuildingNotifierStateImpl(
       {this.status = GuiBuildingStatusEnum.idle,
-      this.type = GuiBuildingTypeEnum.nothing});
+      this.type = GuiBuildingTypeEnum.nothing,
+      this.distanceToOrigin = SerializedVector2.zero,
+      this.cellPoint});
 
   @override
   @JsonKey()
@@ -117,10 +177,15 @@ class _$GuiBuildingNotifierStateImpl implements _GuiBuildingNotifierState {
   @override
   @JsonKey()
   final GuiBuildingTypeEnum type;
+  @override
+  @JsonKey()
+  final SerializedVector2 distanceToOrigin;
+  @override
+  final CellPointModel? cellPoint;
 
   @override
   String toString() {
-    return 'GuiBuildingNotifierState(status: $status, type: $type)';
+    return 'GuiBuildingNotifierState(status: $status, type: $type, distanceToOrigin: $distanceToOrigin, cellPoint: $cellPoint)';
   }
 
   @override
@@ -129,11 +194,16 @@ class _$GuiBuildingNotifierStateImpl implements _GuiBuildingNotifierState {
         (other.runtimeType == runtimeType &&
             other is _$GuiBuildingNotifierStateImpl &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.type, type) || other.type == type) &&
+            (identical(other.distanceToOrigin, distanceToOrigin) ||
+                other.distanceToOrigin == distanceToOrigin) &&
+            (identical(other.cellPoint, cellPoint) ||
+                other.cellPoint == cellPoint));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, type);
+  int get hashCode =>
+      Object.hash(runtimeType, status, type, distanceToOrigin, cellPoint);
 
   @JsonKey(ignore: true)
   @override
@@ -146,12 +216,18 @@ class _$GuiBuildingNotifierStateImpl implements _GuiBuildingNotifierState {
 abstract class _GuiBuildingNotifierState implements GuiBuildingNotifierState {
   const factory _GuiBuildingNotifierState(
       {final GuiBuildingStatusEnum status,
-      final GuiBuildingTypeEnum type}) = _$GuiBuildingNotifierStateImpl;
+      final GuiBuildingTypeEnum type,
+      final SerializedVector2 distanceToOrigin,
+      final CellPointModel? cellPoint}) = _$GuiBuildingNotifierStateImpl;
 
   @override
   GuiBuildingStatusEnum get status;
   @override
   GuiBuildingTypeEnum get type;
+  @override
+  SerializedVector2 get distanceToOrigin;
+  @override
+  CellPointModel? get cellPoint;
   @override
   @JsonKey(ignore: true)
   _$$GuiBuildingNotifierStateImplCopyWith<_$GuiBuildingNotifierStateImpl>
