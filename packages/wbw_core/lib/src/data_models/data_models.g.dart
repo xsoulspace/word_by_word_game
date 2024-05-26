@@ -166,6 +166,14 @@ _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>
       playerStartPoint: $enumDecodeNullable(
               _$PlayerStartPointTypeEnumMap, json['playerStartPoint']) ??
           PlayerStartPointType.fromSpawnPoint,
+      canvasObjects: json['canvasObjects'] == null
+          ? const {}
+          : CanvasDataModel.objectsFromJson(
+              json['canvasObjects'] as Map<String, dynamic>),
+      canvasLayers: (json['canvasLayers'] as List<dynamic>?)
+              ?.map((e) => LayerModel.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
     );
 
 Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
@@ -189,6 +197,8 @@ Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
       'wordsLanguage': _$LanguagesEnumMap[instance.wordsLanguage]!,
       'playerStartPoint':
           _$PlayerStartPointTypeEnumMap[instance.playerStartPoint]!,
+      'canvasObjects': CanvasDataModel.objectsToJson(instance.canvasObjects),
+      'canvasLayers': instance.canvasLayers.map((e) => e.toJson()).toList(),
     };
 
 const _$TilesetTypeEnumMap = {

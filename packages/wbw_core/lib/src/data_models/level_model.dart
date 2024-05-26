@@ -59,6 +59,17 @@ class LevelModel with _$LevelModel {
     @Default(Languages.en) final Languages wordsLanguage,
     @Default(PlayerStartPointType.fromSpawnPoint)
     final PlayerStartPointType playerStartPoint,
+
+    /// use these objects to save any objectss from any layer
+    @Default({})
+    @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson,
+    )
+    final Map<Gid, RenderObjectModel> canvasObjects,
+
+    /// savable layers
+    @Default([]) final List<LayerModel> canvasLayers,
   }) = _LevelModel;
   const LevelModel._();
   factory LevelModel.fromJson(final Map<String, dynamic> json) =>

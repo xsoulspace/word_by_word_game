@@ -31,6 +31,12 @@ final class CanvasCubit extends DrawerCubit {
     loadTilesets();
   }
 
+  List<LayerModel> get savableLayers => canvasData.layers;
+
+  LayerModel get buildingsLayer =>
+      layers.firstWhereOrNull((final e) => e.id == kDrawerBuildingsLayerId) ??
+      LayerModel.buildings;
+
   /// Places a building object on the canvas at the specified cell position.
   ///
   /// The [cell] parameter specifies the position of the cell where
@@ -51,13 +57,7 @@ final class CanvasCubit extends DrawerCubit {
     required final RenderObjectModel object,
   }) {
     final layers = state.canvasData.layers.toList();
-    final layer =
-        layers.firstWhereOrNull((final e) => e.id == kDrawerBuildingsLayerId) ??
-            LayerModel.empty.copyWith(
-              id: kDrawerBuildingsLayerId,
-              isVisible: true,
-              isCollidable: false,
-            );
+    final layer = buildingsLayer;
     final layerIndex = layers.indexOf(layer);
 
     final newObjects = {...state.canvasData.objects}..[object.id] = object;

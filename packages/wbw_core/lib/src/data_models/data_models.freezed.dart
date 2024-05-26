@@ -955,6 +955,16 @@ mixin _$LevelModel {
   PlayerStartPointType get playerStartPoint =>
       throw _privateConstructorUsedError;
 
+  /// use these objects to save any objectss from any layer
+  @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
+  Map<Gid, RenderObjectModel> get canvasObjects =>
+      throw _privateConstructorUsedError;
+
+  /// savable layers
+  List<LayerModel> get canvasLayers => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LevelModelCopyWith<LevelModel> get copyWith =>
@@ -984,7 +994,12 @@ abstract class $LevelModelCopyWith<$Res> {
       TechnologyTreeProgressModel technologyTreeProgress,
       LevelFeaturesSettingsModel featuresSettings,
       Languages wordsLanguage,
-      PlayerStartPointType playerStartPoint});
+      PlayerStartPointType playerStartPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      Map<Gid, RenderObjectModel> canvasObjects,
+      List<LayerModel> canvasLayers});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
@@ -1027,6 +1042,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? featuresSettings = null,
     Object? wordsLanguage = null,
     Object? playerStartPoint = null,
+    Object? canvasObjects = null,
+    Object? canvasLayers = null,
   }) {
     return _then(_value.copyWith(
       players: null == players
@@ -1097,6 +1114,14 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.playerStartPoint
           : playerStartPoint // ignore: cast_nullable_to_non_nullable
               as PlayerStartPointType,
+      canvasObjects: null == canvasObjects
+          ? _value.canvasObjects
+          : canvasObjects // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderObjectModel>,
+      canvasLayers: null == canvasLayers
+          ? _value.canvasLayers
+          : canvasLayers // ignore: cast_nullable_to_non_nullable
+              as List<LayerModel>,
     ) as $Val);
   }
 
@@ -1200,7 +1225,12 @@ abstract class _$$LevelModelImplCopyWith<$Res>
       TechnologyTreeProgressModel technologyTreeProgress,
       LevelFeaturesSettingsModel featuresSettings,
       Languages wordsLanguage,
-      PlayerStartPointType playerStartPoint});
+      PlayerStartPointType playerStartPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      Map<Gid, RenderObjectModel> canvasObjects,
+      List<LayerModel> canvasLayers});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1250,6 +1280,8 @@ class __$$LevelModelImplCopyWithImpl<$Res>
     Object? featuresSettings = null,
     Object? wordsLanguage = null,
     Object? playerStartPoint = null,
+    Object? canvasObjects = null,
+    Object? canvasLayers = null,
   }) {
     return _then(_$LevelModelImpl(
       players: null == players
@@ -1320,6 +1352,14 @@ class __$$LevelModelImplCopyWithImpl<$Res>
           ? _value.playerStartPoint
           : playerStartPoint // ignore: cast_nullable_to_non_nullable
               as PlayerStartPointType,
+      canvasObjects: null == canvasObjects
+          ? _value._canvasObjects
+          : canvasObjects // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderObjectModel>,
+      canvasLayers: null == canvasLayers
+          ? _value._canvasLayers
+          : canvasLayers // ignore: cast_nullable_to_non_nullable
+              as List<LayerModel>,
     ));
   }
 }
@@ -1345,9 +1385,16 @@ class _$LevelModelImpl extends _LevelModel {
       this.technologyTreeProgress = TechnologyTreeProgressModel.empty,
       this.featuresSettings = LevelFeaturesSettingsModel.empty,
       this.wordsLanguage = Languages.en,
-      this.playerStartPoint = PlayerStartPointType.fromSpawnPoint})
+      this.playerStartPoint = PlayerStartPointType.fromSpawnPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      final Map<Gid, RenderObjectModel> canvasObjects = const {},
+      final List<LayerModel> canvasLayers = const []})
       : _weathers = weathers,
         _words = words,
+        _canvasObjects = canvasObjects,
+        _canvasLayers = canvasLayers,
         super._();
 
   factory _$LevelModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -1418,9 +1465,35 @@ class _$LevelModelImpl extends _LevelModel {
   @JsonKey()
   final PlayerStartPointType playerStartPoint;
 
+  /// use these objects to save any objectss from any layer
+  final Map<Gid, RenderObjectModel> _canvasObjects;
+
+  /// use these objects to save any objectss from any layer
+  @override
+  @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
+  Map<Gid, RenderObjectModel> get canvasObjects {
+    if (_canvasObjects is EqualUnmodifiableMapView) return _canvasObjects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_canvasObjects);
+  }
+
+  /// savable layers
+  final List<LayerModel> _canvasLayers;
+
+  /// savable layers
+  @override
+  @JsonKey()
+  List<LayerModel> get canvasLayers {
+    if (_canvasLayers is EqualUnmodifiableListView) return _canvasLayers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_canvasLayers);
+  }
+
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage, playerStartPoint: $playerStartPoint)';
+    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage, playerStartPoint: $playerStartPoint, canvasObjects: $canvasObjects, canvasLayers: $canvasLayers)';
   }
 
   @override
@@ -1457,30 +1530,37 @@ class _$LevelModelImpl extends _LevelModel {
             (identical(other.wordsLanguage, wordsLanguage) ||
                 other.wordsLanguage == wordsLanguage) &&
             (identical(other.playerStartPoint, playerStartPoint) ||
-                other.playerStartPoint == playerStartPoint));
+                other.playerStartPoint == playerStartPoint) &&
+            const DeepCollectionEquality()
+                .equals(other._canvasObjects, _canvasObjects) &&
+            const DeepCollectionEquality()
+                .equals(other._canvasLayers, _canvasLayers));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      players,
-      characters,
-      tilesetType,
-      const DeepCollectionEquality().hash(_weathers),
-      wind,
-      canvasDataId,
-      currentWord,
-      const DeepCollectionEquality().hash(_words),
-      latestWord,
-      phaseType,
-      actionMultiplier,
-      dateTime,
-      lastDateTime,
-      technologyTreeProgress,
-      featuresSettings,
-      wordsLanguage,
-      playerStartPoint);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        players,
+        characters,
+        tilesetType,
+        const DeepCollectionEquality().hash(_weathers),
+        wind,
+        canvasDataId,
+        currentWord,
+        const DeepCollectionEquality().hash(_words),
+        latestWord,
+        phaseType,
+        actionMultiplier,
+        dateTime,
+        lastDateTime,
+        technologyTreeProgress,
+        featuresSettings,
+        wordsLanguage,
+        playerStartPoint,
+        const DeepCollectionEquality().hash(_canvasObjects),
+        const DeepCollectionEquality().hash(_canvasLayers)
+      ]);
 
   @JsonKey(ignore: true)
   @override
@@ -1514,7 +1594,12 @@ abstract class _LevelModel extends LevelModel {
       final TechnologyTreeProgressModel technologyTreeProgress,
       final LevelFeaturesSettingsModel featuresSettings,
       final Languages wordsLanguage,
-      final PlayerStartPointType playerStartPoint}) = _$LevelModelImpl;
+      final PlayerStartPointType playerStartPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      final Map<Gid, RenderObjectModel> canvasObjects,
+      final List<LayerModel> canvasLayers}) = _$LevelModelImpl;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1557,6 +1642,17 @@ abstract class _LevelModel extends LevelModel {
   Languages get wordsLanguage;
   @override
   PlayerStartPointType get playerStartPoint;
+  @override
+
+  /// use these objects to save any objectss from any layer
+  @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
+  Map<Gid, RenderObjectModel> get canvasObjects;
+  @override
+
+  /// savable layers
+  List<LayerModel> get canvasLayers;
   @override
   @JsonKey(ignore: true)
   _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>

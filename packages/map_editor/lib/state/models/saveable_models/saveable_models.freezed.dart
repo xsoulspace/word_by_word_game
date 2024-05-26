@@ -141,8 +141,8 @@ mixin _$CanvasDataModel {
   /// This way there will be easy way to loop all objects or change just
   /// one object.
   @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson)
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
   Map<Gid, RenderObjectModel> get objects => throw _privateConstructorUsedError;
 
   /// As player is unique - it should be used separately from [objects].
@@ -179,8 +179,8 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       LocalizedMap name,
       List<LayerModel> layers,
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
       int skyYTilePosition,
@@ -309,8 +309,8 @@ abstract class _$$CanvasDataModelImplCopyWith<$Res>
       LocalizedMap name,
       List<LayerModel> layers,
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
       int skyYTilePosition,
@@ -404,8 +404,8 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
       this.name = LocalizedMap.empty,
       final List<LayerModel> layers = const [],
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       final Map<Gid, RenderObjectModel> objects = const {},
       this.playerObject = RenderObjectModel.empty,
       this.skyYTilePosition = 0,
@@ -455,8 +455,8 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
   /// one object.
   @override
   @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson)
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
   Map<Gid, RenderObjectModel> get objects {
     if (_objects is EqualUnmodifiableMapView) return _objects;
     // ignore: implicit_dynamic_type
@@ -556,8 +556,8 @@ abstract class _CanvasDataModel extends CanvasDataModel {
       final LocalizedMap name,
       final List<LayerModel> layers,
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       final Map<Gid, RenderObjectModel> objects,
       final RenderObjectModel playerObject,
       final int skyYTilePosition,
@@ -590,8 +590,8 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   /// This way there will be easy way to loop all objects or change just
   /// one object.
   @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson)
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
   Map<Gid, RenderObjectModel> get objects;
   @override
 

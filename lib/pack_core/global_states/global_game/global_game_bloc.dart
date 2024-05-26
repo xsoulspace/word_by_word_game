@@ -272,6 +272,18 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     if (event.isNewStart) {
       // noop
     } else {
+      /// reloading canvas data
+      if (level.canvasObjects.isNotEmpty) {
+        newCanvasData = newCanvasData.copyWith(
+          objects: level.canvasObjects,
+        );
+      }
+      if (level.canvasLayers.isNotEmpty) {
+        newCanvasData = newCanvasData.copyWith(
+          layers: level.canvasLayers,
+        );
+      }
+
       final character = level.characters.playerCharacter;
       switch (level.playerStartPoint) {
         case PlayerStartPointType.fromSpawnPoint:
@@ -559,7 +571,6 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final weatherState = dto.weatherCubit.state;
     final technologiesState = dto.technologiesCubit.state;
     final canvasCubitState = dto.canvasCubit.state;
-
     return LevelModel(
       weathers: weatherState.weathers,
       wordsLanguage: levelState.wordsLanguage,
@@ -571,6 +582,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       characters: LevelCharactersModel(
         playerCharacter: playersState.playerCharacter,
       ),
+
+      /// save all objects since any object can be changed
+      canvasObjects: dto.canvasCubit.state.canvasData.objects,
+      canvasLayers: dto.canvasCubit.savableLayers,
       canvasDataId: levelState.id,
       players: LevelPlayersModel(
         currentPlayerId: playersState.currentPlayerId,
