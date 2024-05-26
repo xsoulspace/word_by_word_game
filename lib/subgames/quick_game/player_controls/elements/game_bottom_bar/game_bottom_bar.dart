@@ -1,7 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
@@ -15,25 +15,24 @@ class GameBottomBar extends StatelessWidget {
   const GameBottomBar({super.key});
 
   @override
-  Widget build(final BuildContext context) => BlocProvider(
-        create: (final context) => WordCompositionCubit(
-          dto: WordCompositionStateDiDto.use(context.read),
-        ),
-        child: Builder(
-          builder: (final context) => _Card(
-            builder: (final context) => const Column(
-              children: [
-                UILevelCenterBar(),
-                UiWordActions(),
-              ],
-            ),
+  Widget build(final BuildContext context) => MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: BottomActionsNotifier.new),
+          ChangeNotifierProvider(create: WordCompositionCubit.new),
+        ],
+        builder: (final context, final child) => _GameBottomBarCard(
+          builder: (final context) => const Column(
+            children: [
+              UILevelCenterBar(),
+              UiWordActions(),
+            ],
           ),
         ),
       );
 }
 
-class _Card extends StatelessWidget {
-  const _Card({
+class _GameBottomBarCard extends StatelessWidget {
+  const _GameBottomBarCard({
     required this.builder,
   });
   final WidgetBuilder builder;
@@ -42,6 +41,9 @@ class _Card extends StatelessWidget {
     final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
       (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
     );
+    final guiBuildingNotifier = context.read<GuiBuildingNotifier>();
+    final isPlacingBuilding =
+        guiBuildingNotifier.value.status == GuiBuildingStatusEnum.placing;
     final persistentFormFactors = UiPersistentFormFactors.of(context);
     final screenWidth = persistentFormFactors.screenSize.width;
     final screenContstraints = BoxConstraints(maxWidth: screenWidth);
@@ -53,10 +55,11 @@ class _Card extends StatelessWidget {
           ? screenContstraints
           : const BoxConstraints(maxWidth: 365);
     }
-    final isCardVisible = context.select<WordCompositionCubit, bool>(
-      (final cubit) => cubit.state.isCardVisible,
+    final isCardVisible = context.select<BottomActionsNotifier, bool>(
+      (final cubit) => cubit.value.isCardVisible,
     );
-    final effectiveIsCardVisible = isCardVisible && isAllowedToBeVisible;
+    final effectiveIsCardVisible =
+        isCardVisible && isAllowedToBeVisible && !isPlacingBuilding;
     final uiTheme = context.uiTheme;
 
     return SafeArea(
@@ -70,32 +73,28 @@ class _Card extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  UiBaseButton(
+              Builder(
+                builder: (final context) {
+                  void onTap() => context
+                      .read<BottomActionsNotifier>()
+                      .changeCardVisiblity();
+
+                  return UiBaseButton(
                     tooltipMessage: effectiveIsCardVisible
                         ? S.of(context).hidePane
                         : S.of(context).showPane,
                     onPressed: () {},
                     child: effectiveIsCardVisible
                         ? TextButton(
-                            onPressed: () {
-                              context
-                                  .read<WordCompositionCubit>()
-                                  .changeCardVisibility();
-                            },
+                            onPressed: onTap,
                             child: const Icon(Icons.arrow_drop_down),
                           )
                         : OutlinedButton(
-                            onPressed: () {
-                              context
-                                  .read<WordCompositionCubit>()
-                                  .changeCardVisibility();
-                            },
+                            onPressed: onTap,
                             child: const Icon(Icons.arrow_drop_up),
                           ),
-                  ),
-                ],
+                  );
+                },
               ),
               CardFrostedBackground(
                 padding: EdgeInsets.only(

@@ -138,7 +138,6 @@ class _PlacingSurfaceComponent extends PositionComponent
     required this.type,
     super.position,
   }) : super() {
-    _setHovered(false);
     size = Vector2(kTileDimensionDouble, kTileDimensionDouble);
   }
   final int index;
@@ -146,24 +145,6 @@ class _PlacingSurfaceComponent extends PositionComponent
   @override
   final BuildingSurfaceDrawer parent;
   final VoidCallback onSelect;
-
-  @override
-  void onHoverEnter() {
-    _setHovered(true);
-    super.onHoverEnter();
-  }
-
-  @override
-  void onHoverExit() {
-    _setHovered(false);
-    super.onHoverExit();
-  }
-
-  bool _isHovered = false;
-  // ignore: use_setters_to_change_properties
-  void _setHovered(final bool hovered) {
-    _isHovered = hovered;
-  }
 
   final _objectPaint = material.Paint()
     ..color = Palette.blue.color
@@ -191,7 +172,7 @@ class _PlacingSurfaceComponent extends PositionComponent
       ),
       isHovered ? _selectedBorderPaint : _borderPaint,
     );
-    if (_isHovered || _isSelected) {
+    if (isHovered || _isSelected) {
       canvas.drawImage(
         getImage(
           _tile.behaviourPaths[TileBehaviourType.idle]!.currentFramePath,

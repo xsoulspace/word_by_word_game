@@ -15,28 +15,29 @@ final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
-mixin _$WordCompositionCubitState {
+mixin _$BottomActionsNotifierState {
   bool get isCardVisible => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
-  $WordCompositionCubitStateCopyWith<WordCompositionCubitState> get copyWith =>
-      throw _privateConstructorUsedError;
+  $BottomActionsNotifierStateCopyWith<BottomActionsNotifierState>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $WordCompositionCubitStateCopyWith<$Res> {
-  factory $WordCompositionCubitStateCopyWith(WordCompositionCubitState value,
-          $Res Function(WordCompositionCubitState) then) =
-      _$WordCompositionCubitStateCopyWithImpl<$Res, WordCompositionCubitState>;
+abstract class $BottomActionsNotifierStateCopyWith<$Res> {
+  factory $BottomActionsNotifierStateCopyWith(BottomActionsNotifierState value,
+          $Res Function(BottomActionsNotifierState) then) =
+      _$BottomActionsNotifierStateCopyWithImpl<$Res,
+          BottomActionsNotifierState>;
   @useResult
   $Res call({bool isCardVisible});
 }
 
 /// @nodoc
-class _$WordCompositionCubitStateCopyWithImpl<$Res,
-        $Val extends WordCompositionCubitState>
-    implements $WordCompositionCubitStateCopyWith<$Res> {
-  _$WordCompositionCubitStateCopyWithImpl(this._value, this._then);
+class _$BottomActionsNotifierStateCopyWithImpl<$Res,
+        $Val extends BottomActionsNotifierState>
+    implements $BottomActionsNotifierStateCopyWith<$Res> {
+  _$BottomActionsNotifierStateCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -58,25 +59,25 @@ class _$WordCompositionCubitStateCopyWithImpl<$Res,
 }
 
 /// @nodoc
-abstract class _$$WordCompositionCubitStateImplCopyWith<$Res>
-    implements $WordCompositionCubitStateCopyWith<$Res> {
-  factory _$$WordCompositionCubitStateImplCopyWith(
-          _$WordCompositionCubitStateImpl value,
-          $Res Function(_$WordCompositionCubitStateImpl) then) =
-      __$$WordCompositionCubitStateImplCopyWithImpl<$Res>;
+abstract class _$$BottomActionsNotifierStateImplCopyWith<$Res>
+    implements $BottomActionsNotifierStateCopyWith<$Res> {
+  factory _$$BottomActionsNotifierStateImplCopyWith(
+          _$BottomActionsNotifierStateImpl value,
+          $Res Function(_$BottomActionsNotifierStateImpl) then) =
+      __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isCardVisible});
 }
 
 /// @nodoc
-class __$$WordCompositionCubitStateImplCopyWithImpl<$Res>
-    extends _$WordCompositionCubitStateCopyWithImpl<$Res,
-        _$WordCompositionCubitStateImpl>
-    implements _$$WordCompositionCubitStateImplCopyWith<$Res> {
-  __$$WordCompositionCubitStateImplCopyWithImpl(
-      _$WordCompositionCubitStateImpl _value,
-      $Res Function(_$WordCompositionCubitStateImpl) _then)
+class __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>
+    extends _$BottomActionsNotifierStateCopyWithImpl<$Res,
+        _$BottomActionsNotifierStateImpl>
+    implements _$$BottomActionsNotifierStateImplCopyWith<$Res> {
+  __$$BottomActionsNotifierStateImplCopyWithImpl(
+      _$BottomActionsNotifierStateImpl _value,
+      $Res Function(_$BottomActionsNotifierStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -84,7 +85,7 @@ class __$$WordCompositionCubitStateImplCopyWithImpl<$Res>
   $Res call({
     Object? isCardVisible = null,
   }) {
-    return _then(_$WordCompositionCubitStateImpl(
+    return _then(_$BottomActionsNotifierStateImpl(
       isCardVisible: null == isCardVisible
           ? _value.isCardVisible
           : isCardVisible // ignore: cast_nullable_to_non_nullable
@@ -95,8 +96,8 @@ class __$$WordCompositionCubitStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$WordCompositionCubitStateImpl implements _WordCompositionCubitState {
-  const _$WordCompositionCubitStateImpl({this.isCardVisible = true});
+class _$BottomActionsNotifierStateImpl implements _BottomActionsNotifierState {
+  const _$BottomActionsNotifierStateImpl({this.isCardVisible = true});
 
   @override
   @JsonKey()
@@ -104,14 +105,14 @@ class _$WordCompositionCubitStateImpl implements _WordCompositionCubitState {
 
   @override
   String toString() {
-    return 'WordCompositionCubitState(isCardVisible: $isCardVisible)';
+    return 'BottomActionsNotifierState(isCardVisible: $isCardVisible)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$WordCompositionCubitStateImpl &&
+            other is _$BottomActionsNotifierStateImpl &&
             (identical(other.isCardVisible, isCardVisible) ||
                 other.isCardVisible == isCardVisible));
   }
@@ -122,19 +123,20 @@ class _$WordCompositionCubitStateImpl implements _WordCompositionCubitState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$WordCompositionCubitStateImplCopyWith<_$WordCompositionCubitStateImpl>
-      get copyWith => __$$WordCompositionCubitStateImplCopyWithImpl<
-          _$WordCompositionCubitStateImpl>(this, _$identity);
+  _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
+      get copyWith => __$$BottomActionsNotifierStateImplCopyWithImpl<
+          _$BottomActionsNotifierStateImpl>(this, _$identity);
 }
 
-abstract class _WordCompositionCubitState implements WordCompositionCubitState {
-  const factory _WordCompositionCubitState({final bool isCardVisible}) =
-      _$WordCompositionCubitStateImpl;
+abstract class _BottomActionsNotifierState
+    implements BottomActionsNotifierState {
+  const factory _BottomActionsNotifierState({final bool isCardVisible}) =
+      _$BottomActionsNotifierStateImpl;
 
   @override
   bool get isCardVisible;
   @override
   @JsonKey(ignore: true)
-  _$$WordCompositionCubitStateImplCopyWith<_$WordCompositionCubitStateImpl>
+  _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
