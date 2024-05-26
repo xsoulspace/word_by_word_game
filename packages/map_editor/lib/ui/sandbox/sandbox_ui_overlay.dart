@@ -189,7 +189,12 @@ class TileButtons extends StatelessWidget {
                   ),
               ...tilesResources.objects.values
                   .where(
-                    (final e) => e.tile.category == DataCategoryType.plants,
+                    (final e) => switch (e.tile.category) {
+                      DataCategoryType.plants ||
+                      DataCategoryType.buildings =>
+                        true,
+                      _ => false,
+                    },
                   )
                   .toList()
                   .reversed

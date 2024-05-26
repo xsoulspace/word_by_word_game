@@ -179,13 +179,12 @@ class _PlacingSurfaceComponent extends PositionComponent
   final _borderPaint = material.Paint()..style = material.PaintingStyle.stroke;
   bool get _isSelected => index == parent._selectedIndex;
   late final _rect = Offset.zero & size.toSize();
-  PresetTileResource? get _tile {
-    if (type == GuiBuildingTypeEnum.nothing) return null;
-    return game.dto.canvasCubit.state.tileResources.objects[type.tileId];
-  }
+  PresetTileResource get _tile =>
+      game.dto.canvasCubit.state.tileResources.objects[type.tileId]!;
 
   @override
   void render(final Canvas canvas) {
+    // TODO(arenukvern): add selected border
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         _rect,
@@ -193,16 +192,13 @@ class _PlacingSurfaceComponent extends PositionComponent
       ),
       _borderPaint,
     );
-    final tile = _tile;
-    if (_isSelected && tile != null) {
-      canvas.drawImage(
-        getImage(
-          tile.behaviourPaths[TileBehaviourType.idle]!.currentFramePath,
-        ),
-        _rect.topLeft,
-        _objectPaint,
-      );
-    }
+    canvas.drawImage(
+      getImage(
+        _tile.behaviourPaths[TileBehaviourType.idle]!.currentFramePath,
+      ),
+      _rect.topLeft,
+      _objectPaint,
+    );
 
     super.render(canvas);
   }

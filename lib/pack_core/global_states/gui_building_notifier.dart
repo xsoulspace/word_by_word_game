@@ -22,7 +22,9 @@ enum GuiBuildingTypeEnum {
 
   TileId get tileId => switch (this) {
         nothing => throw ArgumentError.value(this),
-        _ => TileId(value: name),
+
+        /// prefix is required to create correct object id
+        _ => TileId(value: 'building_$name'),
       };
 }
 
