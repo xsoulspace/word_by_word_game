@@ -160,23 +160,23 @@ class _PlacingSurfaceComponent extends PositionComponent
   }
 
   bool _isHovered = false;
+  // ignore: use_setters_to_change_properties
   void _setHovered(final bool hovered) {
     _isHovered = hovered;
-    if (hovered) {
-      _borderPaint
-        ..color = Palette.blue.color
-        ..strokeWidth = 4;
-    } else {
-      _borderPaint
-        ..color = Palette.blue.color.withOpacity(0.3)
-        ..strokeWidth = 0.5;
-    }
   }
 
   final _objectPaint = material.Paint()
     ..color = Palette.blue.color
     ..style = material.PaintingStyle.fill;
-  final _borderPaint = material.Paint()..style = material.PaintingStyle.stroke;
+
+  final _borderPaint = material.Paint()
+    ..style = material.PaintingStyle.stroke
+    ..color = Palette.blue.color.withOpacity(0.3)
+    ..strokeWidth = 0.5;
+  late final _selectedBorderPaint = material.Paint()
+    ..style = material.PaintingStyle.stroke
+    ..color = Palette.blue.color
+    ..strokeWidth = 4;
   bool get _isSelected => index == parent._selectedIndex;
   late final _rect = Offset.zero & size.toSize();
   PresetTileResource get _tile =>
@@ -184,21 +184,22 @@ class _PlacingSurfaceComponent extends PositionComponent
 
   @override
   void render(final Canvas canvas) {
-    // TODO(arenukvern): add selected border
     canvas.drawRRect(
       RRect.fromRectAndRadius(
         _rect,
         const Radius.circular(4),
       ),
-      _borderPaint,
+      isHovered ? _selectedBorderPaint : _borderPaint,
     );
-    canvas.drawImage(
-      getImage(
-        _tile.behaviourPaths[TileBehaviourType.idle]!.currentFramePath,
-      ),
-      _rect.topLeft,
-      _objectPaint,
-    );
+    if (_isHovered || _isSelected) {
+      canvas.drawImage(
+        getImage(
+          _tile.behaviourPaths[TileBehaviourType.idle]!.currentFramePath,
+        ),
+        _rect.topLeft,
+        _objectPaint,
+      );
+    }
 
     super.render(canvas);
   }
