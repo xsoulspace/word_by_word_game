@@ -104,7 +104,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         playerStartPoint: isNewStart
             ? PlayerStartPointType.fromSpawnPoint
             : level.playerStartPoint,
-        windDirection: level.wind.windDirection,
+        windDirection: level.weathers.first.windDirection,
       ),
     );
 
@@ -456,7 +456,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       isNewStart: false,
       windDirection: () {
         if (level.featuresSettings.isWindDirectionChangeEnabled) {
-          return level.wind.windDirection;
+          return level.weathers.first.windDirection;
         } else {
           return WindDirection.right;
         }

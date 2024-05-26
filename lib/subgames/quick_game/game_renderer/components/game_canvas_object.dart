@@ -76,6 +76,7 @@ class GameCanvasObject extends Component
   }
 
   Rect? _hitboxRect;
+  // double get bottomRightPosition => _hitboxRect?.height;
   Rect? get shiftedHitbox => _hitboxRect?.shift(position);
   List<CellPointModel> get hitboxCells {
     final hitbox = shiftedHitbox;
@@ -123,13 +124,13 @@ class GameCanvasObject extends Component
 
     /// to highlight hitbox, uncomment lines below
     // if (debugMode) {
-    //   final hitbox = shiftedHitbox;
-    //   if (hitbox != null) {
-    //     canvas.drawRect(
-    //       hitbox,
-    //       Palette.red90.paint(),
-    //     );
-    //   }
+    // final hitbox = shiftedHitbox;
+    // if (hitbox != null) {
+    //   canvas.drawRect(
+    //     hitbox,
+    //     Palette.red90.paint(),
+    //   );
+    // }
     // }
     canvas.drawImage(
       tileImage,

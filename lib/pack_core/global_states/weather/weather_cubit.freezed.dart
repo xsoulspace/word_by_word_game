@@ -33,6 +33,8 @@ abstract class $WeatherCubitStateCopyWith<$Res> {
       _$WeatherCubitStateCopyWithImpl<$Res, WeatherCubitState>;
   @useResult
   $Res call({List<WeatherModel> weathers, WindModel wind});
+
+  $WindModelCopyWith<$Res> get wind;
 }
 
 /// @nodoc
@@ -49,18 +51,26 @@ class _$WeatherCubitStateCopyWithImpl<$Res, $Val extends WeatherCubitState>
   @override
   $Res call({
     Object? weathers = null,
-    Object? wind = freezed,
+    Object? wind = null,
   }) {
     return _then(_value.copyWith(
       weathers: null == weathers
           ? _value.weathers
           : weathers // ignore: cast_nullable_to_non_nullable
               as List<WeatherModel>,
-      wind: freezed == wind
+      wind: null == wind
           ? _value.wind
           : wind // ignore: cast_nullable_to_non_nullable
               as WindModel,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $WindModelCopyWith<$Res> get wind {
+    return $WindModelCopyWith<$Res>(_value.wind, (value) {
+      return _then(_value.copyWith(wind: value) as $Val);
+    });
   }
 }
 
@@ -73,6 +83,9 @@ abstract class _$$WeatherCubitStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call({List<WeatherModel> weathers, WindModel wind});
+
+  @override
+  $WindModelCopyWith<$Res> get wind;
 }
 
 /// @nodoc
@@ -87,14 +100,14 @@ class __$$WeatherCubitStateImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? weathers = null,
-    Object? wind = freezed,
+    Object? wind = null,
   }) {
     return _then(_$WeatherCubitStateImpl(
       weathers: null == weathers
           ? _value._weathers
           : weathers // ignore: cast_nullable_to_non_nullable
               as List<WeatherModel>,
-      wind: freezed == wind
+      wind: null == wind
           ? _value.wind
           : wind // ignore: cast_nullable_to_non_nullable
               as WindModel,
@@ -150,14 +163,12 @@ class _$WeatherCubitStateImpl extends _WeatherCubitState
         (other.runtimeType == runtimeType &&
             other is _$WeatherCubitStateImpl &&
             const DeepCollectionEquality().equals(other._weathers, _weathers) &&
-            const DeepCollectionEquality().equals(other.wind, wind));
+            (identical(other.wind, wind) || other.wind == wind));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_weathers),
-      const DeepCollectionEquality().hash(wind));
+      runtimeType, const DeepCollectionEquality().hash(_weathers), wind);
 
   @JsonKey(ignore: true)
   @override

@@ -154,7 +154,7 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
         levelModel: level,
         isNewStart: false,
         playerStartPoint: PlayerStartPointType.fromSamePlace,
-        windDirection: level.wind.windDirection,
+        windDirection: level.weathers.first.windDirection,
       ),
     );
 

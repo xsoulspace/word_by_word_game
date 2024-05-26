@@ -10,12 +10,16 @@ _$WeatherModelImpl _$$WeatherModelImplFromJson(Map<String, dynamic> json) =>
     _$WeatherModelImpl(
       windScale: $enumDecodeNullable(_$WindScaleEnumMap, json['windScale']) ??
           WindScale.calm,
+      windDirection:
+          $enumDecodeNullable(_$WindDirectionEnumMap, json['windDirection']) ??
+              WindDirection.defaultDirection,
       durationInGameSeconds: json['durationInGameSeconds'] as int? ?? 20,
     );
 
 Map<String, dynamic> _$$WeatherModelImplToJson(_$WeatherModelImpl instance) =>
     <String, dynamic>{
       'windScale': _$WindScaleEnumMap[instance.windScale]!,
+      'windDirection': _$WindDirectionEnumMap[instance.windDirection]!,
       'durationInGameSeconds': instance.durationInGameSeconds,
     };
 
@@ -35,23 +39,19 @@ const _$WindScaleEnumMap = {
   WindScale.hurricane: 'hurricane',
 };
 
+const _$WindDirectionEnumMap = {
+  WindDirection.right: 'right',
+  WindDirection.left: 'left',
+};
+
 _$WindModelImpl _$$WindModelImplFromJson(Map<String, dynamic> json) =>
     _$WindModelImpl(
       force: json['force'] == null
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(json['force'] as Map<String, dynamic>),
-      windDirection:
-          $enumDecodeNullable(_$WindDirectionEnumMap, json['windDirection']) ??
-              WindDirection.defaultDirection,
     );
 
 Map<String, dynamic> _$$WindModelImplToJson(_$WindModelImpl instance) =>
     <String, dynamic>{
       'force': instance.force,
-      'windDirection': _$WindDirectionEnumMap[instance.windDirection]!,
     };
-
-const _$WindDirectionEnumMap = {
-  WindDirection.right: 'right',
-  WindDirection.left: 'left',
-};

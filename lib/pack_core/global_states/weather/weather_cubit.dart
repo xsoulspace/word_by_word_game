@@ -57,7 +57,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
   /// use to switch weather forcefully
   void nextWeather() {
     if (state.weathers.length == 2) {
-      _generateWeather();
+      _generateWeather(oldWeathers: state.weathers);
       _generateWindForce();
     } else {
       final updatedWeathers = [...state.weathers]..removeAt(0);
@@ -68,7 +68,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
   }
 
   void regenerateWeather() {
-    _generateWeather();
+    _generateWeather(oldWeathers: []);
     if (kDebugMode) print({'weathers generated': state.weathers});
   }
 
@@ -77,15 +77,22 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     final WindModel wind = WindModel.zero,
   }) {
     if (weathers.isEmpty) {
-      _generateWeather();
+      _generateWeather(oldWeathers: weathers);
     } else {
       emit(state.copyWith(weathers: weathers, wind: wind));
     }
     if (kDebugMode) print({'weathers loaded': state.weathers});
   }
 
-  void _generateWeather() {
-    final newWeathers = mechanics.generateWeather();
+  void _generateWeather({
+    required final List<WeatherModel> oldWeathers,
+  }) {
+    final newWeathers = mechanics.generateWeather(
+      isWindDirectionChangeEnabled:
+          dto.levelFeaturesNotifier.features.isWindDirectionChangeEnabled,
+      oldWindDirection: (oldWeathers.isEmpty ? state.weather : oldWeathers.last)
+          .windDirection,
+    );
     emit(state.copyWith(weathers: newWeathers));
     _generateWindForce();
     if (kDebugMode) print({'weathers generated': state.weathers});
@@ -113,9 +120,6 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     final windForce = dto.mechanics.weather.getWindByWeather(
       weather: state.weather,
       heightInTiles: _previousHeightInTiles,
-      windDirection: state.wind.windDirection,
-      isWindDirectionChangeEnabled:
-          dto.levelFeaturesNotifier.features.isWindDirectionChangeEnabled,
     );
     emit(state.copyWith(wind: windForce));
     _currentWindOffsetCache = null;

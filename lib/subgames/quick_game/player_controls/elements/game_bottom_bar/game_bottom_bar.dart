@@ -41,7 +41,7 @@ class _GameBottomBarCard extends StatelessWidget {
     final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
       (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
     );
-    final guiBuildingNotifier = context.read<GuiBuildingNotifier>();
+    final guiBuildingNotifier = context.watch<GuiBuildingNotifier>();
     final isPlacingBuilding =
         guiBuildingNotifier.value.status == GuiBuildingStatusEnum.placing;
     final persistentFormFactors = UiPersistentFormFactors.of(context);
@@ -58,10 +58,27 @@ class _GameBottomBarCard extends StatelessWidget {
     final isCardVisible = context.select<BottomActionsNotifier, bool>(
       (final cubit) => cubit.value.isCardVisible,
     );
-    final effectiveIsCardVisible =
-        isCardVisible && isAllowedToBeVisible && !isPlacingBuilding;
+    final effectiveIsCardVisible = isCardVisible && isAllowedToBeVisible;
     final uiTheme = context.uiTheme;
-
+    if (isPlacingBuilding) {
+      return Column(
+        children: [
+          Text(
+            'Place a ${guiBuildingNotifier.value.type.name}',
+            style: context.textThemeBold.displaySmall,
+          ),
+          const Gap(24),
+          TextButton(
+            onPressed: guiBuildingNotifier.cancelPlacing,
+            child: Text(
+              'Cancel',
+              style: context.errorTextTheme.bodyLarge,
+            ),
+          ),
+          const Gap(24),
+        ],
+      ).animate().fadeIn().slideY(begin: 0.45);
+    }
     return SafeArea(
       top: false,
       child: ConstrainedBox(
@@ -73,28 +90,31 @@ class _GameBottomBarCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Builder(
-                builder: (final context) {
-                  void onTap() => context
-                      .read<BottomActionsNotifier>()
-                      .changeCardVisiblity();
+              Align(
+                alignment: Alignment.centerLeft,
+                child: Builder(
+                  builder: (final context) {
+                    void onTap() => context
+                        .read<BottomActionsNotifier>()
+                        .changeCardVisiblity();
 
-                  return UiBaseButton(
-                    tooltipMessage: effectiveIsCardVisible
-                        ? S.of(context).hidePane
-                        : S.of(context).showPane,
-                    onPressed: () {},
-                    child: effectiveIsCardVisible
-                        ? TextButton(
-                            onPressed: onTap,
-                            child: const Icon(Icons.arrow_drop_down),
-                          )
-                        : OutlinedButton(
-                            onPressed: onTap,
-                            child: const Icon(Icons.arrow_drop_up),
-                          ),
-                  );
-                },
+                    return UiBaseButton(
+                      tooltipMessage: effectiveIsCardVisible
+                          ? S.of(context).hidePane
+                          : S.of(context).showPane,
+                      onPressed: () {},
+                      child: effectiveIsCardVisible
+                          ? TextButton(
+                              onPressed: onTap,
+                              child: const Icon(Icons.arrow_drop_down),
+                            )
+                          : OutlinedButton(
+                              onPressed: onTap,
+                              child: const Icon(Icons.arrow_drop_up),
+                            ),
+                    );
+                  },
+                ),
               ),
               CardFrostedBackground(
                 padding: EdgeInsets.only(

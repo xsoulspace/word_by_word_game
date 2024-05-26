@@ -155,6 +155,7 @@ enum WindScale {
 class WeatherModel with _$WeatherModel {
   const factory WeatherModel({
     @Default(WindScale.calm) final WindScale windScale,
+    @Default(WindDirection.defaultDirection) final WindDirection windDirection,
     @Default(20) final int durationInGameSeconds,
   }) = _WeatherModel;
   const WeatherModel._();
@@ -193,7 +194,6 @@ enum WindDirection {
 class WindModel with _$WindModel {
   const factory WindModel({
     @Default(SerializedVector2.zero) final SerializedVector2 force,
-    @Default(WindDirection.defaultDirection) final WindDirection windDirection,
   }) = _WindModel;
   factory WindModel.fromJson(final Map<String, dynamic> json) =>
       _$WindModelFromJson(json);
@@ -222,6 +222,8 @@ class WindModel with _$WindModel {
 class WeatherMechanics {
   final _random = Randomizer();
   List<WeatherModel> generateWeather({
+    required final bool isWindDirectionChangeEnabled,
+    required final WindDirection oldWindDirection,
     final int count = 4,
   }) =>
       List.generate(
@@ -231,8 +233,17 @@ class WeatherMechanics {
             max: WindScale._weightedValues.length,
           );
           final windScale = WindScale._weightedValues[randomIndex];
+
+          final newWindDirection = isWindDirectionChangeEnabled
+              ? generateWindDirection(
+                  scale: windScale,
+                  isWindDirectionChangeEnabled: isWindDirectionChangeEnabled,
+                  windDirection: oldWindDirection,
+                )
+              : oldWindDirection;
           return WeatherModel(
             windScale: windScale,
+            windDirection: newWindDirection,
             durationInGameSeconds: _random.nextInt(max: 40, min: 10),
           );
         },
@@ -240,6 +251,7 @@ class WeatherMechanics {
   WindDirection generateWindDirection({
     required final WindScale scale,
     required final WindDirection windDirection,
+    required final bool isWindDirectionChangeEnabled,
   }) {
     final randomIndex = _random.nextInt(
       max: WindScale._directionWeightedValues.length,
@@ -251,22 +263,18 @@ class WeatherMechanics {
 
   WindModel getWindByWeather({
     required final WeatherModel weather,
-    required final WindDirection windDirection,
     required final int heightInTiles,
-    required final bool isWindDirectionChangeEnabled,
   }) =>
       getWind(
         heightInTiles: heightInTiles,
         scale: weather.windScale,
-        windDirection: windDirection,
-        isWindDirectionChangeEnabled: isWindDirectionChangeEnabled,
+        windDirection: weather.windDirection,
       );
 
   WindModel getWind({
     required final WindScale scale,
     required final int heightInTiles,
     required final WindDirection windDirection,
-    required final bool isWindDirectionChangeEnabled,
   }) {
     final yDirection = _random.nextBool() ? -1 : 1;
     final y = _random.nextInt(
@@ -280,16 +288,9 @@ class WeatherMechanics {
         ) /
         1000;
     const realityModifier = 10;
-    final newWindDirection = isWindDirectionChangeEnabled
-        ? generateWindDirection(
-            scale: scale,
-            windDirection: windDirection,
-          )
-        : windDirection;
     return WindModel(
-      windDirection: newWindDirection,
       force: SerializedVector2(
-        x: x / realityModifier * newWindDirection.sign,
+        x: x / realityModifier * windDirection.sign,
         y: y * yDirection / realityModifier,
       ),
     );

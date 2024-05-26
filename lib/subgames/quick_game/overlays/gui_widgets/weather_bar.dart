@@ -135,15 +135,20 @@ class _NextWeathersRow extends StatelessWidget {
               uiKey: TutorialUiItem.currentWeather,
               child: Column(
                 children: [
-                  Text(
-                    '${firstWeather.windScale.emojiRepresentation}${const LocalizedMap(
-                      value: {
-                        Languages.en: 'in',
-                        Languages.ru: 'в',
-                        Languages.it: 'in',
-                      },
-                    ).getValue(locale)} ${state.weather.durationInGameSeconds}',
-                    style: context.textTheme.labelSmall,
+                  Row(
+                    children: [
+                      Text(
+                        '${firstWeather.windScale.emojiRepresentation}${const LocalizedMap(
+                          value: {
+                            Languages.en: 'in',
+                            Languages.ru: 'в',
+                            Languages.it: 'in',
+                          },
+                        ).getValue(locale)} ${state.weather.durationInGameSeconds}',
+                        style: context.textTheme.labelSmall,
+                      ),
+                      WindDirectionArrow.fromWeather(weather: firstWeather),
+                    ],
                   ),
                   Text(
                     firstWeather.windScale.toLocalizedName(context),
@@ -187,6 +192,10 @@ class _NextWeathersRow extends StatelessWidget {
                           Text(
                             ' ${e.windScale.emojiRepresentation}',
                             textAlign: TextAlign.center,
+                          ),
+                          Positioned(
+                            top: 10,
+                            child: WindDirectionArrow.fromWeather(weather: e),
                           ),
                         ],
                       ),
@@ -260,24 +269,47 @@ class WindDirectionBadge extends StatelessWidget {
                 ),
               ),
             ),
-            Transform.rotate(
-              angle: () {
-                final degree = switch (direction) {
-                  Axis.vertical => 90,
-                  Axis.horizontal => value > 0 ? 0 : 180,
-                };
-                final effectiveAngle = degree * math.pi / 180;
-
-                return value < 0 ? effectiveAngle : -effectiveAngle;
-              }(),
-              child: Icon(
-                Icons.arrow_right_alt_rounded,
-                color: context.colorScheme.tertiary,
-                size: 16,
-              ),
+            WindDirectionArrow(
+              direction: direction,
+              value: value,
             ),
             const Gap(2),
           ],
+        ),
+      );
+}
+
+class WindDirectionArrow extends StatelessWidget {
+  const WindDirectionArrow({
+    required this.value,
+    required this.direction,
+    super.key,
+  });
+  factory WindDirectionArrow.fromWeather({
+    required final WeatherModel weather,
+  }) =>
+      WindDirectionArrow(
+        value: weather.windDirection.sign.toDouble(),
+        direction: Axis.horizontal,
+      );
+  final double value;
+  final Axis direction;
+
+  @override
+  Widget build(final BuildContext context) => Transform.rotate(
+        angle: () {
+          final degree = switch (direction) {
+            Axis.vertical => 90,
+            Axis.horizontal => value > 0 ? 0 : 180,
+          };
+          final effectiveAngle = degree * math.pi / 180;
+
+          return value < 0 ? effectiveAngle : -effectiveAngle;
+        }(),
+        child: Icon(
+          Icons.arrow_right_alt_rounded,
+          color: context.colorScheme.tertiary,
+          size: 16,
         ),
       );
 }

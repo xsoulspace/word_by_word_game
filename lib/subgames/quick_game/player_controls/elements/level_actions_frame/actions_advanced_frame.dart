@@ -23,94 +23,108 @@ class UIActionFrameAdvanced extends StatelessWidget {
     final textTheme = context.textTheme;
     return DefaultTabController(
       length: 3,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          TabBar(
-            tabAlignment: TabAlignment.center,
-            padding: EdgeInsets.zero,
-            isScrollable: true,
-            tabs: [
-              (
-                title: const LocalizedMap(
-                  value: {
-                    Languages.en: 'Energy',
-                    Languages.ru: 'Энергия',
-                    Languages.it: 'Energia',
-                  },
-                ),
-                iconChildren: [
-                  Image.asset(
-                    UiAssetHelper.useImagePath(UiIcons.fire.path),
-                    width: 24,
-                    height: 24,
+      child: Builder(
+        builder: (final context) => Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TabBar(
+              tabAlignment: TabAlignment.center,
+              padding: EdgeInsets.zero,
+              isScrollable: true,
+              tabs: [
+                (
+                  title: const LocalizedMap(
+                    value: {
+                      Languages.en: 'Energy',
+                      Languages.ru: 'Энергия',
+                      Languages.it: 'Energia',
+                    },
                   ),
-                ],
-              ),
-              (
-                title: const LocalizedMap(
-                  value: {
-                    Languages.en: 'Actions',
-                    Languages.ru: 'Действия',
-                    Languages.it: 'Azioni',
-                  },
-                ),
-                iconChildren: [
-                  const Icon(CupertinoIcons.book, size: 18),
-                  const Gap(2),
-                ]
-              ),
-              (
-                title: const LocalizedMap(
-                  value: {
-                    Languages.en: 'Technology',
-                    Languages.ru: 'Технология',
-                    Languages.it: 'Tecnologia',
-                  },
-                ),
-                iconChildren: [
-                  const Icon(CupertinoIcons.lab_flask, size: 18),
-                  const Gap(2),
-                ]
-              ),
-            ]
-                .map(
-                  (final e) => Tab(
-                    height: 36,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        ...e.iconChildren,
-                        Text(e.title.getValue(locale)),
-                      ],
+                  iconChildren: [
+                    Image.asset(
+                      UiAssetHelper.useImagePath(UiIcons.fire.path),
+                      width: 24,
+                      height: 24,
                     ),
-                  ),
-                )
-                .toList(),
-          ),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxHeight: 140),
-            child: TabBarView(
-              children: [
-                Column(
-                  children: [
-                    uiTheme.verticalBoxes.medium,
-                    Text(
-                      S.of(context).applyFuelOption,
-                      style: textTheme.titleSmall?.copyWith(
-                        color: context.colorScheme.tertiary,
-                      ),
-                    ),
-                    const UiEnergyCards(),
                   ],
                 ),
-                const _ActionsTabView(),
-                const _TechnologyTabView(),
-              ],
+                (
+                  title: const LocalizedMap(
+                    value: {
+                      Languages.en: 'Actions',
+                      Languages.ru: 'Действия',
+                      Languages.it: 'Azioni',
+                    },
+                  ),
+                  iconChildren: [
+                    const Icon(CupertinoIcons.book, size: 18),
+                    const Gap(2),
+                  ]
+                ),
+                (
+                  title: const LocalizedMap(
+                    value: {
+                      Languages.en: 'Technology',
+                      Languages.ru: 'Технология',
+                      Languages.it: 'Tecnologia',
+                    },
+                  ),
+                  iconChildren: [
+                    const Icon(CupertinoIcons.lab_flask, size: 18),
+                    const Gap(2),
+                  ]
+                ),
+              ]
+                  .mapIndexed(
+                    (final index, final e) => Tab(
+                      height: 36,
+                      child: FocusableActionDetector(
+                        onShowHoverHighlight: (final isHovered) {
+                          if (isHovered) {
+                            DefaultTabController.of(context).animateTo(index);
+                          }
+                        },
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                ...e.iconChildren,
+                                Text(e.title.getValue(locale)),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  )
+                  .toList(),
             ),
-          ),
-        ],
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 140),
+              child: TabBarView(
+                children: [
+                  Column(
+                    children: [
+                      uiTheme.verticalBoxes.medium,
+                      Text(
+                        S.of(context).applyFuelOption,
+                        style: textTheme.titleSmall?.copyWith(
+                          color: context.colorScheme.tertiary,
+                        ),
+                      ),
+                      const UiEnergyCards(),
+                    ],
+                  ),
+                  const _ActionsTabView(),
+                  const _TechnologyTabView(),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

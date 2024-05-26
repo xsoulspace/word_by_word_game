@@ -72,8 +72,9 @@ final class CanvasCubit extends DrawerCubit {
 
     final newCanvasData = state.canvasData.copyWith(
       objects: newObjects,
-      layers: layerIndex < 0 ? [...layers, newLayer] : [...layers]
-        ..[layerIndex] = newLayer,
+      layers: layerIndex < 0
+          ? [...layers, newLayer]
+          : ([...layers]..[layerIndex] = newLayer),
     );
 
     emit(state.copyWith(canvasData: newCanvasData));

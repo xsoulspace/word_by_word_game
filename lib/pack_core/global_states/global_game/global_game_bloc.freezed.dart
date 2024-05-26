@@ -143,7 +143,7 @@ class __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>
     Object? levelModel = null,
     Object? isNewStart = null,
     Object? playerStartPoint = null,
-    Object? windDirection = freezed,
+    Object? windDirection = null,
   }) {
     return _then(_$InitGlobalGameLevelEventImpl(
       levelModel: null == levelModel
@@ -158,7 +158,7 @@ class __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>
           ? _value.playerStartPoint
           : playerStartPoint // ignore: cast_nullable_to_non_nullable
               as PlayerStartPointType,
-      windDirection: freezed == windDirection
+      windDirection: null == windDirection
           ? _value.windDirection
           : windDirection // ignore: cast_nullable_to_non_nullable
               as WindDirection,
@@ -211,13 +211,13 @@ class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
                 other.isNewStart == isNewStart) &&
             (identical(other.playerStartPoint, playerStartPoint) ||
                 other.playerStartPoint == playerStartPoint) &&
-            const DeepCollectionEquality()
-                .equals(other.windDirection, windDirection));
+            (identical(other.windDirection, windDirection) ||
+                other.windDirection == windDirection));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, levelModel, isNewStart,
-      playerStartPoint, const DeepCollectionEquality().hash(windDirection));
+  int get hashCode => Object.hash(
+      runtimeType, levelModel, isNewStart, playerStartPoint, windDirection);
 
   @JsonKey(ignore: true)
   @override

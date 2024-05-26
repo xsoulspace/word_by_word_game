@@ -4,6 +4,8 @@ import 'dart:ui';
 import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
+import 'package:flame/input.dart';
+import 'package:flame/text.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
@@ -19,7 +21,6 @@ import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 /// Component to build something
 class BuildingSurfaceDrawer extends Component
     with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
-  static material.Paint get _paint => Palette.grey.withAlpha(60).paint();
   GuiBuildingNotifier get _buildingCubit => game.dto.buildingCubit;
   @override
   FutureOr<void> onLoad() {
@@ -52,39 +53,53 @@ class BuildingSurfaceDrawer extends Component
   /// Check which tiles available to be shown
   /// Draw lines
   Future<void> _checkAndAddObjects() async {
+    final originUtils = OriginVectorUtils.use(origin);
+
     final playerPosition =
         player?.shiftedHitbox?.bottomLeft.translate(0, -kTileDimensionDouble);
 
     if (playerPosition == null) return;
+
     final drawableObjects = <_PlacingSurfaceComponent>[];
-    final originUtils = OriginVectorUtils.use(origin);
 
     void checkAndVerify({
       required final CellPointModel canvasCell,
       required final int index,
     }) {
+      final canvasPosition =
+          (originUtils.getCellByDistance(canvasCell.toVector2()) *
+                      kTileDimension)
+                  .toVector2() +
+              getOffsetOrigin();
+
       final gameCellPoint =
-          originUtils.getCurrentCellByTap(canvasCell.toVector2());
+          originUtils.getCurrentCellByTap(canvasPosition).toCellPoint() +
+              const CellPointModel(1, 0);
+
       final collisionConsequences =
           game.dto.canvasCubit.checkIsCollidingWithTiles(
-        hitboxCells: [gameCellPoint.toCellPoint()],
+        hitboxCells: [
+          gameCellPoint,
+        ],
       );
 
-      final distanceToOrigin = originUtils.getDistanceToOrigin(
+      final distanceToOrigin = originUtils.getCurrentPositionByTap(
         gameCellPoint.toVector2(),
       );
 
       if (collisionConsequences.isEmpty) {
         drawableObjects.add(
           _PlacingSurfaceComponent(
-            position: canvasCell.toVector2(),
+            onBuild: _buildingCubit.confirmPlacing,
+            onCancel: _buildingCubit.cancelPlacing,
+            position: canvasPosition,
             parent: this,
             index: index,
             type: _buildingCubit.value.type,
             onSelect: () => _onSelect(
               index: index,
               distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-              cellPoint: canvasCell,
+              cellPoint: gameCellPoint,
             ),
           ),
         );
@@ -135,12 +150,17 @@ class _PlacingSurfaceComponent extends PositionComponent
     required this.parent,
     required this.index,
     required this.onSelect,
+    required this.onCancel,
+    required this.onBuild,
     required this.type,
     super.position,
   }) : super() {
     size = Vector2(kTileDimensionDouble, kTileDimensionDouble);
   }
   final int index;
+  final VoidCallback onCancel;
+  final VoidCallback onBuild;
+  bool _isSelected = false;
   final GuiBuildingTypeEnum type;
   @override
   final BuildingSurfaceDrawer parent;
@@ -158,10 +178,47 @@ class _PlacingSurfaceComponent extends PositionComponent
     ..style = material.PaintingStyle.stroke
     ..color = Palette.blue.color
     ..strokeWidth = 4;
-  bool get _isSelected => index == parent._selectedIndex;
   late final _rect = Offset.zero & size.toSize();
   PresetTileResource get _tile =>
       game.dto.canvasCubit.state.tileResources.objects[type.tileId]!;
+
+  @override
+  void update(final double dt) {
+    final newIsSelected = index == parent._selectedIndex;
+    if (newIsSelected != _isSelected) {
+      _isSelected = newIsSelected;
+      if (_isSelected) {
+        unawaited(addAll(_buttons ??= _createButtons()));
+      } else {
+        final buttons = _buttons;
+        if (buttons != null) {
+          _buttons = null;
+          removeAll(buttons);
+        }
+      }
+    }
+    super.update(dt);
+  }
+
+  Vector2 get _buttonSize => Vector2(80, 40);
+  double get _buttonPosition => kTileDimensionDouble + (_buttonSize.y / 2) + 12;
+  List<GuiFlatButton>? _buttons;
+  List<GuiFlatButton> _createButtons() => [
+        GuiFlatButton(
+          'Cancel',
+          size: _buttonSize,
+          color: material.Colors.red,
+          position: Vector2(0, _buttonPosition),
+          onReleased: onCancel,
+        ),
+        GuiFlatButton(
+          'Build',
+          size: _buttonSize,
+          position: Vector2(_buttonSize.x + 8, _buttonPosition),
+          color: material.Colors.green,
+          onReleased: onBuild,
+        ),
+      ];
 
   @override
   void render(final Canvas canvas) {
@@ -189,5 +246,61 @@ class _PlacingSurfaceComponent extends PositionComponent
   void onTapUp(final TapUpEvent event) {
     onSelect();
     super.onTapUp(event);
+  }
+}
+
+class GuiFlatButton extends ButtonComponent {
+  GuiFlatButton(
+    final String text, {
+    required final Color color,
+    super.size,
+    super.onReleased,
+    super.position,
+  }) : super(
+          button: GuiButtonBackground(material.Colors.blue[300]!),
+          buttonDown: GuiButtonBackground(color),
+          children: [
+            TextComponent(
+              text: text,
+              textRenderer: TextPaint(
+                style: TextStyle(
+                  fontSize: 0.5 * size!.y,
+                  fontWeight: FontWeight.bold,
+                  color: color,
+                ),
+              ),
+              position: size / 2.0,
+              anchor: Anchor.center,
+            ),
+          ],
+          anchor: Anchor.center,
+        );
+}
+
+class GuiButtonBackground extends PositionComponent
+    with HasAncestor<GuiFlatButton> {
+  GuiButtonBackground(final Color color) {
+    _paint.color = color;
+  }
+  final _paint = Paint()..style = PaintingStyle.stroke;
+
+  late double cornerRadius;
+
+  @override
+  void onMount() {
+    super.onMount();
+    size = ancestor.size;
+    cornerRadius = 0.3 * size.y;
+    _paint.strokeWidth = 0.05 * size.y;
+  }
+
+  late final _background = RRect.fromRectAndRadius(
+    size.toRect(),
+    Radius.circular(cornerRadius),
+  );
+
+  @override
+  void render(final Canvas canvas) {
+    canvas.drawRRect(_background, _paint);
   }
 }

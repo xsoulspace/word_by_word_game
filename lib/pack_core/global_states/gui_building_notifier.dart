@@ -56,13 +56,13 @@ class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
     value = GuiBuildingNotifierState.idle;
   }
 
-  void confirmPlacing(final CanvasCubit canvasCubit) {
+  void confirmPlacing() {
     final object = RenderObjectModel(
       id: Gid.create(),
       tileId: value.type.tileId,
       distanceToOrigin: value.distanceToOrigin,
     );
-    canvasCubit.placeBuildingObject(
+    dto.canvasCubit.placeBuildingObject(
       cell: value.cellPoint!,
       object: object,
     );
