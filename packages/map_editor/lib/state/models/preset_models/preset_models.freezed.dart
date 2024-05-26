@@ -12,7 +12,7 @@ part of 'preset_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TileId {
@@ -316,7 +316,7 @@ class _$PresetTileModelImpl extends _PresetTileModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PresetTileModelImpl &&
@@ -547,7 +547,7 @@ class _$PresetTilePropertiesModelImpl extends _PresetTilePropertiesModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PresetTilePropertiesModelImpl &&
@@ -753,7 +753,7 @@ class _$PresetTileGraphicsModelImpl extends _PresetTileGraphicsModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PresetTileGraphicsModelImpl &&
@@ -1203,7 +1203,7 @@ class _$TilesetPresetDataModelImpl implements _TilesetPresetDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TilesetPresetDataModelImpl &&
@@ -1415,7 +1415,7 @@ class _$TilesetConfigModelImpl extends _TilesetConfigModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TilesetConfigModelImpl &&
@@ -1546,7 +1546,7 @@ class _$TilesetThemeModelImpl extends _TilesetThemeModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TilesetThemeModelImpl &&
@@ -1893,7 +1893,7 @@ class _$TilesetPresetResourcesImpl implements _TilesetPresetResources {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$TilesetPresetResourcesImpl &&

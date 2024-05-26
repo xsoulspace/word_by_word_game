@@ -43,6 +43,7 @@ const _$DataCategoryTypeEnumMap = {
   DataCategoryType.plants: 'plants',
   DataCategoryType.players: 'players',
   DataCategoryType.other: 'other',
+  DataCategoryType.buildings: 'buildings',
 };
 
 _$PresetTilePropertiesModelImpl _$$PresetTilePropertiesModelImplFromJson(

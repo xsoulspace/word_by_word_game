@@ -12,7 +12,7 @@ part of 'saveable_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CanvasDataModelId {
@@ -496,7 +496,7 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CanvasDataModelImpl &&
@@ -714,7 +714,7 @@ class _$GravityModelImpl extends _GravityModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GravityModelImpl &&
@@ -1089,7 +1089,7 @@ class _$LayerModelImpl extends _LayerModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LayerModelImpl &&
@@ -1358,7 +1358,7 @@ class _$CellTileModelImpl extends _CellTileModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CellTileModelImpl &&
@@ -1681,7 +1681,7 @@ class _$RenderObjectModelImpl implements _RenderObjectModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RenderObjectModelImpl &&
@@ -1969,7 +1969,7 @@ class _$PlayerModelImpl extends _PlayerModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerModelImpl &&
@@ -2278,7 +2278,7 @@ class _$CellDataModelImpl implements _CellDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$CellDataModelImpl);
   }

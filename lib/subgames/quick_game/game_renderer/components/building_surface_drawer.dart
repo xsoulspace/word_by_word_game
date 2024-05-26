@@ -6,11 +6,13 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/gui_building_notifier.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
@@ -78,6 +80,7 @@ class BuildingSurfaceDrawer extends Component
             position: canvasCell.toVector2(),
             parent: this,
             index: index,
+            type: _buildingCubit.value.type,
             onSelect: () => _onSelect(
               index: index,
               distanceToOrigin: distanceToOrigin.toSerializedVector2(),
@@ -123,17 +126,23 @@ class BuildingSurfaceDrawer extends Component
 }
 
 class _PlacingSurfaceComponent extends PositionComponent
-    with HoverCallbacks, TapCallbacks {
+    with
+        HoverCallbacks,
+        TapCallbacks,
+        HasGameRef<CanvasRendererGame>,
+        HasCanvasResourcesLoaderRef {
   _PlacingSurfaceComponent({
     required this.parent,
     required this.index,
     required this.onSelect,
+    required this.type,
     super.position,
   }) : super() {
     _setHovered(false);
     size = Vector2(kTileDimensionDouble, kTileDimensionDouble);
   }
   final int index;
+  final GuiBuildingTypeEnum type;
   @override
   final BuildingSurfaceDrawer parent;
   final VoidCallback onSelect;
@@ -170,6 +179,11 @@ class _PlacingSurfaceComponent extends PositionComponent
   final _borderPaint = material.Paint()..style = material.PaintingStyle.stroke;
   bool get _isSelected => index == parent._selectedIndex;
   late final _rect = Offset.zero & size.toSize();
+  PresetTileResource? get _tile {
+    if (type == GuiBuildingTypeEnum.nothing) return null;
+    return game.dto.canvasCubit.state.tileResources.objects[type.tileId];
+  }
+
   @override
   void render(final Canvas canvas) {
     canvas.drawRRect(
@@ -179,8 +193,16 @@ class _PlacingSurfaceComponent extends PositionComponent
       ),
       _borderPaint,
     );
-    // TODO(arenukvern): draw a building from type
-    if (_isSelected) canvas.drawRect(_rect, _objectPaint);
+    final tile = _tile;
+    if (_isSelected && tile != null) {
+      canvas.drawImage(
+        getImage(
+          tile.behaviourPaths[TileBehaviourType.idle]!.currentFramePath,
+        ),
+        _rect.topLeft,
+        _objectPaint,
+      );
+    }
 
     super.render(canvas);
   }

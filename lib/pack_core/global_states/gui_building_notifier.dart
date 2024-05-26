@@ -13,13 +13,16 @@ enum GuiBuildingStatusEnum {
   placing;
 }
 
+/// All keys are objectIds
 enum GuiBuildingTypeEnum {
   tent,
+
+  /// should not be placed anywhere, placeholder
   nothing;
 
-  TileId toTileId() => switch (this) {
-        tent => TileId.empty,
+  TileId get tileId => switch (this) {
         nothing => throw ArgumentError.value(this),
+        _ => TileId(value: name),
       };
 }
 
@@ -54,7 +57,7 @@ class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
   void confirmPlacing(final CanvasCubit canvasCubit) {
     final object = RenderObjectModel(
       id: Gid.create(),
-      tileId: value.type.toTileId(),
+      tileId: value.type.tileId,
       distanceToOrigin: value.distanceToOrigin,
     );
     canvasCubit.placeBuildingObject(
