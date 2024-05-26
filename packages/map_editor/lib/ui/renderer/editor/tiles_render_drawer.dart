@@ -234,11 +234,16 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
           final vectorPosition =
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
 
-          // / only for debug purposes
+          /// only for debug purposes
+          /// to display empty tiles
           // if (cellTile.tileId.isEmpty) {
           //   canvas.drawRect(
-          //     Rect.fromLTWH(vectorPosition.x, vectorPosition.y,
-          //         kTileDimension.toDouble(), kTileDimension.toDouble()),
+          //     Rect.fromLTWH(
+          //       vectorPosition.x,
+          //       vectorPosition.y,
+          //       kTileDimension.toDouble(),
+          //       kTileDimension.toDouble(),
+          //     ),
           //     Paint()..color = material.Colors.red,
           //   );
           //   continue;
@@ -291,6 +296,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
               atlasRects.add(src.srcRect);
               atlasRsTransforms.add(rsTransform);
 
+              /// for debug purposes to display tiles
               // debugObjectsRects.add(
               //   Rect.fromPoints(
               //     _tmpRenderPosition.toOffset(),
@@ -361,6 +367,8 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
       );
       atlasRsTransforms.clear();
       atlasRects.clear();
+
+      /// for debug purposes to display any debug rect
       // for (final rect in debugObjectsRects) {
       //   canvas.drawRect(
       //     rect,
