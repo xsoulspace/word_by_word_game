@@ -16,8 +16,7 @@ class WeatherCubitState with _$WeatherCubitState {
     @Default(WindModel.zero) final WindModel wind,
   }) = _WeatherCubitState;
   const WeatherCubitState._();
-  WeatherModel get weather =>
-      weathers.isEmpty ? WeatherModel.initial : weathers.first;
+  WeatherModel get weather => weathers.firstOrNull ?? WeatherModel.initial;
 }
 
 class WeatherCubitDto {
@@ -56,7 +55,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
 
   /// use to switch weather forcefully
   void nextWeather() {
-    if (state.weathers.length == 2) {
+    if (state.weathers.length <= 2) {
       _generateWeather(oldWeathers: state.weathers);
       _generateWindForce();
     } else {
