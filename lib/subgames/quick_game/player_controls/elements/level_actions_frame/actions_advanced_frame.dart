@@ -27,6 +27,27 @@ class UIActionFrameAdvanced extends StatelessWidget {
         builder: (final context) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxHeight: 140),
+              child: TabBarView(
+                children: [
+                  Column(
+                    children: [
+                      uiTheme.verticalBoxes.medium,
+                      Text(
+                        S.of(context).applyFuelOption,
+                        style: textTheme.titleSmall?.copyWith(
+                          color: context.colorScheme.tertiary,
+                        ),
+                      ),
+                      const UiEnergyCards(),
+                    ],
+                  ),
+                  const _ActionsTabView(),
+                  const _TechnologyTabView(),
+                ],
+              ),
+            ),
             TabBar(
               tabAlignment: TabAlignment.center,
               padding: EdgeInsets.zero,
@@ -101,27 +122,6 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     ),
                   )
                   .toList(),
-            ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 140),
-              child: TabBarView(
-                children: [
-                  Column(
-                    children: [
-                      uiTheme.verticalBoxes.medium,
-                      Text(
-                        S.of(context).applyFuelOption,
-                        style: textTheme.titleSmall?.copyWith(
-                          color: context.colorScheme.tertiary,
-                        ),
-                      ),
-                      const UiEnergyCards(),
-                    ],
-                  ),
-                  const _ActionsTabView(),
-                  const _TechnologyTabView(),
-                ],
-              ),
             ),
           ],
         ),
