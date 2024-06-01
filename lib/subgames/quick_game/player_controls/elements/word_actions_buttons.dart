@@ -160,15 +160,30 @@ class UiSuggestionsButton extends StatelessWidget {
     super.key,
   });
   @override
-  Widget build(final BuildContext context) => UiTextButton.icon(
-        isLongButton: true,
-        text: S.of(context).suggestions,
-        tooltip: S.of(context).suggestWordButtonTooltip,
-        onPressed: () {
-          context.read<DialogController>().showLevelWordSuggestionDialog();
-        },
-        icon: UiIcons.idea,
-      );
+  Widget build(final BuildContext context) {
+    final locale = useLocale(context);
+    return UiTextButton.icon(
+      isLongButton: true,
+      text: LocalizedMap.fromJsonValueMap(const {
+        /// Other naming suggestions:
+        ///
+        /// Word Spiriter
+        /// Word Wizard
+        /// Word Generator
+        /// Inpire me
+        ///
+        /// Old: suggestions
+        'en': 'Word Inspirer',
+        'ru': 'Вдохновлятор',
+        'it': 'Inspiratore',
+      }).getValue(locale),
+      tooltip: S.of(context).suggestWordButtonTooltip,
+      onPressed: () {
+        context.read<DialogController>().showLevelWordSuggestionDialog();
+      },
+      icon: UiIcons.idea,
+    );
+  }
 }
 
 class UiPauseButton extends StatelessWidget {
