@@ -91,7 +91,7 @@ class BuildingSurfaceDrawer extends Component
         drawableObjects.add(
           _PlacingSurfaceComponent(
             onBuild: _buildingCubit.confirmPlacing,
-            onCancel: _buildingCubit.cancelPlacing,
+            onCancel: () => _selectedIndex = null,
             position: canvasPosition,
             parent: this,
             index: index,

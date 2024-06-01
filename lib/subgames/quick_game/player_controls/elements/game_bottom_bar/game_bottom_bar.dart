@@ -67,7 +67,24 @@ class _GameBottomBarCard extends StatelessWidget {
             'Place a ${guiBuildingNotifier.value.type.name}',
             style: context.textThemeBold.displaySmall,
           ),
-          const Gap(24),
+          const Gap(16),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 270),
+            child: Row(
+              children: [
+                Flexible(
+                  child: Text(
+                    'Move mouse near Hot Air Balloon and click to place',
+                    style: context.textTheme.bodyMedium!.copyWith(
+                      fontStyle: FontStyle.italic,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const Gap(12),
           TextButton(
             onPressed: guiBuildingNotifier.cancelPlacing,
             child: Text(
