@@ -121,7 +121,7 @@ class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
       _$BalloonLiftParamsModelFromJson(json);
   static const initial = BalloonLiftParamsModel(
     maxVolume: 250,
-    maxPower: 10000,
+    maxPower: 5000,
     powerUsage: 0,
   );
 }

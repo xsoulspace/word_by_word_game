@@ -1,3 +1,4 @@
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -24,13 +25,13 @@ class UIPowerBar extends StatelessWidget {
     final power =
         clampDouble(currentPower, 0, playerParams.balloonParams.maxPower);
     final powerRatio = power / maxPower;
-    final maxWidth = clampDouble(size.width * 0.5, 160, 180);
+    final maxHeight = clampDouble(size.width * 0.3, 60, 80);
     return GestureDetector(
       onTap: () {
         context.read<DebugCubit>().tryOpenDebugPane();
       },
       child: Tooltip(
-        message: const LocalizedMap(
+        message: '${const LocalizedMap(
           value: {
             Languages.en:
                 // ignore: lines_longer_than_80_chars
@@ -42,50 +43,54 @@ class UIPowerBar extends StatelessWidget {
                 // ignore: lines_longer_than_80_chars
                 'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
           },
-        ).getValue(locale),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Gap(4),
-            Icon(
-              Icons.fireplace,
-              color: context.colorScheme.error,
-            ),
-            const Gap(4),
-            TutorialFrame(
-              highlightPosition: MediaQuery.sizeOf(context).width >
-                      WidthFormFactor.mobileTutorialMaxWidth
-                  ? Alignment.centerRight
-                  : Alignment.bottomCenter,
-              uiKey: TutorialUiItem.baloonPower,
-              child: Stack(
-                children: [
-                  AnimatedProgressBar(
-                    height: 24,
-                    width: maxWidth,
-                    value: powerRatio,
-                    backgroundColor: context.colorScheme.error.withOpacity(0.3),
-                    color: context.colorScheme.error.withOpacity(0.6),
-                    borderRadiusValue: 52,
-                    border: Border.all(color: context.colorScheme.error),
-                  ),
-                  Positioned(
-                    top: 0,
-                    left: 8,
-                    bottom: 0,
-                    child: Center(
-                      child: Text(
-                        '${playerParams.balloonParams.maxPower ~/ kScoreFactor} / ${powers.power ~/ kScoreFactor}',
-                        style: context.textThemeBold.bodyMedium?.copyWith(
-                          color: context.colorScheme.surface.withOpacity(0.8),
-                        ),
+        ).getValue(locale)} \n ${powers.power ~/ kScoreFactor}/${playerParams.balloonParams.maxPower ~/ kScoreFactor}',
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TutorialFrame(
+                highlightPosition: MediaQuery.sizeOf(context).width >
+                        WidthFormFactor.mobileTutorialMaxWidth
+                    ? Alignment.centerRight
+                    : Alignment.bottomCenter,
+                uiKey: TutorialUiItem.baloonPower,
+                child: Stack(
+                  children: [
+                    Transform.rotate(
+                      angle: 180 * math.pi / 180,
+                      child: AnimatedProgressBar(
+                        width: 24,
+                        height: maxHeight,
+                        value: powerRatio,
+                        backgroundColor:
+                            context.colorScheme.error.withOpacity(0.3),
+                        color: context.colorScheme.error.withOpacity(0.6),
+                        borderRadiusValue: 52,
+                        border: Border.all(color: context.colorScheme.error),
                       ),
                     ),
-                  ),
-                ],
+                    Positioned(
+                      top: 0,
+                      child: Text(
+                        '${powers.power / playerParams.balloonParams.maxPower}%',
+                        style: context.textThemeBold.labelSmall!.copyWith(
+                          color: context.colorScheme.surface.withOpacity(0.9),
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ],
+              const Gap(4),
+              Image.asset(
+                UiAssetHelper.useImagePath(UiIcons.fire.path),
+                width: 24,
+                height: 24,
+              ),
+            ],
+          ),
         ),
       ),
     );

@@ -7,6 +7,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/focused_object_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 part 'card_frosted_background.dart';
@@ -27,6 +28,7 @@ class GameBottomBar extends StatelessWidget {
               UiWordActions(),
             ],
           ),
+          rightBuilder: (final context) => const FocusedObjectBar(),
         ),
       );
 }
@@ -34,8 +36,10 @@ class GameBottomBar extends StatelessWidget {
 class _GameBottomBarCard extends StatelessWidget {
   const _GameBottomBarCard({
     required this.builder,
+    required this.rightBuilder,
   });
   final WidgetBuilder builder;
+  final WidgetBuilder rightBuilder;
   @override
   Widget build(final BuildContext context) {
     final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
@@ -71,10 +75,11 @@ class _GameBottomBarCard extends StatelessWidget {
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 270),
             child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
                   child: Text(
-                    'Move mouse near Hot Air Balloon and click to place',
+                    'Click near Hot Air Balloon to place',
                     style: context.textTheme.bodyMedium!.copyWith(
                       fontStyle: FontStyle.italic,
                     ),
@@ -133,23 +138,31 @@ class _GameBottomBarCard extends StatelessWidget {
                   },
                 ),
               ),
-              CardFrostedBackground(
-                padding: EdgeInsets.only(
-                  top: 2,
-                  bottom: () {
-                    if (DeviceRuntimeType.isMobile) {
-                      final padding = MediaQuery.viewPaddingOf(context);
-                      final insets = MediaQuery.viewInsetsOf(context);
-                      final bottom = padding.bottom + insets.bottom;
-                      if (bottom > 0) {
-                        return bottom + 6;
-                      }
-                    }
-                    return uiTheme.spacing.medium;
-                  }(),
-                ),
-                constraints: constraints,
-                child: Builder(builder: builder),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Flexible(
+                    child: CardFrostedBackground(
+                      padding: EdgeInsets.only(
+                        top: 2,
+                        bottom: () {
+                          if (DeviceRuntimeType.isMobile) {
+                            final padding = MediaQuery.viewPaddingOf(context);
+                            final insets = MediaQuery.viewInsetsOf(context);
+                            final bottom = padding.bottom + insets.bottom;
+                            if (bottom > 0) {
+                              return bottom + 6;
+                            }
+                          }
+                          return uiTheme.spacing.medium;
+                        }(),
+                      ),
+                      constraints: constraints,
+                      child: Builder(builder: builder),
+                    ),
+                  ),
+                  rightBuilder(context),
+                ],
               ),
             ],
           ),

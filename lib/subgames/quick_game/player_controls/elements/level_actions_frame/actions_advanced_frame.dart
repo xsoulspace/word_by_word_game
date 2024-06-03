@@ -4,7 +4,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
@@ -35,7 +34,13 @@ class UIActionFrameAdvanced extends StatelessWidget {
                     children: [
                       uiTheme.verticalBoxes.medium,
                       Text(
-                        S.of(context).applyFuelOption,
+                        const LocalizedMap(
+                          value: {
+                            Languages.en: 'Create Flying Energy',
+                            Languages.ru: 'Создать энергию полета',
+                            Languages.it: 'Crea Energia di volo',
+                          },
+                        ).getValue(locale),
                         style: textTheme.titleSmall?.copyWith(
                           color: context.colorScheme.tertiary,
                         ),

@@ -33,17 +33,16 @@ class GuiOverlay extends StatelessWidget {
             children: [UiPauseButton()],
           ),
         ),
-        Positioned(
+        const Positioned(
           top: 0,
           left: 0,
           right: 0,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SafeArea(bottom: false, child: SizedBox()),
-              const UIWeatherBar(),
-              uiTheme.verticalBoxes.medium,
-              const _Statistics(),
+              SafeArea(bottom: false, child: SizedBox()),
+              UIWeatherBar(),
+              _Statistics(),
             ],
           ),
         ),
@@ -84,13 +83,13 @@ class _Statistics extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        const CurrentTechnologyButton(),
+        uiTheme.verticalBoxes.medium,
         const UIPowerBar(),
         uiTheme.verticalBoxes.medium,
         const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
         uiTheme.verticalBoxes.medium,
         const UIPlayersSideBar(),
-        uiTheme.verticalBoxes.medium,
-        const CurrentTechnologyButton(),
       ],
     );
   }
