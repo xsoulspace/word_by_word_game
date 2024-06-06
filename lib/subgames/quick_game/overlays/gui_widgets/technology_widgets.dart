@@ -32,51 +32,49 @@ class CurrentTechnologyButton extends StatelessWidget {
       onPressed: () => dialogController
           .showTechnologiesTree(TechnologiesTreeDialogDto.nonSelectable),
       child: Container(
-        padding: const EdgeInsets.only(bottom: 6, top: 2),
+        padding: const EdgeInsets.only(top: 2),
         decoration: BoxDecoration(
           color: Colors.green[100],
           borderRadius: const BorderRadius.horizontal(
-            right: Radius.circular(24),
+            right: Radius.circular(18),
           ),
         ),
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Gap(4),
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Icon(
-                isUnlocked
-                    ? CupertinoIcons.lab_flask_solid
-                    : CupertinoIcons.lab_flask,
-              ),
-            ),
-            const Gap(8),
-            Column(
+            Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
-                  currentTechnology?.title.getValue(locale) ??
-                      const LocalizedMap(
-                        value: {
-                          Languages.en: 'Not researching',
-                          Languages.ru: 'Не исследуется',
-                          Languages.it: 'Non studiata',
-                        },
-                      ).getValue(locale),
-                ),
-                const Gap(2),
-                ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 110),
-                  child: UiTechnologyLinearProgress(
-                    percentage: percentage,
-                    investedScore: investedScore,
-                    requiredScore: requiredScore,
+                const Gap(4),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Icon(
+                    isUnlocked
+                        ? CupertinoIcons.lab_flask_solid
+                        : CupertinoIcons.lab_flask,
                   ),
                 ),
+                const Gap(8),
+                Text(
+                  const LocalizedMap(
+                    value: {
+                      Languages.en: 'Researches',
+                      Languages.ru: 'Исследования',
+                      Languages.it: 'Ricerche',
+                    },
+                  ).getValue(locale),
+                ),
+                const Gap(8),
               ],
             ),
-            const Gap(16),
+            ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 100),
+              child: UiTechnologyLinearProgress(
+                percentage: percentage,
+                investedScore: investedScore,
+                requiredScore: requiredScore,
+              ),
+            ),
           ],
         ),
       ),

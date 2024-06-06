@@ -7,7 +7,6 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/focused_object_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 part 'card_frosted_background.dart';
@@ -28,7 +27,6 @@ class GameBottomBar extends StatelessWidget {
               UiWordActions(),
             ],
           ),
-          rightBuilder: (final context) => const FocusedObjectBar(),
         ),
       );
 }
@@ -36,10 +34,8 @@ class GameBottomBar extends StatelessWidget {
 class _GameBottomBarCard extends StatelessWidget {
   const _GameBottomBarCard({
     required this.builder,
-    required this.rightBuilder,
   });
   final WidgetBuilder builder;
-  final WidgetBuilder rightBuilder;
   @override
   Widget build(final BuildContext context) {
     final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
@@ -112,31 +108,38 @@ class _GameBottomBarCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Builder(
-                  builder: (final context) {
-                    void onTap() => context
-                        .read<BottomActionsNotifier>()
-                        .changeCardVisiblity();
+              Row(
+                children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Builder(
+                      builder: (final context) {
+                        void onTap() => context
+                            .read<BottomActionsNotifier>()
+                            .changeCardVisiblity();
 
-                    return UiBaseButton(
-                      tooltipMessage: effectiveIsCardVisible
-                          ? S.of(context).hidePane
-                          : S.of(context).showPane,
-                      onPressed: () {},
-                      child: effectiveIsCardVisible
-                          ? TextButton(
-                              onPressed: onTap,
-                              child: const Icon(Icons.arrow_drop_down),
-                            )
-                          : OutlinedButton(
-                              onPressed: onTap,
-                              child: const Icon(Icons.arrow_drop_up),
-                            ),
-                    );
-                  },
-                ),
+                        return UiBaseButton(
+                          tooltipMessage: effectiveIsCardVisible
+                              ? S.of(context).hidePane
+                              : S.of(context).showPane,
+                          onPressed: () {},
+                          child: effectiveIsCardVisible
+                              ? TextButton(
+                                  onPressed: onTap,
+                                  child: const Icon(Icons.arrow_drop_down),
+                                )
+                              : OutlinedButton(
+                                  onPressed: onTap,
+                                  child: const Icon(Icons.arrow_drop_up),
+                                ),
+                        );
+                      },
+                    ),
+                  ),
+                  const Spacer(),
+                  const UiPauseButton(),
+                  const Gap(20),
+                ],
               ),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
@@ -161,7 +164,6 @@ class _GameBottomBarCard extends StatelessWidget {
                       child: Builder(builder: builder),
                     ),
                   ),
-                  rightBuilder(context),
                 ],
               ),
             ],
