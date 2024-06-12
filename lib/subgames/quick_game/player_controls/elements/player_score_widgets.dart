@@ -6,7 +6,13 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class UIMobilePlayerName extends StatelessWidget {
-  const UIMobilePlayerName({super.key});
+  const UIMobilePlayerName({
+    this.canHighlight = true,
+    this.forceHighlight = false,
+    super.key,
+  });
+  final bool canHighlight;
+  final bool forceHighlight;
   @override
   Widget build(final BuildContext context) {
     final playerName = context.select<LevelPlayersBloc, String>(
@@ -21,13 +27,20 @@ class UIMobilePlayerName extends StatelessWidget {
       uiKey: TutorialUiItem.yourNameLabel,
       text: playerName,
       tooltipMessage: S.of(context).currentPlayerName,
-      isHighlighted: isHighlighted,
+      isHighlighted: forceHighlight || (canHighlight && isHighlighted),
     );
   }
 }
 
 class UIMobilePlayerScore extends StatelessWidget {
-  const UIMobilePlayerScore({super.key});
+  const UIMobilePlayerScore({
+    this.canHighlight = true,
+    this.forceHighlight = false,
+    super.key,
+  });
+  final bool canHighlight;
+  final bool forceHighlight;
+
   @override
   Widget build(final BuildContext context) {
     final score = context.select<LevelPlayersBloc, int>(
@@ -39,7 +52,7 @@ class UIMobilePlayerScore extends StatelessWidget {
     final eScore = score ~/ kScoreFactor;
     return _LabelText(
       uiKeyPosition: Alignment.topCenter,
-      isHighlighted: isHighlighted,
+      isHighlighted: forceHighlight || (canHighlight && isHighlighted),
       uiKey: TutorialUiItem.yourScoreLabel,
       tooltipMessage: S.of(context).yourCurrentHighcoreTooltip,
       text: '$eScore',

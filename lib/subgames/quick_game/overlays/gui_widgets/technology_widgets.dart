@@ -5,7 +5,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_advanced_frame.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
 
 class CurrentTechnologyButton extends StatelessWidget {
   const CurrentTechnologyButton({super.key});
@@ -28,55 +28,69 @@ class CurrentTechnologyButton extends StatelessWidget {
       unlockCondition: unlockCondition ??
           technologyCubit.researchingTechnology?.unlockCondition,
     );
+    var pointsLeft = requiredScore - investedScore;
+    pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
     return UiBaseButton(
       onPressed: () => dialogController
           .showTechnologiesTree(TechnologiesTreeDialogDto.nonSelectable),
-      child: Container(
-        padding: const EdgeInsets.only(top: 2),
-        decoration: BoxDecoration(
-          color: Colors.green[100],
-          borderRadius: const BorderRadius.horizontal(
-            right: Radius.circular(18),
+      child: Stack(
+        alignment: Alignment.centerRight,
+        children: [
+          AnimatedProgressBar(
+            width: 80,
+            height: 42,
+            value: percentage,
+            backgroundColor: context.colorScheme.primary.withOpacity(0.1),
+            color: context.colorScheme.primary.withOpacity(0.6),
+            borderRadiusValue: 52,
+            border: Border.all(color: context.colorScheme.primary),
           ),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const Gap(4),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8),
-                  child: Icon(
-                    isUnlocked
-                        ? CupertinoIcons.lab_flask_solid
-                        : CupertinoIcons.lab_flask,
-                  ),
+          Positioned(
+            left: 6,
+            top: 0,
+            bottom: 0,
+            child: Tooltip(
+              message: const LocalizedMap(
+                value: {
+                  Languages.en: 'Researches',
+                  Languages.ru: 'Исследования',
+                  Languages.it: 'Ricerche',
+                },
+              ).getValue(locale),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 2),
+                child: Icon(
+                  isUnlocked
+                      ? CupertinoIcons.lab_flask_solid
+                      : CupertinoIcons.lab_flask,
+                  color: Colors.white,
                 ),
-                const Gap(8),
-                Text(
-                  const LocalizedMap(
-                    value: {
-                      Languages.en: 'Researches',
-                      Languages.ru: 'Исследования',
-                      Languages.it: 'Ricerche',
-                    },
-                  ).getValue(locale),
-                ),
-                const Gap(8),
-              ],
-            ),
-            ConstrainedBox(
-              constraints: const BoxConstraints(maxWidth: 100),
-              child: UiTechnologyLinearProgress(
-                percentage: percentage,
-                investedScore: investedScore,
-                requiredScore: requiredScore,
               ),
             ),
-          ],
-        ),
+          ),
+          Positioned(
+            right: 6,
+            top: 0,
+            bottom: 4,
+            child: Center(
+              child: Text(
+                requiredScore.formattedScore == 0
+                    ? '0 %'
+                    : // ignore: lines_longer_than_80_chars
+                    '${((investedScore.formattedScore / requiredScore.formattedScore) * 100).toStringAsFixed(0)}%',
+                style: context.textThemeBold.titleLarge!.copyWith(
+                  color: context.colorScheme.surface.withOpacity(0.9),
+                  shadows: [
+                    Shadow(
+                      blurRadius: 0.2,
+                      color: context.colorScheme.tertiary,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

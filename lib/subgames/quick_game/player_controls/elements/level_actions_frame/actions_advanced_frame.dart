@@ -410,7 +410,7 @@ class UiTechnologyLinearProgress extends StatelessWidget {
   Widget build(final BuildContext context) {
     var pointsLeft = requiredScore - investedScore;
     pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
-    return Row(
+    return Stack(
       children: [
         Flexible(
           child: LinearProgressIndicator(

@@ -24,14 +24,14 @@ class UIPowerBar extends StatelessWidget {
     final power =
         clampDouble(currentPower, 0, playerParams.balloonParams.maxPower);
     final powerRatio = power / maxPower;
-    final maxHeight = clampDouble(size.width * 0.3, 60, 80);
+    final maxHeight = clampDouble(size.width * 0.3, 80, 100);
     final powerWidth = maxHeight / 1.1;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Gap(6),
+          const Gap(12),
           Tooltip(
             message: '${const LocalizedMap(
               value: {
@@ -55,8 +55,8 @@ class UIPowerBar extends StatelessWidget {
               child: Stack(
                 children: [
                   AnimatedProgressBar(
-                    width: powerWidth,
-                    height: 24,
+                    width: maxHeight,
+                    height: 32,
                     value: powerRatio,
                     backgroundColor: context.colorScheme.error.withOpacity(0.3),
                     color: context.colorScheme.error.withOpacity(0.6),
@@ -67,13 +67,12 @@ class UIPowerBar extends StatelessWidget {
                     children: [
                       Image.asset(
                         UiAssetHelper.useImagePath(UiIcons.fire.path),
-                        width: 24,
-                        height: 24,
+                        width: 32,
+                        height: 32,
                       ),
-                      const Gap(4),
                       Text(
                         '${(powers.power / playerParams.balloonParams.maxPower * 100).toInt()}%',
-                        style: context.textThemeBold.labelSmall!.copyWith(
+                        style: context.textThemeBold.titleLarge!.copyWith(
                           color: context.colorScheme.surface.withOpacity(0.9),
                           shadows: [
                             Shadow(
@@ -91,14 +90,18 @@ class UIPowerBar extends StatelessWidget {
               ),
             ),
           ),
+          const Gap(8),
           GestureDetector(
             onTap: () {
               context.read<DebugCubit>().tryOpenDebugPane();
             },
             child: // TODO(arenukvern): l10n
-                const Text(
+                Text(
               'Hot Air Balloon',
               textAlign: TextAlign.center,
+              style: context.textTheme.bodyMedium!.copyWith(
+                fontStyle: FontStyle.italic,
+              ),
             ),
           ),
         ],

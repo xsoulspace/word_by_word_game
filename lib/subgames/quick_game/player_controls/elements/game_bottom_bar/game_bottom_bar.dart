@@ -110,34 +110,45 @@ class _GameBottomBarCard extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: Builder(
-                      builder: (final context) {
-                        void onTap() => context
-                            .read<BottomActionsNotifier>()
-                            .changeCardVisiblity();
+                  SizedBox(
+                    width: 80,
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Builder(
+                        builder: (final context) {
+                          void onTap() => context
+                              .read<BottomActionsNotifier>()
+                              .changeCardVisiblity();
 
-                        return UiBaseButton(
-                          tooltipMessage: effectiveIsCardVisible
-                              ? S.of(context).hidePane
-                              : S.of(context).showPane,
-                          onPressed: () {},
-                          child: effectiveIsCardVisible
-                              ? TextButton(
-                                  onPressed: onTap,
-                                  child: const Icon(Icons.arrow_drop_down),
-                                )
-                              : OutlinedButton(
-                                  onPressed: onTap,
-                                  child: const Icon(Icons.arrow_drop_up),
-                                ),
-                        );
-                      },
+                          return UiBaseButton(
+                            tooltipMessage: effectiveIsCardVisible
+                                ? S.of(context).hidePane
+                                : S.of(context).showPane,
+                            onPressed: () {},
+                            child: effectiveIsCardVisible
+                                ? TextButton(
+                                    onPressed: onTap,
+                                    child: const Icon(Icons.arrow_drop_down),
+                                  )
+                                : OutlinedButton(
+                                    onPressed: onTap,
+                                    child: const Icon(Icons.arrow_drop_up),
+                                  ),
+                          );
+                        },
+                      ),
                     ),
                   ),
                   const Spacer(),
-                  const UiPauseButton(),
+                  const UiCurrentPlayerCard(),
+                  const Spacer(),
+                  const SizedBox(
+                    width: 80,
+                    child: Align(
+                      alignment: Alignment.centerRight,
+                      child: UiPauseButton(),
+                    ),
+                  ),
                   const Gap(20),
                 ],
               ),
@@ -172,4 +183,35 @@ class _GameBottomBarCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class UiCurrentPlayerCard extends StatelessWidget {
+  const UiCurrentPlayerCard({super.key});
+
+  @override
+  Widget build(final BuildContext context) => Card(
+        elevation: 1,
+        child: AnimatedSize(
+          duration: 1.seconds,
+          child: const Padding(
+            padding: EdgeInsets.only(
+              left: 10,
+              right: 10,
+              top: 2,
+              bottom: 4,
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                UIMobilePlayerName(canHighlight: false),
+                Gap(8),
+                UIMobilePlayerScore(
+                  canHighlight: false,
+                  forceHighlight: true,
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
 }

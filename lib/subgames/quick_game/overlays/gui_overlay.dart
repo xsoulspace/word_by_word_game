@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
@@ -24,7 +23,7 @@ class GuiOverlay extends StatelessWidget {
     );
     final screenSize = MediaQuery.sizeOf(context);
     final uiTheme = context.uiTheme;
-    const rightPaneWidth = 80.0;
+    const rightPaneWidth = 100.0;
     return DialogStack(
       children: [
         const Positioned(
@@ -83,12 +82,46 @@ class _Statistics extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CurrentTechnologyButton(),
+        const Wrap(
+          alignment: WrapAlignment.center,
+          runAlignment: WrapAlignment.center,
+          children: [
+            CurrentTechnologyButton(),
+            UiCurrentPlayerCard(),
+          ],
+        ),
         uiTheme.verticalBoxes.medium,
         const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
         uiTheme.verticalBoxes.medium,
         const UIPlayersSideBar(),
       ],
+    );
+  }
+}
+
+class UiCurrentPlayerCard extends StatelessWidget {
+  const UiCurrentPlayerCard({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final phaseType = context.select<LevelBloc, GamePhaseType>(
+      (final s) => s.state.phaseType,
+    );
+
+    return CardFrostedBackground(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+        child: Text(
+          // TODO(arenukvern): l10n
+          "Phase: ${switch (phaseType) {
+            GamePhaseType.entryWord => 'Enter Word',
+            GamePhaseType.selectAction => 'Select Action',
+          }}",
+          style: context.textTheme.titleLarge!.copyWith(
+            color: context.colorScheme.tertiary,
+          ),
+        ).animate(key: ValueKey(phaseType)).fadeIn(duration: 450.milliseconds),
+      ),
     );
   }
 }

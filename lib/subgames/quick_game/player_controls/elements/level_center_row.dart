@@ -35,7 +35,8 @@ class UILevelCenterBar extends StatelessWidget {
       ),
       child: Column(
         children: [
-          Container(
+          AnimatedContainer(
+            duration: 350.milliseconds,
             padding: const EdgeInsets.only(
               left: 16,
               right: 16,
@@ -48,29 +49,28 @@ class UILevelCenterBar extends StatelessWidget {
                     switch (phaseType) {
                       GamePhaseType.entryWord =>
                         Text('', style: textTheme.displaySmall),
-                      GamePhaseType.selectAction =>
-                        Text('', style: textTheme.displaySmall),
+                      GamePhaseType.selectAction => const SizedBox(),
                     },
                   ],
                 ),
-                Positioned.fill(
-                  child: AnimatedAlign(
-                    duration: 250.milliseconds,
-                    alignment: phaseType == GamePhaseType.entryWord
-                        ? Alignment.center
-                        : Alignment.centerLeft,
-                    child: const UIMobilePlayerName(),
-                  ),
-                ),
-                Positioned.fill(
-                  child: AnimatedAlign(
-                    duration: 220.milliseconds,
-                    alignment: phaseType == GamePhaseType.selectAction
-                        ? Alignment.center
-                        : Alignment.centerLeft,
-                    child: const UIMobilePlayerScore(),
-                  ),
-                ),
+                // Positioned.fill(
+                //   child: AnimatedAlign(
+                //     duration: 250.milliseconds,
+                //     alignment: phaseType == GamePhaseType.entryWord
+                //         ? Alignment.center
+                //         : Alignment.centerLeft,
+                //     child: const UIMobilePlayerName(),
+                //   ),
+                // ),
+                // Positioned.fill(
+                //   child: AnimatedAlign(
+                //     duration: 220.milliseconds,
+                //     alignment: phaseType == GamePhaseType.selectAction
+                //         ? Alignment.center
+                //         : Alignment.centerLeft,
+                //     child: const UIMobilePlayerScore(),
+                //   ),
+                // ),
                 Positioned.fill(
                   child: AnimatedAlign(
                     duration: 250.milliseconds,
