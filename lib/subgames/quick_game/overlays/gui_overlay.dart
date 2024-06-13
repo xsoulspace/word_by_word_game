@@ -82,14 +82,7 @@ class _Statistics extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Wrap(
-          alignment: WrapAlignment.center,
-          runAlignment: WrapAlignment.center,
-          children: [
-            CurrentTechnologyButton(),
-            UiCurrentPlayerCard(),
-          ],
-        ),
+        const CurrentTechnologyButton(),
         uiTheme.verticalBoxes.medium,
         const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
         uiTheme.verticalBoxes.medium,
@@ -99,29 +92,24 @@ class _Statistics extends StatelessWidget {
   }
 }
 
-class UiCurrentPlayerCard extends StatelessWidget {
-  const UiCurrentPlayerCard({super.key});
+class UiPhaseText extends StatelessWidget {
+  const UiPhaseText({super.key});
 
   @override
   Widget build(final BuildContext context) {
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
-
-    return CardFrostedBackground(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-        child: Text(
-          // TODO(arenukvern): l10n
-          "Phase: ${switch (phaseType) {
-            GamePhaseType.entryWord => 'Enter Word',
-            GamePhaseType.selectAction => 'Select Action',
-          }}",
-          style: context.textTheme.titleLarge!.copyWith(
-            color: context.colorScheme.tertiary,
-          ),
-        ).animate(key: ValueKey(phaseType)).fadeIn(duration: 450.milliseconds),
+    return Text(
+      // TODO(arenukvern): l10n
+      "Phase: ${switch (phaseType) {
+        GamePhaseType.entryWord => 'Enter Word',
+        GamePhaseType.selectAction => 'Select Action',
+      }}",
+      style: context.textTheme.labelMedium!.copyWith(
+        color: context.colorScheme.tertiary.withOpacity(0.65),
+        fontStyle: FontStyle.italic,
       ),
-    );
+    ).animate(key: ValueKey(phaseType)).fadeIn(duration: 450.milliseconds);
   }
 }

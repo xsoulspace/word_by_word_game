@@ -27,12 +27,12 @@ class UIActionFrameAdvanced extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ConstrainedBox(
-              constraints: const BoxConstraints(maxHeight: 140),
+              constraints: const BoxConstraints(maxHeight: 120),
               child: TabBarView(
                 children: [
                   Column(
                     children: [
-                      uiTheme.verticalBoxes.medium,
+                      const UiEnergyCards(),
                       Text(
                         const LocalizedMap(
                           value: {
@@ -42,10 +42,9 @@ class UIActionFrameAdvanced extends StatelessWidget {
                           },
                         ).getValue(locale),
                         style: textTheme.titleSmall?.copyWith(
-                          color: context.colorScheme.tertiary,
+                          color: context.colorScheme.tertiary.withOpacity(0.9),
                         ),
                       ),
-                      const UiEnergyCards(),
                     ],
                   ),
                   const _ActionsTabView(),
@@ -326,20 +325,28 @@ class _ResearchMultiplierCards extends StatelessWidget {
                           ),
                           textAlign: TextAlign.center,
                         ),
-                        FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: Text(
-                            '${technology?.title.getValue(locale)}',
-                            style: context.textThemeBold.titleLarge,
-                          ),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: FittedBox(
+                                fit: BoxFit.fitWidth,
+                                child: Text(
+                                  '${technology?.title.getValue(locale)}',
+                                  style: context.textThemeBold.titleLarge,
+                                ),
+                              ),
+                            ),
+                            if (!isUnlocked) ...[
+                              const Gap(4),
+                              UiTechnologyProgress(
+                                percentage: percentage,
+                                investedScore: investedScore,
+                                requiredScore: requiredScore,
+                              ),
+                            ],
+                          ],
                         ),
-                        if (!isUnlocked) ...[
-                          UiTechnologyLinearProgress(
-                            percentage: percentage,
-                            investedScore: investedScore,
-                            requiredScore: requiredScore,
-                          ),
-                        ],
                       ],
                     ),
                   ),
@@ -396,8 +403,8 @@ class _ResearchMultiplierCards extends StatelessWidget {
   }
 }
 
-class UiTechnologyLinearProgress extends StatelessWidget {
-  const UiTechnologyLinearProgress({
+class UiTechnologyProgress extends StatelessWidget {
+  const UiTechnologyProgress({
     required this.percentage,
     required this.investedScore,
     required this.requiredScore,
@@ -410,23 +417,30 @@ class UiTechnologyLinearProgress extends StatelessWidget {
   Widget build(final BuildContext context) {
     var pointsLeft = requiredScore - investedScore;
     pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
-    return Stack(
-      children: [
-        Flexible(
-          child: LinearProgressIndicator(
-            value: percentage,
-            borderRadius: BorderRadius.circular(8),
-          ).animate().fadeIn(),
-        ),
-        const Gap(8),
-        Text(
-          '${pointsLeft.formattedScore} left',
-          // '${investedScore.formattedScore}/${requiredScore.formattedScore}',
-          style: context.textTheme.labelMedium?.copyWith(
-            color: context.colorScheme.tertiary,
+    return Tooltip(
+      message: '${pointsLeft.formattedScore} left',
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: CircularProgressIndicator(
+              value: percentage,
+              color: context.colorScheme.tertiary,
+            ),
           ),
-        ),
-      ],
+          SizedBox.square(
+            dimension: 35,
+            child: Center(
+              child: Text(
+                '${(percentage * 100).toStringAsFixed(0)}%',
+                // '${investedScore.formattedScore}/${requiredScore.formattedScore}',
+                style: context.textTheme.labelMedium?.copyWith(
+                  color: context.colorScheme.tertiary,
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -13,7 +12,6 @@ class UIPowerBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final locale = useLocale(context);
     final playerParams = context.select<LevelPlayersBloc, PlayerCharacterModel>(
       (final value) => value.state.playerCharacter,
     );
@@ -25,16 +23,30 @@ class UIPowerBar extends StatelessWidget {
         clampDouble(currentPower, 0, playerParams.balloonParams.maxPower);
     final powerRatio = power / maxPower;
     final maxHeight = clampDouble(size.width * 0.3, 80, 100);
-    final powerWidth = maxHeight / 1.1;
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 4),
+    return Container(
+      margin: const EdgeInsets.only(
+        top: 12,
+        right: 8,
+      ),
+      decoration: BoxDecoration(
+        color: context.colorScheme.surface.withOpacity(0.4),
+        border: Border.all(
+          color: context.colorScheme.error.withOpacity(0.3),
+        ),
+        borderRadius: BorderRadius.circular(18),
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          const Gap(12),
-          Tooltip(
-            message: '${const LocalizedMap(
-              value: {
+          TutorialFrame(
+            highlightPosition: MediaQuery.sizeOf(context).width >
+                    WidthFormFactor.mobileTutorialMaxWidth
+                ? Alignment.centerRight
+                : Alignment.bottomCenter,
+            uiKey: TutorialUiItem.baloonPower,
+            child: UiLabledProgressBar(
+              //  \n ${powers.power ~/ kScoreFactor}/${playerParams.balloonParams.maxPower ~/ kScoreFactor}',
+              tooltipMessage: const {
                 Languages.en:
                     // ignore: lines_longer_than_80_chars
                     'Power. This force creates the lift force that moves the balloon upwards.',
@@ -45,56 +57,21 @@ class UIPowerBar extends StatelessWidget {
                     // ignore: lines_longer_than_80_chars
                     'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
               },
-            ).getValue(locale)} \n ${powers.power ~/ kScoreFactor}/${playerParams.balloonParams.maxPower ~/ kScoreFactor}',
-            child: TutorialFrame(
-              highlightPosition: MediaQuery.sizeOf(context).width >
-                      WidthFormFactor.mobileTutorialMaxWidth
-                  ? Alignment.centerRight
-                  : Alignment.bottomCenter,
-              uiKey: TutorialUiItem.baloonPower,
-              child: Stack(
-                children: [
-                  AnimatedProgressBar(
-                    width: maxHeight,
-                    height: 32,
-                    value: powerRatio,
-                    backgroundColor: context.colorScheme.error.withOpacity(0.3),
-                    color: context.colorScheme.error.withOpacity(0.6),
-                    borderRadiusValue: 52,
-                    border: Border.all(color: context.colorScheme.error),
-                  ),
-                  Row(
-                    children: [
-                      Image.asset(
-                        UiAssetHelper.useImagePath(UiIcons.fire.path),
-                        width: 32,
-                        height: 32,
-                      ),
-                      Text(
-                        '${(powers.power / playerParams.balloonParams.maxPower * 100).toInt()}%',
-                        style: context.textThemeBold.titleLarge!.copyWith(
-                          color: context.colorScheme.surface.withOpacity(0.9),
-                          shadows: [
-                            Shadow(
-                              blurRadius: 0.2,
-                              color: context.colorScheme.onSurface
-                                  .withOpacity(0.5),
-                            ),
-                          ],
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ],
+              backgroundColor: context.colorScheme.error.withOpacity(0.3),
+              borderColor: context.colorScheme.error,
+              filledColor: context.colorScheme.error.withOpacity(0.6),
+              textColor: context.colorScheme.surface.withOpacity(0.9),
+              icon: Image.asset(
+                UiAssetHelper.useImagePath(UiIcons.fire.path),
+                width: 32,
+                height: 32,
               ),
+              percentage: powerRatio,
             ),
           ),
-          const Gap(8),
+          const Gap(4),
           GestureDetector(
-            onTap: () {
-              context.read<DebugCubit>().tryOpenDebugPane();
-            },
+            onTap: () => context.read<DebugCubit>().tryOpenDebugPane(),
             child: // TODO(arenukvern): l10n
                 Text(
               'Hot Air Balloon',
@@ -104,6 +81,7 @@ class UIPowerBar extends StatelessWidget {
               ),
             ),
           ),
+          const Gap(4),
         ],
       ),
     );

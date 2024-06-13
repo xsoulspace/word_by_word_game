@@ -6,6 +6,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_overlay.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -189,29 +190,32 @@ class UiCurrentPlayerCard extends StatelessWidget {
   const UiCurrentPlayerCard({super.key});
 
   @override
-  Widget build(final BuildContext context) => Card(
-        elevation: 1,
-        child: AnimatedSize(
-          duration: 1.seconds,
-          child: const Padding(
-            padding: EdgeInsets.only(
-              left: 10,
-              right: 10,
-              top: 2,
-              bottom: 4,
-            ),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                UIMobilePlayerName(canHighlight: false),
-                Gap(8),
-                UIMobilePlayerScore(
-                  canHighlight: false,
-                  forceHighlight: true,
+  Widget build(final BuildContext context) => Column(
+        children: [
+          Card(
+            elevation: 1,
+            child: AnimatedSize(
+              duration: 1.seconds,
+              child: const Padding(
+                padding: EdgeInsets.only(
+                  left: 10,
+                  right: 10,
+                  top: 2,
+                  bottom: 4,
                 ),
-              ],
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    UIMobilePlayerName(),
+                    Gap(6),
+                    UIMobilePlayerScore(),
+                  ],
+                ),
+              ),
             ),
           ),
-        ),
+          const UiPhaseText(),
+          const Gap(3),
+        ],
       );
 }

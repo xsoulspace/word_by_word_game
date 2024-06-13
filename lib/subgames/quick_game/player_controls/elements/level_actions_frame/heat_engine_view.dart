@@ -538,3 +538,93 @@ class AnimatedProgressBar extends StatelessWidget {
     );
   }
 }
+
+class UiLabledProgressBar extends StatelessWidget {
+  const UiLabledProgressBar({
+    required this.tooltipMessage,
+    required this.percentage,
+    required this.filledColor,
+    required this.textColor,
+    required this.borderColor,
+    required this.backgroundColor,
+    required this.icon,
+    this.onPressed,
+    super.key,
+  });
+  final double percentage;
+  final Color filledColor;
+  final Color borderColor;
+  final Color textColor;
+  final Color backgroundColor;
+  final Widget icon;
+  final VoidCallback? onPressed;
+  final Map<Languages, String> tooltipMessage;
+
+  @override
+  Widget build(final BuildContext context) {
+    final shadows = [
+      Shadow(
+        blurRadius: 0.2,
+        color: borderColor,
+      ),
+      Shadow(
+        blurRadius: 0.2,
+        color: borderColor,
+      ),
+    ];
+    const width = 90.0;
+    final locale = useLocale(context);
+
+    return Tooltip(
+      message: LocalizedMap(
+        value: tooltipMessage,
+      ).getValue(locale),
+      child: UiBaseButton(
+        onPressed: onPressed,
+        child: Stack(
+          alignment: Alignment.centerRight,
+          children: [
+            AnimatedProgressBar(
+              width: width,
+              height: 32,
+              value: percentage,
+              backgroundColor: backgroundColor,
+              color: filledColor,
+              borderRadiusValue: 52,
+              border: Border.all(color: borderColor),
+            ),
+            Positioned(
+              left: 6,
+              top: 0,
+              bottom: 0,
+              child: IconTheme.merge(
+                data: const IconThemeData(color: Colors.black),
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 2),
+                  child: icon,
+                ),
+              ),
+            ),
+            Positioned(
+              right: 6,
+              top: 0,
+              bottom: 4,
+              child: Center(
+                child: Text(
+                  percentage.isNaN
+                      ? '0 %'
+                      : // ignore: lines_longer_than_80_chars
+                      '${(percentage * 100).toStringAsFixed(0)}%',
+                  style: context.textThemeBold.titleLarge!.copyWith(
+                    color: textColor,
+                    shadows: shadows,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

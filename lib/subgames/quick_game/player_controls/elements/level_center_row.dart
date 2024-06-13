@@ -40,7 +40,6 @@ class UILevelCenterBar extends StatelessWidget {
             padding: const EdgeInsets.only(
               left: 16,
               right: 16,
-              top: 10,
             ),
             child: Stack(
               children: [
