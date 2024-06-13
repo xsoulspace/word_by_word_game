@@ -82,17 +82,10 @@ class UiTextButton extends HookWidget {
                 mainAxisAlignment: mainAlignment,
                 children: [
                   if (icon != null) ...[
-                    Container(
+                    UiIcon(
                       width: height,
                       height: height,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage(
-                            UiAssetHelper.useImagePath(icon!.path),
-                          ),
-                          fit: BoxFit.contain,
-                        ),
-                      ),
+                      icon: icon!,
                     ),
                   ],
                   AnimatedSwitcher(
@@ -107,4 +100,30 @@ class UiTextButton extends HookWidget {
       ),
     );
   }
+}
+
+class UiIcon extends StatelessWidget {
+  const UiIcon({
+    required this.icon,
+    required this.height,
+    required this.width,
+    super.key,
+  });
+  final UiIcons icon;
+  final double width;
+  final double height;
+
+  @override
+  Widget build(final BuildContext context) => Container(
+        width: height,
+        height: height,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+              UiAssetHelper.useImagePath(icon.path),
+            ),
+            fit: BoxFit.contain,
+          ),
+        ),
+      );
 }

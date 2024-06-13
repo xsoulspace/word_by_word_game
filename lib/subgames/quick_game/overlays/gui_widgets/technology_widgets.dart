@@ -11,6 +11,7 @@ class CurrentTechnologyButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final locale = useLocale(context);
     final levelCubit = context.watch<LevelBloc>();
     final mechanics = context.read<MechanicsCollection>();
     final technologyCubit = context.watch<TechnologiesCubit>();
@@ -28,21 +29,21 @@ class CurrentTechnologyButton extends StatelessWidget {
     );
     var pointsLeft = requiredScore - investedScore;
     pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
-
+    final technologyTitle = currentTechnology?.title.getValue(locale);
     return UiLabledProgressBar(
-      tooltipMessage: const {
-        Languages.en: 'Researches',
-        Languages.ru: 'Исследования',
-        Languages.it: 'Ricerche',
+      tooltipMessage: {
+        Languages.en: 'Researches $technologyTitle',
+        Languages.ru: 'Исследования $technologyTitle',
+        Languages.it: 'Ricerche $technologyTitle',
       },
       backgroundColor: context.colorScheme.primary.withOpacity(0.1),
+      filledColor: context.colorScheme.primary.withOpacity(0.4),
+      textColor: context.colorScheme.onPrimary,
       borderColor: context.colorScheme.primary,
       icon: Icon(
         isUnlocked ? CupertinoIcons.lab_flask_solid : CupertinoIcons.lab_flask,
         color: Colors.black,
       ),
-      textColor: context.colorScheme.onPrimary,
-      filledColor: context.colorScheme.primary.withOpacity(0.1),
       onPressed: () => dialogController
           .showTechnologiesTree(TechnologiesTreeDialogDto.nonSelectable),
       percentage: percentage,

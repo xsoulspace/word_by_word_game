@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -6,6 +7,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_center_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class UiWordActions extends StatelessWidget {
@@ -19,45 +21,44 @@ class UiWordActions extends StatelessWidget {
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
-    final children = <Widget>[];
-    switch (phaseType) {
-      case GamePhaseType.entryWord:
-        children.addAll([
-          Row(
-            children: [
-              TutorialFrame(
-                highlightPosition: Alignment.topCenter,
-                uiKey: TutorialUiItem.addToDictionaryButton,
-                child: UIAddWordToDictionaryButton(
-                  onPressed: state.onAddWordToDictionary,
-                ),
-              ),
-              const Gap(4),
-              const TutorialFrame(
-                highlightPosition: Alignment.topCenter,
-                uiKey: TutorialUiItem.suggestWordButton,
-                child: UiSuggestionsButton(),
-              ),
-            ],
+    final List<Widget> children = switch (phaseType) {
+      GamePhaseType.entryWord => [
+          TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.addToDictionaryButton,
+            child: UIAddWordToDictionaryButton(
+              onPressed: state.onAddWordToDictionary,
+            ),
           ),
-          if (DeviceRuntimeType.isMobile)
-            uiTheme.verticalBoxes.small
-          else
-            uiTheme.verticalBoxes.medium,
-        ]);
-      case GamePhaseType.selectAction:
-        break;
-    }
+          const TutorialFrame(
+            highlightPosition: Alignment.topCenter,
+            uiKey: TutorialUiItem.suggestWordButton,
+            child: UiSuggestionsButton(),
+          ),
+          if (phaseType == GamePhaseType.entryWord) ...[
+            TutorialFrame(
+              highlightPosition: Alignment.topCenter,
+              uiKey: TutorialUiItem.confirmWordButton,
+              child: UiConfirmWordButton(
+                onPressed: () async => UILevelCenterBar.onConfirmWord(context),
+              ).animate().fadeIn(),
+            ),
+          ],
+        ],
+      GamePhaseType.selectAction => [],
+    };
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
         devicePixelRatio: 1,
         textScaler: TextScaler.noScaling,
       ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: children,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 4),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: children,
+        ),
       ),
     );
   }
@@ -74,12 +75,16 @@ class UIAddWordToDictionaryButton extends StatelessWidget {
     final warning = context.select<LevelBloc, WordWarning>(
       (final s) => s.state.wordWarning,
     );
-
-    return UiTextButton.icon(
-      text: S.of(context).addToDictionary,
-      onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
-      icon: UiIcons.dictionary_add,
-      isLongButton: true,
+    return Tooltip(
+      message: S.of(context).addToDictionary,
+      child: FilledButton.tonal(
+        onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
+        child: const UiIcon(
+          height: 24,
+          width: 24,
+          icon: UiIcons.dictionary_add,
+        ),
+      ),
     );
   }
 }
@@ -102,39 +107,42 @@ class UiConfirmWordButton extends StatelessWidget {
     final mechanics = context.read<MechanicsCollection>();
     final score = mechanics.score.getScoreFromWord(word: currentWord);
     final isPressable = warning != WordWarning.isNotCorrect;
-    return Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Tooltip(
-          message: S.of(context).powerOfEnteredWord,
-          child: Text(
-            '+${score.value ~/ kScoreFactor}',
-            style: textTheme.bodySmall?.copyWith(
-              color: context.colorScheme.tertiary,
+    return GestureDetector(
+      onTap: isPressable ? onPressed : null,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Tooltip(
+            message: S.of(context).powerOfEnteredWord,
+            child: Text(
+              '+${score.value ~/ kScoreFactor}',
+              style: textTheme.bodySmall?.copyWith(
+                color: context.colorScheme.tertiary,
+              ),
             ),
           ),
-        ),
-        const Gap(6),
-        FloatingActionButton.small(
-          tooltip: S.of(context).confirm,
-          elevation: 1,
-          backgroundColor: Theme.of(context)
-              .colorScheme
-              .tertiaryContainer
-              .withOpacity(isPressable ? 0.8 : 0.1),
-          hoverElevation: 3,
-          onPressed: isPressable ? onPressed : null,
-          child: Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                  UiAssetHelper.useImagePath(UiIcons.fire.path),
+          const Gap(6),
+          FloatingActionButton.small(
+            tooltip: S.of(context).confirm,
+            elevation: 1,
+            backgroundColor: Theme.of(context)
+                .colorScheme
+                .tertiaryContainer
+                .withOpacity(isPressable ? 0.8 : 0.1),
+            hoverElevation: 3,
+            onPressed: isPressable ? onPressed : null,
+            child: Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                    UiAssetHelper.useImagePath(UiIcons.fire.path),
+                  ),
                 ),
               ),
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
