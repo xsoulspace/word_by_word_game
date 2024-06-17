@@ -170,13 +170,16 @@ class _LevelCard extends StatelessWidget {
         context.read<GlobalGameBloc>().state.allCanvasData[canvasId];
     if (canvasData == null) return const SizedBox();
     final levelSave = this.levelSave;
+    final playerId = levelSave?.players.currentPlayerId ?? '';
+    final isSaveExists =
+        playerId.isNotEmpty && playerId != PlayerProfileModel.emptyPlayerId;
     // TODO(arenukvern): l10n
     return UiBaseButton(
       onPressed: () {
-        if (levelSave == null) {
-          onStart();
-        } else {
+        if (isSaveExists) {
           onContinue();
+        } else {
+          onStart();
         }
       },
       child: Card.outlined(
@@ -190,11 +193,11 @@ class _LevelCard extends StatelessWidget {
                 canvasData.name.getValueByLanguage(),
                 style: context.textThemeBold.titleLarge,
               ),
-              if (isCurrent) const Text('Recent play'),
+              if (isCurrent && isSaveExists) const Text('Recent play'),
               // TODO(arenukvern): add players,
               const Gap(16),
               const Spacer(),
-              if (levelSave != null) ...[
+              if (isSaveExists) ...[
                 FilledButton.tonal(
                   onPressed: onContinue,
                   child: const Text('Continue'),
