@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class LandActionsView extends StatelessWidget {
@@ -9,6 +11,8 @@ class LandActionsView extends StatelessWidget {
   Widget build(final BuildContext context) {
     final buildingNotifier = context.watch<GuiBuildingNotifier>();
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Tooltip(
           // TODO(arenukvern): l10n
@@ -31,20 +35,14 @@ class LandActionsView extends StatelessWidget {
             },
           ),
         ),
-        const Spacer(),
-        const Text('Land Actions'),
-        Row(
-          children: [
-            // TODO(arenukvern): make it more generic. Or not.
-            TextButton.icon(
-              // TODO(arenukvern): l10n
-              // TODO(arenukvern): add score
-              label: const Text('Build Tent'),
-              icon: const Icon(Icons.home_outlined),
-              onPressed: () =>
-                  buildingNotifier.startPlacing(type: GuiBuildingTypeEnum.tent),
-            ),
-          ],
+        const Gap(12),
+        TextButton.icon(
+          // TODO(arenukvern): l10n
+          // TODO(arenukvern): add score
+          label: const Text('Build'),
+          icon: const Icon(CupertinoIcons.hammer),
+          onPressed: () =>
+              buildingNotifier.startPlacing(type: GuiBuildingTypeEnum.tent),
         ),
       ],
     );
