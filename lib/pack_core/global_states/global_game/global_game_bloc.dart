@@ -286,15 +286,18 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       }
 
       final character = level.characters.playerCharacter;
-      switch (level.playerStartPoint) {
+      switch (event.playerStartPoint) {
         case PlayerStartPointType.fromSpawnPoint:
           newCanvasData = newCanvasData.copyWith.playerObject(
-            distanceToOrigin: character.distanceToOrigin,
+            id: character.id,
           );
-
         case PlayerStartPointType.fromSavePoint:
           throw UnimplementedError();
         case PlayerStartPointType.fromSamePlace:
+          newCanvasData = newCanvasData.copyWith.playerObject(
+            id: character.id,
+            distanceToOrigin: character.distanceToOrigin,
+          );
       }
     }
     await dto.canvasCubit.loadCanvasData(canvasData: newCanvasData);

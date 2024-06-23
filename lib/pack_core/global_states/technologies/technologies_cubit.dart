@@ -202,8 +202,14 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
   TechnologyModel? get researchingTechnology =>
       _technologies[progress.researchingTechnologyId];
 
-  TechnologyProgressModel? get researchingTechnologyProgress =>
-      progress.technologies[progress.researchingTechnologyId];
+  TechnologyProgressModel? get researchingTechnologyProgress {
+    final id = progress.researchingTechnologyId;
+    if (id == null) return null;
+    return _getTechnologyProgress(
+      technologyId: id,
+      progressTree: progress,
+    );
+  }
 
   var _technologies = <TechnologyModelId, TechnologyModel>{};
   Map<TechnologyModelId, TechnologyModel> get technologies => _technologies;

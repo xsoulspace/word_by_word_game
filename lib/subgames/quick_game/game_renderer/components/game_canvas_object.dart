@@ -29,7 +29,9 @@ class GameCanvasObject extends Component
         distanceToOrigin = data.distanceToOrigin.toOffset(),
         distanceToTileLeftTopCorner =
             data.distanceToTileLeftTopCorner.toOffset(),
-        onChanged = onPositionChanged;
+        onChanged = onPositionChanged {
+    _updateDistanceToOrigin();
+  }
 
   final material.ValueChanged<RenderObjectModel>? onChanged;
   Gid get gid => data.id;

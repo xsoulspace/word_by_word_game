@@ -6,6 +6,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/overlays.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/land_actions_view.dart';
@@ -26,6 +27,9 @@ class UIActionFrameAdvanced extends StatelessWidget {
         builder: (final context) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
+            // TODO(arenukvern): figure out where to place it
+            const Center(child: UiPhaseText()),
+            Divider(color: context.colorScheme.tertiary.withOpacity(0.2)),
             ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 120),
               child: TabBarView(
@@ -418,6 +422,7 @@ class UiTechnologyProgress extends StatelessWidget {
     var pointsLeft = requiredScore - investedScore;
     pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
     return Tooltip(
+      // TODO(arenukvern): l10n
       message: '${pointsLeft.formattedScore} left',
       child: Stack(
         children: [
@@ -431,8 +436,9 @@ class UiTechnologyProgress extends StatelessWidget {
             dimension: 35,
             child: Center(
               child: Text(
-                '${(percentage * 100).toStringAsFixed(0)}%',
+                // '${(percentage * 100).toStringAsFixed(0)}%',
                 // '${investedScore.formattedScore}/${requiredScore.formattedScore}',
+                '${pointsLeft.formattedScore}',
                 style: context.textTheme.labelMedium?.copyWith(
                   color: context.colorScheme.tertiary,
                 ),

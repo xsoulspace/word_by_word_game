@@ -6,7 +6,6 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/overlays/gui_overlay.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -103,7 +102,7 @@ class _GameBottomBarCard extends StatelessWidget {
       child: ConstrainedBox(
         constraints: constraints,
         child: AnimatedSlide(
-          offset: effectiveIsCardVisible ? Offset.zero : const Offset(0, 0.92),
+          offset: effectiveIsCardVisible ? Offset.zero : const Offset(0, 0.80),
           duration: 200.milliseconds,
           curve: Curves.easeInCirc,
           child: Column(
@@ -214,7 +213,6 @@ class UiCurrentPlayerCard extends StatelessWidget {
               ),
             ),
           ),
-          const UiPhaseText(),
           const Gap(3),
         ],
       );
