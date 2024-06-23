@@ -60,43 +60,8 @@ class _GameBottomBarCard extends StatelessWidget {
     );
     final effectiveIsCardVisible = isCardVisible && isAllowedToBeVisible;
     final uiTheme = context.uiTheme;
-    if (isPlacingBuilding) {
-      return Column(
-        children: [
-          Text(
-            'Place a ${guiBuildingNotifier.value.type.name}',
-            style: context.textThemeBold.displaySmall,
-          ),
-          const Gap(16),
-          ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 270),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(
-                  child: Text(
-                    'Click near Hot Air Balloon to place',
-                    style: context.textTheme.bodyMedium!.copyWith(
-                      fontStyle: FontStyle.italic,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const Gap(12),
-          TextButton(
-            onPressed: guiBuildingNotifier.cancelPlacing,
-            child: Text(
-              'Cancel',
-              style: context.errorTextTheme.bodyLarge,
-            ),
-          ),
-          const Gap(24),
-        ],
-      ).animate().fadeIn().slideY(begin: 0.45);
-    }
+    if (isPlacingBuilding) return const _UiBuildingPlacementText();
+
     return SafeArea(
       top: false,
       child: ConstrainedBox(
@@ -182,6 +147,52 @@ class _GameBottomBarCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class _UiBuildingPlacementText extends StatelessWidget {
+  const _UiBuildingPlacementText({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final guiBuildingNotifier = context.watch<GuiBuildingNotifier>();
+    return Column(
+      children: [
+        Text(
+          // TODO(arenukvern): l10n
+          'Place a ${guiBuildingNotifier.value.type.name}',
+          style: context.textThemeBold.displaySmall,
+        ),
+        const Gap(16),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 270),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  // TODO(arenukvern): l10n
+                  'Click near Hot Air Balloon to place',
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    fontStyle: FontStyle.italic,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Gap(12),
+        TextButton(
+          onPressed: guiBuildingNotifier.cancelPlacing,
+          child: Text(
+            'Cancel',
+            style: context.errorTextTheme.bodyLarge,
+          ),
+        ),
+        const Gap(24),
+      ],
+    ).animate().fadeIn().slideY(begin: 0.45);
   }
 }
 
