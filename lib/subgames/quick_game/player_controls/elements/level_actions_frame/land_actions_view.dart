@@ -10,22 +10,39 @@ class LandActionsView extends StatelessWidget {
     final buildingNotifier = context.watch<GuiBuildingNotifier>();
     return Column(
       children: [
+        Tooltip(
+          // TODO(arenukvern): l10n
+          message: 'Click to go into Building or Hot Air Balloon',
+          child: TextButton.icon(
+            icon: const Icon(Icons.center_focus_strong),
+            // TODO(arenukvern): l10n
+            label: const Text('Switch Focus'),
+            onPressed: () {
+              /// hide bottom bar
+              ///
+              /// Show Possible to focus panel (horizontal list)
+              /// with squares
+              ///
+              /// NM - depending from distance use different cose
+              /// for switching
+              ///
+              /// Save/Restore FCO to data models
+              /// Make PA dependable from FCO
+            },
+          ),
+        ),
+        const Spacer(),
         const Text('Land Actions'),
-        if (buildingNotifier.isPlacing) const Text('Placing'),
         Row(
           children: [
             // TODO(arenukvern): make it more generic. Or not.
             TextButton.icon(
-              onPressed: () {
-                if (buildingNotifier.isPlacing) {
-                  buildingNotifier.cancelPlacing();
-                } else {
-                  buildingNotifier.startPlacing(type: GuiBuildingTypeEnum.tent);
-                }
-              },
-              icon: const Icon(Icons.home_outlined),
               // TODO(arenukvern): l10n
+              // TODO(arenukvern): add score
               label: const Text('Build Tent'),
+              icon: const Icon(Icons.home_outlined),
+              onPressed: () =>
+                  buildingNotifier.startPlacing(type: GuiBuildingTypeEnum.tent),
             ),
           ],
         ),
