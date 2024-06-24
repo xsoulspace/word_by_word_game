@@ -55,8 +55,7 @@ class BuildingSurfaceDrawer extends Component
   Future<void> _checkAndAddObjects() async {
     final originUtils = OriginVectorUtils.use(origin);
 
-    final playerPosition =
-        player?.shiftedHitbox?.bottomLeft.translate(0, -kTileDimensionDouble);
+    final playerPosition = player?.leftCellPosition;
 
     if (playerPosition == null) return;
 
@@ -66,20 +65,14 @@ class BuildingSurfaceDrawer extends Component
       required final CellPointModel canvasCell,
       required final int index,
     }) {
-      final canvasPosition =
-          (originUtils.getCellByDistance(canvasCell.toVector2()) *
-                      kTileDimension)
-                  .toVector2() +
-              getOffsetOrigin();
-
-      final gameCellPoint =
-          originUtils.getCurrentCellByTap(canvasPosition).toCellPoint() +
-              const CellPointModel(1, 0);
-
+      final (gameCellPoint, canvasPosition) = originUtils.getGameCellPoint(
+        canvasCell: canvasCell,
+        offsetOrigin: getOffsetOrigin(),
+      );
       final collisionConsequences =
           game.dto.canvasCubit.checkIsCollidingWithTiles(
         hitboxCells: [
-          gameCellPoint,
+          gameCellPoint + const CellPointModel(1, 0),
         ],
       );
 
@@ -107,9 +100,7 @@ class BuildingSurfaceDrawer extends Component
     }
 
     /// we need to check left and right
-    for (var i = 0; i <= 10; i++) {
-      final x = (i < 5 ? -i : i - 5).toDouble();
-      final xTile = x * kTileDimension;
+    for (final (i: i, :xTile) in kFocusableTilesList) {
       final shiftedCell = playerPosition.translate(xTile, 0);
       checkAndVerify(
         canvasCell: shiftedCell.toCellPoint(),

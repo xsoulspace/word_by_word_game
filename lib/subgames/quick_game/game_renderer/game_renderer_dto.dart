@@ -14,6 +14,7 @@ class GameRendererDiDto {
         statesStatusesCubit = context.read(),
         gameConstantsCubit = context.read(),
         buildingCubit = context.read(),
+        guiFocusableObjectsNotifier = context.read(),
         weatherCubit = context.read();
 
   /// ********************************************
@@ -30,6 +31,7 @@ class GameRendererDiDto {
   final WeatherCubit weatherCubit;
   final MechanicsCollection mechanics;
   final ThemeData theme;
+  final GuiFocusableObjectsNotifier guiFocusableObjectsNotifier;
   final DialogController dialogController;
 
   FlameMultiBlocProvider getBlocsProviderComponent({

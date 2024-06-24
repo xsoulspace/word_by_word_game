@@ -43,6 +43,22 @@ class DrawerCubitState with _$DrawerCubitState {
 class OriginVectorUtils {
   OriginVectorUtils.use(this.origin);
   final Vector2 origin;
+
+  /// to get [offsetOrigin] in the game use
+  /// [canvasRenderer.getOffsetOrigin] or in components
+  /// [getOffsetOrigin]
+  (CellPointModel gameCellPoint, Vector2? canvasPosition) getGameCellPoint({
+    required final CellPointModel canvasCell,
+    required final Vector2 offsetOrigin,
+  }) {
+    final cellPoint =
+        getCellByDistance(canvasCell.toVector2()) * kTileDimension;
+    final canvasPosition = cellPoint.toVector2() + offsetOrigin;
+
+    final gameCellPoint = getCurrentCellByTap(canvasPosition).toCellPoint();
+    return (gameCellPoint, canvasPosition);
+  }
+
   math.Point<int> getCellByDistance(final Vector2 distanceToOrigin) {
     int y = distanceToOrigin.y ~/ kTileDimension;
     if (distanceToOrigin.y < 0) {

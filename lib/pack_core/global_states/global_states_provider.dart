@@ -66,6 +66,7 @@ class GlobalStatesProvider extends StatelessWidget {
             ChangeNotifierProvider(create: DialogStackNotifier.new),
             Provider(create: DialogStackNotifier.getDialogController),
             ChangeNotifierProvider(create: GuiBuildingNotifier.new),
+            ChangeNotifierProvider(create: GuiFocusableObjectsNotifier.new),
           ],
           child: Builder(builder: builder),
         ),

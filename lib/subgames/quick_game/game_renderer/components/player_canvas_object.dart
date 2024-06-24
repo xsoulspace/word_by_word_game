@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flame/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/state.dart';
+import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
@@ -12,7 +16,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     required super.onPositionChanged,
     required this.characterModel,
     required super.data,
-  }) : super.fromRenderObject();
+  }) : super.fromRenderObject() {
+    guiFocusableObjectsNotifier.addListener(_onGuiFocusableObjectsChanged);
+  }
   factory PlayerGameCanvasObject.fromCanvasCubit({
     required final CanvasRendererGame game,
     required final CanvasCubit canvasCubit,
@@ -69,8 +75,15 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     );
   }
 
-  int get maxDistance => absoluteCell.x;
+  void _onGuiFocusableObjectsChanged() {
+    if (guiFocusableObjectsNotifier.isChoosing) {
+      unawaited(guiFocusableObjectsNotifier.updateNearestObjects(player: this));
+    }
+  }
 
+  int get maxDistance => absoluteCell.x;
+  Offset? get leftCellPosition =>
+      shiftedHitbox?.bottomLeft.translate(0, -kTileDimensionDouble);
   void _showLevelWinDialog() {
     _pauseGame();
     gameRef.dto.dialogController.showLevelWinDialog(
@@ -79,6 +92,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         maxDistance: maxDistance.toDouble(),
       ),
     );
+  }
+
+  @override
+  void onRemove() {
+    guiFocusableObjectsNotifier.removeListener(_onGuiFocusableObjectsChanged);
+    super.onRemove();
   }
 
   void _onCollision(final double dt) => _onMove(dt, isCollided: true);
@@ -173,5 +192,45 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       distanceToOrigin: distanceToOrigin.toVector2(),
       liftForce: liftForce,
     );
+  }
+
+  Future<List<Gid>> getNearestFocusableObjectsIds() async {
+    final originUtils = OriginVectorUtils.use(origin);
+
+    final playerPosition = player?.leftCellPosition;
+
+    if (playerPosition == null) return [];
+    final objectsIds = <Gid>[];
+    void checkAndVerify({
+      required final CellPointModel canvasCell,
+    }) {
+      final (gameCellPoint, _) = originUtils.getGameCellPoint(
+        canvasCell: canvasCell,
+        offsetOrigin: getOffsetOrigin(),
+      );
+
+      final collidableTiles = game.dto.canvasCubit.getCollidableTiles(
+        hitboxCells: [
+          gameCellPoint + const CellPointModel(1, 0),
+        ],
+      );
+
+      if (collidableTiles.isEmpty) return;
+
+      for (final (tile, _) in collidableTiles) {
+        for (final object in tile.objects) {
+          if (objectsIds.contains(object)) continue;
+          objectsIds.add(object);
+        }
+      }
+    }
+
+    for (final (i: _, :xTile) in kFocusableTilesList) {
+      final shiftedCell = playerPosition.translate(xTile, 0);
+      checkAndVerify(
+        canvasCell: shiftedCell.toCellPoint(),
+      );
+    }
+    return objectsIds;
   }
 }

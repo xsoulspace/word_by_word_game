@@ -144,6 +144,8 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   double get windowWidth => canvasRenderer.windowWidth;
   double get tileColumns => canvasRenderer.tileColumns;
   double get tileRows => canvasRenderer.tileRows;
+  GuiFocusableObjectsNotifier get guiFocusableObjectsNotifier =>
+      game.dto.guiFocusableObjectsNotifier;
   CanvasDataModel get canvasData => canvasCubit.canvasData;
   set canvasData(final CanvasDataModel value) => canvasCubit.canvasData = value;
   TilesetPresetResources get presetResources =>

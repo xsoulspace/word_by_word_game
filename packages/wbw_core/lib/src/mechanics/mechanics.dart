@@ -7,6 +7,7 @@ export './score_mechanics.dart';
 export './word_composition_mechanics.dart';
 export './world_time_mechanics.dart';
 export 'engine_mechanics.dart';
+export 'focusable_objects_mechanics.dart';
 export 'objects/objects.dart';
 export 'technology_mechanics.dart';
 
@@ -17,6 +18,7 @@ class MechanicsCollection {
     required this.worldTime,
     required this.score,
     required this.dictionary,
+    required this.focusableObjects,
     required this.tutorial,
     required this.weather,
     required this.hotAirBalloon,
@@ -33,10 +35,12 @@ class MechanicsCollection {
       dictionary: DictionaryMechanics(),
       tutorial: TutorialMechanics(),
       weather: WeatherMechanics(),
+      focusableObjects: FocusableObjectsMechanics(),
       hotAirBalloon: HotAirBalloonMechanics(),
       technology: TechnologyMechanics(scoreMechanics: score),
     );
   }
+  final FocusableObjectsMechanics focusableObjects;
   final EngineMechanics engine;
   final TechnologyMechanics technology;
   final WeatherMechanics weather;
