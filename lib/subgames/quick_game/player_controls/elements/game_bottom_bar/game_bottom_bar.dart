@@ -206,23 +206,20 @@ class _UiFocusableObjectsRow extends StatelessWidget {
   Widget build(final BuildContext context) {
     final guiFocusableObjectsNotifier =
         context.watch<GuiFocusableObjectsNotifier>();
+    final canvasCubit = context.watch<CanvasCubit>();
+    final nearestObjectIds = guiFocusableObjectsNotifier.value.nearestObjectIds;
     return Column(
+      mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Text(
-          // TODO(arenukvern): l10n
-          'Place a ${guiFocusableObjectsNotifier.value.nearestObjectIds}',
-          style: context.textThemeBold.displaySmall,
-        ),
-        const Gap(16),
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 270),
+          constraints: const BoxConstraints(maxWidth: 150),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Flexible(
                 child: Text(
                   // TODO(arenukvern): l10n
-                  'Click near Hot Air Balloon to place',
+                  'Choose a character or building to focus on',
                   style: context.textTheme.bodyMedium!.copyWith(
                     fontStyle: FontStyle.italic,
                   ),
@@ -232,7 +229,29 @@ class _UiFocusableObjectsRow extends StatelessWidget {
             ],
           ),
         ),
-        const Gap(12),
+        const Gap(4),
+        SizedBox(
+          height: 80,
+          child: Center(
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: nearestObjectIds.length,
+              itemBuilder: (final context, final index) {
+                final objectId = nearestObjectIds[index];
+                final object = canvasCubit.canvasData.objects[objectId];
+                return Card(
+                  child: Container(
+                    alignment: Alignment.center,
+                    padding: const EdgeInsets.all(8),
+                    child: Text(object?.tileId.value ?? ''),
+                  ),
+                );
+              },
+            ),
+          ),
+        ),
+        const Gap(6),
         TextButton(
           onPressed: guiFocusableObjectsNotifier.cancelFocusing,
           child: Text(

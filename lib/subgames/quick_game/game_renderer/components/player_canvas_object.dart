@@ -212,7 +212,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         offsetOrigin: getOffsetOrigin(),
       );
 
-      final collidableTiles = game.dto.canvasCubit.getCollidableTiles(
+      final collidableTiles = game.dto.canvasCubit.getFocusableTiles(
         hitboxCells: [
           gameCellPoint + const CellPointModel(1, 0),
         ],

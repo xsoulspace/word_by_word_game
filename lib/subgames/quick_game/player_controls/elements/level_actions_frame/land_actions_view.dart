@@ -32,6 +32,7 @@ class LandActionsView extends StatelessWidget {
               ///
               /// Save/Restore FCO to data models
               /// Make PA dependable from FCO
+              context.read<GuiFocusableObjectsNotifier>().startChoosing();
             },
           ),
         ),
