@@ -42,8 +42,10 @@ class _GameBottomBarCard extends StatelessWidget {
       (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
     );
     final guiBuildingNotifier = context.watch<GuiBuildingNotifier>();
-    final isPlacingBuilding =
-        guiBuildingNotifier.value.status == GuiBuildingStatusEnum.placing;
+    final guiFocusableObjectsNotifier =
+        context.watch<GuiFocusableObjectsNotifier>();
+    final isPlacingBuilding = guiBuildingNotifier.isPlacing;
+    final isFocusingOnBuilding = guiFocusableObjectsNotifier.isFocusing;
     final persistentFormFactors = UiPersistentFormFactors.of(context);
     final screenWidth = persistentFormFactors.screenSize.width;
     final screenContstraints = BoxConstraints(maxWidth: screenWidth);
@@ -61,6 +63,7 @@ class _GameBottomBarCard extends StatelessWidget {
     final effectiveIsCardVisible = isCardVisible && isAllowedToBeVisible;
     final uiTheme = context.uiTheme;
     if (isPlacingBuilding) return const _UiBuildingPlacementText();
+    if (isFocusingOnBuilding) return const _UiFocusableObjectsRow();
 
     return SafeArea(
       top: false,
@@ -185,6 +188,53 @@ class _UiBuildingPlacementText extends StatelessWidget {
         const Gap(12),
         TextButton(
           onPressed: guiBuildingNotifier.cancelPlacing,
+          child: Text(
+            'Cancel',
+            style: context.errorTextTheme.bodyLarge,
+          ),
+        ),
+        const Gap(24),
+      ],
+    ).animate().fadeIn().slideY(begin: 0.45);
+  }
+}
+
+class _UiFocusableObjectsRow extends StatelessWidget {
+  const _UiFocusableObjectsRow({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final guiFocusableObjectsNotifier =
+        context.watch<GuiFocusableObjectsNotifier>();
+    return Column(
+      children: [
+        Text(
+          // TODO(arenukvern): l10n
+          'Place a ${guiFocusableObjectsNotifier.value.nearestObjectIds}',
+          style: context.textThemeBold.displaySmall,
+        ),
+        const Gap(16),
+        ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 270),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Flexible(
+                child: Text(
+                  // TODO(arenukvern): l10n
+                  'Click near Hot Air Balloon to place',
+                  style: context.textTheme.bodyMedium!.copyWith(
+                    fontStyle: FontStyle.italic,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ],
+          ),
+        ),
+        const Gap(12),
+        TextButton(
+          onPressed: guiFocusableObjectsNotifier.cancelFocusing,
           child: Text(
             'Cancel',
             style: context.errorTextTheme.bodyLarge,

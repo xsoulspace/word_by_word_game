@@ -76,7 +76,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   }
 
   void _onGuiFocusableObjectsChanged() {
-    if (guiFocusableObjectsNotifier.isChoosing) {
+    if (guiFocusableObjectsNotifier.isFocusing) {
       unawaited(guiFocusableObjectsNotifier.updateNearestObjects(player: this));
     }
   }
@@ -194,6 +194,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     );
   }
 
+  /// this logic is similar to [BuildingSurfaceDrawer._checkAndAddObjects]
+  ///
+  /// maybe merge logic or reuse
   Future<List<Gid>> getNearestFocusableObjectsIds() async {
     final originUtils = OriginVectorUtils.use(origin);
 

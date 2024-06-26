@@ -43,12 +43,12 @@ class GuiFocusableObjectsNotifier
       : dto = GuiFocusableObjectsNotifierDto(context: context),
         super(GuiFocusableObjectsNotifierState.idle);
   final GuiFocusableObjectsNotifierDto dto;
-  bool get isChoosing => value.isChoosing;
-  void cancelChoosing() => value = GuiFocusableObjectsNotifierState.idle;
+  bool get isFocusing => value.isChoosing;
+  void cancelFocusing() => value = GuiFocusableObjectsNotifierState.idle;
 
   void confirmChoosing() {
     // TODO(arenukvern): description
-    cancelChoosing();
+    cancelFocusing();
   }
 
   /// all nearest objects will be updated in the next tick
