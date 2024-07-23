@@ -208,11 +208,14 @@ class _UiFocusableObjectsRow extends StatelessWidget {
         context.watch<GuiFocusableObjectsNotifier>();
     final canvasCubit = context.watch<CanvasCubit>();
     final nearestObjectIds = guiFocusableObjectsNotifier.value.nearestObjectIds;
+    // TODO(arenukvern): add main character
+    final playerCharacter = canvasCubit.canvasData.playerObject;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 150),
+          constraints: const BoxConstraints(maxWidth: 250),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -229,23 +232,32 @@ class _UiFocusableObjectsRow extends StatelessWidget {
             ],
           ),
         ),
-        const Gap(4),
+        const Gap(16),
         SizedBox(
           height: 80,
           child: Center(
             child: ListView.builder(
               shrinkWrap: true,
               scrollDirection: Axis.horizontal,
-              itemCount: nearestObjectIds.length,
+              itemCount: nearestObjectIds.length + 1,
               itemBuilder: (final context, final index) {
-                final objectId = nearestObjectIds[index];
+                if (index == 0) {
+                  return _UiToFocusCard(
+                    onPressed: () {
+                      throw UnimplementedError();
+                    },
+                    title: playerCharacter.tileId.value,
+                    // TODO(arenukvern): add image
+                  );
+                }
+                final objectId = nearestObjectIds[index - 1];
                 final object = canvasCubit.canvasData.objects[objectId];
-                return Card(
-                  child: Container(
-                    alignment: Alignment.center,
-                    padding: const EdgeInsets.all(8),
-                    child: Text(object?.tileId.value ?? ''),
-                  ),
+                return _UiToFocusCard(
+                  onPressed: () {
+                    throw UnimplementedError();
+                  },
+                  title: object?.tileId.value ?? '',
+                  // TODO(arenukvern): add image
                 );
               },
             ),
@@ -263,6 +275,44 @@ class _UiFocusableObjectsRow extends StatelessWidget {
       ],
     ).animate().fadeIn().slideY(begin: 0.45);
   }
+}
+
+class _UiToFocusCard extends StatelessWidget {
+  const _UiToFocusCard({
+    required this.title,
+    required this.onPressed,
+    this.child,
+    this.isFocused = false,
+    this.isSelected = false,
+  });
+  final String title;
+  final Widget? child;
+  final VoidCallback onPressed;
+  final bool isFocused;
+  final bool isSelected;
+  @override
+  Widget build(final BuildContext context) => UiBaseButton(
+        onPressed: onPressed,
+        child: Card(
+          elevation: isFocused ? 2 : 0,
+          child: Container(
+            decoration: BoxDecoration(
+              border: isSelected
+                  ? Border.all(color: context.colorScheme.primary)
+                  : null,
+            ),
+            alignment: Alignment.center,
+            padding: const EdgeInsets.all(8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text(title),
+                child ?? const SizedBox.shrink(),
+              ],
+            ),
+          ),
+        ),
+      );
 }
 
 class UiCurrentPlayerCard extends StatelessWidget {
