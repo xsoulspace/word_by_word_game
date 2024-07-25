@@ -69,15 +69,16 @@ class BuildingSurfaceDrawer extends Component
         canvasCell: canvasCell,
         offsetOrigin: getOffsetOrigin(),
       );
-      final collisionConsequences =
-          game.dto.canvasCubit.checkIsCollidingWithTiles(
-        hitboxCells: [
-          gameCellPoint + const CellPointModel(1, 0),
-        ],
+      final correctedGameCellPoint = gameCellPoint + const CellPointModel(1, 0);
+      if (canvasPosition == null) return;
+      final collisionConsequences = canvasCubit.checkIsCollidingWithTiles(
+        hitboxCells: [correctedGameCellPoint],
       );
 
-      final distanceToOrigin = originUtils.getCurrentPositionByTap(
-        gameCellPoint.toVector2(),
+      // TODO(arenukvern): description
+
+      final distanceToOrigin = originUtils.getAbsoluteCellByCanvasObject(
+        objectDistanceToOrigin: correctedGameCellPoint.toVector2().toOffset(),
       );
 
       if (collisionConsequences.isEmpty) {
@@ -91,8 +92,11 @@ class BuildingSurfaceDrawer extends Component
             type: _buildingCubit.value.type,
             onSelect: () => _onSelect(
               index: index,
-              distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-              cellPoint: gameCellPoint,
+              distanceToOrigin: distanceToOrigin
+                  .toCellPoint()
+                  .toVector2()
+                  .toSerializedVector2(),
+              cellPoint: correctedGameCellPoint,
             ),
           ),
         );

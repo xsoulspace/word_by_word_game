@@ -243,9 +243,7 @@ class _UiFocusableObjectsRow extends StatelessWidget {
               itemBuilder: (final context, final index) {
                 if (index == 0) {
                   return _UiToFocusCard(
-                    onPressed: () {
-                      throw UnimplementedError();
-                    },
+                    onPressed: guiFocusableObjectsNotifier.choosePlayer,
                     title: playerCharacter.tileId.value,
                     // TODO(arenukvern): add image
                   );
@@ -253,9 +251,8 @@ class _UiFocusableObjectsRow extends StatelessWidget {
                 final objectId = nearestObjectIds[index - 1];
                 final object = canvasCubit.canvasData.objects[objectId];
                 return _UiToFocusCard(
-                  onPressed: () {
-                    throw UnimplementedError();
-                  },
+                  onPressed: () =>
+                      guiFocusableObjectsNotifier.setFocusedObjectId(objectId),
                   title: object?.tileId.value ?? '',
                   // TODO(arenukvern): add image
                 );

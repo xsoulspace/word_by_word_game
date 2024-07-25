@@ -53,6 +53,8 @@ class GuiFocusableObjectsNotifier
     value = GuiFocusableObjectsNotifierState.idle;
   }
 
+  void choosePlayer() => setFocusedObjectId(Gid.empty);
+
   void setFocusedObjectId(final Gid id) {
     value = value.copyWith(focusedObjectId: id);
   }

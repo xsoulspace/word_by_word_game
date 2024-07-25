@@ -126,19 +126,10 @@ class GameCanvasObject extends Component
 
     /// to highlight hitbox, uncomment lines below
     // if (debugMode) {
-
     // final hitbox = shiftedHitbox;
     // if (hitbox != null) {
     //   canvas.drawRect(
     //     hitbox,
-    //     Palette.red90.paint(),
-    //   );
-    // } else {
-    //   canvas.drawRect(
-    //     Rect.fromPoints(
-    //       position,
-    //       position + const Offset(100, 100),
-    //     ),
     //     Palette.red90.paint(),
     //   );
     // }

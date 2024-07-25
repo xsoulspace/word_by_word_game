@@ -23,6 +23,7 @@ class GameRendererDiDto {
   final LevelBloc levelBloc;
   final DebugCubit debugCubit;
   final GuiBuildingNotifier buildingCubit;
+  final GuiFocusableObjectsNotifier guiFocusableObjectsNotifier;
   final LevelPlayersBloc levelPlayersBloc;
   final StatesStatusesCubit statesStatusesCubit;
   final GameConstantsCubit gameConstantsCubit;
@@ -31,7 +32,6 @@ class GameRendererDiDto {
   final WeatherCubit weatherCubit;
   final MechanicsCollection mechanics;
   final ThemeData theme;
-  final GuiFocusableObjectsNotifier guiFocusableObjectsNotifier;
   final DialogController dialogController;
 
   FlameMultiBlocProvider getBlocsProviderComponent({
