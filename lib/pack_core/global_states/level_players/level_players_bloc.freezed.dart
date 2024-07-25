@@ -1219,6 +1219,9 @@ mixin _$LevelPlayersBlocState {
   PlayerCharacterModel get playerCharacter =>
       throw _privateConstructorUsedError;
 
+  /// {@macro focusedObjectId}
+  Gid get focusedObjectGid => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $LevelPlayersBlocStateCopyWith<LevelPlayersBlocState> get copyWith =>
       throw _privateConstructorUsedError;
@@ -1233,9 +1236,11 @@ abstract class $LevelPlayersBlocStateCopyWith<$Res> {
   $Res call(
       {List<PlayerProfileModel> players,
       String currentPlayerId,
-      PlayerCharacterModel playerCharacter});
+      PlayerCharacterModel playerCharacter,
+      Gid focusedObjectGid});
 
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+  $GidCopyWith<$Res> get focusedObjectGid;
 }
 
 /// @nodoc
@@ -1255,6 +1260,7 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
     Object? players = null,
     Object? currentPlayerId = null,
     Object? playerCharacter = null,
+    Object? focusedObjectGid = null,
   }) {
     return _then(_value.copyWith(
       players: null == players
@@ -1269,6 +1275,10 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
           ? _value.playerCharacter
           : playerCharacter // ignore: cast_nullable_to_non_nullable
               as PlayerCharacterModel,
+      focusedObjectGid: null == focusedObjectGid
+          ? _value.focusedObjectGid
+          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ) as $Val);
   }
 
@@ -1277,6 +1287,14 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
     return $PlayerCharacterModelCopyWith<$Res>(_value.playerCharacter, (value) {
       return _then(_value.copyWith(playerCharacter: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GidCopyWith<$Res> get focusedObjectGid {
+    return $GidCopyWith<$Res>(_value.focusedObjectGid, (value) {
+      return _then(_value.copyWith(focusedObjectGid: value) as $Val);
     });
   }
 }
@@ -1293,10 +1311,13 @@ abstract class _$$LevelPlayersBlocStateImplCopyWith<$Res>
   $Res call(
       {List<PlayerProfileModel> players,
       String currentPlayerId,
-      PlayerCharacterModel playerCharacter});
+      PlayerCharacterModel playerCharacter,
+      Gid focusedObjectGid});
 
   @override
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+  @override
+  $GidCopyWith<$Res> get focusedObjectGid;
 }
 
 /// @nodoc
@@ -1314,6 +1335,7 @@ class __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>
     Object? players = null,
     Object? currentPlayerId = null,
     Object? playerCharacter = null,
+    Object? focusedObjectGid = null,
   }) {
     return _then(_$LevelPlayersBlocStateImpl(
       players: null == players
@@ -1328,6 +1350,10 @@ class __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>
           ? _value.playerCharacter
           : playerCharacter // ignore: cast_nullable_to_non_nullable
               as PlayerCharacterModel,
+      focusedObjectGid: null == focusedObjectGid
+          ? _value.focusedObjectGid
+          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ));
   }
 }
@@ -1338,7 +1364,8 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
   const _$LevelPlayersBlocStateImpl(
       {final List<PlayerProfileModel> players = const [],
       this.currentPlayerId = '',
-      this.playerCharacter = PlayerCharacterModel.empty})
+      this.playerCharacter = PlayerCharacterModel.empty,
+      this.focusedObjectGid = Gid.empty})
       : _players = players,
         super._();
 
@@ -1358,9 +1385,14 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
   @JsonKey()
   final PlayerCharacterModel playerCharacter;
 
+  /// {@macro focusedObjectId}
+  @override
+  @JsonKey()
+  final Gid focusedObjectGid;
+
   @override
   String toString() {
-    return 'LevelPlayersBlocState(players: $players, currentPlayerId: $currentPlayerId, playerCharacter: $playerCharacter)';
+    return 'LevelPlayersBlocState(players: $players, currentPlayerId: $currentPlayerId, playerCharacter: $playerCharacter, focusedObjectGid: $focusedObjectGid)';
   }
 
   @override
@@ -1372,7 +1404,9 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
             (identical(other.currentPlayerId, currentPlayerId) ||
                 other.currentPlayerId == currentPlayerId) &&
             (identical(other.playerCharacter, playerCharacter) ||
-                other.playerCharacter == playerCharacter));
+                other.playerCharacter == playerCharacter) &&
+            (identical(other.focusedObjectGid, focusedObjectGid) ||
+                other.focusedObjectGid == focusedObjectGid));
   }
 
   @override
@@ -1380,7 +1414,8 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
       runtimeType,
       const DeepCollectionEquality().hash(_players),
       currentPlayerId,
-      playerCharacter);
+      playerCharacter,
+      focusedObjectGid);
 
   @JsonKey(ignore: true)
   @override
@@ -1392,10 +1427,10 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
 
 abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
   const factory _LevelPlayersBlocState(
-          {final List<PlayerProfileModel> players,
-          final String currentPlayerId,
-          final PlayerCharacterModel playerCharacter}) =
-      _$LevelPlayersBlocStateImpl;
+      {final List<PlayerProfileModel> players,
+      final String currentPlayerId,
+      final PlayerCharacterModel playerCharacter,
+      final Gid focusedObjectGid}) = _$LevelPlayersBlocStateImpl;
   const _LevelPlayersBlocState._() : super._();
 
   @override
@@ -1404,6 +1439,10 @@ abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
   String get currentPlayerId;
   @override
   PlayerCharacterModel get playerCharacter;
+  @override
+
+  /// {@macro focusedObjectId}
+  Gid get focusedObjectGid;
   @override
   @JsonKey(ignore: true)
   _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>

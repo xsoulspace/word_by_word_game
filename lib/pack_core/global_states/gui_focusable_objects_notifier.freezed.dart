@@ -25,6 +25,9 @@ mixin _$GuiFocusableObjectsNotifierState {
   List<Gid> get nearestObjectIds => throw _privateConstructorUsedError;
   bool get isNearestObjectsLoaded => throw _privateConstructorUsedError;
 
+  /// {@macro focusedObjectId}
+  Gid get focusedObjectId => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $GuiFocusableObjectsNotifierStateCopyWith<GuiFocusableObjectsNotifierState>
       get copyWith => throw _privateConstructorUsedError;
@@ -41,7 +44,10 @@ abstract class $GuiFocusableObjectsNotifierStateCopyWith<$Res> {
   $Res call(
       {bool isChoosing,
       List<Gid> nearestObjectIds,
-      bool isNearestObjectsLoaded});
+      bool isNearestObjectsLoaded,
+      Gid focusedObjectId});
+
+  $GidCopyWith<$Res> get focusedObjectId;
 }
 
 /// @nodoc
@@ -61,6 +67,7 @@ class _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
     Object? isChoosing = null,
     Object? nearestObjectIds = null,
     Object? isNearestObjectsLoaded = null,
+    Object? focusedObjectId = null,
   }) {
     return _then(_value.copyWith(
       isChoosing: null == isChoosing
@@ -75,7 +82,19 @@ class _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
           ? _value.isNearestObjectsLoaded
           : isNearestObjectsLoaded // ignore: cast_nullable_to_non_nullable
               as bool,
+      focusedObjectId: null == focusedObjectId
+          ? _value.focusedObjectId
+          : focusedObjectId // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GidCopyWith<$Res> get focusedObjectId {
+    return $GidCopyWith<$Res>(_value.focusedObjectId, (value) {
+      return _then(_value.copyWith(focusedObjectId: value) as $Val);
+    });
   }
 }
 
@@ -90,7 +109,11 @@ abstract class _$$GuiFcoNotifierStateImplCopyWith<$Res>
   $Res call(
       {bool isChoosing,
       List<Gid> nearestObjectIds,
-      bool isNearestObjectsLoaded});
+      bool isNearestObjectsLoaded,
+      Gid focusedObjectId});
+
+  @override
+  $GidCopyWith<$Res> get focusedObjectId;
 }
 
 /// @nodoc
@@ -108,6 +131,7 @@ class __$$GuiFcoNotifierStateImplCopyWithImpl<$Res>
     Object? isChoosing = null,
     Object? nearestObjectIds = null,
     Object? isNearestObjectsLoaded = null,
+    Object? focusedObjectId = null,
   }) {
     return _then(_$GuiFcoNotifierStateImpl(
       isChoosing: null == isChoosing
@@ -122,6 +146,10 @@ class __$$GuiFcoNotifierStateImplCopyWithImpl<$Res>
           ? _value.isNearestObjectsLoaded
           : isNearestObjectsLoaded // ignore: cast_nullable_to_non_nullable
               as bool,
+      focusedObjectId: null == focusedObjectId
+          ? _value.focusedObjectId
+          : focusedObjectId // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ));
   }
 }
@@ -132,7 +160,8 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
   const _$GuiFcoNotifierStateImpl(
       {this.isChoosing = false,
       final List<Gid> nearestObjectIds = const [],
-      this.isNearestObjectsLoaded = false})
+      this.isNearestObjectsLoaded = false,
+      this.focusedObjectId = Gid.empty})
       : _nearestObjectIds = nearestObjectIds;
 
   @override
@@ -162,9 +191,14 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
   @JsonKey()
   final bool isNearestObjectsLoaded;
 
+  /// {@macro focusedObjectId}
+  @override
+  @JsonKey()
+  final Gid focusedObjectId;
+
   @override
   String toString() {
-    return 'GuiFocusableObjectsNotifierState(isChoosing: $isChoosing, nearestObjectIds: $nearestObjectIds, isNearestObjectsLoaded: $isNearestObjectsLoaded)';
+    return 'GuiFocusableObjectsNotifierState(isChoosing: $isChoosing, nearestObjectIds: $nearestObjectIds, isNearestObjectsLoaded: $isNearestObjectsLoaded, focusedObjectId: $focusedObjectId)';
   }
 
   @override
@@ -177,7 +211,9 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
             const DeepCollectionEquality()
                 .equals(other._nearestObjectIds, _nearestObjectIds) &&
             (identical(other.isNearestObjectsLoaded, isNearestObjectsLoaded) ||
-                other.isNearestObjectsLoaded == isNearestObjectsLoaded));
+                other.isNearestObjectsLoaded == isNearestObjectsLoaded) &&
+            (identical(other.focusedObjectId, focusedObjectId) ||
+                other.focusedObjectId == focusedObjectId));
   }
 
   @override
@@ -185,7 +221,8 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
       runtimeType,
       isChoosing,
       const DeepCollectionEquality().hash(_nearestObjectIds),
-      isNearestObjectsLoaded);
+      isNearestObjectsLoaded,
+      focusedObjectId);
 
   @JsonKey(ignore: true)
   @override
@@ -200,7 +237,8 @@ abstract class _GuiFcoNotifierState
   const factory _GuiFcoNotifierState(
       {final bool isChoosing,
       final List<Gid> nearestObjectIds,
-      final bool isNearestObjectsLoaded}) = _$GuiFcoNotifierStateImpl;
+      final bool isNearestObjectsLoaded,
+      final Gid focusedObjectId}) = _$GuiFcoNotifierStateImpl;
 
   @override
   bool get isChoosing;
@@ -213,6 +251,10 @@ abstract class _GuiFcoNotifierState
   List<Gid> get nearestObjectIds;
   @override
   bool get isNearestObjectsLoaded;
+  @override
+
+  /// {@macro focusedObjectId}
+  Gid get focusedObjectId;
   @override
   @JsonKey(ignore: true)
   _$$GuiFcoNotifierStateImplCopyWith<_$GuiFcoNotifierStateImpl> get copyWith =>

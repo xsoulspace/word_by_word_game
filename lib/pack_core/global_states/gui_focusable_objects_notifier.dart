@@ -13,9 +13,11 @@ class GuiFocusableObjectsNotifierDto {
   GuiFocusableObjectsNotifierDto({required final BuildContext context})
       : canvasCubit = context.read(),
         mechanics = context.read(),
+        levelPlayersBloc = context.read(),
         levelBloc = context.read();
   final CanvasCubit canvasCubit;
   final LevelBloc levelBloc;
+  final LevelPlayersBloc levelPlayersBloc;
   final MechanicsCollection mechanics;
 }
 
@@ -30,6 +32,9 @@ class GuiFocusableObjectsNotifierState with _$GuiFocusableObjectsNotifierState {
     /// Maybe it would be good to show some distance?
     @Default([]) final List<Gid> nearestObjectIds,
     @Default(false) final bool isNearestObjectsLoaded,
+
+    /// {@macro focusedObjectId}
+    @Default(Gid.empty) final Gid focusedObjectId,
   }) = _GuiFcoNotifierState;
   static const idle = GuiFocusableObjectsNotifierState();
 }
@@ -44,23 +49,33 @@ class GuiFocusableObjectsNotifier
         super(GuiFocusableObjectsNotifierState.idle);
   final GuiFocusableObjectsNotifierDto dto;
   bool get isFocusing => value.isChoosing;
-  void cancelFocusing() => value = GuiFocusableObjectsNotifierState.idle;
+  void cancelFocusing() {
+    value = GuiFocusableObjectsNotifierState.idle;
+  }
+
+  void setFocusedObjectId(final Gid id) {
+    value = value.copyWith(focusedObjectId: id);
+  }
 
   void confirmChoosing() {
-    // TODO(arenukvern): description
+    dto.levelPlayersBloc.changeFocusedObjectId(value.focusedObjectId);
     cancelFocusing();
   }
 
   /// all nearest objects will be updated in the next tick
   /// from the player render object
   void startChoosing() {
-    value = value.copyWith(isChoosing: true);
+    value = value.copyWith(
+      isChoosing: true,
+      focusedObjectId: dto.levelPlayersBloc.state.focusedObjectGid,
+    );
+    // TODO(arenukvern): get nearest focusable objects by gid
   }
 
   bool _isLoadingIds = false;
 
   /// should be called from [player]
-  Future<void> updateNearestObjects({
+  Future<void> updateNearestObjectsOfPlayer({
     required final PlayerGameCanvasObject player,
   }) async {
     if (value.isNearestObjectsLoaded) return;

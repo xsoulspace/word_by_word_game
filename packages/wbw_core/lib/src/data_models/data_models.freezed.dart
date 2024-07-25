@@ -775,6 +775,15 @@ mixin _$LevelCharactersModel {
   PlayerCharacterModel get playerCharacter =>
       throw _privateConstructorUsedError;
 
+  /// {@template focused_object}
+  /// The difference of having focused object id is that it is not tied
+  /// to a player and can be used to focus on any object in the level.
+  /// In that case the current player is not focused and camera is not
+  /// following the player. Instead, the camera is focused on the object
+  /// with the given id and moves to it.
+  /// {@endtemplate}
+  Gid get focusedObjectGid => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
   $LevelCharactersModelCopyWith<LevelCharactersModel> get copyWith =>
@@ -787,9 +796,10 @@ abstract class $LevelCharactersModelCopyWith<$Res> {
           $Res Function(LevelCharactersModel) then) =
       _$LevelCharactersModelCopyWithImpl<$Res, LevelCharactersModel>;
   @useResult
-  $Res call({PlayerCharacterModel playerCharacter});
+  $Res call({PlayerCharacterModel playerCharacter, Gid focusedObjectGid});
 
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+  $GidCopyWith<$Res> get focusedObjectGid;
 }
 
 /// @nodoc
@@ -807,12 +817,17 @@ class _$LevelCharactersModelCopyWithImpl<$Res,
   @override
   $Res call({
     Object? playerCharacter = null,
+    Object? focusedObjectGid = null,
   }) {
     return _then(_value.copyWith(
       playerCharacter: null == playerCharacter
           ? _value.playerCharacter
           : playerCharacter // ignore: cast_nullable_to_non_nullable
               as PlayerCharacterModel,
+      focusedObjectGid: null == focusedObjectGid
+          ? _value.focusedObjectGid
+          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ) as $Val);
   }
 
@@ -821,6 +836,14 @@ class _$LevelCharactersModelCopyWithImpl<$Res,
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
     return $PlayerCharacterModelCopyWith<$Res>(_value.playerCharacter, (value) {
       return _then(_value.copyWith(playerCharacter: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $GidCopyWith<$Res> get focusedObjectGid {
+    return $GidCopyWith<$Res>(_value.focusedObjectGid, (value) {
+      return _then(_value.copyWith(focusedObjectGid: value) as $Val);
     });
   }
 }
@@ -833,10 +856,12 @@ abstract class _$$LevelCharactersModelImplCopyWith<$Res>
       __$$LevelCharactersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlayerCharacterModel playerCharacter});
+  $Res call({PlayerCharacterModel playerCharacter, Gid focusedObjectGid});
 
   @override
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+  @override
+  $GidCopyWith<$Res> get focusedObjectGid;
 }
 
 /// @nodoc
@@ -851,12 +876,17 @@ class __$$LevelCharactersModelImplCopyWithImpl<$Res>
   @override
   $Res call({
     Object? playerCharacter = null,
+    Object? focusedObjectGid = null,
   }) {
     return _then(_$LevelCharactersModelImpl(
       playerCharacter: null == playerCharacter
           ? _value.playerCharacter
           : playerCharacter // ignore: cast_nullable_to_non_nullable
               as PlayerCharacterModel,
+      focusedObjectGid: null == focusedObjectGid
+          ? _value.focusedObjectGid
+          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ));
   }
 }
@@ -865,7 +895,9 @@ class __$$LevelCharactersModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$LevelCharactersModelImpl extends _LevelCharactersModel {
-  const _$LevelCharactersModelImpl({required this.playerCharacter}) : super._();
+  const _$LevelCharactersModelImpl(
+      {required this.playerCharacter, this.focusedObjectGid = Gid.empty})
+      : super._();
 
   factory _$LevelCharactersModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LevelCharactersModelImplFromJson(json);
@@ -873,9 +905,20 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
   @override
   final PlayerCharacterModel playerCharacter;
 
+  /// {@template focused_object}
+  /// The difference of having focused object id is that it is not tied
+  /// to a player and can be used to focus on any object in the level.
+  /// In that case the current player is not focused and camera is not
+  /// following the player. Instead, the camera is focused on the object
+  /// with the given id and moves to it.
+  /// {@endtemplate}
+  @override
+  @JsonKey()
+  final Gid focusedObjectGid;
+
   @override
   String toString() {
-    return 'LevelCharactersModel(playerCharacter: $playerCharacter)';
+    return 'LevelCharactersModel(playerCharacter: $playerCharacter, focusedObjectGid: $focusedObjectGid)';
   }
 
   @override
@@ -884,12 +927,15 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
         (other.runtimeType == runtimeType &&
             other is _$LevelCharactersModelImpl &&
             (identical(other.playerCharacter, playerCharacter) ||
-                other.playerCharacter == playerCharacter));
+                other.playerCharacter == playerCharacter) &&
+            (identical(other.focusedObjectGid, focusedObjectGid) ||
+                other.focusedObjectGid == focusedObjectGid));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, playerCharacter);
+  int get hashCode =>
+      Object.hash(runtimeType, playerCharacter, focusedObjectGid);
 
   @JsonKey(ignore: true)
   @override
@@ -909,8 +955,8 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
 
 abstract class _LevelCharactersModel extends LevelCharactersModel {
   const factory _LevelCharactersModel(
-          {required final PlayerCharacterModel playerCharacter}) =
-      _$LevelCharactersModelImpl;
+      {required final PlayerCharacterModel playerCharacter,
+      final Gid focusedObjectGid}) = _$LevelCharactersModelImpl;
   const _LevelCharactersModel._() : super._();
 
   factory _LevelCharactersModel.fromJson(Map<String, dynamic> json) =
@@ -918,6 +964,16 @@ abstract class _LevelCharactersModel extends LevelCharactersModel {
 
   @override
   PlayerCharacterModel get playerCharacter;
+  @override
+
+  /// {@template focused_object}
+  /// The difference of having focused object id is that it is not tied
+  /// to a player and can be used to focus on any object in the level.
+  /// In that case the current player is not focused and camera is not
+  /// following the player. Instead, the camera is focused on the object
+  /// with the given id and moves to it.
+  /// {@endtemplate}
+  Gid get focusedObjectGid;
   @override
   @JsonKey(ignore: true)
   _$$LevelCharactersModelImplCopyWith<_$LevelCharactersModelImpl>

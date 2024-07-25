@@ -77,7 +77,11 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   void _onGuiFocusableObjectsChanged() {
     if (guiFocusableObjectsNotifier.isFocusing) {
-      unawaited(guiFocusableObjectsNotifier.updateNearestObjects(player: this));
+      unawaited(
+        guiFocusableObjectsNotifier.updateNearestObjectsOfPlayer(
+          player: this,
+        ),
+      );
     }
   }
 

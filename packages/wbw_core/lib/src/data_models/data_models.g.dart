@@ -102,12 +102,16 @@ _$LevelCharactersModelImpl _$$LevelCharactersModelImplFromJson(
     _$LevelCharactersModelImpl(
       playerCharacter: PlayerCharacterModel.fromJson(
           json['playerCharacter'] as Map<String, dynamic>),
+      focusedObjectGid: json['focusedObjectGid'] == null
+          ? Gid.empty
+          : Gid.fromJson(json['focusedObjectGid'] as String),
     );
 
 Map<String, dynamic> _$$LevelCharactersModelImplToJson(
         _$LevelCharactersModelImpl instance) =>
     <String, dynamic>{
       'playerCharacter': instance.playerCharacter.toJson(),
+      'focusedObjectGid': instance.focusedObjectGid.toJson(),
     };
 
 _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>

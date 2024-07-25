@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -27,7 +28,11 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   final LevelPlayersBlocDiDto diDto;
   final _log = Logger();
   PlayerCharacterModel get playerCharacter => state.playerCharacter;
-
+  Gid get focusedObjectId => state.focusedObjectGid;
+  void changeFocusedObjectId(final Gid value) => emit(
+        state.copyWith(focusedObjectGid: value),
+      );
+  void focusToPlayer() => changeFocusedObjectId(Gid.empty);
   @override
   Future<void> close() {
     _log.close();
