@@ -77,8 +77,8 @@ class BuildingSurfaceDrawer extends Component
 
       // TODO(arenukvern): description
 
-      final distanceToOrigin = originUtils.getAbsoluteCellByCanvasObject(
-        objectDistanceToOrigin: correctedGameCellPoint.toVector2().toOffset(),
+      final distanceToOrigin = originUtils.getCurrentPositionByTap(
+        canvasPosition,
       );
 
       if (collisionConsequences.isEmpty) {
@@ -92,10 +92,8 @@ class BuildingSurfaceDrawer extends Component
             type: _buildingCubit.value.type,
             onSelect: () => _onSelect(
               index: index,
-              distanceToOrigin: distanceToOrigin
-                  .toCellPoint()
-                  .toVector2()
-                  .toSerializedVector2(),
+              // distanceToOrigin: canvasPosition.toSerializedVector2(),
+              distanceToOrigin: distanceToOrigin.toSerializedVector2(),
               cellPoint: correctedGameCellPoint,
             ),
           ),

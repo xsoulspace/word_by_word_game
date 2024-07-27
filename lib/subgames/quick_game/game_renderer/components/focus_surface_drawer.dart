@@ -65,15 +65,15 @@ class FocusSurfaceDrawer extends Component
     final gid = _focusableObjectsNotifier.value.focusedObjectId;
     final object = canvasCubit.objects[gid];
     if (object == null) return;
-    final canvasCell = originUtils.getCellByDistance(
-      object.distanceToOrigin.toVector2(),
-    );
+    final canvasCell = originUtils.getCurrentCellByGameObject(object);
     final (gameCellPoint, canvasPosition) = originUtils.getGameCellPoint(
       canvasCell: canvasCell.toCellPoint(),
       offsetOrigin: getOffsetOrigin(),
     );
 
-    final obj = _FocusedObjectComponent(position: canvasPosition);
+    final obj =
+        // _FocusedObjectComponent(position: object.distanceToOrigin.toVector2());
+        _FocusedObjectComponent(position: object.distanceToOrigin.toVector2());
     add(obj);
     _focusObject = obj;
   }
