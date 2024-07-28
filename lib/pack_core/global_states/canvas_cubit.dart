@@ -84,12 +84,12 @@ final class CanvasCubit extends DrawerCubit {
   Iterable<LayerModel> get _collidableLayers =>
       state.canvasData.layers.where((final e) => e.isCollidable);
   List<CellTileLayerTuple> getFocusableTiles({
-    required final List<CellPointModel> hitboxCells,
+    required final List<CellPointModel> hitboxMapCells,
   }) {
     // TODO(arenukvern): add character tile check
     final tiles = <CellTileLayerTuple>[];
     for (final layer in [buildingsLayer]) {
-      for (final cell in hitboxCells) {
+      for (final cell in hitboxMapCells) {
         final tile = layer.tiles[cell];
         if (tile != null) {
           tiles.add((tile, layer));
@@ -101,7 +101,7 @@ final class CanvasCubit extends DrawerCubit {
   }
 
   Set<CollisionConsequence> checkIsCollidingWithTiles({
-    required final List<CellPointModel> hitboxCells,
+    required final List<CellPointModel> hitboxMapCells,
     final bool shouldIncludeBuildings = false,
   }) {
     final consequences = <CollisionConsequence>{};
@@ -109,7 +109,7 @@ final class CanvasCubit extends DrawerCubit {
       ..._collidableLayers,
       if (shouldIncludeBuildings) buildingsLayer,
     ]) {
-      for (final cell in hitboxCells) {
+      for (final cell in hitboxMapCells) {
         final tile = layer.tiles[cell];
         if (tile != null) {
           consequences.add(layer.collisionConsequence);

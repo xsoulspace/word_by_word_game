@@ -80,9 +80,12 @@ class TilesDrawer extends Component
   }
 
   math.Point<int>? _lastSelectedCell;
-  void _onTap(final Vector2 canvasPosition) {
-    final originUtils = OriginVectorUtils.use(origin);
-    final cell = originUtils.getCurrentCellByTap(canvasPosition);
+  void _onTap(final Vector2 screenVector2) {
+    final gameVector2 = GameVector2.fromScreenVector2(
+      screenVector2: screenVector2,
+      origins: origins,
+    );
+    final cell = gameVector2.toMapTileCell();
     final effectiveLayerTiles = {...layerTiles};
     final cellPoint = cell.toCellPoint();
     final tileToDraw = drawerCubit.tileToDraw;

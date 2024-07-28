@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/state.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -66,16 +67,20 @@ class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
       cell: value.cellPoint!,
       object: object,
     );
+    print(
+      'value.cellPoint: ${value.cellPoint} '
+      'value.distanceToOrigin ${value.distanceToOrigin}',
+    );
     cancelPlacing();
   }
 
   void usePlace({
-    required final CellPointModel cellPoint,
-    required final SerializedVector2 distanceToOrigin,
+    required final GameVector2 gameVector2,
   }) =>
       value = value.copyWith(
-        cellPoint: cellPoint,
-        distanceToOrigin: distanceToOrigin,
+        cellPoint:
+            gameVector2.toMapTileCell(isCorrectNegatives: false).toCellPoint(),
+        distanceToOrigin: gameVector2.toSerializedMapVector2(),
       );
 
   void startPlacing({

@@ -126,6 +126,7 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   EditorRendererComponent get editor => _editor ??= game.editor;
   EditorDrawerCubit get drawerCubit => game.diDto.drawerCubit;
   Vector2 get origin => editor.origin;
+  GameOrigins get origins => GameOrigins(origin, getOffsetOrigin());
   @useResult
   Vector2 getOffsetOrigin() => editor.getOffsetOrigin();
   set origin(final Vector2 value) => editor.origin = value;

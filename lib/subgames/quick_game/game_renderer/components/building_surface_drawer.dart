@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 import 'dart:ui';
 
 import 'package:flame/components.dart';
@@ -47,54 +48,53 @@ class BuildingSurfaceDrawer extends Component
   }
 
   /// Logic:
-  ///
+  /// -6, 4
   /// Get player position
   /// Get possible building tiles
   /// Check which tiles available to be shown
   /// Draw lines
   Future<void> _checkAndAddObjects() async {
-    final originUtils = OriginVectorUtils.use(origin);
+    final playerBottomLeftTileMapCell = player?.bottomLeftTileMapCell;
 
-    final playerPosition = player?.leftCellPosition;
-
-    if (playerPosition == null) return;
+    if (playerBottomLeftTileMapCell == null) return;
+    final startMapVector2 = GameVector2.fromMapTileCell(
+      math.Point(
+        playerBottomLeftTileMapCell.x,
+        playerBottomLeftTileMapCell.y,
+      ),
+    ).mapVector2;
 
     final drawableObjects = <_PlacingSurfaceComponent>[];
 
     void checkAndVerify({
-      required final CellPointModel canvasCell,
+      required final Vector2 mapVector2,
       required final int index,
     }) {
-      final (gameCellPoint, canvasPosition) = originUtils.getGameCellPoint(
-        canvasCell: canvasCell,
-        offsetOrigin: getOffsetOrigin(),
-      );
-      final correctedGameCellPoint = gameCellPoint + const CellPointModel(1, 0);
-      if (canvasPosition == null) return;
+      final gameVector2 = GameVector2.fromMapVector2(mapVector2);
+      final mapTileCell = gameVector2.toMapTileCell(isCorrectNegatives: false);
+      final mapCellPoint = mapTileCell.toCellPoint();
+      final screenVector2 = gameVector2.toScreenVector2(origins);
       final collisionConsequences = canvasCubit.checkIsCollidingWithTiles(
-        hitboxCells: [correctedGameCellPoint],
+        hitboxMapCells: [mapCellPoint],
+        shouldIncludeBuildings: true,
       );
-
-      // TODO(arenukvern): description
-
-      final distanceToOrigin = originUtils.getCurrentPositionByTap(
-        canvasPosition,
-      );
+      // TODO(arenukvern): check is there a ground under
 
       if (collisionConsequences.isEmpty) {
+        print(
+          'screenVector2: $screenVector2 mapVector2: $mapVector2 $mapCellPoint',
+        );
         drawableObjects.add(
           _PlacingSurfaceComponent(
             onBuild: _buildingCubit.confirmPlacing,
             onCancel: () => _selectedIndex = null,
-            position: canvasPosition,
+            position: screenVector2,
             parent: this,
             index: index,
             type: _buildingCubit.value.type,
             onSelect: () => _onSelect(
               index: index,
-              // distanceToOrigin: canvasPosition.toSerializedVector2(),
-              distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-              cellPoint: correctedGameCellPoint,
+              gameVector2: gameVector2,
             ),
           ),
         );
@@ -102,10 +102,15 @@ class BuildingSurfaceDrawer extends Component
     }
 
     /// we need to check left and right
-    for (final (i: i, :xTile) in kFocusableTilesList) {
-      final shiftedCell = playerPosition.translate(xTile, 0);
+    for (final (:i, :xTile) in kFocusableTilesList) {
+      final shiftedMapVector2 = startMapVector2.clone()
+
+        /// by translating it up to one tile, we place it left right
+        /// to the player
+        // TODO(arenukvern): if hot air baloon is higher then ground level it applies up
+        ..translate(xTile, -1 * kTileDimensionDouble);
       checkAndVerify(
-        canvasCell: shiftedCell.toCellPoint(),
+        mapVector2: shiftedMapVector2,
         index: i,
       );
     }
@@ -117,14 +122,11 @@ class BuildingSurfaceDrawer extends Component
   // ignore: use_setters_to_change_properties
   void _onSelect({
     required final int index,
-    required final SerializedVector2 distanceToOrigin,
-    required final CellPointModel cellPoint,
+    required final GameVector2 gameVector2,
   }) {
     _selectedIndex = index;
-    game.dto.buildingCubit.usePlace(
-      cellPoint: cellPoint,
-      distanceToOrigin: distanceToOrigin,
-    );
+    print('gameVector2: ${gameVector2.getPrintableString(origins)}');
+    game.dto.buildingCubit.usePlace(gameVector2: gameVector2);
   }
 
   void _deleteObjects() {

@@ -1,11 +1,12 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flame/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
-import 'package:map_editor/ui/renderer/renderer.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
@@ -85,9 +86,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     }
   }
 
-  int get maxDistance => mapTileCell.x;
-  Offset? get leftCellPosition =>
-      shiftedHitbox?.bottomLeft.translate(0, -kTileDimensionDouble);
+  int get maxDistance => topLeftTileMapCell.x;
+  CellPointModel? get bottomLeftTileMapCell =>
+      hitboxMapCells.length == 4 ? hitboxMapCells[3] : null;
   void _showLevelWinDialog() {
     _pauseGame();
     gameRef.dto.dialogController.showLevelWinDialog(
@@ -113,9 +114,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     } else {
       final collisionConsequences =
           game.dto.canvasCubit.checkIsCollidingWithTiles(
-        hitboxCells: hitboxCells,
+        hitboxMapCells: hitboxMapCells,
       );
-      if (collisionConsequences.isNotEmpty && hitboxCells.isNotEmpty) {
+      if (collisionConsequences.isNotEmpty && hitboxMapCells.isNotEmpty) {
         /// means we have at least one collision
         for (final consequence in collisionConsequences) {
           switch (consequence) {
@@ -202,24 +203,24 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   ///
   /// maybe merge logic or reuse
   Future<List<Gid>> getNearestFocusableObjectsIds() async {
-    final originUtils = OriginVectorUtils.use(origin);
+    final playerBottomLeftTileMapCell = player?.bottomLeftTileMapCell;
 
-    final playerPosition = player?.leftCellPosition;
+    if (playerBottomLeftTileMapCell == null) return [];
+    final startMapVector2 = GameVector2.fromMapTileCell(
+      math.Point(
+        playerBottomLeftTileMapCell.x,
+        playerBottomLeftTileMapCell.y,
+      ),
+    ).mapVector2;
 
-    if (playerPosition == null) return [];
     final objectsIds = <Gid>[];
     void checkAndVerify({
-      required final CellPointModel canvasCell,
+      required final Vector2 mapVector2,
     }) {
-      final (gameCellPoint, _) = originUtils.getGameCellPoint(
-        canvasCell: canvasCell,
-        offsetOrigin: getOffsetOrigin(),
-      );
-
+      final gameVector2 = GameVector2.fromMapVector2(mapVector2);
+      final mapCell = gameVector2.toMapTileCell().toCellPoint();
       final collidableTiles = game.dto.canvasCubit.getFocusableTiles(
-        hitboxCells: [
-          gameCellPoint + const CellPointModel(1, 0),
-        ],
+        hitboxMapCells: [mapCell],
       );
 
       if (collidableTiles.isEmpty) return;
@@ -233,10 +234,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     }
 
     for (final (i: _, :xTile) in kFocusableTilesList) {
-      final shiftedCell = playerPosition.translate(xTile, 0);
-      checkAndVerify(
-        canvasCell: shiftedCell.toCellPoint(),
-      );
+      final shiftedMapVector2 = startMapVector2.clone()
+        ..translate(xTile, -1 * kTileDimensionDouble);
+      checkAndVerify(mapVector2: shiftedMapVector2);
     }
     return objectsIds;
   }

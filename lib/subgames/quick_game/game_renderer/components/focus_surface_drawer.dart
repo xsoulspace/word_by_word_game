@@ -60,20 +60,14 @@ class FocusSurfaceDrawer extends Component
   /// Exception - we dont need to draw player positio, since
   /// it has independent class-object
   Future<void> _addFocus() async {
-    final originUtils = OriginVectorUtils.use(origin);
-
     final gid = _focusableObjectsNotifier.value.focusedObjectId;
     final object = canvasCubit.objects[gid];
     if (object == null) return;
-    final canvasCell = originUtils.getCurrentCellByGameObject(object);
-    final (gameCellPoint, canvasPosition) = originUtils.getGameCellPoint(
-      canvasCell: canvasCell.toCellPoint(),
-      offsetOrigin: getOffsetOrigin(),
+    final gameVector2 =
+        GameVector2.fromMapVector2(object.distanceToOrigin.toVector2());
+    final obj = _FocusedObjectComponent(
+      position: gameVector2.toScreenVector2(origins),
     );
-
-    final obj =
-        // _FocusedObjectComponent(position: object.distanceToOrigin.toVector2());
-        _FocusedObjectComponent(position: object.distanceToOrigin.toVector2());
     add(obj);
     _focusObject = obj;
   }

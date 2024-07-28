@@ -40,10 +40,12 @@ class GameCanvasObject extends Component
 
   Offset screenVector2;
   GameVector2 gameVector2;
-  math.Point<int> get mapTileCell => gameVector2.toMapTileCell();
+
+  /// top-left position
+  math.Point<int> get topLeftTileMapCell => gameVector2.toMapTileCell();
 
   void _updateDistanceToOrigin() => gameVector2 = GameVector2.fromScreenVector2(
-        screenVector: screenVector2.toVector2(),
+        screenVector2: screenVector2.toVector2(),
         origins: origins,
       );
 
@@ -53,14 +55,14 @@ class GameCanvasObject extends Component
     return super.onLoad();
   }
 
-  Rect? _hitboxRect;
+  Rect? _hitboxScreenRect;
   // double get bottomRightPosition => _hitboxRect?.height;
-  Rect? get shiftedHitbox => _hitboxRect?.shift(screenVector2);
-  List<CellPointModel> get hitboxCells {
-    final hitbox = shiftedHitbox;
+  Rect? get shiftedScreenHitbox => _hitboxScreenRect?.shift(screenVector2);
+  List<CellPointModel> get hitboxMapCells {
+    final hitbox = shiftedScreenHitbox;
     if (hitbox == null) return [];
 
-    final topLeft = mapTileCell.toCellPoint();
+    final topLeft = topLeftTileMapCell.toCellPoint();
     final topRight =
         GameVector2.fromMapVector2(Vector2(hitbox.width, 0)) + gameVector2;
     final bottomLeft =
@@ -89,7 +91,7 @@ class GameCanvasObject extends Component
 
     final tilePath = animationEntry.currentFramePath;
     final tileImage = getImage(tilePath);
-    _hitboxRect ??= Rect.fromLTWH(
+    _hitboxScreenRect ??= Rect.fromLTWH(
       0,
       0,
       tileImage.width.toDouble(),
@@ -118,7 +120,7 @@ class GameCanvasObject extends Component
     onChanged?.call(
       data.copyWith(
         position: screenVector2.toSerializedVector2(),
-        distanceToOrigin: gameVector2.toSerializedVector2(),
+        distanceToOrigin: gameVector2.toSerializedMapVector2(),
       ),
     );
   }
@@ -139,5 +141,5 @@ class GameCanvasObject extends Component
 
   @override
   bool containsLocalPoint(final Vector2 point) =>
-      _hitboxRect?.containsPoint(point) ?? false;
+      _hitboxScreenRect?.containsPoint(point) ?? false;
 }

@@ -1,7 +1,6 @@
 import 'dart:math' as math;
 
 import 'package:flame/extensions.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 
@@ -23,10 +22,10 @@ class GameVector2 {
       : mapVector2 = Vector2(vector.x, vector.y);
 
   factory GameVector2.fromScreenVector2({
-    required final Vector2 screenVector,
+    required final Vector2 screenVector2,
     required final GameOrigins origins,
   }) {
-    final mapVector2 = screenVector - origins.mapOrigin;
+    final mapVector2 = screenVector2 - origins.mapOrigin;
     return GameVector2.fromMapVector2(mapVector2);
   }
 
@@ -55,19 +54,17 @@ class GameVector2 {
     // return ;
   }
 
-  TilePointType toMapTileCell() {
+  TilePointType toMapTileCell({final bool isCorrectNegatives = true}) {
     int y = mapVector2.y ~/ kTileDimension;
-    if (mapVector2.y < 0) {
-      y--;
-    }
+    if (mapVector2.y < 0 && isCorrectNegatives) y--;
+
     int x = mapVector2.x ~/ kTileDimension;
-    if (mapVector2.x < 0) {
-      x--;
-    }
+    if (mapVector2.x < 0 && isCorrectNegatives) x--;
+
     return math.Point(x, y);
   }
 
-  SerializedVector2 toSerializedVector2() => SerializedVector2(
+  SerializedVector2 toSerializedMapVector2() => SerializedVector2(
         x: mapVector2.x,
         y: mapVector2.y,
       );
@@ -81,51 +78,4 @@ class GameVector2 {
 
   GameVector2 operator +(final GameVector2 other) =>
       GameVector2.fromMapVector2(mapVector2 + other.mapVector2);
-}
-
-class OriginVectorUtils {
-  OriginVectorUtils.use(this.origin);
-  final Vector2 origin;
-
-  /// to get [offsetOrigin] in the game use
-  /// [canvasRenderer.getOffsetOrigin] or in components
-  /// [getOffsetOrigin]
-  (CellPointModel gameCellPoint, Vector2? canvasPosition) getGameCellPoint({
-    required final CellPointModel canvasCell,
-    required final Vector2 offsetOrigin,
-  }) {
-    final cellPoint =
-        getCellByDistance(canvasCell.toVector2()) * kTileDimension;
-    final canvasPosition = cellPoint.toVector2() + offsetOrigin;
-
-    final gameCellPoint = getCurrentCellByTap(canvasPosition).toCellPoint();
-    return (gameCellPoint, canvasPosition);
-  }
-
-  TilePointType getCellByDistance(final Vector2 distanceToOrigin) =>
-      GameVector2.fromMapVector2(distanceToOrigin).toMapTileCell();
-
-  /// Current is the same as offset
-  TilePointType getCurrentCellByGameObject(
-    final RenderObjectModel object,
-  ) {
-    final distanceToOrigin = object.distanceToOrigin.toVector2() - origin;
-    return getCellByDistance(distanceToOrigin);
-  }
-
-  /// Current is the same as offset
-  TilePointType getCurrentCellByCanvasObject({
-    required final Offset objectDistanceToOrigin,
-  }) {
-    final distanceToOrigin = objectDistanceToOrigin.toVector2() - origin;
-    return getCellByDistance(distanceToOrigin);
-  }
-
-  TilePointType getCurrentCellByTap(final Vector2 canvasPosition) {
-    final distanceToOrigin = getCurrentPositionByTap(canvasPosition);
-    return getCellByDistance(distanceToOrigin);
-  }
-
-  Vector2 getCurrentPositionByTap(final Vector2 canvasPosition) =>
-      canvasPosition - origin;
 }

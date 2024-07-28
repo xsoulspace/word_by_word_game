@@ -48,10 +48,9 @@ class EditorCanvasObject extends Component
   EditorCanvasObject.fromRenderObject({
     required final material.ValueChanged<RenderObjectModel> onPositionChanged,
     required this.data,
-  })  : position = data.position.toOffset(),
-        distanceToOrigin = data.distanceToOrigin.toOffset(),
-        distanceToTileLeftTopCorner =
-            data.distanceToTileLeftTopCorner.toOffset(),
+  })  : screenVector2 = data.position.toOffset(),
+        gameVector2 =
+            GameVector2.fromMapSerializedVector2(data.distanceToOrigin),
         onChanged = onPositionChanged;
 
   final material.ValueChanged<RenderObjectModel>? onChanged;
@@ -59,19 +58,14 @@ class EditorCanvasObject extends Component
   TileId get tileId => data.tileId;
   final RenderObjectModel data;
 
-  Offset position;
-  Offset distanceToOrigin;
-  Offset distanceToTileLeftTopCorner;
+  Offset screenVector2;
+  GameVector2 gameVector2;
 
   void _updateDistanceToOrigin() {
-    distanceToOrigin = position - origin.toOffset();
-    final cell = OriginVectorUtils.use(origin)
-        .getCurrentCellByCanvasObject(objectDistanceToOrigin: distanceToOrigin);
-    final cellTopLeftPosition = Offset(
-      (cell.x * kTileDimension).toDouble(),
-      (cell.y * kTileDimension).toDouble(),
+    gameVector2 = GameVector2.fromScreenVector2(
+      screenVector2: screenVector2.toVector2(),
+      origins: origins,
     );
-    distanceToTileLeftTopCorner = distanceToOrigin - cellTopLeftPosition;
   }
 
   @override
@@ -81,7 +75,7 @@ class EditorCanvasObject extends Component
   }
 
   Rect? _imageRect;
-  Rect? get _positionedImageRect => _imageRect?.shift(position);
+  Rect? get _positionedImageRect => _imageRect?.shift(screenVector2);
 
   @override
   void render(final Canvas canvas) {
@@ -101,7 +95,7 @@ class EditorCanvasObject extends Component
     );
     canvas.drawImage(
       tileImage,
-      position,
+      screenVector2,
       Palette.white.paint(),
     );
     super.render(canvas);
@@ -113,7 +107,7 @@ class EditorCanvasObject extends Component
   @override
   void onDragStart(final DragStartEvent event) {
     _selected = true;
-    _dragOffset = event.canvasPosition - position.toVector2();
+    _dragOffset = event.canvasPosition - screenVector2.toVector2();
 
     return super.onDragStart(event);
   }
@@ -122,7 +116,7 @@ class EditorCanvasObject extends Component
   void onDragUpdate(final DragUpdateEvent event) {
     if (event.canvasPosition.isNaN) return super.onDragUpdate(event);
     if (_selected) {
-      position = (event.canvasPosition - _dragOffset).toOffset();
+      screenVector2 = (event.canvasPosition - _dragOffset).toOffset();
       _updateDistanceToOrigin();
       _savePosition();
     }
@@ -133,10 +127,8 @@ class EditorCanvasObject extends Component
   void _savePosition() {
     onChanged?.call(
       data.copyWith(
-        position: position.toSerializedVector2(),
-        distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-        distanceToTileLeftTopCorner:
-            distanceToTileLeftTopCorner.toSerializedVector2(),
+        position: screenVector2.toSerializedVector2(),
+        distanceToOrigin: gameVector2.toSerializedMapVector2(),
       ),
     );
   }
@@ -159,7 +151,7 @@ class EditorCanvasObject extends Component
   }
 
   void _updatePosition() {
-    position = origin.toOffset() + distanceToOrigin;
+    screenVector2 = gameVector2.toScreenVector2(origins).toOffset();
   }
 
   @override
@@ -282,7 +274,7 @@ class EditorCanvasObjectsDrawer extends Component
 
   final _gravitationLinePaint = Palette.brown.paint()..strokeWidth = 2;
   void _renderGravitationLine(final Canvas canvas) {
-    final dy = _gravitationHandle?.position.dy ?? 0;
+    final dy = _gravitationHandle?.screenVector2.dy ?? 0;
     canvas.drawLine(
       Offset(0, dy),
       Offset(editor.windowWidth, dy),
@@ -292,7 +284,7 @@ class EditorCanvasObjectsDrawer extends Component
 
   final _skyHorizonPaint = Palette.blue.paint()..strokeWidth = 2;
   void _renderSkyHorizon(final Canvas canvas) {
-    final dy = (_skyHandle?.position.dy ?? 0) + 20;
+    final dy = (_skyHandle?.screenVector2.dy ?? 0) + 20;
 
     canvas.drawLine(
       Offset(0, dy),
