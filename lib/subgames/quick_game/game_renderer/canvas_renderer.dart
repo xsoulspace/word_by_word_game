@@ -115,7 +115,7 @@ class CanvasRenderer extends Component
       final player = canvasObjectsDrawer.player;
       if (player != null) {
         final screenSize = game.size;
-        Offset offset = (player.position.toVector2() -
+        Offset offset = (player.screenVector2.toVector2() -
                 Vector2(
                   screenSize.x / 3,
                   math.max(200, screenSize.y / 2 - 60),
@@ -139,6 +139,7 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   CanvasRenderer get canvasRenderer => _canvasRenderer ??= game.canvasRenderer;
   CanvasCubit get canvasCubit => game.dto.canvasCubit;
   Vector2 get origin => canvasRenderer.origin;
+  GameOrigins get origins => GameOrigins(origin, getOffsetOrigin());
   @useResult
   Vector2 getOffsetOrigin() => canvasRenderer.getOffsetOrigin();
   set origin(final Vector2 value) => canvasRenderer.origin = value;

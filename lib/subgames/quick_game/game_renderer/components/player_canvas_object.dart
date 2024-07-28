@@ -85,7 +85,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     }
   }
 
-  int get maxDistance => absoluteCell.x;
+  int get maxDistance => mapTileCell.x;
   Offset? get leftCellPosition =>
       shiftedHitbox?.bottomLeft.translate(0, -kTileDimensionDouble);
   void _showLevelWinDialog() {
@@ -158,9 +158,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     /// Zero - point for right will be always negative
     /// for left will be always positive
     final gravity = canvasRenderer.canvasObjectsDrawer.gravity;
-
-    final height = gravity.getHeight(distanceToOrigin);
-    final heightInTiles = gravity.getHeightInTiles(distanceToOrigin);
+    final mapVector2 = gameVector2.mapVector2.toOffset();
+    final height = gravity.getHeight(mapVector2);
+    final heightInTiles = gravity.getHeightInTiles(mapVector2);
     final windOffset =
         game.dto.weatherCubit.generateWindForce(heightInTiles: heightInTiles);
     if (heightInTiles < 0 || isCollided) {
@@ -173,10 +173,10 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         height: 0,
       );
       if (liftForce.liftPower > 0) {
-        final newPosition = position.copyWith(
-          dy: position.dy - liftForce.liftPower,
+        final newPosition = screenVector2.copyWith(
+          dy: screenVector2.dy - liftForce.liftPower,
         );
-        setPosition(newPosition + windOffset);
+        setScreenPosition(newPosition + windOffset);
       }
     } else {
       // update position if needed
@@ -186,14 +186,14 @@ class PlayerGameCanvasObject extends GameCanvasObject {
         balloonParams: character.balloonParams,
         height: height,
       );
-      final newPosition = position.copyWith(
-        dy: position.dy - liftForce.liftPower,
+      final newPosition = screenVector2.copyWith(
+        dy: screenVector2.dy - liftForce.liftPower,
       );
-      setPosition(newPosition + windOffset);
+      setScreenPosition(newPosition + windOffset);
     }
 
     gameRef.dto.levelPlayersBloc.onChangeCharacterPosition(
-      distanceToOrigin: distanceToOrigin.toVector2(),
+      distanceToOrigin: mapVector2.toVector2(),
       liftForce: liftForce,
     );
   }

@@ -142,7 +142,7 @@ class GameCanvasObjectsDrawer extends Component
   final _skyHorizonPaint = Palette.blue.paint()..strokeWidth = 2;
   // ignore: unused_element
   void _renderSkyHorizon(final Canvas canvas) {
-    final dy = (_skyHandle?.position.dy ?? 0) + 20;
+    final dy = (_skyHandle?.screenVector2.dy ?? 0) + 20;
 
     canvas.drawLine(
       Offset(0, dy),

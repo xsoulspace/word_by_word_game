@@ -11,6 +11,9 @@ class GameOrigins {
   GameOrigins(this.mapOrigin, this.viewportOrigin);
   final Vector2 mapOrigin;
   final Vector2 viewportOrigin;
+  @override
+  String toString() =>
+      'GameOrigins(mapOrigin: $mapOrigin, viewportOrigin: $viewportOrigin)';
 }
 
 // TODO(arenukvern): add zoomed vectors
@@ -23,7 +26,8 @@ class GameVector2 {
     required final Vector2 screenVector,
     required final GameOrigins origins,
   }) {
-    throw UnimplementedError();
+    final mapVector2 = screenVector - origins.mapOrigin;
+    return GameVector2.fromMapVector2(mapVector2);
   }
 
   /// old name - offset origin
@@ -39,15 +43,17 @@ class GameVector2 {
     return GameVector2.fromMapVector2(mapVector2);
   }
   final Vector2 mapVector2;
-  Vector2 toScreenVector2() {
-    throw UnimplementedError();
-  }
+  Vector2 toScreenVector2(final GameOrigins origins) =>
+      mapVector2 + origins.mapOrigin;
 
   Vector2 toViewportVector2() {
     throw UnimplementedError();
   }
 
-  Vector2 toMapVector2() => mapVector2;
+  TilePointType toViewportTileCell() {
+    throw UnimplementedError();
+    // return ;
+  }
 
   TilePointType toMapTileCell() {
     int y = mapVector2.y ~/ kTileDimension;
@@ -65,6 +71,16 @@ class GameVector2 {
         x: mapVector2.x,
         y: mapVector2.y,
       );
+  String getPrintableString(final GameOrigins origins) =>
+      '\n\nGameVector2(mapVector2: $mapVector2). '
+      '\norigins: $origins. '
+      '\ntoScreenVector2: ${toScreenVector2(origins)}, '
+      // 'toViewportVector2: ${toViewportVector2()}, '
+      '\ntoMapTileCell: ${toMapTileCell()}'
+      '\n';
+
+  GameVector2 operator +(final GameVector2 other) =>
+      GameVector2.fromMapVector2(mapVector2 + other.mapVector2);
 }
 
 class OriginVectorUtils {
@@ -102,13 +118,6 @@ class OriginVectorUtils {
     required final Offset objectDistanceToOrigin,
   }) {
     final distanceToOrigin = objectDistanceToOrigin.toVector2() - origin;
-    return getCellByDistance(distanceToOrigin);
-  }
-
-  TilePointType getAbsoluteCellByCanvasObject({
-    required final Offset objectDistanceToOrigin,
-  }) {
-    final distanceToOrigin = objectDistanceToOrigin.toVector2();
     return getCellByDistance(distanceToOrigin);
   }
 

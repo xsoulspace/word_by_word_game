@@ -261,11 +261,10 @@ class EditorCanvasObjectsDrawer extends Component
         ),
       ),
       onPositionChanged: (final object) {
-        final updatedY = OriginVectorUtils.use(origin)
-            .getAbsoluteCellByCanvasObject(
-              objectDistanceToOrigin: object.distanceToOrigin.toOffset(),
-            )
-            .y;
+        final updatedY =
+            GameVector2.fromMapVector2(object.distanceToOrigin.toVector2())
+                .toMapTileCell()
+                .y;
         final updatedGravity = drawerCubit.canvasData.gravity.copyWith(
           yTilePosition: updatedY,
         );
