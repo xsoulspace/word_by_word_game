@@ -56,6 +56,7 @@ class GameCanvasObject extends Component
   }
 
   Rect? _hitboxScreenRect;
+  Rect? get hitboxScreenRect => _hitboxScreenRect;
   // double get bottomRightPosition => _hitboxRect?.height;
   Rect? get shiftedScreenHitbox => _hitboxScreenRect?.shift(screenVector2);
   List<CellPointModel> get hitboxMapCells {

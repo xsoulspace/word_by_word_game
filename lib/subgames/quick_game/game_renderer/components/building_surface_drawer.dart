@@ -7,6 +7,7 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flame/input.dart';
 import 'package:flame/text.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
@@ -81,9 +82,12 @@ class BuildingSurfaceDrawer extends Component
       // TODO(arenukvern): check is there a ground under
 
       if (collisionConsequences.isEmpty) {
-        print(
-          'screenVector2: $screenVector2 mapVector2: $mapVector2 $mapCellPoint',
-        );
+        if (kDebugMode) {
+          print(
+            'screenVector2: $screenVector2 mapVector2: $mapVector2 '
+            '$mapCellPoint',
+          );
+        }
         drawableObjects.add(
           _PlacingSurfaceComponent(
             onBuild: _buildingCubit.confirmPlacing,

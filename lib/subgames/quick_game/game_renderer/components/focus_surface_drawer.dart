@@ -65,7 +65,7 @@ class FocusSurfaceDrawer extends Component
     if (object == null) return;
     final gameVector2 =
         GameVector2.fromMapVector2(object.distanceToOrigin.toVector2());
-    final obj = _FocusedObjectComponent(
+    final obj = FocusedObjectComponent(
       position: gameVector2.toScreenVector2(origins),
     );
     add(obj);
@@ -73,31 +73,29 @@ class FocusSurfaceDrawer extends Component
   }
 }
 
-class _FocusedObjectComponent extends PositionComponent
+class FocusedObjectComponent extends PositionComponent
     with
         HoverCallbacks,
         HasGameRef<CanvasRendererGame>,
         HasCanvasResourcesLoaderRef {
-  _FocusedObjectComponent({
+  FocusedObjectComponent({
     super.position,
   }) : super() {
     size = Vector2(kTileDimensionDouble, kTileDimensionDouble);
   }
-  final _borderPaint = material.Paint()
+  static final kBorderPaint = material.Paint()
     ..style = material.PaintingStyle.stroke
     ..color = Palette.blue.color
     ..strokeWidth = 4.5;
+  static const kBorderRadius = Radius.circular(4);
 
   late final _rect = Offset.zero & size.toSize();
 
   @override
   void render(final Canvas canvas) {
     canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        _rect,
-        const Radius.circular(4),
-      ),
-      _borderPaint,
+      RRect.fromRectAndRadius(_rect, kBorderRadius),
+      kBorderPaint,
     );
 
     super.render(canvas);

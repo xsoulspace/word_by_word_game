@@ -8,7 +8,9 @@ import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/focus_surface_drawer.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
 
@@ -63,6 +65,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       game.dto.mechanics.hotAirBalloon;
 
   final PlayerCharacterModel characterModel;
+  bool get _isFocusBorderVisible =>
+      guiFocusableObjectsNotifier.isFocusing &&
+      guiFocusableObjectsNotifier.value.focusedObjectId.isEmpty;
 
   void _pauseGame() => game.dto.mechanics.worldTime.pause();
 
@@ -239,5 +244,22 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       checkAndVerify(mapVector2: shiftedMapVector2);
     }
     return objectsIds;
+  }
+
+  @override
+  void render(final Canvas canvas) {
+    super.render(canvas);
+    if (_isFocusBorderVisible) {
+      final rect = shiftedScreenHitbox;
+      if (rect != null) {
+        canvas.drawRRect(
+          RRect.fromRectAndRadius(
+            rect,
+            FocusedObjectComponent.kBorderRadius,
+          ),
+          FocusedObjectComponent.kBorderPaint,
+        );
+      }
+    }
   }
 }

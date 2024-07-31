@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -67,10 +68,12 @@ class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
       cell: value.cellPoint!,
       object: object,
     );
-    print(
-      'value.cellPoint: ${value.cellPoint} '
-      'value.distanceToOrigin ${value.distanceToOrigin}',
-    );
+    if (kDebugMode) {
+      print(
+        'value.cellPoint: ${value.cellPoint} '
+        'value.distanceToOrigin ${value.distanceToOrigin}',
+      );
+    }
     cancelPlacing();
   }
 
