@@ -73,6 +73,8 @@ class FocusSurfaceDrawer extends Component
   }
 }
 
+const kFocusObjectColor = Palette.blue;
+
 class FocusedObjectComponent extends PositionComponent
     with
         HoverCallbacks,
@@ -85,7 +87,7 @@ class FocusedObjectComponent extends PositionComponent
   }
   static final kBorderPaint = material.Paint()
     ..style = material.PaintingStyle.stroke
-    ..color = Palette.blue.color
+    ..color = kFocusObjectColor.color
     ..strokeWidth = 4.5;
   static const kBorderRadius = Radius.circular(4);
 

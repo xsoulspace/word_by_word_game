@@ -14,28 +14,6 @@ class LandActionsView extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Tooltip(
-          // TODO(arenukvern): l10n
-          message: 'Click to go into Building or Hot Air Balloon',
-          child: TextButton.icon(
-            icon: const Icon(Icons.center_focus_strong),
-            // TODO(arenukvern): l10n
-            label: const Text('Switch Focus'),
-            onPressed: () {
-              /// hide bottom bar
-              ///
-              /// Show Possible to focus panel (horizontal list)
-              /// with squares
-              ///
-              /// NM - depending from distance use different cose
-              /// for switching
-              ///
-              /// Save/Restore FCO to data models
-              /// Make PA dependable from FCO
-              context.read<GuiFocusableObjectsNotifier>().startChoosing();
-            },
-          ),
-        ),
         const Gap(12),
         TextButton.icon(
           // TODO(arenukvern): l10n
@@ -48,4 +26,33 @@ class LandActionsView extends StatelessWidget {
       ],
     );
   }
+}
+
+class SwitchFocusButton extends StatelessWidget {
+  const SwitchFocusButton({super.key});
+
+  @override
+  Widget build(final BuildContext context) => Tooltip(
+        // TODO(arenukvern): add score
+        // TODO(arenukvern): l10n
+        message: 'Click to go into Building or Hot Air Balloon',
+        child: TextButton.icon(
+          icon: const Icon(Icons.center_focus_strong),
+          // TODO(arenukvern): l10n
+          label: const Text('Switch Focus'),
+          onPressed: () {
+            /// hide bottom bar
+            ///
+            /// Show Possible to focus panel (horizontal list)
+            /// with squares
+            ///
+            /// NM - depending from distance use different cose
+            /// for switching
+            ///
+            /// Save/Restore FCO to data models
+            /// Make PA dependable from FCO
+            context.read<GuiFocusableObjectsNotifier>().startChoosing();
+          },
+        ),
+      );
 }
