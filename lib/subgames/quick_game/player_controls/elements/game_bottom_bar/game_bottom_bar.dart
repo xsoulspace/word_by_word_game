@@ -6,6 +6,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/focus_surface_drawer.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
@@ -252,7 +253,7 @@ class _UiFocusableObjectsRow extends StatelessWidget {
                   );
                 }
                 final objectId = nearestObjectIds[index - 1];
-                final object = canvasCubit.canvasData.objects[objectId];
+                final object = canvasCubit.objects[objectId];
                 return _UiToFocusCard(
                   onPressed: () =>
                       guiFocusableObjectsNotifier.setFocusedObjectId(objectId),
@@ -265,12 +266,24 @@ class _UiFocusableObjectsRow extends StatelessWidget {
           ),
         ),
         const Gap(6),
-        TextButton(
-          onPressed: guiFocusableObjectsNotifier.cancelFocusing,
-          child: Text(
-            'Cancel',
-            style: context.errorTextTheme.bodyLarge,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextButton(
+              onPressed: guiFocusableObjectsNotifier.cancelFocusing,
+              child: Text(
+                'Cancel',
+                style: context.errorTextTheme.bodyLarge,
+              ),
+            ),
+            UiOutlinedButton(
+              onPressed: guiFocusableObjectsNotifier.confirmChoosing,
+              child: Text(
+                'Confirm',
+                style: context.textTheme.bodyLarge,
+              ),
+            ),
+          ],
         ),
         const Gap(24),
       ],

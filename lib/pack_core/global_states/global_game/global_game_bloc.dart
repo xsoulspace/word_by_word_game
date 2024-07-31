@@ -586,6 +586,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       playerStartPoint: PlayerStartPointType.fromSamePlace,
       characters: LevelCharactersModel(
         playerCharacter: playersState.playerCharacter,
+        focusedObjectGid: playersState.focusedObjectGid,
       ),
 
       /// save all objects since any object can be changed

@@ -29,10 +29,18 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   final _log = Logger();
   PlayerCharacterModel get playerCharacter => state.playerCharacter;
   Gid get focusedObjectId => state.focusedObjectGid;
+  bool get isPlayerFocused => focusedObjectId.isEmpty;
   void changeFocusedObjectId(final Gid value) => emit(
         state.copyWith(focusedObjectGid: value),
       );
   void focusToPlayer() => changeFocusedObjectId(Gid.empty);
+
+  RenderObjectModel get focusedObject {
+    final id = focusedObjectId;
+    if (id.isEmpty) return diDto.canvasCubit.canvasData.playerObject;
+    return diDto.canvasCubit.objects[id]!;
+  }
+
   @override
   Future<void> close() {
     _log.close();

@@ -8,7 +8,7 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/overlays.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/land_actions_view.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class UILevelCenterBar extends StatelessWidget {
@@ -50,8 +50,7 @@ class UILevelCenterBar extends StatelessWidget {
                 child: const UiPhaseText(),
               ),
               if (isActionPhaseAndAdvanced) ...[
-                const Spacer(),
-                const SwitchFocusButton(),
+                const Flexible(child: SwitchFocusButton()),
               ],
             ],
           ),
