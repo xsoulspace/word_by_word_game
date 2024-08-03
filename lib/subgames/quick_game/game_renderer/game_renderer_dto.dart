@@ -15,6 +15,7 @@ class GameRendererDiDto {
         gameConstantsCubit = context.read(),
         buildingCubit = context.read(),
         guiFocusableObjectsNotifier = context.read(),
+        wordCompositionCubit = context.read(),
         weatherCubit = context.read();
 
   /// ********************************************
@@ -31,6 +32,7 @@ class GameRendererDiDto {
   final CanvasCubit canvasCubit;
   final WeatherCubit weatherCubit;
   final MechanicsCollection mechanics;
+  final GuiWordCompositionCubit wordCompositionCubit;
   final ThemeData theme;
   final DialogController dialogController;
 

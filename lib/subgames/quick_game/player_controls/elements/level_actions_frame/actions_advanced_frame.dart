@@ -190,7 +190,7 @@ class _SelectTechnologyCard extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '${applyingScore.formattedScore}',
+            '${applyingScore.value.formattedScore}',
             style: context.textTheme.headlineLarge,
           ),
           const Gap(12),
@@ -248,7 +248,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
           ),
           const Gap(8),
           Text(
-            '${applyingScore.formattedScore}',
+            '${applyingScore.value.formattedScore}',
             style: context.textThemeBold.labelMedium,
           ),
         ],
@@ -259,7 +259,7 @@ class _ChangeResearchingTechnology extends StatelessWidget {
 
 ({VoidCallback onChangeTechnology}) _useResearchTechnologyComposable({
   required final BuildContext context,
-  required final WordCompositionCubit compositionCubit,
+  required final GuiWordCompositionCubit compositionCubit,
   required final EnergyMultiplierType multiplier,
 }) {
   final dialogController = context.read<DialogController>();
@@ -482,7 +482,7 @@ class _TechnologyMultiplierCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            '${composable.applyingScore.formattedScore}',
+            '${composable.applyingScore.value.formattedScore}',
             textAlign: TextAlign.center,
             style: context.textTheme.titleLarge,
           ),

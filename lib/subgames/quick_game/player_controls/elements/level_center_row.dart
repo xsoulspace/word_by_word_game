@@ -17,7 +17,7 @@ class UILevelCenterBar extends StatelessWidget {
   });
 
   static Future<void> onConfirmWord(final BuildContext context) async {
-    unawaited(context.read<WordCompositionCubit>().onToSelectActionPhase());
+    unawaited(context.read<GuiWordCompositionCubit>().onToSelectActionPhase());
     TutorialFrame.sendOnClickEvent(
       uiKey: TutorialUiItem.confirmWordButton,
       context: context,
@@ -50,6 +50,7 @@ class UILevelCenterBar extends StatelessWidget {
                 child: const UiPhaseText(),
               ),
               if (isActionPhaseAndAdvanced) ...[
+                const Gap(6),
                 const Flexible(child: SwitchFocusButton()),
               ],
             ],

@@ -220,7 +220,9 @@ class LevelBloc extends Cubit<LevelBlocState> {
         technologiesCubit.onResearchTechnology(
           ResearchTechnologyEvent(score: appliedScore),
         );
-      case EnergyApplicationType.crystalMove || EnergyApplicationType.noop:
+      case EnergyApplicationType.buildingBuilt ||
+            EnergyApplicationType.crystalMove ||
+            EnergyApplicationType.noop:
     }
 
     final playerId = levelPlayersCubit.state.currentPlayerId;

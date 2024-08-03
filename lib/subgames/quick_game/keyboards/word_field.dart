@@ -258,7 +258,7 @@ class _WordFieldState extends State<WordField> {
 
   @override
   Widget build(final BuildContext context) {
-    final wordCompositionState = context.read<WordCompositionCubit>();
+    final wordCompositionState = context.read<GuiWordCompositionCubit>();
     return InputKeyboardListener(
       focusNode: wordCompositionState.wordFocusNode,
       autofocus: false,

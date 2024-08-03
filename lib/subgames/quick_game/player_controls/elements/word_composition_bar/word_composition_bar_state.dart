@@ -55,8 +55,8 @@ class WordCompositionStateDiDto {
   final DialogController dialogController;
 }
 
-class WordCompositionCubit extends ChangeNotifier {
-  WordCompositionCubit(final BuildContext context)
+class GuiWordCompositionCubit extends ChangeNotifier {
+  GuiWordCompositionCubit(final BuildContext context)
       : dto = WordCompositionStateDiDto.use(context.read) {
     wordController = WordFieldController(
       currentWord: dto.levelBloc.state.currentWord,
@@ -117,6 +117,11 @@ class WordCompositionCubit extends ChangeNotifier {
   void onPowerSelected(final EnergyMultiplierType multiplier) {
     _selectMultiplier(multiplier);
     _onToEndTurn(EnergyApplicationType.refueling);
+  }
+
+  void onBuildingBuilt(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.buildingBuilt);
   }
 
   Future<void> onToSelectActionPhase() async => dto.levelBloc.onAcceptNewWord();

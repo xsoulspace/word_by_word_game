@@ -132,6 +132,8 @@ class TechnologyLockedCard extends StatelessWidget {
       );
 }
 
+const kEnergyMovementMultiplier = EnergyMultiplierType.m1;
+
 class HeatEngineViewBody extends StatefulHookWidget {
   const HeatEngineViewBody({super.key});
 
@@ -148,8 +150,8 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
       context.read<MechanicsCollection>().engine;
 
   LevelPlayersBloc get _levelPlayerBloc => context.read<LevelPlayersBloc>();
-  WordCompositionCubit get _wordCompositionCubit =>
-      context.read<WordCompositionCubit>();
+  GuiWordCompositionCubit get _wordCompositionCubit =>
+      context.read<GuiWordCompositionCubit>();
 
   @override
   void initState() {
@@ -199,15 +201,14 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
     _levelPlayerBloc.onPowerUsageChange('$powerUsage');
     WidgetsBinding.instance.addPostFrameCallback((final _) async {
       await Future.delayed(500.milliseconds);
-      _wordCompositionCubit.onCrystalMoved(_kMovementMultiplier);
+      _wordCompositionCubit.onCrystalMoved(kEnergyMovementMultiplier);
     });
   }
 
-  static const _kMovementMultiplier = EnergyMultiplierType.m1;
   @override
   Widget build(final BuildContext context) {
     final composable = useApplyingScoreComposable(
-      type: _kMovementMultiplier,
+      type: kEnergyMovementMultiplier,
       context: context,
     );
     final movementScore = composable.applyingScore;
@@ -312,7 +313,7 @@ class _EngineCrystalCell extends StatelessWidget {
     super.key,
   });
   final int index;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
   final EngineCrystalModel? crystal;
   final ValueChanged<EngineCrystalModel> onCrystalPlaced;
   final double cellDimension;
@@ -354,7 +355,7 @@ class _CrystalCell extends StatelessWidget {
   final bool isFilled;
   final bool isForEngine;
   final EngineCrystalModel? crystal;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
   final double cellDimension;
   @override
   Widget build(final BuildContext context) {
@@ -400,7 +401,7 @@ class _EngineCrystalWidget extends StatelessWidget {
   });
   final double dimension;
   final EngineCrystalModel crystal;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
   final bool isActive;
 
   @override
@@ -418,7 +419,7 @@ class _EngineCrystalWidget extends StatelessWidget {
         ),
         alignment: Alignment.center,
         child: Text(
-          '${movementScore.formattedScore}',
+          '${movementScore.value.formattedScore}',
           textAlign: TextAlign.center,
           style: context.textThemeBold.titleSmall,
         ),
@@ -451,7 +452,7 @@ class _EngineWaveRow extends StatelessWidget {
   final double cellDimension;
   final EngineCrystalModel? crystal;
   final ValueChanged<EngineCrystalModel> onCrystalPlaced;
-  final int movementScore;
+  final ApplyingScoreType movementScore;
 
   @override
   Widget build(final BuildContext context) {

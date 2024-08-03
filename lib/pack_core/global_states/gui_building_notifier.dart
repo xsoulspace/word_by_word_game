@@ -7,6 +7,8 @@ import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 part 'gui_building_notifier.freezed.dart';
 
@@ -43,8 +45,10 @@ class GuiBuildingNotifierState with _$GuiBuildingNotifierState {
 
 class GuiBuildingNotifierDto {
   GuiBuildingNotifierDto({required final BuildContext context})
-      : canvasCubit = context.read();
+      : canvasCubit = context.read(),
+        wordCompositionCubit = context.read();
   final CanvasCubit canvasCubit;
+  final GuiWordCompositionCubit wordCompositionCubit;
 }
 
 /// this state should not be saved, as it is itermediate state
@@ -68,10 +72,12 @@ class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
       cell: value.cellPoint!,
       object: object,
     );
+    dto.wordCompositionCubit.onBuildingBuilt(kBuildObjectMultiplier);
     if (kDebugMode) {
       print(
-        'value.cellPoint: ${value.cellPoint} '
-        'value.distanceToOrigin ${value.distanceToOrigin}',
+        '\nvalue.cellPoint: ${value.cellPoint} '
+        '\nvalue.distanceToOrigin ${value.distanceToOrigin}'
+        '\nvalue.type ${value.type}',
       );
     }
     cancelPlacing();

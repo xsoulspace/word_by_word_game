@@ -11,6 +11,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class GlobalStatesProvider extends StatelessWidget {
   const GlobalStatesProvider({
@@ -65,6 +66,7 @@ class GlobalStatesProvider extends StatelessWidget {
             const BlocProvider(create: GameConstantsCubit.new),
             ChangeNotifierProvider(create: DialogStackNotifier.new),
             Provider(create: DialogStackNotifier.getDialogController),
+            ChangeNotifierProvider(create: GuiWordCompositionCubit.new),
             ChangeNotifierProvider(create: GuiBuildingNotifier.new),
             ChangeNotifierProvider(create: GuiFocusableObjectsNotifier.new),
           ],

@@ -21,7 +21,7 @@ class UiWordCompositionBar extends StatelessWidget {
         highlightPosition: Alignment.topCenter,
         uiKey: TutorialUiItem.wordField,
         child: WordField(
-          controller: context.read<WordCompositionCubit>().wordController,
+          controller: context.read<GuiWordCompositionCubit>().wordController,
         ),
 
         // hintText: S.of(context).hintAddEnding,

@@ -20,7 +20,6 @@ class GameBottomBar extends StatelessWidget {
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
           ChangeNotifierProvider(create: BottomActionsNotifier.new),
-          ChangeNotifierProvider(create: WordCompositionCubit.new),
         ],
         builder: (final context, final child) => _GameBottomBarCard(
           builder: (final context) => const Column(

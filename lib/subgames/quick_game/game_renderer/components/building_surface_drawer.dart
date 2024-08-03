@@ -18,6 +18,8 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/gui_building_notifier.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_renderer.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 /// Component to build something
@@ -202,22 +204,29 @@ class _PlacingSurfaceComponent extends PositionComponent
   Vector2 get _buttonSize => Vector2(80, 40);
   double get _buttonPosition => kTileDimensionDouble + (_buttonSize.y / 2) + 12;
   List<GuiFlatButton>? _buttons;
-  List<GuiFlatButton> _createButtons() => [
-        GuiFlatButton(
-          'Cancel',
-          size: _buttonSize,
-          color: material.Colors.red,
-          position: Vector2(0, _buttonPosition),
-          onReleased: onCancel,
-        ),
-        GuiFlatButton(
-          'Build',
-          size: _buttonSize,
-          position: Vector2(_buttonSize.x + 8, _buttonPosition),
-          color: material.Colors.green,
-          onReleased: onBuild,
-        ),
-      ];
+  List<GuiFlatButton> _createButtons() {
+    final (:applyingScore, :compositionState) = useApplyingScoreGameComposable(
+      game: game,
+      type: kBuildObjectMultiplier,
+    );
+    final buildButtonOffset = Vector2(50, 0);
+    return [
+      GuiFlatButton(
+        'Cancel',
+        size: _buttonSize,
+        color: material.Colors.red,
+        position: Vector2(-(_buttonSize.x / 2), _buttonPosition),
+        onReleased: onCancel,
+      ),
+      GuiFlatButton(
+        'Build (${applyingScore.value.formattedScore})',
+        size: _buttonSize + buildButtonOffset,
+        position: Vector2(_buttonSize.x + 8, _buttonPosition),
+        color: material.Colors.green,
+        onReleased: onBuild,
+      ),
+    ];
+  }
 
   @override
   void render(final Canvas canvas) {
