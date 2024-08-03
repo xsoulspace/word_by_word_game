@@ -79,45 +79,46 @@ class UIActionFrameAdvanced extends StatelessWidget {
         tabView: const TentActionsView(),
       ),
     ];
+
+    final views = [
+      if (isPlayerFocused) ...hotAirBalloonActions.map((final e) => e.tabView),
+      if (isTentFocused) ...tentActions.map((final e) => e.tabView),
+      const _TechnologyTabView(),
+    ];
+    final tabs = [
+      if (isPlayerFocused) ...hotAirBalloonActions,
+      if (isTentFocused) ...tentActions,
+      (
+        title: const LocalizedMap(
+          value: {
+            Languages.en: 'Technologies',
+            Languages.ru: 'Технологии',
+            Languages.it: 'Tecnologie',
+          },
+        ),
+        iconChildren: [
+          const Icon(CupertinoIcons.lab_flask, size: 18),
+          const Gap(2),
+        ],
+        tabView: const SizedBox(),
+      ),
+    ];
+
     return DefaultTabController(
-      length: 3,
+      length: tabs.length,
       child: Builder(
         builder: (final context) => Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 120),
-              child: TabBarView(
-                children: [
-                  if (isPlayerFocused)
-                    ...hotAirBalloonActions.map((final e) => e.tabView),
-                  if (isTentFocused) ...tentActions.map((final e) => e.tabView),
-                  const _TechnologyTabView(),
-                ],
-              ),
+              child: TabBarView(children: views),
             ),
             TabBar(
               tabAlignment: TabAlignment.center,
               padding: EdgeInsets.zero,
               isScrollable: true,
-              tabs: [
-                if (isPlayerFocused) ...hotAirBalloonActions,
-                if (isTentFocused) ...tentActions,
-                (
-                  title: const LocalizedMap(
-                    value: {
-                      Languages.en: 'Technologies',
-                      Languages.ru: 'Технологии',
-                      Languages.it: 'Tecnologie',
-                    },
-                  ),
-                  iconChildren: [
-                    const Icon(CupertinoIcons.lab_flask, size: 18),
-                    const Gap(2),
-                  ],
-                  tabView: const SizedBox(),
-                ),
-              ]
+              tabs: tabs
                   .mapIndexed(
                     (final index, final e) => Tab(
                       height: 36,

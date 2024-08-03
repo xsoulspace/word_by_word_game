@@ -775,7 +775,7 @@ mixin _$LevelCharactersModel {
   PlayerCharacterModel get playerCharacter =>
       throw _privateConstructorUsedError;
 
-  /// {@template focused_object}
+  /// {@template focusedObjectId}
   /// The difference of having focused object id is that it is not tied
   /// to a player and can be used to focus on any object in the level.
   /// In that case the current player is not focused and camera is not
@@ -905,7 +905,7 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
   @override
   final PlayerCharacterModel playerCharacter;
 
-  /// {@template focused_object}
+  /// {@template focusedObjectId}
   /// The difference of having focused object id is that it is not tied
   /// to a player and can be used to focus on any object in the level.
   /// In that case the current player is not focused and camera is not
@@ -966,7 +966,7 @@ abstract class _LevelCharactersModel extends LevelCharactersModel {
   PlayerCharacterModel get playerCharacter;
   @override
 
-  /// {@template focused_object}
+  /// {@template focusedObjectId}
   /// The difference of having focused object id is that it is not tied
   /// to a player and can be used to focus on any object in the level.
   /// In that case the current player is not focused and camera is not
@@ -2097,6 +2097,13 @@ mixin _$PlayerCharacterModel {
   LocalizedMap get localizedName => throw _privateConstructorUsedError;
   String get characterIcon => throw _privateConstructorUsedError;
   SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
+
+  /// use this vector, to restore object position
+  /// after object was deleted. For example, if player had
+  /// crashed, then we need to restore
+  /// his position to the last checkpoint if it is exists.
+  SerializedVector2 get checkpointDistanceToOrigin =>
+      throw _privateConstructorUsedError;
   BalloonLiftPowersModel get balloonPowers =>
       throw _privateConstructorUsedError;
   BalloonLiftParamsModel get balloonParams =>
@@ -2126,6 +2133,7 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       LocalizedMap localizedName,
       String characterIcon,
       SerializedVector2 distanceToOrigin,
+      SerializedVector2 checkpointDistanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
       BalloonLiftParamsModel balloonParams,
       bool isAnchored});
@@ -2134,6 +2142,7 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
   $GidCopyWith<$Res> get gid;
   $LocalizedMapCopyWith<$Res> get localizedName;
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  $SerializedVector2CopyWith<$Res> get checkpointDistanceToOrigin;
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
   $BalloonLiftParamsModelCopyWith<$Res> get balloonParams;
 }
@@ -2159,6 +2168,7 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     Object? localizedName = null,
     Object? characterIcon = null,
     Object? distanceToOrigin = null,
+    Object? checkpointDistanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
     Object? isAnchored = null,
@@ -2191,6 +2201,10 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
       distanceToOrigin: null == distanceToOrigin
           ? _value.distanceToOrigin
           : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
+      checkpointDistanceToOrigin: null == checkpointDistanceToOrigin
+          ? _value.checkpointDistanceToOrigin
+          : checkpointDistanceToOrigin // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
       balloonPowers: null == balloonPowers
           ? _value.balloonPowers
@@ -2241,6 +2255,15 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
 
   @override
   @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get checkpointDistanceToOrigin {
+    return $SerializedVector2CopyWith<$Res>(_value.checkpointDistanceToOrigin,
+        (value) {
+      return _then(_value.copyWith(checkpointDistanceToOrigin: value) as $Val);
+    });
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers {
     return $BalloonLiftPowersModelCopyWith<$Res>(_value.balloonPowers, (value) {
       return _then(_value.copyWith(balloonPowers: value) as $Val);
@@ -2272,6 +2295,7 @@ abstract class _$$PlayerCharacterModelImplCopyWith<$Res>
       LocalizedMap localizedName,
       String characterIcon,
       SerializedVector2 distanceToOrigin,
+      SerializedVector2 checkpointDistanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
       BalloonLiftParamsModel balloonParams,
       bool isAnchored});
@@ -2284,6 +2308,8 @@ abstract class _$$PlayerCharacterModelImplCopyWith<$Res>
   $LocalizedMapCopyWith<$Res> get localizedName;
   @override
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  @override
+  $SerializedVector2CopyWith<$Res> get checkpointDistanceToOrigin;
   @override
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
   @override
@@ -2308,6 +2334,7 @@ class __$$PlayerCharacterModelImplCopyWithImpl<$Res>
     Object? localizedName = null,
     Object? characterIcon = null,
     Object? distanceToOrigin = null,
+    Object? checkpointDistanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
     Object? isAnchored = null,
@@ -2341,6 +2368,10 @@ class __$$PlayerCharacterModelImplCopyWithImpl<$Res>
           ? _value.distanceToOrigin
           : distanceToOrigin // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
+      checkpointDistanceToOrigin: null == checkpointDistanceToOrigin
+          ? _value.checkpointDistanceToOrigin
+          : checkpointDistanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
       balloonPowers: null == balloonPowers
           ? _value.balloonPowers
           : balloonPowers // ignore: cast_nullable_to_non_nullable
@@ -2369,6 +2400,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
       this.localizedName = LocalizedMap.empty,
       this.characterIcon = '',
       this.distanceToOrigin = SerializedVector2.zero,
+      this.checkpointDistanceToOrigin = SerializedVector2.zero,
       this.balloonPowers = BalloonLiftPowersModel.initial,
       this.balloonParams = BalloonLiftParamsModel.initial,
       this.isAnchored = true})
@@ -2403,6 +2435,14 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
   @override
   @JsonKey()
   final SerializedVector2 distanceToOrigin;
+
+  /// use this vector, to restore object position
+  /// after object was deleted. For example, if player had
+  /// crashed, then we need to restore
+  /// his position to the last checkpoint if it is exists.
+  @override
+  @JsonKey()
+  final SerializedVector2 checkpointDistanceToOrigin;
   @override
   @JsonKey()
   final BalloonLiftPowersModel balloonPowers;
@@ -2418,7 +2458,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, distanceToOrigin: $distanceToOrigin, balloonPowers: $balloonPowers, balloonParams: $balloonParams, isAnchored: $isAnchored)';
+    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, distanceToOrigin: $distanceToOrigin, checkpointDistanceToOrigin: $checkpointDistanceToOrigin, balloonPowers: $balloonPowers, balloonParams: $balloonParams, isAnchored: $isAnchored)';
   }
 
   @override
@@ -2437,6 +2477,10 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
                 other.characterIcon == characterIcon) &&
             (identical(other.distanceToOrigin, distanceToOrigin) ||
                 other.distanceToOrigin == distanceToOrigin) &&
+            (identical(other.checkpointDistanceToOrigin,
+                    checkpointDistanceToOrigin) ||
+                other.checkpointDistanceToOrigin ==
+                    checkpointDistanceToOrigin) &&
             (identical(other.balloonPowers, balloonPowers) ||
                 other.balloonPowers == balloonPowers) &&
             (identical(other.balloonParams, balloonParams) ||
@@ -2456,6 +2500,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
       localizedName,
       characterIcon,
       distanceToOrigin,
+      checkpointDistanceToOrigin,
       balloonPowers,
       balloonParams,
       isAnchored);
@@ -2485,6 +2530,7 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
       final LocalizedMap localizedName,
       final String characterIcon,
       final SerializedVector2 distanceToOrigin,
+      final SerializedVector2 checkpointDistanceToOrigin,
       final BalloonLiftPowersModel balloonPowers,
       final BalloonLiftParamsModel balloonParams,
       final bool isAnchored}) = _$PlayerCharacterModelImpl;
@@ -2513,6 +2559,13 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   String get characterIcon;
   @override
   SerializedVector2 get distanceToOrigin;
+  @override
+
+  /// use this vector, to restore object position
+  /// after object was deleted. For example, if player had
+  /// crashed, then we need to restore
+  /// his position to the last checkpoint if it is exists.
+  SerializedVector2 get checkpointDistanceToOrigin;
   @override
   BalloonLiftPowersModel get balloonPowers;
   @override

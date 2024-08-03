@@ -219,6 +219,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     void resetAdvancedGameCharacter() {
       level = level.copyWith.characters.playerCharacter(
         balloonParams: BalloonLiftParamsModel.initial,
+        balloonPowers: level.characters.playerCharacter.balloonPowers.copyWith(
+          /// volume should be 0 to prevent any lift
+          volume: 0,
+        ),
       );
     }
 
@@ -292,7 +296,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
             id: character.id,
           );
         case PlayerStartPointType.fromSavePoint:
-          throw UnimplementedError();
+          newCanvasData = newCanvasData.copyWith.playerObject(
+            id: character.id,
+            distanceToOrigin: character.restorationDistanceToOrigin,
+          );
         case PlayerStartPointType.fromSamePlace:
           newCanvasData = newCanvasData.copyWith.playerObject(
             id: character.id,
@@ -464,9 +471,8 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     emit(updatedState);
     await _saveGame(liveState: updatedState);
-    // TODO(arenukvern): add save points
-    // ignore: unused_local_variable
-    const isPlayerHasSavePoints = false;
+    final isPlayerHasSavePoints =
+        level.characters.playerCharacter.hasCheckpoint;
     final initEvent = InitGlobalGameLevelEvent(
       levelModel: level,
       isNewStart: false,
@@ -479,11 +485,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         }
       }(),
       playerStartPoint: () {
-        // TODO(arenukvern): add save points
-        // ignore: dead_code
-        if (isPlayerHasSavePoints &&
-            // ignore: dead_code
-            level.featuresSettings.isWindDirectionChangeEnabled) {
+        if (isPlayerHasSavePoints
+            // && level.featuresSettings.isWindDirectionChangeEnabled
+            ) {
           return PlayerStartPointType.fromSavePoint;
         }
 

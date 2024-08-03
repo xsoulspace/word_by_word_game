@@ -23,6 +23,13 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     @Default(LocalizedMap.empty) final LocalizedMap localizedName,
     @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 distanceToOrigin,
+
+    /// use this vector, to restore object position
+    /// after object was deleted. For example, if player had
+    /// crashed, then we need to restore
+    /// his position to the last checkpoint if it is exists.
+    @Default(SerializedVector2.zero)
+    final SerializedVector2 checkpointDistanceToOrigin,
     @Default(BalloonLiftPowersModel.initial)
     final BalloonLiftPowersModel balloonPowers,
     @Default(BalloonLiftParamsModel.initial)
@@ -36,6 +43,11 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
   factory PlayerCharacterModel.fromJson(final Map<String, dynamic> json) =>
       _$PlayerCharacterModelFromJson(json);
   static const empty = PlayerCharacterModel();
+  SerializedVector2 get restorationDistanceToOrigin =>
+      checkpointDistanceToOrigin.isZero
+          ? distanceToOrigin
+          : checkpointDistanceToOrigin;
+  bool get hasCheckpoint => checkpointDistanceToOrigin.isNotZero;
 }
 
 @immutable
@@ -51,6 +63,7 @@ class SerializedVector2 with _$SerializedVector2 {
       _$SerializedVector2FromJson(json);
   static const zero = SerializedVector2();
   bool get isZero => x == 0 && y == 0;
+  bool get isNotZero => !isZero;
   Vector2 toVector2() => Vector2(x, y);
   Map<String, dynamic> toJson() => {'x': x, 'y': y};
   Offset toOffset() => Offset(x, y);

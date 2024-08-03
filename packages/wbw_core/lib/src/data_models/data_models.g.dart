@@ -282,6 +282,10 @@ _$PlayerCharacterModelImpl _$$PlayerCharacterModelImplFromJson(
           ? SerializedVector2.zero
           : SerializedVector2.fromJson(
               json['distanceToOrigin'] as Map<String, dynamic>),
+      checkpointDistanceToOrigin: json['checkpointDistanceToOrigin'] == null
+          ? SerializedVector2.zero
+          : SerializedVector2.fromJson(
+              json['checkpointDistanceToOrigin'] as Map<String, dynamic>),
       balloonPowers: json['balloonPowers'] == null
           ? BalloonLiftPowersModel.initial
           : BalloonLiftPowersModel.fromJson(
@@ -303,6 +307,8 @@ Map<String, dynamic> _$$PlayerCharacterModelImplToJson(
       'localizedName': instance.localizedName.toJson(),
       'characterIcon': instance.characterIcon,
       'distanceToOrigin': instance.distanceToOrigin.toJson(),
+      'checkpointDistanceToOrigin':
+          instance.checkpointDistanceToOrigin.toJson(),
       'balloonPowers': instance.balloonPowers.toJson(),
       'balloonParams': instance.balloonParams.toJson(),
       'isAnchored': instance.isAnchored,

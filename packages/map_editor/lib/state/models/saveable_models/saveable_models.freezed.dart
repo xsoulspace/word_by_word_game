@@ -1637,14 +1637,15 @@ class __$$RenderObjectModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RenderObjectModelImpl implements _RenderObjectModel {
+class _$RenderObjectModelImpl extends _RenderObjectModel {
   const _$RenderObjectModelImpl(
       {required this.id,
       required this.tileId,
       this.position = SerializedVector2.zero,
       this.distanceToOrigin = SerializedVector2.zero,
       this.distanceToTileLeftTopCorner = SerializedVector2.zero,
-      this.animationBehaviour = TileBehaviourType.idle});
+      this.animationBehaviour = TileBehaviourType.idle})
+      : super._();
 
   factory _$RenderObjectModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RenderObjectModelImplFromJson(json);
@@ -1719,7 +1720,7 @@ class _$RenderObjectModelImpl implements _RenderObjectModel {
   }
 }
 
-abstract class _RenderObjectModel implements RenderObjectModel {
+abstract class _RenderObjectModel extends RenderObjectModel {
   const factory _RenderObjectModel(
       {required final Gid id,
       required final TileId tileId,
@@ -1727,6 +1728,7 @@ abstract class _RenderObjectModel implements RenderObjectModel {
       final SerializedVector2 distanceToOrigin,
       final SerializedVector2 distanceToTileLeftTopCorner,
       final TileBehaviourType animationBehaviour}) = _$RenderObjectModelImpl;
+  const _RenderObjectModel._() : super._();
 
   factory _RenderObjectModel.fromJson(Map<String, dynamic> json) =
       _$RenderObjectModelImpl.fromJson;

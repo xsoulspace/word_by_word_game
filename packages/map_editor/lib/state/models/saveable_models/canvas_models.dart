@@ -241,6 +241,7 @@ class RenderObjectModel with _$RenderObjectModel {
   }) = _RenderObjectModel;
   factory RenderObjectModel.fromJson(final Map<String, dynamic> json) =>
       _$RenderObjectModelFromJson(json);
+  const RenderObjectModel._();
   static const empty = RenderObjectModel(
     id: Gid.empty,
     tileId: TileId.empty,

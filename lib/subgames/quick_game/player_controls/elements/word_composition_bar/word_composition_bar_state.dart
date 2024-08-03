@@ -104,25 +104,6 @@ class GuiWordCompositionCubit extends ChangeNotifier {
       dto.levelBloc.onLevelPlayerSelectActionMultiplier(
         LevelBlocEventSelectActionMultiplier(multiplier: multiplier),
       );
-  void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.researchingTechnology);
-  }
-
-  void onCrystalMoved(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.crystalMove);
-  }
-
-  void onPowerSelected(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.refueling);
-  }
-
-  void onBuildingBuilt(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.buildingBuilt);
-  }
 
   Future<void> onToSelectActionPhase() async => dto.levelBloc.onAcceptNewWord();
 
@@ -176,6 +157,33 @@ class BottomActionsNotifierState with _$BottomActionsNotifierState {
   const factory BottomActionsNotifierState({
     @Default(true) final bool isCardVisible,
   }) = _BottomActionsNotifierState;
+}
+
+extension UiGuiWordCompositionCubitCallbacksX on GuiWordCompositionCubit {
+  void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.researchingTechnology);
+  }
+
+  void onCrystalMoved(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.crystalMove);
+  }
+
+  void onPowerSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.refueling);
+  }
+
+  void onBuildingBuilt(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.buildingBuilt);
+  }
+
+  void onRestAndPrepareBalloon(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.restAndPrepareBalloon);
+  }
 }
 
 class BottomActionsNotifier extends ValueNotifier<BottomActionsNotifierState> {

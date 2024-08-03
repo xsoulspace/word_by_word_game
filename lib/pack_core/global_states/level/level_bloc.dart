@@ -212,10 +212,13 @@ class LevelBloc extends Cubit<LevelBlocState> {
       multiplier: liveState.energyMultiplier,
       availableScore: liveLevelPlayerState.currentPlayer.highscore.score,
     );
+    final refuelStorageEvent = RefuelStorageEvent(score: appliedScore);
     switch (energyApplicationType) {
       case EnergyApplicationType.refueling:
-        levelPlayersCubit
-            .onRefuelStorage(RefuelStorageEvent(score: appliedScore));
+        levelPlayersCubit.onRefuelStorage(refuelStorageEvent);
+      case EnergyApplicationType.restAndPrepareBalloon:
+        levelPlayersCubit.onRefuelStorage(refuelStorageEvent);
+        levelPlayersCubit.onChangeCharacterCheckpointPosition();
       case EnergyApplicationType.researchingTechnology:
         technologiesCubit.onResearchTechnology(
           ResearchTechnologyEvent(score: appliedScore),

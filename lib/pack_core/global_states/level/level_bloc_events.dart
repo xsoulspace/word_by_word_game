@@ -5,6 +5,7 @@ enum EnergyApplicationType {
   buildingBuilt,
   researchingTechnology,
   crystalMove,
+  restAndPrepareBalloon,
   noop,
 }
 
