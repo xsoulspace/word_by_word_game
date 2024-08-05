@@ -34,6 +34,8 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
         state.copyWith(focusedObjectGid: value),
       );
   void focusToPlayer() => changeFocusedObjectId(Gid.empty);
+  // TODO(arenukvern): description
+  bool get isFocusedObjectHasPower => focusedObjectId.isEmpty;
 
   RenderObjectModel get focusedObject {
     final id = focusedObjectId;

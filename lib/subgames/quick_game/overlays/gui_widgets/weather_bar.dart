@@ -3,6 +3,7 @@
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -25,11 +26,13 @@ class UIWeatherBar extends StatelessWidget {
       child: Container(
         decoration: BoxDecoration(
           color: context.colorScheme.surface.withOpacity(0.7),
-          border: Border(right: borderSide, bottom: borderSide),
+          border: Border.fromBorderSide(borderSide),
           borderRadius: const BorderRadius.only(
             bottomRight: Radius.elliptical(8, 8),
+            bottomLeft: Radius.elliptical(8, 8),
           ),
         ),
+        constraints: const BoxConstraints(minWidth: 300),
         padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4)
             .copyWith(left: 2),
         child: TutorialFrame(
@@ -97,7 +100,10 @@ class UIWeatherBar extends StatelessWidget {
                 ),
               ),
               // TODO(arenukvern): add summary wind direction
-              _NextWeathersRow(weathers: state.weathers),
+              AnimatedSize(
+                duration: 350.milliseconds,
+                child: _NextWeathersRow(weathers: state.weathers),
+              ),
             ],
           ),
         ),

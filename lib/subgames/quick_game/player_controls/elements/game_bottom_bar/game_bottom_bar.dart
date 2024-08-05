@@ -1,6 +1,7 @@
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
@@ -9,6 +10,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/focus_surface_drawer.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 part 'card_frosted_background.dart';
@@ -246,17 +248,18 @@ class _UiFocusableObjectsRow extends StatelessWidget {
                 if (index == 0) {
                   return _UiToFocusCard(
                     onPressed: guiFocusableObjectsNotifier.choosePlayer,
-                    title: playerCharacter.tileId.value,
+                    tileId: playerCharacter.tileId,
                     isFocused: focusedObjectId.isEmpty,
                     // TODO(arenukvern): add image
                   );
                 }
                 final objectId = nearestObjectIds[index - 1];
                 final object = canvasCubit.objects[objectId];
+                if (object == null) return const SizedBox.shrink();
                 return _UiToFocusCard(
                   onPressed: () =>
                       guiFocusableObjectsNotifier.setFocusedObjectId(objectId),
-                  title: object?.tileId.value ?? '',
+                  tileId: object.tileId,
                   isFocused: focusedObjectId == objectId,
                   // TODO(arenukvern): add image
                 );
@@ -292,37 +295,40 @@ class _UiFocusableObjectsRow extends StatelessWidget {
 
 class _UiToFocusCard extends StatelessWidget {
   const _UiToFocusCard({
-    required this.title,
+    required this.tileId,
     required this.onPressed,
     this.child,
     this.isFocused = false,
   });
-  final String title;
+  final TileId tileId;
   final Widget? child;
   final VoidCallback onPressed;
   final bool isFocused;
   @override
-  Widget build(final BuildContext context) => UiBaseButton(
-        onPressed: onPressed,
-        child: Container(
-          decoration: BoxDecoration(
-            color: context.colorScheme.surface,
-            borderRadius: BorderRadius.circular(24),
-            border: isFocused
-                ? Border.all(color: kFocusObjectColor.color, width: 6)
-                : null,
-          ),
-          alignment: Alignment.center,
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text(title),
-              child ?? const SizedBox.shrink(),
-            ],
-          ),
+  Widget build(final BuildContext context) {
+    final locale = useLocale(context);
+    return UiBaseButton(
+      onPressed: onPressed,
+      child: Container(
+        decoration: BoxDecoration(
+          color: context.colorScheme.surface,
+          borderRadius: BorderRadius.circular(24),
+          border: isFocused
+              ? Border.all(color: kFocusObjectColor.color, width: 6)
+              : null,
         ),
-      );
+        alignment: Alignment.center,
+        padding: const EdgeInsets.all(8),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(tileId.localizedTitle(locale)),
+            child ?? const SizedBox.shrink(),
+          ],
+        ),
+      ),
+    );
+  }
 }
 
 class UiCurrentPlayerCard extends StatelessWidget {

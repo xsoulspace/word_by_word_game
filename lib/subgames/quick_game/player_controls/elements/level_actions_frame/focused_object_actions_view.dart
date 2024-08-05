@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -35,21 +36,21 @@ class SwitchFocusButton extends StatelessWidget {
           ],
         ),
         onPressed: () {
-          /// hide bottom bar
-          ///
-          /// Show Possible to focus panel (horizontal list)
-          /// with squares
-          ///
-          /// NM - depending from distance use different cose
-          /// for switching
-          ///
-          /// Save/Restore FCO to data models
-          /// Make PA dependable from FCO
           context.read<GuiFocusableObjectsNotifier>().startChoosing();
         },
       ),
     );
   }
+}
+
+extension TileIdX on TileId {
+  String localizedTitle(final Locale locale) => switch (value) {
+        // TODO(arenukvern): l10n
+        'hot_air_balloon' => 'Hot Air Balloon',
+        // TODO(arenukvern): l10n
+        'tent' => 'Tent',
+        _ => '',
+      };
 }
 
 class HotAirBaloonActionsView extends StatelessWidget {
@@ -105,7 +106,7 @@ class TentActionsView extends StatelessWidget {
           const Gap(12),
           Tooltip(
             message: 'Adds some power to Hot Air Balloon. '
-                '\nBecameslast checkpoint, if Hot Air Balloon crashes.',
+                '\nBecames last checkpoint, if Hot Air Balloon crashes.',
             child: TextButton(
               onPressed: () => context
                   .read<GuiWordCompositionCubit>()

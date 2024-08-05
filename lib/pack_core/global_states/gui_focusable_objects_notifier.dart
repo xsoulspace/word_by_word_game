@@ -66,6 +66,17 @@ class GuiFocusableObjectsNotifier
 
   /// all nearest objects will be updated in the next tick
   /// from the player render object
+  ///
+  /// hide bottom bar
+  ///
+  /// Show Possible to focus panel (horizontal list)
+  /// with squares
+  ///
+  /// NM - depending from distance use different cose
+  /// for switching
+  ///
+  /// Save/Restore FCO to data models
+  /// Make PA dependable from FCO
   void startChoosing() {
     value = value.copyWith(
       isChoosing: true,

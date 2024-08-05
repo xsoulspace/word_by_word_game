@@ -83,25 +83,25 @@ class UIActionFrameAdvanced extends StatelessWidget {
     final views = [
       if (isPlayerFocused) ...hotAirBalloonActions.map((final e) => e.tabView),
       if (isTentFocused) ...tentActions.map((final e) => e.tabView),
-      const _TechnologyTabView(),
+      // const _TechnologyTabView(),
     ];
     final tabs = [
       if (isPlayerFocused) ...hotAirBalloonActions,
       if (isTentFocused) ...tentActions,
-      (
-        title: const LocalizedMap(
-          value: {
-            Languages.en: 'Technologies',
-            Languages.ru: 'Технологии',
-            Languages.it: 'Tecnologie',
-          },
-        ),
-        iconChildren: [
-          const Icon(CupertinoIcons.lab_flask, size: 18),
-          const Gap(2),
-        ],
-        tabView: const SizedBox(),
-      ),
+      // (
+      //   title: const LocalizedMap(
+      //     value: {
+      //       Languages.en: 'Technologies',
+      //       Languages.ru: 'Технологии',
+      //       Languages.it: 'Tecnologie',
+      //     },
+      //   ),
+      //   iconChildren: [
+      //     const Icon(CupertinoIcons.lab_flask, size: 18),
+      //     const Gap(2),
+      //   ],
+      //   tabView: const SizedBox(),
+      // ),
     ];
 
     return DefaultTabController(

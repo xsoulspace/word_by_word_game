@@ -1,13 +1,12 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/focused_object_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class GuiOverlay extends StatelessWidget {
@@ -21,29 +20,27 @@ class GuiOverlay extends StatelessWidget {
     final currentLevelId = context.select<GlobalGameBloc, CanvasDataModelId>(
       (final bloc) => bloc.state.currentLevelId,
     );
-    final screenSize = MediaQuery.sizeOf(context);
     final uiTheme = context.uiTheme;
-    const rightPaneWidth = 100.0;
     return DialogStack(
       children: [
         const Positioned(
-          top: 0,
-          left: 0,
-          right: rightPaneWidth,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SafeArea(bottom: false, child: SizedBox()),
               UIWeatherBar(),
-              _Statistics(),
+              UIPowerBar(),
+              Gap(6),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _Statistics(),
+                  // Spacer(),
+                  // CurrentTechnologyButton(),
+                  // Gap(16),
+                ],
+              ),
             ],
           ),
-        ),
-        const Positioned(
-          right: 0,
-          top: 0,
-          width: rightPaneWidth,
-          child: FocusedObjectBar(),
         ),
         Builder(
           builder: (final context) {
@@ -82,8 +79,6 @@ class _Statistics extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const CurrentTechnologyButton(),
-        uiTheme.verticalBoxes.medium,
         const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
         uiTheme.verticalBoxes.medium,
         const UIPlayersSideBar(),

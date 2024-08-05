@@ -487,12 +487,14 @@ class AnimatedProgressBar extends StatelessWidget {
     required this.color,
     this.border,
     this.borderRadiusValue = 24,
+    this.borderRadius,
     super.key,
   });
   final double height;
   final double width;
   final Border? border;
   final double borderRadiusValue;
+  final BorderRadius? borderRadius;
 
   /// from 0 to 1
   final double value;
@@ -501,9 +503,10 @@ class AnimatedProgressBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final borderRadius = BorderRadius.all(
-      Radius.elliptical(borderRadiusValue, borderRadiusValue),
-    );
+    final borderRadius = this.borderRadius ??
+        BorderRadius.all(
+          Radius.elliptical(borderRadiusValue, borderRadiusValue),
+        );
     final isVertical = height > width;
     return SizedBox(
       width: width,
@@ -548,16 +551,28 @@ class UiLabledProgressBar extends StatelessWidget {
     required this.textColor,
     required this.borderColor,
     required this.backgroundColor,
-    required this.icon,
+    this.border,
+    this.borderRadius,
+    this.icon,
     this.onPressed,
+    this.height = 32,
+    this.iconPadding = const EdgeInsets.only(left: 6),
+    this.width = 90,
+    this.text = '',
     super.key,
   });
+  final String text;
+  final double width;
+  final double height;
   final double percentage;
+  final Border? border;
+  final BorderRadius? borderRadius;
   final Color filledColor;
   final Color borderColor;
   final Color textColor;
   final Color backgroundColor;
-  final Widget icon;
+  final Widget? icon;
+  final EdgeInsets iconPadding;
   final VoidCallback? onPressed;
   final Map<Languages, String> tooltipMessage;
 
@@ -573,7 +588,6 @@ class UiLabledProgressBar extends StatelessWidget {
         color: borderColor,
       ),
     ];
-    const width = 90.0;
     final locale = useLocale(context);
 
     return Tooltip(
@@ -587,15 +601,16 @@ class UiLabledProgressBar extends StatelessWidget {
           children: [
             AnimatedProgressBar(
               width: width,
-              height: 32,
+              height: height,
               value: percentage,
               backgroundColor: backgroundColor,
               color: filledColor,
+              borderRadius: borderRadius,
               borderRadiusValue: 52,
-              border: Border.all(color: borderColor),
+              border: border ?? Border.all(color: borderColor),
             ),
             Positioned(
-              left: 6,
+              left: iconPadding.left,
               top: 0,
               bottom: 0,
               child: IconTheme.merge(
@@ -612,15 +627,116 @@ class UiLabledProgressBar extends StatelessWidget {
               bottom: 4,
               child: Center(
                 child: Text(
-                  percentage.isNaN
-                      ? '0 %'
-                      : // ignore: lines_longer_than_80_chars
-                      '${(percentage * 100).toStringAsFixed(0)}%',
+                  text.whenEmptyUse(
+                    percentage.isNaN
+                        ? '0 %'
+                        : // ignore: lines_longer_than_80_chars
+                        '${(percentage * 100).toStringAsFixed(0)}%',
+                  ),
                   style: context.textThemeBold.titleLarge!.copyWith(
                     color: textColor,
                     shadows: shadows,
                   ),
                 ),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class UiTechnologyCircle extends StatelessWidget {
+  const UiTechnologyCircle({
+    required this.tooltipMessage,
+    required this.percentage,
+    required this.filledColor,
+    required this.textColor,
+    required this.borderColor,
+    required this.backgroundColor,
+    required this.text,
+    required this.title,
+    this.onPressed,
+    super.key,
+  });
+  final String text;
+  final String title;
+  final double percentage;
+  final Color filledColor;
+  final Color borderColor;
+  final Color textColor;
+  final Color backgroundColor;
+  final VoidCallback? onPressed;
+  final Map<Languages, String> tooltipMessage;
+
+  @override
+  Widget build(final BuildContext context) {
+    final shadows = [
+      Shadow(
+        blurRadius: 0.2,
+        color: borderColor,
+      ),
+      Shadow(
+        blurRadius: 0.2,
+        color: borderColor,
+      ),
+    ];
+    const dimension = 48.0;
+    final locale = useLocale(context);
+
+    return Tooltip(
+      message: LocalizedMap(
+        value: tooltipMessage,
+      ).getValue(locale),
+      child: UiBaseButton(
+        onPressed: onPressed,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Stack(
+              alignment: Alignment.centerRight,
+              children: [
+                AnimatedProgressBar(
+                  width: dimension,
+                  height: dimension,
+                  value: percentage,
+                  backgroundColor: backgroundColor,
+                  color: filledColor,
+                  borderRadiusValue: 52,
+                  border: Border.all(color: borderColor),
+                ),
+                Positioned.fill(
+                  child: Center(
+                    child: Text(
+                      text,
+                      style: context.textThemeBold.titleLarge!.copyWith(
+                        color: textColor,
+                        shadows: shadows,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            Text(
+              title,
+              style: context.textTheme.labelMedium!.copyWith(
+                color: textColor,
+                shadows: [
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withOpacity(1),
+                  ),
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withOpacity(1),
+                  ),
+                  Shadow(
+                    blurRadius: 1,
+                    color: borderColor.withOpacity(1),
+                  ),
+                ],
               ),
             ),
           ],
