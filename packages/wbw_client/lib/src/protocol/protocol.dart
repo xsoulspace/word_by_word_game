@@ -23,8 +23,6 @@ class Protocol extends _i1.SerializationManager {
 
   factory Protocol() => _instance;
 
-  static final Map<Type, _i1.constructor> customConstructors = {};
-
   static final Protocol _instance = Protocol._();
 
   @override
@@ -33,26 +31,23 @@ class Protocol extends _i1.SerializationManager {
     Type? t,
   ]) {
     t ??= T;
-    if (customConstructors.containsKey(t)) {
-      return customConstructors[t]!(data, this) as T;
-    }
     if (t == _i2.WordLanguage) {
       return _i2.WordLanguage.fromJson(data) as T;
     }
     if (t == _i3.WordModel) {
-      return _i3.WordModel.fromJson(data, this) as T;
+      return _i3.WordModel.fromJson(data) as T;
     }
     if (t == _i4.WordRequest) {
-      return _i4.WordRequest.fromJson(data, this) as T;
+      return _i4.WordRequest.fromJson(data) as T;
     }
     if (t == _i1.getType<_i2.WordLanguage?>()) {
       return (data != null ? _i2.WordLanguage.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i3.WordModel?>()) {
-      return (data != null ? _i3.WordModel.fromJson(data, this) : null) as T;
+      return (data != null ? _i3.WordModel.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i4.WordRequest?>()) {
-      return (data != null ? _i4.WordRequest.fromJson(data, this) : null) as T;
+      return (data != null ? _i4.WordRequest.fromJson(data) : null) as T;
     }
     return super.deserialize<T>(data, t);
   }

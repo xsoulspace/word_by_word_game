@@ -23,7 +23,8 @@ build-crazy-games:
 	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=crazyGames -t lib/main_prod.dart --pwa-strategy=offline-first
 build-yandex-games:
 	fvm flutter build web --csp --dart-define-from-file=configs/web_prod.json --dart-define=STORE=yandexGames -t lib/main_prod.dart
-
+upgrade-deps:
+	fvm flutter pub upgrade --major-versions && fvm dart run upgrade_packages.dart
 # pass 
 # as argument: make v="3.19." run
 # or be defined as environment: wid="" wis="" v="3.19." make run build-snap
