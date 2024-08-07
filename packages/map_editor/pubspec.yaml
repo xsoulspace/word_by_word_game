@@ -6,8 +6,8 @@ publish_to: none
 # publish_to: "none"
 # homepage:
 environment:
-  sdk: ">=3.4.0 <4.0.0"
-  flutter: ">=3.22.2"
+  sdk: ">=3.5.0 <4.0.0"
+  flutter: ">=3.24.0"
 
 dependencies:
   animate_do: ^3.0.2
