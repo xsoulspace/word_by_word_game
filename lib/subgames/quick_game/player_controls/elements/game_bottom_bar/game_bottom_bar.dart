@@ -79,50 +79,53 @@ class _GameBottomBarCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Row(
-                children: [
-                  SizedBox(
-                    width: 80,
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Builder(
-                        builder: (final context) {
-                          void onTap() => context
-                              .read<BottomActionsNotifier>()
-                              .changeCardVisiblity();
+              if (isAllowedToBeVisible)
+                Row(
+                  children: [
+                    SizedBox(
+                      width: 80,
+                      child: Align(
+                        alignment: Alignment.centerLeft,
+                        child: Builder(
+                          builder: (final context) {
+                            void onTap() => context
+                                .read<BottomActionsNotifier>()
+                                .changeCardVisiblity();
 
-                          return UiBaseButton(
-                            tooltipMessage: effectiveIsCardVisible
-                                ? S.of(context).hidePane
-                                : S.of(context).showPane,
-                            onPressed: () {},
-                            child: effectiveIsCardVisible
-                                ? TextButton(
-                                    onPressed: onTap,
-                                    child: const Icon(Icons.arrow_drop_down),
-                                  )
-                                : OutlinedButton(
-                                    onPressed: onTap,
-                                    child: const Icon(Icons.arrow_drop_up),
-                                  ),
-                          );
-                        },
+                            return UiBaseButton(
+                              tooltipMessage: effectiveIsCardVisible
+                                  ? S.of(context).hidePane
+                                  : S.of(context).showPane,
+                              onPressed: () {},
+                              child: effectiveIsCardVisible
+                                  ? TextButton(
+                                      onPressed: onTap,
+                                      child: const Icon(Icons.arrow_drop_down),
+                                    )
+                                  : OutlinedButton(
+                                      onPressed: onTap,
+                                      child: const Icon(Icons.arrow_drop_up),
+                                    ),
+                            );
+                          },
+                        ),
                       ),
                     ),
-                  ),
-                  const Spacer(),
-                  const UiCurrentPlayerCard(),
-                  const Spacer(),
-                  const SizedBox(
-                    width: 80,
-                    child: Align(
-                      alignment: Alignment.centerRight,
-                      child: UiPauseButton(),
-                    ),
-                  ),
-                  const Gap(20),
-                ],
-              ),
+                    const Spacer(),
+                    const UiCurrentPlayerCard().animate().fadeIn(),
+                    const Spacer(),
+                    const SizedBox(
+                      width: 80,
+                      child: Align(
+                        alignment: Alignment.centerRight,
+                        child: UiPauseButton(),
+                      ),
+                    ).animate().fadeIn(),
+                    const Gap(20),
+                  ],
+                )
+              else
+                const Gap(80),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [

@@ -15,6 +15,12 @@ class UIPowerBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
+      (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
+    );
+    if (!isAllowedToBeVisible) {
+      return const SizedBox.shrink();
+    }
     final playerParams = context.select<LevelPlayersBloc, PlayerCharacterModel>(
       (final value) => value.state.playerCharacter,
     );

@@ -75,6 +75,12 @@ class _Statistics extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
+      (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
+    );
+    if (!isAllowedToBeVisible) {
+      return const SizedBox.shrink();
+    }
     final uiTheme = context.uiTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

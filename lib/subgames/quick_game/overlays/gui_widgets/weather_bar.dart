@@ -15,6 +15,12 @@ class UIWeatherBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
+      (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
+    );
+    if (!isAllowedToBeVisible) {
+      return const SizedBox.shrink();
+    }
     final locale = useLocale(context);
     final state = context.watch<WeatherCubit>().state;
     final currentWeather = state.weather;

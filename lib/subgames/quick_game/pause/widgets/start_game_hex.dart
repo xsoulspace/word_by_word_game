@@ -31,8 +31,8 @@ class QuickStartGameButtons extends StatelessWidget {
     final globalGameCubit = context.watch<GlobalGameBloc>();
     context.watch<LevelStartDialogUiState>();
 
-    return Provider(
-      create: (final context) => state,
+    return ChangeNotifierProvider.value(
+      value: state,
       builder: (final context, final child) {
         final canvasData =
             globalGameCubit.state.allCanvasData.values.firstWhere(
@@ -42,23 +42,12 @@ class QuickStartGameButtons extends StatelessWidget {
         return Column(
           key: ValueKey(canvasData),
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            uiTheme.verticalBoxes.large,
-            UiFilledButton.text(
-              text: S.of(context).startNewGame,
-              onPressed: () async => state.onShowStartDialog(
-                canvasDataId: canvasData.id,
-                context: context,
-              ),
-            )
-                .animate()
-                .then(duration: 150.milliseconds)
-                .fadeIn()
-                .slideY(begin: -0.1),
-            uiTheme.verticalBoxes.large,
             if (isLevelRunning)
-              UiFilledButton.text(
-                text: S.of(context).continueGame,
+              UiFilledButton.icon(
+                icon: Icons.play_arrow_rounded,
+                text: S.of(context).continueGame.toUpperCase(),
                 onPressed: () async => state.onContinueFromSamePlace(
                   context: context,
                   id: levelId,
@@ -69,6 +58,19 @@ class QuickStartGameButtons extends StatelessWidget {
                   .fadeIn()
                   .slideY(begin: -0.1),
             uiTheme.verticalBoxes.medium,
+            UiFilledButton.icon(
+              icon: Icons.accessibility_new_rounded,
+              // TODO(arenukvern): l10n
+              text: 'QUICK GAME',
+              onPressed: () async => state.onShowStartDialog(
+                canvasDataId: canvasData.id,
+                context: context,
+              ),
+            )
+                .animate()
+                .then(duration: 150.milliseconds)
+                .fadeIn()
+                .slideY(begin: -0.1),
           ],
         );
       },
