@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
@@ -16,149 +17,180 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/level_start_dialog.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
+import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
 
 part 'pause_screen_state.dart';
 
-class PauseScreen extends StatelessWidget {
+const _kIsPrivacyPolicyEnabled = false;
+const _kIsCharacterVisible = false;
+
+enum PauseScreenRoute {
+  mainMenu,
+  adventure,
+}
+
+class PauseScreen extends HookWidget {
   const PauseScreen({super.key});
-  static const _kIsPrivacyPolicyEnabled = false;
-  static const _kIsCharacterVisible = false;
+  @override
+  Widget build(final BuildContext context) {
+    final screenRouteState = useState(PauseScreenRoute.mainMenu);
+    final statusCubit = context.watch<StatesStatusesCubit>();
+    return _Scaffold(
+      builder: (final context) => Stack(
+        fit: StackFit.expand,
+        children: [
+          Positioned.fill(
+            child: Container().blurred(blur: 0.6, colorOpacity: 0.01),
+          ),
+          AnimatedSwitcher(
+            duration: 350.milliseconds,
+            child: switch (screenRouteState.value) {
+              PauseScreenRoute.mainMenu => _MainMenuView(
+                  onChangeRoute: (final route) =>
+                      screenRouteState.value = route,
+                ),
+              PauseScreenRoute.adventure => AdventureView(
+                  onBack: () =>
+                      screenRouteState.value = PauseScreenRoute.mainMenu,
+                ),
+            },
+          ),
+
+          if (_kIsCharacterVisible)
+            Positioned(
+              right: 24,
+              top: 24,
+              child: CharacterAvatarButton.useDefault(),
+            ),
+          Positioned.fill(
+            child: IgnorePointer(
+              child: ColoredBox(
+                color: context.colorScheme.surface,
+                child: const SizedBox.expand(),
+              ),
+            ),
+          )
+              .animate(delay: 550.milliseconds)
+              .fadeOut(duration: 550.milliseconds),
+
+          /// left for test cases
+          // const Positioned.fill(
+          //   child: Column(
+          //     children: [
+          //     ],
+          //   ),
+          // ),
+        ],
+      ),
+    );
+  }
+}
+
+class _MainMenuView extends StatelessWidget {
+  const _MainMenuView({
+    required this.onChangeRoute,
+    super.key,
+  });
+  final ValueChanged<PauseScreenRoute> onChangeRoute;
   @override
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
     final statusCubit = context.watch<StatesStatusesCubit>();
     final formFactors = UiPersistentFormFactors.of(context);
-    final hasMobileLayout = DeviceRuntimeType.isMobile ||
-        formFactors.width == WidthFormFactor.mobile;
-    return _Scaffold(
-      builder: (final context) {
-        final state = context.read<PauseScreenState>();
-        return Stack(
-          fit: StackFit.expand,
-          children: [
-            Positioned.fill(
-              child: Container().blurred(blur: 0.6, colorOpacity: 0.01),
-            ),
-            CustomScrollView(
-              physics:
-                  hasMobileLayout ? null : const NeverScrollableScrollPhysics(),
-              slivers: [
-                SliverFillRemaining(
-                  child: Column(
-                    children: [
-                      const TopSafeArea(),
-                      ConstrainedGap(
-                        minHeight: 12,
-                        maxHeight: 64,
-                        expand: !hasMobileLayout,
-                      ),
-                      const _Title(),
-                      ConstrainedGap(
-                        minHeight: 12,
-                        maxHeight: 64,
-                        expand: !hasMobileLayout,
-                      ),
-                      Expanded(
-                        child: Column(
-                          children: [
-                            AnimatedCrossFade(
-                              alignment: Alignment.center,
-                              duration: 350.milliseconds,
-                              crossFadeState: statusCubit.isLoading
-                                  ? CrossFadeState.showSecond
-                                  : CrossFadeState.showFirst,
-                              firstChild: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const QuickStartGameButtons(),
-                                  uiTheme.verticalBoxes.medium,
-                                  UiFilledButton.icon(
-                                    // TODO(arenukvern): l10n
-                                    text: 'ADVENTURE',
-                                    icon: Icons.air,
-                                    onPressed: () {
-                                      throw UnimplementedError();
-                                    },
-                                  ),
-                                  uiTheme.verticalBoxes.medium,
-                                  UiFilledButton.icon(
-                                    icon: Icons.settings,
-                                    text: S.of(context).settings.toUpperCase(),
-                                    onPressed: () =>
-                                        state.onToSettings(context),
-                                  ).animate(delay: 500.milliseconds).fadeIn(
-                                        curve: Curves.easeIn,
-                                        duration: 450.milliseconds,
-                                      ),
-                                  uiTheme.verticalBoxes.medium,
-                                  UiFilledButton.icon(
-                                    icon: Icons.scoreboard_rounded,
-                                    text: (Envs.store.isYandexGames
-                                            ? S
-                                                .of(context)
-                                                .playersAndHighscoreYandex
-                                            : S.of(context).playersAndHighscore)
-                                        .toUpperCase(),
-                                    onPressed: () =>
-                                        state.onToPlayersAndHighscore(context),
-                                  ).animate(delay: 500.milliseconds).fadeIn(
-                                        curve: Curves.easeIn,
-                                        duration: 450.milliseconds,
-                                      ),
-                                  uiTheme.verticalBoxes.medium,
-                                  UiFilledButton.icon(
-                                    icon: Icons.question_mark_rounded,
-                                    text: S.of(context).about.toUpperCase(),
-                                    onPressed: () async =>
-                                        state.onShowAbout(context),
-                                  ).animate(delay: 500.milliseconds).fadeIn(
-                                        curve: Curves.easeIn,
-                                        duration: 450.milliseconds,
-                                      ),
-                                  uiTheme.verticalBoxes.medium,
-                                  if (_kIsPrivacyPolicyEnabled)
-                                    UiTextButton.text(
-                                      text: S
-                                          .of(context)
-                                          .privacyPolicy
-                                          .toUpperCase(),
-                                      onPressed: state.onPrivacyPolicy,
-                                    ).animate(delay: 500.milliseconds).fadeIn(
-                                          curve: Curves.easeIn,
-                                          duration: 450.milliseconds,
-                                        ),
-                                  uiTheme.horizontalBoxes.medium,
-                                ],
-                              ),
-                              secondChild: const UiCircularProgress(),
-                            ),
-                          ],
-                        ),
-                      ),
-                      const BottomSafeArea(),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-            if (_kIsCharacterVisible)
-              Positioned(
-                right: 24,
-                top: 24,
-                child: CharacterAvatarButton.useDefault(),
+    final hasMobileLayout = formFactors.isMobile;
+    final state = context.watch<PauseScreenState>();
+    return CustomScrollView(
+      physics: hasMobileLayout ? null : const NeverScrollableScrollPhysics(),
+      slivers: [
+        SliverFillRemaining(
+          child: Column(
+            children: [
+              const TopSafeArea(),
+              ConstrainedGap(
+                minHeight: 12,
+                maxHeight: 64,
+                expand: !hasMobileLayout,
               ),
-
-            /// left for test cases
-            // const Positioned.fill(
-            //   child: Column(
-            //     children: [
-            //     ],
-            //   ),
-            // ),
-          ],
-        );
-      },
+              const _Title(),
+              ConstrainedGap(
+                minHeight: 12,
+                maxHeight: 64,
+                expand: !hasMobileLayout,
+              ),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const QuickStartGameButtons(),
+                    uiTheme.verticalBoxes.medium,
+                    UiFilledButton.icon(
+                      // TODO(arenukvern): l10n
+                      text: 'CHOOSE ADVENTURE',
+                      icon: Icons.air,
+                      onPressed: () =>
+                          onChangeRoute(PauseScreenRoute.adventure),
+                    ),
+                    uiTheme.verticalBoxes.medium,
+                    UiFilledButton.icon(
+                      icon: Icons.settings,
+                      text: S.of(context).settings.toUpperCase(),
+                      onPressed: () => state.onToSettings(context),
+                    )
+                        .animate()
+                        .fadeIn(
+                          curve: Curves.easeIn,
+                          duration: 450.milliseconds,
+                        )
+                        .slideY(begin: -0.1),
+                    uiTheme.verticalBoxes.medium,
+                    UiFilledButton.icon(
+                      icon: Icons.scoreboard_rounded,
+                      text: (Envs.store.isYandexGames
+                              ? S.of(context).playersAndHighscoreYandex
+                              : S.of(context).playersAndHighscore)
+                          .toUpperCase(),
+                      onPressed: () => state.onToPlayersAndHighscore(context),
+                    )
+                        .animate()
+                        .fadeIn(
+                          curve: Curves.easeIn,
+                          duration: 450.milliseconds,
+                        )
+                        .slideY(begin: -0.1),
+                    uiTheme.verticalBoxes.medium,
+                    UiFilledButton.icon(
+                      icon: Icons.question_mark_rounded,
+                      text: S.of(context).about.toUpperCase(),
+                      onPressed: () async => state.onShowAbout(context),
+                    )
+                        .animate()
+                        .fadeIn(
+                          curve: Curves.easeIn,
+                          duration: 450.milliseconds,
+                        )
+                        .slideY(begin: -0.1),
+                    uiTheme.verticalBoxes.medium,
+                    if (_kIsPrivacyPolicyEnabled)
+                      UiTextButton.text(
+                        text: S.of(context).privacyPolicy.toUpperCase(),
+                        onPressed: state.onPrivacyPolicy,
+                      )
+                          .animate()
+                          .fadeIn(
+                            curve: Curves.easeIn,
+                            duration: 450.milliseconds,
+                          )
+                          .slideY(begin: -0.1),
+                    uiTheme.horizontalBoxes.medium,
+                  ],
+                ),
+              ),
+              const BottomSafeArea(),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }
