@@ -28,8 +28,10 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   final _LevelStartDialogUxStateDiDto dto;
 
-  /// use canvas data for starting a world
+  /// Temporary variable to access in dialog
+  /// Never use it inside functions.
   CanvasDataModelId? canvasDataId;
+
   void onLoad() {
     final liveState = dto.globalGameBloc.state;
     character = liveState.playersCharacters.first;
@@ -102,22 +104,20 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   /// this function will always start completely new game
   Future<void> onStartNewGame({
     required final BuildContext context,
+    required final CanvasDataModelId canvasId,
   }) async {
-    final canvasDataId = this.canvasDataId;
-    if (canvasDataId == null) throw ArgumentError.notNull('canvasData');
-
     dto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.loading,
     );
     final pathsController = AppPathsController.of(context);
 
     await Future.wait([
-      dto.globalGameBloc.onRemoveLevelSave(canvasDataId),
+      onDeleteLevel(canvasId),
       if (featuresSettings.isAdvancedGame) onLoadDictionaries(),
     ]);
 
     final level = dto.globalGameBloc.createLevel(
-      canvasDataId: canvasDataId,
+      canvasDataId: canvasId,
       playersIds: playersIds,
       wordsLanguage: wordsLanguage,
       characterId: character!.id,
@@ -129,6 +129,10 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
     pathsController.toPlayableLevel(id: level.id);
+  }
+
+  Future<void> onDeleteLevel(final CanvasDataModelId id) async {
+    await dto.globalGameBloc.onRemoveLevelSave(id);
   }
 
   Future<void> onContinueFromSamePlace({

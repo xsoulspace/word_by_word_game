@@ -31,9 +31,7 @@ class LevelUiUxStatesProvider extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final uxState = useStateBuilder(
-      () => LevelStartDialogUxNotifier(
-        context: context,
-      ),
+      () => LevelStartDialogUxNotifier(context: context),
     );
 
     final uiState = useStateBuilder(

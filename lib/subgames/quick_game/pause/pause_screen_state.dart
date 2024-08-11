@@ -35,7 +35,7 @@ class PauseScreenState extends ValueNotifier<void> {
   }
 
   late final onContinueFromSamePlace = uxState.onContinueFromSamePlace;
-
+  late final onDeleteLevel = uxState.onDeleteLevel;
   void onToPlayersAndHighscore(final BuildContext context) {
     AppPathsController.of(context).toPlayersAndHighscore();
   }

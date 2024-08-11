@@ -74,7 +74,21 @@ class LevelOptionsScreen extends HookWidget {
                   mainAlignment: MainAxisAlignment.center,
                   onPressed: uxState.playersIds.isEmpty
                       ? null
-                      : () async => uxState.onStartNewGame(context: context),
+                      : () async {
+                          final canvasId = uxState.canvasDataId;
+                          if (canvasId == null) {
+                            assert(
+                              false,
+                              'Canvas id is null, but should be set in '
+                              'the moment when dialog is shown',
+                            );
+                            return;
+                          }
+                          return uxState.onStartNewGame(
+                            context: context,
+                            canvasId: canvasId,
+                          );
+                        },
                 ),
               ],
             ),
