@@ -201,7 +201,14 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     //   ..d('level isNewStart ${event.isNewStart}')
     //   ..d('level id ${level.id}');
     if (event.isNewStart) {
-      dto.weatherCubit.regenerateWeather();
+      if (level.featuresSettings.isAdvancedGame) {
+        dto.weatherCubit.regenerateWeather();
+      } else {
+        /// we should provide correct weather direction, to get started
+        dto.weatherCubit.regenerateWeather(
+          windDirection: event.windDirection,
+        );
+      }
     } else {
       dto.weatherCubit.loadWeather(
         weathers: level.weathers,

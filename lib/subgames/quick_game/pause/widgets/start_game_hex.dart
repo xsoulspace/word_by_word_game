@@ -64,7 +64,7 @@ class QuickStartGameButtons extends StatelessWidget {
               // TODO(arenukvern): l10n
               text: 'QUICK GAME',
               onPressed: () async => state.onShowStartDialog(
-                canvasDataId: quickGameCanvasData.id,
+                canvasDataId: kQuickGameMapId,
                 context: context,
               ),
             )

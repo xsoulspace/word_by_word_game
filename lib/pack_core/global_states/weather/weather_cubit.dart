@@ -66,8 +66,10 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     }
   }
 
-  void regenerateWeather() {
-    _generateWeather(oldWeathers: []);
+  void regenerateWeather({
+    final WindDirection? windDirection,
+  }) {
+    _generateWeather(oldWeathers: [], forcedWindDirection: windDirection);
     if (kDebugMode) print({'weathers generated': state.weathers});
   }
 
@@ -76,7 +78,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     final WindModel wind = WindModel.zero,
   }) {
     if (weathers.isEmpty) {
-      _generateWeather(oldWeathers: weathers);
+      _generateWeather(oldWeathers: []);
     } else {
       emit(state.copyWith(weathers: weathers, wind: wind));
     }
@@ -85,12 +87,14 @@ class WeatherCubit extends Cubit<WeatherCubitState>
 
   void _generateWeather({
     required final List<WeatherModel> oldWeathers,
+    final WindDirection? forcedWindDirection,
   }) {
     final newWeathers = mechanics.generateWeather(
       isWindDirectionChangeEnabled:
           dto.levelFeaturesNotifier.features.isWindDirectionChangeEnabled,
-      oldWindDirection: (oldWeathers.isEmpty ? state.weather : oldWeathers.last)
-          .windDirection,
+      oldWindDirection: forcedWindDirection ??
+          (oldWeathers.isEmpty ? state.weather : oldWeathers.last)
+              .windDirection,
     );
     emit(state.copyWith(weathers: newWeathers));
     _generateWindForce();

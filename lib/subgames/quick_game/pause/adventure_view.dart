@@ -138,125 +138,137 @@ class _LevelCard extends StatelessWidget {
       onTapUp: (final details) {
         onSelect();
       },
-      child: Padding(
-        padding: const EdgeInsets.all(8),
-        child: Material(
-          animationDuration: 350.milliseconds,
-          shape: RoundedRectangleBorder(
-            borderRadius: const BorderRadius.all(Radius.circular(16)),
-            side: isSelected
-                ? BorderSide(
-                    color: context.colorScheme.primary,
-                  )
-                : BorderSide.none,
-          ),
-          elevation: isSelected ? 8 : 0,
-          child: AnimatedSize(
-            duration: 350.milliseconds,
-            child: Container(
-              constraints: const BoxConstraints(
-                maxWidth: 280,
-              ),
-              padding: const EdgeInsets.only(
-                top: 16,
-                bottom: 24,
-                left: 12,
-                right: 12,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (isSelected)
-                        Icon(
-                          Icons.play_arrow_rounded,
-                          color: context.colorScheme.tertiary,
-                        ).animate().fadeIn(),
-                      const Gap(8),
-                      Flexible(
-                        child: Text(
-                          canvasData.name.getValueByLanguage().toUpperCase(),
-                          style: context.textThemeBold.titleLarge,
-                        ),
-                      ),
-                      const Gap(8),
-                      if (isSelected)
-                        RotatedBox(
-                          quarterTurns: 2,
-                          child: Icon(
+      child: FocusableActionDetector(
+        onShowHoverHighlight: (final value) {
+          if (value) {
+            onSelect();
+          }
+        },
+        onFocusChange: (final value) {
+          if (value) {
+            onSelect();
+          }
+        },
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Material(
+            animationDuration: 350.milliseconds,
+            shape: RoundedRectangleBorder(
+              borderRadius: const BorderRadius.all(Radius.circular(16)),
+              side: isSelected
+                  ? BorderSide(
+                      color: context.colorScheme.primary,
+                    )
+                  : BorderSide.none,
+            ),
+            elevation: isSelected ? 8 : 0,
+            child: AnimatedSize(
+              duration: 350.milliseconds,
+              child: Container(
+                constraints: const BoxConstraints(
+                  maxWidth: 280,
+                ),
+                padding: const EdgeInsets.only(
+                  top: 16,
+                  bottom: 24,
+                  left: 12,
+                  right: 12,
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (isSelected)
+                          Icon(
                             Icons.play_arrow_rounded,
                             color: context.colorScheme.tertiary,
+                          ).animate().fadeIn(),
+                        const Gap(8),
+                        Flexible(
+                          child: Text(
+                            canvasData.name.getValueByLanguage().toUpperCase(),
+                            style: context.textThemeBold.titleLarge,
                           ),
-                        ).animate().fadeIn(),
-                    ],
-                  ),
-                  const Gap(2),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      if (isCurrent && isSaveExists)
-                        const Text('Recent play')
-                      else
+                        ),
+                        const Gap(8),
+                        if (isSelected)
+                          RotatedBox(
+                            quarterTurns: 2,
+                            child: Icon(
+                              Icons.play_arrow_rounded,
+                              color: context.colorScheme.tertiary,
+                            ),
+                          ).animate().fadeIn(),
+                      ],
+                    ),
+                    const Gap(2),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        if (isCurrent && isSaveExists)
+                          const Text('Recent play')
+                        else
 
-                        /// balancer
-                        const Text(''),
-                    ],
-                  ),
-                  const Gap(8),
-                  Row(
-                    children: [
-                      Text(
-                        'Players:',
-                        style: context.textThemeBold.titleSmall,
-                      ),
-                      const Gap(8),
-                      ...?levelSave?.players.players
-                          .map((final e) => Text(e.name)),
-                    ],
-                  ),
-                  // TODO(arenukvern): add gameplay time
+                          /// balancer
+                          const Text(''),
+                      ],
+                    ),
+                    const Gap(8),
+                    Row(
+                      children: [
+                        Text(
+                          'Players:',
+                          style: context.textThemeBold.titleSmall,
+                        ),
+                        const Gap(8),
+                        ...?levelSave?.players.players
+                            .map((final e) => Text(e.name)),
+                      ],
+                    ),
+                    // TODO(arenukvern): add gameplay time
 
-                  AnimatedSize(
-                    duration: 350.milliseconds,
-                    alignment: Alignment.bottomCenter,
-                    child: isSelected
-                        ? Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Gap(12),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  if (isSaveExists) ...[
-                                    UiFilledButton.text(
-                                      text: 'RESUME',
-                                      onPressed: onContinue,
-                                    ),
-                                    UiFilledButton.text(
-                                      text: 'RESTART',
-                                      onPressed: onRestart,
-                                    ),
+                    AnimatedSize(
+                      duration: 350.milliseconds,
+                      alignment: Alignment.bottomCenter,
+                      child: isSelected
+                          ? Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                const Gap(12),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    if (isSaveExists) ...[
+                                      UiFilledButton.text(
+                                        text: 'RESUME',
+                                        onPressed: onContinue,
+                                      ),
+                                      UiFilledButton.text(
+                                        text: 'RESTART',
+                                        onPressed: onRestart,
+                                      ),
 
-                                    /// maybe delete is better
-                                    // UiFilledButton.text(
-                                    //   text: 'DELETE',
-                                    //   onPressed: onDelete,
-                                    // ),
-                                  ] else
-                                    UiFilledButton.text(
-                                      text: 'START',
-                                      onPressed: onStart,
-                                    ),
-                                ],
-                              ),
-                            ],
-                          ).animate().fadeIn(duration: 550.milliseconds)
-                        : const Row(),
-                  ),
-                ],
+                                      /// maybe delete is better
+                                      // UiFilledButton.text(
+                                      //   text: 'DELETE',
+                                      //   onPressed: onDelete,
+                                      // ),
+                                    ] else
+                                      UiFilledButton.text(
+                                        text: 'START',
+                                        onPressed: onStart,
+                                      ),
+                                  ],
+                                ),
+                              ],
+                            ).animate().fadeIn(duration: 550.milliseconds)
+                          : const Row(),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

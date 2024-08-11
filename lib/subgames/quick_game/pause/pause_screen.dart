@@ -96,7 +96,6 @@ class _MainMenuView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final uiTheme = context.uiTheme;
-    final statusCubit = context.watch<StatesStatusesCubit>();
     final formFactors = UiPersistentFormFactors.of(context);
     final hasMobileLayout = formFactors.isMobile;
     final state = context.watch<PauseScreenState>();

@@ -106,6 +106,7 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     required final BuildContext context,
     required final CanvasDataModelId canvasId,
   }) async {
+    if (dto.statesStatusesCubit.isLoading) return;
     dto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.loading,
     );
@@ -139,6 +140,7 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     required final CanvasDataModelId id,
     required final BuildContext context,
   }) async {
+    if (dto.statesStatusesCubit.isLoading) return;
     dto.statesStatusesCubit.onChangeLevelStateStatus(
       status: LevelStateStatus.loading,
     );
