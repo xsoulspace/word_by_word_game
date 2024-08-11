@@ -24,6 +24,7 @@ part 'level_players_model.dart';
 part 'player_character_model.dart';
 part 'player_profile_model.dart';
 part 'score_model.dart';
+part 'technology_levels_collection.dart';
 part 'technology_model.dart';
 part 'tutorial_models.dart';
 part 'world_time.dart';

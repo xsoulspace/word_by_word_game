@@ -33,7 +33,6 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
     )
     @Default({})
     final Map<TechnologyModelId, TechnologyProgressModel> technologies,
-    final TechnologyModelId? researchingTechnologyId,
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
     final Map<String, dynamic> json,
@@ -87,7 +86,6 @@ class TechnologyModel with _$TechnologyModel {
     /// use [TechnologyProgressModel] to store/retrieve actual progress
     required final TechnologyUnlockConditionModel unlockCondition,
     @Default(0) final int index,
-    final TechnologyModelId? parentTechnologyId,
   }) = _TechnologyModel;
   factory TechnologyModel.fromJson(final Map<String, dynamic> json) =>
       _$TechnologyModelFromJson(json);
@@ -131,17 +129,22 @@ class UsefulWordModel with _$UsefulWordModel {
 }
 
 enum TechnologyType {
-  unknown, // use for all unknown technologies
-  safeLanding, // not used
-  emergencyLanding, // not used
+  // use for all unknown technologies
+  unknown,
+  // not used
+  safeLanding,
+  // not used
+  emergencyLanding,
   ascending,
+  poweringEngine,
   descending,
   buildingTent;
 
   static const Set<TechnologyType> _active = {
-    TechnologyType.ascending,
-    TechnologyType.descending,
-    TechnologyType.buildingTent,
+    ascending,
+    descending,
+    buildingTent,
+    poweringEngine,
   };
   static bool checkIsActive(final TechnologyType type) =>
       _active.contains(type);

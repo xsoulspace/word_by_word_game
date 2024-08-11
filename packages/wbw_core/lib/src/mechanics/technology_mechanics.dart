@@ -59,30 +59,27 @@ class TechnologyMechanics {
     );
   }
 
-  ({double min, double max, bool isUnlocked, double summaryScore})
+  ({double allRequiredScore, double allInvestedScore, bool isUnlocked})
       getResearchPointsToUnlock({
     required final TechnologyUnlockConditionModel unlockCondition,
   }) {
-    const double summaryScore = 0;
-    double min = 0;
-    double max = 0;
-    double maxInvestedScore = 0;
+    double allRequiredScore = 0;
+    double allInvestedScore = 0;
     for (final MapEntry(value: words)
         in unlockCondition.languageWords.entries) {
       final (:investedScore, :requiredScore) =
           _calculateResearchPointsToUnlock(words: words);
-      if (requiredScore > max) max = requiredScore;
-      if (requiredScore < min) min = requiredScore;
-      if (investedScore > maxInvestedScore) maxInvestedScore = investedScore;
+      allRequiredScore += requiredScore;
+      allInvestedScore += investedScore;
     }
     final isUnlocked =
-        (unlockCondition.investedResearchPoints + maxInvestedScore) >= min;
+        (unlockCondition.investedResearchPoints + allInvestedScore) >=
+            allRequiredScore;
 
     return (
-      min: min,
-      max: max,
+      allRequiredScore: allRequiredScore,
+      allInvestedScore: allInvestedScore,
       isUnlocked: isUnlocked,
-      summaryScore: summaryScore,
     );
   }
 
@@ -103,4 +100,53 @@ class TechnologyMechanics {
     }
     return (requiredScore: requiredScore, investedScore: investedScore);
   }
+
+  ({ScoreModel scoreLeftForNextLevel, int levelIndex})
+      getCurrentAchievedLevelIndex({
+    required final ScoreModel allInvesetedScore,
+    required final List<TechnologyLevelTuple> runtimeLevels,
+  }) {
+    double allScoreLeft = allInvesetedScore.value;
+    final scoresByLevel = <double>[];
+
+    /// computing all invested score and required score.
+    ///
+    /// it is important to loop it first, because there can be
+    /// levels with unlocked words, which increase summary invested score
+    for (var i = 0; i < runtimeLevels.length; i++) {
+      final level = runtimeLevels[i];
+
+      final scoreNeeded = level.technologies.map(
+        (final e) {
+          final (:allRequiredScore, :allInvestedScore, :isUnlocked) =
+              getResearchPointsToUnlock(unlockCondition: e.unlockCondition);
+          allScoreLeft += allInvestedScore;
+          return allRequiredScore;
+        },
+      ).reduce((final a, final b) => a + b);
+      scoresByLevel[i] = scoreNeeded;
+    }
+
+    for (var i = 0; i < scoresByLevel.length; i++) {
+      final score = scoresByLevel[i];
+      final scoreLeft = allScoreLeft - score;
+      if (scoreLeft < 0) {
+        return (
+          scoreLeftForNextLevel: ScoreModel(value: -scoreLeft),
+          levelIndex: i
+        );
+      } else {
+        allScoreLeft = scoreLeft;
+      }
+    }
+    return (
+      scoreLeftForNextLevel: ScoreModel.zero,
+      levelIndex: scoresByLevel.length - 1
+    );
+  }
 }
+
+typedef AllRequiredScoreByLevelsTuple = ({
+  List<ScoreModel> levelsScores,
+  ScoreModel allScore
+});
