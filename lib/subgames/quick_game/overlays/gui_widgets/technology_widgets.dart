@@ -15,37 +15,30 @@ class CurrentTechnologyButton extends StatelessWidget {
     final levelCubit = context.watch<LevelBloc>();
     final mechanics = context.read<MechanicsCollection>();
     final technologyCubit = context.watch<TechnologiesCubit>();
-    final currentTechnology = technologyCubit.researchingTechnology;
     final dialogController = context.read<DialogController>();
     const width = 80.0;
     if (!levelCubit.featuresSettings.isTechnologiesEnabled) {
       return const SizedBox(width: width);
     }
-    final technologyProgress = technologyCubit.researchingTechnologyProgress;
-    final unlockCondition = technologyProgress?.unlockCondition;
-    final (:isUnlocked, :percentage, :investedScore, :requiredScore) =
-        mechanics.technology.checkIsUnlockedForLanguage(
-      unlockCondition: unlockCondition ??
-          technologyCubit.researchingTechnology?.unlockCondition,
-    );
-    var pointsLeft = requiredScore - investedScore;
+    var pointsLeft = 0;
     pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
-    final technologyTitle = currentTechnology?.title.getValue(locale);
     final borderSide = BorderSide(
       color: context.colorScheme.primary,
     );
+    const percentage = 0.0;
+    const levelIndex = 0;
     return UiLabledProgressBar(
       tooltipMessage: const {
         Languages.en: 'Technologies tree',
         Languages.ru: 'Дерево технологий',
         Languages.it: 'Albero delle tecnologie',
       },
-      icon: Icon(
-        isUnlocked ? CupertinoIcons.lab_flask_solid : CupertinoIcons.lab_flask,
+      icon: const Icon(
+        CupertinoIcons.lab_flask,
         color: Colors.black,
       ),
       // TODO(arenukvern): add tech level
-      text: currentTechnology?.index.toString() ?? '0',
+      text: levelIndex.toString(),
       // TODO(arenukvern): there always should be a title
       // title: technologyTitle ??
       //     const LocalizedMap(

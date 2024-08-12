@@ -18,9 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TechnologiesTreeDialogDto {
   bool get isSelectionAllowed => throw _privateConstructorUsedError;
   bool get isHintVisible => throw _privateConstructorUsedError;
-  VoidCallback? get onCloseIfChanged => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologiesTreeDialogDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TechnologiesTreeDialogDtoCopyWith<TechnologiesTreeDialogDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -31,10 +32,7 @@ abstract class $TechnologiesTreeDialogDtoCopyWith<$Res> {
           $Res Function(TechnologiesTreeDialogDto) then) =
       _$TechnologiesTreeDialogDtoCopyWithImpl<$Res, TechnologiesTreeDialogDto>;
   @useResult
-  $Res call(
-      {bool isSelectionAllowed,
-      bool isHintVisible,
-      VoidCallback? onCloseIfChanged});
+  $Res call({bool isSelectionAllowed, bool isHintVisible});
 }
 
 /// @nodoc
@@ -48,12 +46,13 @@ class _$TechnologiesTreeDialogDtoCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TechnologiesTreeDialogDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? isSelectionAllowed = null,
     Object? isHintVisible = null,
-    Object? onCloseIfChanged = freezed,
   }) {
     return _then(_value.copyWith(
       isSelectionAllowed: null == isSelectionAllowed
@@ -64,10 +63,6 @@ class _$TechnologiesTreeDialogDtoCopyWithImpl<$Res,
           ? _value.isHintVisible
           : isHintVisible // ignore: cast_nullable_to_non_nullable
               as bool,
-      onCloseIfChanged: freezed == onCloseIfChanged
-          ? _value.onCloseIfChanged
-          : onCloseIfChanged // ignore: cast_nullable_to_non_nullable
-              as VoidCallback?,
     ) as $Val);
   }
 }
@@ -81,10 +76,7 @@ abstract class _$$TechnologiesTreeDialogDtoImplCopyWith<$Res>
       __$$TechnologiesTreeDialogDtoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isSelectionAllowed,
-      bool isHintVisible,
-      VoidCallback? onCloseIfChanged});
+  $Res call({bool isSelectionAllowed, bool isHintVisible});
 }
 
 /// @nodoc
@@ -97,12 +89,13 @@ class __$$TechnologiesTreeDialogDtoImplCopyWithImpl<$Res>
       $Res Function(_$TechnologiesTreeDialogDtoImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TechnologiesTreeDialogDto
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? isSelectionAllowed = null,
     Object? isHintVisible = null,
-    Object? onCloseIfChanged = freezed,
   }) {
     return _then(_$TechnologiesTreeDialogDtoImpl(
       isSelectionAllowed: null == isSelectionAllowed
@@ -113,10 +106,6 @@ class __$$TechnologiesTreeDialogDtoImplCopyWithImpl<$Res>
           ? _value.isHintVisible
           : isHintVisible // ignore: cast_nullable_to_non_nullable
               as bool,
-      onCloseIfChanged: freezed == onCloseIfChanged
-          ? _value.onCloseIfChanged
-          : onCloseIfChanged // ignore: cast_nullable_to_non_nullable
-              as VoidCallback?,
     ));
   }
 }
@@ -127,9 +116,7 @@ class _$TechnologiesTreeDialogDtoImpl
     with DiagnosticableTreeMixin
     implements _TechnologiesTreeDialogDto {
   const _$TechnologiesTreeDialogDtoImpl(
-      {this.isSelectionAllowed = false,
-      this.isHintVisible = false,
-      this.onCloseIfChanged});
+      {this.isSelectionAllowed = false, this.isHintVisible = false});
 
   @override
   @JsonKey()
@@ -137,12 +124,10 @@ class _$TechnologiesTreeDialogDtoImpl
   @override
   @JsonKey()
   final bool isHintVisible;
-  @override
-  final VoidCallback? onCloseIfChanged;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'TechnologiesTreeDialogDto(isSelectionAllowed: $isSelectionAllowed, isHintVisible: $isHintVisible, onCloseIfChanged: $onCloseIfChanged)';
+    return 'TechnologiesTreeDialogDto(isSelectionAllowed: $isSelectionAllowed, isHintVisible: $isHintVisible)';
   }
 
   @override
@@ -151,8 +136,7 @@ class _$TechnologiesTreeDialogDtoImpl
     properties
       ..add(DiagnosticsProperty('type', 'TechnologiesTreeDialogDto'))
       ..add(DiagnosticsProperty('isSelectionAllowed', isSelectionAllowed))
-      ..add(DiagnosticsProperty('isHintVisible', isHintVisible))
-      ..add(DiagnosticsProperty('onCloseIfChanged', onCloseIfChanged));
+      ..add(DiagnosticsProperty('isHintVisible', isHintVisible));
   }
 
   @override
@@ -163,16 +147,16 @@ class _$TechnologiesTreeDialogDtoImpl
             (identical(other.isSelectionAllowed, isSelectionAllowed) ||
                 other.isSelectionAllowed == isSelectionAllowed) &&
             (identical(other.isHintVisible, isHintVisible) ||
-                other.isHintVisible == isHintVisible) &&
-            (identical(other.onCloseIfChanged, onCloseIfChanged) ||
-                other.onCloseIfChanged == onCloseIfChanged));
+                other.isHintVisible == isHintVisible));
   }
 
   @override
-  int get hashCode => Object.hash(
-      runtimeType, isSelectionAllowed, isHintVisible, onCloseIfChanged);
+  int get hashCode =>
+      Object.hash(runtimeType, isSelectionAllowed, isHintVisible);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologiesTreeDialogDto
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TechnologiesTreeDialogDtoImplCopyWith<_$TechnologiesTreeDialogDtoImpl>
@@ -183,17 +167,17 @@ class _$TechnologiesTreeDialogDtoImpl
 abstract class _TechnologiesTreeDialogDto implements TechnologiesTreeDialogDto {
   const factory _TechnologiesTreeDialogDto(
       {final bool isSelectionAllowed,
-      final bool isHintVisible,
-      final VoidCallback? onCloseIfChanged}) = _$TechnologiesTreeDialogDtoImpl;
+      final bool isHintVisible}) = _$TechnologiesTreeDialogDtoImpl;
 
   @override
   bool get isSelectionAllowed;
   @override
   bool get isHintVisible;
+
+  /// Create a copy of TechnologiesTreeDialogDto
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  VoidCallback? get onCloseIfChanged;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TechnologiesTreeDialogDtoImplCopyWith<_$TechnologiesTreeDialogDtoImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

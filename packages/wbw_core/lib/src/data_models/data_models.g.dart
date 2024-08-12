@@ -32,7 +32,7 @@ _$CurrentWordModelImpl _$$CurrentWordModelImplFromJson(
         Map<String, dynamic> json) =>
     _$CurrentWordModelImpl(
       inactiveIndexes: (json['inactiveIndexes'] as List<dynamic>?)
-              ?.map((e) => e as int)
+              ?.map((e) => (e as num).toInt())
               .toList() ??
           const [],
       fullWord: json['fullWord'] as String? ?? '',
@@ -272,7 +272,7 @@ _$PlayerCharacterModelImpl _$$PlayerCharacterModelImplFromJson(
       gid:
           json['gid'] == null ? Gid.empty : Gid.fromJson(json['gid'] as String),
       description: json['description'] as String? ?? '',
-      color: json['color'] as int? ?? 0,
+      color: (json['color'] as num?)?.toInt() ?? 0,
       localizedName: json['localizedName'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(
@@ -332,7 +332,7 @@ _$PlayerProfileModelImpl _$$PlayerProfileModelImplFromJson(
         Map<String, dynamic> json) =>
     _$PlayerProfileModelImpl(
       id: json['id'] as String,
-      colorValue: json['colorValue'] as int,
+      colorValue: (json['colorValue'] as num).toInt(),
       name: json['name'] as String,
       levelsHighscores: json['levelsHighscores'] == null
           ? const {}
@@ -358,10 +358,10 @@ Map<String, dynamic> _$$PlayerProfileModelImplToJson(
 _$PlayerHighscoreModelImpl _$$PlayerHighscoreModelImplFromJson(
         Map<String, dynamic> json) =>
     _$PlayerHighscoreModelImpl(
-      maxWordsCount: json['maxWordsCount'] as int? ?? 0,
-      maxLettersCount: json['maxLettersCount'] as int? ?? 0,
-      totalWordsCount: json['totalWordsCount'] as int? ?? 0,
-      totalLettersCount: json['totalLettersCount'] as int? ?? 0,
+      maxWordsCount: (json['maxWordsCount'] as num?)?.toInt() ?? 0,
+      maxLettersCount: (json['maxLettersCount'] as num?)?.toInt() ?? 0,
+      totalWordsCount: (json['totalWordsCount'] as num?)?.toInt() ?? 0,
+      totalLettersCount: (json['totalLettersCount'] as num?)?.toInt() ?? 0,
       score: json['score'] == null
           ? ScoreModel.zero
           : ScoreModel.fromJson(json['score'] as Map<String, dynamic>),
@@ -414,9 +414,10 @@ _$TechnologyTreeProgressModelImpl _$$TechnologyTreeProgressModelImplFromJson(
           ? const {}
           : TechnologyTreeProgressModel._technologiesFromJson(
               json['technologies'] as Map<String, dynamic>),
-      researchingTechnologyId: json['researchingTechnologyId'] == null
-          ? null
-          : TechnologyModelId.fromJson(json['researchingTechnologyId']),
+      investedResearchScore: json['investedResearchScore'] == null
+          ? ScoreModel.zero
+          : ScoreModel.fromJson(
+              json['investedResearchScore'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
@@ -424,7 +425,7 @@ Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
     <String, dynamic>{
       'technologies': TechnologyTreeProgressModel._technologiesToJson(
           instance.technologies),
-      'researchingTechnologyId': instance.researchingTechnologyId?.toJson(),
+      'investedResearchScore': instance.investedResearchScore.toJson(),
     };
 
 _$TechnologyProgressModelImpl _$$TechnologyProgressModelImplFromJson(
@@ -449,10 +450,7 @@ _$TechnologyModelImpl _$$TechnologyModelImplFromJson(
       title: LocalizedMap.fromJson(json['title'] as Map<String, dynamic>),
       unlockCondition: TechnologyUnlockConditionModel.fromJson(
           json['unlockCondition'] as Map<String, dynamic>),
-      index: json['index'] as int? ?? 0,
-      parentTechnologyId: json['parentTechnologyId'] == null
-          ? null
-          : TechnologyModelId.fromJson(json['parentTechnologyId']),
+      index: (json['index'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$TechnologyModelImplToJson(
@@ -462,7 +460,6 @@ Map<String, dynamic> _$$TechnologyModelImplToJson(
       'title': instance.title.toJson(),
       'unlockCondition': instance.unlockCondition.toJson(),
       'index': instance.index,
-      'parentTechnologyId': instance.parentTechnologyId?.toJson(),
     };
 
 _$TechnologyUnlockConditionModelImpl
@@ -476,7 +473,8 @@ _$TechnologyUnlockConditionModelImpl
                         UsefulWordModel.fromJson(e as Map<String, dynamic>))
                     .toList()),
           ),
-          wordsUnlockThreshold: json['wordsUnlockThreshold'] as int? ?? 0,
+          wordsUnlockThreshold:
+              (json['wordsUnlockThreshold'] as num?)?.toInt() ?? 0,
           investedResearchPoints:
               (json['investedResearchPoints'] as num?)?.toDouble() ?? 0.0,
         );
@@ -626,7 +624,7 @@ _$TutorialEventsCollectionModelImpl
                   (e) => TutorialEventModel.fromJson(e as Map<String, dynamic>))
               .toList(),
           name: $enumDecode(_$TutorialCollectionsNameEnumMap, json['name']),
-          currentIndex: json['currentIndex'] as int,
+          currentIndex: (json['currentIndex'] as num).toInt(),
         );
 
 Map<String, dynamic> _$$TutorialEventsCollectionModelImplToJson(
@@ -647,8 +645,8 @@ _$TutorialCollectionsProgressModelImpl
             Map<String, dynamic> json) =>
         _$TutorialCollectionsProgressModelImpl(
           indexes: (json['indexes'] as Map<String, dynamic>).map(
-            (k, e) => MapEntry(
-                $enumDecode(_$TutorialCollectionsNameEnumMap, k), e as int),
+            (k, e) => MapEntry($enumDecode(_$TutorialCollectionsNameEnumMap, k),
+                (e as num).toInt()),
           ),
         );
 
@@ -681,7 +679,7 @@ Map<String, dynamic> _$$TutorialCollectionsDataModelImplToJson(
 
 _$WorldDateTimeImpl _$$WorldDateTimeImplFromJson(Map<String, dynamic> json) =>
     _$WorldDateTimeImpl(
-      second: json['second'] as int? ?? 0,
+      second: (json['second'] as num?)?.toInt() ?? 0,
     );
 
 Map<String, dynamic> _$$WorldDateTimeImplToJson(_$WorldDateTimeImpl instance) =>

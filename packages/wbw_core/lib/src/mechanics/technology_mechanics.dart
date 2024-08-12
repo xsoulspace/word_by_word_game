@@ -104,7 +104,8 @@ class TechnologyMechanics {
   ({ScoreModel scoreLeftForNextLevel, int levelIndex})
       getCurrentAchievedLevelIndex({
     required final ScoreModel allInvesetedScore,
-    required final List<TechnologyLevelTuple> runtimeLevels,
+    required final List<TechnologyLevelTuple> levels,
+    required final Map<TechnologyModelId, TechnologyModel> technologies,
   }) {
     double allScoreLeft = allInvesetedScore.value;
     final scoresByLevel = <double>[];
@@ -113,13 +114,17 @@ class TechnologyMechanics {
     ///
     /// it is important to loop it first, because there can be
     /// levels with unlocked words, which increase summary invested score
-    for (var i = 0; i < runtimeLevels.length; i++) {
-      final level = runtimeLevels[i];
+    for (var i = 0; i < levels.length; i++) {
+      final level = levels[i];
 
       final scoreNeeded = level.technologies.map(
         (final e) {
+          final technology = technologies[e];
+          if (technology == null) return 0.0;
           final (:allRequiredScore, :allInvestedScore, :isUnlocked) =
-              getResearchPointsToUnlock(unlockCondition: e.unlockCondition);
+              getResearchPointsToUnlock(
+            unlockCondition: technology.unlockCondition,
+          );
           allScoreLeft += allInvestedScore;
           return allRequiredScore;
         },

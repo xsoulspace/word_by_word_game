@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$BottomActionsNotifierState {
   bool get isCardVisible => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomActionsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BottomActionsNotifierStateCopyWith<BottomActionsNotifierState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$BottomActionsNotifierStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BottomActionsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +84,8 @@ class __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>
       $Res Function(_$BottomActionsNotifierStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BottomActionsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,7 +126,9 @@ class _$BottomActionsNotifierStateImpl implements _BottomActionsNotifierState {
   @override
   int get hashCode => Object.hash(runtimeType, isCardVisible);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BottomActionsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
@@ -135,8 +143,11 @@ abstract class _BottomActionsNotifierState
 
   @override
   bool get isCardVisible;
+
+  /// Create a copy of BottomActionsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

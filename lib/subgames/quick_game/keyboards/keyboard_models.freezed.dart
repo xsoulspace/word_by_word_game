@@ -73,6 +73,9 @@ class _$UiKeyboardEventCopyWithImpl<$Res, $Val extends UiKeyboardEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of UiKeyboardEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -95,6 +98,8 @@ class __$$UiKeyboardEventAddCharacterImplCopyWithImpl<$Res>
       $Res Function(_$UiKeyboardEventAddCharacterImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UiKeyboardEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,7 +139,9 @@ class _$UiKeyboardEventAddCharacterImpl implements UiKeyboardEventAddCharacter {
   @override
   int get hashCode => Object.hash(runtimeType, character);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UiKeyboardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UiKeyboardEventAddCharacterImplCopyWith<_$UiKeyboardEventAddCharacterImpl>
@@ -210,7 +217,10 @@ abstract class UiKeyboardEventAddCharacter implements UiKeyboardEvent {
       _$UiKeyboardEventAddCharacterImpl;
 
   String get character;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UiKeyboardEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UiKeyboardEventAddCharacterImplCopyWith<_$UiKeyboardEventAddCharacterImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -232,6 +242,9 @@ class __$$UiKeyboardEventRemoveCharacterImplCopyWithImpl<$Res>
       _$UiKeyboardEventRemoveCharacterImpl _value,
       $Res Function(_$UiKeyboardEventRemoveCharacterImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of UiKeyboardEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -329,7 +342,9 @@ mixin _$UiKeyboardControllerState {
   bool get isVisible => throw _privateConstructorUsedError;
   KeyboardLanguage get language => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UiKeyboardControllerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UiKeyboardControllerStateCopyWith<UiKeyboardControllerState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -354,6 +369,8 @@ class _$UiKeyboardControllerStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UiKeyboardControllerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -395,6 +412,8 @@ class __$$UiKeyboardControllerStateImplCopyWithImpl<$Res>
       $Res Function(_$UiKeyboardControllerStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UiKeyboardControllerState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -446,7 +465,9 @@ class _$UiKeyboardControllerStateImpl implements _UiKeyboardControllerState {
   @override
   int get hashCode => Object.hash(runtimeType, isVisible, language);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UiKeyboardControllerState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UiKeyboardControllerStateImplCopyWith<_$UiKeyboardControllerStateImpl>
@@ -463,8 +484,11 @@ abstract class _UiKeyboardControllerState implements UiKeyboardControllerState {
   bool get isVisible;
   @override
   KeyboardLanguage get language;
+
+  /// Create a copy of UiKeyboardControllerState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UiKeyboardControllerStateImplCopyWith<_$UiKeyboardControllerStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

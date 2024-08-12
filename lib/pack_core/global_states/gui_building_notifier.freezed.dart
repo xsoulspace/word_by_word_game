@@ -21,7 +21,9 @@ mixin _$GuiBuildingNotifierState {
   SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
   CellPointModel? get cellPoint => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GuiBuildingNotifierState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GuiBuildingNotifierStateCopyWith<GuiBuildingNotifierState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -53,6 +55,8 @@ class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GuiBuildingNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -81,6 +85,8 @@ class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of GuiBuildingNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SerializedVector2CopyWith<$Res> get distanceToOrigin {
@@ -89,6 +95,8 @@ class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of GuiBuildingNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CellPointModelCopyWith<$Res>? get cellPoint {
@@ -133,6 +141,8 @@ class __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>
       $Res Function(_$GuiBuildingNotifierStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GuiBuildingNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -205,7 +215,9 @@ class _$GuiBuildingNotifierStateImpl implements _GuiBuildingNotifierState {
   int get hashCode =>
       Object.hash(runtimeType, status, type, distanceToOrigin, cellPoint);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GuiBuildingNotifierState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GuiBuildingNotifierStateImplCopyWith<_$GuiBuildingNotifierStateImpl>
@@ -228,8 +240,11 @@ abstract class _GuiBuildingNotifierState implements GuiBuildingNotifierState {
   SerializedVector2 get distanceToOrigin;
   @override
   CellPointModel? get cellPoint;
+
+  /// Create a copy of GuiBuildingNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GuiBuildingNotifierStateImplCopyWith<_$GuiBuildingNotifierStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

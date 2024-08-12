@@ -21,7 +21,9 @@ mixin _$WeatherCubitState {
   List<WeatherModel> get weathers => throw _privateConstructorUsedError;
   WindModel get wind => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WeatherCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WeatherCubitStateCopyWith<WeatherCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +49,8 @@ class _$WeatherCubitStateCopyWithImpl<$Res, $Val extends WeatherCubitState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WeatherCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -65,6 +69,8 @@ class _$WeatherCubitStateCopyWithImpl<$Res, $Val extends WeatherCubitState>
     ) as $Val);
   }
 
+  /// Create a copy of WeatherCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WindModelCopyWith<$Res> get wind {
@@ -96,6 +102,8 @@ class __$$WeatherCubitStateImplCopyWithImpl<$Res>
       $Res Function(_$WeatherCubitStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WeatherCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -170,7 +178,9 @@ class _$WeatherCubitStateImpl extends _WeatherCubitState
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_weathers), wind);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WeatherCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WeatherCubitStateImplCopyWith<_$WeatherCubitStateImpl> get copyWith =>
@@ -184,15 +194,17 @@ abstract class _WeatherCubitState extends WeatherCubitState {
       final WindModel wind}) = _$WeatherCubitStateImpl;
   const _WeatherCubitState._() : super._();
 
-  @override
-
   /// idea that current weather always first.
   /// With weather completed, [weathers] first element should be removed
+  @override
   List<WeatherModel> get weathers;
   @override
   WindModel get wind;
+
+  /// Create a copy of WeatherCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WeatherCubitStateImplCopyWith<_$WeatherCubitStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

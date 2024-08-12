@@ -13,7 +13,8 @@ _$WeatherModelImpl _$$WeatherModelImplFromJson(Map<String, dynamic> json) =>
       windDirection:
           $enumDecodeNullable(_$WindDirectionEnumMap, json['windDirection']) ??
               WindDirection.defaultDirection,
-      durationInGameSeconds: json['durationInGameSeconds'] as int? ?? 20,
+      durationInGameSeconds:
+          (json['durationInGameSeconds'] as num?)?.toInt() ?? 20,
     );
 
 Map<String, dynamic> _$$WeatherModelImplToJson(_$WeatherModelImpl instance) =>

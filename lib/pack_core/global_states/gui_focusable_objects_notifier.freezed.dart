@@ -28,7 +28,9 @@ mixin _$GuiFocusableObjectsNotifierState {
   /// {@macro focusedObjectId}
   Gid get focusedObjectId => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GuiFocusableObjectsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GuiFocusableObjectsNotifierStateCopyWith<GuiFocusableObjectsNotifierState>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -61,6 +63,8 @@ class _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GuiFocusableObjectsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -89,6 +93,8 @@ class _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of GuiFocusableObjectsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GidCopyWith<$Res> get focusedObjectId {
@@ -125,6 +131,8 @@ class __$$GuiFcoNotifierStateImplCopyWithImpl<$Res>
       $Res Function(_$GuiFcoNotifierStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GuiFocusableObjectsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -224,7 +232,9 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
       isNearestObjectsLoaded,
       focusedObjectId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GuiFocusableObjectsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GuiFcoNotifierStateImplCopyWith<_$GuiFcoNotifierStateImpl> get copyWith =>
@@ -242,21 +252,24 @@ abstract class _GuiFcoNotifierState
 
   @override
   bool get isChoosing;
-  @override
 
   /// should have order:
   /// farthest | nearest in center | farthest
   ///
   /// Maybe it would be good to show some distance?
+  @override
   List<Gid> get nearestObjectIds;
   @override
   bool get isNearestObjectsLoaded;
-  @override
 
   /// {@macro focusedObjectId}
-  Gid get focusedObjectId;
   @override
-  @JsonKey(ignore: true)
+  Gid get focusedObjectId;
+
+  /// Create a copy of GuiFocusableObjectsNotifierState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GuiFcoNotifierStateImplCopyWith<_$GuiFcoNotifierStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

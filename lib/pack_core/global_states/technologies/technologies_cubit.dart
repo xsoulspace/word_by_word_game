@@ -26,9 +26,11 @@ class TechnologiesCubitState with _$TechnologiesCubitState {
 class TechnologiesCubitDto {
   TechnologiesCubitDto(final BuildContext context)
       : mechanics = context.read(),
+        technologiesCubit = context.read(),
         statesStatusesCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
+  final TechnologiesCubit technologiesCubit;
 }
 
 class TechnologiesCubit extends Cubit<TechnologiesCubitState>
@@ -77,16 +79,6 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
         .isUnlocked;
   }
 
-  void onResearchingTechnologyChanged(
-    final TechnologyModelId id,
-    // ignore: avoid_positional_boolean_parameters
-    final bool isSelected,
-  ) =>
-      updateProgress(
-        (final oldProgress) => oldProgress.copyWith(
-          researchingTechnologyId: isSelected ? id : null,
-        ),
-      );
   void onResearchSpecificTechnology({
     required final TechnologyModelId? technologyId,
     required final ResearchTechnologyEvent event,
@@ -115,11 +107,7 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
         );
         return updatedAllProgresses;
       });
-  void onResearchTechnology(final ResearchTechnologyEvent event) =>
-      onResearchSpecificTechnology(
-        technologyId: researchingTechnology?.id,
-        event: event,
-      );
+  void onResearchTechnology(final ResearchTechnologyEvent event) {}
 
   TechnologyProgressModel? _getTechnologyProgress({
     required final TechnologyModelId technologyId,
@@ -198,20 +186,31 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
 
   TechnologyTreeProgressModel get progress => state.progress;
 
-  /// single technology, which is currently researching actively
-  TechnologyModel? get researchingTechnology =>
-      _technologies[progress.researchingTechnologyId];
-
-  TechnologyProgressModel? get researchingTechnologyProgress {
-    final id = progress.researchingTechnologyId;
-    if (id == null) return null;
-    return _getTechnologyProgress(
-      technologyId: id,
-      progressTree: progress,
+  var _technologies = <TechnologyModelId, TechnologyModel>{};
+  List<TechnologyLevelTuple> get levels => TechnologyLevelsCollection.levels;
+  ({
+    String title,
+    List<TechnologyModelId> technologies,
+    int levelIndex,
+    ScoreModel scoreLeftForNextLevel,
+  }) getCurrentLevel() {
+    final investedResearchScore = progress.investedResearchScore;
+    final (:levelIndex, :scoreLeftForNextLevel) =
+        dto.mechanics.technology.getCurrentAchievedLevelIndex(
+      // TODO(arenukvern): description
+      allInvesetedScore: investedResearchScore + 0,
+      levels: dto.technologiesCubit.levels,
+      technologies: technologies,
+    );
+    final level = levels[levelIndex];
+    return (
+      levelIndex: levelIndex,
+      scoreLeftForNextLevel: scoreLeftForNextLevel,
+      technologies: level.technologies,
+      title: level.title,
     );
   }
 
-  var _technologies = <TechnologyModelId, TechnologyModel>{};
   Map<TechnologyModelId, TechnologyModel> get technologies => _technologies;
 
   /// all available technologies in level

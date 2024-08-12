@@ -26,7 +26,9 @@ mixin _$StatesStatusesCubitState {
   Set<LevelPartName> get loadedLevelParts => throw _privateConstructorUsedError;
   LevelStateStatus get levelStateStatus => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatesStatusesCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $StatesStatusesCubitStateCopyWith<StatesStatusesCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +54,8 @@ class _$StatesStatusesCubitStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of StatesStatusesCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,6 +98,8 @@ class __$$StatesStatusesCubitStateImplCopyWithImpl<$Res>
       $Res Function(_$StatesStatusesCubitStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of StatesStatusesCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -169,7 +175,9 @@ class _$StatesStatusesCubitStateImpl implements _StatesStatusesCubitState {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_loadedLevelParts), levelStateStatus);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of StatesStatusesCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StatesStatusesCubitStateImplCopyWith<_$StatesStatusesCubitStateImpl>
@@ -183,8 +191,6 @@ abstract class _StatesStatusesCubitState implements StatesStatusesCubitState {
           final LevelStateStatus levelStateStatus}) =
       _$StatesStatusesCubitStateImpl;
 
-  @override
-
   /// global statuses
   /// - loading
   /// -- level
@@ -192,11 +198,15 @@ abstract class _StatesStatusesCubitState implements StatesStatusesCubitState {
   /// -- resources
   /// - playing
   /// - paused
+  @override
   Set<LevelPartName> get loadedLevelParts;
   @override
   LevelStateStatus get levelStateStatus;
+
+  /// Create a copy of StatesStatusesCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatesStatusesCubitStateImplCopyWith<_$StatesStatusesCubitStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

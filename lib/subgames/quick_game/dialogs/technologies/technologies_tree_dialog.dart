@@ -22,7 +22,6 @@ class TechnologiesTreeDialogDto with _$TechnologiesTreeDialogDto {
   const factory TechnologiesTreeDialogDto({
     @Default(false) final bool isSelectionAllowed,
     @Default(false) final bool isHintVisible,
-    final VoidCallback? onCloseIfChanged,
   }) = _TechnologiesTreeDialogDto;
   static const nonSelectable = TechnologiesTreeDialogDto(isHintVisible: true);
   static const selectable = TechnologiesTreeDialogDto(isSelectionAllowed: true);
@@ -61,21 +60,8 @@ class TechnologiesTreeDialog extends HookWidget {
     final wordsLanguage =
         context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
 
-    /// to save initial state, and compare with final state
-    final initialTechnologyState =
-        useState<TechnologyModel?>(technologiesCubit.researchingTechnology);
-    final currentTechnology = technologiesCubit.researchingTechnology;
-
-    /// switching manually should be available only in debug mode,
-    /// because it kills the idea of wording
-    final bool isSelectionAllowed = dto.isSelectionAllowed;
     final bool isHintVisible = dto.isHintVisible;
-    void onClose() {
-      this.onClose();
-      if (initialTechnologyState.value != currentTechnology) {
-        dto.onCloseIfChanged?.call();
-      }
-    }
+    void onClose() => this.onClose();
 
     return DialogScaffold(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -98,21 +84,10 @@ class TechnologiesTreeDialog extends HookWidget {
               textAlign: TextAlign.center,
             ),
             const Spacer(),
-            if (isSelectionAllowed && currentTechnology != null)
-              IconButton.filled(
-                onPressed: onClose,
-                icon: const Icon(Icons.done_rounded),
-              )
-            else if (isSelectionAllowed && currentTechnology == null)
-              IconButton.outlined(
-                onPressed: onClose,
-                icon: const Icon(Icons.done_rounded),
-              )
-            else
-              IconButton.outlined(
-                onPressed: onClose,
-                icon: const Icon(Icons.close),
-              ),
+            IconButton.outlined(
+              onPressed: onClose,
+              icon: const Icon(Icons.close),
+            ),
           ],
         ),
       ),
@@ -170,27 +145,6 @@ class TechnologiesTreeDialog extends HookWidget {
           ),
         ),
         const Gap(6),
-        ListTile(
-          title: Text(
-            technologiesCubit.researchingTechnology?.title.getValue(locale) ??
-                const LocalizedMap(
-                  value: {
-                    Languages.en: 'Not researching',
-                    Languages.ru: 'Не исследуется',
-                    Languages.it: 'Non ricerco',
-                  },
-                ).getValue(locale),
-          ),
-          subtitle: Text(
-            const LocalizedMap(
-              value: {
-                Languages.en: 'Current Research',
-                Languages.ru: 'Текущее исследование',
-                Languages.it: 'Ricerche correnti',
-              },
-            ).getValue(locale),
-          ),
-        ),
         const Gap(32),
         ...technologiesCubit.technologies.values
             .where((final e) => TechnologyType.checkIsActive(e.type))
@@ -201,10 +155,6 @@ class TechnologiesTreeDialog extends HookWidget {
                   technologyForInfoNotifier.value = technologyWord;
                 },
                 language: wordsLanguage,
-                isSelectionAllowed: isSelectionAllowed,
-                selectedId: technologiesCubit.researchingTechnology?.id,
-                onSelectedChanged:
-                    technologiesCubit.onResearchingTechnologyChanged,
                 value: e,
                 progress: technologiesCubit.progress.technologies[e.id],
               ),
@@ -218,20 +168,13 @@ class _TechnologyTile extends StatelessWidget {
   const _TechnologyTile({
     required this.value,
     required this.progress,
-    required this.onSelectedChanged,
-    required this.selectedId,
     required this.onHover,
-    required this.isSelectionAllowed,
     required this.language,
     super.key,
   });
   final ValueChanged<TechnologyWordInfoTuple> onHover;
   final TechnologyModel value;
-  final bool isSelectionAllowed;
   final TechnologyProgressModel? progress;
-  // ignore: avoid_positional_boolean_parameters
-  final void Function(TechnologyModelId id, bool isSelected) onSelectedChanged;
-  final TechnologyModelId? selectedId;
   final Languages language;
   @override
   Widget build(final BuildContext context) {
@@ -244,14 +187,11 @@ class _TechnologyTile extends StatelessWidget {
 
     /// used to provide fast translation and meaning
     final allUiWords = value.unlockCondition.languageWords[locale.language]!;
-    final isSelected = selectedId == value.id;
     final isUnlocked = unlockCondition != null &&
         mechanics.technology.checkIsUnlockedInSomeLanguages(
           unlockCondition: unlockCondition,
         );
-    final textColor = isSelected
-        ? context.colorScheme.onPrimaryContainer
-        : context.colorScheme.onPrimaryContainer.withOpacity(0.4);
+    final textColor = context.colorScheme.onPrimaryContainer.withOpacity(0.4);
     void onTechnologyPressed() =>
         onHover((technology: value, uiWord: null, languageWord: null));
     return FocusableActionDetector(
@@ -270,25 +210,11 @@ class _TechnologyTile extends StatelessWidget {
               Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  if (isUnlocked)
-                    const Icon(Icons.done)
-                  else if (isSelectionAllowed)
-                    Switch.adaptive(
-                      value: isSelected,
-                      onChanged: (final isSelected) =>
-                          onSelectedChanged(value.id, isSelected),
-                    )
-                  else if (isSelected)
-                    const Icon(Icons.arrow_right),
-                  UiBaseButton(
-                    onPressed: isSelectionAllowed && !isUnlocked
-                        ? () => onSelectedChanged(value.id, !isSelected)
-                        : () {},
-                    child: Text(
-                      value.title.getValue(locale),
-                      style: context.textTheme.titleMedium?.copyWith(
-                        color: textColor,
-                      ),
+                  if (isUnlocked) const Icon(Icons.done),
+                  Text(
+                    value.title.getValue(locale),
+                    style: context.textTheme.titleMedium?.copyWith(
+                      color: textColor,
                     ),
                   ),
                   const Gap(8),

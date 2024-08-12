@@ -110,6 +110,9 @@ class _$GameEventCopyWithImpl<$Res, $Val extends GameEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -137,6 +140,8 @@ class __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>
       $Res Function(_$InitGlobalGameLevelEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -165,6 +170,8 @@ class __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelModelCopyWith<$Res> get levelModel {
@@ -219,7 +226,9 @@ class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
   int get hashCode => Object.hash(
       runtimeType, levelModel, isNewStart, playerStartPoint, windDirection);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
@@ -342,7 +351,10 @@ abstract class InitGlobalGameLevelEvent implements GameEvent {
   bool get isNewStart;
   PlayerStartPointType get playerStartPoint;
   WindDirection get windDirection;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -366,6 +378,8 @@ class __$$StartPlayingLevelEventImplCopyWithImpl<$Res>
       $Res Function(_$StartPlayingLevelEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -406,7 +420,9 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   int get hashCode => Object.hash(runtimeType, shouldRestartTutorial);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StartPlayingLevelEventImplCopyWith<_$StartPlayingLevelEventImpl>
@@ -520,7 +536,10 @@ abstract class StartPlayingLevelEvent implements GameEvent {
       _$StartPlayingLevelEventImpl;
 
   bool get shouldRestartTutorial;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StartPlayingLevelEventImplCopyWith<_$StartPlayingLevelEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -546,6 +565,8 @@ class __$$DeletePlayerProfileEventImplCopyWithImpl<$Res>
       $Res Function(_$DeletePlayerProfileEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -559,6 +580,8 @@ class __$$DeletePlayerProfileEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerProfileModelCopyWith<$Res> get profile {
@@ -592,7 +615,9 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   int get hashCode => Object.hash(runtimeType, profile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeletePlayerProfileEventImplCopyWith<_$DeletePlayerProfileEventImpl>
@@ -707,7 +732,10 @@ abstract class DeletePlayerProfileEvent implements GameEvent {
       _$DeletePlayerProfileEventImpl;
 
   PlayerProfileModel get profile;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeletePlayerProfileEventImplCopyWith<_$DeletePlayerProfileEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -733,6 +761,8 @@ class __$$CreatePlayerProfileEventImplCopyWithImpl<$Res>
       $Res Function(_$CreatePlayerProfileEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -746,6 +776,8 @@ class __$$CreatePlayerProfileEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerProfileModelCopyWith<$Res> get profile {
@@ -779,7 +811,9 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   int get hashCode => Object.hash(runtimeType, profile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreatePlayerProfileEventImplCopyWith<_$CreatePlayerProfileEventImpl>
@@ -894,7 +928,10 @@ abstract class CreatePlayerProfileEvent implements GameEvent {
       _$CreatePlayerProfileEventImpl;
 
   PlayerProfileModel get profile;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreatePlayerProfileEventImplCopyWith<_$CreatePlayerProfileEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -913,6 +950,9 @@ class __$$SaveGameEventImplCopyWithImpl<$Res>
   __$$SaveGameEventImplCopyWithImpl(
       _$SaveGameEventImpl _value, $Res Function(_$SaveGameEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1055,6 +1095,9 @@ class __$$SaveCurrentLevelEventImplCopyWithImpl<$Res>
   __$$SaveCurrentLevelEventImplCopyWithImpl(_$SaveCurrentLevelEventImpl _value,
       $Res Function(_$SaveCurrentLevelEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1200,6 +1243,8 @@ class __$$EndLevelEventImplCopyWithImpl<$Res>
       _$EndLevelEventImpl _value, $Res Function(_$EndLevelEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1249,7 +1294,9 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   int get hashCode => Object.hash(runtimeType, isPassed, maxDistance);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EndLevelEventImplCopyWith<_$EndLevelEventImpl> get copyWith =>
@@ -1364,7 +1411,10 @@ abstract class EndLevelEvent implements GameEvent {
 
   bool get isPassed;
   double get maxDistance;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EndLevelEventImplCopyWith<_$EndLevelEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1405,7 +1455,9 @@ mixin _$GlobalGameBlocState {
   /// ********************************************
   int get dateTimeDelta => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GlobalGameBlocStateCopyWith<GlobalGameBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1444,6 +1496,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1502,6 +1556,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     ) as $Val);
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId {
@@ -1510,6 +1566,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     });
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelModelCopyWith<$Res>? get currentLevelModel {
@@ -1522,6 +1580,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     });
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get dateTime {
@@ -1530,6 +1590,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     });
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
@@ -1577,6 +1639,8 @@ class __$$GlobalGameBlocStateImplCopyWithImpl<$Res>
       $Res Function(_$GlobalGameBlocStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1780,7 +1844,9 @@ class _$GlobalGameBlocStateImpl extends _GlobalGameBlocState {
       const DeepCollectionEquality().hash(_savedLevels),
       dateTimeDelta);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GlobalGameBlocStateImplCopyWith<_$GlobalGameBlocStateImpl> get copyWith =>
@@ -1802,48 +1868,50 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
       final int dateTimeDelta}) = _$GlobalGameBlocStateImpl;
   const _GlobalGameBlocState._() : super._();
 
-  @override
-
   /// ********************************************
   /// *      RESTORABLE FROM MODEL
   /// ********************************************
+  @override
   String get id;
   @override
   CanvasDataModelId get currentLevelId;
-  @override
 
   /// Should be loaded independently, should never be updated
   /// Immutable
-  Map<CanvasDataModelId, CanvasDataModel> get allCanvasData;
   @override
+  Map<CanvasDataModelId, CanvasDataModel> get allCanvasData;
 
   /// Current Level Model is a model with all level configurations
   /// chosen by the user (players, characters, etc).
   /// It should not be update or changed during the playing the level.
   /// It should be set during the level first initialization
   /// (When the player clicks play button).
+  @override
   LevelModel? get currentLevelModel;
   @override
   WorldDateTimeModel get dateTime;
   @override
   WorldDateTimeModel get lastDateTime;
-  @override
 
   /// The [playersCollection] is the collection of players characters,
   /// which will be available for user to playe and progress through the game.
+  @override
   List<PlayerProfileModel> get playersCollection;
   @override
   List<PlayerCharacterModel> get playersCharacters;
   @override
   Map<CanvasDataModelId, LevelModel> get savedLevels;
-  @override
 
   /// ********************************************
   /// *      NON-RESTORABLE
   /// ********************************************
-  int get dateTimeDelta;
   @override
-  @JsonKey(ignore: true)
+  int get dateTimeDelta;
+
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GlobalGameBlocStateImplCopyWith<_$GlobalGameBlocStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

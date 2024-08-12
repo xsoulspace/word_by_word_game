@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GameConstantsCubitState {
   ForcesConstantsModel get forces => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameConstantsCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GameConstantsCubitStateCopyWith<GameConstantsCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -45,6 +47,8 @@ class _$GameConstantsCubitStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GameConstantsCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -58,6 +62,8 @@ class _$GameConstantsCubitStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of GameConstantsCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ForcesConstantsModelCopyWith<$Res> get forces {
@@ -92,6 +98,8 @@ class __$$GameConstantsCubitStateImplCopyWithImpl<$Res>
       $Res Function(_$GameConstantsCubitStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameConstantsCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,7 +140,9 @@ class _$GameConstantsCubitStateImpl implements _GameConstantsCubitState {
   @override
   int get hashCode => Object.hash(runtimeType, forces);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameConstantsCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
@@ -146,8 +156,11 @@ abstract class _GameConstantsCubitState implements GameConstantsCubitState {
 
   @override
   ForcesConstantsModel get forces;
+
+  /// Create a copy of GameConstantsCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -21,7 +21,9 @@ mixin _$AdPermissions {
   bool get levelEndScreenBannerEnabled => throw _privateConstructorUsedError;
   bool get onContinueLevelVideoEnabled => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AdPermissions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AdPermissionsCopyWith<AdPermissions> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +51,8 @@ class _$AdPermissionsCopyWithImpl<$Res, $Val extends AdPermissions>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AdPermissions
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +105,8 @@ class __$$AdPermissionsImplCopyWithImpl<$Res>
       _$AdPermissionsImpl _value, $Res Function(_$AdPermissionsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AdPermissions
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -187,7 +193,9 @@ class _$AdPermissionsImpl extends _AdPermissions {
       levelEndScreenBannerEnabled,
       onContinueLevelVideoEnabled);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AdPermissions
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AdPermissionsImplCopyWith<_$AdPermissionsImpl> get copyWith =>
@@ -210,8 +218,11 @@ abstract class _AdPermissions extends AdPermissions {
   bool get levelEndScreenBannerEnabled;
   @override
   bool get onContinueLevelVideoEnabled;
+
+  /// Create a copy of AdPermissions
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AdPermissionsImplCopyWith<_$AdPermissionsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

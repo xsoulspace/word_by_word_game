@@ -22,8 +22,12 @@ LevelRouteArgs _$LevelRouteArgsFromJson(Map<String, dynamic> json) {
 mixin _$LevelRouteArgs {
   String get levelId => throw _privateConstructorUsedError;
 
+  /// Serializes this LevelRouteArgs to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelRouteArgs
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LevelRouteArgsCopyWith<LevelRouteArgs> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -47,6 +51,8 @@ class _$LevelRouteArgsCopyWithImpl<$Res, $Val extends LevelRouteArgs>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LevelRouteArgs
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -80,6 +86,8 @@ class __$$LevelRouteArgsImplCopyWithImpl<$Res>
       _$LevelRouteArgsImpl _value, $Res Function(_$LevelRouteArgsImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelRouteArgs
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,11 +128,13 @@ class _$LevelRouteArgsImpl extends _LevelRouteArgs {
             (identical(other.levelId, levelId) || other.levelId == levelId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, levelId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelRouteArgs
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelRouteArgsImplCopyWith<_$LevelRouteArgsImpl> get copyWith =>
@@ -148,8 +158,11 @@ abstract class _LevelRouteArgs extends LevelRouteArgs {
 
   @override
   String get levelId;
+
+  /// Create a copy of LevelRouteArgs
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelRouteArgsImplCopyWith<_$LevelRouteArgsImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

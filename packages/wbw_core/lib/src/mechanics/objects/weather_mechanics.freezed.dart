@@ -24,8 +24,12 @@ mixin _$WeatherModel {
   WindDirection get windDirection => throw _privateConstructorUsedError;
   int get durationInGameSeconds => throw _privateConstructorUsedError;
 
+  /// Serializes this WeatherModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WeatherModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WeatherModelCopyWith<WeatherModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$WeatherModelCopyWithImpl<$Res, $Val extends WeatherModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WeatherModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -98,6 +104,8 @@ class __$$WeatherModelImplCopyWithImpl<$Res>
       _$WeatherModelImpl _value, $Res Function(_$WeatherModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WeatherModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -162,12 +170,14 @@ class _$WeatherModelImpl extends _WeatherModel {
                 other.durationInGameSeconds == durationInGameSeconds));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, windScale, windDirection, durationInGameSeconds);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WeatherModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WeatherModelImplCopyWith<_$WeatherModelImpl> get copyWith =>
@@ -197,8 +207,11 @@ abstract class _WeatherModel extends WeatherModel {
   WindDirection get windDirection;
   @override
   int get durationInGameSeconds;
+
+  /// Create a copy of WeatherModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WeatherModelImplCopyWith<_$WeatherModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -211,8 +224,12 @@ WindModel _$WindModelFromJson(Map<String, dynamic> json) {
 mixin _$WindModel {
   SerializedVector2 get force => throw _privateConstructorUsedError;
 
+  /// Serializes this WindModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WindModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WindModelCopyWith<WindModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -237,6 +254,8 @@ class _$WindModelCopyWithImpl<$Res, $Val extends WindModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WindModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -250,6 +269,8 @@ class _$WindModelCopyWithImpl<$Res, $Val extends WindModel>
     ) as $Val);
   }
 
+  /// Create a copy of WindModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SerializedVector2CopyWith<$Res> get force {
@@ -281,6 +302,8 @@ class __$$WindModelImplCopyWithImpl<$Res>
       _$WindModelImpl _value, $Res Function(_$WindModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WindModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -320,11 +343,13 @@ class _$WindModelImpl implements _WindModel {
             (identical(other.force, force) || other.force == force));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, force);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WindModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WindModelImplCopyWith<_$WindModelImpl> get copyWith =>
@@ -346,8 +371,11 @@ abstract class _WindModel implements WindModel {
 
   @override
   SerializedVector2 get force;
+
+  /// Create a copy of WindModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WindModelImplCopyWith<_$WindModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

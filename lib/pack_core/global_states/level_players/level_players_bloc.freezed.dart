@@ -109,6 +109,9 @@ class _$LevelPlayerEventCopyWithImpl<$Res, $Val extends LevelPlayerEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -133,6 +136,8 @@ class __$$InitLevelPlayersEventImplCopyWithImpl<$Res>
       $Res Function(_$InitLevelPlayersEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -151,6 +156,8 @@ class __$$InitLevelPlayersEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelPlayersModelCopyWith<$Res> get playersModel {
@@ -159,6 +166,8 @@ class __$$InitLevelPlayersEventImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelCharactersModelCopyWith<$Res> get charactersModel {
@@ -198,7 +207,9 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
   @override
   int get hashCode => Object.hash(runtimeType, playersModel, charactersModel);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
@@ -313,7 +324,10 @@ abstract class InitLevelPlayersEvent implements LevelPlayerEvent {
 
   LevelPlayersModel get playersModel;
   LevelCharactersModel get charactersModel;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -334,6 +348,9 @@ class __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>
       _$SwitchToNextPlayerEventImpl _value,
       $Res Function(_$SwitchToNextPlayerEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -480,6 +497,8 @@ class __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>
       $Res Function(_$ChangeCharacterPositionEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -520,7 +539,9 @@ class _$ChangeCharacterPositionEventImpl
   @override
   int get hashCode => Object.hash(runtimeType, position);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ChangeCharacterPositionEventImplCopyWith<
@@ -633,7 +654,10 @@ abstract class ChangeCharacterPositionEvent implements LevelPlayerEvent {
       {required final Vector2 position}) = _$ChangeCharacterPositionEventImpl;
 
   Vector2 get position;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeCharacterPositionEventImplCopyWith<
           _$ChangeCharacterPositionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -658,6 +682,8 @@ class __$$RefuelStorageEventImplCopyWithImpl<$Res>
       $Res Function(_$RefuelStorageEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -671,6 +697,8 @@ class __$$RefuelStorageEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ScoreModelCopyWith<$Res> get score {
@@ -704,7 +732,9 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
   @override
   int get hashCode => Object.hash(runtimeType, score);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
@@ -816,7 +846,10 @@ abstract class RefuelStorageEvent implements LevelPlayerEvent {
       _$RefuelStorageEventImpl;
 
   ScoreModel get score;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -842,6 +875,8 @@ class __$$ResearchTechnologyEventImplCopyWithImpl<$Res>
       $Res Function(_$ResearchTechnologyEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -855,6 +890,8 @@ class __$$ResearchTechnologyEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ScoreModelCopyWith<$Res> get score {
@@ -888,7 +925,9 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
   @override
   int get hashCode => Object.hash(runtimeType, score);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
@@ -1000,7 +1039,10 @@ abstract class ResearchTechnologyEvent implements LevelPlayerEvent {
       _$ResearchTechnologyEventImpl;
 
   ScoreModel get score;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1027,6 +1069,8 @@ class __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>
       $Res Function(_$UpdatePlayerHighscoreEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1050,6 +1094,8 @@ class __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ScoreModelCopyWith<$Res> get score {
@@ -1091,7 +1137,9 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
   @override
   int get hashCode => Object.hash(runtimeType, playerId, score, word);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
@@ -1207,7 +1255,10 @@ abstract class UpdatePlayerHighscoreEvent implements LevelPlayerEvent {
   String get playerId;
   ScoreModel get score;
   String? get word;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelPlayerEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1222,7 +1273,9 @@ mixin _$LevelPlayersBlocState {
   /// {@macro focusedObjectId}
   Gid get focusedObjectGid => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayersBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LevelPlayersBlocStateCopyWith<LevelPlayersBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1254,6 +1307,8 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LevelPlayersBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1282,6 +1337,8 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of LevelPlayersBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
@@ -1290,6 +1347,8 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of LevelPlayersBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GidCopyWith<$Res> get focusedObjectGid {
@@ -1329,6 +1388,8 @@ class __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>
       $Res Function(_$LevelPlayersBlocStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelPlayersBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1417,7 +1478,9 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
       playerCharacter,
       focusedObjectGid);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayersBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
@@ -1439,12 +1502,15 @@ abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
   String get currentPlayerId;
   @override
   PlayerCharacterModel get playerCharacter;
-  @override
 
   /// {@macro focusedObjectId}
-  Gid get focusedObjectGid;
   @override
-  @JsonKey(ignore: true)
+  Gid get focusedObjectGid;
+
+  /// Create a copy of LevelPlayersBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

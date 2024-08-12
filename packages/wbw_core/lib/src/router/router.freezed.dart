@@ -28,7 +28,9 @@ mixin _$ParsedRoute {
   /// The query parameters ({search: abc})
   Map<String, String> get queryParameters => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ParsedRoute
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ParsedRouteCopyWith<ParsedRoute> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -56,6 +58,8 @@ class _$ParsedRouteCopyWithImpl<$Res, $Val extends ParsedRoute>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ParsedRoute
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -108,6 +112,8 @@ class __$$ParsedRouteImplCopyWithImpl<$Res>
       _$ParsedRouteImpl _value, $Res Function(_$ParsedRouteImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ParsedRoute
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -218,7 +224,9 @@ class _$ParsedRouteImpl extends _ParsedRoute with DiagnosticableTreeMixin {
       const DeepCollectionEquality().hash(_parameters),
       const DeepCollectionEquality().hash(_queryParameters));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ParsedRoute
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ParsedRouteImplCopyWith<_$ParsedRouteImpl> get copyWith =>
@@ -233,24 +241,26 @@ abstract class _ParsedRoute extends ParsedRoute {
       required final Map<String, String> queryParameters}) = _$ParsedRouteImpl;
   const _ParsedRoute._() : super._();
 
-  @override
-
   /// The current path location without query parameters. (/book/123)
-  String get path;
   @override
+  String get path;
 
   /// The path template (/book/:id)
-  String get pathTemplate;
   @override
+  String get pathTemplate;
 
   /// The path parameters ({id: 123})
-  Map<String, String> get parameters;
   @override
+  Map<String, String> get parameters;
 
   /// The query parameters ({search: abc})
-  Map<String, String> get queryParameters;
   @override
-  @JsonKey(ignore: true)
+  Map<String, String> get queryParameters;
+
+  /// Create a copy of ParsedRoute
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ParsedRouteImplCopyWith<_$ParsedRouteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

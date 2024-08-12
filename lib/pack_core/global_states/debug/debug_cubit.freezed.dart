@@ -21,7 +21,9 @@ mixin _$DebugCubitState {
   bool get isDebugLinesVisible => throw _privateConstructorUsedError;
   bool get isFpsEnabled => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DebugCubitStateCopyWith<DebugCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -49,6 +51,8 @@ class _$DebugCubitStateCopyWithImpl<$Res, $Val extends DebugCubitState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -101,6 +105,8 @@ class __$$DebugCubitStateImplCopyWithImpl<$Res>
       _$DebugCubitStateImpl _value, $Res Function(_$DebugCubitStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -191,7 +197,9 @@ class _$DebugCubitStateImpl
   int get hashCode => Object.hash(runtimeType, isCameraFollowingPlayer,
       isDebugPaneVisible, isDebugLinesVisible, isFpsEnabled);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DebugCubitStateImplCopyWith<_$DebugCubitStateImpl> get copyWith =>
@@ -214,8 +222,11 @@ abstract class _DebugCubitState implements DebugCubitState {
   bool get isDebugLinesVisible;
   @override
   bool get isFpsEnabled;
+
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DebugCubitStateImplCopyWith<_$DebugCubitStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

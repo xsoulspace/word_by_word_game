@@ -23,8 +23,12 @@ mixin _$LocalizedMap {
   @JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
   Map<Languages, String> get value => throw _privateConstructorUsedError;
 
+  /// Serializes this LocalizedMap to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LocalizedMap
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LocalizedMapCopyWith<LocalizedMap> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +54,8 @@ class _$LocalizedMapCopyWithImpl<$Res, $Val extends LocalizedMap>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LocalizedMap
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +91,8 @@ class __$$LocalizedMapImplCopyWithImpl<$Res>
       _$LocalizedMapImpl _value, $Res Function(_$LocalizedMapImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LocalizedMap
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -134,12 +142,14 @@ class _$LocalizedMapImpl extends _LocalizedMap {
             const DeepCollectionEquality().equals(other._value, _value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_value));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LocalizedMap
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LocalizedMapImplCopyWith<_$LocalizedMapImpl> get copyWith =>
@@ -165,8 +175,11 @@ abstract class _LocalizedMap extends LocalizedMap {
   @override
   @JsonKey(fromJson: localeValueFromMap, toJson: localeValueToMap)
   Map<Languages, String> get value;
+
+  /// Create a copy of LocalizedMap
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LocalizedMapImplCopyWith<_$LocalizedMapImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

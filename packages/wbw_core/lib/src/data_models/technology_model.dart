@@ -33,6 +33,7 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
     )
     @Default({})
     final Map<TechnologyModelId, TechnologyProgressModel> technologies,
+    @Default(ScoreModel.zero) final ScoreModel investedResearchScore,
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
     final Map<String, dynamic> json,
