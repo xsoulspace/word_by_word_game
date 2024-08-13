@@ -26,11 +26,9 @@ class TechnologiesCubitState with _$TechnologiesCubitState {
 class TechnologiesCubitDto {
   TechnologiesCubitDto(final BuildContext context)
       : mechanics = context.read(),
-        technologiesCubit = context.read(),
         statesStatusesCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
-  final TechnologiesCubit technologiesCubit;
 }
 
 class TechnologiesCubit extends Cubit<TechnologiesCubitState>
@@ -199,7 +197,7 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
         dto.mechanics.technology.getCurrentAchievedLevelIndex(
       // TODO(arenukvern): description
       allInvesetedScore: investedResearchScore + 0,
-      levels: dto.technologiesCubit.levels,
+      levels: levels,
       technologies: technologies,
     );
     final level = levels[levelIndex];

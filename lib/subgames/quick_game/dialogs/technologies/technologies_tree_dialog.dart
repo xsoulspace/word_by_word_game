@@ -13,7 +13,6 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 
 part 'technologies_tree_dialog.freezed.dart';
 
@@ -56,9 +55,6 @@ class TechnologiesTreeDialog extends HookWidget {
     final technologyForInfoNotifier = useState<TechnologyWordInfoTuple?>(null);
 
     final locale = useLocale(context);
-    final levelCubit = context.read<LevelBloc>();
-    final wordsLanguage =
-        context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
 
     final bool isHintVisible = dto.isHintVisible;
     void onClose() => this.onClose();
@@ -92,59 +88,6 @@ class TechnologiesTreeDialog extends HookWidget {
         ),
       ),
       children: [
-        const Gap(16),
-        Card.outlined(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6),
-            child: Column(
-              children: [
-                const Gap(6),
-                if (isHintVisible) ...[
-                  Text(
-                    const LocalizedMap(
-                      value: {
-                        Languages.en:
-                            'Tip: to change researching technology enter new word and choose select technology action',
-                        Languages.ru:
-                            'Подсказка: для изменения текущей технологии введите новое слово и выберите действие "Выбрать технологию"',
-                        Languages.it:
-                            'Suggerimento: per modificare la tecnologia corrente, inserisci una nuova parola e scegli l\'azione "Seleziona tecnologia"',
-                      },
-                    ).getValue(locale),
-                    textAlign: TextAlign.center,
-                  ),
-                  const Gap(12),
-                ],
-                Text(
-                  const LocalizedMap(
-                    value: {
-                      Languages.en:
-                          'Tip: use words to research technology faster.',
-                      Languages.ru:
-                          'Подсказка: использовать слова для быстрого исследования технологий.',
-                      Languages.it:
-                          'Suggerimento: usare parole per un ricerche veloce della tecnologia.',
-                    },
-                  ).getValue(locale),
-                  textAlign: TextAlign.center,
-                ),
-                const Gap(6),
-              ],
-            ),
-          ),
-        ),
-        const Gap(12),
-        ListTile(
-          title: const Text(
-            // TODO(arenukvern): l10n
-            'Words Language',
-          ),
-          trailing: WordsLanguageSwitcher(
-            onChanged: levelCubit.onChangeWordsLanguage,
-            value: wordsLanguage,
-          ),
-        ),
-        const Gap(6),
         const Gap(32),
         ...technologiesCubit.technologies.values
             .where((final e) => TechnologyType.checkIsActive(e.type))
@@ -154,7 +97,7 @@ class TechnologiesTreeDialog extends HookWidget {
                 onHover: (final technologyWord) {
                   technologyForInfoNotifier.value = technologyWord;
                 },
-                language: wordsLanguage,
+                language: Languages.en,
                 value: e,
                 progress: technologiesCubit.progress.technologies[e.id],
               ),
