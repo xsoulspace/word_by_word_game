@@ -64,8 +64,7 @@ class CurrentTechnologyButton extends StatelessWidget {
         bottomLeft: Radius.elliptical(8, 8),
         bottomRight: Radius.elliptical(8, 8),
       ),
-      onPressed: () => dialogController
-          .showTechnologiesTree(TechnologiesTreeDialogDto.nonSelectable),
+      onPressed: dialogController.showTechnologiesTree,
       percentage: percentage,
     );
   }

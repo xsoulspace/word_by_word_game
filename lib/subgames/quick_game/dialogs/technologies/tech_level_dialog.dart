@@ -4,8 +4,10 @@ import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
-class TechnoLevelDialog extends StatelessWidget {
-  const TechnoLevelDialog({super.key});
+class TechLevelsDialog extends StatelessWidget {
+  const TechLevelsDialog({required this.onClose, super.key});
+
+  final VoidCallback onClose;
 
   @override
   Widget build(final BuildContext context) {
@@ -13,30 +15,47 @@ class TechnoLevelDialog extends StatelessWidget {
     final levelCubit = context.read<LevelBloc>();
     final wordsLanguage =
         context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
-
+    final wordsLocale = Locales.byLanguage(wordsLanguage);
+    final technologiesCubit = context.watch<TechnologiesCubit>();
+    final (
+      levelIndex: lastLevelIndex,
+      :scoreLeftForNextLevel,
+      :technologies,
+      :title
+    ) = technologiesCubit.getCurrentLevel();
     return DialogScaffold(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
+      top: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Row(
+          children: [
+            Text(
+              const LocalizedMap(
+                value: {
+                  Languages.en: 'Technologies Progress',
+                  Languages.ru: 'Прогресс технологий',
+                  Languages.it: 'Progresso tecnologie',
+                },
+              ).getValue(locale),
+              style: context.textTheme.titleLarge,
+              textAlign: TextAlign.center,
+            ),
+            const Spacer(),
+            IconButton.outlined(
+              onPressed: onClose,
+              icon: const Icon(Icons.close),
+            ),
+          ],
+        ),
+      ),
       children: [
         const Gap(16),
         Card.outlined(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 6),
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               children: [
-                const Gap(6),
-                Text(
-                  const LocalizedMap(
-                    value: {
-                      Languages.en:
-                          'Tip: to change researching technology enter new word and choose select technology action',
-                      Languages.ru:
-                          'Подсказка: для изменения текущей технологии введите новое слово и выберите действие "Выбрать технологию"',
-                      Languages.it:
-                          'Suggerimento: per modificare la tecnologia corrente, inserisci una nuova parola e scegli l\'azione "Seleziona tecnologia"',
-                    },
-                  ).getValue(locale),
-                  textAlign: TextAlign.center,
-                ),
                 const Gap(12),
                 Text(
                   const LocalizedMap(
@@ -51,13 +70,14 @@ class TechnoLevelDialog extends StatelessWidget {
                   ).getValue(locale),
                   textAlign: TextAlign.center,
                 ),
-                const Gap(6),
+                const Gap(12),
               ],
             ),
           ),
         ),
         const Gap(12),
         ListTile(
+          dense: true,
           title: const Text(
             // TODO(arenukvern): l10n
             'Words Language',
@@ -67,7 +87,146 @@ class TechnoLevelDialog extends StatelessWidget {
             value: wordsLanguage,
           ),
         ),
-        const Gap(6),
+        const Gap(12),
+        ...technologiesCubit.levels.mapIndexed(
+          (final index, final level) => _TechLevel(
+            wordsLocale: wordsLocale,
+            wordsLanguage: wordsLanguage,
+            lastLevelIndex: lastLevelIndex,
+            index: index,
+            level: level,
+            technologies: technologiesCubit.technologies,
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _TechLevel extends StatelessWidget {
+  const _TechLevel({
+    required this.index,
+    required this.lastLevelIndex,
+    required this.level,
+    required this.wordsLanguage,
+    required this.technologies,
+    required this.wordsLocale,
+    super.key,
+  });
+  final int lastLevelIndex;
+  final int index;
+  final TechnologyLevelTuple level;
+  final Languages wordsLanguage;
+  final Locale wordsLocale;
+  final Map<TechnologyModelId, TechnologyModel> technologies;
+
+  @override
+  Widget build(final BuildContext context) {
+    const iconSize = 40.0;
+    const iconPadding = 12.0;
+    final isUnblocked = (index + 1) <= lastLevelIndex;
+    return Stack(
+      children: [
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Gap(12),
+            Padding(
+              padding: const EdgeInsets.only(left: 6),
+              child: DefaultTextStyle.merge(
+                style: context.textTheme.titleLarge,
+                child: Row(
+                  children: [
+                    Text('$index'),
+                    const Gap(12),
+                    Text(level.title),
+                  ],
+                ),
+              ),
+            ),
+            const Gap(8),
+            Row(
+              children: [
+                const Text('Technologies'),
+                const Gap(12),
+                Expanded(
+                  child: Wrap(
+                    runSpacing: 2,
+                    spacing: 2,
+                    children: [
+                      ...level.technologies.map(
+                        (final id) {
+                          final tech = technologies[id]!;
+                          return Card(
+                            margin: EdgeInsets.zero,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 12,
+                              ),
+                              child: Text(
+                                tech.title.getValue(wordsLocale),
+                                style: context.textThemeBold.titleMedium,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(width: iconPadding + iconSize),
+              ],
+            ),
+            const Gap(12),
+            Row(
+              children: [
+                const Text('Words'),
+                const Gap(12),
+                Expanded(
+                  child: Wrap(
+                    spacing: 2,
+                    runSpacing: 2,
+                    children: [
+                      ...level.technologies
+                          .map(
+                            (final id) => technologies[id]!
+                                .unlockCondition
+                                .languageWords[wordsLanguage]!,
+                          )
+                          .flattened
+                          .map(
+                            (final word) => ActionChip(
+                              onPressed: word.isUsed ? null : () {},
+                              padding: EdgeInsets.zero,
+                              label: Text(word.word),
+                            ),
+                          )
+                          .nonNulls,
+                    ],
+                  ),
+                ),
+                const SizedBox(width: iconPadding + iconSize),
+              ],
+            ),
+            const Gap(12),
+            const Divider(),
+          ],
+        ),
+        Positioned(
+          right: iconPadding,
+          top: 0,
+          bottom: 0,
+          child: IconTheme(
+            data: IconThemeData(
+              size: iconSize,
+              color: isUnblocked
+                  ? context.colorScheme.primary
+                  : context.colorScheme.secondary,
+            ),
+            child: Icon(isUnblocked ? Icons.check : Icons.lock),
+          ),
+        ),
       ],
     );
   }

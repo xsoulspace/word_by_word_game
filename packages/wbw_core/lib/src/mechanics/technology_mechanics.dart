@@ -129,7 +129,7 @@ class TechnologyMechanics {
           return allRequiredScore;
         },
       ).reduce((final a, final b) => a + b);
-      scoresByLevel[i] = scoreNeeded;
+      scoresByLevel.add(scoreNeeded);
     }
 
     for (var i = 0; i < scoresByLevel.length; i++) {

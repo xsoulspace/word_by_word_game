@@ -7,24 +7,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-
-part 'technologies_tree_dialog.freezed.dart';
-
-@freezed
-class TechnologiesTreeDialogDto with _$TechnologiesTreeDialogDto {
-  const factory TechnologiesTreeDialogDto({
-    @Default(false) final bool isSelectionAllowed,
-    @Default(false) final bool isHintVisible,
-  }) = _TechnologiesTreeDialogDto;
-  static const nonSelectable = TechnologiesTreeDialogDto(isHintVisible: true);
-  static const selectable = TechnologiesTreeDialogDto(isSelectionAllowed: true);
-}
+import 'package:word_by_word_game/subgames/quick_game/dialogs/technologies/tech_level_dialog.dart';
 
 typedef TechnologyWordInfoTuple = ({
   TechnologyModel technology,
@@ -42,69 +29,14 @@ typedef TechnologyWordInfoTuple = ({
 
 class TechnologiesTreeDialog extends HookWidget {
   const TechnologiesTreeDialog({
-    required this.dto,
     required this.onClose,
     super.key,
   });
   final VoidCallback onClose;
-  final TechnologiesTreeDialogDto dto;
 
   @override
-  Widget build(final BuildContext context) {
-    final technologiesCubit = context.watch<TechnologiesCubit>();
-    final technologyForInfoNotifier = useState<TechnologyWordInfoTuple?>(null);
-
-    final locale = useLocale(context);
-
-    final bool isHintVisible = dto.isHintVisible;
-    void onClose() => this.onClose();
-
-    return DialogScaffold(
-      padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-      bottom: _TechnologyPanelView(
-        technologyWord: technologyForInfoNotifier.value,
-      ),
-      top: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-        child: Row(
-          children: [
-            Text(
-              const LocalizedMap(
-                value: {
-                  Languages.en: 'Technology Tree',
-                  Languages.ru: 'Дерево технологий',
-                  Languages.it: 'Albero tecnologie',
-                },
-              ).getValue(locale),
-              style: context.textTheme.titleLarge,
-              textAlign: TextAlign.center,
-            ),
-            const Spacer(),
-            IconButton.outlined(
-              onPressed: onClose,
-              icon: const Icon(Icons.close),
-            ),
-          ],
-        ),
-      ),
-      children: [
-        const Gap(32),
-        ...technologiesCubit.technologies.values
-            .where((final e) => TechnologyType.checkIsActive(e.type))
-            .map(
-              (final e) => _TechnologyTile(
-                key: ValueKey(e.id),
-                onHover: (final technologyWord) {
-                  technologyForInfoNotifier.value = technologyWord;
-                },
-                language: Languages.en,
-                value: e,
-                progress: technologiesCubit.progress.technologies[e.id],
-              ),
-            ),
-      ],
-    );
-  }
+  Widget build(final BuildContext context) =>
+      TechLevelsDialog(onClose: onClose);
 }
 
 class _TechnologyTile extends StatelessWidget {
