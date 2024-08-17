@@ -14,7 +14,14 @@ class CurrentTechnologyButton extends StatelessWidget {
     final locale = useLocale(context);
     final levelCubit = context.watch<LevelBloc>();
     final mechanics = context.read<MechanicsCollection>();
-    final technologyCubit = context.watch<TechnologiesCubit>();
+    final technologiesCubit = context.watch<TechnologiesCubit>();
+    final (
+      levelIndex: lastLevelIndex,
+      :scoreLeftForNextLevel,
+      :technologies,
+      :title,
+      :scoresByLevel,
+    ) = technologiesCubit.getCurrentLevel();
     final dialogController = context.read<DialogController>();
     const width = 80.0;
     if (!levelCubit.featuresSettings.isTechnologiesEnabled) {
@@ -25,30 +32,17 @@ class CurrentTechnologyButton extends StatelessWidget {
     final borderSide = BorderSide(
       color: context.colorScheme.primary,
     );
-    const percentage = 0.0;
-    const levelIndex = 0;
     return UiLabledProgressBar(
       tooltipMessage: const {
-        Languages.en: 'Technologies tree',
-        Languages.ru: 'Дерево технологий',
-        Languages.it: 'Albero delle tecnologie',
+        Languages.en: 'Technologies Progress',
+        Languages.ru: 'Прогресс технологий',
+        Languages.it: 'Progresso tecnologie',
       },
       icon: const Icon(
         CupertinoIcons.lab_flask,
         color: Colors.black,
       ),
-      // TODO(arenukvern): add tech level
-      text: levelIndex.toString(),
-      // TODO(arenukvern): there always should be a title
-      // title: technologyTitle ??
-      //     const LocalizedMap(
-      //       value: {
-      //         Languages.en: 'Max Level',
-      //         Languages.ru: 'Макс. уровень',
-      //         Languages.it: 'Livello massimo',
-      //       },
-      //     ).getValue(locale),
-
+      text: lastLevelIndex.toString(),
       backgroundColor: context.colorScheme.primary.withOpacity(0.1),
       filledColor: context.colorScheme.primary.withOpacity(0.4),
       textColor: context.colorScheme.onPrimary,
@@ -65,7 +59,7 @@ class CurrentTechnologyButton extends StatelessWidget {
         bottomRight: Radius.elliptical(8, 8),
       ),
       onPressed: dialogController.showTechnologiesTree,
-      percentage: percentage,
+      percentage: 0,
     );
   }
 }

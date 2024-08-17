@@ -191,9 +191,10 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
     List<TechnologyModelId> technologies,
     int levelIndex,
     ScoreModel scoreLeftForNextLevel,
+    List<double> scoresByLevel,
   }) getCurrentLevel() {
     final investedResearchScore = progress.investedResearchScore;
-    final (:levelIndex, :scoreLeftForNextLevel) =
+    final (:levelIndex, :scoreLeftForNextLevel, :scoresByLevel) =
         dto.mechanics.technology.getCurrentAchievedLevelIndex(
       // TODO(arenukvern): description
       allInvesetedScore: investedResearchScore + 0,
@@ -206,6 +207,7 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
       scoreLeftForNextLevel: scoreLeftForNextLevel,
       technologies: level.technologies,
       title: level.title,
+      scoresByLevel: scoresByLevel,
     );
   }
 

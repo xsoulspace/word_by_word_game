@@ -101,8 +101,11 @@ class TechnologyMechanics {
     return (requiredScore: requiredScore, investedScore: investedScore);
   }
 
-  ({ScoreModel scoreLeftForNextLevel, int levelIndex})
-      getCurrentAchievedLevelIndex({
+  ({
+    ScoreModel scoreLeftForNextLevel,
+    int levelIndex,
+    List<double> scoresByLevel,
+  }) getCurrentAchievedLevelIndex({
     required final ScoreModel allInvesetedScore,
     required final List<TechnologyLevelTuple> levels,
     required final Map<TechnologyModelId, TechnologyModel> technologies,
@@ -138,7 +141,8 @@ class TechnologyMechanics {
       if (scoreLeft < 0) {
         return (
           scoreLeftForNextLevel: ScoreModel(value: -scoreLeft),
-          levelIndex: i
+          levelIndex: i,
+          scoresByLevel: scoresByLevel,
         );
       } else {
         allScoreLeft = scoreLeft;
@@ -146,7 +150,8 @@ class TechnologyMechanics {
     }
     return (
       scoreLeftForNextLevel: ScoreModel.zero,
-      levelIndex: scoresByLevel.length - 1
+      levelIndex: scoresByLevel.length - 1,
+      scoresByLevel: scoresByLevel,
     );
   }
 }

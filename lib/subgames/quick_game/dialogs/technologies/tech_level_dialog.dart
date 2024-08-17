@@ -21,7 +21,8 @@ class TechLevelsDialog extends StatelessWidget {
       levelIndex: lastLevelIndex,
       :scoreLeftForNextLevel,
       :technologies,
-      :title
+      :title,
+      :scoresByLevel,
     ) = technologiesCubit.getCurrentLevel();
     return DialogScaffold(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
@@ -49,43 +50,123 @@ class TechLevelsDialog extends StatelessWidget {
         ),
       ),
       children: [
-        const Gap(16),
-        Card.outlined(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 6),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
+        Builder(
+          builder: (final context) {
+            final color = context.colorScheme.onSurface.withOpacity(0.7);
+            return Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                const Gap(12),
-                Text(
-                  const LocalizedMap(
-                    value: {
-                      Languages.en:
-                          'Tip: use words to research technology faster.',
-                      Languages.ru:
-                          'Подсказка: использовать слова для быстрого исследования технологий.',
-                      Languages.it:
-                          'Suggerimento: usare parole per un ricerche veloce della tecnologia.',
-                    },
-                  ).getValue(locale),
-                  textAlign: TextAlign.center,
+                Flexible(
+                  child: Card.outlined(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 8,
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(
+                            Icons.lightbulb_outline_rounded,
+                            size: 24,
+                            color: color,
+                          ),
+                          const Gap(4),
+                          Text(
+                            const LocalizedMap(
+                              value: {
+                                Languages.en:
+                                    'Use words to research technology faster.',
+                                Languages.ru:
+                                    'Использовать слова для быстрого исследования технологий.',
+                                Languages.it:
+                                    'Usare parole per un ricerche veloce della tecnologia.',
+                              },
+                            ).getValue(locale),
+                            textAlign: TextAlign.center,
+                            style: context.textTheme.bodyMedium
+                                ?.copyWith(color: color),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-                const Gap(12),
+                Card.outlined(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 8,
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.language,
+                          color: color,
+                        ),
+                        const Gap(4),
+                        Text(
+                          // TODO(arenukvern): l10n
+                          'Words Language',
+                          style: context.textTheme.bodyMedium
+                              ?.copyWith(color: color),
+                        ),
+                        WordsLanguageSwitcher(
+                          onChanged: levelCubit.onChangeWordsLanguage,
+                          value: wordsLanguage,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Card.outlined(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      vertical: 6,
+                      horizontal: 16,
+                    ),
+                    child: Column(
+                      children: [
+                        Icon(
+                          Icons.landscape_outlined,
+                          color: color,
+                        ),
+                        Text(
+                          'Next Level ($lastLevelIndex)',
+                          style: context.textTheme.bodyMedium
+                              ?.copyWith(color: color),
+                        ),
+                        Builder(
+                          builder: (final context) {
+                            final nextScore =
+                                scoresByLevel[lastLevelIndex].formattedScore;
+                            final scoreLeft =
+                                scoreLeftForNextLevel.value.formattedScore;
+                            return Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(
+                                    text: '${nextScore - scoreLeft}',
+                                    style: context.textThemeBold.titleMedium
+                                        ?.copyWith(
+                                      color: context.colorScheme.primary,
+                                    ),
+                                  ),
+                                  TextSpan(
+                                    text: '/$nextScore',
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
               ],
-            ),
-          ),
-        ),
-        const Gap(12),
-        ListTile(
-          dense: true,
-          title: const Text(
-            // TODO(arenukvern): l10n
-            'Words Language',
-          ),
-          trailing: WordsLanguageSwitcher(
-            onChanged: levelCubit.onChangeWordsLanguage,
-            value: wordsLanguage,
-          ),
+            );
+          },
         ),
         const Gap(12),
         ...technologiesCubit.levels.mapIndexed(
