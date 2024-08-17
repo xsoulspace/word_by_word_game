@@ -165,7 +165,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
           playerId: playerId,
         ),
       );
-      dto.technologiesCubit.onWordAccepted(newWord);
+      dto.technologiesCubit.onWordAccepted(word: newWord, score: score);
     } else {
       emit(
         liveState.copyWith(

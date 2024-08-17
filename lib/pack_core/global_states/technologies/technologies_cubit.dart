@@ -127,40 +127,47 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
     return techProgress;
   }
 
-  void onWordAccepted(final String word) {
+  void onWordAccepted({
+    required final String word,
+    required final ScoreModel score,
+  }) {
     final pair = _wordTechnologyPair[word];
-    if (pair == null) return;
-    final (:id, :index, :language) = pair;
     updateProgress(
       (final oldProgressTree) {
-        var techProgress = _getTechnologyProgress(
-          technologyId: id,
-          progressTree: oldProgressTree,
-        );
-        if (techProgress != null) {
-          final languageWordsMap = {
-            ...techProgress.unlockCondition.languageWords,
-          };
-          final languageWords = languageWordsMap[language] ?? [];
-          if (languageWords.length > index) {
-            final languageWord = languageWords[index];
-            languageWords[index] = languageWord.copyWith(isUsed: true);
-            languageWordsMap[language] = languageWords;
-          } else {
-            assert(false, 'index out of bounds');
-          }
-          final unlockCondition = techProgress.unlockCondition.copyWith(
-            languageWords: languageWordsMap,
+        TechnologyProgressModel? techProgress;
+        if (pair != null) {
+          final (:id, :index, :language) = pair;
+          techProgress = _getTechnologyProgress(
+            technologyId: id,
+            progressTree: oldProgressTree,
           );
-          techProgress =
-              techProgress.copyWith(unlockCondition: unlockCondition);
+          if (techProgress != null) {
+            final languageWordsMap = {
+              ...techProgress.unlockCondition.languageWords,
+            };
+            final languageWords = languageWordsMap[language] ?? [];
+            if (languageWords.length > index) {
+              final languageWord = languageWords[index];
+              languageWords[index] = languageWord.copyWith(isUsed: true);
+              languageWordsMap[language] = languageWords;
+            } else {
+              assert(false, 'index out of bounds');
+            }
+            final unlockCondition = techProgress.unlockCondition.copyWith(
+              languageWords: languageWordsMap,
+            );
+            techProgress =
+                techProgress.copyWith(unlockCondition: unlockCondition);
+          }
         }
 
         return oldProgressTree.copyWith(
           technologies: {
             ...oldProgressTree.technologies,
-            if (techProgress != null) id: techProgress,
+            if (techProgress != null) techProgress.id: techProgress,
           },
+          investedResearchScore:
+              oldProgressTree.investedResearchScore + score.value,
         );
       },
     );
