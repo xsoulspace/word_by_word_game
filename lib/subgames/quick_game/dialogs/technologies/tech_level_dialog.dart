@@ -125,109 +125,121 @@ class _TechLevel extends StatelessWidget {
     const iconSize = 40.0;
     const iconPadding = 12.0;
     final isUnblocked = (index + 1) <= lastLevelIndex;
-    return Stack(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Gap(12),
-            Padding(
-              padding: const EdgeInsets.only(left: 6),
-              child: DefaultTextStyle.merge(
-                style: context.textTheme.titleLarge,
-                child: Row(
-                  children: [
-                    Text('$index'),
-                    const Gap(12),
-                    Text(level.title),
-                  ],
+    final color =
+        isUnblocked ? null : context.colorScheme.onSurface.withOpacity(0.4);
+    return DefaultTextStyle.merge(
+      style: TextStyle(color: color),
+      child: Stack(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Gap(12),
+              Padding(
+                padding: const EdgeInsets.only(left: 6),
+                child: DefaultTextStyle.merge(
+                  style: context.textTheme.titleLarge?.copyWith(
+                    color: color,
+                  ),
+                  child: Row(
+                    children: [
+                      Text('$index'),
+                      const Gap(12),
+                      Text(level.title),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            const Gap(8),
-            Row(
-              children: [
-                const Text('Technologies'),
-                const Gap(12),
-                Expanded(
-                  child: Wrap(
-                    runSpacing: 2,
-                    spacing: 2,
-                    children: [
-                      ...level.technologies.map(
-                        (final id) {
-                          final tech = technologies[id]!;
-                          return Card(
-                            margin: EdgeInsets.zero,
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                vertical: 4,
-                                horizontal: 12,
+              const Gap(8),
+              Row(
+                children: [
+                  const Text('Technologies'),
+                  const Gap(12),
+                  Expanded(
+                    child: Wrap(
+                      runSpacing: 2,
+                      spacing: 2,
+                      children: [
+                        ...level.technologies.map(
+                          (final id) {
+                            final tech = technologies[id]!;
+                            return Card(
+                              margin: EdgeInsets.zero,
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 4,
+                                  horizontal: 12,
+                                ),
+                                child: Text(
+                                  tech.title.getValue(wordsLocale),
+                                  style: context.textThemeBold.titleMedium
+                                      ?.copyWith(color: color),
+                                ),
                               ),
-                              child: Text(
-                                tech.title.getValue(wordsLocale),
-                                style: context.textThemeBold.titleMedium,
+                            );
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: iconPadding + iconSize),
+                ],
+              ),
+              const Gap(12),
+              Row(
+                children: [
+                  const Text('Words'),
+                  const Gap(12),
+                  Expanded(
+                    child: Wrap(
+                      spacing: 2,
+                      runSpacing: 2,
+                      children: [
+                        ...level.technologies
+                            .map(
+                              (final id) => technologies[id]!
+                                  .unlockCondition
+                                  .languageWords[wordsLanguage]!,
+                            )
+                            .flattened
+                            .map(
+                              (final word) => ActionChip(
+                                onPressed: word.isUsed ? null : () {},
+                                padding: EdgeInsets.zero,
+                                label: Text(word.word),
+                                side: color == null
+                                    ? null
+                                    : BorderSide(color: color),
+                                labelStyle: TextStyle(color: color),
                               ),
-                            ),
-                          );
-                        },
-                      ),
-                    ],
+                            )
+                            .nonNulls,
+                      ],
+                    ),
                   ),
-                ),
-                const SizedBox(width: iconPadding + iconSize),
-              ],
-            ),
-            const Gap(12),
-            Row(
-              children: [
-                const Text('Words'),
-                const Gap(12),
-                Expanded(
-                  child: Wrap(
-                    spacing: 2,
-                    runSpacing: 2,
-                    children: [
-                      ...level.technologies
-                          .map(
-                            (final id) => technologies[id]!
-                                .unlockCondition
-                                .languageWords[wordsLanguage]!,
-                          )
-                          .flattened
-                          .map(
-                            (final word) => ActionChip(
-                              onPressed: word.isUsed ? null : () {},
-                              padding: EdgeInsets.zero,
-                              label: Text(word.word),
-                            ),
-                          )
-                          .nonNulls,
-                    ],
-                  ),
-                ),
-                const SizedBox(width: iconPadding + iconSize),
-              ],
-            ),
-            const Gap(12),
-            const Divider(),
-          ],
-        ),
-        Positioned(
-          right: iconPadding,
-          top: 0,
-          bottom: 0,
-          child: IconTheme(
-            data: IconThemeData(
-              size: iconSize,
-              color: isUnblocked
-                  ? context.colorScheme.primary
-                  : context.colorScheme.secondary,
-            ),
-            child: Icon(isUnblocked ? Icons.check : Icons.lock),
+                  const SizedBox(width: iconPadding + iconSize),
+                ],
+              ),
+              const Gap(12),
+              Divider(color: color),
+            ],
           ),
-        ),
-      ],
+          Positioned(
+            right: iconPadding,
+            top: 0,
+            bottom: 0,
+            child: IconTheme(
+              data: IconThemeData(
+                size: iconSize,
+                color: isUnblocked
+                    ? context.colorScheme.primary
+                    : context.colorScheme.secondary,
+              ),
+              child: Icon(isUnblocked ? Icons.check : Icons.lock),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
