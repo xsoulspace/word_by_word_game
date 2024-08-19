@@ -1,14 +1,9 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_center_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
+import 'package:word_by_word_game/subgames/subgames.dart';
 
 class UiWordActions extends StatelessWidget {
   const UiWordActions({
@@ -23,11 +18,15 @@ class UiWordActions extends StatelessWidget {
     );
     final List<Widget> children = switch (phaseType) {
       GamePhaseType.entryWord => [
-          TutorialFrame(
-            highlightPosition: Alignment.topCenter,
-            uiKey: TutorialUiItem.addToDictionaryButton,
-            child: UIAddWordToDictionaryButton(
-              onPressed: state.onAddWordToDictionary,
+          Expanded(
+            child: Center(
+              child: TutorialFrame(
+                highlightPosition: Alignment.topCenter,
+                uiKey: TutorialUiItem.addToDictionaryButton,
+                child: UIAddWordToDictionaryButton(
+                  onPressed: state.onAddWordToDictionary,
+                ),
+              ),
             ),
           ),
           const TutorialFrame(
@@ -35,15 +34,7 @@ class UiWordActions extends StatelessWidget {
             uiKey: TutorialUiItem.suggestWordButton,
             child: UiSuggestionsButton(),
           ),
-          if (phaseType == GamePhaseType.entryWord) ...[
-            TutorialFrame(
-              highlightPosition: Alignment.topCenter,
-              uiKey: TutorialUiItem.confirmWordButton,
-              child: UiConfirmWordButton(
-                onPressed: () async => UILevelCenterBar.onConfirmWord(context),
-              ).animate().fadeIn(),
-            ),
-          ],
+          const Expanded(child: Center(child: UiPauseButton())),
         ],
       GamePhaseType.selectAction => [],
     };
@@ -56,11 +47,32 @@ class UiWordActions extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 4),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.center,
           children: children,
         ),
       ),
     );
+  }
+}
+
+class ActionConfirmWordButton extends StatelessWidget {
+  const ActionConfirmWordButton({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final phaseType = context.select<LevelBloc, GamePhaseType>(
+      (final s) => s.state.phaseType,
+    );
+    if (phaseType case GamePhaseType.entryWord) {
+      return TutorialFrame(
+        highlightPosition: Alignment.topCenter,
+        uiKey: TutorialUiItem.confirmWordButton,
+        child: UiConfirmWordButton(
+          onPressed: () async => UILevelCenterBar.onConfirmWord(context),
+        ).animate().fadeIn(),
+      );
+    }
+    return const SizedBox();
   }
 }
 

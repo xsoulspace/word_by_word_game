@@ -114,13 +114,7 @@ class _GameBottomBarCard extends StatelessWidget {
                     const Spacer(),
                     const UiCurrentPlayerCard().animate().fadeIn(),
                     const Spacer(),
-                    const SizedBox(
-                      width: 80,
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: UiPauseButton(),
-                      ),
-                    ).animate().fadeIn(),
+                    const SizedBox(width: 80),
                     const Gap(20),
                   ],
                 )

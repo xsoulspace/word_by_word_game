@@ -10,7 +10,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
-const kKeyboardWidth = 320.0;
+const kKeyboardWidth = 360.0;
 
 class UiKeyboardController extends Cubit<UiKeyboardControllerState> {
   // ignore: avoid_unused_constructor_parameters

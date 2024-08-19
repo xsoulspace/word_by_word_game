@@ -120,13 +120,19 @@ class WordFieldController extends ChangeNotifier {
   }
 }
 
+enum KeyboardSwitcherButtonAlignment { left, right }
+
 /// use for word field only
 class WordField extends StatefulWidget {
   const WordField({
     required this.controller,
+    this.switcherButtonAlignment = KeyboardSwitcherButtonAlignment.right,
+    this.rightSlot,
     super.key,
   });
   final WordFieldController controller;
+  final KeyboardSwitcherButtonAlignment switcherButtonAlignment;
+  final Widget? rightSlot;
   @override
   State<WordField> createState() => _WordFieldState();
 }
@@ -259,6 +265,24 @@ class _WordFieldState extends State<WordField> {
   @override
   Widget build(final BuildContext context) {
     final wordCompositionState = context.read<GuiWordCompositionCubit>();
+    final keyboardSwitcherButton = DeviceRuntimeType.isDesktop
+        ? IconButton(
+            tooltip: _isKeyboardVisible
+                ? S.of(context).hideKeyboard
+                : S.of(context).showKeyboard,
+            onPressed: () {
+              _isKeyboardVisible = !_isKeyboardVisible;
+              setState(() {});
+            },
+            icon: AnimatedSwitcher(
+              duration: 250.milliseconds,
+              child: _isKeyboardVisible
+                  ? const Icon(Icons.keyboard_hide)
+                  : const Icon(Icons.keyboard_sharp),
+            ),
+          )
+        : const SizedBox();
+    final rightSlot = widget.rightSlot;
     return InputKeyboardListener(
       focusNode: wordCompositionState.wordFocusNode,
       autofocus: false,
@@ -280,6 +304,9 @@ class _WordFieldState extends State<WordField> {
               padding: const EdgeInsets.symmetric(horizontal: 6),
               child: Row(
                 children: [
+                  if (widget.switcherButtonAlignment
+                      case KeyboardSwitcherButtonAlignment.left)
+                    keyboardSwitcherButton,
                   Expanded(
                     child: CardFrostedBackground(
                       child: GameplayEditableText(
@@ -292,22 +319,10 @@ class _WordFieldState extends State<WordField> {
                       ),
                     ),
                   ),
-                  if (DeviceRuntimeType.isDesktop)
-                    IconButton(
-                      tooltip: _isKeyboardVisible
-                          ? S.of(context).hideKeyboard
-                          : S.of(context).showKeyboard,
-                      onPressed: () {
-                        _isKeyboardVisible = !_isKeyboardVisible;
-                        setState(() {});
-                      },
-                      icon: AnimatedSwitcher(
-                        duration: 250.milliseconds,
-                        child: _isKeyboardVisible
-                            ? const Icon(Icons.keyboard_hide)
-                            : const Icon(Icons.keyboard_sharp),
-                      ),
-                    ),
+                  if (widget.switcherButtonAlignment
+                      case KeyboardSwitcherButtonAlignment.right)
+                    keyboardSwitcherButton,
+                  if (rightSlot != null) rightSlot,
                 ],
               ),
             ),
