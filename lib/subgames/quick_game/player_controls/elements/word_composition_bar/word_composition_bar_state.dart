@@ -183,6 +183,7 @@ extension UiGuiWordCompositionCubitCallbacksX on GuiWordCompositionCubit {
   void onRestAndPrepareBalloon(final EnergyMultiplierType multiplier) {
     _selectMultiplier(multiplier);
     _onToEndTurn(EnergyApplicationType.restAndPrepareBalloon);
+    unawaited(dto.globalGameBloc.onSaveCurrentLevel());
   }
 }
 

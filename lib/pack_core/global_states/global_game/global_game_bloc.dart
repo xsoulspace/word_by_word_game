@@ -539,7 +539,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     await _saveGame();
   }
 
-  /// before to save game, make sure to add [SaveCurrentLevelEvent]
+  /// before to save game, check [onSaveCurrentLevel]
   Future<void> onSaveGame(
     final SaveGameEvent event,
   ) async =>
@@ -553,9 +553,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     await dto.services.gameRepository.saveGame(game: gameModel);
   }
 
-  Future<void> onSaveCurrentLevel(
-    final SaveCurrentLevelEvent event,
-  ) async {
+  Future<void> onSaveCurrentLevel() async {
     final currentLevelId = state.currentLevelId;
     final savedLevels = {...state.savedLevels}..[currentLevelId] =
         _getCurrentLevelModel();
