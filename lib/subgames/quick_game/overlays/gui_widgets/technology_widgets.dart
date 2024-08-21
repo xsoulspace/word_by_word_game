@@ -27,6 +27,7 @@ class CurrentTechnologyButton extends StatelessWidget {
     final borderSide = BorderSide(
       color: context.colorScheme.primary,
     );
+    final nextScore = scoresByLevel[lastLevelIndex].formattedScore;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -58,31 +59,29 @@ class CurrentTechnologyButton extends StatelessWidget {
             bottomRight: Radius.elliptical(8, 8),
           ),
           onPressed: dialogController.showTechnologiesTree,
-          percentage: 0,
+          percentage: (nextScore - scoreLeftForNextLevel.value.formattedScore) /
+              nextScore,
         ),
         Builder(
-          builder: (final context) {
-            final nextScore = scoresByLevel[lastLevelIndex].formattedScore;
-            return Text.rich(
-              TextSpan(
-                children: [
-                  TextSpan(
-                    text:
-                        '${nextScore - scoreLeftForNextLevel.value.formattedScore}',
-                    style: context.textTheme.labelLarge?.copyWith(
-                      color: context.colorScheme.primary.withOpacity(0.6),
-                    ),
+          builder: (final context) => Text.rich(
+            TextSpan(
+              children: [
+                TextSpan(
+                  text:
+                      '${nextScore - scoreLeftForNextLevel.value.formattedScore}',
+                  style: context.textTheme.labelLarge?.copyWith(
+                    color: context.colorScheme.primary.withOpacity(0.6),
                   ),
-                  TextSpan(
-                    text: '/$nextScore',
-                    style: context.textTheme.labelSmall?.copyWith(
-                      color: context.colorScheme.onSurface.withOpacity(0.6),
-                    ),
+                ),
+                TextSpan(
+                  text: '/$nextScore',
+                  style: context.textTheme.labelSmall?.copyWith(
+                    color: context.colorScheme.onSurface.withOpacity(0.6),
                   ),
-                ],
-              ),
-            );
-          },
+                ),
+              ],
+            ),
+          ),
         ),
       ],
     );

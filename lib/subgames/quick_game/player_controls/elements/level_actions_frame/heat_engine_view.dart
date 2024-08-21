@@ -509,6 +509,7 @@ class AnimatedProgressBar extends StatelessWidget {
           Radius.elliptical(borderRadiusValue, borderRadiusValue),
         );
     final isVertical = height > width;
+
     return SizedBox(
       width: width,
       height: height,
