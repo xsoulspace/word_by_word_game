@@ -4,7 +4,6 @@ import 'dart:math' as math;
 import 'package:flame/extensions.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -67,7 +66,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   final PlayerCharacterModel characterModel;
   bool get _isFocusBorderVisible =>
       guiFocusableObjectsNotifier.isFocusing &&
-      guiFocusableObjectsNotifier.value.focusedObjectId.isEmpty;
+      guiFocusableObjectsNotifier.isPlayerFocused;
 
   void _pauseGame() => game.dto.mechanics.worldTime.pause();
 
@@ -92,8 +91,21 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   }
 
   int get maxDistance => topLeftTileMapCell.x;
+
+  /// outside of the hitbox
   CellPointModel? get bottomLeftTileMapCell =>
       hitboxMapCells.length == 4 ? hitboxMapCells[3] : null;
+
+  /// hitbox with map coordinates
+  Rect? get hitboxMapRect {
+    final topLeft = gameVector2.mapVector2.toOffset();
+    final bottomRight = topLeft.translate(
+      hitboxScreenRect?.width ?? 0,
+      hitboxScreenRect?.height ?? 0,
+    );
+    return Rect.fromPoints(topLeft, bottomRight);
+  }
+
   void _showLevelWinDialog() {
     _pauseGame();
     gameRef.dto.dialogController.showLevelWinDialog(
@@ -224,13 +236,13 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     }) {
       final gameVector2 = GameVector2.fromMapVector2(mapVector2);
       final mapCell = gameVector2.toMapTileCell().toCellPoint();
-      final collidableTiles = game.dto.canvasCubit.getFocusableTiles(
+      final focusableTiles = game.dto.canvasCubit.getFocusableTiles(
         hitboxMapCells: [mapCell],
       );
 
-      if (collidableTiles.isEmpty) return;
+      if (focusableTiles.isEmpty) return;
 
-      for (final (tile, _) in collidableTiles) {
+      for (final (tile, _) in focusableTiles) {
         for (final object in tile.objects) {
           if (objectsIds.contains(object)) continue;
           objectsIds.add(object);

@@ -48,7 +48,7 @@ extension TileIdX on TileId {
         // TODO(arenukvern): l10n
         'hot_air_balloon' => 'Hot Air Balloon',
         // TODO(arenukvern): l10n
-        'tent' => 'Tent',
+        'building_tent' => 'Tent',
         _ => '',
       };
 }

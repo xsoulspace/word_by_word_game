@@ -2,22 +2,24 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flame/components.dart';
-import 'package:flame/events.dart';
+import 'package:flame/events.dart' as events;
 import 'package:flame/extensions.dart';
 import 'package:flame_bloc/flame_bloc.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
-import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor/editor.dart';
-import 'package:map_editor/ui/renderer/editor_renderer.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:map_editor/ui/renderer/editor_renderer.dart'
+    hide GameRendererDiDto;
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class CanvasRenderer extends Component
-    with DragCallbacks, HasGameRef<CanvasRendererGame>, HoverCallbacks {
+    with
+        events.DragCallbacks,
+        HasGameRef<CanvasRendererGame>,
+        events.HoverCallbacks {
   CanvasCubit get canvasCubit => game.dto.canvasCubit;
   DrawerCubitState get canvasCubitState => canvasCubit.state;
   Vector2 get origin => canvasCubitState.origin;
@@ -33,6 +35,7 @@ class CanvasRenderer extends Component
   final debugSurface = CanvasDebugSurface();
   final focusSurfaceDrawer = FocusSurfaceDrawer();
   final buildingSurfaceDrawer = BuildingSurfaceDrawer();
+  final focusedObjectsHandler = GuiFocusedObjectsHandler();
   final tilesRenderer = CanvasTilesRenderer();
   Vector2 _dragOffset = Vector2.zero();
   // final animationUpdater = AnimationUpdater();
@@ -47,6 +50,7 @@ class CanvasRenderer extends Component
       canvasObjectsDrawer,
       buildingSurfaceDrawer,
       focusSurfaceDrawer,
+      focusedObjectsHandler,
       // cursor,
       // LOGIC
       // animationUpdater,
@@ -56,13 +60,13 @@ class CanvasRenderer extends Component
   }
 
   @override
-  void onDragStart(final DragStartEvent event) {
+  void onDragStart(final events.DragStartEvent event) {
     _dragOffset = event.canvasPosition - origin;
     return super.onDragStart(event);
   }
 
   @override
-  void onDragUpdate(final DragUpdateEvent event) {
+  void onDragUpdate(final events.DragUpdateEvent event) {
     if (!game.dto.debugCubit.state.isCameraFollowingPlayer) {
       final eventPosition = event.canvasStartPosition;
       origin = eventPosition - _dragOffset;
@@ -94,7 +98,7 @@ class CanvasRenderer extends Component
   /// For cursor rendering
   Vector2 mousePosition = Vector2.zero();
   @override
-  void onPointerMove(final PointerMoveEvent event) {
+  void onPointerMove(final events.PointerMoveEvent event) {
     mousePosition = event.canvasPosition;
     return super.onPointerMove(event);
   }
@@ -147,8 +151,9 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   double get windowWidth => canvasRenderer.windowWidth;
   double get tileColumns => canvasRenderer.tileColumns;
   double get tileRows => canvasRenderer.tileRows;
+  GameRendererDiDto get gameDto => game.dto;
   GuiFocusableObjectsNotifier get guiFocusableObjectsNotifier =>
-      game.dto.guiFocusableObjectsNotifier;
+      gameDto.guiFocusableObjectsNotifier;
   CanvasDataModel get canvasData => canvasCubit.canvasData;
   set canvasData(final CanvasDataModel value) => canvasCubit.canvasData = value;
   TilesetPresetResources get presetResources =>
@@ -193,7 +198,7 @@ class CanvasTilesRenderer extends Component
   void render(final Canvas canvas) {
     _painter.render(
       canvas: canvas,
-      tilesetConstants: game.dto.canvasCubit.resourcesLoader.tilesetConstants,
+      tilesetConstants: gameDto.canvasCubit.resourcesLoader.tilesetConstants,
       offsetOrigin: getOffsetOrigin(),
       canvasData: canvasData,
       tilesResources: allTiles,

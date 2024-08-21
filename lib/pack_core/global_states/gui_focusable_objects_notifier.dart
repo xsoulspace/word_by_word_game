@@ -49,6 +49,7 @@ class GuiFocusableObjectsNotifier
         super(GuiFocusableObjectsNotifierState.idle);
   final GuiFocusableObjectsNotifierDto dto;
   bool get isFocusing => value.isChoosing;
+  bool get isPlayerFocused => value.focusedObjectId.isEmpty;
   void cancelFocusing() {
     value = GuiFocusableObjectsNotifierState.idle;
   }
