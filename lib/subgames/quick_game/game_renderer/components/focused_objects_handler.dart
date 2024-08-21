@@ -39,7 +39,7 @@ class GuiFocusedObjectsHandler extends Component
     void choosePlayer() {
       final player = this.player;
       if (player == null) return;
-      gameDto.levelPlayersBloc.changeFocusedObjectId(player.gid);
+      gameDto.levelPlayersBloc.focusToPlayer();
     }
 
     final rect = player?.hitboxMapRect;
