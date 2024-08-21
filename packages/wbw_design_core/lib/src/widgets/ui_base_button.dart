@@ -19,9 +19,11 @@ class UiBaseButton extends StatefulWidget {
     this.pressedOpacity = 0.4,
     this.alignment = Alignment.center,
     this.tooltipMessage,
+    this.onShowHoverHighlight,
   });
 
   final Widget child;
+  final ValueChanged<bool>? onShowHoverHighlight;
   final EdgeInsetsGeometry? padding;
   final VoidCallback? onPressed;
   final String? tooltipMessage;
@@ -132,8 +134,9 @@ class _UiBaseButtonState extends State<UiBaseButton>
   Widget build(final BuildContext context) {
     final bool enabled = widget.enabled;
 
-    final child = MouseRegion(
-      cursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
+    final child = FocusableActionDetector(
+      onShowHoverHighlight: widget.onShowHoverHighlight,
+      mouseCursor: enabled ? SystemMouseCursors.click : MouseCursor.defer,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onTapDown: enabled ? _handleTapDown : null,

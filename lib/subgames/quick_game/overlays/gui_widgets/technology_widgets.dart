@@ -31,6 +31,7 @@ class CurrentTechnologyButton extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         UiLabledProgressBar(
+          hiddenWhenNotHovered: false,
           tooltipMessage: const {
             Languages.en: 'Technologies Progress',
             Languages.ru: 'Прогресс технологий',

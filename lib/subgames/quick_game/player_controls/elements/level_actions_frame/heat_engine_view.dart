@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:life_hooks/life_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
@@ -543,7 +544,7 @@ class AnimatedProgressBar extends StatelessWidget {
   }
 }
 
-class UiLabledProgressBar extends StatelessWidget {
+class UiLabledProgressBar extends HookWidget {
   const UiLabledProgressBar({
     required this.tooltipMessage,
     required this.percentage,
@@ -559,6 +560,7 @@ class UiLabledProgressBar extends StatelessWidget {
     this.iconPadding = const EdgeInsets.only(left: 6),
     this.width = 90,
     this.text = '',
+    this.hiddenWhenNotHovered = true,
     super.key,
   });
   final String text;
@@ -575,6 +577,7 @@ class UiLabledProgressBar extends StatelessWidget {
   final EdgeInsets iconPadding;
   final VoidCallback? onPressed;
   final Map<Languages, String> tooltipMessage;
+  final bool hiddenWhenNotHovered;
 
   @override
   Widget build(final BuildContext context) {
@@ -589,13 +592,16 @@ class UiLabledProgressBar extends StatelessWidget {
       ),
     ];
     final locale = useLocale(context);
-
+    final isHoveredNotifier = useIsBool();
     return Tooltip(
       message: LocalizedMap(
         value: tooltipMessage,
       ).getValue(locale),
       child: UiBaseButton(
         onPressed: onPressed,
+        onShowHoverHighlight: (final isHovered) {
+          isHoveredNotifier.value = isHovered;
+        },
         child: Stack(
           alignment: Alignment.centerRight,
           children: [
@@ -625,17 +631,28 @@ class UiLabledProgressBar extends StatelessWidget {
               right: 6,
               top: 0,
               bottom: 4,
+              left: iconPadding.left + 32,
               child: Center(
-                child: Text(
-                  text.whenEmptyUse(
-                    percentage.isNaN
-                        ? '0 %'
-                        : // ignore: lines_longer_than_80_chars
-                        '${(percentage * 100).toStringAsFixed(0)}%',
-                  ),
-                  style: context.textThemeBold.titleLarge!.copyWith(
-                    color: textColor,
-                    shadows: shadows,
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Visibility(
+                    visible:
+                        // ignore: avoid_bool_literals_in_conditional_expressions
+                        hiddenWhenNotHovered ? isHoveredNotifier.value : true,
+                    child: Text(
+                      text.whenEmptyUse(
+                        percentage.isNaN
+                            ? '0 %'
+                            : // ignore: lines_longer_than_80_chars
+                            '${(percentage * 100).toStringAsFixed(0)}%',
+                      ),
+                      style: context.textThemeBold.titleLarge!.copyWith(
+                        color: textColor,
+                        shadows: shadows,
+                        height: 1,
+                      ),
+                      maxLines: 2,
+                    ).animate().fadeIn(duration: 100.milliseconds),
                   ),
                 ),
               ),

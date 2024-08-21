@@ -37,6 +37,7 @@ class UIPowerBar extends StatelessWidget {
       color: context.colorScheme.error.withOpacity(0.3),
     );
     final focusedObject = context.watch<LevelPlayersBloc>().focusedObject;
+    const isUsingPoints = true;
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisAlignment: MainAxisAlignment.center,
@@ -48,7 +49,6 @@ class UIPowerBar extends StatelessWidget {
               : Alignment.bottomCenter,
           uiKey: TutorialUiItem.baloonPower,
           child: UiLabledProgressBar(
-            //  \n ${powers.power ~/ kScoreFactor}/${playerParams.balloonParams.maxPower ~/ kScoreFactor}',
             tooltipMessage: const {
               Languages.en:
                   // ignore: lines_longer_than_80_chars
@@ -60,6 +60,8 @@ class UIPowerBar extends StatelessWidget {
                   // ignore: lines_longer_than_80_chars
                   'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
             },
+            text:
+                isUsingPoints ? (powers.power ~/ kScoreFactor).toString() : '',
             width: 80,
             iconPadding: EdgeInsets.zero,
             border: Border(
