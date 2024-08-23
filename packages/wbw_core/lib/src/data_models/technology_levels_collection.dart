@@ -24,6 +24,11 @@ class TechnologyLevelsCollection {
       technologies:
           [TechnologyType.ascending, TechnologyType.descending].toIds(),
     ),
+    (
+      // TODO(arenukvern): l10n
+      title: 'Measuring the Wind',
+      technologies: [TechnologyType.buildingWindWaterTower].toIds(),
+    ),
     // TODO(arenukvern): add other levels
   ];
 }

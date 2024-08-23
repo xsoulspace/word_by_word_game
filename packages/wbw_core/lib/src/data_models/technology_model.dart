@@ -139,12 +139,14 @@ enum TechnologyType {
   ascending,
   poweringEngine,
   descending,
-  buildingTent;
+  buildingTent,
+  buildingWindWaterTower;
 
   static const Set<TechnologyType> _active = {
     ascending,
     descending,
     buildingTent,
+    buildingWindWaterTower,
     poweringEngine,
   };
   static bool checkIsActive(final TechnologyType type) =>
