@@ -157,8 +157,22 @@
       "category": "buildings",
       "type": "object",
       "properties": {
-        "title": "building_tent",
+        "title": "B:Tent",
         "thumbnail_path": "tilesets/white_black/object__building_tent__idle.png"
+      },
+      "graphics": {
+        "type": "character",
+        "behaviours": ["idle"],
+        "animated": true
+      }
+    },
+    "building_wind_water_tower": {
+      "id": "building_wind_water_tower",
+      "category": "buildings",
+      "type": "object",
+      "properties": {
+        "title": "B:WindWaterTower",
+        "thumbnail_path": "tilesets/white_black/object__building_wind_water_tower__idle.png"
       },
       "graphics": {
         "type": "character",

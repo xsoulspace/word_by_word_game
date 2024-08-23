@@ -4,7 +4,6 @@ import 'package:blur/blur.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/sandbox/level_layers_dialog.dart';
@@ -274,7 +273,7 @@ class TileButtons extends StatelessWidget {
                         final image = await consts.images!.load(filename);
                         final path = await FilePicker.platform.saveFile(
                           fileName: '$filename.png',
-                          type: FileType.image,
+                          type: FileType.custom,
                           allowedExtensions: ['.png'],
                         );
                         if (path == null) {
@@ -372,8 +371,9 @@ class TileSpriteButton extends StatelessWidget {
                 ),
               ),
             const Gap(4),
-            Text(
-              tileResource.tile.properties.title,
+            FittedBox(
+              fit: BoxFit.scaleDown,
+              child: Text(tileResource.tile.properties.title),
             ),
           ],
         ),
