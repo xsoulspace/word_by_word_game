@@ -97,7 +97,7 @@ class UiDebugSideBarBody extends StatelessWidget {
               'Is Camera following Player',
               style: Theme.of(context).textTheme.labelMedium,
             ),
-            value: debugCubit.state.isCameraFollowingPlayer,
+            value: debugCubit.state.isCameraFollowingFocusedObject,
             onChanged: debugCubit.switchIsCameraFollowingPlayerChange,
           ),
           SwitchListTile(

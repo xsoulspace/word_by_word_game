@@ -67,7 +67,7 @@ class CanvasRenderer extends Component
 
   @override
   void onDragUpdate(final events.DragUpdateEvent event) {
-    if (!game.dto.debugCubit.state.isCameraFollowingPlayer) {
+    if (!game.dto.debugCubit.state.isCameraFollowingFocusedObject) {
       final eventPosition = event.canvasStartPosition;
       origin = eventPosition - _dragOffset;
       mousePosition = eventPosition;
@@ -115,20 +115,22 @@ class CanvasRenderer extends Component
 
   @override
   void update(final double dt) {
-    if (game.dto.debugCubit.state.isCameraFollowingPlayer) {
-      final player = canvasObjectsDrawer.player;
-      if (player != null) {
-        final screenSize = game.size;
-        Offset offset = (player.screenVector2.toVector2() -
-                Vector2(
-                  screenSize.x / 3,
-                  math.max(200, screenSize.y / 2 - 60),
-                ))
-            .toOffset();
-        offset = origin.toOffset() - offset;
-        origin = offset.toVector2();
-        canvasObjectsDrawer.onOriginUpdate();
-      }
+    if (game.dto.debugCubit.state.isCameraFollowingFocusedObject) {
+      final object = game.dto.levelPlayersBloc.focusedObject;
+      final gameVector2 =
+          GameVector2.fromMapVector2(object.distanceToOrigin.toVector2());
+      final screenVector2 =
+          gameVector2.toScreenVector2(GameOrigins(origin, getOffsetOrigin()));
+      final screenSize = game.size;
+      Offset offset = (screenVector2 -
+              Vector2(
+                screenSize.x / 3,
+                math.max(200, screenSize.y / 2 - 60),
+              ))
+          .toOffset();
+      offset = origin.toOffset() - offset;
+      origin = offset.toVector2();
+      canvasObjectsDrawer.onOriginUpdate();
     }
 
     super.update(dt);
