@@ -75,29 +75,42 @@ class TentActionsView extends StatelessWidget {
   const TentActionsView({super.key});
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final BuildContext context) => const Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Gap(12),
-          Tooltip(
-            message: 'Adds some power to Hot Air Balloon. '
-                '\nBecames last checkpoint, if Hot Air Balloon crashes.',
-            child: TextButton(
-              onPressed: () => context
-                  .read<GuiWordCompositionCubit>()
-                  .onRestAndPrepareBalloon(kRestAndPrepareBalloonMultiplier),
-              // TODO(arenukvern): l10n
-              // TODO(arenukvern): add object type
-              child: const Text(
-                'Rest',
-              ),
-            ),
-          ),
-          const Gap(12),
-          const _WindWaterTowerObjectBuildButton(),
+          Gap(12),
+          _RestActionButton(),
+          Gap(12),
+          _WindWaterTowerObjectBuildButton(),
         ],
       );
+}
+
+class _RestActionButton extends StatelessWidget {
+  const _RestActionButton({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final composable = useApplyingScoreComposable(
+      type: kBuildObjectMultiplier,
+      context: context,
+    );
+    final applyingScore = composable.applyingScore;
+    return Tooltip(
+      message: 'Adds some power to Hot Air Balloon. '
+          '\nBecames last checkpoint, if Hot Air Balloon crashes.',
+      child: TextButton.icon(
+        onPressed: () => context
+            .read<GuiWordCompositionCubit>()
+            .onRestAndPrepareBalloon(kRestAndPrepareBalloonMultiplier),
+        // TODO(arenukvern): l10n
+        // TODO(arenukvern): add object type
+        label: Text('Rest (${applyingScore.value.formattedScore})'),
+        icon: const Icon(CupertinoIcons.home),
+      ),
+    );
+  }
 }
 
 class _TentObjectBuildButton extends StatelessWidget {

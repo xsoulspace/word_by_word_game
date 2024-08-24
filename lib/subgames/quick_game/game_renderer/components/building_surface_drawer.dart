@@ -188,7 +188,7 @@ class _PlacingSurfaceComponent extends PositionComponent
     if (newIsSelected != _isSelected) {
       _isSelected = newIsSelected;
       if (_isSelected) {
-        unawaited(addAll(_buttons ??= _createButtons()));
+        if (_buttons == null) unawaited(addAll(_buttons ??= _createButtons()));
       } else {
         final buttons = _buttons;
         if (buttons != null) {
@@ -251,6 +251,7 @@ class _PlacingSurfaceComponent extends PositionComponent
 
   @override
   void onTapUp(final TapUpEvent event) {
+    event.continuePropagation = true;
     onSelect();
     super.onTapUp(event);
   }

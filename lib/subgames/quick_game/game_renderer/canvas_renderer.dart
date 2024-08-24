@@ -48,9 +48,9 @@ class CanvasRenderer extends Component
       tilesRenderer,
       debugSurface,
       canvasObjectsDrawer,
+      focusedObjectsHandler,
       buildingSurfaceDrawer,
       focusSurfaceDrawer,
-      focusedObjectsHandler,
       // cursor,
       // LOGIC
       // animationUpdater,

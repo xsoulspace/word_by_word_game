@@ -42,7 +42,7 @@ enum GuiBuildingTypeEnum {
         nothing => throw ArgumentError.value(this),
 
         /// prefix is required to create correct object id
-        _ => TileId(value: 'building_$toNamedJson()'),
+        _ => TileId(value: 'building_${toNamedJson()}'),
       };
 }
 

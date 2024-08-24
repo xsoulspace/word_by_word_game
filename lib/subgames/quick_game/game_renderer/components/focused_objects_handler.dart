@@ -10,6 +10,9 @@ class GuiFocusedObjectsHandler extends Component
 
   @override
   void onTapUp(final TapUpEvent event) {
+    event.continuePropagation = true;
+    super.onTapUp(event);
+
     /// 1. Get the position of the tap
     /// 2. Get the list of objects that are under the tap
     /// 3. Check if the object is focused
@@ -54,6 +57,5 @@ class GuiFocusedObjectsHandler extends Component
     } else if (focusableObjectsIds.isNotEmpty) {
       chooseObject();
     }
-    super.onTapUp(event);
   }
 }
