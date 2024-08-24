@@ -6,8 +6,8 @@ typedef TechnologyLevelTuple = ({
 });
 
 enum TechnologyLevelIndex {
-  poweringEngine,
   takeOffAndLanding,
+  poweringEngine,
   buildAndSave,
   measuringTheWind;
 

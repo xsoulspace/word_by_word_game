@@ -5,6 +5,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/subgames.dart';
 
@@ -31,11 +32,16 @@ class UiActionFrameSimple extends StatelessWidget {
   }
 }
 
-class UiEnergyCards extends StatelessWidget {
+class UiEnergyCards extends StatelessWidget with TechLevelMixin {
   const UiEnergyCards({super.key});
 
   @override
   Widget build(final BuildContext context) {
+    final (
+      isUnblocked: isPoweringEngineAvailable,
+      isPlaying: _,
+      isAdvancedGame: _
+    ) = useTechLevelAvailable(context, TechnologyLevelIndex.poweringEngine);
     final uiTheme = context.uiTheme;
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
@@ -47,22 +53,27 @@ class UiEnergyCards extends StatelessWidget {
         uiKey: TutorialUiItem.selectRefuelOption,
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 100),
-          child: ListView.separated(
-            shrinkWrap: true,
-            padding: EdgeInsets.zero,
-            itemBuilder: (final context, final index) {
-              final type = EnergyMultiplierType.values[index];
+          child: isPoweringEngineAvailable
+              ? ListView.separated(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (final context, final index) {
+                    final type = EnergyMultiplierType.values[index];
 
-              return UIEnergyOptionCard(
-                levelState: levelState,
-                type: type,
-              );
-            },
-            separatorBuilder: (final context, final index) =>
-                uiTheme.horizontalBoxes.medium,
-            scrollDirection: Axis.horizontal,
-            itemCount: EnergyMultiplierType.values.length,
-          ),
+                    return UIEnergyOptionCard(
+                      levelState: levelState,
+                      type: type,
+                    );
+                  },
+                  separatorBuilder: (final context, final index) =>
+                      uiTheme.horizontalBoxes.medium,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: EnergyMultiplierType.values.length,
+                )
+              : UIEnergyOptionCard(
+                  levelState: levelState,
+                  type: EnergyMultiplierType.m3,
+                ),
         ).animate().fadeIn().slideY(begin: 0.1),
       ),
     );
