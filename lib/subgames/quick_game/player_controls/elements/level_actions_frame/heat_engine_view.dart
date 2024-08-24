@@ -7,6 +7,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -18,55 +19,23 @@ class EngineCrystalModel {
   final String id;
 }
 
-class HeatEngineView extends StatelessWidget {
+class HeatEngineView extends StatelessWidget with TechLevelMixin {
   const HeatEngineView({super.key});
 
   @override
   Widget build(final BuildContext context) {
-    final technologiesCubit = context.watch<TechnologiesCubit>();
-    final wordsLanguage =
-        context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
-    final isAscendingResearched =
-        technologiesCubit.checkIsTechnologyResearchedByType(
-      type: TechnologyType.ascending,
-      language: wordsLanguage,
-    );
-    final isDescendingResearched =
-        technologiesCubit.checkIsTechnologyResearchedByType(
-      type: TechnologyType.descending,
-      language: wordsLanguage,
-    );
-    return Stack(
-      children: [
-        const HeatEngineViewBody(),
-        TechnologyLockedCard(
-          isLocked: !(isDescendingResearched && isAscendingResearched),
-          children: [
-            Wrap(
-              spacing: 8,
-              children: [
-                _CompletableText(
-                  text: 'Ascending',
-                  isCompleted: isAscendingResearched,
-                ),
-                const Text('|'),
-                _CompletableText(
-                  text: 'Descending',
-                  isCompleted: isDescendingResearched,
-                ),
-              ],
-            ),
-          ],
-        ),
-      ],
-    );
+    final (isUnblocked: isEngineUnblocked, isPlaying: _, isAdvancedGame: _) =
+        useTechLevelAvailable(context, TechnologyLevelIndex.takeOffAndLanding);
+    if (!isEngineUnblocked) return const SizedBox();
+    return const HeatEngineViewBody();
   }
 }
 
-class _CompletableText extends StatelessWidget {
-  const _CompletableText({
+class UiCompletableText extends StatelessWidget {
+  const UiCompletableText({
     required this.text,
     required this.isCompleted,
+    super.key,
   });
   final bool isCompleted;
   final String text;

@@ -132,14 +132,15 @@ class TechLevelsDialog extends StatelessWidget {
                           color: color,
                         ),
                         Text(
-                          'Next Level ($lastLevelIndex)',
+                          'Next Level (${lastLevelIndex.index})',
                           style: context.textTheme.bodyMedium
                               ?.copyWith(color: color),
                         ),
                         Builder(
                           builder: (final context) {
                             final nextScore =
-                                scoresByLevel[lastLevelIndex].formattedScore;
+                                scoresByLevel[lastLevelIndex.index]
+                                    .formattedScore;
                             final scoreLeft =
                                 scoreLeftForNextLevel.value.formattedScore;
                             return Text.rich(
@@ -194,7 +195,7 @@ class _TechLevel extends StatelessWidget {
     required this.wordsLocale,
     super.key,
   });
-  final int lastLevelIndex;
+  final TechnologyLevelIndex lastLevelIndex;
   final int index;
   final TechnologyLevelTuple level;
   final Languages wordsLanguage;
@@ -205,7 +206,7 @@ class _TechLevel extends StatelessWidget {
   Widget build(final BuildContext context) {
     const iconSize = 40.0;
     const iconPadding = 12.0;
-    final isUnblocked = (index + 1) <= lastLevelIndex;
+    final isUnblocked = (index + 1) <= lastLevelIndex.index;
     final color =
         isUnblocked ? null : context.colorScheme.onSurface.withOpacity(0.4);
     return DefaultTextStyle.merge(

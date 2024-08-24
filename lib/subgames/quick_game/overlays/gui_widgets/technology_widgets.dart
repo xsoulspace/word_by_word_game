@@ -27,7 +27,7 @@ class CurrentTechnologyButton extends StatelessWidget {
     final borderSide = BorderSide(
       color: context.colorScheme.primary,
     );
-    final nextScore = scoresByLevel[lastLevelIndex].formattedScore;
+    final nextScore = scoresByLevel[lastLevelIndex.index].formattedScore;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -42,7 +42,7 @@ class CurrentTechnologyButton extends StatelessWidget {
             CupertinoIcons.lab_flask,
             color: Colors.black,
           ),
-          text: lastLevelIndex.toString(),
+          text: lastLevelIndex.index.toString(),
           backgroundColor: context.colorScheme.primary.withOpacity(0.1),
           filledColor: context.colorScheme.primary.withOpacity(0.4),
           textColor: context.colorScheme.onPrimary,

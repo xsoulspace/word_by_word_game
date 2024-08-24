@@ -103,7 +103,7 @@ class TechnologyMechanics {
 
   ({
     ScoreModel scoreLeftForNextLevel,
-    int levelIndex,
+    TechnologyLevelIndex levelIndex,
     List<double> scoresByLevel,
   }) getCurrentAchievedLevelIndex({
     required final ScoreModel allInvesetedScore,
@@ -136,12 +136,13 @@ class TechnologyMechanics {
     }
 
     for (var i = 0; i < scoresByLevel.length; i++) {
+      final levelIndex = TechnologyLevelIndex.values[i];
       final score = scoresByLevel[i];
       final scoreLeft = allScoreLeft - score;
       if (scoreLeft < 0) {
         return (
           scoreLeftForNextLevel: ScoreModel(value: -scoreLeft),
-          levelIndex: i,
+          levelIndex: levelIndex,
           scoresByLevel: scoresByLevel,
         );
       } else {
@@ -150,7 +151,7 @@ class TechnologyMechanics {
     }
     return (
       scoreLeftForNextLevel: ScoreModel.zero,
-      levelIndex: scoresByLevel.length - 1,
+      levelIndex: TechnologyLevelIndex.values.first,
       scoresByLevel: scoresByLevel,
     );
   }

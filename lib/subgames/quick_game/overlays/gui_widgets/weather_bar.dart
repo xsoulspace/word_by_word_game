@@ -10,11 +10,42 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 
-class UIWeatherBar extends StatelessWidget {
-  const UIWeatherBar({super.key});
+mixin TechLevelMixin on StatelessWidget {
+  ({
+    bool isUnblocked,
+    bool isPlaying,
+    bool isAdvancedGame,
+  }) useTechLevelAvailable(
+    final BuildContext context,
+    final TechnologyLevelIndex levelIndex,
+  ) {
+    final isPlaying = context.select<StatesStatusesCubit, bool>(
+      (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
+    );
+    final isAdvancedGame = context.select<LevelBloc, bool>(
+      (final cubit) => cubit.featuresSettings.isAdvancedGame,
+    );
+    final technologiesCubit = context.watch<TechnologiesCubit>();
+    final (
+      levelIndex: lastLevelIndex,
+      :scoreLeftForNextLevel,
+      :technologies,
+      :title,
+      :scoresByLevel,
+    ) = technologiesCubit.getCurrentLevel();
 
-  @override
-  Widget build(final BuildContext context) {
+    return (
+      isUnblocked:
+          isPlaying && (!isAdvancedGame || lastLevelIndex > levelIndex),
+      isPlaying: isPlaying,
+      isAdvancedGame: isAdvancedGame,
+    );
+  }
+
+  bool useBuildingTechAvailable(
+    final BuildContext context,
+    final GuiBuildingTypeEnum buildingType,
+  ) {
     final isPlaying = context.select<StatesStatusesCubit, bool>(
       (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
     );
@@ -23,11 +54,19 @@ class UIWeatherBar extends StatelessWidget {
     );
 
     final isBuildingExists = context.select<CanvasCubit, bool>(
-      (final cubit) =>
-          cubit.isBuildingExists(GuiBuildingTypeEnum.windWaterTower),
+      (final cubit) => cubit.isBuildingExists(buildingType),
     );
+    return isPlaying && (!isAdvancedGame || isBuildingExists);
+  }
+}
+
+class UIWeatherBar extends StatelessWidget with TechLevelMixin {
+  const UIWeatherBar({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
     final isAllowedToBeVisible =
-        isPlaying && (!isAdvancedGame || isBuildingExists);
+        useBuildingTechAvailable(context, GuiBuildingTypeEnum.windWaterTower);
     if (!isAllowedToBeVisible) {
       return const SizedBox.shrink();
     }

@@ -61,14 +61,20 @@ class HotAirBaloonActionsView extends StatelessWidget {
   const HotAirBaloonActionsView({super.key});
 
   @override
-  Widget build(final BuildContext context) => const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Gap(12),
-          _TentObjectBuildButton(),
-        ],
-      );
+  Widget build(final BuildContext context) {
+    final isTentUnblocked = context.select<TechnologiesCubit, bool>(
+      (final technologiesCubit) => technologiesCubit
+          .isTechLevelUnlocked(TechnologyLevelIndex.buildAndSave),
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Gap(12),
+        if (isTentUnblocked) const _TentObjectBuildButton(),
+      ],
+    );
+  }
 }
 
 class TentActionsView extends StatelessWidget {

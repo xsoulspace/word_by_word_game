@@ -40,43 +40,6 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
   @override
   void onConsumeTickEvent() {}
 
-  /// since ascending and descending are most primitive technologies
-  /// if they are unlocked, we can make visible actions tab
-  bool checkIsActionsViewUnblocked({final Languages? language}) => [
-        TechnologyType.ascending,
-        TechnologyType.descending,
-      ].every(
-        (final type) => checkIsTechnologyResearchedByType(
-          type: type,
-          language: language,
-        ),
-      );
-
-  bool checkIsTechnologyResearchedByType({
-    required final TechnologyType type,
-    final Languages? language,
-  }) =>
-      checkIsTechnologyResearched(
-        id: TechnologyModelId(type),
-        language: language,
-      );
-  bool checkIsTechnologyResearched({
-    required final TechnologyModelId id,
-    final Languages? language,
-  }) {
-    final techProgress = _getTechnologyProgress(
-      technologyId: id,
-      progressTree: state.progress,
-    );
-    if (techProgress == null) return false;
-    return dto.mechanics.technology
-        .checkIsUnlockedForLanguage(
-          unlockCondition: techProgress.unlockCondition,
-          language: language,
-        )
-        .isUnlocked;
-  }
-
   void onResearchSpecificTechnology({
     required final TechnologyModelId? technologyId,
     required final ResearchTechnologyEvent event,
@@ -193,10 +156,11 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
 
   var _technologies = <TechnologyModelId, TechnologyModel>{};
   List<TechnologyLevelTuple> get levels => TechnologyLevelsCollection.levels;
+
   ({
     String title,
     List<TechnologyModelId> technologies,
-    int levelIndex,
+    TechnologyLevelIndex levelIndex,
     ScoreModel scoreLeftForNextLevel,
     List<double> scoresByLevel,
   }) getCurrentLevel() {
@@ -208,7 +172,7 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
       levels: levels,
       technologies: technologies,
     );
-    final level = levels[levelIndex];
+    final level = levels[levelIndex.index];
     return (
       levelIndex: levelIndex,
       scoreLeftForNextLevel: scoreLeftForNextLevel,
@@ -217,6 +181,9 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
       scoresByLevel: scoresByLevel,
     );
   }
+
+  bool isTechLevelUnlocked(final TechnologyLevelIndex levelIndex) =>
+      getCurrentLevel().levelIndex > levelIndex;
 
   Map<TechnologyModelId, TechnologyModel> get technologies => _technologies;
 
