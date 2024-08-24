@@ -7,8 +7,8 @@ typedef TechnologyLevelTuple = ({
 
 enum TechnologyLevelIndex {
   poweringEngine,
-  buildAndSave,
   takeOffAndLanding,
+  buildAndSave,
   measuringTheWind;
 
   bool operator >(final TechnologyLevelIndex other) => index > other.index;
