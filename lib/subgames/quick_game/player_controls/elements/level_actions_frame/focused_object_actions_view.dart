@@ -8,6 +8,9 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
+const kRestAndPrepareBalloonMultiplier = EnergyMultiplierType.m3;
+const kBuildObjectMultiplier = EnergyMultiplierType.m3;
+
 class SwitchFocusButton extends StatelessWidget {
   const SwitchFocusButton({super.key});
 
@@ -68,34 +71,6 @@ class HotAirBaloonActionsView extends StatelessWidget {
       );
 }
 
-const kBuildObjectMultiplier = EnergyMultiplierType.m3;
-
-class _TentObjectBuildButton extends StatelessWidget {
-  const _TentObjectBuildButton({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    final composable = useApplyingScoreComposable(
-      type: kBuildObjectMultiplier,
-      context: context,
-    );
-    final applyingScore = composable.applyingScore;
-
-    return TextButton.icon(
-      // TODO(arenukvern): l10n
-      // TODO(arenukvern): add score
-      label: Text('Build Tent (${applyingScore.value.formattedScore})'),
-      // TODO(arenukvern): add icon
-      icon: const Icon(CupertinoIcons.hammer),
-      onPressed: () => context
-          .read<GuiBuildingNotifier>()
-          .startPlacing(type: GuiBuildingTypeEnum.tent),
-    );
-  }
-}
-
-const kRestAndPrepareBalloonMultiplier = EnergyMultiplierType.m3;
-
 class TentActionsView extends StatelessWidget {
   const TentActionsView({super.key});
 
@@ -115,10 +90,60 @@ class TentActionsView extends StatelessWidget {
               // TODO(arenukvern): l10n
               // TODO(arenukvern): add object type
               child: const Text(
-                'Rest & Prepare Balloon',
+                'Rest',
               ),
             ),
           ),
+          const Gap(12),
+          const _WindWaterTowerObjectBuildButton(),
         ],
       );
+}
+
+class _TentObjectBuildButton extends StatelessWidget {
+  const _TentObjectBuildButton({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final composable = useApplyingScoreComposable(
+      type: kBuildObjectMultiplier,
+      context: context,
+    );
+    final applyingScore = composable.applyingScore;
+
+    return TextButton.icon(
+      // TODO(arenukvern): l10n
+      label: Text('Build Tent (${applyingScore.value.formattedScore})'),
+      // TODO(arenukvern): add icon
+      icon: const Icon(CupertinoIcons.hammer),
+      onPressed: () => context
+          .read<GuiBuildingNotifier>()
+          .startPlacing(type: GuiBuildingTypeEnum.tent),
+    );
+  }
+}
+
+class _WindWaterTowerObjectBuildButton extends StatelessWidget {
+  const _WindWaterTowerObjectBuildButton({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    final composable = useApplyingScoreComposable(
+      type: kBuildObjectMultiplier,
+      context: context,
+    );
+    final applyingScore = composable.applyingScore;
+
+    return TextButton.icon(
+      // TODO(arenukvern): l10n
+      label: Text(
+        'Build Wind Water Tower (${applyingScore.value.formattedScore})',
+      ),
+      // TODO(arenukvern): add icon
+      icon: const Icon(CupertinoIcons.hammer),
+      onPressed: () => context
+          .read<GuiBuildingNotifier>()
+          .startPlacing(type: GuiBuildingTypeEnum.windWaterTower),
+    );
+  }
 }
