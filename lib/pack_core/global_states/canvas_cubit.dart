@@ -1,10 +1,10 @@
 import 'package:collection/collection.dart';
 import 'package:flame/cache.dart';
 import 'package:logger/logger.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 /// Class for canvas data rendering
 final class CanvasCubit extends DrawerCubit {
@@ -146,3 +146,12 @@ final class CanvasCubit extends DrawerCubit {
 }
 
 typedef CellTileLayerTuple = (CellTileModel tile, LayerModel layer);
+
+extension CanvasCubitX on CanvasCubit {
+  bool isBuildingExists(final GuiBuildingTypeEnum buildingType) {
+    final object = state.canvasData.objects.values.firstWhereOrNull(
+      (final e) => e.tileId == buildingType.tileId,
+    );
+    return object != null;
+  }
+}

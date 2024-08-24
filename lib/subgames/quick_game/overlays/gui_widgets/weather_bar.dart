@@ -15,9 +15,19 @@ class UIWeatherBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
+    final isPlaying = context.select<StatesStatusesCubit, bool>(
       (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
     );
+    final isAdvancedGame = context.select<LevelBloc, bool>(
+      (final cubit) => cubit.featuresSettings.isAdvancedGame,
+    );
+
+    final isBuildingExists = context.select<CanvasCubit, bool>(
+      (final cubit) =>
+          cubit.isBuildingExists(GuiBuildingTypeEnum.windWaterTower),
+    );
+    final isAllowedToBeVisible =
+        isPlaying && (!isAdvancedGame || isBuildingExists);
     if (!isAllowedToBeVisible) {
       return const SizedBox.shrink();
     }
