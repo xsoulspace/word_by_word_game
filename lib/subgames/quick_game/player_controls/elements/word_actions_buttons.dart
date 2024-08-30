@@ -143,15 +143,16 @@ class UiConfirmWordButton extends StatelessWidget {
                 .withOpacity(isPressable ? 0.8 : 0.1),
             hoverElevation: 3,
             onPressed: isPressable ? onPressed : null,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    UiAssetHelper.useImagePath(UiIcons.fire.path),
-                  ),
-                ),
-              ),
-            ),
+            // child: Container(
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       image: AssetImage(
+            //         UiAssetHelper.useImagePath(UiIcons.fire.path),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            child: const UiPlayerScoreIcon(size: 24),
           ),
         ],
       ),

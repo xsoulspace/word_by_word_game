@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -46,16 +47,47 @@ class UIMobilePlayerScore extends StatelessWidget {
     final score = context.select<LevelPlayersBloc, int>(
       (final bloc) => bloc.state.currentPlayer.highscore.score.value.toInt(),
     );
-    final isHighlighted = context.select<LevelBloc, bool>(
+    final isSelectAction = context.select<LevelBloc, bool>(
       (final s) => s.state.phaseType == GamePhaseType.selectAction,
     );
     final eScore = score ~/ kScoreFactor;
-    return _LabelText(
-      uiKeyPosition: Alignment.topCenter,
-      isHighlighted: forceHighlight || (canHighlight && isHighlighted),
-      uiKey: TutorialUiItem.yourScoreLabel,
-      tooltipMessage: S.of(context).yourCurrentHighcoreTooltip,
-      text: '$eScore',
+    final isHighlighted = forceHighlight || (canHighlight && isSelectAction);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        UiPlayerScoreIcon(
+          size: isHighlighted ? 18 : 12,
+          color: isHighlighted ? context.colorScheme.onSurface : null,
+        ),
+        _LabelText(
+          uiKeyPosition: Alignment.topCenter,
+          isHighlighted: isHighlighted,
+          uiKey: TutorialUiItem.yourScoreLabel,
+          tooltipMessage: S.of(context).yourCurrentHighcoreTooltip,
+          text: '$eScore',
+        ),
+      ],
+    );
+  }
+}
+
+class UiPlayerScoreIcon extends StatelessWidget {
+  const UiPlayerScoreIcon({
+    this.size = 12,
+    this.color,
+    super.key,
+  });
+  final double size;
+  final Color? color;
+
+  @override
+  Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    return Icon(
+      CupertinoIcons.bolt,
+      size: size,
+      color: color ?? colorScheme.tertiary,
     );
   }
 }

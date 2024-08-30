@@ -110,22 +110,31 @@ class UIEnergyOptionCard extends StatelessWidget {
       );
     }
 
+    final colorScheme = theme.colorScheme;
+
     return UiActionButton(
       onCompleted: onApply,
+      padding: const EdgeInsets.symmetric(
+        vertical: 3,
+        horizontal: 12,
+      ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          UiPlayerScoreIcon(size: 18, color: colorScheme.onSurface),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
                 child: Text(
                   '${applyingScore.value.formattedScore}',
-                  style: textTheme.headlineSmall,
+                  style: textTheme.headlineSmall?.copyWith(
+                    color: colorScheme.tertiary,
+                  ),
                 ),
               ),
             ],
           ),
-          const Spacer(),
           Container(
             width: 30,
             height: 30,

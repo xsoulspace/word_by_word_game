@@ -5,10 +5,19 @@ typedef TechnologyLevelTuple = ({
   List<TechnologyModelId> technologies,
 });
 
+/// The order is important, because the level is displayed based on the index
 enum TechnologyLevelIndex {
-  takeOffAndLanding,
+  /// first give player ability to see why it is important to
+  /// save some score
   poweringEngine,
+
+  /// give player ability to fly
+  takeOffAndLanding,
+
+  /// give player ability to save progress
   buildAndSave,
+
+  /// give player ability to measure the wind
   measuringTheWind;
 
   bool operator >(final TechnologyLevelIndex other) => index > other.index;
