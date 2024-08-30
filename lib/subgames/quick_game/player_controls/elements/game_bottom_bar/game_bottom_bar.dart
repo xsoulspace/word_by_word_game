@@ -23,22 +23,29 @@ class GameBottomBar extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: BottomActionsNotifier.new),
         ],
-        builder: (final context, final child) => _GameBottomBarCard(
-          builder: (final context) => const Column(
-            children: [
-              UILevelCenterBar(),
-              UiWordActions(),
-            ],
-          ),
+        builder: (final context, final child) => Stack(
+          children: [
+            UiGameBottomBarCard(
+              builder: (final context) => const Column(
+                children: [
+                  UILevelCenterBar(),
+                  UiWordActions(),
+                ],
+              ),
+            ),
+            const UiEnergyAnimation(),
+          ],
         ),
       );
 }
 
-class _GameBottomBarCard extends StatelessWidget {
-  const _GameBottomBarCard({
+class UiGameBottomBarCard extends StatelessWidget {
+  const UiGameBottomBarCard({
     required this.builder,
+    super.key,
   });
   final WidgetBuilder builder;
+  static const maxWidth = 365.0;
   @override
   Widget build(final BuildContext context) {
     final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
@@ -58,7 +65,7 @@ class _GameBottomBarCard extends StatelessWidget {
     } else {
       constraints = screenWidth < 370
           ? screenContstraints
-          : const BoxConstraints(maxWidth: 365);
+          : const BoxConstraints(maxWidth: maxWidth);
     }
     final isCardVisible = context.select<BottomActionsNotifier, bool>(
       (final cubit) => cubit.value.isCardVisible,

@@ -1,8 +1,10 @@
 import 'dart:async';
+import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/overlays.dart';
@@ -31,6 +33,7 @@ class UILevelCenterBar extends StatelessWidget {
     final levelCubit = context.watch<LevelBloc>();
     final isActionPhaseAndAdvanced = phaseType == GamePhaseType.selectAction &&
         levelCubit.featuresSettings.isAdvancedGame;
+
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(
         devicePixelRatio: 1,
@@ -63,6 +66,69 @@ class UILevelCenterBar extends StatelessWidget {
           },
         ],
       ),
+    );
+  }
+}
+
+class UiEnergyAnimation extends StatefulHookWidget {
+  const UiEnergyAnimation({super.key});
+
+  @override
+  State<UiEnergyAnimation> createState() => _UiEnergyAnimationState();
+}
+
+class _UiEnergyAnimationState extends State<UiEnergyAnimation>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late final Animation<double> _animation;
+  late final StreamSubscription<LevelBlocState> _subscription;
+  @override
+  void initState() {
+    super.initState();
+    _subscription = context.read<LevelBloc>().stream.asBroadcastStream().listen(
+          (final state) => _onData(state.phaseType),
+        );
+    _controller = AnimationController(vsync: this, duration: 2.seconds);
+    _animation = _controller.drive(
+      CurveTween(curve: Curves.easeInBack),
+    )..addStatusListener(
+        (final status) {
+          if (status == AnimationStatus.completed) {
+            _controller.reset();
+          }
+        },
+      );
+  }
+
+  void _onData(final GamePhaseType phaseType) {
+    if (phaseType == GamePhaseType.selectAction) {
+      _controller.forward();
+    }
+  }
+
+  @override
+  void dispose() {
+    unawaited(_subscription.cancel());
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) {
+    final parentConstraints =
+        context.findRenderObject()?.constraints as BoxConstraints?;
+    final parentMaxWidth = parentConstraints?.maxWidth;
+    final maxWidth = parentMaxWidth?.isFinite == true
+        ? (parentMaxWidth ?? UiGameBottomBarCard.maxWidth)
+        : UiGameBottomBarCard.maxWidth;
+    useListenable(_controller);
+    final icon = Icon(Icons.bolt, color: context.colorScheme.tertiary);
+    // TODO(arenukvern): generate icons
+    // TODO(arenukvern): add fade in / fade out animation
+    return Positioned(
+      top: lerpDouble(40, 10, _animation.value),
+      right: lerpDouble(18, maxWidth / 2.4, _animation.value),
+      child: icon,
     );
   }
 }
