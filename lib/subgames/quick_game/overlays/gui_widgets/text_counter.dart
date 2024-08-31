@@ -45,8 +45,9 @@ class _UiTextCounterState extends State<UiTextCounter>
         .chain(CurveTween(curve: Curves.easeInOut))
         .animate(_controller);
     _colorAnimation = ColorTween(
-      begin:
-          _oldValue > widget.value ? colorScheme.error : colorScheme.tertiary,
+      begin: _oldValue > widget.value
+          ? colorScheme.error
+          : context.colorScheme.primary,
       end: widget.style?.color,
     ).chain(CurveTween(curve: Curves.easeInOut)).animate(_controller);
   }

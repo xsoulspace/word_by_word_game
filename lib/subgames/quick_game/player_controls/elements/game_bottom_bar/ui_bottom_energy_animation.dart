@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/game_bottom_bar/ui_tech_points_animation.dart';
 
 class UiBottomEnergyAnimation extends StatefulWidget {
   const UiBottomEnergyAnimation({super.key});
@@ -83,6 +84,7 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
           .score
           .getScoreFromWord(word: word);
       int count = score.value.formattedScore ~/ 3;
+      final maxCount = count;
       final maxWidth = _getMaxWidth();
       final tweenSequence = _fadeInTweenSequence();
 
@@ -99,6 +101,12 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
             (final status) {
               if (status
                   case AnimationStatus.completed || AnimationStatus.dismissed) {
+                final firstKey = 'l$maxCount';
+                final isFirstKey = firstKey == key;
+                if (isFirstKey) {
+                  context.read<UiTechPointsAnimationNotifier>().value =
+                      maxCount;
+                }
                 tuple.controller.dispose();
                 _icons.remove(key);
                 setState(() {});
@@ -115,6 +123,7 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
 
   double _getMaxWidth() {
     final parentConstraints =
+        // ignore: invalid_use_of_protected_member
         context.findRenderObject()?.constraints as BoxConstraints?;
     final parentMaxWidth = parentConstraints?.maxWidth;
     final maxWidth = parentMaxWidth?.isFinite == true

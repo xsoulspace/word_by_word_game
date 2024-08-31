@@ -563,71 +563,73 @@ class UiLabledProgressBar extends HookWidget {
     ];
     final locale = useLocale(context);
     final isHoveredNotifier = useIsBool();
-    return Tooltip(
-      message: LocalizedMap(
-        value: tooltipMessage,
-      ).getValue(locale),
-      child: UiBaseButton(
-        onPressed: onPressed,
-        onShowHoverHighlight: (final isHovered) {
-          isHoveredNotifier.value = isHovered;
-        },
-        child: Stack(
-          alignment: Alignment.centerRight,
-          children: [
-            AnimatedProgressBar(
-              width: width,
-              height: height,
-              value: percentage,
-              backgroundColor: backgroundColor,
-              color: filledColor,
-              borderRadius: borderRadius,
-              borderRadiusValue: 52,
-              border: border ?? Border.all(color: borderColor),
-            ),
-            Positioned(
-              left: iconPadding.left,
-              top: 0,
-              bottom: 0,
-              child: IconTheme.merge(
-                data: const IconThemeData(color: Colors.black),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 2),
-                  child: icon,
-                ),
+    return SizedBox(
+      width: width,
+      height: height,
+      child: Tooltip(
+        message: LocalizedMap(
+          value: tooltipMessage,
+        ).getValue(locale),
+        child: UiBaseButton(
+          onPressed: onPressed,
+          onShowHoverHighlight: (final isHovered) {
+            isHoveredNotifier.value = isHovered;
+          },
+          child: Stack(
+            alignment: Alignment.centerRight,
+            children: [
+              AnimatedProgressBar(
+                width: width,
+                height: height,
+                value: percentage,
+                backgroundColor: backgroundColor,
+                color: filledColor,
+                borderRadius: borderRadius,
+                borderRadiusValue: 52,
+                border: border ?? Border.all(color: borderColor),
               ),
-            ),
-            Positioned(
-              right: 6,
-              top: 0,
-              bottom: 4,
-              left: iconPadding.left + 32,
-              child: Center(
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Visibility(
-                    visible:
-                        // ignore: avoid_bool_literals_in_conditional_expressions
-                        hiddenWhenNotHovered ? isHoveredNotifier.value : true,
-                    child: Text(
-                      text.whenEmptyUse(
-                        percentage.isNaN
-                            ? '0 %'
-                            : // ignore: lines_longer_than_80_chars
-                            '${(percentage * 100).toStringAsFixed(0)}%',
-                      ),
-                      style: context.textThemeBold.titleLarge!.copyWith(
-                        color: textColor,
-                        shadows: shadows,
-                        height: 1,
-                      ),
-                      maxLines: 2,
-                    ).animate().fadeIn(duration: 100.milliseconds),
+              Positioned(
+                left: iconPadding.left,
+                top: 0,
+                bottom: 0,
+                child: IconTheme.merge(
+                  data: const IconThemeData(color: Colors.black),
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 2),
+                    child: icon,
                   ),
                 ),
               ),
-            ),
-          ],
+              Visibility(
+                visible: !hiddenWhenNotHovered || isHoveredNotifier.value,
+                child: Positioned(
+                  right: 6,
+                  top: 0,
+                  bottom: 4,
+                  left: iconPadding.left + 32,
+                  child: Center(
+                    child: FittedBox(
+                      fit: BoxFit.fitWidth,
+                      child: Text(
+                        text.whenEmptyUse(
+                          percentage.isNaN
+                              ? '0 %'
+                              : // ignore: lines_longer_than_80_chars
+                              '${(percentage * 100).toStringAsFixed(0)}%',
+                        ),
+                        style: context.textThemeBold.titleLarge!.copyWith(
+                          color: textColor,
+                          shadows: shadows,
+                          height: 1,
+                        ),
+                        maxLines: 2,
+                      ).animate().fadeIn(duration: 100.milliseconds),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

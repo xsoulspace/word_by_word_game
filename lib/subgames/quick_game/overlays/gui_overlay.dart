@@ -7,6 +7,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/game_bottom_bar/ui_tech_points_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class GuiOverlay extends StatelessWidget {
@@ -23,6 +24,9 @@ class GuiOverlay extends StatelessWidget {
     final uiTheme = context.uiTheme;
     return DialogStack(
       children: [
+        const Positioned.fill(
+          child: IgnorePointer(child: UiTechPointsAnimation()),
+        ),
         const Positioned(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -34,9 +38,6 @@ class GuiOverlay extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _Statistics(),
-                  // Spacer(),
-                  // CurrentTechnologyButton(),
-                  // Gap(16),
                 ],
               ),
             ],
