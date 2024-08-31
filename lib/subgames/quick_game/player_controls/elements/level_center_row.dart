@@ -86,46 +86,82 @@ class _UiEnergyAnimationState extends State<UiEnergyAnimation>
     _subscription = context.read<LevelBloc>().stream.asBroadcastStream().listen(
           (final state) => _onData(
             phaseType: state.phaseType,
-            word: state.currentWord.fullWord,
+            word: state.latestWord,
           ),
         );
   }
 
-  ({AnimationController controller, Animation<double> animation})
-      _createAnimation() {
+  Animatable<double> _fadeInTweenSequence() => TweenSequence<double>(
+        [
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 0, end: 1)
+                .chain(CurveTween(curve: Curves.easeIn)),
+            weight: 3,
+          ),
+          TweenSequenceItem<double>(
+            tween: ConstantTween<double>(1),
+            weight: 87,
+          ),
+          TweenSequenceItem<double>(
+            tween: Tween<double>(begin: 1, end: 0)
+                .chain(CurveTween(curve: Curves.easeOut)),
+            weight: 10,
+          ),
+        ],
+      );
+  AnimationControllerTuple _createAnimation({
+    required final Animatable<double> tweenSequence,
+  }) {
     final controller =
-        AnimationController(vsync: this, duration: 350.milliseconds);
-    final animation = controller.drive(
+        AnimationController(vsync: this, duration: 240.milliseconds);
+    final moveAnimation = controller.drive(
       CurveTween(curve: Curves.easeInBack),
     );
-    return (controller: controller, animation: animation);
+
+    final fadeAnimation = tweenSequence.animate(controller);
+
+    return (
+      controller: controller,
+      animation: moveAnimation,
+      fadeAnimation: fadeAnimation
+    );
   }
 
   final _icons = <String, Widget>{};
-
+  bool _isAnimationRunning = false;
+  String _lastWord = '';
   void _onData({
     required final GamePhaseType phaseType,
     required final String word,
   }) {
     if (phaseType == GamePhaseType.selectAction) {
+      if (_isAnimationRunning || word == _lastWord) return;
+      _lastWord = word;
+      _isAnimationRunning = true;
       final score = context
           .read<MechanicsCollection>()
           .score
           .getScoreFromWord(word: word);
-      int count = score.value.formattedScore;
+      int count = score.value.formattedScore ~/ 3;
       final maxWidth = _getMaxWidth();
+      final tweenSequence = _fadeInTweenSequence();
+
       Timer.periodic(const Duration(milliseconds: 20), (final timer) {
         if (count == 0) {
           timer.cancel();
+          _isAnimationRunning = false;
         } else {
-          final tuple = _createAnimation();
+          final tuple = _createAnimation(tweenSequence: tweenSequence);
           final icon = _UiEnergyIcon(maxWidth: maxWidth, tuple: tuple);
-          _icons['l$count'] = icon;
+          final key = 'l$count';
+          _icons[key] = icon;
           tuple.animation.addStatusListener(
             (final status) {
-              if (status == AnimationStatus.completed) {
+              if (status
+                  case AnimationStatus.completed || AnimationStatus.dismissed) {
                 tuple.controller.dispose();
-                _icons.remove('l$count');
+                _icons.remove(key);
+                setState(() {});
               }
             },
           );
@@ -154,18 +190,16 @@ class _UiEnergyAnimationState extends State<UiEnergyAnimation>
   }
 
   @override
-  Widget build(final BuildContext context) {
-    // TODO(arenukvern): add fade in / fade out animation
-    return Stack(
-      fit: StackFit.expand,
-      children: _icons.values.toList(),
-    );
-  }
+  Widget build(final BuildContext context) => Stack(
+        fit: StackFit.expand,
+        children: _icons.values.toList(),
+      );
 }
 
 typedef AnimationControllerTuple = ({
   Animation<double> animation,
-  AnimationController controller
+  AnimationController controller,
+  Animation<double> fadeAnimation,
 });
 
 class _UiEnergyIcon extends HookWidget {
@@ -178,11 +212,16 @@ class _UiEnergyIcon extends HookWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final icon = Icon(Icons.bolt, color: context.colorScheme.tertiary);
+    final icon = Icon(
+      Icons.bolt,
+      color: context.colorScheme.tertiary.withOpacity(
+        tuple.fadeAnimation.value,
+      ),
+    );
     useListenable(tuple.controller);
     return Positioned(
       top: lerpDouble(40, 10, tuple.animation.value),
-      right: lerpDouble(18, maxWidth / 2.4, tuple.animation.value),
+      right: lerpDouble(18, maxWidth / 2.5, tuple.animation.value),
       child: icon,
     );
   }
