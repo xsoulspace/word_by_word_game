@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 
 class UIMobilePlayerName extends StatelessWidget {
   const UIMobilePlayerName({
@@ -68,7 +69,7 @@ class UIMobilePlayerScore extends StatelessWidget {
           uiKey: TutorialUiItem.yourScoreLabel,
           // TODO(arenukvern): l10n
           tooltipMessage: "$playerName's energy",
-          text: '$eScore',
+          value: eScore,
         ),
       ],
     );
@@ -98,15 +99,20 @@ class UiPlayerScoreIcon extends StatelessWidget {
 
 class _LabelText extends StatelessWidget {
   const _LabelText({
-    required this.text,
     required this.tooltipMessage,
     required this.uiKey,
     required this.isHighlighted,
     required this.uiKeyPosition,
-  });
+    this.value,
+    this.text = '',
+  }) : assert(
+          value != null || text != '',
+          'Either value or text must be provided',
+        );
   final bool isHighlighted;
   final TutorialUiItem uiKey;
   final Alignment uiKeyPosition;
+  final int? value;
   final String text;
   final String tooltipMessage;
   @override
@@ -129,10 +135,21 @@ class _LabelText extends StatelessWidget {
               : textTheme.labelMedium!.copyWith(
                   color: colorScheme.tertiary,
                 ),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-          ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2),
+          child: (text.isEmpty
+                  ? UiTextCounter(
+                      value: value ?? 0,
+                      textAlign: TextAlign.center,
+                    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2)
+                  : Text(
+                      text,
+                      style: textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ))
+              .animate()
+              .fadeIn()
+              .scaleXY(begin: 1.1)
+              .slideY(begin: -0.2),
         ),
       ),
     );

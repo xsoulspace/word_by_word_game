@@ -9,6 +9,7 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/subgames.dart';
 
 class UiPlayersStateDiDto {
@@ -275,15 +276,13 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
             onInit: (final controller) =>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
-            child: Text(
-              '$_score',
+            child: UiTextCounter(
+              value: _score,
               style: theme.textTheme.labelMedium?.copyWith(
                 color: selected
                     ? colorScheme.onPrimary
                     : colorScheme.onSurface.withOpacity(0.6),
               ),
-
-              // style: widget.textStyle,
             )
                 .animate(
                   key: ValueKey(_score),

@@ -223,8 +223,14 @@ class _LevelCard extends StatelessWidget {
                           style: context.textThemeBold.titleSmall,
                         ),
                         const Gap(8),
-                        ...?levelSave?.players.players
-                            .map((final e) => Text(e.name)),
+                        Flexible(
+                          child: Text(
+                            levelSave?.players.players
+                                    .map((final e) => e.name)
+                                    .join(', ') ??
+                                '',
+                          ),
+                        ),
                       ],
                     ),
                     // TODO(arenukvern): add gameplay time

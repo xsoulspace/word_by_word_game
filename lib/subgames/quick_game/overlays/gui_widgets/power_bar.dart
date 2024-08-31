@@ -140,7 +140,7 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
           ),
         ),
         const Gap(6),
-        if (isAdvancedGame) const CurrentTechnologyButton(),
+        if (isAdvancedGame) const TechProgressBar(),
       ],
     );
   }

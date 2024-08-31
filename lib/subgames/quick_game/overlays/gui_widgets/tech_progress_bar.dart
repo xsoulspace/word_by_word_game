@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
 
-class CurrentTechnologyButton extends StatelessWidget {
-  const CurrentTechnologyButton({super.key});
+class TechProgressBar extends StatelessWidget {
+  const TechProgressBar({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -63,24 +64,22 @@ class CurrentTechnologyButton extends StatelessWidget {
               nextScore,
         ),
         Builder(
-          builder: (final context) => Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text:
-                      '${nextScore - scoreLeftForNextLevel.value.formattedScore}',
-                  style: context.textTheme.labelLarge?.copyWith(
-                    color: context.colorScheme.primary.withOpacity(0.6),
-                  ),
+          builder: (final context) => Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              UiTextCounter(
+                value: nextScore - scoreLeftForNextLevel.value.formattedScore,
+                style: context.textTheme.labelLarge?.copyWith(
+                  color: context.colorScheme.primary.withOpacity(0.6),
                 ),
-                TextSpan(
-                  text: '/$nextScore',
-                  style: context.textTheme.labelSmall?.copyWith(
-                    color: context.colorScheme.onSurface.withOpacity(0.6),
-                  ),
+              ),
+              Text(
+                '/$nextScore',
+                style: context.textTheme.labelSmall?.copyWith(
+                  color: context.colorScheme.onSurface.withOpacity(0.6),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
       ],
