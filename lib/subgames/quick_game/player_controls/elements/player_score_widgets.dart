@@ -44,6 +44,9 @@ class UIMobilePlayerScore extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final playerName = context.select<LevelPlayersBloc, String>(
+      (final bloc) => bloc.state.currentPlayer.name,
+    );
     final score = context.select<LevelPlayersBloc, int>(
       (final bloc) => bloc.state.currentPlayer.highscore.score.value.toInt(),
     );
@@ -63,7 +66,8 @@ class UIMobilePlayerScore extends StatelessWidget {
           uiKeyPosition: Alignment.topCenter,
           isHighlighted: isHighlighted,
           uiKey: TutorialUiItem.yourScoreLabel,
-          tooltipMessage: S.of(context).yourCurrentHighcoreTooltip,
+          // TODO(arenukvern): l10n
+          tooltipMessage: "$playerName's energy",
           text: '$eScore',
         ),
       ],

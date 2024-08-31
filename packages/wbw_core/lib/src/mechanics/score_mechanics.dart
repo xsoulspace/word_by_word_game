@@ -16,9 +16,7 @@ class ScoreMechanics {
     required final String word,
     final int scoreModifier = kIncreaseScoreModifier,
   }) =>
-      ScoreModel(
-        value: (word.length * scoreModifier).toDouble(),
-      );
+      ScoreModel(value: (word.length * scoreModifier).toDouble());
 
   ScoreModel getRevealScore({
     required final String word,
