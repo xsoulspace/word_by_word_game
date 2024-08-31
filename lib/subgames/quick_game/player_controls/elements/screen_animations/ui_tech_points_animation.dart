@@ -5,10 +5,19 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/game_bottom_bar/ui_bottom_energy_animation.dart';
 
-/// value is count of visible tech points
-class UiTechPointsAnimationNotifier extends ValueNotifier<int> {
+class PointsNotifier extends ChangeNotifier {
+  int _points = 0;
+  int get points => _points;
+
+  void setPoints(final int count) {
+    _points = count;
+    notifyListeners();
+  }
+}
+
+class UiTechPointsAnimationNotifier extends PointsNotifier {
   // ignore: avoid_unused_constructor_parameters
-  UiTechPointsAnimationNotifier(final BuildContext context) : super(0);
+  UiTechPointsAnimationNotifier(final BuildContext context);
 }
 
 class UiTechPointsAnimation extends StatefulWidget {
@@ -21,7 +30,6 @@ class UiTechPointsAnimation extends StatefulWidget {
 class _UiTechPointsAnimationState extends State<UiTechPointsAnimation>
     with TickerProviderStateMixin {
   final _icons = <String, Widget>{};
-  bool _isAnimationRunning = false;
   late final _notifier = context.read<UiTechPointsAnimationNotifier>();
   @override
   void initState() {
@@ -30,10 +38,8 @@ class _UiTechPointsAnimationState extends State<UiTechPointsAnimation>
   }
 
   Future<void> _onData() async {
-    if (_isAnimationRunning) return;
-    _isAnimationRunning = true;
     final screenSize = MediaQuery.sizeOf(context);
-    int count = _notifier.value;
+    int count = _notifier.points;
     const minBottomOffsetY = 260.0;
     final screenHeight = screenSize.height;
     final maxBottomOffsetY = screenHeight;
@@ -47,7 +53,6 @@ class _UiTechPointsAnimationState extends State<UiTechPointsAnimation>
     Timer.periodic(const Duration(milliseconds: 20), (final timer) {
       if (count == 0) {
         timer.cancel();
-        _isAnimationRunning = false;
       } else {
         final tuple = _createAnimation(tweenSequence: tweenSequence);
         final icon = _UiTechPointIcon(
@@ -75,7 +80,7 @@ class _UiTechPointsAnimationState extends State<UiTechPointsAnimation>
   }
 
   Animatable<double> _fadeInTweenSequence() {
-    const finalOpacity = 0.8;
+    const finalOpacity = 0.6;
     return TweenSequence<double>(
       [
         TweenSequenceItem<double>(
@@ -133,9 +138,8 @@ class _UiTechPointIcon extends HookWidget {
   Widget build(final BuildContext context) {
     final icon = Icon(
       Icons.circle,
-      size: 12,
-      color:
-          context.colorScheme.tertiary.withOpacity(tuple.fadeAnimation.value),
+      size: 8,
+      color: context.colorScheme.primary.withOpacity(tuple.fadeAnimation.value),
     );
     useListenable(tuple.controller);
     final bottom =

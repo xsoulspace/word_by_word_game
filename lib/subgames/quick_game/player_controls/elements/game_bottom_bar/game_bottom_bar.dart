@@ -26,17 +26,17 @@ class GameBottomBar extends StatelessWidget {
         ],
         builder: (final context, final child) => Stack(
           children: [
+            const Positioned.fill(
+              child: IgnorePointer(
+                child: UiBottomEnergyAnimation(),
+              ),
+            ),
             UiGameBottomBarCard(
               builder: (final context) => const Column(
                 children: [
                   UILevelCenterBar(),
                   UiWordActions(),
                 ],
-              ),
-            ),
-            const Positioned.fill(
-              child: IgnorePointer(
-                child: UiBottomEnergyAnimation(),
               ),
             ),
           ],

@@ -28,9 +28,6 @@ class UILevelCenterBar extends StatelessWidget {
       (final s) => s.state.phaseType,
     );
     final uiTheme = context.uiTheme;
-    final levelCubit = context.watch<LevelBloc>();
-    final isActionPhaseAndAdvanced = phaseType == GamePhaseType.selectAction &&
-        levelCubit.featuresSettings.isAdvancedGame;
 
     return MediaQuery(
       data: MediaQuery.of(context).copyWith(

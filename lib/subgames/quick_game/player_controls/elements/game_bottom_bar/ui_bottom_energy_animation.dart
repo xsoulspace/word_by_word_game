@@ -8,7 +8,6 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/game_bottom_bar/ui_tech_points_animation.dart';
 
 class UiBottomEnergyAnimation extends StatefulWidget {
   const UiBottomEnergyAnimation({super.key});
@@ -32,29 +31,33 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
         );
   }
 
-  Animatable<double> _fadeInTweenSequence() => TweenSequence<double>(
-        [
-          TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 0, end: 1)
-                .chain(CurveTween(curve: Curves.easeIn)),
-            weight: 3,
-          ),
-          TweenSequenceItem<double>(
-            tween: ConstantTween<double>(1),
-            weight: 87,
-          ),
-          TweenSequenceItem<double>(
-            tween: Tween<double>(begin: 1, end: 0)
-                .chain(CurveTween(curve: Curves.easeOut)),
-            weight: 10,
-          ),
-        ],
-      );
+  Animatable<double> _fadeInTweenSequence() {
+    const finalOpacity = 0.8;
+    return TweenSequence<double>(
+      [
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0, end: finalOpacity)
+              .chain(CurveTween(curve: Curves.easeIn)),
+          weight: 8,
+        ),
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(finalOpacity),
+          weight: 82,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: finalOpacity, end: 0)
+              .chain(CurveTween(curve: Curves.easeOut)),
+          weight: 10,
+        ),
+      ],
+    );
+  }
+
   AnimationControllerTuple _createAnimation({
     required final Animatable<double> tweenSequence,
   }) {
     final controller =
-        AnimationController(vsync: this, duration: 240.milliseconds);
+        AnimationController(vsync: this, duration: 350.milliseconds);
     final moveAnimation = controller.drive(
       CurveTween(curve: Curves.easeInBack),
     );
@@ -104,8 +107,9 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
                 final firstKey = 'l$maxCount';
                 final isFirstKey = firstKey == key;
                 if (isFirstKey) {
-                  context.read<UiTechPointsAnimationNotifier>().value =
-                      maxCount;
+                  context
+                      .read<UiTechPointsAnimationNotifier>()
+                      .setPoints(maxCount);
                 }
                 tuple.controller.dispose();
                 _icons.remove(key);
@@ -162,15 +166,16 @@ class _UiEnergyIcon extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final icon = Icon(
-      Icons.bolt,
+      Icons.circle,
       color: context.colorScheme.tertiary.withOpacity(
         tuple.fadeAnimation.value,
       ),
+      size: 8,
     );
     useListenable(tuple.controller);
     return Positioned(
-      top: lerpDouble(40, 10, tuple.animation.value),
-      right: lerpDouble(18, maxWidth / 2.5, tuple.animation.value),
+      top: lerpDouble(80, 10, tuple.animation.value),
+      right: lerpDouble(18, maxWidth / 2, tuple.animation.value),
       child: icon,
     );
   }
