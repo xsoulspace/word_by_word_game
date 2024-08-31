@@ -10,6 +10,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/focus_surface_drawer.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/game_bottom_bar/ui_bottom_energy_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -35,7 +36,7 @@ class GameBottomBar extends StatelessWidget {
             ),
             const Positioned.fill(
               child: IgnorePointer(
-                child: UiEnergyAnimation(),
+                child: UiBottomEnergyAnimation(),
               ),
             ),
           ],
