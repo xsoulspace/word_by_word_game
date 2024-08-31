@@ -33,7 +33,11 @@ class GameBottomBar extends StatelessWidget {
                 ],
               ),
             ),
-            const UiEnergyAnimation(),
+            const Positioned.fill(
+              child: IgnorePointer(
+                child: UiEnergyAnimation(),
+              ),
+            ),
           ],
         ),
       );

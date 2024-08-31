@@ -70,7 +70,7 @@ class UILevelCenterBar extends StatelessWidget {
   }
 }
 
-class UiEnergyAnimation extends StatefulHookWidget {
+class UiEnergyAnimation extends StatefulWidget {
   const UiEnergyAnimation({super.key});
 
   @override
@@ -78,56 +78,111 @@ class UiEnergyAnimation extends StatefulHookWidget {
 }
 
 class _UiEnergyAnimationState extends State<UiEnergyAnimation>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _controller;
-  late final Animation<double> _animation;
+    with TickerProviderStateMixin {
   late final StreamSubscription<LevelBlocState> _subscription;
   @override
   void initState() {
     super.initState();
     _subscription = context.read<LevelBloc>().stream.asBroadcastStream().listen(
-          (final state) => _onData(state.phaseType),
+          (final state) => _onData(
+            phaseType: state.phaseType,
+            word: state.currentWord.fullWord,
+          ),
         );
-    _controller = AnimationController(vsync: this, duration: 2.seconds);
-    _animation = _controller.drive(
-      CurveTween(curve: Curves.easeInBack),
-    )..addStatusListener(
-        (final status) {
-          if (status == AnimationStatus.completed) {
-            _controller.reset();
-          }
-        },
-      );
   }
 
-  void _onData(final GamePhaseType phaseType) {
+  ({AnimationController controller, Animation<double> animation})
+      _createAnimation() {
+    final controller =
+        AnimationController(vsync: this, duration: 350.milliseconds);
+    final animation = controller.drive(
+      CurveTween(curve: Curves.easeInBack),
+    );
+    return (controller: controller, animation: animation);
+  }
+
+  final _icons = <String, Widget>{};
+
+  void _onData({
+    required final GamePhaseType phaseType,
+    required final String word,
+  }) {
     if (phaseType == GamePhaseType.selectAction) {
-      _controller.forward();
+      final score = context
+          .read<MechanicsCollection>()
+          .score
+          .getScoreFromWord(word: word);
+      int count = score.value.formattedScore;
+      final maxWidth = _getMaxWidth();
+      Timer.periodic(const Duration(milliseconds: 20), (final timer) {
+        if (count == 0) {
+          timer.cancel();
+        } else {
+          final tuple = _createAnimation();
+          final icon = _UiEnergyIcon(maxWidth: maxWidth, tuple: tuple);
+          _icons['l$count'] = icon;
+          tuple.animation.addStatusListener(
+            (final status) {
+              if (status == AnimationStatus.completed) {
+                tuple.controller.dispose();
+                _icons.remove('l$count');
+              }
+            },
+          );
+          tuple.controller.forward();
+          setState(() {});
+          count--;
+        }
+      });
     }
   }
 
-  @override
-  void dispose() {
-    unawaited(_subscription.cancel());
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(final BuildContext context) {
+  double _getMaxWidth() {
     final parentConstraints =
         context.findRenderObject()?.constraints as BoxConstraints?;
     final parentMaxWidth = parentConstraints?.maxWidth;
     final maxWidth = parentMaxWidth?.isFinite == true
         ? (parentMaxWidth ?? UiGameBottomBarCard.maxWidth)
         : UiGameBottomBarCard.maxWidth;
-    useListenable(_controller);
-    final icon = Icon(Icons.bolt, color: context.colorScheme.tertiary);
-    // TODO(arenukvern): generate icons
+    return maxWidth;
+  }
+
+  @override
+  void dispose() {
+    unawaited(_subscription.cancel());
+    super.dispose();
+  }
+
+  @override
+  Widget build(final BuildContext context) {
     // TODO(arenukvern): add fade in / fade out animation
+    return Stack(
+      fit: StackFit.expand,
+      children: _icons.values.toList(),
+    );
+  }
+}
+
+typedef AnimationControllerTuple = ({
+  Animation<double> animation,
+  AnimationController controller
+});
+
+class _UiEnergyIcon extends HookWidget {
+  const _UiEnergyIcon({
+    required this.tuple,
+    required this.maxWidth,
+  });
+  final AnimationControllerTuple tuple;
+  final double maxWidth;
+
+  @override
+  Widget build(final BuildContext context) {
+    final icon = Icon(Icons.bolt, color: context.colorScheme.tertiary);
+    useListenable(tuple.controller);
     return Positioned(
-      top: lerpDouble(40, 10, _animation.value),
-      right: lerpDouble(18, maxWidth / 2.4, _animation.value),
+      top: lerpDouble(40, 10, tuple.animation.value),
+      right: lerpDouble(18, maxWidth / 2.4, tuple.animation.value),
       child: icon,
     );
   }
