@@ -641,7 +641,7 @@ class GameSaver {
   void onTick() {
     final now = DateTime.now();
     if (now.difference(_lastSaveDate).inSeconds > 3) {
-      debugPrint('game_saver onTick');
+      debugPrint('game_saver saving');
       _lastSaveDate = now;
       onSave();
     }

@@ -15,13 +15,14 @@ class DialogStackNotifier extends ChangeNotifier {
   }
   static DialogController getDialogController(final BuildContext context) =>
       context.read<DialogStackNotifier>().dialogController;
-  late final dialogController = DialogController(
+  late final DialogController dialogController = (
     showLevelLostDialog: _showLevelLostDialog,
     closeDialog: _closeDialog,
     showLevelWinDialog: _showLevelWinDialog,
     showLevelWordSuggestionDialog: _showLevelWordSuggestionDialog,
     showTechnologiesTree: _showTechnologiesTree,
     closeDialogAndResume: onResume,
+    showTechLevelAchieveDialog: _showTechLevelAchieveDialog,
   );
   late final _tutorialSubscriber = _TutorialSubscriber(
     diDto: dto,
@@ -37,7 +38,8 @@ class DialogStackNotifier extends ChangeNotifier {
         GameDialogType.technologiesTree ||
         GameDialogType.levelWordSuggestion ||
         GameDialogType.tutorialBool ||
-        GameDialogType.tutorialOk =>
+        GameDialogType.tutorialOk ||
+        GameDialogType.techLevelAchieved =>
           false,
       };
 
@@ -99,6 +101,11 @@ class DialogStackNotifier extends ChangeNotifier {
 
   void _showTechnologiesTree() {
     dialogType = GameDialogType.technologiesTree;
+    _pause();
+  }
+
+  void _showTechLevelAchieveDialog(final TechnologyLevelIndex levelIndex) {
+    dialogType = GameDialogType.techLevelAchieved;
     _pause();
   }
 

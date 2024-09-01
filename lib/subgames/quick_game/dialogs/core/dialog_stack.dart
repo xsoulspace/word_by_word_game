@@ -8,6 +8,8 @@ import 'package:word_by_word_game/pack_core/ads/ads.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/technologies/tech_level_achieved_dialog.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/technologies/tech_level_dialog.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/tutorial_dialogs/tutorial_dialogs.dart';
 
 part 'dialog_stack_notifier.dart';
@@ -20,6 +22,7 @@ enum GameDialogType {
   tutorialBool,
   tutorialOk,
   technologiesTree,
+  techLevelAchieved,
 }
 
 class DialogStack extends HookWidget {
@@ -40,7 +43,10 @@ class DialogStack extends HookWidget {
           isVisible: state.dialogType != GameDialogType.none,
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
-            GameDialogType.technologiesTree => TechnologiesTreeDialog(
+            GameDialogType.technologiesTree => TechLevelsDialog(
+                onClose: dialogController.closeDialogAndResume,
+              ),
+            GameDialogType.techLevelAchieved => TechLevelAchievedDialog(
                 onClose: dialogController.closeDialogAndResume,
               ),
             GameDialogType.levelLost => LevelLostDialog(
