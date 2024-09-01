@@ -1,19 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 
-final class DialogController {
-  DialogController({
-    required this.showLevelLostDialog,
-    required this.showLevelWinDialog,
-    required this.showLevelWordSuggestionDialog,
-    required this.closeDialog,
-    required this.closeDialogAndResume,
-    required this.showTechnologiesTree,
-  });
-  final ValueChanged<EndLevelEvent> showLevelLostDialog;
-  final ValueChanged<EndLevelEvent> showLevelWinDialog;
-  final VoidCallback closeDialog;
-  final VoidCallback closeDialogAndResume;
-  final VoidCallback showLevelWordSuggestionDialog;
-  final VoidCallback showTechnologiesTree;
-}
+typedef DialogController = ({
+  ValueChanged<EndLevelEvent> showLevelLostDialog,
+  ValueChanged<EndLevelEvent> showLevelWinDialog,
+  VoidCallback closeDialog,
+  VoidCallback closeDialogAndResume,
+  VoidCallback showLevelWordSuggestionDialog,
+  VoidCallback showTechnologiesTree,
+  ValueChanged<TechnologyLevelIndex> showTechLevelAchieveDialog,
+});
