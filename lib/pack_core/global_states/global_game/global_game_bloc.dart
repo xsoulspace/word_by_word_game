@@ -61,6 +61,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         dto.statesStatusesCubit.stream.listen(_onStatusChanged);
   }
   final _log = Logger();
+  late final _saver = GameSaver(onSave: onSaveCurrentLevel);
   final GlobalGameBlocDiDto dto;
   GameTutorialEventListener? _tutorialEventsListener;
   StreamSubscription<StatesStatusesCubitState>?
@@ -426,6 +427,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     );
     emit(newState);
     _shareNewDateTime(newState);
+    if (!dto.mechanics.worldTime.paused) _saver.onTick();
   }
 
   Future<void> onLevelEnd({
@@ -624,7 +626,24 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 }
 
+// ignore: one_member_abstracts
 abstract interface class WorldTickConsumable {
   WorldTickConsumable._();
   void onConsumeTickEvent();
+}
+
+class GameSaver {
+  GameSaver({
+    required this.onSave,
+  });
+  final VoidCallback onSave;
+  DateTime _lastSaveDate = DateTime.now();
+  void onTick() {
+    final now = DateTime.now();
+    if (now.difference(_lastSaveDate).inSeconds > 3) {
+      debugPrint('game_saver onTick');
+      _lastSaveDate = now;
+      onSave();
+    }
+  }
 }
