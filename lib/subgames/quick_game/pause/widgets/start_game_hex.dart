@@ -26,6 +26,7 @@ class QuickStartGameButtons extends StatelessWidget {
         levelId.isNotEmpty && levelPlayersBloc.isPlayersNotEmpty;
     final uiTheme = context.uiTheme;
     final globalGameCubit = context.watch<GlobalGameBloc>();
+
     context.watch<LevelStartDialogUiState>();
 
     return ChangeNotifierProvider.value(

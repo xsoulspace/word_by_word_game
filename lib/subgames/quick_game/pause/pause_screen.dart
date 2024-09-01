@@ -14,11 +14,13 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/level_start_dialog.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
+import 'package:word_by_word_game/subgames/quick_game/highscore/highscore.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
+import 'package:word_by_word_game/subgames/quick_game/pause/credits_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
+import 'package:word_by_word_game/subgames/quick_game/settings/settings_view.dart';
 
 part 'pause_screen_state.dart';
 
@@ -28,6 +30,9 @@ const _kIsCharacterVisible = false;
 enum PauseScreenRoute {
   mainMenu,
   adventure,
+  settings,
+  playersAndHighscore,
+  credits,
 }
 
 class PauseScreen extends HookWidget {
@@ -35,7 +40,7 @@ class PauseScreen extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final screenRouteState = useState(PauseScreenRoute.mainMenu);
-    final statusCubit = context.watch<StatesStatusesCubit>();
+    void onBack() => screenRouteState.value = PauseScreenRoute.mainMenu;
     return _Scaffold(
       builder: (final context) => Stack(
         fit: StackFit.expand,
@@ -50,10 +55,11 @@ class PauseScreen extends HookWidget {
                   onChangeRoute: (final route) =>
                       screenRouteState.value = route,
                 ),
-              PauseScreenRoute.adventure => AdventureView(
-                  onBack: () =>
-                      screenRouteState.value = PauseScreenRoute.mainMenu,
-                ),
+              PauseScreenRoute.adventure => AdventureView(onBack: onBack),
+              PauseScreenRoute.settings => SettingsView(onBack: onBack),
+              PauseScreenRoute.playersAndHighscore =>
+                PlayersAndHighscoreView(onBack: onBack),
+              PauseScreenRoute.credits => CreditsView(onBack: onBack),
             },
           ),
 
@@ -99,6 +105,7 @@ class _MainMenuView extends StatelessWidget {
     final formFactors = UiPersistentFormFactors.of(context);
     final hasMobileLayout = formFactors.isMobile;
     final state = context.watch<PauseScreenState>();
+
     return CustomScrollView(
       physics: hasMobileLayout ? null : const NeverScrollableScrollPhysics(),
       slivers: [
@@ -134,7 +141,7 @@ class _MainMenuView extends StatelessWidget {
                     UiFilledButton.icon(
                       icon: Icons.settings,
                       text: S.of(context).settings.toUpperCase(),
-                      onPressed: () => state.onToSettings(context),
+                      onPressed: () => onChangeRoute(PauseScreenRoute.settings),
                     )
                         .animate()
                         .fadeIn(
@@ -149,7 +156,8 @@ class _MainMenuView extends StatelessWidget {
                               ? S.of(context).playersAndHighscoreYandex
                               : S.of(context).playersAndHighscore)
                           .toUpperCase(),
-                      onPressed: () => state.onToPlayersAndHighscore(context),
+                      onPressed: () =>
+                          onChangeRoute(PauseScreenRoute.playersAndHighscore),
                     )
                         .animate()
                         .fadeIn(
