@@ -57,7 +57,7 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
     )
     @Default(LocalizedMap.empty)
     final LocalizedMap name,
-    @Default(TilesetType.colourful) final TilesetType type,
+    @Default(TilesetType.whiteBlack) final TilesetType type,
     @Default(TilesetThemeModel.empty) final TilesetThemeModel theme,
   }) = _TilesetPresetDataModel;
 
@@ -87,8 +87,6 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
 }
 
 enum TilesetType {
-  @JsonValue('colourful')
-  colourful,
   @JsonValue('white_black')
   whiteBlack,
   @JsonValue('evening')
@@ -106,7 +104,6 @@ class TilesetConfigModel with _$TilesetConfigModel {
         path.replaceAll('assets/images/', '').replaceAll('_preset_data', ''),
       );
   TilesetType get type => switch (cleanPath.split('/').last) {
-        'colourful' => TilesetType.colourful,
         'white_black' => TilesetType.whiteBlack,
         'evening' => TilesetType.evening,
         _ => throw UnimplementedError()
@@ -134,7 +131,7 @@ class TilesetPresetResources with _$TilesetPresetResources {
   const factory TilesetPresetResources({
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(TilesetThemeModel.empty) final TilesetThemeModel theme,
-    @Default(TilesetType.colourful) final TilesetType type,
+    @Default(TilesetType.whiteBlack) final TilesetType type,
     @Default({}) final Map<SpriteTileName, List<SpriteCode>> autotileRules,
     @Default({}) final Map<TileId, PresetTileResource> tiles,
     @Default({}) final Map<TileId, PresetTileResource> objects,

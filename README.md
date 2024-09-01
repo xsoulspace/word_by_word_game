@@ -55,7 +55,10 @@ Thank you for your support and have a great day! 🌄
 ## Graphics credits & thanks:
 
 - Sonnenstein (we currently working to create new tileset) | https://sonnenstein.itch.io/
-- Pixel Frog (I used this pack during v3 development - https://pixelfrog-assets.itch.io/treasure-hunters) | https://pixelfrog-assets.itch.io
+
+Used this pack during early v3 development stage:
+
+- Pixel Frog (https://pixelfrog-assets.itch.io/treasure-hunters) | https://pixelfrog-assets.itch.io
 
 ## Additional Licenses and Insipration Sources:
 

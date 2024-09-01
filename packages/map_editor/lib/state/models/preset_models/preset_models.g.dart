@@ -132,7 +132,7 @@ _$TilesetPresetDataModelImpl _$$TilesetPresetDataModelImplFromJson(
           ? LocalizedMap.empty
           : LocalizedMap.fromJsonValueMap(json['name'] as Map<String, dynamic>),
       type: $enumDecodeNullable(_$TilesetTypeEnumMap, json['type']) ??
-          TilesetType.colourful,
+          TilesetType.whiteBlack,
       theme: json['theme'] == null
           ? TilesetThemeModel.empty
           : TilesetThemeModel.fromJson(json['theme'] as Map<String, dynamic>),
@@ -170,7 +170,6 @@ const _$SpriteTileNameEnumMap = {
 };
 
 const _$TilesetTypeEnumMap = {
-  TilesetType.colourful: 'colourful',
   TilesetType.whiteBlack: 'white_black',
   TilesetType.evening: 'evening',
 };

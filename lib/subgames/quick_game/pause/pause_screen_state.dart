@@ -109,29 +109,7 @@ class PauseScreenState extends ValueNotifier<void> {
                 onPressed: () => launchUrlString('https://sonnenstein.itch.io'),
                 child: const Padding(
                   padding: EdgeInsets.all(8),
-                  child: Text('Sonnenstein'),
-                ),
-              ),
-            ),
-            Visibility(
-              visible: Envs.isLinksAllowed,
-              child: TextButton(
-                onPressed: () =>
-                    launchUrlString('https://pixelfrog-assets.itch.io'),
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Text(
-                    'Pixel Frog (${const LocalizedMap(
-                      value: {
-                        Languages.en: 'Used this pack during v3 development',
-                        Languages.ru:
-                            'Использовал пакет графики для разработки 3 версии',
-                        Languages.it:
-                            // ignore: lines_longer_than_80_chars
-                            'Utilizzato questo pacchetto durante lo sviluppo della v3',
-                      },
-                    ).getValue(locale)})',
-                  ),
+                  child: Text('Sonnenstein - Evening Tileset'),
                 ),
               ),
             ),
@@ -226,7 +204,7 @@ class PauseScreenState extends ValueNotifier<void> {
                     ),
               ),
               uiTheme.verticalBoxes.medium,
-              const Text('Sonnenstein, Pixel Frog'),
+              const Text('Sonnenstein - Evening Tileset'),
               uiTheme.verticalBoxes.large,
               Text(madeWith),
               uiTheme.verticalBoxes.large,

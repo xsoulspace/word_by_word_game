@@ -20,7 +20,9 @@ mixin _$AnimationEntryModel {
   int get framesLength => throw _privateConstructorUsedError;
   List<String> get framesPaths => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnimationEntryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AnimationEntryModelCopyWith<AnimationEntryModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$AnimationEntryModelCopyWithImpl<$Res, $Val extends AnimationEntryModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AnimationEntryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -87,6 +91,8 @@ class __$$AnimationEntryModelImplCopyWithImpl<$Res>
       $Res Function(_$AnimationEntryModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AnimationEntryModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -158,7 +164,9 @@ class _$AnimationEntryModelImpl extends _AnimationEntryModel {
   int get hashCode => Object.hash(runtimeType, frameIndex, framesLength,
       const DeepCollectionEquality().hash(_framesPaths));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AnimationEntryModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AnimationEntryModelImplCopyWith<_$AnimationEntryModelImpl> get copyWith =>
@@ -179,8 +187,11 @@ abstract class _AnimationEntryModel extends AnimationEntryModel {
   int get framesLength;
   @override
   List<String> get framesPaths;
+
+  /// Create a copy of AnimationEntryModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AnimationEntryModelImplCopyWith<_$AnimationEntryModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -189,7 +200,9 @@ abstract class _AnimationEntryModel extends AnimationEntryModel {
 mixin _$GameRendererConfig {
   int get animationSpeed => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameRendererConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GameRendererConfigCopyWith<GameRendererConfig> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -213,6 +226,8 @@ class _$GameRendererConfigCopyWithImpl<$Res, $Val extends GameRendererConfig>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GameRendererConfig
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -246,6 +261,8 @@ class __$$GameRendererConfigImplCopyWithImpl<$Res>
       $Res Function(_$GameRendererConfigImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameRendererConfig
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -286,7 +303,9 @@ class _$GameRendererConfigImpl implements _GameRendererConfig {
   @override
   int get hashCode => Object.hash(runtimeType, animationSpeed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameRendererConfig
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GameRendererConfigImplCopyWith<_$GameRendererConfigImpl> get copyWith =>
@@ -300,8 +319,11 @@ abstract class _GameRendererConfig implements GameRendererConfig {
 
   @override
   int get animationSpeed;
+
+  /// Create a copy of GameRendererConfig
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GameRendererConfigImplCopyWith<_$GameRendererConfigImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

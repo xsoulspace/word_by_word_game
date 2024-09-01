@@ -64,7 +64,7 @@ abstract base class DrawerCubit extends Cubit<DrawerCubitState> {
       (final config) => config.type == type,
     );
     return tilesetConfig ??= state.tilesetsConfigs.firstWhere(
-      (final e) => e.cleanPath.endsWith(TilesetType.colourful.name),
+      (final e) => e.cleanPath.endsWith(TilesetType.whiteBlack.name),
     );
   }
 

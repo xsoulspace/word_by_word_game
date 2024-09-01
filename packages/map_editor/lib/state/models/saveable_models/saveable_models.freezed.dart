@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$CanvasDataModelId {
   String get value => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CanvasDataModelId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CanvasDataModelIdCopyWith<CanvasDataModelId> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$CanvasDataModelIdCopyWithImpl<$Res, $Val extends CanvasDataModelId>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CanvasDataModelId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$CanvasDataModelIdImplCopyWithImpl<$Res>
       $Res Function(_$CanvasDataModelIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CanvasDataModelId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -97,7 +103,9 @@ class _$CanvasDataModelIdImpl extends _CanvasDataModelId {
   @override
   final String value;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CanvasDataModelId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CanvasDataModelIdImplCopyWith<_$CanvasDataModelIdImpl> get copyWith =>
@@ -112,8 +120,11 @@ abstract class _CanvasDataModelId extends CanvasDataModelId {
 
   @override
   String get value;
+
+  /// Create a copy of CanvasDataModelId
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CanvasDataModelIdImplCopyWith<_$CanvasDataModelIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -156,8 +167,12 @@ mixin _$CanvasDataModel {
   List<TechnologyModel> get technologies => throw _privateConstructorUsedError;
   TilesetType get tilesetType => throw _privateConstructorUsedError;
 
+  /// Serializes this CanvasDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CanvasDataModelCopyWith<CanvasDataModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -204,6 +219,8 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -257,6 +274,8 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     ) as $Val);
   }
 
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get id {
@@ -265,6 +284,8 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     });
   }
 
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get name {
@@ -273,6 +294,8 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     });
   }
 
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $RenderObjectModelCopyWith<$Res> get playerObject {
@@ -281,6 +304,8 @@ class _$CanvasDataModelCopyWithImpl<$Res, $Val extends CanvasDataModel>
     });
   }
 
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GravityModelCopyWith<$Res> get gravity {
@@ -336,6 +361,8 @@ class __$$CanvasDataModelImplCopyWithImpl<$Res>
       _$CanvasDataModelImpl _value, $Res Function(_$CanvasDataModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -411,7 +438,7 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
       this.skyYTilePosition = 0,
       this.gravity = GravityModel.initial,
       final List<TechnologyModel> technologies = const [],
-      this.tilesetType = TilesetType.colourful})
+      this.tilesetType = TilesetType.whiteBlack})
       : _layers = layers,
         _objects = objects,
         _technologies = technologies,
@@ -515,7 +542,7 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
                 other.tilesetType == tilesetType));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -529,7 +556,9 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
       const DeepCollectionEquality().hash(_technologies),
       tilesetType);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CanvasDataModelImplCopyWith<_$CanvasDataModelImpl> get copyWith =>
@@ -581,7 +610,6 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   LocalizedMap get name;
   @override
   List<LayerModel> get layers;
-  @override
 
   /// Moving or idle obstacle, decoration - objects,
   /// like the birds, trees etc.
@@ -589,28 +617,32 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   /// The main idea, that any objet should be accessed from top to bottom
   /// This way there will be easy way to loop all objects or change just
   /// one object.
+  @override
   @JsonKey(
       fromJson: CanvasDataModel.objectsFromJson,
       toJson: CanvasDataModel.objectsToJson)
   Map<Gid, RenderObjectModel> get objects;
-  @override
 
   /// As player is unique - it should be used separately from [objects].
+  @override
   RenderObjectModel get playerObject;
-  @override
 
   /// can be negative and positive. Should be absolute tile index.
+  @override
   int get skyYTilePosition;
-  @override
 
   /// can be negative and positive. Should be absolute tile index.
+  @override
   GravityModel get gravity;
   @override
   List<TechnologyModel> get technologies;
   @override
   TilesetType get tilesetType;
+
+  /// Create a copy of CanvasDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CanvasDataModelImplCopyWith<_$CanvasDataModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -624,8 +656,12 @@ mixin _$GravityModel {
   ///absolute tile position. may be negative and positive
   int get yTilePosition => throw _privateConstructorUsedError;
 
+  /// Serializes this GravityModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GravityModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GravityModelCopyWith<GravityModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -649,6 +685,8 @@ class _$GravityModelCopyWithImpl<$Res, $Val extends GravityModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GravityModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -682,6 +720,8 @@ class __$$GravityModelImplCopyWithImpl<$Res>
       _$GravityModelImpl _value, $Res Function(_$GravityModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GravityModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -722,11 +762,13 @@ class _$GravityModelImpl extends _GravityModel {
                 other.yTilePosition == yTilePosition));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, yTilePosition);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GravityModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GravityModelImplCopyWith<_$GravityModelImpl> get copyWith =>
@@ -748,12 +790,14 @@ abstract class _GravityModel extends GravityModel {
   factory _GravityModel.fromJson(Map<String, dynamic> json) =
       _$GravityModelImpl.fromJson;
 
-  @override
-
   ///absolute tile position. may be negative and positive
-  int get yTilePosition;
   @override
-  @JsonKey(ignore: true)
+  int get yTilePosition;
+
+  /// Create a copy of GravityModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GravityModelImplCopyWith<_$GravityModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -762,7 +806,9 @@ abstract class _GravityModel extends GravityModel {
 mixin _$LayerModelId {
   String get value => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LayerModelId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LayerModelIdCopyWith<LayerModelId> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -786,6 +832,8 @@ class _$LayerModelIdCopyWithImpl<$Res, $Val extends LayerModelId>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LayerModelId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -819,6 +867,8 @@ class __$$LayerModelIdImplCopyWithImpl<$Res>
       _$LayerModelIdImpl _value, $Res Function(_$LayerModelIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LayerModelId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -841,7 +891,9 @@ class _$LayerModelIdImpl extends _LayerModelId {
   @override
   final String value;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LayerModelId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LayerModelIdImplCopyWith<_$LayerModelIdImpl> get copyWith =>
@@ -855,8 +907,11 @@ abstract class _LayerModelId extends LayerModelId {
 
   @override
   String get value;
+
+  /// Create a copy of LayerModelId
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LayerModelIdImplCopyWith<_$LayerModelIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -881,8 +936,12 @@ mixin _$LayerModel {
       throw _privateConstructorUsedError;
   bool get isVisible => throw _privateConstructorUsedError;
 
+  /// Serializes this LayerModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LayerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LayerModelCopyWith<LayerModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -918,6 +977,8 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LayerModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -956,6 +1017,8 @@ class _$LayerModelCopyWithImpl<$Res, $Val extends LayerModel>
     ) as $Val);
   }
 
+  /// Create a copy of LayerModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LayerModelIdCopyWith<$Res> get id {
@@ -997,6 +1060,8 @@ class __$$LayerModelImplCopyWithImpl<$Res>
       _$LayerModelImpl _value, $Res Function(_$LayerModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LayerModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1104,7 +1169,7 @@ class _$LayerModelImpl extends _LayerModel {
                 other.isVisible == isVisible));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1115,7 +1180,9 @@ class _$LayerModelImpl extends _LayerModel {
       collisionConsequence,
       isVisible);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LayerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LayerModelImplCopyWith<_$LayerModelImpl> get copyWith =>
@@ -1154,17 +1221,20 @@ abstract class _LayerModel extends LayerModel {
   @override
   @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)
   Map<CellPointModel, CellTileModel> get tiles;
-  @override
 
   /// determines is tiles in this layer should be
   /// treated as hitboxes
+  @override
   bool get isCollidable;
   @override
   CollisionConsequence get collisionConsequence;
   @override
   bool get isVisible;
+
+  /// Create a copy of LayerModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LayerModelImplCopyWith<_$LayerModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1182,8 +1252,12 @@ mixin _$CellTileModel {
   List<Gid> get objects => throw _privateConstructorUsedError;
   List<Gid> get npcs => throw _privateConstructorUsedError;
 
+  /// Serializes this CellTileModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CellTileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CellTileModelCopyWith<CellTileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1213,6 +1287,8 @@ class _$CellTileModelCopyWithImpl<$Res, $Val extends CellTileModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CellTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1241,6 +1317,8 @@ class _$CellTileModelCopyWithImpl<$Res, $Val extends CellTileModel>
     ) as $Val);
   }
 
+  /// Create a copy of CellTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TileIdCopyWith<$Res> get tileId {
@@ -1276,6 +1354,8 @@ class __$$CellTileModelImplCopyWithImpl<$Res>
       _$CellTileModelImpl _value, $Res Function(_$CellTileModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CellTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1369,7 +1449,7 @@ class _$CellTileModelImpl extends _CellTileModel {
             const DeepCollectionEquality().equals(other._npcs, _npcs));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1378,7 +1458,9 @@ class _$CellTileModelImpl extends _CellTileModel {
       const DeepCollectionEquality().hash(_objects),
       const DeepCollectionEquality().hash(_npcs));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CellTileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CellTileModelImplCopyWith<_$CellTileModelImpl> get copyWith =>
@@ -1403,9 +1485,8 @@ abstract class _CellTileModel extends CellTileModel {
   factory _CellTileModel.fromJson(Map<String, dynamic> json) =
       _$CellTileModelImpl.fromJson;
 
-  @override
-
   /// to remove tile just set [TileId.empty] and recalculate [tileNeighbours]
+  @override
   TileId get tileId;
   @override
   List<TileNeighbourTitle> get tileNeighbours;
@@ -1413,8 +1494,11 @@ abstract class _CellTileModel extends CellTileModel {
   List<Gid> get objects;
   @override
   List<Gid> get npcs;
+
+  /// Create a copy of CellTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CellTileModelImplCopyWith<_$CellTileModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1443,8 +1527,12 @@ mixin _$RenderObjectModel {
   TileBehaviourType get animationBehaviour =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this RenderObjectModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $RenderObjectModelCopyWith<RenderObjectModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1480,6 +1568,8 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1518,6 +1608,8 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
     ) as $Val);
   }
 
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GidCopyWith<$Res> get id {
@@ -1526,6 +1618,8 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
     });
   }
 
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TileIdCopyWith<$Res> get tileId {
@@ -1534,6 +1628,8 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
     });
   }
 
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SerializedVector2CopyWith<$Res> get position {
@@ -1542,6 +1638,8 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
     });
   }
 
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SerializedVector2CopyWith<$Res> get distanceToOrigin {
@@ -1550,6 +1648,8 @@ class _$RenderObjectModelCopyWithImpl<$Res, $Val extends RenderObjectModel>
     });
   }
 
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner {
@@ -1596,6 +1696,8 @@ class __$$RenderObjectModelImplCopyWithImpl<$Res>
       $Res Function(_$RenderObjectModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1700,12 +1802,14 @@ class _$RenderObjectModelImpl extends _RenderObjectModel {
                 other.animationBehaviour == animationBehaviour));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, tileId, position,
       distanceToOrigin, distanceToTileLeftTopCorner, animationBehaviour);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$RenderObjectModelImplCopyWith<_$RenderObjectModelImpl> get copyWith =>
@@ -1733,13 +1837,12 @@ abstract class _RenderObjectModel extends RenderObjectModel {
   factory _RenderObjectModel.fromJson(Map<String, dynamic> json) =
       _$RenderObjectModelImpl.fromJson;
 
-  @override
-
   /// Since tileId can be used several times
   /// It cannot be used as gid.
   ///
   /// Instead, the new gid should be created
   /// for every new [RenderObjectModel].
+  @override
   Gid get id;
   @override
   TileId get tileId;
@@ -1749,14 +1852,17 @@ abstract class _RenderObjectModel extends RenderObjectModel {
   SerializedVector2 get distanceToOrigin;
   @override
   SerializedVector2 get distanceToTileLeftTopCorner;
-  @override
 
   /// To get/set correct animation use this property.
   ///
   /// For example, for flying objects use [TileBehaviourType.flyRight]
-  TileBehaviourType get animationBehaviour;
   @override
-  @JsonKey(ignore: true)
+  TileBehaviourType get animationBehaviour;
+
+  /// Create a copy of RenderObjectModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$RenderObjectModelImplCopyWith<_$RenderObjectModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1765,7 +1871,9 @@ abstract class _RenderObjectModel extends RenderObjectModel {
 mixin _$Gid {
   String get value => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Gid
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GidCopyWith<Gid> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -1786,6 +1894,8 @@ class _$GidCopyWithImpl<$Res, $Val extends Gid> implements $GidCopyWith<$Res> {
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of Gid
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1815,6 +1925,8 @@ class __$$GidImplCopyWithImpl<$Res> extends _$GidCopyWithImpl<$Res, _$GidImpl>
   __$$GidImplCopyWithImpl(_$GidImpl _value, $Res Function(_$GidImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of Gid
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1838,7 +1950,9 @@ class _$GidImpl extends _Gid {
   @override
   final String value;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of Gid
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GidImplCopyWith<_$GidImpl> get copyWith =>
@@ -1851,8 +1965,11 @@ abstract class _Gid extends Gid {
 
   @override
   String get value;
+
+  /// Create a copy of Gid
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GidImplCopyWith<_$GidImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1867,8 +1984,12 @@ mixin _$PlayerModel {
   /// just use [CanvasDataModel.player] with gid verification
   Gid get id => throw _privateConstructorUsedError;
 
+  /// Serializes this PlayerModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlayerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlayerModelCopyWith<PlayerModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1894,6 +2015,8 @@ class _$PlayerModelCopyWithImpl<$Res, $Val extends PlayerModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlayerModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1907,6 +2030,8 @@ class _$PlayerModelCopyWithImpl<$Res, $Val extends PlayerModel>
     ) as $Val);
   }
 
+  /// Create a copy of PlayerModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GidCopyWith<$Res> get id {
@@ -1938,6 +2063,8 @@ class __$$PlayerModelImplCopyWithImpl<$Res>
       _$PlayerModelImpl _value, $Res Function(_$PlayerModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlayerModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1978,11 +2105,13 @@ class _$PlayerModelImpl extends _PlayerModel {
             (identical(other.id, id) || other.id == id));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlayerModelImplCopyWith<_$PlayerModelImpl> get copyWith =>
@@ -2003,13 +2132,15 @@ abstract class _PlayerModel extends PlayerModel {
   factory _PlayerModel.fromJson(Map<String, dynamic> json) =
       _$PlayerModelImpl.fromJson;
 
-  @override
-
   /// to get access to [RenderObjectModel]
   /// just use [CanvasDataModel.player] with gid verification
-  Gid get id;
   @override
-  @JsonKey(ignore: true)
+  Gid get id;
+
+  /// Create a copy of PlayerModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayerModelImplCopyWith<_$PlayerModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2053,8 +2184,13 @@ mixin _$TileNeighbourTitle {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
+
+  /// Serializes this TileNeighbourTitle to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TileNeighbourTitle
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TileNeighbourTitleCopyWith<TileNeighbourTitle> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2078,6 +2214,8 @@ class _$TileNeighbourTitleCopyWithImpl<$Res, $Val extends TileNeighbourTitle>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TileNeighbourTitle
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2111,6 +2249,8 @@ class __$$TileNeighbourTitleImplCopyWithImpl<$Res>
       $Res Function(_$TileNeighbourTitleImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TileNeighbourTitle
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2136,7 +2276,9 @@ class _$TileNeighbourTitleImpl extends _TileNeighbourTitle {
   @override
   final String value;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TileNeighbourTitle
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TileNeighbourTitleImplCopyWith<_$TileNeighbourTitleImpl> get copyWith =>
@@ -2217,8 +2359,11 @@ abstract class _TileNeighbourTitle extends TileNeighbourTitle {
 
   @override
   String get value;
+
+  /// Create a copy of TileNeighbourTitle
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TileNeighbourTitleImplCopyWith<_$TileNeighbourTitleImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2229,6 +2374,7 @@ CellDataModel _$CellDataModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$CellDataModel {
+  /// Serializes this CellDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 }
 
@@ -2248,6 +2394,9 @@ class _$CellDataModelCopyWithImpl<$Res, $Val extends CellDataModel>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of CellDataModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2264,6 +2413,9 @@ class __$$CellDataModelImplCopyWithImpl<$Res>
   __$$CellDataModelImplCopyWithImpl(
       _$CellDataModelImpl _value, $Res Function(_$CellDataModelImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of CellDataModel
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -2285,7 +2437,7 @@ class _$CellDataModelImpl implements _CellDataModel {
         (other.runtimeType == runtimeType && other is _$CellDataModelImpl);
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => runtimeType.hashCode;
 
@@ -2313,8 +2465,12 @@ mixin _$CellPointModel {
   int get x => throw _privateConstructorUsedError;
   int get y => throw _privateConstructorUsedError;
 
+  /// Serializes this CellPointModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CellPointModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CellPointModelCopyWith<CellPointModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2338,6 +2494,8 @@ class _$CellPointModelCopyWithImpl<$Res, $Val extends CellPointModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CellPointModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2376,6 +2534,8 @@ class __$$CellPointModelImplCopyWithImpl<$Res>
       _$CellPointModelImpl _value, $Res Function(_$CellPointModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CellPointModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2408,7 +2568,9 @@ class _$CellPointModelImpl extends _CellPointModel {
   @override
   final int y;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CellPointModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CellPointModelImplCopyWith<_$CellPointModelImpl> get copyWith =>
@@ -2435,8 +2597,11 @@ abstract class _CellPointModel extends CellPointModel {
   int get x;
   @override
   int get y;
+
+  /// Create a copy of CellPointModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CellPointModelImplCopyWith<_$CellPointModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

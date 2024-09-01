@@ -37,7 +37,7 @@ class LevelModel with _$LevelModel {
   const factory LevelModel({
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
-    @Default(TilesetType.colourful) final TilesetType tilesetType,
+    @Default(TilesetType.whiteBlack) final TilesetType tilesetType,
     @Default([]) final List<WeatherModel> weathers,
     @Default(WindModel.zero) final WindModel wind,
 

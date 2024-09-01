@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$MapEditorBlocState {
   bool get isEditing => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MapEditorBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $MapEditorBlocStateCopyWith<MapEditorBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -42,6 +44,8 @@ class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of MapEditorBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -75,6 +79,8 @@ class __$$MapEditorBlocStateImplCopyWithImpl<$Res>
       $Res Function(_$MapEditorBlocStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of MapEditorBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -115,7 +121,9 @@ class _$MapEditorBlocStateImpl implements _MapEditorBlocState {
   @override
   int get hashCode => Object.hash(runtimeType, isEditing);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of MapEditorBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$MapEditorBlocStateImplCopyWith<_$MapEditorBlocStateImpl> get copyWith =>
@@ -129,8 +137,11 @@ abstract class _MapEditorBlocState implements MapEditorBlocState {
 
   @override
   bool get isEditing;
+
+  /// Create a copy of MapEditorBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$MapEditorBlocStateImplCopyWith<_$MapEditorBlocStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

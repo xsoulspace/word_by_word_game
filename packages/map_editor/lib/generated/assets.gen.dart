@@ -12,14 +12,20 @@ import 'package:flutter/widgets.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// Directory path: assets/images/cursors
   $AssetsImagesCursorsGen get cursors => const $AssetsImagesCursorsGen();
+
+  /// Directory path: assets/images/preview
   $AssetsImagesPreviewGen get preview => const $AssetsImagesPreviewGen();
+
+  /// Directory path: assets/images/tilesets
   $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
 }
 
 class $AssetsImagesCursorsGen {
   const $AssetsImagesCursorsGen();
 
+  /// Directory path: assets/images/cursors/cursor
   $AssetsImagesCursorsCursorGen get cursor =>
       const $AssetsImagesCursorsCursorGen();
 }
@@ -27,10 +33,15 @@ class $AssetsImagesCursorsGen {
 class $AssetsImagesPreviewGen {
   const $AssetsImagesPreviewGen();
 
+  /// Directory path: assets/images/preview/colourful
   $AssetsImagesPreviewColourfulGen get colourful =>
       const $AssetsImagesPreviewColourfulGen();
+
+  /// Directory path: assets/images/preview/evening
   $AssetsImagesPreviewEveningGen get evening =>
       const $AssetsImagesPreviewEveningGen();
+
+  /// Directory path: assets/images/preview/white_black
   $AssetsImagesPreviewWhiteBlackGen get whiteBlack =>
       const $AssetsImagesPreviewWhiteBlackGen();
 }
@@ -41,22 +52,7 @@ class $AssetsImagesTilesetsGen {
   /// File path: assets/images/tilesets/README.md
   String get readme => 'assets/images/tilesets/README.md';
 
-  $AssetsImagesTilesetsColourfulGen get colourful =>
-      const $AssetsImagesTilesetsColourfulGen();
-
-  /// File path: assets/images/tilesets/colourful.fa
-  String get colourfulFa => 'assets/images/tilesets/colourful.fa';
-
-  /// File path: assets/images/tilesets/colourful.json
-  String get colourfulJson => 'assets/images/tilesets/colourful.json';
-
-  /// File path: assets/images/tilesets/colourful_credits.md
-  String get colourfulCredits => 'assets/images/tilesets/colourful_credits.md';
-
-  /// File path: assets/images/tilesets/colourful_preset_data.json
-  String get colourfulPresetData =>
-      'assets/images/tilesets/colourful_preset_data.json';
-
+  /// Directory path: assets/images/tilesets/evening
   $AssetsImagesTilesetsEveningGen get evening =>
       const $AssetsImagesTilesetsEveningGen();
 
@@ -73,6 +69,7 @@ class $AssetsImagesTilesetsGen {
   String get eveningPresetData =>
       'assets/images/tilesets/evening_preset_data.json';
 
+  /// Directory path: assets/images/tilesets/white_black
   $AssetsImagesTilesetsWhiteBlackGen get whiteBlack =>
       const $AssetsImagesTilesetsWhiteBlackGen();
 
@@ -93,10 +90,6 @@ class $AssetsImagesTilesetsGen {
   /// List of all assets
   List<String> get values => [
         readme,
-        colourfulFa,
-        colourfulJson,
-        colourfulCredits,
-        colourfulPresetData,
         eveningFa,
         eveningJson,
         eveningCredits,
@@ -130,17 +123,8 @@ class $AssetsImagesPreviewColourfulGen {
   AssetGenImage get markerRed =>
       const AssetGenImage('assets/images/preview/colourful/marker_red.png');
 
-  /// File path: assets/images/preview/colourful/tropical_land.png
-  AssetGenImage get tropicalLand =>
-      const AssetGenImage('assets/images/preview/colourful/tropical_land.png');
-
-  /// File path: assets/images/preview/colourful/tropical_water.png
-  AssetGenImage get tropicalWater =>
-      const AssetGenImage('assets/images/preview/colourful/tropical_water.png');
-
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [markerGreen, markerRed, tropicalLand, tropicalWater];
+  List<AssetGenImage> get values => [markerGreen, markerRed];
 }
 
 class $AssetsImagesPreviewEveningGen {
@@ -163,79 +147,6 @@ class $AssetsImagesPreviewWhiteBlackGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [land];
-}
-
-class $AssetsImagesTilesetsColourfulGen {
-  const $AssetsImagesTilesetsColourfulGen();
-
-  /// File path: assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png
-  AssetGenImage get hotAirBalloonIdleRight0 => const AssetGenImage(
-      'assets/images/tilesets/colourful/hot_air_balloon__idle_right_0.png');
-
-  /// File path: assets/images/tilesets/colourful/marker_green__x.png
-  AssetGenImage get markerGreenX => const AssetGenImage(
-      'assets/images/tilesets/colourful/marker_green__x.png');
-
-  /// File path: assets/images/tilesets/colourful/marker_red__x.png
-  AssetGenImage get markerRedX =>
-      const AssetGenImage('assets/images/tilesets/colourful/marker_red__x.png');
-
-  /// File path: assets/images/tilesets/colourful/object__cursor_handle__idle.png
-  AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
-      'assets/images/tilesets/colourful/object__cursor_handle__idle.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_center.png
-  AssetGenImage get tropicalLandBottomCenter => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__bottom_center.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_left.png
-  AssetGenImage get tropicalLandBottomLeft => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__bottom_left.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__bottom_right.png
-  AssetGenImage get tropicalLandBottomRight => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__bottom_right.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__middle_left.png
-  AssetGenImage get tropicalLandMiddleLeft => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__middle_left.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__middle_right.png
-  AssetGenImage get tropicalLandMiddleRight => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__middle_right.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__top_center.png
-  AssetGenImage get tropicalLandTopCenter => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__top_center.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__top_left.png
-  AssetGenImage get tropicalLandTopLeft => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__top_left.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__top_right.png
-  AssetGenImage get tropicalLandTopRight => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__top_right.png');
-
-  /// File path: assets/images/tilesets/colourful/tropical_land__x.png
-  AssetGenImage get tropicalLandX => const AssetGenImage(
-      'assets/images/tilesets/colourful/tropical_land__x.png');
-
-  /// List of all assets
-  List<AssetGenImage> get values => [
-        hotAirBalloonIdleRight0,
-        markerGreenX,
-        markerRedX,
-        objectCursorHandleIdle,
-        tropicalLandBottomCenter,
-        tropicalLandBottomLeft,
-        tropicalLandBottomRight,
-        tropicalLandMiddleLeft,
-        tropicalLandMiddleRight,
-        tropicalLandTopCenter,
-        tropicalLandTopLeft,
-        tropicalLandTopRight,
-        tropicalLandX
-      ];
 }
 
 class $AssetsImagesTilesetsEveningGen {
@@ -359,6 +270,10 @@ class $AssetsImagesTilesetsWhiteBlackGen {
   AssetGenImage get objectBuildingTentIdle => const AssetGenImage(
       'assets/images/tilesets/white_black/object__building_tent__idle.png');
 
+  /// File path: assets/images/tilesets/white_black/object__building_wind_water_tower__idle.png
+  AssetGenImage get objectBuildingWindWaterTowerIdle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__building_wind_water_tower__idle.png');
+
   /// File path: assets/images/tilesets/white_black/object__cursor_handle__idle.png
   AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
       'assets/images/tilesets/white_black/object__cursor_handle__idle.png');
@@ -399,6 +314,7 @@ class $AssetsImagesTilesetsWhiteBlackGen {
         markerGreenX,
         markerRedX,
         objectBuildingTentIdle,
+        objectBuildingWindWaterTowerIdle,
         objectCursorHandleIdle,
         objectPlant1Idle,
         objectPlant2Idle,
@@ -416,9 +332,16 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  });
 
   final String _assetName;
+
+  final Size? size;
+  final Set<String> flavors;
 
   Image image({
     Key? key,

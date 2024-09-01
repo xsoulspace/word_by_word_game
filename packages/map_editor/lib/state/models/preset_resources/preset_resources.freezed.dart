@@ -22,7 +22,9 @@ mixin _$PresetTileResource {
   Map<String, AnimationEntryModel> get directionalPaths =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PresetTileResource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PresetTileResourceCopyWith<PresetTileResource> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -51,6 +53,8 @@ class _$PresetTileResourceCopyWithImpl<$Res, $Val extends PresetTileResource>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PresetTileResource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -74,6 +78,8 @@ class _$PresetTileResourceCopyWithImpl<$Res, $Val extends PresetTileResource>
     ) as $Val);
   }
 
+  /// Create a copy of PresetTileResource
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PresetTileModelCopyWith<$Res> get tile {
@@ -108,6 +114,8 @@ class __$$PresetTileResourceImplCopyWithImpl<$Res>
       $Res Function(_$PresetTileResourceImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PresetTileResource
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -188,7 +196,9 @@ class _$PresetTileResourceImpl extends _PresetTileResource {
       const DeepCollectionEquality().hash(_behaviourPaths),
       const DeepCollectionEquality().hash(_directionalPaths));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PresetTileResource
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PresetTileResourceImplCopyWith<_$PresetTileResourceImpl> get copyWith =>
@@ -210,8 +220,11 @@ abstract class _PresetTileResource extends PresetTileResource {
   Map<TileBehaviourType, AnimationEntryModel> get behaviourPaths;
   @override
   Map<String, AnimationEntryModel> get directionalPaths;
+
+  /// Create a copy of PresetTileResource
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PresetTileResourceImplCopyWith<_$PresetTileResourceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
