@@ -129,10 +129,9 @@ class LevelBloc extends Cubit<LevelBlocState> {
         word: liveState.currentWord.fullWord,
       ),
     );
-    return onAcceptNewWord();
   }
 
-  Future<void> onAcceptNewWord() async {
+  Future<bool> onAcceptNewWord() async {
     final liveState = state;
     final currentWord = liveState.currentWord;
     final newWord = currentWord.fullWord;
@@ -142,10 +141,11 @@ class LevelBloc extends Cubit<LevelBlocState> {
           wordWarning: WordWarning.isNotCorrect,
         ),
       );
+      return false;
     }
 
     final wordWarning = await _checkNewWord(currentWord);
-    if (wordWarning == WordWarning.none) {
+    if (wordWarning case WordWarning.none) {
       final levelPlayersBloc = dto.levelPlayersCubit;
       final updatedWords = {
         ...liveState.words,
@@ -169,6 +169,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
         ),
       );
       dto.technologiesCubit.onWordAccepted(word: newWord, score: score);
+      return true;
     } else {
       emit(
         liveState.copyWith(
@@ -176,7 +177,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
         ),
       );
     }
-    return;
+    return false;
   }
 
   void onLevelPlayerSelectActionMultiplier(
