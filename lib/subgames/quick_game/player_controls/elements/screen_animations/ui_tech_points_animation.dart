@@ -40,7 +40,7 @@ class _UiTechPointsAnimationState extends State<UiTechPointsAnimation>
   Future<void> _onData() async {
     final screenSize = MediaQuery.sizeOf(context);
     int count = _notifier.points;
-    const minBottomOffsetY = 260.0;
+    const minBottomOffsetY = 300.0;
     final screenHeight = screenSize.height;
     final maxBottomOffsetY = screenHeight;
 
@@ -86,11 +86,11 @@ class _UiTechPointsAnimationState extends State<UiTechPointsAnimation>
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: 0, end: finalOpacity)
               .chain(CurveTween(curve: Curves.easeIn)),
-          weight: 10,
+          weight: 30,
         ),
         TweenSequenceItem<double>(
           tween: ConstantTween<double>(finalOpacity),
-          weight: 80,
+          weight: 60,
         ),
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: finalOpacity, end: 0)

@@ -139,12 +139,10 @@ class _LabelText extends StatelessWidget {
                   ? UiTextCounter(
                       value: value ?? 0,
                       textAlign: TextAlign.center,
-                    ).animate().fadeIn().scaleXY(begin: 1.1).slideY(begin: -0.2)
+                    )
                   : Text(
                       text,
-                      style: textTheme.titleLarge!.copyWith(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      textAlign: TextAlign.center,
                     ))
               .animate()
               .fadeIn()

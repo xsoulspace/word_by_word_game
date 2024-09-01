@@ -7,8 +7,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_power_points_animation.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_tech_points_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class GuiOverlay extends StatelessWidget {
@@ -22,15 +20,8 @@ class GuiOverlay extends StatelessWidget {
     final currentLevelId = context.select<GlobalGameBloc, CanvasDataModelId>(
       (final bloc) => bloc.state.currentLevelId,
     );
-    final uiTheme = context.uiTheme;
     return DialogStack(
       children: [
-        const Positioned.fill(
-          child: IgnorePointer(child: UiTechPointsAnimation()),
-        ),
-        const Positioned.fill(
-          child: IgnorePointer(child: UiPowerPointsAnimation()),
-        ),
         const Positioned(
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -69,6 +60,12 @@ class GuiOverlay extends StatelessWidget {
               ),
             );
           },
+        ),
+        const Positioned.fill(
+          child: IgnorePointer(child: UiTechPointsAnimation()),
+        ),
+        const Positioned.fill(
+          child: IgnorePointer(child: UiPowerPointsAnimation()),
         ),
       ],
     );

@@ -229,6 +229,10 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         balloonPowers: level.characters.playerCharacter.balloonPowers.copyWith(
           /// volume should be 0 to prevent any lift
           volume: 0,
+
+          /// power should be 0 to give player visible effect
+          /// of storing energy
+          power: 0,
         ),
       );
     }
@@ -241,11 +245,9 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
           balloonParams: BalloonLiftParamsModel.initial.copyWith(
             powerUsage: dto.mechanics.engine.maxPowerUsage,
           ),
+          balloonPowers: BalloonLiftPowersModel.initial,
         );
       }
-      level = level.copyWith.characters.playerCharacter(
-        balloonPowers: BalloonLiftPowersModel.initial,
-      );
       level = level.copyWith.players(
         players: level.players.players
             .map(

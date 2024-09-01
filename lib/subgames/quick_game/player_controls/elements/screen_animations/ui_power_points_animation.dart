@@ -33,7 +33,7 @@ class _UiPowerPointsAnimationState extends State<UiPowerPointsAnimation>
     int count = _notifier.points ~/ 2;
     const minBottomOffsetY = 200.0;
     final screenHeight = screenSize.height;
-    final maxBottomOffsetY = screenHeight;
+    final maxBottomOffsetY = screenHeight - 20;
 
     /// center of the screen
     final minRightOffsetX = screenSize.width / 2;
@@ -77,16 +77,16 @@ class _UiPowerPointsAnimationState extends State<UiPowerPointsAnimation>
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: 0, end: finalOpacity)
               .chain(CurveTween(curve: Curves.easeIn)),
-          weight: 15,
+          weight: 20,
         ),
         TweenSequenceItem<double>(
           tween: ConstantTween<double>(finalOpacity),
-          weight: 75,
+          weight: 60,
         ),
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: finalOpacity, end: 0)
               .chain(CurveTween(curve: Curves.easeOut)),
-          weight: 10,
+          weight: 20,
         ),
       ],
     );
@@ -97,8 +97,9 @@ class _UiPowerPointsAnimationState extends State<UiPowerPointsAnimation>
   }) {
     final controller =
         AnimationController(vsync: this, duration: 750.milliseconds);
-    final moveAnimation =
-        controller.drive(CurveTween(curve: Curves.easeInBack));
+    final moveAnimation = controller.drive(
+      CurveTween(curve: Curves.easeInOut),
+    );
     final fadeAnimation = tweenSequence.animate(controller);
 
     return (
