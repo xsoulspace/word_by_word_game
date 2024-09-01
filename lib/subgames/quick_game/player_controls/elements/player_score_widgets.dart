@@ -139,6 +139,7 @@ class _LabelText extends StatelessWidget {
                   ? UiTextCounter(
                       value: value ?? 0,
                       textAlign: TextAlign.center,
+                      delay: 350.milliseconds,
                     )
                   : Text(
                       text,

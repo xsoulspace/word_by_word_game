@@ -72,6 +72,7 @@ class TechProgressBar extends StatelessWidget {
                 style: context.textTheme.labelLarge?.copyWith(
                   color: context.colorScheme.primary.withOpacity(0.6),
                 ),
+                delay: 1.seconds,
               ),
               Text(
                 '/$nextScore',

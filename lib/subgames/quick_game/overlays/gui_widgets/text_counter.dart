@@ -1,8 +1,11 @@
+import 'dart:async';
+
 import 'package:word_by_word_game/common_imports.dart';
 
 class UiTextCounter extends StatefulWidget {
   const UiTextCounter({
     required this.value,
+    this.delay = Duration.zero,
     this.textAlign = TextAlign.start,
     super.key,
     this.style,
@@ -14,6 +17,7 @@ class UiTextCounter extends StatefulWidget {
   final TextStyle? style;
   final String prefix;
   final String suffix;
+  final Duration delay;
 
   @override
   _UiTextCounterState createState() => _UiTextCounterState();
@@ -55,11 +59,14 @@ class _UiTextCounterState extends State<UiTextCounter>
   @override
   void didUpdateWidget(covariant final UiTextCounter oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (oldWidget.value != widget.value) {
-      _oldValue = oldWidget.value;
-      _initializeAnimations();
-      _controller.forward(from: 0);
-    }
+    unawaited(() async {
+      if (oldWidget.value != widget.value) {
+        _oldValue = oldWidget.value;
+        await Future.delayed(widget.delay);
+        _initializeAnimations();
+        unawaited(_controller.forward(from: 0));
+      }
+    }());
   }
 
   @override
