@@ -11,7 +11,14 @@ extension type const TechnologyModelId(TechnologyType value) {
     } else {
       throw UnsupportedError(value);
     }
-    return TechnologyModelId(TechnologyType.values.byName(val));
+    TechnologyType type;
+    try {
+      type = TechnologyType.values.byName(val);
+      // ignore: avoid_catches_without_on_clauses
+    } catch (e) {
+      type = TechnologyType.unknown;
+    }
+    return TechnologyModelId(type);
   }
   dynamic toJson() => value.name;
 }
@@ -26,7 +33,7 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
     )
     @Default({})
     final Map<TechnologyModelId, TechnologyProgressModel> technologies,
-    final TechnologyModelId? researchingTechnologyId,
+    @Default(ScoreModel.zero) final ScoreModel investedResearchScore,
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
     final Map<String, dynamic> json,
@@ -80,7 +87,6 @@ class TechnologyModel with _$TechnologyModel {
     /// use [TechnologyProgressModel] to store/retrieve actual progress
     required final TechnologyUnlockConditionModel unlockCondition,
     @Default(0) final int index,
-    final TechnologyModelId? parentTechnologyId,
   }) = _TechnologyModel;
   factory TechnologyModel.fromJson(final Map<String, dynamic> json) =>
       _$TechnologyModelFromJson(json);
@@ -124,14 +130,24 @@ class UsefulWordModel with _$UsefulWordModel {
 }
 
 enum TechnologyType {
+  // use for all unknown technologies
+  unknown,
+  // not used
   safeLanding,
+  // not used
   emergencyLanding,
   ascending,
-  descending;
+  poweringEngine,
+  descending,
+  buildingTent,
+  buildingWindWaterTower;
 
   static const Set<TechnologyType> _active = {
-    TechnologyType.ascending,
-    TechnologyType.descending,
+    ascending,
+    descending,
+    buildingTent,
+    buildingWindWaterTower,
+    poweringEngine,
   };
   static bool checkIsActive(final TechnologyType type) =>
       _active.contains(type);

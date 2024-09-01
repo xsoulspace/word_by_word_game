@@ -80,9 +80,12 @@ class TilesDrawer extends Component
   }
 
   math.Point<int>? _lastSelectedCell;
-  void _onTap(final Vector2 canvasPosition) {
-    final originUtils = OriginVectorUtils.use(origin);
-    final cell = originUtils.getCurrentCellByTap(canvasPosition);
+  void _onTap(final Vector2 screenVector2) {
+    final gameVector2 = GameVector2.fromScreenVector2(
+      screenVector2: screenVector2,
+      origins: origins,
+    );
+    final cell = gameVector2.toMapTileCell();
     final effectiveLayerTiles = {...layerTiles};
     final cellPoint = cell.toCellPoint();
     final tileToDraw = drawerCubit.tileToDraw;
@@ -207,7 +210,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     required final double windowWidth,
   }) {
     if (canvasData.tilesetType != _tilesetType || _spriteImage == null) {
-      print('render atlas called');
+      if (kDebugMode) print('render atlas called');
       _tilesetType = canvasData.tilesetType;
       _spriteImage = null;
       _runtimeCache.clear();
@@ -216,7 +219,8 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
     final visibleLayers = canvasData.layers.where((final e) => e.isVisible);
     final atlasRects = <Rect>[];
     final atlasRsTransforms = <RSTransform>[];
-
+    // TODO(arenukvern): add debugging rects
+    // final debugObjectsRects = <Rect>[];
     for (final tileLayer in visibleLayers) {
       for (var col = -1; col < tileColumns + 1; col++) {
         for (var row = -1; row < tileRows + 3; row++) {
@@ -233,11 +237,16 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
           final vectorPosition =
               origin + (cellPoint.toVector2() * kTileDimension.toDouble());
 
-          // / only for debug purposes
+          /// only for debug purposes
+          /// to display empty tiles
           // if (cellTile.tileId.isEmpty) {
           //   canvas.drawRect(
-          //     Rect.fromLTWH(vectorPosition.x, vectorPosition.y,
-          //         kTileDimension.toDouble(), kTileDimension.toDouble()),
+          //     Rect.fromLTWH(
+          //       vectorPosition.x,
+          //       vectorPosition.y,
+          //       kTileDimension.toDouble(),
+          //       kTileDimension.toDouble(),
+          //     ),
           //     Paint()..color = material.Colors.red,
           //   );
           //   continue;
@@ -289,6 +298,14 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
               // sprite.render(canvas, position: position.toVector2());
               atlasRects.add(src.srcRect);
               atlasRsTransforms.add(rsTransform);
+
+              /// for debug purposes to display tiles
+              // debugObjectsRects.add(
+              //   Rect.fromPoints(
+              //     _tmpRenderPosition.toOffset(),
+              //     _tmpRenderSize.toOffset() + _tmpRenderPosition.toOffset(),
+              //   ),
+              // );
             }
 
             /// Drawing tile
@@ -303,6 +320,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 renderPath(code);
             }
           }
+
           // TODO(arenukvern): fix objects drawing because they should be drawn
           // on top of tiles, but currently they are behind them
           /// Drawing objects
@@ -333,10 +351,10 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
       }
       final atlasImage = _spriteImage;
       if (atlasImage == null) {
-        print('atlas image is null');
+        if (kDebugMode) print('atlas image is null');
         return;
       } else if (atlasImage.debugDisposed) {
-        print('atlas image disposed');
+        if (kDebugMode) print('atlas image disposed');
         _spriteImage = null;
         return;
       }
@@ -352,6 +370,17 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
       );
       atlasRsTransforms.clear();
       atlasRects.clear();
+
+      /// for debug purposes to display any debug rect
+      // for (final rect in debugObjectsRects) {
+      //   canvas.drawRect(
+      //     rect,
+      //     Paint()
+      //       ..style = material.PaintingStyle.stroke
+      //       ..color = material.Colors.pink,
+      //   );
+      // }
+      // debugObjectsRects.clear();
     }
   }
 

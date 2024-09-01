@@ -9,6 +9,7 @@ import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 // ignore: implementation_imports
 import 'package:flame_bloc/flame_bloc.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/generated/assets.gen.dart';
@@ -125,6 +126,7 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   EditorRendererComponent get editor => _editor ??= game.editor;
   EditorDrawerCubit get drawerCubit => game.diDto.drawerCubit;
   Vector2 get origin => editor.origin;
+  GameOrigins get origins => GameOrigins(origin, getOffsetOrigin());
   @useResult
   Vector2 getOffsetOrigin() => editor.getOffsetOrigin();
   set origin(final Vector2 value) => editor.origin = value;

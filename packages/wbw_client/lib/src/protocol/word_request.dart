@@ -11,7 +11,7 @@
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'protocol.dart' as _i2;
 
-abstract class WordRequest extends _i1.SerializableEntity {
+abstract class WordRequest implements _i1.SerializableModel {
   WordRequest._({
     required this.language,
     required this.word,
@@ -22,14 +22,11 @@ abstract class WordRequest extends _i1.SerializableEntity {
     required String word,
   }) = _WordRequestImpl;
 
-  factory WordRequest.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory WordRequest.fromJson(Map<String, dynamic> jsonSerialization) {
     return WordRequest(
-      language: serializationManager
-          .deserialize<_i2.WordLanguage>(jsonSerialization['language']),
-      word: serializationManager.deserialize<String>(jsonSerialization['word']),
+      language:
+          _i2.WordLanguage.fromJson((jsonSerialization['language'] as String)),
+      word: jsonSerialization['word'] as String,
     );
   }
 
@@ -47,6 +44,11 @@ abstract class WordRequest extends _i1.SerializableEntity {
       'language': language.toJson(),
       'word': word,
     };
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 

@@ -19,7 +19,9 @@ mixin _$TechnologiesCubitState {
   TechnologyTreeProgressModel get progress =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologiesCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TechnologiesCubitStateCopyWith<TechnologiesCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$TechnologiesCubitStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TechnologiesCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -59,6 +63,8 @@ class _$TechnologiesCubitStateCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of TechnologiesCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TechnologyTreeProgressModelCopyWith<$Res> get progress {
@@ -93,6 +99,8 @@ class __$$TechnologiesCubitStateImplCopyWithImpl<$Res>
       $Res Function(_$TechnologiesCubitStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TechnologiesCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,7 +143,9 @@ class _$TechnologiesCubitStateImpl extends _TechnologiesCubitState {
   @override
   int get hashCode => Object.hash(runtimeType, progress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologiesCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TechnologiesCubitStateImplCopyWith<_$TechnologiesCubitStateImpl>
@@ -151,8 +161,11 @@ abstract class _TechnologiesCubitState extends TechnologiesCubitState {
 
   @override
   TechnologyTreeProgressModel get progress;
+
+  /// Create a copy of TechnologiesCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TechnologiesCubitStateImplCopyWith<_$TechnologiesCubitStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

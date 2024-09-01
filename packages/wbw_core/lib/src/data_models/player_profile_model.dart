@@ -35,9 +35,10 @@ class PlayerProfileModel with _$PlayerProfileModel {
         id: IdCreator.create(),
         name: name,
       );
+  static const emptyPlayerId = '0';
   static const empty = PlayerProfileModel(
     colorValue: 0xFFFF9000,
-    id: '0',
+    id: emptyPlayerId,
     name: '',
   );
   Color get color => Color(colorValue);

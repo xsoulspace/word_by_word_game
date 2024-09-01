@@ -12,7 +12,7 @@ part of 'saveable_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$CanvasDataModelId {
@@ -141,8 +141,8 @@ mixin _$CanvasDataModel {
   /// This way there will be easy way to loop all objects or change just
   /// one object.
   @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson)
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
   Map<Gid, RenderObjectModel> get objects => throw _privateConstructorUsedError;
 
   /// As player is unique - it should be used separately from [objects].
@@ -179,8 +179,8 @@ abstract class $CanvasDataModelCopyWith<$Res> {
       LocalizedMap name,
       List<LayerModel> layers,
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
       int skyYTilePosition,
@@ -309,8 +309,8 @@ abstract class _$$CanvasDataModelImplCopyWith<$Res>
       LocalizedMap name,
       List<LayerModel> layers,
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       Map<Gid, RenderObjectModel> objects,
       RenderObjectModel playerObject,
       int skyYTilePosition,
@@ -404,8 +404,8 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
       this.name = LocalizedMap.empty,
       final List<LayerModel> layers = const [],
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       final Map<Gid, RenderObjectModel> objects = const {},
       this.playerObject = RenderObjectModel.empty,
       this.skyYTilePosition = 0,
@@ -455,8 +455,8 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
   /// one object.
   @override
   @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson)
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
   Map<Gid, RenderObjectModel> get objects {
     if (_objects is EqualUnmodifiableMapView) return _objects;
     // ignore: implicit_dynamic_type
@@ -496,7 +496,7 @@ class _$CanvasDataModelImpl extends _CanvasDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CanvasDataModelImpl &&
@@ -556,8 +556,8 @@ abstract class _CanvasDataModel extends CanvasDataModel {
       final LocalizedMap name,
       final List<LayerModel> layers,
       @JsonKey(
-          fromJson: CanvasDataModel._objectsFromJson,
-          toJson: CanvasDataModel._objectsToJson)
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
       final Map<Gid, RenderObjectModel> objects,
       final RenderObjectModel playerObject,
       final int skyYTilePosition,
@@ -590,8 +590,8 @@ abstract class _CanvasDataModel extends CanvasDataModel {
   /// This way there will be easy way to loop all objects or change just
   /// one object.
   @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson)
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
   Map<Gid, RenderObjectModel> get objects;
   @override
 
@@ -714,7 +714,7 @@ class _$GravityModelImpl extends _GravityModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$GravityModelImpl &&
@@ -1089,7 +1089,7 @@ class _$LayerModelImpl extends _LayerModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$LayerModelImpl &&
@@ -1358,7 +1358,7 @@ class _$CellTileModelImpl extends _CellTileModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$CellTileModelImpl &&
@@ -1637,14 +1637,15 @@ class __$$RenderObjectModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$RenderObjectModelImpl implements _RenderObjectModel {
+class _$RenderObjectModelImpl extends _RenderObjectModel {
   const _$RenderObjectModelImpl(
       {required this.id,
       required this.tileId,
       this.position = SerializedVector2.zero,
       this.distanceToOrigin = SerializedVector2.zero,
       this.distanceToTileLeftTopCorner = SerializedVector2.zero,
-      this.animationBehaviour = TileBehaviourType.idle});
+      this.animationBehaviour = TileBehaviourType.idle})
+      : super._();
 
   factory _$RenderObjectModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$RenderObjectModelImplFromJson(json);
@@ -1681,7 +1682,7 @@ class _$RenderObjectModelImpl implements _RenderObjectModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$RenderObjectModelImpl &&
@@ -1719,7 +1720,7 @@ class _$RenderObjectModelImpl implements _RenderObjectModel {
   }
 }
 
-abstract class _RenderObjectModel implements RenderObjectModel {
+abstract class _RenderObjectModel extends RenderObjectModel {
   const factory _RenderObjectModel(
       {required final Gid id,
       required final TileId tileId,
@@ -1727,6 +1728,7 @@ abstract class _RenderObjectModel implements RenderObjectModel {
       final SerializedVector2 distanceToOrigin,
       final SerializedVector2 distanceToTileLeftTopCorner,
       final TileBehaviourType animationBehaviour}) = _$RenderObjectModelImpl;
+  const _RenderObjectModel._() : super._();
 
   factory _RenderObjectModel.fromJson(Map<String, dynamic> json) =
       _$RenderObjectModelImpl.fromJson;
@@ -1969,7 +1971,7 @@ class _$PlayerModelImpl extends _PlayerModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$PlayerModelImpl &&
@@ -2278,7 +2280,7 @@ class _$CellDataModelImpl implements _CellDataModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType && other is _$CellDataModelImpl);
   }

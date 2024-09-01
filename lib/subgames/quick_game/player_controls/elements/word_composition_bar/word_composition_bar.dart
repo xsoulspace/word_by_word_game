@@ -1,6 +1,5 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:rxdart/rxdart.dart';
@@ -16,13 +15,19 @@ part 'word_composition_bar.freezed.dart';
 part 'word_composition_bar_state.dart';
 
 class UiWordCompositionBar extends StatelessWidget {
-  const UiWordCompositionBar({super.key});
+  const UiWordCompositionBar({
+    super.key,
+    this.rightSlot,
+  });
+  final Widget? rightSlot;
   @override
   Widget build(final BuildContext context) => TutorialFrame(
         highlightPosition: Alignment.topCenter,
         uiKey: TutorialUiItem.wordField,
         child: WordField(
-          controller: context.read<WordCompositionCubit>().wordController,
+          controller: context.read<GuiWordCompositionCubit>().wordController,
+          switcherButtonAlignment: KeyboardSwitcherButtonAlignment.left,
+          rightSlot: rightSlot,
         ),
 
         // hintText: S.of(context).hintAddEnding,

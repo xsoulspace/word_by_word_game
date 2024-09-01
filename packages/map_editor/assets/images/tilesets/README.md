@@ -41,3 +41,9 @@ move_left
 attack
 attack_left
 attack_right
+
+## ID for objects
+
+- id should be unique for each object
+- id should be the same as file name, for example:
+  id `building_tent` will became `object__building_tent__idle.png` in tilesets

@@ -19,7 +19,9 @@ mixin _$LoadableContainer<T> {
   T get value => throw _privateConstructorUsedError;
   bool get isLoaded => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoadableContainer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LoadableContainerCopyWith<T, LoadableContainer<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$LoadableContainerCopyWithImpl<T, $Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LoadableContainer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -82,6 +86,8 @@ class __$$LoadableContainerImplCopyWithImpl<T, $Res>
       $Res Function(_$LoadableContainerImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of LoadableContainer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -132,7 +138,9 @@ class _$LoadableContainerImpl<T> extends _LoadableContainer<T> {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(value), isLoaded);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LoadableContainer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadableContainerImplCopyWith<T, _$LoadableContainerImpl<T>>
@@ -151,8 +159,11 @@ abstract class _LoadableContainer<T> extends LoadableContainer<T> {
   T get value;
   @override
   bool get isLoaded;
+
+  /// Create a copy of LoadableContainer
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadableContainerImplCopyWith<T, _$LoadableContainerImpl<T>>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -163,7 +174,9 @@ mixin _$FieldContainer<T> {
   String get errorText => throw _privateConstructorUsedError;
   bool get isLoading => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FieldContainer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $FieldContainerCopyWith<T, FieldContainer<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -187,6 +200,8 @@ class _$FieldContainerCopyWithImpl<T, $Res, $Val extends FieldContainer<T>>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of FieldContainer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -230,6 +245,8 @@ class __$$FieldContainerImplCopyWithImpl<T, $Res>
       $Res Function(_$FieldContainerImpl<T>) _then)
       : super(_value, _then);
 
+  /// Create a copy of FieldContainer
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -290,7 +307,9 @@ class _$FieldContainerImpl<T> implements _FieldContainer<T> {
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(value), errorText, isLoading);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of FieldContainer
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$FieldContainerImplCopyWith<T, _$FieldContainerImpl<T>> get copyWith =>
@@ -310,8 +329,11 @@ abstract class _FieldContainer<T> implements FieldContainer<T> {
   String get errorText;
   @override
   bool get isLoading;
+
+  /// Create a copy of FieldContainer
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$FieldContainerImplCopyWith<T, _$FieldContainerImpl<T>> get copyWith =>
       throw _privateConstructorUsedError;
 }

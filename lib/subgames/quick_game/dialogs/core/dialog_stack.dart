@@ -41,7 +41,6 @@ class DialogStack extends HookWidget {
           child: switch (state.dialogType) {
             GameDialogType.none => const SizedBox(),
             GameDialogType.technologiesTree => TechnologiesTreeDialog(
-                dto: state.technologiesTreeDto,
                 onClose: dialogController.closeDialogAndResume,
               ),
             GameDialogType.levelLost => LevelLostDialog(

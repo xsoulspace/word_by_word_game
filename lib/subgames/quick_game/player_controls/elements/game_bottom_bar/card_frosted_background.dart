@@ -18,33 +18,36 @@ class CardFrostedBackground extends StatelessWidget {
       (final cubit) => cubit.state.currentPlayer.color,
     );
 
-    return Stack(
-      children: [
-        Positioned.fill(
-          child: AnimatedContainer(
-            duration: 80.milliseconds,
-            decoration: BoxDecoration(
+    return AnimatedSize(
+      duration: 330.milliseconds,
+      child: Stack(
+        children: [
+          Positioned.fill(
+            child: AnimatedContainer(
+              duration: 80.milliseconds,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+              ),
+            ).frosted(
               borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
             ),
-          ).frosted(
-            borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
           ),
-        ),
-        AnimatedContainer(
-          duration: 80.milliseconds,
-          padding: padding,
-          constraints: constraints,
-          decoration: BoxDecoration(
-            color: ElevationOverlay.applySurfaceTint(
-              livePlayerColor,
-              Colors.white,
-              30,
-            ).withOpacity(0.1),
-            borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+          AnimatedContainer(
+            duration: 330.milliseconds,
+            padding: padding,
+            constraints: constraints,
+            decoration: BoxDecoration(
+              color: ElevationOverlay.applySurfaceTint(
+                livePlayerColor,
+                Colors.white,
+                30,
+              ).withOpacity(0.1),
+              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+            ),
+            child: child,
           ),
-          child: child,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

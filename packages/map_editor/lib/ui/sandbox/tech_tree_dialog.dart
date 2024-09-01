@@ -1,5 +1,6 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
@@ -36,15 +37,9 @@ Future<void> showTechnologiesTreeDialog({
   );
 }
 
-class TechnologyTreeDialog extends StatefulWidget {
+class TechnologyTreeDialog extends StatelessWidget {
   const TechnologyTreeDialog({super.key});
 
-  @override
-  State<TechnologyTreeDialog> createState() => _TechnologyTreeDialogState();
-}
-
-class _TechnologyTreeDialogState extends State<TechnologyTreeDialog> {
-  late Languages _language = context.read();
   @override
   Widget build(final BuildContext context) {
     final drawerCubit = context.watch<EditorDrawerCubit>();
@@ -57,200 +52,192 @@ class _TechnologyTreeDialogState extends State<TechnologyTreeDialog> {
             leading: const CloseButton(),
             title: const Text('Technology Tree'),
           ),
-          LanguageSwitcherMenu(
-            isShortAbbreviationUsed: false,
-            onChanged: (final value) {
-              _language = value;
-              setState(() {});
-            },
-            value: _language,
-          ),
+          const Gap(16),
           Expanded(
-            child: ReorderableListView.builder(
-              shrinkWrap: true,
-              padding: EdgeInsets.zero,
-              buildDefaultDragHandles: false,
-              itemBuilder: (final context, final index) {
-                final technology = techologies[index];
-                return TechnologyInput(
-                  key: ValueKey(technology.id),
-                  onDelete: () => drawerCubit.onResetTechnology(index),
-                  onTechnologyChanged: drawerCubit.onTechnologyChanged,
-                  index: index,
-                  initialTechnology: technology,
-                  language: _language,
-                );
-              },
-              itemCount: TechnologyType.values.length,
-              onReorder: drawerCubit.reorderTechnologies,
+            child: SingleChildScrollView(
+              child: Padding(
+                padding: const EdgeInsets.all(24).copyWith(
+                  right: 64,
+                ),
+                child: Table(
+                  columnWidths: const {
+                    0: FlexColumnWidth(0.3),
+                  },
+                  children: [
+                    TableRow(
+                      children: [
+                        const TableCell(child: Text('ID')),
+                        ...Languages.all.map(
+                          (final language) => TableCell(
+                            child: Text(language.name),
+                          ),
+                        ),
+                      ],
+                    ),
+                    ...techologies
+                        .mapIndexed(
+                          (final index, final e) => _TechRow(
+                            technology: e,
+                            onChanged: (final value) =>
+                                drawerCubit.onTechnologyChanged(
+                              value,
+                              index,
+                            ),
+                          ).build(context),
+                        )
+                        .flattened,
+                  ],
+                ),
+              ),
             ),
           ),
+          // IconButton.filled(
+          //   icon: const Icon(Icons.undo),
+          //   onPressed: () async {
+          //     final shouldDelete =
+          //         await Dialogs.of(context).showDeleteDialog(
+          //       title: const Text('Reset technology?'),
+          //     );
+          //     if (shouldDelete == true) drawerCubit.onResetTechnology(index);
+          //   },
+          // ),
         ],
       ),
     );
   }
 }
 
-class TechnologyInput extends StatefulWidget {
-  const TechnologyInput({
-    required this.language,
-    required this.initialTechnology,
-    required this.onTechnologyChanged,
-    required this.index,
-    required this.onDelete,
-    super.key,
+class _TechRow {
+  const _TechRow({
+    required this.technology,
+    required this.onChanged,
   });
-  final TechnologyModel initialTechnology;
-  final Languages language;
-  final int index;
-  final VoidCallback onDelete;
-  final TwoValuesChanged<TechnologyModel, int> onTechnologyChanged;
+  final TechnologyModel technology;
+  final ValueChanged<TechnologyModel> onChanged;
 
-  @override
-  State<TechnologyInput> createState() => _TechnologyInputState();
-}
-
-class _TechnologyInputState extends State<TechnologyInput> {
-  final _newWordController = TextEditingController();
-  final _nameController = TextEditingController();
-  @override
-  void initState() {
-    _nameController.text = widget.initialTechnology.title.getValueByLanguage(
-      widget.language,
-    );
-    super.initState();
-  }
-
-  @override
-  void didUpdateWidget(covariant final TechnologyInput oldWidget) {
-    if (widget.language != oldWidget.language) {
-      _nameController.text = widget.initialTechnology.title.getValueByLanguage(
-        widget.language,
-      );
-    }
-    super.didUpdateWidget(oldWidget);
-  }
-
-  @override
-  void dispose() {
-    _newWordController.dispose();
-    _nameController.dispose();
-    super.dispose();
-  }
-
-  late Map<Languages, List<UsefulWordModel>> wordsMap =
-      _initTechnology.unlockCondition.languageWords;
-  List<UsefulWordModel> get words => wordsMap[widget.language] ?? [];
-
-  TechnologyModel get _initTechnology => widget.initialTechnology;
-  void _onDeleteWord(final int index) {
-    final updatedWords = [...words]..removeAt(index);
-    _onWordsChanged(updatedWords);
-  }
-
-  void _onAddWord() {
-    final text = _newWordController.text;
-    if (text.isEmpty) return;
-    _newWordController.clear();
-    final word = UsefulWordModel(word: text);
-    final updatedWords = {...words, word}.toList();
-    _onWordsChanged(updatedWords);
-  }
-
-  void _onWordsChanged(final List<UsefulWordModel> updatedWords) {
-    wordsMap = {
-      ...wordsMap,
-    }..[widget.language] = updatedWords;
-    final tech = _initTechnology.copyWith(
-      unlockCondition: _initTechnology.unlockCondition.copyWith(
-        languageWords: wordsMap,
-      ),
-    );
-    widget.onTechnologyChanged(tech, widget.index);
-    setState(() {});
-  }
-
-  @override
-  Widget build(final BuildContext context) => Card(
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Row(
-                children: [
-                  ReorderableDragStartListener(
-                    index: widget.index,
-                    child: const Icon(Icons.drag_handle),
-                  ),
-                  const Gap(8),
-                  Text(widget.initialTechnology.id.value.name),
-                  const Gap(8),
-                  Flexible(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 250),
-                      child: TextFormField(
-                        controller: _nameController,
-                        onChanged: (final value) {
-                          widget.onTechnologyChanged(
-                            _initTechnology.copyWith(
-                              title: _initTechnology.title.copyWith(
-                                value: {..._initTechnology.title.value}
-                                  ..[widget.language] = value,
-                              ),
-                            ),
-                            widget.index,
-                          );
-                        },
-                      ),
-                    ),
-                  ),
-                  const Gap(16),
-                  // IconButton.filled(
-                  //   icon: const Icon(Icons.undo),
-                  //   onPressed: () async {
-                  //     final shouldDelete =
-                  //         await Dialogs.of(context).showDeleteDialog(
-                  //       title: const Text('Reset technology?'),
-                  //     );
-                  //     if (shouldDelete == true) widget.onDelete();
-                  //   },
-                  // ),
-                ],
-              ),
-              const Gap(16),
-              Row(
-                children: [
-                  Flexible(
-                    child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 250),
-                      child: TextFormField(
-                        controller: _newWordController,
-                        onFieldSubmitted: (final value) => _onAddWord(),
-                      ),
-                    ),
-                  ),
-                  IconButton.filled(
-                    onPressed: _onAddWord,
-                    icon: const Icon(Icons.save),
-                  ),
-                ],
-              ),
-              const Gap(8),
-              Wrap(
-                children: words.indexed
-                    .map(
-                      (final e) => InputChip(
-                        label: Text(e.$2.word),
-                        key: ValueKey(e.$2),
-                        onDeleted: () => _onDeleteWord(e.$1),
-                      ),
-                    )
-                    .toList(),
-              ),
-            ],
+  TableCell _getFirstCell(final BuildContext context, final String text) =>
+      TableCell(
+        verticalAlignment: TableCellVerticalAlignment.intrinsicHeight,
+        child: Container(
+          alignment: Alignment.center,
+          decoration: BoxDecoration(
+            border: Border(bottom: BorderSide(color: Colors.grey.shade300)),
           ),
+          child: Text(text),
         ),
       );
+  List<TableRow> build(final BuildContext context) => [
+        /// title
+        TableRow(
+          children: [
+            _getFirstCell(context, technology.id.value.name),
+
+            /// title
+            ...Languages.all.map(
+              (final language) => TableCell(
+                verticalAlignment: TableCellVerticalAlignment.top,
+                child: TextFormField(
+                  maxLines: null,
+                  initialValue: technology.title.getValueByLanguage(language),
+                  onChanged: (final value) {
+                    final updatedTechnology = technology.copyWith(
+                      title: technology.title.copyWith(
+                        value: {...technology.title.value}..[language] = value,
+                      ),
+                    );
+                    onChanged(updatedTechnology);
+                  },
+                ),
+              ),
+            ),
+          ],
+        ),
+
+        /// words
+        TableRow(
+          children: [
+            _getFirstCell(context, 'Words'),
+            ...Languages.all.map(
+              (final language) {
+                final words =
+                    technology.unlockCondition.languageWords[language] ?? [];
+                return TableCell(
+                  verticalAlignment: TableCellVerticalAlignment.top,
+                  child: _WordsField(
+                    words: words,
+                    onChanged: (final value) {
+                      final updatedTechnology = technology.copyWith(
+                        unlockCondition: technology.unlockCondition.copyWith(
+                          languageWords: {
+                            ...technology.unlockCondition.languageWords,
+                          }..[language] = value,
+                        ),
+                      );
+                      onChanged(updatedTechnology);
+                    },
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ];
+}
+
+class _WordsField extends HookWidget {
+  const _WordsField({
+    required this.words,
+    required this.onChanged,
+  });
+  final List<UsefulWordModel> words;
+  final ValueChanged<List<UsefulWordModel>> onChanged;
+
+  @override
+  Widget build(final BuildContext context) {
+    final newWordController = useTextEditingController();
+    void onAddWord() {
+      final text = newWordController.text;
+      if (text.isEmpty) return;
+      newWordController.clear();
+      final word = UsefulWordModel(word: text);
+      final updatedWords = {...words, word}.toList();
+      onChanged(updatedWords);
+    }
+
+    void onDeleteWord(final int index) {
+      final updatedWords = [...words]..removeAt(index);
+      onChanged(updatedWords);
+    }
+
+    return Column(
+      children: [
+        Row(
+          children: [
+            Flexible(
+              child: TextFormField(
+                controller: newWordController,
+                onFieldSubmitted: (final value) => onAddWord(),
+              ),
+            ),
+            IconButton.filled(
+              onPressed: onAddWord,
+              icon: const Icon(Icons.save),
+            ),
+          ],
+        ),
+        const Gap(8),
+        Wrap(
+          children: words
+              .mapIndexed(
+                (final index, final e) => InputChip(
+                  label: Text(e.word),
+                  key: ValueKey(e),
+                  onDeleted: () => onDeleteWord(index),
+                ),
+              )
+              .toList(),
+        ),
+      ],
+    );
+  }
 }

@@ -7,6 +7,7 @@ class _LevelStartDialogUxStateDiDto {
         appSettingsNotifier = context.read(),
         onlineStatusService = context.read(),
         wbwDictionary = context.read(),
+        statesStatusesCubit = context.read(),
         tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
@@ -14,18 +15,23 @@ class _LevelStartDialogUxStateDiDto {
   final MechanicsCollection mechanics;
   final OnlineStatusService onlineStatusService;
   final WbwDictionary wbwDictionary;
+  final StatesStatusesCubit statesStatusesCubit;
 }
 
 class LevelStartDialogUxNotifier extends ValueNotifier<String> {
   LevelStartDialogUxNotifier({
     required final BuildContext context,
-    required this.canvasData,
   })  : dto = _LevelStartDialogUxStateDiDto.use(context),
         super('') {
     onLoad();
   }
-  final CanvasDataModel canvasData;
+
   final _LevelStartDialogUxStateDiDto dto;
+
+  /// Temporary variable to access in dialog
+  /// Never use it inside functions.
+  CanvasDataModelId? canvasDataId;
+
   void onLoad() {
     final liveState = dto.globalGameBloc.state;
     character = liveState.playersCharacters.first;
@@ -94,13 +100,25 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  Future<void> onPlay(final BuildContext context) async {
+  /// !imporant:
+  /// this function will always start completely new game
+  Future<void> onStartNewGame({
+    required final BuildContext context,
+    required final CanvasDataModelId canvasId,
+  }) async {
+    if (dto.statesStatusesCubit.isLoading) return;
+    dto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
     final pathsController = AppPathsController.of(context);
-    if (featuresSettings.isTechnologiesEnabled) {
-      await onLoadDictionaries();
-    }
+
+    await Future.wait([
+      onDeleteLevel(canvasId),
+      if (featuresSettings.isAdvancedGame) onLoadDictionaries(),
+    ]);
+
     final level = dto.globalGameBloc.createLevel(
-      canvasDataId: canvasData.id,
+      canvasDataId: canvasId,
       playersIds: playersIds,
       wordsLanguage: wordsLanguage,
       characterId: character!.id,
@@ -112,6 +130,45 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
     pathsController.toPlayableLevel(id: level.id);
+  }
+
+  Future<void> onDeleteLevel(final CanvasDataModelId id) async {
+    await dto.globalGameBloc.onRemoveLevelSave(id);
+  }
+
+  Future<void> onContinueFromSamePlace({
+    required final CanvasDataModelId id,
+    required final BuildContext context,
+  }) async {
+    if (dto.statesStatusesCubit.isLoading) return;
+    dto.statesStatusesCubit.onChangeLevelStateStatus(
+      status: LevelStateStatus.loading,
+    );
+    final pathsController = AppPathsController.of(context);
+    final LevelModel level;
+
+    if (dto.globalGameBloc.state.currentLevelId == id) {
+      level = dto.globalGameBloc.state.currentLevelModel!;
+    } else {
+      level = dto.globalGameBloc.state.savedLevels[id]!;
+    }
+    if (level.featuresSettings.isAdvancedGame) {
+      await onLoadDictionaries();
+    }
+    await dto.globalGameBloc.onInitGlobalGameLevel(
+      InitGlobalGameLevelEvent(
+        levelModel: level,
+        isNewStart: false,
+        playerStartPoint: PlayerStartPointType.fromSamePlace,
+        windDirection: level.weathers.firstOrNull?.windDirection ??
+            WindDirection.defaultDirection,
+      ),
+    );
+
+    await dto.globalGameBloc.onStartPlayingLevel(
+      const StartPlayingLevelEvent(shouldRestartTutorial: false),
+    );
+    pathsController.toPlayableLevel(id: id);
   }
 
   void onReturnToLevels(final BuildContext context) {

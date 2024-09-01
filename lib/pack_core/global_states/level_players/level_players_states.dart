@@ -10,6 +10,9 @@ class LevelPlayersBlocState with _$LevelPlayersBlocState {
     @Default('') final PlayerProfileModelId currentPlayerId,
     @Default(PlayerCharacterModel.empty)
     final PlayerCharacterModel playerCharacter,
+
+    /// {@macro focusedObjectId}
+    @Default(Gid.empty) final Gid focusedObjectGid,
   }) = _LevelPlayersBlocState;
   const LevelPlayersBlocState._();
   static const empty = LevelPlayersBlocState();
@@ -22,6 +25,7 @@ class LevelPlayersBlocState with _$LevelPlayersBlocState {
         currentPlayerId: levelPlayersModel.currentPlayerId,
         players: levelPlayersModel.players,
         playerCharacter: levelCharactersModel.playerCharacter,
+        focusedObjectGid: levelCharactersModel.focusedObjectGid,
       );
   bool get isEmpty => currentPlayerId.isEmpty;
   bool get isNotEmpty => currentPlayerId.isNotEmpty;

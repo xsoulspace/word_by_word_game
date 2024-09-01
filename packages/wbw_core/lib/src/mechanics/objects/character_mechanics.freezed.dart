@@ -20,7 +20,9 @@ mixin _$LiftForceModel {
   BalloonLiftPowersModel get updatedPowers =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LiftForceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LiftForceModelCopyWith<LiftForceModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -46,6 +48,8 @@ class _$LiftForceModelCopyWithImpl<$Res, $Val extends LiftForceModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LiftForceModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -64,6 +68,8 @@ class _$LiftForceModelCopyWithImpl<$Res, $Val extends LiftForceModel>
     ) as $Val);
   }
 
+  /// Create a copy of LiftForceModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BalloonLiftPowersModelCopyWith<$Res> get updatedPowers {
@@ -95,6 +101,8 @@ class __$$LiftForceModelImplCopyWithImpl<$Res>
       _$LiftForceModelImpl _value, $Res Function(_$LiftForceModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LiftForceModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -144,7 +152,9 @@ class _$LiftForceModelImpl implements _LiftForceModel {
   @override
   int get hashCode => Object.hash(runtimeType, liftPower, updatedPowers);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LiftForceModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LiftForceModelImplCopyWith<_$LiftForceModelImpl> get copyWith =>
@@ -162,8 +172,11 @@ abstract class _LiftForceModel implements LiftForceModel {
   double get liftPower;
   @override
   BalloonLiftPowersModel get updatedPowers;
+
+  /// Create a copy of LiftForceModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LiftForceModelImplCopyWith<_$LiftForceModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -178,8 +191,12 @@ mixin _$BalloonLiftPowersModel {
   double get power => throw _privateConstructorUsedError;
   double get volume => throw _privateConstructorUsedError;
 
+  /// Serializes this BalloonLiftPowersModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BalloonLiftPowersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BalloonLiftPowersModelCopyWith<BalloonLiftPowersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -204,6 +221,8 @@ class _$BalloonLiftPowersModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BalloonLiftPowersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -245,6 +264,8 @@ class __$$BalloonLiftPowersModelImplCopyWithImpl<$Res>
       $Res Function(_$BalloonLiftPowersModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BalloonLiftPowersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -293,11 +314,13 @@ class _$BalloonLiftPowersModelImpl implements _BalloonLiftPowersModel {
             (identical(other.volume, volume) || other.volume == volume));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, power, volume);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BalloonLiftPowersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BalloonLiftPowersModelImplCopyWith<_$BalloonLiftPowersModelImpl>
@@ -324,8 +347,11 @@ abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
   double get power;
   @override
   double get volume;
+
+  /// Create a copy of BalloonLiftPowersModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BalloonLiftPowersModelImplCopyWith<_$BalloonLiftPowersModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -341,8 +367,12 @@ mixin _$BalloonLiftParamsModel {
   double get maxPower => throw _privateConstructorUsedError;
   double get powerUsage => throw _privateConstructorUsedError;
 
+  /// Serializes this BalloonLiftParamsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of BalloonLiftParamsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $BalloonLiftParamsModelCopyWith<BalloonLiftParamsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -367,6 +397,8 @@ class _$BalloonLiftParamsModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of BalloonLiftParamsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -413,6 +445,8 @@ class __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>
       $Res Function(_$BalloonLiftParamsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of BalloonLiftParamsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -474,11 +508,13 @@ class _$BalloonLiftParamsModelImpl implements _BalloonLiftParamsModel {
                 other.powerUsage == powerUsage));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, maxVolume, maxPower, powerUsage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of BalloonLiftParamsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$BalloonLiftParamsModelImplCopyWith<_$BalloonLiftParamsModelImpl>
@@ -508,8 +544,11 @@ abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
   double get maxPower;
   @override
   double get powerUsage;
+
+  /// Create a copy of BalloonLiftParamsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BalloonLiftParamsModelImplCopyWith<_$BalloonLiftParamsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -522,7 +561,9 @@ mixin _$ForcesConstantsModel {
   double get volumeIncreaseRatioMax => throw _privateConstructorUsedError;
   double get volumeToLiftRatio => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ForcesConstantsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ForcesConstantsModelCopyWith<ForcesConstantsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -552,6 +593,8 @@ class _$ForcesConstantsModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ForcesConstantsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -610,6 +653,8 @@ class __$$ForcesConstantsModelImplCopyWithImpl<$Res>
       $Res Function(_$ForcesConstantsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ForcesConstantsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -697,7 +742,9 @@ class _$ForcesConstantsModelImpl implements _ForcesConstantsModel {
       volumeIncreaseRatioMax,
       volumeToLiftRatio);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ForcesConstantsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ForcesConstantsModelImplCopyWith<_$ForcesConstantsModelImpl>
@@ -724,8 +771,11 @@ abstract class _ForcesConstantsModel implements ForcesConstantsModel {
   double get volumeIncreaseRatioMax;
   @override
   double get volumeToLiftRatio;
+
+  /// Create a copy of ForcesConstantsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ForcesConstantsModelImplCopyWith<_$ForcesConstantsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

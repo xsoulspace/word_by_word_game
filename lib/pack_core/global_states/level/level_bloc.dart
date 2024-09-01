@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_power_points_animation.dart';
 
 part 'level_bloc.freezed.dart';
 part 'level_bloc_events.dart';
@@ -20,6 +21,7 @@ class LevelBlocDiDto {
         dictionaryBloc = read(),
         technologiesCubit = read(),
         wbwDictionary = read(),
+        powerPointsAnimationNotifier = read(),
         statesStatusesCubit = read();
   final StatesStatusesCubit statesStatusesCubit;
   final MechanicsCollection mechanics;
@@ -27,6 +29,7 @@ class LevelBlocDiDto {
   final TechnologiesCubit technologiesCubit;
   final WbwDictionary wbwDictionary;
   final DictionariesBloc dictionaryBloc;
+  final UiPowerPointsAnimationNotifier powerPointsAnimationNotifier;
 }
 
 class LevelBloc extends Cubit<LevelBlocState> {
@@ -165,7 +168,7 @@ class LevelBloc extends Cubit<LevelBlocState> {
           playerId: playerId,
         ),
       );
-      dto.technologiesCubit.onWordAccepted(newWord);
+      dto.technologiesCubit.onWordAccepted(word: newWord, score: score);
     } else {
       emit(
         liveState.copyWith(
@@ -212,15 +215,24 @@ class LevelBloc extends Cubit<LevelBlocState> {
       multiplier: liveState.energyMultiplier,
       availableScore: liveLevelPlayerState.currentPlayer.highscore.score,
     );
+    final refuelStorageEvent = RefuelStorageEvent(score: appliedScore);
+
     switch (energyApplicationType) {
       case EnergyApplicationType.refueling:
-        levelPlayersCubit
-            .onRefuelStorage(RefuelStorageEvent(score: appliedScore));
+        levelPlayersCubit.onRefuelStorage(refuelStorageEvent);
+        dto.powerPointsAnimationNotifier.setPoints(
+          refuelStorageEvent.score.value.formattedScore,
+        );
+      case EnergyApplicationType.restAndPrepareBalloon:
+        levelPlayersCubit.onRefuelStorage(refuelStorageEvent);
+        levelPlayersCubit.onChangeCharacterCheckpointPosition();
       case EnergyApplicationType.researchingTechnology:
         technologiesCubit.onResearchTechnology(
           ResearchTechnologyEvent(score: appliedScore),
         );
-      case EnergyApplicationType.crystalMove || EnergyApplicationType.noop:
+      case EnergyApplicationType.buildingBuilt ||
+            EnergyApplicationType.crystalMove ||
+            EnergyApplicationType.noop:
     }
 
     final playerId = levelPlayersCubit.state.currentPlayerId;

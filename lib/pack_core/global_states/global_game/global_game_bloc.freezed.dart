@@ -18,9 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$GameEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
         initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
@@ -30,9 +31,10 @@ mixin _$GameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
@@ -42,9 +44,10 @@ mixin _$GameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
@@ -55,9 +58,9 @@ mixin _$GameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(InitGlobalGameLevelEvent value)
         initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(DeletePlayerProfileEvent value)
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
@@ -69,8 +72,8 @@ mixin _$GameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult? Function(SaveGameEvent value)? saveGame,
@@ -80,8 +83,8 @@ mixin _$GameEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult Function(SaveGameEvent value)? saveGame,
@@ -107,6 +110,253 @@ class _$GameEventCopyWithImpl<$Res, $Val extends GameEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+}
+
+/// @nodoc
+abstract class _$$InitGlobalGameLevelEventImplCopyWith<$Res> {
+  factory _$$InitGlobalGameLevelEventImplCopyWith(
+          _$InitGlobalGameLevelEventImpl value,
+          $Res Function(_$InitGlobalGameLevelEventImpl) then) =
+      __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call(
+      {LevelModel levelModel,
+      bool isNewStart,
+      PlayerStartPointType playerStartPoint,
+      WindDirection windDirection});
+
+  $LevelModelCopyWith<$Res> get levelModel;
+}
+
+/// @nodoc
+class __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>
+    extends _$GameEventCopyWithImpl<$Res, _$InitGlobalGameLevelEventImpl>
+    implements _$$InitGlobalGameLevelEventImplCopyWith<$Res> {
+  __$$InitGlobalGameLevelEventImplCopyWithImpl(
+      _$InitGlobalGameLevelEventImpl _value,
+      $Res Function(_$InitGlobalGameLevelEventImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? levelModel = null,
+    Object? isNewStart = null,
+    Object? playerStartPoint = null,
+    Object? windDirection = null,
+  }) {
+    return _then(_$InitGlobalGameLevelEventImpl(
+      levelModel: null == levelModel
+          ? _value.levelModel
+          : levelModel // ignore: cast_nullable_to_non_nullable
+              as LevelModel,
+      isNewStart: null == isNewStart
+          ? _value.isNewStart
+          : isNewStart // ignore: cast_nullable_to_non_nullable
+              as bool,
+      playerStartPoint: null == playerStartPoint
+          ? _value.playerStartPoint
+          : playerStartPoint // ignore: cast_nullable_to_non_nullable
+              as PlayerStartPointType,
+      windDirection: null == windDirection
+          ? _value.windDirection
+          : windDirection // ignore: cast_nullable_to_non_nullable
+              as WindDirection,
+    ));
+  }
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $LevelModelCopyWith<$Res> get levelModel {
+    return $LevelModelCopyWith<$Res>(_value.levelModel, (value) {
+      return _then(_value.copyWith(levelModel: value));
+    });
+  }
+}
+
+/// @nodoc
+
+class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
+  const _$InitGlobalGameLevelEventImpl(
+      {required this.levelModel,
+      this.isNewStart = true,
+      this.playerStartPoint = PlayerStartPointType.fromSpawnPoint,
+      this.windDirection = WindDirection.defaultDirection});
+
+  @override
+  final LevelModel levelModel;
+  @override
+  @JsonKey()
+  final bool isNewStart;
+  @override
+  @JsonKey()
+  final PlayerStartPointType playerStartPoint;
+  @override
+  @JsonKey()
+  final WindDirection windDirection;
+
+  @override
+  String toString() {
+    return 'GameEvent.initGlobalGameLevel(levelModel: $levelModel, isNewStart: $isNewStart, playerStartPoint: $playerStartPoint, windDirection: $windDirection)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$InitGlobalGameLevelEventImpl &&
+            (identical(other.levelModel, levelModel) ||
+                other.levelModel == levelModel) &&
+            (identical(other.isNewStart, isNewStart) ||
+                other.isNewStart == isNewStart) &&
+            (identical(other.playerStartPoint, playerStartPoint) ||
+                other.playerStartPoint == playerStartPoint) &&
+            (identical(other.windDirection, windDirection) ||
+                other.windDirection == windDirection));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, levelModel, isNewStart, playerStartPoint, windDirection);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
+      get copyWith => __$$InitGlobalGameLevelEventImplCopyWithImpl<
+          _$InitGlobalGameLevelEventImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
+        initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
+    required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
+    required TResult Function(PlayerProfileModel profile) createPlayerProfile,
+    required TResult Function() saveGame,
+    required TResult Function() saveCurrentLevel,
+    required TResult Function(bool isPassed, double maxDistance) endLevel,
+  }) {
+    return initGlobalGameLevel(
+        levelModel, isNewStart, playerStartPoint, windDirection);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
+        initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
+    TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
+    TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
+    TResult? Function()? saveGame,
+    TResult? Function()? saveCurrentLevel,
+    TResult? Function(bool isPassed, double maxDistance)? endLevel,
+  }) {
+    return initGlobalGameLevel?.call(
+        levelModel, isNewStart, playerStartPoint, windDirection);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
+        initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
+    TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
+    TResult Function(PlayerProfileModel profile)? createPlayerProfile,
+    TResult Function()? saveGame,
+    TResult Function()? saveCurrentLevel,
+    TResult Function(bool isPassed, double maxDistance)? endLevel,
+    required TResult orElse(),
+  }) {
+    if (initGlobalGameLevel != null) {
+      return initGlobalGameLevel(
+          levelModel, isNewStart, playerStartPoint, windDirection);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(InitGlobalGameLevelEvent value)
+        initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
+    required TResult Function(DeletePlayerProfileEvent value)
+        deletePlayerProfile,
+    required TResult Function(CreatePlayerProfileEvent value)
+        createPlayerProfile,
+    required TResult Function(SaveGameEvent value) saveGame,
+    required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
+    required TResult Function(EndLevelEvent value) endLevel,
+  }) {
+    return initGlobalGameLevel(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
+    TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
+    TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
+    TResult? Function(SaveGameEvent value)? saveGame,
+    TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
+    TResult? Function(EndLevelEvent value)? endLevel,
+  }) {
+    return initGlobalGameLevel?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
+    TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
+    TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
+    TResult Function(SaveGameEvent value)? saveGame,
+    TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
+    TResult Function(EndLevelEvent value)? endLevel,
+    required TResult orElse(),
+  }) {
+    if (initGlobalGameLevel != null) {
+      return initGlobalGameLevel(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class InitGlobalGameLevelEvent implements GameEvent {
+  const factory InitGlobalGameLevelEvent(
+      {required final LevelModel levelModel,
+      final bool isNewStart,
+      final PlayerStartPointType playerStartPoint,
+      final WindDirection windDirection}) = _$InitGlobalGameLevelEventImpl;
+
+  LevelModel get levelModel;
+  bool get isNewStart;
+  PlayerStartPointType get playerStartPoint;
+  WindDirection get windDirection;
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
+      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -128,6 +378,8 @@ class __$$StartPlayingLevelEventImplCopyWithImpl<$Res>
       $Res Function(_$StartPlayingLevelEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -168,7 +420,9 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   int get hashCode => Object.hash(runtimeType, shouldRestartTutorial);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StartPlayingLevelEventImplCopyWith<_$StartPlayingLevelEventImpl>
@@ -178,9 +432,10 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
         initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
@@ -193,9 +448,10 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
@@ -208,9 +464,10 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
@@ -227,9 +484,9 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(InitGlobalGameLevelEvent value)
         initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(DeletePlayerProfileEvent value)
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
@@ -244,8 +501,8 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult? Function(SaveGameEvent value)? saveGame,
@@ -258,8 +515,8 @@ class _$StartPlayingLevelEventImpl implements StartPlayingLevelEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult Function(SaveGameEvent value)? saveGame,
@@ -279,205 +536,11 @@ abstract class StartPlayingLevelEvent implements GameEvent {
       _$StartPlayingLevelEventImpl;
 
   bool get shouldRestartTutorial;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StartPlayingLevelEventImplCopyWith<_$StartPlayingLevelEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$InitGlobalGameLevelEventImplCopyWith<$Res> {
-  factory _$$InitGlobalGameLevelEventImplCopyWith(
-          _$InitGlobalGameLevelEventImpl value,
-          $Res Function(_$InitGlobalGameLevelEventImpl) then) =
-      __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({LevelModel levelModel, bool isNewStart});
-
-  $LevelModelCopyWith<$Res> get levelModel;
-}
-
-/// @nodoc
-class __$$InitGlobalGameLevelEventImplCopyWithImpl<$Res>
-    extends _$GameEventCopyWithImpl<$Res, _$InitGlobalGameLevelEventImpl>
-    implements _$$InitGlobalGameLevelEventImplCopyWith<$Res> {
-  __$$InitGlobalGameLevelEventImplCopyWithImpl(
-      _$InitGlobalGameLevelEventImpl _value,
-      $Res Function(_$InitGlobalGameLevelEventImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? levelModel = null,
-    Object? isNewStart = null,
-  }) {
-    return _then(_$InitGlobalGameLevelEventImpl(
-      levelModel: null == levelModel
-          ? _value.levelModel
-          : levelModel // ignore: cast_nullable_to_non_nullable
-              as LevelModel,
-      isNewStart: null == isNewStart
-          ? _value.isNewStart
-          : isNewStart // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $LevelModelCopyWith<$Res> get levelModel {
-    return $LevelModelCopyWith<$Res>(_value.levelModel, (value) {
-      return _then(_value.copyWith(levelModel: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$InitGlobalGameLevelEventImpl implements InitGlobalGameLevelEvent {
-  const _$InitGlobalGameLevelEventImpl(
-      {required this.levelModel, this.isNewStart = true});
-
-  @override
-  final LevelModel levelModel;
-  @override
-  @JsonKey()
-  final bool isNewStart;
-
-  @override
-  String toString() {
-    return 'GameEvent.initGlobalGameLevel(levelModel: $levelModel, isNewStart: $isNewStart)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitGlobalGameLevelEventImpl &&
-            (identical(other.levelModel, levelModel) ||
-                other.levelModel == levelModel) &&
-            (identical(other.isNewStart, isNewStart) ||
-                other.isNewStart == isNewStart));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, levelModel, isNewStart);
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
-      get copyWith => __$$InitGlobalGameLevelEventImplCopyWithImpl<
-          _$InitGlobalGameLevelEventImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
-        initGlobalGameLevel,
-    required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
-    required TResult Function(PlayerProfileModel profile) createPlayerProfile,
-    required TResult Function() saveGame,
-    required TResult Function() saveCurrentLevel,
-    required TResult Function(bool isPassed, double maxDistance) endLevel,
-  }) {
-    return initGlobalGameLevel(levelModel, isNewStart);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult? Function()? saveGame,
-    TResult? Function()? saveCurrentLevel,
-    TResult? Function(bool isPassed, double maxDistance)? endLevel,
-  }) {
-    return initGlobalGameLevel?.call(levelModel, isNewStart);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
-        initGlobalGameLevel,
-    TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
-    TResult Function(PlayerProfileModel profile)? createPlayerProfile,
-    TResult Function()? saveGame,
-    TResult Function()? saveCurrentLevel,
-    TResult Function(bool isPassed, double maxDistance)? endLevel,
-    required TResult orElse(),
-  }) {
-    if (initGlobalGameLevel != null) {
-      return initGlobalGameLevel(levelModel, isNewStart);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
-    required TResult Function(InitGlobalGameLevelEvent value)
-        initGlobalGameLevel,
-    required TResult Function(DeletePlayerProfileEvent value)
-        deletePlayerProfile,
-    required TResult Function(CreatePlayerProfileEvent value)
-        createPlayerProfile,
-    required TResult Function(SaveGameEvent value) saveGame,
-    required TResult Function(SaveCurrentLevelEvent value) saveCurrentLevel,
-    required TResult Function(EndLevelEvent value) endLevel,
-  }) {
-    return initGlobalGameLevel(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult? Function(SaveGameEvent value)? saveGame,
-    TResult? Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult? Function(EndLevelEvent value)? endLevel,
-  }) {
-    return initGlobalGameLevel?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
-    TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
-    TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
-    TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
-    TResult Function(SaveGameEvent value)? saveGame,
-    TResult Function(SaveCurrentLevelEvent value)? saveCurrentLevel,
-    TResult Function(EndLevelEvent value)? endLevel,
-    required TResult orElse(),
-  }) {
-    if (initGlobalGameLevel != null) {
-      return initGlobalGameLevel(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class InitGlobalGameLevelEvent implements GameEvent {
-  const factory InitGlobalGameLevelEvent(
-      {required final LevelModel levelModel,
-      final bool isNewStart}) = _$InitGlobalGameLevelEventImpl;
-
-  LevelModel get levelModel;
-  bool get isNewStart;
-  @JsonKey(ignore: true)
-  _$$InitGlobalGameLevelEventImplCopyWith<_$InitGlobalGameLevelEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -502,6 +565,8 @@ class __$$DeletePlayerProfileEventImplCopyWithImpl<$Res>
       $Res Function(_$DeletePlayerProfileEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -515,6 +580,8 @@ class __$$DeletePlayerProfileEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerProfileModelCopyWith<$Res> get profile {
@@ -548,7 +615,9 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   int get hashCode => Object.hash(runtimeType, profile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DeletePlayerProfileEventImplCopyWith<_$DeletePlayerProfileEventImpl>
@@ -558,9 +627,10 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
         initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
@@ -573,9 +643,10 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
@@ -588,9 +659,10 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
@@ -607,9 +679,9 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(InitGlobalGameLevelEvent value)
         initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(DeletePlayerProfileEvent value)
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
@@ -624,8 +696,8 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult? Function(SaveGameEvent value)? saveGame,
@@ -638,8 +710,8 @@ class _$DeletePlayerProfileEventImpl implements DeletePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult Function(SaveGameEvent value)? saveGame,
@@ -660,7 +732,10 @@ abstract class DeletePlayerProfileEvent implements GameEvent {
       _$DeletePlayerProfileEventImpl;
 
   PlayerProfileModel get profile;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DeletePlayerProfileEventImplCopyWith<_$DeletePlayerProfileEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -686,6 +761,8 @@ class __$$CreatePlayerProfileEventImplCopyWithImpl<$Res>
       $Res Function(_$CreatePlayerProfileEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -699,6 +776,8 @@ class __$$CreatePlayerProfileEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerProfileModelCopyWith<$Res> get profile {
@@ -732,7 +811,9 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   int get hashCode => Object.hash(runtimeType, profile);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CreatePlayerProfileEventImplCopyWith<_$CreatePlayerProfileEventImpl>
@@ -742,9 +823,10 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
         initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
@@ -757,9 +839,10 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
@@ -772,9 +855,10 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
@@ -791,9 +875,9 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(InitGlobalGameLevelEvent value)
         initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(DeletePlayerProfileEvent value)
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
@@ -808,8 +892,8 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult? Function(SaveGameEvent value)? saveGame,
@@ -822,8 +906,8 @@ class _$CreatePlayerProfileEventImpl implements CreatePlayerProfileEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult Function(SaveGameEvent value)? saveGame,
@@ -844,7 +928,10 @@ abstract class CreatePlayerProfileEvent implements GameEvent {
       _$CreatePlayerProfileEventImpl;
 
   PlayerProfileModel get profile;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CreatePlayerProfileEventImplCopyWith<_$CreatePlayerProfileEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -863,6 +950,9 @@ class __$$SaveGameEventImplCopyWithImpl<$Res>
   __$$SaveGameEventImplCopyWithImpl(
       _$SaveGameEventImpl _value, $Res Function(_$SaveGameEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -887,9 +977,10 @@ class _$SaveGameEventImpl implements SaveGameEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
         initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
@@ -902,9 +993,10 @@ class _$SaveGameEventImpl implements SaveGameEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
@@ -917,9 +1009,10 @@ class _$SaveGameEventImpl implements SaveGameEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
@@ -936,9 +1029,9 @@ class _$SaveGameEventImpl implements SaveGameEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(InitGlobalGameLevelEvent value)
         initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(DeletePlayerProfileEvent value)
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
@@ -953,8 +1046,8 @@ class _$SaveGameEventImpl implements SaveGameEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult? Function(SaveGameEvent value)? saveGame,
@@ -967,8 +1060,8 @@ class _$SaveGameEventImpl implements SaveGameEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult Function(SaveGameEvent value)? saveGame,
@@ -1002,6 +1095,9 @@ class __$$SaveCurrentLevelEventImplCopyWithImpl<$Res>
   __$$SaveCurrentLevelEventImplCopyWithImpl(_$SaveCurrentLevelEventImpl _value,
       $Res Function(_$SaveCurrentLevelEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1027,9 +1123,10 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
         initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
@@ -1042,9 +1139,10 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
@@ -1057,9 +1155,10 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
@@ -1076,9 +1175,9 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(InitGlobalGameLevelEvent value)
         initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(DeletePlayerProfileEvent value)
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
@@ -1093,8 +1192,8 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult? Function(SaveGameEvent value)? saveGame,
@@ -1107,8 +1206,8 @@ class _$SaveCurrentLevelEventImpl implements SaveCurrentLevelEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult Function(SaveGameEvent value)? saveGame,
@@ -1144,6 +1243,8 @@ class __$$EndLevelEventImplCopyWithImpl<$Res>
       _$EndLevelEventImpl _value, $Res Function(_$EndLevelEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1193,7 +1294,9 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   int get hashCode => Object.hash(runtimeType, isPassed, maxDistance);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$EndLevelEventImplCopyWith<_$EndLevelEventImpl> get copyWith =>
@@ -1202,9 +1305,10 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
-    required TResult Function(LevelModel levelModel, bool isNewStart)
+    required TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)
         initGlobalGameLevel,
+    required TResult Function(bool shouldRestartTutorial) startPlayingLevel,
     required TResult Function(PlayerProfileModel profile) deletePlayerProfile,
     required TResult Function(PlayerProfileModel profile) createPlayerProfile,
     required TResult Function() saveGame,
@@ -1217,9 +1321,10 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult? Function(LevelModel levelModel, bool isNewStart)?
+    TResult? Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult? Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult? Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult? Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult? Function()? saveGame,
@@ -1232,9 +1337,10 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
-    TResult Function(LevelModel levelModel, bool isNewStart)?
+    TResult Function(LevelModel levelModel, bool isNewStart,
+            PlayerStartPointType playerStartPoint, WindDirection windDirection)?
         initGlobalGameLevel,
+    TResult Function(bool shouldRestartTutorial)? startPlayingLevel,
     TResult Function(PlayerProfileModel profile)? deletePlayerProfile,
     TResult Function(PlayerProfileModel profile)? createPlayerProfile,
     TResult Function()? saveGame,
@@ -1251,9 +1357,9 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
-    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(InitGlobalGameLevelEvent value)
         initGlobalGameLevel,
+    required TResult Function(StartPlayingLevelEvent value) startPlayingLevel,
     required TResult Function(DeletePlayerProfileEvent value)
         deletePlayerProfile,
     required TResult Function(CreatePlayerProfileEvent value)
@@ -1268,8 +1374,8 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult? Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult? Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult? Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult? Function(SaveGameEvent value)? saveGame,
@@ -1282,8 +1388,8 @@ class _$EndLevelEventImpl implements EndLevelEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
-    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(InitGlobalGameLevelEvent value)? initGlobalGameLevel,
+    TResult Function(StartPlayingLevelEvent value)? startPlayingLevel,
     TResult Function(DeletePlayerProfileEvent value)? deletePlayerProfile,
     TResult Function(CreatePlayerProfileEvent value)? createPlayerProfile,
     TResult Function(SaveGameEvent value)? saveGame,
@@ -1305,7 +1411,10 @@ abstract class EndLevelEvent implements GameEvent {
 
   bool get isPassed;
   double get maxDistance;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$EndLevelEventImplCopyWith<_$EndLevelEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1346,7 +1455,9 @@ mixin _$GlobalGameBlocState {
   /// ********************************************
   int get dateTimeDelta => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GlobalGameBlocStateCopyWith<GlobalGameBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1385,6 +1496,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1443,6 +1556,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     ) as $Val);
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId {
@@ -1451,6 +1566,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     });
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelModelCopyWith<$Res>? get currentLevelModel {
@@ -1463,6 +1580,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     });
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get dateTime {
@@ -1471,6 +1590,8 @@ class _$GlobalGameBlocStateCopyWithImpl<$Res, $Val extends GlobalGameBlocState>
     });
   }
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
@@ -1518,6 +1639,8 @@ class __$$GlobalGameBlocStateImplCopyWithImpl<$Res>
       $Res Function(_$GlobalGameBlocStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1721,7 +1844,9 @@ class _$GlobalGameBlocStateImpl extends _GlobalGameBlocState {
       const DeepCollectionEquality().hash(_savedLevels),
       dateTimeDelta);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GlobalGameBlocStateImplCopyWith<_$GlobalGameBlocStateImpl> get copyWith =>
@@ -1743,48 +1868,50 @@ abstract class _GlobalGameBlocState extends GlobalGameBlocState {
       final int dateTimeDelta}) = _$GlobalGameBlocStateImpl;
   const _GlobalGameBlocState._() : super._();
 
-  @override
-
   /// ********************************************
   /// *      RESTORABLE FROM MODEL
   /// ********************************************
+  @override
   String get id;
   @override
   CanvasDataModelId get currentLevelId;
-  @override
 
   /// Should be loaded independently, should never be updated
   /// Immutable
-  Map<CanvasDataModelId, CanvasDataModel> get allCanvasData;
   @override
+  Map<CanvasDataModelId, CanvasDataModel> get allCanvasData;
 
   /// Current Level Model is a model with all level configurations
   /// chosen by the user (players, characters, etc).
   /// It should not be update or changed during the playing the level.
   /// It should be set during the level first initialization
   /// (When the player clicks play button).
+  @override
   LevelModel? get currentLevelModel;
   @override
   WorldDateTimeModel get dateTime;
   @override
   WorldDateTimeModel get lastDateTime;
-  @override
 
   /// The [playersCollection] is the collection of players characters,
   /// which will be available for user to playe and progress through the game.
+  @override
   List<PlayerProfileModel> get playersCollection;
   @override
   List<PlayerCharacterModel> get playersCharacters;
   @override
   Map<CanvasDataModelId, LevelModel> get savedLevels;
-  @override
 
   /// ********************************************
   /// *      NON-RESTORABLE
   /// ********************************************
-  int get dateTimeDelta;
   @override
-  @JsonKey(ignore: true)
+  int get dateTimeDelta;
+
+  /// Create a copy of GlobalGameBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GlobalGameBlocStateImplCopyWith<_$GlobalGameBlocStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

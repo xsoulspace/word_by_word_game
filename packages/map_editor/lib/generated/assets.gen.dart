@@ -355,6 +355,10 @@ class $AssetsImagesTilesetsWhiteBlackGen {
   AssetGenImage get markerRedX => const AssetGenImage(
       'assets/images/tilesets/white_black/marker_red__x.png');
 
+  /// File path: assets/images/tilesets/white_black/object__building_tent__idle.png
+  AssetGenImage get objectBuildingTentIdle => const AssetGenImage(
+      'assets/images/tilesets/white_black/object__building_tent__idle.png');
+
   /// File path: assets/images/tilesets/white_black/object__cursor_handle__idle.png
   AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
       'assets/images/tilesets/white_black/object__cursor_handle__idle.png');
@@ -394,6 +398,7 @@ class $AssetsImagesTilesetsWhiteBlackGen {
         landX,
         markerGreenX,
         markerRedX,
+        objectBuildingTentIdle,
         objectCursorHandleIdle,
         objectPlant1Idle,
         objectPlant2Idle,

@@ -5,18 +5,17 @@ import 'package:flame/game.dart';
 import 'package:flame/input.dart';
 import 'package:flame/palette.dart';
 import 'package:flame_bloc/flame_bloc.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart' as material;
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:word_by_word_game/envs.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
 
 export 'canvas_renderer.dart';
@@ -40,6 +39,8 @@ class CanvasRendererGame extends FlameGame
           dialogController: dialogController,
         );
   final GameRendererDiDto dto;
+  LevelFeaturesSettingsModel get featureSettings =>
+      dto.levelBloc.featuresSettings;
 
   late CameraComponent worldCamera;
   @override
@@ -55,7 +56,7 @@ class CanvasRendererGame extends FlameGame
   Future<void> onLoad() async {
     const prefix = 'packages/map_editor/assets/images/';
     images.prefix = prefix;
-    debugMode = kDebugMode && !Envs.isMarketingMode;
+    // debugMode = kDebugMode && !Envs.isMarketingMode;
     // mouseCursor = material.SystemMouseCursors.none;
     children
       ..register<CameraComponent>()

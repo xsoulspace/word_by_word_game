@@ -24,8 +24,12 @@ mixin _$AppSettingsModel {
   Locale? get locale => throw _privateConstructorUsedError;
   BrightnessMode get brightnessMode => throw _privateConstructorUsedError;
 
+  /// Serializes this AppSettingsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of AppSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $AppSettingsModelCopyWith<AppSettingsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -52,6 +56,8 @@ class _$AppSettingsModelCopyWithImpl<$Res, $Val extends AppSettingsModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of AppSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -93,6 +99,8 @@ class __$$AppSettingsModelImplCopyWithImpl<$Res>
       $Res Function(_$AppSettingsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of AppSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -146,11 +154,13 @@ class _$AppSettingsModelImpl extends _AppSettingsModel {
                 other.brightnessMode == brightnessMode));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, locale, brightnessMode);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of AppSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$AppSettingsModelImplCopyWith<_$AppSettingsModelImpl> get copyWith =>
@@ -180,8 +190,11 @@ abstract class _AppSettingsModel extends AppSettingsModel {
   Locale? get locale;
   @override
   BrightnessMode get brightnessMode;
+
+  /// Create a copy of AppSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AppSettingsModelImplCopyWith<_$AppSettingsModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -195,8 +208,12 @@ mixin _$CurrentWordModel {
   List<int> get inactiveIndexes => throw _privateConstructorUsedError;
   String get fullWord => throw _privateConstructorUsedError;
 
+  /// Serializes this CurrentWordModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of CurrentWordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $CurrentWordModelCopyWith<CurrentWordModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -220,6 +237,8 @@ class _$CurrentWordModelCopyWithImpl<$Res, $Val extends CurrentWordModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of CurrentWordModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -258,6 +277,8 @@ class __$$CurrentWordModelImplCopyWithImpl<$Res>
       $Res Function(_$CurrentWordModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of CurrentWordModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -318,12 +339,14 @@ class _$CurrentWordModelImpl extends _CurrentWordModel {
                 other.fullWord == fullWord));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_inactiveIndexes), fullWord);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of CurrentWordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$CurrentWordModelImplCopyWith<_$CurrentWordModelImpl> get copyWith =>
@@ -351,8 +374,11 @@ abstract class _CurrentWordModel extends CurrentWordModel {
   List<int> get inactiveIndexes;
   @override
   String get fullWord;
+
+  /// Create a copy of CurrentWordModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$CurrentWordModelImplCopyWith<_$CurrentWordModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -385,8 +411,12 @@ mixin _$GameSaveModel {
   Map<CanvasDataModelId, LevelModel> get savedLevels =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this GameSaveModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $GameSaveModelCopyWith<GameSaveModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -425,6 +455,8 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -473,6 +505,8 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
     ) as $Val);
   }
 
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get currentLevelId {
@@ -481,6 +515,8 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
     });
   }
 
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelModelCopyWith<$Res>? get currentLevel {
@@ -493,6 +529,8 @@ class _$GameSaveModelCopyWithImpl<$Res, $Val extends GameSaveModel>
     });
   }
 
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress {
@@ -540,6 +578,8 @@ class __$$GameModelImplCopyWithImpl<$Res>
       _$GameModelImpl _value, $Res Function(_$GameModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -690,7 +730,7 @@ class _$GameModelImpl extends _GameModel {
                 .equals(other._savedLevels, _savedLevels));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -703,7 +743,9 @@ class _$GameModelImpl extends _GameModel {
       tutorialProgress,
       const DeepCollectionEquality().hash(_savedLevels));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
@@ -737,19 +779,19 @@ abstract class _GameModel extends GameSaveModel {
 
   @override
   String get id;
-  @override
 
   /// Id of current level
-  CanvasDataModelId get currentLevelId;
   @override
+  CanvasDataModelId get currentLevelId;
 
   /// Saved level configuration to get player an option to restart a level
+  @override
   LevelModel? get currentLevel;
   @override
   GameVersion get version;
-  @override
 
   /// Global players statistics and data.
+  @override
   List<PlayerProfileModel> get playersCollection;
   @override
   List<PlayerCharacterModel> get playersCharacters;
@@ -760,8 +802,11 @@ abstract class _GameModel extends GameSaveModel {
       fromJson: GameSaveModel._savedLevelsFromJson,
       toJson: GameSaveModel._savedLevelsToJson)
   Map<CanvasDataModelId, LevelModel> get savedLevels;
+
+  /// Create a copy of GameSaveModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GameModelImplCopyWith<_$GameModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -775,8 +820,21 @@ mixin _$LevelCharactersModel {
   PlayerCharacterModel get playerCharacter =>
       throw _privateConstructorUsedError;
 
+  /// {@template focusedObjectId}
+  /// The difference of having focused object id is that it is not tied
+  /// to a player and can be used to focus on any object in the level.
+  /// In that case the current player is not focused and camera is not
+  /// following the player. Instead, the camera is focused on the object
+  /// with the given id and moves to it.
+  /// {@endtemplate}
+  Gid get focusedObjectGid => throw _privateConstructorUsedError;
+
+  /// Serializes this LevelCharactersModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelCharactersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LevelCharactersModelCopyWith<LevelCharactersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -787,9 +845,10 @@ abstract class $LevelCharactersModelCopyWith<$Res> {
           $Res Function(LevelCharactersModel) then) =
       _$LevelCharactersModelCopyWithImpl<$Res, LevelCharactersModel>;
   @useResult
-  $Res call({PlayerCharacterModel playerCharacter});
+  $Res call({PlayerCharacterModel playerCharacter, Gid focusedObjectGid});
 
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+  $GidCopyWith<$Res> get focusedObjectGid;
 }
 
 /// @nodoc
@@ -803,24 +862,43 @@ class _$LevelCharactersModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LevelCharactersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? playerCharacter = null,
+    Object? focusedObjectGid = null,
   }) {
     return _then(_value.copyWith(
       playerCharacter: null == playerCharacter
           ? _value.playerCharacter
           : playerCharacter // ignore: cast_nullable_to_non_nullable
               as PlayerCharacterModel,
+      focusedObjectGid: null == focusedObjectGid
+          ? _value.focusedObjectGid
+          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ) as $Val);
   }
 
+  /// Create a copy of LevelCharactersModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
     return $PlayerCharacterModelCopyWith<$Res>(_value.playerCharacter, (value) {
       return _then(_value.copyWith(playerCharacter: value) as $Val);
+    });
+  }
+
+  /// Create a copy of LevelCharactersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $GidCopyWith<$Res> get focusedObjectGid {
+    return $GidCopyWith<$Res>(_value.focusedObjectGid, (value) {
+      return _then(_value.copyWith(focusedObjectGid: value) as $Val);
     });
   }
 }
@@ -833,10 +911,12 @@ abstract class _$$LevelCharactersModelImplCopyWith<$Res>
       __$$LevelCharactersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({PlayerCharacterModel playerCharacter});
+  $Res call({PlayerCharacterModel playerCharacter, Gid focusedObjectGid});
 
   @override
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
+  @override
+  $GidCopyWith<$Res> get focusedObjectGid;
 }
 
 /// @nodoc
@@ -847,16 +927,23 @@ class __$$LevelCharactersModelImplCopyWithImpl<$Res>
       $Res Function(_$LevelCharactersModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelCharactersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? playerCharacter = null,
+    Object? focusedObjectGid = null,
   }) {
     return _then(_$LevelCharactersModelImpl(
       playerCharacter: null == playerCharacter
           ? _value.playerCharacter
           : playerCharacter // ignore: cast_nullable_to_non_nullable
               as PlayerCharacterModel,
+      focusedObjectGid: null == focusedObjectGid
+          ? _value.focusedObjectGid
+          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+              as Gid,
     ));
   }
 }
@@ -865,7 +952,9 @@ class __$$LevelCharactersModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$LevelCharactersModelImpl extends _LevelCharactersModel {
-  const _$LevelCharactersModelImpl({required this.playerCharacter}) : super._();
+  const _$LevelCharactersModelImpl(
+      {required this.playerCharacter, this.focusedObjectGid = Gid.empty})
+      : super._();
 
   factory _$LevelCharactersModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$LevelCharactersModelImplFromJson(json);
@@ -873,9 +962,20 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
   @override
   final PlayerCharacterModel playerCharacter;
 
+  /// {@template focusedObjectId}
+  /// The difference of having focused object id is that it is not tied
+  /// to a player and can be used to focus on any object in the level.
+  /// In that case the current player is not focused and camera is not
+  /// following the player. Instead, the camera is focused on the object
+  /// with the given id and moves to it.
+  /// {@endtemplate}
+  @override
+  @JsonKey()
+  final Gid focusedObjectGid;
+
   @override
   String toString() {
-    return 'LevelCharactersModel(playerCharacter: $playerCharacter)';
+    return 'LevelCharactersModel(playerCharacter: $playerCharacter, focusedObjectGid: $focusedObjectGid)';
   }
 
   @override
@@ -884,14 +984,19 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
         (other.runtimeType == runtimeType &&
             other is _$LevelCharactersModelImpl &&
             (identical(other.playerCharacter, playerCharacter) ||
-                other.playerCharacter == playerCharacter));
+                other.playerCharacter == playerCharacter) &&
+            (identical(other.focusedObjectGid, focusedObjectGid) ||
+                other.focusedObjectGid == focusedObjectGid));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, playerCharacter);
+  int get hashCode =>
+      Object.hash(runtimeType, playerCharacter, focusedObjectGid);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelCharactersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelCharactersModelImplCopyWith<_$LevelCharactersModelImpl>
@@ -909,8 +1014,8 @@ class _$LevelCharactersModelImpl extends _LevelCharactersModel {
 
 abstract class _LevelCharactersModel extends LevelCharactersModel {
   const factory _LevelCharactersModel(
-          {required final PlayerCharacterModel playerCharacter}) =
-      _$LevelCharactersModelImpl;
+      {required final PlayerCharacterModel playerCharacter,
+      final Gid focusedObjectGid}) = _$LevelCharactersModelImpl;
   const _LevelCharactersModel._() : super._();
 
   factory _LevelCharactersModel.fromJson(Map<String, dynamic> json) =
@@ -918,8 +1023,21 @@ abstract class _LevelCharactersModel extends LevelCharactersModel {
 
   @override
   PlayerCharacterModel get playerCharacter;
+
+  /// {@template focusedObjectId}
+  /// The difference of having focused object id is that it is not tied
+  /// to a player and can be used to focus on any object in the level.
+  /// In that case the current player is not focused and camera is not
+  /// following the player. Instead, the camera is focused on the object
+  /// with the given id and moves to it.
+  /// {@endtemplate}
   @override
-  @JsonKey(ignore: true)
+  Gid get focusedObjectGid;
+
+  /// Create a copy of LevelCharactersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelCharactersModelImplCopyWith<_$LevelCharactersModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -952,9 +1070,25 @@ mixin _$LevelModel {
   LevelFeaturesSettingsModel get featuresSettings =>
       throw _privateConstructorUsedError;
   Languages get wordsLanguage => throw _privateConstructorUsedError;
+  PlayerStartPointType get playerStartPoint =>
+      throw _privateConstructorUsedError;
 
+  /// use these objects to save any objectss from any layer
+  @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
+  Map<Gid, RenderObjectModel> get canvasObjects =>
+      throw _privateConstructorUsedError;
+
+  /// savable layers
+  List<LayerModel> get canvasLayers => throw _privateConstructorUsedError;
+
+  /// Serializes this LevelModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LevelModelCopyWith<LevelModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -981,7 +1115,13 @@ abstract class $LevelModelCopyWith<$Res> {
       WorldDateTimeModel lastDateTime,
       TechnologyTreeProgressModel technologyTreeProgress,
       LevelFeaturesSettingsModel featuresSettings,
-      Languages wordsLanguage});
+      Languages wordsLanguage,
+      PlayerStartPointType playerStartPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      Map<Gid, RenderObjectModel> canvasObjects,
+      List<LayerModel> canvasLayers});
 
   $LevelPlayersModelCopyWith<$Res> get players;
   $LevelCharactersModelCopyWith<$Res> get characters;
@@ -1004,6 +1144,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1023,6 +1165,9 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     Object? technologyTreeProgress = null,
     Object? featuresSettings = null,
     Object? wordsLanguage = null,
+    Object? playerStartPoint = null,
+    Object? canvasObjects = null,
+    Object? canvasLayers = null,
   }) {
     return _then(_value.copyWith(
       players: null == players
@@ -1089,9 +1234,23 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.wordsLanguage
           : wordsLanguage // ignore: cast_nullable_to_non_nullable
               as Languages,
+      playerStartPoint: null == playerStartPoint
+          ? _value.playerStartPoint
+          : playerStartPoint // ignore: cast_nullable_to_non_nullable
+              as PlayerStartPointType,
+      canvasObjects: null == canvasObjects
+          ? _value.canvasObjects
+          : canvasObjects // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderObjectModel>,
+      canvasLayers: null == canvasLayers
+          ? _value.canvasLayers
+          : canvasLayers // ignore: cast_nullable_to_non_nullable
+              as List<LayerModel>,
     ) as $Val);
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelPlayersModelCopyWith<$Res> get players {
@@ -1100,6 +1259,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelCharactersModelCopyWith<$Res> get characters {
@@ -1108,6 +1269,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WindModelCopyWith<$Res> get wind {
@@ -1116,6 +1279,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get canvasDataId {
@@ -1124,6 +1289,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CurrentWordModelCopyWith<$Res> get currentWord {
@@ -1132,6 +1299,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get dateTime {
@@ -1140,6 +1309,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
@@ -1148,6 +1319,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress {
@@ -1157,6 +1330,8 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
     });
   }
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
@@ -1191,7 +1366,13 @@ abstract class _$$LevelModelImplCopyWith<$Res>
       WorldDateTimeModel lastDateTime,
       TechnologyTreeProgressModel technologyTreeProgress,
       LevelFeaturesSettingsModel featuresSettings,
-      Languages wordsLanguage});
+      Languages wordsLanguage,
+      PlayerStartPointType playerStartPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      Map<Gid, RenderObjectModel> canvasObjects,
+      List<LayerModel> canvasLayers});
 
   @override
   $LevelPlayersModelCopyWith<$Res> get players;
@@ -1221,6 +1402,8 @@ class __$$LevelModelImplCopyWithImpl<$Res>
       _$LevelModelImpl _value, $Res Function(_$LevelModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1240,6 +1423,9 @@ class __$$LevelModelImplCopyWithImpl<$Res>
     Object? technologyTreeProgress = null,
     Object? featuresSettings = null,
     Object? wordsLanguage = null,
+    Object? playerStartPoint = null,
+    Object? canvasObjects = null,
+    Object? canvasLayers = null,
   }) {
     return _then(_$LevelModelImpl(
       players: null == players
@@ -1306,6 +1492,18 @@ class __$$LevelModelImplCopyWithImpl<$Res>
           ? _value.wordsLanguage
           : wordsLanguage // ignore: cast_nullable_to_non_nullable
               as Languages,
+      playerStartPoint: null == playerStartPoint
+          ? _value.playerStartPoint
+          : playerStartPoint // ignore: cast_nullable_to_non_nullable
+              as PlayerStartPointType,
+      canvasObjects: null == canvasObjects
+          ? _value._canvasObjects
+          : canvasObjects // ignore: cast_nullable_to_non_nullable
+              as Map<Gid, RenderObjectModel>,
+      canvasLayers: null == canvasLayers
+          ? _value._canvasLayers
+          : canvasLayers // ignore: cast_nullable_to_non_nullable
+              as List<LayerModel>,
     ));
   }
 }
@@ -1330,9 +1528,17 @@ class _$LevelModelImpl extends _LevelModel {
       this.lastDateTime = WorldDateTimeModel.zero,
       this.technologyTreeProgress = TechnologyTreeProgressModel.empty,
       this.featuresSettings = LevelFeaturesSettingsModel.empty,
-      this.wordsLanguage = Languages.en})
+      this.wordsLanguage = Languages.en,
+      this.playerStartPoint = PlayerStartPointType.fromSpawnPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      final Map<Gid, RenderObjectModel> canvasObjects = const {},
+      final List<LayerModel> canvasLayers = const []})
       : _weathers = weathers,
         _words = words,
+        _canvasObjects = canvasObjects,
+        _canvasLayers = canvasLayers,
         super._();
 
   factory _$LevelModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -1399,10 +1605,39 @@ class _$LevelModelImpl extends _LevelModel {
   @override
   @JsonKey()
   final Languages wordsLanguage;
+  @override
+  @JsonKey()
+  final PlayerStartPointType playerStartPoint;
+
+  /// use these objects to save any objectss from any layer
+  final Map<Gid, RenderObjectModel> _canvasObjects;
+
+  /// use these objects to save any objectss from any layer
+  @override
+  @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
+  Map<Gid, RenderObjectModel> get canvasObjects {
+    if (_canvasObjects is EqualUnmodifiableMapView) return _canvasObjects;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableMapView(_canvasObjects);
+  }
+
+  /// savable layers
+  final List<LayerModel> _canvasLayers;
+
+  /// savable layers
+  @override
+  @JsonKey()
+  List<LayerModel> get canvasLayers {
+    if (_canvasLayers is EqualUnmodifiableListView) return _canvasLayers;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_canvasLayers);
+  }
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage)';
+    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage, playerStartPoint: $playerStartPoint, canvasObjects: $canvasObjects, canvasLayers: $canvasLayers)';
   }
 
   @override
@@ -1437,31 +1672,43 @@ class _$LevelModelImpl extends _LevelModel {
             (identical(other.featuresSettings, featuresSettings) ||
                 other.featuresSettings == featuresSettings) &&
             (identical(other.wordsLanguage, wordsLanguage) ||
-                other.wordsLanguage == wordsLanguage));
+                other.wordsLanguage == wordsLanguage) &&
+            (identical(other.playerStartPoint, playerStartPoint) ||
+                other.playerStartPoint == playerStartPoint) &&
+            const DeepCollectionEquality()
+                .equals(other._canvasObjects, _canvasObjects) &&
+            const DeepCollectionEquality()
+                .equals(other._canvasLayers, _canvasLayers));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType,
-      players,
-      characters,
-      tilesetType,
-      const DeepCollectionEquality().hash(_weathers),
-      wind,
-      canvasDataId,
-      currentWord,
-      const DeepCollectionEquality().hash(_words),
-      latestWord,
-      phaseType,
-      actionMultiplier,
-      dateTime,
-      lastDateTime,
-      technologyTreeProgress,
-      featuresSettings,
-      wordsLanguage);
+  int get hashCode => Object.hashAll([
+        runtimeType,
+        players,
+        characters,
+        tilesetType,
+        const DeepCollectionEquality().hash(_weathers),
+        wind,
+        canvasDataId,
+        currentWord,
+        const DeepCollectionEquality().hash(_words),
+        latestWord,
+        phaseType,
+        actionMultiplier,
+        dateTime,
+        lastDateTime,
+        technologyTreeProgress,
+        featuresSettings,
+        wordsLanguage,
+        playerStartPoint,
+        const DeepCollectionEquality().hash(_canvasObjects),
+        const DeepCollectionEquality().hash(_canvasLayers)
+      ]);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>
@@ -1492,7 +1739,13 @@ abstract class _LevelModel extends LevelModel {
       final WorldDateTimeModel lastDateTime,
       final TechnologyTreeProgressModel technologyTreeProgress,
       final LevelFeaturesSettingsModel featuresSettings,
-      final Languages wordsLanguage}) = _$LevelModelImpl;
+      final Languages wordsLanguage,
+      final PlayerStartPointType playerStartPoint,
+      @JsonKey(
+          fromJson: CanvasDataModel.objectsFromJson,
+          toJson: CanvasDataModel.objectsToJson)
+      final Map<Gid, RenderObjectModel> canvasObjects,
+      final List<LayerModel> canvasLayers}) = _$LevelModelImpl;
   const _LevelModel._() : super._();
 
   factory _LevelModel.fromJson(Map<String, dynamic> json) =
@@ -1508,10 +1761,10 @@ abstract class _LevelModel extends LevelModel {
   List<WeatherModel> get weathers;
   @override
   WindModel get wind;
-  @override
 
   /// To get [CanvasDataModel] use [TemplateLevelModel.canvasData]
   /// comparing [LevelModel.canvasDataId] with [TemplateLevelModel.id]
+  @override
   CanvasDataModelId get canvasDataId;
   @override
   CurrentWordModel get currentWord;
@@ -1534,7 +1787,23 @@ abstract class _LevelModel extends LevelModel {
   @override
   Languages get wordsLanguage;
   @override
-  @JsonKey(ignore: true)
+  PlayerStartPointType get playerStartPoint;
+
+  /// use these objects to save any objectss from any layer
+  @override
+  @JsonKey(
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson)
+  Map<Gid, RenderObjectModel> get canvasObjects;
+
+  /// savable layers
+  @override
+  List<LayerModel> get canvasLayers;
+
+  /// Create a copy of LevelModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelModelImplCopyWith<_$LevelModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1548,8 +1817,20 @@ LevelFeaturesSettingsModel _$LevelFeaturesSettingsModelFromJson(
 mixin _$LevelFeaturesSettingsModel {
   bool get isTechnologiesEnabled => throw _privateConstructorUsedError;
 
+  /// if enabled, then wind can be changed in both directions
+  /// left, or right during the flight
+  ///
+  /// In the same time, if this feature enabled,
+  /// then there is no win scenario, since
+  /// it makes no sense.
+  bool get isWindDirectionChangeEnabled => throw _privateConstructorUsedError;
+
+  /// Serializes this LevelFeaturesSettingsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelFeaturesSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LevelFeaturesSettingsModelCopyWith<LevelFeaturesSettingsModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1561,7 +1842,7 @@ abstract class $LevelFeaturesSettingsModelCopyWith<$Res> {
       _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
           LevelFeaturesSettingsModel>;
   @useResult
-  $Res call({bool isTechnologiesEnabled});
+  $Res call({bool isTechnologiesEnabled, bool isWindDirectionChangeEnabled});
 }
 
 /// @nodoc
@@ -1575,15 +1856,22 @@ class _$LevelFeaturesSettingsModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LevelFeaturesSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? isTechnologiesEnabled = null,
+    Object? isWindDirectionChangeEnabled = null,
   }) {
     return _then(_value.copyWith(
       isTechnologiesEnabled: null == isTechnologiesEnabled
           ? _value.isTechnologiesEnabled
           : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isWindDirectionChangeEnabled: null == isWindDirectionChangeEnabled
+          ? _value.isWindDirectionChangeEnabled
+          : isWindDirectionChangeEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
     ) as $Val);
   }
@@ -1598,7 +1886,7 @@ abstract class _$$LevelFeaturesSettingsModelImplCopyWith<$Res>
       __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({bool isTechnologiesEnabled});
+  $Res call({bool isTechnologiesEnabled, bool isWindDirectionChangeEnabled});
 }
 
 /// @nodoc
@@ -1611,15 +1899,22 @@ class __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>
       $Res Function(_$LevelFeaturesSettingsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelFeaturesSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? isTechnologiesEnabled = null,
+    Object? isWindDirectionChangeEnabled = null,
   }) {
     return _then(_$LevelFeaturesSettingsModelImpl(
       isTechnologiesEnabled: null == isTechnologiesEnabled
           ? _value.isTechnologiesEnabled
           : isTechnologiesEnabled // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isWindDirectionChangeEnabled: null == isWindDirectionChangeEnabled
+          ? _value.isWindDirectionChangeEnabled
+          : isWindDirectionChangeEnabled // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
@@ -1627,8 +1922,11 @@ class __$$LevelFeaturesSettingsModelImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$LevelFeaturesSettingsModelImpl implements _LevelFeaturesSettingsModel {
-  const _$LevelFeaturesSettingsModelImpl({this.isTechnologiesEnabled = false});
+class _$LevelFeaturesSettingsModelImpl extends _LevelFeaturesSettingsModel {
+  const _$LevelFeaturesSettingsModelImpl(
+      {this.isTechnologiesEnabled = false,
+      this.isWindDirectionChangeEnabled = false})
+      : super._();
 
   factory _$LevelFeaturesSettingsModelImpl.fromJson(
           Map<String, dynamic> json) =>
@@ -1638,9 +1936,19 @@ class _$LevelFeaturesSettingsModelImpl implements _LevelFeaturesSettingsModel {
   @JsonKey()
   final bool isTechnologiesEnabled;
 
+  /// if enabled, then wind can be changed in both directions
+  /// left, or right during the flight
+  ///
+  /// In the same time, if this feature enabled,
+  /// then there is no win scenario, since
+  /// it makes no sense.
+  @override
+  @JsonKey()
+  final bool isWindDirectionChangeEnabled;
+
   @override
   String toString() {
-    return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled)';
+    return 'LevelFeaturesSettingsModel(isTechnologiesEnabled: $isTechnologiesEnabled, isWindDirectionChangeEnabled: $isWindDirectionChangeEnabled)';
   }
 
   @override
@@ -1649,14 +1957,21 @@ class _$LevelFeaturesSettingsModelImpl implements _LevelFeaturesSettingsModel {
         (other.runtimeType == runtimeType &&
             other is _$LevelFeaturesSettingsModelImpl &&
             (identical(other.isTechnologiesEnabled, isTechnologiesEnabled) ||
-                other.isTechnologiesEnabled == isTechnologiesEnabled));
+                other.isTechnologiesEnabled == isTechnologiesEnabled) &&
+            (identical(other.isWindDirectionChangeEnabled,
+                    isWindDirectionChangeEnabled) ||
+                other.isWindDirectionChangeEnabled ==
+                    isWindDirectionChangeEnabled));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(runtimeType, isTechnologiesEnabled);
+  int get hashCode => Object.hash(
+      runtimeType, isTechnologiesEnabled, isWindDirectionChangeEnabled);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelFeaturesSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelFeaturesSettingsModelImplCopyWith<_$LevelFeaturesSettingsModelImpl>
@@ -1671,18 +1986,32 @@ class _$LevelFeaturesSettingsModelImpl implements _LevelFeaturesSettingsModel {
   }
 }
 
-abstract class _LevelFeaturesSettingsModel
-    implements LevelFeaturesSettingsModel {
+abstract class _LevelFeaturesSettingsModel extends LevelFeaturesSettingsModel {
   const factory _LevelFeaturesSettingsModel(
-      {final bool isTechnologiesEnabled}) = _$LevelFeaturesSettingsModelImpl;
+          {final bool isTechnologiesEnabled,
+          final bool isWindDirectionChangeEnabled}) =
+      _$LevelFeaturesSettingsModelImpl;
+  const _LevelFeaturesSettingsModel._() : super._();
 
   factory _LevelFeaturesSettingsModel.fromJson(Map<String, dynamic> json) =
       _$LevelFeaturesSettingsModelImpl.fromJson;
 
   @override
   bool get isTechnologiesEnabled;
+
+  /// if enabled, then wind can be changed in both directions
+  /// left, or right during the flight
+  ///
+  /// In the same time, if this feature enabled,
+  /// then there is no win scenario, since
+  /// it makes no sense.
   @override
-  @JsonKey(ignore: true)
+  bool get isWindDirectionChangeEnabled;
+
+  /// Create a copy of LevelFeaturesSettingsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelFeaturesSettingsModelImplCopyWith<_$LevelFeaturesSettingsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1696,8 +2025,12 @@ mixin _$LevelPlayersModel {
   List<PlayerProfileModel> get players => throw _privateConstructorUsedError;
   String get currentPlayerId => throw _privateConstructorUsedError;
 
+  /// Serializes this LevelPlayersModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelPlayersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LevelPlayersModelCopyWith<LevelPlayersModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1721,6 +2054,8 @@ class _$LevelPlayersModelCopyWithImpl<$Res, $Val extends LevelPlayersModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LevelPlayersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1759,6 +2094,8 @@ class __$$LevelPlayersModelImplCopyWithImpl<$Res>
       $Res Function(_$LevelPlayersModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelPlayersModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1817,12 +2154,14 @@ class _$LevelPlayersModelImpl extends _LevelPlayersModel {
                 other.currentPlayerId == currentPlayerId));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_players), currentPlayerId);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelPlayersModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelPlayersModelImplCopyWith<_$LevelPlayersModelImpl> get copyWith =>
@@ -1850,8 +2189,11 @@ abstract class _LevelPlayersModel extends LevelPlayersModel {
   List<PlayerProfileModel> get players;
   @override
   String get currentPlayerId;
+
+  /// Create a copy of LevelPlayersModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelPlayersModelImplCopyWith<_$LevelPlayersModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1874,6 +2216,13 @@ mixin _$PlayerCharacterModel {
   LocalizedMap get localizedName => throw _privateConstructorUsedError;
   String get characterIcon => throw _privateConstructorUsedError;
   SerializedVector2 get distanceToOrigin => throw _privateConstructorUsedError;
+
+  /// use this vector, to restore object position
+  /// after object was deleted. For example, if player had
+  /// crashed, then we need to restore
+  /// his position to the last checkpoint if it is exists.
+  SerializedVector2 get checkpointDistanceToOrigin =>
+      throw _privateConstructorUsedError;
   BalloonLiftPowersModel get balloonPowers =>
       throw _privateConstructorUsedError;
   BalloonLiftParamsModel get balloonParams =>
@@ -1883,8 +2232,12 @@ mixin _$PlayerCharacterModel {
   /// cannot be moved.
   bool get isAnchored => throw _privateConstructorUsedError;
 
+  /// Serializes this PlayerCharacterModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlayerCharacterModelCopyWith<PlayerCharacterModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1903,6 +2256,7 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
       LocalizedMap localizedName,
       String characterIcon,
       SerializedVector2 distanceToOrigin,
+      SerializedVector2 checkpointDistanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
       BalloonLiftParamsModel balloonParams,
       bool isAnchored});
@@ -1911,6 +2265,7 @@ abstract class $PlayerCharacterModelCopyWith<$Res> {
   $GidCopyWith<$Res> get gid;
   $LocalizedMapCopyWith<$Res> get localizedName;
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  $SerializedVector2CopyWith<$Res> get checkpointDistanceToOrigin;
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
   $BalloonLiftParamsModelCopyWith<$Res> get balloonParams;
 }
@@ -1926,6 +2281,8 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1936,6 +2293,7 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     Object? localizedName = null,
     Object? characterIcon = null,
     Object? distanceToOrigin = null,
+    Object? checkpointDistanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
     Object? isAnchored = null,
@@ -1969,6 +2327,10 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
           ? _value.distanceToOrigin
           : distanceToOrigin // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
+      checkpointDistanceToOrigin: null == checkpointDistanceToOrigin
+          ? _value.checkpointDistanceToOrigin
+          : checkpointDistanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
       balloonPowers: null == balloonPowers
           ? _value.balloonPowers
           : balloonPowers // ignore: cast_nullable_to_non_nullable
@@ -1984,6 +2346,8 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GidCopyWith<$Res> get id {
@@ -1992,6 +2356,8 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $GidCopyWith<$Res> get gid {
@@ -2000,6 +2366,8 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get localizedName {
@@ -2008,6 +2376,8 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $SerializedVector2CopyWith<$Res> get distanceToOrigin {
@@ -2016,6 +2386,19 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $SerializedVector2CopyWith<$Res> get checkpointDistanceToOrigin {
+    return $SerializedVector2CopyWith<$Res>(_value.checkpointDistanceToOrigin,
+        (value) {
+      return _then(_value.copyWith(checkpointDistanceToOrigin: value) as $Val);
+    });
+  }
+
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers {
@@ -2024,6 +2407,8 @@ class _$PlayerCharacterModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $BalloonLiftParamsModelCopyWith<$Res> get balloonParams {
@@ -2049,6 +2434,7 @@ abstract class _$$PlayerCharacterModelImplCopyWith<$Res>
       LocalizedMap localizedName,
       String characterIcon,
       SerializedVector2 distanceToOrigin,
+      SerializedVector2 checkpointDistanceToOrigin,
       BalloonLiftPowersModel balloonPowers,
       BalloonLiftParamsModel balloonParams,
       bool isAnchored});
@@ -2061,6 +2447,8 @@ abstract class _$$PlayerCharacterModelImplCopyWith<$Res>
   $LocalizedMapCopyWith<$Res> get localizedName;
   @override
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
+  @override
+  $SerializedVector2CopyWith<$Res> get checkpointDistanceToOrigin;
   @override
   $BalloonLiftPowersModelCopyWith<$Res> get balloonPowers;
   @override
@@ -2075,6 +2463,8 @@ class __$$PlayerCharacterModelImplCopyWithImpl<$Res>
       $Res Function(_$PlayerCharacterModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2085,6 +2475,7 @@ class __$$PlayerCharacterModelImplCopyWithImpl<$Res>
     Object? localizedName = null,
     Object? characterIcon = null,
     Object? distanceToOrigin = null,
+    Object? checkpointDistanceToOrigin = null,
     Object? balloonPowers = null,
     Object? balloonParams = null,
     Object? isAnchored = null,
@@ -2118,6 +2509,10 @@ class __$$PlayerCharacterModelImplCopyWithImpl<$Res>
           ? _value.distanceToOrigin
           : distanceToOrigin // ignore: cast_nullable_to_non_nullable
               as SerializedVector2,
+      checkpointDistanceToOrigin: null == checkpointDistanceToOrigin
+          ? _value.checkpointDistanceToOrigin
+          : checkpointDistanceToOrigin // ignore: cast_nullable_to_non_nullable
+              as SerializedVector2,
       balloonPowers: null == balloonPowers
           ? _value.balloonPowers
           : balloonPowers // ignore: cast_nullable_to_non_nullable
@@ -2146,6 +2541,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
       this.localizedName = LocalizedMap.empty,
       this.characterIcon = '',
       this.distanceToOrigin = SerializedVector2.zero,
+      this.checkpointDistanceToOrigin = SerializedVector2.zero,
       this.balloonPowers = BalloonLiftPowersModel.initial,
       this.balloonParams = BalloonLiftParamsModel.initial,
       this.isAnchored = true})
@@ -2180,6 +2576,14 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
   @override
   @JsonKey()
   final SerializedVector2 distanceToOrigin;
+
+  /// use this vector, to restore object position
+  /// after object was deleted. For example, if player had
+  /// crashed, then we need to restore
+  /// his position to the last checkpoint if it is exists.
+  @override
+  @JsonKey()
+  final SerializedVector2 checkpointDistanceToOrigin;
   @override
   @JsonKey()
   final BalloonLiftPowersModel balloonPowers;
@@ -2195,7 +2599,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
 
   @override
   String toString() {
-    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, distanceToOrigin: $distanceToOrigin, balloonPowers: $balloonPowers, balloonParams: $balloonParams, isAnchored: $isAnchored)';
+    return 'PlayerCharacterModel(id: $id, gid: $gid, description: $description, color: $color, localizedName: $localizedName, characterIcon: $characterIcon, distanceToOrigin: $distanceToOrigin, checkpointDistanceToOrigin: $checkpointDistanceToOrigin, balloonPowers: $balloonPowers, balloonParams: $balloonParams, isAnchored: $isAnchored)';
   }
 
   @override
@@ -2214,6 +2618,10 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
                 other.characterIcon == characterIcon) &&
             (identical(other.distanceToOrigin, distanceToOrigin) ||
                 other.distanceToOrigin == distanceToOrigin) &&
+            (identical(other.checkpointDistanceToOrigin,
+                    checkpointDistanceToOrigin) ||
+                other.checkpointDistanceToOrigin ==
+                    checkpointDistanceToOrigin) &&
             (identical(other.balloonPowers, balloonPowers) ||
                 other.balloonPowers == balloonPowers) &&
             (identical(other.balloonParams, balloonParams) ||
@@ -2222,7 +2630,7 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
                 other.isAnchored == isAnchored));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -2233,11 +2641,14 @@ class _$PlayerCharacterModelImpl extends _PlayerCharacterModel {
       localizedName,
       characterIcon,
       distanceToOrigin,
+      checkpointDistanceToOrigin,
       balloonPowers,
       balloonParams,
       isAnchored);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlayerCharacterModelImplCopyWith<_$PlayerCharacterModelImpl>
@@ -2262,6 +2673,7 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
       final LocalizedMap localizedName,
       final String characterIcon,
       final SerializedVector2 distanceToOrigin,
+      final SerializedVector2 checkpointDistanceToOrigin,
       final BalloonLiftPowersModel balloonPowers,
       final BalloonLiftParamsModel balloonParams,
       final bool isAnchored}) = _$PlayerCharacterModelImpl;
@@ -2270,15 +2682,14 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   factory _PlayerCharacterModel.fromJson(Map<String, dynamic> json) =
       _$PlayerCharacterModelImpl.fromJson;
 
-  @override
-
   /// unique id which used to identify unqiue set of following params:
   /// [balloonPowers] [balloonParams] [color] [localizedName] etc
-  Gid get id;
   @override
+  Gid get id;
 
   /// is assigning during game start to pick required tileId's
   /// reference from the canvasCubit
+  @override
   Gid get gid;
   @override
   String get description;
@@ -2290,17 +2701,27 @@ abstract class _PlayerCharacterModel extends PlayerCharacterModel {
   String get characterIcon;
   @override
   SerializedVector2 get distanceToOrigin;
+
+  /// use this vector, to restore object position
+  /// after object was deleted. For example, if player had
+  /// crashed, then we need to restore
+  /// his position to the last checkpoint if it is exists.
+  @override
+  SerializedVector2 get checkpointDistanceToOrigin;
   @override
   BalloonLiftPowersModel get balloonPowers;
   @override
   BalloonLiftParamsModel get balloonParams;
-  @override
 
   /// If is true, then it means that the balloon is on the ground and
   /// cannot be moved.
-  bool get isAnchored;
   @override
-  @JsonKey(ignore: true)
+  bool get isAnchored;
+
+  /// Create a copy of PlayerCharacterModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayerCharacterModelImplCopyWith<_$PlayerCharacterModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2314,7 +2735,9 @@ mixin _$SerializedVector2 {
   double get x => throw _privateConstructorUsedError;
   double get y => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SerializedVector2
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $SerializedVector2CopyWith<SerializedVector2> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2338,6 +2761,8 @@ class _$SerializedVector2CopyWithImpl<$Res, $Val extends SerializedVector2>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of SerializedVector2
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2376,6 +2801,8 @@ class __$$SerializedVector2ImplCopyWithImpl<$Res>
       $Res Function(_$SerializedVector2Impl) _then)
       : super(_value, _then);
 
+  /// Create a copy of SerializedVector2
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2425,11 +2852,13 @@ class _$SerializedVector2Impl extends _SerializedVector2 {
             (identical(other.y, y) || other.y == y));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, x, y);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of SerializedVector2
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$SerializedVector2ImplCopyWith<_$SerializedVector2Impl> get copyWith =>
@@ -2449,8 +2878,11 @@ abstract class _SerializedVector2 extends SerializedVector2 {
   double get x;
   @override
   double get y;
+
+  /// Create a copy of SerializedVector2
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$SerializedVector2ImplCopyWith<_$SerializedVector2Impl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2471,8 +2903,12 @@ mixin _$PlayerProfileModel {
       throw _privateConstructorUsedError;
   PlayerHighscoreModel get highscore => throw _privateConstructorUsedError;
 
+  /// Serializes this PlayerProfileModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlayerProfileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlayerProfileModelCopyWith<PlayerProfileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2506,6 +2942,8 @@ class _$PlayerProfileModelCopyWithImpl<$Res, $Val extends PlayerProfileModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlayerProfileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2539,6 +2977,8 @@ class _$PlayerProfileModelCopyWithImpl<$Res, $Val extends PlayerProfileModel>
     ) as $Val);
   }
 
+  /// Create a copy of PlayerProfileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PlayerHighscoreModelCopyWith<$Res> get highscore {
@@ -2578,6 +3018,8 @@ class __$$PlayerProfileModelImplCopyWithImpl<$Res>
       $Res Function(_$PlayerProfileModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlayerProfileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2673,12 +3115,14 @@ class _$PlayerProfileModelImpl extends _PlayerProfileModel {
                 other.highscore == highscore));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, colorValue, name,
       const DeepCollectionEquality().hash(_levelsHighscores), highscore);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayerProfileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlayerProfileModelImplCopyWith<_$PlayerProfileModelImpl> get copyWith =>
@@ -2721,8 +3165,11 @@ abstract class _PlayerProfileModel extends PlayerProfileModel {
   Map<CanvasDataModelId, PlayerLevelHighscoreModel> get levelsHighscores;
   @override
   PlayerHighscoreModel get highscore;
+
+  /// Create a copy of PlayerProfileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayerProfileModelImplCopyWith<_$PlayerProfileModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2739,8 +3186,12 @@ mixin _$PlayerHighscoreModel {
   int get totalLettersCount => throw _privateConstructorUsedError;
   ScoreModel get score => throw _privateConstructorUsedError;
 
+  /// Serializes this PlayerHighscoreModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlayerHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlayerHighscoreModelCopyWith<PlayerHighscoreModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -2772,6 +3223,8 @@ class _$PlayerHighscoreModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlayerHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2805,6 +3258,8 @@ class _$PlayerHighscoreModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlayerHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $ScoreModelCopyWith<$Res> get score {
@@ -2841,6 +3296,8 @@ class __$$PlayerHighscoreModelImplCopyWithImpl<$Res>
       $Res Function(_$PlayerHighscoreModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlayerHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -2927,12 +3384,14 @@ class _$PlayerHighscoreModelImpl extends _PlayerHighscoreModel {
             (identical(other.score, score) || other.score == score));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, maxWordsCount, maxLettersCount,
       totalWordsCount, totalLettersCount, score);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayerHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlayerHighscoreModelImplCopyWith<_$PlayerHighscoreModelImpl>
@@ -2970,8 +3429,11 @@ abstract class _PlayerHighscoreModel extends PlayerHighscoreModel {
   int get totalLettersCount;
   @override
   ScoreModel get score;
+
+  /// Create a copy of PlayerHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayerHighscoreModelImplCopyWith<_$PlayerHighscoreModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -2989,8 +3451,12 @@ mixin _$PlayerLevelHighscoreModel {
   double get landingsCount => throw _privateConstructorUsedError;
   double get flightTime => throw _privateConstructorUsedError;
 
+  /// Serializes this PlayerLevelHighscoreModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PlayerLevelHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlayerLevelHighscoreModelCopyWith<PlayerLevelHighscoreModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3022,6 +3488,8 @@ class _$PlayerLevelHighscoreModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlayerLevelHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3055,6 +3523,8 @@ class _$PlayerLevelHighscoreModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PlayerLevelHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get levelId {
@@ -3094,6 +3564,8 @@ class __$$PlayerLevelHighscoreModelImplCopyWithImpl<$Res>
       $Res Function(_$PlayerLevelHighscoreModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlayerLevelHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3179,12 +3651,14 @@ class _$PlayerLevelHighscoreModelImpl extends _PlayerLevelHighscoreModel {
                 other.flightTime == flightTime));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, levelId, maxDistance,
       totalDistance, landingsCount, flightTime);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayerLevelHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlayerLevelHighscoreModelImplCopyWith<_$PlayerLevelHighscoreModelImpl>
@@ -3221,8 +3695,11 @@ abstract class _PlayerLevelHighscoreModel extends PlayerLevelHighscoreModel {
   double get landingsCount;
   @override
   double get flightTime;
+
+  /// Create a copy of PlayerLevelHighscoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayerLevelHighscoreModelImplCopyWith<_$PlayerLevelHighscoreModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3235,8 +3712,12 @@ ScoreModel _$ScoreModelFromJson(Map<String, dynamic> json) {
 mixin _$ScoreModel {
   double get value => throw _privateConstructorUsedError;
 
+  /// Serializes this ScoreModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of ScoreModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $ScoreModelCopyWith<ScoreModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3260,6 +3741,8 @@ class _$ScoreModelCopyWithImpl<$Res, $Val extends ScoreModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of ScoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3293,6 +3776,8 @@ class __$$ScoreModelImplCopyWithImpl<$Res>
       _$ScoreModelImpl _value, $Res Function(_$ScoreModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of ScoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3331,11 +3816,13 @@ class _$ScoreModelImpl extends _ScoreModel {
             (identical(other.value, value) || other.value == value));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, value);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of ScoreModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$ScoreModelImplCopyWith<_$ScoreModelImpl> get copyWith =>
@@ -3358,8 +3845,11 @@ abstract class _ScoreModel extends ScoreModel {
 
   @override
   double get value;
+
+  /// Create a copy of ScoreModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ScoreModelImplCopyWith<_$ScoreModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3376,11 +3866,14 @@ mixin _$TechnologyTreeProgressModel {
       toJson: TechnologyTreeProgressModel._technologiesToJson)
   Map<TechnologyModelId, TechnologyProgressModel> get technologies =>
       throw _privateConstructorUsedError;
-  TechnologyModelId? get researchingTechnologyId =>
-      throw _privateConstructorUsedError;
+  ScoreModel get investedResearchScore => throw _privateConstructorUsedError;
 
+  /// Serializes this TechnologyTreeProgressModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TechnologyTreeProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TechnologyTreeProgressModelCopyWith<TechnologyTreeProgressModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3398,7 +3891,9 @@ abstract class $TechnologyTreeProgressModelCopyWith<$Res> {
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
       Map<TechnologyModelId, TechnologyProgressModel> technologies,
-      TechnologyModelId? researchingTechnologyId});
+      ScoreModel investedResearchScore});
+
+  $ScoreModelCopyWith<$Res> get investedResearchScore;
 }
 
 /// @nodoc
@@ -3412,22 +3907,34 @@ class _$TechnologyTreeProgressModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TechnologyTreeProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? technologies = null,
-    Object? researchingTechnologyId = freezed,
+    Object? investedResearchScore = null,
   }) {
     return _then(_value.copyWith(
       technologies: null == technologies
           ? _value.technologies
           : technologies // ignore: cast_nullable_to_non_nullable
               as Map<TechnologyModelId, TechnologyProgressModel>,
-      researchingTechnologyId: freezed == researchingTechnologyId
-          ? _value.researchingTechnologyId
-          : researchingTechnologyId // ignore: cast_nullable_to_non_nullable
-              as TechnologyModelId?,
+      investedResearchScore: null == investedResearchScore
+          ? _value.investedResearchScore
+          : investedResearchScore // ignore: cast_nullable_to_non_nullable
+              as ScoreModel,
     ) as $Val);
+  }
+
+  /// Create a copy of TechnologyTreeProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ScoreModelCopyWith<$Res> get investedResearchScore {
+    return $ScoreModelCopyWith<$Res>(_value.investedResearchScore, (value) {
+      return _then(_value.copyWith(investedResearchScore: value) as $Val);
+    });
   }
 }
 
@@ -3445,7 +3952,10 @@ abstract class _$$TechnologyTreeProgressModelImplCopyWith<$Res>
           fromJson: TechnologyTreeProgressModel._technologiesFromJson,
           toJson: TechnologyTreeProgressModel._technologiesToJson)
       Map<TechnologyModelId, TechnologyProgressModel> technologies,
-      TechnologyModelId? researchingTechnologyId});
+      ScoreModel investedResearchScore});
+
+  @override
+  $ScoreModelCopyWith<$Res> get investedResearchScore;
 }
 
 /// @nodoc
@@ -3458,21 +3968,23 @@ class __$$TechnologyTreeProgressModelImplCopyWithImpl<$Res>
       $Res Function(_$TechnologyTreeProgressModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TechnologyTreeProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
     Object? technologies = null,
-    Object? researchingTechnologyId = freezed,
+    Object? investedResearchScore = null,
   }) {
     return _then(_$TechnologyTreeProgressModelImpl(
       technologies: null == technologies
           ? _value._technologies
           : technologies // ignore: cast_nullable_to_non_nullable
               as Map<TechnologyModelId, TechnologyProgressModel>,
-      researchingTechnologyId: freezed == researchingTechnologyId
-          ? _value.researchingTechnologyId
-          : researchingTechnologyId // ignore: cast_nullable_to_non_nullable
-              as TechnologyModelId?,
+      investedResearchScore: null == investedResearchScore
+          ? _value.investedResearchScore
+          : investedResearchScore // ignore: cast_nullable_to_non_nullable
+              as ScoreModel,
     ));
   }
 }
@@ -3487,7 +3999,7 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
           toJson: TechnologyTreeProgressModel._technologiesToJson)
       final Map<TechnologyModelId, TechnologyProgressModel> technologies =
           const {},
-      this.researchingTechnologyId})
+      this.investedResearchScore = ScoreModel.zero})
       : _technologies = technologies,
         super._();
 
@@ -3507,11 +4019,12 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
   }
 
   @override
-  final TechnologyModelId? researchingTechnologyId;
+  @JsonKey()
+  final ScoreModel investedResearchScore;
 
   @override
   String toString() {
-    return 'TechnologyTreeProgressModel(technologies: $technologies, researchingTechnologyId: $researchingTechnologyId)';
+    return 'TechnologyTreeProgressModel(technologies: $technologies, investedResearchScore: $investedResearchScore)';
   }
 
   @override
@@ -3521,19 +4034,20 @@ class _$TechnologyTreeProgressModelImpl extends _TechnologyTreeProgressModel {
             other is _$TechnologyTreeProgressModelImpl &&
             const DeepCollectionEquality()
                 .equals(other._technologies, _technologies) &&
-            (identical(
-                    other.researchingTechnologyId, researchingTechnologyId) ||
-                other.researchingTechnologyId == researchingTechnologyId));
+            (identical(other.investedResearchScore, investedResearchScore) ||
+                other.investedResearchScore == investedResearchScore));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
       const DeepCollectionEquality().hash(_technologies),
-      researchingTechnologyId);
+      investedResearchScore);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologyTreeProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TechnologyTreeProgressModelImplCopyWith<_$TechnologyTreeProgressModelImpl>
@@ -3555,7 +4069,7 @@ abstract class _TechnologyTreeProgressModel
               fromJson: TechnologyTreeProgressModel._technologiesFromJson,
               toJson: TechnologyTreeProgressModel._technologiesToJson)
           final Map<TechnologyModelId, TechnologyProgressModel> technologies,
-          final TechnologyModelId? researchingTechnologyId}) =
+          final ScoreModel investedResearchScore}) =
       _$TechnologyTreeProgressModelImpl;
   const _TechnologyTreeProgressModel._() : super._();
 
@@ -3568,9 +4082,12 @@ abstract class _TechnologyTreeProgressModel
       toJson: TechnologyTreeProgressModel._technologiesToJson)
   Map<TechnologyModelId, TechnologyProgressModel> get technologies;
   @override
-  TechnologyModelId? get researchingTechnologyId;
+  ScoreModel get investedResearchScore;
+
+  /// Create a copy of TechnologyTreeProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TechnologyTreeProgressModelImplCopyWith<_$TechnologyTreeProgressModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3586,8 +4103,12 @@ mixin _$TechnologyProgressModel {
   TechnologyUnlockConditionModel get unlockCondition =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this TechnologyProgressModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TechnologyProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TechnologyProgressModelCopyWith<TechnologyProgressModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3615,6 +4136,8 @@ class _$TechnologyProgressModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TechnologyProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3633,6 +4156,8 @@ class _$TechnologyProgressModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of TechnologyProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition {
@@ -3669,6 +4194,8 @@ class __$$TechnologyProgressModelImplCopyWithImpl<$Res>
       $Res Function(_$TechnologyProgressModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TechnologyProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3719,11 +4246,13 @@ class _$TechnologyProgressModelImpl extends _TechnologyProgressModel {
                 other.unlockCondition == unlockCondition));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, id, unlockCondition);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologyProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TechnologyProgressModelImplCopyWith<_$TechnologyProgressModelImpl>
@@ -3752,8 +4281,11 @@ abstract class _TechnologyProgressModel extends TechnologyProgressModel {
   TechnologyModelId get id;
   @override
   TechnologyUnlockConditionModel get unlockCondition;
+
+  /// Create a copy of TechnologyProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TechnologyProgressModelImplCopyWith<_$TechnologyProgressModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -3771,11 +4303,13 @@ mixin _$TechnologyModel {
   TechnologyUnlockConditionModel get unlockCondition =>
       throw _privateConstructorUsedError;
   int get index => throw _privateConstructorUsedError;
-  TechnologyModelId? get parentTechnologyId =>
-      throw _privateConstructorUsedError;
 
+  /// Serializes this TechnologyModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TechnologyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TechnologyModelCopyWith<TechnologyModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -3790,8 +4324,7 @@ abstract class $TechnologyModelCopyWith<$Res> {
       {TechnologyModelId id,
       LocalizedMap title,
       TechnologyUnlockConditionModel unlockCondition,
-      int index,
-      TechnologyModelId? parentTechnologyId});
+      int index});
 
   $LocalizedMapCopyWith<$Res> get title;
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition;
@@ -3807,6 +4340,8 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TechnologyModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3814,7 +4349,6 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
     Object? title = null,
     Object? unlockCondition = null,
     Object? index = null,
-    Object? parentTechnologyId = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -3833,13 +4367,11 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
-      parentTechnologyId: freezed == parentTechnologyId
-          ? _value.parentTechnologyId
-          : parentTechnologyId // ignore: cast_nullable_to_non_nullable
-              as TechnologyModelId?,
     ) as $Val);
   }
 
+  /// Create a copy of TechnologyModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get title {
@@ -3848,6 +4380,8 @@ class _$TechnologyModelCopyWithImpl<$Res, $Val extends TechnologyModel>
     });
   }
 
+  /// Create a copy of TechnologyModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TechnologyUnlockConditionModelCopyWith<$Res> get unlockCondition {
@@ -3870,8 +4404,7 @@ abstract class _$$TechnologyModelImplCopyWith<$Res>
       {TechnologyModelId id,
       LocalizedMap title,
       TechnologyUnlockConditionModel unlockCondition,
-      int index,
-      TechnologyModelId? parentTechnologyId});
+      int index});
 
   @override
   $LocalizedMapCopyWith<$Res> get title;
@@ -3887,6 +4420,8 @@ class __$$TechnologyModelImplCopyWithImpl<$Res>
       _$TechnologyModelImpl _value, $Res Function(_$TechnologyModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TechnologyModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -3894,7 +4429,6 @@ class __$$TechnologyModelImplCopyWithImpl<$Res>
     Object? title = null,
     Object? unlockCondition = null,
     Object? index = null,
-    Object? parentTechnologyId = freezed,
   }) {
     return _then(_$TechnologyModelImpl(
       id: null == id
@@ -3913,10 +4447,6 @@ class __$$TechnologyModelImplCopyWithImpl<$Res>
           ? _value.index
           : index // ignore: cast_nullable_to_non_nullable
               as int,
-      parentTechnologyId: freezed == parentTechnologyId
-          ? _value.parentTechnologyId
-          : parentTechnologyId // ignore: cast_nullable_to_non_nullable
-              as TechnologyModelId?,
     ));
   }
 }
@@ -3929,8 +4459,7 @@ class _$TechnologyModelImpl extends _TechnologyModel {
       {required this.id,
       required this.title,
       required this.unlockCondition,
-      this.index = 0,
-      this.parentTechnologyId})
+      this.index = 0})
       : super._();
 
   factory _$TechnologyModelImpl.fromJson(Map<String, dynamic> json) =>
@@ -3947,12 +4476,10 @@ class _$TechnologyModelImpl extends _TechnologyModel {
   @override
   @JsonKey()
   final int index;
-  @override
-  final TechnologyModelId? parentTechnologyId;
 
   @override
   String toString() {
-    return 'TechnologyModel(id: $id, title: $title, unlockCondition: $unlockCondition, index: $index, parentTechnologyId: $parentTechnologyId)';
+    return 'TechnologyModel(id: $id, title: $title, unlockCondition: $unlockCondition, index: $index)';
   }
 
   @override
@@ -3964,17 +4491,17 @@ class _$TechnologyModelImpl extends _TechnologyModel {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.unlockCondition, unlockCondition) ||
                 other.unlockCondition == unlockCondition) &&
-            (identical(other.index, index) || other.index == index) &&
-            (identical(other.parentTechnologyId, parentTechnologyId) ||
-                other.parentTechnologyId == parentTechnologyId));
+            (identical(other.index, index) || other.index == index));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  int get hashCode => Object.hash(
-      runtimeType, id, title, unlockCondition, index, parentTechnologyId);
+  int get hashCode =>
+      Object.hash(runtimeType, id, title, unlockCondition, index);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologyModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TechnologyModelImplCopyWith<_$TechnologyModelImpl> get copyWith =>
@@ -3994,8 +4521,7 @@ abstract class _TechnologyModel extends TechnologyModel {
       {required final TechnologyModelId id,
       required final LocalizedMap title,
       required final TechnologyUnlockConditionModel unlockCondition,
-      final int index,
-      final TechnologyModelId? parentTechnologyId}) = _$TechnologyModelImpl;
+      final int index}) = _$TechnologyModelImpl;
   const _TechnologyModel._() : super._();
 
   factory _TechnologyModel.fromJson(Map<String, dynamic> json) =
@@ -4004,16 +4530,17 @@ abstract class _TechnologyModel extends TechnologyModel {
   @override
   TechnologyModelId get id;
   @override
-  LocalizedMap get title;
-  @override // TODO(antmalofeev): add icon?
+  LocalizedMap get title; // TODO(antmalofeev): add icon?
   /// use [TechnologyProgressModel] to store/retrieve actual progress
+  @override
   TechnologyUnlockConditionModel get unlockCondition;
   @override
   int get index;
+
+  /// Create a copy of TechnologyModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  TechnologyModelId? get parentTechnologyId;
-  @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TechnologyModelImplCopyWith<_$TechnologyModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4038,8 +4565,12 @@ mixin _$TechnologyUnlockConditionModel {
   /// when he decided to research this technology
   double get investedResearchPoints => throw _privateConstructorUsedError;
 
+  /// Serializes this TechnologyUnlockConditionModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TechnologyUnlockConditionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TechnologyUnlockConditionModelCopyWith<TechnologyUnlockConditionModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4069,6 +4600,8 @@ class _$TechnologyUnlockConditionModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TechnologyUnlockConditionModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4118,6 +4651,8 @@ class __$$TechnologyUnlockConditionModelImplCopyWithImpl<$Res>
       $Res Function(_$TechnologyUnlockConditionModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TechnologyUnlockConditionModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4202,7 +4737,7 @@ class _$TechnologyUnlockConditionModelImpl
                 other.investedResearchPoints == investedResearchPoints));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4210,7 +4745,9 @@ class _$TechnologyUnlockConditionModelImpl
       wordsUnlockThreshold,
       investedResearchPoints);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TechnologyUnlockConditionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TechnologyUnlockConditionModelImplCopyWith<
@@ -4238,23 +4775,25 @@ abstract class _TechnologyUnlockConditionModel
   factory _TechnologyUnlockConditionModel.fromJson(Map<String, dynamic> json) =
       _$TechnologyUnlockConditionModelImpl.fromJson;
 
-  @override
-
   /// Principle: if several words for one language in [languageWords] are used
   /// then [TechnologyModel] is unlocked
   /// for that certain language.
-  Map<Languages, List<UsefulWordModel>> get languageWords;
   @override
+  Map<Languages, List<UsefulWordModel>> get languageWords;
 
   /// one idea is to have minimum words to unlock the technology
-  int get wordsUnlockThreshold;
   @override
+  int get wordsUnlockThreshold;
 
   /// total amount of research points invested by user
   /// when he decided to research this technology
-  double get investedResearchPoints;
   @override
-  @JsonKey(ignore: true)
+  double get investedResearchPoints;
+
+  /// Create a copy of TechnologyUnlockConditionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TechnologyUnlockConditionModelImplCopyWith<
           _$TechnologyUnlockConditionModelImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -4269,8 +4808,12 @@ mixin _$UsefulWordModel {
   String get word => throw _privateConstructorUsedError;
   bool get isUsed => throw _privateConstructorUsedError;
 
+  /// Serializes this UsefulWordModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of UsefulWordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $UsefulWordModelCopyWith<UsefulWordModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4294,6 +4837,8 @@ class _$UsefulWordModelCopyWithImpl<$Res, $Val extends UsefulWordModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of UsefulWordModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4332,6 +4877,8 @@ class __$$UsefulWordModelImplCopyWithImpl<$Res>
       _$UsefulWordModelImpl _value, $Res Function(_$UsefulWordModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of UsefulWordModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4381,11 +4928,13 @@ class _$UsefulWordModelImpl extends _UsefulWordModel {
             (identical(other.isUsed, isUsed) || other.isUsed == isUsed));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, word, isUsed);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of UsefulWordModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$UsefulWordModelImplCopyWith<_$UsefulWordModelImpl> get copyWith =>
@@ -4412,8 +4961,11 @@ abstract class _UsefulWordModel extends UsefulWordModel {
   String get word;
   @override
   bool get isUsed;
+
+  /// Create a copy of UsefulWordModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UsefulWordModelImplCopyWith<_$UsefulWordModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4443,8 +4995,12 @@ mixin _$TutorialEventModel {
   /// highlight is shown
   TutorialUiItem? get anchorUiItem => throw _privateConstructorUsedError;
 
+  /// Serializes this TutorialEventModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialEventModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TutorialEventModelCopyWith<TutorialEventModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4475,6 +5031,8 @@ class _$TutorialEventModelCopyWithImpl<$Res, $Val extends TutorialEventModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TutorialEventModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4508,6 +5066,8 @@ class _$TutorialEventModelCopyWithImpl<$Res, $Val extends TutorialEventModel>
     ) as $Val);
   }
 
+  /// Create a copy of TutorialEventModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get localizedMap {
@@ -4544,6 +5104,8 @@ class __$$TutorialEventModelImplCopyWithImpl<$Res>
       $Res Function(_$TutorialEventModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialEventModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4663,7 +5225,7 @@ class _$TutorialEventModelImpl extends _TutorialEventModel {
                 other.anchorUiItem == anchorUiItem));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -4673,7 +5235,9 @@ class _$TutorialEventModelImpl extends _TutorialEventModel {
       const DeepCollectionEquality().hash(_gamePostEffects),
       anchorUiItem);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialEventModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialEventModelImplCopyWith<_$TutorialEventModelImpl> get copyWith =>
@@ -4702,26 +5266,29 @@ abstract class _TutorialEventModel extends TutorialEventModel {
 
   @override
   LocalizedMap get localizedMap;
-  @override
 
   /// what will switch this event to the next
-  List<TutorialUiActionEventModel> get completeActions;
   @override
+  List<TutorialUiActionEventModel> get completeActions;
 
   /// Effects for the game which applied when this event fired
-  List<TutorialGameEffectModel> get gamePreEffects;
   @override
+  List<TutorialGameEffectModel> get gamePreEffects;
 
   /// Effects for the game which applied after this event
   /// [completeActions] resolved.
-  List<TutorialGameEffectModel> get gamePostEffects;
   @override
+  List<TutorialGameEffectModel> get gamePostEffects;
 
   /// The ui item for which the event should be attached and
   /// highlight is shown
-  TutorialUiItem? get anchorUiItem;
   @override
-  @JsonKey(ignore: true)
+  TutorialUiItem? get anchorUiItem;
+
+  /// Create a copy of TutorialEventModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialEventModelImplCopyWith<_$TutorialEventModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4735,8 +5302,12 @@ TutorialGameEffectModel _$TutorialGameEffectModelFromJson(
 mixin _$TutorialGameEffectModel {
   TutorialGameEffectName get name => throw _privateConstructorUsedError;
 
+  /// Serializes this TutorialGameEffectModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialGameEffectModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TutorialGameEffectModelCopyWith<TutorialGameEffectModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -4761,6 +5332,8 @@ class _$TutorialGameEffectModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TutorialGameEffectModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4797,6 +5370,8 @@ class __$$TutorialGameEffectModelImplCopyWithImpl<$Res>
       $Res Function(_$TutorialGameEffectModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialGameEffectModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4836,11 +5411,13 @@ class _$TutorialGameEffectModelImpl extends _TutorialGameEffectModel {
             (identical(other.name, name) || other.name == name));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, name);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialGameEffectModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialGameEffectModelImplCopyWith<_$TutorialGameEffectModelImpl>
@@ -4866,8 +5443,11 @@ abstract class _TutorialGameEffectModel extends TutorialGameEffectModel {
 
   @override
   TutorialGameEffectName get name;
+
+  /// Create a copy of TutorialGameEffectModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialGameEffectModelImplCopyWith<_$TutorialGameEffectModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4889,8 +5469,12 @@ mixin _$TutorialUiActionEventModel {
   Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this TutorialUiActionEventModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialUiActionEventModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TutorialUiActionEventModelCopyWith<TutorialUiActionEventModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -4920,6 +5504,8 @@ class _$TutorialUiActionEventModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TutorialUiActionEventModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -4975,6 +5561,8 @@ class __$$TutorialUiActionEventModelImplCopyWithImpl<$Res>
       $Res Function(_$TutorialUiActionEventModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialUiActionEventModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5059,12 +5647,14 @@ class _$TutorialUiActionEventModelImpl extends _TutorialUiActionEventModel {
                 .equals(other._boolConsquenses, _boolConsquenses));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, action, uiItem, isCompleted,
       const DeepCollectionEquality().hash(_boolConsquenses));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialUiActionEventModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialUiActionEventModelImplCopyWith<_$TutorialUiActionEventModelImpl>
@@ -5091,12 +5681,11 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
   factory _TutorialUiActionEventModel.fromJson(Map<String, dynamic> json) =
       _$TutorialUiActionEventModelImpl.fromJson;
 
-  @override
-
   /// If [uiItem] is set null and the action
   /// is [TutorialCompleteAction.onClick] then
   /// it means that the action is click on anything
   /// on screen
+  @override
   TutorialCompleteAction get action;
   @override
   TutorialUiItem? get uiItem;
@@ -5104,8 +5693,11 @@ abstract class _TutorialUiActionEventModel extends TutorialUiActionEventModel {
   bool get isCompleted;
   @override
   Map<PrimitiveBool, List<TutorialGameEffectModel>> get boolConsquenses;
+
+  /// Create a copy of TutorialUiActionEventModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialUiActionEventModelImplCopyWith<_$TutorialUiActionEventModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5121,8 +5713,12 @@ mixin _$TutorialEventsCollectionModel {
   TutorialCollectionsName get name => throw _privateConstructorUsedError;
   int get currentIndex => throw _privateConstructorUsedError;
 
+  /// Serializes this TutorialEventsCollectionModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialEventsCollectionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TutorialEventsCollectionModelCopyWith<TutorialEventsCollectionModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5152,6 +5748,8 @@ class _$TutorialEventsCollectionModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TutorialEventsCollectionModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5201,6 +5799,8 @@ class __$$TutorialEventsCollectionModelImplCopyWithImpl<$Res>
       $Res Function(_$TutorialEventsCollectionModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialEventsCollectionModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5270,12 +5870,14 @@ class _$TutorialEventsCollectionModelImpl
                 other.currentIndex == currentIndex));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType,
       const DeepCollectionEquality().hash(_events), name, currentIndex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialEventsCollectionModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialEventsCollectionModelImplCopyWith<
@@ -5308,8 +5910,11 @@ abstract class _TutorialEventsCollectionModel
   TutorialCollectionsName get name;
   @override
   int get currentIndex;
+
+  /// Create a copy of TutorialEventsCollectionModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialEventsCollectionModelImplCopyWith<
           _$TutorialEventsCollectionModelImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -5327,8 +5932,12 @@ mixin _$TutorialCollectionsProgressModel {
   Map<TutorialCollectionsName, int> get indexes =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this TutorialCollectionsProgressModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialCollectionsProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TutorialCollectionsProgressModelCopyWith<TutorialCollectionsProgressModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5355,6 +5964,8 @@ class _$TutorialCollectionsProgressModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TutorialCollectionsProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5391,6 +6002,8 @@ class __$$TutorialCollectionsProgressModelImplCopyWithImpl<$Res>
       $Res Function(_$TutorialCollectionsProgressModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialCollectionsProgressModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5445,12 +6058,14 @@ class _$TutorialCollectionsProgressModelImpl
             const DeepCollectionEquality().equals(other._indexes, _indexes));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_indexes));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialCollectionsProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialCollectionsProgressModelImplCopyWith<
@@ -5477,13 +6092,15 @@ abstract class _TutorialCollectionsProgressModel
           Map<String, dynamic> json) =
       _$TutorialCollectionsProgressModelImpl.fromJson;
 
-  @override
-
   /// Key - [TutorialCollectionsName]
   /// Value - int index from [TutorialEventsCollectionModel.events]
-  Map<TutorialCollectionsName, int> get indexes;
   @override
-  @JsonKey(ignore: true)
+  Map<TutorialCollectionsName, int> get indexes;
+
+  /// Create a copy of TutorialCollectionsProgressModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialCollectionsProgressModelImplCopyWith<
           _$TutorialCollectionsProgressModelImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -5499,8 +6116,12 @@ mixin _$TutorialCollectionsDataModel {
   Map<TutorialCollectionsName, List<TutorialEventModel>> get events =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this TutorialCollectionsDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialCollectionsDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TutorialCollectionsDataModelCopyWith<TutorialCollectionsDataModel>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -5527,6 +6148,8 @@ class _$TutorialCollectionsDataModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TutorialCollectionsDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5563,6 +6186,8 @@ class __$$TutorialCollectionsDataModelImplCopyWithImpl<$Res>
       $Res Function(_$TutorialCollectionsDataModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialCollectionsDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5611,12 +6236,14 @@ class _$TutorialCollectionsDataModelImpl extends _TutorialCollectionsDataModel {
             const DeepCollectionEquality().equals(other._events, _events));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, const DeepCollectionEquality().hash(_events));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialCollectionsDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialCollectionsDataModelImplCopyWith<
@@ -5644,8 +6271,11 @@ abstract class _TutorialCollectionsDataModel
 
   @override
   Map<TutorialCollectionsName, List<TutorialEventModel>> get events;
+
+  /// Create a copy of TutorialCollectionsDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialCollectionsDataModelImplCopyWith<
           _$TutorialCollectionsDataModelImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -5659,8 +6289,12 @@ WorldDateTimeModel _$WorldDateTimeModelFromJson(Map<String, dynamic> json) {
 mixin _$WorldDateTimeModel {
   int get second => throw _privateConstructorUsedError;
 
+  /// Serializes this WorldDateTimeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of WorldDateTimeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WorldDateTimeModelCopyWith<WorldDateTimeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -5684,6 +6318,8 @@ class _$WorldDateTimeModelCopyWithImpl<$Res, $Val extends WorldDateTimeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WorldDateTimeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5717,6 +6353,8 @@ class __$$WorldDateTimeImplCopyWithImpl<$Res>
       _$WorldDateTimeImpl _value, $Res Function(_$WorldDateTimeImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WorldDateTimeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -5757,11 +6395,13 @@ class _$WorldDateTimeImpl extends _WorldDateTime {
             (identical(other.second, second) || other.second == second));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, second);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WorldDateTimeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WorldDateTimeImplCopyWith<_$WorldDateTimeImpl> get copyWith =>
@@ -5784,8 +6424,11 @@ abstract class _WorldDateTime extends WorldDateTimeModel {
 
   @override
   int get second;
+
+  /// Create a copy of WorldDateTimeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WorldDateTimeImplCopyWith<_$WorldDateTimeImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

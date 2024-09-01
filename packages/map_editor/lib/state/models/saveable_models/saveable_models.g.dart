@@ -21,7 +21,7 @@ _$CanvasDataModelImpl _$$CanvasDataModelImplFromJson(
           const [],
       objects: json['objects'] == null
           ? const {}
-          : CanvasDataModel._objectsFromJson(
+          : CanvasDataModel.objectsFromJson(
               json['objects'] as Map<String, dynamic>),
       playerObject: json['playerObject'] == null
           ? RenderObjectModel.empty
@@ -46,7 +46,7 @@ Map<String, dynamic> _$$CanvasDataModelImplToJson(
       'id': CanvasDataModelId.toJsonString(instance.id),
       'name': LocalizedMap.toJsonValueMap(instance.name),
       'layers': instance.layers,
-      'objects': CanvasDataModel._objectsToJson(instance.objects),
+      'objects': CanvasDataModel.objectsToJson(instance.objects),
       'playerObject': instance.playerObject,
       'skyYTilePosition': instance.skyYTilePosition,
       'gravity': instance.gravity,

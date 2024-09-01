@@ -10,7 +10,7 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
-const kKeyboardWidth = 320.0;
+const kKeyboardWidth = 360.0;
 
 class UiKeyboardController extends Cubit<UiKeyboardControllerState> {
   // ignore: avoid_unused_constructor_parameters
@@ -246,32 +246,34 @@ class InputCaret extends StatelessWidget {
   const InputCaret({super.key});
 
   @override
-  Widget build(final BuildContext context) => Container(
-        width: 14,
-        color: Colors.transparent,
-        child: Container(
-          decoration: BoxDecoration(
-            color: Theme.of(context)
-                .colorScheme
-                .onPrimaryContainer
-                .withOpacity(0.8),
-            borderRadius: const BorderRadius.all(
-              Radius.elliptical(4, 4),
-            ),
-          ),
-          height: double.maxFinite,
-          margin: const EdgeInsets.symmetric(horizontal: 4),
-          width: 4,
+  Widget build(final BuildContext context) {
+    final focusNode = Focus.of(context);
+    final color = Theme.of(context).colorScheme.onPrimaryContainer;
+    final isFocused = focusNode.hasFocus || focusNode.hasPrimaryFocus;
+
+    return AnimatedContainer(
+      duration: 250.milliseconds,
+      width: isFocused ? 14 : 1,
+      color: Colors.transparent,
+      child: Container(
+        decoration: BoxDecoration(
+          color: isFocused ? color.withOpacity(0.8) : Colors.transparent,
+          borderRadius: const BorderRadius.all(Radius.elliptical(4, 4)),
         ),
-      )
-          .animate(
-            onPlay: (final controller) => controller.repeat(),
-          )
-          .fadeIn(duration: 300.milliseconds)
-          .fadeOut(
-            delay: 700.milliseconds,
-            duration: 300.milliseconds,
-          );
+        height: double.maxFinite,
+        margin: const EdgeInsets.symmetric(horizontal: 4),
+        width: isFocused ? 4 : 1,
+      ),
+    )
+        .animate(
+          onPlay: (final controller) => controller.repeat(),
+        )
+        .fadeIn(duration: 300.milliseconds)
+        .fadeOut(
+          delay: 700.milliseconds,
+          duration: 300.milliseconds,
+        );
+  }
 }
 
 class KeyboardLanguageSwitcher extends StatelessWidget {

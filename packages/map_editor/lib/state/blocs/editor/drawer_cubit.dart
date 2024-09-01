@@ -1,4 +1,23 @@
-part of '../../state.dart';
+import 'dart:async';
+import 'dart:convert';
+
+import 'package:collection/collection.dart';
+import 'package:flame/cache.dart';
+import 'package:flame/extensions.dart';
+// ignore: implementation_imports
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:map_editor/generated/assets.gen.dart';
+import 'package:map_editor/state/models/models.dart';
+import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
+import 'package:map_editor/ui/renderer/renderer.dart';
+import 'package:map_editor/ui/renderer/resources_loader.dart';
+import 'package:wbw_core/wbw_core.dart';
+
+part 'drawer_cubit.freezed.dart';
+part 'drawer_cubit_states.dart';
 
 class DrawerCubitDto {
   DrawerCubitDto.use({
@@ -8,6 +27,8 @@ class DrawerCubitDto {
 }
 
 String get _levelsMapsPersistanceKet => 'maps_saves';
+
+const kDrawerBuildingsLayerId = LayerModelId(value: 'buildings');
 
 /// Base class for canvas resources
 abstract base class DrawerCubit extends Cubit<DrawerCubitState> {

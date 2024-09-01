@@ -97,11 +97,7 @@ class DialogStackNotifier extends ChangeNotifier {
     _pause();
   }
 
-  TechnologiesTreeDialogDto technologiesTreeDto =
-      TechnologiesTreeDialogDto.nonSelectable;
-
-  void _showTechnologiesTree(final TechnologiesTreeDialogDto dto) {
-    technologiesTreeDto = dto;
+  void _showTechnologiesTree() {
     dialogType = GameDialogType.technologiesTree;
     _pause();
   }
@@ -112,7 +108,6 @@ class DialogStackNotifier extends ChangeNotifier {
   void _closeDialog() {
     dialogType = GameDialogType.none;
     endLevelEvent = GameEvent.nonPassedEndLevel;
-    technologiesTreeDto = TechnologiesTreeDialogDto.nonSelectable;
   }
 
   void _onTutorialChanged(final TutorialBlocState tutorialState) {

@@ -52,8 +52,8 @@ class CanvasDataModel with _$CanvasDataModel {
     /// This way there will be easy way to loop all objects or change just
     /// one object.
     @JsonKey(
-      fromJson: CanvasDataModel._objectsFromJson,
-      toJson: CanvasDataModel._objectsToJson,
+      fromJson: CanvasDataModel.objectsFromJson,
+      toJson: CanvasDataModel.objectsToJson,
     )
     @Default({})
     final Map<Gid, RenderObjectModel> objects,
@@ -78,7 +78,7 @@ class CanvasDataModel with _$CanvasDataModel {
       CanvasDataModel(id: CanvasDataModelId(value: IdCreator.create()));
   static const empty = CanvasDataModel();
 
-  static Map<Gid, RenderObjectModel> _objectsFromJson(
+  static Map<Gid, RenderObjectModel> objectsFromJson(
     final Map<String, dynamic> json,
   ) =>
       json.map(
@@ -87,7 +87,7 @@ class CanvasDataModel with _$CanvasDataModel {
           RenderObjectModel.fromJson(value),
         ),
       );
-  static Map<String, dynamic> _objectsToJson(
+  static Map<String, dynamic> objectsToJson(
     final Map<Gid, RenderObjectModel> json,
   ) =>
       json.map(
@@ -173,6 +173,9 @@ class LayerModel with _$LayerModel {
   factory LayerModel.fromJson(final Map<String, dynamic> json) =>
       _$LayerModelFromJson(json);
   static const empty = LayerModel(id: LayerModelId.empty);
+  static const buildings = LayerModel(
+    id: kDrawerBuildingsLayerId,
+  );
   static Map<CellPointModel, CellTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
   ) =>
@@ -238,6 +241,7 @@ class RenderObjectModel with _$RenderObjectModel {
   }) = _RenderObjectModel;
   factory RenderObjectModel.fromJson(final Map<String, dynamic> json) =>
       _$RenderObjectModelFromJson(json);
+  const RenderObjectModel._();
   static const empty = RenderObjectModel(
     id: Gid.empty,
     tileId: TileId.empty,

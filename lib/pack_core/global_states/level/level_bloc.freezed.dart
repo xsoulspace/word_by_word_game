@@ -104,6 +104,9 @@ class _$LevelBlocEventCopyWithImpl<$Res, $Val extends LevelBlocEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -125,6 +128,8 @@ class __$$LevelBlocEventInitImplCopyWithImpl<$Res>
       $Res Function(_$LevelBlocEventInitImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -138,6 +143,8 @@ class __$$LevelBlocEventInitImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelModelCopyWith<$Res> get levelModel {
@@ -172,7 +179,9 @@ class _$LevelBlocEventInitImpl implements LevelBlocEventInit {
   @override
   int get hashCode => Object.hash(runtimeType, levelModel);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelBlocEventInitImplCopyWith<_$LevelBlocEventInitImpl> get copyWith =>
@@ -279,7 +288,10 @@ abstract class LevelBlocEventInit implements LevelBlocEvent {
       _$LevelBlocEventInitImpl;
 
   LevelModel get levelModel;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelBlocEventInitImplCopyWith<_$LevelBlocEventInitImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -303,6 +315,8 @@ class __$$LevelBlocEventConsumeTickImplCopyWithImpl<$Res>
       $Res Function(_$LevelBlocEventConsumeTickImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -343,7 +357,9 @@ class _$LevelBlocEventConsumeTickImpl implements LevelBlocEventConsumeTick {
   @override
   int get hashCode => Object.hash(runtimeType, timeDeltaInSeconds);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelBlocEventConsumeTickImplCopyWith<_$LevelBlocEventConsumeTickImpl>
@@ -452,7 +468,10 @@ abstract class LevelBlocEventConsumeTick implements LevelBlocEvent {
 
   /// How many seconds was from the last tick
   int get timeDeltaInSeconds;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelBlocEventConsumeTickImplCopyWith<_$LevelBlocEventConsumeTickImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -473,6 +492,9 @@ class __$$LevelBlocEventHideWarningImplCopyWithImpl<$Res>
       _$LevelBlocEventHideWarningImpl _value,
       $Res Function(_$LevelBlocEventHideWarningImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -616,6 +638,8 @@ class __$$LevelBlocEventChangeCurrentWordImplCopyWithImpl<$Res>
       $Res Function(_$LevelBlocEventChangeCurrentWordImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -629,6 +653,8 @@ class __$$LevelBlocEventChangeCurrentWordImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CurrentWordModelCopyWith<$Res> get word {
@@ -663,7 +689,9 @@ class _$LevelBlocEventChangeCurrentWordImpl
   @override
   int get hashCode => Object.hash(runtimeType, word);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelBlocEventChangeCurrentWordImplCopyWith<
@@ -772,7 +800,10 @@ abstract class LevelBlocEventChangeCurrentWord implements LevelBlocEvent {
       _$LevelBlocEventChangeCurrentWordImpl;
 
   CurrentWordModel get word;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelBlocEventChangeCurrentWordImplCopyWith<
           _$LevelBlocEventChangeCurrentWordImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -798,6 +829,8 @@ class __$$LevelBlocEventSelectActionMultiplierImplCopyWithImpl<$Res>
       $Res Function(_$LevelBlocEventSelectActionMultiplierImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -838,7 +871,9 @@ class _$LevelBlocEventSelectActionMultiplierImpl
   @override
   int get hashCode => Object.hash(runtimeType, multiplier);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelBlocEventSelectActionMultiplierImplCopyWith<
@@ -947,7 +982,10 @@ abstract class LevelBlocEventSelectActionMultiplier implements LevelBlocEvent {
       _$LevelBlocEventSelectActionMultiplierImpl;
 
   EnergyMultiplierType get multiplier;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelBlocEventSelectActionMultiplierImplCopyWith<
           _$LevelBlocEventSelectActionMultiplierImpl>
       get copyWith => throw _privateConstructorUsedError;
@@ -970,6 +1008,9 @@ class __$$LevelBlocEventAddNewWordToDictionaryImplCopyWithImpl<$Res>
       _$LevelBlocEventAddNewWordToDictionaryImpl _value,
       $Res Function(_$LevelBlocEventAddNewWordToDictionaryImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of LevelBlocEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1111,7 +1152,9 @@ mixin _$LevelBlocState {
       throw _privateConstructorUsedError;
   Languages get wordsLanguage => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $LevelBlocStateCopyWith<LevelBlocState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1148,6 +1191,8 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1201,6 +1246,8 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
     ) as $Val);
   }
 
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelIdCopyWith<$Res> get id {
@@ -1209,6 +1256,8 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
     });
   }
 
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CurrentWordModelCopyWith<$Res> get currentWord {
@@ -1217,6 +1266,8 @@ class _$LevelBlocStateCopyWithImpl<$Res, $Val extends LevelBlocState>
     });
   }
 
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
@@ -1262,6 +1313,8 @@ class __$$LevelBlocStateImplCopyWithImpl<$Res>
       _$LevelBlocStateImpl _value, $Res Function(_$LevelBlocStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1410,7 +1463,9 @@ class _$LevelBlocStateImpl implements _LevelBlocState {
       featuresSettings,
       wordsLanguage);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LevelBlocStateImplCopyWith<_$LevelBlocStateImpl> get copyWith =>
@@ -1442,18 +1497,21 @@ abstract class _LevelBlocState implements LevelBlocState {
   GamePhaseType get phaseType;
   @override
   EnergyMultiplierType get energyMultiplier;
-  @override
 
   /// ********************************************
   /// *      NON PERSISTENT
   /// ********************************************
+  @override
   WordWarning get wordWarning;
   @override
   LevelFeaturesSettingsModel get featuresSettings;
   @override
   Languages get wordsLanguage;
+
+  /// Create a copy of LevelBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelBlocStateImplCopyWith<_$LevelBlocStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

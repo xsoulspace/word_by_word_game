@@ -9,11 +9,13 @@
 
 library protocol; // ignore_for_file: no_leading_underscores_for_library_prefixes
 
-import 'package:serverpod/serverpod.dart' as _i1;
 import 'package:serverpod/protocol.dart' as _i2;
+import 'package:serverpod/serverpod.dart' as _i1;
+
 import 'word_language.dart' as _i3;
 import 'word_model.dart' as _i4;
 import 'word_request.dart' as _i5;
+
 export 'word_language.dart';
 export 'word_model.dart';
 export 'word_request.dart';
@@ -22,8 +24,6 @@ class Protocol extends _i1.SerializationManagerServer {
   Protocol._();
 
   factory Protocol() => _instance;
-
-  static final Map<Type, _i1.constructor> customConstructors = {};
 
   static final Protocol _instance = Protocol._();
 
@@ -36,7 +36,7 @@ class Protocol extends _i1.SerializationManagerServer {
       columns: [
         _i2.ColumnDefinition(
           name: 'id',
-          columnType: _i2.ColumnType.integer,
+          columnType: _i2.ColumnType.bigint,
           isNullable: false,
           dartType: 'int?',
           columnDefault: 'nextval(\'words_id_seq\'::regclass)',
@@ -104,30 +104,27 @@ class Protocol extends _i1.SerializationManagerServer {
     Type? t,
   ]) {
     t ??= T;
-    if (customConstructors.containsKey(t)) {
-      return customConstructors[t]!(data, this) as T;
-    }
     if (t == _i3.WordLanguage) {
       return _i3.WordLanguage.fromJson(data) as T;
     }
     if (t == _i4.WordModel) {
-      return _i4.WordModel.fromJson(data, this) as T;
+      return _i4.WordModel.fromJson(data) as T;
     }
     if (t == _i5.WordRequest) {
-      return _i5.WordRequest.fromJson(data, this) as T;
+      return _i5.WordRequest.fromJson(data) as T;
     }
     if (t == _i1.getType<_i3.WordLanguage?>()) {
       return (data != null ? _i3.WordLanguage.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i4.WordModel?>()) {
-      return (data != null ? _i4.WordModel.fromJson(data, this) : null) as T;
+      return (data != null ? _i4.WordModel.fromJson(data) : null) as T;
     }
     if (t == _i1.getType<_i5.WordRequest?>()) {
-      return (data != null ? _i5.WordRequest.fromJson(data, this) : null) as T;
+      return (data != null ? _i5.WordRequest.fromJson(data) : null) as T;
     }
     try {
       return _i2.Protocol().deserialize<T>(data, t);
-    } catch (_) {}
+    } on _i1.DeserializationTypeNotFoundException catch (_) {}
     return super.deserialize<T>(data, t);
   }
 

@@ -11,7 +11,8 @@
 import 'package:serverpod/serverpod.dart' as _i1;
 import 'protocol.dart' as _i2;
 
-abstract class WordModel extends _i1.TableRow {
+abstract class WordModel extends _i1.TableRow
+    implements _i1.ProtocolSerialization {
   WordModel._({
     int? id,
     required this.language,
@@ -26,17 +27,13 @@ abstract class WordModel extends _i1.TableRow {
     required String meaning,
   }) = _WordModelImpl;
 
-  factory WordModel.fromJson(
-    Map<String, dynamic> jsonSerialization,
-    _i1.SerializationManager serializationManager,
-  ) {
+  factory WordModel.fromJson(Map<String, dynamic> jsonSerialization) {
     return WordModel(
-      id: serializationManager.deserialize<int?>(jsonSerialization['id']),
-      language: serializationManager
-          .deserialize<_i2.WordLanguage>(jsonSerialization['language']),
-      word: serializationManager.deserialize<String>(jsonSerialization['word']),
-      meaning: serializationManager
-          .deserialize<String>(jsonSerialization['meaning']),
+      id: jsonSerialization['id'] as int?,
+      language:
+          _i2.WordLanguage.fromJson((jsonSerialization['language'] as String)),
+      word: jsonSerialization['word'] as String,
+      meaning: jsonSerialization['meaning'] as String,
     );
   }
 
@@ -70,165 +67,13 @@ abstract class WordModel extends _i1.TableRow {
   }
 
   @override
-  @Deprecated('Will be removed in 2.0.0')
-  Map<String, dynamic> toJsonForDatabase() {
-    return {
-      'id': id,
-      'language': language,
-      'word': word,
-      'meaning': meaning,
-    };
-  }
-
-  @override
-  Map<String, dynamic> allToJson() {
+  Map<String, dynamic> toJsonForProtocol() {
     return {
       if (id != null) 'id': id,
       'language': language.toJson(),
       'word': word,
       'meaning': meaning,
     };
-  }
-
-  @override
-  @Deprecated('Will be removed in 2.0.0')
-  void setColumn(
-    String columnName,
-    value,
-  ) {
-    switch (columnName) {
-      case 'id':
-        id = value;
-        return;
-      case 'language':
-        language = value;
-        return;
-      case 'word':
-        word = value;
-        return;
-      case 'meaning':
-        meaning = value;
-        return;
-      default:
-        throw UnimplementedError();
-    }
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.find instead.')
-  static Future<List<WordModel>> find(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<WordModelTable>? where,
-    int? limit,
-    int? offset,
-    _i1.Column? orderBy,
-    List<_i1.Order>? orderByList,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.find<WordModel>(
-      where: where != null ? where(WordModel.t) : null,
-      limit: limit,
-      offset: offset,
-      orderBy: orderBy,
-      orderByList: orderByList,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findRow instead.')
-  static Future<WordModel?> findSingleRow(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<WordModelTable>? where,
-    int? offset,
-    _i1.Column? orderBy,
-    bool orderDescending = false,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.findSingleRow<WordModel>(
-      where: where != null ? where(WordModel.t) : null,
-      offset: offset,
-      orderBy: orderBy,
-      orderDescending: orderDescending,
-      useCache: useCache,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.findById instead.')
-  static Future<WordModel?> findById(
-    _i1.Session session,
-    int id,
-  ) async {
-    return session.db.findById<WordModel>(id);
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteWhere instead.')
-  static Future<int> delete(
-    _i1.Session session, {
-    required _i1.WhereExpressionBuilder<WordModelTable> where,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.delete<WordModel>(
-      where: where(WordModel.t),
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.deleteRow instead.')
-  static Future<bool> deleteRow(
-    _i1.Session session,
-    WordModel row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.deleteRow(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.update instead.')
-  static Future<bool> update(
-    _i1.Session session,
-    WordModel row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.update(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated(
-      'Will be removed in 2.0.0. Use: db.insert instead. Important note: In db.insert, the object you pass in is no longer modified, instead a new copy with the added row is returned which contains the inserted id.')
-  static Future<void> insert(
-    _i1.Session session,
-    WordModel row, {
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.insert(
-      row,
-      transaction: transaction,
-    );
-  }
-
-  @Deprecated('Will be removed in 2.0.0. Use: db.count instead.')
-  static Future<int> count(
-    _i1.Session session, {
-    _i1.WhereExpressionBuilder<WordModelTable>? where,
-    int? limit,
-    bool useCache = true,
-    _i1.Transaction? transaction,
-  }) async {
-    return session.db.count<WordModel>(
-      where: where != null ? where(WordModel.t) : null,
-      limit: limit,
-      useCache: useCache,
-      transaction: transaction,
-    );
   }
 
   static WordModelInclude include() {
@@ -253,6 +98,11 @@ abstract class WordModel extends _i1.TableRow {
       orderByList: orderByList?.call(WordModel.t),
       include: include,
     );
+  }
+
+  @override
+  String toString() {
+    return _i1.SerializationManager.encode(this);
   }
 }
 
@@ -319,9 +169,6 @@ class WordModelTable extends _i1.Table {
       ];
 }
 
-@Deprecated('Use WordModelTable.t instead.')
-WordModelTable tWordModel = WordModelTable();
-
 class WordModelInclude extends _i1.IncludeObject {
   WordModelInclude._();
 
@@ -365,7 +212,7 @@ class WordModelRepository {
     _i1.OrderByListBuilder<WordModelTable>? orderByList,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.find<WordModel>(
+    return session.db.find<WordModel>(
       where: where?.call(WordModel.t),
       orderBy: orderBy?.call(WordModel.t),
       orderByList: orderByList?.call(WordModel.t),
@@ -385,7 +232,7 @@ class WordModelRepository {
     _i1.OrderByListBuilder<WordModelTable>? orderByList,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.findFirstRow<WordModel>(
+    return session.db.findFirstRow<WordModel>(
       where: where?.call(WordModel.t),
       orderBy: orderBy?.call(WordModel.t),
       orderByList: orderByList?.call(WordModel.t),
@@ -400,7 +247,7 @@ class WordModelRepository {
     int id, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.findById<WordModel>(
+    return session.db.findById<WordModel>(
       id,
       transaction: transaction,
     );
@@ -411,7 +258,7 @@ class WordModelRepository {
     List<WordModel> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insert<WordModel>(
+    return session.db.insert<WordModel>(
       rows,
       transaction: transaction,
     );
@@ -422,7 +269,7 @@ class WordModelRepository {
     WordModel row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.insertRow<WordModel>(
+    return session.db.insertRow<WordModel>(
       row,
       transaction: transaction,
     );
@@ -434,7 +281,7 @@ class WordModelRepository {
     _i1.ColumnSelections<WordModelTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.update<WordModel>(
+    return session.db.update<WordModel>(
       rows,
       columns: columns?.call(WordModel.t),
       transaction: transaction,
@@ -447,41 +294,41 @@ class WordModelRepository {
     _i1.ColumnSelections<WordModelTable>? columns,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.updateRow<WordModel>(
+    return session.db.updateRow<WordModel>(
       row,
       columns: columns?.call(WordModel.t),
       transaction: transaction,
     );
   }
 
-  Future<List<int>> delete(
+  Future<List<WordModel>> delete(
     _i1.Session session,
     List<WordModel> rows, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.delete<WordModel>(
+    return session.db.delete<WordModel>(
       rows,
       transaction: transaction,
     );
   }
 
-  Future<int> deleteRow(
+  Future<WordModel> deleteRow(
     _i1.Session session,
     WordModel row, {
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteRow<WordModel>(
+    return session.db.deleteRow<WordModel>(
       row,
       transaction: transaction,
     );
   }
 
-  Future<List<int>> deleteWhere(
+  Future<List<WordModel>> deleteWhere(
     _i1.Session session, {
     required _i1.WhereExpressionBuilder<WordModelTable> where,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.deleteWhere<WordModel>(
+    return session.db.deleteWhere<WordModel>(
       where: where(WordModel.t),
       transaction: transaction,
     );
@@ -493,7 +340,7 @@ class WordModelRepository {
     int? limit,
     _i1.Transaction? transaction,
   }) async {
-    return session.dbNext.count<WordModel>(
+    return session.db.count<WordModel>(
       where: where?.call(WordModel.t),
       limit: limit,
       transaction: transaction,

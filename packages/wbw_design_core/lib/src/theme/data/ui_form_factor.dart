@@ -30,6 +30,9 @@ class UiPersistentFormFactors with _$UiPersistentFormFactors {
     );
   }
 
+  bool get isMobile =>
+      DeviceRuntimeType.isMobile || width == WidthFormFactor.mobile;
+
   static DeviceWindowFormFactor getDeviceWindow() {
     if (kIsWeb) {
       return DeviceWindowFormFactor.web;

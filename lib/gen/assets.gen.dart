@@ -82,8 +82,13 @@ class $GoogleFontsGen {
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// Directory path: assets/images/buttons
   $AssetsImagesButtonsGen get buttons => const $AssetsImagesButtonsGen();
+
+  /// Directory path: assets/images/icons
   $AssetsImagesIconsGen get icons => const $AssetsImagesIconsGen();
+
+  /// Directory path: assets/images/ui_frames
   $AssetsImagesUiFramesGen get uiFrames => const $AssetsImagesUiFramesGen();
 }
 
@@ -185,9 +190,16 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName);
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+  });
 
   final String _assetName;
+
+  final Size? size;
+  final Set<String> flavors;
 
   Image image({
     Key? key,

@@ -30,6 +30,7 @@ class StateDiProvider extends StatelessWidget {
             create: SharedPreferencesDbDataSourceImpl.new,
           ),
           Provider(create: EditorMechanicsCollection.v1),
+          Provider(create: (final context) => Languages.en),
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [

@@ -10,40 +10,32 @@ class _PauseScreenStateDiDto {
   final MechanicsCollection mechanics;
 }
 
-PauseScreenState _usePauseScreenState({
-  required final BuildContext context,
-}) =>
-    use(
-      ContextfulLifeHook(
-        debugLabel: '_PauseScreenState',
-        state: PauseScreenState(
-          diDto: _PauseScreenStateDiDto.use(context),
-        ),
-      ),
-    );
-
-class PauseScreenState extends ContextfulLifeState {
+class PauseScreenState extends ValueNotifier<void> {
   PauseScreenState({
-    required this.diDto,
-  });
-  final _PauseScreenStateDiDto diDto;
+    required final BuildContext context,
+    required this.uxState,
+    required this.uiState,
+  })  : dto = _PauseScreenStateDiDto.use(context),
+        super(null);
+  final LevelStartDialogUxNotifier uxState;
+  final LevelStartDialogUiState uiState;
+  final _PauseScreenStateDiDto dto;
   // @override
   // void initState() {
   //   super.initState();
   //   if (Platform.isAndroid) unawaited(YandexAdsSdk().onLoad());
   // }
 
-  Future<void> onContinue({
-    required final CanvasDataModelId id,
+  Future<void> onShowStartDialog({
     required final BuildContext context,
+    required final CanvasDataModelId canvasDataId,
   }) async {
-    final pathsController = AppPathsController.of(context);
-    await diDto.globalGameBloc.onStartPlayingLevel(
-      const StartPlayingLevelEvent(shouldRestartTutorial: false),
-    );
-    pathsController.toPlayableLevel(id: id);
+    uxState.canvasDataId = canvasDataId;
+    uiState.onSwitchDialogVisiblity();
   }
 
+  late final onContinueFromSamePlace = uxState.onContinueFromSamePlace;
+  late final onDeleteLevel = uxState.onDeleteLevel;
   void onToPlayersAndHighscore(final BuildContext context) {
     AppPathsController.of(context).toPlayersAndHighscore();
   }
@@ -60,8 +52,7 @@ class PauseScreenState extends ContextfulLifeState {
     );
   }
 
-  Future<void> onShowAbout() async {
-    final context = getContext();
+  Future<void> onShowAbout(final BuildContext context) async {
     final locale = useLocale(context, listen: false);
     final theme = Theme.of(context);
     final uiTheme = context.uiTheme;
@@ -176,7 +167,6 @@ class PauseScreenState extends ContextfulLifeState {
       width: 64,
       height: 64,
     );
-    if (!mounted) return;
     final applicationName = Envs.store.isYandexGames
         ? const LocalizedMap(
             value: {

@@ -8,7 +8,7 @@ part 'debug_cubit.freezed.dart';
 @freezed
 class DebugCubitState with _$DebugCubitState {
   const factory DebugCubitState({
-    @Default(true) final bool isCameraFollowingPlayer,
+    @Default(true) final bool isCameraFollowingFocusedObject,
     @Default(kDebugMode) final bool isDebugPaneVisible,
     @Default(false) final bool isDebugLinesVisible,
     @Default(false) final bool isFpsEnabled,
@@ -27,8 +27,8 @@ class DebugCubit extends Cubit<DebugCubitState> {
   final DebugCubitDto dto;
   // ignore: avoid_positional_boolean_parameters
   void switchIsCameraFollowingPlayerChange([final bool? value]) {
-    final isFollowing = value ?? !state.isCameraFollowingPlayer;
-    emit(state.copyWith(isCameraFollowingPlayer: isFollowing));
+    final isFollowing = value ?? !state.isCameraFollowingFocusedObject;
+    emit(state.copyWith(isCameraFollowingFocusedObject: isFollowing));
   }
 
   // ignore: avoid_positional_boolean_parameters

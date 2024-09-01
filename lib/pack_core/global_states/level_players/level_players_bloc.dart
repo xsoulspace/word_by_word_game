@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
+import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -22,11 +23,25 @@ class LevelPlayersBlocDiDto {
 
 class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   LevelPlayersBloc(final BuildContext context)
-      : diDto = LevelPlayersBlocDiDto.use(context),
+      : dto = LevelPlayersBlocDiDto.use(context),
         super(LevelPlayersBlocState.empty);
-  final LevelPlayersBlocDiDto diDto;
+  final LevelPlayersBlocDiDto dto;
   final _log = Logger();
   PlayerCharacterModel get playerCharacter => state.playerCharacter;
+  Gid get focusedObjectId => state.focusedObjectGid;
+  bool get isPlayerFocused => focusedObjectId.isEmpty;
+  void changeFocusedObjectId(final Gid value) => emit(
+        state.copyWith(focusedObjectGid: value),
+      );
+  void focusToPlayer() => changeFocusedObjectId(Gid.empty);
+  // TODO(arenukvern): description
+  bool get isFocusedObjectHasPower => focusedObjectId.isEmpty;
+
+  RenderObjectModel get focusedObject {
+    final id = focusedObjectId;
+    if (id.isEmpty) return dto.canvasCubit.canvasData.playerObject;
+    return dto.canvasCubit.objects[id]!;
+  }
 
   @override
   Future<void> close() {
@@ -45,12 +60,12 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     final liveState = LevelPlayersBlocState.fromModel(
       levelPlayersModel: event.playersModel,
       levelCharactersModel: event.charactersModel.copyWith.playerCharacter(
-        gid: diDto.canvasCubit.player.id,
-        distanceToOrigin: diDto.canvasCubit.player.distanceToOrigin,
+        gid: dto.canvasCubit.player.id,
+        distanceToOrigin: dto.canvasCubit.player.distanceToOrigin,
       ),
     );
     emit(liveState);
-    diDto.statesStatusesCubit.onLevelPartLoaded(
+    dto.statesStatusesCubit.onLevelPartLoaded(
       levelPartName: LevelPartName.players,
     );
   }
@@ -79,9 +94,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     }
   }
 
-  void onChangeCharacter(
-    final PlayerCharacterModel value,
-  ) =>
+  void onChangeCharacter(final PlayerCharacterModel value) =>
       emit(state.copyWith(playerCharacter: value));
 
   double get powerUsage => playerCharacter.balloonParams.powerUsage;
@@ -94,19 +107,37 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   void onChangeCharacterPosition({
     required final Vector2 distanceToOrigin,
     required final LiftForceModel liftForce,
-  }) {
-    final updatedState = state.copyWith.playerCharacter(
-      distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-      balloonPowers: liftForce.updatedPowers,
-    );
+  }) =>
+      onChangeCharacter(
+        playerCharacter.copyWith(
+          distanceToOrigin: distanceToOrigin.toSerializedVector2(),
+          balloonPowers: liftForce.updatedPowers,
+        ),
+      );
 
-    emit(updatedState);
+  /// Saves distanceToOrigin (as checkpoint) for hot air balloon to restore it
+  /// after object was crashed.
+  ///
+  /// Algorithm:
+  ///
+  /// Saves current player distanceToOrigin, since
+  /// player in that case should always be on the ground near
+  /// tent (focused object)
+  void onChangeCharacterCheckpointPosition() {
+    // TODO(arenukvern): get distanceToOrigin from focusedObject
+    // and apply it to character
+
+    onChangeCharacter(
+      playerCharacter.copyWith(
+        checkpointDistanceToOrigin: playerCharacter.distanceToOrigin,
+      ),
+    );
   }
 
   void onRefuelStorage(
     final RefuelStorageEvent event,
   ) {
-    final scoreMechanics = diDto.mechanics.score;
+    final scoreMechanics = dto.mechanics.score;
     final power = scoreMechanics.convertScoreToPower(
       score: event.score,
     );
@@ -129,7 +160,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
       return;
     }
     final player = state.players[index];
-    final updatedPlayer = diDto.mechanics.score.countPlayerHighscore(
+    final updatedPlayer = dto.mechanics.score.countPlayerHighscore(
       player: player,
       score: event.score,
       word: event.word,

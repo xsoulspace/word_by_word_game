@@ -13,6 +13,9 @@ class GameRendererDiDto {
         debugCubit = context.read(),
         statesStatusesCubit = context.read(),
         gameConstantsCubit = context.read(),
+        buildingCubit = context.read(),
+        guiFocusableObjectsNotifier = context.read(),
+        wordCompositionCubit = context.read(),
         weatherCubit = context.read();
 
   /// ********************************************
@@ -20,6 +23,8 @@ class GameRendererDiDto {
   /// ********************************************
   final LevelBloc levelBloc;
   final DebugCubit debugCubit;
+  final GuiBuildingNotifier buildingCubit;
+  final GuiFocusableObjectsNotifier guiFocusableObjectsNotifier;
   final LevelPlayersBloc levelPlayersBloc;
   final StatesStatusesCubit statesStatusesCubit;
   final GameConstantsCubit gameConstantsCubit;
@@ -27,6 +32,7 @@ class GameRendererDiDto {
   final CanvasCubit canvasCubit;
   final WeatherCubit weatherCubit;
   final MechanicsCollection mechanics;
+  final GuiWordCompositionCubit wordCompositionCubit;
   final ThemeData theme;
   final DialogController dialogController;
 

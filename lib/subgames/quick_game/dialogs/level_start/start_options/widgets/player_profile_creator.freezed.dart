@@ -19,7 +19,9 @@ mixin _$PlayerProfileCreatorState {
   String get nameErrorMessage => throw _privateConstructorUsedError;
   Color get color => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayerProfileCreatorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PlayerProfileCreatorStateCopyWith<PlayerProfileCreatorState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -44,6 +46,8 @@ class _$PlayerProfileCreatorStateCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PlayerProfileCreatorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -85,6 +89,8 @@ class __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>
       $Res Function(_$PlayerProfileCreatorStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PlayerProfileCreatorState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -135,7 +141,9 @@ class _$PlayerProfileCreatorStateImpl implements _PlayerProfileCreatorState {
   @override
   int get hashCode => Object.hash(runtimeType, nameErrorMessage, color);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PlayerProfileCreatorState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
@@ -152,8 +160,11 @@ abstract class _PlayerProfileCreatorState implements PlayerProfileCreatorState {
   String get nameErrorMessage;
   @override
   Color get color;
+
+  /// Create a copy of PlayerProfileCreatorState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

@@ -21,19 +21,19 @@ class $AssetsDictionariesGen {
 class $AssetsLevelsGen {
   const $AssetsLevelsGen();
 
-  /// File path: assets/levels/lvl_colourful.json
-  String get lvlColourful =>
-      'packages/wbw_core/assets/levels/lvl_colourful.json';
-
   /// File path: assets/levels/lvl_evening.json
   String get lvlEvening => 'packages/wbw_core/assets/levels/lvl_evening.json';
+
+  /// File path: assets/levels/lvl_wb_adventure.json
+  String get lvlWbAdventure =>
+      'packages/wbw_core/assets/levels/lvl_wb_adventure.json';
 
   /// File path: assets/levels/lvl_white_black.json
   String get lvlWhiteBlack =>
       'packages/wbw_core/assets/levels/lvl_white_black.json';
 
   /// List of all assets
-  List<String> get values => [lvlColourful, lvlEvening, lvlWhiteBlack];
+  List<String> get values => [lvlEvening, lvlWbAdventure, lvlWhiteBlack];
 }
 
 class Assets {

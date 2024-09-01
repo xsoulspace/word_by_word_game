@@ -16,12 +16,14 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$DebugCubitState {
-  bool get isCameraFollowingPlayer => throw _privateConstructorUsedError;
+  bool get isCameraFollowingFocusedObject => throw _privateConstructorUsedError;
   bool get isDebugPaneVisible => throw _privateConstructorUsedError;
   bool get isDebugLinesVisible => throw _privateConstructorUsedError;
   bool get isFpsEnabled => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DebugCubitStateCopyWith<DebugCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -33,7 +35,7 @@ abstract class $DebugCubitStateCopyWith<$Res> {
       _$DebugCubitStateCopyWithImpl<$Res, DebugCubitState>;
   @useResult
   $Res call(
-      {bool isCameraFollowingPlayer,
+      {bool isCameraFollowingFocusedObject,
       bool isDebugPaneVisible,
       bool isDebugLinesVisible,
       bool isFpsEnabled});
@@ -49,18 +51,20 @@ class _$DebugCubitStateCopyWithImpl<$Res, $Val extends DebugCubitState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isCameraFollowingPlayer = null,
+    Object? isCameraFollowingFocusedObject = null,
     Object? isDebugPaneVisible = null,
     Object? isDebugLinesVisible = null,
     Object? isFpsEnabled = null,
   }) {
     return _then(_value.copyWith(
-      isCameraFollowingPlayer: null == isCameraFollowingPlayer
-          ? _value.isCameraFollowingPlayer
-          : isCameraFollowingPlayer // ignore: cast_nullable_to_non_nullable
+      isCameraFollowingFocusedObject: null == isCameraFollowingFocusedObject
+          ? _value.isCameraFollowingFocusedObject
+          : isCameraFollowingFocusedObject // ignore: cast_nullable_to_non_nullable
               as bool,
       isDebugPaneVisible: null == isDebugPaneVisible
           ? _value.isDebugPaneVisible
@@ -87,7 +91,7 @@ abstract class _$$DebugCubitStateImplCopyWith<$Res>
   @override
   @useResult
   $Res call(
-      {bool isCameraFollowingPlayer,
+      {bool isCameraFollowingFocusedObject,
       bool isDebugPaneVisible,
       bool isDebugLinesVisible,
       bool isFpsEnabled});
@@ -101,18 +105,20 @@ class __$$DebugCubitStateImplCopyWithImpl<$Res>
       _$DebugCubitStateImpl _value, $Res Function(_$DebugCubitStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? isCameraFollowingPlayer = null,
+    Object? isCameraFollowingFocusedObject = null,
     Object? isDebugPaneVisible = null,
     Object? isDebugLinesVisible = null,
     Object? isFpsEnabled = null,
   }) {
     return _then(_$DebugCubitStateImpl(
-      isCameraFollowingPlayer: null == isCameraFollowingPlayer
-          ? _value.isCameraFollowingPlayer
-          : isCameraFollowingPlayer // ignore: cast_nullable_to_non_nullable
+      isCameraFollowingFocusedObject: null == isCameraFollowingFocusedObject
+          ? _value.isCameraFollowingFocusedObject
+          : isCameraFollowingFocusedObject // ignore: cast_nullable_to_non_nullable
               as bool,
       isDebugPaneVisible: null == isDebugPaneVisible
           ? _value.isDebugPaneVisible
@@ -136,14 +142,14 @@ class _$DebugCubitStateImpl
     with DiagnosticableTreeMixin
     implements _DebugCubitState {
   const _$DebugCubitStateImpl(
-      {this.isCameraFollowingPlayer = true,
+      {this.isCameraFollowingFocusedObject = true,
       this.isDebugPaneVisible = kDebugMode,
       this.isDebugLinesVisible = false,
       this.isFpsEnabled = false});
 
   @override
   @JsonKey()
-  final bool isCameraFollowingPlayer;
+  final bool isCameraFollowingFocusedObject;
   @override
   @JsonKey()
   final bool isDebugPaneVisible;
@@ -156,7 +162,7 @@ class _$DebugCubitStateImpl
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'DebugCubitState(isCameraFollowingPlayer: $isCameraFollowingPlayer, isDebugPaneVisible: $isDebugPaneVisible, isDebugLinesVisible: $isDebugLinesVisible, isFpsEnabled: $isFpsEnabled)';
+    return 'DebugCubitState(isCameraFollowingFocusedObject: $isCameraFollowingFocusedObject, isDebugPaneVisible: $isDebugPaneVisible, isDebugLinesVisible: $isDebugLinesVisible, isFpsEnabled: $isFpsEnabled)';
   }
 
   @override
@@ -165,7 +171,7 @@ class _$DebugCubitStateImpl
     properties
       ..add(DiagnosticsProperty('type', 'DebugCubitState'))
       ..add(DiagnosticsProperty(
-          'isCameraFollowingPlayer', isCameraFollowingPlayer))
+          'isCameraFollowingFocusedObject', isCameraFollowingFocusedObject))
       ..add(DiagnosticsProperty('isDebugPaneVisible', isDebugPaneVisible))
       ..add(DiagnosticsProperty('isDebugLinesVisible', isDebugLinesVisible))
       ..add(DiagnosticsProperty('isFpsEnabled', isFpsEnabled));
@@ -176,9 +182,10 @@ class _$DebugCubitStateImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DebugCubitStateImpl &&
-            (identical(
-                    other.isCameraFollowingPlayer, isCameraFollowingPlayer) ||
-                other.isCameraFollowingPlayer == isCameraFollowingPlayer) &&
+            (identical(other.isCameraFollowingFocusedObject,
+                    isCameraFollowingFocusedObject) ||
+                other.isCameraFollowingFocusedObject ==
+                    isCameraFollowingFocusedObject) &&
             (identical(other.isDebugPaneVisible, isDebugPaneVisible) ||
                 other.isDebugPaneVisible == isDebugPaneVisible) &&
             (identical(other.isDebugLinesVisible, isDebugLinesVisible) ||
@@ -188,10 +195,12 @@ class _$DebugCubitStateImpl
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isCameraFollowingPlayer,
+  int get hashCode => Object.hash(runtimeType, isCameraFollowingFocusedObject,
       isDebugPaneVisible, isDebugLinesVisible, isFpsEnabled);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DebugCubitStateImplCopyWith<_$DebugCubitStateImpl> get copyWith =>
@@ -201,21 +210,24 @@ class _$DebugCubitStateImpl
 
 abstract class _DebugCubitState implements DebugCubitState {
   const factory _DebugCubitState(
-      {final bool isCameraFollowingPlayer,
+      {final bool isCameraFollowingFocusedObject,
       final bool isDebugPaneVisible,
       final bool isDebugLinesVisible,
       final bool isFpsEnabled}) = _$DebugCubitStateImpl;
 
   @override
-  bool get isCameraFollowingPlayer;
+  bool get isCameraFollowingFocusedObject;
   @override
   bool get isDebugPaneVisible;
   @override
   bool get isDebugLinesVisible;
   @override
   bool get isFpsEnabled;
+
+  /// Create a copy of DebugCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DebugCubitStateImplCopyWith<_$DebugCubitStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

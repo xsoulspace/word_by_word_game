@@ -11,6 +11,9 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_power_points_animation.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_tech_points_animation.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class GlobalStatesProvider extends StatelessWidget {
   const GlobalStatesProvider({
@@ -24,6 +27,8 @@ class GlobalStatesProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
+          ChangeNotifierProvider(create: UiTechPointsAnimationNotifier.new),
+          ChangeNotifierProvider(create: UiPowerPointsAnimationNotifier.new),
           ChangeNotifierProvider(create: AppStatusNotifier.new),
           ChangeNotifierProvider.value(value: uiLocaleNotifier),
           ChangeNotifierProvider(create: OnlineStatusService.new),
@@ -51,6 +56,7 @@ class GlobalStatesProvider extends StatelessWidget {
         builder: (final context, final child) => MultiBlocProvider(
           providers: [
             const BlocProvider(create: DebugCubit.new),
+            ChangeNotifierProvider(create: LevelFeaturesNotifier.new),
             const BlocProvider(create: UiKeyboardController.new),
             const BlocProvider(create: CanvasCubit.new),
             const BlocProvider(create: TechnologiesCubit.new),
@@ -64,6 +70,9 @@ class GlobalStatesProvider extends StatelessWidget {
             const BlocProvider(create: GameConstantsCubit.new),
             ChangeNotifierProvider(create: DialogStackNotifier.new),
             Provider(create: DialogStackNotifier.getDialogController),
+            ChangeNotifierProvider(create: GuiWordCompositionCubit.new),
+            ChangeNotifierProvider(create: GuiBuildingNotifier.new),
+            ChangeNotifierProvider(create: GuiFocusableObjectsNotifier.new),
           ],
           child: Builder(builder: builder),
         ),

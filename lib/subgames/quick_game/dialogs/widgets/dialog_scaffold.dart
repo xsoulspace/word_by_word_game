@@ -32,6 +32,7 @@ class DialogScaffold extends StatelessWidget {
       final body = ListView(
         shrinkWrap: true,
         padding: padding,
+        primary: true,
         children: children!,
       );
       child = Column(

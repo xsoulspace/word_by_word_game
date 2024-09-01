@@ -55,20 +55,12 @@ class WordCompositionStateDiDto {
   final DialogController dialogController;
 }
 
-@freezed
-class WordCompositionCubitState with _$WordCompositionCubitState {
-  const factory WordCompositionCubitState({
-    @Default(true) final bool isCardVisible,
-  }) = _WordCompositionCubitState;
-}
-
-class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
-  WordCompositionCubit({
-    required this.dto,
-  })  : wordController = WordFieldController(
-          currentWord: dto.levelBloc.state.currentWord,
-        ),
-        super(const WordCompositionCubitState()) {
+class GuiWordCompositionCubit extends ChangeNotifier {
+  GuiWordCompositionCubit(final BuildContext context)
+      : dto = WordCompositionStateDiDto.use(context.read) {
+    wordController = WordFieldController(
+      currentWord: dto.levelBloc.state.currentWord,
+    );
     onLoad();
   }
   late final _tutorialEventsListener = WordCompositionTutorialEventListener(
@@ -107,31 +99,13 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
   }
 
   final wordFocusNode = FocusNode();
-  final WordFieldController wordController;
+  late final WordFieldController wordController;
   void _selectMultiplier(final EnergyMultiplierType multiplier) =>
       dto.levelBloc.onLevelPlayerSelectActionMultiplier(
         LevelBlocEventSelectActionMultiplier(multiplier: multiplier),
       );
-  void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.researchingTechnology);
-  }
-
-  void onCrystalMoved(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.crystalMove);
-  }
-
-  void onPowerSelected(final EnergyMultiplierType multiplier) {
-    _selectMultiplier(multiplier);
-    _onToEndTurn(EnergyApplicationType.refueling);
-  }
 
   Future<void> onToSelectActionPhase() async => dto.levelBloc.onAcceptNewWord();
-
-  void changeCardVisibility() {
-    emit(state.copyWith(isCardVisible: !state.isCardVisible));
-  }
 
   void _onToEndTurn(final EnergyApplicationType energyApplicationType) {
     dto.levelBloc.onLevelPlayerEndTurnAction(energyApplicationType);
@@ -166,14 +140,59 @@ class WordCompositionCubit extends Cubit<WordCompositionCubitState> {
   }
 
   @override
-  Future<void> close() async {
+  void dispose() {
     dto.tutorialBloc.notifier.removeListener(_tutorialEventsListener);
     wordController
       ..removeListener(_onPartChanged)
       ..dispose();
-    await _wordUpdatesController.close();
-    await _levelBlocSubscription?.cancel();
+    unawaited(_wordUpdatesController.close());
+    unawaited(_levelBlocSubscription?.cancel());
     wordFocusNode.dispose();
-    return super.close();
+    return super.dispose();
+  }
+}
+
+@freezed
+class BottomActionsNotifierState with _$BottomActionsNotifierState {
+  const factory BottomActionsNotifierState({
+    @Default(true) final bool isCardVisible,
+  }) = _BottomActionsNotifierState;
+}
+
+extension UiGuiWordCompositionCubitCallbacksX on GuiWordCompositionCubit {
+  void onInvestToResearchSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.researchingTechnology);
+  }
+
+  void onCrystalMoved(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.crystalMove);
+  }
+
+  void onPowerSelected(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.refueling);
+  }
+
+  void onBuildingBuilt(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.buildingBuilt);
+  }
+
+  void onRestAndPrepareBalloon(final EnergyMultiplierType multiplier) {
+    _selectMultiplier(multiplier);
+    _onToEndTurn(EnergyApplicationType.restAndPrepareBalloon);
+    unawaited(dto.globalGameBloc.onSaveCurrentLevel());
+  }
+}
+
+class BottomActionsNotifier extends ValueNotifier<BottomActionsNotifierState> {
+  // ignore: avoid_unused_constructor_parameters
+  BottomActionsNotifier(final BuildContext context)
+      : super(const BottomActionsNotifierState());
+
+  void changeCardVisiblity() {
+    value = value.copyWith(isCardVisible: !value.isCardVisible);
   }
 }

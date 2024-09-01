@@ -10,23 +10,24 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
 
-enum WordLanguage with _i1.SerializableEntity {
+enum WordLanguage implements _i1.SerializableModel {
   eng,
   ru;
 
-  static WordLanguage? fromJson(String name) {
+  static WordLanguage fromJson(String name) {
     switch (name) {
       case 'eng':
         return eng;
       case 'ru':
         return ru;
       default:
-        return null;
+        throw ArgumentError(
+            'Value "$name" cannot be converted to "WordLanguage"');
     }
   }
 
   @override
   String toJson() => name;
   @override
-  String toString() => toJson();
+  String toString() => name;
 }

@@ -5,8 +5,9 @@ import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/level_actions_row.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
+import 'package:word_by_word_game/subgames/subgames.dart';
 
 class UiActionFrameSimple extends StatelessWidget {
   const UiActionFrameSimple({super.key});
@@ -31,11 +32,16 @@ class UiActionFrameSimple extends StatelessWidget {
   }
 }
 
-class UiEnergyCards extends StatelessWidget {
+class UiEnergyCards extends StatelessWidget with TechLevelMixin {
   const UiEnergyCards({super.key});
 
   @override
   Widget build(final BuildContext context) {
+    final (
+      isUnblocked: isPoweringEngineAvailable,
+      isPlaying: _,
+      isAdvancedGame: _
+    ) = useTechLevelAvailable(context, TechnologyLevelIndex.poweringEngine);
     final uiTheme = context.uiTheme;
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
@@ -47,22 +53,27 @@ class UiEnergyCards extends StatelessWidget {
         uiKey: TutorialUiItem.selectRefuelOption,
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxHeight: 100),
-          child: ListView.separated(
-            shrinkWrap: true,
-            padding: EdgeInsets.zero,
-            itemBuilder: (final context, final index) {
-              final type = EnergyMultiplierType.values[index];
+          child: isPoweringEngineAvailable
+              ? ListView.separated(
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  itemBuilder: (final context, final index) {
+                    final type = EnergyMultiplierType.values[index];
 
-              return UIEnergyOptionCard(
-                levelState: levelState,
-                type: type,
-              );
-            },
-            separatorBuilder: (final context, final index) =>
-                uiTheme.horizontalBoxes.medium,
-            scrollDirection: Axis.horizontal,
-            itemCount: EnergyMultiplierType.values.length,
-          ),
+                    return UIEnergyOptionCard(
+                      levelState: levelState,
+                      type: type,
+                    );
+                  },
+                  separatorBuilder: (final context, final index) =>
+                      uiTheme.horizontalBoxes.medium,
+                  scrollDirection: Axis.horizontal,
+                  itemCount: EnergyMultiplierType.values.length,
+                )
+              : UIEnergyOptionCard(
+                  levelState: levelState,
+                  type: EnergyMultiplierType.m3,
+                ),
         ).animate().fadeIn().slideY(begin: 0.1),
       ),
     );
@@ -99,22 +110,31 @@ class UIEnergyOptionCard extends StatelessWidget {
       );
     }
 
+    final colorScheme = theme.colorScheme;
+
     return UiActionButton(
       onCompleted: onApply,
+      padding: const EdgeInsets.symmetric(
+        vertical: 3,
+        horizontal: 12,
+      ),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          UiPlayerScoreIcon(size: 18, color: colorScheme.onSurface),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
               Flexible(
                 child: Text(
-                  '${applyingScore.formattedScore}',
-                  style: textTheme.headlineSmall,
+                  '${applyingScore.value.formattedScore}',
+                  style: textTheme.headlineSmall?.copyWith(
+                    color: colorScheme.tertiary,
+                  ),
                 ),
               ),
             ],
           ),
-          const Spacer(),
           Container(
             width: 30,
             height: 30,
@@ -133,13 +153,19 @@ class UIEnergyOptionCard extends StatelessWidget {
   }
 }
 
-({int applyingScore, WordCompositionCubit compositionState})
-    useApplyingScoreComposable({
+typedef ApplyingScoreComposableReturnType = ({
+  ApplyingScoreType applyingScore,
+  GuiWordCompositionCubit compositionState,
+});
+
+extension type ApplyingScoreType(int value) {}
+
+ApplyingScoreComposableReturnType useApplyingScoreComposable({
   required final BuildContext context,
   required final EnergyMultiplierType type,
 }) {
   final mechanics = context.read<MechanicsCollection>();
-  final compositionState = context.read<WordCompositionCubit>();
+  final compositionState = context.read<GuiWordCompositionCubit>();
 
   final player = context.select<LevelPlayersBloc, PlayerProfileModel>(
     (final bloc) => bloc.state.currentPlayer,
@@ -152,7 +178,29 @@ class UIEnergyOptionCard extends StatelessWidget {
       .value
       .toInt();
   return (
-    applyingScore: applyingScore,
+    applyingScore: ApplyingScoreType(applyingScore),
+    compositionState: compositionState,
+  );
+}
+
+ApplyingScoreComposableReturnType useApplyingScoreGameComposable({
+  required final CanvasRendererGame game,
+  required final EnergyMultiplierType type,
+}) {
+  final dto = game.dto;
+  final mechanics = dto.mechanics;
+  final compositionState = dto.wordCompositionCubit;
+
+  final player = dto.levelPlayersBloc.state.currentPlayer;
+  final applyingScore = mechanics.score
+      .getScoreForStorageEnergyByModifier(
+        multiplier: type,
+        availableScore: player.highscore.score,
+      )
+      .value
+      .toInt();
+  return (
+    applyingScore: ApplyingScoreType(applyingScore),
     compositionState: compositionState,
   );
 }

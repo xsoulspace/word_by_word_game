@@ -5,6 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart' as material;
+import 'package:map_editor/state/blocs/editor/editor.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
@@ -25,49 +26,28 @@ class GameCanvasObject extends Component
   GameCanvasObject.fromRenderObject({
     required final material.ValueChanged<RenderObjectModel> onPositionChanged,
     required this.data,
-  })  : position = data.position.toOffset(),
-        distanceToOrigin = data.distanceToOrigin.toOffset(),
-        distanceToTileLeftTopCorner =
-            data.distanceToTileLeftTopCorner.toOffset(),
-        onChanged = onPositionChanged;
+  })  : screenVector2 = data.position.toOffset(),
+        gameVector2 =
+            GameVector2.fromMapVector2(data.distanceToOrigin.toVector2()),
+        onChanged = onPositionChanged {
+    _updateDistanceToOrigin();
+  }
 
   final material.ValueChanged<RenderObjectModel>? onChanged;
   Gid get gid => data.id;
   TileId get tileId => data.tileId;
   final RenderObjectModel data;
 
-  Offset position;
-  Offset distanceToOrigin;
-  Offset distanceToTileLeftTopCorner;
+  Offset screenVector2;
+  GameVector2 gameVector2;
 
-  /// relative cell, depends from the origin position and
-  /// screen changes
-  math.Point<int> _cell = const math.Point<int>(0, 0);
+  /// top-left position
+  math.Point<int> get topLeftTileMapCell => gameVector2.toMapTileCell();
 
-  /// should never be changed outside
-  math.Point<int> get cell => _cell;
-
-  /// absolute coordinate for screen
-  math.Point<int> _absoluteCell = const math.Point<int>(0, 0);
-
-  /// should never be changed outside
-  math.Point<int> get absoluteCell => _absoluteCell;
-
-  void _updateDistanceToOrigin() {
-    distanceToOrigin = position - origin.toOffset();
-    final cellTopLeftPosition = Offset(
-      (cell.x * kTileDimension).toDouble(),
-      (cell.y * kTileDimension).toDouble(),
-    );
-    distanceToTileLeftTopCorner = distanceToOrigin - cellTopLeftPosition;
-    final originUtils = OriginVectorUtils.use(origin);
-    _absoluteCell = originUtils.getAbsoluteCellByCanvasObject(
-      objectDistanceToOrigin: distanceToOrigin,
-    );
-    _cell = originUtils.getCurrentCellByCanvasObject(
-      objectDistanceToOrigin: distanceToOrigin,
-    );
-  }
+  void _updateDistanceToOrigin() => gameVector2 = GameVector2.fromScreenVector2(
+        screenVector2: screenVector2.toVector2(),
+        origins: origins,
+      );
 
   @override
   FutureOr<void> onLoad() {
@@ -75,30 +55,28 @@ class GameCanvasObject extends Component
     return super.onLoad();
   }
 
-  Rect? _hitboxRect;
-  Rect? get shiftedHitbox => _hitboxRect?.shift(position);
-  List<CellPointModel> get hitboxCells {
-    final hitbox = shiftedHitbox;
-    if (hitbox == null) {
-      return [];
-    }
-    final originUtils = OriginVectorUtils.use(origin);
-    final topLeft = absoluteCell.toCellPoint();
-    final topRight = originUtils.getAbsoluteCellByCanvasObject(
-      objectDistanceToOrigin: distanceToOrigin + Offset(hitbox.width, 0),
-    );
-    final bottomRight = originUtils.getAbsoluteCellByCanvasObject(
-      objectDistanceToOrigin:
-          distanceToOrigin + Offset(hitbox.width, hitbox.height),
-    );
-    final bottomLeft = originUtils.getAbsoluteCellByCanvasObject(
-      objectDistanceToOrigin: distanceToOrigin + Offset(0, hitbox.height),
-    );
+  Rect? _hitboxScreenRect;
+  Rect? get hitboxScreenRect => _hitboxScreenRect;
+  // double get bottomRightPosition => _hitboxRect?.height;
+  Rect? get shiftedScreenHitbox => _hitboxScreenRect?.shift(screenVector2);
+  List<CellPointModel> get hitboxMapCells {
+    final hitbox = shiftedScreenHitbox;
+    if (hitbox == null) return [];
+
+    final topLeft = topLeftTileMapCell.toCellPoint();
+    final topRight =
+        GameVector2.fromMapVector2(Vector2(hitbox.width, 0)) + gameVector2;
+    final bottomLeft =
+        GameVector2.fromMapVector2(Vector2(0, hitbox.height)) + gameVector2;
+    final bottomRight =
+        GameVector2.fromMapVector2(Vector2(hitbox.width, hitbox.height)) +
+            gameVector2;
+
     return [
       topLeft,
-      topRight.toCellPoint(),
-      bottomRight.toCellPoint(),
-      bottomLeft.toCellPoint(),
+      topRight.toMapTileCell().toCellPoint(),
+      bottomRight.toMapTileCell().toCellPoint(),
+      bottomLeft.toMapTileCell().toCellPoint(),
     ];
   }
 
@@ -114,7 +92,7 @@ class GameCanvasObject extends Component
 
     final tilePath = animationEntry.currentFramePath;
     final tileImage = getImage(tilePath);
-    _hitboxRect ??= Rect.fromLTWH(
+    _hitboxScreenRect ??= Rect.fromLTWH(
       0,
       0,
       tileImage.width.toDouble(),
@@ -123,17 +101,17 @@ class GameCanvasObject extends Component
 
     /// to highlight hitbox, uncomment lines below
     // if (debugMode) {
-    //   final hitbox = shiftedHitbox;
-    //   if (hitbox != null) {
-    //     canvas.drawRect(
-    //       hitbox,
-    //       Palette.red90.paint(),
-    //     );
-    //   }
+    // final hitbox = shiftedHitbox;
+    // if (hitbox != null) {
+    //   canvas.drawRect(
+    //     hitbox,
+    //     Palette.red90.paint(),
+    //   );
+    // }
     // }
     canvas.drawImage(
       tileImage,
-      position,
+      screenVector2,
       Palette.white.paint(),
     );
     super.render(canvas);
@@ -142,10 +120,8 @@ class GameCanvasObject extends Component
   void _savePosition() {
     onChanged?.call(
       data.copyWith(
-        position: position.toSerializedVector2(),
-        distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-        distanceToTileLeftTopCorner:
-            distanceToTileLeftTopCorner.toSerializedVector2(),
+        position: screenVector2.toSerializedVector2(),
+        distanceToOrigin: gameVector2.toSerializedMapVector2(),
       ),
     );
   }
@@ -155,17 +131,16 @@ class GameCanvasObject extends Component
     _savePosition();
   }
 
-  void setPosition(final Offset newPosition) {
-    position = newPosition;
+  void setScreenPosition(final Offset newPosition) {
+    screenVector2 = newPosition;
     _updateDistanceToOrigin();
     _savePosition();
   }
 
-  void _updatePosition() {
-    position = origin.toOffset() + distanceToOrigin;
-  }
+  void _updatePosition() =>
+      screenVector2 = gameVector2.toScreenVector2(origins).toOffset();
 
   @override
   bool containsLocalPoint(final Vector2 point) =>
-      _hitboxRect?.containsPoint(point) ?? false;
+      _hitboxScreenRect?.containsPoint(point) ?? false;
 }

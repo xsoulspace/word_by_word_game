@@ -14,7 +14,7 @@ class UiActionFrame extends StatelessWidget {
   Widget build(final BuildContext context) {
     final levelCubit = context.watch<LevelBloc>();
     final uiTheme = context.uiTheme;
-    if (levelCubit.featuresSettings.isTechnologiesEnabled) {
+    if (levelCubit.featuresSettings.isAdvancedGame) {
       return const UIActionFrameAdvanced();
     } else {
       return Column(
@@ -33,12 +33,14 @@ class UiActionButton extends StatefulWidget {
     required this.onCompleted,
     required this.child,
     this.tooltipMessage = '',
+    this.padding = const EdgeInsets.all(12),
     this.constraints = const BoxConstraints(minWidth: 70),
     super.key,
   });
   final Widget child;
   final VoidCallback onCompleted;
   final String tooltipMessage;
+  final EdgeInsets padding;
   final BoxConstraints constraints;
 
   @override
@@ -112,7 +114,7 @@ class _UiActionButtonState extends State<UiActionButton>
                         return 8.toDouble();
                       }(),
                     ),
-                    padding: const EdgeInsets.all(12),
+                    padding: widget.padding,
                     child: widget.child,
                   ),
                 ),

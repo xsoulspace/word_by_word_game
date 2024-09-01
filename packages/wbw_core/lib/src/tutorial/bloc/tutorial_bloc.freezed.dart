@@ -106,6 +106,9 @@ class _$TutorialEventCopyWithImpl<$Res, $Val extends TutorialEvent>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -123,6 +126,9 @@ class __$$CompleteTutorialEventImplCopyWithImpl<$Res>
   __$$CompleteTutorialEventImplCopyWithImpl(_$CompleteTutorialEventImpl _value,
       $Res Function(_$CompleteTutorialEventImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -267,6 +273,8 @@ class __$$LoadTutorialsProgressEventImplCopyWithImpl<$Res>
       $Res Function(_$LoadTutorialsProgressEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -280,6 +288,8 @@ class __$$LoadTutorialsProgressEventImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
@@ -315,7 +325,9 @@ class _$LoadTutorialsProgressEventImpl implements LoadTutorialsProgressEvent {
   @override
   int get hashCode => Object.hash(runtimeType, progress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$LoadTutorialsProgressEventImplCopyWith<_$LoadTutorialsProgressEventImpl>
@@ -425,7 +437,10 @@ abstract class LoadTutorialsProgressEvent implements TutorialEvent {
       _$LoadTutorialsProgressEventImpl;
 
   TutorialCollectionsProgressModel get progress;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LoadTutorialsProgressEventImplCopyWith<_$LoadTutorialsProgressEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -450,6 +465,8 @@ class __$$StartTutorialEventImplCopyWithImpl<$Res>
       $Res Function(_$StartTutorialEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -512,7 +529,9 @@ class _$StartTutorialEventImpl implements StartTutorialEvent {
   int get hashCode => Object.hash(runtimeType, tutorialName,
       shouldContinueIfPlayed, shouldStartFromBeginning);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$StartTutorialEventImplCopyWith<_$StartTutorialEventImpl> get copyWith =>
@@ -628,7 +647,10 @@ abstract class StartTutorialEvent implements TutorialEvent {
   TutorialCollectionsName get tutorialName;
   bool get shouldContinueIfPlayed;
   bool get shouldStartFromBeginning;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StartTutorialEventImplCopyWith<_$StartTutorialEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -650,6 +672,8 @@ class __$$NextTutorialEventImplCopyWithImpl<$Res>
       $Res Function(_$NextTutorialEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -689,7 +713,9 @@ class _$NextTutorialEventImpl implements NextTutorialEvent {
   @override
   int get hashCode => Object.hash(runtimeType, action);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$NextTutorialEventImplCopyWith<_$NextTutorialEventImpl> get copyWith =>
@@ -798,7 +824,10 @@ abstract class NextTutorialEvent implements TutorialEvent {
       _$NextTutorialEventImpl;
 
   NextTutorialEventType get action;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$NextTutorialEventImplCopyWith<_$NextTutorialEventImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -825,6 +854,8 @@ class __$$TutorialUiActionEventImplCopyWithImpl<$Res>
       $Res Function(_$TutorialUiActionEventImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -896,7 +927,9 @@ class _$TutorialUiActionEventImpl implements TutorialUiActionEvent {
   int get hashCode =>
       Object.hash(runtimeType, action, key, stringValue, boolValue);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialUiActionEventImplCopyWith<_$TutorialUiActionEventImpl>
@@ -1011,7 +1044,10 @@ abstract class TutorialUiActionEvent implements TutorialEvent {
   TutorialUiItem? get key;
   String get stringValue;
   bool get boolValue;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialUiActionEventImplCopyWith<_$TutorialUiActionEventImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1087,6 +1123,9 @@ class _$TutorialBlocStateCopyWithImpl<$Res, $Val extends TutorialBlocState>
   final $Val _value;
   // ignore: unused_field
   final $Res Function($Val) _then;
+
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1105,6 +1144,9 @@ class __$$TutorialBlocStateEmptyImplCopyWithImpl<$Res>
       _$TutorialBlocStateEmptyImpl _value,
       $Res Function(_$TutorialBlocStateEmptyImpl) _then)
       : super(_value, _then);
+
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
@@ -1229,6 +1271,8 @@ class __$$TutorialBlocStatePendingImplCopyWithImpl<$Res>
       $Res Function(_$TutorialBlocStatePendingImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1242,6 +1286,8 @@ class __$$TutorialBlocStatePendingImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
@@ -1278,7 +1324,9 @@ class _$TutorialBlocStatePendingImpl implements TutorialBlocStatePending {
   @override
   int get hashCode => Object.hash(runtimeType, progress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialBlocStatePendingImplCopyWith<_$TutorialBlocStatePendingImpl>
@@ -1368,7 +1416,10 @@ abstract class TutorialBlocStatePending implements TutorialBlocState {
 
   /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialBlocStatePendingImplCopyWith<_$TutorialBlocStatePendingImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1396,6 +1447,8 @@ class __$$TutorialBlocStateLiveImplCopyWithImpl<$Res>
       $Res Function(_$TutorialBlocStateLiveImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1414,6 +1467,8 @@ class __$$TutorialBlocStateLiveImplCopyWithImpl<$Res>
     ));
   }
 
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TutorialEventsCollectionModelCopyWith<$Res> get tutorial {
@@ -1423,6 +1478,8 @@ class __$$TutorialBlocStateLiveImplCopyWithImpl<$Res>
     });
   }
 
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TutorialCollectionsProgressModelCopyWith<$Res> get progress {
@@ -1465,7 +1522,9 @@ class _$TutorialBlocStateLiveImpl implements TutorialBlocStateLive {
   @override
   int get hashCode => Object.hash(runtimeType, tutorial, progress);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TutorialBlocStateLiveImplCopyWith<_$TutorialBlocStateLiveImpl>
@@ -1558,7 +1617,10 @@ abstract class TutorialBlocStateLive implements TutorialBlocState {
 
   /// progress for all tutorials
   TutorialCollectionsProgressModel get progress;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TutorialBlocState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TutorialBlocStateLiveImplCopyWith<_$TutorialBlocStateLiveImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

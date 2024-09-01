@@ -5,12 +5,9 @@ part of 'preset_models.dart';
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
 class TileId with _$TileId, EquatableMixin {
-  const factory TileId({
-    required final String value,
-  }) = _TileId;
+  const factory TileId({required final String value}) = _TileId;
   const TileId._();
   factory TileId.fromJson(final String value) => TileId(value: value);
-  factory TileId.fromIndex(final int index) => TileId(value: '$index');
   static const empty = TileId(value: '');
   bool get isEmpty => value.isEmpty;
   bool get isNotEmpty => value.isNotEmpty;
@@ -36,6 +33,7 @@ enum DataCategoryType {
   plants,
   players,
   other,
+  buildings,
 }
 
 @freezed
