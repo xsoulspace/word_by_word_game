@@ -30,7 +30,8 @@ enum TechnologyLevelIndex {
 class TechnologyLevelsCollection {
   TechnologyLevelsCollection._();
   static final levels = List<TechnologyLevelTuple>.filled(
-    TechnologyLevelIndex.values.length,
+    /// -1 because maxLevel is not a real level
+    TechnologyLevelIndex.values.length - 1,
     (
       title: '',
       technologies: [],

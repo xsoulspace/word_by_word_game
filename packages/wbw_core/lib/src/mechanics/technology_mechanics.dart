@@ -119,6 +119,7 @@ class TechnologyMechanics {
     /// levels with unlocked words, which increase summary invested score
     for (var i = 0; i < levels.length; i++) {
       final level = levels[i];
+      if (level.title.isEmpty) continue;
 
       final scoreNeeded = level.technologies.map(
         (final e) {
