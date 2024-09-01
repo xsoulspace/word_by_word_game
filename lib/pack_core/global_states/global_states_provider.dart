@@ -11,6 +11,8 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_power_points_animation.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_tech_points_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class GlobalStatesProvider extends StatelessWidget {
@@ -25,6 +27,8 @@ class GlobalStatesProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
+          ChangeNotifierProvider(create: UiTechPointsAnimationNotifier.new),
+          ChangeNotifierProvider(create: UiPowerPointsAnimationNotifier.new),
           ChangeNotifierProvider(create: AppStatusNotifier.new),
           ChangeNotifierProvider.value(value: uiLocaleNotifier),
           ChangeNotifierProvider(create: OnlineStatusService.new),

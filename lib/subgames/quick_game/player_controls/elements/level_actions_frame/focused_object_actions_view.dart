@@ -81,16 +81,25 @@ class TentActionsView extends StatelessWidget {
   const TentActionsView({super.key});
 
   @override
-  Widget build(final BuildContext context) => const Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Gap(12),
-          _RestActionButton(),
-          Gap(12),
-          _WindWaterTowerObjectBuildButton(),
+  Widget build(final BuildContext context) {
+    final isMeasuringTheWindUnblocked = context.select<TechnologiesCubit, bool>(
+      (final technologiesCubit) => technologiesCubit
+          .isTechLevelUnlocked(TechnologyLevelIndex.measuringTheWind),
+    );
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        const Gap(12),
+        const _RestActionButton(),
+        if (isMeasuringTheWindUnblocked) ...[
+          const Gap(12),
+          const _WindWaterTowerObjectBuildButton(),
         ],
-      );
+      ],
+    );
+  }
 }
 
 class _RestActionButton extends StatelessWidget {

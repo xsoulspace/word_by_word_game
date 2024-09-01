@@ -52,6 +52,7 @@ class TechLevelsDialog extends StatelessWidget {
       children: [
         Builder(
           builder: (final context) {
+            final isMaxLevel = lastLevelIndex == TechnologyLevelIndex.maxLevel;
             final color = context.colorScheme.onSurface.withOpacity(0.7);
             return Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -132,35 +133,45 @@ class TechLevelsDialog extends StatelessWidget {
                           color: color,
                         ),
                         Text(
-                          'Next Level (${lastLevelIndex.index})',
+                          isMaxLevel
+                              ? 'Max Level'
+                              : 'Next Level (${lastLevelIndex.index})',
                           style: context.textTheme.bodyMedium
                               ?.copyWith(color: color),
                         ),
-                        Builder(
-                          builder: (final context) {
-                            final nextScore =
-                                scoresByLevel[lastLevelIndex.index]
-                                    .formattedScore;
-                            final scoreLeft =
-                                scoreLeftForNextLevel.value.formattedScore;
-                            return Text.rich(
-                              TextSpan(
-                                children: [
-                                  TextSpan(
-                                    text: '${nextScore - scoreLeft}',
-                                    style: context.textThemeBold.titleMedium
-                                        ?.copyWith(
-                                      color: context.colorScheme.primary,
+                        if (isMaxLevel)
+                          Text(
+                            '${scoreLeftForNextLevel.value.formattedScore}',
+                            style: context.textThemeBold.titleMedium?.copyWith(
+                              color: context.colorScheme.primary,
+                            ),
+                          )
+                        else
+                          Builder(
+                            builder: (final context) {
+                              final nextScore =
+                                  scoresByLevel[lastLevelIndex.index]
+                                      .formattedScore;
+                              final scoreLeft =
+                                  scoreLeftForNextLevel.value.formattedScore;
+                              return Text.rich(
+                                TextSpan(
+                                  children: [
+                                    TextSpan(
+                                      text: '${nextScore - scoreLeft}',
+                                      style: context.textThemeBold.titleMedium
+                                          ?.copyWith(
+                                        color: context.colorScheme.primary,
+                                      ),
                                     ),
-                                  ),
-                                  TextSpan(
-                                    text: '/$nextScore',
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        ),
+                                    TextSpan(
+                                      text: '/$nextScore',
+                                    ),
+                                  ],
+                                ),
+                              );
+                            },
+                          ),
                       ],
                     ),
                   ),

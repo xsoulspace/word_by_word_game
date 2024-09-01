@@ -9,6 +9,8 @@ import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
+import 'package:word_by_word_game/subgames/subgames.dart';
 
 class UiPlayersStateDiDto {
   UiPlayersStateDiDto.use(final Locator read) : levelPlayersBloc = read();
@@ -168,22 +170,29 @@ class UiPlayerAndScoreTile extends StatelessWidget {
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          UiAvatarBookmark(
-            selected: isCurrent,
-            player: player,
-            textStyle: textStyle!,
+          Tooltip(
+            // TODO(arenukvern): l10n
+            message: "${player.name}'s energy",
+            child: UiAvatarBookmark(
+              selected: isCurrent,
+              player: player,
+              textStyle: textStyle!,
+            ),
           ),
           AnimatedContainer(
             duration: 50.milliseconds,
             width: isCurrent ? 6 : 12,
           ),
-          Text(
-            player.name,
-            style: theme.textTheme.labelMedium?.copyWith(
-              color: isCurrent ? null : colorScheme.onSurface.withOpacity(0.6),
+          Tooltip(
+            // TODO(arenukvern): l10n
+            message: isCurrent ? "Current player's name" : '',
+            child: Text(
+              player.name,
+              style: theme.textTheme.labelMedium?.copyWith(
+                color:
+                    isCurrent ? null : colorScheme.onSurface.withOpacity(0.6),
+              ),
             ),
-
-            /// textStyle,
           ),
         ],
       ),
@@ -256,20 +265,24 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
+          UiPlayerScoreIcon(
+            color: selected
+                ? colorScheme.onPrimary.withOpacity(0.6)
+                : colorScheme.onSurface.withOpacity(0.3),
+            size: 8,
+          ),
           Animate(
             autoPlay: false,
             onInit: (final controller) =>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
-            child: Text(
-              '$_score',
+            child: UiTextCounter(
+              value: _score,
               style: theme.textTheme.labelMedium?.copyWith(
                 color: selected
                     ? colorScheme.onPrimary
                     : colorScheme.onSurface.withOpacity(0.6),
               ),
-
-              // style: widget.textStyle,
             )
                 .animate(
                   key: ValueKey(_score),

@@ -119,6 +119,7 @@ class TechnologyMechanics {
     /// levels with unlocked words, which increase summary invested score
     for (var i = 0; i < levels.length; i++) {
       final level = levels[i];
+      if (level.title.isEmpty) continue;
 
       final scoreNeeded = level.technologies.map(
         (final e) {
@@ -148,6 +149,13 @@ class TechnologyMechanics {
       } else {
         allScoreLeft = scoreLeft;
       }
+    }
+    if (allScoreLeft > 0) {
+      return (
+        scoreLeftForNextLevel: ScoreModel(value: allScoreLeft),
+        levelIndex: TechnologyLevelIndex.maxLevel,
+        scoresByLevel: scoresByLevel,
+      );
     }
     return (
       scoreLeftForNextLevel: ScoreModel.zero,

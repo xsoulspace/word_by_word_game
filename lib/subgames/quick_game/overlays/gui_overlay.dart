@@ -20,7 +20,6 @@ class GuiOverlay extends StatelessWidget {
     final currentLevelId = context.select<GlobalGameBloc, CanvasDataModelId>(
       (final bloc) => bloc.state.currentLevelId,
     );
-    final uiTheme = context.uiTheme;
     return DialogStack(
       children: [
         const Positioned(
@@ -34,9 +33,6 @@ class GuiOverlay extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   _Statistics(),
-                  // Spacer(),
-                  // CurrentTechnologyButton(),
-                  // Gap(16),
                 ],
               ),
             ],
@@ -64,6 +60,12 @@ class GuiOverlay extends StatelessWidget {
               ),
             );
           },
+        ),
+        const Positioned.fill(
+          child: IgnorePointer(child: UiTechPointsAnimation()),
+        ),
+        const Positioned.fill(
+          child: IgnorePointer(child: UiPowerPointsAnimation()),
         ),
       ],
     );

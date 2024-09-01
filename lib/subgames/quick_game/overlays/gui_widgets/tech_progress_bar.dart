@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/animated_progress_bar.dart';
 
-class CurrentTechnologyButton extends StatelessWidget {
-  const CurrentTechnologyButton({super.key});
+class TechProgressBar extends StatelessWidget {
+  const TechProgressBar({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -27,7 +28,10 @@ class CurrentTechnologyButton extends StatelessWidget {
     final borderSide = BorderSide(
       color: context.colorScheme.primary,
     );
-    final nextScore = scoresByLevel[lastLevelIndex.index].formattedScore;
+    final isMaxLevel = lastLevelIndex == TechnologyLevelIndex.maxLevel;
+    final nextScore =
+        isMaxLevel ? 0 : scoresByLevel[lastLevelIndex.index].formattedScore;
+    final percentageDelay = 1.seconds;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -42,7 +46,7 @@ class CurrentTechnologyButton extends StatelessWidget {
             CupertinoIcons.lab_flask,
             color: Colors.black,
           ),
-          text: lastLevelIndex.index.toString(),
+          text: isMaxLevel ? 'Max' : lastLevelIndex.index.toString(),
           backgroundColor: context.colorScheme.primary.withOpacity(0.1),
           filledColor: context.colorScheme.primary.withOpacity(0.4),
           textColor: context.colorScheme.onPrimary,
@@ -59,30 +63,39 @@ class CurrentTechnologyButton extends StatelessWidget {
             bottomRight: Radius.elliptical(8, 8),
           ),
           onPressed: dialogController.showTechnologiesTree,
-          percentage: (nextScore - scoreLeftForNextLevel.value.formattedScore) /
-              nextScore,
+          percentage: isMaxLevel
+              ? 1
+              : (nextScore - scoreLeftForNextLevel.value.formattedScore) /
+                  nextScore,
+          percentageDelay: percentageDelay,
         ),
-        Builder(
-          builder: (final context) => Text.rich(
-            TextSpan(
-              children: [
-                TextSpan(
-                  text:
-                      '${nextScore - scoreLeftForNextLevel.value.formattedScore}',
-                  style: context.textTheme.labelLarge?.copyWith(
-                    color: context.colorScheme.primary.withOpacity(0.6),
-                  ),
-                ),
-                TextSpan(
-                  text: '/$nextScore',
-                  style: context.textTheme.labelSmall?.copyWith(
-                    color: context.colorScheme.onSurface.withOpacity(0.6),
-                  ),
-                ),
-              ],
+        if (isMaxLevel)
+          UiTextCounter(
+            value: scoreLeftForNextLevel.value.formattedScore,
+            style: context.textTheme.labelLarge?.copyWith(
+              color: context.colorScheme.primary.withOpacity(0.6),
             ),
+            delay: percentageDelay,
+          )
+        else
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              UiTextCounter(
+                value: nextScore - scoreLeftForNextLevel.value.formattedScore,
+                style: context.textTheme.labelLarge?.copyWith(
+                  color: context.colorScheme.primary.withOpacity(0.6),
+                ),
+                delay: percentageDelay,
+              ),
+              Text(
+                '/$nextScore',
+                style: context.textTheme.labelSmall?.copyWith(
+                  color: context.colorScheme.onSurface.withOpacity(0.6),
+                ),
+              ),
+            ],
           ),
-        ),
       ],
     );
   }

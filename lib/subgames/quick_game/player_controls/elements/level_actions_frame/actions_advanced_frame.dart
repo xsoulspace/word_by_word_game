@@ -15,9 +15,7 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final locale = useLocale(context);
-    final textTheme = context.textTheme;
     final playersBloc = context.watch<LevelPlayersBloc>();
     final isPlayerFocused = playersBloc.isPlayerFocused;
     final isTentFocused =

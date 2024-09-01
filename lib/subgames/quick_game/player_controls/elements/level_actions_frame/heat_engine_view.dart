@@ -1,13 +1,15 @@
+import 'dart:async';
+
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/animated_progress_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -191,6 +193,7 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
           children: [
             const Gap(8),
             Card.outlined(
+              color: Colors.transparent,
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 4),
                 child: Column(
@@ -247,11 +250,10 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
                       ],
                     ),
                     const Gap(8),
-                    const Text('Heat\npower'),
-                    const Gap(8),
                     AnimatedProgressBar(
-                      backgroundColor: Colors.green[200],
-                      color: Colors.green[600],
+                      backgroundColor:
+                          context.colorScheme.error.withOpacity(.3),
+                      color: context.colorScheme.error,
                       value: _engineCrystals.nonNulls.length /
                           _cellsCrystals.length,
                       height: 70,
@@ -265,8 +267,8 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
             const Gap(8),
           ],
         ),
-        const Spacer(),
         const Text('Heat generator'),
+        const Spacer(),
         const Gap(8),
       ],
     );
@@ -444,192 +446,6 @@ class _EngineWaveRow extends StatelessWidget {
         final newCrystal = details.data;
         onCrystalPlaced(newCrystal);
       },
-    );
-  }
-}
-
-class AnimatedProgressBar extends StatelessWidget {
-  const AnimatedProgressBar({
-    required this.height,
-    required this.width,
-    required this.value,
-    required this.backgroundColor,
-    required this.color,
-    this.border,
-    this.borderRadiusValue = 24,
-    this.borderRadius,
-    super.key,
-  });
-  final double height;
-  final double width;
-  final Border? border;
-  final double borderRadiusValue;
-  final BorderRadius? borderRadius;
-
-  /// from 0 to 1
-  final double value;
-  final Color? backgroundColor;
-  final Color? color;
-
-  @override
-  Widget build(final BuildContext context) {
-    final borderRadius = this.borderRadius ??
-        BorderRadius.all(
-          Radius.elliptical(borderRadiusValue, borderRadiusValue),
-        );
-    final isVertical = height > width;
-
-    return SizedBox(
-      width: width,
-      height: height,
-      child: Stack(
-        fit: StackFit.expand,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: backgroundColor,
-              borderRadius: borderRadius,
-              border: border,
-            ),
-          ),
-          Positioned(
-            left: isVertical ? 0 : 0,
-            top: isVertical ? null : 0,
-            right: isVertical ? 0 : null,
-            bottom: isVertical ? 0 : 0,
-            child: AnimatedContainer(
-              duration: 250.milliseconds,
-              curve: Curves.easeInOut,
-              height: isVertical ? height * value : null,
-              width: isVertical ? null : width * value,
-              decoration: BoxDecoration(
-                color: color,
-                borderRadius: borderRadius,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class UiLabledProgressBar extends HookWidget {
-  const UiLabledProgressBar({
-    required this.tooltipMessage,
-    required this.percentage,
-    required this.filledColor,
-    required this.textColor,
-    required this.borderColor,
-    required this.backgroundColor,
-    this.border,
-    this.borderRadius,
-    this.icon,
-    this.onPressed,
-    this.height = 32,
-    this.iconPadding = const EdgeInsets.only(left: 6),
-    this.width = 90,
-    this.text = '',
-    this.hiddenWhenNotHovered = true,
-    super.key,
-  });
-  final String text;
-  final double width;
-  final double height;
-  final double percentage;
-  final Border? border;
-  final BorderRadius? borderRadius;
-  final Color filledColor;
-  final Color borderColor;
-  final Color textColor;
-  final Color backgroundColor;
-  final Widget? icon;
-  final EdgeInsets iconPadding;
-  final VoidCallback? onPressed;
-  final Map<Languages, String> tooltipMessage;
-  final bool hiddenWhenNotHovered;
-
-  @override
-  Widget build(final BuildContext context) {
-    final shadows = [
-      Shadow(
-        blurRadius: 0.2,
-        color: borderColor,
-      ),
-      Shadow(
-        blurRadius: 0.2,
-        color: borderColor,
-      ),
-    ];
-    final locale = useLocale(context);
-    final isHoveredNotifier = useIsBool();
-    return Tooltip(
-      message: LocalizedMap(
-        value: tooltipMessage,
-      ).getValue(locale),
-      child: UiBaseButton(
-        onPressed: onPressed,
-        onShowHoverHighlight: (final isHovered) {
-          isHoveredNotifier.value = isHovered;
-        },
-        child: Stack(
-          alignment: Alignment.centerRight,
-          children: [
-            AnimatedProgressBar(
-              width: width,
-              height: height,
-              value: percentage,
-              backgroundColor: backgroundColor,
-              color: filledColor,
-              borderRadius: borderRadius,
-              borderRadiusValue: 52,
-              border: border ?? Border.all(color: borderColor),
-            ),
-            Positioned(
-              left: iconPadding.left,
-              top: 0,
-              bottom: 0,
-              child: IconTheme.merge(
-                data: const IconThemeData(color: Colors.black),
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 2),
-                  child: icon,
-                ),
-              ),
-            ),
-            Positioned(
-              right: 6,
-              top: 0,
-              bottom: 4,
-              left: iconPadding.left + 32,
-              child: Center(
-                child: FittedBox(
-                  fit: BoxFit.fitWidth,
-                  child: Visibility(
-                    visible:
-                        // ignore: avoid_bool_literals_in_conditional_expressions
-                        hiddenWhenNotHovered ? isHoveredNotifier.value : true,
-                    child: Text(
-                      text.whenEmptyUse(
-                        percentage.isNaN
-                            ? '0 %'
-                            : // ignore: lines_longer_than_80_chars
-                            '${(percentage * 100).toStringAsFixed(0)}%',
-                      ),
-                      style: context.textThemeBold.titleLarge!.copyWith(
-                        color: textColor,
-                        shadows: shadows,
-                        height: 1,
-                      ),
-                      maxLines: 2,
-                    ).animate().fadeIn(duration: 100.milliseconds),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }

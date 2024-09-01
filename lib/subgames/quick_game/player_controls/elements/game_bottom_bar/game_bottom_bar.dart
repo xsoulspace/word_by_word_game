@@ -10,6 +10,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/focus_surface_drawer.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/game_bottom_bar/ui_bottom_energy_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
@@ -23,22 +24,33 @@ class GameBottomBar extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(create: BottomActionsNotifier.new),
         ],
-        builder: (final context, final child) => _GameBottomBarCard(
-          builder: (final context) => const Column(
-            children: [
-              UILevelCenterBar(),
-              UiWordActions(),
-            ],
-          ),
+        builder: (final context, final child) => Stack(
+          children: [
+            const Positioned.fill(
+              child: IgnorePointer(
+                child: UiBottomEnergyAnimation(),
+              ),
+            ),
+            UiGameBottomBarCard(
+              builder: (final context) => const Column(
+                children: [
+                  UILevelCenterBar(),
+                  UiWordActions(),
+                ],
+              ),
+            ),
+          ],
         ),
       );
 }
 
-class _GameBottomBarCard extends StatelessWidget {
-  const _GameBottomBarCard({
+class UiGameBottomBarCard extends StatelessWidget {
+  const UiGameBottomBarCard({
     required this.builder,
+    super.key,
   });
   final WidgetBuilder builder;
+  static const maxWidth = 365.0;
   @override
   Widget build(final BuildContext context) {
     final isAllowedToBeVisible = context.select<StatesStatusesCubit, bool>(
@@ -58,7 +70,7 @@ class _GameBottomBarCard extends StatelessWidget {
     } else {
       constraints = screenWidth < 370
           ? screenContstraints
-          : const BoxConstraints(maxWidth: 365);
+          : const BoxConstraints(maxWidth: maxWidth);
     }
     final isCardVisible = context.select<BottomActionsNotifier, bool>(
       (final cubit) => cubit.value.isCardVisible,

@@ -172,6 +172,16 @@ class TechnologiesCubit extends Cubit<TechnologiesCubitState>
       levels: levels,
       technologies: technologies,
     );
+    if (levelIndex == TechnologyLevelIndex.maxLevel) {
+      return (
+        levelIndex: levelIndex,
+        scoreLeftForNextLevel: scoreLeftForNextLevel,
+        technologies: [],
+        // TODO(arenukvern): l10n
+        title: 'Max level',
+        scoresByLevel: scoresByLevel,
+      );
+    }
     final level = levels[levelIndex.index];
     return (
       levelIndex: levelIndex,

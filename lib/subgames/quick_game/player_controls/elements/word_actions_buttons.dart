@@ -2,6 +2,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/subgames.dart';
 
@@ -12,7 +13,6 @@ class UiWordActions extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final state = context.read<GuiWordCompositionCubit>();
-    final uiTheme = context.uiTheme;
     final phaseType = context.select<LevelBloc, GamePhaseType>(
       (final s) => s.state.phaseType,
     );
@@ -126,11 +126,10 @@ class UiConfirmWordButton extends StatelessWidget {
         children: [
           Tooltip(
             message: S.of(context).powerOfEnteredWord,
-            child: Text(
-              '+${score.value ~/ kScoreFactor}',
-              style: textTheme.bodySmall?.copyWith(
-                color: context.colorScheme.tertiary,
-              ),
+            child: UiTextCounter(
+              prefix: '+',
+              value: score.value ~/ kScoreFactor,
+              style: textTheme.bodySmall,
             ),
           ),
           const Gap(6),
@@ -143,15 +142,16 @@ class UiConfirmWordButton extends StatelessWidget {
                 .withOpacity(isPressable ? 0.8 : 0.1),
             hoverElevation: 3,
             onPressed: isPressable ? onPressed : null,
-            child: Container(
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                    UiAssetHelper.useImagePath(UiIcons.fire.path),
-                  ),
-                ),
-              ),
-            ),
+            // child: Container(
+            //   decoration: BoxDecoration(
+            //     image: DecorationImage(
+            //       image: AssetImage(
+            //         UiAssetHelper.useImagePath(UiIcons.fire.path),
+            //       ),
+            //     ),
+            //   ),
+            // ),
+            child: const UiPlayerScoreIcon(size: 24),
           ),
         ],
       ),

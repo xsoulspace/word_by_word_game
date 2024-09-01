@@ -7,8 +7,8 @@ import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
+import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/animated_progress_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
-import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/heat_engine_view.dart';
 
 class UIPowerBar extends StatelessWidget with TechLevelMixin {
   const UIPowerBar({super.key});
@@ -48,6 +48,7 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
               : Alignment.bottomCenter,
           uiKey: TutorialUiItem.baloonPower,
           child: UiLabledProgressBar(
+            percentageDelay: 550.milliseconds,
             tooltipMessage: const {
               Languages.en:
                   // ignore: lines_longer_than_80_chars
@@ -140,7 +141,7 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
           ),
         ),
         const Gap(6),
-        if (isAdvancedGame) const CurrentTechnologyButton(),
+        if (isAdvancedGame) const TechProgressBar(),
       ],
     );
   }
