@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
@@ -38,11 +37,11 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: 0, end: finalOpacity)
               .chain(CurveTween(curve: Curves.easeIn)),
-          weight: 8,
+          weight: 10,
         ),
         TweenSequenceItem<double>(
           tween: ConstantTween<double>(finalOpacity),
-          weight: 82,
+          weight: 80,
         ),
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: finalOpacity, end: 0)
@@ -173,10 +172,42 @@ class _UiEnergyIcon extends HookWidget {
       size: 8,
     );
     useListenable(tuple.controller);
+    final offset = _calculateBezierOffset(
+      t: tuple.animation.value,
+      points: [
+        const Offset(18, 80),
+        Offset.zero,
+        Offset(maxWidth / 2.5, 0),
+        Offset(maxWidth / 2, 10),
+      ],
+    );
+
     return Positioned(
-      top: lerpDouble(80, 10, tuple.animation.value),
-      right: lerpDouble(18, maxWidth / 2, tuple.animation.value),
+      top: offset.dy,
+      right: offset.dx,
       child: icon,
     );
+  }
+
+  Offset _calculateBezierOffset({
+    required final double t,
+    required final List<Offset> points,
+  }) {
+    final u = 1 - t;
+    final tt = t * t;
+    final uu = u * u;
+    final uuu = uu * u;
+    final ttt = tt * t;
+
+    final dx = (uuu * points[0].dx) +
+        (3 * uu * t * points[1].dx) +
+        (3 * u * tt * points[2].dx) +
+        (ttt * points[3].dx);
+    final dy = (uuu * points[0].dy) +
+        (3 * uu * t * points[1].dy) +
+        (3 * u * tt * points[2].dy) +
+        (ttt * points[3].dy);
+
+    return Offset(dx, dy);
   }
 }

@@ -208,6 +208,7 @@ class _LevelCard extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         if (isCurrent && isSaveExists)
+                          // TODO(arenukvern): l10n
                           const Text('Recent play')
                         else
 
@@ -216,22 +217,26 @@ class _LevelCard extends StatelessWidget {
                       ],
                     ),
                     const Gap(8),
-                    Row(
-                      children: [
-                        Text(
-                          'Players:',
-                          style: context.textThemeBold.titleSmall,
-                        ),
-                        const Gap(8),
-                        Flexible(
-                          child: Text(
-                            levelSave?.players.players
-                                    .map((final e) => e.name)
-                                    .join(', ') ??
-                                '',
-                          ),
-                        ),
-                      ],
+                    Builder(
+                      builder: (final context) {
+                        final players = levelSave?.players.players ?? [];
+                        if (players.isEmpty) return const SizedBox();
+                        return Row(
+                          children: [
+                            Text(
+                              // TODO(arenukvern): l10n
+                              'Players:',
+                              style: context.textThemeBold.titleSmall,
+                            ),
+                            const Gap(8),
+                            Flexible(
+                              child: Text(
+                                players.map((final e) => e.name).join(', '),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
                     ),
                     // TODO(arenukvern): add gameplay time
 

@@ -75,18 +75,28 @@ class _UiPowerPointsAnimationState extends State<UiPowerPointsAnimation>
     return TweenSequence<double>(
       [
         TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0, end: finalOpacity)
+          tween: Tween<double>(begin: 0, end: 0.5)
               .chain(CurveTween(curve: Curves.easeIn)),
-          weight: 20,
+          weight: 10,
         ),
         TweenSequenceItem<double>(
-          tween: ConstantTween<double>(finalOpacity),
-          weight: 60,
+          tween: Tween<double>(begin: 0.5, end: 0)
+              .chain(CurveTween(curve: Curves.linear)),
+          weight: 10,
+        ),
+        TweenSequenceItem<double>(
+          tween: ConstantTween<double>(0),
+          weight: 50,
+        ),
+        TweenSequenceItem<double>(
+          tween: Tween<double>(begin: 0, end: finalOpacity)
+              .chain(CurveTween(curve: Curves.decelerate)),
+          weight: 15,
         ),
         TweenSequenceItem<double>(
           tween: Tween<double>(begin: finalOpacity, end: 0)
               .chain(CurveTween(curve: Curves.easeOut)),
-          weight: 20,
+          weight: 15,
         ),
       ],
     );
