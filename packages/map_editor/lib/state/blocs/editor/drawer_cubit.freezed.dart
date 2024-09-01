@@ -35,7 +35,9 @@ mixin _$DrawerCubitState {
   List<TilesetConfigModel> get tilesetsConfigs =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $DrawerCubitStateCopyWith<DrawerCubitState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -72,6 +74,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -120,6 +124,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     ) as $Val);
   }
 
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PresetTileResourceCopyWith<$Res>? get tileToDraw {
@@ -132,6 +138,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     });
   }
 
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $CanvasDataModelCopyWith<$Res> get canvasData {
@@ -140,6 +148,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     });
   }
 
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LayerModelIdCopyWith<$Res> get drawLayerId {
@@ -148,6 +158,8 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     });
   }
 
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TilesetPresetResourcesCopyWith<$Res> get tileResources {
@@ -193,6 +205,8 @@ class __$$DrawerCubitStateImplCopyWithImpl<$Res>
       $Res Function(_$DrawerCubitStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -334,7 +348,9 @@ class _$DrawerCubitStateImpl extends _DrawerCubitState {
       tileResources,
       const DeepCollectionEquality().hash(_tilesetsConfigs));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$DrawerCubitStateImplCopyWith<_$DrawerCubitStateImpl> get copyWith =>
@@ -354,9 +370,8 @@ abstract class _DrawerCubitState extends DrawerCubitState {
       final List<TilesetConfigModel> tilesetsConfigs}) = _$DrawerCubitStateImpl;
   const _DrawerCubitState._() : super._();
 
-  @override
-
   /// Real origin for all elements
+  @override
   Vector2 get origin;
   @override
   PresetTileResource? get tileToDraw;
@@ -366,21 +381,24 @@ abstract class _DrawerCubitState extends DrawerCubitState {
   bool get isDeleteSelectionCompletely;
   @override
   CanvasDataModel get canvasData;
-  @override
 
   /// use to get or update layer [canvasData]
   ///
   /// shortcut - [drawLayer]
-  LayerModelId get drawLayerId;
   @override
+  LayerModelId get drawLayerId;
 
   /// Never changable in runtime tileset, like grass, water and data
   /// to instantiate objects
+  @override
   TilesetPresetResources get tileResources;
   @override
   List<TilesetConfigModel> get tilesetsConfigs;
+
+  /// Create a copy of DrawerCubitState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DrawerCubitStateImplCopyWith<_$DrawerCubitStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

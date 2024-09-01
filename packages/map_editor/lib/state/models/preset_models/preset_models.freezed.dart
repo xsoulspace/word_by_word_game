@@ -18,7 +18,9 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TileId {
   String get value => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TileId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TileIdCopyWith<TileId> get copyWith => throw _privateConstructorUsedError;
 }
 
@@ -40,6 +42,8 @@ class _$TileIdCopyWithImpl<$Res, $Val extends TileId>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TileId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -72,6 +76,8 @@ class __$$TileIdImplCopyWithImpl<$Res>
       _$TileIdImpl _value, $Res Function(_$TileIdImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TileId
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -94,7 +100,9 @@ class _$TileIdImpl extends _TileId {
   @override
   final String value;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TileId
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TileIdImplCopyWith<_$TileIdImpl> get copyWith =>
@@ -107,8 +115,11 @@ abstract class _TileId extends TileId {
 
   @override
   String get value;
+
+  /// Create a copy of TileId
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TileIdImplCopyWith<_$TileIdImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -126,8 +137,12 @@ mixin _$PresetTileModel {
   PresetTilePropertiesModel get properties =>
       throw _privateConstructorUsedError;
 
+  /// Serializes this PresetTileModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PresetTileModelCopyWith<PresetTileModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -160,6 +175,8 @@ class _$PresetTileModelCopyWithImpl<$Res, $Val extends PresetTileModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -193,6 +210,8 @@ class _$PresetTileModelCopyWithImpl<$Res, $Val extends PresetTileModel>
     ) as $Val);
   }
 
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TileIdCopyWith<$Res> get id {
@@ -201,6 +220,8 @@ class _$PresetTileModelCopyWithImpl<$Res, $Val extends PresetTileModel>
     });
   }
 
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PresetTileGraphicsModelCopyWith<$Res> get graphics {
@@ -209,6 +230,8 @@ class _$PresetTileModelCopyWithImpl<$Res, $Val extends PresetTileModel>
     });
   }
 
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $PresetTilePropertiesModelCopyWith<$Res> get properties {
@@ -249,6 +272,8 @@ class __$$PresetTileModelImplCopyWithImpl<$Res>
       _$PresetTileModelImpl _value, $Res Function(_$PresetTileModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -330,12 +355,14 @@ class _$PresetTileModelImpl extends _PresetTileModel {
                 other.properties == properties));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, id, type, category, graphics, properties);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PresetTileModelImplCopyWith<_$PresetTileModelImpl> get copyWith =>
@@ -372,8 +399,11 @@ abstract class _PresetTileModel extends PresetTileModel {
   PresetTileGraphicsModel get graphics;
   @override
   PresetTilePropertiesModel get properties;
+
+  /// Create a copy of PresetTileModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PresetTileModelImplCopyWith<_$PresetTileModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -392,8 +422,12 @@ mixin _$PresetTilePropertiesModel {
       toJson: LocalizedMap.toJsonValueMap)
   LocalizedMap get description => throw _privateConstructorUsedError;
 
+  /// Serializes this PresetTilePropertiesModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PresetTilePropertiesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PresetTilePropertiesModelCopyWith<PresetTilePropertiesModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -426,6 +460,8 @@ class _$PresetTilePropertiesModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PresetTilePropertiesModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -449,6 +485,8 @@ class _$PresetTilePropertiesModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of PresetTilePropertiesModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get description {
@@ -489,6 +527,8 @@ class __$$PresetTilePropertiesModelImplCopyWithImpl<$Res>
       $Res Function(_$PresetTilePropertiesModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PresetTilePropertiesModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -558,12 +598,14 @@ class _$PresetTilePropertiesModelImpl extends _PresetTilePropertiesModel {
                 other.description == description));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode =>
       Object.hash(runtimeType, title, thumbnailPath, description);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PresetTilePropertiesModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PresetTilePropertiesModelImplCopyWith<_$PresetTilePropertiesModelImpl>
@@ -600,8 +642,11 @@ abstract class _PresetTilePropertiesModel extends PresetTilePropertiesModel {
       fromJson: LocalizedMap.fromJsonValueMap,
       toJson: LocalizedMap.toJsonValueMap)
   LocalizedMap get description;
+
+  /// Create a copy of PresetTilePropertiesModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PresetTilePropertiesModelImplCopyWith<_$PresetTilePropertiesModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -617,8 +662,12 @@ mixin _$PresetTileGraphicsModel {
   bool get animated => throw _privateConstructorUsedError;
   List<TileBehaviourType> get behaviours => throw _privateConstructorUsedError;
 
+  /// Serializes this PresetTileGraphicsModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of PresetTileGraphicsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $PresetTileGraphicsModelCopyWith<PresetTileGraphicsModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -646,6 +695,8 @@ class _$PresetTileGraphicsModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of PresetTileGraphicsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -695,6 +746,8 @@ class __$$PresetTileGraphicsModelImplCopyWithImpl<$Res>
       $Res Function(_$PresetTileGraphicsModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of PresetTileGraphicsModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -764,12 +817,14 @@ class _$PresetTileGraphicsModelImpl extends _PresetTileGraphicsModel {
                 .equals(other._behaviours, _behaviours));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, type, animated,
       const DeepCollectionEquality().hash(_behaviours));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of PresetTileGraphicsModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$PresetTileGraphicsModelImplCopyWith<_$PresetTileGraphicsModelImpl>
@@ -801,8 +856,11 @@ abstract class _PresetTileGraphicsModel extends PresetTileGraphicsModel {
   bool get animated;
   @override
   List<TileBehaviourType> get behaviours;
+
+  /// Create a copy of PresetTileGraphicsModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PresetTileGraphicsModelImplCopyWith<_$PresetTileGraphicsModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -845,8 +903,12 @@ mixin _$TilesetPresetDataModel {
   TilesetType get type => throw _privateConstructorUsedError;
   TilesetThemeModel get theme => throw _privateConstructorUsedError;
 
+  /// Serializes this TilesetPresetDataModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TilesetPresetDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TilesetPresetDataModelCopyWith<TilesetPresetDataModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -901,6 +963,8 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TilesetPresetDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -954,6 +1018,8 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of TilesetPresetDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get name {
@@ -962,6 +1028,8 @@ class _$TilesetPresetDataModelCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of TilesetPresetDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TilesetThemeModelCopyWith<$Res> get theme {
@@ -1025,6 +1093,8 @@ class __$$TilesetPresetDataModelImplCopyWithImpl<$Res>
       $Res Function(_$TilesetPresetDataModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TilesetPresetDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1109,7 +1179,7 @@ class _$TilesetPresetDataModelImpl implements _TilesetPresetDataModel {
           fromJson: LocalizedMap.fromJsonValueMap,
           toJson: LocalizedMap.toJsonValueMap)
       this.name = LocalizedMap.empty,
-      this.type = TilesetType.colourful,
+      this.type = TilesetType.whiteBlack,
       this.theme = TilesetThemeModel.empty})
       : _tiles = tiles,
         _objects = objects,
@@ -1219,7 +1289,7 @@ class _$TilesetPresetDataModelImpl implements _TilesetPresetDataModel {
             (identical(other.theme, theme) || other.theme == theme));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(
       runtimeType,
@@ -1233,7 +1303,9 @@ class _$TilesetPresetDataModelImpl implements _TilesetPresetDataModel {
       type,
       theme);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TilesetPresetDataModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TilesetPresetDataModelImplCopyWith<_$TilesetPresetDataModelImpl>
@@ -1317,8 +1389,11 @@ abstract class _TilesetPresetDataModel implements TilesetPresetDataModel {
   TilesetType get type;
   @override
   TilesetThemeModel get theme;
+
+  /// Create a copy of TilesetPresetDataModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TilesetPresetDataModelImplCopyWith<_$TilesetPresetDataModelImpl>
       get copyWith => throw _privateConstructorUsedError;
 }
@@ -1328,7 +1403,9 @@ mixin _$TilesetConfigModel {
   /// should be a _preset_data.json
   String get path => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TilesetConfigModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TilesetConfigModelCopyWith<TilesetConfigModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1352,6 +1429,8 @@ class _$TilesetConfigModelCopyWithImpl<$Res, $Val extends TilesetConfigModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TilesetConfigModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1385,6 +1464,8 @@ class __$$TilesetConfigModelImplCopyWithImpl<$Res>
       $Res Function(_$TilesetConfigModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TilesetConfigModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1425,7 +1506,9 @@ class _$TilesetConfigModelImpl extends _TilesetConfigModel {
   @override
   int get hashCode => Object.hash(runtimeType, path);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TilesetConfigModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TilesetConfigModelImplCopyWith<_$TilesetConfigModelImpl> get copyWith =>
@@ -1438,12 +1521,14 @@ abstract class _TilesetConfigModel extends TilesetConfigModel {
       _$TilesetConfigModelImpl;
   const _TilesetConfigModel._() : super._();
 
-  @override
-
   /// should be a _preset_data.json
-  String get path;
   @override
-  @JsonKey(ignore: true)
+  String get path;
+
+  /// Create a copy of TilesetConfigModel
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TilesetConfigModelImplCopyWith<_$TilesetConfigModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1456,8 +1541,12 @@ TilesetThemeModel _$TilesetThemeModelFromJson(Map<String, dynamic> json) {
 mixin _$TilesetThemeModel {
   String get backgroundSkyColorHex => throw _privateConstructorUsedError;
 
+  /// Serializes this TilesetThemeModel to a JSON map.
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-  @JsonKey(ignore: true)
+
+  /// Create a copy of TilesetThemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TilesetThemeModelCopyWith<TilesetThemeModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1481,6 +1570,8 @@ class _$TilesetThemeModelCopyWithImpl<$Res, $Val extends TilesetThemeModel>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TilesetThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1514,6 +1605,8 @@ class __$$TilesetThemeModelImplCopyWithImpl<$Res>
       $Res Function(_$TilesetThemeModelImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TilesetThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1554,11 +1647,13 @@ class _$TilesetThemeModelImpl extends _TilesetThemeModel {
                 other.backgroundSkyColorHex == backgroundSkyColorHex));
   }
 
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   int get hashCode => Object.hash(runtimeType, backgroundSkyColorHex);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TilesetThemeModel
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TilesetThemeModelImplCopyWith<_$TilesetThemeModelImpl> get copyWith =>
@@ -1583,8 +1678,11 @@ abstract class _TilesetThemeModel extends TilesetThemeModel {
 
   @override
   String get backgroundSkyColorHex;
+
+  /// Create a copy of TilesetThemeModel
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TilesetThemeModelImplCopyWith<_$TilesetThemeModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1607,7 +1705,9 @@ mixin _$TilesetPresetResources {
   Map<TileId, PresetTileResource> get other =>
       throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TilesetPresetResources
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $TilesetPresetResourcesCopyWith<TilesetPresetResources> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -1644,6 +1744,8 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of TilesetPresetResources
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1697,6 +1799,8 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
     ) as $Val);
   }
 
+  /// Create a copy of TilesetPresetResources
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $LocalizedMapCopyWith<$Res> get name {
@@ -1705,6 +1809,8 @@ class _$TilesetPresetResourcesCopyWithImpl<$Res,
     });
   }
 
+  /// Create a copy of TilesetPresetResources
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $TilesetThemeModelCopyWith<$Res> get theme {
@@ -1750,6 +1856,8 @@ class __$$TilesetPresetResourcesImplCopyWithImpl<$Res>
       $Res Function(_$TilesetPresetResourcesImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of TilesetPresetResources
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -1810,7 +1918,7 @@ class _$TilesetPresetResourcesImpl implements _TilesetPresetResources {
   const _$TilesetPresetResourcesImpl(
       {this.name = LocalizedMap.empty,
       this.theme = TilesetThemeModel.empty,
-      this.type = TilesetType.colourful,
+      this.type = TilesetType.whiteBlack,
       final Map<SpriteTileName, List<String>> autotileRules = const {},
       final Map<TileId, PresetTileResource> tiles = const {},
       final Map<TileId, PresetTileResource> objects = const {},
@@ -1922,7 +2030,9 @@ class _$TilesetPresetResourcesImpl implements _TilesetPresetResources {
       const DeepCollectionEquality().hash(_players),
       const DeepCollectionEquality().hash(_other));
 
-  @JsonKey(ignore: true)
+  /// Create a copy of TilesetPresetResources
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$TilesetPresetResourcesImplCopyWith<_$TilesetPresetResourcesImpl>
@@ -1961,8 +2071,11 @@ abstract class _TilesetPresetResources implements TilesetPresetResources {
   Map<TileId, PresetTileResource> get players;
   @override
   Map<TileId, PresetTileResource> get other;
+
+  /// Create a copy of TilesetPresetResources
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$TilesetPresetResourcesImplCopyWith<_$TilesetPresetResourcesImpl>
       get copyWith => throw _privateConstructorUsedError;
 }

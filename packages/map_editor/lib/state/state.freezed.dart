@@ -20,7 +20,9 @@ mixin _$WorldState {
   WorldDateTimeModel get lastDateTime => throw _privateConstructorUsedError;
   int get dateTimeDelta => throw _privateConstructorUsedError;
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WorldState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   $WorldStateCopyWith<WorldState> get copyWith =>
       throw _privateConstructorUsedError;
 }
@@ -50,6 +52,8 @@ class _$WorldStateCopyWithImpl<$Res, $Val extends WorldState>
   // ignore: unused_field
   final $Res Function($Val) _then;
 
+  /// Create a copy of WorldState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -73,6 +77,8 @@ class _$WorldStateCopyWithImpl<$Res, $Val extends WorldState>
     ) as $Val);
   }
 
+  /// Create a copy of WorldState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get dateTime {
@@ -81,6 +87,8 @@ class _$WorldStateCopyWithImpl<$Res, $Val extends WorldState>
     });
   }
 
+  /// Create a copy of WorldState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
@@ -117,6 +125,8 @@ class __$$WorldStateImplCopyWithImpl<$Res>
       _$WorldStateImpl _value, $Res Function(_$WorldStateImpl) _then)
       : super(_value, _then);
 
+  /// Create a copy of WorldState
+  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
   $Res call({
@@ -182,7 +192,9 @@ class _$WorldStateImpl extends _WorldState {
   int get hashCode =>
       Object.hash(runtimeType, dateTime, lastDateTime, dateTimeDelta);
 
-  @JsonKey(ignore: true)
+  /// Create a copy of WorldState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
   _$$WorldStateImplCopyWith<_$WorldStateImpl> get copyWith =>
@@ -202,8 +214,11 @@ abstract class _WorldState extends WorldState {
   WorldDateTimeModel get lastDateTime;
   @override
   int get dateTimeDelta;
+
+  /// Create a copy of WorldState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(ignore: true)
+  @JsonKey(includeFromJson: false, includeToJson: false)
   _$$WorldStateImplCopyWith<_$WorldStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

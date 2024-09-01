@@ -27,7 +27,7 @@ _$CanvasDataModelImpl _$$CanvasDataModelImplFromJson(
           ? RenderObjectModel.empty
           : RenderObjectModel.fromJson(
               json['playerObject'] as Map<String, dynamic>),
-      skyYTilePosition: json['skyYTilePosition'] as int? ?? 0,
+      skyYTilePosition: (json['skyYTilePosition'] as num?)?.toInt() ?? 0,
       gravity: json['gravity'] == null
           ? GravityModel.initial
           : GravityModel.fromJson(json['gravity'] as Map<String, dynamic>),
@@ -37,7 +37,7 @@ _$CanvasDataModelImpl _$$CanvasDataModelImplFromJson(
           const [],
       tilesetType:
           $enumDecodeNullable(_$TilesetTypeEnumMap, json['tilesetType']) ??
-              TilesetType.colourful,
+              TilesetType.whiteBlack,
     );
 
 Map<String, dynamic> _$$CanvasDataModelImplToJson(
@@ -55,14 +55,13 @@ Map<String, dynamic> _$$CanvasDataModelImplToJson(
     };
 
 const _$TilesetTypeEnumMap = {
-  TilesetType.colourful: 'colourful',
   TilesetType.whiteBlack: 'white_black',
   TilesetType.evening: 'evening',
 };
 
 _$GravityModelImpl _$$GravityModelImplFromJson(Map<String, dynamic> json) =>
     _$GravityModelImpl(
-      yTilePosition: json['yTilePosition'] as int,
+      yTilePosition: (json['yTilePosition'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$GravityModelImplToJson(_$GravityModelImpl instance) =>
@@ -209,8 +208,8 @@ Map<String, dynamic> _$$CellDataModelImplToJson(_$CellDataModelImpl instance) =>
 
 _$CellPointModelImpl _$$CellPointModelImplFromJson(Map<String, dynamic> json) =>
     _$CellPointModelImpl(
-      json['x'] as int,
-      json['y'] as int,
+      (json['x'] as num).toInt(),
+      (json['y'] as num).toInt(),
     );
 
 Map<String, dynamic> _$$CellPointModelImplToJson(

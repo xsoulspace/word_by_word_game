@@ -1515,7 +1515,7 @@ class _$LevelModelImpl extends _LevelModel {
   const _$LevelModelImpl(
       {required this.players,
       required this.characters,
-      this.tilesetType = TilesetType.colourful,
+      this.tilesetType = TilesetType.whiteBlack,
       final List<WeatherModel> weathers = const [],
       this.wind = WindModel.zero,
       this.canvasDataId = CanvasDataModelId.empty,
