@@ -18,7 +18,10 @@ enum TechnologyLevelIndex {
   buildAndSave,
 
   /// give player ability to measure the wind
-  measuringTheWind;
+  measuringTheWind,
+
+  /// meaningless, just for convenience
+  maxLevel;
 
   bool operator >(final TechnologyLevelIndex other) => index > other.index;
   bool operator <(final TechnologyLevelIndex other) => index > other.index;

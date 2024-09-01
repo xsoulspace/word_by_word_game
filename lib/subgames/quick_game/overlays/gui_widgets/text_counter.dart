@@ -62,7 +62,9 @@ class _UiTextCounterState extends State<UiTextCounter>
     unawaited(() async {
       if (oldWidget.value != widget.value) {
         _oldValue = oldWidget.value;
-        await Future.delayed(widget.delay);
+        if (widget.delay != Duration.zero) {
+          await Future.delayed(widget.delay);
+        }
         _initializeAnimations();
         unawaited(_controller.forward(from: 0));
       }

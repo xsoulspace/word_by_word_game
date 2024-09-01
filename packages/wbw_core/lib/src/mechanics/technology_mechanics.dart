@@ -149,6 +149,13 @@ class TechnologyMechanics {
         allScoreLeft = scoreLeft;
       }
     }
+    if (allScoreLeft > 0) {
+      return (
+        scoreLeftForNextLevel: ScoreModel(value: allScoreLeft),
+        levelIndex: TechnologyLevelIndex.maxLevel,
+        scoresByLevel: scoresByLevel,
+      );
+    }
     return (
       scoreLeftForNextLevel: ScoreModel.zero,
       levelIndex: TechnologyLevelIndex.values.first,
