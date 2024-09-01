@@ -122,7 +122,7 @@ _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>
           json['characters'] as Map<String, dynamic>),
       tilesetType:
           $enumDecodeNullable(_$TilesetTypeEnumMap, json['tilesetType']) ??
-              TilesetType.colourful,
+              TilesetType.whiteBlack,
       weathers: (json['weathers'] as List<dynamic>?)
               ?.map((e) => WeatherModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
@@ -206,7 +206,6 @@ Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
     };
 
 const _$TilesetTypeEnumMap = {
-  TilesetType.colourful: 'colourful',
   TilesetType.whiteBlack: 'white_black',
   TilesetType.evening: 'evening',
 };
