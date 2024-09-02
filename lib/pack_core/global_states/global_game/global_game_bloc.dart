@@ -224,23 +224,21 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       newCanvasData = state.allCanvasData.values.first;
       level = level.copyWith(canvasDataId: newCanvasData.id);
     }
-    void resetAdvancedGameCharacter() {
-      level = level.copyWith.characters.playerCharacter(
-        balloonParams: BalloonLiftParamsModel.initial,
-        balloonPowers: level.characters.playerCharacter.balloonPowers.copyWith(
-          /// volume should be 0 to prevent any lift
-          volume: 0,
-
-          /// power should be 0 to give player visible effect
-          /// of storing energy
-          power: 0,
-        ),
-      );
-    }
 
     if (event.isNewStart) {
       if (level.featuresSettings.isAdvancedGame) {
-        resetAdvancedGameCharacter();
+        level = level.copyWith.characters.playerCharacter(
+          balloonParams: BalloonLiftParamsModel.initial,
+          balloonPowers:
+              level.characters.playerCharacter.balloonPowers.copyWith(
+            /// volume should be 0 to prevent any lift
+            volume: 0,
+
+            /// power should be 0 to give player visible effect
+            /// of storing energy
+            power: 0,
+          ),
+        );
       } else {
         level = level.copyWith.characters.playerCharacter(
           balloonParams: BalloonLiftParamsModel.initial.copyWith(
@@ -270,7 +268,15 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
       );
     } else {
       if (level.featuresSettings.isAdvancedGame) {
-        resetAdvancedGameCharacter();
+        level = level.copyWith.characters.playerCharacter(
+          balloonParams: BalloonLiftParamsModel.initial,
+          balloonPowers:
+              level.characters.playerCharacter.balloonPowers.copyWith(
+            /// volume should be 0 to prevent any lift if balloon
+            /// is on the ground
+            volume: 0,
+          ),
+        );
       }
     }
     dto.levelFeaturesNotifier.reloadState(level.featuresSettings);
