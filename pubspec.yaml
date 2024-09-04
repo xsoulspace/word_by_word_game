@@ -40,6 +40,7 @@ dependencies:
   firebase_crashlytics: ^4.1.0
   flame: ^1.19.0
   flame_bloc: ^1.11.1
+  flame_forge2d: ^0.18.2
   flutter:
     sdk: flutter
   flutter_animate: ^4.5.0
