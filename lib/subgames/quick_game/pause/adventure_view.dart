@@ -22,7 +22,6 @@ class AdventureView extends HookWidget {
     final currentLevelId = context.select<GlobalGameBloc, CanvasDataModelId>(
       (final c) => c.state.currentLevelId,
     );
-    final formFactor = UiPersistentFormFactors.of(context);
     final selectedLevelIdNotifier = useState(currentLevelId);
     final selectedLevelId = selectedLevelIdNotifier.value;
 

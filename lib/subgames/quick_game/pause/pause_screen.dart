@@ -128,14 +128,8 @@ class _MainMenuView extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const QuickStartGameButtons(),
-                    uiTheme.verticalBoxes.medium,
-                    UiFilledButton.icon(
-                      // TODO(arenukvern): l10n
-                      text: 'CHOOSE ADVENTURE',
-                      icon: Icons.air,
-                      onPressed: () =>
-                          onChangeRoute(PauseScreenRoute.adventure),
+                    GameStartButtons(
+                      onChangeRoute: onChangeRoute,
                     ),
                     uiTheme.verticalBoxes.medium,
                     UiFilledButton.icon(

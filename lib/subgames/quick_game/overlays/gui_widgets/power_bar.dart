@@ -88,60 +88,62 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
             ),
           ),
         ),
-        const Gap(6),
-        AnimatedContainer(
-          duration: 350.milliseconds,
-          decoration: BoxDecoration(
-            color: context.colorScheme.surface.withOpacity(0.4),
-            border: Border(
-              bottom: borderSide,
-              left: borderSide,
-              right: borderSide,
+        if (isAdvancedGame) ...[
+          const Gap(6),
+          AnimatedContainer(
+            duration: 350.milliseconds,
+            decoration: BoxDecoration(
+              color: context.colorScheme.surface.withOpacity(0.4),
+              border: Border(
+                bottom: borderSide,
+                left: borderSide,
+                right: borderSide,
+              ),
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.elliptical(8, 8),
+                bottomRight: Radius.elliptical(8, 8),
+              ),
             ),
-            borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.elliptical(8, 8),
-              bottomRight: Radius.elliptical(8, 8),
+            constraints: const BoxConstraints(
+              maxWidth: 150,
             ),
-          ),
-          constraints: const BoxConstraints(
-            maxWidth: 150,
-          ),
-          child: UiBaseButton(
-            onPressed: () {
-              context.read<GuiFocusableObjectsNotifier>().startChoosing();
-            },
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const Gap(6),
-                    Flexible(
-                      child: // TODO(arenukvern): l10n
-                          Text(
-                        focusedObject.tileId.localizedTitle(locale),
-                        textAlign: TextAlign.center,
-                        style: context.textTheme.bodyMedium!.copyWith(
-                          fontStyle: FontStyle.italic,
+            child: UiBaseButton(
+              onPressed: () {
+                context.read<GuiFocusableObjectsNotifier>().startChoosing();
+              },
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Gap(6),
+                      Flexible(
+                        child: Text(
+                          // TODO(arenukvern): l10n
+                          focusedObject.tileId.localizedTitle(locale),
+                          textAlign: TextAlign.center,
+                          style: context.textTheme.bodyMedium!.copyWith(
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
                       ),
-                    ),
-                    const Gap(6),
-                  ],
-                ),
-                // TODO(arenukvern): replace with focused object icon
-                Image.asset(
-                  UiAssetHelper.useImagePath(UiIcons.fire.path),
-                  width: 32,
-                  height: 32,
-                ),
-              ],
+                      const Gap(6),
+                    ],
+                  ),
+                  // TODO(arenukvern): replace with focused object icon
+                  Image.asset(
+                    UiAssetHelper.useImagePath(UiIcons.fire.path),
+                    width: 32,
+                    height: 32,
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        const Gap(6),
-        if (isAdvancedGame) const TechProgressBar(),
+          const Gap(6),
+          const TechProgressBar(),
+        ],
       ],
     );
   }

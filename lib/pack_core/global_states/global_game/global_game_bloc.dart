@@ -596,6 +596,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     final technologiesState = dto.technologiesCubit.state;
     final canvasCubitState = dto.canvasCubit.state;
     return LevelModel(
+      updatedAt: DateTime.now(),
       weathers: weatherState.weathers,
       wordsLanguage: levelState.wordsLanguage,
       wind: weatherState.wind,
