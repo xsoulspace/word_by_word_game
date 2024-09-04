@@ -9,6 +9,7 @@ import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
+import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
 
 class LevelOptionsScreen extends HookWidget {
   const LevelOptionsScreen({
@@ -23,7 +24,7 @@ class LevelOptionsScreen extends HookWidget {
     final unblockerNotifier = useState(0);
     useListenable(uxState.isDictionariesLoading);
     final statusCubit = context.watch<StatesStatusesCubit>();
-
+    final isQuickGame = uxState.canvasDataId == kQuickGameMapId;
     return Scrollbar(
       thumbVisibility: true,
       child: SingleChildScrollView(
@@ -53,7 +54,8 @@ class LevelOptionsScreen extends HookWidget {
               title: Text(S.of(context).enableTutorial),
             ),
             uiTheme.verticalBoxes.medium,
-            _ExperimentsListView(unblockerNotifier: unblockerNotifier),
+            if (!isQuickGame)
+              _ExperimentsListView(unblockerNotifier: unblockerNotifier),
             uiTheme.verticalBoxes.medium,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -112,7 +114,6 @@ class _ExperimentsListView extends HookWidget {
     final locale = useLocale(context);
     useListenable(uxState.isDictionariesLoading);
     final isVisible = kDebugMode || unblockerNotifier.value > 10;
-    if (!isVisible) return const SizedBox();
     final featuresSettings = uxState.featuresSettings;
     final isAdvancedGame = featuresSettings.isAdvancedGame;
     final isWindDirectionChangeEnabled =
@@ -182,7 +183,7 @@ class _ExperimentsListView extends HookWidget {
               value: uxState.wordsLanguage,
             ),
           ).animate().fadeIn(),
-        if (isAdvancedGame)
+        if (isAdvancedGame && isVisible)
           SwitchListTile.adaptive(
             // TODO(arenukvern): add explanation
             // TODO(arenukvern): l10n
