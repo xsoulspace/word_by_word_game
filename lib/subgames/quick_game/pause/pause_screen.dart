@@ -125,57 +125,19 @@ class _MainMenuView extends StatelessWidget {
                 expand: !hasMobileLayout,
               ),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    GameStartButtons(
-                      onChangeRoute: onChangeRoute,
-                    ),
-                    uiTheme.verticalBoxes.medium,
-                    UiFilledButton.icon(
-                      icon: Icons.settings,
-                      text: S.of(context).settings.toUpperCase(),
-                      onPressed: () => onChangeRoute(PauseScreenRoute.settings),
-                    )
-                        .animate()
-                        .fadeIn(
-                          curve: Curves.easeIn,
-                          duration: 450.milliseconds,
-                        )
-                        .slideY(begin: -0.1),
-                    uiTheme.verticalBoxes.medium,
-                    UiFilledButton.icon(
-                      icon: Icons.scoreboard_rounded,
-                      text: (Envs.store.isYandexGames
-                              ? S.of(context).playersAndHighscoreYandex
-                              : S.of(context).playersAndHighscore)
-                          .toUpperCase(),
-                      onPressed: () =>
-                          onChangeRoute(PauseScreenRoute.playersAndHighscore),
-                    )
-                        .animate()
-                        .fadeIn(
-                          curve: Curves.easeIn,
-                          duration: 450.milliseconds,
-                        )
-                        .slideY(begin: -0.1),
-                    uiTheme.verticalBoxes.medium,
-                    UiFilledButton.icon(
-                      icon: Icons.question_mark_rounded,
-                      text: S.of(context).about.toUpperCase(),
-                      onPressed: () async => state.onShowAbout(context),
-                    )
-                        .animate()
-                        .fadeIn(
-                          curve: Curves.easeIn,
-                          duration: 450.milliseconds,
-                        )
-                        .slideY(begin: -0.1),
-                    uiTheme.verticalBoxes.medium,
-                    if (_kIsPrivacyPolicyEnabled)
-                      UiTextButton.text(
-                        text: S.of(context).privacyPolicy.toUpperCase(),
-                        onPressed: state.onPrivacyPolicy,
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      GameStartButtons(
+                        onChangeRoute: onChangeRoute,
+                      ),
+                      uiTheme.verticalBoxes.medium,
+                      UiFilledButton.icon(
+                        icon: Icons.settings,
+                        text: S.of(context).settings.toUpperCase(),
+                        onPressed: () =>
+                            onChangeRoute(PauseScreenRoute.settings),
                       )
                           .animate()
                           .fadeIn(
@@ -183,8 +145,49 @@ class _MainMenuView extends StatelessWidget {
                             duration: 450.milliseconds,
                           )
                           .slideY(begin: -0.1),
-                    uiTheme.horizontalBoxes.medium,
-                  ],
+                      uiTheme.verticalBoxes.medium,
+                      UiFilledButton.icon(
+                        icon: Icons.scoreboard_rounded,
+                        text: (Envs.store.isYandexGames
+                                ? S.of(context).playersAndHighscoreYandex
+                                : S.of(context).playersAndHighscore)
+                            .toUpperCase(),
+                        onPressed: () =>
+                            onChangeRoute(PauseScreenRoute.playersAndHighscore),
+                      )
+                          .animate()
+                          .fadeIn(
+                            curve: Curves.easeIn,
+                            duration: 450.milliseconds,
+                          )
+                          .slideY(begin: -0.1),
+                      uiTheme.verticalBoxes.medium,
+                      UiFilledButton.icon(
+                        icon: Icons.question_mark_rounded,
+                        text: S.of(context).about.toUpperCase(),
+                        onPressed: () async => state.onShowAbout(context),
+                      )
+                          .animate()
+                          .fadeIn(
+                            curve: Curves.easeIn,
+                            duration: 450.milliseconds,
+                          )
+                          .slideY(begin: -0.1),
+                      uiTheme.verticalBoxes.medium,
+                      if (_kIsPrivacyPolicyEnabled)
+                        UiTextButton.text(
+                          text: S.of(context).privacyPolicy.toUpperCase(),
+                          onPressed: state.onPrivacyPolicy,
+                        )
+                            .animate()
+                            .fadeIn(
+                              curve: Curves.easeIn,
+                              duration: 450.milliseconds,
+                            )
+                            .slideY(begin: -0.1),
+                      uiTheme.horizontalBoxes.medium,
+                    ],
+                  ),
                 ),
               ),
               const BottomSafeArea(),
