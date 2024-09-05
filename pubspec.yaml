@@ -141,6 +141,7 @@ flutter:
     - assets/images/icons/
     - assets/images/ui_frames/
     - assets/images/buttons/
+    - assets/shaders/
     # - assets/images/tilesets/
     # - assets/tiles/
     # - assets/icons/
