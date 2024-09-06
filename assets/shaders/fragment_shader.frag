@@ -15,6 +15,6 @@ void main() {
 	// fragColor = vec4(abs(sin(u_time)),0,0.0,1.0);
   vec2 st =  FlutterFragCoord().xy / uSize ;
   vec2 mouse = uMouse / uSize;
-  vec2 pos = abs(st - mouse);
-  fragColor = vec4(pos,0.0,1.0);
+  vec2 pos = abs(sin(uTime * st) - sin(mouse));
+  fragColor = vec4((pos),1.0,1.0);
 }

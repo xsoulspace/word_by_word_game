@@ -14,7 +14,7 @@ class _App extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => const Center(
         child: SizedBox.square(
-          dimension: 200,
+          dimension: 300,
           child: _ShaderExp(),
         ),
       );
@@ -69,7 +69,7 @@ class _ShaderExpState extends State<_ShaderExp> {
   Timer? _timer;
   double _time = 0;
   double get newWidth => 100;
-  double get newHeight => 100;
+  double get newHeight => 200;
 
   void _startAnimation() {
     _timer = Timer.periodic(const Duration(milliseconds: 16), (final timer) {
