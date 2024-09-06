@@ -5,20 +5,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 void runShaderApp(final List<String> args) {
-  runApp(const ShadersExample());
+  runApp(const _App());
 }
 
-class ShadersExample extends StatefulWidget {
-  const ShadersExample({super.key});
+class _App extends StatelessWidget {
+  const _App({super.key});
 
   @override
-  _ShadersExampleState createState() => _ShadersExampleState();
+  Widget build(final BuildContext context) => const Center(
+        child: SizedBox.square(
+          dimension: 200,
+          child: _ShaderExp(),
+        ),
+      );
 }
 
-class _ShadersExampleState extends State<ShadersExample> {
+class _ShaderExp extends StatefulWidget {
+  const _ShaderExp({super.key});
+
+  @override
+  _ShaderExpState createState() => _ShaderExpState();
+}
+
+class _ShaderExpState extends State<_ShaderExp> {
   ui.FragmentShader? _shader;
   ui.Paint? _paint;
-  double _time = 0;
 
   @override
   void initState() {
@@ -34,8 +45,8 @@ class _ShadersExampleState extends State<ShadersExample> {
       final image = await _loadImage(
         'assets/shaders_assets/sample.png',
       ); // Load your texture
-      final shader = fragmentProgram.fragmentShader();
-      shader.setImageSampler(0, image); // Set the texture sampler
+      final shader = fragmentProgram.fragmentShader()
+        ..setImageSampler(0, image); // Set the texture sampler
       setState(() {
         _shader = shader;
         _paint = ui.Paint()..shader = _shader;
@@ -55,14 +66,26 @@ class _ShadersExampleState extends State<ShadersExample> {
   }
 
   Timer? _timer;
+  double _time = 0;
+  double get newWidth => 100;
+  double get newHeight => 100;
 
   void _startAnimation() {
     _timer = Timer.periodic(const Duration(milliseconds: 16), (final timer) {
-      setState(() {
-        _time += 0.016;
-        _shader?.setFloat(0, _time);
-      });
+      _updateShader();
     });
+  }
+
+  void _updateShader() {
+    _time += 0.016;
+    _shader
+      ?..setFloat(0, _time)
+      ..setFloat(1, newWidth)
+      ..setFloat(2, newHeight);
+    setState(() {});
+    print(
+      'Updated shader values: time=$_time, width=$newWidth, height=$newHeight',
+    );
   }
 
   @override
@@ -73,15 +96,10 @@ class _ShadersExampleState extends State<ShadersExample> {
 
   @override
   Widget build(final BuildContext context) => _paint == null
-      ? const Center(child: CircularProgressIndicator())
-      : Center(
-          child: SizedBox.square(
-            dimension: 200,
-            child: CustomPaint(
-              painter: ShaderPainter(_paint!),
-              child: Container(),
-            ),
-          ),
+      ? const CircularProgressIndicator()
+      : CustomPaint(
+          painter: ShaderPainter(_paint!),
+          child: Container(),
         );
 }
 
