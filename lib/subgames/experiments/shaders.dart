@@ -30,6 +30,7 @@ class _ShaderExp extends StatefulWidget {
 class _ShaderExpState extends State<_ShaderExp> {
   ui.FragmentShader? _shader;
   ui.Paint? _paint;
+  Offset _mousePosition = Offset.zero;
 
   @override
   void initState() {
@@ -81,11 +82,10 @@ class _ShaderExpState extends State<_ShaderExp> {
     _shader
       ?..setFloat(0, _time)
       ..setFloat(1, newWidth)
-      ..setFloat(2, newHeight);
+      ..setFloat(2, newHeight)
+      ..setFloat(3, _mousePosition.dx)
+      ..setFloat(4, _mousePosition.dy);
     setState(() {});
-    print(
-      'Updated shader values: time=$_time, width=$newWidth, height=$newHeight',
-    );
   }
 
   @override
@@ -97,9 +97,16 @@ class _ShaderExpState extends State<_ShaderExp> {
   @override
   Widget build(final BuildContext context) => _paint == null
       ? const CircularProgressIndicator()
-      : CustomPaint(
-          painter: ShaderPainter(_paint!),
-          child: Container(),
+      : MouseRegion(
+          onHover: (final event) {
+            setState(() {
+              _mousePosition = event.localPosition;
+            });
+          },
+          child: CustomPaint(
+            painter: ShaderPainter(_paint!),
+            child: Container(),
+          ),
         );
 }
 
