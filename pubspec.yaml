@@ -49,6 +49,10 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_portal: ^1.1.4
+  flutter_shaders:
+    git:
+      url: git@github.com:jonahwilliams/flutter_shaders.git
+      ref: main
   flutter_svg: ^2.0.7
   form_builder_validators: ^11.0.0
   freezed_annotation: ^2.2.0
@@ -99,6 +103,10 @@ dev_dependencies:
 
 dependency_overrides:
   collection: 1.19.0
+  flutter_shaders:
+    git:
+      url: git@github.com:jonahwilliams/flutter_shaders.git
+      ref: main
   package_info_plus: ^8.0.1
   web: ^1.0.0
 

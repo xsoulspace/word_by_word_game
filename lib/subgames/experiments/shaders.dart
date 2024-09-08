@@ -3,10 +3,13 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_shaders/flutter_shaders.dart';
 
 void runShaderApp(final List<String> args) {
   runApp(const _App());
 }
+
+const dimension = 300.0;
 
 class _App extends StatelessWidget {
   const _App({super.key});
@@ -14,7 +17,7 @@ class _App extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => const Center(
         child: SizedBox.square(
-          dimension: 300,
+          dimension: dimension,
           child: _ShaderExp(),
         ),
       );
@@ -68,8 +71,8 @@ class _ShaderExpState extends State<_ShaderExp> {
 
   Timer? _timer;
   double _time = 0;
-  double get newWidth => 100;
-  double get newHeight => 200;
+  double get newWidth => dimension;
+  double get newHeight => dimension;
 
   void _startAnimation() {
     _timer = Timer.periodic(const Duration(milliseconds: 16), (final timer) {
@@ -79,12 +82,12 @@ class _ShaderExpState extends State<_ShaderExp> {
 
   void _updateShader() {
     _time += 0.016;
-    _shader
-      ?..setFloat(0, _time)
-      ..setFloat(1, newWidth)
-      ..setFloat(2, newHeight)
-      ..setFloat(3, _mousePosition.dx)
-      ..setFloat(4, _mousePosition.dy);
+    _shader?.setFloatUniforms(
+      (final setter) => setter
+        ..setFloat(_time)
+        ..setOffset(Offset(newWidth, newHeight))
+        ..setOffset(Offset(_mousePosition.dx, _mousePosition.dy)),
+    );
     setState(() {});
   }
 
