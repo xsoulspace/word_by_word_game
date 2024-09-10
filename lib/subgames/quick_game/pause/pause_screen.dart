@@ -126,6 +126,7 @@ class _MainMenuView extends StatelessWidget {
               ),
               Expanded(
                 child: SingleChildScrollView(
+                  primary: !hasMobileLayout,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

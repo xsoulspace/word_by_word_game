@@ -15,6 +15,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
+import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
 
@@ -47,6 +48,7 @@ class CanvasRendererGame extends FlameGame
   late final World world;
   late FlameMultiBlocProvider providersComponent;
   final canvasRenderer = CanvasRenderer();
+  late final _fogWeatherLayer = FogWeatherLayer();
 
   late ObstacleLevelHelper obstacleLevelHelper;
 
@@ -86,8 +88,8 @@ class CanvasRendererGame extends FlameGame
       FlameBlocListener<DebugCubit, DebugCubitState>(
         onNewState: _handleDebugStateChanges,
       ),
-      // temporary enabling it
       canvasRenderer,
+      _fogWeatherLayer,
     ]);
     final oldOverlays = [...overlays.activeOverlays];
     overlays

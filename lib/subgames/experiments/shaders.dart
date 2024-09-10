@@ -30,6 +30,15 @@ class _ShaderExp extends StatefulWidget {
   _ShaderExpState createState() => _ShaderExpState();
 }
 
+Future<ui.Image> loadShaderTexture([
+  final String asset = 'assets/shaders_assets/sample.png',
+]) async {
+  final data = await rootBundle.load(asset);
+  final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
+  final frame = await codec.getNextFrame();
+  return frame.image;
+}
+
 class _ShaderExpState extends State<_ShaderExp> {
   ui.FragmentShader? _shader;
   ui.Paint? _paint;
@@ -44,11 +53,11 @@ class _ShaderExpState extends State<_ShaderExp> {
   Future<void> _loadShader() async {
     try {
       final fragmentProgram = await ui.FragmentProgram.fromAsset(
-        'assets/shaders/fragment_shader.frag',
+        // 'assets/shaders/fragment_shader.frag',
+        'assets/shaders/background_shader.frag',
+        // 'assets/shaders/fog_shader.frag',
       );
-      final image = await _loadImage(
-        'assets/shaders_assets/sample.png',
-      ); // Load your texture
+      final image = await loadShaderTexture(); // Load your texture
       final shader = fragmentProgram.fragmentShader()
         ..setImageSampler(0, image); // Set the texture sampler
       setState(() {
@@ -60,13 +69,6 @@ class _ShaderExpState extends State<_ShaderExp> {
       print(e);
       // Handle error
     }
-  }
-
-  Future<ui.Image> _loadImage(final String asset) async {
-    final data = await rootBundle.load(asset);
-    final codec = await ui.instantiateImageCodec(data.buffer.asUint8List());
-    final frame = await codec.getNextFrame();
-    return frame.image;
   }
 
   Timer? _timer;
