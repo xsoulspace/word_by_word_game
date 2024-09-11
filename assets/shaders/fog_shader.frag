@@ -41,6 +41,22 @@ vec4 frostEffect(vec2 st) {
     return vec4(rnd / vec3(1.0, 0.8, 0.5), alpha);
 }
 
+float superSnowyTime(float time, vec2 screenCoords) {
+    return cos(time) *400;//cos(time + screenCoords.x /  screenCoords.y); 
+}
+float superSnowyEffectRandom(vec2 st) {
+   float time = superSnowyTime(uTime, st);
+    return fract(sin(dot(time +st.xy,time +vec2(sin(time / 5000000.0), 
+    sin(time / 5000000.0)))) * (70000.0 - 40000) / 0.3);
+}
+
+vec4 superSnowyEffect(vec2 st) {
+    float rnd = superSnowyEffectRandom(st);
+    float alpha = smoothstep(0.0, 0.4, rnd) * smoothstep(0.4, 0.0, rnd);
+    vec3 color = vec3(1.0, 0.8, 0.5) * alpha;
+    return vec4(rnd / vec3(1.0, 0.8, 0.5), alpha);
+}
+
 
 float sunLight2Random(vec2 st) {
   return fract(sin(dot(st.xy, vec2(sin(uTime / 5000000.0), 
@@ -56,6 +72,6 @@ vec4 sunLight2(vec2 st) {
 
 void main() {
     vec2 st = FlutterFragCoord().xy / uSize;
-    vec4 color = sunLight1(st);
+    vec4 color = superSnowyEffect(st);
     fragColor = color; 
 }
