@@ -13,19 +13,36 @@ out vec4 fragColor;
 
 #define PI 3.14159265359
 #define TWO_PI 6.28318530718
-float random(vec2 st){
 
+float sunsetV1Random(vec2 st){
   return fract(sin(dot(st.xy, vec2(sin(uTime / 5000000.0), 
     sin(uTime / 5000000.0)))) * (70000.0 - 30000));
 }
 
-void main() {
-    vec2 st = FlutterFragCoord().xy / uSize;
-    float rnd = random(st);
+vec3 sunsetV1(vec2 st){
+    float rnd = sunsetV1Random(st);
     vec3 color = mix(
         vec3(rnd) * 0.8, 
         vec3(1.0, 0.8, 0.5), 
         step(0.2, rnd)
     );
-    fragColor = vec4(color, 0.1);
+    return color;
+}
+
+float frostEffectRandom(vec2 st) {
+  return fract(sin(dot(st.xy, vec2(sin(uTime / 5000000.0), 
+    sin(uTime / 5000000.0)))) * (70000.0 - 40000) / 2.);
+}
+
+vec4 frostEffect(vec2 st) {
+    float rnd = frostEffectRandom(st);
+    float alpha = smoothstep(0.0, 0.4, rnd) * smoothstep(0.4, 0.0, rnd);
+    vec3 color = vec3(1.0, 0.8, 0.5) * alpha;
+    return vec4(rnd / vec3(1.0, 0.8, 0.5), alpha);
+}
+
+void main() {
+    vec2 st = FlutterFragCoord().xy / uSize;
+    vec4 color = frostEffect(st);
+    fragColor = color; 
 }
