@@ -13,13 +13,19 @@ out vec4 fragColor;
 
 #define PI 3.14159265359
 #define TWO_PI 6.28318530718
+float random(vec2 st){
+
+  return fract(sin(dot(st.xy, vec2(sin(uTime / 5000000.0), 
+    sin(uTime / 5000000.0)))) * (70000.0 - 30000));
+}
+
 void main() {
     vec2 st = FlutterFragCoord().xy / uSize;
-    vec3 color = vec3(0.0);
-    vec2 c = vec2(0.5, 0.5); // Center of the image
-    st = fract(st);
-    color = vec3(st.x  , st.y +0.2 ,0.0);
-    
-    fragColor = vec4(color,1);
-
+    float rnd = random(st);
+    vec3 color = mix(
+        vec3(rnd) * 0.8, 
+        vec3(1.0, 0.8, 0.5), 
+        step(0.2, rnd)
+    );
+    fragColor = vec4(color, 0.1);
 }
