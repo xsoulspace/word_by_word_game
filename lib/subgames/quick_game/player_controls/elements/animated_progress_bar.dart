@@ -80,22 +80,23 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar> {
               border: widget.border,
             ),
           ),
-          Positioned(
-            left: isVertical ? 0 : 0,
-            top: isVertical ? null : 0,
-            right: isVertical ? 0 : null,
-            bottom: isVertical ? 0 : 0,
-            child: AnimatedContainer(
-              duration: 250.milliseconds,
-              curve: Curves.easeInOut,
-              height: isVertical ? widget.height * _currentValue : null,
-              width: isVertical ? null : widget.width * _currentValue,
-              decoration: BoxDecoration(
-                color: widget.color,
-                borderRadius: borderRadius,
+          if (widget.value > 0)
+            Positioned(
+              left: isVertical ? 0 : 0,
+              top: isVertical ? null : 0,
+              right: isVertical ? 0 : null,
+              bottom: isVertical ? 0 : 0,
+              child: AnimatedContainer(
+                duration: 250.milliseconds,
+                curve: Curves.easeInOut,
+                height: isVertical ? widget.height * _currentValue : null,
+                width: isVertical ? null : widget.width * _currentValue,
+                decoration: BoxDecoration(
+                  color: widget.color,
+                  borderRadius: borderRadius,
+                ),
               ),
             ),
-          ),
         ],
       ),
     );
