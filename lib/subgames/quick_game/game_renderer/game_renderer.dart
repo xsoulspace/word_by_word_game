@@ -49,6 +49,7 @@ class CanvasRendererGame extends FlameGame
   late FlameMultiBlocProvider providersComponent;
   final canvasRenderer = CanvasRenderer();
   late final _fogWeatherLayer = FogWeatherLayer();
+  late final _snowWeatherLayer = SnowWeatherLayer();
 
   late ObstacleLevelHelper obstacleLevelHelper;
 
@@ -90,6 +91,7 @@ class CanvasRendererGame extends FlameGame
       ),
       canvasRenderer,
       _fogWeatherLayer,
+      _snowWeatherLayer,
     ]);
     final oldOverlays = [...overlays.activeOverlays];
     overlays
