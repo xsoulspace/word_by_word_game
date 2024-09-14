@@ -10,6 +10,9 @@ uniform vec2 uHoleCenter; // Center of the "hole" in the fog
 uniform float uHoleRadius; // Radius of the "hole"
 // imagine you need to create shader, which will be applied to 2d platformer. This shader should give effect of fog, also, this fog should have a "hole" which should depen from uniform. That "hole" should give the layer see objects and landscape behind the shader.
 uniform vec2 uRatio;
+uniform float uNoiseDensity;
+uniform float uSpeed;
+
 out vec4 fragColor;
 
 #define PI 3.14159265359
@@ -41,10 +44,10 @@ vec4 frostEffect(vec2 st) {
     vec3 color = vec3(1.0, 0.8, 0.5) * alpha;
     return vec4(rnd / vec3(1.0, 0.8, 0.5), alpha);
 }
-
 float superSnowyTime(float time, vec2 screenCoords) {
     return cos(time) *400;//cos(time + screenCoords.x /  screenCoords.y); 
 }
+
 float superSnowyEffectRandom(vec2 st) {
    float time = superSnowyTime(uTime, st);
     return fract(sin(dot(time +st.xy,time +vec2(sin(time / 5000000.0), 

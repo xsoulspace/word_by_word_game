@@ -14,34 +14,39 @@ class FogWeatherLayer extends Component
   });
 
   final Color color;
+  double get density => 0.02;
+  double get speed => 0.0005;
+  Offset get windDirection => const Offset(1, 0);
   ui.FragmentShader? _shader;
   final _paint = Paint();
   double _time = 0;
 
-  void _updateShader() {
-    _time += 0.016;
+  void _updateShader(final double dt) {
+    _time += dt; // Scale time by speed
     _shader?.setFloatUniforms(
       (final setter) => setter
         ..setFloat(_time)
         ..setSize(game.size.toSize())
-        ..setOffset(player?.screenVector2 ?? Offset.zero)
-        ..setFloat(0.4),
+        ..setFloat(density)
+        ..setFloat(speed) // uSpeed
+        ..setOffset(windDirection),
     );
   }
 
   @override
   void update(final double dt) {
-    _updateShader();
+    _updateShader(dt);
     super.update(dt);
   }
 
   @override
   FutureOr<void> onLoad() async {
     final program = await ui.FragmentProgram.fromAsset(
-      'assets/shaders/fog_shader.frag',
+      'assets/shaders/snow_shader.frag',
     );
     final image = await loadShaderTexture();
     _shader = program.fragmentShader()..setImageSampler(0, image);
+    _updateShader(0);
     _paint.shader = _shader;
     return super.onLoad();
   }
