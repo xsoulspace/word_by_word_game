@@ -26,10 +26,7 @@ class SnowWeatherLayer extends Component
     _shader?.setFloatUniforms(
       (final setter) => setter
         ..setFloat(_time)
-        ..setSize(game.size.toSize())
-        ..setFloat(density)
-        ..setFloat(speed) // uSpeed
-        ..setOffset(windDirection),
+        ..setSize(game.size.toSize()),
     );
   }
 
@@ -45,7 +42,7 @@ class SnowWeatherLayer extends Component
       'assets/shaders/snow_shader.frag',
     );
     final image = await loadShaderTexture();
-    _shader = program.fragmentShader()..setImageSampler(0, image);
+    _shader = program.fragmentShader();
     _updateShader(0);
     _paint.shader = _shader;
     return super.onLoad();

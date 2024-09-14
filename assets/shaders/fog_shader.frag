@@ -40,7 +40,7 @@ void main() {
 
     // Static clouds using fbm with small movement
     float n = fbm(st * 3.0 + uTime * 0.0000009); // Adding movement based on time
-    float cloudDensity = 4.0;
+    float cloudDensity = 2.;
     float cloudStrength = exp(distance * cloudDensity) * n;
 
     vec4 cloudColor = vec4(0.8, 0.8, 0.8, 1.0); // Light grey cloud
