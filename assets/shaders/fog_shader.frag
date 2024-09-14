@@ -3,7 +3,6 @@
 precision lowp float;
 #endif
 
-// uniform sampler2D uTexture;
 uniform float uTime;
 uniform vec2 uSize;
 uniform vec2 uCharacterPos; // Character position for focal fog
