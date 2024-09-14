@@ -7,5 +7,5 @@ typedef DialogController = ({
   VoidCallback closeDialogAndResume,
   VoidCallback showLevelWordSuggestionDialog,
   VoidCallback showTechnologiesTree,
-  ValueChanged<TechnologyLevelIndex> showTechLevelAchieveDialog,
+  VoidCallback showTechLevelAchieveDialog,
 });

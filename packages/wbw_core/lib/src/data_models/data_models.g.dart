@@ -120,6 +120,9 @@ _$LevelModelImpl _$$LevelModelImplFromJson(Map<String, dynamic> json) =>
           LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
       characters: LevelCharactersModel.fromJson(
           json['characters'] as Map<String, dynamic>),
+      updatedAt: json['updatedAt'] == null
+          ? null
+          : DateTime.parse(json['updatedAt'] as String),
       tilesetType:
           $enumDecodeNullable(_$TilesetTypeEnumMap, json['tilesetType']) ??
               TilesetType.whiteBlack,
@@ -184,6 +187,7 @@ Map<String, dynamic> _$$LevelModelImplToJson(_$LevelModelImpl instance) =>
     <String, dynamic>{
       'players': instance.players.toJson(),
       'characters': instance.characters.toJson(),
+      'updatedAt': instance.updatedAt?.toIso8601String(),
       'tilesetType': _$TilesetTypeEnumMap[instance.tilesetType]!,
       'weathers': instance.weathers.map((e) => e.toJson()).toList(),
       'wind': instance.wind.toJson(),

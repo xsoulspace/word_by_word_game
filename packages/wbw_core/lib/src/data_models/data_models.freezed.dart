@@ -1050,6 +1050,9 @@ LevelModel _$LevelModelFromJson(Map<String, dynamic> json) {
 mixin _$LevelModel {
   LevelPlayersModel get players => throw _privateConstructorUsedError;
   LevelCharactersModel get characters => throw _privateConstructorUsedError;
+
+  /// update this field on every save to get recent save and sort by it
+  DateTime? get updatedAt => throw _privateConstructorUsedError;
   TilesetType get tilesetType => throw _privateConstructorUsedError;
   List<WeatherModel> get weathers => throw _privateConstructorUsedError;
   WindModel get wind => throw _privateConstructorUsedError;
@@ -1102,6 +1105,7 @@ abstract class $LevelModelCopyWith<$Res> {
   $Res call(
       {LevelPlayersModel players,
       LevelCharactersModel characters,
+      DateTime? updatedAt,
       TilesetType tilesetType,
       List<WeatherModel> weathers,
       WindModel wind,
@@ -1151,6 +1155,7 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
   $Res call({
     Object? players = null,
     Object? characters = null,
+    Object? updatedAt = freezed,
     Object? tilesetType = null,
     Object? weathers = null,
     Object? wind = null,
@@ -1178,6 +1183,10 @@ class _$LevelModelCopyWithImpl<$Res, $Val extends LevelModel>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       tilesetType: null == tilesetType
           ? _value.tilesetType
           : tilesetType // ignore: cast_nullable_to_non_nullable
@@ -1353,6 +1362,7 @@ abstract class _$$LevelModelImplCopyWith<$Res>
   $Res call(
       {LevelPlayersModel players,
       LevelCharactersModel characters,
+      DateTime? updatedAt,
       TilesetType tilesetType,
       List<WeatherModel> weathers,
       WindModel wind,
@@ -1409,6 +1419,7 @@ class __$$LevelModelImplCopyWithImpl<$Res>
   $Res call({
     Object? players = null,
     Object? characters = null,
+    Object? updatedAt = freezed,
     Object? tilesetType = null,
     Object? weathers = null,
     Object? wind = null,
@@ -1436,6 +1447,10 @@ class __$$LevelModelImplCopyWithImpl<$Res>
           ? _value.characters
           : characters // ignore: cast_nullable_to_non_nullable
               as LevelCharactersModel,
+      updatedAt: freezed == updatedAt
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
       tilesetType: null == tilesetType
           ? _value.tilesetType
           : tilesetType // ignore: cast_nullable_to_non_nullable
@@ -1515,6 +1530,7 @@ class _$LevelModelImpl extends _LevelModel {
   const _$LevelModelImpl(
       {required this.players,
       required this.characters,
+      this.updatedAt,
       this.tilesetType = TilesetType.whiteBlack,
       final List<WeatherModel> weathers = const [],
       this.wind = WindModel.zero,
@@ -1548,6 +1564,10 @@ class _$LevelModelImpl extends _LevelModel {
   final LevelPlayersModel players;
   @override
   final LevelCharactersModel characters;
+
+  /// update this field on every save to get recent save and sort by it
+  @override
+  final DateTime? updatedAt;
   @override
   @JsonKey()
   final TilesetType tilesetType;
@@ -1637,7 +1657,7 @@ class _$LevelModelImpl extends _LevelModel {
 
   @override
   String toString() {
-    return 'LevelModel(players: $players, characters: $characters, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage, playerStartPoint: $playerStartPoint, canvasObjects: $canvasObjects, canvasLayers: $canvasLayers)';
+    return 'LevelModel(players: $players, characters: $characters, updatedAt: $updatedAt, tilesetType: $tilesetType, weathers: $weathers, wind: $wind, canvasDataId: $canvasDataId, currentWord: $currentWord, words: $words, latestWord: $latestWord, phaseType: $phaseType, actionMultiplier: $actionMultiplier, dateTime: $dateTime, lastDateTime: $lastDateTime, technologyTreeProgress: $technologyTreeProgress, featuresSettings: $featuresSettings, wordsLanguage: $wordsLanguage, playerStartPoint: $playerStartPoint, canvasObjects: $canvasObjects, canvasLayers: $canvasLayers)';
   }
 
   @override
@@ -1648,6 +1668,8 @@ class _$LevelModelImpl extends _LevelModel {
             (identical(other.players, players) || other.players == players) &&
             (identical(other.characters, characters) ||
                 other.characters == characters) &&
+            (identical(other.updatedAt, updatedAt) ||
+                other.updatedAt == updatedAt) &&
             (identical(other.tilesetType, tilesetType) ||
                 other.tilesetType == tilesetType) &&
             const DeepCollectionEquality().equals(other._weathers, _weathers) &&
@@ -1687,6 +1709,7 @@ class _$LevelModelImpl extends _LevelModel {
         runtimeType,
         players,
         characters,
+        updatedAt,
         tilesetType,
         const DeepCollectionEquality().hash(_weathers),
         wind,
@@ -1726,6 +1749,7 @@ abstract class _LevelModel extends LevelModel {
   const factory _LevelModel(
       {required final LevelPlayersModel players,
       required final LevelCharactersModel characters,
+      final DateTime? updatedAt,
       final TilesetType tilesetType,
       final List<WeatherModel> weathers,
       final WindModel wind,
@@ -1755,6 +1779,10 @@ abstract class _LevelModel extends LevelModel {
   LevelPlayersModel get players;
   @override
   LevelCharactersModel get characters;
+
+  /// update this field on every save to get recent save and sort by it
+  @override
+  DateTime? get updatedAt;
   @override
   TilesetType get tilesetType;
   @override

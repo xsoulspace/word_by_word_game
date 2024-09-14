@@ -14,9 +14,11 @@ class _PreloadingScreenState extends State<PreloadingScreen> {
   @override
   void initState() {
     super.initState();
-    unawaited(
-      GlobalStatesInitializer().onLoad(context),
-    );
+    WidgetsBinding.instance.addPostFrameCallback((final _) {
+      unawaited(
+        GlobalStatesInitializer().onLoad(context),
+      );
+    });
   }
 
   @override

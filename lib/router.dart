@@ -3,11 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
-import 'package:word_by_word_game/subgames/quick_game/highscore/highscore_screen.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
-import 'package:word_by_word_game/subgames/quick_game/settings/settings_screen.dart';
 
 final router = GoRouter(
   redirect: _handleRootRedirect,
@@ -31,18 +28,6 @@ final router = GoRouter(
               ),
               isTransparent: true,
               useFade: true,
-            ),
-            GoRoute(
-              path: ScreenPaths.highscore,
-              builder: (final context, final state) => const HighscoreScreen(
-                key: Key(ScreenPaths.highscore),
-              ),
-            ),
-            GoRoute(
-              path: ScreenPaths.settings,
-              builder: (final context, final state) => const SettingsScreen(
-                key: Key(ScreenPaths.settings),
-              ),
             ),
           ],
         ),
@@ -107,8 +92,6 @@ class AppRoute extends GoRoute {
 class ScreenPaths {
   ScreenPaths._();
   static const root = '/';
-  static const highscore = 'highscore';
-  static const settings = 'settings';
   static const playableLevel = 'lvl/:levelId';
   static String toPlayableLevel({required final CanvasDataModelId id}) =>
       '/lvl/${id.value}';
@@ -116,7 +99,7 @@ class ScreenPaths {
   static String toPause({required final CanvasDataModelId id}) =>
       '/lvl/${id.value}/pause';
 
-  static const routes = [root, playableLevel, pause, highscore, settings];
+  static const routes = [root, playableLevel, pause];
 }
 
 /// runtime only
@@ -131,10 +114,6 @@ class AppPathsController {
     to(ScreenPaths.toPause(id: currentLevelId));
   }
 
-  void toPlayersAndHighscore() =>
-      to('/${ScreenPaths.playableLevel}/${ScreenPaths.highscore}');
-  void toSettings() =>
-      to('/${ScreenPaths.playableLevel}/${ScreenPaths.settings}');
   void toPauseOrRoot({
     required final GlobalGameBloc globalGameBloc,
   }) {

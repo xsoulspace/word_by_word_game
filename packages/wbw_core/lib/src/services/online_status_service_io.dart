@@ -7,8 +7,10 @@ import 'online_status_service_i.dart';
 
 class OnlineStatusService extends BaseOnlineStatusService {
   OnlineStatusService(super.context);
+  @override
   Future<void> onLoad() async {
     await _checkConnection();
+
     // Schedule a new timer every 5 seconds to check the internet connection.
     // _timer = Timer.periodic(
     //   const Duration(seconds: 5),

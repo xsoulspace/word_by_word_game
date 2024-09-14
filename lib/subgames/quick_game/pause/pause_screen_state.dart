@@ -36,13 +36,6 @@ class PauseScreenState extends ValueNotifier<void> {
 
   late final onContinueFromSamePlace = uxState.onContinueFromSamePlace;
   late final onDeleteLevel = uxState.onDeleteLevel;
-  void onToPlayersAndHighscore(final BuildContext context) {
-    AppPathsController.of(context).toPlayersAndHighscore();
-  }
-
-  void onToSettings(final BuildContext context) {
-    AppPathsController.of(context).toSettings();
-  }
 
   Future<void> onPrivacyPolicy() async {
     // launchUrlString('https://xsoulspace.dev/game/wbw/privacy');

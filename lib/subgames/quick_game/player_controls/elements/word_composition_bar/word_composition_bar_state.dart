@@ -46,6 +46,7 @@ class WordCompositionStateDiDto {
         tutorialBloc = read(),
         mechanics = read(),
         globalGameBloc = read(),
+        technologiesCubit = read(),
         dialogController = read();
   final Locator read;
   final LevelBloc levelBloc;
@@ -53,6 +54,7 @@ class WordCompositionStateDiDto {
   final MechanicsCollection mechanics;
   final GlobalGameBloc globalGameBloc;
   final DialogController dialogController;
+  final TechnologiesCubit technologiesCubit;
 }
 
 class GuiWordCompositionCubit extends ChangeNotifier {
@@ -66,6 +68,10 @@ class GuiWordCompositionCubit extends ChangeNotifier {
   late final _tutorialEventsListener = WordCompositionTutorialEventListener(
     read: dto.read,
     onRequestWordFieldFocus: onRequestTextFocus,
+  );
+  late final _techAchivementVerifier = TechAchivementVerifier(
+    getCurrentLevel: () => dto.technologiesCubit.getCurrentLevel().levelIndex,
+    onTechLevelAchieved: dto.dialogController.showTechLevelAchieveDialog,
   );
   String _latestWord = '';
   StreamSubscription<LevelBlocState>? _levelBlocSubscription;
@@ -105,15 +111,22 @@ class GuiWordCompositionCubit extends ChangeNotifier {
         LevelBlocEventSelectActionMultiplier(multiplier: multiplier),
       );
 
-  Future<void> onToSelectActionPhase() async => dto.levelBloc.onAcceptNewWord();
+  Future<void> onToSelectActionPhase() async {
+    _techAchivementVerifier.onStart();
+    final isAccepted = await dto.levelBloc.onAcceptNewWord();
+    if (isAccepted) _techAchivementVerifier.verify();
+  }
+
+  Future<void> onAddWordToDictionary() async {
+    await dto.levelBloc
+        .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
+    await onToSelectActionPhase();
+  }
 
   void _onToEndTurn(final EnergyApplicationType energyApplicationType) {
     dto.levelBloc.onLevelPlayerEndTurnAction(energyApplicationType);
     onRequestTextFocus();
   }
-
-  Future<void> onAddWordToDictionary() async => dto.levelBloc
-      .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
 
   void onRequestTextFocus() {
     WidgetsBinding.instance.addPostFrameCallback((final _) {
@@ -194,5 +207,26 @@ class BottomActionsNotifier extends ValueNotifier<BottomActionsNotifierState> {
 
   void changeCardVisiblity() {
     value = value.copyWith(isCardVisible: !value.isCardVisible);
+  }
+}
+
+class TechAchivementVerifier {
+  TechAchivementVerifier({
+    required this.getCurrentLevel,
+    required this.onTechLevelAchieved,
+  });
+  final ValueGetter<TechnologyLevelIndex> getCurrentLevel;
+  final VoidCallback onTechLevelAchieved;
+  TechnologyLevelIndex? _currentTechLevelIndex;
+  void onStart() {
+    _currentTechLevelIndex = getCurrentLevel();
+  }
+
+  void verify() {
+    final currentTechLevelIndex = getCurrentLevel();
+    if (_currentTechLevelIndex != currentTechLevelIndex) {
+      onTechLevelAchieved();
+      _currentTechLevelIndex = null;
+    }
   }
 }

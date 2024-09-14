@@ -68,10 +68,10 @@ class FirebaseAnalyticsPlugin extends AnalyticsServicePlugin {
       fatal: fatal,
       printDetails: printDetails,
     );
-    await analytics.logEvent(
-      name: 'flutter_error',
-      parameters: {'details': errorDetailsStr},
-    );
+    // await analytics.logEvent(
+    //   name: 'flutter_error',
+    //   parameters: {'details': errorDetailsStr},
+    // );
   }
 
   @override

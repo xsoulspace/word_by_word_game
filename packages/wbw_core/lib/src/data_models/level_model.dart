@@ -37,6 +37,9 @@ class LevelModel with _$LevelModel {
   const factory LevelModel({
     required final LevelPlayersModel players,
     required final LevelCharactersModel characters,
+
+    /// update this field on every save to get recent save and sort by it
+    final DateTime? updatedAt,
     @Default(TilesetType.whiteBlack) final TilesetType tilesetType,
     @Default([]) final List<WeatherModel> weathers,
     @Default(WindModel.zero) final WindModel wind,

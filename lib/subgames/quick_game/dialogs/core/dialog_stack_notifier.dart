@@ -104,7 +104,7 @@ class DialogStackNotifier extends ChangeNotifier {
     _pause();
   }
 
-  void _showTechLevelAchieveDialog(final TechnologyLevelIndex levelIndex) {
+  void _showTechLevelAchieveDialog() {
     dialogType = GameDialogType.techLevelAchieved;
     _pause();
   }

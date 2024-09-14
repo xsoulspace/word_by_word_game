@@ -1,7 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 
 class WeatherOverlay extends StatelessWidget {
@@ -99,20 +96,21 @@ class _WeatherOverlayBodyState extends State<_WeatherOverlayBody> {
   Widget build(final BuildContext context) {
     final color =
         const Color.fromARGB(255, 1, 20, 17).withOpacity(_maxTargetOpacity);
-    return IgnorePointer(
+    return const IgnorePointer(
       child: Stack(
         fit: StackFit.expand,
         children: [
-          AnimatedContainer(
-            duration: 1800.milliseconds,
-            decoration: BoxDecoration(
-              color: Colors.amber[200]!.withOpacity(0.1),
-            ),
-          ),
-          AnimatedContainer(
-            duration: 1500.milliseconds,
-            decoration: BoxDecoration(color: color),
-          ),
+          SizedBox(),
+          // AnimatedContainer(
+          //   duration: 1800.milliseconds,
+          //   decoration: BoxDecoration(
+          //     color: Colors.amber[200]!.withOpacity(0.1),
+          //   ),
+          // ),
+          // AnimatedContainer(
+          //   duration: 1500.milliseconds,
+          //   decoration: BoxDecoration(color: color),
+          // ),
         ],
       ),
     );

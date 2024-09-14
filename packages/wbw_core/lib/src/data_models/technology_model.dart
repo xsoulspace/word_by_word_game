@@ -2,14 +2,13 @@
 part of 'data_models.dart';
 
 extension type const TechnologyModelId(TechnologyType value) {
-  factory TechnologyModelId.fromJson(final value) {
-    final String val;
+  // ignore: avoid_annotating_with_dynamic
+  factory TechnologyModelId.fromJson(final dynamic value) {
+    String val = '';
     if (value case {'value': final String value}) {
       val = value;
     } else if (value case final String value) {
       val = value;
-    } else {
-      throw UnsupportedError(value);
     }
     TechnologyType type;
     try {

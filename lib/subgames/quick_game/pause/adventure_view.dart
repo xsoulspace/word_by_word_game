@@ -22,7 +22,6 @@ class AdventureView extends HookWidget {
     final currentLevelId = context.select<GlobalGameBloc, CanvasDataModelId>(
       (final c) => c.state.currentLevelId,
     );
-    final formFactor = UiPersistentFormFactors.of(context);
     final selectedLevelIdNotifier = useState(currentLevelId);
     final selectedLevelId = selectedLevelIdNotifier.value;
 
@@ -30,23 +29,15 @@ class AdventureView extends HookWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         const Spacer(),
-        Text(
-          // TODO(arenukvern): l10n
-          'Choose Adventure'.toUpperCase(),
-          textAlign: TextAlign.center,
-          style: context.textThemeBold.displaySmall!.copyWith(
-            color: const Color.fromARGB(255, 241, 244, 241),
-            shadows: [
-              const Shadow(blurRadius: 1),
-              const Shadow(blurRadius: 1),
-              const Shadow(blurRadius: 1),
-              const Shadow(blurRadius: 1, color: Colors.black38),
-            ],
+        const ViewTitle(
+          title: LocalizedMap(
+            value: {
+              Languages.en: 'Choose Adventure',
+              Languages.ru: 'Выбери приключение',
+              Languages.it: "Scegli l'avventura",
+            },
           ),
-        )
-            .animate(delay: 50.milliseconds)
-            .fadeIn(duration: 350.milliseconds)
-            .slideY(begin: -0.1),
+        ),
         const Spacer(),
         ConstrainedBox(
           constraints: const BoxConstraints(
@@ -86,20 +77,22 @@ class AdventureView extends HookWidget {
           ).animate(delay: 150.milliseconds).fadeIn(duration: 450.milliseconds),
         ),
         const Gap(24),
-        Builder(
-          builder: (final context) {
-            final backButton =
-                UiFilledButton.text(text: 'BACK', onPressed: onBack);
-
-            return Column(children: [backButton])
-                .animate(delay: 200.milliseconds)
-                .fadeIn(duration: 450.milliseconds);
-          },
-        ),
+        ViewBackButton(onBack: onBack),
         const Spacer(),
       ],
     );
   }
+}
+
+class ViewBackButton extends StatelessWidget {
+  const ViewBackButton({required this.onBack, super.key});
+  final VoidCallback onBack;
+
+  @override
+  Widget build(final BuildContext context) =>
+      UiFilledButton.text(text: 'BACK', onPressed: onBack)
+          .animate(delay: 200.milliseconds)
+          .fadeIn(duration: 450.milliseconds);
 }
 
 class _LevelCard extends StatelessWidget {
@@ -286,5 +279,30 @@ class _LevelCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class ViewTitle extends StatelessWidget {
+  const ViewTitle({required this.title, super.key});
+  final LocalizedMap title;
+  @override
+  Widget build(final BuildContext context) {
+    final locale = useLocale(context);
+    return Text(
+      title.getValue(locale).toUpperCase(),
+      textAlign: TextAlign.center,
+      style: context.textThemeBold.displaySmall!.copyWith(
+        color: const Color.fromARGB(255, 241, 244, 241),
+        shadows: [
+          const Shadow(blurRadius: 1),
+          const Shadow(blurRadius: 1),
+          const Shadow(blurRadius: 1),
+          const Shadow(blurRadius: 1, color: Colors.black38),
+        ],
+      ),
+    )
+        .animate(delay: 50.milliseconds)
+        .fadeIn(duration: 350.milliseconds)
+        .slideY(begin: -0.1);
   }
 }
