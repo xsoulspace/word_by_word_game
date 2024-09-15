@@ -1,85 +1,168 @@
 import 'package:flutter/material.dart';
 
 import '../theme/color_palette.dart';
+import 'game_menu_button_painter.dart';
 
-class GameMenuButton extends StatelessWidget {
+class GameMenuButton extends StatefulWidget {
   const GameMenuButton({
     required this.label,
     required this.icon,
     required this.onPressed,
-    this.decorationPainter = const UiFilledButtonPainter(),
+    this.styleType = ButtonStyleType.filled,
+    this.color,
+    this.borderColor,
+    this.gradientColors,
+    this.borderWidth,
+    this.radius,
     super.key,
   });
+
   final String label;
   final IconData icon;
   final VoidCallback onPressed;
-  final CustomPainter decorationPainter;
+  final ButtonStyleType styleType;
+  final Color? color;
+  final Color? borderColor;
+  final List<Color>? gradientColors;
+  final double? borderWidth;
+  final double? radius;
 
   @override
-  Widget build(final BuildContext context) => GestureDetector(
-        onTap: onPressed,
-        child: CustomPaint(
-          painter: decorationPainter,
-          child: Container(
-            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 24),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(icon, color: AppColors.textPrimary),
-                const SizedBox(width: 8),
-                Text(
-                  label,
-                  style: const TextStyle(
-                    color: AppColors.textPrimary,
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ),
-      );
+  _GameMenuButtonState createState() => _GameMenuButtonState();
 }
 
-class UiFilledButtonPainter extends CustomPainter {
-  const UiFilledButtonPainter();
+class _GameMenuButtonState extends State<GameMenuButton>
+    with SingleTickerProviderStateMixin {
+  bool _isHovered = false;
+  bool _isTapped = false;
+
+  late AnimationController _controller;
+  late Animation<double> _scaleAnimation;
+
   @override
-  void paint(final Canvas canvas, final Size size) {
-    final paint = Paint()
-      ..color = AppColors.buttonPrimary
-      ..style = PaintingStyle.fill;
+  void initState() {
+    super.initState();
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 100),
+      lowerBound: 0.95,
+      value: 1,
+    );
+    _scaleAnimation = _controller.drive(Tween<double>(begin: 0.95, end: 1));
+  }
 
-    final path = Path()
-      ..moveTo(10, 0)
-      ..lineTo(size.width - 10, 0)
-      ..quadraticBezierTo(size.width, 0, size.width, 10)
-      ..lineTo(size.width, size.height - 10)
-      ..quadraticBezierTo(size.width, size.height, size.width - 10, size.height)
-      ..lineTo(10, size.height)
-      ..quadraticBezierTo(0, size.height, 0, size.height - 10)
-      ..lineTo(0, 10)
-      ..quadraticBezierTo(0, 0, 10, 0)
-      ..close();
+  void _onEnter(final PointerEvent details) {
+    setState(() {
+      _isHovered = true;
+    });
+  }
 
-    canvas.drawPath(path, paint);
+  void _onExit(final PointerEvent details) {
+    setState(() {
+      _isHovered = false;
+    });
+  }
 
-    // Add subtle shadow
-    final shadowPaint = Paint()
-      ..color = AppColors.shadow
-      ..style = PaintingStyle.fill;
+  void _onTapDown(final TapDownDetails details) {
+    setState(() {
+      _isTapped = true;
+      _controller.reverse();
+    });
+  }
 
-    final shadowPath = Path()
-      ..moveTo(10, size.height)
-      ..lineTo(size.width - 10, size.height)
-      ..quadraticBezierTo(size.width, size.height, size.width, size.height + 10)
-      ..lineTo(0, size.height + 10)
-      ..quadraticBezierTo(0, size.height, 10, size.height)
-      ..close();
+  void _onTapUp(final TapUpDetails details) {
+    setState(() {
+      _isTapped = false;
+      _controller.forward();
+    });
+  }
 
-    canvas.drawPath(shadowPath, shadowPaint);
+  void _onTapCancel() {
+    setState(() {
+      _isTapped = false;
+      _controller.forward();
+    });
   }
 
   @override
-  bool shouldRepaint(covariant final CustomPainter oldDelegate) => false;
+  Widget build(final BuildContext context) {
+    final buttonColor = widget.color ?? AppColors.buttonPrimary;
+    final buttonBorderColor = widget.borderColor ?? AppColors.accentGreen;
+    final buttonRadius = widget.radius ?? 30.0;
+
+    return MouseRegion(
+      onEnter: _onEnter,
+      onExit: _onExit,
+      child: GestureDetector(
+        onTap: widget.onPressed,
+        onTapDown: _onTapDown,
+        onTapUp: _onTapUp,
+        onTapCancel: _onTapCancel,
+        child: AnimatedScale(
+          scale: _isTapped ? 0.95 : 1.0,
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.easeOut,
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            decoration: BoxDecoration(
+              boxShadow: _isHovered
+                  ? [
+                      const BoxShadow(
+                        color: AppColors.shadow,
+                        blurRadius: 12,
+                        offset: Offset(0, 6),
+                      ),
+                    ]
+                  : [
+                      const BoxShadow(
+                        color: AppColors.shadow,
+                        blurRadius: 5,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+            ),
+            child: CustomPaint(
+              painter: GameMenuButtonPainter(
+                styleType: widget.styleType,
+                color: buttonColor,
+                borderColor: buttonBorderColor,
+                gradientColors: widget.gradientColors,
+                borderWidth: widget.borderWidth ?? 2.0,
+                radius: buttonRadius,
+              ),
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      widget.icon,
+                      color: AppColors.buttonText,
+                      size: buttonRadius * 0.6,
+                    ),
+                    const SizedBox(width: 8),
+                    Text(
+                      widget.label,
+                      style: const TextStyle(
+                        color: AppColors.buttonText,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 14,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 }
