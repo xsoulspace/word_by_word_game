@@ -55,7 +55,6 @@ class GlobalStatesProvider extends StatelessWidget {
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [
-            const BlocProvider(create: DebugCubit.new),
             ChangeNotifierProvider(create: LevelFeaturesNotifier.new),
             const BlocProvider(create: UiKeyboardController.new),
             const BlocProvider(create: CanvasCubit.new),
@@ -73,6 +72,9 @@ class GlobalStatesProvider extends StatelessWidget {
             ChangeNotifierProvider(create: GuiWordCompositionCubit.new),
             ChangeNotifierProvider(create: GuiBuildingNotifier.new),
             ChangeNotifierProvider(create: GuiFocusableObjectsNotifier.new),
+
+            /// should be last
+            const BlocProvider(create: DebugCubit.new),
           ],
           child: Builder(builder: builder),
         ),

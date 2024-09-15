@@ -80,6 +80,16 @@ class PauseScreen extends HookWidget {
               .animate(delay: 550.milliseconds)
               .fadeOut(duration: 550.milliseconds),
 
+          Positioned.fill(
+            child: SimpleMainMenu(
+              onStart: () =>
+                  screenRouteState.value = PauseScreenRoute.adventure,
+              onSettings: () =>
+                  screenRouteState.value = PauseScreenRoute.settings,
+              onExit: () => screenRouteState.value = PauseScreenRoute.mainMenu,
+            ),
+          ),
+
           /// left for test cases
           // const Positioned.fill(
           //   child: Column(

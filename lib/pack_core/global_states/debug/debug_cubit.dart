@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 
 part 'debug_cubit.freezed.dart';
 
@@ -16,13 +15,18 @@ class DebugCubitState with _$DebugCubitState {
 }
 
 class DebugCubitDto {
-  DebugCubitDto();
+  DebugCubitDto(final BuildContext context)
+      : technologiesCubit = context.read<TechnologiesCubit>(),
+        statesStatusesCubit = context.read();
+
+  final TechnologiesCubit technologiesCubit;
+  final StatesStatusesCubit statesStatusesCubit;
 }
 
 class DebugCubit extends Cubit<DebugCubitState> {
   // ignore: avoid_unused_constructor_parameters
   DebugCubit(final BuildContext context)
-      : dto = DebugCubitDto(),
+      : dto = DebugCubitDto(context),
         super(const DebugCubitState());
   final DebugCubitDto dto;
   // ignore: avoid_positional_boolean_parameters
@@ -47,5 +51,15 @@ class DebugCubit extends Cubit<DebugCubitState> {
 
   void closeDebugPane() {
     emit(state.copyWith(isDebugPaneVisible: false));
+  }
+
+  void addInvestedResearchScore() {
+    dto.technologiesCubit.updateProgress(
+      (final oldProgress) => oldProgress.copyWith(
+        investedResearchScore: oldProgress.investedResearchScore.copyWith(
+          value: oldProgress.investedResearchScore.value + 200,
+        ),
+      ),
+    );
   }
 }

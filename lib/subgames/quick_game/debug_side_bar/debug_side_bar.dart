@@ -131,6 +131,11 @@ class UiDebugSideBarBody extends StatelessWidget {
             },
             child: const Text('Next weather'),
           ),
+          FilledButton.tonal(
+            onPressed: () async =>
+                context.read<DebugCubit>().addInvestedResearchScore(),
+            child: const Text('Add 200 invested research score'),
+          ),
           UiTextField.underlined(
             value: screenCubit.maxVolume.toString(),
             onChanged: screenCubit.onMaxVolumeChange,

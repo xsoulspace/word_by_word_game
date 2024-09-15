@@ -7,6 +7,11 @@ import '../../../wbw_core.dart';
 part 'weather_mechanics.freezed.dart';
 part 'weather_mechanics.g.dart';
 
+///
+///| Current Weather | Forecasts |
+///|-----------------|-----------|
+///| ☀️ 20°C ↗️ 5    | ☀️ ↗️ 5 | ☁️ ↘️ 3 | 🌧️ ↙️ 4 | ❄️ ↖️ 2 | 🌩️ ↑ 6 | ☀️ ↗️ 5 | ☁️ ↘️ 3 | 🌧️ ↙️ 4 | ❄️ ↖️ 2 | 🌩️ ↑ 6 |
+///
 /// ## Winds theory:
 /// https://en.wikipedia.org/wiki/Beaufort_scale
 ///
