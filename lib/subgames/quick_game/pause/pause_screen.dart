@@ -82,6 +82,14 @@ class PauseScreen extends HookWidget {
 
           Positioned.fill(
             child: SimpleMainMenu(
+              onContinueQuick: () =>
+                  screenRouteState.value = PauseScreenRoute.adventure,
+              onNewQuick: () =>
+                  screenRouteState.value = PauseScreenRoute.adventure,
+              onContinueAdventure: () =>
+                  screenRouteState.value = PauseScreenRoute.adventure,
+              onChooseAdventure: () =>
+                  screenRouteState.value = PauseScreenRoute.adventure,
               onPlayersAndHighscore: () =>
                   screenRouteState.value = PauseScreenRoute.playersAndHighscore,
               onCredits: () =>
