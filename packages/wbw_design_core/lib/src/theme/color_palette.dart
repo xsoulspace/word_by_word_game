@@ -3,39 +3,28 @@
 
 import 'package:flutter/material.dart';
 
-class AppColors {
-  // Primary Colors
-  static const white = Color(0xFFFFFFFF);
-  static const black = Color(0xFF000000);
+class UiColors {
+  UiColors._();
+  static const dark = Color(0xFF1F1F1F); // Main dark color
+  static final darkO50 = dark.withOpacity(0.5); // Main dark color
+  static const mediumDark = Color(0xFF6B6B6B); // Medium dark color
+  static const mediumLight = Color(0xFFAEAEAE); // Medium light color
+  static const light = Color(0xFFCECECE); // Light color
+  static const offWhite = Color(0xFFFAFAFB); // Off-white color
 
-  // Primary Shades - Light Yellow-Green
-  static const lightYellowGreen1 = Color(0xFFF0FFF4);
-  static const lightYellowGreen2 = Color(0xFFE0FFE0);
-  static const lightYellowGreen3 = Color(0xFFD0FFD0);
+  // Additional colors can be added here as needed
+}
 
-  // Secondary Colors
-  static const accentGreen = Color(0xFF9AE6B4);
-  static const accentYellow = Color(0xFFFFF59A);
+class UiFontSizes {
+  UiFontSizes._();
+  static const s12 = 12.0;
+  static const s16 = 16.0;
+  static const s20 = 20.0;
+}
 
-  // Background Colors
-  static const backgroundPrimary = white;
-  static const backgroundSecondary = lightYellowGreen1;
-
-  // Text Colors
-  static const textPrimary = black;
-  static const textSecondary = lightYellowGreen3;
-
-  // Button Colors
-  static const buttonPrimary = lightYellowGreen2;
-  static const buttonText = black;
-
-  // Shades for Shadows and Highlights
-  static const shadow = Color(0x1A000000);
-  static const highlight = Color(0x1AFFFFFF);
-
-  // Hot Air Balloon Power Colors
-  static const hotAirBalloonPowerBackground =
-      Color(0xFFE0FFEA); // Very light yellow-green shade
-  static const hotAirBalloonPowerForeground =
-      accentGreen; // Accent Green for foreground
+class UiDecorators {
+  UiDecorators._();
+  static const radiusSmall = 4.0;
+  static const radiusMedium = 8.0;
+  static const radiusLarge = 12.0;
 }

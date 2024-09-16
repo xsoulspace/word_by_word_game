@@ -48,19 +48,22 @@ class PauseScreen extends HookWidget {
           Positioned.fill(
             child: Container().blurred(blur: 0.6, colorOpacity: 0.01),
           ),
-          AnimatedSwitcher(
-            duration: 350.milliseconds,
-            child: switch (screenRouteState.value) {
-              PauseScreenRoute.mainMenu => _MainMenuView(
-                  onChangeRoute: (final route) =>
-                      screenRouteState.value = route,
-                ),
-              PauseScreenRoute.adventure => AdventureView(onBack: onBack),
-              PauseScreenRoute.settings => SettingsView(onBack: onBack),
-              PauseScreenRoute.playersAndHighscore =>
-                PlayersAndHighscoreView(onBack: onBack),
-              PauseScreenRoute.credits => CreditsView(onBack: onBack),
-            },
+          Visibility(
+            visible: false,
+            child: AnimatedSwitcher(
+              duration: 350.milliseconds,
+              child: switch (screenRouteState.value) {
+                PauseScreenRoute.mainMenu => _MainMenuView(
+                    onChangeRoute: (final route) =>
+                        screenRouteState.value = route,
+                  ),
+                PauseScreenRoute.adventure => AdventureView(onBack: onBack),
+                PauseScreenRoute.settings => SettingsView(onBack: onBack),
+                PauseScreenRoute.playersAndHighscore =>
+                  PlayersAndHighscoreView(onBack: onBack),
+                PauseScreenRoute.credits => CreditsView(onBack: onBack),
+              },
+            ),
           ),
 
           if (_kIsCharacterVisible)

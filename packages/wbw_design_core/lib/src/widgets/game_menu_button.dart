@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/color_palette.dart';
+import '../theme/color_palette copy.dart';
 import 'game_menu_button_painter.dart';
 
 class GameMenuButton extends StatefulWidget {
@@ -86,8 +86,8 @@ class _GameMenuButtonState extends State<GameMenuButton>
 
   @override
   Widget build(final BuildContext context) {
-    final buttonColor = widget.color ?? AppColors.buttonPrimary;
-    final buttonBorderColor = widget.borderColor ?? AppColors.accentGreen;
+    final buttonColor = widget.color ?? AppColorsTest.buttonPrimary;
+    final buttonBorderColor = widget.borderColor ?? AppColorsTest.accentGreen;
     final buttonRadius = widget.radius ?? 30.0;
 
     return MouseRegion(
@@ -108,14 +108,14 @@ class _GameMenuButtonState extends State<GameMenuButton>
               boxShadow: _isHovered
                   ? [
                       const BoxShadow(
-                        color: AppColors.shadow,
+                        color: AppColorsTest.shadow,
                         blurRadius: 12,
                         offset: Offset(0, 6),
                       ),
                     ]
                   : [
                       const BoxShadow(
-                        color: AppColors.shadow,
+                        color: AppColorsTest.shadow,
                         blurRadius: 5,
                         offset: Offset(0, 3),
                       ),
@@ -138,14 +138,14 @@ class _GameMenuButtonState extends State<GameMenuButton>
                   children: [
                     Icon(
                       widget.icon,
-                      color: AppColors.buttonText,
+                      color: AppColorsTest.buttonText,
                       size: buttonRadius * 0.6,
                     ),
                     const SizedBox(width: 8),
                     Text(
                       widget.label,
                       style: const TextStyle(
-                        color: AppColors.buttonText,
+                        color: AppColorsTest.buttonText,
                         fontWeight: FontWeight.bold,
                         fontSize: 14,
                       ),
