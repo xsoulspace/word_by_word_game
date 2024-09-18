@@ -27,7 +27,7 @@ class DebugCubit extends Cubit<DebugCubitState> {
   // ignore: avoid_unused_constructor_parameters
   DebugCubit(final BuildContext context)
       : dto = DebugCubitDto(context),
-        super(const DebugCubitState());
+        super(const DebugCubitState(isDebugPaneVisible: false));
   final DebugCubitDto dto;
   // ignore: avoid_positional_boolean_parameters
   void switchIsCameraFollowingPlayerChange([final bool? value]) {

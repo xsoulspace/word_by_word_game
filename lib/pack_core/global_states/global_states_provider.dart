@@ -72,6 +72,7 @@ class GlobalStatesProvider extends StatelessWidget {
             ChangeNotifierProvider(create: GuiWordCompositionCubit.new),
             ChangeNotifierProvider(create: GuiBuildingNotifier.new),
             ChangeNotifierProvider(create: GuiFocusableObjectsNotifier.new),
+            ChangeNotifierProvider(create: KeyboardBindingsNotifier.new),
 
             /// should be last
             const BlocProvider(create: DebugCubit.new),

@@ -6,6 +6,7 @@ enum ButtonStyleType {
   filled,
   outlined,
   gradient,
+  text,
 }
 
 class GameMenuButtonPainter extends CustomPainter {
@@ -32,6 +33,8 @@ class GameMenuButtonPainter extends CustomPainter {
     final r = Radius.circular(radius);
 
     switch (styleType) {
+      case ButtonStyleType.text:
+        return;
       case ButtonStyleType.filled:
         paint.color = color;
         canvas.drawRRect(RRect.fromRectAndRadius(rect, r), paint);

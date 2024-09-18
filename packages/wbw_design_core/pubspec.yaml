@@ -22,6 +22,7 @@ dependencies:
   gap: ^3.0.1
   google_fonts: ^6.2.1
   life_hooks: ^0.0.19
+  provider: ^6.1.2
   recase: ^4.1.0
   rive: ^0.13.12
   sliver_tools: ^0.2.10
