@@ -1,5 +1,4 @@
 import 'package:word_by_word_game/common_imports.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 class TechLevelAchievedDialog extends StatelessWidget {
   const TechLevelAchievedDialog({

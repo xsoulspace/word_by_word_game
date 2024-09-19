@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import '../../wbw_design_core.dart';
-import '../theme/color_palette.dart';
 import '../widgets/game_menu_button.dart';
 
 typedef SimpleMainMenuTuple = ({
@@ -62,11 +61,103 @@ class SimpleMainMenu extends StatelessWidget {
               right: 8,
               child: KeyboardBindingsTips(),
             ),
-          Positioned(
-            right: MediaQuery.sizeOf(context).width * 0.18,
-            top: 0,
-            bottom: 0,
-            child: _UiMainMenuList(tuple: tuple),
+          Positioned.fill(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Expanded(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Flexible(
+                            child: Padding(
+                              padding: EdgeInsets.only(
+                                left: 16,
+                              ),
+                              child: UiMenuActionPane(),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(
+                    left: MediaQuery.sizeOf(context).width * 0.18 / 2,
+                    right: MediaQuery.sizeOf(context).width * 0.18,
+                  ),
+                  child: _UiMainMenuList(tuple: tuple),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class UiMenuActionPane extends StatelessWidget {
+  const UiMenuActionPane({super.key});
+
+  @override
+  Widget build(final BuildContext context) {
+    const verticalPadding = 22.0;
+    const height = 150.0;
+    final verticalLine = ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxHeight: height,
+      ),
+      child: const RotatedBox(
+        quarterTurns: 1,
+        child: Row(
+          children: [
+            Gap(verticalPadding),
+            UiTriangle(
+              color: UiColors.mediumLight,
+            ),
+            Gap(16),
+            Expanded(child: UiLinearDivider()),
+            Gap(16),
+            UiTriangle(
+              color: UiColors.mediumLight,
+            ),
+            Gap(verticalPadding),
+          ],
+        ),
+      ),
+    );
+    return DialogScaffold(
+      builder: (final context) => Stack(
+        children: [
+          Row(
+            children: [
+              verticalLine,
+              const Spacer(),
+              verticalLine,
+            ],
+          ),
+          const Column(
+            children: [
+              Gap(12),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  UiAnimatedText(
+                    'Start a new game',
+                    textStyle: TextStyle(
+                      fontSize: 22,
+                      color: UiColors.mediumDark,
+                    ),
+                  ),
+                ],
+              ),
+              Gap(12),
+            ],
           ),
         ],
       ),
@@ -84,11 +175,15 @@ class _UiMainMenuList extends StatelessWidget {
     const leadingGap = 8.0;
     const iconWidth = 24.0;
     const leadingGapWithIcon = leadingGap + iconWidth;
-    const divider = Row(
-      children: [
-        Gap(leadingGapWithIcon),
-        UiLinearDivider(),
-      ],
+    const divider = Padding(
+      padding: EdgeInsets.symmetric(vertical: 8),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Gap(leadingGapWithIcon),
+          UiLinearDivider(),
+        ],
+      ),
     );
 
     return Column(
@@ -96,6 +191,7 @@ class _UiMainMenuList extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const Gap(leadingGapWithIcon),
             UiAnimatedText(
@@ -119,10 +215,9 @@ class _UiMainMenuList extends StatelessWidget {
           label: 'restart',
           focusIcon: Icons.timer_outlined,
         ),
-        const Divider(),
         divider,
-        const Divider(),
         Row(
+          mainAxisSize: MainAxisSize.min,
           children: [
             const Gap(leadingGapWithIcon),
             UiAnimatedText(
@@ -146,9 +241,7 @@ class _UiMainMenuList extends StatelessWidget {
           label: 'choose',
           focusIcon: Icons.explore_outlined,
         ),
-        const Divider(),
         divider,
-        const Divider(),
         GameMenuButton(
           // icon: Icons.settings_outlined,
           onPressed: tuple.onSettings,
@@ -291,6 +384,55 @@ class _LinearDividerPainter extends CustomPainter {
       ..lineTo(centerX, centerY - triangleSize / 2)
       ..lineTo(centerX + triangleSize, centerY)
       ..lineTo(centerX, centerY + triangleSize / 2)
+      ..close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant final CustomPainter oldDelegate) => false;
+}
+
+class UiTriangle extends StatelessWidget {
+  const UiTriangle({
+    super.key,
+    this.size = 5.0,
+    this.color,
+  });
+
+  final double size;
+  final Color? color;
+
+  @override
+  Widget build(final BuildContext context) => CustomPaint(
+        painter: _TrianglePainter(
+          size: size,
+          color: color ?? UiColors.mediumLight.withOpacity(0.5),
+        ),
+        size: Size(size * 2, size),
+      );
+}
+
+class _TrianglePainter extends CustomPainter {
+  _TrianglePainter({
+    required this.size,
+    required this.color,
+  });
+
+  final double size;
+  final Color color;
+
+  @override
+  void paint(final Canvas canvas, final Size size) {
+    final paint = Paint()
+      ..color = color
+      ..style = PaintingStyle.fill;
+
+    final path = Path()
+      ..moveTo(0, size.height / 2)
+      ..lineTo(size.width / 2, 0)
+      ..lineTo(size.width, size.height / 2)
+      ..lineTo(size.width / 2, size.height)
       ..close();
 
     canvas.drawPath(path, paint);

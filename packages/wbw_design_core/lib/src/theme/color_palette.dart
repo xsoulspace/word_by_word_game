@@ -5,12 +5,12 @@ import 'package:flutter/material.dart';
 
 class UiColors {
   UiColors._();
-  static const dark = Color(0xFF1F1F1F); // Main dark color
-  static final darkO50 = dark.withOpacity(0.5); // Main dark color
-  static const mediumDark = Color(0xFF6B6B6B); // Medium dark color
-  static const mediumLight = Color(0xFFAEAEAE); // Medium light color
-  static const light = Color(0xFFCECECE); // Light color
-  static const offWhite = Color(0xFFFAFAFB); // Off-white color
+  static const dark = Color(0xFF1F1F1F);
+  static final darkO50 = dark.withOpacity(0.5);
+  static const mediumDark = Color(0xFF6B6B6B);
+  static const mediumLight = Color(0xFFAEAEAE);
+  static const light = Color(0xFFCECECE);
+  static const offWhite = Color(0xFFFAFAFB);
 
   // Additional colors can be added here as needed
 }

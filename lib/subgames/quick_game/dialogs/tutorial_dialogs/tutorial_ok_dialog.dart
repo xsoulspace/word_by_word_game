@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/core/dialog_controller.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 class TutorialOkDialog extends StatelessWidget {
   const TutorialOkDialog({super.key});

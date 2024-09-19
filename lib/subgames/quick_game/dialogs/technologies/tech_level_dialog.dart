@@ -2,7 +2,6 @@
 
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
-import 'package:word_by_word_game/subgames/quick_game/dialogs/widgets/widgets.dart';
 
 class TechLevelsDialog extends StatelessWidget {
   const TechLevelsDialog({required this.onClose, super.key});

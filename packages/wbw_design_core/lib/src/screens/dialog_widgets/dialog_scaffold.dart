@@ -1,6 +1,7 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:wbw_core/wbw_core.dart';
+
+import '../../../wbw_design_core.dart';
 
 class DialogScaffold extends StatelessWidget {
   const DialogScaffold({
@@ -9,6 +10,7 @@ class DialogScaffold extends StatelessWidget {
     this.bottom,
     this.top,
     this.padding,
+    this.semanticsContainer = true,
     super.key,
   }) : assert(
           children != null || builder != null,
@@ -18,6 +20,7 @@ class DialogScaffold extends StatelessWidget {
   final Widget? bottom;
   final Widget? top;
   final WidgetBuilder? builder;
+  final bool semanticsContainer;
   final EdgeInsets? padding;
   @override
   Widget build(final BuildContext context) {
@@ -46,13 +49,34 @@ class DialogScaffold extends StatelessWidget {
             : [body],
       );
     }
-    return AnimatedContainer(
-      duration: 50.milliseconds,
-      constraints: const BoxConstraints(
-        maxWidth: 450,
-      ),
-      child: Card(
-        child: child,
+    return Semantics(
+      container: semanticsContainer,
+      child: AnimatedContainer(
+        duration: 50.milliseconds,
+        constraints: const BoxConstraints(
+          maxWidth: 450,
+        ),
+        decoration: BoxDecoration(
+          borderRadius: const BorderRadius.all(
+            Radius.elliptical(
+              UiDecorators.radiusMedium,
+              UiDecorators.radiusLarge,
+            ),
+          ),
+          color: UiColors.offWhite,
+          boxShadow: [
+            BoxShadow(
+              color: UiColors.dark.withOpacity(0.1),
+              blurRadius: 0.5,
+              blurStyle: BlurStyle.solid,
+              offset: const Offset(0, 1),
+            ),
+          ],
+        ),
+        child: Semantics(
+          explicitChildNodes: !semanticsContainer,
+          child: child,
+        ),
       ),
     );
   }
