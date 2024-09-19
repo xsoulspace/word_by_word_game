@@ -85,21 +85,24 @@ class PauseScreen extends HookWidget {
 
           Positioned.fill(
             child: SimpleMainMenu(
-              onContinueQuick: () =>
-                  screenRouteState.value = PauseScreenRoute.adventure,
-              onNewQuick: () =>
-                  screenRouteState.value = PauseScreenRoute.adventure,
-              onContinueAdventure: () =>
-                  screenRouteState.value = PauseScreenRoute.adventure,
-              onChooseAdventure: () =>
-                  screenRouteState.value = PauseScreenRoute.adventure,
-              onPlayersAndHighscore: () =>
-                  screenRouteState.value = PauseScreenRoute.playersAndHighscore,
-              onCredits: () =>
-                  screenRouteState.value = PauseScreenRoute.credits,
-              onSettings: () =>
-                  screenRouteState.value = PauseScreenRoute.settings,
-              onExit: () => screenRouteState.value = PauseScreenRoute.mainMenu,
+              tuple: (
+                onContinueQuick: () =>
+                    screenRouteState.value = PauseScreenRoute.adventure,
+                onNewQuick: () =>
+                    screenRouteState.value = PauseScreenRoute.adventure,
+                onContinueAdventure: () =>
+                    screenRouteState.value = PauseScreenRoute.adventure,
+                onChooseAdventure: () =>
+                    screenRouteState.value = PauseScreenRoute.adventure,
+                onPlayersAndHighscore: () => screenRouteState.value =
+                    PauseScreenRoute.playersAndHighscore,
+                onCredits: () =>
+                    screenRouteState.value = PauseScreenRoute.credits,
+                onSettings: () =>
+                    screenRouteState.value = PauseScreenRoute.settings,
+                onExit: () =>
+                    screenRouteState.value = PauseScreenRoute.mainMenu,
+              ),
             ),
           ),
 

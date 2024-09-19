@@ -95,6 +95,7 @@ class _GameMenuButtonState extends State<GameMenuButton>
         (focused ? UiColors.dark : UiColors.mediumDark).withOpacity(0.9);
     return FocusableActionDetector(
       focusNode: _focusNode,
+      mouseCursor: SystemMouseCursors.click,
       onShowHoverHighlight: (final isHovered) {
         setState(() => _isHovered = isHovered);
         _focusNode.requestFocus();
@@ -153,7 +154,7 @@ class _GameMenuButtonState extends State<GameMenuButton>
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         vertical:
-                            widget.styleType == ButtonStyleType.text ? 6 : 12,
+                            widget.styleType == ButtonStyleType.text ? 2 : 12,
                         horizontal: 16,
                       ),
                       child: Row(
@@ -163,7 +164,7 @@ class _GameMenuButtonState extends State<GameMenuButton>
                             Icon(
                               widget.icon,
                               color: textColor,
-                              size: 24,
+                              size: 20,
                             ),
                             const Gap(8),
                           ],

@@ -9,27 +9,24 @@ import '../../wbw_design_core.dart';
 import '../theme/color_palette.dart';
 import '../widgets/game_menu_button.dart';
 
+typedef SimpleMainMenuTuple = ({
+  VoidCallback onSettings,
+  VoidCallback onExit,
+  VoidCallback onPlayersAndHighscore,
+  VoidCallback onCredits,
+  VoidCallback onContinueQuick,
+  VoidCallback onNewQuick,
+  VoidCallback onContinueAdventure,
+  VoidCallback onChooseAdventure,
+});
+
 class SimpleMainMenu extends StatelessWidget {
   const SimpleMainMenu({
-    required this.onSettings,
-    required this.onExit,
-    required this.onPlayersAndHighscore,
-    required this.onCredits,
-    required this.onContinueQuick,
-    required this.onNewQuick,
-    required this.onContinueAdventure,
-    required this.onChooseAdventure,
+    required this.tuple,
     super.key,
   });
 
-  final VoidCallback onSettings;
-  final VoidCallback onExit;
-  final VoidCallback onPlayersAndHighscore;
-  final VoidCallback onCredits;
-  final VoidCallback onContinueQuick;
-  final VoidCallback onNewQuick;
-  final VoidCallback onContinueAdventure;
-  final VoidCallback onChooseAdventure;
+  final SimpleMainMenuTuple tuple;
 
   @override
   Widget build(final BuildContext context) {
@@ -60,98 +57,16 @@ class SimpleMainMenu extends StatelessWidget {
         fit: StackFit.expand,
         children: [
           if (DeviceRuntimeType.isNativeDesktop)
-            Positioned(
+            const Positioned(
               bottom: 8,
               right: 8,
-              child: const KeyboardBindingsTips()
-                  .animate()
-                  .slideY(
-                    begin: 1,
-                    end: 0,
-                    curve: Curves.easeInOut,
-                    duration: 1200.milliseconds,
-                  )
-                  .fadeIn(
-                    duration: 1500.milliseconds,
-                    curve: Curves.easeInOut,
-                  ),
+              child: KeyboardBindingsTips(),
             ),
           Positioned(
-            right: MediaQuery.sizeOf(context).width * 0.17,
+            right: MediaQuery.sizeOf(context).width * 0.18,
             top: 0,
             bottom: 0,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    const Icon(Icons.timer_outlined, color: UiColors.light),
-                    const Gap(19),
-                    UiAnimatedText(
-                      'QUICK PLAY',
-                      textStyle: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: UiColors.mediumLight.withOpacity(0.9),
-                      ),
-                    ),
-                  ],
-                ),
-                const Gap(3),
-                GameMenuButton(
-                  onPressed: onContinueQuick,
-                  label: 'Continue',
-                ),
-                GameMenuButton(
-                  onPressed: onNewQuick,
-                  label: 'Restart',
-                ),
-                const Divider(),
-                const Divider(),
-                Row(
-                  children: [
-                    const Icon(Icons.explore_outlined, color: UiColors.light),
-                    const Gap(19),
-                    UiAnimatedText(
-                      'ADVENTURE',
-                      textStyle: TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.bold,
-                        color: UiColors.mediumLight.withOpacity(0.9),
-                      ),
-                    ),
-                  ],
-                ),
-                const Gap(3),
-                GameMenuButton(
-                  onPressed: onContinueAdventure,
-                  label: 'Continue',
-                ),
-                GameMenuButton(
-                  onPressed: onChooseAdventure,
-                  label: 'Choose',
-                ),
-                const Divider(),
-                const Divider(),
-                GameMenuButton(
-                  // icon: Icons.settings_outlined,
-                  onPressed: onSettings,
-                  label: 'Settings',
-                ),
-                GameMenuButton(
-                  // icon: Icons.roundabout_left,
-                  onPressed: onCredits,
-                  label: 'Credits',
-                ),
-                if (DeviceRuntimeType.isDesktop)
-                  GameMenuButton(
-                    // icon: Icons.exit_to_app_outlined,
-                    onPressed: onExit,
-                    label: 'Quit',
-                  ),
-              ],
-            ),
+            child: _UiMainMenuList(tuple: tuple),
           ),
         ],
       ),
@@ -159,57 +74,225 @@ class SimpleMainMenu extends StatelessWidget {
   }
 }
 
+class _UiMainMenuList extends StatelessWidget {
+  const _UiMainMenuList({required this.tuple, super.key});
+
+  final SimpleMainMenuTuple tuple;
+
+  @override
+  Widget build(final BuildContext context) {
+    const leadingGap = 19.0;
+    const divider = Row(
+      children: [
+        Gap(leadingGap + 24),
+        UiLinearDivider(),
+      ],
+    );
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            const Icon(Icons.timer_outlined, color: UiColors.light),
+            const Gap(leadingGap),
+            UiAnimatedText(
+              'QUICK PLAY',
+              textStyle: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: UiColors.mediumLight.withOpacity(0.9),
+              ),
+            ),
+          ],
+        ),
+        const Gap(3),
+        GameMenuButton(
+          onPressed: tuple.onContinueQuick,
+          label: 'continue',
+        ),
+        GameMenuButton(
+          onPressed: tuple.onNewQuick,
+          label: 'restart',
+        ),
+        const Divider(),
+        divider,
+        const Divider(),
+        Row(
+          children: [
+            const Icon(Icons.explore_outlined, color: UiColors.light),
+            const Gap(leadingGap),
+            UiAnimatedText(
+              'ADVENTURE',
+              textStyle: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: UiColors.mediumLight.withOpacity(0.9),
+              ),
+            ),
+          ],
+        ),
+        const Gap(3),
+        GameMenuButton(
+          onPressed: tuple.onContinueAdventure,
+          label: 'continue',
+        ),
+        GameMenuButton(
+          onPressed: tuple.onChooseAdventure,
+          label: 'choose',
+        ),
+        const Divider(),
+        divider,
+        const Divider(),
+        GameMenuButton(
+          // icon: Icons.settings_outlined,
+          onPressed: tuple.onSettings,
+          label: 'settings',
+        ),
+        GameMenuButton(
+          // icon: Icons.roundabout_left,
+          onPressed: tuple.onCredits,
+          label: 'credits',
+        ),
+        if (DeviceRuntimeType.isDesktop)
+          GameMenuButton(
+            // icon: Icons.exit_to_app_outlined,
+            onPressed: tuple.onExit,
+            label: 'quit',
+          ),
+      ],
+    ).animate().fadeIn(
+          duration: 1200.milliseconds,
+          curve: Curves.easeInOutBack,
+        );
+  }
+}
+
 class KeyboardBindingsTips extends HookWidget {
-  const KeyboardBindingsTips({super.key});
+  const KeyboardBindingsTips({super.key, this.hasBack = true});
+  final bool hasBack;
 
   @override
   Widget build(final BuildContext context) {
     final bindings = context.watch<KeyboardBindingsNotifier>();
-    return Container(
-      decoration: BoxDecoration(
-        color: UiColors.mediumDark,
-        borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
-      ),
-      padding: const EdgeInsets.symmetric(
-        vertical: 6,
-        horizontal: 12,
-      ),
-      child: DefaultTextStyle.merge(
-        style: const TextStyle(
-          color: UiColors.offWhite,
-          fontSize: UiFontSizes.s12,
+    final hovered = useState(false);
+    return FocusableActionDetector(
+      descendantsAreFocusable: false,
+      onShowHoverHighlight: (final isHovered) => hovered.value = isHovered,
+      child: AnimatedContainer(
+        duration: 300.milliseconds,
+        decoration: BoxDecoration(
+          color: UiColors.mediumDark.withOpacity(hovered.value ? 0.9 : 0.5),
+          borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          children: [
-            _KeyButton(
-              keyTitle: bindings
-                  .getBindingDefaultTitle(KeyboardBindingsType.mainMenuUp),
-              title: 'Up',
-            ),
-            const Gap(12),
-            _KeyButton(
-              keyTitle: bindings
-                  .getBindingDefaultTitle(KeyboardBindingsType.mainMenuDown),
-              title: 'Down',
-            ),
-            const Gap(12),
-            _KeyButton(
-              keyTitle: bindings
-                  .getBindingDefaultTitle(KeyboardBindingsType.mainMenuSelect),
-              title: 'Select',
-            ),
-            const Gap(12),
-            _KeyButton(
-              keyTitle: bindings
-                  .getBindingDefaultTitle(KeyboardBindingsType.mainMenuBack),
-              title: 'Back',
-            ),
-          ],
+        padding: const EdgeInsets.symmetric(
+          vertical: 6,
+          horizontal: 12,
         ),
-      ),
+        child: DefaultTextStyle.merge(
+          style: const TextStyle(
+            color: UiColors.offWhite,
+            fontSize: UiFontSizes.s12,
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              _KeyButton(
+                keyTitle: bindings
+                    .getBindingDefaultTitle(KeyboardBindingsType.mainMenuUp),
+                title: 'Up',
+              ),
+              const Gap(12),
+              _KeyButton(
+                keyTitle: bindings
+                    .getBindingDefaultTitle(KeyboardBindingsType.mainMenuDown),
+                title: 'Down',
+              ),
+              const Gap(12),
+              _KeyButton(
+                keyTitle: bindings.getBindingDefaultTitle(
+                  KeyboardBindingsType.mainMenuSelect,
+                ),
+                title: 'Select',
+              ),
+              if (hasBack) ...[
+                const Gap(12),
+                _KeyButton(
+                  keyTitle: bindings.getBindingDefaultTitle(
+                    KeyboardBindingsType.mainMenuBack,
+                  ),
+                  title: 'Back',
+                ),
+              ],
+            ],
+          ),
+        ),
+      )
+          .animate()
+          .slideY(
+            begin: 1,
+            end: 0,
+            curve: Curves.easeInOut,
+            duration: 1200.milliseconds,
+          )
+          .fadeIn(
+            duration: 1500.milliseconds,
+            curve: Curves.easeInOut,
+          ),
     );
   }
+}
+
+/// --- <> ---
+class UiLinearDivider extends StatelessWidget {
+  const UiLinearDivider({super.key});
+
+  @override
+  Widget build(final BuildContext context) => CustomPaint(
+        painter: _LinearDividerPainter(),
+        size: const Size(60, 20),
+      );
+}
+
+class _LinearDividerPainter extends CustomPainter {
+  @override
+  void paint(final Canvas canvas, final Size size) {
+    final paint = Paint()
+      ..color = UiColors.mediumLight.withOpacity(0.5)
+      ..strokeWidth = 1
+      ..style = PaintingStyle.stroke;
+
+    const triangleSize = 8.0;
+    final centerX = size.width / 2;
+    final centerY = size.height / 2;
+
+    // Draw left line
+    canvas.drawLine(
+      Offset(0, centerY),
+      Offset(centerX - triangleSize, centerY),
+      paint,
+    );
+
+    // Draw right line
+    canvas.drawLine(
+      Offset(centerX + triangleSize, centerY),
+      Offset(size.width, centerY),
+      paint,
+    );
+
+    // Draw triangle
+    final path = Path()
+      ..moveTo(centerX - triangleSize, centerY)
+      ..lineTo(centerX, centerY - triangleSize / 2)
+      ..lineTo(centerX + triangleSize, centerY)
+      ..lineTo(centerX, centerY + triangleSize / 2)
+      ..close();
+
+    canvas.drawPath(path, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant final CustomPainter oldDelegate) => false;
 }
 
 class _KeyButton extends StatelessWidget {
