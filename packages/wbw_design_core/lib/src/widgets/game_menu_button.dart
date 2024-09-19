@@ -19,6 +19,7 @@ class GameMenuButton extends StatefulWidget {
     this.borderWidth,
     this.radius,
     this.textStyle,
+    this.focusIcon = Icons.arrow_forward_ios_rounded,
     super.key,
   });
   final TextStyle? textStyle;
@@ -36,7 +37,8 @@ class GameMenuButton extends StatefulWidget {
   final List<Color>? gradientColors;
   final double? borderWidth;
   final double? radius;
-  final FocusNode? focusNode; // Add this line
+  final FocusNode? focusNode;
+  final IconData? focusIcon;
 
   @override
   _GameMenuButtonState createState() => _GameMenuButtonState();
@@ -49,7 +51,6 @@ class _GameMenuButtonState extends State<GameMenuButton>
   bool _isFocused = false;
 
   late AnimationController _controller;
-  late Animation<double> _scaleAnimation;
   final FocusNode _focusNode = FocusNode();
 
   @override
@@ -61,7 +62,6 @@ class _GameMenuButtonState extends State<GameMenuButton>
       lowerBound: 0.95,
       value: 1,
     );
-    _scaleAnimation = _controller.drive(Tween<double>(begin: 0.95, end: 1));
   }
 
   void _onTapDown(final TapDownDetails details) {
@@ -93,6 +93,7 @@ class _GameMenuButtonState extends State<GameMenuButton>
     final focused = _isFocused || _isHovered;
     final textColor =
         (focused ? UiColors.dark : UiColors.mediumDark).withOpacity(0.9);
+    final showFocusIcon = widget.focusIcon != null;
     return FocusableActionDetector(
       focusNode: _focusNode,
       mouseCursor: SystemMouseCursors.click,
@@ -111,19 +112,16 @@ class _GameMenuButtonState extends State<GameMenuButton>
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            SizedBox(
-              width: 24,
-              child: AnimatedOpacity(
+            if (showFocusIcon)
+              AnimatedOpacity(
                 opacity: _isFocused ? 1.0 : 0.0,
                 duration: const Duration(milliseconds: 100),
                 child: Icon(
-                  Icons.arrow_forward_ios_rounded,
+                  widget.focusIcon,
                   color: textColor,
                   size: 24,
                 ),
               ),
-            ),
-            const Gap(4),
             Flexible(
               child: AnimatedScale(
                 scale: _isTapped ? 0.95 : 1.0,
@@ -154,8 +152,9 @@ class _GameMenuButtonState extends State<GameMenuButton>
                     child: Padding(
                       padding: EdgeInsets.symmetric(
                         vertical:
-                            widget.styleType == ButtonStyleType.text ? 2 : 12,
-                        horizontal: 16,
+                            widget.styleType == ButtonStyleType.text ? 2.5 : 12,
+                        horizontal:
+                            widget.styleType == ButtonStyleType.text ? 8 : 16,
                       ),
                       child: Row(
                         mainAxisSize: MainAxisSize.min,

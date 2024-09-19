@@ -81,21 +81,23 @@ class _UiMainMenuList extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    const leadingGap = 19.0;
+    const leadingGap = 8.0;
+    const iconWidth = 24.0;
+    const leadingGapWithIcon = leadingGap + iconWidth;
     const divider = Row(
       children: [
-        Gap(leadingGap + 24),
+        Gap(leadingGapWithIcon),
         UiLinearDivider(),
       ],
     );
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Row(
           children: [
-            const Icon(Icons.timer_outlined, color: UiColors.light),
-            const Gap(leadingGap),
+            const Gap(leadingGapWithIcon),
             UiAnimatedText(
               'QUICK PLAY',
               textStyle: TextStyle(
@@ -110,18 +112,19 @@ class _UiMainMenuList extends StatelessWidget {
         GameMenuButton(
           onPressed: tuple.onContinueQuick,
           label: 'continue',
+          focusIcon: Icons.timer_outlined,
         ),
         GameMenuButton(
           onPressed: tuple.onNewQuick,
           label: 'restart',
+          focusIcon: Icons.timer_outlined,
         ),
         const Divider(),
         divider,
         const Divider(),
         Row(
           children: [
-            const Icon(Icons.explore_outlined, color: UiColors.light),
-            const Gap(leadingGap),
+            const Gap(leadingGapWithIcon),
             UiAnimatedText(
               'ADVENTURE',
               textStyle: TextStyle(
@@ -136,10 +139,12 @@ class _UiMainMenuList extends StatelessWidget {
         GameMenuButton(
           onPressed: tuple.onContinueAdventure,
           label: 'continue',
+          focusIcon: Icons.explore_outlined,
         ),
         GameMenuButton(
           onPressed: tuple.onChooseAdventure,
           label: 'choose',
+          focusIcon: Icons.explore_outlined,
         ),
         const Divider(),
         divider,
