@@ -31,7 +31,10 @@ class _PixelArtCreatorState extends State<PixelArtCreator> {
           body: Column(
             children: [
               ToolPalette(),
-              SizedBox(
+              Container(
+                decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black),
+                ),
                 width: _canvasSize.width,
                 height: _canvasSize.height,
                 child: const PixelCanvas(),

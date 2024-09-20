@@ -239,10 +239,6 @@ class _UiMainMenuList extends StatelessWidget {
             ),
           ],
         ),
-        UiPixelButton(
-          onPressed: tuple.onContinueAdventure,
-          child: const Text('continue'),
-        ),
         const Gap(3),
         GameMenuButton(
           onPressed: tuple.onContinueAdventure,

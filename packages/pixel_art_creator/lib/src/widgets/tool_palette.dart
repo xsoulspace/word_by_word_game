@@ -1,5 +1,5 @@
-// ```dart:packages/pixel_art_creator/lib/src/widgets/tool_palette.dart
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/pixel_provider.dart';
@@ -39,15 +39,26 @@ class ToolPalette extends StatelessWidget {
                   label: 'Eraser',
                 ),
                 const SizedBox(width: 20),
-                const Text('Size'),
-                Consumer<PixelProvider>(
-                  builder: (context, provider, child) => Slider(
-                    value: provider.pixelSize,
-                    min: 5,
-                    max: 20,
-                    divisions: 3,
-                    label: provider.pixelSize.toInt().toString(),
-                    onChanged: provider.setPixelSize,
+                const Text('Grid Size:'),
+                const SizedBox(width: 10),
+                SizedBox(
+                  width: 100,
+                  child: Consumer<PixelProvider>(
+                    builder: (context, provider, child) => TextFormField(
+                      initialValue: provider.gridSize.toString(),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [FilteringTextInputFormatter.digitsOnly],
+                      onChanged: (value) {
+                        final size = int.tryParse(value);
+                        if (size != null && size > 0) {
+                          provider.setGridSize(size);
+                        }
+                      },
+                      decoration: const InputDecoration(
+                        hintText: 'e.g., 16',
+                        suffixText: 'px',
+                      ),
+                    ),
                   ),
                 ),
               ],

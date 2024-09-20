@@ -1,8 +1,7 @@
-// ```dart:packages/pixel_art_creator/lib/src/widgets/pixel_canvas.dart
 import 'package:flutter/material.dart';
+import 'package:pixel_art_creator/src/models/pixel.dart';
 import 'package:provider/provider.dart';
 
-import '../models/pixel.dart';
 import '../providers/pixel_provider.dart';
 
 class PixelCanvas extends StatefulWidget {
@@ -16,67 +15,83 @@ class _PixelCanvasState extends State<PixelCanvas> {
   Offset? _startPoint;
 
   @override
-  Widget build(final BuildContext context) => GestureDetector(
-        onTapUp: (details) {
-          final box = context.findRenderObject()! as RenderBox;
-          final localPos = box.globalToLocal(details.globalPosition);
-          final provider = context.read<PixelProvider>();
+  Widget build(BuildContext context) => Consumer<PixelProvider>(
+        builder: (context, provider, child) => GestureDetector(
+          onPanUpdate: (details) {
+            final box = context.findRenderObject()! as RenderBox;
+            final localPos = box.globalToLocal(details.globalPosition);
+            final snappedPos = _snapToGrid(localPos, provider.gridSize);
 
-          switch (provider.currentTool) {
-            case Tool.pixel:
-              provider.addPixel(
-                  Pixel(position: localPos, size: provider.pixelSize));
-              break;
-            case Tool.eraser:
-              provider.erase(localPos);
-              break;
-            case Tool.line:
-            case Tool.border:
-              if (_startPoint == null) {
-                setState(() {
-                  _startPoint = localPos;
-                });
-              } else {
-                if (provider.currentTool == Tool.line) {
-                  provider.drawLine(_startPoint!, localPos, Colors.black);
-                } else if (provider.currentTool == Tool.border) {
-                  provider.drawBorder(_startPoint!, localPos, Colors.black);
+            switch (provider.currentTool) {
+              case Tool.pixel:
+                provider.addPixel(Pixel(
+                    position: snappedPos,
+                    color: Colors.black,
+                    size: provider.gridSize.toDouble()));
+                break;
+              case Tool.eraser:
+                provider.erase(snappedPos);
+                break;
+              case Tool.line:
+                if (_startPoint != null) {
+                  provider.drawLine(_startPoint!, snappedPos, Colors.black);
                 }
-                setState(() {
-                  _startPoint = null;
-                });
-              }
-              break;
-            default:
-              break;
-          }
-        },
-        child: Consumer<PixelProvider>(
-          builder: (context, pixelProvider, child) => CustomPaint(
+                break;
+              case Tool.border:
+                if (_startPoint != null) {
+                  provider.drawBorder(_startPoint!, snappedPos, Colors.black);
+                }
+                break;
+            }
+          },
+          onPanStart: (details) {
+            final box = context.findRenderObject()! as RenderBox;
+            final localPos = box.globalToLocal(details.globalPosition);
+            _startPoint = _snapToGrid(localPos, provider.gridSize);
+          },
+          onPanEnd: (_) => _startPoint = null,
+          child: CustomPaint(
             size: Size.infinite,
-            painter: PixelPainter(pixels: pixelProvider.pixels),
+            painter: PixelPainter(
+                colorRects: provider.colorRects, gridSize: provider.gridSize),
           ),
         ),
+      );
+
+  Offset _snapToGrid(Offset position, int gridSize) => Offset(
+        (position.dx / gridSize).round() * gridSize.toDouble(),
+        (position.dy / gridSize).round() * gridSize.toDouble(),
       );
 }
 
 class PixelPainter extends CustomPainter {
-  final List<Pixel> pixels;
+  final Map<Color, List<Rect>> colorRects;
+  final int gridSize;
 
-  PixelPainter({required this.pixels});
+  PixelPainter({required this.colorRects, required this.gridSize});
 
   @override
-  void paint(final Canvas canvas, final Size size) {
-    for (final pixel in pixels) {
-      final paint = Paint()..color = pixel.color;
-      final rect = Rect.fromLTWH(
-        pixel.position.dx,
-        pixel.position.dy,
-        pixel.size,
-        pixel.size,
-      );
-      canvas.drawRect(rect, paint);
+  void paint(Canvas canvas, Size size) {
+    final paint = Paint();
+
+    // Draw grid
+    paint.color = Colors.grey.withOpacity(0.3);
+    for (var i = 0; i < size.width; i += gridSize) {
+      canvas.drawLine(
+          Offset(i.toDouble(), 0), Offset(i.toDouble(), size.height), paint);
     }
+    for (var i = 0; i < size.height; i += gridSize) {
+      canvas.drawLine(
+          Offset(0, i.toDouble()), Offset(size.width, i.toDouble()), paint);
+    }
+
+    // Draw optimized pixel rects
+    colorRects.forEach((color, rects) {
+      paint.color = color;
+      for (final rect in rects) {
+        canvas.drawRect(rect, paint);
+      }
+    });
   }
 
   @override
