@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../../wbw_design_core.dart';
 import '../theme/color_palette copy.dart';
-import '../theme/color_palette.dart';
 import 'game_menu_button_painter.dart';
 
 class GameMenuButton extends StatefulWidget {
@@ -96,7 +95,6 @@ class _GameMenuButtonState extends State<GameMenuButton>
     final showFocusIcon = widget.focusIcon != null;
     return FocusableActionDetector(
       focusNode: _focusNode,
-      mouseCursor: SystemMouseCursors.click,
       onShowHoverHighlight: (final isHovered) {
         setState(() => _isHovered = isHovered);
         _focusNode.requestFocus();
@@ -109,80 +107,70 @@ class _GameMenuButtonState extends State<GameMenuButton>
         onTapDown: _onTapDown,
         onTapUp: _onTapUp,
         onTapCancel: _onTapCancel,
-        child: Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (showFocusIcon)
-              AnimatedOpacity(
-                opacity: _isFocused ? 1.0 : 0.0,
-                duration: const Duration(milliseconds: 100),
-                child: Icon(
-                  widget.focusIcon,
-                  color: textColor,
-                  size: 24,
-                ),
-              ),
-            Flexible(
-              child: AnimatedScale(
-                scale: _isTapped ? 0.95 : 1.0,
-                duration: const Duration(milliseconds: 100),
-                curve: Curves.easeOut,
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  decoration: BoxDecoration(
-                    boxShadow: focused
-                        ? [
-                            BoxShadow(
-                              color: UiColors.light.withOpacity(0.1),
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ]
-                        : [],
+        child: AnimatedScale(
+          filterQuality: FilterQuality.high,
+          scale: () {
+            if (_isTapped) return 0.95;
+            return 1.0;
+          }(),
+          duration: const Duration(milliseconds: 80),
+          curve: Curves.ease,
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (showFocusIcon)
+                AnimatedOpacity(
+                  opacity: _isFocused ? 1.0 : 0.0,
+                  duration: const Duration(milliseconds: 150),
+                  child: Icon(
+                    widget.focusIcon,
+                    color: textColor,
+                    size: 24,
                   ),
-                  child: CustomPaint(
-                    painter: GameMenuButtonPainter(
-                      styleType: widget.styleType,
-                      color: buttonColor,
-                      borderColor: buttonBorderColor,
-                      gradientColors: widget.gradientColors,
-                      borderWidth: widget.borderWidth ?? 2.0,
-                      radius: buttonRadius,
+                ),
+              Flexible(
+                child: CustomPaint(
+                  painter: GameMenuButtonPainter(
+                    styleType: widget.styleType,
+                    color: buttonColor,
+                    borderColor: buttonBorderColor,
+                    gradientColors: widget.gradientColors,
+                    borderWidth: widget.borderWidth ?? 2.0,
+                    radius: buttonRadius,
+                  ),
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(
+                      vertical:
+                          widget.styleType == ButtonStyleType.text ? 2.5 : 12,
+                      horizontal:
+                          widget.styleType == ButtonStyleType.text ? 8 : 16,
                     ),
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(
-                        vertical:
-                            widget.styleType == ButtonStyleType.text ? 2.5 : 12,
-                        horizontal:
-                            widget.styleType == ButtonStyleType.text ? 8 : 16,
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          if (widget.icon != null) ...[
-                            Icon(
-                              widget.icon,
-                              color: textColor,
-                              size: 20,
-                            ),
-                            const Gap(8),
-                          ],
-                          UiAnimatedText(
-                            widget.label,
-                            textStyle: widget.textStyle ??
-                                TextStyle(
-                                  color: textColor,
-                                  fontSize: 24,
-                                ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (widget.icon != null) ...[
+                          Icon(
+                            widget.icon,
+                            color: textColor,
+                            size: 20,
                           ),
+                          const Gap(8),
                         ],
-                      ),
+                        UiAnimatedText(
+                          widget.label,
+                          textStyle: widget.textStyle ??
+                              TextStyle(
+                                color: textColor,
+                                fontSize: 24,
+                              ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

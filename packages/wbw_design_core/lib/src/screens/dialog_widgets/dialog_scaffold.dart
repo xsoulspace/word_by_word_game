@@ -1,9 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:life_hooks/life_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import '../../../wbw_design_core.dart';
 
-class DialogScaffold extends StatelessWidget {
+class DialogScaffold extends HookWidget {
   const DialogScaffold({
     this.children,
     this.builder,
@@ -22,13 +25,16 @@ class DialogScaffold extends StatelessWidget {
   final WidgetBuilder? builder;
   final bool semanticsContainer;
   final EdgeInsets? padding;
+
   @override
   Widget build(final BuildContext context) {
+    final hovered = useIsBool();
     final uiTheme = context.uiTheme;
     final bottom = this.bottom;
     final top = this.top;
     final padding = this.padding ?? EdgeInsets.all(uiTheme.spacing.extraLarge);
     Widget child;
+
     if (builder != null) {
       child = Builder(builder: builder!);
     } else {
@@ -49,33 +55,35 @@ class DialogScaffold extends StatelessWidget {
             : [body],
       );
     }
-    return Semantics(
-      container: semanticsContainer,
-      child: AnimatedContainer(
-        duration: 50.milliseconds,
-        constraints: const BoxConstraints(
-          maxWidth: 450,
-        ),
-        decoration: BoxDecoration(
-          borderRadius: const BorderRadius.all(
-            Radius.elliptical(
-              UiDecorators.radiusMedium,
-              UiDecorators.radiusLarge,
+
+    return ConstrainedBox(
+      constraints: const BoxConstraints(
+        maxWidth: 450,
+      ),
+      child: MouseRegion(
+        onHover: (final event) => hovered.value = true,
+        onExit: (final event) => hovered.value = false,
+        child: Semantics(
+          container: semanticsContainer,
+          child: AnimatedScale(
+            scale: hovered.value ? 1.004 : 1.0,
+            curve: Curves.ease,
+            duration: 800.milliseconds,
+            child: Card(
+              color: UiColors.offWhite,
+              shadowColor: UiColors.light,
+              surfaceTintColor: Colors.transparent,
+              shape: const RoundedRectangleBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.elliptical(
+                    UiDecorators.radiusLarge,
+                    UiDecorators.radiusLarge,
+                  ),
+                ),
+              ),
+              child: child,
             ),
           ),
-          color: UiColors.offWhite,
-          boxShadow: [
-            BoxShadow(
-              color: UiColors.dark.withOpacity(0.1),
-              blurRadius: 0.5,
-              blurStyle: BlurStyle.solid,
-              offset: const Offset(0, 1),
-            ),
-          ],
-        ),
-        child: Semantics(
-          explicitChildNodes: !semanticsContainer,
-          child: child,
         ),
       ),
     );

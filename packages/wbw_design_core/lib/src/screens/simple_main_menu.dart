@@ -107,6 +107,7 @@ class UiMenuActionPane extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     const verticalPadding = 22.0;
+    const horizontalPadding = 16.0;
     const height = 150.0;
     final verticalLine = ConstrainedBox(
       constraints: const BoxConstraints(
@@ -141,23 +142,31 @@ class UiMenuActionPane extends StatelessWidget {
               verticalLine,
             ],
           ),
-          const Column(
-            children: [
-              Gap(12),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  UiAnimatedText(
-                    'Start a new game',
-                    textStyle: TextStyle(
-                      fontSize: 22,
-                      color: UiColors.mediumDark,
+          const Padding(
+            padding: EdgeInsets.symmetric(
+              horizontal: horizontalPadding,
+              vertical: 13,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Flexible(
+                      child: UiAnimatedText(
+                        'START A NEW GAME',
+                        textStyle: TextStyle(
+                          fontSize: 22,
+                          color: UiColors.mediumDark,
+                        ),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-              Gap(12),
-            ],
+                  ],
+                ),
+                Gap(12),
+              ],
+            ),
           ),
         ],
       ),
@@ -229,6 +238,10 @@ class _UiMainMenuList extends StatelessWidget {
               ),
             ),
           ],
+        ),
+        UiPixelButton(
+          onPressed: tuple.onContinueAdventure,
+          child: const Text('continue'),
         ),
         const Gap(3),
         GameMenuButton(

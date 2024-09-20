@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme/theme.dart';
+
 class DialogBarrier extends StatelessWidget {
   const DialogBarrier({
     required this.child,
@@ -10,10 +12,9 @@ class DialogBarrier extends StatelessWidget {
   final bool isVisible;
   @override
   Widget build(final BuildContext context) {
-    final theme = Theme.of(context);
     if (!isVisible) return const SizedBox();
     return Container(
-      color: theme.colorScheme.tertiaryContainer.withOpacity(0.6),
+      color: UiColors.light.withOpacity(0.6),
       alignment: Alignment.center,
       child: child,
     );
