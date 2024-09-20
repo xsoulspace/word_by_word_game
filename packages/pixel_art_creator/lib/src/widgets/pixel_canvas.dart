@@ -1,97 +1,122 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:pixel_art_creator/src/models/pixel.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/pixel_provider.dart';
 
-class PixelCanvas extends StatefulWidget {
-  const PixelCanvas({super.key});
+class PixelCanvas extends StatelessWidget {
+  final Size canvasSize;
+
+  const PixelCanvas({Key? key, required this.canvasSize}) : super(key: key);
 
   @override
-  _PixelCanvasState createState() => _PixelCanvasState();
-}
+  Widget build(BuildContext context) {
+    final pixelProvider = Provider.of<PixelProvider>(context);
 
-class _PixelCanvasState extends State<PixelCanvas> {
-  Offset? _startPoint;
-
-  @override
-  Widget build(BuildContext context) => Consumer<PixelProvider>(
-        builder: (context, provider, child) => GestureDetector(
-          onPanUpdate: (details) {
-            final box = context.findRenderObject()! as RenderBox;
-            final localPos = box.globalToLocal(details.globalPosition);
-            final snappedPos = _snapToGrid(localPos, provider.gridSize);
-
-            switch (provider.currentTool) {
-              case Tool.pixel:
-                provider.addPixel(Pixel(
-                    position: snappedPos,
-                    color: Colors.black,
-                    size: provider.gridSize.toDouble()));
-                break;
-              case Tool.eraser:
-                provider.erase(snappedPos);
-                break;
-              case Tool.line:
-                if (_startPoint != null) {
-                  provider.drawLine(_startPoint!, snappedPos, Colors.black);
-                }
-                break;
-              case Tool.border:
-                if (_startPoint != null) {
-                  provider.drawBorder(_startPoint!, snappedPos, Colors.black);
-                }
-                break;
-            }
-          },
-          onPanStart: (details) {
-            final box = context.findRenderObject()! as RenderBox;
-            final localPos = box.globalToLocal(details.globalPosition);
-            _startPoint = _snapToGrid(localPos, provider.gridSize);
-          },
-          onPanEnd: (_) => _startPoint = null,
-          child: CustomPaint(
-            size: Size.infinite,
-            painter: PixelPainter(
-                colorRects: provider.colorRects, gridSize: provider.gridSize),
-          ),
+    return GestureDetector(
+      onTapDown: (details) => _handleTapDown(details, pixelProvider),
+      onPanStart: (details) => _handlePanStart(details, pixelProvider),
+      onPanUpdate: (details) => _handlePanUpdate(details, pixelProvider),
+      child: MouseRegion(
+        onHover: (event) => _handleHover(event, pixelProvider),
+        child: CustomPaint(
+          size: canvasSize,
+          painter: PixelPainter(pixelProvider),
         ),
-      );
+      ),
+    );
+  }
 
-  Offset _snapToGrid(Offset position, int gridSize) => Offset(
-        (position.dx / gridSize).round() * gridSize.toDouble(),
-        (position.dy / gridSize).round() * gridSize.toDouble(),
-      );
+  void _handleTapDown(TapDownDetails details, PixelProvider provider) {
+    final position = _snapToGrid(details.localPosition, provider.gridSize);
+    _handleInteraction(position, provider);
+  }
+
+  void _handlePanStart(DragStartDetails details, PixelProvider provider) {
+    final position = _snapToGrid(details.localPosition, provider.gridSize);
+    _handleInteraction(position, provider);
+  }
+
+  void _handlePanUpdate(DragUpdateDetails details, PixelProvider provider) {
+    final position = _snapToGrid(details.localPosition, provider.gridSize);
+    _handleInteraction(position, provider);
+  }
+
+  void _handleInteraction(Offset position, PixelProvider provider) {
+    switch (provider.currentTool) {
+      case Tool.pixel:
+        provider.addPixel(Pixel(
+          position: position,
+          color: Colors.black, // Or current color
+          size: provider.gridSize.toDouble(),
+        ));
+        break;
+      case Tool.line:
+        if (provider.lineStart == null) {
+          provider.startLine(position);
+        } else {
+          provider.endLine(position);
+        }
+        break;
+      case Tool.eraser:
+        provider.erase(position);
+        break;
+      case Tool.border:
+        // Implement border tool logic here
+        break;
+    }
+  }
+
+  void _handleHover(PointerHoverEvent event, PixelProvider provider) {
+    final position = _snapToGrid(event.localPosition, provider.gridSize);
+    if (provider.currentTool == Tool.line && provider.lineStart != null) {
+      provider.updateHover(position);
+    }
+  }
+
+  Offset _snapToGrid(Offset position, int gridSize) {
+    return Offset(
+      (position.dx / gridSize).round() * gridSize.toDouble(),
+      (position.dy / gridSize).round() * gridSize.toDouble(),
+    );
+  }
 }
 
 class PixelPainter extends CustomPainter {
-  final Map<Color, List<Rect>> colorRects;
-  final int gridSize;
+  final PixelProvider pixelProvider;
 
-  PixelPainter({required this.colorRects, required this.gridSize});
+  PixelPainter(this.pixelProvider);
 
   @override
   void paint(Canvas canvas, Size size) {
-    final paint = Paint();
-
-    // Draw grid
-    paint.color = Colors.grey.withOpacity(0.3);
-    for (var i = 0; i < size.width; i += gridSize) {
-      canvas.drawLine(
-          Offset(i.toDouble(), 0), Offset(i.toDouble(), size.height), paint);
-    }
-    for (var i = 0; i < size.height; i += gridSize) {
-      canvas.drawLine(
-          Offset(0, i.toDouble()), Offset(size.width, i.toDouble()), paint);
-    }
-
-    // Draw optimized pixel rects
-    colorRects.forEach((color, rects) {
-      paint.color = color;
+    pixelProvider.colorRects.forEach((color, rects) {
+      final paint = Paint()..color = color;
       for (final rect in rects) {
         canvas.drawRect(rect, paint);
       }
     });
+
+    // Draw preview line
+    if (pixelProvider.currentTool == Tool.line &&
+        pixelProvider.lineStart != null &&
+        pixelProvider.currentHover != null) {
+      final previewPixels = pixelProvider.getPreviewLine();
+      final previewPaint = Paint()
+        ..color = Colors.black.withOpacity(0.5)
+        ..style = PaintingStyle.fill;
+      for (final pixel in previewPixels) {
+        canvas.drawRect(
+          Rect.fromLTWH(
+            pixel.dx,
+            pixel.dy,
+            pixelProvider.gridSize.toDouble(),
+            pixelProvider.gridSize.toDouble(),
+          ),
+          previewPaint,
+        );
+      }
+    }
   }
 
   @override

@@ -10,4 +10,5 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  flutter_hooks: ^0.20.5
   provider: ^6.0.0

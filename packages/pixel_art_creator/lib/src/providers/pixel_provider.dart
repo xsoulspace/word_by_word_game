@@ -9,10 +9,24 @@ class PixelProvider extends ChangeNotifier {
   final Map<Color, List<Rect>> _colorRects = {};
   Tool _currentTool = Tool.pixel;
   int _gridSize = 16;
+  int _columns = 32;
+  int _rows = 32;
+  double _pixelSize = 10;
 
   Map<Color, List<Rect>> get colorRects => _colorRects;
   Tool get currentTool => _currentTool;
   int get gridSize => _gridSize;
+  int get columns => _columns;
+  int get rows => _rows;
+  double get pixelSize => _pixelSize;
+  double get canvasWidth => _columns * _pixelSize;
+  double get canvasHeight => _rows * _pixelSize;
+
+  Offset? _lineStart;
+  Offset? _currentHover;
+
+  Offset? get lineStart => _lineStart;
+  Offset? get currentHover => _currentHover;
 
   void setTool(Tool tool) {
     _currentTool = tool;
@@ -24,10 +38,21 @@ class PixelProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  void setColumns(int value) {
+    _columns = value;
+    notifyListeners();
+  }
+
+  void setRows(int value) {
+    _rows = value;
+    notifyListeners();
+  }
+
   void addPixel(Pixel pixel) {
+    final snappedPosition = _snapToGrid(pixel.position);
     final rect = Rect.fromLTWH(
-      pixel.position.dx,
-      pixel.position.dy,
+      snappedPosition.dx,
+      snappedPosition.dy,
       _gridSize.toDouble(),
       _gridSize.toDouble(),
     );
@@ -42,46 +67,40 @@ class PixelProvider extends ChangeNotifier {
   }
 
   void erase(Offset position) {
-    final eraseRect = Rect.fromCenter(
-      center: position,
-      width: _gridSize.toDouble(),
-      height: _gridSize.toDouble(),
+    final snappedPosition = _snapToGrid(position);
+    final eraseRect = Rect.fromLTWH(
+      snappedPosition.dx,
+      snappedPosition.dy,
+      _gridSize.toDouble(),
+      _gridSize.toDouble(),
     );
 
+    bool changed = false;
     _colorRects.forEach((color, rects) {
+      final initialLength = rects.length;
       rects.removeWhere((rect) => rect.overlaps(eraseRect));
+      if (rects.length != initialLength) {
+        changed = true;
+      }
     });
     _colorRects.removeWhere((_, rects) => rects.isEmpty);
-    notifyListeners();
+
+    if (changed) {
+      notifyListeners();
+    }
   }
 
   void drawLine(Offset start, Offset end, Color color) {
-    int x0 = (start.dx / _gridSize).round();
-    int y0 = (start.dy / _gridSize).round();
-    int x1 = (end.dx / _gridSize).round();
-    int y1 = (end.dy / _gridSize).round();
-    int dx = (x1 - x0).abs();
-    int dy = (y1 - y0).abs();
-    int sx = x0 < x1 ? 1 : -1;
-    int sy = y0 < y1 ? 1 : -1;
-    int err = dx - dy;
+    final snappedStart = _snapToGrid(start);
+    final snappedEnd = _snapToGrid(end);
+    final pixels = _getLinePixels(snappedStart, snappedEnd);
 
-    while (true) {
+    for (final pixel in pixels) {
       addPixel(Pixel(
-        position: Offset(x0 * _gridSize.toDouble(), y0 * _gridSize.toDouble()),
+        position: pixel,
         color: color,
         size: _gridSize.toDouble(),
       ));
-      if (x0 == x1 && y0 == y1) break;
-      int e2 = 2 * err;
-      if (e2 > -dy) {
-        err -= dy;
-        x0 += sx;
-      }
-      if (e2 < dx) {
-        err += dx;
-        y0 += sy;
-      }
     }
   }
 
@@ -145,5 +164,64 @@ class PixelProvider extends ChangeNotifier {
         '  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;');
     buffer.writeln('}');
     return buffer.toString();
+  }
+
+  void startLine(Offset position) {
+    _lineStart = position;
+    notifyListeners();
+  }
+
+  void endLine(Offset position) {
+    if (_lineStart != null) {
+      drawLine(_lineStart!, position, Colors.black); // Or current color
+      _lineStart = null;
+      _currentHover = null;
+      notifyListeners();
+    }
+  }
+
+  void updateHover(Offset position) {
+    _currentHover = position;
+    notifyListeners();
+  }
+
+  List<Offset> getPreviewLine() {
+    if (_lineStart == null || _currentHover == null) return [];
+    return _getLinePixels(_lineStart!, _currentHover!);
+  }
+
+  List<Offset> _getLinePixels(Offset start, Offset end) {
+    List<Offset> pixels = [];
+    int x0 = (start.dx / _gridSize).round();
+    int y0 = (start.dy / _gridSize).round();
+    int x1 = (end.dx / _gridSize).round();
+    int y1 = (end.dy / _gridSize).round();
+    int dx = (x1 - x0).abs();
+    int dy = (y1 - y0).abs();
+    int sx = x0 < x1 ? 1 : -1;
+    int sy = y0 < y1 ? 1 : -1;
+    int err = dx - dy;
+
+    while (true) {
+      pixels.add(Offset(x0 * _gridSize.toDouble(), y0 * _gridSize.toDouble()));
+      if (x0 == x1 && y0 == y1) break;
+      int e2 = 2 * err;
+      if (e2 > -dy) {
+        err -= dy;
+        x0 += sx;
+      }
+      if (e2 < dx) {
+        err += dx;
+        y0 += sy;
+      }
+    }
+    return pixels;
+  }
+
+  Offset _snapToGrid(Offset position) {
+    return Offset(
+      (position.dx / _gridSize).round() * _gridSize.toDouble(),
+      (position.dy / _gridSize).round() * _gridSize.toDouble(),
+    );
   }
 }

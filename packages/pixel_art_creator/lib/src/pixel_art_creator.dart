@@ -1,8 +1,8 @@
-// ```dart:packages/pixel_art_creator/lib/src/pixel_art_creator.dart
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import 'providers/pixel_provider.dart';
+import 'widgets/dimension_field.dart';
 import 'widgets/export_button.dart';
 import 'widgets/pixel_canvas.dart';
 import 'widgets/tool_palette.dart';
@@ -15,47 +15,44 @@ class PixelArtCreator extends StatefulWidget {
 }
 
 class _PixelArtCreatorState extends State<PixelArtCreator> {
-  Size _canvasSize = const Size(300, 300);
-
-  void _setCanvasSize(Size size) {
-    setState(() {
-      _canvasSize = size;
-    });
-  }
-
   @override
-  Widget build(final BuildContext context) => ChangeNotifierProvider(
-        create: (_) => PixelProvider(),
-        child: Scaffold(
-          appBar: AppBar(title: const Text('Pixel Art Creator')),
-          body: Column(
+  Widget build(final BuildContext context) {
+    final pixelProvider = Provider.of<PixelProvider>(context);
+
+    return Scaffold(
+      appBar: AppBar(title: const Text('Pixel Art Creator')),
+      body: Column(
+        children: [
+          ToolPalette(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              ToolPalette(),
-              Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
-                ),
-                width: _canvasSize.width,
-                height: _canvasSize.height,
-                child: const PixelCanvas(),
+              DimensionField(
+                label: 'Columns',
+                initialValue: pixelProvider.columns,
+                onChanged: (value) => pixelProvider.setColumns(value),
               ),
-              ExportButton(),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ElevatedButton(
-                    onPressed: () => _setCanvasSize(const Size(200, 200)),
-                    child: const Text('Set Canvas to 200x200'),
-                  ),
-                  const SizedBox(width: 10),
-                  ElevatedButton(
-                    onPressed: () => _setCanvasSize(const Size(400, 400)),
-                    child: const Text('Set Canvas to 400x400'),
-                  ),
-                ],
+              const SizedBox(width: 20),
+              DimensionField(
+                label: 'Rows',
+                initialValue: pixelProvider.rows,
+                onChanged: (value) => pixelProvider.setRows(value),
               ),
             ],
           ),
-        ),
-      );
+          Container(
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black),
+            ),
+            width: pixelProvider.canvasWidth,
+            height: pixelProvider.canvasHeight,
+            child: PixelCanvas(
+                canvasSize: Size(
+                    pixelProvider.canvasWidth, pixelProvider.canvasHeight)),
+          ),
+          ExportButton(),
+        ],
+      ),
+    );
+  }
 }
