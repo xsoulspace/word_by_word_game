@@ -15,7 +15,7 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-# References
+#
 
 http://rjanes.com/tutorials/introduction_to_pixel_art.php
 https://www.sandromaglione.com/articles/getting-started-with-pixel-art
