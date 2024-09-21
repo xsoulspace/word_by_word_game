@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import '../../wbw_design_core.dart';
-import '../widgets/game_menu_button.dart';
+import '../widgets/ui_game_menu_button.dart';
 
 typedef SimpleMainMenuTuple = ({
   VoidCallback onSettings,
@@ -34,22 +34,18 @@ class SimpleMainMenu extends StatelessWidget {
     return FocusScope(
       autofocus: true,
       onKeyEvent: (final node, final event) {
-        /// prevents from handling other events like KeyUpEvent
         if (event is! KeyDownEvent) return KeyEventResult.ignored;
         if (bindings
             .getBindings(KeyboardBindingsType.mainMenuUp)
             .contains(event.logicalKey)) {
-          // Move focus to the previous button
-          node.previousFocus();
+          node.focusInDirection(TraversalDirection.up);
           return KeyEventResult.handled;
         } else if (bindings
             .getBindings(KeyboardBindingsType.mainMenuDown)
             .contains(event.logicalKey)) {
-          // Move focus to the next button
-          node.nextFocus();
+          node.focusInDirection(TraversalDirection.down);
           return KeyEventResult.handled;
         }
-
         return KeyEventResult.ignored;
       },
       child: Stack(
@@ -302,6 +298,7 @@ class KeyboardBindingsTips extends HookWidget {
             fontSize: UiFontSizes.s12,
           ),
           child: Row(
+            mainAxisSize: MainAxisSize.min,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               _KeyButton(
