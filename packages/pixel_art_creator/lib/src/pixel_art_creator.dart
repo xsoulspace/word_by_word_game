@@ -19,40 +19,37 @@ class _PixelArtCreatorState extends State<PixelArtCreator> {
   Widget build(final BuildContext context) {
     final pixelProvider = Provider.of<PixelProvider>(context);
 
-    return Scaffold(
-      appBar: AppBar(title: const Text('Pixel Art Creator')),
-      body: Column(
-        children: [
-          ToolPalette(),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              DimensionField(
-                label: 'Columns',
-                initialValue: pixelProvider.columns,
-                onChanged: (value) => pixelProvider.setColumns(value),
-              ),
-              const SizedBox(width: 20),
-              DimensionField(
-                label: 'Rows',
-                initialValue: pixelProvider.rows,
-                onChanged: (value) => pixelProvider.setRows(value),
-              ),
-            ],
-          ),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(color: Colors.black),
+    return Column(
+      children: [
+        ToolPalette(),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            DimensionField(
+              label: 'Columns',
+              initialValue: pixelProvider.columns,
+              onChanged: (value) => pixelProvider.setColumns(value),
             ),
-            width: pixelProvider.canvasWidth,
-            height: pixelProvider.canvasHeight,
-            child: PixelCanvas(
-                canvasSize: Size(
-                    pixelProvider.canvasWidth, pixelProvider.canvasHeight)),
+            const SizedBox(width: 20),
+            DimensionField(
+              label: 'Rows',
+              initialValue: pixelProvider.rows,
+              onChanged: (value) => pixelProvider.setRows(value),
+            ),
+          ],
+        ),
+        Container(
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.black),
           ),
-          ExportButton(),
-        ],
-      ),
+          width: pixelProvider.canvasWidth,
+          height: pixelProvider.canvasHeight,
+          child: PixelCanvas(
+              canvasSize:
+                  Size(pixelProvider.canvasWidth, pixelProvider.canvasHeight)),
+        ),
+        ExportButton(),
+      ],
     );
   }
 }

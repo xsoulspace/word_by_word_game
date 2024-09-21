@@ -11,4 +11,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks: ^0.20.5
+  go_router: ^14.2.7
   provider: ^6.0.0
+
+flutter:
+  uses-material-design: true
