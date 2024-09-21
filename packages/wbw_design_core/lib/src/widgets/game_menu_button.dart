@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../wbw_design_core.dart';
 import '../theme/color_palette copy.dart';
@@ -126,7 +127,46 @@ class _GameMenuButtonState extends State<GameMenuButton>
                     widget.focusIcon,
                     color: textColor,
                     size: 24,
-                  ),
+                  )
+                      .animate(
+                        onComplete: (final controller) => controller.repeat(),
+                      )
+                      .moveX(
+                        duration: 3000.milliseconds,
+                        curve: Curves.easeInOutSine,
+                        begin: -3,
+                        end: 3,
+                      )
+                      .fadeIn(
+                        begin: 0.6,
+                        duration: 3300.milliseconds,
+                        curve: Curves.easeInOutSine,
+                      )
+                      .scale(
+                        duration: 3300.milliseconds,
+                        curve: Curves.easeInOutSine,
+                        begin: const Offset(1, 1),
+                        end: const Offset(1.03, 1.03),
+                      )
+                      .then()
+                      .moveX(
+                        duration: 2700.milliseconds,
+                        curve: Curves.easeInOutSine,
+                        begin: 3,
+                        end: -3,
+                      )
+                      .fade(
+                        begin: 1,
+                        end: 0.6,
+                        duration: 2700.milliseconds,
+                        curve: Curves.easeInOutSine,
+                      )
+                      .scale(
+                        duration: 2700.milliseconds,
+                        curve: Curves.easeInOutSine,
+                        begin: const Offset(1.03, 1.03),
+                        end: const Offset(1, 1),
+                      ),
                 ),
               Flexible(
                 child: CustomPaint(

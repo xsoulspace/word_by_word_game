@@ -74,3 +74,9 @@ class _ResizablePaneState extends State<ResizablePane> {
     );
   }
 }
+
+
+// TODO(arenukvern): 
+// CRUD pixelized line - make it adaptive to width, height
+// Draw pixelized line
+// 
