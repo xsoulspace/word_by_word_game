@@ -22,6 +22,7 @@ You are a senior Dart programmer specializing in Flutter, Flame and Game develop
    - Custom reusable widgets (use wbw_design_core)
    - Cupertino or Material Design as appropriate
    - Proper error handling and async/await for asynchronous operations
+   - flutter_animate for animations
 
 4. Project structure:
 
