@@ -14,6 +14,7 @@ class DialogScaffold extends HookWidget {
     this.top,
     this.padding,
     this.semanticsContainer = true,
+    this.bottomButton,
     super.key,
   }) : assert(
           children != null || builder != null,
@@ -25,6 +26,7 @@ class DialogScaffold extends HookWidget {
   final WidgetBuilder? builder;
   final bool semanticsContainer;
   final EdgeInsets? padding;
+  final Widget? bottomButton;
 
   @override
   Widget build(final BuildContext context) {
@@ -41,36 +43,57 @@ class DialogScaffold extends HookWidget {
       children: children,
     );
 
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 450,
-      ),
-      child: MouseRegion(
-        onHover: (final event) => hovered.value = true,
-        onExit: (final event) => hovered.value = false,
-        child: Semantics(
-          container: semanticsContainer,
-          child: AnimatedScale(
-            scale: hovered.value ? 1.004 : 1.0,
-            curve: Curves.ease,
-            duration: 800.milliseconds,
-            child: Card(
-              color: UiColors.offWhite,
-              shadowColor: UiColors.light,
-              surfaceTintColor: Colors.transparent,
-              shape: const RoundedRectangleBorder(
-                borderRadius: BorderRadius.all(
-                  Radius.elliptical(
-                    UiDecorators.radiusLarge,
-                    UiDecorators.radiusLarge,
+    return Stack(
+      children: [
+        Container(
+          margin:
+              bottomButton != null ? const EdgeInsets.only(bottom: 24) : null,
+          constraints: const BoxConstraints(
+            maxWidth: 450,
+          ),
+          child: MouseRegion(
+            onHover: (final event) => hovered.value = true,
+            onExit: (final event) => hovered.value = false,
+            child: Semantics(
+              container: semanticsContainer,
+              child: AnimatedScale(
+                scale: hovered.value ? 1.008 : 1.0,
+                curve: Curves.easeInOutSine,
+                duration: 400.milliseconds,
+                child: Card(
+                  color: UiColors.offWhite,
+                  shadowColor: UiColors.light,
+                  surfaceTintColor: Colors.transparent,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.all(
+                      Radius.elliptical(
+                        UiDecorators.radiusLarge,
+                        UiDecorators.radiusLarge,
+                      ),
+                    ),
+                  ),
+                  child: DefaultTextStyle.merge(
+                    style: const TextStyle(
+                      fontSize: 16,
+                      color: UiColors.dark,
+                    ),
+                    child: child,
                   ),
                 ),
               ),
-              child: child,
             ),
           ),
         ),
-      ),
+        if (bottomButton != null)
+          Positioned(
+            bottom: 6,
+            right: 0,
+            left: 0,
+            child: Center(
+              child: bottomButton,
+            ),
+          ).animate().fadeIn(),
+      ],
     );
   }
 }
@@ -126,6 +149,7 @@ class DecoratedDialogScaffold extends StatelessWidget {
     this.bottom,
     this.top,
     this.padding,
+    this.bottomButton,
     super.key,
   });
   final List<Widget>? children;
@@ -133,7 +157,7 @@ class DecoratedDialogScaffold extends StatelessWidget {
   final Widget? bottom;
   final Widget? top;
   final EdgeInsets? padding;
-
+  final Widget? bottomButton;
   @override
   Widget build(final BuildContext context) {
     const verticalPadding = 22.0;
@@ -163,6 +187,7 @@ class DecoratedDialogScaffold extends StatelessWidget {
       ),
     );
     return DialogScaffold(
+      bottomButton: bottomButton,
       builder: (final context) => Stack(
         children: [
           Row(

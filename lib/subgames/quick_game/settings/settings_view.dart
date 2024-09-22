@@ -7,13 +7,26 @@ class SettingsView extends HookWidget {
   const SettingsView({super.key});
 
   @override
-  Widget build(final BuildContext context) => Column(
+  Widget build(final BuildContext context) => const DecoratedDialogScaffold(
+        bottomButton: ViewBackButton(),
+        padding: EdgeInsets.symmetric(horizontal: 6),
         children: [
-          const Spacer(),
-          const LocaleSwitcherButton(),
-          const Gap(24),
-          ViewBackButton(onBack: () => Navigator.pop(context)),
-          const Spacer(),
+          Center(
+            // TODO(arenukvern): l10n
+            child: Text(
+              'SETTINGS',
+              style: TextStyle(fontSize: 24),
+            ),
+          ),
+          Gap(16),
+          Row(
+            children: [
+              // TODO(arenukvern): l10n
+              Text('Language'),
+              Gap(12),
+              Flexible(child: LocaleSwitcherGrid()),
+            ],
+          ),
         ],
       );
 }

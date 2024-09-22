@@ -142,201 +142,197 @@ class LevelWordSuggestionDialog extends HookWidget {
               ],
       ),
     );
-    return Stack(
-      children: [
-        Padding(
-          padding: const EdgeInsets.only(bottom: 24),
-          child: DialogScaffold(
-            builder: (final context) {
-              if (state._suggestedWord.isEmpty) {
-                return ListView(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                  children: [
-                    Text(
-                      S.of(context).noWordsSuggestions,
-                      style: theme.textTheme.headlineLarge,
-                      textAlign: TextAlign.center,
-                    ),
-                    uiTheme.verticalBoxes.extraLarge,
-                    Text(
-                      S.of(context).tryWithDifferentLetters,
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
-                );
-              }
+    return DialogScaffold(
+      builder: (final context) {
+        if (state._suggestedWord.isEmpty) {
+          return ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+            children: [
+              Text(
+                S.of(context).noWordsSuggestions,
+                style: theme.textTheme.headlineLarge,
+                textAlign: TextAlign.center,
+              ),
+              uiTheme.verticalBoxes.extraLarge,
+              Text(
+                S.of(context).tryWithDifferentLetters,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          );
+        }
 
-              if (state._isWordRevealed) {
-                return ListView(
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                  children: [
-                    Text(
-                      S.of(context).suggestedWord.toUpperCase(),
-                      style: theme.textTheme.titleSmall,
-                      textAlign: TextAlign.center,
-                    ),
-                    uiTheme.verticalBoxes.large,
-                    Text(
-                      state._suggestedWord.toUpperCase(),
-                      style: context.textThemeBold.headlineSmall,
-                      textAlign: TextAlign.center,
-                    ),
-                    uiTheme.verticalBoxes.large,
-                    wordMeaning,
-                  ],
-                );
-              }
-              return ListView(
-                shrinkWrap: true,
-                padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
-                children: [
-                  Text(
-                    S.of(context).revealSuggestedWord.toUpperCase(),
-                    style: context.textThemeBold.titleMedium,
-                    textAlign: TextAlign.center,
-                  ),
-                  uiTheme.verticalBoxes.large,
-                  DefaultTextStyle.merge(
-                    style: theme.textTheme.headlineSmall?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
-                    child: Builder(
-                      builder: (final context) {
-                        final children = <Widget>[];
-                        final parts = state._suggestedWord
-                            .split(currentWord.middlePart)
-                            .map(
-                              (final e) => Padding(
-                                padding: const EdgeInsets.only(top: 5),
-                                child: Text(
-                                  e.characters.map((final e) => '*').join(),
-                                ),
+        if (state._isWordRevealed) {
+          return ListView(
+            shrinkWrap: true,
+            padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+            children: [
+              Text(
+                S.of(context).suggestedWord.toUpperCase(),
+                style: theme.textTheme.titleSmall,
+                textAlign: TextAlign.center,
+              ),
+              uiTheme.verticalBoxes.large,
+              Text(
+                state._suggestedWord.toUpperCase(),
+                style: context.textThemeBold.headlineSmall,
+                textAlign: TextAlign.center,
+              ),
+              uiTheme.verticalBoxes.large,
+              wordMeaning,
+            ],
+          );
+        }
+        return ListView(
+          shrinkWrap: true,
+          padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+          children: [
+            Text(
+              S.of(context).revealSuggestedWord.toUpperCase(),
+              style: context.textThemeBold.titleMedium,
+              textAlign: TextAlign.center,
+            ),
+            uiTheme.verticalBoxes.large,
+            DefaultTextStyle.merge(
+              style: theme.textTheme.headlineSmall?.copyWith(
+                fontWeight: FontWeight.bold,
+              ),
+              child: Builder(
+                builder: (final context) {
+                  final children = <Widget>[];
+                  final parts =
+                      state._suggestedWord.split(currentWord.middlePart).map(
+                            (final e) => Padding(
+                              padding: const EdgeInsets.only(top: 5),
+                              child: Text(
+                                e.characters.map((final e) => '*').join(),
                               ),
-                            );
-                        children
-                          ..add(parts.first)
-                          ..add(
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 2),
-                              child: Text(currentWord.middlePart),
                             ),
                           );
-                        if (parts.length > 1) {
-                          children.add(parts.last);
-                        }
-
-                        return Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: children,
-                        );
-                      },
-                    ),
-                  ),
-                  // Text(
-
-                  //       ,
-                  //   // List.generate(
-                  //   //   state._suggestedWord.length,
-                  //   //   (final index) => '*',
-                  //   // ).join(),
-
-                  //   textAlign: TextAlign.center,
-                  // ),
-                  wordMeaning,
-                  uiTheme.verticalBoxes.medium,
-                  _UsePointsButton(
-                    word: state._suggestedWord,
-                    onPressed: state.onRevealWord,
-                    isUsageAvailable: state.isUsageAvailable,
-                    costOfWord: state.costOfWord,
-                    userScore: state.userScore,
-                  ),
-                  uiTheme.verticalBoxes.large,
-                  Row(
-                    children: [
-                      Expanded(
-                        child: UiOutlinedButton(
-                          onPressed: state.isUsageAvailable
-                              ? state.onRevealWord
-                              : null,
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Text(
-                                const LocalizedMap(
-                                  value: {
-                                    Languages.en: 'Use Score',
-                                    Languages.ru: 'Применить очки',
-                                    Languages.it: 'Usa punteggio',
-                                  },
-                                ).getValue(locale),
-                                style: context.textTheme.labelLarge,
-                              ),
-                            ],
-                          ),
-                        ),
+                  children
+                    ..add(parts.first)
+                    ..add(
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 2),
+                        child: Text(currentWord.middlePart),
                       ),
-                      const Gap(24),
-                      Expanded(
-                        child: Container(
-                          constraints: const BoxConstraints(maxWidth: 200),
-                          child: TextButton(
-                            onPressed: state.onTryAnotherWord,
-                            child: Row(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Flexible(
-                                  child: Text(
-                                    const LocalizedMap(
-                                      value: {
-                                        Languages.en: 'Roll a Chance',
-                                        Languages.ru: 'Бросить шанс',
-                                        Languages.it: 'Tira la possibilità',
-                                      },
-                                    ).getValue(locale),
-                                    textAlign: TextAlign.center,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              );
-            },
-          ),
-        ),
-        Positioned(
-          bottom: 6,
-          right: 0,
-          left: 0,
-          child: Center(
-            child: Card(
-              shape: const CircleBorder(),
-              elevation: 2,
-              child: IconButton.outlined(
-                onPressed: dialogController.closeDialogAndResume,
-                icon: AnimatedSwitcher(
-                  duration: 250.milliseconds,
-                  child: state._isWordRevealed
-                      ? const Icon(Icons.done)
-                      : const Icon(Icons.close),
-                ),
+                    );
+                  if (parts.length > 1) {
+                    children.add(parts.last);
+                  }
+
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: children,
+                  );
+                },
               ),
             ),
-          ),
-        ).animate().fadeIn(),
-      ],
+            // Text(
+
+            //       ,
+            //   // List.generate(
+            //   //   state._suggestedWord.length,
+            //   //   (final index) => '*',
+            //   // ).join(),
+
+            //   textAlign: TextAlign.center,
+            // ),
+            wordMeaning,
+            uiTheme.verticalBoxes.medium,
+            _UsePointsButton(
+              word: state._suggestedWord,
+              onPressed: state.onRevealWord,
+              isUsageAvailable: state.isUsageAvailable,
+              costOfWord: state.costOfWord,
+              userScore: state.userScore,
+            ),
+            uiTheme.verticalBoxes.large,
+            Row(
+              children: [
+                Expanded(
+                  child: UiOutlinedButton(
+                    onPressed:
+                        state.isUsageAvailable ? state.onRevealWord : null,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          const LocalizedMap(
+                            value: {
+                              Languages.en: 'Use Score',
+                              Languages.ru: 'Применить очки',
+                              Languages.it: 'Usa punteggio',
+                            },
+                          ).getValue(locale),
+                          style: context.textTheme.labelLarge,
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const Gap(24),
+                Expanded(
+                  child: Container(
+                    constraints: const BoxConstraints(maxWidth: 200),
+                    child: TextButton(
+                      onPressed: state.onTryAnotherWord,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Flexible(
+                            child: Text(
+                              const LocalizedMap(
+                                value: {
+                                  Languages.en: 'Roll a Chance',
+                                  Languages.ru: 'Бросить шанс',
+                                  Languages.it: 'Tira la possibilità',
+                                },
+                              ).getValue(locale),
+                              textAlign: TextAlign.center,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
+        );
+      },
+      bottomButton: UiCircleCloseButton(
+        onPressed: dialogController.closeDialogAndResume,
+        icon: state._isWordRevealed ? Icons.done : Icons.close,
+      ),
     );
   }
+}
+
+class UiCircleCloseButton extends StatelessWidget {
+  const UiCircleCloseButton({
+    required this.onPressed,
+    this.icon = Icons.close,
+    super.key,
+  });
+  final VoidCallback onPressed;
+  final IconData icon;
+  @override
+  Widget build(final BuildContext context) => Card(
+        shape: const CircleBorder(),
+        elevation: 2,
+        child: IconButton.outlined(
+          onPressed: onPressed,
+          icon: AnimatedSwitcher(
+            duration: 250.milliseconds,
+            child: Icon(icon),
+          ),
+        ),
+      );
 }
 
 class _UsePointsButton extends StatelessWidget {

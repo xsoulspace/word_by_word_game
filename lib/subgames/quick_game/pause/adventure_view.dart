@@ -1,5 +1,6 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause_screen.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/widgets.dart';
 
@@ -85,14 +86,13 @@ class AdventureView extends HookWidget {
 }
 
 class ViewBackButton extends StatelessWidget {
-  const ViewBackButton({required this.onBack, super.key});
-  final VoidCallback onBack;
+  const ViewBackButton({this.onBack, super.key});
+  final VoidCallback? onBack;
 
   @override
-  Widget build(final BuildContext context) =>
-      UiFilledButton.text(text: 'BACK', onPressed: onBack)
-          .animate(delay: 200.milliseconds)
-          .fadeIn(duration: 450.milliseconds);
+  Widget build(final BuildContext context) => UiCircleCloseButton(
+        onPressed: onBack ?? () => Navigator.pop(context),
+      );
 }
 
 class _LevelCard extends StatelessWidget {
