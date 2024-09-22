@@ -103,6 +103,11 @@ class _GameMenuButtonState extends State<GameMenuButton>
       onFocusChange: (final isFocused) {
         setState(() => _isFocused = isFocused);
       },
+      actions: {
+        ActivateIntent: CallbackAction<ActivateIntent>(
+          onInvoke: (final _) => widget.onPressed(),
+        ),
+      },
       child: GestureDetector(
         onTap: widget.onPressed,
         onTapDown: _onTapDown,

@@ -4,30 +4,35 @@ import 'package:go_router/go_router.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/pack_core/pack_core.dart';
+import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 final router = GoRouter(
   redirect: _handleRootRedirect,
   routes: [
-    AppRoute(
-      ScreenPaths.root,
-      (final context, final state) => const PreloadingScreen(
-        key: ValueKey(ScreenPaths.root),
-      ),
+    ShellRoute(
+      builder: (final context, final state, final child) =>
+          DialogStack(child: child),
       routes: [
-        GoRoute(
-          path: ScreenPaths.playableLevel,
-          builder: (final context, final state) => const WbwGameWidget(
-            key: ValueKey('lvl'),
-          ),
+        AppRoute(
+          ScreenPaths.root,
+          (final context, final state) => const PreloadingScreen(),
           routes: [
-            AppRoute(
-              'pause',
-              (final context, final state) => const PauseScreen(
-                key: ValueKey(ScreenPaths.pause),
+            GoRoute(
+              path: ScreenPaths.playableLevel,
+              builder: (final context, final state) => const WbwGameWidget(
+                key: ValueKey('lvl'),
               ),
-              isTransparent: true,
-              useFade: true,
+              routes: [
+                AppRoute(
+                  'pause',
+                  (final context, final state) => const PauseScreen(
+                    key: ValueKey(ScreenPaths.pause),
+                  ),
+                  isTransparent: true,
+                  useFade: true,
+                ),
+              ],
             ),
           ],
         ),

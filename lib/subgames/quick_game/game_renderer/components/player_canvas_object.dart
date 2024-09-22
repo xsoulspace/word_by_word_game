@@ -108,10 +108,12 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
   void _showLevelWinDialog() {
     _pauseGame();
-    gameRef.dto.dialogController.showLevelWinDialog(
-      EndLevelEvent(
-        isPassed: true,
-        maxDistance: maxDistance.toDouble(),
+    unawaited(
+      gameRef.dto.dialogController.showLevelWinDialog(
+        EndLevelEvent(
+          isPassed: true,
+          maxDistance: maxDistance.toDouble(),
+        ),
       ),
     );
   }

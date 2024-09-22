@@ -6,7 +6,6 @@ import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 import '../../wbw_design_core.dart';
-import '../widgets/ui_game_menu_button.dart';
 
 typedef SimpleMainMenuTuple = ({
   VoidCallback onSettings,
@@ -48,121 +47,16 @@ class SimpleMainMenu extends StatelessWidget {
         }
         return KeyEventResult.ignored;
       },
-      child: Stack(
-        fit: StackFit.expand,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          if (DeviceRuntimeType.isNativeDesktop)
-            const Positioned(
-              bottom: 8,
-              right: 8,
-              child: KeyboardBindingsTips(),
+          const Spacer(),
+          Padding(
+            padding: EdgeInsets.only(
+              left: MediaQuery.sizeOf(context).width * 0.18 / 2,
+              right: MediaQuery.sizeOf(context).width * 0.18,
             ),
-          Positioned.fill(
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Expanded(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        children: [
-                          Flexible(
-                            child: Padding(
-                              padding: EdgeInsets.only(
-                                left: 16,
-                              ),
-                              child: UiMenuActionPane(),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(
-                    left: MediaQuery.sizeOf(context).width * 0.18 / 2,
-                    right: MediaQuery.sizeOf(context).width * 0.18,
-                  ),
-                  child: _UiMainMenuList(tuple: tuple),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class UiMenuActionPane extends StatelessWidget {
-  const UiMenuActionPane({super.key});
-
-  @override
-  Widget build(final BuildContext context) {
-    const verticalPadding = 22.0;
-    const horizontalPadding = 16.0;
-    const height = 150.0;
-    final verticalLine = ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxHeight: height,
-      ),
-      child: const RotatedBox(
-        quarterTurns: 1,
-        child: Row(
-          children: [
-            Gap(verticalPadding),
-            UiTriangle(
-              color: UiColors.mediumLight,
-            ),
-            Gap(16),
-            Expanded(child: UiLinearDivider()),
-            Gap(16),
-            UiTriangle(
-              color: UiColors.mediumLight,
-            ),
-            Gap(verticalPadding),
-          ],
-        ),
-      ),
-    );
-    return DialogScaffold(
-      builder: (final context) => Stack(
-        children: [
-          Row(
-            children: [
-              verticalLine,
-              const Spacer(),
-              verticalLine,
-            ],
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: horizontalPadding,
-              vertical: 13,
-            ),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Flexible(
-                      child: UiAnimatedText(
-                        'START A NEW GAME',
-                        textStyle: TextStyle(
-                          fontSize: 22,
-                          color: UiColors.mediumDark,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                Gap(12),
-              ],
-            ),
+            child: _UiMainMenuList(tuple: tuple),
           ),
         ],
       ),
@@ -171,7 +65,7 @@ class UiMenuActionPane extends StatelessWidget {
 }
 
 class _UiMainMenuList extends StatelessWidget {
-  const _UiMainMenuList({required this.tuple, super.key});
+  const _UiMainMenuList({required this.tuple});
 
   final SimpleMainMenuTuple tuple;
 
@@ -297,38 +191,42 @@ class KeyboardBindingsTips extends HookWidget {
             color: UiColors.offWhite,
             fontSize: UiFontSizes.s12,
           ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              _KeyButton(
-                keyTitle: bindings
-                    .getBindingDefaultTitle(KeyboardBindingsType.mainMenuUp),
-                title: 'Up',
-              ),
-              const Gap(12),
-              _KeyButton(
-                keyTitle: bindings
-                    .getBindingDefaultTitle(KeyboardBindingsType.mainMenuDown),
-                title: 'Down',
-              ),
-              const Gap(12),
-              _KeyButton(
-                keyTitle: bindings.getBindingDefaultTitle(
-                  KeyboardBindingsType.mainMenuSelect,
+          child: AnimatedSize(
+            duration: 300.milliseconds,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                _KeyButton(
+                  keyTitle: bindings
+                      .getBindingDefaultTitle(KeyboardBindingsType.mainMenuUp),
+                  title: 'Up',
                 ),
-                title: 'Select',
-              ),
-              if (hasBack) ...[
                 const Gap(12),
                 _KeyButton(
                   keyTitle: bindings.getBindingDefaultTitle(
-                    KeyboardBindingsType.mainMenuBack,
+                    KeyboardBindingsType.mainMenuDown,
                   ),
-                  title: 'Back',
+                  title: 'Down',
                 ),
+                const Gap(12),
+                _KeyButton(
+                  keyTitle: bindings.getBindingDefaultTitle(
+                    KeyboardBindingsType.mainMenuSelect,
+                  ),
+                  title: 'Select',
+                ),
+                if (hasBack) ...[
+                  const Gap(12),
+                  _KeyButton(
+                    keyTitle: bindings.getBindingDefaultTitle(
+                      KeyboardBindingsType.mainMenuBack,
+                    ),
+                    title: 'Back',
+                  ),
+                ],
               ],
-            ],
+            ),
           ),
         ),
       )
@@ -371,18 +269,18 @@ class _LinearDividerPainter extends CustomPainter {
     final centerY = size.height / 2;
 
     // Draw left line
-    canvas.drawLine(
-      Offset(0, centerY),
-      Offset(centerX - triangleSize, centerY),
-      paint,
-    );
-
-    // Draw right line
-    canvas.drawLine(
-      Offset(centerX + triangleSize, centerY),
-      Offset(size.width, centerY),
-      paint,
-    );
+    canvas
+      ..drawLine(
+        Offset(0, centerY),
+        Offset(centerX - triangleSize, centerY),
+        paint,
+      )
+      // Draw right line
+      ..drawLine(
+        Offset(centerX + triangleSize, centerY),
+        Offset(size.width, centerY),
+        paint,
+      );
 
     // Draw triangle
     final path = Path()
@@ -452,7 +350,6 @@ class _KeyButton extends StatelessWidget {
   const _KeyButton({
     required this.keyTitle,
     required this.title,
-    super.key,
   });
 
   final String keyTitle;

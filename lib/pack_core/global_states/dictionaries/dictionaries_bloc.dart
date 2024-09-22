@@ -6,12 +6,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:wbw_core/wbw_core.dart';
 
 part 'dictionaries_bloc.freezed.dart';
-part 'dictionaries_states.dart';
 
 class DictionariesBlocDiDto {
   DictionariesBlocDiDto.use(final BuildContext context)
       : services = context.read();
   final ServicesCollection services;
+}
+
+@immutable
+@Freezed(fromJson: false, toJson: false)
+class DictionariesBlocState with _$DictionariesBlocState {
+  const factory DictionariesBlocState({
+    @Default(WordsType({})) final WordsType wordsType,
+  }) = _DictionariesBlocState;
 }
 
 class DictionariesBloc extends Cubit<DictionariesBlocState> {
