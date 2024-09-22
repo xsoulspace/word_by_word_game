@@ -87,7 +87,7 @@ class _Statistics extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         const LastWordWidget().animate().fadeIn().slideX(begin: -0.1),
-        uiTheme.verticalBoxes.medium,
+        UiGaps.medium,
         const UIPlayersSideBar(),
       ],
     );

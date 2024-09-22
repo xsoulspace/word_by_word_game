@@ -102,7 +102,9 @@ class __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$BottomActionsNotifierStateImpl implements _BottomActionsNotifierState {
+class _$BottomActionsNotifierStateImpl
+    with DiagnosticableTreeMixin
+    implements _BottomActionsNotifierState {
   const _$BottomActionsNotifierStateImpl({this.isCardVisible = true});
 
   @override
@@ -110,8 +112,16 @@ class _$BottomActionsNotifierStateImpl implements _BottomActionsNotifierState {
   final bool isCardVisible;
 
   @override
-  String toString() {
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
     return 'BottomActionsNotifierState(isCardVisible: $isCardVisible)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'BottomActionsNotifierState'))
+      ..add(DiagnosticsProperty('isCardVisible', isCardVisible));
   }
 
   @override

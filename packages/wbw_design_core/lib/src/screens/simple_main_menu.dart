@@ -104,12 +104,12 @@ class _UiMainMenuList extends StatelessWidget {
           ],
         ),
         const Gap(3),
-        GameMenuButton(
+        UiStyledButton(
           onPressed: tuple.onContinueQuick,
           label: 'continue',
           focusIcon: Icons.timer_outlined,
         ),
-        GameMenuButton(
+        UiStyledButton(
           onPressed: tuple.onNewQuick,
           label: 'restart',
           focusIcon: Icons.timer_outlined,
@@ -130,29 +130,29 @@ class _UiMainMenuList extends StatelessWidget {
           ],
         ),
         const Gap(3),
-        GameMenuButton(
+        UiStyledButton(
           onPressed: tuple.onContinueAdventure,
           label: 'continue',
           focusIcon: Icons.explore_outlined,
         ),
-        GameMenuButton(
+        UiStyledButton(
           onPressed: tuple.onChooseAdventure,
           label: 'choose',
           focusIcon: Icons.explore_outlined,
         ),
         divider,
-        GameMenuButton(
+        UiStyledButton(
           // icon: Icons.settings_outlined,
           onPressed: tuple.onSettings,
           label: 'settings',
         ),
-        GameMenuButton(
+        UiStyledButton(
           // icon: Icons.roundabout_left,
           onPressed: tuple.onCredits,
           label: 'credits',
         ),
         if (DeviceRuntimeType.isDesktop)
-          GameMenuButton(
+          UiStyledButton(
             // icon: Icons.exit_to_app_outlined,
             onPressed: tuple.onExit,
             label: 'quit',

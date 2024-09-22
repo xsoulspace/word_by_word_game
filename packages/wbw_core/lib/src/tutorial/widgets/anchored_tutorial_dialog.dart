@@ -169,8 +169,6 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
   final WidgetBuilder? builder;
   @override
   Widget build(final BuildContext context) {
-    // final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
     final screenSize = MediaQuery.sizeOf(context);
     Widget child;
     if (builder != null) {
@@ -178,7 +176,7 @@ class AnchoredTutorialDialogScaffold extends StatelessWidget {
     } else {
       child = ListView(
         shrinkWrap: true,
-        padding: EdgeInsets.all(uiTheme.spacing.medium),
+        padding: const EdgeInsets.all(24),
         children: children!,
       );
     }

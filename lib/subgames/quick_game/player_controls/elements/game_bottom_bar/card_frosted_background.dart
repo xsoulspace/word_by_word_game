@@ -17,6 +17,7 @@ class CardFrostedBackground extends StatelessWidget {
     final livePlayerColor = context.select<LevelPlayersBloc, Color>(
       (final cubit) => cubit.state.currentPlayer.color,
     );
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
 
     return AnimatedSize(
       duration: 330.milliseconds,
@@ -25,11 +26,11 @@ class CardFrostedBackground extends StatelessWidget {
           Positioned.fill(
             child: AnimatedContainer(
               duration: 80.milliseconds,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(radius),
               ),
             ).frosted(
-              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+              borderRadius: const BorderRadius.all(radius),
             ),
           ),
           AnimatedContainer(
@@ -42,7 +43,7 @@ class CardFrostedBackground extends StatelessWidget {
                 Colors.white,
                 30,
               ).withOpacity(0.1),
-              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+              borderRadius: const BorderRadius.all(radius),
             ),
             child: child,
           ),

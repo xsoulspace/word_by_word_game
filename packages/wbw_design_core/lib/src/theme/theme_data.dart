@@ -1,4 +1,4 @@
-part of '../theme.dart';
+part of 'theme.dart';
 
 class AppThemeData {
   AppThemeData._();
@@ -22,9 +22,5 @@ class AppThemeData {
   static final brandLight = from(
     colorScheme: BrandColorSchemes.light,
     surfaceColorScheme: BrandColorSchemes.lightSurface,
-  );
-  static final brandDark = from(
-    colorScheme: BrandColorSchemes.dark,
-    surfaceColorScheme: BrandColorSchemes.darkSurface,
   );
 }

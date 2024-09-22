@@ -53,7 +53,7 @@ class _AnimatedFocusManagerState extends State<AnimatedFocusManager>
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.center,
             children: widget.children.map((final child) {
-              if (child is GameMenuButton) {
+              if (child is UiStyledButton) {
                 return FocusableGameMenuButton(
                   index: widget.children.indexOf(child),
                   onFocusChange: _onFocusChange,
@@ -95,7 +95,7 @@ class FocusableGameMenuButton extends StatefulWidget {
     super.key,
   });
   final int index;
-  final GameMenuButton child;
+  final UiStyledButton child;
   final Function(int index, Offset position) onFocusChange;
 
   @override

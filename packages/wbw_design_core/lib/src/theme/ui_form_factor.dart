@@ -1,4 +1,4 @@
-part of '../theme.dart';
+part of 'theme.dart';
 
 /// ********************************************
 /// *      PERSISTENT FORM FACTORS

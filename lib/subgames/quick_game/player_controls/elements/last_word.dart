@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
@@ -55,17 +55,16 @@ class _LastWordTextState extends State<LastWordText> {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
-    final radius = uiTheme.circularRadius;
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
     final theme = Theme.of(context);
     final textStyle = theme.textTheme.labelMedium;
     final colorScheme = theme.colorScheme;
     if (widget.latestWord.isEmpty) return const SizedBox();
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
-          topRight: radius.medium,
-          bottomRight: radius.medium,
+        borderRadius: const BorderRadius.only(
+          topRight: radius,
+          bottomRight: radius,
         ),
         border: Border.all(
           color: colorScheme.tertiaryContainer.withOpacity(0.4),
@@ -86,7 +85,7 @@ class _LastWordTextState extends State<LastWordText> {
               color: colorScheme.onSurface.withOpacity(0.8),
             ),
           ),
-          uiTheme.horizontalBoxes.small,
+          UiGaps.small,
           Container(
             padding: const EdgeInsets.only(
               top: 2,
@@ -96,7 +95,7 @@ class _LastWordTextState extends State<LastWordText> {
             ),
             decoration: BoxDecoration(
               color: colorScheme.tertiaryContainer.withOpacity(0.3),
-              borderRadius: BorderRadius.all(uiTheme.circularRadius.medium),
+              borderRadius: const BorderRadius.all(radius),
             ),
             child: Text(
               _lastWord,

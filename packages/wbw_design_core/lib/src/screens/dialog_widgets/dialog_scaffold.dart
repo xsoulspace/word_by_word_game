@@ -34,7 +34,7 @@ class DialogScaffold extends HookWidget {
     final uiTheme = context.uiTheme;
     final bottom = this.bottom;
     final top = this.top;
-    final padding = this.padding ?? EdgeInsets.all(uiTheme.spacing.extraLarge);
+    final padding = this.padding ?? const EdgeInsets.all(24);
     final child = UiBodyBuilder(
       builder: builder,
       top: top,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../theme/color_palette copy.dart';
+import '../theme/theme.dart';
 
 enum ButtonStyleType {
   filled,
@@ -12,10 +12,10 @@ enum ButtonStyleType {
 class GameMenuButtonPainter extends CustomPainter {
   const GameMenuButtonPainter({
     this.styleType = ButtonStyleType.filled,
-    this.color = AppColorsTest.buttonPrimary,
-    this.borderColor = AppColorsTest.accentGreen,
-    this.gradientColors,
+    this.color = UiColors.offWhite,
+    this.borderColor = UiColors.dark,
     this.borderWidth = 2.0,
+    this.gradientColors,
     this.radius = 30.0,
   });
 

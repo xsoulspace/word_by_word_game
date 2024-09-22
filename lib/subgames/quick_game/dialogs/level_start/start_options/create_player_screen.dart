@@ -18,7 +18,6 @@ class CreatePlayerScreen extends HookWidget {
   final ValueChanged<PlayerProfileModel> onPlayerCreated;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final globalGameBloc = context.watch<GlobalGameBloc>();
     final liveState = globalGameBloc.state;
     final isPlayersEmpty = liveState.playersCollection.isEmpty;
@@ -34,7 +33,7 @@ class CreatePlayerScreen extends HookWidget {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        uiTheme.verticalBoxes.medium,
+        UiGaps.medium,
         Text(
           isPlayersEmpty
               ? S.of(context).createNewFirstPlayerTitle
@@ -42,7 +41,7 @@ class CreatePlayerScreen extends HookWidget {
           style: theme.textTheme.bodyLarge,
           textAlign: TextAlign.center,
         ),
-        uiTheme.verticalBoxes.small,
+        UiGaps.small,
         Text(
           S.of(context).createNewPlayerBody,
           style: theme.textTheme.bodySmall,
@@ -82,7 +81,7 @@ class CreatePlayerScreen extends HookWidget {
             ),
           ],
         ),
-        uiTheme.verticalBoxes.medium,
+        UiGaps.medium,
       ],
     );
   }

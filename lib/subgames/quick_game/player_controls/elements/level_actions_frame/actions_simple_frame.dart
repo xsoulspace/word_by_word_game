@@ -25,7 +25,7 @@ class UiActionFrameSimple extends StatelessWidget {
           style: textTheme.titleMedium,
         ),
         Divider(color: colorScheme.tertiary),
-        uiTheme.verticalBoxes.small,
+        UiGaps.small,
         const UiEnergyCards(),
       ],
     );
@@ -66,7 +66,7 @@ class UiEnergyCards extends StatelessWidget with TechLevelMixin {
                     );
                   },
                   separatorBuilder: (final context, final index) =>
-                      uiTheme.horizontalBoxes.medium,
+                      UiGaps.medium,
                   scrollDirection: Axis.horizontal,
                   itemCount: EnergyMultiplierType.values.length,
                 )

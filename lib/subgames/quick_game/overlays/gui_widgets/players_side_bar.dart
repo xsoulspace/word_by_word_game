@@ -8,6 +8,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/subgames.dart';
@@ -136,7 +137,6 @@ class UiPlayerAndScoreTile extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     // final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
@@ -145,7 +145,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
     final backgroundColor = isCurrent
         ? colorScheme.tertiaryContainer.withOpacity(0.7)
         : colorScheme.scrim.withOpacity(0.2);
-    final radius = uiTheme.circularRadius.medium;
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
 
     return AnimatedContainer(
       duration: 350.milliseconds,
@@ -154,7 +154,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
         bottom: 2,
       ),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.only(
+        borderRadius: const BorderRadius.only(
           topRight: radius,
           bottomRight: radius,
         ),
@@ -240,8 +240,7 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
-    final radius = uiTheme.circularRadius;
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     final selected = widget.selected;
@@ -251,9 +250,9 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
         color: selected
             ? widget.player.color.withOpacity(0.8)
             : colorScheme.scrim.withOpacity(0.05),
-        borderRadius: BorderRadius.only(
-          topRight: radius.medium,
-          bottomRight: radius.medium,
+        borderRadius: const BorderRadius.only(
+          topRight: radius,
+          bottomRight: radius,
         ),
       ),
       padding: EdgeInsets.only(

@@ -1,10 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
@@ -17,7 +17,6 @@ class PlayersAndHighscoreView extends HookWidget {
   final VoidCallback onBack;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final players = context.select<GlobalGameBloc, List<PlayerProfileModel>>(
       (final value) {
         final effectivePlayers = [...value.state.playersCollection];
@@ -34,7 +33,7 @@ class PlayersAndHighscoreView extends HookWidget {
       ),
       child: Column(
         children: [
-          uiTheme.verticalBoxes.large,
+          UiGaps.large,
           const ViewTitle(
             title: LocalizedMap(
               value: {
@@ -48,10 +47,10 @@ class PlayersAndHighscoreView extends HookWidget {
             child: ListView(
               padding: const EdgeInsets.all(24),
               children: [
-                uiTheme.verticalBoxes.extraLarge,
+                UiGaps.extraLarge,
                 ...players.map(
                   (final e) => Padding(
-                    padding: EdgeInsets.only(top: uiTheme.spacing.medium),
+                    padding: const EdgeInsets.only(top: UiSpace.medium),
                     child: PlayerProfileTile(
                       player: e,
                       onDelete: !kDebugMode
@@ -62,7 +61,8 @@ class PlayersAndHighscoreView extends HookWidget {
                                     .read<GlobalGameBloc>()
                                     .onDeletePlayerProfile(
                                       DeletePlayerProfileEvent(
-                                          profile: profile),
+                                        profile: profile,
+                                      ),
                                     ),
                               );
                             },
@@ -72,14 +72,14 @@ class PlayersAndHighscoreView extends HookWidget {
               ],
             ),
           ),
-          uiTheme.verticalBoxes.extraLarge,
+          UiGaps.extraLarge,
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ViewBackButton(onBack: onBack),
             ],
           ),
-          uiTheme.verticalBoxes.extraLarge,
+          UiGaps.extraLarge,
         ],
       ),
     );

@@ -55,7 +55,7 @@ class UILevelCenterBar extends StatelessWidget {
                     child: ActionConfirmWordButton(),
                   ),
                 ),
-                uiTheme.verticalBoxes.medium,
+                UiGaps.medium,
               ],
             GamePhaseType.selectAction => [const UiActionFrame()],
           },

@@ -2,19 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../wbw_design_core.dart';
-import '../theme/color_palette copy.dart';
-import 'game_menu_button_painter.dart';
+import 'ui_styled_button_painter.dart';
 
-class GameMenuButton extends StatefulWidget {
-  const GameMenuButton({
+class UiStyledButton extends StatefulWidget {
+  const UiStyledButton({
     required this.label,
     required this.onPressed,
     this.icon,
     this.focusNode, // Add this line
     this.onKeyEvent,
     this.styleType = ButtonStyleType.text,
-    this.color,
-    this.borderColor,
+    this.color = UiColors.offWhite,
+    this.borderColor = UiColors.dark,
     this.gradientColors,
     this.borderWidth,
     this.radius,
@@ -32,8 +31,8 @@ class GameMenuButton extends StatefulWidget {
   final IconData? icon;
   final VoidCallback onPressed;
   final ButtonStyleType styleType;
-  final Color? color;
-  final Color? borderColor;
+  final Color color;
+  final Color borderColor;
   final List<Color>? gradientColors;
   final double? borderWidth;
   final double? radius;
@@ -41,10 +40,10 @@ class GameMenuButton extends StatefulWidget {
   final IconData? focusIcon;
 
   @override
-  _GameMenuButtonState createState() => _GameMenuButtonState();
+  _UiStyledButtonState createState() => _UiStyledButtonState();
 }
 
-class _GameMenuButtonState extends State<GameMenuButton>
+class _UiStyledButtonState extends State<UiStyledButton>
     with SingleTickerProviderStateMixin {
   bool _isHovered = false;
   bool _isTapped = false;
@@ -87,8 +86,8 @@ class _GameMenuButtonState extends State<GameMenuButton>
 
   @override
   Widget build(final BuildContext context) {
-    final buttonColor = widget.color ?? AppColorsTest.buttonPrimary;
-    final buttonBorderColor = widget.borderColor ?? AppColorsTest.accentGreen;
+    final buttonColor = widget.color;
+    final buttonBorderColor = widget.borderColor;
     final buttonRadius = widget.radius ?? 30.0;
     final focused = _isFocused || _isHovered;
     final textColor =

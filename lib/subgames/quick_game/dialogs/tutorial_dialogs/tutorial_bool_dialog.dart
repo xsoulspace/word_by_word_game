@@ -11,7 +11,6 @@ class TutorialBoolDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
       (final bloc) {
         if (bloc.state is! TutorialBlocStateLive) return null;
@@ -23,7 +22,7 @@ class TutorialBoolDialog extends StatelessWidget {
     return DialogScaffold(
       children: [
         Text(tutorialEvent.localizedMap.getValue(locale)),
-        uiTheme.verticalBoxes.extraLarge,
+        UiGaps.large,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

@@ -17,11 +17,11 @@ class UiActionFrame extends StatelessWidget {
     if (levelCubit.featuresSettings.isAdvancedGame) {
       return const UIActionFrameAdvanced();
     } else {
-      return Column(
+      return const Column(
         children: [
-          uiTheme.verticalBoxes.small,
-          const UiActionFrameSimple(),
-          uiTheme.verticalBoxes.medium,
+          UiGaps.small,
+          UiActionFrameSimple(),
+          UiGaps.medium,
         ],
       );
     }
@@ -62,12 +62,12 @@ class _UiActionButtonState extends State<UiActionButton>
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
     final colorScheme = theme.colorScheme;
     final surfaces = theme.extension<SurfaceColorScheme>()!;
+    const radius = Radius.elliptical(UiSpace.medium, UiSpace.medium);
     final borderRadius = _isOnHold
-        ? BorderRadius.all(uiTheme.circularRadius.medium)
-        : BorderRadius.all(uiTheme.circularRadius.medium);
+        ? const BorderRadius.all(radius)
+        : const BorderRadius.all(radius);
 
     return Tooltip(
       message: widget.tooltipMessage,

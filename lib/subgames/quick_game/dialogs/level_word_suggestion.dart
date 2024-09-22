@@ -90,7 +90,6 @@ class LevelWordSuggestionDialog extends HookWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final locale = useLocale(context);
-    final uiTheme = context.uiTheme;
     final dialogController = context.read<DialogController>();
     final state = useStateBuilder(
       () => _DialogState(dto: _DialogStateDiDto.use(context.read)),
@@ -147,14 +146,14 @@ class LevelWordSuggestionDialog extends HookWidget {
         if (state._suggestedWord.isEmpty) {
           return ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+            padding: const EdgeInsets.all(UiSpace.extraLarge),
             children: [
               Text(
                 S.of(context).noWordsSuggestions,
                 style: theme.textTheme.headlineLarge,
                 textAlign: TextAlign.center,
               ),
-              uiTheme.verticalBoxes.extraLarge,
+              UiGaps.extraLarge,
               Text(
                 S.of(context).tryWithDifferentLetters,
                 textAlign: TextAlign.center,
@@ -166,34 +165,34 @@ class LevelWordSuggestionDialog extends HookWidget {
         if (state._isWordRevealed) {
           return ListView(
             shrinkWrap: true,
-            padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+            padding: const EdgeInsets.all(UiSpace.extraLarge),
             children: [
               Text(
                 S.of(context).suggestedWord.toUpperCase(),
                 style: theme.textTheme.titleSmall,
                 textAlign: TextAlign.center,
               ),
-              uiTheme.verticalBoxes.large,
+              UiGaps.large,
               Text(
                 state._suggestedWord.toUpperCase(),
                 style: context.textThemeBold.headlineSmall,
                 textAlign: TextAlign.center,
               ),
-              uiTheme.verticalBoxes.large,
+              UiGaps.large,
               wordMeaning,
             ],
           );
         }
         return ListView(
           shrinkWrap: true,
-          padding: EdgeInsets.all(uiTheme.spacing.extraLarge),
+          padding: const EdgeInsets.all(UiSpace.extraLarge),
           children: [
             Text(
               S.of(context).revealSuggestedWord.toUpperCase(),
               style: context.textThemeBold.titleMedium,
               textAlign: TextAlign.center,
             ),
-            uiTheme.verticalBoxes.large,
+            UiGaps.large,
             DefaultTextStyle.merge(
               style: theme.textTheme.headlineSmall?.copyWith(
                 fontWeight: FontWeight.bold,
@@ -241,7 +240,7 @@ class LevelWordSuggestionDialog extends HookWidget {
             //   textAlign: TextAlign.center,
             // ),
             wordMeaning,
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             _UsePointsButton(
               word: state._suggestedWord,
               onPressed: state.onRevealWord,
@@ -249,7 +248,7 @@ class LevelWordSuggestionDialog extends HookWidget {
               costOfWord: state.costOfWord,
               userScore: state.userScore,
             ),
-            uiTheme.verticalBoxes.large,
+            UiGaps.large,
             Row(
               children: [
                 Expanded(

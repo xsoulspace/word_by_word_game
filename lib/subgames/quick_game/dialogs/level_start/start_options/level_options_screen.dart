@@ -19,7 +19,6 @@ class LevelOptionsScreen extends HookWidget {
   final VoidCallback onCreatePlayer;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final uxState = context.watch<LevelStartDialogUxNotifier>();
     final unblockerNotifier = useState(0);
     useListenable(uxState.isDictionariesLoading);
@@ -30,7 +29,7 @@ class LevelOptionsScreen extends HookWidget {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             GestureDetector(
               onTap: () => unblockerNotifier.value++,
               child: Text(
@@ -39,7 +38,7 @@ class LevelOptionsScreen extends HookWidget {
                 textAlign: TextAlign.center,
               ),
             ),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             ConstrainedBox(
               constraints: const BoxConstraints(maxHeight: 140),
               child: PlayerProfileRow(
@@ -47,16 +46,16 @@ class LevelOptionsScreen extends HookWidget {
                 onSelected: uxState.onPlayerSelected,
               ),
             ),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             CheckboxListTile(
               value: uxState.shouldStartTutorial,
               onChanged: uxState.changeShouldStartTutorial,
               title: Text(S.of(context).enableTutorial),
             ),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             if (!isQuickGame)
               _ExperimentsListView(unblockerNotifier: unblockerNotifier),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -94,7 +93,7 @@ class LevelOptionsScreen extends HookWidget {
                 ),
               ],
             ),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
           ],
         ),
       ),

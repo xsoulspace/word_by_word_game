@@ -59,7 +59,7 @@ class GameStartButtons extends StatelessWidget {
               color: context.colorScheme.surface,
               child: Column(
                 children: [
-                  uiTheme.verticalBoxes.medium,
+                  UiGaps.medium,
                   const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -68,7 +68,7 @@ class GameStartButtons extends StatelessWidget {
                       Text('QUICK GAME'),
                     ],
                   ),
-                  uiTheme.verticalBoxes.medium,
+                  UiGaps.medium,
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -115,16 +115,16 @@ class GameStartButtons extends StatelessWidget {
                       const Gap(6),
                     ],
                   ),
-                  uiTheme.verticalBoxes.medium,
+                  UiGaps.medium,
                 ],
               ),
             ),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Card.outlined(
               color: context.colorScheme.surface,
               child: Column(
                 children: [
-                  uiTheme.verticalBoxes.medium,
+                  UiGaps.medium,
                   const Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -133,7 +133,7 @@ class GameStartButtons extends StatelessWidget {
                       Text('ADVENTURE'),
                     ],
                   ),
-                  uiTheme.verticalBoxes.medium,
+                  UiGaps.medium,
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -192,7 +192,7 @@ class GameStartButtons extends StatelessWidget {
                       const Gap(6),
                     ],
                   ),
-                  uiTheme.verticalBoxes.medium,
+                  UiGaps.medium,
                 ],
               ),
             ),

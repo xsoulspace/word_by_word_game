@@ -12,6 +12,14 @@ class UiColors {
   static const light = Color(0xFFCECECE);
   static const offWhite = Color(0xFFFAFAFB);
 
+  // Primary Shades - Light Yellow-Green
+  // static const lightYellowGreen1 = Color(0xFFF0FFF4);
+  // static const lightYellowGreen2 = Color(0xFFE0FFE0);
+  // static const lightYellowGreen3 = Color(0xFFD0FFD0);
+
+  // // Secondary Colors
+  // static const accentGreen = Color(0xFF9AE6B4);
+  // static const accentYellow = Color(0xFFFFF59A);
   // Additional colors can be added here as needed
 }
 

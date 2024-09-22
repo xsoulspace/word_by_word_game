@@ -19,7 +19,6 @@ class LevelLostDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
     final players = context.select<LevelPlayersBloc, List<PlayerProfileModel>>(
       (final value) {
         final effectivePlayers = [...value.state.players];
@@ -36,14 +35,14 @@ class LevelLostDialog extends StatelessWidget {
           S.of(context).youHaveLandedInTheNowhere,
           style: theme.textTheme.titleLarge,
         ),
-        uiTheme.verticalBoxes.extraLarge,
+        UiGaps.large,
         ...players.map(
           (final e) => Padding(
-            padding: EdgeInsets.only(top: uiTheme.spacing.medium),
+            padding: const EdgeInsets.only(top: 16),
             child: PlayerProfileTile(player: e),
           ),
         ),
-        uiTheme.verticalBoxes.extraLarge,
+        const Gap(24),
         if (false)
           // TODO(arenukvern): add revive
           // ignore: dead_code
@@ -53,7 +52,7 @@ class LevelLostDialog extends StatelessWidget {
             },
             child: const Text('Use Score to continue'),
           ),
-        uiTheme.verticalBoxes.medium,
+        const Gap(16),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

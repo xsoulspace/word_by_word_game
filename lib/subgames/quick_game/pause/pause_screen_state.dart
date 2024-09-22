@@ -66,9 +66,9 @@ class PauseScreenState extends ValueNotifier<void> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Text(s.creatingGame),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Visibility(
               visible: Envs.isLinksAllowed,
               child: TextButton(
@@ -81,7 +81,7 @@ class PauseScreenState extends ValueNotifier<void> {
                 ),
               ),
             ),
-            uiTheme.verticalBoxes.small,
+            UiGaps.small,
             Visibility(
               visible: Envs.isLinksAllowed,
               child: TextButton(
@@ -93,9 +93,9 @@ class PauseScreenState extends ValueNotifier<void> {
                 ),
               ),
             ),
-            uiTheme.verticalBoxes.large,
+            UiGaps.large,
             Text(S.of(context).graphicsCreditsThanks),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Visibility(
               visible: Envs.isLinksAllowed,
               child: TextButton(
@@ -106,9 +106,9 @@ class PauseScreenState extends ValueNotifier<void> {
                 ),
               ),
             ),
-            uiTheme.verticalBoxes.medium,
+            UiGaps.medium,
             Text(madeWith),
-            uiTheme.verticalBoxes.large,
+            UiGaps.large,
             Text(s.thankYou),
           ],
         ),
@@ -176,7 +176,7 @@ class PauseScreenState extends ValueNotifier<void> {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           Text(applicationLegalese),
-                          uiTheme.verticalBoxes.small,
+                          UiGaps.small,
                           Text(
                             applicationVersion,
                             style: theme.textTheme.labelSmall,
@@ -187,20 +187,20 @@ class PauseScreenState extends ValueNotifier<void> {
                   ),
                 ],
               ),
-              uiTheme.verticalBoxes.medium,
+              UiGaps.medium,
               Text(s.creatingGame),
-              uiTheme.verticalBoxes.large,
+              UiGaps.large,
               Text(
                 S.of(context).graphicsCreditsThanks,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                       fontWeight: FontWeight.bold,
                     ),
               ),
-              uiTheme.verticalBoxes.medium,
+              UiGaps.medium,
               const Text('Sonnenstein - Evening Tileset'),
-              uiTheme.verticalBoxes.large,
+              UiGaps.large,
               Text(madeWith),
-              uiTheme.verticalBoxes.large,
+              UiGaps.large,
               TextButton(
                 onPressed: () => Navigator.maybePop(context),
                 child: Text(S.of(context).ok),

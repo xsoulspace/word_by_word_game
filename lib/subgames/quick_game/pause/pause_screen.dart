@@ -160,7 +160,6 @@ class _MainMenuView extends StatelessWidget {
   final ValueChanged<PauseScreenRoute> onChangeRoute;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final formFactors = UiPersistentFormFactors.of(context);
     final hasMobileLayout = formFactors.isMobile;
     final state = context.watch<PauseScreenState>();
@@ -180,7 +179,7 @@ class _MainMenuView extends StatelessWidget {
                       GameStartButtons(
                         onChangeRoute: onChangeRoute,
                       ),
-                      uiTheme.verticalBoxes.medium,
+                      UiGaps.medium,
                       UiFilledButton.icon(
                         icon: Icons.settings,
                         text: S.of(context).settings.toUpperCase(),
@@ -192,7 +191,7 @@ class _MainMenuView extends StatelessWidget {
                             duration: 450.milliseconds,
                           )
                           .slideY(begin: -0.1),
-                      uiTheme.verticalBoxes.medium,
+                      UiGaps.medium,
                       UiFilledButton.icon(
                         icon: Icons.scoreboard_rounded,
                         text: (Envs.store.isYandexGames
@@ -208,7 +207,7 @@ class _MainMenuView extends StatelessWidget {
                             duration: 450.milliseconds,
                           )
                           .slideY(begin: -0.1),
-                      uiTheme.verticalBoxes.medium,
+                      UiGaps.medium,
                       UiFilledButton.icon(
                         icon: Icons.question_mark_rounded,
                         text: S.of(context).about.toUpperCase(),
@@ -220,7 +219,7 @@ class _MainMenuView extends StatelessWidget {
                             duration: 450.milliseconds,
                           )
                           .slideY(begin: -0.1),
-                      uiTheme.verticalBoxes.medium,
+                      UiGaps.medium,
                       if (_kIsPrivacyPolicyEnabled)
                         UiTextButton.text(
                           text: S.of(context).privacyPolicy.toUpperCase(),
@@ -232,7 +231,7 @@ class _MainMenuView extends StatelessWidget {
                               duration: 450.milliseconds,
                             )
                             .slideY(begin: -0.1),
-                      uiTheme.horizontalBoxes.medium,
+                      UiGaps.medium,
                     ],
                   ),
                 ),

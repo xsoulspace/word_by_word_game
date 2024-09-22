@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class CharactersDialog extends StatelessWidget {
@@ -105,7 +106,6 @@ class CharacterCard extends StatelessWidget {
   final bool selected;
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final theme = Theme.of(context);
     final locale = useLocale(context);
     return Card(
@@ -118,7 +118,7 @@ class CharacterCard extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Container(
-                margin: EdgeInsets.all(uiTheme.spacing.medium).copyWith(
+                margin: const EdgeInsets.all(UiSpace.medium).copyWith(
                   top: 36,
                 ),
                 decoration: BoxDecoration(
@@ -133,7 +133,7 @@ class CharacterCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: EdgeInsets.all(uiTheme.spacing.medium),
+              padding: const EdgeInsets.all(UiSpace.medium),
               child: Text(character.localizedName.getValue(locale)),
             ),
           ],

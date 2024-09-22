@@ -148,7 +148,7 @@ class UiGameBottomBarCard extends StatelessWidget {
                               return bottom + 6;
                             }
                           }
-                          return uiTheme.spacing.medium;
+                          return UiSpace.medium;
                         }(),
                       ),
                       constraints: constraints,

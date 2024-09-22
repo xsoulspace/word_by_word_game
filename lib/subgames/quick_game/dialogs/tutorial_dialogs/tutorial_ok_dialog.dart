@@ -10,7 +10,6 @@ class TutorialOkDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
       (final bloc) {
         if (bloc.state is! TutorialBlocStateLive) return null;
@@ -23,7 +22,7 @@ class TutorialOkDialog extends StatelessWidget {
     return DialogScaffold(
       children: [
         Text(tutorialEvent.localizedMap.getValue(locale)),
-        uiTheme.verticalBoxes.extraLarge,
+        UiGaps.extraLarge,
         Row(
           children: [
             Expanded(

@@ -92,6 +92,17 @@ class $AssetsImagesGen {
   $AssetsImagesUiFramesGen get uiFrames => const $AssetsImagesUiFramesGen();
 }
 
+class $AssetsShadersAssetsGen {
+  const $AssetsShadersAssetsGen();
+
+  /// File path: assets/shaders_assets/sample.png
+  AssetGenImage get sample =>
+      const AssetGenImage('assets/shaders_assets/sample.png');
+
+  /// List of all assets
+  List<AssetGenImage> get values => [sample];
+}
+
 class $AssetsImagesButtonsGen {
   const $AssetsImagesButtonsGen();
 
@@ -183,6 +194,8 @@ class Assets {
 
   static const AssetGenImage icon = AssetGenImage('assets/icon.png');
   static const $AssetsImagesGen images = $AssetsImagesGen();
+  static const $AssetsShadersAssetsGen shadersAssets =
+      $AssetsShadersAssetsGen();
   static const $GoogleFontsGen googleFonts = $GoogleFontsGen();
 
   /// List of all assets
