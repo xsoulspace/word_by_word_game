@@ -82,7 +82,6 @@ class _Statistics extends StatelessWidget {
     if (!isAllowedToBeVisible) {
       return const SizedBox.shrink();
     }
-    final uiTheme = context.uiTheme;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
