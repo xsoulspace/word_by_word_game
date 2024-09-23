@@ -450,16 +450,25 @@ class _LinearDividerPainter extends CustomPainter {
 }
 
 class UiVerticalLinearDivider extends StatelessWidget {
-  const UiVerticalLinearDivider({super.key});
+  const UiVerticalLinearDivider({
+    super.key,
+    this.includeTriangle = true,
+    this.size = const Size(20, 60),
+  });
+  final bool includeTriangle;
+  final Size size;
 
   @override
   Widget build(final BuildContext context) => CustomPaint(
-        painter: _VerticalLinearDividerPainter(),
-        size: const Size(20, 60),
+        painter:
+            _VerticalLinearDividerPainter(includeTriangle: includeTriangle),
+        size: size,
       );
 }
 
 class _VerticalLinearDividerPainter extends CustomPainter {
+  _VerticalLinearDividerPainter({required this.includeTriangle});
+  final bool includeTriangle;
   @override
   void paint(final Canvas canvas, final Size size) {
     final paint = Paint()
@@ -484,16 +493,17 @@ class _VerticalLinearDividerPainter extends CustomPainter {
         Offset(centerX, size.height),
         paint,
       );
+    if (includeTriangle) {
+      // Draw triangle
+      final path = Path()
+        ..moveTo(centerX, centerY - triangleSize)
+        ..lineTo(centerX - triangleSize / 2, centerY)
+        ..lineTo(centerX, centerY + triangleSize)
+        ..lineTo(centerX + triangleSize / 2, centerY)
+        ..close();
 
-    // Draw triangle
-    final path = Path()
-      ..moveTo(centerX, centerY - triangleSize)
-      ..lineTo(centerX - triangleSize / 2, centerY)
-      ..lineTo(centerX, centerY + triangleSize)
-      ..lineTo(centerX + triangleSize / 2, centerY)
-      ..close();
-
-    canvas.drawPath(path, paint);
+      canvas.drawPath(path, paint);
+    }
   }
 
   @override

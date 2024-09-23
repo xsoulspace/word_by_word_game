@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -58,7 +59,7 @@ class PlayerProfileCard extends StatelessWidget {
           child: Card(
             clipBehavior: Clip.hardEdge,
             child: InkWell(
-              onTap: () => onSelected!(player),
+              onTap: () => onSelected?.call(player),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 child: Column(
@@ -99,9 +100,16 @@ class PlayerProfileTile extends StatelessWidget {
   Widget build(final BuildContext context) => Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          UiPlayerProfileAvatar(player: player),
-          UiGaps.medium,
           Text(player.name),
+          const Spacer(),
+          const Icon(
+            CupertinoIcons.lab_flask,
+            size: 14,
+            color: UiColors.light,
+          ),
+          const Gap(4),
+          Flexible(child: UiPlayerProfileAvatar(player: player)),
+          UiGaps.medium,
           if (onSelected != null) ...[
             Checkbox(
               value: selected,
@@ -120,23 +128,20 @@ class PlayerProfileTile extends StatelessWidget {
 class UiPlayerProfileAvatar extends StatelessWidget {
   const UiPlayerProfileAvatar({
     required this.player,
-    this.dimension = 45.0,
     super.key,
   });
-  final double dimension;
   final PlayerProfileModel player;
   @override
   Widget build(final BuildContext context) {
-    final score = player.highscore.score.value;
-    return Container(
-      decoration: BoxDecoration(
-        color: player.color,
-        borderRadius: BorderRadius.circular(24),
+    final score = player.highscore.score.value ~/ kScoreFactor;
+    return Text(
+      '$score',
+      maxLines: 1,
+      style: const TextStyle(
+        fontSize: 24,
+        color: UiColors.mediumDark,
+        fontWeight: FontWeight.bold,
       ),
-      width: dimension,
-      height: dimension,
-      alignment: Alignment.center,
-      child: Text('${score ~/ kScoreFactor}'),
     );
   }
 }

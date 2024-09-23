@@ -38,7 +38,8 @@ class DialogController extends ChangeNotifier {
         GameDialogType.gameTutorialBool ||
         GameDialogType.gameTutorialOk ||
         GameDialogType.gameTechLevelAchieved ||
-        GameDialogType.menuSettings
+        GameDialogType.menuSettings ||
+        GameDialogType.menuPlayersAndHighscore
           // ||
           // GameDialogType.menuCredits ||
           // GameDialogType.menuAdventure ||
@@ -156,6 +157,11 @@ class DialogController extends ChangeNotifier {
 
   void _showTutorialBoolDialog() {
     dialogType = GameDialogType.gameTutorialBool;
+  }
+
+  void openPlayersAndHighscore() {
+    _pause();
+    dialogType = GameDialogType.menuPlayersAndHighscore;
   }
 
   void openSettings() {

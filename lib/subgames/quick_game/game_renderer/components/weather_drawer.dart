@@ -66,10 +66,10 @@ class FogWeatherLayer extends Component
   Offset get windDirection => const Offset(1, 0);
   ui.FragmentShader? _shader;
   final _paint = Paint();
-  double _time = 0;
+  final double _time = 0;
 
   void _updateShader(final double dt) {
-    _time += dt; // Scale time by speed
+    // _time += dt; // Scale time by speed
     _shader?.setFloatUniforms(
       (final setter) => setter
         ..setFloat(_time)

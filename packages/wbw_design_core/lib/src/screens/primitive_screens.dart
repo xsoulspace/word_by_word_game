@@ -37,7 +37,7 @@ class LoadingScreen extends StatelessWidget {
                       child: Material(
                         child: Text(
                           // TODO(arenukvern): add gifs - tips
-                          'Did you know that you can delete letters by clicking them?',
+                          'Tip: You can delete letters by clicking them if you have enough points.',
                           style: TextStyle(
                             color: UiColors.dark.withOpacity(0.8),
                             fontSize: 20,

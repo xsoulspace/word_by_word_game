@@ -18,7 +18,6 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/core/core.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/level_start_dialog.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
-import 'package:word_by_word_game/subgames/quick_game/highscore/highscore.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/credits_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
@@ -30,7 +29,6 @@ const _kIsCharacterVisible = false;
 enum PauseScreenRoute {
   mainMenu,
   adventure,
-  playersAndHighscore,
   credits,
 }
 
@@ -56,8 +54,6 @@ class PauseScreen extends HookWidget {
                       screenRouteState.value = route,
                 ),
               PauseScreenRoute.adventure => AdventureView(onBack: onBack),
-              PauseScreenRoute.playersAndHighscore =>
-                PlayersAndHighscoreView(onBack: onBack),
               PauseScreenRoute.credits => CreditsView(onBack: onBack),
             },
           ),
@@ -166,8 +162,7 @@ class _MainMenuView extends StatelessWidget {
       onNewQuick: onRestartQuick,
       onContinueAdventure: onContinueAdventure,
       onChooseAdventure: () => onChangeRoute(PauseScreenRoute.adventure),
-      onPlayersAndHighscore: () =>
-          onChangeRoute(PauseScreenRoute.playersAndHighscore),
+      onPlayersAndHighscore: dialogController.openPlayersAndHighscore,
       // onCredits: () => screenRouteState.value = PauseScreenRoute.credits,
       onCredits: () async =>
           buttonStatuses.pauseScreenState.onShowAbout(context),

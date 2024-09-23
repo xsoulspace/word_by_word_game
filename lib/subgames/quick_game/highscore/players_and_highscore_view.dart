@@ -11,10 +11,8 @@ import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart'
 
 class PlayersAndHighscoreView extends HookWidget {
   const PlayersAndHighscoreView({
-    required this.onBack,
     super.key,
   });
-  final VoidCallback onBack;
   @override
   Widget build(final BuildContext context) {
     final players = context.select<GlobalGameBloc, List<PlayerProfileModel>>(
@@ -27,61 +25,50 @@ class PlayersAndHighscoreView extends HookWidget {
           );
       },
     );
-    return ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxWidth: 600,
-      ),
-      child: Column(
-        children: [
-          UiGaps.large,
-          const ViewTitle(
-            title: LocalizedMap(
+    final locale = useLocale(context);
+    return DecoratedDialogScaffold(
+      bottomButton: const ViewBackButton(),
+      padding: const EdgeInsets.symmetric(horizontal: 8),
+      children: [
+        UiGaps.small,
+        Center(
+          // TODO(arenukvern): l10n
+          child: Text(
+            const LocalizedMap(
               value: {
-                Languages.en: 'Players & Highscore',
-                Languages.ru: 'Игроки & Рекорды',
-                Languages.it: 'Giocatori & Highscore',
+                Languages.en: 'HIGHSCORES',
+                Languages.ru: 'РЕЙТИНГ',
+                Languages.it: 'CLASSIFICA',
               },
-            ),
+            ).getValue(locale),
+            style: const TextStyle(fontSize: 24),
           ),
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.all(24),
-              children: [
-                UiGaps.extraLarge,
-                ...players.map(
-                  (final e) => Padding(
-                    padding: const EdgeInsets.only(top: UiSpace.medium),
-                    child: PlayerProfileTile(
-                      player: e,
-                      onDelete: !kDebugMode
-                          ? null
-                          : (final profile) {
-                              unawaited(
-                                context
-                                    .read<GlobalGameBloc>()
-                                    .onDeletePlayerProfile(
-                                      DeletePlayerProfileEvent(
-                                        profile: profile,
-                                      ),
-                                    ),
-                              );
-                            },
-                    ),
-                  ),
-                ),
-              ],
-            ),
+        ),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            UiLinearDivider(),
+          ],
+        ),
+        ...players.map(
+          (final e) => PlayerProfileTile(
+            player: e,
+            onDelete: !kDebugMode
+                ? null
+                : (final profile) {
+                    unawaited(
+                      context.read<GlobalGameBloc>().onDeletePlayerProfile(
+                            DeletePlayerProfileEvent(
+                              profile: profile,
+                            ),
+                          ),
+                    );
+                  },
           ),
-          UiGaps.extraLarge,
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              ViewBackButton(onBack: onBack),
-            ],
-          ),
-          UiGaps.extraLarge,
-        ],
-      ),
+        ),
+        UiGaps.extraLarge,
+        UiGaps.extraLarge,
+      ],
     );
   }
 }

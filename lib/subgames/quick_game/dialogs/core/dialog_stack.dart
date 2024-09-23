@@ -11,6 +11,7 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggest
 import 'package:word_by_word_game/subgames/quick_game/dialogs/technologies/tech_level_achieved_dialog.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/technologies/tech_level_dialog.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/tutorial_dialogs/tutorial_dialogs.dart';
+import 'package:word_by_word_game/subgames/quick_game/highscore/players_and_highscore_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/settings/settings.dart';
 
 part 'dialog_controller.dart';
@@ -24,6 +25,7 @@ enum GameDialogType {
   gameTutorialOk,
   gameTechnologiesTree,
   gameTechLevelAchieved,
+  menuPlayersAndHighscore,
   menuSettings,
   // menuCredits,
   // menuAdventure,
@@ -95,7 +97,9 @@ class _Dialog extends PopupRoute {
   // the escape key on the keyboard.
   @override
   bool get barrierDismissible => switch (dialogType) {
-        GameDialogType.menuSettings => true,
+        GameDialogType.menuSettings ||
+        GameDialogType.menuPlayersAndHighscore =>
+          true,
         _ => false,
       };
 
@@ -174,6 +178,9 @@ class _DialogBody extends HookWidget {
       GameDialogType.gameTutorialBool => const TutorialBoolDialog(),
       GameDialogType.gameTutorialOk => const TutorialOkDialog(),
       GameDialogType.menuSettings => const Center(child: SettingsView()),
+      GameDialogType.menuPlayersAndHighscore => const Center(
+          child: PlayersAndHighscoreView(),
+        ),
 
       // GameDialogType.menuCredits => ,
       // GameDialogType.menuAdventure => AdventureView(

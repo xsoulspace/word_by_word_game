@@ -321,20 +321,29 @@ class UiCircleCloseButton extends StatelessWidget {
   final VoidCallback onPressed;
   final IconData? icon;
   @override
-  Widget build(final BuildContext context) => UiStyledButton(
-        tooltip: 'Close (X or ESC)',
-        onPressed: onPressed,
-        icon: icon,
-        padding: icon != null
-            ? null
-            : const EdgeInsets.symmetric(
-                vertical: 8,
-                horizontal: 18,
-              ),
-        labelChild: icon != null ? null : const Text('X'),
-        focusIcon: null,
-        styleType: ButtonStyleType.outlined,
-      );
+  Widget build(final BuildContext context) {
+    final locale = useLocale(context);
+    return UiStyledButton(
+      tooltip: const LocalizedMap(
+        value: {
+          Languages.en: 'Close (X or ESC)',
+          Languages.ru: 'Закрыть (X или ESC)',
+          Languages.it: 'Chiudi (X o ESC)',
+        },
+      ).getValue(locale),
+      onPressed: onPressed,
+      icon: icon,
+      padding: icon != null
+          ? null
+          : const EdgeInsets.symmetric(
+              vertical: 8,
+              horizontal: 18,
+            ),
+      labelChild: icon != null ? null : const Text('X'),
+      focusIcon: null,
+      styleType: ButtonStyleType.outlined,
+    );
+  }
 }
 
 class _UsePointsButton extends StatelessWidget {

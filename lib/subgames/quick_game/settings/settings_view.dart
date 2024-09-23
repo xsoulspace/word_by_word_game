@@ -7,46 +7,59 @@ class SettingsView extends HookWidget {
   const SettingsView({super.key});
 
   @override
-  Widget build(final BuildContext context) => const DecoratedDialogScaffold(
-        bottomButton: ViewBackButton(),
-        padding: EdgeInsets.symmetric(horizontal: 6),
-        children: [
-          UiGaps.small,
-          Center(
-            // TODO(arenukvern): l10n
-            child: Text(
-              'SETTINGS',
-              style: TextStyle(fontSize: 24),
-            ),
+  Widget build(final BuildContext context) {
+    final locale = useLocale(context);
+    return DecoratedDialogScaffold(
+      bottomButton: const ViewBackButton(),
+      padding: const EdgeInsets.symmetric(horizontal: 6),
+      children: [
+        UiGaps.small,
+        Center(
+          child: Text(
+            const LocalizedMap(
+              value: {
+                Languages.en: 'SETTINGS',
+                Languages.ru: 'НАСТРОЙКИ',
+                Languages.it: 'IMPOSTAZIONI',
+              },
+            ).getValue(locale),
+            style: const TextStyle(fontSize: 24),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+        ),
+        const Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            UiLinearDivider(),
+          ],
+        ),
+        UiGaps.extraLarge,
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              UiLinearDivider(),
+              Text(
+                const LocalizedMap(
+                  value: {
+                    Languages.en: 'Language',
+                    Languages.ru: 'Язык',
+                    Languages.it: 'Lingua',
+                  },
+                ).getValue(locale),
+                style: const TextStyle(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                  color: UiColors.mediumLight,
+                ),
+              ),
+              const Gap(2),
+              const Expanded(child: LocaleSwitcherGrid()),
             ],
           ),
-          UiGaps.extraLarge,
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // TODO(arenukvern): l10n
-                Text(
-                  'Language',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                    color: UiColors.mediumLight,
-                  ),
-                ),
-                Gap(2),
-                Expanded(child: LocaleSwitcherGrid()),
-              ],
-            ),
-          ),
-          UiGaps.extraLarge,
-          UiGaps.extraLarge,
-        ],
-      );
+        ),
+        UiGaps.extraLarge,
+        UiGaps.extraLarge,
+      ],
+    );
+  }
 }
