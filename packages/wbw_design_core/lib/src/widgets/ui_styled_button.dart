@@ -9,6 +9,7 @@ class UiStyledButton extends StatefulWidget {
   const UiStyledButton({
     required this.onPressed,
     this.label = '',
+    this.labelChild,
     this.icon,
     this.focusNode, // Add this line
     this.onKeyEvent,
@@ -34,6 +35,7 @@ class UiStyledButton extends StatefulWidget {
     BuildContext context,
   )? onKeyEvent;
   final String label;
+  final Widget? labelChild;
   final IconData? icon;
   final VoidCallback onPressed;
   final ButtonStyleType styleType;
@@ -93,6 +95,7 @@ class _UiStyledButtonState extends State<UiStyledButton>
 
   @override
   Widget build(final BuildContext context) {
+    final isLabelExists = widget.label.isNotEmpty || widget.labelChild != null;
     final buttonColor = widget.color;
     final focused = _isFocused || _isHovered;
     final textColor =
@@ -208,9 +211,9 @@ class _UiStyledButtonState extends State<UiStyledButton>
                             color: textColor,
                             size: 20,
                           ),
-                          if (widget.label.isNotEmpty) const Gap(8),
+                          if (isLabelExists) const Gap(8),
                         ],
-                        if (widget.label.isNotEmpty)
+                        if (isLabelExists)
                           Builder(
                             builder: (final context) {
                               final defaultTextStyle = TextStyle(
@@ -219,7 +222,8 @@ class _UiStyledButtonState extends State<UiStyledButton>
                               );
 
                               return UiAnimatedText(
-                                widget.label,
+                                labelChild: widget.labelChild,
+                                label: widget.label,
                                 textStyle:
                                     defaultTextStyle.merge(widget.textStyle),
                               );
@@ -254,8 +258,9 @@ class _UiStyledButtonState extends State<UiStyledButton>
 }
 
 class UiAnimatedText extends StatelessWidget {
-  const UiAnimatedText(
-    this.label, {
+  const UiAnimatedText({
+    this.label = '',
+    this.labelChild,
     this.textStyle,
     this.textColor = UiColors.dark,
     super.key,
@@ -263,6 +268,7 @@ class UiAnimatedText extends StatelessWidget {
   final TextStyle? textStyle;
   final String label;
   final Color textColor;
+  final Widget? labelChild;
   @override
   Widget build(final BuildContext context) => AnimatedDefaultTextStyle(
         duration: const Duration(milliseconds: 200),
@@ -272,6 +278,6 @@ class UiAnimatedText extends StatelessWidget {
               fontWeight: FontWeight.bold,
               fontSize: 20,
             ),
-        child: Text(label),
+        child: labelChild ?? Text(label),
       );
 }

@@ -132,7 +132,7 @@ class _UiMainMenuList extends StatelessWidget {
           children: [
             const Gap(leadingGapWithIcon),
             UiAnimatedText(
-              'QUICK PLAY',
+              label: 'QUICK PLAY',
               textStyle: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,
@@ -159,7 +159,7 @@ class _UiMainMenuList extends StatelessWidget {
           children: [
             const Gap(leadingGapWithIcon),
             UiAnimatedText(
-              'ADVENTURE',
+              label: 'ADVENTURE',
               textStyle: TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.bold,

@@ -43,6 +43,9 @@ class GameMenuButtonPainter extends CustomPainter {
           ..color = borderColor
           ..style = PaintingStyle.stroke
           ..strokeWidth = borderWidth;
+        final backgroundPaint = Paint();
+        backgroundPaint.color = color;
+        canvas.drawRRect(RRect.fromRectAndRadius(rect, r), backgroundPaint);
         canvas.drawRRect(RRect.fromRectAndRadius(rect, r), paint);
       case ButtonStyleType.gradient:
         if (gradientColors == null || gradientColors!.length < 2) {

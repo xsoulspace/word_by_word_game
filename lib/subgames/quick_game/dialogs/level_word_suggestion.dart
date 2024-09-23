@@ -306,7 +306,7 @@ class LevelWordSuggestionDialog extends HookWidget {
       },
       bottomButton: UiCircleCloseButton(
         onPressed: dialogController.closeDialogAndResume,
-        icon: state._isWordRevealed ? Icons.done : Icons.close,
+        icon: state._isWordRevealed ? Icons.done : null,
       ),
     );
   }
@@ -315,23 +315,25 @@ class LevelWordSuggestionDialog extends HookWidget {
 class UiCircleCloseButton extends StatelessWidget {
   const UiCircleCloseButton({
     required this.onPressed,
-    this.icon = Icons.close,
+    this.icon,
     super.key,
   });
   final VoidCallback onPressed;
-  final IconData icon;
+  final IconData? icon;
   @override
-  Widget build(final BuildContext context) => Card(
-        shape: const CircleBorder(),
-        elevation: 2,
-        child: IconButton.outlined(
-          tooltip: 'Close (X or ESC)',
-          onPressed: onPressed,
-          icon: AnimatedSwitcher(
-            duration: 250.milliseconds,
-            child: Icon(icon),
-          ),
-        ),
+  Widget build(final BuildContext context) => UiStyledButton(
+        tooltip: 'Close (X or ESC)',
+        onPressed: onPressed,
+        icon: icon,
+        padding: icon != null
+            ? const EdgeInsets.all(8)
+            : const EdgeInsets.symmetric(
+                vertical: 6,
+                horizontal: 12,
+              ),
+        labelChild: icon != null ? null : const Text('X'),
+        focusIcon: null,
+        styleType: ButtonStyleType.outlined,
       );
 }
 
