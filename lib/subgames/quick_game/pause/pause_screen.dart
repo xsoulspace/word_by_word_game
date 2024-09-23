@@ -65,13 +65,19 @@ class PauseScreen extends HookWidget {
             Builder(
               builder: (final context) {
                 final hasBack = switch (screenRouteState.value) {
-                  PauseScreenRoute.mainMenu => true,
+                  PauseScreenRoute.mainMenu => false,
                   _ => true,
                 };
                 return Positioned(
                   bottom: 8,
                   right: 8,
-                  child: KeyboardBindingsTips(hasBack: hasBack),
+                  left: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Flexible(child: KeyboardBindingsTips(hasBack: hasBack)),
+                    ],
+                  ),
                 );
               },
             ),

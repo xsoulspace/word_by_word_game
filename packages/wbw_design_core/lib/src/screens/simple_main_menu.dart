@@ -32,31 +32,47 @@ class SimpleMainMenu extends StatelessWidget {
   final SimpleMainMenuTuple tuple;
 
   @override
-  Widget build(final BuildContext context) => KeyboardBindingsViewFocusScope(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            const Spacer(),
-            Padding(
-              padding: EdgeInsets.only(
-                left: MediaQuery.sizeOf(context).width * 0.18 / 2,
-                right: MediaQuery.sizeOf(context).width * 0.18,
-              ),
-              child: Column(
-                children: [
-                  const Flexible(
-                    child: _MainMenuTitle(),
-                  ),
-                  Expanded(
-                    flex: 2,
-                    child: _UiMainMenuList(tuple: tuple),
-                  ),
-                ],
-              ),
+  Widget build(final BuildContext context) {
+    final formFactors = UiPersistentFormFactors.of(context);
+    final hasMobileLayout = formFactors.isMobile;
+
+    return KeyboardBindingsViewFocusScope(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const Spacer(),
+          Padding(
+            padding: EdgeInsets.only(
+              left: MediaQuery.sizeOf(context).width * 0.18 / 2,
+              right: MediaQuery.sizeOf(context).width * 0.18,
             ),
-          ],
-        ),
-      );
+            child: Column(
+              children: [
+                const Flexible(
+                  child: _MainMenuTitle(),
+                ),
+                Expanded(
+                  flex: 2,
+                  child: Builder(
+                    builder: (final context) {
+                      Widget child = _UiMainMenuList(tuple: tuple);
+                      if (hasMobileLayout) {
+                        child = SingleChildScrollView(
+                          padding: EdgeInsets.zero,
+                          child: child,
+                        );
+                      }
+                      return child;
+                    },
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
 }
 
 class KeyboardBindingsViewFocusScope extends StatelessWidget {
@@ -291,28 +307,28 @@ class KeyboardBindingsTips extends HookWidget {
   Widget build(final BuildContext context) {
     final bindings = context.watch<KeyboardBindingsNotifier>();
     final hovered = useState(false);
-    return Hero(
-      tag: const ValueKey('keyboardBindingsTips'),
-      child: FocusableActionDetector(
-        descendantsAreFocusable: false,
-        onShowHoverHighlight: (final isHovered) => hovered.value = isHovered,
-        child: AnimatedContainer(
-          duration: 300.milliseconds,
-          decoration: BoxDecoration(
-            color: UiColors.mediumDark.withOpacity(hovered.value ? 0.9 : 0.5),
-            borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
+    return FocusableActionDetector(
+      descendantsAreFocusable: false,
+      onShowHoverHighlight: (final isHovered) => hovered.value = isHovered,
+      child: AnimatedContainer(
+        duration: 300.milliseconds,
+        decoration: BoxDecoration(
+          color: UiColors.mediumDark.withOpacity(hovered.value ? 0.9 : 0.5),
+          borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
+        ),
+        child: DefaultTextStyle.merge(
+          style: const TextStyle(
+            color: UiColors.offWhite,
+            fontSize: UiFontSizes.s12,
           ),
-          padding: const EdgeInsets.symmetric(
-            vertical: 6,
-            horizontal: 12,
-          ),
-          child: DefaultTextStyle.merge(
-            style: const TextStyle(
-              color: UiColors.offWhite,
-              fontSize: UiFontSizes.s12,
-            ),
-            child: AnimatedSize(
-              duration: 300.milliseconds,
+          child: AnimatedSize(
+            duration: 300.milliseconds,
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.symmetric(
+                vertical: 6,
+                horizontal: 12,
+              ),
+              scrollDirection: Axis.horizontal,
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.end,

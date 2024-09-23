@@ -326,10 +326,10 @@ class UiCircleCloseButton extends StatelessWidget {
         onPressed: onPressed,
         icon: icon,
         padding: icon != null
-            ? const EdgeInsets.all(8)
+            ? null
             : const EdgeInsets.symmetric(
-                vertical: 6,
-                horizontal: 12,
+                vertical: 8,
+                horizontal: 18,
               ),
         labelChild: icon != null ? null : const Text('X'),
         focusIcon: null,
