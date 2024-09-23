@@ -4,6 +4,8 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:wbw_core/wbw_core.dart';
 
+import '../../wbw_design_core.dart';
+
 export 'color_palette.dart';
 export 'spacing.dart';
 

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,10 @@ class AppScaffoldBuilder extends StatelessWidget {
     // final settingsNotifier = context.watch<AppSettingsNotifier>();
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
+      shortcuts: {
+        ...WidgetsApp.defaultShortcuts,
+        const SingleActivator(LogicalKeyboardKey.keyX): const DismissIntent(),
+      },
 
       /// Providing a restorationScopeId allows the Navigator built by
       /// the MaterialApp to restore the navigation stack when a user

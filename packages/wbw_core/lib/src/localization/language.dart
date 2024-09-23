@@ -57,7 +57,7 @@ enum Languages {
     }
   }
 
-  static const all = <Languages>[ru, en, it];
+  static const all = <Languages>[en, ru, it];
 }
 
 final Map<Languages, NamedLocale> namedLocalesMap = {

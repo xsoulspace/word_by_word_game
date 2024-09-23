@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:blur/blur.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:map_editor/state/models/models.dart';
@@ -24,7 +25,6 @@ import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_h
 
 part 'pause_screen_state.dart';
 
-const _kIsPrivacyPolicyEnabled = false;
 const _kIsCharacterVisible = false;
 
 enum PauseScreenRoute {
@@ -38,9 +38,9 @@ class PauseScreen extends HookWidget {
   const PauseScreen({super.key});
   @override
   Widget build(final BuildContext context) {
-    final dialogController = context.read<DialogController>();
     final screenRouteState = useState(PauseScreenRoute.mainMenu);
     void onBack() => screenRouteState.value = PauseScreenRoute.mainMenu;
+
     return _Scaffold(
       builder: (final context) => Stack(
         fit: StackFit.expand,
@@ -48,58 +48,12 @@ class PauseScreen extends HookWidget {
           Positioned.fill(
             child: Container().blurred(blur: 0.6, colorOpacity: 0.01),
           ),
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Builder(
-              builder: (final context) {
-                final formFactors = UiPersistentFormFactors.of(context);
-                final hasMobileLayout = formFactors.isMobile;
-
-                return Column(
-                  children: [
-                    const TopSafeArea(),
-                    ConstrainedGap(
-                      minHeight: 12,
-                      maxHeight: 64,
-                      expand: !hasMobileLayout,
-                    ),
-                    switch (screenRouteState.value) {
-                      PauseScreenRoute.mainMenu => const _MainMenuTitle(),
-                      _ => const SizedBox(),
-                    },
-                  ],
-                );
-              },
-            ),
-          ),
           AnimatedSwitcher(
             duration: 350.milliseconds,
             child: switch (screenRouteState.value) {
-              PauseScreenRoute.mainMenu => Builder(
-                  builder: (final context) {
-                    final tuple = (
-                      onContinueQuick: () =>
-                          screenRouteState.value = PauseScreenRoute.adventure,
-                      onNewQuick: () =>
-                          screenRouteState.value = PauseScreenRoute.adventure,
-                      onContinueAdventure: () =>
-                          screenRouteState.value = PauseScreenRoute.adventure,
-                      onChooseAdventure: () =>
-                          screenRouteState.value = PauseScreenRoute.adventure,
-                      onPlayersAndHighscore: () => screenRouteState.value =
-                          PauseScreenRoute.playersAndHighscore,
-                      onCredits: () =>
-                          screenRouteState.value = PauseScreenRoute.credits,
-                      onSettings: dialogController.openSettings,
-                      onExit: () =>
-                          screenRouteState.value = PauseScreenRoute.mainMenu,
-                    );
-
-                    /// desktop
-                    return SimpleMainMenu(tuple: tuple);
-                  },
+              PauseScreenRoute.mainMenu => _MainMenuView(
+                  onChangeRoute: (final route) =>
+                      screenRouteState.value = route,
                 ),
               PauseScreenRoute.adventure => AdventureView(onBack: onBack),
               PauseScreenRoute.playersAndHighscore =>
@@ -111,7 +65,7 @@ class PauseScreen extends HookWidget {
             Builder(
               builder: (final context) {
                 final hasBack = switch (screenRouteState.value) {
-                  PauseScreenRoute.mainMenu => false,
+                  PauseScreenRoute.mainMenu => true,
                   _ => true,
                 };
                 return Positioned(
@@ -128,16 +82,6 @@ class PauseScreen extends HookWidget {
               top: 24,
               child: CharacterAvatarButton.useDefault(),
             ),
-          Positioned.fill(
-            child: IgnorePointer(
-              child: ColoredBox(
-                color: context.colorScheme.surface,
-                child: const SizedBox.expand(),
-              ),
-            ),
-          )
-              .animate(delay: 550.milliseconds)
-              .fadeOut(duration: 550.milliseconds),
 
           /// left for test cases
           // const Positioned.fill(
@@ -155,93 +99,81 @@ class PauseScreen extends HookWidget {
 class _MainMenuView extends StatelessWidget {
   const _MainMenuView({
     required this.onChangeRoute,
-    super.key,
   });
   final ValueChanged<PauseScreenRoute> onChangeRoute;
   @override
   Widget build(final BuildContext context) {
     final formFactors = UiPersistentFormFactors.of(context);
     final hasMobileLayout = formFactors.isMobile;
-    final state = context.watch<PauseScreenState>();
+    final buttonStatuses = useGameStartButtonsStatuses(context);
+    final dialogController = context.read<DialogController>();
+    Future<void> onContinueAdventure() async {
+      final CanvasDataModelId adventureLevelId;
+      final savedLevels = [
+        ...context.read<GlobalGameBloc>().state.savedLevels.values.where(
+              (final e) => e.id != kQuickGameMapId,
+            ),
+      ]..sort(
+          (final a, final b) {
+            // 1 - later, -1 - earlier
+            if (a.updatedAt == null) return 1;
+            if (b.updatedAt == null) return -1;
+            return b.updatedAt!.compareTo(a.updatedAt!);
+          },
+        );
+      if (buttonStatuses.isCurrentLevelRunning &&
+          !buttonStatuses.isCurrentLevelQuickGame) {
+        adventureLevelId = buttonStatuses.currentLevelId;
+      } else {
+        /// last saved level
+        adventureLevelId = savedLevels.first.id;
+      }
 
-    return CustomScrollView(
-      physics: hasMobileLayout ? null : const NeverScrollableScrollPhysics(),
-      slivers: [
-        SliverFillRemaining(
-          child: Column(
-            children: [
-              Expanded(
-                child: SingleChildScrollView(
-                  primary: !hasMobileLayout,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      GameStartButtons(
-                        onChangeRoute: onChangeRoute,
-                      ),
-                      UiGaps.medium,
-                      UiFilledButton.icon(
-                        icon: Icons.settings,
-                        text: S.of(context).settings.toUpperCase(),
-                        onPressed: () {},
-                      )
-                          .animate()
-                          .fadeIn(
-                            curve: Curves.easeIn,
-                            duration: 450.milliseconds,
-                          )
-                          .slideY(begin: -0.1),
-                      UiGaps.medium,
-                      UiFilledButton.icon(
-                        icon: Icons.scoreboard_rounded,
-                        text: (Envs.store.isYandexGames
-                                ? S.of(context).playersAndHighscoreYandex
-                                : S.of(context).playersAndHighscore)
-                            .toUpperCase(),
-                        onPressed: () =>
-                            onChangeRoute(PauseScreenRoute.playersAndHighscore),
-                      )
-                          .animate()
-                          .fadeIn(
-                            curve: Curves.easeIn,
-                            duration: 450.milliseconds,
-                          )
-                          .slideY(begin: -0.1),
-                      UiGaps.medium,
-                      UiFilledButton.icon(
-                        icon: Icons.question_mark_rounded,
-                        text: S.of(context).about.toUpperCase(),
-                        onPressed: () async => state.onShowAbout(context),
-                      )
-                          .animate()
-                          .fadeIn(
-                            curve: Curves.easeIn,
-                            duration: 450.milliseconds,
-                          )
-                          .slideY(begin: -0.1),
-                      UiGaps.medium,
-                      if (_kIsPrivacyPolicyEnabled)
-                        UiTextButton.text(
-                          text: S.of(context).privacyPolicy.toUpperCase(),
-                          onPressed: state.onPrivacyPolicy,
-                        )
-                            .animate()
-                            .fadeIn(
-                              curve: Curves.easeIn,
-                              duration: 450.milliseconds,
-                            )
-                            .slideY(begin: -0.1),
-                      UiGaps.medium,
-                    ],
-                  ),
-                ),
-              ),
-              const BottomSafeArea(),
-            ],
-          ),
+      return buttonStatuses.pauseScreenState.onContinueFromSamePlace(
+        context: context,
+        id: adventureLevelId,
+      );
+    }
+
+    Future<void> onContinueQuick() async {
+      if (buttonStatuses.isQuickSaveExists) {
+        return buttonStatuses.pauseScreenState.onContinueFromSamePlace(
+          context: context,
+          id: kQuickGameMapId,
+        );
+      }
+      unawaited(
+        buttonStatuses.pauseScreenState.onShowStartDialog(
+          canvasDataId: kQuickGameMapId,
+          context: context,
         ),
-      ],
+      );
+    }
+
+    Future<void> onRestartQuick() async =>
+        buttonStatuses.pauseScreenState.onShowStartDialog(
+          canvasDataId: kQuickGameMapId,
+          context: context,
+        );
+    final tuple = (
+      onContinueQuick: onContinueQuick,
+      onNewQuick: onRestartQuick,
+      onContinueAdventure: onContinueAdventure,
+      onChooseAdventure: () => onChangeRoute(PauseScreenRoute.adventure),
+      onPlayersAndHighscore: () =>
+          onChangeRoute(PauseScreenRoute.playersAndHighscore),
+      // onCredits: () => screenRouteState.value = PauseScreenRoute.credits,
+      onCredits: () async =>
+          buttonStatuses.pauseScreenState.onShowAbout(context),
+      onSettings: dialogController.openSettings,
+      onExit: SystemNavigator.pop,
+      isAdventureSaveExists: buttonStatuses.isAdventureSaveExists,
+      isQuickSaveExists: buttonStatuses.isQuickSaveExists,
+      onPrivacyPolicy: buttonStatuses.pauseScreenState.onPrivacyPolicy,
     );
+
+    /// desktop
+    return SimpleMainMenu(tuple: tuple);
   }
 }
 
@@ -278,67 +210,10 @@ class _Scaffold extends StatelessWidget {
   final WidgetBuilder builder;
   @override
   Widget build(final BuildContext context) => LevelUiUxStatesProvider(
-        builder: (final context) => Builder(
-          builder: (final context) => Scaffold(
-            backgroundColor: Colors.transparent,
-            resizeToAvoidBottomInset: false,
-            body: builder(context),
-          ),
+        builder: (final context) => Scaffold(
+          backgroundColor: Colors.transparent,
+          resizeToAvoidBottomInset: false,
+          body: builder(context),
         ),
       );
-}
-
-class _MainMenuTitle extends StatelessWidget {
-  const _MainMenuTitle();
-
-  @override
-  Widget build(final BuildContext context) {
-    final shadows = [
-      const Shadow(blurRadius: 1),
-      const Shadow(blurRadius: 1),
-      const Shadow(blurRadius: 1),
-    ];
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          'WORLD',
-          style: context.textThemeBold.displayLarge!.copyWith(
-            letterSpacing: 5,
-            color: const Color.fromARGB(255, 241, 244, 241),
-            shadows: shadows,
-          ),
-          textAlign: TextAlign.start,
-        )
-            .animate()
-            .then(duration: 150.milliseconds)
-            .fadeIn()
-            .slideY(begin: -0.1),
-        Text(
-          'BY WORDS',
-          style: context.textThemeBold.displayMedium!.copyWith(
-            color: const Color.fromARGB(255, 241, 244, 241),
-            shadows: shadows,
-          ),
-          textAlign: TextAlign.start,
-        ),
-        const Gap(12),
-        Text(
-          '2D ADVENTURE GAME',
-          style: context.textThemeBold.titleMedium!.copyWith(
-            color: const Color.fromARGB(255, 241, 244, 241),
-            shadows: [
-              const Shadow(blurRadius: 1),
-              const Shadow(blurRadius: 1, color: Colors.black38),
-            ],
-          ),
-          textAlign: TextAlign.start,
-        )
-            .animate()
-            .then(duration: 150.milliseconds)
-            .fadeIn()
-            .slideY(begin: -0.1),
-      ],
-    );
-  }
 }

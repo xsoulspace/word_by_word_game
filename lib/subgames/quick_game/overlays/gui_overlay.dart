@@ -20,6 +20,7 @@ class GuiOverlay extends StatelessWidget {
       (final bloc) => bloc.state.currentLevelId,
     );
     return Stack(
+      fit: StackFit.expand,
       children: [
         const Positioned(
           child: Column(
@@ -37,17 +38,17 @@ class GuiOverlay extends StatelessWidget {
             ],
           ),
         ),
-        Builder(
-          builder: (final context) {
-            final bottomDialog = isLoaded && currentLevelId.isNotEmpty
-                ? const GameBottomBar()
-                : const SizedBox();
+        Positioned(
+          bottom: 0,
+          left: 0,
+          right: 0,
+          child: Builder(
+            builder: (final context) {
+              final bottomDialog = isLoaded && currentLevelId.isNotEmpty
+                  ? const GameBottomBar()
+                  : const SizedBox();
 
-            return Positioned(
-              bottom: 0,
-              left: 0,
-              right: 0,
-              child: Align(
+              return Align(
                 alignment: Alignment.bottomCenter,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
@@ -56,9 +57,9 @@ class GuiOverlay extends StatelessWidget {
                     bottomDialog,
                   ],
                 ),
-              ),
-            );
-          },
+              );
+            },
+          ),
         ),
         const Positioned.fill(
           child: IgnorePointer(child: UiTechPointsAnimation()),

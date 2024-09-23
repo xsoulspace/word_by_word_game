@@ -89,7 +89,7 @@ class _Dialog extends PopupRoute {
   final VoidCallback onDismiss;
 
   @override
-  Color? get barrierColor => UiColors.offWhite.withOpacity(0.5);
+  Color? get barrierColor => UiColors.offWhite.withOpacity(0.8);
 
   // This allows the popup to be dismissed by tapping the scrim or by pressing
   // the escape key on the keyboard.

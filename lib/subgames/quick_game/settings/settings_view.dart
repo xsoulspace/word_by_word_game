@@ -11,6 +11,7 @@ class SettingsView extends HookWidget {
         bottomButton: ViewBackButton(),
         padding: EdgeInsets.symmetric(horizontal: 6),
         children: [
+          UiGaps.small,
           Center(
             // TODO(arenukvern): l10n
             child: Text(
@@ -18,15 +19,34 @@ class SettingsView extends HookWidget {
               style: TextStyle(fontSize: 24),
             ),
           ),
-          Gap(16),
           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              // TODO(arenukvern): l10n
-              Text('Language'),
-              Gap(12),
-              Flexible(child: LocaleSwitcherGrid()),
+              UiLinearDivider(),
             ],
           ),
+          UiGaps.extraLarge,
+          Padding(
+            padding: EdgeInsets.symmetric(horizontal: 16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // TODO(arenukvern): l10n
+                Text(
+                  'Language',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: UiColors.mediumLight,
+                  ),
+                ),
+                Gap(2),
+                Expanded(child: LocaleSwitcherGrid()),
+              ],
+            ),
+          ),
+          UiGaps.extraLarge,
+          UiGaps.extraLarge,
         ],
       );
 }

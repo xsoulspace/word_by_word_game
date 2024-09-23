@@ -48,7 +48,6 @@ class PauseScreenState extends ValueNotifier<void> {
   Future<void> onShowAbout(final BuildContext context) async {
     final locale = useLocale(context, listen: false);
     final theme = Theme.of(context);
-    final uiTheme = context.uiTheme;
     final s = S.of(context);
     final madeWith = '${const LocalizedMap(
       value: {

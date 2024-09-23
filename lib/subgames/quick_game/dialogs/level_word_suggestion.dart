@@ -325,6 +325,7 @@ class UiCircleCloseButton extends StatelessWidget {
         shape: const CircleBorder(),
         elevation: 2,
         child: IconButton.outlined(
+          tooltip: 'Close (X or ESC)',
           onPressed: onPressed,
           icon: AnimatedSwitcher(
             duration: 250.milliseconds,

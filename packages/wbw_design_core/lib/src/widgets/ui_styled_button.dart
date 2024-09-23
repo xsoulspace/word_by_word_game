@@ -2,25 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
 import '../../wbw_design_core.dart';
-import 'ui_styled_button_painter.dart';
+
+export 'ui_styled_button_painter.dart';
 
 class UiStyledButton extends StatefulWidget {
   const UiStyledButton({
-    required this.label,
     required this.onPressed,
+    this.label = '',
     this.icon,
     this.focusNode, // Add this line
     this.onKeyEvent,
     this.styleType = ButtonStyleType.text,
     this.color = UiColors.offWhite,
-    this.borderColor = UiColors.dark,
+    this.borderColor,
     this.gradientColors,
     this.borderWidth,
     this.radius,
     this.textStyle,
     this.focusIcon = Icons.arrow_forward_ios_rounded,
+    this.tooltip,
+    this.actions = const {},
+    this.padding,
     super.key,
   });
+  final EdgeInsets? padding;
+  final Map<Type, Action<Intent>> actions;
   final TextStyle? textStyle;
   final KeyEventResult Function(
     FocusNode node,
@@ -32,12 +38,13 @@ class UiStyledButton extends StatefulWidget {
   final VoidCallback onPressed;
   final ButtonStyleType styleType;
   final Color color;
-  final Color borderColor;
+  final Color? borderColor;
   final List<Color>? gradientColors;
   final double? borderWidth;
   final double? radius;
   final FocusNode? focusNode;
   final IconData? focusIcon;
+  final String? tooltip;
 
   @override
   _UiStyledButtonState createState() => _UiStyledButtonState();
@@ -87,13 +94,13 @@ class _UiStyledButtonState extends State<UiStyledButton>
   @override
   Widget build(final BuildContext context) {
     final buttonColor = widget.color;
-    final buttonBorderColor = widget.borderColor;
-    final buttonRadius = widget.radius ?? 30.0;
     final focused = _isFocused || _isHovered;
     final textColor =
         (focused ? UiColors.dark : UiColors.mediumDark).withOpacity(0.9);
+    final buttonBorderColor = widget.borderColor ?? textColor;
+    final buttonRadius = widget.radius ?? 30.0;
     final showFocusIcon = widget.focusIcon != null;
-    return FocusableActionDetector(
+    Widget child = FocusableActionDetector(
       focusNode: _focusNode,
       onShowHoverHighlight: (final isHovered) {
         setState(() => _isHovered = isHovered);
@@ -103,6 +110,7 @@ class _UiStyledButtonState extends State<UiStyledButton>
         setState(() => _isFocused = isFocused);
       },
       actions: {
+        ...widget.actions,
         ActivateIntent: CallbackAction<ActivateIntent>(
           onInvoke: (final _) => widget.onPressed(),
         ),
@@ -183,12 +191,14 @@ class _UiStyledButtonState extends State<UiStyledButton>
                     radius: buttonRadius,
                   ),
                   child: Padding(
-                    padding: EdgeInsets.symmetric(
-                      vertical:
-                          widget.styleType == ButtonStyleType.text ? 2.5 : 12,
-                      horizontal:
-                          widget.styleType == ButtonStyleType.text ? 8 : 16,
-                    ),
+                    padding: widget.padding ??
+                        EdgeInsets.symmetric(
+                          vertical: widget.styleType == ButtonStyleType.text
+                              ? 2.5
+                              : 12,
+                          horizontal:
+                              widget.styleType == ButtonStyleType.text ? 8 : 16,
+                        ),
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -198,16 +208,23 @@ class _UiStyledButtonState extends State<UiStyledButton>
                             color: textColor,
                             size: 20,
                           ),
-                          const Gap(8),
+                          if (widget.label.isNotEmpty) const Gap(8),
                         ],
-                        UiAnimatedText(
-                          widget.label,
-                          textStyle: widget.textStyle ??
-                              TextStyle(
+                        if (widget.label.isNotEmpty)
+                          Builder(
+                            builder: (final context) {
+                              final defaultTextStyle = TextStyle(
                                 color: textColor,
                                 fontSize: 24,
-                              ),
-                        ),
+                              );
+
+                              return UiAnimatedText(
+                                widget.label,
+                                textStyle:
+                                    defaultTextStyle.merge(widget.textStyle),
+                              );
+                            },
+                          ),
                       ],
                     ),
                   ),
@@ -218,6 +235,14 @@ class _UiStyledButtonState extends State<UiStyledButton>
         ),
       ),
     );
+    if (widget.tooltip != null) {
+      child = Tooltip(
+        message: widget.tooltip,
+        child: child,
+      );
+    }
+
+    return child;
   }
 
   @override

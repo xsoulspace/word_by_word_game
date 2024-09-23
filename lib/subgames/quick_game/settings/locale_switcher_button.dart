@@ -43,35 +43,31 @@ class LocaleSwitcherGrid extends StatelessWidget {
     final localeNotifier = useLocale(context);
     final currentLanguage =
         Languages.values.byName(localeNotifier.languageCode);
-
-    return GridView.builder(
-      shrinkWrap: true,
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        childAspectRatio: 3,
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-      ),
-      itemCount: Languages.all.length,
-      itemBuilder: (final context, final index) {
-        final language = Languages.all[index];
-        return LanguageChip(
-          key: ValueKey(language),
-          language: language,
-          isSelected: language == currentLanguage,
-          onSelected: (final selected) async {
-            if (selected) {
-              await LocaleSwitcherButton.applyNewLanguage(context, language);
-            }
-          },
-        );
-      },
+    return Wrap(
+      spacing: 4,
+      runSpacing: 4,
+      children: Languages.all
+          .map(
+            (final language) => _LanguageChip(
+              language: language,
+              isSelected: language == currentLanguage,
+              onSelected: (final selected) async {
+                if (selected) {
+                  await LocaleSwitcherButton.applyNewLanguage(
+                    context,
+                    language,
+                  );
+                }
+              },
+            ),
+          )
+          .toList(),
     );
   }
 }
 
-class LanguageChip extends StatelessWidget {
-  const LanguageChip({
+class _LanguageChip extends StatelessWidget {
+  const _LanguageChip({
     required this.language,
     required this.isSelected,
     required this.onSelected,
@@ -84,29 +80,17 @@ class LanguageChip extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final locale = namedLocalesMap[language];
-    return FocusableActionDetector(
-      onShowHoverHighlight: (final isHovered) {
-        // if (isHovered) {
-        //   onSelected(true);
-        // }
-      },
+    return UiStyledButton(
+      styleType: isSelected ? ButtonStyleType.outlined : ButtonStyleType.text,
       actions: {
         ActivateIntent: CallbackAction<ActivateIntent>(
           onInvoke: (final _) => onSelected(true),
         ),
       },
-      child: FilterChip(
-        label: Text(locale?.name ?? ''),
-        selected: isSelected,
-        onSelected: onSelected,
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        selectedColor: Theme.of(context).colorScheme.primary,
-        labelStyle: TextStyle(
-          color: isSelected
-              ? Theme.of(context).colorScheme.onPrimary
-              : Theme.of(context).colorScheme.onSurface,
-        ),
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+      onPressed: () => onSelected(true),
+      label: locale?.name ?? '',
+      textStyle: const TextStyle(fontSize: 16),
     );
   }
 }

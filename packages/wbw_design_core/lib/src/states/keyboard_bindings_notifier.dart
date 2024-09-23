@@ -7,6 +7,8 @@ enum KeyboardBindingsType {
   /// in the settings menu
   mainMenuUp([LogicalKeyboardKey.keyW, LogicalKeyboardKey.arrowUp]),
   mainMenuDown([LogicalKeyboardKey.keyS, LogicalKeyboardKey.arrowDown]),
+  mainMenuLeft([LogicalKeyboardKey.keyA, LogicalKeyboardKey.arrowLeft]),
+  mainMenuRight([LogicalKeyboardKey.keyD, LogicalKeyboardKey.arrowRight]),
   mainMenuSelect([LogicalKeyboardKey.enter]),
   mainMenuBack([LogicalKeyboardKey.escape]);
 

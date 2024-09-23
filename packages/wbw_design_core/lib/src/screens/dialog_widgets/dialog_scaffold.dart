@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
-import 'package:wbw_core/wbw_core.dart';
 
 import '../../../wbw_design_core.dart';
 
@@ -31,7 +30,6 @@ class DialogScaffold extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final hovered = useIsBool();
-    final uiTheme = context.uiTheme;
     final bottom = this.bottom;
     final top = this.top;
     final padding = this.padding ?? const EdgeInsets.all(24);
@@ -160,57 +158,71 @@ class DecoratedDialogScaffold extends StatelessWidget {
   final Widget? bottomButton;
   @override
   Widget build(final BuildContext context) {
-    const verticalPadding = 22.0;
-    const horizontalPadding = 16.0;
-    const height = 150.0;
-    final verticalLine = ConstrainedBox(
-      constraints: const BoxConstraints(
-        maxHeight: height,
-      ),
-      child: const RotatedBox(
-        quarterTurns: 1,
-        child: Row(
+    const horizontalPadding = 8.0;
+    const horizontalLine = Row(
+      children: [
+        Gap(horizontalPadding),
+        UiTriangle(
+          color: UiColors.mediumLight,
+        ),
+        Gap(16),
+        Expanded(child: UiLinearDivider()),
+        Gap(16),
+        UiTriangle(
+          color: UiColors.mediumLight,
+        ),
+        Gap(horizontalPadding),
+      ],
+    );
+    const verticalLine = Column(
+      children: [
+        Expanded(child: UiVerticalLinearDivider()),
+      ],
+    );
+    return KeyboardBindingsViewFocusScope(
+      child: DialogScaffold(
+        bottomButton: bottomButton,
+        builder: (final context) => Stack(
           children: [
-            Gap(verticalPadding),
-            UiTriangle(
-              color: UiColors.mediumLight,
+            const Positioned(
+              top: 4,
+              left: 0,
+              right: 0,
+              child: horizontalLine,
             ),
-            Gap(16),
-            Expanded(child: UiLinearDivider()),
-            Gap(16),
-            UiTriangle(
-              color: UiColors.mediumLight,
+            const Positioned(
+              bottom: 4,
+              left: 0,
+              right: 0,
+              child: horizontalLine,
             ),
-            Gap(verticalPadding),
+            const Positioned(
+              bottom: 36,
+              left: 3,
+              top: 36,
+              child: verticalLine,
+            ),
+            const Positioned(
+              bottom: 36,
+              right: 3,
+              top: 36,
+              child: verticalLine,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 13,
+              ),
+              child: UiBodyBuilder(
+                builder: builder,
+                top: top,
+                bottom: bottom,
+                padding: padding,
+                children: children,
+              ),
+            ),
           ],
         ),
-      ),
-    );
-    return DialogScaffold(
-      bottomButton: bottomButton,
-      builder: (final context) => Stack(
-        children: [
-          Row(
-            children: [
-              verticalLine,
-              const Spacer(),
-              verticalLine,
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: horizontalPadding,
-              vertical: 13,
-            ),
-            child: UiBodyBuilder(
-              builder: builder,
-              top: top,
-              bottom: bottom,
-              padding: padding,
-              children: children,
-            ),
-          ),
-        ],
       ),
     );
   }
