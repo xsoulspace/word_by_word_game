@@ -1,0 +1,105 @@
+2024-09-24
+
+Word By Word Game Architecture
+
+1. Core Modules:
+   1.1. wbw_core
+
+   - Contains data models, repositories, and core game logic
+   - Exports: data_models, data_repositories, mechanics, services, tutorial
+     1.2. wbw_design_core
+   - Provides UI components and theming
+   - Exports: screens, widgets, theme
+     1.3. map_editor
+   - Handles map creation and editing
+   - Exports: state, models, ui/renderer
+     1.4. wbw_dictionaries
+   - Manages word dictionaries and language support
+     1.5. wbw_locale
+   - Handles localization and translations
+
+2. State Management (BLoC):
+   2.1. GlobalGameBloc
+
+   - Manages overall game state
+   - Interacts with: LevelBloc, LevelPlayersBloc, WeatherCubit
+     2.2. LevelBloc
+   - Handles individual level state and logic
+     2.3. LevelPlayersBloc
+   - Manages player states within a level
+     2.4. TutorialBloc
+   - Controls tutorial flow and state
+     2.5. CanvasCubit
+   - Manages canvas drawing state
+     2.6. TechnologiesCubit
+   - Handles game technologies and upgrades
+     2.7. WeatherCubit
+   - Controls weather effects and states
+
+3. Game Components:
+   3.1. CanvasRendererGame
+
+   - Main game renderer using Flame
+   - Interacts with: GlobalGameBloc, LevelBloc, CanvasCubit
+     3.2. GameOverlays
+   - Manages UI overlays (GUI, weather, notifications)
+     3.3. DialogController
+   - Handles in-game dialogs and popups
+
+4. UI Components:
+   4.1. WordCompositionBar
+
+   - Allows players to input words
+     4.2. LevelActionsFrame
+   - Displays available actions for the current game state
+     4.3. WeatherBar
+   - Shows current weather conditions
+     4.4. PlayersSideBar
+   - Displays player information and scores
+
+5. Services:
+   5.1. AnalyticsService
+
+   - Handles game analytics and logging
+     5.2. OnlineStatusService
+   - Manages online/offline status
+     5.3. AdManager
+   - Controls in-game advertisements
+
+6. Data Flow:
+   6.1. User Input -> WordCompositionBar -> LevelBloc -> GlobalGameBloc
+   6.2. GlobalGameBloc -> CanvasRendererGame -> UI Updates
+   6.3. WeatherCubit -> WeatherBar + CanvasRendererGame
+   6.4. LevelPlayersBloc -> PlayersSideBar
+
+7. Firebase Integration:
+   7.1. FirebaseCore
+
+   - Initializes Firebase services
+     7.2. FirebaseAnalytics
+   - Integrates with AnalyticsService for event logging
+     7.3. FirebaseRemoteConfig
+   - Manages remote configuration settings
+
+8. External Dependencies:
+   8.1. Flame
+
+   - Game engine for rendering and updates
+     8.2. flutter_bloc
+   - State management library
+     8.3. provider
+   - Dependency injection and state management
+
+9. Main App Structure:
+   9.1. WordByWordApp
+
+   - Root widget of the application
+     9.2. GlobalStatesProvider
+   - Provides global state to the entire app
+     9.3. AppScaffoldBuilder
+   - Builds the main app scaffold and routing
+
+10. Initialization Flow:
+    10.1. bootstrap() -> WordByWordApp -> GlobalStatesProvider
+    10.2. GlobalServicesInitializer -> Load initial game state and services
+    10.3. AppRouter -> Navigate to initial game screen
