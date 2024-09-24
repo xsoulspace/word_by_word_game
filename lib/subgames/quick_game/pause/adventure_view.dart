@@ -18,6 +18,8 @@ class AdventureView extends HookWidget {
     final canvasIds = context.select<GlobalGameBloc, List<CanvasDataModelId>>(
       (final c) => c.state.allCanvasData.keys
           .whereNot((final id) => id == kQuickGameMapId)
+          .toList()
+          .reversed
           .toList(),
     );
     final levelSaves =
@@ -37,85 +39,71 @@ class AdventureView extends HookWidget {
             onInvoke: (final _) => onBack(),
           ),
         },
-        child: Row(
-          children: [
-            if (!hasMobileLayout) const Spacer(),
-            Flexible(
-              flex: hasMobileLayout ? 1 : 2,
-              child: Padding(
-                padding: EdgeInsets.only(
-                  left: hasMobileLayout
-                      ? 0.0
-                      : MediaQuery.sizeOf(context).width * 0.18 / 2,
-                  right: hasMobileLayout
-                      ? 0.0
-                      : MediaQuery.sizeOf(context).width * 0.18,
-                ),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    const Row(
-                      children: [
-                        Flexible(
-                          child: ViewTitle(
-                            title: LocalizedMap(
-                              value: {
-                                Languages.en: 'New Adventure',
-                                Languages.ru: 'Новое приключение',
-                                Languages.it: 'Nuova Avventura',
-                              },
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                    UiGaps.extraLarge,
-                    Flexible(
-                      child: ListView.separated(
-                        physics: const NeverScrollableScrollPhysics(),
-                        itemCount: canvasIds.length,
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        separatorBuilder: (final context, final index) =>
-                            const Gap(16),
-                        itemBuilder: (final context, final index) {
-                          final canvasId = canvasIds[index];
-                          return _LevelCard(
-                            key: ValueKey(canvasId),
-                            canvasId: canvasId,
-                            levelSave: levelSaves[canvasId],
-                            isCurrent: currentLevelId == canvasId,
-                            isSelected: selectedLevelId == canvasId,
-                            onSelect: () =>
-                                selectedLevelIdNotifier.value = canvasId,
-                            onContinue: () async =>
-                                state.onContinueFromSamePlace(
-                              context: context,
-                              id: canvasId,
-                            ),
-                            onDelete: () async => state.onDeleteLevel(canvasId),
-                            onStart: () async => state.onShowStartDialog(
-                              context: context,
-                              canvasDataId: canvasId,
-                            ),
-                            onRestart: () async => state.onShowStartDialog(
-                              context: context,
-                              canvasDataId: canvasId,
-                            ),
-                          );
+        child: Padding(
+          padding: EdgeInsets.only(
+            right:
+                hasMobileLayout ? 0.0 : MediaQuery.sizeOf(context).width * 0.18,
+          ),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Flexible(
+                    child: ViewTitle(
+                      title: LocalizedMap(
+                        value: {
+                          Languages.en: 'Adventures',
+                          Languages.ru: 'Приключения',
+                          Languages.it: 'Avventure',
                         },
                       ),
                     ),
-                    UiGaps.large,
-                    ViewBackButton(onBack: onBack),
-                  ],
-                )
-                    .animate(delay: 150.milliseconds)
-                    .fadeIn(duration: 450.milliseconds),
+                  ),
+                ],
               ),
-            ),
-          ],
+              UiGaps.extraLarge,
+              Flexible(
+                child: ListView.separated(
+                  physics: const NeverScrollableScrollPhysics(),
+                  itemCount: canvasIds.length,
+                  padding: EdgeInsets.zero,
+                  shrinkWrap: true,
+                  separatorBuilder: (final context, final index) =>
+                      const Gap(16),
+                  itemBuilder: (final context, final index) {
+                    final canvasId = canvasIds[index];
+                    return _LevelCard(
+                      key: ValueKey(canvasId),
+                      canvasId: canvasId,
+                      isLocked: index > 0,
+                      levelSave: levelSaves[canvasId],
+                      isCurrent: currentLevelId == canvasId,
+                      isSelected: selectedLevelId == canvasId,
+                      onSelect: () => selectedLevelIdNotifier.value = canvasId,
+                      onContinue: () async => state.onContinueFromSamePlace(
+                        context: context,
+                        id: canvasId,
+                      ),
+                      onDelete: () async => state.onDeleteLevel(canvasId),
+                      onStart: () async => state.onShowStartDialog(
+                        context: context,
+                        canvasDataId: canvasId,
+                      ),
+                      onRestart: () async => state.onShowStartDialog(
+                        context: context,
+                        canvasDataId: canvasId,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              UiGaps.large,
+              ViewBackButton(onBack: onBack),
+            ],
+          ).animate(delay: 150.milliseconds).fadeIn(duration: 450.milliseconds),
         ),
       ),
     );
@@ -143,8 +131,10 @@ class _LevelCard extends StatelessWidget {
     required this.isCurrent,
     required this.isSelected,
     required this.onRestart,
+    required this.isLocked,
     super.key,
   });
+  final bool isLocked;
   final CanvasDataModelId canvasId;
   final LevelModel? levelSave;
   final bool isCurrent;
@@ -163,7 +153,7 @@ class _LevelCard extends StatelessWidget {
     final playerId = levelSave?.players.currentPlayerId ?? '';
     final isSaveExists =
         playerId.isNotEmpty && playerId != PlayerProfileModel.emptyPlayerId;
-    // TODO(arenukvern): l10n
+    final keyboardBindings = context.watch<KeyboardBindingsNotifier>();
     return GestureDetector(
       onTapUp: (final details) {
         onSelect();
@@ -206,57 +196,18 @@ class _LevelCard extends StatelessWidget {
                     canvasData.name.getValueByLanguage().headerCase,
                     style: const TextStyle(fontSize: 24),
                   ),
-                  if (isSelected)
-                    Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Gap(12),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            if (isSaveExists) ...[
-                              UiStyledButton(
-                                label: 'resume',
-                                onPressed: onContinue,
-                                textStyle: const TextStyle(fontSize: 16),
-                              ),
-                              UiStyledButton(
-                                label: 'restart',
-                                onPressed: onRestart,
-                                textStyle: const TextStyle(fontSize: 16),
-                              ),
-
-                              /// maybe delete is better
-                              // UiFilledButton.text(
-                              //   text: 'DELETE',
-                              //   onPressed: onDelete,
-                              // ),
-                            ] else
-                              UiFilledButton.text(
-                                text: 'start',
-                                onPressed: onStart,
-                              ),
-                          ],
-                        ),
-                      ],
-                    )
-                  else
-                    const Row(),
                 ],
               ),
-              const Gap(2),
-              Row(
-                children: [
-                  if (isCurrent && isSaveExists)
+              if (isCurrent && isSaveExists) ...[
+                UiGaps.small,
+                const Row(
+                  children: [
                     // TODO(arenukvern): l10n
-                    const Text('Recent play')
-                  else
-
-                    /// balancer
-                    const Text(''),
-                ],
-              ),
-              const Gap(8),
+                    Text('Recent play'),
+                  ],
+                ),
+              ],
+              UiGaps.small,
               Builder(
                 builder: (final context) {
                   final players = levelSave?.players.players ?? [];
@@ -280,7 +231,51 @@ class _LevelCard extends StatelessWidget {
                   );
                 },
               ),
+              UiGaps.medium,
               // TODO(arenukvern): add gameplay time
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  if (isSaveExists) ...[
+                    UiStyledButton(
+                      // TODO(arenukvern): l10n
+                      label: () {
+                        const resume = 'resume';
+                        final select = DeviceRuntimeType.isDesktop
+                            ? ' (${keyboardBindings.getBindingDefaultTitle(KeyboardBindingsType.mainMenuSelect)})'
+                            : '';
+                        return '$resume$select';
+                      }(),
+                      onPressed: onContinue,
+                      textStyle: const TextStyle(fontSize: 18),
+                    ),
+                    UiStyledButton(
+                      // TODO(arenukvern): l10n
+                      label: 'restart',
+                      onPressed: onRestart,
+                      textStyle: const TextStyle(fontSize: 18),
+                    ),
+
+                    /// maybe delete is better
+                    // UiFilledButton.text(
+                    //   text: 'DELETE',
+                    //   onPressed: onDelete,
+                    // ),
+                  ] else
+                    UiStyledButton(
+                      // TODO(arenukvern): l10n
+                      label: () {
+                        const resume = 'start';
+                        final select = DeviceRuntimeType.isDesktop
+                            ? ' (${keyboardBindings.getBindingDefaultTitle(KeyboardBindingsType.mainMenuSelect)})'
+                            : '';
+                        return '$resume$select';
+                      }(),
+                      onPressed: onStart,
+                    ),
+                ],
+              ),
+              UiGaps.small,
             ],
           ),
         ),
