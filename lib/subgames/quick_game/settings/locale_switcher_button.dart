@@ -71,7 +71,6 @@ class _LanguageChip extends StatelessWidget {
     required this.language,
     required this.isSelected,
     required this.onSelected,
-    super.key,
   });
   final Languages language;
   final bool isSelected;

@@ -1,5 +1,7 @@
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:recase/recase.dart';
 import 'package:word_by_word_game/common_imports.dart';
+import 'package:word_by_word_game/gen/assets.gen.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause_screen.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/widgets.dart';
@@ -10,6 +12,8 @@ class AdventureView extends HookWidget {
 
   @override
   Widget build(final BuildContext context) {
+    final formFactors = UiPersistentFormFactors.of(context);
+    final hasMobileLayout = formFactors.isMobile;
     final state = context.read<PauseScreenState>();
     final canvasIds = context.select<GlobalGameBloc, List<CanvasDataModelId>>(
       (final c) => c.state.allCanvasData.keys
@@ -26,61 +30,94 @@ class AdventureView extends HookWidget {
     final selectedLevelIdNotifier = useState(currentLevelId);
     final selectedLevelId = selectedLevelIdNotifier.value;
 
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        const Spacer(),
-        const ViewTitle(
-          title: LocalizedMap(
-            value: {
-              Languages.en: 'Choose Adventure',
-              Languages.ru: 'Выбери приключение',
-              Languages.it: "Scegli l'avventura",
-            },
+    return KeyboardBindingsViewFocusScope(
+      child: Actions(
+        actions: {
+          DismissIntent: CallbackAction<DismissIntent>(
+            onInvoke: (final _) => onBack(),
           ),
-        ),
-        const Spacer(),
-        ConstrainedBox(
-          constraints: const BoxConstraints(
-            minHeight: 300,
-          ),
-          child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                ...List.generate(canvasIds.length, (final index) {
-                  final canvasId = canvasIds[index];
-                  return _LevelCard(
-                    key: ValueKey(canvasId),
-                    canvasId: canvasId,
-                    levelSave: levelSaves[canvasId],
-                    isCurrent: currentLevelId == canvasId,
-                    isSelected: selectedLevelId == canvasId,
-                    onSelect: () => selectedLevelIdNotifier.value = canvasId,
-                    onContinue: () async => state.onContinueFromSamePlace(
-                      context: context,
-                      id: canvasId,
+        },
+        child: Row(
+          children: [
+            if (!hasMobileLayout) const Spacer(),
+            Flexible(
+              flex: hasMobileLayout ? 1 : 2,
+              child: Padding(
+                padding: EdgeInsets.only(
+                  left: hasMobileLayout
+                      ? 0.0
+                      : MediaQuery.sizeOf(context).width * 0.18 / 2,
+                  right: hasMobileLayout
+                      ? 0.0
+                      : MediaQuery.sizeOf(context).width * 0.18,
+                ),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Row(
+                      children: [
+                        Flexible(
+                          child: ViewTitle(
+                            title: LocalizedMap(
+                              value: {
+                                Languages.en: 'New Adventure',
+                                Languages.ru: 'Новое приключение',
+                                Languages.it: 'Nuova Avventura',
+                              },
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
-                    onDelete: () async => state.onDeleteLevel(canvasId),
-                    onStart: () async => state.onShowStartDialog(
-                      context: context,
-                      canvasDataId: canvasId,
+                    UiGaps.extraLarge,
+                    Flexible(
+                      child: ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: canvasIds.length,
+                        padding: EdgeInsets.zero,
+                        shrinkWrap: true,
+                        separatorBuilder: (final context, final index) =>
+                            const Gap(16),
+                        itemBuilder: (final context, final index) {
+                          final canvasId = canvasIds[index];
+                          return _LevelCard(
+                            key: ValueKey(canvasId),
+                            canvasId: canvasId,
+                            levelSave: levelSaves[canvasId],
+                            isCurrent: currentLevelId == canvasId,
+                            isSelected: selectedLevelId == canvasId,
+                            onSelect: () =>
+                                selectedLevelIdNotifier.value = canvasId,
+                            onContinue: () async =>
+                                state.onContinueFromSamePlace(
+                              context: context,
+                              id: canvasId,
+                            ),
+                            onDelete: () async => state.onDeleteLevel(canvasId),
+                            onStart: () async => state.onShowStartDialog(
+                              context: context,
+                              canvasDataId: canvasId,
+                            ),
+                            onRestart: () async => state.onShowStartDialog(
+                              context: context,
+                              canvasDataId: canvasId,
+                            ),
+                          );
+                        },
+                      ),
                     ),
-                    onRestart: () async => state.onShowStartDialog(
-                      context: context,
-                      canvasDataId: canvasId,
-                    ),
-                  );
-                }),
-              ],
+                    UiGaps.large,
+                    ViewBackButton(onBack: onBack),
+                  ],
+                )
+                    .animate(delay: 150.milliseconds)
+                    .fadeIn(duration: 450.milliseconds),
+              ),
             ),
-          ).animate(delay: 150.milliseconds).fadeIn(duration: 450.milliseconds),
+          ],
         ),
-        const Gap(24),
-        ViewBackButton(onBack: onBack),
-        const Spacer(),
-      ],
+      ),
     );
   }
 }
@@ -142,139 +179,109 @@ class _LevelCard extends StatelessWidget {
             onSelect();
           }
         },
-        child: Padding(
-          padding: const EdgeInsets.all(8),
-          child: Material(
-            animationDuration: 350.milliseconds,
-            shape: RoundedRectangleBorder(
-              borderRadius: const BorderRadius.all(Radius.circular(16)),
-              side: isSelected
-                  ? BorderSide(
-                      color: context.colorScheme.primary,
-                    )
-                  : BorderSide.none,
-            ),
-            elevation: isSelected ? 8 : 0,
-            child: AnimatedSize(
-              duration: 350.milliseconds,
-              child: Container(
-                constraints: const BoxConstraints(
-                  maxWidth: 280,
-                ),
-                padding: const EdgeInsets.only(
-                  top: 16,
-                  bottom: 24,
-                  left: 12,
-                  right: 12,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (isSelected)
-                          Icon(
-                            Icons.play_arrow_rounded,
-                            color: context.colorScheme.tertiary,
-                          ).animate().fadeIn(),
-                        const Gap(8),
-                        Flexible(
-                          child: Text(
-                            canvasData.name.getValueByLanguage().toUpperCase(),
-                            style: context.textThemeBold.titleLarge,
-                          ),
-                        ),
-                        const Gap(8),
-                        if (isSelected)
-                          RotatedBox(
-                            quarterTurns: 2,
-                            child: Icon(
-                              Icons.play_arrow_rounded,
-                              color: context.colorScheme.tertiary,
-                            ),
-                          ).animate().fadeIn(),
-                      ],
-                    ),
-                    const Gap(2),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        if (isCurrent && isSaveExists)
-                          // TODO(arenukvern): l10n
-                          const Text('Recent play')
-                        else
-
-                          /// balancer
-                          const Text(''),
-                      ],
-                    ),
-                    const Gap(8),
-                    Builder(
-                      builder: (final context) {
-                        final players = levelSave?.players.players ?? [];
-                        if (players.isEmpty) return const SizedBox();
-                        return Row(
-                          children: [
-                            Text(
-                              // TODO(arenukvern): l10n
-                              'Players:',
-                              style: context.textThemeBold.titleSmall,
-                            ),
-                            const Gap(8),
-                            Flexible(
-                              child: Text(
-                                players.map((final e) => e.name).join(', '),
-                              ),
-                            ),
-                          ],
-                        );
-                      },
-                    ),
-                    // TODO(arenukvern): add gameplay time
-
-                    AnimatedSize(
-                      duration: 350.milliseconds,
-                      alignment: Alignment.bottomCenter,
-                      child: isSelected
-                          ? Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: [
-                                const Gap(12),
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceAround,
-                                  children: [
-                                    if (isSaveExists) ...[
-                                      UiFilledButton.text(
-                                        text: 'RESUME',
-                                        onPressed: onContinue,
-                                      ),
-                                      UiFilledButton.text(
-                                        text: 'RESTART',
-                                        onPressed: onRestart,
-                                      ),
-
-                                      /// maybe delete is better
-                                      // UiFilledButton.text(
-                                      //   text: 'DELETE',
-                                      //   onPressed: onDelete,
-                                      // ),
-                                    ] else
-                                      UiFilledButton.text(
-                                        text: 'START',
-                                        onPressed: onStart,
-                                      ),
-                                  ],
-                                ),
-                              ],
-                            ).animate().fadeIn(duration: 550.milliseconds)
-                          : const Row(),
-                    ),
-                  ],
-                ),
+        child: AnimatedContainer(
+          duration: 350.milliseconds,
+          padding: const EdgeInsets.only(
+            top: 6,
+            bottom: 12,
+            left: 12,
+            right: 12,
+          ),
+          decoration: BoxDecoration(
+            border: Border.fromBorderSide(
+              BorderSide(
+                color: isSelected
+                    ? UiColors.mediumLight
+                    : UiColors.light.withOpacity(0.5),
               ),
             ),
+            borderRadius: BorderRadius.circular(12),
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  Text(
+                    canvasData.name.getValueByLanguage().headerCase,
+                    style: const TextStyle(fontSize: 24),
+                  ),
+                  if (isSelected)
+                    Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        const Gap(12),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            if (isSaveExists) ...[
+                              UiStyledButton(
+                                label: 'resume',
+                                onPressed: onContinue,
+                                textStyle: const TextStyle(fontSize: 16),
+                              ),
+                              UiStyledButton(
+                                label: 'restart',
+                                onPressed: onRestart,
+                                textStyle: const TextStyle(fontSize: 16),
+                              ),
+
+                              /// maybe delete is better
+                              // UiFilledButton.text(
+                              //   text: 'DELETE',
+                              //   onPressed: onDelete,
+                              // ),
+                            ] else
+                              UiFilledButton.text(
+                                text: 'start',
+                                onPressed: onStart,
+                              ),
+                          ],
+                        ),
+                      ],
+                    )
+                  else
+                    const Row(),
+                ],
+              ),
+              const Gap(2),
+              Row(
+                children: [
+                  if (isCurrent && isSaveExists)
+                    // TODO(arenukvern): l10n
+                    const Text('Recent play')
+                  else
+
+                    /// balancer
+                    const Text(''),
+                ],
+              ),
+              const Gap(8),
+              Builder(
+                builder: (final context) {
+                  final players = levelSave?.players.players ?? [];
+                  if (players.isEmpty) return const SizedBox();
+                  return Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        // TODO(arenukvern): l10n
+                        'Players:',
+                        style: context.textThemeBold.titleSmall,
+                      ),
+                      const Gap(8),
+                      Flexible(
+                        child: Text(
+                          players.map((final e) => e.name).join(', '),
+                        ),
+                      ),
+                      const Expanded(child: SizedBox()),
+                    ],
+                  );
+                },
+              ),
+              // TODO(arenukvern): add gameplay time
+            ],
           ),
         ),
       ),
@@ -288,21 +295,21 @@ class ViewTitle extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final locale = useLocale(context);
-    return Text(
-      title.getValue(locale).toUpperCase(),
-      textAlign: TextAlign.center,
-      style: context.textThemeBold.displaySmall!.copyWith(
-        color: const Color.fromARGB(255, 241, 244, 241),
-        shadows: [
-          const Shadow(blurRadius: 1),
-          const Shadow(blurRadius: 1),
-          const Shadow(blurRadius: 1),
-          const Shadow(blurRadius: 1, color: Colors.black38),
-        ],
-      ),
-    )
-        .animate(delay: 50.milliseconds)
-        .fadeIn(duration: 350.milliseconds)
-        .slideY(begin: -0.1);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Flexible(
+          child: Text(
+            title.getValue(locale).toUpperCase(),
+            textAlign: TextAlign.center,
+            style: context.textThemeBold.displaySmall!.copyWith(
+              color: UiColors.mediumDark,
+              fontFamily: Assets.googleFonts.openSansBold,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+        ),
+      ],
+    );
   }
 }
