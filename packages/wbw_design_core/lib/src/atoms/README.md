@@ -138,6 +138,45 @@ UiTriangle(
 );
 ```
 
+### UiBodyBuilder
+
+UiBodyBuilder is a widget that builds a body with a ListView or a custom builder.
+
+```dart
+UiBodyBuilder(
+  builder: (context) => UiText('Body content'),
+);
+```
+
+### KeyboardBindingsViewFocusScope
+
+KeyboardBindingsViewFocusScope is a widget that provides a focus scope for keyboard bindings.
+
+```dart
+KeyboardBindingsViewFocusScope(
+  child: UiBodyBuilder(
+    builder: (context) => UiText('Body content'),
+  ),
+);
+```
+
+### KeyboardBindingsNotifier
+
+KeyboardBindingsNotifier is a widget that provides a notifier for keyboard bindings.
+
+```dart
+MultiProvider(
+  providers: [
+    ChangeNotifierProvider(create: KeyboardBindingsNotifier.new),
+  ],
+  child: KeyboardBindingsViewFocusScope(
+    child: UiBodyBuilder(
+      builder: (context) => UiText('Body content'),
+    ),
+  ),
+);
+```
+
 ## Customization Options
 
 Each atomic component provides various customization options:
@@ -176,3 +215,7 @@ When refactoring:
 - Update tests and documentation to reflect changes in component APIs or behavior.
 
 By following these guidelines, you can create a robust, maintainable, and scalable design system using atomic components.
+
+```
+
+```
