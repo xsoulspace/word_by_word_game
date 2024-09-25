@@ -208,7 +208,7 @@ class WordsLanguageSwitcher extends StatelessWidget {
   final Languages value;
   final ValueChanged<Languages> onChanged;
   @override
-  Widget build(final BuildContext context) => LanguageSwitcherMenu(
+  Widget build(final BuildContext context) => UiLanguageSwitcherMenu(
         isShortAbbreviationUsed: false,
         languages: wordsLanguages,
         onChanged: onChanged,

@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_portal/flutter_portal.dart';
 
-import 'animations/easy_in.dart';
+import '../atoms/animations/easy_in.dart';
 
 extension AlignmentPortalExtension on Alignment {
   Aligned toAnchor() {
@@ -51,18 +51,54 @@ extension AlignmentPortalExtension on Alignment {
   }
 }
 
-class HighlightFrame extends StatelessWidget {
-  const HighlightFrame({
+/// A widget that highlights a specific area of the UI with an optional icon.
+///
+/// This class allows you to highlight a specific position in the UI with an
+/// icon that indicates the highlighted area. It can be used to draw attention
+/// to specific elements in your application.
+///
+/// ```dart
+/// UiHighlightFrame(
+///   highlighted: true,
+///   highlightPosition: Alignment.topLeft,
+///   child: Text('Hello World'),
+///   onPressed: () => print('Frame pressed!'),
+/// )
+/// ```
+///
+/// @ai Ensure that the [highlighted] property is set to true to display the
+/// highlight. Use [highlightPosition] to control where the highlight appears.
+class UiHighlightFrame extends StatelessWidget {
+  /// Creates a [UiHighlightFrame].
+  ///
+  /// The [highlighted] parameter must not be null and determines whether the
+  /// highlight is visible. The [highlightPosition] parameter specifies the
+  /// position of the highlight icon. The [child] parameter is the widget to
+  /// be displayed inside the frame.
+  const UiHighlightFrame({
     required this.highlighted,
     required this.highlightPosition,
     required this.child,
     this.onPressed,
     super.key,
   });
+
+  /// The position of the highlight icon.
+  ///
+  /// This property determines where the highlight icon will be displayed.
   final Alignment highlightPosition;
+
+  /// Whether the highlight is visible.
+  ///
+  /// Set this to true to show the highlight icon.
   final bool highlighted;
+
+  /// The child widget to display inside the highlight frame.
   final Widget child;
+
+  /// A callback that is triggered when the frame is pressed.
   final VoidCallback? onPressed;
+
   Widget get icon {
     if (highlightPosition == Alignment.topLeft) {
       return Transform.translate(

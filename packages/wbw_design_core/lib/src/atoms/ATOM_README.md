@@ -17,6 +17,15 @@ When working with or extending the atomic components, follow these guidelines:
 
 ## Usage Examples
 
+### UiSafeArea
+
+UiSafeArea is a widget that provides a safe area for the bottom or top of the screen.
+
+```dart
+UiSafeArea.bottom();
+UiSafeArea.top();
+```
+
 ### UiDecoratedContainer
 
 UiDecoratedContainer has vertical and horizontal dividers with triangles in the middle.

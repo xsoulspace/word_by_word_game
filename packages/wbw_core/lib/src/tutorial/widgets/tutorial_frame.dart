@@ -48,7 +48,7 @@ class TutorialFrame extends StatelessWidget {
         highlightPosition: highlightPosition,
       ),
       visible: highlighted && !isMobile,
-      child: HighlightFrame(
+      child: UiHighlightFrame(
         onPressed: () {
           sendOnClickEvent(context: context, uiKey: uiKey);
         },

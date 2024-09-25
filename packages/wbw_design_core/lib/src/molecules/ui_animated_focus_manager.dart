@@ -2,15 +2,38 @@ import 'package:flutter/material.dart';
 
 import '../../wbw_design_core.dart';
 
-class AnimatedFocusManager extends StatefulWidget {
-  const AnimatedFocusManager({required this.children, super.key});
+/// A widget that manages focus animations for its children.
+///
+/// This class provides a way to animate focus changes among its child widgets.
+/// It uses an [AnimationController] to create smooth transitions when focus
+/// changes occur.
+///
+/// ```dart
+/// UiAnimatedFocusManager(
+///   children: [
+///     UiStyledButton(),
+///     UiStyledButton(),
+///   ],
+/// )
+/// ```
+///
+/// @ai Use this widget to enhance user experience by providing visual feedback
+/// during focus changes. Ensure to manage the list of [children] properly.
+class UiAnimatedFocusManager extends StatefulWidget {
+  /// Creates an [UiAnimatedFocusManager].
+  ///
+  /// The [children] parameter is required and should contain the widgets that
+  /// will be managed for focus animations.
+  const UiAnimatedFocusManager({required this.children, super.key});
+
+  /// The list of child widgets to manage focus animations.
   final List<Widget> children;
 
   @override
-  _AnimatedFocusManagerState createState() => _AnimatedFocusManagerState();
+  _UiAnimatedFocusManagerState createState() => _UiAnimatedFocusManagerState();
 }
 
-class _AnimatedFocusManagerState extends State<AnimatedFocusManager>
+class _UiAnimatedFocusManagerState extends State<UiAnimatedFocusManager>
     with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   int? _focusedIndex;
@@ -54,7 +77,7 @@ class _AnimatedFocusManagerState extends State<AnimatedFocusManager>
             mainAxisAlignment: MainAxisAlignment.center,
             children: widget.children.map((final child) {
               if (child is UiStyledButton) {
-                return FocusableGameMenuButton(
+                return UiFocusableWidget(
                   index: widget.children.indexOf(child),
                   onFocusChange: _onFocusChange,
                   child: child,
@@ -87,8 +110,8 @@ class _AnimatedFocusManagerState extends State<AnimatedFocusManager>
       );
 }
 
-class FocusableGameMenuButton extends StatefulWidget {
-  const FocusableGameMenuButton({
+class UiFocusableWidget extends StatefulWidget {
+  const UiFocusableWidget({
     required this.index,
     required this.child,
     required this.onFocusChange,
@@ -99,11 +122,10 @@ class FocusableGameMenuButton extends StatefulWidget {
   final Function(int index, Offset position) onFocusChange;
 
   @override
-  _FocusableGameMenuButtonState createState() =>
-      _FocusableGameMenuButtonState();
+  _UiFocusableWidgetState createState() => _UiFocusableWidgetState();
 }
 
-class _FocusableGameMenuButtonState extends State<FocusableGameMenuButton> {
+class _UiFocusableWidgetState extends State<UiFocusableWidget> {
   final GlobalKey _key = GlobalKey();
 
   @override

@@ -1,10 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 
+import 'ui_language_switcher_menu.dart';
 import 'ui_text_field.dart';
 
+/// A widget that provides a localized text input field with language switching.
+///
+/// This class allows users to input text in different languages, with the
+/// ability to switch between languages dynamically. It integrates with the
+/// localization framework to provide a seamless user experience.
+///
+/// ```dart
+/// UiLocalizedTextField(
+///   value: LocalizedMap(),
+///   onChanged: (value) => print(value),
+///   fieldConstraints: BoxConstraints(maxWidth: 300),
+/// )
+/// ```
+///
+/// @ai Ensure that the [value] parameter is initialized with a valid
+/// [LocalizedMap]. Use [onChanged] to handle changes in the input value.
 class UiLocalizedTextField extends StatefulWidget {
+  /// Creates a [UiLocalizedTextField].
+  ///
+  /// The [fieldConstraints] parameter defines the constraints for the text
+  /// field. The [value] parameter holds the current localized value. The
+  /// [onChanged] callback is triggered when the input value changes.
   const UiLocalizedTextField({
     required this.fieldConstraints,
     required this.value,
@@ -31,15 +52,34 @@ class UiLocalizedTextField extends StatefulWidget {
     super.key,
   }) : focusedBorder = const UnderlineInputBorder();
 
+  /// The label text displayed above the text field.
   final String? labelText;
+
+  /// A callback that is triggered when the input value changes.
   final ValueChanged<LocalizedMap> onChanged;
+
+  /// The border to display when the text field is focused.
   final InputBorder? focusedBorder;
+
+  /// The current localized value.
   final LocalizedMap value;
+
+  /// Whether the text field obscures the text.
   final bool obscureText;
+
+  /// The constraints for the text field.
   final BoxConstraints fieldConstraints;
+
+  /// A validator function for validating the input.
   final FormFieldValidator? validator;
+
+  /// A callback that is triggered when editing is complete.
   final VoidCallback? onEditingComplete;
+
+  /// A callback that is triggered when the field is submitted.
   final ValueChanged<String>? onFieldSubmitted;
+
+  /// The focus node for the text field.
   final FocusNode? focusNode;
 
   @override
@@ -97,7 +137,7 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
       mainAxisSize: MainAxisSize.min,
       children: [
         child,
-        LanguageSwitcherMenu(
+        UiLanguageSwitcherMenu(
           onChanged: (final lang) {
             _language = lang;
             _textController.text = _value.getValueByLanguage(_language);
@@ -109,104 +149,3 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
     );
   }
 }
-
-class LanguageSwitcherMenu extends StatelessWidget {
-  const LanguageSwitcherMenu({
-    required this.value,
-    required this.onChanged,
-    this.isShortAbbreviationUsed = true,
-    this.languages = const [],
-    super.key,
-  });
-  final Languages value;
-  final List<Languages> languages;
-  final ValueChanged<Languages> onChanged;
-  final bool isShortAbbreviationUsed;
-  @override
-  Widget build(final BuildContext context) {
-    final effectiveValues = (languages.isNotEmpty ? languages : Languages.all);
-    final List<Widget> menuChildren;
-
-    if (isShortAbbreviationUsed) {
-      menuChildren = effectiveValues
-          .map(
-            (final lang) => MenuItemButton(
-              child: Text(lang.name),
-              onPressed: () => onChanged(lang),
-            ),
-          )
-          .toList();
-    } else {
-      menuChildren = namedLocalesMap.entries
-          .where((final e) => effectiveValues.contains(e.key))
-          .map(
-            (final e) => MenuItemButton(
-              child: Text(e.value.name),
-              onPressed: () => onChanged(e.key),
-            ),
-          )
-          .toList();
-    }
-    return MenuAnchor(
-      menuChildren: menuChildren,
-      builder: (final context, final controller, final child) => TextButton(
-        onPressed: () {
-          if (controller.isOpen) {
-            controller.close();
-          } else {
-            controller.open();
-          }
-        },
-        child: Text(
-          isShortAbbreviationUsed ? value.name : namedLocalesMap[value]!.name,
-        ),
-      ),
-    );
-  }
-}
-
-/// maybe remove in future
-class LanguageSwitcherMenuOld extends StatelessWidget {
-  const LanguageSwitcherMenuOld({
-    required this.languages,
-    required this.initLanguage,
-    required this.onSelected,
-    super.key,
-  });
-  final List<Languages> languages;
-  final Languages initLanguage;
-  final ValueChanged<Languages?> onSelected;
-
-  @override
-  Widget build(final BuildContext context) => DropdownMenu<Languages>(
-        menuStyle: _defaultDropdownMenuStyle,
-        textStyle: context.textTheme.bodyMedium,
-        inputDecorationTheme: _defaultDropdownMenuInputTheme,
-        initialSelection: initLanguage,
-        onSelected: onSelected,
-        dropdownMenuEntries: namedLocalesMap.entries
-            .where((final e) => languages.contains(e.key))
-            .map(
-              (final e) => DropdownMenuEntry(
-                value: e.key,
-                label: e.value.name,
-              ),
-            )
-            .toList(),
-      );
-}
-
-final _defaultDropdownMenuStyle = MenuStyle(
-  shape: WidgetStatePropertyAll(
-    RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(9),
-    ),
-  ),
-);
-
-const _defaultDropdownMenuInputTheme = InputDecorationTheme(
-  border: InputBorder.none,
-  isCollapsed: true,
-  isDense: true,
-  contentPadding: EdgeInsets.symmetric(vertical: 5),
-);

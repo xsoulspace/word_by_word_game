@@ -30,6 +30,72 @@ When working with or extending the molecular components, follow these guidelines
 
 ## Usage Examples
 
+### UiLocalizedTextField
+
+Wraps a UiTextField to use a LocalizedMap for its value. The current locale is automatically detected and the text field value is updated accordingly.
+
+```dart
+UiLocalizedTextField(
+  label: 'Email',
+  hintText: 'Enter your email',
+  onChanged: (value) => print('Email changed to $value'),
+)
+```
+
+### UiTextField
+
+Creates a text field with a label and an optional icon.
+
+```dart
+UiTextField(
+  label: 'Email',
+  hintText: 'Enter your email',
+  onChanged: (value) => print('Email changed to $value'),
+)
+```
+
+### UiCheckboxListTile
+
+Creates a checkbox list tile with a label and an optional icon.
+
+```dart
+UiCheckboxListTile(
+  value: true,
+  onChanged: (value) => print('Checkbox changed to $value'),
+  title: Text('Enable notifications'),
+)
+```
+
+### UiHighlightFrame
+
+Creates a frame that highlights a widget when focused.
+
+```dart
+UiHighlightFrame(
+  highlightPosition: Alignment.center,
+  child: UiStyledButton(
+    onPressed: () => print('Button pressed'),
+    label: 'Click me',
+  ),
+)
+```
+
+### UiAnimatedFocusManager with UiFocusableWidget
+
+Creates a focusable widget that animates movement of an icon or similar elements on focus change.
+
+```dart
+UiAnimatedFocusManager(
+  child: UiFocusableWidget(
+    index: 0,
+    child: UiAnimatedText(
+      label: 'Hello, World!',
+      textStyle: TextStyle(fontSize: 24, color: Colors.blue),
+    ),
+  ),
+)
+```
+
 ### UiAnimatedText
 
 ```dart

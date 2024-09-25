@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
 
+/// A customizable text input field widget.
+///
+/// This class provides a flexible way to create text input fields with various
+/// customization options, including decoration, validation, and event handling.
+///
+/// ```dart
+/// UiTextField(
+///   value: notifier.value,
+///   hintText: 'Enter text',
+///   onChanged: (value) => print(value),
+/// )
+/// ```
+///
+/// @ai Use this widget to create text fields with specific behaviors and
+/// styles. Ensure to provide a [controller] for managing the text input.
 class UiTextField extends StatefulWidget {
+  /// Creates a [UiTextField].
+  ///
+  /// The [controller] parameter is required for managing the text input. The
+  /// [hintText] and [labelText] parameters provide user guidance. The
+  /// [focusedBorder] parameter customizes the border when the field is focused.
   const UiTextField({
     required this.controller,
     this.hintText,
@@ -54,20 +74,47 @@ class UiTextField extends StatefulWidget {
   })  : focusedBorder = const UnderlineInputBorder(),
         decoration = null;
 
-  final String? labelText;
-  final InputBorder? focusedBorder;
-  final TextEditingController? controller;
-  final bool obscureText;
-  final BoxConstraints? constraints;
-  final FormFieldValidator? validator;
-  final InputDecoration? decoration;
-  final VoidCallback? onEditingComplete;
-  final String? initialValue;
-  final ValueChanged<String>? onFieldSubmitted;
-  final FocusNode? focusNode;
-  final ValueChanged<String>? onChanged;
+  /// The hint text displayed in the text field.
   final String? hintText;
+
+  /// The label text displayed above the text field.
+  final String? labelText;
+
+  /// The border to display when the text field is focused.
+  final InputBorder? focusedBorder;
+
+  /// The controller for managing the text input.
+  final TextEditingController? controller;
+
+  /// Whether the text field obscures the text.
+  final bool obscureText;
+
+  /// The constraints for the text field.
+  final BoxConstraints? constraints;
+
+  /// A validator function for validating the input.
+  final FormFieldValidator? validator;
+
+  /// The decoration for the text field.
+  final InputDecoration? decoration;
+
+  /// A callback that is triggered when editing is complete.
+  final VoidCallback? onEditingComplete;
+
+  /// The initial value of the text field.
+  final String? initialValue;
+
+  /// A callback that is triggered when the field is submitted.
+  final ValueChanged<String>? onFieldSubmitted;
+
+  /// The focus node for the text field.
+  final FocusNode? focusNode;
+
+  /// A callback that is triggered when the input value changes.
+  final ValueChanged<String>? onChanged;
   final String? value;
+
+  /// The keyboard type for the text field.
   final TextInputType? keyboardType;
 
   @override

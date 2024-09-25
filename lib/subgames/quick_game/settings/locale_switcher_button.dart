@@ -23,7 +23,7 @@ class LocaleSwitcherButton extends StatelessWidget {
     final localeNotifier = useLocale(context);
     final language = Languages.values.byName(localeNotifier.languageCode);
 
-    return LanguageSwitcherMenu(
+    return UiLanguageSwitcherMenu(
       value: language,
       languages: Languages.all,
       isShortAbbreviationUsed: false,
