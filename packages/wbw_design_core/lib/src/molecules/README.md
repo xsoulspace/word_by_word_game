@@ -39,15 +39,6 @@ UiAnimatedText(
 )
 ```
 
-### UiBaseButton
-
-```dart
-UiBaseButton(
-  onPressed: () => print('Button pressed'),
-  child: Text('Click me'),
-)
-```
-
 ### UiLocaleNotifier and UiLocalizedText
 
 ```dart

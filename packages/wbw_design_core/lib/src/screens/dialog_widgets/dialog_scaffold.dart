@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
 
 import '../../../wbw_design_core.dart';
 
@@ -29,9 +27,6 @@ class DialogScaffold extends HookWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final hovered = useIsBool();
-    final bottom = this.bottom;
-    final top = this.top;
     final padding = this.padding ?? const EdgeInsets.all(24);
     final child = UiBodyBuilder(
       builder: builder,
@@ -49,36 +44,10 @@ class DialogScaffold extends HookWidget {
           constraints: const BoxConstraints(
             maxWidth: 450,
           ),
-          child: MouseRegion(
-            onHover: (final event) => hovered.value = true,
-            onExit: (final event) => hovered.value = false,
-            child: Semantics(
-              container: semanticsContainer,
-              child: AnimatedScale(
-                scale: hovered.value ? 1.008 : 1.0,
-                curve: Curves.easeInOutSine,
-                duration: 400.milliseconds,
-                child: Card(
-                  color: UiColors.offWhite,
-                  shadowColor: UiColors.light,
-                  surfaceTintColor: Colors.transparent,
-                  shape: const RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(
-                      Radius.elliptical(
-                        UiDecorators.radiusLarge,
-                        UiDecorators.radiusLarge,
-                      ),
-                    ),
-                  ),
-                  child: DefaultTextStyle.merge(
-                    style: const TextStyle(
-                      fontSize: 16,
-                      color: UiColors.dark,
-                    ),
-                    child: child,
-                  ),
-                ),
-              ),
+          child: Semantics(
+            container: semanticsContainer,
+            child: UiCard(
+              child: child,
             ),
           ),
         ),

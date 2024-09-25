@@ -42,7 +42,7 @@ UiBaseButton is a basic button component that handles gesture handling. It is us
 ```dart
 UiBaseButton(
   onPressed: () => print('Button pressed'),
-  child: Text('Click me'),
+  builder: (final context, final focused) => UiText('Click me'),
 )
 ```
 

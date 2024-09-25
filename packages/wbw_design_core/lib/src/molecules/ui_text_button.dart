@@ -3,7 +3,6 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
 import '../../wbw_design_core.dart';
-import 'ui_icon_button.dart';
 
 @Deprecated('Use UiStyledButton instead')
 class UiTextButton extends HookWidget {
