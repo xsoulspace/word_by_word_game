@@ -35,7 +35,7 @@ class LoadingScreen extends StatelessWidget {
                   children: [
                     Flexible(
                       child: Material(
-                        child: Text(
+                        child: UiText(
                           // TODO(arenukvern): add gifs - tips
                           'Tip: You can delete letters by clicking them if you have enough points.',
                           style: TextStyle(
