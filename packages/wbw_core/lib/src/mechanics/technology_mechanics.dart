@@ -1,3 +1,5 @@
+import 'package:wbw_locale/wbw_locale.dart';
+
 import '../../wbw_core.dart';
 
 typedef TechUnlockStatusTuple = ({

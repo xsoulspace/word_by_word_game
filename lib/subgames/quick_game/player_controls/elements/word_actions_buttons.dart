@@ -1,4 +1,3 @@
-import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
@@ -91,10 +90,8 @@ class UIAddWordToDictionaryButton extends StatelessWidget {
       message: S.of(context).addToDictionary,
       child: FilledButton.tonal(
         onPressed: warning == WordWarning.isNotCorrect ? onPressed : null,
-        child: const UiIcon(
-          height: 24,
-          width: 24,
-          icon: UiIcons.dictionary_add,
+        child: const UiIcon.asset(
+          icon: UiAssetsIcons.dictionary_add,
         ),
       ),
     );
@@ -169,7 +166,7 @@ class UIToEndTurnButton extends StatelessWidget {
   Widget build(final BuildContext context) => UiTextButton.icon(
         text: S.of(context).applyAndEndTurn,
         onPressed: onPressed,
-        icon: UiIcons.fire,
+        icon: UiAssetsIcons.fire,
         mainAlignment: MainAxisAlignment.center,
         isLongButton: true,
       );
@@ -201,7 +198,7 @@ class UiSuggestionsButton extends StatelessWidget {
       onPressed: () {
         context.read<DialogController>().showLevelWordSuggestionDialog();
       },
-      icon: UiIcons.idea,
+      icon: UiAssetsIcons.idea,
     );
   }
 }
@@ -228,7 +225,7 @@ class UiPauseButton extends StatelessWidget {
             final id = levelBloc.state.id;
             appRouterController.toPause(id: id);
           },
-          icon: UiIcons.pause,
+          icon: UiAssetsIcons.pause,
         ),
       );
 }

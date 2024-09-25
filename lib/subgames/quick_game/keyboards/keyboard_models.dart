@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 
 part 'keyboard_models.freezed.dart';
 

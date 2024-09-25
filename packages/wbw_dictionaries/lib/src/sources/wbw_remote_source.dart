@@ -1,5 +1,5 @@
 import 'package:wbw_client/wbw_client.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 import 'sources.dart';
 import 'wbw_local_source_i.dart';

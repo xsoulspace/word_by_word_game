@@ -1,14 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
 import 'package:life_hooks/life_hooks.dart';
-import 'package:map_editor/state/models/saveable_models/saveable_models.dart';
-import 'package:provider/provider.dart';
 import 'package:universal_io/io.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/router.dart';
 
 class GlobalStatesInitializer implements StateInitializer {

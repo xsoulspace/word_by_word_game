@@ -1,5 +1,5 @@
 import 'package:sembast/sembast.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 typedef WordMeaningRequestTuple = ({Languages language, String word});
 typedef WordMeaningTuple = ({String word, String meaning});

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_foundation/wbw_foundation.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 import 'ui_text_field.dart';
 

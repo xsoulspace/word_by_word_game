@@ -1,11 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_word_suggestion.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/technologies/tech_level_achieved_dialog.dart';

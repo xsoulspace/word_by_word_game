@@ -1,11 +1,7 @@
 import 'dart:ui';
 
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug_cubit.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/animated_progress_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
@@ -81,7 +77,7 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
             icon: GestureDetector(
               onTap: () => context.read<DebugCubit>().tryOpenDebugPane(),
               child: Image.asset(
-                UiAssetHelper.useImagePath(UiIcons.fire.path),
+                UiAssetHelper.useImagePath(UiAssetsIcons.fire.path),
                 width: 32,
                 height: 32,
               ),
@@ -133,7 +129,7 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
                   ),
                   // TODO(arenukvern): replace with focused object icon
                   Image.asset(
-                    UiAssetHelper.useImagePath(UiIcons.fire.path),
+                    UiAssetHelper.useImagePath(UiAssetsIcons.fire.path),
                     width: 32,
                     height: 32,
                   ),

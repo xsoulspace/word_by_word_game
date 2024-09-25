@@ -134,7 +134,7 @@ class _UiMainMenuList extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Gap(leadingGapWithIcon),
-          UiLinearDivider(),
+          UiHorizontalDivider(),
         ],
       ),
     );
@@ -319,7 +319,7 @@ class KeyboardBindingsTips extends HookWidget {
         child: DefaultTextStyle.merge(
           style: const TextStyle(
             color: UiColors.offWhite,
-            fontSize: UiFontSizes.s12,
+            fontSize: 12,
           ),
           child: AnimatedSize(
             duration: 300.milliseconds,
@@ -397,172 +397,6 @@ class KeyboardBindingsTips extends HookWidget {
   }
 }
 
-/// --- <> ---
-class UiLinearDivider extends StatelessWidget {
-  const UiLinearDivider({super.key});
-
-  @override
-  Widget build(final BuildContext context) => CustomPaint(
-        painter: _LinearDividerPainter(),
-        size: const Size(60, 20),
-      );
-}
-
-class _LinearDividerPainter extends CustomPainter {
-  @override
-  void paint(final Canvas canvas, final Size size) {
-    final paint = Paint()
-      ..color = UiColors.mediumLight.withOpacity(0.5)
-      ..strokeWidth = 1
-      ..style = PaintingStyle.stroke;
-
-    const triangleSize = 8.0;
-    final centerX = size.width / 2;
-    final centerY = size.height / 2;
-
-    // Draw left line
-    canvas
-      ..drawLine(
-        Offset(0, centerY),
-        Offset(centerX - triangleSize, centerY),
-        paint,
-      )
-      // Draw right line
-      ..drawLine(
-        Offset(centerX + triangleSize, centerY),
-        Offset(size.width, centerY),
-        paint,
-      );
-
-    // Draw triangle
-    final path = Path()
-      ..moveTo(centerX - triangleSize, centerY)
-      ..lineTo(centerX, centerY - triangleSize / 2)
-      ..lineTo(centerX + triangleSize, centerY)
-      ..lineTo(centerX, centerY + triangleSize / 2)
-      ..close();
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant final CustomPainter oldDelegate) => false;
-}
-
-class UiVerticalLinearDivider extends StatelessWidget {
-  const UiVerticalLinearDivider({
-    super.key,
-    this.includeTriangle = true,
-    this.size = const Size(20, 60),
-  });
-  final bool includeTriangle;
-  final Size size;
-
-  @override
-  Widget build(final BuildContext context) => CustomPaint(
-        painter:
-            _VerticalLinearDividerPainter(includeTriangle: includeTriangle),
-        size: size,
-      );
-}
-
-class _VerticalLinearDividerPainter extends CustomPainter {
-  _VerticalLinearDividerPainter({required this.includeTriangle});
-  final bool includeTriangle;
-  @override
-  void paint(final Canvas canvas, final Size size) {
-    final paint = Paint()
-      ..color = UiColors.mediumLight.withOpacity(0.5)
-      ..strokeWidth = 1
-      ..style = PaintingStyle.stroke;
-
-    const triangleSize = 8.0;
-    final centerX = size.width / 2;
-    final centerY = size.height / 2;
-
-    // Draw top line
-    canvas
-      ..drawLine(
-        Offset(centerX, 0),
-        Offset(centerX, centerY - triangleSize),
-        paint,
-      )
-      // Draw bottom line
-      ..drawLine(
-        Offset(centerX, centerY + triangleSize),
-        Offset(centerX, size.height),
-        paint,
-      );
-    if (includeTriangle) {
-      // Draw triangle
-      final path = Path()
-        ..moveTo(centerX, centerY - triangleSize)
-        ..lineTo(centerX - triangleSize / 2, centerY)
-        ..lineTo(centerX, centerY + triangleSize)
-        ..lineTo(centerX + triangleSize / 2, centerY)
-        ..close();
-
-      canvas.drawPath(path, paint);
-    }
-  }
-
-  @override
-  bool shouldRepaint(covariant final CustomPainter oldDelegate) => false;
-}
-
-class UiTriangle extends StatelessWidget {
-  const UiTriangle({
-    super.key,
-    this.size = 5.0,
-    this.quarterTurns = 0,
-    this.color,
-  });
-  final int quarterTurns;
-  final double size;
-  final Color? color;
-
-  @override
-  Widget build(final BuildContext context) => RotatedBox(
-        quarterTurns: quarterTurns,
-        child: CustomPaint(
-          painter: _TrianglePainter(
-            size: size,
-            color: color ?? UiColors.mediumLight.withOpacity(0.5),
-          ),
-          size: Size(size * 2, size),
-        ),
-      );
-}
-
-class _TrianglePainter extends CustomPainter {
-  _TrianglePainter({
-    required this.size,
-    required this.color,
-  });
-
-  final double size;
-  final Color color;
-
-  @override
-  void paint(final Canvas canvas, final Size size) {
-    final paint = Paint()
-      ..color = color
-      ..style = PaintingStyle.fill;
-
-    final path = Path()
-      ..moveTo(0, size.height / 2)
-      ..lineTo(size.width / 2, 0)
-      ..lineTo(size.width, size.height / 2)
-      ..lineTo(size.width / 2, size.height)
-      ..close();
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant final CustomPainter oldDelegate) => false;
-}
-
 class _KeyButton extends StatelessWidget {
   const _KeyButton({
     required this.keyTitle,
@@ -588,7 +422,7 @@ class _KeyButton extends StatelessWidget {
             child: Text(
               keyTitle,
               style: const TextStyle(
-                fontSize: UiFontSizes.s12,
+                fontSize: 12,
                 color: UiColors.mediumDark,
               ),
             ),

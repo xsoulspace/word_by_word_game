@@ -1,10 +1,4 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:wbw_locale/wbw_locale.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/subgames.dart';
@@ -141,7 +135,7 @@ class UIEnergyOptionCard extends StatelessWidget {
             decoration: BoxDecoration(
               image: DecorationImage(
                 image: AssetImage(
-                  UiAssetHelper.useImagePath(UiIcons.fire.path),
+                  UiAssetHelper.useImagePath(UiAssetsIcons.fire.path),
                 ),
                 fit: BoxFit.fill,
               ),

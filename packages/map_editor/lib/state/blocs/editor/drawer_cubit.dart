@@ -15,6 +15,8 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_foundation/wbw_foundation.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 part 'drawer_cubit.freezed.dart';
 part 'drawer_cubit_states.dart';

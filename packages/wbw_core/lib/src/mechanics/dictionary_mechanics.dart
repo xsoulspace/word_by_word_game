@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:english_words/english_words.dart' as english_words;
 import 'package:russian_words/russian_words.dart' as russian_words;
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 import '../../wbw_core.dart';
 

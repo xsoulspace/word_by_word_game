@@ -55,7 +55,7 @@ dependencies:
       ref: main
   flutter_svg: ^2.0.7
   form_builder_validators: ^11.0.0
-  freezed_annotation: ^2.2.0
+  freezed_annotation: ^2.4.4
   go_router: ^14.2.3
   google_fonts: ^6.2.1
   hive: ^2.2.3
@@ -84,7 +84,9 @@ dependencies:
   wbw_design_core:
     path: packages/wbw_design_core
   wbw_dictionaries:
-    path: ./packages/wbw_dictionaries
+    path: packages/wbw_dictionaries
+  wbw_foundation:
+    path: packages/wbw_foundation
   wbw_locale:
     path: packages/wbw_locale
 dev_dependencies:

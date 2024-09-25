@@ -1,17 +1,8 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/app/locale_logic.dart';
-
-class UiLocaleNotifier extends ValueNotifier<Locale> {
-  UiLocaleNotifier(super.value);
-}
-
-final uiLocaleNotifier = UiLocaleNotifier(Locales.en);
 
 class AppSettingsCubitDto {
   AppSettingsCubitDto({
@@ -52,12 +43,6 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
     await _updateSettings(value.copyWith(locale: result.updatedLocale));
   }
 }
-
-Locale useLocale(
-  final BuildContext context, {
-  final bool listen = true,
-}) =>
-    Provider.of<UiLocaleNotifier>(context, listen: listen).value;
 
 extension LocaleX on Locale {
   Languages get language => Languages.byLanguageCode(languageCode);

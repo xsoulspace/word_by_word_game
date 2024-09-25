@@ -1,7 +1,8 @@
 import 'dart:ui';
 
+import 'package:wbw_locale/wbw_locale.dart';
+
 import '../../data_models/data_models.dart';
-import '../../localization/localization.dart';
 import '../interfaces/interfaces.dart';
 
 class AppSettingsLocalDataSourceImpl implements AppSettingsLocalDataSource {

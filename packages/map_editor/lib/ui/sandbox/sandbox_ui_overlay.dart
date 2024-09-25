@@ -12,8 +12,8 @@ import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
 import 'package:recase/recase.dart';
 import 'package:universal_io/io.dart' as io;
-import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
   const SandboxUiOverlay({

@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl_standalone.dart'
     if (dart.library.html) 'package:intl/intl_browser.dart';
-import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 
 class LocaleLogic {

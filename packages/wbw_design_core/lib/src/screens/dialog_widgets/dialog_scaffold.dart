@@ -166,7 +166,7 @@ class DecoratedDialogScaffold extends StatelessWidget {
           color: UiColors.mediumLight,
         ),
         Gap(16),
-        Expanded(child: UiLinearDivider()),
+        Expanded(child: UiHorizontalDivider()),
         Gap(16),
         UiTriangle(
           color: UiColors.mediumLight,
@@ -176,7 +176,7 @@ class DecoratedDialogScaffold extends StatelessWidget {
     );
     const verticalLine = Column(
       children: [
-        Expanded(child: UiVerticalLinearDivider()),
+        Expanded(child: UiVerticalDivider()),
       ],
     );
     return KeyboardBindingsViewFocusScope(

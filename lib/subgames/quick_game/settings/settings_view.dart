@@ -29,7 +29,7 @@ class SettingsView extends HookWidget {
         const Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            UiLinearDivider(),
+            UiHorizontalDivider(),
           ],
         ),
         UiGaps.extraLarge,

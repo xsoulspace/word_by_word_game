@@ -1,7 +1,5 @@
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 
 part 'player_profile_creator.freezed.dart';
 

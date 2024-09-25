@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/envs.dart';
 
 abstract class GlobalServicesInitializer implements Loadable {

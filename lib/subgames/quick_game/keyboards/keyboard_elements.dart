@@ -1,13 +1,8 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
 const kKeyboardWidth = 360.0;

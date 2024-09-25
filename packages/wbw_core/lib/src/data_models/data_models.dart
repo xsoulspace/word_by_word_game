@@ -4,8 +4,8 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:map_editor/state/models/models.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
-import '../localization/localization.dart';
 import '../mechanics/mechanics.dart';
 import '../utils/utils.dart';
 import 'tutorial_types.dart';

@@ -1,12 +1,8 @@
 import 'dart:async';
 
-import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 
 class AnimatedProgressBar extends StatefulWidget {
   const AnimatedProgressBar({

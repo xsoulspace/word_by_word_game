@@ -1,9 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/focused_object_actions_view.dart';
@@ -35,7 +31,7 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
         ),
         iconChildren: [
           Image.asset(
-            UiAssetHelper.useImagePath(UiIcons.fire.path),
+            UiAssetHelper.useImagePath(UiAssetsIcons.fire.path),
             width: 24,
             height: 24,
           ),

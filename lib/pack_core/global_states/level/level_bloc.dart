@@ -1,13 +1,9 @@
 import 'dart:async';
 
-import 'package:bloc/bloc.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
+import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_power_points_animation.dart';
 
 part 'level_bloc.freezed.dart';

@@ -7,6 +7,7 @@ import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 
 class EditorStateInitializer implements StateInitializer {
   @override

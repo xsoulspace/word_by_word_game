@@ -1,6 +1,6 @@
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:wbw_client/wbw_client.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_foundation/wbw_foundation.dart';
 
 class AppServerpodClient implements Disposable {
   AppServerpodClient({
