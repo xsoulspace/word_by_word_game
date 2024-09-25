@@ -427,7 +427,8 @@ class UiOutlinedButton extends StatelessWidget {
         opacity: onPressed == null ? 0.2 : 1,
         child: UiBaseButton(
           onPressed: onPressed,
-          builder: (final context, final focused) => Card.outlined(
+          builder: (final context, final focused, final onlyFocused) =>
+              Card.outlined(
             elevation: onPressed == null ? null : 1,
             shape: BeveledRectangleBorder(
               side: BorderSide(color: context.colorScheme.primary),

@@ -103,7 +103,11 @@ class UiGameBottomBarCard extends StatelessWidget {
                                   : S.of(context).showPane,
                               child: UiBaseButton(
                                 onPressed: () {},
-                                builder: (final context, final focused) =>
+                                builder: (
+                                  final context,
+                                  final focused,
+                                  final onlyFocused,
+                                ) =>
                                     effectiveIsCardVisible
                                         ? TextButton(
                                             onPressed: onTap,
@@ -317,7 +321,7 @@ class _UiToFocusCard extends StatelessWidget {
     final locale = useLocale(context);
     return UiBaseButton(
       onPressed: onPressed,
-      builder: (final context, final focused) => Container(
+      builder: (final context, final focused, final onlyFocused) => Container(
         decoration: BoxDecoration(
           color: context.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),

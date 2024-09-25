@@ -10,7 +10,6 @@ class UiStyledButton extends StatelessWidget {
     this.labelChild,
     this.icon,
     this.focusNode,
-    this.onKeyEvent,
     this.styleType = ButtonStyleType.text,
     this.color = UiColors.offWhite,
     this.borderColor,
@@ -27,11 +26,6 @@ class UiStyledButton extends StatelessWidget {
   final EdgeInsets? padding;
   final Map<Type, Action<Intent>> actions;
   final TextStyle? textStyle;
-  final KeyEventResult Function(
-    FocusNode node,
-    KeyEvent event,
-    BuildContext context,
-  )? onKeyEvent;
   final String label;
   final Widget? labelChild;
   final IconData? icon;
@@ -51,7 +45,7 @@ class UiStyledButton extends StatelessWidget {
     final buttonColor = color;
     Widget child = UiBaseButton(
       onPressed: onPressed,
-      builder: (final context, final focused) {
+      builder: (final context, final focused, final onlyFocused) {
         final textColor =
             (focused ? UiColors.dark : UiColors.mediumDark).withOpacity(0.9);
         final buttonBorderColor = borderColor ?? textColor;
@@ -63,7 +57,7 @@ class UiStyledButton extends StatelessWidget {
           children: [
             if (showFocusIcon)
               AnimatedOpacity(
-                opacity: focused ? 1.0 : 0.0,
+                opacity: onlyFocused ? 1.0 : 0.0,
                 duration: const Duration(milliseconds: 150),
                 child: Icon(
                   focusIcon,

@@ -489,7 +489,7 @@ class UiTechnologyCircle extends StatelessWidget {
       ).getValue(locale),
       child: UiBaseButton(
         onPressed: onPressed,
-        builder: (final context, final focused) => Column(
+        builder: (final context, final focused, final onlyFocused) => Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Stack(

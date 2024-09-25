@@ -107,7 +107,8 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
               onPressed: () {
                 context.read<GuiFocusableObjectsNotifier>().startChoosing();
               },
-              builder: (final context, final focused) => Column(
+              builder: (final context, final focused, final onlyFocused) =>
+                  Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Row(

@@ -76,8 +76,9 @@ class _TechnologyTile extends StatelessWidget {
                   const Gap(8),
                   UiBaseButton(
                     onPressed: onTechnologyPressed,
-                    builder: (final context, final focused) =>
-                        Icon(Icons.info_outline, color: textColor),
+                    builder:
+                        (final context, final focused, final onlyFocused) =>
+                            Icon(Icons.info_outline, color: textColor),
                   ),
                   if (kDebugMode)
                     IconButton(

@@ -157,7 +157,7 @@ class UiLabledProgressBar extends HookWidget {
         ).getValue(locale),
         child: UiBaseButton(
           onPressed: onPressed,
-          builder: (final context, final focused) => Stack(
+          builder: (final context, final focused, final onlyFocused) => Stack(
             alignment: Alignment.centerRight,
             children: [
               AnimatedProgressBar(

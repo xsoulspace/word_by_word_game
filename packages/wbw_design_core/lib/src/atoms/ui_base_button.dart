@@ -14,7 +14,7 @@ class UiBaseButton extends StatefulWidget {
   });
 
   // ignore: avoid_positional_boolean_parameters
-  final Widget Function(BuildContext, bool focused) builder;
+  final Widget Function(BuildContext, bool focused, bool onlyFocused) builder;
   final VoidCallback? onPressed;
   final VoidCallback? onLongPress;
   final double pressedScale;
@@ -90,7 +90,7 @@ class _UiBaseButtonState extends State<UiBaseButton>
           }(),
           duration: widget.animationDuration,
           curve: widget.curve,
-          child: widget.builder(context, focused),
+          child: widget.builder(context, focused, _isFocused),
         ),
       ),
     );

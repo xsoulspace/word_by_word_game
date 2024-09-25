@@ -432,7 +432,7 @@ class _InputInactiveLetterCardState extends State<InputInactiveLetterCard> {
       key: ValueKey(widget.letter),
       builder: (final context, final controller, final child) => UiBaseButton(
         onPressed: controller.open,
-        builder: (final context, final focused) => Card(
+        builder: (final context, final focused, final onlyFocused) => Card(
           elevation: controller.isOpen ? 3 : 0,
           shape: RoundedRectangleBorder(
             side: BorderSide(

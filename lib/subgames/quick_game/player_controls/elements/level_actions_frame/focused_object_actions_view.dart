@@ -23,7 +23,7 @@ class SwitchFocusButton extends StatelessWidget {
       // TODO(arenukvern): l10n
       message: 'Click to go into Building or Hot Air Balloon',
       child: UiBaseButton(
-        builder: (final context, final focused) => Row(
+        builder: (final context, final focused, final onlyFocused) => Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             // TODO(arenukvern): add focused object image as icon
