@@ -148,22 +148,6 @@ UiGaps is a class that contains the gap sizes.
 UiGaps.small
 ```
 
-### UiSpace
-
-UiSpace is a class that contains the space sizes.
-
-```dart
-UiSpace.small
-```
-
-### UiDecorators
-
-UiDecorators is a class that contains the decorator sizes.
-
-```dart
-UiDecorators.radiusSmall
-```
-
 ### UiTriangle
 
 ```dart

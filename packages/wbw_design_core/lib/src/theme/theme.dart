@@ -6,9 +6,9 @@ import 'package:wbw_core/wbw_core.dart';
 
 import '../../wbw_design_core.dart';
 
-export '../atoms/ui_decorators.dart';
-export '../atoms/ui_space.dart';
 export 'ui_colors.dart';
+export 'ui_decorators.dart';
+export 'ui_space.dart';
 
 part 'color_schemes.dart';
 part 'theme.freezed.dart';
