@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
+import 'package:wbw_foundation/wbw_foundation.dart';
 
 import '../../wbw_design_core.dart';
 
 class UiStyledButton extends StatelessWidget {
   const UiStyledButton({
-    required this.onPressed,
+    this.onPressed,
     this.label = '',
     this.labelChild,
     this.icon,
@@ -29,7 +30,7 @@ class UiStyledButton extends StatelessWidget {
   final String label;
   final Widget? labelChild;
   final IconData? icon;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
   final ButtonStyleType styleType;
   final Color color;
   final Color? borderColor;
@@ -43,7 +44,7 @@ class UiStyledButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final isLabelExists = label.isNotEmpty || labelChild != null;
     final buttonColor = color;
-    Widget child = UiBaseButton(
+    final Widget child = UiBaseButton(
       onPressed: onPressed,
       builder: (final context, final focused, final onlyFocused) {
         final textColor =
@@ -156,9 +157,14 @@ class UiStyledButton extends StatelessWidget {
       },
     );
 
-    return child = UiTooltip(
-      tooltip: tooltip,
-      child: child,
+    return Semantics(
+      button: true,
+      enabled: onPressed != null,
+      label: tooltip ?? label.whenEmptyUse('Button'),
+      child: UiTooltip(
+        tooltip: tooltip,
+        child: child,
+      ),
     );
   }
 }

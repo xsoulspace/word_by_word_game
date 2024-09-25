@@ -19,30 +19,38 @@ class KeyboardBindingsViewFocusScope extends StatelessWidget {
       autofocus: true,
       onKeyEvent: (final node, final event) {
         if (event is! KeyDownEvent) return KeyEventResult.ignored;
-        if (bindings
-            .getBindings(KeyboardBindingsType.mainMenuUp)
-            .contains(event.logicalKey)) {
-          node.focusInDirection(TraversalDirection.up);
-          return KeyEventResult.handled;
-        } else if (bindings
-            .getBindings(KeyboardBindingsType.mainMenuDown)
-            .contains(event.logicalKey)) {
-          node.focusInDirection(TraversalDirection.down);
-          return KeyEventResult.handled;
-        } else if (bindings
-            .getBindings(KeyboardBindingsType.mainMenuLeft)
-            .contains(event.logicalKey)) {
-          node.focusInDirection(TraversalDirection.left);
-          return KeyEventResult.handled;
-        } else if (bindings
-            .getBindings(KeyboardBindingsType.mainMenuRight)
-            .contains(event.logicalKey)) {
-          node.focusInDirection(TraversalDirection.right);
+
+        final direction = _getDirectionFromKey(event.logicalKey, bindings);
+        if (direction != null) {
+          node.focusInDirection(direction);
           return KeyEventResult.handled;
         }
+
         return KeyEventResult.ignored;
       },
       child: child,
     );
+  }
+
+  TraversalDirection? _getDirectionFromKey(
+    final LogicalKeyboardKey key,
+    final KeyboardBindingsNotifier bindings,
+  ) {
+    if (bindings.getBindings(KeyboardBindingsType.mainMenuUp).contains(key)) {
+      return TraversalDirection.up;
+    } else if (bindings
+        .getBindings(KeyboardBindingsType.mainMenuDown)
+        .contains(key)) {
+      return TraversalDirection.down;
+    } else if (bindings
+        .getBindings(KeyboardBindingsType.mainMenuLeft)
+        .contains(key)) {
+      return TraversalDirection.left;
+    } else if (bindings
+        .getBindings(KeyboardBindingsType.mainMenuRight)
+        .contains(key)) {
+      return TraversalDirection.right;
+    }
+    return null;
   }
 }
