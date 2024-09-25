@@ -3,7 +3,29 @@ import 'package:flutter_animate/flutter_animate.dart';
 
 import '../theme/theme.dart';
 
+/// A customizable card widget that displays content with optional styling.
+///
+/// This widget allows for customization of padding, margin, border radius,
+/// elevation, and background color. It can also animate on hover.
+///
+/// Example usage:
+/// ```dart
+/// UiCard(
+///   child: UiText('Card content'),
+///   padding: EdgeInsets.all(16),
+///   margin: EdgeInsets.symmetric(vertical: 8),
+///   borderRadius: BorderRadius.circular(16),
+///   elevation: 4,
+///   color: Colors.white,
+/// );
+/// ```
+///
+/// @ai When using this widget, consider the impact of the [animateOnHover]
+/// property on user experience and performance.
 class UiCard extends StatefulWidget {
+  /// Creates a customizable card widget.
+  ///
+  /// The [child] parameter is required and defines the content of the card.
   const UiCard({
     required this.child,
     super.key,
@@ -22,14 +44,33 @@ class UiCard extends StatefulWidget {
     this.animateOnHover = false,
   });
 
+  /// The content of the card.
   final Widget child;
+
+  /// The amount of padding inside the card.
   final EdgeInsetsGeometry padding;
+
+  /// The amount of margin outside the card.
   final EdgeInsetsGeometry margin;
+
+  /// The border radius of the card.
   final BorderRadius borderRadius;
+
+  /// The elevation of the card, which affects its shadow.
   final double elevation;
+
+  /// The background color of the card.
   final Color color;
+
+  /// The color of the card's shadow.
   final Color shadowColor;
+
+  /// The tint color applied to the card's surface.
   final Color surfaceTintColor;
+
+  /// Whether to animate the card on hover.
+  ///
+  /// If true, the card will scale slightly when hovered over.
   final bool animateOnHover;
 
   @override

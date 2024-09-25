@@ -4,31 +4,22 @@
 
 When working with or extending the atomic components, follow these guidelines:
 
-1. Consistency: Maintain consistent naming conventions and API design across all atomic components.
-
-2. Customization: Ensure all components have appropriate customization options without overcomplicating their APIs.
-
-3. Theme Integration: Use the app's theme whenever possible for colors, text styles, and other design tokens. Use UiColors, UiTextStyles, and UiSizes for this.
-
-4. Accessibility: Always consider accessibility when designing and implementing components.
-
-5. Performance: Keep components lightweight and optimized for performance.
-
-6. Composition: Design components to be easily composable with other atomic and molecular components.
-
-7. Documentation: Provide clear, concise documentation for each component, including usage examples and customization options.
-
-8. Testing: Write unit and widget tests for all components to ensure reliability and catch regressions.
-
-9. Responsive Design: Design components to work well across different screen sizes and orientations.
-
-10. Localization: Ensure components support localization and right-to-left (RTL) languages where applicable.
+1. **Consistency**: Maintain consistent naming conventions and API design across all atomic components.
+2. **Customization**: Ensure all components have appropriate customization options without overcomplicating their APIs.
+3. **Theme Integration**: Use the app's theme whenever possible for colors, text styles, and other design tokens. Use `UiColors`, `UiTextStyles`, and `UiSizes` for this.
+4. **Accessibility**: Always consider accessibility when designing and implementing components.
+5. **Performance**: Keep components lightweight and optimized for performance.
+6. **Composition**: Design components to be easily composable with other atomic and molecular components.
+7. **Documentation**: Provide clear, concise documentation for each component, including usage examples and customization options.
+8. **Testing**: Write unit and widget tests for all components to ensure reliability and catch regressions.
+9. **Responsive Design**: Design components to work well across different screen sizes and orientations.
+10. **Localization**: Ensure components support localization and right-to-left (RTL) languages where applicable.
 
 ## Usage Examples
 
 ### UiDecoratedContainer
 
-UiDecoratedContainer have vertical and horizontal dividers with a triangles in the middle.
+UiDecoratedContainer has vertical and horizontal dividers with triangles in the middle.
 
 ```dart
 UiDecoratedContainer(
@@ -207,25 +198,16 @@ Each atomic component provides various customization options:
 
 ## Best Practices for Composing and Refactoring
 
-1. Single Responsibility: Each atomic component should have a single, well-defined purpose.
-
-2. Composition over Inheritance: Prefer composing smaller components to create larger ones rather than using inheritance.
-
-3. Prop Drilling: Avoid excessive prop drilling by using state management solutions for deeply nested components.
-
-4. Reusability: Design components to be reusable across different parts of the application.
-
-5. Separation of Concerns: Keep layout, style, and behavior separate when possible.
-
-6. Consistent Naming: Use clear, consistent names for components and their properties.
-
-7. Default Values: Provide sensible default values for component properties.
-
-8. Flexibility: Design components to be flexible enough to handle various use cases without becoming overly complex.
-
-9. Documentation: Keep documentation up-to-date as components evolve.
-
-10. Refactoring: Regularly refactor components to improve their design, performance, and maintainability.
+1. **Single Responsibility**: Each atomic component should have a single, well-defined purpose.
+2. **Composition over Inheritance**: Prefer composing smaller components to create larger ones rather than using inheritance.
+3. **Prop Drilling**: Avoid excessive prop drilling by using state management solutions for deeply nested components.
+4. **Reusability**: Design components to be reusable across different parts of the application.
+5. **Separation of Concerns**: Keep layout, style, and behavior separate when possible.
+6. **Consistent Naming**: Use clear, consistent names for components and their properties.
+7. **Default Values**: Provide sensible default values for component properties.
+8. **Flexibility**: Design components to be flexible enough to handle various use cases without becoming overly complex.
+9. **Documentation**: Keep documentation up-to-date as components evolve.
+10. **Refactoring**: Regularly refactor components to improve their design, performance, and maintainability.
 
 When refactoring:
 
