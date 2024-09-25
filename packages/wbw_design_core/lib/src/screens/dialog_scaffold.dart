@@ -1,7 +1,7 @@
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 
-import '../../../wbw_design_core.dart';
+import '../../wbw_design_core.dart';
 
 class DialogScaffold extends HookWidget {
   const DialogScaffold({
@@ -71,84 +71,35 @@ class DecoratedDialogScaffold extends StatelessWidget {
     this.builder,
     this.bottom,
     this.top,
-    this.padding,
+    this.padding = const EdgeInsets.symmetric(
+      horizontal: 16,
+      vertical: 13,
+    ),
     this.bottomButton,
     super.key,
   });
+
   final List<Widget>? children;
   final WidgetBuilder? builder;
   final Widget? bottom;
   final Widget? top;
-  final EdgeInsets? padding;
+  final EdgeInsets padding;
   final Widget? bottomButton;
+
   @override
-  Widget build(final BuildContext context) {
-    const horizontalPadding = 8.0;
-    const horizontalLine = Row(
-      children: [
-        Gap(horizontalPadding),
-        UiTriangle(
-          color: UiColors.mediumLight,
+  Widget build(final BuildContext context) => KeyboardBindingsViewFocusScope(
+        child: DialogScaffold(
+          bottomButton: bottomButton,
+          builder: (final context) => UiDecoratedContainer(
+            padding: padding,
+            child: UiBodyBuilder(
+              builder: builder,
+              top: top,
+              bottom: bottom,
+              padding: padding,
+              children: children,
+            ),
+          ),
         ),
-        Gap(16),
-        Expanded(child: UiHorizontalDivider()),
-        Gap(16),
-        UiTriangle(
-          color: UiColors.mediumLight,
-        ),
-        Gap(horizontalPadding),
-      ],
-    );
-    const verticalLine = Column(
-      children: [
-        Expanded(child: UiVerticalDivider()),
-      ],
-    );
-    return KeyboardBindingsViewFocusScope(
-      child: DialogScaffold(
-        bottomButton: bottomButton,
-        builder: (final context) => Stack(
-          children: [
-            const Positioned(
-              top: 4,
-              left: 0,
-              right: 0,
-              child: horizontalLine,
-            ),
-            const Positioned(
-              bottom: 4,
-              left: 0,
-              right: 0,
-              child: horizontalLine,
-            ),
-            const Positioned(
-              bottom: 36,
-              left: 3,
-              top: 36,
-              child: verticalLine,
-            ),
-            const Positioned(
-              bottom: 36,
-              right: 3,
-              top: 36,
-              child: verticalLine,
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16,
-                vertical: 13,
-              ),
-              child: UiBodyBuilder(
-                builder: builder,
-                top: top,
-                bottom: bottom,
-                padding: padding,
-                children: children,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
+      );
 }

@@ -26,6 +26,19 @@ When working with or extending the atomic components, follow these guidelines:
 
 ## Usage Examples
 
+### UiDecoratedContainer
+
+UiDecoratedContainer have vertical and horizontal dividers with a triangles in the middle.
+
+```dart
+UiDecoratedContainer(
+  child: UiText('Decorated container content'),
+  padding: EdgeInsets.all(16),
+  margin: EdgeInsets.symmetric(vertical: 8),
+  borderRadius: BorderRadius.circular(16),
+);
+```
+
 ### UiTooltip
 
 ```dart

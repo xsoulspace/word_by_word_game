@@ -8,8 +8,13 @@ class UiCard extends StatefulWidget {
     required this.child,
     super.key,
     this.padding = const EdgeInsets.all(UiSpace.medium),
-    this.margin,
-    this.borderRadius,
+    this.margin = const EdgeInsets.all(UiSpace.small),
+    this.borderRadius = const BorderRadius.all(
+      Radius.elliptical(
+        UiDecorators.radiusLarge,
+        UiDecorators.radiusLarge,
+      ),
+    ),
     this.elevation = 1,
     this.color = UiColors.offWhite,
     this.shadowColor = UiColors.light,
@@ -19,8 +24,8 @@ class UiCard extends StatefulWidget {
 
   final Widget child;
   final EdgeInsetsGeometry padding;
-  final EdgeInsetsGeometry? margin;
-  final BorderRadius? borderRadius;
+  final EdgeInsetsGeometry margin;
+  final BorderRadius borderRadius;
   final double elevation;
   final Color color;
   final Color shadowColor;
@@ -37,15 +42,9 @@ class _UiCardState extends State<UiCard> {
   @override
   Widget build(final BuildContext context) {
     final cardWidget = Card(
-      margin: widget.margin ?? const EdgeInsets.all(UiSpace.small),
+      margin: widget.margin,
       shape: RoundedRectangleBorder(
-        borderRadius: widget.borderRadius ??
-            const BorderRadius.all(
-              Radius.elliptical(
-                UiDecorators.radiusLarge,
-                UiDecorators.radiusLarge,
-              ),
-            ),
+        borderRadius: widget.borderRadius,
       ),
       elevation: widget.elevation,
       color: widget.color,

@@ -5,6 +5,7 @@ export 'ui_asset_helper.dart';
 export 'ui_base_button.dart';
 export 'ui_body_builder.dart';
 export 'ui_card.dart';
+export 'ui_decorated_container.dart';
 export 'ui_decorators.dart';
 export 'ui_divider.dart';
 export 'ui_icon.dart';
