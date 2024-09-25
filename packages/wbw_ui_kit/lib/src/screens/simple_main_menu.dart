@@ -4,7 +4,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
 
-import '../../wbw_design_core.dart';
+import '../../wbw_ui_kit.dart';
 
 const _kIsPrivacyPolicyEnabled = false;
 

@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 
-import '../../wbw_design_core.dart';
+import '../../wbw_ui_kit.dart';
 
 class EmptyScreen extends StatelessWidget {
   const EmptyScreen({super.key});

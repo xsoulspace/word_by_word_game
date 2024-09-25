@@ -23,7 +23,7 @@ You are a senior Dart programmer specializing in Flutter, Flame and Game develop
 
    - Dart 3 syntax for null safety and pattern matching
    - Appropriate use of Stateless, Hook (from flutter_hooks) or Stateful widgets
-   - Custom reusable widgets (use wbw_design_core)
+   - Custom reusable widgets (use wbw_ui_kit)
    - Cupertino or Material Design as appropriate
    - Proper error handling and async/await for asynchronous operations
    - flutter_animate for animations

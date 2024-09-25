@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:wbw_foundation/wbw_foundation.dart';
 
-import '../../wbw_design_core.dart';
+import '../../wbw_ui_kit.dart';
 
 class UiStyledButton extends StatelessWidget {
   const UiStyledButton({

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:life_hooks/life_hooks.dart';
 
-import '../../wbw_design_core.dart';
+import '../../wbw_ui_kit.dart';
 
 part 'ui_icon_button_state.dart';
 

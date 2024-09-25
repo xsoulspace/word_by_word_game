@@ -29,7 +29,6 @@ class PlayersAndHighscoreView extends HookWidget {
       children: [
         UiGaps.small,
         Center(
-          // TODO(arenukvern): l10n
           child: Text(
             const LocalizedMap(
               value: {

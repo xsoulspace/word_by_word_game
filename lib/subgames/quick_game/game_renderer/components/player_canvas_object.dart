@@ -7,7 +7,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/focus_surface_drawer.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/game_canvas_object.dart';

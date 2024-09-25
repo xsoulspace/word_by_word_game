@@ -26,12 +26,12 @@ dependencies:
     path: ../wbw_client
   wbw_core:
     path: ../wbw_core
-  wbw_design_core:
-    path: ../wbw_design_core
   wbw_foundation:
     path: ../wbw_foundation
   wbw_locale:
     path: ../wbw_locale
+  wbw_ui_kit:
+    path: ../wbw_ui_kit
 dev_dependencies:
   build_runner: ^2.4.9
   flutter_gen: ^5.4.0

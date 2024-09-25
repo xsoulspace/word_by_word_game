@@ -3,7 +3,7 @@ import 'package:flame/cache.dart';
 import 'package:logger/logger.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 /// Class for canvas data rendering

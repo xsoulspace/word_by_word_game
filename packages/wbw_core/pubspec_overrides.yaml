@@ -1,11 +1,11 @@
-# melos_managed_dependency_overrides: map_editor,wbw_client,wbw_design_core,wbw_dictionaries,wbw_locale,collection,package_info_plus,web
+# melos_managed_dependency_overrides: map_editor,wbw_client,wbw_ui_kit,wbw_dictionaries,wbw_locale,collection,package_info_plus,web
 dependency_overrides:
   map_editor:
     path: ../map_editor
   wbw_client:
     path: ../wbw_client
-  wbw_design_core:
-    path: ../wbw_design_core
+  wbw_ui_kit:
+    path: ../wbw_ui_kit
   wbw_dictionaries:
     path: ../wbw_dictionaries
   wbw_locale:

@@ -1,4 +1,4 @@
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 
 class UiWordLetterButton extends StatelessWidget {
   const UiWordLetterButton({

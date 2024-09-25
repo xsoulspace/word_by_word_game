@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/level_actions_frame/actions_simple_frame.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
@@ -113,6 +113,7 @@ class _RestActionButton extends StatelessWidget {
     );
     final applyingScore = composable.applyingScore;
     return Tooltip(
+      // TODO(arenukvern): l10n
       message: 'Adds some power to Hot Air Balloon. '
           '\nBecames last checkpoint, if Hot Air Balloon crashes.',
       child: TextButton.icon(

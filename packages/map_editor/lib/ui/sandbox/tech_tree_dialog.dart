@@ -4,8 +4,8 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 
 Future<void> showTechnologiesTreeDialog({
   required final BuildContext context,

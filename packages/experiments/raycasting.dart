@@ -36,7 +36,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   @override
   Future<void> onLoad() async {
     super.onLoad();
-    world.addAll(createBoundaries(this));
+    await world.addAll(createBoundaries(this));
 
     const numberOfRows = 3;
     const numberOfBoxes = 4;
@@ -45,22 +45,23 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
         world.add(Box(Vector2(i * 10, j * 20 - 20)));
       }
     }
-    world.add(
-      LineComponent(
-        redPoints,
-        Paint()
-          ..color = Colors.green
-          ..strokeWidth = 1,
-      ),
-    );
-    world.add(
-      LineComponent(
-        bluePoints,
-        Paint()
-          ..color = Colors.blue
-          ..strokeWidth = 1,
-      ),
-    );
+    world
+      ..add(
+        LineComponent(
+          redPoints,
+          Paint()
+            ..color = Colors.green
+            ..strokeWidth = 1,
+        ),
+      )
+      ..add(
+        LineComponent(
+          bluePoints,
+          Paint()
+            ..color = Colors.blue
+            ..strokeWidth = 1,
+        ),
+      );
   }
 
   @override
@@ -83,8 +84,9 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   }
 
   void fireBlueRay(final Vector2 rayStart, final Vector2 rayTarget) {
-    bluePoints.clear();
-    bluePoints.add(rayStart);
+    bluePoints
+      ..clear()
+      ..add(rayStart);
 
     final farthestCallback = FarthestBoxRayCastCallback();
     world.raycast(farthestCallback, rayStart, rayTarget);
@@ -98,8 +100,9 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   }
 
   void fireRedRay(final Vector2 rayStart, final Vector2 rayTarget) {
-    redPoints.clear();
-    redPoints.add(rayStart);
+    redPoints
+      ..clear()
+      ..add(rayStart);
 
     final nearestCallback = NearestBoxRayCastCallback();
     world.raycast(nearestCallback, rayStart, rayTarget);

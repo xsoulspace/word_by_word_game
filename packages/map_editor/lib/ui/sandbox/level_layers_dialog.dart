@@ -3,7 +3,7 @@ import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/widgets/dialogs.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_design_core/wbw_design_core.dart';
+import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 
 Future<void> showLayersDialog({
   required final BuildContext context,

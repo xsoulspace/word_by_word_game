@@ -1,12 +1,12 @@
-import '../../../wbw_design_core.dart';
+import '../../wbw_ui_kit.dart';
 
 class UiDecoratedContainer extends StatelessWidget {
   const UiDecoratedContainer({
     required this.child,
     this.padding = const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 13,
-            ),
+      horizontal: 16,
+      vertical: 13,
+    ),
     super.key,
   });
 

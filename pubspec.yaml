@@ -81,14 +81,14 @@ dependencies:
   url_launcher: ^6.1.11
   wbw_core:
     path: packages/wbw_core
-  wbw_design_core:
-    path: packages/wbw_design_core
   wbw_dictionaries:
     path: packages/wbw_dictionaries
   wbw_foundation:
     path: packages/wbw_foundation
   wbw_locale:
     path: packages/wbw_locale
+  wbw_ui_kit:
+    path: packages/wbw_ui_kit
 dev_dependencies:
   analyzer: ^6.4.1
   build_runner: ^2.4.9

@@ -56,7 +56,7 @@ The game is developing by a solo indie developer (@Arenukvern). You can follow t
 
 - `packages/`
   - `wbw_core/`: Core game logic and data models
-  - `wbw_design_core/`: UI components and theming
+  - `wbw_ui_kit/`: UI components and theming
   - `map_editor/`: Map creation and editing tools
   - `wbw_dictionaries/`: Word dictionaries and language support
   - `wbw_locale/`: Localization and translations

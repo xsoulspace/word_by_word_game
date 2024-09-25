@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../wbw_design_core.dart';
+import '../../wbw_ui_kit.dart';
 
 /// A widget that manages focus animations for its children.
 ///

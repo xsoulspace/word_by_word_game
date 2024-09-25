@@ -1,4 +1,4 @@
-import '../../wbw_design_core.dart';
+import '../../wbw_ui_kit.dart';
 
 /// A utility class that defines common gap sizes for layout spacing.
 ///

@@ -1,6 +1,6 @@
 # WBW Design Core Style Guide
 
-This comprehensive style guide outlines the usage rules for components, typography, colors, and spacing in the `wbw_design_core` package. It ensures consistency and maintainability across your project.
+This comprehensive style guide outlines the usage rules for components, typography, colors, and spacing in the `wbw_ui_kit` package. It ensures consistency and maintainability across your project.
 
 ## Color Palette
 
