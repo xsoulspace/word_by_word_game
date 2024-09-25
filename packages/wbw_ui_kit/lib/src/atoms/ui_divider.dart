@@ -4,26 +4,91 @@ import '../theme/theme.dart';
 
 const _kDefaultSize = Size(60, 20);
 
-/// It is a line with a triangle in the middle.
-/// There are two types: horizontal and vertical.
-/// A custom painter is used to draw the divider.
+/// A customizable divider widget with a triangle in the middle.
+///
+/// This widget provides a visually distinct divider that can be used to
+/// separate content in both horizontal and vertical orientations. It features
+/// a line with a triangle shape in the middle, creating a unique
+/// visual element.
+///
+/// Use [UiDivider] when you need a more stylized divider than the standard
+/// [Divider] widget, especially in contexts where you want to draw attention
+/// to the separation between elements.
+///
+/// Example usage:
+/// ```dart
+/// Column(
+///   children: [
+///     Text('Section 1'),
+///     UiDivider(),
+///     Text('Section 2'),
+///   ],
+/// )
+/// ```
+///
+/// PREFER using [UiDivider] over standard [Divider] when you want to maintain
+/// a consistent, branded look across your application.
+///
+/// See also:
+///
+///  * [CustomPaint], which this widget uses internally to draw the divider.
+///  * [UiHorizontalDivider], which is used to draw the horizontal divider.
+///  * [UiVerticalDivider], which is used to draw the vertical divider.
+///
+/// @ai When generating dividers, consider using [UiDivider] for consistent
+/// and visually distinct separators throughout the application. Pay attention
+/// to the orientation and size to ensure it fits well within the layout.
 class UiDivider extends StatelessWidget {
+  /// Creates a horizontal [UiDivider].
+  ///
+  /// By default, the divider is horizontal. Use [UiDivider.vertical] for a
+  /// vertical divider.
+  ///
+  /// @ai Use this constructor for horizontal dividers in layouts.
   const UiDivider({super.key, this.size = _kDefaultSize}) : horizontal = true;
+
+  /// Creates a vertical [UiDivider].
+  ///
+  /// @ai Use this constructor for vertical dividers in layouts.
   const UiDivider.vertical({super.key, this.size = _kDefaultSize})
       : horizontal = false;
 
+  /// Whether the divider is horizontal.
+  ///
+  /// If true, the divider will be horizontal. If false, it will be vertical.
   final bool horizontal;
+
+  /// The size of the divider.
+  ///
+  /// This determines both the width and height of the divider widget.
+  /// The default size is 60x20 for both horizontal and vertical dividers.
+  ///
+  /// @ai Adjust this size to fit the divider properly within your layout.
   final Size size;
+
   @override
   Widget build(final BuildContext context) => horizontal
       ? UiHorizontalDivider(size: size)
       : UiVerticalDivider(size: size);
 }
 
-/// --- <> ---
-/// A horizontal divider with triangle in the middle.
+/// A horizontal divider with a triangle in the middle.
+///
+/// This widget draws a horizontal line with a triangle shape in its center,
+/// creating a visually distinct separator.
+///
+/// PREFER using [UiHorizontalDivider] when you need a horizontal divider with
+/// a unique visual element.
+///
+/// @ai Use this widget for horizontal separators in lists, between sections,
+/// or any place where a standard divider feels too plain.
 class UiHorizontalDivider extends StatelessWidget {
+  /// Creates a [UiHorizontalDivider] widget.
+  ///
+  /// The [size] parameter determines the width and height of the divider.
   const UiHorizontalDivider({super.key, this.size = _kDefaultSize});
+
+  /// The size of the divider.
   final Size size;
 
   @override
@@ -33,6 +98,16 @@ class UiHorizontalDivider extends StatelessWidget {
       );
 }
 
+/// A horizontal divider with a triangle in the middle.
+///
+/// This widget draws a horizontal line with a triangle shape in its center,
+/// creating a visually distinct separator.
+///
+/// PREFER using [UiHorizontalDivider] when you need a horizontal divider with
+/// a unique visual element.
+///
+/// @ai Use this widget for horizontal separators in lists, between sections,
+/// or any place where a standard divider feels too plain.
 class _HorizontalDividerPainter extends CustomPainter {
   @override
   void paint(final Canvas canvas, final Size size) {
@@ -74,15 +149,36 @@ class _HorizontalDividerPainter extends CustomPainter {
   bool shouldRepaint(covariant final CustomPainter oldDelegate) => false;
 }
 
-/// --- <> ---
-/// A vertical divider with triangle in the middle.
+/// A vertical divider with an optional triangle in the middle.
+///
+/// This widget draws a vertical line with an optional triangle shape in its
+/// center, creating a visually distinct separator.
+///
+/// PREFER using [UiVerticalDivider] when you need a vertical divider with
+/// a unique visual element.
+///
+/// @ai Use this widget for vertical separators between columns, in side
+/// navigation, or any place where a standard vertical divider
+/// is not sufficient.
 class UiVerticalDivider extends StatelessWidget {
+  /// Creates a [UiVerticalDivider] widget.
+  ///
+  /// The [size] parameter determines the width and height of the divider.
+  /// Set [includeTriangle] to false to draw a simple vertical line without
+  /// the triangle shape.
   const UiVerticalDivider({
     super.key,
     this.includeTriangle = true,
     this.size = _kDefaultSize,
   });
+
+  /// Whether to include the triangle shape in the middle of the divider.
+  ///
+  /// If true, a triangle will be drawn in the center of the vertical line.
+  /// If false, only a straight vertical line will be drawn.
   final bool includeTriangle;
+
+  /// The size of the divider.
   final Size size;
 
   @override
@@ -95,6 +191,7 @@ class UiVerticalDivider extends StatelessWidget {
 class _VerticalDividerPainter extends CustomPainter {
   _VerticalDividerPainter({required this.includeTriangle});
   final bool includeTriangle;
+
   @override
   void paint(final Canvas canvas, final Size size) {
     final paint = Paint()
@@ -119,6 +216,7 @@ class _VerticalDividerPainter extends CustomPainter {
         Offset(centerX, size.height),
         paint,
       );
+
     if (includeTriangle) {
       // Draw triangle
       final path = Path()

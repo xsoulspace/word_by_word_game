@@ -2,6 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wbw_foundation/wbw_foundation.dart';
 
+/// The types of keyboard bindings supported by the application.
+///
+/// This enum defines the different types of keyboard bindings that can be
+/// used to control the application's behavior. Each type is associated with
+/// a list of [LogicalKeyboardKey] values, which represent the keys that trigger
+/// the action.
+///
+/// The first value in the list is considered the default binding and would
+/// be visible in the settings menu.
 enum KeyboardBindingsType {
   /// first value is the default binding and would be visible
   /// in the settings menu
@@ -32,6 +41,9 @@ typedef KeyboardBindings = Map<KeyboardBindingsType, List<LogicalKeyboardKey>>;
 /// final notifier = KeyboardBindingsNotifier(context);
 /// final bindings = notifier.getBindings(KeyboardBindingsType.mainMenuUp);
 /// ```
+///
+/// @ai When using this class, ensure to initialize it with a valid
+/// [BuildContext] and access the bindings through the provided methods.
 class KeyboardBindingsNotifier extends ValueNotifier<KeyboardBindings> {
   /// Creates a [KeyboardBindingsNotifier] with the default keyboard bindings.
   ///
@@ -53,7 +65,8 @@ class KeyboardBindingsNotifier extends ValueNotifier<KeyboardBindings> {
 
   /// Gets the default title for the binding associated with the given [type].
   ///
-  /// Returns a string representation of the key, or an empty string if none exists.
+  /// Returns a string representation of the key, or an empty string
+  /// if none exists.
   String getBindingDefaultTitle(final KeyboardBindingsType type) {
     final key = value[type]?.firstOrNull;
     if (key case LogicalKeyboardKey.enter) return '⏎';

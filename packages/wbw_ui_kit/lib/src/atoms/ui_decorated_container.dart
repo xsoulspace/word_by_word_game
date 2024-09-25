@@ -1,5 +1,34 @@
 import '../../wbw_ui_kit.dart';
 
+/// A container widget with decorative lines on the top and bottom.
+///
+/// This widget provides a decorative border around its child, with lines on the
+/// top and bottom. It is useful for creating a distinctive visual style for
+/// containers.
+///
+/// Example usage:
+/// ```dart
+/// UiDecoratedContainer(
+///   child: Text('This is a decorated container'),
+/// );
+/// ```
+///
+/// PREFER using [UiDecoratedContainer] for containers that need a distinctive
+/// visual style with lines on the top and bottom.
+///
+/// See also:
+///
+///  * [Container], the Flutter widget this class builds upon.
+///  * [Stack], which is used to position the decorative lines.
+///  * [Positioned], which is used to position the decorative lines.
+///  * [Padding], which is used to apply padding to the child.
+///  * [UiTriangle], which is used to create the decorative lines.
+///  * [UiHorizontalDivider], which is used to create the decorative lines.
+///  * [UiVerticalDivider], which is used to create the decorative lines.
+///
+/// @ai When generating layouts, consider using [UiDecoratedContainer] for
+/// containers that need a distinctive visual style with lines on the top and
+/// bottom.
 class UiDecoratedContainer extends StatelessWidget {
   const UiDecoratedContainer({
     required this.child,
@@ -10,7 +39,10 @@ class UiDecoratedContainer extends StatelessWidget {
     super.key,
   });
 
+  /// The child widget to be decorated.
   final Widget child;
+
+  /// The padding to be applied to the child.
   final EdgeInsetsGeometry padding;
 
   @override
@@ -48,6 +80,7 @@ class UiDecoratedContainer extends StatelessWidget {
       );
 }
 
+/// A horizontal line with a gap on the left.
 class _HorizontalLine extends StatelessWidget {
   const _HorizontalLine();
 
@@ -65,6 +98,7 @@ class _HorizontalLine extends StatelessWidget {
       );
 }
 
+/// A vertical line with a gap on the top.
 class _VerticalLine extends StatelessWidget {
   const _VerticalLine();
 

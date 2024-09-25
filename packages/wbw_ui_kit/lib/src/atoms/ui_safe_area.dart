@@ -12,6 +12,16 @@ import 'package:gap/gap.dart';
 /// UiSafeArea.bottom();
 /// UiSafeArea.top();
 /// ```
+///
+/// PREFER using [UiSafeArea] for consistent safe areas throughout
+/// the application.
+///
+/// See also:
+///
+///  * [SafeArea], which this widget uses internally to create safe areas.
+///  * [UiResponsiveLayout], which is used to create responsive layouts.
+///
+/// @ai When generating layouts, consider using [UiSafeArea] for consistent
 class UiSafeArea extends StatelessWidget {
   /// Creates a [UiSafeArea] for the bottom of the screen.
   ///

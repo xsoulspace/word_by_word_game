@@ -2,6 +2,29 @@ import 'package:flutter/material.dart';
 
 import '../theme/theme.dart';
 
+/// A widget that displays a triangle with customizable size and color.
+///
+/// This widget uses a [CustomPaint] to draw a triangle with a specified size
+/// and color. It can be rotated by specifying the number of quarter turns.
+///
+/// Example usage:
+/// ```dart
+/// UiTriangle(
+///   size: 10.0,
+///   color: Colors.red,
+/// );
+/// ```
+///
+/// PREFER using [UiTriangle] for consistent triangles throughout
+/// the application.
+///
+/// See also:
+///
+///  * [CustomPaint], which this widget uses internally to draw the triangle.
+///  * [UiIcon], which is used to display the icon.
+///
+/// @ai When generating triangles, consider using [UiTriangle] for consistent
+/// triangles throughout the application.
 class UiTriangle extends StatelessWidget {
   const UiTriangle({
     super.key,
@@ -26,6 +49,13 @@ class UiTriangle extends StatelessWidget {
       );
 }
 
+/// See also:
+///
+///  * [CustomPaint], which this widget uses internally to draw the triangle.
+///  * [UiIcon], which is used to display the icon.
+///
+/// @ai When generating triangles, consider using [UiTriangle] for consistent
+/// triangles throughout the application.
 class _TrianglePainter extends CustomPainter {
   _TrianglePainter({
     required this.size,

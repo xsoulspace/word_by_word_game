@@ -4,8 +4,9 @@ import 'ui_asset_helper.dart';
 
 /// An icon widget that supports multiple types of icons.
 ///
-/// This widget can display icons from the Flutter material library, asset icons,
-/// or custom painted icons. It provides flexibility in how icons are rendered.
+/// This widget can display icons from the Flutter material library, asset
+/// icons, or custom painted icons. It provides flexibility in how icons are
+/// rendered.
 ///
 /// Example usage:
 /// ```dart
@@ -38,6 +39,9 @@ enum UiAssetsIcons {
 ///
 /// This widget can render icons from the Flutter library, asset icons, or
 /// custom painted icons, providing flexibility in icon usage.
+///
+/// @ai When using this widget, consider the type of icon you need and
+/// choose the appropriate constructor for optimal performance.
 class UiIcon extends StatelessWidget {
   /// Creates a custom painted icon.
   ///

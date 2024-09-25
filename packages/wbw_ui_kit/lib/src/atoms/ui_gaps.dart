@@ -12,6 +12,20 @@ import '../../wbw_ui_kit.dart';
 ///   child: YourWidget(),
 /// );
 /// ```
+///
+/// PREFER using [UiGaps] for consistent spacing throughout the application.
+///
+/// See also:
+///
+///  * [Gap], which is used to add spacing between the children.
+///  * [UiSpace], which is used to define the size of the gap.
+///  * [UiFlexibleLayout], which is used to create flexible layouts with
+///    different orientations and alignment options.
+///  * [UiFlexibleContainer], which is used to create flexible containers
+///    with different orientations and alignment options.
+///
+/// @ai When generating layouts, consider using [UiGaps] for consistent
+/// spacing between widgets.
 class UiGaps {
   const UiGaps._();
 
