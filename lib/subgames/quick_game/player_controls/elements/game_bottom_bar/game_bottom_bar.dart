@@ -70,7 +70,6 @@ class UiGameBottomBarCard extends StatelessWidget {
       (final cubit) => cubit.value.isCardVisible,
     );
     final effectiveIsCardVisible = isCardVisible && isAllowedToBeVisible;
-    final uiTheme = context.uiTheme;
     if (isPlacingBuilding) return const _UiBuildingPlacementText();
     if (isFocusingOnBuilding) return const _UiFocusableObjectsRow();
 
@@ -98,20 +97,26 @@ class UiGameBottomBarCard extends StatelessWidget {
                                 .read<BottomActionsNotifier>()
                                 .changeCardVisiblity();
 
-                            return UiBaseButton(
-                              tooltipMessage: effectiveIsCardVisible
+                            return UiTooltip(
+                              tooltip: effectiveIsCardVisible
                                   ? S.of(context).hidePane
                                   : S.of(context).showPane,
-                              onPressed: () {},
-                              child: effectiveIsCardVisible
-                                  ? TextButton(
-                                      onPressed: onTap,
-                                      child: const Icon(Icons.arrow_drop_down),
-                                    )
-                                  : OutlinedButton(
-                                      onPressed: onTap,
-                                      child: const Icon(Icons.arrow_drop_up),
-                                    ),
+                              child: UiBaseButton(
+                                onPressed: () {},
+                                builder: (final context, final focused) =>
+                                    effectiveIsCardVisible
+                                        ? TextButton(
+                                            onPressed: onTap,
+                                            child: const Icon(
+                                              Icons.arrow_drop_down,
+                                            ),
+                                          )
+                                        : OutlinedButton(
+                                            onPressed: onTap,
+                                            child:
+                                                const Icon(Icons.arrow_drop_up),
+                                          ),
+                              ),
                             );
                           },
                         ),
@@ -312,7 +317,7 @@ class _UiToFocusCard extends StatelessWidget {
     final locale = useLocale(context);
     return UiBaseButton(
       onPressed: onPressed,
-      child: Container(
+      builder: (final context, final focused) => Container(
         decoration: BoxDecoration(
           color: context.colorScheme.surface,
           borderRadius: BorderRadius.circular(24),

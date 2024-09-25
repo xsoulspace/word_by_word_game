@@ -427,7 +427,7 @@ class UiElevatedButton extends StatelessWidget {
   Widget build(final BuildContext context) => UiBaseButton(
         onPressed: onPressed,
         onLongPress: onLongPress,
-        child: Container(
+        builder: (final context, final focused) => Container(
           decoration: ShapeDecoration(
             color: Theme.of(context).dialogBackgroundColor.withOpacity(0.8),
             shape: const RoundedRectangleBorder(
@@ -464,7 +464,7 @@ class UiFilledButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => UiBaseButton(
         onPressed: onPressed,
-        child: Container(
+        builder: (final context, final focused) => Container(
           decoration: ShapeDecoration(
             color: Theme.of(context)
                 .colorScheme

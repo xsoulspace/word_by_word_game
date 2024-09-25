@@ -26,6 +26,26 @@ When working with or extending the atomic components, follow these guidelines:
 
 ## Usage Examples
 
+### UiTooltip
+
+```dart
+UiTooltip(
+  tooltip: 'Tooltip text',
+  child: UiText('Hover over me'),
+);
+```
+
+### UiBaseButton
+
+UiBaseButton is a basic button component that handles gesture handling. It is used for simple interactions like button clicks.
+
+```dart
+UiBaseButton(
+  onPressed: () => print('Button pressed'),
+  child: Text('Click me'),
+)
+```
+
 ### UiText
 
 ```dart
@@ -46,15 +66,17 @@ For icons, we have three options:
 2. Use an asset icon (e.g. `UiAssetsIcons.fire`)
 3. Use a custom painter (e.g. `CustomPainter()`)
 
+### UiIcon.painter (Highly Preferred)
+
 ```dart
-UiIcon.asset(
-  icon: UiAssetsIcons.fire,
+UiIcon.painter(
+  painter: CustomPainter(),
   height: 32,
   width: 32,
 )
 ```
 
-### UiIcon.lib
+### UiIcon.lib (Preferred)
 
 ```dart
 UiIcon.lib(
@@ -64,11 +86,11 @@ UiIcon.lib(
 )
 ```
 
-### UiIcon.painter
+### UiIcon.asset (Not Preferred)
 
 ```dart
-UiIcon.painter(
-  painter: CustomPainter(),
+UiIcon.asset(
+  icon: UiAssetsIcons.fire,
   height: 32,
   width: 32,
 )

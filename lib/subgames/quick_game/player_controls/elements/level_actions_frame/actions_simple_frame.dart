@@ -8,7 +8,6 @@ class UiActionFrameSimple extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final uiTheme = context.uiTheme;
     final textTheme = context.textTheme;
     final colorScheme = context.colorScheme;
 
@@ -36,7 +35,6 @@ class UiEnergyCards extends StatelessWidget with TechLevelMixin {
       isPlaying: _,
       isAdvancedGame: _
     ) = useTechLevelAvailable(context, TechnologyLevelIndex.poweringEngine);
-    final uiTheme = context.uiTheme;
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
         checkLiveState: (final previous, final current) =>

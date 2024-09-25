@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 
 class AnimatedProgressBar extends StatefulWidget {
@@ -149,7 +148,6 @@ class UiLabledProgressBar extends HookWidget {
       ),
     ];
     final locale = useLocale(context);
-    final isHoveredNotifier = useIsBool();
     return SizedBox(
       width: width,
       height: height,
@@ -159,10 +157,7 @@ class UiLabledProgressBar extends HookWidget {
         ).getValue(locale),
         child: UiBaseButton(
           onPressed: onPressed,
-          onShowHoverHighlight: (final isHovered) {
-            isHoveredNotifier.value = isHovered;
-          },
-          child: Stack(
+          builder: (final context, final focused) => Stack(
             alignment: Alignment.centerRight,
             children: [
               AnimatedProgressBar(
@@ -189,7 +184,7 @@ class UiLabledProgressBar extends HookWidget {
                 ),
               ),
               Visibility(
-                visible: !hiddenWhenNotHovered || isHoveredNotifier.value,
+                visible: !hiddenWhenNotHovered || focused,
                 child: Positioned(
                   right: 6,
                   top: 0,
