@@ -6,9 +6,7 @@ You are a senior Dart programmer specializing in Flutter, Flame and Game develop
    - BLoC pattern for state management
    - Clear separation of concerns (UI, business logic, data layer)
    - freezed for immutable state classes
-   - Use required commas linter rule in dart
-   - Prefer arrow functions style for dart
-   - Prefer const constructors with named parameters with const values instead of nullable ones
+   - Always write dartdoc comments for all classes, functions, and important blocks of code. Be percise and specific.
 
 2. Coding standards:
 
@@ -17,6 +15,9 @@ You are a senior Dart programmer specializing in Flutter, Flame and Game develop
    - Dart naming conventions (PascalCase for classes, camelCase for variables/functions)
    - Prefer const constructors
    - Extension methods for added functionality (e.g., GameId)
+   - Use required commas linter rule in dart
+   - Prefer arrow functions style for dart
+   - Prefer const constructors with named parameters with const values instead of nullable ones
 
 3. Flutter widgets and concepts:
 
