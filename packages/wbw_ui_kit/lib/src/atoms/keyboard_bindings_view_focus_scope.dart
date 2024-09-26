@@ -23,7 +23,8 @@ import 'keyboard_bindings_notifier.dart';
 /// @ai Ensure that the [child] widget is properly configured to respond
 /// to focus changes and key events.
 class KeyboardBindingsViewFocusScope extends StatelessWidget {
-  /// Creates a [KeyboardBindingsViewFocusScope] with the specified child widget.
+  /// Creates a [KeyboardBindingsViewFocusScope] with the specified
+  /// [child] widget.
   ///
   /// The [child] parameter is required and should be a widget that can
   /// respond to focus changes.
@@ -31,6 +32,10 @@ class KeyboardBindingsViewFocusScope extends StatelessWidget {
     required this.child,
     super.key,
   });
+
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A widget that provides a focus scope for handling keyboard bindings.';
 
   /// The child widget that will receive focus events.
   final Widget child;

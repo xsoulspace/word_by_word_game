@@ -51,6 +51,11 @@ class UiBaseButton extends StatefulWidget {
     super.key,
   });
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A customizable base button widget with built-in press animation and '
+      'focus handling.';
+
   /// Builds the button's child widget based on the current state.
   ///
   /// This function is called with the current [BuildContext],

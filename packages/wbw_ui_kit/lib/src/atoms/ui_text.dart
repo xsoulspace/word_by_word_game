@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 /// - maxLines: Optional maximum number of lines.
 /// - semanticRole: Semantic role of the text, determines
 /// the default text style.
+/// - aiDescription: Description for AI.
 ///
 /// Example usage:
 /// ```dart
@@ -39,12 +40,11 @@ class UiText extends StatelessWidget {
     this.text, {
     super.key,
     this.style,
-    this.semanticLabel,
     this.textAlign,
     this.overflow,
     this.maxLines,
+    this.semanticLabel,
     this.semanticRole = TextRole.bodyMedium,
-    this.aiDescription = 'A standard text component',
   });
 
   /// The text to display.
@@ -69,8 +69,10 @@ class UiText extends StatelessWidget {
   /// Semantic role of the text, determines the default text style.
   final TextRole semanticRole;
 
-  /// Description for AI.
-  final String aiDescription;
+  /// {@macro ui_text.ai_description}
+  static const String aiDescription =
+      'A flexible text widget that adapts to the current theme using'
+      ' Material 3 text styles.';
 
   @override
   Widget build(final BuildContext context) {

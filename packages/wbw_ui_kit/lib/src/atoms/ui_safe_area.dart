@@ -35,6 +35,10 @@ class UiSafeArea extends StatelessWidget {
   /// ensuring that the content is not obscured by the notch.
   const UiSafeArea.top({super.key}) : _isBottom = false;
 
+  /// {@macro ui_safe_area.ai_description}
+  static const String aiDescription =
+      'A widget that provides a safe area for the bottom or top of the screen.';
+
   final bool _isBottom;
 
   @override

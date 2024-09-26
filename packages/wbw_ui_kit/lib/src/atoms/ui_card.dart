@@ -44,6 +44,10 @@ class UiCard extends StatefulWidget {
     this.animateOnHover = false,
   });
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A customizable card widget that displays content with optional styling.';
+
   /// The content of the card.
   final Widget child;
 

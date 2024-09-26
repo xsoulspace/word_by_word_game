@@ -42,6 +42,11 @@ class UiFlexibleLayout extends StatelessWidget {
     super.key,
   });
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A flexible layout widget that can be used to create a variety '
+      'of layouts.';
+
   /// The children of the layout.
   final List<Widget> children;
 

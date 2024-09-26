@@ -43,6 +43,10 @@ class UiConstrainedBox extends StatelessWidget {
     this.maxHeight,
   });
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A widget that applies size constraints to its child.';
+
   /// The widget to constrain.
   final Widget child;
 

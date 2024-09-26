@@ -32,15 +32,25 @@ class UiTriangle extends StatelessWidget {
     this.quarterTurns = 0,
     this.color,
   });
+
+  /// {@macro ui_triangle.ai_description}
+  static const String aiDescription =
+      'A widget that displays a triangle with customizable size and color.';
+
+  /// The number of quarter turns to rotate the triangle.
   final int quarterTurns;
+
+  /// The size of the triangle.
   final double size;
+
+  /// The color of the triangle.
   final Color? color;
 
   @override
   Widget build(final BuildContext context) => RotatedBox(
         quarterTurns: quarterTurns,
         child: CustomPaint(
-          painter: _TrianglePainter(
+          painter: UiTrianglePainter(
             size: size,
             color: color ?? UiColors.mediumLight.withOpacity(0.5),
           ),
@@ -56,13 +66,20 @@ class UiTriangle extends StatelessWidget {
 ///
 /// @ai When generating triangles, consider using [UiTriangle] for consistent
 /// triangles throughout the application.
-class _TrianglePainter extends CustomPainter {
-  _TrianglePainter({
+class UiTrianglePainter extends CustomPainter {
+  UiTrianglePainter({
     required this.size,
     required this.color,
   });
 
+  /// {@macro _triangle_painter.ai_description}
+  static const String aiDescription =
+      'A painter that draws a triangle with a specified size and color.';
+
+  /// The size of the triangle.
   final double size;
+
+  /// The color of the triangle.
   final Color color;
 
   @override

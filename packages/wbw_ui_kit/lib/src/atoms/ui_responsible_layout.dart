@@ -47,6 +47,11 @@ class UiResponsiveLayout extends StatelessWidget {
     this.desktop,
   });
 
+  /// {@macro ui_responsive_layout.ai_description}
+  static const String aiDescription =
+      'A widget that provides a responsive layout based on the current'
+      ' screen size.';
+
   /// The layout to be used on mobile devices or when the width is narrow.
   ///
   /// This layout will be used as a fallback if [tablet] or [desktop] are not

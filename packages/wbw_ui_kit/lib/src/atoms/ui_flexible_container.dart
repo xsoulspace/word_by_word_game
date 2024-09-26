@@ -50,6 +50,11 @@ class UiFlexibleContainer extends StatelessWidget {
     this.maxHeight,
   });
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A flexible container that adapts its size based on constraints '
+      'and content.';
+
   /// The widget to display inside the flexible container.
   final Widget child;
 

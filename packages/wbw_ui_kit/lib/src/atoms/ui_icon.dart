@@ -78,11 +78,26 @@ class UiIcon extends StatelessWidget {
         assetIcon = icon,
         painter = null;
 
+  /// {@macro ui_icon.ai_description}
+  static const String aiDescription =
+      'An icon widget that supports multiple types of icons.';
+
+  /// The default size of the icon.
   static const double defaultSize = 24;
+
+  /// The asset icon to display.
   final UiAssetsIcons? assetIcon;
+
+  /// The Flutter icon to display.
   final IconData? libIcon;
+
+  /// The custom painter to display.
   final CustomPainter? painter;
+
+  /// The width of the icon.
   final double width;
+
+  /// The height of the icon.
   final double height;
 
   @override

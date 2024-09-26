@@ -55,6 +55,11 @@ class UiBodyBuilder extends StatelessWidget {
           'Either builder or children must be provided, but not both.',
         );
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A flexible widget for building body layouts with optional top '
+      'and bottom sections.';
+
   /// Optional padding for the scrollable content area.
   ///
   /// @ai Consider the overall layout when setting this padding.

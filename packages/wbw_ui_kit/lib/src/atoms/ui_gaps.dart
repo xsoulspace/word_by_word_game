@@ -29,6 +29,10 @@ import '../../wbw_ui_kit.dart';
 class UiGaps {
   const UiGaps._();
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A utility class that defines common gap sizes for layout spacing.';
+
   /// A small gap size.
   static const small = Gap(UiSpace.small);
 

@@ -39,6 +39,10 @@ class UiDecoratedContainer extends StatelessWidget {
     super.key,
   });
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A container widget with decorative lines on the top and bottom.';
+
   /// The child widget to be decorated.
   final Widget child;
 

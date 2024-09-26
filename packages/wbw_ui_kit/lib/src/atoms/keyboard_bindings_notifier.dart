@@ -57,6 +57,10 @@ class KeyboardBindingsNotifier extends ValueNotifier<KeyboardBindings> {
           ),
         );
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A notifier that manages keyboard bindings for various actions.';
+
   /// Retrieves the list of keyboard keys associated with the given [type].
   ///
   /// Returns an empty list if no bindings are found.

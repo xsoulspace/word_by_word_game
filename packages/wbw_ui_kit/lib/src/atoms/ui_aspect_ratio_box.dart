@@ -46,6 +46,10 @@ class UiAspectRatioBox extends StatelessWidget {
     this.aspectRatio = 1.0,
   });
 
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A widget that enforces a specific aspect ratio on its child.';
+
   /// The widget to display inside the aspect ratio box.
   ///
   /// This widget will be sized to maintain the specified [aspectRatio].

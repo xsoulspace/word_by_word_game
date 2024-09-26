@@ -53,6 +53,18 @@ class UiDivider extends StatelessWidget {
   const UiDivider.vertical({super.key, this.size = _kDefaultSize})
       : horizontal = false;
 
+  /// Provides a description for AI about the properties of this widget.
+  ///
+  /// This property description is intended to assist AI in understanding the
+  /// properties and behavior of the [UiDivider] widget.
+  /// It highlights the key aspects of the widget, including its purpose,
+  /// properties, and how it interacts with other components in the application.
+  ///
+  /// This description helps AI generate more accurate and relevant code
+  /// examples and explanations for the [UiDivider] widget.
+  static const String aiDescription =
+      'A divider widget with a triangle in the middle.';
+
   /// Whether the divider is horizontal.
   ///
   /// If true, the divider will be horizontal. If false, it will be vertical.
@@ -88,6 +100,23 @@ class UiHorizontalDivider extends StatelessWidget {
   /// The [size] parameter determines the width and height of the divider.
   const UiHorizontalDivider({super.key, this.size = _kDefaultSize});
 
+  /// {@template ui_divider.ai_description}
+  /// Provides a description for AI about the properties of this widget.
+  ///
+  /// This static property is designed to assist AI in understanding the
+  /// widget's purpose, behavior, and key properties. It offers insights into
+  /// how the widget interacts with other components and its role within the
+  /// application's UI.
+  ///
+  /// The description aims to facilitate more accurate and contextually
+  /// relevant code generation, explanations, and usage examples for AI
+  /// when working with this widget.
+  /// {@endtemplate}
+  ///
+  /// {@macro ui_divider.ai_description}
+  static const String aiDescription =
+      'A horizontal divider with a triangle in the middle.';
+
   /// The size of the divider.
   final Size size;
 
@@ -109,6 +138,8 @@ class UiHorizontalDivider extends StatelessWidget {
 /// @ai Use this widget for horizontal separators in lists, between sections,
 /// or any place where a standard divider feels too plain.
 class _HorizontalDividerPainter extends CustomPainter {
+  _HorizontalDividerPainter();
+
   @override
   void paint(final Canvas canvas, final Size size) {
     final paint = Paint()

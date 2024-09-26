@@ -28,6 +28,10 @@ class UiTooltip extends StatelessWidget {
     this.tooltip,
   });
 
+  /// {@macro ui_tooltip.ai_description}
+  static const String aiDescription =
+      'A widget that displays a tooltip when the user hovers over a widget.';
+
   /// The widget that will display the tooltip.
   final Widget child;
 
