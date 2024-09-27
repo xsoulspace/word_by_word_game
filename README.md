@@ -50,6 +50,22 @@ The game is developing by a solo indie developer (@Arenukvern). You can follow t
 
 2. Launch the game and start your word adventure!
 
+### What dictionaries are used:
+
+1.  English:
+
+- [English-Dictionary-Open-Source](https://github.com/CloudBytes-Academy/English-Dictionary-Open-Source/tree/main)
+- [WordNet 3.0 Copyright 2006 by Princeton University](https://wordnet.princeton.edu/)
+  [License](https://wordnet.princeton.edu/license-and-commercial-use)
+
+2. Russian:
+// TODO(arenukvern): description
+<!--
+
+- [National Corpus of the Russian Language](https://ruscorpora.ru/)
+  Savchuk S. O., Arkhangelsky T. A., Bonch-Osmolovskaya A. A., Donina O. V., Kuznetsova Yu. N., Lyashevskaya O. N., Orekhov B. V., Podryadchikova M. V. Russian National Corpus 2.0: New Capabilities and Development Prospects. Issues in Linguistics, 2024, 2: 7–34.
+  [License](https://ruscorpora.ru/page/corpora-quote/) -->
+
 ## For Developers
 
 ### Project Structure
