@@ -1,29 +1,46 @@
 import torch
-from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+from transformers import (
+    M2M100ForConditionalGeneration,
+    M2M100Tokenizer,
+    MarianMTModel,
+    MarianTokenizer,
+)
 import pandas as pd
 from tqdm import tqdm
 
 # Define the languages we want to work with
 LANGUAGES = ["en", "ru", "it"]
 
-# Load models
-print("Loading models...")
+# Load M2M100 model for definitions
+print("Loading M2M100 model...")
 m2m_model = M2M100ForConditionalGeneration.from_pretrained("facebook/m2m100_418M")
 m2m_tokenizer = M2M100Tokenizer.from_pretrained("facebook/m2m100_418M")
 
+# Dictionary to store loaded MarianMT models
+marian_models = {}
+marian_tokenizers = {}
+
+
+def load_marian_model(src_lang, tgt_lang):
+    model_name = f"Helsinki-NLP/opus-mt-{src_lang}-{tgt_lang}"
+    if (src_lang, tgt_lang) not in marian_models:
+        marian_models[(src_lang, tgt_lang)] = MarianMTModel.from_pretrained(model_name)
+        marian_tokenizers[(src_lang, tgt_lang)] = MarianTokenizer.from_pretrained(
+            model_name
+        )
+    return marian_models[(src_lang, tgt_lang)], marian_tokenizers[(src_lang, tgt_lang)]
+
 
 def translate_with_context(word, context, src_lang, tgt_lang):
-    m2m_tokenizer.src_lang = src_lang
-    full_text = f"Translate only the word '{word}' considering this context: {context}"
-    encoded = m2m_tokenizer(full_text, return_tensors="pt")
-    generated_tokens = m2m_model.generate(
-        **encoded, forced_bos_token_id=m2m_tokenizer.get_lang_id(tgt_lang)
-    )
-    translated_full = m2m_tokenizer.batch_decode(
-        generated_tokens, skip_special_tokens=True
-    )[0]
-    # Extract only the translated word
-    return translated_full.split()[-1]
+    model, tokenizer = load_marian_model(src_lang, tgt_lang)
+
+    full_text = f"{word} ||| {context}"
+    encoded = tokenizer(full_text, return_tensors="pt", truncation=True, max_length=512)
+    generated_tokens = model.generate(**encoded)
+    translated_full = tokenizer.decode(generated_tokens[0], skip_special_tokens=True)
+
+    # Extract only the translated word (assuming it's the first word in the response)
+    return translated_full.split()[0]
 
 
 def get_definition_with_context(word, context, tgt_lang):
