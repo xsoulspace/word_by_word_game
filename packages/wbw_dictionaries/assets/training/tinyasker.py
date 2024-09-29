@@ -14,64 +14,64 @@ session = ort.InferenceSession("tinybert_finetuned.onnx")
 word_definitions = pd.read_csv("eng_dic_small.csv")[["WORD", "DEFINITION"]]
 
 
-def tokenize_and_pad(word, max_length=512):
-    tokens = tokenizer(
-        word,
-        padding="max_length",
-        max_length=max_length,
-        truncation=True,
-        return_tensors="np",
+def run_inference(input_text):
+    inputs = tokenizer(
+        input_text, return_tensors="np", padding=True, truncation=True, max_length=512
     )
-    return tokens["input_ids"][0].astype(np.int64)  # Ensure int64 type
+    input_dict = {
+        "input_ids": inputs["input_ids"].astype(np.int64),
+        "attention_mask": inputs["attention_mask"].astype(np.int64),
+    }
+    outputs = session.run(None, input_dict)
+    return outputs[0][0]
+
+
+def word_validation(word):
+    output = run_inference(f"Validate: {word}")
+    return bool(np.argmax(output) == 0)
 
 
 def get_definition(word):
-    # Tokenize the input word with a specified max_length
-    inputs = tokenizer(
-        word, return_tensors="np", padding=True, truncation=True, max_length=512
-    )
+    output = run_inference(f"Define: {word}")
+    # Here you might want to implement a more sophisticated method to generate a definition
+    return word_definitions.iloc[np.argmax(output[1:])]["DEFINITION"]
 
-    # Prepare input data and ensure int64 type
-    input_ids = inputs["input_ids"].astype(np.int64)
-    attention_mask = inputs["attention_mask"].astype(np.int64)
 
-    # Create input dictionary
-    input_dict = {"input_ids": input_ids, "attention_mask": attention_mask}
+def get_word_relationships(word):
+    output = run_inference(f"Related to: {word}")
+    # Implement logic to return related words based on the output
+    return ["related_word1", "related_word2", "related_word3"]  # Placeholder
 
-    # Run inference
-    outputs = session.run(None, input_dict)
 
-    # Get the output (assuming it's a single value)
-    output_value = outputs[0][0][0]  # Extract the single value
+def estimate_difficulty(word):
+    output = run_inference(f"Difficulty of: {word}")
+    return np.argmax(output[3:]) + 1  # Difficulty scale from 1 to 5
 
-    # Tokenize and pad all words in the dictionary
-    tokenized_words = np.array([tokenize_and_pad(w) for w in word_definitions["WORD"]])
 
-    # Calculate similarities (using a simple difference metric)
-    word_outputs = np.array(
-        [
-            session.run(
-                None,
-                {
-                    "input_ids": w.reshape(1, -1),
-                    "attention_mask": np.ones((1, 512), dtype=np.int64),
-                },
-            )[0][0][0]
-            for w in tokenized_words
-        ]
-    )
-    similarities = -np.abs(
-        word_outputs - output_value
-    )  # Negative absolute difference (higher is more similar)
+def classify_category(word):
+    output = run_inference(f"Category of: {word}")
+    categories = ["Noun", "Verb", "Adjective", "Adverb", "Other"]
+    return categories[np.argmax(output[4:])]
 
-    most_similar_index = np.argmax(similarities)
 
-    # Get the definition of the most similar word
-    definition = word_definitions.iloc[most_similar_index]["DEFINITION"]
-    return definition
+def generate_synonyms(word):
+    output = run_inference(f"Synonyms for: {word}")
+    # Implement logic to return synonyms based on the output
+    return ["synonym1", "synonym2", "synonym3"]  # Placeholder
+
+
+def get_etymology(word):
+    output = run_inference(f"Etymology of: {word}")
+    # Implement logic to return etymology information based on the output
+    return "Etymology information placeholder"  # Placeholder
 
 
 # Example usage
-random_word = "cognisor"  # Replace with your random word
-definition = get_definition(random_word)
-print(f"Definition of '{random_word}': {definition}")
+word = "example"
+print(f"Validation of '{word}': {word_validation(word)}")
+print(f"Definition of '{word}': {get_definition(word)}")
+print(f"Related words to '{word}': {get_word_relationships(word)}")
+print(f"Difficulty of '{word}': {estimate_difficulty(word)}")
+print(f"Category of '{word}': {classify_category(word)}")
+print(f"Synonyms for '{word}': {generate_synonyms(word)}")
+print(f"Etymology of '{word}': {get_etymology(word)}")

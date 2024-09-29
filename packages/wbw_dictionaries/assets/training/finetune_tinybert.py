@@ -8,17 +8,15 @@ from transformers import (
 from datasets import Dataset, DatasetDict
 import pandas as pd
 
-# Check if MPS is available and set it as the default device
-if torch.backends.mps.is_available():
-    device = torch.device("mps")
-    print("Using MPS (Apple Silicon GPU)")
-else:
-    device = torch.device("cpu")
-    print("MPS not available, using CPU")
+# Device setup (unchanged)
+device = (
+    torch.device("mps") if torch.backends.mps.is_available() else torch.device("cpu")
+)
+print(f"Using device: {device}")
 
 model_name = "huawei-noah/TinyBERT_General_4L_312D"
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=1).to(
+model = AutoModelForSequenceClassification.from_pretrained(model_name, num_labels=7).to(
     device
 )
 
@@ -42,12 +40,27 @@ def prepare_dataset(file_path):
         word_types = [str(wt) for wt in word_types]
         definitions = [str(d) for d in definitions]
 
-        combined_text = [
-            f"{w} ({wt}): {d}" for w, wt, d in zip(words, word_types, definitions)
-        ]
+        # Create inputs for different tasks
+        validation_inputs = [f"Validate: {w}" for w in words]
+        definition_inputs = [f"Define: {w}" for w in words]
+        relationship_inputs = [f"Related to: {w}" for w in words]
+        difficulty_inputs = [f"Difficulty of: {w}" for w in words]
+        category_inputs = [f"Category of: {w}" for w in words]
+        synonym_inputs = [f"Synonyms for: {w}" for w in words]
+        etymology_inputs = [f"Etymology of: {w}" for w in words]
+
+        all_inputs = (
+            validation_inputs
+            + definition_inputs
+            + relationship_inputs
+            + difficulty_inputs
+            + category_inputs
+            + synonym_inputs
+            + etymology_inputs
+        )
 
         return tokenizer(
-            combined_text,
+            all_inputs,
             truncation=True,
             padding="max_length",
             max_length=512,
@@ -56,9 +69,19 @@ def prepare_dataset(file_path):
     tokenized_dataset = dataset.map(
         tokenize_function, batched=True, remove_columns=dataset.column_names
     )
-    tokenized_dataset = tokenized_dataset.add_column(
-        "labels", [0.0] * len(tokenized_dataset)
+
+    # Create labels for each task (placeholder values, you'll need to adjust these)
+    labels = (
+        [0] * len(dataset)
+        + [1] * len(dataset)
+        + [2] * len(dataset)
+        + [3] * len(dataset)
+        + [4] * len(dataset)
+        + [5] * len(dataset)
+        + [6] * len(dataset)
     )
+
+    tokenized_dataset = tokenized_dataset.add_column("labels", labels)
 
     split_dataset = tokenized_dataset.train_test_split(test_size=0.1)
 
@@ -71,7 +94,6 @@ def prepare_dataset(file_path):
 
 try:
     k_small_dataset_path = "eng_dic_small.csv"
-    k_large_dataset_path = "eng_dic.csv"
     dataset = prepare_dataset(k_small_dataset_path)
 
     training_args = TrainingArguments(
@@ -99,7 +121,7 @@ try:
     trainer.train()
     trainer.save_model("./tinybert_finetuned")
 
-    # Move model to CPU for ONNX export
+    # ONNX export (unchanged)
     model.to("cpu")
     dummy_input = tokenizer(
         "Example word (type): definition",
@@ -117,9 +139,9 @@ try:
         dynamic_axes={
             "input_ids": {0: "batch_size", 1: "sequence"},
             "attention_mask": {0: "batch_size", 1: "sequence"},
-            "logits": {0: "batch_size"},
+            "logits": {0: "batch_size", 7: "num_labels"},
         },
-        opset_version=14,  # Updated to version 14
+        opset_version=14,
         do_constant_folding=True,
         export_params=True,
     )
