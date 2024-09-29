@@ -15,7 +15,6 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  onnxruntime: ^1.4.1
   provider: ^6.1.2
   russian_words: ^0.2.0
   sembast: ^3.7.1
