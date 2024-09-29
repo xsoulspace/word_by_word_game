@@ -1,43 +1,40 @@
 import torch
-from transformers import M2M100ForConditionalGeneration, M2M100Tokenizer
+from transformers import AutoTokenizer, AutoModelForCausalLM
 import pandas as pd
 from tqdm import tqdm
 
 # Define the languages we want to work with
-LANGUAGES = ["en", "ru", "it"]  # Reduced to requested languages
+LANGUAGES = ["en", "ru", "it"]
 
 # Load models
 print("Loading models...")
-m2m_model = M2M100ForConditionalGeneration.from_pretrained("facebook/m2m100_418M")
-m2m_tokenizer = M2M100Tokenizer.from_pretrained("facebook/m2m100_418M")
+model = AutoModelForCausalLM.from_pretrained(
+    "google/gemma-2-9b-it", device_map="auto", torch_dtype=torch.bfloat16
+)
+tokenizer = AutoTokenizer.from_pretrained("google/gemma-2-9b-it")
 
 
 def translate_with_context(word, context, src_lang, tgt_lang):
-    m2m_tokenizer.src_lang = src_lang
-    full_text = f"{word} | {context}"
-    encoded = m2m_tokenizer(full_text, return_tensors="pt")
-    generated_tokens = m2m_model.generate(
-        **encoded, forced_bos_token_id=m2m_tokenizer.get_lang_id(tgt_lang)
-    )
-    translated_full = m2m_tokenizer.batch_decode(
-        generated_tokens, skip_special_tokens=True
-    )[0]
-    return translated_full.split("|")[0].strip()
+    prompt = f"Translate only the word '{word}' from {src_lang} to {tgt_lang} considering this context: {context}"
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    outputs = model.generate(**inputs, max_new_tokens=10)
+    translated_full = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    # Extract only the translated word
+    return translated_full.split()[-1]
 
 
 def get_definition_with_context(word, context, tgt_lang):
-    m2m_tokenizer.src_lang = "en"
-    full_text = f"Define '{word}' in context: {context}"
-    encoded = m2m_tokenizer(full_text, return_tensors="pt")
-    generated_tokens = m2m_model.generate(
-        **encoded, forced_bos_token_id=m2m_tokenizer.get_lang_id(tgt_lang)
-    )
-    return m2m_tokenizer.batch_decode(generated_tokens, skip_special_tokens=True)[0]
+    prompt = f"Define '{word}' in {tgt_lang} considering this context: {context}"
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    outputs = model.generate(**inputs, max_new_tokens=50)
+    definition = tokenizer.decode(outputs[0], skip_special_tokens=True)
+    # Remove any introductory phrases
+    return definition.split(": ", 1)[-1]
 
 
 # Load the dataset
 print("Loading dataset...")
-df = pd.read_csv("packages/wbw_dictionaries/assets/training/eng_dic_small.csv")
+df = pd.read_csv("eng_dic_small.csv")
 
 # Process the dataset
 print("Processing dataset...")
