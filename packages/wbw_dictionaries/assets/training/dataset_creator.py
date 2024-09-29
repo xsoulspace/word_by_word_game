@@ -2,11 +2,12 @@ import torch
 from transformers import (
     M2M100ForConditionalGeneration,
     M2M100Tokenizer,
-    MarianMTModel,
-    MarianTokenizer,
+    AutoModelForSeq2SeqLM,
+    AutoTokenizer,
 )
 import pandas as pd
 from tqdm import tqdm
+import csv
 
 # Define the languages we want to work with
 LANGUAGES = ["en", "ru", "it"]
@@ -16,23 +17,25 @@ print("Loading M2M100 model...")
 m2m_model = M2M100ForConditionalGeneration.from_pretrained("facebook/m2m100_418M")
 m2m_tokenizer = M2M100Tokenizer.from_pretrained("facebook/m2m100_418M")
 
-# Dictionary to store loaded MarianMT models
-marian_models = {}
-marian_tokenizers = {}
+# Dictionary to store loaded OPUS-MT models
+opus_models = {}
+opus_tokenizers = {}
 
 
-def load_marian_model(src_lang, tgt_lang):
+def load_opus_model(src_lang, tgt_lang):
     model_name = f"Helsinki-NLP/opus-mt-{src_lang}-{tgt_lang}"
-    if (src_lang, tgt_lang) not in marian_models:
-        marian_models[(src_lang, tgt_lang)] = MarianMTModel.from_pretrained(model_name)
-        marian_tokenizers[(src_lang, tgt_lang)] = MarianTokenizer.from_pretrained(
+    if (src_lang, tgt_lang) not in opus_models:
+        opus_models[(src_lang, tgt_lang)] = AutoModelForSeq2SeqLM.from_pretrained(
             model_name
         )
-    return marian_models[(src_lang, tgt_lang)], marian_tokenizers[(src_lang, tgt_lang)]
+        opus_tokenizers[(src_lang, tgt_lang)] = AutoTokenizer.from_pretrained(
+            model_name
+        )
+    return opus_models[(src_lang, tgt_lang)], opus_tokenizers[(src_lang, tgt_lang)]
 
 
 def translate_with_context(word, context, src_lang, tgt_lang):
-    model, tokenizer = load_marian_model(src_lang, tgt_lang)
+    model, tokenizer = load_opus_model(src_lang, tgt_lang)
 
     full_text = f"{word} ||| {context}"
     encoded = tokenizer(full_text, return_tensors="pt", truncation=True, max_length=512)
@@ -57,36 +60,39 @@ def get_definition_with_context(word, context, tgt_lang):
     return definition.split(": ", 1)[-1]
 
 
-# Load the dataset
-print("Loading dataset...")
+# Load the datasetprint("Loading dataset...")
 df = pd.read_csv("eng_dic_small.csv")
 
-# Process the dataset
-print("Processing dataset...")
-processed_data = []
+# Open the output file for writing
+with open("final_multilingual_dataset.csv", "w", newline="", encoding="utf-8") as f:
+    writer = csv.DictWriter(
+        f, fieldnames=["WORD(EN)", "TYPE(EN)", "DEFINITIONS", "TRANSLATIONS"]
+    )
+    writer.writeheader()
 
-for _, row in tqdm(df.iterrows(), total=len(df)):
-    word = row["WORD"]
-    word_type = row["WORDTYPE"]
-    en_definition = row["DEFINITION"]
+    # Process the dataset
+    print("Processing dataset...")
+    for _, row in tqdm(df.iterrows(), total=len(df)):
+        word = row["WORD"]
+        word_type = row["WORDTYPE"]
+        en_definition = row["DEFINITION"]
 
-    definitions = {
-        lang: (
-            en_definition
-            if lang == "en"
-            else get_definition_with_context(word, en_definition, lang)
-        )
-        for lang in LANGUAGES
-    }
+        definitions = {
+            lang: (
+                en_definition
+                if lang == "en"
+                else get_definition_with_context(word, en_definition, lang)
+            )
+            for lang in LANGUAGES
+        }
 
-    translations = {
-        lang: translate_with_context(word, en_definition, "en", lang)
-        for lang in LANGUAGES
-        if lang != "en"
-    }
+        translations = {
+            lang: translate_with_context(word, en_definition, "en", lang)
+            for lang in LANGUAGES
+            if lang != "en"
+        }
 
-    processed_data.append(
-        {
+        processed_row = {
             "WORD(EN)": word,
             "TYPE(EN)": word_type,
             "DEFINITIONS": ";".join(
@@ -96,12 +102,8 @@ for _, row in tqdm(df.iterrows(), total=len(df)):
                 [f"{lang}:{trans}" for lang, trans in translations.items()]
             ),
         }
-    )
 
-# Create a DataFrame
-df_processed = pd.DataFrame(processed_data)
-
-# Save to CSV
-df_processed.to_csv("final_multilingual_dataset.csv", index=False)
+        # Write the processed row to the CSV file
+        writer.writerow(processed_row)
 
 print("Dataset created and saved as 'final_multilingual_dataset.csv'")
