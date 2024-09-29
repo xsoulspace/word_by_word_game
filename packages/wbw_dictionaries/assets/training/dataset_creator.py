@@ -8,6 +8,7 @@ from transformers import (
 import pandas as pd
 from tqdm import tqdm
 import csv
+import os
 
 # Define the languages we want to work with
 LANGUAGES = ["en", "ru", "it"]
@@ -60,50 +61,42 @@ def get_definition_with_context(word, context, tgt_lang):
     return definition.split(": ", 1)[-1]
 
 
-# Load the datasetprint("Loading dataset...")
+# Load the dataset
+print("Loading dataset...")
 df = pd.read_csv("eng_dic_small.csv")
 
-# Open the output file for writing
-with open("final_multilingual_dataset.csv", "w", newline="", encoding="utf-8") as f:
-    writer = csv.DictWriter(
-        f, fieldnames=["WORD(EN)", "TYPE(EN)", "DEFINITIONS", "TRANSLATIONS"]
-    )
-    writer.writeheader()
+# Create a dictionary to store file writers
+file_writers = {}
 
-    # Process the dataset
-    print("Processing dataset...")
-    for _, row in tqdm(df.iterrows(), total=len(df)):
-        word = row["WORD"]
-        word_type = row["WORDTYPE"]
-        en_definition = row["DEFINITION"]
+# Open files for each language and create CSV writers
+for lang in LANGUAGES:
+    if lang != "en":
+        filename = f"{lang}_dic.csv"
+        file = open(filename, "w", newline="", encoding="utf-8")
+        writer = csv.writer(file)
+        writer.writerow(["EN_WORD", "WORD", "DEFINITION"])
+        file_writers[lang] = {"file": file, "writer": writer}
 
-        definitions = {
-            lang: (
-                en_definition
-                if lang == "en"
-                else get_definition_with_context(word, en_definition, lang)
+# Process the dataset
+print("Processing dataset...")
+for _, row in tqdm(df.iterrows(), total=len(df)):
+    en_word = row["WORD"]
+    en_definition = row["DEFINITION"]
+
+    for lang in LANGUAGES:
+        if lang != "en":
+            translated_word = translate_with_context(en_word, en_definition, "en", lang)
+            translated_definition = get_definition_with_context(
+                en_word, en_definition, lang
             )
-            for lang in LANGUAGES
-        }
 
-        translations = {
-            lang: translate_with_context(word, en_definition, "en", lang)
-            for lang in LANGUAGES
-            if lang != "en"
-        }
+            file_writers[lang]["writer"].writerow(
+                [en_word, translated_word, translated_definition]
+            )
 
-        processed_row = {
-            "WORD(EN)": word,
-            "TYPE(EN)": word_type,
-            "DEFINITIONS": ";".join(
-                [f"{lang}: {def_}" for lang, def_ in definitions.items()]
-            ),
-            "TRANSLATIONS": ",".join(
-                [f"{lang}:{trans}" for lang, trans in translations.items()]
-            ),
-        }
+# Close all files
+for lang in LANGUAGES:
+    if lang != "en":
+        file_writers[lang]["file"].close()
 
-        # Write the processed row to the CSV file
-        writer.writerow(processed_row)
-
-print("Dataset created and saved as 'final_multilingual_dataset.csv'")
+print("Dataset processing complete. CSV files created for each language.")
