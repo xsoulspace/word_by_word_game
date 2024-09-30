@@ -15,8 +15,8 @@ import argparse
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 # Define batch size and save frequency
-BATCH_SIZE = 32
-SAVE_FREQUENCY = 5
+BATCH_SIZE = 5
+SAVE_FREQUENCY = 1
 
 # Load M2M100 model for definitions
 print("Loading M2M100 model...")
@@ -80,7 +80,7 @@ def get_definitions_batch(words, contexts, tgt_lang):
 
 def main(start_row):
     # Define the languages we want to work with
-    LANGUAGES = ["en", "ru", "it"]
+    LANGUAGES = ["en", "ru"]
 
     # Load the dataset
     print("Loading dataset...")
@@ -157,7 +157,7 @@ if __name__ == "__main__":
         description="Process dictionary dataset with optional starting row."
     )
     parser.add_argument(
-        "--start_row",
+        "--start-row",
         type=int,
         default=0,
         help="Starting row for processing (default: 0)",
