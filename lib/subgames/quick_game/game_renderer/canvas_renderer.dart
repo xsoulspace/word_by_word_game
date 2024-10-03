@@ -13,6 +13,7 @@ import 'package:map_editor/ui/renderer/editor_renderer.dart'
     hide GameRendererDiDto;
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/weather_effects/weather_effect.dart';
 import 'package:word_by_word_game/subgames/quick_game/quick_game.dart';
 
 class CanvasRenderer extends Component
@@ -40,7 +41,10 @@ class CanvasRenderer extends Component
   Vector2 _dragOffset = Vector2.zero();
   // final animationUpdater = AnimationUpdater();
   final canvasObjectsDrawer = GameCanvasObjectsDrawer();
-
+  late final lightningEffect = LightningEffect(
+    startPosition: Vector2.zero(),
+    endPosition: gameSize,
+  );
   @override
   FutureOr<void> onLoad() {
     addAll([
@@ -51,6 +55,10 @@ class CanvasRenderer extends Component
       focusedObjectsHandler,
       buildingSurfaceDrawer,
       focusSurfaceDrawer,
+      ParticleSystemComponent(
+        position: gameSize / 2,
+        particle: lightningEffect,
+      ),
       // cursor,
       // LOGIC
       // animationUpdater,
@@ -115,6 +123,7 @@ class CanvasRenderer extends Component
 
   @override
   void update(final double dt) {
+    super.update(dt);
     if (game.dto.debugCubit.state.isCameraFollowingFocusedObject) {
       final object = game.dto.levelPlayersBloc.focusedObject;
       final gameVector2 =
@@ -132,8 +141,6 @@ class CanvasRenderer extends Component
       origin = offset.toVector2();
       canvasObjectsDrawer.onOriginUpdate();
     }
-
-    super.update(dt);
   }
 
   @override
