@@ -93,14 +93,14 @@ Atoms are the smallest, indivisible components in our design system.
 
 #### Example: UiText
 
-```dart
-UiStyledButton(
-onPressed: () => print('Button pressed'),
-label: 'Click me',
-icon: Icons.star,
-styleType: ButtonStyleType.filled,
-color: UiColors.primary,
-)
+````dart
+UiText(
+  'Hello, World!',
+  color: Colors.blue,
+  fontSize: 18,
+  fontWeight: FontWeight.bold,
+  textAlign: TextAlign.center,
+);
 ```
 
 ### Molecules
@@ -124,7 +124,7 @@ UiStyledButton(
   styleType: ButtonStyleType.filled,
   color: UiColors.primary,
 )
-```
+````
 
 ### Organisms
 

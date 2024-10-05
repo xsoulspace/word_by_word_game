@@ -16,6 +16,7 @@ import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/canvas_renderer.dart';
 import 'package:word_by_word_game/subgames/quick_game/game_renderer/components/components.dart';
+import 'package:word_by_word_game/subgames/quick_game/overlays/weather_effects/weather_effect.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/utils/utils.dart';
 
@@ -54,7 +55,11 @@ class CanvasRendererGame extends FlameGame
   late ObstacleLevelHelper obstacleLevelHelper;
 
   bool get timePaused => dto.mechanics.worldTime.paused;
-
+  // Initialize lightning effect
+  late final _lightningEffect = LightningEffect(
+    startPosition: Vector2(0, 0),
+    endPosition: Vector2(size.x, size.y),
+  );
   @override
   Future<void> onLoad() async {
     const prefix = 'packages/map_editor/assets/images/';

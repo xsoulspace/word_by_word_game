@@ -6,8 +6,8 @@ publish_to: none
 # publish_to: "none"
 # homepage:
 environment:
-  sdk: ">=3.5.0 <4.0.0"
-  flutter: ">=3.24.0"
+  sdk: ">=3.5.3 <4.0.0"
+  flutter: ">=3.24.3"
 
 dependencies:
   animate_do: ^3.0.2
@@ -52,12 +52,11 @@ dependencies:
   url_launcher: ^6.1.11
   wbw_core:
     path: ../wbw_core
-  wbw_foundation:
-    path: ../wbw_foundation
   wbw_locale:
     path: ../wbw_locale
   wbw_ui_kit:
     path: ../wbw_ui_kit
+  xsoulspace_foundation: ^0.0.1
 dev_dependencies:
   analyzer: ^6.4.1
   build_runner: ^2.4.9

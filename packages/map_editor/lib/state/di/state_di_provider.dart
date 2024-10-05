@@ -6,8 +6,9 @@ import 'package:map_editor/logic/logic.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:provider/provider.dart';
-import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_core/wbw_core.dart' as core;
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 class EditorStateInitializer implements StateInitializer {
   @override
@@ -27,8 +28,8 @@ class StateDiProvider extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => MultiProvider(
         providers: [
-          Provider<LocalDbDataSource>(
-            create: SharedPreferencesDbDataSourceImpl.new,
+          Provider<LocalDbI>(
+            create: core.PrefsDb.new,
           ),
           Provider(create: EditorMechanicsCollection.v1),
           Provider(create: (final context) => Languages.en),

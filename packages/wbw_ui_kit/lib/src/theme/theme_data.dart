@@ -12,7 +12,7 @@ class AppThemeData {
       textTheme: Typography.material2021(
         platform: defaultTargetPlatform,
         colorScheme: colorScheme,
-      ).englishLike.merge(GoogleFonts.openSansTextTheme()),
+      ).englishLike.merge(GoogleFonts.notoSansTextTheme()),
     );
     return theme.copyWith(
       extensions: [surfaceColorScheme],

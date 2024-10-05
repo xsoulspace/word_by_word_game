@@ -9,6 +9,7 @@ import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 part 'canvas_models.dart';
 part 'game_object.dart';

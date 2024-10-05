@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../wbw_ui_kit.dart';
 

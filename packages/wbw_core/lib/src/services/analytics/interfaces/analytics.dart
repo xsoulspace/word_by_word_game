@@ -1,7 +1,7 @@
 // ignore_for_file: avoid_annotating_with_dynamic
 
 import 'package:flutter/foundation.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 enum AnalyticEvents {
   usedInAndroid,

@@ -15,8 +15,8 @@ import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 part 'drawer_cubit.freezed.dart';
 part 'drawer_cubit_states.dart';
@@ -24,8 +24,8 @@ part 'drawer_cubit_states.dart';
 class DrawerCubitDto {
   DrawerCubitDto.use({
     required final BuildContext context,
-  }) : localDbDataSource = context.read();
-  final LocalDbDataSource localDbDataSource;
+  }) : localDb = context.read();
+  final LocalDbI localDb;
 }
 
 String get _levelsMapsPersistanceKet => 'maps_saves';
@@ -256,8 +256,8 @@ final class EditorDrawerCubit extends DrawerCubit {
   }
 
   Future<void> loadAllCanvasData() async {
-    final levelsJsons = await dto.localDbDataSource
-        .getMapIterable(key: _levelsMapsPersistanceKet);
+    final levelsJsons =
+        await dto.localDb.getMapIterable(key: _levelsMapsPersistanceKet);
     levelsMapsNotifier.value =
         levelsJsons.map(CanvasDataModel.fromJson).toList();
   }
@@ -338,7 +338,7 @@ final class EditorDrawerCubit extends DrawerCubit {
       levels[index] = canvasData;
     }
     final eLevels = levels.map((final e) => e.toJson()).toList();
-    await dto.localDbDataSource.setMapList(
+    await dto.localDb.setMapList(
       key: _levelsMapsPersistanceKet,
       value: eLevels,
     );
