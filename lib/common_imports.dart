@@ -14,6 +14,6 @@ export 'package:wbw_core/wbw_core.dart';
 export 'package:wbw_locale/wbw_locale.dart';
 export 'package:wbw_ui_kit/wbw_ui_kit.dart';
 export 'package:word_by_word_game/envs.dart';
-export 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
+export 'package:xsoulspace_foundation/xsoulspace_foundation.dart' hide PrefsDb;
 
 export 'pack_core/pack_core.dart';

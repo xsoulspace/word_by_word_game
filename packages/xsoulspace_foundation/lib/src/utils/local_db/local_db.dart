@@ -1,4 +1,7 @@
-abstract interface class LocalDbDataSource {
+export 'prefs_db.dart';
+
+abstract interface class LocalDbI {
+  Future<void> init();
   Future<void> setMap({
     required final String key,
     required final Map<String, dynamic> value,

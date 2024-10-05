@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../data_models/data_models.dart';
 import '../interfaces/interfaces.dart';
@@ -11,7 +12,7 @@ class AppSettingsLocalDataSourceImpl implements AppSettingsLocalDataSource {
   });
   static const _kLocaleKey = 'settings_locale';
   static const _kBrightnessKey = 'settings_brightness';
-  final LocalDbDataSource localDb;
+  final LocalDbI localDb;
   @override
   Future<BrightnessMode> getBrightness() async {
     final brightnessString = await localDb.getString(

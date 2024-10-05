@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../data_models/data_models.dart';
 import '../interfaces/interfaces.dart';
@@ -8,7 +9,7 @@ class GameLocalDataSourceImpl implements GameLocalDataSource {
     required this.localDb,
   });
 
-  final LocalDbDataSource localDb;
+  final LocalDbI localDb;
   static const _persistenceKey = 'game_save';
   @override
   Future<void> saveGame({

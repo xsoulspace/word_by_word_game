@@ -62,7 +62,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
           onlineStatusService: context.read(),
         ),
       );
-  final LocalDbDataSource simpleLocal;
+  final LocalDbI simpleLocal;
   final AssetBundle assetBundle;
   final WbwDictionaryRepository repository;
   bool get isLoaded => value == WbwDictionariesLoadingStatus.loaded;

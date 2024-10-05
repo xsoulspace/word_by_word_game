@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 import 'package:map_editor/state/models/models.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../gen/assets.gen.dart';
 import '../data_sources.dart';
@@ -10,7 +11,7 @@ class LevelsLocalDataSourceAssetsImpl implements LevelsLocalDataSource {
   LevelsLocalDataSourceAssetsImpl({
     required this.localDb,
   });
-  final LocalDbDataSource localDb;
+  final LocalDbI localDb;
   final String _localKey = 'template_levels';
 
   @override
