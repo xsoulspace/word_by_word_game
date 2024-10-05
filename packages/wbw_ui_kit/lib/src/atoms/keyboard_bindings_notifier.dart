@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 /// The types of keyboard bindings supported by the application.
 ///

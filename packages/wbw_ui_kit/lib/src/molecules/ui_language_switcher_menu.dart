@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 /// A widget that allows the user to select a language from a menu.
 ///

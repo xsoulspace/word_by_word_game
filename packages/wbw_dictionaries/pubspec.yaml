@@ -4,8 +4,8 @@ version: 0.0.1
 publish_to: "none"
 # homepage:
 environment:
-  sdk: ">=3.5.0 <4.0.0"
-  flutter: ">=3.24.0"
+  sdk: ">=3.5.3 <4.0.0"
+  flutter: ">=3.24.3"
 
 dependencies:
   archive: ^3.4.10
@@ -26,8 +26,8 @@ dependencies:
     path: ../wbw_client
   wbw_core:
     path: ../wbw_core
-  wbw_foundation:
-    path: ../wbw_foundation
+  xsoulspace_foundation:
+    path: ../xsoulspace_foundation
   wbw_locale:
     path: ../wbw_locale
 dev_dependencies:

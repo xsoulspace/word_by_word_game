@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 /// Toggle this for testing Crashlytics in your app locally.
 const kTestingCrashlytics = false;

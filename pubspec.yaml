@@ -22,7 +22,7 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 version: 3.3.1+58
 
 environment:
-  sdk: ">=3.5.2 <4.0.0"
+  sdk: ">=3.5.3 <4.0.0"
   flutter: ">=3.24.2"
 
 dependencies:
@@ -83,8 +83,8 @@ dependencies:
     path: packages/wbw_core
   wbw_dictionaries:
     path: packages/wbw_dictionaries
-  wbw_foundation:
-    path: packages/wbw_foundation
+  xsoulspace_foundation:
+    path: packages/xsoulspace_foundation
   wbw_locale:
     path: packages/wbw_locale
   wbw_ui_kit:

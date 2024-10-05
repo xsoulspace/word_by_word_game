@@ -4,8 +4,8 @@ version: 0.0.1
 publish_to: "none"
 # homepage:
 environment:
-  sdk: ">=3.5.0 <4.0.0"
-  flutter: ">=3.24.0"
+  sdk: ">=3.5.3 <4.0.0"
+  flutter: ">=3.24.3"
 
 dependencies:
   flutter:
@@ -14,8 +14,8 @@ dependencies:
     sdk: flutter
   freezed_annotation: ^2.4.4
   intl: ^0.19.0
-  wbw_foundation:
-    path: ../wbw_foundation
+  xsoulspace_foundation:
+    path: ../xsoulspace_foundation
 
 dev_dependencies:
   build_runner: ^2.4.9

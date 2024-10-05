@@ -13,8 +13,8 @@ import 'package:provider/provider.dart';
 import 'package:tar/tar.dart';
 // import 'package:universal_io/io.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:wbw_foundation/wbw_foundation.dart';
 import 'package:wbw_locale/wbw_locale.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import 'gen/assets.gen.dart';
 import 'sources/wbw_local_source_i.dart';

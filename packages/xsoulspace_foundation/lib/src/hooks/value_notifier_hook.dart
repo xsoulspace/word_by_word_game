@@ -1,4 +1,5 @@
-part of 'foundation.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 
 TNotifier useStateBuilder<TState, TNotifier extends ValueNotifier<TState>>(
   final _StateHookBuilder<TState, TNotifier> builder,
