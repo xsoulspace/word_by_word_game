@@ -46,8 +46,7 @@ dependencies:
   wbw_locale:
     path: ../wbw_locale
   web: ^1.0.0
-  xsoulspace_foundation:
-    path: ../xsoulspace_foundation
+  xsoulspace_foundation: ^0.0.1
 
 dev_dependencies:
   analyzer: ^6.4.1
