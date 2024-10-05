@@ -139,7 +139,7 @@ class AppPathsController {
       to(ScreenPaths.toPause(id: id));
 }
 
-extension BuildContextX on BuildContext {
+extension RouterBuildContextX on BuildContext {
   GoRouter get router => GoRouter.of(this);
   Map<String, String> get routeParams =>
       router.routerDelegate.currentConfiguration.pathParameters;
