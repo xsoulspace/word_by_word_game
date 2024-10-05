@@ -3,6 +3,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 import '../../wbw_ui_kit.dart';
 

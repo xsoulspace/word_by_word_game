@@ -83,12 +83,12 @@ dependencies:
     path: packages/wbw_core
   wbw_dictionaries:
     path: packages/wbw_dictionaries
-  xsoulspace_foundation:
-    path: packages/xsoulspace_foundation
   wbw_locale:
     path: packages/wbw_locale
   wbw_ui_kit:
     path: packages/wbw_ui_kit
+  xsoulspace_foundation:
+    path: packages/xsoulspace_foundation
 dev_dependencies:
   analyzer: ^6.4.1
   build_runner: ^2.4.9

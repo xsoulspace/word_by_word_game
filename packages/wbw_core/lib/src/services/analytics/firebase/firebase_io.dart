@@ -5,8 +5,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
-import '../../../utils/utils.dart';
 import '../interfaces/interfaces.dart';
 import '../utils/utils.dart';
 import 'firebase_initializer.dart';

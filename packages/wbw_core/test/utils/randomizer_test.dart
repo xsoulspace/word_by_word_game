@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:wbw_core/src/utils/utils.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 void main() {
   group('Randomizer', () {
