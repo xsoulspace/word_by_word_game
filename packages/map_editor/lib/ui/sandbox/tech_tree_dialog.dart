@@ -68,7 +68,7 @@ class TechnologyTreeDialog extends StatelessWidget {
                     TableRow(
                       children: [
                         const TableCell(child: Text('ID')),
-                        ...Languages.all.map(
+                        ...UiLanguage.all.map(
                           (final language) => TableCell(
                             child: Text(language.name),
                           ),
@@ -134,7 +134,7 @@ class _TechRow {
             _getFirstCell(context, technology.id.value.name),
 
             /// title
-            ...Languages.all.map(
+            ...UiLanguage.all.map(
               (final language) => TableCell(
                 verticalAlignment: TableCellVerticalAlignment.top,
                 child: TextFormField(
@@ -158,7 +158,7 @@ class _TechRow {
         TableRow(
           children: [
             _getFirstCell(context, 'Words'),
-            ...Languages.all.map(
+            ...UiLanguage.all.map(
               (final language) {
                 final words =
                     technology.unlockCondition.languageWords[language] ?? [];

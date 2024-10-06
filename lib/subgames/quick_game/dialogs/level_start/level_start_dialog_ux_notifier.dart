@@ -94,8 +94,8 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   /// target language is used to show associated words in that language
   /// for example in technologies
-  late Languages wordsLanguage = dto.appSettingsNotifier.language;
-  void changeWordsLanguage(final Languages lang) {
+  late UiLanguage wordsLanguage = dto.appSettingsNotifier.language;
+  void changeWordsLanguage(final UiLanguage lang) {
     wordsLanguage = lang;
     notifyListeners();
   }

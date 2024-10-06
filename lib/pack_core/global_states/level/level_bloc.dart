@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
@@ -56,8 +54,8 @@ class LevelBloc extends Cubit<LevelBlocState> {
     );
   }
 
-  Languages get wordsLanguage => state.wordsLanguage;
-  void onChangeWordsLanguage(final Languages language) {
+  UiLanguage get wordsLanguage => state.wordsLanguage;
+  void onChangeWordsLanguage(final UiLanguage language) {
     final updatedState = state.copyWith(
       wordsLanguage: language,
     );

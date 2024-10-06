@@ -25,7 +25,7 @@ class DictionaryMechanics {
   String getWordSuggestion({
     required final String characters,
     required final Iterable<String> exceptions,
-    required final Languages wordsLanguage,
+    required final UiLanguage wordsLanguage,
     final int maxSuggestions = 30,
   }) {
     List<String> words = [];
@@ -55,12 +55,16 @@ class DictionaryMechanics {
   }
 
   // TODO(arenukvern): add wbw dictionary implementation
-  List<String> _getDictionary(final Languages wordsLanguage) =>
-      switch (wordsLanguage) {
-        Languages.en => _shuffledEnglishWords,
-        Languages.ru => _shuffledRussianWords,
-        Languages.it => throw UnimplementedError(),
-      };
+  List<String> _getDictionary(final UiLanguage wordsLanguage) {
+    if (wordsLanguage == languages.en) {
+      return _shuffledEnglishWords;
+    } else if (wordsLanguage == languages.ru) {
+      return _shuffledRussianWords;
+    } else if (wordsLanguage == languages.it) {
+      throw UnimplementedError();
+    }
+    throw UnimplementedError();
+  }
 
   /// return maxSuggestions words
   /// even if letters are empty

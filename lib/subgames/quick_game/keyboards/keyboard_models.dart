@@ -36,12 +36,8 @@ extension KeyboardLanguageX on KeyboardLanguage {
       };
 }
 
-extension LanguagesX on Languages {
-  KeyboardLanguage toKeyboardLanguage() => switch (this) {
-        Languages.en => KeyboardLanguage.en,
-        Languages.ru => KeyboardLanguage.ru,
-        Languages.it => KeyboardLanguage.en,
-      };
+extension LanguagesX on UiLanguage {
+  KeyboardLanguage toKeyboardLanguage() => KeyboardLanguage.fromLanguage(this);
 }
 
 @freezed

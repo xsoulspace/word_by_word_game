@@ -1,4 +1,3 @@
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:recase/recase.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/gen/assets.gen.dart';
@@ -48,16 +47,16 @@ class AdventureView extends HookWidget {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.end,
             children: [
-              const Row(
+              Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Flexible(
                     child: ViewTitle(
                       title: LocalizedMap(
                         value: {
-                          Languages.en: 'Adventures',
-                          Languages.ru: 'Приключения',
-                          Languages.it: 'Avventure',
+                          languages.en: 'Adventures',
+                          languages.ru: 'Приключения',
+                          languages.it: 'Avventure',
                         },
                       ),
                     ),

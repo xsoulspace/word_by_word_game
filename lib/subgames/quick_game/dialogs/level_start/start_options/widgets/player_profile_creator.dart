@@ -21,16 +21,16 @@ enum PlayerProfileCreatorError {
   cannotBeEmpty,
   invalidName;
 
-  static const locales = <PlayerProfileCreatorError, Map<Languages, String>>{
+  static final locales = <PlayerProfileCreatorError, Map<UiLanguage, String>>{
     cannotBeEmpty: {
-      Languages.en: 'Name cannot be empty',
-      Languages.ru: 'Имя не может быть пустым',
-      Languages.it: 'Il nome non puè essere vuoto',
+      languages.en: 'Name cannot be empty',
+      languages.ru: 'Имя не может быть пустым',
+      languages.it: 'Il nome non puè essere vuoto',
     },
     invalidName: {
-      Languages.en: 'Try another name',
-      Languages.ru: 'Попробуйте другое имя',
-      Languages.it: 'Prova un altro nome',
+      languages.en: 'Try another name',
+      languages.ru: 'Попробуйте другое имя',
+      languages.it: 'Prova un altro nome',
     },
   };
 

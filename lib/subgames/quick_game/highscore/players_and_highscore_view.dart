@@ -1,7 +1,4 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
@@ -30,11 +27,11 @@ class PlayersAndHighscoreView extends HookWidget {
         UiGaps.small,
         Center(
           child: Text(
-            const LocalizedMap(
+            LocalizedMap(
               value: {
-                Languages.en: 'HIGHSCORES',
-                Languages.ru: 'РЕЙТИНГ',
-                Languages.it: 'CLASSIFICA',
+                languages.en: 'HIGHSCORES',
+                languages.ru: 'РЕЙТИНГ',
+                languages.it: 'CLASSIFICA',
               },
             ).getValue(locale),
             style: const TextStyle(fontSize: 24),

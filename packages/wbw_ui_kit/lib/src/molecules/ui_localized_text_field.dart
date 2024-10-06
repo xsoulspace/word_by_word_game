@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 
 import 'ui_language_switcher_menu.dart';
@@ -91,7 +92,7 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
     text: widget.value.value.isEmpty ? null : widget.value.getValueByLanguage(),
   );
   late LocalizedMap _value = widget.value;
-  Languages _language = LocalizedMap.getCurrentLanugage();
+  late UiLanguage _language = context.read<UiLocaleNotifier>().value.language;
 
   @override
   void dispose() {

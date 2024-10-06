@@ -1,4 +1,3 @@
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
 import 'package:word_by_word_game/subgames/quick_game/settings/locale_switcher_button.dart';
@@ -16,11 +15,11 @@ class SettingsView extends HookWidget {
         UiGaps.small,
         Center(
           child: Text(
-            const LocalizedMap(
+            LocalizedMap(
               value: {
-                Languages.en: 'SETTINGS',
-                Languages.ru: 'НАСТРОЙКИ',
-                Languages.it: 'IMPOSTAZIONI',
+                languages.en: 'SETTINGS',
+                languages.ru: 'НАСТРОЙКИ',
+                languages.it: 'IMPOSTAZIONI',
               },
             ).getValue(locale),
             style: const TextStyle(fontSize: 24),
@@ -39,11 +38,11 @@ class SettingsView extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                const LocalizedMap(
+                LocalizedMap(
                   value: {
-                    Languages.en: 'Language',
-                    Languages.ru: 'Язык',
-                    Languages.it: 'Lingua',
+                    languages.en: 'Language',
+                    languages.ru: 'Язык',
+                    languages.it: 'Lingua',
                   },
                 ).getValue(locale),
                 style: const TextStyle(

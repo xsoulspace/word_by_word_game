@@ -6,7 +6,7 @@ part 'technologies_cubit.freezed.dart';
 typedef _WordTechnologyPairTuple = ({
   TechnologyModelId id,
   int index,
-  Languages language
+  UiLanguage language
 });
 
 @freezed

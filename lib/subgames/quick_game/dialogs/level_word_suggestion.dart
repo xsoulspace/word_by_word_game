@@ -1,4 +1,3 @@
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/common_imports.dart';
@@ -107,11 +106,11 @@ class LevelWordSuggestionDialog extends HookWidget {
                     Expanded(child: Divider(color: fadeColor)),
                     const Gap(16),
                     Text(
-                      const LocalizedMap(
+                      LocalizedMap(
                         value: {
-                          Languages.en: 'Meaning',
-                          Languages.ru: 'Значение',
-                          Languages.it: 'Meaning',
+                          languages.en: 'Meaning',
+                          languages.ru: 'Значение',
+                          languages.it: 'Meaning',
                         },
                       ).getValue(locale),
                       style: context.textTheme.labelMedium?.copyWith(
@@ -254,11 +253,11 @@ class LevelWordSuggestionDialog extends HookWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          const LocalizedMap(
+                          LocalizedMap(
                             value: {
-                              Languages.en: 'Use Score',
-                              Languages.ru: 'Применить очки',
-                              Languages.it: 'Usa punteggio',
+                              languages.en: 'Use Score',
+                              languages.ru: 'Применить очки',
+                              languages.it: 'Usa punteggio',
                             },
                           ).getValue(locale),
                           style: context.textTheme.labelLarge,
@@ -279,11 +278,11 @@ class LevelWordSuggestionDialog extends HookWidget {
                         children: [
                           Flexible(
                             child: Text(
-                              const LocalizedMap(
+                              LocalizedMap(
                                 value: {
-                                  Languages.en: 'Roll a Chance',
-                                  Languages.ru: 'Бросить шанс',
-                                  Languages.it: 'Tira la possibilità',
+                                  languages.en: 'Roll a Chance',
+                                  languages.ru: 'Бросить шанс',
+                                  languages.it: 'Tira la possibilità',
                                 },
                               ).getValue(locale),
                               textAlign: TextAlign.center,
@@ -319,11 +318,11 @@ class UiCircleCloseButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final locale = useLocale(context);
     return UiStyledButton(
-      tooltip: const LocalizedMap(
+      tooltip: LocalizedMap(
         value: {
-          Languages.en: 'Close (X or ESC)',
-          Languages.ru: 'Закрыть (X или ESC)',
-          Languages.it: 'Chiudi (X o ESC)',
+          languages.en: 'Close (X or ESC)',
+          languages.ru: 'Закрыть (X или ESC)',
+          languages.it: 'Chiudi (X o ESC)',
         },
       ).getValue(locale),
       onPressed: onPressed,
@@ -365,11 +364,11 @@ class _UsePointsButton extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            const LocalizedMap(
+            LocalizedMap(
               value: {
-                Languages.en: 'Your Score',
-                Languages.ru: 'Твои очки',
-                Languages.it: 'Punteggio',
+                languages.en: 'Your Score',
+                languages.ru: 'Твои очки',
+                languages.it: 'Punteggio',
               },
             ).getValue(locale),
             style: context.textThemeBold.labelLarge?.copyWith(
@@ -395,11 +394,11 @@ class _UsePointsButton extends StatelessWidget {
         const Gap(12),
         Expanded(
           child: Text(
-            const LocalizedMap(
+            LocalizedMap(
               value: {
-                Languages.en: 'Word Score',
-                Languages.ru: 'Очки слова',
-                Languages.it: 'Punteggio Parola',
+                languages.en: 'Word Score',
+                languages.ru: 'Очки слова',
+                languages.it: 'Punteggio Parola',
               },
             ).getValue(locale),
             style: context.textThemeBold.labelLarge?.copyWith(

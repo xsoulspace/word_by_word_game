@@ -22,11 +22,11 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
     );
     final hotAirBalloonActions = [
       (
-        title: const LocalizedMap(
+        title: LocalizedMap(
           value: {
-            Languages.en: 'Flying Energy',
-            Languages.ru: 'Энергия полета',
-            Languages.it: 'Energia di volo',
+            languages.en: 'Flying Energy',
+            languages.ru: 'Энергия полета',
+            languages.it: 'Energia di volo',
           },
         ),
         iconChildren: [
@@ -46,11 +46,11 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
       ),
       if (isPoweringEngineAvailable)
         (
-          title: const LocalizedMap(
+          title: LocalizedMap(
             value: {
-              Languages.en: 'Actions',
-              Languages.ru: 'Действия',
-              Languages.it: 'Azioni',
+              languages.en: 'Actions',
+              languages.ru: 'Действия',
+              languages.it: 'Azioni',
             },
           ),
           iconChildren: [
@@ -62,11 +62,11 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
     ];
     final tentActions = [
       (
-        title: const LocalizedMap(
+        title: LocalizedMap(
           value: {
-            Languages.en: 'Actions',
-            Languages.ru: 'Действия',
-            Languages.it: 'Azioni',
+            languages.en: 'Actions',
+            languages.ru: 'Действия',
+            languages.it: 'Azioni',
           },
         ),
         iconChildren: [

@@ -1,12 +1,12 @@
 import 'package:sembast/sembast.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 
-typedef WordMeaningRequestTuple = ({Languages language, String word});
+typedef WordMeaningRequestTuple = ({UiLanguage language, String word});
 typedef WordMeaningTuple = ({String word, String meaning});
-typedef WordMeaningLanguageTuple = ({Languages language, String meaning});
+typedef WordMeaningLanguageTuple = ({UiLanguage language, String meaning});
 
 extension WordMeaningTupleExt on WordMeaningRequestTuple {
-  String get _dbKey => '${language.value}:$word';
+  String get _dbKey => '${language.code}:$word';
 }
 
 abstract base class WbwDictionaryLocalSourceBase {
@@ -35,7 +35,7 @@ abstract base class WbwDictionaryLocalSourceBase {
   }
 
   Future<void> writeWordsList<T>({
-    required final Languages language,
+    required final UiLanguage language,
     required final List<T> data,
     required final WordMeaningTuple? Function(T) converter,
   }) async {
@@ -49,7 +49,7 @@ abstract base class WbwDictionaryLocalSourceBase {
           if (tuple == null) return;
           final future =
               _store.record(_getRecordKeyByMeaning(language, tuple)).put(txn, {
-            'language': language.value,
+            'language': language.code,
             'word': tuple.word,
             'meaning': tuple.meaning,
           });
@@ -61,7 +61,7 @@ abstract base class WbwDictionaryLocalSourceBase {
   }
 
   Future<void> writeWordsStream<T>({
-    required final Languages language,
+    required final UiLanguage language,
     required final Stream<T> Function() callback,
     required final WordMeaningTuple? Function(T) converter,
   }) async {
@@ -71,7 +71,7 @@ abstract base class WbwDictionaryLocalSourceBase {
         final tuple = converter(e);
         if (tuple == null) return;
         await _store.record(_getRecordKeyByMeaning(language, tuple)).put(txn, {
-          'language': language.value,
+          'language': language.code,
           'word': tuple.word,
           'meaning': tuple.meaning,
         });
@@ -80,10 +80,10 @@ abstract base class WbwDictionaryLocalSourceBase {
   }
 
   String _getRecordKeyByMeaning(
-    final Languages language,
+    final UiLanguage language,
     final WordMeaningTuple tuple,
   ) =>
-      '${language.value}:${tuple.word}';
+      '${language.code}:${tuple.word}';
 
   Future<void> writeWord(
     final WordMeaningRequestTuple tuple, {

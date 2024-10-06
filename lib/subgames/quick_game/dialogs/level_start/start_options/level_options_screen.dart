@@ -123,11 +123,11 @@ class _ExperimentsListView extends HookWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          const LocalizedMap(
+          LocalizedMap(
             value: {
-              Languages.en: 'Experiments',
-              Languages.ru: 'Эксперименты',
-              Languages.it: 'Esperimenti',
+              languages.en: 'Experiments',
+              languages.ru: 'Эксперименты',
+              languages.it: 'Esperimenti',
             },
           ).getValue(locale).toUpperCase(),
           style: context.textThemeBold.titleMedium,
@@ -141,11 +141,11 @@ class _ExperimentsListView extends HookWidget {
           title: Row(
             children: [
               Text(
-                const LocalizedMap(
+                LocalizedMap(
                   value: {
-                    Languages.en: 'Technologies',
-                    Languages.ru: 'Технологии',
-                    Languages.it: 'Tecnologie',
+                    languages.en: 'Technologies',
+                    languages.ru: 'Технологии',
+                    languages.it: 'Tecnologie',
                   },
                 ).getValue(locale),
               ),
@@ -157,15 +157,15 @@ class _ExperimentsListView extends HookWidget {
           ),
           enabled: !isDictionariesLoading,
           subtitle: Text(
-            const LocalizedMap(
+            LocalizedMap(
               value: {
-                Languages.en:
+                languages.en:
                     // ignore: lines_longer_than_80_chars
                     'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading may take a few minutes.',
-                Languages.ru:
+                languages.ru:
                     // ignore: lines_longer_than_80_chars
                     'Примечание: данная функция требует предварительного большой загрузки дополнительных словарей (около 30 мб), поэтому первая загрузка уровня займет несколько минут.',
-                Languages.it:
+                languages.it:
                     // ignore: lines_longer_than_80_chars
                     'Nota: questa funzione richiede di caricare un grande numero di dizionari (circa 30 mb), pertanto il caricamento del primo livello potrebbe richiedere alcuni minuti.',
               },
@@ -205,8 +205,8 @@ class WordsLanguageSwitcher extends StatelessWidget {
     required this.onChanged,
     super.key,
   });
-  final Languages value;
-  final ValueChanged<Languages> onChanged;
+  final UiLanguage value;
+  final ValueChanged<UiLanguage> onChanged;
   @override
   Widget build(final BuildContext context) => UiLanguageSwitcherMenu(
         isShortAbbreviationUsed: false,

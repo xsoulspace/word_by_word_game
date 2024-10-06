@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:word_by_word_game/common_imports.dart';
-import 'package:word_by_word_game/pack_core/global_states/app/locale_logic.dart';
 
 class AppSettingsCubitDto {
   AppSettingsCubitDto({
@@ -29,7 +28,7 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
   }
 
   ValueListenable<Locale> get locale => uiLocaleNotifier;
-  Languages get language => locale.value.language;
+  UiLanguage get language => locale.value.language;
   Future<void> updateLocale(final Locale? locale) async {
     final result = await LocaleLogic().updateLocale(
       newLocale: locale,
@@ -42,8 +41,4 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
     if (value.locale == result.updatedLocale) return;
     await _updateSettings(value.copyWith(locale: result.updatedLocale));
   }
-}
-
-extension LocaleX on Locale {
-  Languages get language => Languages.byLanguageCode(languageCode);
 }

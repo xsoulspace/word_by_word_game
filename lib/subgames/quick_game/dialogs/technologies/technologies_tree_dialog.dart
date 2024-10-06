@@ -1,7 +1,5 @@
 // ignore_for_file: lines_longer_than_80_chars
 
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/common_imports.dart';
@@ -31,7 +29,7 @@ class _TechnologyTile extends StatelessWidget {
   final ValueChanged<TechnologyWordInfoTuple> onHover;
   final TechnologyModel value;
   final TechnologyProgressModel? progress;
-  final Languages language;
+  final UiLanguage language;
   @override
   Widget build(final BuildContext context) {
     final mechanics = context.read<MechanicsCollection>();
@@ -96,18 +94,18 @@ class _TechnologyTile extends StatelessWidget {
               ),
               Text(
                 (isUnlocked
-                        ? const LocalizedMap(
+                        ? LocalizedMap(
                             value: {
-                              Languages.en: 'Researched',
-                              Languages.ru: 'Исследовано',
-                              Languages.it: 'Ricerco',
+                              languages.en: 'Researched',
+                              languages.ru: 'Исследовано',
+                              languages.it: 'Ricerco',
                             },
                           )
-                        : const LocalizedMap(
+                        : LocalizedMap(
                             value: {
-                              Languages.en: 'Not researched',
-                              Languages.ru: 'Не исследовано',
-                              Languages.it: 'Non ricerco',
+                              languages.en: 'Not researched',
+                              languages.ru: 'Не исследовано',
+                              languages.it: 'Non ricerco',
                             },
                           ))
                     .getValue(locale),

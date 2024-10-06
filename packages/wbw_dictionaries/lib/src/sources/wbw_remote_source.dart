@@ -24,10 +24,11 @@ extension WordMeaningRequestTupleX on WordMeaningRequestTuple {
       );
 }
 
-extension _LanguagesX on Languages {
-  WordLanguage toLanguage() => switch (this) {
-        Languages.en => WordLanguage.eng,
-        Languages.ru => WordLanguage.ru,
-        Languages.it => throw UnimplementedError(),
-      };
+extension _LanguagesX on UiLanguage {
+  WordLanguage toLanguage() {
+    if (this == languages.en) return WordLanguage.eng;
+    if (this == languages.ru) return WordLanguage.ru;
+    if (this == languages.it) throw UnimplementedError();
+    throw UnimplementedError();
+  }
 }

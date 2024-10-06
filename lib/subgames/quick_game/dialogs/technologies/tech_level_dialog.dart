@@ -13,7 +13,7 @@ class TechLevelsDialog extends StatelessWidget {
     final locale = useLocale(context);
     final levelCubit = context.read<LevelBloc>();
     final wordsLanguage =
-        context.select<LevelBloc, Languages>((final c) => c.wordsLanguage);
+        context.select<LevelBloc, UiLanguage>((final c) => c.wordsLanguage);
     final wordsLocale = Locales.byLanguage(wordsLanguage);
     final technologiesCubit = context.watch<TechnologiesCubit>();
     final (
@@ -30,11 +30,11 @@ class TechLevelsDialog extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              const LocalizedMap(
+              LocalizedMap(
                 value: {
-                  Languages.en: 'Technologies Progress',
-                  Languages.ru: 'Прогресс технологий',
-                  Languages.it: 'Progresso tecnologie',
+                  languages.en: 'Technologies Progress',
+                  languages.ru: 'Прогресс технологий',
+                  languages.it: 'Progresso tecnologie',
                 },
               ).getValue(locale),
               style: context.textTheme.titleLarge,
@@ -73,13 +73,13 @@ class TechLevelsDialog extends StatelessWidget {
                           ),
                           const Gap(4),
                           Text(
-                            const LocalizedMap(
+                            LocalizedMap(
                               value: {
-                                Languages.en:
+                                languages.en:
                                     'Use words to research technology faster.',
-                                Languages.ru:
+                                languages.ru:
                                     'Использовать слова для быстрого исследования технологий.',
-                                Languages.it:
+                                languages.it:
                                     'Usare parole per un ricerche veloce della tecnologia.',
                               },
                             ).getValue(locale),
@@ -208,7 +208,7 @@ class _TechLevel extends StatelessWidget {
   final TechnologyLevelIndex lastLevelIndex;
   final int index;
   final TechnologyLevelTuple level;
-  final Languages wordsLanguage;
+  final UiLanguage wordsLanguage;
   final Locale wordsLocale;
   final Map<TechnologyModelId, TechnologyModel> technologies;
 

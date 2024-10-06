@@ -30,9 +30,9 @@ class TechLevelAchievedDialog extends StatelessWidget {
                   LocalizedMap(
                     value: {
                       // TODO(arenukvern): l10n
-                      Languages.en: achievedLevel.title,
-                      Languages.ru: achievedLevel.title,
-                      Languages.it: achievedLevel.title,
+                      languages.en: achievedLevel.title,
+                      languages.ru: achievedLevel.title,
+                      languages.it: achievedLevel.title,
                     },
                   ).getValue(locale),
                   style: context.textTheme.titleLarge,
@@ -49,12 +49,12 @@ class TechLevelAchievedDialog extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    const LocalizedMap(
+                    LocalizedMap(
                       value: {
-                        Languages.en:
+                        languages.en:
                             'Congratulations! You achieved a new level!',
-                        Languages.ru: 'Поздравляем! Вы достигли нового уровня!',
-                        Languages.it:
+                        languages.ru: 'Поздравляем! Вы достигли нового уровня!',
+                        languages.it:
                             'Congratulazioni! Hai raggiunto un nuovo livello!',
                       },
                     ).getValue(locale),

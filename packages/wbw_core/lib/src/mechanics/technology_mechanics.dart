@@ -19,7 +19,7 @@ class TechnologyMechanics {
   bool checkIsUnlockedInSomeLanguages({
     required final TechnologyUnlockConditionModel unlockCondition,
   }) {
-    for (final language in Languages.values) {
+    for (final language in UiLanguage.all) {
       final result = checkIsUnlockedForLanguage(
         unlockCondition: unlockCondition,
         language: language,
@@ -31,7 +31,7 @@ class TechnologyMechanics {
 
   TechUnlockStatusTuple checkIsUnlockedForLanguage({
     required final TechnologyUnlockConditionModel? unlockCondition,
-    final Languages? language,
+    final UiLanguage? language,
   }) {
     final lang = language ?? LocalizedMap.getCurrentLanugage();
     final words = unlockCondition?.languageWords[lang];

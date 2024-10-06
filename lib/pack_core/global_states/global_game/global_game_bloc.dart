@@ -1,12 +1,9 @@
-import 'dart:async';
-
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:logger/logger.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
-import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
 import 'package:word_by_word_game/subgames/quick_game/tutorial/tutorial_listener.dart';
 
 part 'global_game_bloc.freezed.dart';
@@ -114,7 +111,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   }
 
   LevelModel _createEmptyLevel() => createLevel(
-        wordsLanguage: Languages.en,
+        wordsLanguage: Locales.fallback.language,
         canvasDataId: state.allCanvasData.values
             .firstWhere((final e) => e.tilesetType == TilesetType.whiteBlack)
             .id,
@@ -128,7 +125,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
     required final List<PlayerProfileModelId> playersIds,
     required final Gid characterId,
     required final LevelFeaturesSettingsModel featuresSettings,
-    required final Languages wordsLanguage,
+    required final UiLanguage wordsLanguage,
   }) {
     final liveState = state;
     final playersCollection = liveState.playersCollection;

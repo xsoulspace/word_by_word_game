@@ -26,7 +26,9 @@ class GlobalStatesProvider extends StatelessWidget {
           ChangeNotifierProvider(create: UiTechPointsAnimationNotifier.new),
           ChangeNotifierProvider(create: UiPowerPointsAnimationNotifier.new),
           ChangeNotifierProvider(create: AppStatusNotifier.new),
-          ChangeNotifierProvider.value(value: uiLocaleNotifier),
+          ChangeNotifierProvider(
+            create: (final context) => UiLocaleNotifier(Locales.fallback),
+          ),
           ChangeNotifierProvider(create: OnlineStatusService.new),
           Provider(
             create: (final context) => AppServerpodClient(url: Envs.serverUrl),

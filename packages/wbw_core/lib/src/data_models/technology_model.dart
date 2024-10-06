@@ -100,7 +100,7 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
     /// Principle: if several words for one language in [languageWords] are used
     /// then [TechnologyModel] is unlocked
     /// for that certain language.
-    required final Map<Languages, List<UsefulWordModel>> languageWords,
+    required final Map<UiLanguage, List<UsefulWordModel>> languageWords,
 
     /// one idea is to have minimum words to unlock the technology
     @Default(0) final int wordsUnlockThreshold,

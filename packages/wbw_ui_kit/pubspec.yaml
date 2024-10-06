@@ -21,7 +21,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   gap: ^3.0.1
   google_fonts: ^6.2.1
-  life_hooks: ^0.0.19
+  life_hooks: ^0.0.20
   provider: ^6.1.2
   recase: ^4.1.0
   rive: ^0.13.12
