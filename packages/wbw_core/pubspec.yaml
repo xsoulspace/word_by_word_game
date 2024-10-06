@@ -46,7 +46,7 @@ dependencies:
   wbw_locale:
     path: ../wbw_locale
   web: ^1.0.0
-  xsoulspace_foundation: ^0.0.1
+  xsoulspace_foundation: ^0.0.2
 
 dev_dependencies:
   analyzer: ^6.4.1
@@ -58,7 +58,7 @@ dev_dependencies:
     sdk: flutter
   freezed: ^2.5.7
   json_serializable: ^6.7.1
-  xsoulspace_lints: ^0.0.10
+  xsoulspace_lints: ^0.0.11
 
 dependency_overrides:
   collection: 1.19.0
