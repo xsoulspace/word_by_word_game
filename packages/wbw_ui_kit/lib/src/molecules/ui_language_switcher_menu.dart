@@ -32,13 +32,13 @@ class UiLanguageSwitcherMenu extends StatelessWidget {
     this.languages = const [],
     super.key,
   });
-  final Languages value;
-  final List<Languages> languages;
-  final ValueChanged<Languages> onChanged;
+  final UiLanguage value;
+  final List<UiLanguage> languages;
+  final ValueChanged<UiLanguage> onChanged;
   final bool isShortAbbreviationUsed;
   @override
   Widget build(final BuildContext context) {
-    final effectiveValues = (languages.isNotEmpty ? languages : Languages.all);
+    final effectiveValues = (languages.isNotEmpty ? languages : UiLanguage.all);
     final List<Widget> menuChildren;
 
     if (isShortAbbreviationUsed) {
@@ -87,12 +87,12 @@ class LanguageSwitcherMenuOld extends StatelessWidget {
     required this.onSelected,
     super.key,
   });
-  final List<Languages> languages;
-  final Languages initLanguage;
-  final ValueChanged<Languages?> onSelected;
+  final List<UiLanguage> languages;
+  final UiLanguage initLanguage;
+  final ValueChanged<UiLanguage?> onSelected;
 
   @override
-  Widget build(final BuildContext context) => DropdownMenu<Languages>(
+  Widget build(final BuildContext context) => DropdownMenu<UiLanguage>(
         menuStyle: _defaultDropdownMenuStyle,
         textStyle: context.textTheme.bodyMedium,
         inputDecorationTheme: _defaultDropdownMenuInputTheme,
