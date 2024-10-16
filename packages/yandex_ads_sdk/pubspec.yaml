@@ -20,7 +20,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   pigeon: ^21.1.0
-  xsoulspace_lints: ^0.0.10
+  xsoulspace_lints: ^0.0.11
 
 dependency_overrides:
   collection: 1.18.0

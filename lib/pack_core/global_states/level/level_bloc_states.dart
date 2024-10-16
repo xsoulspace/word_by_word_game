@@ -1,4 +1,4 @@
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, avoid_classes_with_only_static_members
 
 part of 'level_bloc.dart';
 
@@ -20,7 +20,7 @@ class LevelBlocState with _$LevelBlocState {
     @Default(WordWarning.none) final WordWarning wordWarning,
     @Default(LevelFeaturesSettingsModel.empty)
     final LevelFeaturesSettingsModel featuresSettings,
-    @Default(Languages.en) final Languages wordsLanguage,
+    @Default(Locales.fallback) final UiLanguage wordsLanguage,
   }) = _LevelBlocState;
   // ignore: prefer_constructors_over_static_methods
   static LevelBlocState liveFromModel(final LevelModel levelModel) =>

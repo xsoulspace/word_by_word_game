@@ -12,7 +12,6 @@ import 'package:map_editor/ui/sandbox/tileset_direction_generator.dart';
 import 'package:provider/provider.dart';
 import 'package:recase/recase.dart';
 import 'package:universal_io/io.dart' as io;
-import 'package:wbw_locale/wbw_locale.dart';
 import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 
 class SandboxUiOverlay extends StatelessWidget {
@@ -90,7 +89,7 @@ class TileButtons extends StatelessWidget {
                               .map(
                                 (final canvasData) => MenuItemButton(
                                   child: Text(
-                                    canvasData.name.getValue(Locales.en),
+                                    canvasData.name.getValue(context.read()),
                                   ),
                                   onPressed: () async => drawerCubit
                                       .changeCurrentLevelMap(canvasData),
@@ -112,7 +111,7 @@ class TileButtons extends StatelessWidget {
                             },
                             child: Text(
                               // ignore: lines_longer_than_80_chars
-                              'Map: ${name.value.isEmpty ? 'noname' : name.getValue(Locales.en)}',
+                              'Map: ${name.value.isEmpty ? 'noname' : name.getValue(context.read())}',
                             ),
                           ),
                         );

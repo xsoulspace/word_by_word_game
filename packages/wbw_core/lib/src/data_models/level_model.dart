@@ -59,7 +59,7 @@ class LevelModel with _$LevelModel {
     final TechnologyTreeProgressModel technologyTreeProgress,
     @Default(LevelFeaturesSettingsModel.empty)
     final LevelFeaturesSettingsModel featuresSettings,
-    @Default(Languages.en) final Languages wordsLanguage,
+    @Default(Locales.fallback) final UiLanguage wordsLanguage,
     @Default(PlayerStartPointType.fromSpawnPoint)
     final PlayerStartPointType playerStartPoint,
 

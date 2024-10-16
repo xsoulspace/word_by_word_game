@@ -32,7 +32,7 @@ class StateDiProvider extends StatelessWidget {
             create: core.PrefsDb.new,
           ),
           Provider(create: EditorMechanicsCollection.v1),
-          Provider(create: (final context) => Languages.en),
+          Provider(create: (final context) => Locales.fallback),
         ],
         builder: (final context, final child) => MultiBlocProvider(
           providers: [

@@ -1,7 +1,3 @@
-import 'dart:async';
-
-import 'package:blur/blur.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/weather_bar.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/animated_progress_bar.dart';
@@ -466,7 +462,7 @@ class UiTechnologyCircle extends StatelessWidget {
   final Color textColor;
   final Color backgroundColor;
   final VoidCallback? onPressed;
-  final Map<Languages, String> tooltipMessage;
+  final Map<UiLanguage, String> tooltipMessage;
 
   @override
   Widget build(final BuildContext context) {

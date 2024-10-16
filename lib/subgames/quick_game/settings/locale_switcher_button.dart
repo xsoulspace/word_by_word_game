@@ -7,7 +7,7 @@ class LocaleSwitcherButton extends StatelessWidget {
   });
   static Future<void> applyNewLanguage(
     final BuildContext context,
-    final Languages newLanguage,
+    final UiLanguage newLanguage,
   ) async {
     final uiKeyboardController = context.read<UiKeyboardController>();
     final userNotifier = context.read<AppSettingsNotifier>();
@@ -21,11 +21,11 @@ class LocaleSwitcherButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final localeNotifier = useLocale(context);
-    final language = Languages.values.byName(localeNotifier.languageCode);
+    final language = localeNotifier.language;
 
     return UiLanguageSwitcherMenu(
       value: language,
-      languages: Languages.all,
+      languages: UiLanguage.all,
       isShortAbbreviationUsed: false,
       onChanged: (final newLanguage) async =>
           applyNewLanguage(context, newLanguage),
@@ -41,12 +41,11 @@ class LocaleSwitcherGrid extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final localeNotifier = useLocale(context);
-    final currentLanguage =
-        Languages.values.byName(localeNotifier.languageCode);
+    final currentLanguage = localeNotifier.language;
     return Wrap(
       spacing: 4,
       runSpacing: 4,
-      children: Languages.all
+      children: UiLanguage.all
           .map(
             (final language) => _LanguageChip(
               language: language,
@@ -72,7 +71,7 @@ class _LanguageChip extends StatelessWidget {
     required this.isSelected,
     required this.onSelected,
   });
-  final Languages language;
+  final UiLanguage language;
   final bool isSelected;
   final ValueChanged<bool> onSelected;
 

@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/foundation.dart';
 import 'package:life_hooks/life_hooks.dart';
 import 'package:universal_io/io.dart';
@@ -56,11 +54,11 @@ class GameInitializer {
         PlayerCharacterModel(
           id: const Gid(value: 'balloon 1'),
           gid: const Gid(value: 'balloon 1'),
-          localizedName: const LocalizedMap(
+          localizedName: LocalizedMap(
             value: {
-              Languages.en: 'Hot Air Balloon',
-              Languages.ru: 'Воздушный шар',
-              Languages.it: 'Mongolfiera',
+              languages.en: 'Hot Air Balloon',
+              languages.ru: 'Воздушный шар',
+              languages.it: 'Mongolfiera',
             },
           ),
           characterIcon: 'char_hot_air_baloon',

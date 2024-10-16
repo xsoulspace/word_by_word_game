@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 
 class AnimatedProgressBar extends StatefulWidget {
@@ -132,7 +129,7 @@ class UiLabledProgressBar extends HookWidget {
   final Widget? icon;
   final EdgeInsets iconPadding;
   final VoidCallback? onPressed;
-  final Map<Languages, String> tooltipMessage;
+  final Map<UiLanguage, String> tooltipMessage;
   final bool hiddenWhenNotHovered;
 
   @override

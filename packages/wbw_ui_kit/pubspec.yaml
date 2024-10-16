@@ -21,7 +21,7 @@ dependencies:
   freezed_annotation: ^2.4.4
   gap: ^3.0.1
   google_fonts: ^6.2.1
-  life_hooks: ^0.0.19
+  life_hooks: ^0.0.20
   provider: ^6.1.2
   recase: ^4.1.0
   rive: ^0.13.12
@@ -31,7 +31,7 @@ dependencies:
     path: ../wbw_core
   wbw_locale:
     path: ../wbw_locale
-  xsoulspace_foundation: ^0.0.1
+  xsoulspace_foundation: ^0.0.2
 
 dev_dependencies:
   analyzer: ^6.4.1
@@ -40,7 +40,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   freezed: ^2.5.7
-  xsoulspace_lints: ^0.0.10
+  xsoulspace_lints: ^0.0.11
 
 dependency_overrides:
   collection: 1.19.0

@@ -92,11 +92,11 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
             mainAxisSize: MainAxisSize.min,
             children: [
               _CurrentWeatherText(
-                tooltipMessage: const LocalizedMap(
+                tooltipMessage: LocalizedMap(
                   value: {
-                    Languages.en: 'Current weather type',
-                    Languages.ru: 'Текущий тип погоды',
-                    Languages.it: 'Tipo di previsione attuale',
+                    languages.en: 'Current weather type',
+                    languages.ru: 'Текущий тип погоды',
+                    languages.it: 'Tipo di previsione attuale',
                   },
                 ).getValue(locale),
                 weather: currentWeather,
@@ -116,11 +116,11 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
                   child: Column(
                     children: [
                       WindDirectionBadge(
-                        tooltipMessage: const LocalizedMap(
+                        tooltipMessage: LocalizedMap(
                           value: {
-                            Languages.en: 'Horizontal wind force',
-                            Languages.ru: 'Горизонтальная сила ветера',
-                            Languages.it: 'Forza del vento orizzontale',
+                            languages.en: 'Horizontal wind force',
+                            languages.ru: 'Горизонтальная сила ветера',
+                            languages.it: 'Forza del vento orizzontale',
                           },
                         ).getValue(locale),
                         value: currentWind.force.x,
@@ -132,13 +132,13 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
                         thickness: 1,
                       ),
                       WindDirectionBadge(
-                        tooltipMessage: const LocalizedMap(
+                        tooltipMessage: LocalizedMap(
                           value: {
-                            Languages.en:
+                            languages.en:
                                 'Vertical wind force, can blow up or down',
-                            Languages.ru:
+                            languages.ru:
                                 'Вертикальная сила ветера, может дуть вниз или вверх',
-                            Languages.it:
+                            languages.it:
                                 'Forza del vento verticale, puô essere sopra o sotto',
                           },
                         ).getValue(locale),
@@ -179,11 +179,11 @@ class _NextWeathersRow extends StatelessWidget {
       children: [
         if (firstWeather != null)
           Tooltip(
-            message: const LocalizedMap(
+            message: LocalizedMap(
               value: {
-                Languages.en: 'Next weather predictions',
-                Languages.ru: 'Предсказания погоды',
-                Languages.it: 'Previsioni della prossima previsione',
+                languages.en: 'Next weather predictions',
+                languages.ru: 'Предсказания погоды',
+                languages.it: 'Previsioni della prossima previsione',
               },
             ).getValue(locale),
             child: TutorialFrame(
@@ -194,11 +194,11 @@ class _NextWeathersRow extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${firstWeather.windScale.emojiRepresentation}${const LocalizedMap(
+                        '${firstWeather.windScale.emojiRepresentation}${LocalizedMap(
                           value: {
-                            Languages.en: 'in',
-                            Languages.ru: 'в',
-                            Languages.it: 'in',
+                            languages.en: 'in',
+                            languages.ru: 'в',
+                            languages.it: 'in',
                           },
                         ).getValue(locale)} ${state.weather.durationInGameSeconds}',
                         style: context.textTheme.labelSmall,

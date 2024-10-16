@@ -11,8 +11,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 import 'package:tar/tar.dart';
-// import 'package:universal_io/io.dart';
-import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
@@ -34,7 +32,7 @@ enum WbwDictionariesLoadingStatus {
 }
 
 typedef WbwDictionaryEntryTuple = ({
-  Languages language,
+  UiLanguage language,
   String archivePath,
   String csvPath
 });
@@ -185,12 +183,12 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     (
       archivePath: Assets.archives.engDicTar,
       csvPath: Assets.src.engDic,
-      language: Languages.en,
+      language: languages.en,
     ),
     (
       archivePath: Assets.archives.ruDicTar,
       csvPath: Assets.src.ruDic,
-      language: Languages.ru,
+      language: languages.ru,
     ),
   ];
 
