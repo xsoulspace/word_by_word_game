@@ -1,4 +1,8 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'S.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for Russian (`ru`).
 class SRu extends S {
@@ -131,9 +135,6 @@ class SRu extends S {
 
   @override
   String get tryAnotherWord => 'Попробовать другое слово';
-
-  @override
-  String get notEnoughKnowledgeToRevealWord => 'Не хватает очков';
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {

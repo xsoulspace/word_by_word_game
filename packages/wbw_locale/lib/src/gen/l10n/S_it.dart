@@ -1,4 +1,8 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'S.dart';
+
+// ignore_for_file: type=lint
 
 /// The translations for Italian (`it`).
 class SIt extends S {
@@ -131,9 +135,6 @@ class SIt extends S {
 
   @override
   String get tryAnotherWord => 'Prova un\'altra parola';
-
-  @override
-  String get notEnoughKnowledgeToRevealWord => 'Punti insufficienti';
 
   @override
   String useCostKnowledgePoints(Object costOfWord) {
