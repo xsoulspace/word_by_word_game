@@ -43,8 +43,8 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   }
 
   @override
-  Future<void> close() {
-    _log.close();
+  Future<void> close() async {
+    await _log.close();
     return super.close();
   }
 

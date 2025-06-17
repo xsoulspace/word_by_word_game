@@ -13,6 +13,7 @@ import 'package:provider/provider.dart';
 import 'package:tar/tar.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
+import 'package:xsoulspace_ui_foundation/xsoulspace_ui_foundation.dart';
 
 import 'gen/assets.gen.dart';
 import 'sources/wbw_local_source_i.dart';
@@ -243,7 +244,7 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     // tar.gz
     final buffer = await assetBundle.load(tuple.archivePath);
     final uint8List = Uint8List.sublistView(buffer);
-    final unzipped = GZipDecoder().decodeBytes(uint8List);
+    final unzipped = const GZipDecoder().decodeBytes(uint8List);
     final stream = Stream.value(unzipped);
     final reader = TarReader(stream);
     const converter = CsvToListConverter(fieldDelimiter: ';');

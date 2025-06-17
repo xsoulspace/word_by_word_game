@@ -31,7 +31,7 @@ class TechnologyMechanics {
     required final TechnologyUnlockConditionModel? unlockCondition,
     final UiLanguage? language,
   }) {
-    final lang = language ?? LocalizedMap.getCurrentLanugage();
+    final lang = language ?? LocalizedMap.getCurrentLanguage();
     final words = unlockCondition?.languageWords[lang];
     // TODO(arenukvern): maybe check other languages
     if (words == null || unlockCondition == null) {

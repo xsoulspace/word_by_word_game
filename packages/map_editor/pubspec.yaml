@@ -55,6 +55,7 @@ dependencies:
   wbw_locale:
   wbw_ui_kit:
   xsoulspace_foundation: ^0.2.0
+  xsoulspace_ui_foundation: ^0.1.0
 dev_dependencies:
   analyzer: ^7.4.5
   build_runner: ^2.5.0

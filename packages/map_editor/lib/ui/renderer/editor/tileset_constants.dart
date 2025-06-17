@@ -7,7 +7,7 @@ import 'package:flame_fire_atlas/flame_fire_atlas.dart';
 import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:recase/recase.dart';
-import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
+import 'package:xsoulspace_ui_foundation/xsoulspace_ui_foundation.dart';
 
 enum TilesetConstantsSource { image, tileset }
 

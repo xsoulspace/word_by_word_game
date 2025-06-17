@@ -20,8 +20,8 @@ final class CanvasCubit extends DrawerCubit {
       );
   final _log = Logger();
   @override
-  Future<void> close() {
-    _log.close();
+  Future<void> close() async {
+    await _log.close();
     return super.close();
   }
 

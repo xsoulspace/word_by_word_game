@@ -19,7 +19,7 @@ import 'package:map_editor/ui/renderer/editor/tileset_constants.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/resources_loader.dart';
 import 'package:wbw_core/wbw_core.dart';
-import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
+import 'package:xsoulspace_ui_foundation/xsoulspace_ui_foundation.dart';
 
 part 'debug_surface.dart';
 part 'editor_canvas_object.dart';
@@ -43,13 +43,13 @@ class EditorRendererComponent extends Component
   final cursor = CursorRenderer();
   final tilesDrawer = TilesDrawer();
   final tilesRenderer = TilesRenderer();
-  Vector2 _dragOffset = Vector2.zero();
+  var _dragOffset = Vector2.zero();
   final animationUpdater = AnimationUpdater();
   final canvasObjectsDrawer = EditorCanvasObjectsDrawer();
 
   @override
-  FutureOr<void> onLoad() {
-    addAll([
+  FutureOr<void> onLoad() async {
+    await addAll([
       // RENDER
       tilesRenderer,
       debugSurface,

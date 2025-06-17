@@ -58,13 +58,13 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
   _statesStatusesCubitSubscription;
 
   @override
-  Future<void> close() {
-    _statesStatusesCubitSubscription?.cancel();
+  Future<void> close() async {
+    await _statesStatusesCubitSubscription?.cancel();
     dto.mechanics.worldTime.removeListener(onWorldTick);
     if (_tutorialEventsListener != null) {
       dto.tutorialBloc.notifier.removeListener(_tutorialEventsListener!);
     }
-    _log.close();
+    await _log.close();
     return super.close();
   }
 
@@ -391,7 +391,7 @@ class GlobalGameBloc extends Cubit<GlobalGameBlocState> {
         shouldContinueIfPlayed: false,
         shouldStartFromBeginning: event.shouldRestartTutorial,
       );
-      dto.tutorialBloc.onStartTutorial(tutorialEvent);
+      unawaited(dto.tutorialBloc.onStartTutorial(tutorialEvent));
     });
   }
 

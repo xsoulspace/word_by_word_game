@@ -66,6 +66,7 @@ dependencies:
   go_router: ^15.2.0
   google_fonts: ^6.2.1
   intl: ^0.20.2
+  is_dart_empty_or_not: ^0.2.3
   json_annotation: ^4.9.0
   life_hooks: ^0.1.1
   logger: ^2.5.0

@@ -151,8 +151,8 @@ class TilesRenderer extends Component
         HasEditorRef,
         HasEditorResourcesLoaderRef {
   @override
-  FutureOr<void> onLoad() {
-    add(
+  FutureOr<void> onLoad() async {
+    await add(
       FlameBlocListener<DrawerCubit, DrawerCubitState>(
         onNewState: _onNewDrawerState,
       ),
@@ -162,7 +162,7 @@ class TilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final TilesPainterInterface _painter = TilesPainterInterface.getImpl();
+  final _painter = TilesPainterInterface.getImpl();
   @override
   void render(final Canvas canvas) {
     _painter.render(

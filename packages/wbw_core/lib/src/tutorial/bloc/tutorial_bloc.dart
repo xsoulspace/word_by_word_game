@@ -29,8 +29,8 @@ class TutorialBloc extends Cubit<TutorialBlocState> {
     notifier = TutorialStateNotifier.listen(bloc: this);
   }
   @override
-  Future<void> close() {
-    notifier.dispose();
+  Future<void> close() async {
+    await notifier.dispose();
     return super.close();
   }
 

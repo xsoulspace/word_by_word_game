@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:isolate';
 
 import 'package:firebase_analytics/firebase_analytics.dart';
@@ -5,7 +6,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
 import 'package:universal_io/io.dart';
-import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
+import 'package:xsoulspace_ui_foundation/xsoulspace_ui_foundation.dart';
 
 import '../interfaces/interfaces.dart';
 import '../utils/utils.dart';
@@ -27,8 +28,8 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
 
 class FirebaseAnalyticsPlugin extends AnalyticsServicePlugin {
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
-  bool _isEnabled = false;
-  bool _shouldRecordErrors = false;
+  var _isEnabled = false;
+  var _shouldRecordErrors = false;
   @override
   Future<void> onLoad() async {
     _isEnabled =
@@ -119,7 +120,9 @@ class FirebaseCrashlyticsPlugin extends AnalyticsServicePlugin {
       // Pass all uncaught asynchronous errors that aren't handled by the
       // Flutter framework to Crashlytics
       PlatformDispatcher.instance.onError = (final error, final stack) {
-        FirebaseCrashlytics.instance.recordError(error, stack, fatal: true);
+        unawaited(
+          FirebaseCrashlytics.instance.recordError(error, stack, fatal: true),
+        );
 
         return true;
       };
