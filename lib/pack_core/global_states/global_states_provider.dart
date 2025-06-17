@@ -11,6 +11,8 @@ import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/s
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_tech_points_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
+final uiLocaleNotifier = UiLocaleNotifier(Locales.fallback);
+
 class GlobalStatesProvider extends StatelessWidget {
   const GlobalStatesProvider({
     required this.builder,
@@ -26,9 +28,7 @@ class GlobalStatesProvider extends StatelessWidget {
       ChangeNotifierProvider(create: UiTechPointsAnimationNotifier.new),
       ChangeNotifierProvider(create: UiPowerPointsAnimationNotifier.new),
       ChangeNotifierProvider(create: AppStatusNotifier.new),
-      ChangeNotifierProvider(
-        create: (final context) => UiLocaleNotifier(Locales.fallback),
-      ),
+      ChangeNotifierProvider.value(value: uiLocaleNotifier),
       ChangeNotifierProvider(create: OnlineStatusService.new),
       Provider(
         create: (final context) => AppServerpodClient(url: Envs.serverUrl),

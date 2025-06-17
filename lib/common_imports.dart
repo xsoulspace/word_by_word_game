@@ -16,5 +16,14 @@ export 'package:wbw_locale/wbw_locale.dart';
 export 'package:wbw_ui_kit/wbw_ui_kit.dart';
 export 'package:word_by_word_game/envs.dart';
 export 'package:xsoulspace_foundation/xsoulspace_foundation.dart' hide PrefsDb;
+export 'package:xsoulspace_ui_foundation/xsoulspace_ui_foundation.dart'
+    hide
+        HeavyComputation,
+        Loadable,
+        StateDistributor,
+        Stateless,
+        heavyComputation,
+        stateDistributor,
+        stateless;
 
 export 'pack_core/pack_core.dart';

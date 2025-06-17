@@ -606,7 +606,7 @@ abstract interface class WorldTickConsumable {
 class GameSaver {
   GameSaver({required this.onSave});
   final VoidCallback onSave;
-  DateTime _lastSaveDate = DateTime.now();
+  var _lastSaveDate = DateTime.now();
   void onTick() {
     final now = DateTime.now();
     if (now.difference(_lastSaveDate).inSeconds > 3) {
