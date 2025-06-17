@@ -12,10 +12,7 @@ import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/w
 part 'gui_building_notifier.freezed.dart';
 part 'gui_building_notifier.g.dart';
 
-enum GuiBuildingStatusEnum {
-  idle,
-  placing;
-}
+enum GuiBuildingStatusEnum { idle, placing }
 
 /// All keys are objectIds
 @JsonEnum(alwaysCreate: true)
@@ -39,11 +36,11 @@ enum GuiBuildingTypeEnum {
           .key;
   String toNamedJson() => _$GuiBuildingTypeEnumEnumMap[this]!;
   TileId get tileId => switch (this) {
-        nothing => throw ArgumentError.value(this),
+    nothing => throw ArgumentError.value(this),
 
-        /// prefix is required to create correct object id
-        _ => TileId(value: 'building_${toNamedJson()}'),
-      };
+    /// prefix is required to create correct object id
+    _ => TileId(value: 'building_${toNamedJson()}'),
+  };
 }
 
 @freezed
@@ -59,8 +56,8 @@ class GuiBuildingNotifierState with _$GuiBuildingNotifierState {
 
 class GuiBuildingNotifierDto {
   GuiBuildingNotifierDto({required final BuildContext context})
-      : canvasCubit = context.read(),
-        wordCompositionCubit = context.read();
+    : canvasCubit = context.read(),
+      wordCompositionCubit = context.read();
   final CanvasCubit canvasCubit;
   final GuiWordCompositionCubit wordCompositionCubit;
 }
@@ -68,8 +65,8 @@ class GuiBuildingNotifierDto {
 /// this state should not be saved, as it is itermediate state
 class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
   GuiBuildingNotifier(final BuildContext context)
-      : dto = GuiBuildingNotifierDto(context: context),
-        super(GuiBuildingNotifierState.idle);
+    : dto = GuiBuildingNotifierDto(context: context),
+      super(GuiBuildingNotifierState.idle);
   final GuiBuildingNotifierDto dto;
   bool get isPlacing => value.status == GuiBuildingStatusEnum.placing;
   void cancelPlacing() {
@@ -82,10 +79,7 @@ class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
       tileId: value.type.tileId,
       distanceToOrigin: value.distanceToOrigin,
     );
-    dto.canvasCubit.placeBuildingObject(
-      cell: value.cellPoint!,
-      object: object,
-    );
+    dto.canvasCubit.placeBuildingObject(cell: value.cellPoint!, object: object);
     dto.wordCompositionCubit.onBuildingBuilt(kBuildObjectMultiplier);
     if (kDebugMode) {
       print(
@@ -97,18 +91,15 @@ class GuiBuildingNotifier extends ValueNotifier<GuiBuildingNotifierState> {
     cancelPlacing();
   }
 
-  void usePlace({
-    required final GameVector2 gameVector2,
-  }) =>
+  void usePlace({required final GameVector2 gameVector2}) =>
       value = value.copyWith(
-        cellPoint:
-            gameVector2.toMapTileCell(isCorrectNegatives: false).toCellPoint(),
+        cellPoint: gameVector2
+            .toMapTileCell(isCorrectNegatives: false)
+            .toCellPoint(),
         distanceToOrigin: gameVector2.toSerializedMapVector2(),
       );
 
-  void startPlacing({
-    required final GuiBuildingTypeEnum type,
-  }) =>
+  void startPlacing({required final GuiBuildingTypeEnum type}) =>
       value = GuiBuildingNotifierState(
         status: GuiBuildingStatusEnum.placing,
         type: type,

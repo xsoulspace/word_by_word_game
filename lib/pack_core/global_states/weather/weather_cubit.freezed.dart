@@ -12,7 +12,8 @@ part of 'weather_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$WeatherCubitState {
@@ -31,8 +32,9 @@ mixin _$WeatherCubitState {
 /// @nodoc
 abstract class $WeatherCubitStateCopyWith<$Res> {
   factory $WeatherCubitStateCopyWith(
-          WeatherCubitState value, $Res Function(WeatherCubitState) then) =
-      _$WeatherCubitStateCopyWithImpl<$Res, WeatherCubitState>;
+    WeatherCubitState value,
+    $Res Function(WeatherCubitState) then,
+  ) = _$WeatherCubitStateCopyWithImpl<$Res, WeatherCubitState>;
   @useResult
   $Res call({List<WeatherModel> weathers, WindModel wind});
 
@@ -53,20 +55,20 @@ class _$WeatherCubitStateCopyWithImpl<$Res, $Val extends WeatherCubitState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? weathers = null,
-    Object? wind = null,
-  }) {
-    return _then(_value.copyWith(
-      weathers: null == weathers
-          ? _value.weathers
-          : weathers // ignore: cast_nullable_to_non_nullable
-              as List<WeatherModel>,
-      wind: null == wind
-          ? _value.wind
-          : wind // ignore: cast_nullable_to_non_nullable
-              as WindModel,
-    ) as $Val);
+  $Res call({Object? weathers = null, Object? wind = null}) {
+    return _then(
+      _value.copyWith(
+            weathers: null == weathers
+                ? _value.weathers
+                : weathers // ignore: cast_nullable_to_non_nullable
+                      as List<WeatherModel>,
+            wind: null == wind
+                ? _value.wind
+                : wind // ignore: cast_nullable_to_non_nullable
+                      as WindModel,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of WeatherCubitState
@@ -83,9 +85,10 @@ class _$WeatherCubitStateCopyWithImpl<$Res, $Val extends WeatherCubitState>
 /// @nodoc
 abstract class _$$WeatherCubitStateImplCopyWith<$Res>
     implements $WeatherCubitStateCopyWith<$Res> {
-  factory _$$WeatherCubitStateImplCopyWith(_$WeatherCubitStateImpl value,
-          $Res Function(_$WeatherCubitStateImpl) then) =
-      __$$WeatherCubitStateImplCopyWithImpl<$Res>;
+  factory _$$WeatherCubitStateImplCopyWith(
+    _$WeatherCubitStateImpl value,
+    $Res Function(_$WeatherCubitStateImpl) then,
+  ) = __$$WeatherCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<WeatherModel> weathers, WindModel wind});
@@ -98,28 +101,28 @@ abstract class _$$WeatherCubitStateImplCopyWith<$Res>
 class __$$WeatherCubitStateImplCopyWithImpl<$Res>
     extends _$WeatherCubitStateCopyWithImpl<$Res, _$WeatherCubitStateImpl>
     implements _$$WeatherCubitStateImplCopyWith<$Res> {
-  __$$WeatherCubitStateImplCopyWithImpl(_$WeatherCubitStateImpl _value,
-      $Res Function(_$WeatherCubitStateImpl) _then)
-      : super(_value, _then);
+  __$$WeatherCubitStateImplCopyWithImpl(
+    _$WeatherCubitStateImpl _value,
+    $Res Function(_$WeatherCubitStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of WeatherCubitState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? weathers = null,
-    Object? wind = null,
-  }) {
-    return _then(_$WeatherCubitStateImpl(
-      weathers: null == weathers
-          ? _value._weathers
-          : weathers // ignore: cast_nullable_to_non_nullable
-              as List<WeatherModel>,
-      wind: null == wind
-          ? _value.wind
-          : wind // ignore: cast_nullable_to_non_nullable
-              as WindModel,
-    ));
+  $Res call({Object? weathers = null, Object? wind = null}) {
+    return _then(
+      _$WeatherCubitStateImpl(
+        weathers: null == weathers
+            ? _value._weathers
+            : weathers // ignore: cast_nullable_to_non_nullable
+                  as List<WeatherModel>,
+        wind: null == wind
+            ? _value.wind
+            : wind // ignore: cast_nullable_to_non_nullable
+                  as WindModel,
+      ),
+    );
   }
 }
 
@@ -127,11 +130,11 @@ class __$$WeatherCubitStateImplCopyWithImpl<$Res>
 
 class _$WeatherCubitStateImpl extends _WeatherCubitState
     with DiagnosticableTreeMixin {
-  const _$WeatherCubitStateImpl(
-      {final List<WeatherModel> weathers = const [],
-      this.wind = WindModel.zero})
-      : _weathers = weathers,
-        super._();
+  const _$WeatherCubitStateImpl({
+    final List<WeatherModel> weathers = const [],
+    this.wind = WindModel.zero,
+  }) : _weathers = weathers,
+       super._();
 
   /// idea that current weather always first.
   /// With weather completed, [weathers] first element should be removed
@@ -176,7 +179,10 @@ class _$WeatherCubitStateImpl extends _WeatherCubitState
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_weathers), wind);
+    runtimeType,
+    const DeepCollectionEquality().hash(_weathers),
+    wind,
+  );
 
   /// Create a copy of WeatherCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -185,13 +191,16 @@ class _$WeatherCubitStateImpl extends _WeatherCubitState
   @pragma('vm:prefer-inline')
   _$$WeatherCubitStateImplCopyWith<_$WeatherCubitStateImpl> get copyWith =>
       __$$WeatherCubitStateImplCopyWithImpl<_$WeatherCubitStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _WeatherCubitState extends WeatherCubitState {
-  const factory _WeatherCubitState(
-      {final List<WeatherModel> weathers,
-      final WindModel wind}) = _$WeatherCubitStateImpl;
+  const factory _WeatherCubitState({
+    final List<WeatherModel> weathers,
+    final WindModel wind,
+  }) = _$WeatherCubitStateImpl;
   const _WeatherCubitState._() : super._();
 
   /// idea that current weather always first.

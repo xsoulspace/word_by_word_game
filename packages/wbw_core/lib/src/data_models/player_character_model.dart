@@ -45,8 +45,8 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
   static const empty = PlayerCharacterModel();
   SerializedVector2 get restorationDistanceToOrigin =>
       checkpointDistanceToOrigin.isZero
-          ? distanceToOrigin
-          : checkpointDistanceToOrigin;
+      ? distanceToOrigin
+      : checkpointDistanceToOrigin;
   bool get hasCheckpoint => checkpointDistanceToOrigin.isNotZero;
 }
 

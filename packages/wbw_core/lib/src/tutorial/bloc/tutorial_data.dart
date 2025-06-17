@@ -22,11 +22,7 @@ final _tutorialData = TutorialCollectionsDataModel(
       TutorialEventModel(
         completeActions: const [],
         localizedMap: LocalizedMap(
-          value: {
-            languages.en: '',
-            languages.ru: '',
-            languages.it: '',
-          },
+          value: {languages.en: '', languages.ru: '', languages.it: ''},
         ),
         anchorUiItem: TutorialUiItem.gameFuelIndicator,
       ),
@@ -60,9 +56,7 @@ final _tutorialData = TutorialCollectionsDataModel(
           },
         ),
         gamePreEffects: const [
-          TutorialGameEffectModel(
-            name: TutorialGameEffectName.pauseGame,
-          ),
+          TutorialGameEffectModel(name: TutorialGameEffectName.pauseGame),
         ],
       ),
       TutorialEventModel(

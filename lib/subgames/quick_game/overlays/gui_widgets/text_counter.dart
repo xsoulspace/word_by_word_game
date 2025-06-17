@@ -45,9 +45,10 @@ class _UiTextCounterState extends State<UiTextCounter>
 
   void _initializeAnimations() {
     final colorScheme = context.colorScheme;
-    _animation = IntTween(begin: _oldValue, end: widget.value)
-        .chain(CurveTween(curve: Curves.easeInOut))
-        .animate(_controller);
+    _animation = IntTween(
+      begin: _oldValue,
+      end: widget.value,
+    ).chain(CurveTween(curve: Curves.easeInOut)).animate(_controller);
     _colorAnimation = ColorTween(
       begin: _oldValue > widget.value
           ? colorScheme.error
@@ -79,11 +80,11 @@ class _UiTextCounterState extends State<UiTextCounter>
 
   @override
   Widget build(final BuildContext context) => AnimatedBuilder(
-        animation: Listenable.merge([_animation, _colorAnimation]),
-        builder: (final context, final child) => Text(
-          '${widget.prefix}${_animation?.value ?? 0}${widget.suffix}',
-          style: widget.style?.copyWith(color: _colorAnimation?.value),
-          textAlign: widget.textAlign,
-        ),
-      );
+    animation: Listenable.merge([_animation, _colorAnimation]),
+    builder: (final context, final child) => Text(
+      '${widget.prefix}${_animation?.value ?? 0}${widget.suffix}',
+      style: widget.style?.copyWith(color: _colorAnimation?.value),
+      textAlign: widget.textAlign,
+    ),
+  );
 }

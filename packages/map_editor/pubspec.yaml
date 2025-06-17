@@ -8,6 +8,8 @@ publish_to: none
 environment:
   sdk: ">=3.8.1 <4.0.0"
 
+resolution: workspace
+
 dependencies:
   animate_do: ^4.2.0
   bloc: ^9.0.0
@@ -50,28 +52,21 @@ dependencies:
   universal_io: ^2.2.2
   url_launcher: ^6.3.1
   wbw_core:
-    path: ../wbw_core
   wbw_locale:
-    path: ../wbw_locale
   wbw_ui_kit:
-    path: ../wbw_ui_kit
   xsoulspace_foundation: ^0.2.0
 dev_dependencies:
   analyzer: ^7.4.5
   build_runner: ^2.5.0
   flutter_gen: ^5.10.0
   flutter_gen_runner: ^5.10.0
-  lints: ^6.0.0
   flutter_test:
     sdk: flutter
   freezed: ^3.0.6
   json_serializable: ^6.9.5
+  lints: ^6.0.0
   xsoulspace_lints: ^0.1.0
 
-dependency_overrides:
-  collection: ^1.19.1
-  package_info_plus: ^8.3.0
-  web: ^1.1.1
 flutter_gen:
   output: lib/generated/
   lineLength: 80

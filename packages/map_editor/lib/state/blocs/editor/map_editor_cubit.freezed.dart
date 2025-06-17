@@ -12,7 +12,8 @@ part of 'map_editor_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$MapEditorBlocState {
@@ -28,8 +29,9 @@ mixin _$MapEditorBlocState {
 /// @nodoc
 abstract class $MapEditorBlocStateCopyWith<$Res> {
   factory $MapEditorBlocStateCopyWith(
-          MapEditorBlocState value, $Res Function(MapEditorBlocState) then) =
-      _$MapEditorBlocStateCopyWithImpl<$Res, MapEditorBlocState>;
+    MapEditorBlocState value,
+    $Res Function(MapEditorBlocState) then,
+  ) = _$MapEditorBlocStateCopyWithImpl<$Res, MapEditorBlocState>;
   @useResult
   $Res call({bool isEditing});
 }
@@ -48,24 +50,26 @@ class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isEditing = null,
-  }) {
-    return _then(_value.copyWith(
-      isEditing: null == isEditing
-          ? _value.isEditing
-          : isEditing // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+  $Res call({Object? isEditing = null}) {
+    return _then(
+      _value.copyWith(
+            isEditing: null == isEditing
+                ? _value.isEditing
+                : isEditing // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$MapEditorBlocStateImplCopyWith<$Res>
     implements $MapEditorBlocStateCopyWith<$Res> {
-  factory _$$MapEditorBlocStateImplCopyWith(_$MapEditorBlocStateImpl value,
-          $Res Function(_$MapEditorBlocStateImpl) then) =
-      __$$MapEditorBlocStateImplCopyWithImpl<$Res>;
+  factory _$$MapEditorBlocStateImplCopyWith(
+    _$MapEditorBlocStateImpl value,
+    $Res Function(_$MapEditorBlocStateImpl) then,
+  ) = __$$MapEditorBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isEditing});
@@ -75,23 +79,24 @@ abstract class _$$MapEditorBlocStateImplCopyWith<$Res>
 class __$$MapEditorBlocStateImplCopyWithImpl<$Res>
     extends _$MapEditorBlocStateCopyWithImpl<$Res, _$MapEditorBlocStateImpl>
     implements _$$MapEditorBlocStateImplCopyWith<$Res> {
-  __$$MapEditorBlocStateImplCopyWithImpl(_$MapEditorBlocStateImpl _value,
-      $Res Function(_$MapEditorBlocStateImpl) _then)
-      : super(_value, _then);
+  __$$MapEditorBlocStateImplCopyWithImpl(
+    _$MapEditorBlocStateImpl _value,
+    $Res Function(_$MapEditorBlocStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of MapEditorBlocState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isEditing = null,
-  }) {
-    return _then(_$MapEditorBlocStateImpl(
-      isEditing: null == isEditing
-          ? _value.isEditing
-          : isEditing // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+  $Res call({Object? isEditing = null}) {
+    return _then(
+      _$MapEditorBlocStateImpl(
+        isEditing: null == isEditing
+            ? _value.isEditing
+            : isEditing // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
@@ -128,7 +133,9 @@ class _$MapEditorBlocStateImpl implements _MapEditorBlocState {
   @pragma('vm:prefer-inline')
   _$$MapEditorBlocStateImplCopyWith<_$MapEditorBlocStateImpl> get copyWith =>
       __$$MapEditorBlocStateImplCopyWithImpl<_$MapEditorBlocStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _MapEditorBlocState implements MapEditorBlocState {

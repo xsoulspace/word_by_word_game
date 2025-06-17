@@ -26,9 +26,7 @@ class GuiOverlay extends StatelessWidget {
               Gap(6),
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _Statistics(),
-                ],
+                children: [_Statistics()],
               ),
             ],
           ),
@@ -47,10 +45,7 @@ class GuiOverlay extends StatelessWidget {
                 alignment: Alignment.bottomCenter,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const MobileTutorialDialog(),
-                    bottomDialog,
-                  ],
+                  children: [const MobileTutorialDialog(), bottomDialog],
                 ),
               );
             },

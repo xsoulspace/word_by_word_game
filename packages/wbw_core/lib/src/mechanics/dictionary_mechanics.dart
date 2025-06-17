@@ -15,8 +15,7 @@ class DictionaryMechanics {
   bool checkIsWordIsWritten({
     required final CurrentWordModel word,
     required final Map<FullWordString, PlayerProfileModelId> words,
-  }) =>
-      words.containsKey(word.fullWord);
+  }) => words.containsKey(word.fullWord);
   final _shuffledEnglishWords = english_words.all.toList()..shuffle();
   final _shuffledRussianWords = russian_words.allWords.toList()..shuffle();
 

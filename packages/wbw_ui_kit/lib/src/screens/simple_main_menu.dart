@@ -24,10 +24,7 @@ typedef SimpleMainMenuTuple = ({
 });
 
 class SimpleMainMenu extends StatelessWidget {
-  const SimpleMainMenu({
-    required this.tuple,
-    super.key,
-  });
+  const SimpleMainMenu({required this.tuple, super.key});
 
   final SimpleMainMenuTuple tuple;
 
@@ -48,9 +45,7 @@ class SimpleMainMenu extends StatelessWidget {
             ),
             child: Column(
               children: [
-                const Flexible(
-                  child: _MainMenuTitle(),
-                ),
+                const Flexible(child: _MainMenuTitle()),
                 Expanded(
                   flex: 2,
                   child: Builder(
@@ -89,10 +84,7 @@ class _UiMainMenuList extends StatelessWidget {
       padding: EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisSize: MainAxisSize.min,
-        children: [
-          Gap(leadingGapWithIcon),
-          UiHorizontalDivider(),
-        ],
+        children: [Gap(leadingGapWithIcon), UiHorizontalDivider()],
       ),
     );
 
@@ -182,10 +174,7 @@ class _UiMainMenuList extends StatelessWidget {
           ],
         ),
         const Gap(6),
-        UiStyledButton(
-          onPressed: tuple.onCredits,
-          label: 'credits',
-        ),
+        UiStyledButton(onPressed: tuple.onCredits, label: 'credits'),
         if (_kIsPrivacyPolicyEnabled)
           UiStyledButton(
             // TODO(arenukvern): l10n
@@ -194,9 +183,9 @@ class _UiMainMenuList extends StatelessWidget {
           ),
       ],
     ).animate().fadeIn(
-          duration: 1200.milliseconds,
-          curve: Curves.easeInOutBack,
-        );
+      duration: 1200.milliseconds,
+      curve: Curves.easeInOutBack,
+    );
   }
 }
 
@@ -215,14 +204,14 @@ class _MainMenuTitle extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          'WORLD',
-          style: context.textThemeBold.displayLarge!.copyWith(
-            letterSpacing: 5,
-            color: UiColors.offWhite,
-            shadows: shadows,
-          ),
-          textAlign: TextAlign.start,
-        )
+              'WORLD',
+              style: context.textThemeBold.displayLarge!.copyWith(
+                letterSpacing: 5,
+                color: UiColors.offWhite,
+                shadows: shadows,
+              ),
+              textAlign: TextAlign.start,
+            )
             .animate()
             .then(duration: 150.milliseconds)
             .fadeIn()
@@ -237,16 +226,16 @@ class _MainMenuTitle extends StatelessWidget {
         ),
         const Gap(12),
         Text(
-          '2D ADVENTURE GAME',
-          style: context.textThemeBold.titleMedium!.copyWith(
-            color: UiColors.offWhite,
-            shadows: [
-              const Shadow(blurRadius: 1),
-              const Shadow(blurRadius: 1, color: Colors.black38),
-            ],
-          ),
-          textAlign: TextAlign.start,
-        )
+              '2D ADVENTURE GAME',
+              style: context.textThemeBold.titleMedium!.copyWith(
+                color: UiColors.offWhite,
+                shadows: [
+                  const Shadow(blurRadius: 1),
+                  const Shadow(blurRadius: 1, color: Colors.black38),
+                ],
+              ),
+              textAlign: TextAlign.start,
+            )
             .animate()
             .then(duration: 150.milliseconds)
             .fadeIn()
@@ -273,117 +262,106 @@ class KeyboardBindingsTips extends HookWidget {
           color: UiColors.mediumDark.withOpacity(hovered.value ? 0.9 : 0.5),
           borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
         ),
-        child: DefaultTextStyle.merge(
-          style: const TextStyle(
-            color: UiColors.offWhite,
-            fontSize: 12,
-          ),
-          child: AnimatedSize(
-            duration: 300.milliseconds,
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.symmetric(
-                vertical: 6,
-                horizontal: 12,
-              ),
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  _KeyButton(
-                    keyTitle: bindings.getBindingDefaultTitle(
-                      KeyboardBindingsType.mainMenuUp,
-                    ),
-                    title: 'up',
+        child:
+            DefaultTextStyle.merge(
+                  style: const TextStyle(
+                    color: UiColors.offWhite,
+                    fontSize: 12,
                   ),
-                  const Gap(12),
-                  _KeyButton(
-                    keyTitle: bindings.getBindingDefaultTitle(
-                      KeyboardBindingsType.mainMenuDown,
-                    ),
-                    title: 'down',
-                  ),
-                  const Gap(12),
-                  _KeyButton(
-                    keyTitle: bindings.getBindingDefaultTitle(
-                      KeyboardBindingsType.mainMenuLeft,
-                    ),
-                    title: 'left',
-                  ),
-                  const Gap(12),
-                  _KeyButton(
-                    keyTitle: bindings.getBindingDefaultTitle(
-                      KeyboardBindingsType.mainMenuRight,
-                    ),
-                    title: 'right',
-                  ),
-                  const Gap(12),
-                  _KeyButton(
-                    keyTitle: bindings.getBindingDefaultTitle(
-                      KeyboardBindingsType.mainMenuSelect,
-                    ),
-                    title: 'select',
-                  ),
-                  if (hasBack) ...[
-                    const Gap(12),
-                    _KeyButton(
-                      keyTitle: bindings.getBindingDefaultTitle(
-                        KeyboardBindingsType.mainMenuBack,
+                  child: AnimatedSize(
+                    duration: 300.milliseconds,
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(
+                        vertical: 6,
+                        horizontal: 12,
                       ),
-                      title: 'Back',
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          _KeyButton(
+                            keyTitle: bindings.getBindingDefaultTitle(
+                              KeyboardBindingsType.mainMenuUp,
+                            ),
+                            title: 'up',
+                          ),
+                          const Gap(12),
+                          _KeyButton(
+                            keyTitle: bindings.getBindingDefaultTitle(
+                              KeyboardBindingsType.mainMenuDown,
+                            ),
+                            title: 'down',
+                          ),
+                          const Gap(12),
+                          _KeyButton(
+                            keyTitle: bindings.getBindingDefaultTitle(
+                              KeyboardBindingsType.mainMenuLeft,
+                            ),
+                            title: 'left',
+                          ),
+                          const Gap(12),
+                          _KeyButton(
+                            keyTitle: bindings.getBindingDefaultTitle(
+                              KeyboardBindingsType.mainMenuRight,
+                            ),
+                            title: 'right',
+                          ),
+                          const Gap(12),
+                          _KeyButton(
+                            keyTitle: bindings.getBindingDefaultTitle(
+                              KeyboardBindingsType.mainMenuSelect,
+                            ),
+                            title: 'select',
+                          ),
+                          if (hasBack) ...[
+                            const Gap(12),
+                            _KeyButton(
+                              keyTitle: bindings.getBindingDefaultTitle(
+                                KeyboardBindingsType.mainMenuBack,
+                              ),
+                              title: 'Back',
+                            ),
+                          ],
+                        ],
+                      ),
                     ),
-                  ],
-                ],
-              ),
-            ),
-          ),
-        )
-            .animate()
-            .slideY(
-              begin: 1,
-              end: 0,
-              curve: Curves.easeInOut,
-              duration: 1200.milliseconds,
-            )
-            .fadeIn(
-              duration: 1500.milliseconds,
-              curve: Curves.easeInOut,
-            ),
+                  ),
+                )
+                .animate()
+                .slideY(
+                  begin: 1,
+                  end: 0,
+                  curve: Curves.easeInOut,
+                  duration: 1200.milliseconds,
+                )
+                .fadeIn(duration: 1500.milliseconds, curve: Curves.easeInOut),
       ),
     );
   }
 }
 
 class _KeyButton extends StatelessWidget {
-  const _KeyButton({
-    required this.keyTitle,
-    required this.title,
-  });
+  const _KeyButton({required this.keyTitle, required this.title});
 
   final String keyTitle;
   final String title;
   @override
   Widget build(final BuildContext context) => Row(
-        children: [
-          Text(title),
-          const Gap(4),
-          Container(
-            decoration: BoxDecoration(
-              color: UiColors.offWhite,
-              borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
-            ),
-            padding: const EdgeInsets.symmetric(
-              horizontal: 6,
-              vertical: 2,
-            ),
-            child: Text(
-              keyTitle,
-              style: const TextStyle(
-                fontSize: 12,
-                color: UiColors.mediumDark,
-              ),
-            ),
-          ),
-        ],
-      );
+    children: [
+      Text(title),
+      const Gap(4),
+      Container(
+        decoration: BoxDecoration(
+          color: UiColors.offWhite,
+          borderRadius: BorderRadius.circular(UiDecorators.radiusSmall),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
+        child: Text(
+          keyTitle,
+          style: const TextStyle(fontSize: 12, color: UiColors.mediumDark),
+        ),
+      ),
+    ],
+  );
 }

@@ -99,8 +99,7 @@ class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
   const LevelFeaturesSettingsModel._();
   factory LevelFeaturesSettingsModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$LevelFeaturesSettingsModelFromJson(json);
+  ) => _$LevelFeaturesSettingsModelFromJson(json);
   static const empty = LevelFeaturesSettingsModel();
   static const allEnabled = LevelFeaturesSettingsModel(
     isTechnologiesEnabled: true,

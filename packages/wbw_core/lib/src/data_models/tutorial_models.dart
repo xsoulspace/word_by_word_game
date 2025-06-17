@@ -48,9 +48,7 @@ class TutorialGameEffectModel with _$TutorialGameEffectModel {
 
   const TutorialGameEffectModel._();
 
-  factory TutorialGameEffectModel.fromJson(
-    final Map<String, dynamic> json,
-  ) =>
+  factory TutorialGameEffectModel.fromJson(final Map<String, dynamic> json) =>
       _$TutorialGameEffectModelFromJson(json);
 }
 
@@ -88,8 +86,7 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
 
   factory TutorialUiActionEventModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialUiActionEventModelFromJson(json);
+  ) => _$TutorialUiActionEventModelFromJson(json);
   static const tutorialOkDialog = TutorialUiActionEventModel(
     action: TutorialCompleteAction.onClick,
     uiItem: TutorialUiItem.tutorialOkDialog,
@@ -117,17 +114,14 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
 
   factory TutorialEventsCollectionModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialEventsCollectionModelFromJson(json);
+  ) => _$TutorialEventsCollectionModelFromJson(json);
 
   TutorialCollectionsProgressModel saveProgress({
     required final TutorialCollectionsProgressModel progress,
   }) {
     final updatedIndexes = {...progress.indexes}..[name] = currentIndex;
 
-    return progress.copyWith(
-      indexes: updatedIndexes,
-    );
+    return progress.copyWith(indexes: updatedIndexes);
   }
 
   static TutorialEventsCollectionModel? fromData({
@@ -174,11 +168,8 @@ class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
 
   factory TutorialCollectionsProgressModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialCollectionsProgressModelFromJson(json);
-  static const empty = TutorialCollectionsProgressModel(
-    indexes: {},
-  );
+  ) => _$TutorialCollectionsProgressModelFromJson(json);
+  static const empty = TutorialCollectionsProgressModel(indexes: {});
 }
 
 /// Actual tutorial events
@@ -187,18 +178,14 @@ class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
 class TutorialCollectionsDataModel with _$TutorialCollectionsDataModel {
   const factory TutorialCollectionsDataModel({
     required final Map<TutorialCollectionsName, List<TutorialEventModel>>
-        events,
+    events,
   }) = _TutorialCollectionsDataModel;
 
   const TutorialCollectionsDataModel._();
 
   factory TutorialCollectionsDataModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TutorialCollectionsDataModelFromJson(json);
+  ) => _$TutorialCollectionsDataModelFromJson(json);
 }
 
-enum TutorialCollectionsName {
-  levelIntroduction,
-  archive,
-}
+enum TutorialCollectionsName { levelIntroduction, archive }

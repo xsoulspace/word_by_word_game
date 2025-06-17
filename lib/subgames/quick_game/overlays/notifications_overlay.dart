@@ -6,18 +6,16 @@ class NotificationsOverlay extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => const Stack(
-        children: [
-          Positioned(
-            top: 20,
-            right: 20,
-            left: 20,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Flexible(child: UIWarningNotification()),
-              ],
-            ),
-          ),
-        ],
-      );
+    children: [
+      Positioned(
+        top: 20,
+        right: 20,
+        left: 20,
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [Flexible(child: UIWarningNotification())],
+        ),
+      ),
+    ],
+  );
 }

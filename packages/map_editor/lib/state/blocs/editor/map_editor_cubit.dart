@@ -10,21 +10,18 @@ part 'map_editor_cubit.freezed.dart';
 
 @freezed
 class MapEditorBlocState with _$MapEditorBlocState {
-  const factory MapEditorBlocState({
-    @Default(false) final bool isEditing,
-  }) = _MapEditorBlocState;
+  const factory MapEditorBlocState({@Default(false) final bool isEditing}) =
+      _MapEditorBlocState;
 }
 
 class MapEditorCubitDto {
   MapEditorCubitDto.use(final BuildContext context)
-      : drawerCubit = context.read();
+    : drawerCubit = context.read();
   final EditorDrawerCubit drawerCubit;
 }
 
 class MapEditorCubit extends Cubit<MapEditorBlocState> {
-  MapEditorCubit({
-    required this.dto,
-  }) : super(const MapEditorBlocState());
+  MapEditorCubit({required this.dto}) : super(const MapEditorBlocState());
   final MapEditorCubitDto dto;
   // ignore: avoid_positional_boolean_parameters
   Future<void> onChangeIsEditing(final bool isEditing) async {

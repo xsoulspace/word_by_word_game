@@ -57,13 +57,10 @@ class UserWordsLocalDataSourceImpl implements UserWordsLocalDataSource {
   Future<void> preloadProfanities() async {
     final values = await assetBundle.loadStructuredData<Set<String>>(
       Assets.dictionaries.wrongWords,
-      (final value) async => compute(
-        (final v) {
-          final list = List.castFrom<dynamic, String>(jsonDecode(v));
-          return list.toSet();
-        },
-        value,
-      ),
+      (final value) async => compute((final v) {
+        final list = List.castFrom<dynamic, String>(jsonDecode(v));
+        return list.toSet();
+      }, value),
     );
     _profanities = values;
   }

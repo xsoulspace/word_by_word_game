@@ -11,11 +11,7 @@ part 'pause_screen_state.dart';
 
 const _kIsCharacterVisible = false;
 
-enum PauseScreenRoute {
-  mainMenu,
-  adventure,
-  credits,
-}
+enum PauseScreenRoute { mainMenu, adventure, credits }
 
 class PauseScreen extends HookWidget {
   const PauseScreen({super.key});
@@ -35,9 +31,8 @@ class PauseScreen extends HookWidget {
             duration: 350.milliseconds,
             child: switch (screenRouteState.value) {
               PauseScreenRoute.mainMenu => _MainMenuView(
-                  onChangeRoute: (final route) =>
-                      screenRouteState.value = route,
-                ),
+                onChangeRoute: (final route) => screenRouteState.value = route,
+              ),
               PauseScreenRoute.adventure => AdventureView(onBack: onBack),
               PauseScreenRoute.credits => CreditsView(onBack: onBack),
             },
@@ -84,9 +79,7 @@ class PauseScreen extends HookWidget {
 }
 
 class _MainMenuView extends StatelessWidget {
-  const _MainMenuView({
-    required this.onChangeRoute,
-  });
+  const _MainMenuView({required this.onChangeRoute});
   final ValueChanged<PauseScreenRoute> onChangeRoute;
   @override
   Widget build(final BuildContext context) {
@@ -96,18 +89,17 @@ class _MainMenuView extends StatelessWidget {
     final dialogController = context.read<DialogController>();
     Future<void> onContinueAdventure() async {
       final CanvasDataModelId adventureLevelId;
-      final savedLevels = [
-        ...context.read<GlobalGameBloc>().state.savedLevels.values.where(
+      final savedLevels =
+          [
+            ...context.read<GlobalGameBloc>().state.savedLevels.values.where(
               (final e) => e.id != kQuickGameMapId,
             ),
-      ]..sort(
-          (final a, final b) {
+          ]..sort((final a, final b) {
             // 1 - later, -1 - earlier
             if (a.updatedAt == null) return 1;
             if (b.updatedAt == null) return -1;
             return b.updatedAt!.compareTo(a.updatedAt!);
-          },
-        );
+          });
       if (buttonStatuses.isCurrentLevelRunning &&
           !buttonStatuses.isCurrentLevelQuickGame) {
         adventureLevelId = buttonStatuses.currentLevelId;
@@ -137,11 +129,8 @@ class _MainMenuView extends StatelessWidget {
       );
     }
 
-    Future<void> onRestartQuick() async =>
-        buttonStatuses.pauseScreenState.onShowStartDialog(
-          canvasDataId: kQuickGameMapId,
-          context: context,
-        );
+    Future<void> onRestartQuick() async => buttonStatuses.pauseScreenState
+        .onShowStartDialog(canvasDataId: kQuickGameMapId, context: context);
     final tuple = (
       onContinueQuick: onContinueQuick,
       onNewQuick: onRestartQuick,
@@ -179,27 +168,25 @@ class ConstrainedGap extends StatelessWidget {
   final bool expand;
   @override
   Widget build(final BuildContext context) => ConstrainedBox(
-        constraints: BoxConstraints(
-          minHeight: minHeight,
-          maxHeight: maxHeight,
-          maxWidth: maxWidth,
-          minWidth: minWidth,
-        ),
-        child: expand ? const SizedBox.expand() : const SizedBox.shrink(),
-      );
+    constraints: BoxConstraints(
+      minHeight: minHeight,
+      maxHeight: maxHeight,
+      maxWidth: maxWidth,
+      minWidth: minWidth,
+    ),
+    child: expand ? const SizedBox.expand() : const SizedBox.shrink(),
+  );
 }
 
 class _Scaffold extends StatelessWidget {
-  const _Scaffold({
-    required this.builder,
-  });
+  const _Scaffold({required this.builder});
   final WidgetBuilder builder;
   @override
   Widget build(final BuildContext context) => LevelUiUxStatesProvider(
-        builder: (final context) => Scaffold(
-          backgroundColor: Colors.transparent,
-          resizeToAvoidBottomInset: false,
-          body: builder(context),
-        ),
-      );
+    builder: (final context) => Scaffold(
+      backgroundColor: Colors.transparent,
+      resizeToAvoidBottomInset: false,
+      body: builder(context),
+    ),
+  );
 }

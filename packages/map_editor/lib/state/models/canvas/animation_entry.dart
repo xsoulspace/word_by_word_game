@@ -9,9 +9,6 @@ class AnimationEntryModel with _$AnimationEntryModel {
   }) = _AnimationEntryModel;
   const AnimationEntryModel._();
   factory AnimationEntryModel.singleFrame(final String path) =>
-      AnimationEntryModel(
-        framesLength: 1,
-        framesPaths: [path],
-      );
+      AnimationEntryModel(framesLength: 1, framesPaths: [path]);
   String get currentFramePath => framesPaths[frameIndex.toInt()];
 }

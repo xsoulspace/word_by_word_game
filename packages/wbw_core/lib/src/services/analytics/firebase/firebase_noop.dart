@@ -7,9 +7,7 @@ import '../interfaces/interfaces.dart';
 import 'firebase_initializer.dart';
 
 class FirebaseInitializerImpl implements FirebaseInitializer {
-  FirebaseInitializerImpl({
-    this.firebaseOptions,
-  });
+  FirebaseInitializerImpl({this.firebaseOptions});
   @override
   final FirebaseOptions? firebaseOptions;
 

@@ -13,9 +13,9 @@ part 'level_players_states.dart';
 
 class LevelPlayersBlocDiDto {
   LevelPlayersBlocDiDto.use(final BuildContext context)
-      : mechanics = context.read(),
-        statesStatusesCubit = context.read(),
-        canvasCubit = context.read();
+    : mechanics = context.read(),
+      statesStatusesCubit = context.read(),
+      canvasCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
   final CanvasCubit canvasCubit;
   final MechanicsCollection mechanics;
@@ -23,16 +23,15 @@ class LevelPlayersBlocDiDto {
 
 class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
   LevelPlayersBloc(final BuildContext context)
-      : dto = LevelPlayersBlocDiDto.use(context),
-        super(LevelPlayersBlocState.empty);
+    : dto = LevelPlayersBlocDiDto.use(context),
+      super(LevelPlayersBlocState.empty);
   final LevelPlayersBlocDiDto dto;
   final _log = Logger();
   PlayerCharacterModel get playerCharacter => state.playerCharacter;
   Gid get focusedObjectId => state.focusedObjectGid;
   bool get isPlayerFocused => focusedObjectId.isEmpty;
-  void changeFocusedObjectId(final Gid value) => emit(
-        state.copyWith(focusedObjectGid: value),
-      );
+  void changeFocusedObjectId(final Gid value) =>
+      emit(state.copyWith(focusedObjectGid: value));
   void focusToPlayer() => changeFocusedObjectId(Gid.empty);
   // TODO(arenukvern): description
   bool get isFocusedObjectHasPower => focusedObjectId.isEmpty;
@@ -53,9 +52,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
       state.players.isEmpty || state.players.first.name.isEmpty;
   bool get isPlayersNotEmpty => !isPlayersEmpty;
 
-  void onInitLevelPlayers(
-    final InitLevelPlayersEvent event,
-  ) {
+  void onInitLevelPlayers(final InitLevelPlayersEvent event) {
     // _log.d('distanceToOrigin: ${diDto.canvasCubit.player.distanceToOrigin}');
     final liveState = LevelPlayersBlocState.fromModel(
       levelPlayersModel: event.playersModel,
@@ -70,9 +67,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     );
   }
 
-  void onSwitchToNextPlayer(
-    final SwitchToNextPlayerEvent event,
-  ) {
+  void onSwitchToNextPlayer(final SwitchToNextPlayerEvent event) {
     final players = [...state.players];
 
     if (players.length == 1) {
@@ -99,21 +94,20 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
 
   double get powerUsage => playerCharacter.balloonParams.powerUsage;
   void onPowerUsageChange(final String? value) => onChangeCharacter(
-        playerCharacter.copyWith.balloonParams(
-          powerUsage: double.tryParse(value ?? '') ?? 0,
-        ),
-      );
+    playerCharacter.copyWith.balloonParams(
+      powerUsage: double.tryParse(value ?? '') ?? 0,
+    ),
+  );
 
   void onChangeCharacterPosition({
     required final Vector2 distanceToOrigin,
     required final LiftForceModel liftForce,
-  }) =>
-      onChangeCharacter(
-        playerCharacter.copyWith(
-          distanceToOrigin: distanceToOrigin.toSerializedVector2(),
-          balloonPowers: liftForce.updatedPowers,
-        ),
-      );
+  }) => onChangeCharacter(
+    playerCharacter.copyWith(
+      distanceToOrigin: distanceToOrigin.toSerializedVector2(),
+      balloonPowers: liftForce.updatedPowers,
+    ),
+  );
 
   /// Saves distanceToOrigin (as checkpoint) for hot air balloon to restore it
   /// after object was crashed.
@@ -134,13 +128,9 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     );
   }
 
-  void onRefuelStorage(
-    final RefuelStorageEvent event,
-  ) {
+  void onRefuelStorage(final RefuelStorageEvent event) {
     final scoreMechanics = dto.mechanics.score;
-    final power = scoreMechanics.convertScoreToPower(
-      score: event.score,
-    );
+    final power = scoreMechanics.convertScoreToPower(score: event.score);
     final updatedState = state.copyWith.playerCharacter(
       balloonPowers: playerCharacter.balloonPowers.copyWith(
         power: playerCharacter.balloonPowers.power + power,
@@ -149,12 +139,11 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     emit(updatedState);
   }
 
-  void onUpdatePlayerHighscore(
-    final UpdatePlayerHighscoreEvent event,
-  ) {
+  void onUpdatePlayerHighscore(final UpdatePlayerHighscoreEvent event) {
     final updatedPlayers = [...state.players];
-    final index = updatedPlayers
-        .indexWhere((final player) => player.id == event.playerId);
+    final index = updatedPlayers.indexWhere(
+      (final player) => player.id == event.playerId,
+    );
     if (index < 0) {
       // TODO(arenukvern): add exception
       return;
@@ -167,9 +156,7 @@ class LevelPlayersBloc extends Cubit<LevelPlayersBlocState> {
     );
     updatedPlayers[index] = updatedPlayer;
 
-    final updatedState = state.copyWith(
-      players: updatedPlayers,
-    );
+    final updatedState = state.copyWith(players: updatedPlayers);
     emit(updatedState);
   }
 }

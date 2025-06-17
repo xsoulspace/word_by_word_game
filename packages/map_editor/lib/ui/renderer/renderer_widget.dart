@@ -6,9 +6,7 @@ import 'package:flutter_portal/flutter_portal.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 
-enum GameOverlays {
-  sandboxUi,
-}
+enum GameOverlays { sandboxUi }
 
 class GameRendererWidget extends HookWidget {
   const GameRendererWidget({super.key});
@@ -30,17 +28,14 @@ class GameRendererWidget extends HookWidget {
             theme: Theme.of(context),
           ),
           //Work in progress loading screen on game start
-          loadingBuilder: (final context) => const Center(
-            child: CircularProgressIndicator(),
-          ),
+          loadingBuilder: (final context) =>
+              const Center(child: CircularProgressIndicator()),
           //Work in progress error handling
           errorBuilder: (final context, final ex) {
             //Print the error in th dev console
             debugPrint(ex.toString());
             return const Center(
-              child: Text(
-                'Sorry, something went wrong. Reload me',
-              ),
+              child: Text('Sorry, something went wrong. Reload me'),
             );
           },
         ),

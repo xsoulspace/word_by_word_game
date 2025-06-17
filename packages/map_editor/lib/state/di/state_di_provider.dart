@@ -20,46 +20,32 @@ class EditorStateInitializer implements StateInitializer {
 }
 
 class StateDiProvider extends StatelessWidget {
-  const StateDiProvider({
-    required this.builder,
-    super.key,
-  });
+  const StateDiProvider({required this.builder, super.key});
   final WidgetBuilder builder;
   @override
   Widget build(final BuildContext context) => MultiProvider(
-        providers: [
-          Provider<LocalDbI>(
-            create: core.PrefsDb.new,
-          ),
-          Provider(create: EditorMechanicsCollection.v1),
-          Provider(create: (final context) => Locales.fallback),
-        ],
-        builder: (final context, final child) => MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (final context) => WorldBloc(
-                read: context.read,
-              ),
+    providers: [
+      Provider<LocalDbI>(create: core.PrefsDb.new),
+      Provider(create: EditorMechanicsCollection.v1),
+      Provider(create: (final context) => Locales.fallback),
+    ],
+    builder: (final context, final child) => MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (final context) => WorldBloc(read: context.read)),
+        BlocProvider(
+          create: (final context) => EditorDrawerCubit(
+            resourcesLoader: ResourcesLoader(
+              tilesetAssets: AssetsCache(prefix: 'assets/images/'),
             ),
-            BlocProvider(
-              create: (final context) => EditorDrawerCubit(
-                resourcesLoader: ResourcesLoader(
-                  tilesetAssets: AssetsCache(
-                    prefix: 'assets/images/',
-                  ),
-                ),
-                dto: DrawerCubitDto.use(context: context),
-              ),
-            ),
-            BlocProvider(
-              create: (final context) => MapEditorCubit(
-                dto: MapEditorCubitDto.use(context),
-              ),
-            ),
-          ],
-          child: Builder(
-            builder: builder,
+            dto: DrawerCubitDto.use(context: context),
           ),
         ),
-      );
+        BlocProvider(
+          create: (final context) =>
+              MapEditorCubit(dto: MapEditorCubitDto.use(context)),
+        ),
+      ],
+      child: Builder(builder: builder),
+    ),
+  );
 }

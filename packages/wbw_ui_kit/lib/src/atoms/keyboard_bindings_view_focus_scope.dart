@@ -28,10 +28,7 @@ class KeyboardBindingsViewFocusScope extends StatelessWidget {
   ///
   /// The [child] parameter is required and should be a widget that can
   /// respond to focus changes.
-  const KeyboardBindingsViewFocusScope({
-    required this.child,
-    super.key,
-  });
+  const KeyboardBindingsViewFocusScope({required this.child, super.key});
 
   /// {@macro ui_divider.ai_description}
   static const String aiDescription =

@@ -20,8 +20,8 @@ class GameConstantsCubitDto {
 class GameConstantsCubit extends Cubit<GameConstantsCubitState> {
   // ignore: avoid_unused_constructor_parameters
   GameConstantsCubit(final BuildContext context)
-      : dto = GameConstantsCubitDto(),
-        super(GameConstantsCubitState.initial);
+    : dto = GameConstantsCubitDto(),
+      super(GameConstantsCubitState.initial);
   final GameConstantsCubitDto dto;
 
   void changeState(final GameConstantsCubitState newState) {

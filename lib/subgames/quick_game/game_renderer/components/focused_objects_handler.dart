@@ -46,7 +46,8 @@ class GuiFocusedObjectsHandler extends Component
     }
 
     final rect = player?.hitboxMapRect;
-    final isPlayerOnTile = player != null &&
+    final isPlayerOnTile =
+        player != null &&
         rect?.contains(screenVector2.mapVector2.toOffset()) == true;
     if (isPlayerOnTile) {
       if (focusableObjectsIds.isNotEmpty) {

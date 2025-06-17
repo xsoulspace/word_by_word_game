@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flame/components.dart';
@@ -38,7 +37,7 @@ class CanvasRenderer extends Component
   final buildingSurfaceDrawer = BuildingSurfaceDrawer();
   final focusedObjectsHandler = GuiFocusedObjectsHandler();
   final tilesRenderer = CanvasTilesRenderer();
-  Vector2 _dragOffset = Vector2.zero();
+  var _dragOffset = Vector2.zero();
   // final animationUpdater = AnimationUpdater();
   final canvasObjectsDrawer = GameCanvasObjectsDrawer();
   late final lightningEffect = LightningEffect(
@@ -46,8 +45,8 @@ class CanvasRenderer extends Component
     endPosition: gameSize,
   );
   @override
-  FutureOr<void> onLoad() {
-    addAll([
+  FutureOr<void> onLoad() async {
+    await addAll([
       // RENDER
       tilesRenderer,
       debugSurface,
@@ -88,19 +87,11 @@ class CanvasRenderer extends Component
   material.Paint get _greenPaint => Palette.green.paint();
 
   void _renderOrigin(final material.Canvas canvas) {
-    canvas.drawCircle(
-      origin.toOffset(),
-      15,
-      _redPaint,
-    );
+    canvas.drawCircle(origin.toOffset(), 15, _redPaint);
   }
 
   void _renderOffsetOrigin(final material.Canvas canvas) {
-    canvas.drawCircle(
-      getOffsetOrigin().toOffset(),
-      15,
-      _greenPaint,
-    );
+    canvas.drawCircle(getOffsetOrigin().toOffset(), 15, _greenPaint);
   }
 
   /// For cursor rendering
@@ -126,17 +117,20 @@ class CanvasRenderer extends Component
     super.update(dt);
     if (game.dto.debugCubit.state.isCameraFollowingFocusedObject) {
       final object = game.dto.levelPlayersBloc.focusedObject;
-      final gameVector2 =
-          GameVector2.fromMapVector2(object.distanceToOrigin.toVector2());
-      final screenVector2 =
-          gameVector2.toScreenVector2(GameOrigins(origin, getOffsetOrigin()));
+      final gameVector2 = GameVector2.fromMapVector2(
+        object.distanceToOrigin.toVector2(),
+      );
+      final screenVector2 = gameVector2.toScreenVector2(
+        GameOrigins(origin, getOffsetOrigin()),
+      );
       final screenSize = game.size;
-      Offset offset = (screenVector2 -
-              Vector2(
-                screenSize.x / 3,
-                math.max(200, screenSize.y / 2 - 60),
-              ))
-          .toOffset();
+      Offset offset =
+          (screenVector2 -
+                  Vector2(
+                    screenSize.x / 3,
+                    math.max(200, screenSize.y / 2 - 60),
+                  ))
+              .toOffset();
       offset = origin.toOffset() - offset;
       origin = offset.toVector2();
       canvasObjectsDrawer.onOriginUpdate();
@@ -175,12 +169,12 @@ mixin HasCanvasRendererRef on Component, HasGameRef<CanvasRendererGame> {
   ///
   /// in future change it to different tiles calls
   Map<TileId, PresetTileResource> get allTiles => {
-        ...presetResources.tiles,
-        ...presetResources.objects,
-        ...presetResources.npcs,
-        ...presetResources.players,
-        ...presetResources.other,
-      };
+    ...presetResources.tiles,
+    ...presetResources.objects,
+    ...presetResources.npcs,
+    ...presetResources.players,
+    ...presetResources.other,
+  };
 }
 
 class CanvasTilesRenderer extends Component
@@ -190,8 +184,8 @@ class CanvasTilesRenderer extends Component
         HasCanvasResourcesLoaderRef {
   // final _canvasTilesComponents = <>{};
   @override
-  FutureOr<void> onLoad() {
-    add(
+  FutureOr<void> onLoad() async {
+    await add(
       FlameBlocListener<CanvasCubit, DrawerCubitState>(
         onNewState: _onNewDrawerState,
       ),
@@ -201,7 +195,7 @@ class CanvasTilesRenderer extends Component
 
   void _onNewDrawerState(final DrawerCubitState state) {}
 
-  final TilesPainterInterface _painter = TilesPainterInterface.getImpl();
+  final _painter = TilesPainterInterface.getImpl();
 
   @override
   void render(final Canvas canvas) {

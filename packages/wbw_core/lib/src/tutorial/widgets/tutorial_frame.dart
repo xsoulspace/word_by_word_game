@@ -27,8 +27,9 @@ class TutorialFrame extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final highlighted =
-        context.select<TutorialBloc, bool>((final tutorialBloc) {
+    final highlighted = context.select<TutorialBloc, bool>((
+      final tutorialBloc,
+    ) {
       if (tutorialBloc.state is! TutorialBlocStateLive) return false;
       final tutorialEvent = tutorialBloc.getTutorialEvent();
 
@@ -36,7 +37,8 @@ class TutorialFrame extends StatelessWidget {
     });
 
     final persistentFormFactors = UiPersistentFormFactors.of(context);
-    final isMobile = persistentFormFactors.screenSize.width <
+    final isMobile =
+        persistentFormFactors.screenSize.width <
         WidthFormFactor.mobileTutorialMaxWidth;
 
     return PortalTarget(
@@ -104,9 +106,7 @@ class _TutorialEntryOverlayState extends State<TutorialEntryOverlay> {
         return Positioned(
           left: offset.dx,
           bottom: renderBox.size.height,
-          child: Builder(
-            builder: (final context) => widget.overlayChild,
-          ),
+          child: Builder(builder: (final context) => widget.overlayChild),
         );
       },
     );
@@ -138,8 +138,6 @@ class _TutorialEntryOverlayState extends State<TutorialEntryOverlay> {
   }
 
   @override
-  Widget build(final BuildContext context) => SizedBox(
-        key: globalKey,
-        child: widget.child,
-      );
+  Widget build(final BuildContext context) =>
+      SizedBox(key: globalKey, child: widget.child);
 }

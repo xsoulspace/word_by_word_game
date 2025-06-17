@@ -6,12 +6,12 @@ class TutorialBoolDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
-      (final bloc) {
-        if (bloc.state is! TutorialBlocStateLive) return null;
-        return bloc.getTutorialEvent();
-      },
-    );
+    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>((
+      final bloc,
+    ) {
+      if (bloc.state is! TutorialBlocStateLive) return null;
+      return bloc.getTutorialEvent();
+    });
     final locale = useLocale(context);
     if (tutorialEvent == null) return const SizedBox();
     return DialogScaffold(
@@ -25,11 +25,11 @@ class TutorialBoolDialog extends StatelessWidget {
               onPressed: () {
                 context.read<DialogController>().closeDialog();
                 context.read<TutorialBloc>().onTutorialUiAction(
-                      const TutorialUiActionEvent(
-                        action: TutorialCompleteAction.onBoolOptionSelected,
-                        key: TutorialUiItem.tutorialBoolDialog,
-                      ),
-                    );
+                  const TutorialUiActionEvent(
+                    action: TutorialCompleteAction.onBoolOptionSelected,
+                    key: TutorialUiItem.tutorialBoolDialog,
+                  ),
+                );
               },
               child: Text(S.of(context).no),
             ),
@@ -37,12 +37,12 @@ class TutorialBoolDialog extends StatelessWidget {
               onPressed: () {
                 context.read<DialogController>().closeDialog();
                 context.read<TutorialBloc>().onTutorialUiAction(
-                      const TutorialUiActionEvent(
-                        action: TutorialCompleteAction.onBoolOptionSelected,
-                        boolValue: true,
-                        key: TutorialUiItem.tutorialBoolDialog,
-                      ),
-                    );
+                  const TutorialUiActionEvent(
+                    action: TutorialCompleteAction.onBoolOptionSelected,
+                    boolValue: true,
+                    key: TutorialUiItem.tutorialBoolDialog,
+                  ),
+                );
               },
               child: Text(S.of(context).yes),
             ),

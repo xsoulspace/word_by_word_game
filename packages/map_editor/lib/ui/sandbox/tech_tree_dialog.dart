@@ -57,21 +57,16 @@ class TechnologyTreeDialog extends StatelessWidget {
           Expanded(
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(24).copyWith(
-                  right: 64,
-                ),
+                padding: const EdgeInsets.all(24).copyWith(right: 64),
                 child: Table(
-                  columnWidths: const {
-                    0: FlexColumnWidth(0.3),
-                  },
+                  columnWidths: const {0: FlexColumnWidth(0.3)},
                   children: [
                     TableRow(
                       children: [
                         const TableCell(child: Text('ID')),
                         ...UiLanguage.all.map(
-                          (final language) => TableCell(
-                            child: Text(language.name),
-                          ),
+                          (final language) =>
+                              TableCell(child: Text(language.name)),
                         ),
                       ],
                     ),
@@ -80,10 +75,7 @@ class TechnologyTreeDialog extends StatelessWidget {
                           (final index, final e) => _TechRow(
                             technology: e,
                             onChanged: (final value) =>
-                                drawerCubit.onTechnologyChanged(
-                              value,
-                              index,
-                            ),
+                                drawerCubit.onTechnologyChanged(value, index),
                           ).build(context),
                         )
                         .flattened,
@@ -109,10 +101,7 @@ class TechnologyTreeDialog extends StatelessWidget {
 }
 
 class _TechRow {
-  const _TechRow({
-    required this.technology,
-    required this.onChanged,
-  });
+  const _TechRow({required this.technology, required this.onChanged});
   final TechnologyModel technology;
   final ValueChanged<TechnologyModel> onChanged;
 
@@ -128,68 +117,62 @@ class _TechRow {
         ),
       );
   List<TableRow> build(final BuildContext context) => [
+    /// title
+    TableRow(
+      children: [
+        _getFirstCell(context, technology.id.value.name),
+
         /// title
-        TableRow(
-          children: [
-            _getFirstCell(context, technology.id.value.name),
-
-            /// title
-            ...UiLanguage.all.map(
-              (final language) => TableCell(
-                verticalAlignment: TableCellVerticalAlignment.top,
-                child: TextFormField(
-                  maxLines: null,
-                  initialValue: technology.title.getValueByLanguage(language),
-                  onChanged: (final value) {
-                    final updatedTechnology = technology.copyWith(
-                      title: technology.title.copyWith(
-                        value: {...technology.title.value}..[language] = value,
-                      ),
-                    );
-                    onChanged(updatedTechnology);
-                  },
-                ),
-              ),
-            ),
-          ],
-        ),
-
-        /// words
-        TableRow(
-          children: [
-            _getFirstCell(context, 'Words'),
-            ...UiLanguage.all.map(
-              (final language) {
-                final words =
-                    technology.unlockCondition.languageWords[language] ?? [];
-                return TableCell(
-                  verticalAlignment: TableCellVerticalAlignment.top,
-                  child: _WordsField(
-                    words: words,
-                    onChanged: (final value) {
-                      final updatedTechnology = technology.copyWith(
-                        unlockCondition: technology.unlockCondition.copyWith(
-                          languageWords: {
-                            ...technology.unlockCondition.languageWords,
-                          }..[language] = value,
-                        ),
-                      );
-                      onChanged(updatedTechnology);
-                    },
+        ...UiLanguage.all.map(
+          (final language) => TableCell(
+            verticalAlignment: TableCellVerticalAlignment.top,
+            child: TextFormField(
+              maxLines: null,
+              initialValue: technology.title.getValueByLanguage(language),
+              onChanged: (final value) {
+                final updatedTechnology = technology.copyWith(
+                  title: technology.title.copyWith(
+                    value: {...technology.title.value}..[language] = value,
                   ),
                 );
+                onChanged(updatedTechnology);
               },
             ),
-          ],
+          ),
         ),
-      ];
+      ],
+    ),
+
+    /// words
+    TableRow(
+      children: [
+        _getFirstCell(context, 'Words'),
+        ...UiLanguage.all.map((final language) {
+          final words =
+              technology.unlockCondition.languageWords[language] ?? [];
+          return TableCell(
+            verticalAlignment: TableCellVerticalAlignment.top,
+            child: _WordsField(
+              words: words,
+              onChanged: (final value) {
+                final updatedTechnology = technology.copyWith(
+                  unlockCondition: technology.unlockCondition.copyWith(
+                    languageWords: {...technology.unlockCondition.languageWords}
+                      ..[language] = value,
+                  ),
+                );
+                onChanged(updatedTechnology);
+              },
+            ),
+          );
+        }),
+      ],
+    ),
+  ];
 }
 
 class _WordsField extends HookWidget {
-  const _WordsField({
-    required this.words,
-    required this.onChanged,
-  });
+  const _WordsField({required this.words, required this.onChanged});
   final List<UsefulWordModel> words;
   final ValueChanged<List<UsefulWordModel>> onChanged;
 

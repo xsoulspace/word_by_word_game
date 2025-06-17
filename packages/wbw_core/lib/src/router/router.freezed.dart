@@ -12,7 +12,8 @@ part of 'router.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$ParsedRoute {
@@ -38,14 +39,16 @@ mixin _$ParsedRoute {
 /// @nodoc
 abstract class $ParsedRouteCopyWith<$Res> {
   factory $ParsedRouteCopyWith(
-          ParsedRoute value, $Res Function(ParsedRoute) then) =
-      _$ParsedRouteCopyWithImpl<$Res, ParsedRoute>;
+    ParsedRoute value,
+    $Res Function(ParsedRoute) then,
+  ) = _$ParsedRouteCopyWithImpl<$Res, ParsedRoute>;
   @useResult
-  $Res call(
-      {String path,
-      String pathTemplate,
-      Map<String, String> parameters,
-      Map<String, String> queryParameters});
+  $Res call({
+    String path,
+    String pathTemplate,
+    Map<String, String> parameters,
+    Map<String, String> queryParameters,
+  });
 }
 
 /// @nodoc
@@ -68,24 +71,27 @@ class _$ParsedRouteCopyWithImpl<$Res, $Val extends ParsedRoute>
     Object? parameters = null,
     Object? queryParameters = null,
   }) {
-    return _then(_value.copyWith(
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
-      pathTemplate: null == pathTemplate
-          ? _value.pathTemplate
-          : pathTemplate // ignore: cast_nullable_to_non_nullable
-              as String,
-      parameters: null == parameters
-          ? _value.parameters
-          : parameters // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-      queryParameters: null == queryParameters
-          ? _value.queryParameters
-          : queryParameters // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            path: null == path
+                ? _value.path
+                : path // ignore: cast_nullable_to_non_nullable
+                      as String,
+            pathTemplate: null == pathTemplate
+                ? _value.pathTemplate
+                : pathTemplate // ignore: cast_nullable_to_non_nullable
+                      as String,
+            parameters: null == parameters
+                ? _value.parameters
+                : parameters // ignore: cast_nullable_to_non_nullable
+                      as Map<String, String>,
+            queryParameters: null == queryParameters
+                ? _value.queryParameters
+                : queryParameters // ignore: cast_nullable_to_non_nullable
+                      as Map<String, String>,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -93,15 +99,17 @@ class _$ParsedRouteCopyWithImpl<$Res, $Val extends ParsedRoute>
 abstract class _$$ParsedRouteImplCopyWith<$Res>
     implements $ParsedRouteCopyWith<$Res> {
   factory _$$ParsedRouteImplCopyWith(
-          _$ParsedRouteImpl value, $Res Function(_$ParsedRouteImpl) then) =
-      __$$ParsedRouteImplCopyWithImpl<$Res>;
+    _$ParsedRouteImpl value,
+    $Res Function(_$ParsedRouteImpl) then,
+  ) = __$$ParsedRouteImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {String path,
-      String pathTemplate,
-      Map<String, String> parameters,
-      Map<String, String> queryParameters});
+  $Res call({
+    String path,
+    String pathTemplate,
+    Map<String, String> parameters,
+    Map<String, String> queryParameters,
+  });
 }
 
 /// @nodoc
@@ -109,8 +117,9 @@ class __$$ParsedRouteImplCopyWithImpl<$Res>
     extends _$ParsedRouteCopyWithImpl<$Res, _$ParsedRouteImpl>
     implements _$$ParsedRouteImplCopyWith<$Res> {
   __$$ParsedRouteImplCopyWithImpl(
-      _$ParsedRouteImpl _value, $Res Function(_$ParsedRouteImpl) _then)
-      : super(_value, _then);
+    _$ParsedRouteImpl _value,
+    $Res Function(_$ParsedRouteImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ParsedRoute
   /// with the given fields replaced by the non-null parameter values.
@@ -122,24 +131,26 @@ class __$$ParsedRouteImplCopyWithImpl<$Res>
     Object? parameters = null,
     Object? queryParameters = null,
   }) {
-    return _then(_$ParsedRouteImpl(
-      path: null == path
-          ? _value.path
-          : path // ignore: cast_nullable_to_non_nullable
-              as String,
-      pathTemplate: null == pathTemplate
-          ? _value.pathTemplate
-          : pathTemplate // ignore: cast_nullable_to_non_nullable
-              as String,
-      parameters: null == parameters
-          ? _value._parameters
-          : parameters // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-      queryParameters: null == queryParameters
-          ? _value._queryParameters
-          : queryParameters // ignore: cast_nullable_to_non_nullable
-              as Map<String, String>,
-    ));
+    return _then(
+      _$ParsedRouteImpl(
+        path: null == path
+            ? _value.path
+            : path // ignore: cast_nullable_to_non_nullable
+                  as String,
+        pathTemplate: null == pathTemplate
+            ? _value.pathTemplate
+            : pathTemplate // ignore: cast_nullable_to_non_nullable
+                  as String,
+        parameters: null == parameters
+            ? _value._parameters
+            : parameters // ignore: cast_nullable_to_non_nullable
+                  as Map<String, String>,
+        queryParameters: null == queryParameters
+            ? _value._queryParameters
+            : queryParameters // ignore: cast_nullable_to_non_nullable
+                  as Map<String, String>,
+      ),
+    );
   }
 }
 
@@ -147,14 +158,14 @@ class __$$ParsedRouteImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$ParsedRouteImpl extends _ParsedRoute with DiagnosticableTreeMixin {
-  const _$ParsedRouteImpl(
-      {required this.path,
-      required this.pathTemplate,
-      required final Map<String, String> parameters,
-      required final Map<String, String> queryParameters})
-      : _parameters = parameters,
-        _queryParameters = queryParameters,
-        super._();
+  const _$ParsedRouteImpl({
+    required this.path,
+    required this.pathTemplate,
+    required final Map<String, String> parameters,
+    required final Map<String, String> queryParameters,
+  }) : _parameters = parameters,
+       _queryParameters = queryParameters,
+       super._();
 
   /// The current path location without query parameters. (/book/123)
   @override
@@ -210,19 +221,24 @@ class _$ParsedRouteImpl extends _ParsedRoute with DiagnosticableTreeMixin {
             (identical(other.path, path) || other.path == path) &&
             (identical(other.pathTemplate, pathTemplate) ||
                 other.pathTemplate == pathTemplate) &&
-            const DeepCollectionEquality()
-                .equals(other._parameters, _parameters) &&
-            const DeepCollectionEquality()
-                .equals(other._queryParameters, _queryParameters));
+            const DeepCollectionEquality().equals(
+              other._parameters,
+              _parameters,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._queryParameters,
+              _queryParameters,
+            ));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      path,
-      pathTemplate,
-      const DeepCollectionEquality().hash(_parameters),
-      const DeepCollectionEquality().hash(_queryParameters));
+    runtimeType,
+    path,
+    pathTemplate,
+    const DeepCollectionEquality().hash(_parameters),
+    const DeepCollectionEquality().hash(_queryParameters),
+  );
 
   /// Create a copy of ParsedRoute
   /// with the given fields replaced by the non-null parameter values.
@@ -234,11 +250,12 @@ class _$ParsedRouteImpl extends _ParsedRoute with DiagnosticableTreeMixin {
 }
 
 abstract class _ParsedRoute extends ParsedRoute {
-  const factory _ParsedRoute(
-      {required final String path,
-      required final String pathTemplate,
-      required final Map<String, String> parameters,
-      required final Map<String, String> queryParameters}) = _$ParsedRouteImpl;
+  const factory _ParsedRoute({
+    required final String path,
+    required final String pathTemplate,
+    required final Map<String, String> parameters,
+    required final Map<String, String> queryParameters,
+  }) = _$ParsedRouteImpl;
   const _ParsedRoute._() : super._();
 
   /// The current path location without query parameters. (/book/123)

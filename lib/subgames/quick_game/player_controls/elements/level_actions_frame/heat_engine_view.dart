@@ -6,9 +6,7 @@ import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/w
 
 // TODO(arenukvern): add as freezed
 class EngineCrystalModel {
-  EngineCrystalModel({
-    required this.id,
-  });
+  EngineCrystalModel({required this.id});
   final String id;
 }
 
@@ -34,11 +32,11 @@ class UiCompletableText extends StatelessWidget {
   final String text;
   @override
   Widget build(final BuildContext context) => Text(
-        text,
-        style: DefaultTextStyle.of(context).style.copyWith(
-              decoration: isCompleted ? TextDecoration.lineThrough : null,
-            ),
-      );
+    text,
+    style: DefaultTextStyle.of(context).style.copyWith(
+      decoration: isCompleted ? TextDecoration.lineThrough : null,
+    ),
+  );
 }
 
 class TechnologyLockedCard extends StatelessWidget {
@@ -51,48 +49,48 @@ class TechnologyLockedCard extends StatelessWidget {
   final bool isLocked;
   @override
   Widget build(final BuildContext context) => Visibility(
-        visible: isLocked,
-        child: Stack(
-          children: [
-            Positioned.fill(
-              child: const SizedBox().blurred(
-                blurColor: context.colorScheme.tertiary,
-                colorOpacity: 0.7,
-                blur: 2,
-              ),
-            ),
-            DefaultTextStyle.merge(
-              style: context.textThemeBold.bodyLarge?.copyWith(
-                color: context.colorScheme.onTertiary,
-                decorationColor: context.colorScheme.tertiary,
-                decorationThickness: 5,
-              ),
-              child: Container(
-                alignment: Alignment.center,
-                // color: context.colorScheme.secondaryContainer.wit,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(
-                      Icons.lock_outline_rounded,
-                      color: context.colorScheme.onTertiary,
-                    ),
-                    const Gap(8),
-                    Text(
-                      'Requires technologies',
-                      style: context.textTheme.bodyMedium?.copyWith(
-                        color: context.colorScheme.onTertiary,
-                      ),
-                    ),
-                    const Gap(4),
-                    ...children,
-                  ],
-                ),
-              ),
-            ),
-          ],
+    visible: isLocked,
+    child: Stack(
+      children: [
+        Positioned.fill(
+          child: const SizedBox().blurred(
+            blurColor: context.colorScheme.tertiary,
+            colorOpacity: 0.7,
+            blur: 2,
+          ),
         ),
-      );
+        DefaultTextStyle.merge(
+          style: context.textThemeBold.bodyLarge?.copyWith(
+            color: context.colorScheme.onTertiary,
+            decorationColor: context.colorScheme.tertiary,
+            decorationThickness: 5,
+          ),
+          child: Container(
+            alignment: Alignment.center,
+            // color: context.colorScheme.secondaryContainer.wit,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(
+                  Icons.lock_outline_rounded,
+                  color: context.colorScheme.onTertiary,
+                ),
+                const Gap(8),
+                Text(
+                  'Requires technologies',
+                  style: context.textTheme.bodyMedium?.copyWith(
+                    color: context.colorScheme.onTertiary,
+                  ),
+                ),
+                const Gap(4),
+                ...children,
+              ],
+            ),
+          ),
+        ),
+      ],
+    ),
+  );
 }
 
 const kEnergyMovementMultiplier = EnergyMultiplierType.m1;
@@ -159,8 +157,9 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
   }
 
   void _changePower() {
-    final powerUsage = _engineMechanics
-        .convertCrystalCountToPowerUsage(_engineCrystals.nonNulls.length);
+    final powerUsage = _engineMechanics.convertCrystalCountToPowerUsage(
+      _engineCrystals.nonNulls.length,
+    );
     _levelPlayerBloc.onPowerUsageChange('$powerUsage');
     WidgetsBinding.instance.addPostFrameCallback((final _) async {
       await Future.delayed(500.milliseconds);
@@ -190,24 +189,21 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
                 child: Column(
                   children: [
                     const Gap(4),
-                    ...List.generate(
-                      _cellsCrystals.length,
-                      (final index) {
-                        final crystal = _cellsCrystals[index];
-                        return _EngineCrystalCell(
-                          key: ValueKey(index),
-                          crystal: crystal,
-                          index: index,
-                          movementScore: movementScore,
-                          cellDimension: _crystalCellDimension,
-                          onCrystalPlaced: (final crystal) =>
-                              _onCrystalPlacedToStorage(
-                            index: index,
-                            crystal: crystal,
-                          ),
-                        );
-                      },
-                    ),
+                    ...List.generate(_cellsCrystals.length, (final index) {
+                      final crystal = _cellsCrystals[index];
+                      return _EngineCrystalCell(
+                        key: ValueKey(index),
+                        crystal: crystal,
+                        index: index,
+                        movementScore: movementScore,
+                        cellDimension: _crystalCellDimension,
+                        onCrystalPlaced: (final crystal) =>
+                            _onCrystalPlacedToStorage(
+                              index: index,
+                              crystal: crystal,
+                            ),
+                      );
+                    }),
                     const Gap(4),
                   ],
                 ),
@@ -220,32 +216,31 @@ class _HeatEngineViewBodyState extends State<HeatEngineViewBody> {
                   children: [
                     Column(
                       children: [
-                        ...List.generate(
-                          _engineCrystals.length,
-                          (final index) {
-                            final crystal = _engineCrystals[index];
-                            return _EngineWaveRow(
-                              key: ValueKey(index),
-                              cellDimension: _crystalCellDimension,
-                              movementScore: movementScore,
-                              crystal: crystal,
-                              index: index,
-                              onCrystalPlaced: (final crystal) =>
-                                  _onCrystalPlacedToEngine(
-                                index: index,
-                                crystal: crystal,
-                              ),
-                            );
-                          },
-                        ),
+                        ...List.generate(_engineCrystals.length, (final index) {
+                          final crystal = _engineCrystals[index];
+                          return _EngineWaveRow(
+                            key: ValueKey(index),
+                            cellDimension: _crystalCellDimension,
+                            movementScore: movementScore,
+                            crystal: crystal,
+                            index: index,
+                            onCrystalPlaced: (final crystal) =>
+                                _onCrystalPlacedToEngine(
+                                  index: index,
+                                  crystal: crystal,
+                                ),
+                          );
+                        }),
                       ],
                     ),
                     const Gap(8),
                     AnimatedProgressBar(
-                      backgroundColor:
-                          context.colorScheme.error.withOpacity(.3),
+                      backgroundColor: context.colorScheme.error.withOpacity(
+                        .3,
+                      ),
                       color: context.colorScheme.error,
-                      value: _engineCrystals.nonNulls.length /
+                      value:
+                          _engineCrystals.nonNulls.length /
                           _cellsCrystals.length,
                       height: 70,
                       width: 12,
@@ -333,11 +328,10 @@ class _CrystalCell extends StatelessWidget {
     }
     return Card.outlined(
       shape: BeveledRectangleBorder(
-        borderRadius:
-            isActive ? BorderRadius.circular(4) : BorderRadius.circular(16),
-        side: BorderSide(
-          color: isActive ? activeColor : color,
-        ),
+        borderRadius: isActive
+            ? BorderRadius.circular(4)
+            : BorderRadius.circular(16),
+        side: BorderSide(color: isActive ? activeColor : color),
       ),
       margin: const EdgeInsets.all(2),
       child: SizedBox.square(
@@ -467,22 +461,14 @@ class UiTechnologyCircle extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final shadows = [
-      Shadow(
-        blurRadius: 0.2,
-        color: borderColor,
-      ),
-      Shadow(
-        blurRadius: 0.2,
-        color: borderColor,
-      ),
+      Shadow(blurRadius: 0.2, color: borderColor),
+      Shadow(blurRadius: 0.2, color: borderColor),
     ];
     const dimension = 48.0;
     final locale = useLocale(context);
 
     return Tooltip(
-      message: LocalizedMap(
-        value: tooltipMessage,
-      ).getValue(locale),
+      message: LocalizedMap(value: tooltipMessage).getValue(locale),
       child: UiBaseButton(
         onPressed: onPressed,
         builder: (final context, final focused, final onlyFocused) => Column(
@@ -518,18 +504,9 @@ class UiTechnologyCircle extends StatelessWidget {
               style: context.textTheme.labelMedium!.copyWith(
                 color: textColor,
                 shadows: [
-                  Shadow(
-                    blurRadius: 1,
-                    color: borderColor.withOpacity(1),
-                  ),
-                  Shadow(
-                    blurRadius: 1,
-                    color: borderColor.withOpacity(1),
-                  ),
-                  Shadow(
-                    blurRadius: 1,
-                    color: borderColor.withOpacity(1),
-                  ),
+                  Shadow(blurRadius: 1, color: borderColor.withOpacity(1)),
+                  Shadow(blurRadius: 1, color: borderColor.withOpacity(1)),
+                  Shadow(blurRadius: 1, color: borderColor.withOpacity(1)),
                 ],
               ),
             ),

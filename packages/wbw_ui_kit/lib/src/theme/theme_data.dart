@@ -14,9 +14,7 @@ class AppThemeData {
         colorScheme: colorScheme,
       ).englishLike.merge(GoogleFonts.notoSansTextTheme()),
     );
-    return theme.copyWith(
-      extensions: [surfaceColorScheme],
-    );
+    return theme.copyWith(extensions: [surfaceColorScheme]);
   }
 
   static final brandLight = from(

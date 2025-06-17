@@ -6,11 +6,8 @@ import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 
 mixin TechLevelMixin on StatelessWidget {
-  ({
-    bool isUnblocked,
-    bool isPlaying,
-    bool isAdvancedGame,
-  }) useTechLevelAvailable(
+  ({bool isUnblocked, bool isPlaying, bool isAdvancedGame})
+  useTechLevelAvailable(
     final BuildContext context,
     final TechnologyLevelIndex levelIndex,
   ) {
@@ -27,7 +24,8 @@ mixin TechLevelMixin on StatelessWidget {
       :technologies,
       :title,
       :scoresByLevel,
-    ) = technologiesCubit.getCurrentLevel();
+    ) = technologiesCubit
+        .getCurrentLevel();
 
     return (
       isUnblocked:
@@ -60,8 +58,10 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
 
   @override
   Widget build(final BuildContext context) {
-    final isAllowedToBeVisible =
-        useBuildingTechAvailable(context, GuiBuildingTypeEnum.windWaterTower);
+    final isAllowedToBeVisible = useBuildingTechAvailable(
+      context,
+      GuiBuildingTypeEnum.windWaterTower,
+    );
     if (!isAllowedToBeVisible) {
       return const SizedBox.shrink();
     }
@@ -83,8 +83,10 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
           ),
         ),
         constraints: const BoxConstraints(minWidth: 300),
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4)
-            .copyWith(left: 2),
+        padding: const EdgeInsets.symmetric(
+          horizontal: 8,
+          vertical: 4,
+        ).copyWith(left: 2),
         child: TutorialFrame(
           highlightPosition: Alignment.bottomRight,
           uiKey: TutorialUiItem.currentWind,
@@ -104,14 +106,9 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
 
               /// wind direction
               ConstrainedBox(
-                constraints: const BoxConstraints(
-                  minWidth: 50,
-                  maxWidth: 60,
-                ),
+                constraints: const BoxConstraints(minWidth: 50, maxWidth: 60),
                 child: Container(
-                  decoration: BoxDecoration(
-                    border: Border(right: borderSide),
-                  ),
+                  decoration: BoxDecoration(border: Border(right: borderSide)),
                   margin: const EdgeInsets.only(left: 8, right: 6),
                   child: Column(
                     children: [
@@ -126,11 +123,7 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
                         value: currentWind.force.x,
                         direction: Axis.horizontal,
                       ),
-                      Divider(
-                        color: borderColor,
-                        height: 1,
-                        thickness: 1,
-                      ),
+                      Divider(color: borderColor, height: 1, thickness: 1),
                       WindDirectionBadge(
                         tooltipMessage: LocalizedMap(
                           value: {
@@ -163,9 +156,7 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
 }
 
 class _NextWeathersRow extends StatelessWidget {
-  const _NextWeathersRow({
-    required this.weathers,
-  });
+  const _NextWeathersRow({required this.weathers});
   final List<WeatherModel> weathers;
 
   @override
@@ -194,13 +185,7 @@ class _NextWeathersRow extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${firstWeather.windScale.emojiRepresentation}${LocalizedMap(
-                          value: {
-                            languages.en: 'in',
-                            languages.ru: 'в',
-                            languages.it: 'in',
-                          },
-                        ).getValue(locale)} ${state.weather.durationInGameSeconds}',
+                        '${firstWeather.windScale.emojiRepresentation}${LocalizedMap(value: {languages.en: 'in', languages.ru: 'в', languages.it: 'in'}).getValue(locale)} ${state.weather.durationInGameSeconds}',
                         style: context.textTheme.labelSmall,
                       ),
                       WindDirectionArrow.fromWeather(weather: firstWeather),
@@ -312,27 +297,24 @@ class WindDirectionBadge extends StatelessWidget {
   final String tooltipMessage;
   @override
   Widget build(final BuildContext context) => Tooltip(
-        message: tooltipMessage,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  (value.sign * value * 100).round().toString(),
-                  style: context.textTheme.labelSmall,
-                ),
-              ),
+    message: tooltipMessage,
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Expanded(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              (value.sign * value * 100).round().toString(),
+              style: context.textTheme.labelSmall,
             ),
-            WindDirectionArrow(
-              direction: direction,
-              value: value,
-            ),
-            const Gap(2),
-          ],
+          ),
         ),
-      );
+        WindDirectionArrow(direction: direction, value: value),
+        const Gap(2),
+      ],
+    ),
+  );
 }
 
 class WindDirectionArrow extends StatelessWidget {
@@ -343,29 +325,28 @@ class WindDirectionArrow extends StatelessWidget {
   });
   factory WindDirectionArrow.fromWeather({
     required final WeatherModel weather,
-  }) =>
-      WindDirectionArrow(
-        value: weather.windDirection.sign.toDouble(),
-        direction: Axis.horizontal,
-      );
+  }) => WindDirectionArrow(
+    value: weather.windDirection.sign.toDouble(),
+    direction: Axis.horizontal,
+  );
   final double value;
   final Axis direction;
 
   @override
   Widget build(final BuildContext context) => Transform.rotate(
-        angle: () {
-          final degree = switch (direction) {
-            Axis.vertical => 90,
-            Axis.horizontal => value > 0 ? 0 : 180,
-          };
-          final effectiveAngle = degree * math.pi / 180;
+    angle: () {
+      final degree = switch (direction) {
+        Axis.vertical => 90,
+        Axis.horizontal => value > 0 ? 0 : 180,
+      };
+      final effectiveAngle = degree * math.pi / 180;
 
-          return value < 0 ? effectiveAngle : -effectiveAngle;
-        }(),
-        child: Icon(
-          Icons.arrow_right_alt_rounded,
-          color: context.colorScheme.tertiary,
-          size: 16,
-        ),
-      );
+      return value < 0 ? effectiveAngle : -effectiveAngle;
+    }(),
+    child: Icon(
+      Icons.arrow_right_alt_rounded,
+      color: context.colorScheme.tertiary,
+      size: 16,
+    ),
+  );
 }

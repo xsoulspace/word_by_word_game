@@ -10,36 +10,40 @@ class LightningEffect extends ComputedParticle {
   LightningEffect({
     required final Vector2 startPosition,
     required final Vector2 endPosition,
-  })  : _startPosition = startPosition,
-        _endPosition = endPosition,
-        super(
-          renderer: (final canvas, final progress) {
-            final length =
-                lerpDouble(_minLength, _maxLength, progress.progress)!;
-            final angle = lerpDouble(_minAngle, _maxAngle, progress.progress)!;
-            final speed = lerpDouble(_minSpeed, _maxSpeed, progress.progress)!;
+  }) : _startPosition = startPosition,
+       _endPosition = endPosition,
+       super(
+         renderer: (final canvas, final progress) {
+           final length = lerpDouble(
+             _minLength,
+             _maxLength,
+             progress.progress,
+           )!;
+           final angle = lerpDouble(_minAngle, _maxAngle, progress.progress)!;
+           final speed = lerpDouble(_minSpeed, _maxSpeed, progress.progress)!;
 
-            final startPoint = startPosition;
-            final endPoint =
-                startPosition + Vector2(cos(angle), sin(angle)) * length;
+           final startPoint = startPosition;
+           final endPoint =
+               startPosition + Vector2(cos(angle), sin(angle)) * length;
 
-            canvas.drawLine(
-              startPoint.toOffset(),
-              endPoint.toOffset(),
-              _lightningPaint,
-            );
+           canvas.drawLine(
+             startPoint.toOffset(),
+             endPoint.toOffset(),
+             _lightningPaint,
+           );
 
-            if (progress.progress < 1.0) {
-              final newEndPoint = endPoint +
-                  Vector2(cos(angle), sin(angle)) * speed * progress.progress;
-              canvas.drawLine(
-                endPoint.toOffset(),
-                newEndPoint.toOffset(),
-                _lightningPaint,
-              );
-            }
-          },
-        );
+           if (progress.progress < 1.0) {
+             final newEndPoint =
+                 endPoint +
+                 Vector2(cos(angle), sin(angle)) * speed * progress.progress;
+             canvas.drawLine(
+               endPoint.toOffset(),
+               newEndPoint.toOffset(),
+               _lightningPaint,
+             );
+           }
+         },
+       );
   static final Paint _lightningPaint = Paint()
     ..color = Colors.red
     ..strokeWidth = 4

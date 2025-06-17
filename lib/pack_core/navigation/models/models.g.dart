@@ -7,12 +7,8 @@ part of 'models.dart';
 // **************************************************************************
 
 _$LevelRouteArgsImpl _$$LevelRouteArgsImplFromJson(Map<String, dynamic> json) =>
-    _$LevelRouteArgsImpl(
-      levelId: json['levelId'] as String? ?? '',
-    );
+    _$LevelRouteArgsImpl(levelId: json['levelId'] as String? ?? '');
 
 Map<String, dynamic> _$$LevelRouteArgsImplToJson(
-        _$LevelRouteArgsImpl instance) =>
-    <String, dynamic>{
-      'levelId': instance.levelId,
-    };
+  _$LevelRouteArgsImpl instance,
+) => <String, dynamic>{'levelId': instance.levelId};

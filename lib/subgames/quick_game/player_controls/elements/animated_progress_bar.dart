@@ -53,7 +53,8 @@ class _AnimatedProgressBarState extends State<AnimatedProgressBar> {
 
   @override
   Widget build(final BuildContext context) {
-    final borderRadius = widget.borderRadius ??
+    final borderRadius =
+        widget.borderRadius ??
         BorderRadius.all(
           Radius.elliptical(widget.borderRadiusValue, widget.borderRadiusValue),
         );
@@ -135,23 +136,15 @@ class UiLabledProgressBar extends HookWidget {
   @override
   Widget build(final BuildContext context) {
     final shadows = [
-      Shadow(
-        blurRadius: 0.2,
-        color: borderColor,
-      ),
-      Shadow(
-        blurRadius: 0.2,
-        color: borderColor,
-      ),
+      Shadow(blurRadius: 0.2, color: borderColor),
+      Shadow(blurRadius: 0.2, color: borderColor),
     ];
     final locale = useLocale(context);
     return SizedBox(
       width: width,
       height: height,
       child: Tooltip(
-        message: LocalizedMap(
-          value: tooltipMessage,
-        ).getValue(locale),
+        message: LocalizedMap(value: tooltipMessage).getValue(locale),
         child: UiBaseButton(
           onPressed: onPressed,
           builder: (final context, final focused, final onlyFocused) => Stack(
@@ -195,7 +188,7 @@ class UiLabledProgressBar extends HookWidget {
                           percentage.isNaN
                               ? '0 %'
                               : // ignore: lines_longer_than_80_chars
-                              '${(percentage * 100).toStringAsFixed(0)}%',
+                                '${(percentage * 100).toStringAsFixed(0)}%',
                         ),
                         style: context.textThemeBold.titleLarge!.copyWith(
                           color: textColor,

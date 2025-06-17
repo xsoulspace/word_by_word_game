@@ -5,16 +5,12 @@ enum TileNeighbourDirection { a, b, c, d, e, f, g, h }
 @Freezed(equal: false)
 class TileNeighbourTitle with _$TileNeighbourTitle, EquatableMixin {
   /// please use [TileNeighbourTitle.fromDirection] instead
-  const factory TileNeighbourTitle.secured({
-    required final String value,
-  }) = _TileNeighbourTitle;
+  const factory TileNeighbourTitle.secured({required final String value}) =
+      _TileNeighbourTitle;
   const TileNeighbourTitle._();
   factory TileNeighbourTitle.fromDirection(
     final TileNeighbourDirection direction,
-  ) =>
-      TileNeighbourTitle.secured(
-        value: direction.name.toUpperCase(),
-      );
+  ) => TileNeighbourTitle.secured(value: direction.name.toUpperCase());
   factory TileNeighbourTitle.fromJson(final Map<String, dynamic> json) =>
       _$TileNeighbourTitleFromJson(json);
   @override
@@ -41,22 +37,13 @@ class CellDataModel with _$CellDataModel {
 
 @Freezed(equal: false)
 class CellPointModel with _$CellPointModel, EquatableMixin {
-  const factory CellPointModel(
-    final int x,
-    final int y,
-  ) = _CellPointModel;
+  const factory CellPointModel(final int x, final int y) = _CellPointModel;
   const CellPointModel._();
   factory CellPointModel.fromJson(final Map<String, dynamic> json) =>
       _$CellPointModelFromJson(json);
   factory CellPointModel.fromPoint(final math.Point<int> point) =>
-      CellPointModel(
-        point.x,
-        point.y,
-      );
-  Vector2 toVector2() => Vector2(
-        x.toDouble(),
-        y.toDouble(),
-      );
+      CellPointModel(point.x, point.y);
+  Vector2 toVector2() => Vector2(x.toDouble(), y.toDouble());
   static const zero = CellPointModel(0, 0);
   CellPointModel operator -(final CellPointModel other) =>
       CellPointModel(x - other.x, y - other.y);

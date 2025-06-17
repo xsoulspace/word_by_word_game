@@ -1,11 +1,10 @@
+import 'package:is_dart_empty_or_not/is_dart_empty_or_not.dart';
 import 'package:serverpod_flutter/serverpod_flutter.dart';
 import 'package:wbw_client/wbw_client.dart';
 import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 class AppServerpodClient implements Disposable {
-  AppServerpodClient({
-    required this.url,
-  });
+  AppServerpodClient({required this.url});
   final String url;
   // Sets up a singleton client object that can be used to talk to the server
   // from anywhere in our app. The client is generated from your server code.

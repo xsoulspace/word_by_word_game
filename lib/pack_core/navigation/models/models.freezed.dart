@@ -12,7 +12,8 @@ part of 'models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 LevelRouteArgs _$LevelRouteArgsFromJson(Map<String, dynamic> json) {
   return _LevelRouteArgs.fromJson(json);
@@ -35,8 +36,9 @@ mixin _$LevelRouteArgs {
 /// @nodoc
 abstract class $LevelRouteArgsCopyWith<$Res> {
   factory $LevelRouteArgsCopyWith(
-          LevelRouteArgs value, $Res Function(LevelRouteArgs) then) =
-      _$LevelRouteArgsCopyWithImpl<$Res, LevelRouteArgs>;
+    LevelRouteArgs value,
+    $Res Function(LevelRouteArgs) then,
+  ) = _$LevelRouteArgsCopyWithImpl<$Res, LevelRouteArgs>;
   @useResult
   $Res call({String levelId});
 }
@@ -55,24 +57,26 @@ class _$LevelRouteArgsCopyWithImpl<$Res, $Val extends LevelRouteArgs>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? levelId = null,
-  }) {
-    return _then(_value.copyWith(
-      levelId: null == levelId
-          ? _value.levelId
-          : levelId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  $Res call({Object? levelId = null}) {
+    return _then(
+      _value.copyWith(
+            levelId: null == levelId
+                ? _value.levelId
+                : levelId // ignore: cast_nullable_to_non_nullable
+                      as String,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$LevelRouteArgsImplCopyWith<$Res>
     implements $LevelRouteArgsCopyWith<$Res> {
-  factory _$$LevelRouteArgsImplCopyWith(_$LevelRouteArgsImpl value,
-          $Res Function(_$LevelRouteArgsImpl) then) =
-      __$$LevelRouteArgsImplCopyWithImpl<$Res>;
+  factory _$$LevelRouteArgsImplCopyWith(
+    _$LevelRouteArgsImpl value,
+    $Res Function(_$LevelRouteArgsImpl) then,
+  ) = __$$LevelRouteArgsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String levelId});
@@ -83,22 +87,23 @@ class __$$LevelRouteArgsImplCopyWithImpl<$Res>
     extends _$LevelRouteArgsCopyWithImpl<$Res, _$LevelRouteArgsImpl>
     implements _$$LevelRouteArgsImplCopyWith<$Res> {
   __$$LevelRouteArgsImplCopyWithImpl(
-      _$LevelRouteArgsImpl _value, $Res Function(_$LevelRouteArgsImpl) _then)
-      : super(_value, _then);
+    _$LevelRouteArgsImpl _value,
+    $Res Function(_$LevelRouteArgsImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelRouteArgs
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? levelId = null,
-  }) {
-    return _then(_$LevelRouteArgsImpl(
-      levelId: null == levelId
-          ? _value.levelId
-          : levelId // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? levelId = null}) {
+    return _then(
+      _$LevelRouteArgsImpl(
+        levelId: null == levelId
+            ? _value.levelId
+            : levelId // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
@@ -139,13 +144,13 @@ class _$LevelRouteArgsImpl extends _LevelRouteArgs {
   @pragma('vm:prefer-inline')
   _$$LevelRouteArgsImplCopyWith<_$LevelRouteArgsImpl> get copyWith =>
       __$$LevelRouteArgsImplCopyWithImpl<_$LevelRouteArgsImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$LevelRouteArgsImplToJson(
-      this,
-    );
+    return _$$LevelRouteArgsImplToJson(this);
   }
 }
 

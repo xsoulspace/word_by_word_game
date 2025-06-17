@@ -12,7 +12,8 @@ part of 'preset_resources.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$PresetTileResource {
@@ -32,13 +33,15 @@ mixin _$PresetTileResource {
 /// @nodoc
 abstract class $PresetTileResourceCopyWith<$Res> {
   factory $PresetTileResourceCopyWith(
-          PresetTileResource value, $Res Function(PresetTileResource) then) =
-      _$PresetTileResourceCopyWithImpl<$Res, PresetTileResource>;
+    PresetTileResource value,
+    $Res Function(PresetTileResource) then,
+  ) = _$PresetTileResourceCopyWithImpl<$Res, PresetTileResource>;
   @useResult
-  $Res call(
-      {PresetTileModel tile,
-      Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
-      Map<String, AnimationEntryModel> directionalPaths});
+  $Res call({
+    PresetTileModel tile,
+    Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
+    Map<String, AnimationEntryModel> directionalPaths,
+  });
 
   $PresetTileModelCopyWith<$Res> get tile;
 }
@@ -62,20 +65,23 @@ class _$PresetTileResourceCopyWithImpl<$Res, $Val extends PresetTileResource>
     Object? behaviourPaths = null,
     Object? directionalPaths = null,
   }) {
-    return _then(_value.copyWith(
-      tile: null == tile
-          ? _value.tile
-          : tile // ignore: cast_nullable_to_non_nullable
-              as PresetTileModel,
-      behaviourPaths: null == behaviourPaths
-          ? _value.behaviourPaths
-          : behaviourPaths // ignore: cast_nullable_to_non_nullable
-              as Map<TileBehaviourType, AnimationEntryModel>,
-      directionalPaths: null == directionalPaths
-          ? _value.directionalPaths
-          : directionalPaths // ignore: cast_nullable_to_non_nullable
-              as Map<String, AnimationEntryModel>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            tile: null == tile
+                ? _value.tile
+                : tile // ignore: cast_nullable_to_non_nullable
+                      as PresetTileModel,
+            behaviourPaths: null == behaviourPaths
+                ? _value.behaviourPaths
+                : behaviourPaths // ignore: cast_nullable_to_non_nullable
+                      as Map<TileBehaviourType, AnimationEntryModel>,
+            directionalPaths: null == directionalPaths
+                ? _value.directionalPaths
+                : directionalPaths // ignore: cast_nullable_to_non_nullable
+                      as Map<String, AnimationEntryModel>,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of PresetTileResource
@@ -92,15 +98,17 @@ class _$PresetTileResourceCopyWithImpl<$Res, $Val extends PresetTileResource>
 /// @nodoc
 abstract class _$$PresetTileResourceImplCopyWith<$Res>
     implements $PresetTileResourceCopyWith<$Res> {
-  factory _$$PresetTileResourceImplCopyWith(_$PresetTileResourceImpl value,
-          $Res Function(_$PresetTileResourceImpl) then) =
-      __$$PresetTileResourceImplCopyWithImpl<$Res>;
+  factory _$$PresetTileResourceImplCopyWith(
+    _$PresetTileResourceImpl value,
+    $Res Function(_$PresetTileResourceImpl) then,
+  ) = __$$PresetTileResourceImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {PresetTileModel tile,
-      Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
-      Map<String, AnimationEntryModel> directionalPaths});
+  $Res call({
+    PresetTileModel tile,
+    Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
+    Map<String, AnimationEntryModel> directionalPaths,
+  });
 
   @override
   $PresetTileModelCopyWith<$Res> get tile;
@@ -110,9 +118,10 @@ abstract class _$$PresetTileResourceImplCopyWith<$Res>
 class __$$PresetTileResourceImplCopyWithImpl<$Res>
     extends _$PresetTileResourceCopyWithImpl<$Res, _$PresetTileResourceImpl>
     implements _$$PresetTileResourceImplCopyWith<$Res> {
-  __$$PresetTileResourceImplCopyWithImpl(_$PresetTileResourceImpl _value,
-      $Res Function(_$PresetTileResourceImpl) _then)
-      : super(_value, _then);
+  __$$PresetTileResourceImplCopyWithImpl(
+    _$PresetTileResourceImpl _value,
+    $Res Function(_$PresetTileResourceImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of PresetTileResource
   /// with the given fields replaced by the non-null parameter values.
@@ -123,34 +132,35 @@ class __$$PresetTileResourceImplCopyWithImpl<$Res>
     Object? behaviourPaths = null,
     Object? directionalPaths = null,
   }) {
-    return _then(_$PresetTileResourceImpl(
-      tile: null == tile
-          ? _value.tile
-          : tile // ignore: cast_nullable_to_non_nullable
-              as PresetTileModel,
-      behaviourPaths: null == behaviourPaths
-          ? _value._behaviourPaths
-          : behaviourPaths // ignore: cast_nullable_to_non_nullable
-              as Map<TileBehaviourType, AnimationEntryModel>,
-      directionalPaths: null == directionalPaths
-          ? _value._directionalPaths
-          : directionalPaths // ignore: cast_nullable_to_non_nullable
-              as Map<String, AnimationEntryModel>,
-    ));
+    return _then(
+      _$PresetTileResourceImpl(
+        tile: null == tile
+            ? _value.tile
+            : tile // ignore: cast_nullable_to_non_nullable
+                  as PresetTileModel,
+        behaviourPaths: null == behaviourPaths
+            ? _value._behaviourPaths
+            : behaviourPaths // ignore: cast_nullable_to_non_nullable
+                  as Map<TileBehaviourType, AnimationEntryModel>,
+        directionalPaths: null == directionalPaths
+            ? _value._directionalPaths
+            : directionalPaths // ignore: cast_nullable_to_non_nullable
+                  as Map<String, AnimationEntryModel>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$PresetTileResourceImpl extends _PresetTileResource {
-  const _$PresetTileResourceImpl(
-      {required this.tile,
-      final Map<TileBehaviourType, AnimationEntryModel> behaviourPaths =
-          const {},
-      final Map<String, AnimationEntryModel> directionalPaths = const {}})
-      : _behaviourPaths = behaviourPaths,
-        _directionalPaths = directionalPaths,
-        super._();
+  const _$PresetTileResourceImpl({
+    required this.tile,
+    final Map<TileBehaviourType, AnimationEntryModel> behaviourPaths = const {},
+    final Map<String, AnimationEntryModel> directionalPaths = const {},
+  }) : _behaviourPaths = behaviourPaths,
+       _directionalPaths = directionalPaths,
+       super._();
 
   @override
   final PresetTileModel tile;
@@ -183,18 +193,23 @@ class _$PresetTileResourceImpl extends _PresetTileResource {
         (other.runtimeType == runtimeType &&
             other is _$PresetTileResourceImpl &&
             (identical(other.tile, tile) || other.tile == tile) &&
-            const DeepCollectionEquality()
-                .equals(other._behaviourPaths, _behaviourPaths) &&
-            const DeepCollectionEquality()
-                .equals(other._directionalPaths, _directionalPaths));
+            const DeepCollectionEquality().equals(
+              other._behaviourPaths,
+              _behaviourPaths,
+            ) &&
+            const DeepCollectionEquality().equals(
+              other._directionalPaths,
+              _directionalPaths,
+            ));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      tile,
-      const DeepCollectionEquality().hash(_behaviourPaths),
-      const DeepCollectionEquality().hash(_directionalPaths));
+    runtimeType,
+    tile,
+    const DeepCollectionEquality().hash(_behaviourPaths),
+    const DeepCollectionEquality().hash(_directionalPaths),
+  );
 
   /// Create a copy of PresetTileResource
   /// with the given fields replaced by the non-null parameter values.
@@ -203,15 +218,17 @@ class _$PresetTileResourceImpl extends _PresetTileResource {
   @pragma('vm:prefer-inline')
   _$$PresetTileResourceImplCopyWith<_$PresetTileResourceImpl> get copyWith =>
       __$$PresetTileResourceImplCopyWithImpl<_$PresetTileResourceImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _PresetTileResource extends PresetTileResource {
-  const factory _PresetTileResource(
-          {required final PresetTileModel tile,
-          final Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
-          final Map<String, AnimationEntryModel> directionalPaths}) =
-      _$PresetTileResourceImpl;
+  const factory _PresetTileResource({
+    required final PresetTileModel tile,
+    final Map<TileBehaviourType, AnimationEntryModel> behaviourPaths,
+    final Map<String, AnimationEntryModel> directionalPaths,
+  }) = _$PresetTileResourceImpl;
   const _PresetTileResource._() : super._();
 
   @override

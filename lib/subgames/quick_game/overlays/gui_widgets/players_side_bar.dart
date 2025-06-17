@@ -14,16 +14,14 @@ class UiPlayersStateDiDto {
 }
 
 UiPlayersState useUiPlayersState({required final Locator read}) => use(
-      LifeHook(
-        debugLabel: 'UiPlayersState',
-        state: UiPlayersState(diDto: UiPlayersStateDiDto.use(read)),
-      ),
-    );
+  LifeHook(
+    debugLabel: 'UiPlayersState',
+    state: UiPlayersState(diDto: UiPlayersStateDiDto.use(read)),
+  ),
+);
 
 class UiPlayersState extends LifeState {
-  UiPlayersState({
-    required this.diDto,
-  });
+  UiPlayersState({required this.diDto});
 
   final UiPlayersStateDiDto diDto;
   final players = <PlayerProfileModel>[];
@@ -31,8 +29,9 @@ class UiPlayersState extends LifeState {
   String get currentPlayerId => diDto.levelPlayersBloc.state.currentPlayerId;
   @override
   void initState() {
-    levelPlayersBlocSubscription =
-        diDto.levelPlayersBloc.stream.listen(_onLevelPlayersBlocChange);
+    levelPlayersBlocSubscription = diDto.levelPlayersBloc.stream.listen(
+      _onLevelPlayersBlocChange,
+    );
     super.initState();
   }
 
@@ -135,8 +134,9 @@ class UiPlayerAndScoreTile extends StatelessWidget {
     final theme = Theme.of(context);
     final colorScheme = theme.colorScheme;
     // final surfaceColorScheme = theme.extension<SurfaceColorScheme>()!;
-    final textStyle =
-        isCurrent ? theme.textTheme.labelLarge : theme.textTheme.labelMedium;
+    final textStyle = isCurrent
+        ? theme.textTheme.labelLarge
+        : theme.textTheme.labelMedium;
     final backgroundColor = isCurrent
         ? colorScheme.tertiaryContainer.withOpacity(0.7)
         : colorScheme.scrim.withOpacity(0.2);
@@ -144,10 +144,7 @@ class UiPlayerAndScoreTile extends StatelessWidget {
 
     return AnimatedContainer(
       duration: 350.milliseconds,
-      padding: const EdgeInsets.only(
-        top: 2,
-        bottom: 2,
-      ),
+      padding: const EdgeInsets.only(top: 2, bottom: 2),
       decoration: BoxDecoration(
         borderRadius: const BorderRadius.only(
           topRight: radius,
@@ -184,8 +181,9 @@ class UiPlayerAndScoreTile extends StatelessWidget {
             child: Text(
               player.name,
               style: theme.textTheme.labelMedium?.copyWith(
-                color:
-                    isCurrent ? null : colorScheme.onSurface.withOpacity(0.6),
+                color: isCurrent
+                    ? null
+                    : colorScheme.onSurface.withOpacity(0.6),
               ),
             ),
           ),
@@ -270,36 +268,31 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
             onInit: (final controller) =>
                 _decreaseScoreAnimationController = controller,
             effects: [ShakeEffect(duration: 1.seconds, hz: 10)],
-            child: UiTextCounter(
-              value: _score,
-              style: theme.textTheme.labelMedium?.copyWith(
-                color: selected
-                    ? colorScheme.onPrimary
-                    : colorScheme.onSurface.withOpacity(0.6),
-              ),
-            )
-                .animate(
-                  key: ValueKey(_score),
-                  autoPlay: true,
-                  onInit: (final controller) =>
-                      _appearanceScoreAnimationController = controller,
-                )
-                .fadeIn()
-                .slideY(
-                  begin: -0.1,
-                  end: 0,
-                )
-                .scale(begin: const Offset(1.1, 1.1)),
+            child:
+                UiTextCounter(
+                      value: _score,
+                      style: theme.textTheme.labelMedium?.copyWith(
+                        color: selected
+                            ? colorScheme.onPrimary
+                            : colorScheme.onSurface.withOpacity(0.6),
+                      ),
+                    )
+                    .animate(
+                      key: ValueKey(_score),
+                      autoPlay: true,
+                      onInit: (final controller) =>
+                          _appearanceScoreAnimationController = controller,
+                    )
+                    .fadeIn()
+                    .slideY(begin: -0.1, end: 0)
+                    .scale(begin: const Offset(1.1, 1.1)),
           ),
           if (selected)
             Icon(
               Icons.arrow_right_outlined,
               size: theme.textTheme.labelMedium?.fontSize,
               color: colorScheme.onPrimary,
-            ).animate().fadeIn().slideX(
-                  begin: -0.1,
-                  end: 0,
-                ),
+            ).animate().fadeIn().slideX(begin: -0.1, end: 0),
         ],
       ),
     );

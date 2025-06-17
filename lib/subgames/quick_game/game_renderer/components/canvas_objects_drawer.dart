@@ -65,8 +65,8 @@ class GameCanvasObjectsDrawer extends Component
       case LevelStateStatus.levelReady || LevelStateStatus.playing:
         await _loadObjects();
       case LevelStateStatus.loading ||
-            LevelStateStatus.paused ||
-            LevelStateStatus.playing:
+          LevelStateStatus.paused ||
+          LevelStateStatus.playing:
     }
   }
 

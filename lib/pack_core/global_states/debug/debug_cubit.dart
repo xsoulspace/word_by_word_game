@@ -16,8 +16,8 @@ class DebugCubitState with _$DebugCubitState {
 
 class DebugCubitDto {
   DebugCubitDto(final BuildContext context)
-      : technologiesCubit = context.read<TechnologiesCubit>(),
-        statesStatusesCubit = context.read();
+    : technologiesCubit = context.read<TechnologiesCubit>(),
+      statesStatusesCubit = context.read();
 
   final TechnologiesCubit technologiesCubit;
   final StatesStatusesCubit statesStatusesCubit;
@@ -26,8 +26,8 @@ class DebugCubitDto {
 class DebugCubit extends Cubit<DebugCubitState> {
   // ignore: avoid_unused_constructor_parameters
   DebugCubit(final BuildContext context)
-      : dto = DebugCubitDto(context),
-        super(const DebugCubitState(isDebugPaneVisible: false));
+    : dto = DebugCubitDto(context),
+      super(const DebugCubitState(isDebugPaneVisible: false));
   final DebugCubitDto dto;
   // ignore: avoid_positional_boolean_parameters
   void switchIsCameraFollowingPlayerChange([final bool? value]) {

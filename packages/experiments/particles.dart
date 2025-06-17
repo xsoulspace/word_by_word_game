@@ -18,30 +18,25 @@ class ParticlesExample extends FlameGame {
 
   @override
   Future<void> onLoad() async {
-    add(
-      ParticleSystemComponent(
-        particle: createSnowflakeParticle(),
-      ),
-    );
+    add(ParticleSystemComponent(particle: createSnowflakeParticle()));
   }
 
   Particle createSnowflakeParticle() => Particle.generate(
-        count: 100,
-        lifespan: double.infinity,
-        generator: (final i) => AcceleratedParticle(
-          position: Vector2(
-            rnd.nextDouble() * size.x,
-            rnd.nextDouble() * size.y - size.y, // Distribute vertically
-          ),
-          speed:
-              Vector2(rnd.nextDouble() * 20 - 10, 20 + rnd.nextDouble() * 30),
-          acceleration: Vector2(0, 1),
-          child: CircleParticle(
-            radius: 1 + rnd.nextDouble() * 2,
-            paint: Paint()..color = Colors.white.withOpacity(0.7),
-          ),
-        ),
-      );
+    count: 100,
+    lifespan: double.infinity,
+    generator: (final i) => AcceleratedParticle(
+      position: Vector2(
+        rnd.nextDouble() * size.x,
+        rnd.nextDouble() * size.y - size.y, // Distribute vertically
+      ),
+      speed: Vector2(rnd.nextDouble() * 20 - 10, 20 + rnd.nextDouble() * 30),
+      acceleration: Vector2(0, 1),
+      child: CircleParticle(
+        radius: 1 + rnd.nextDouble() * 2,
+        paint: Paint()..color = Colors.white.withOpacity(0.7),
+      ),
+    ),
+  );
 
   @override
   void update(final double dt) {
@@ -66,7 +61,5 @@ class ParticlesExample extends FlameGame {
 }
 
 void main(final List<String> args) {
-  runApp(
-    GameWidget(game: ParticlesExample()),
-  );
+  runApp(GameWidget(game: ParticlesExample()));
 }

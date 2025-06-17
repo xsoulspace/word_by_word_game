@@ -8,12 +8,10 @@ class MapEditorApp extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => StateDiProvider(
-        builder: (final context) => StateLoader(
-          initializer: EditorStateInitializer(),
-          loader: const Center(),
-          child: const MaterialApp(
-            home: SandboxScreen(),
-          ),
-        ),
-      );
+    builder: (final context) => StateLoader(
+      initializer: EditorStateInitializer(),
+      loader: const Center(),
+      child: const MaterialApp(home: SandboxScreen()),
+    ),
+  );
 }

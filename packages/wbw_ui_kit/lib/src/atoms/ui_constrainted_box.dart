@@ -72,12 +72,12 @@ class UiConstrainedBox extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => ConstrainedBox(
-        constraints: BoxConstraints(
-          minWidth: minWidth ?? 0.0,
-          maxWidth: maxWidth ?? double.infinity,
-          minHeight: minHeight ?? 0.0,
-          maxHeight: maxHeight ?? double.infinity,
-        ),
-        child: child,
-      );
+    constraints: BoxConstraints(
+      minWidth: minWidth ?? 0.0,
+      maxWidth: maxWidth ?? double.infinity,
+      minHeight: minHeight ?? 0.0,
+      maxHeight: maxHeight ?? double.infinity,
+    ),
+    child: child,
+  );
 }

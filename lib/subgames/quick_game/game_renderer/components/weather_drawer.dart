@@ -9,9 +9,7 @@ import 'package:word_by_word_game/subgames/quick_game/game_renderer/game_rendere
 
 class SnowWeatherLayer extends Component
     with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
-  SnowWeatherLayer({
-    this.color = Colors.grey,
-  });
+  SnowWeatherLayer({this.color = Colors.grey});
 
   final Color color;
   double get density => 0.02;
@@ -56,9 +54,7 @@ class SnowWeatherLayer extends Component
 
 class FogWeatherLayer extends Component
     with HasGameRef<CanvasRendererGame>, HasCanvasRendererRef {
-  FogWeatherLayer({
-    this.color = Colors.grey,
-  });
+  FogWeatherLayer({this.color = Colors.grey});
 
   final Color color;
   double get density => 0.02;

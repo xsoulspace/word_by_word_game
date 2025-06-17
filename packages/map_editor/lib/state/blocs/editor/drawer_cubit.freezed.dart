@@ -12,7 +12,8 @@ part of 'drawer_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$DrawerCubitState {
@@ -45,18 +46,20 @@ mixin _$DrawerCubitState {
 /// @nodoc
 abstract class $DrawerCubitStateCopyWith<$Res> {
   factory $DrawerCubitStateCopyWith(
-          DrawerCubitState value, $Res Function(DrawerCubitState) then) =
-      _$DrawerCubitStateCopyWithImpl<$Res, DrawerCubitState>;
+    DrawerCubitState value,
+    $Res Function(DrawerCubitState) then,
+  ) = _$DrawerCubitStateCopyWithImpl<$Res, DrawerCubitState>;
   @useResult
-  $Res call(
-      {Vector2 origin,
-      PresetTileResource? tileToDraw,
-      bool isDeleteSelection,
-      bool isDeleteSelectionCompletely,
-      CanvasDataModel canvasData,
-      LayerModelId drawLayerId,
-      TilesetPresetResources tileResources,
-      List<TilesetConfigModel> tilesetsConfigs});
+  $Res call({
+    Vector2 origin,
+    PresetTileResource? tileToDraw,
+    bool isDeleteSelection,
+    bool isDeleteSelectionCompletely,
+    CanvasDataModel canvasData,
+    LayerModelId drawLayerId,
+    TilesetPresetResources tileResources,
+    List<TilesetConfigModel> tilesetsConfigs,
+  });
 
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
   $CanvasDataModelCopyWith<$Res> get canvasData;
@@ -88,40 +91,43 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
     Object? tileResources = null,
     Object? tilesetsConfigs = null,
   }) {
-    return _then(_value.copyWith(
-      origin: null == origin
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as Vector2,
-      tileToDraw: freezed == tileToDraw
-          ? _value.tileToDraw
-          : tileToDraw // ignore: cast_nullable_to_non_nullable
-              as PresetTileResource?,
-      isDeleteSelection: null == isDeleteSelection
-          ? _value.isDeleteSelection
-          : isDeleteSelection // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDeleteSelectionCompletely: null == isDeleteSelectionCompletely
-          ? _value.isDeleteSelectionCompletely
-          : isDeleteSelectionCompletely // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canvasData: null == canvasData
-          ? _value.canvasData
-          : canvasData // ignore: cast_nullable_to_non_nullable
-              as CanvasDataModel,
-      drawLayerId: null == drawLayerId
-          ? _value.drawLayerId
-          : drawLayerId // ignore: cast_nullable_to_non_nullable
-              as LayerModelId,
-      tileResources: null == tileResources
-          ? _value.tileResources
-          : tileResources // ignore: cast_nullable_to_non_nullable
-              as TilesetPresetResources,
-      tilesetsConfigs: null == tilesetsConfigs
-          ? _value.tilesetsConfigs
-          : tilesetsConfigs // ignore: cast_nullable_to_non_nullable
-              as List<TilesetConfigModel>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            origin: null == origin
+                ? _value.origin
+                : origin // ignore: cast_nullable_to_non_nullable
+                      as Vector2,
+            tileToDraw: freezed == tileToDraw
+                ? _value.tileToDraw
+                : tileToDraw // ignore: cast_nullable_to_non_nullable
+                      as PresetTileResource?,
+            isDeleteSelection: null == isDeleteSelection
+                ? _value.isDeleteSelection
+                : isDeleteSelection // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isDeleteSelectionCompletely: null == isDeleteSelectionCompletely
+                ? _value.isDeleteSelectionCompletely
+                : isDeleteSelectionCompletely // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            canvasData: null == canvasData
+                ? _value.canvasData
+                : canvasData // ignore: cast_nullable_to_non_nullable
+                      as CanvasDataModel,
+            drawLayerId: null == drawLayerId
+                ? _value.drawLayerId
+                : drawLayerId // ignore: cast_nullable_to_non_nullable
+                      as LayerModelId,
+            tileResources: null == tileResources
+                ? _value.tileResources
+                : tileResources // ignore: cast_nullable_to_non_nullable
+                      as TilesetPresetResources,
+            tilesetsConfigs: null == tilesetsConfigs
+                ? _value.tilesetsConfigs
+                : tilesetsConfigs // ignore: cast_nullable_to_non_nullable
+                      as List<TilesetConfigModel>,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of DrawerCubitState
@@ -172,20 +178,22 @@ class _$DrawerCubitStateCopyWithImpl<$Res, $Val extends DrawerCubitState>
 /// @nodoc
 abstract class _$$DrawerCubitStateImplCopyWith<$Res>
     implements $DrawerCubitStateCopyWith<$Res> {
-  factory _$$DrawerCubitStateImplCopyWith(_$DrawerCubitStateImpl value,
-          $Res Function(_$DrawerCubitStateImpl) then) =
-      __$$DrawerCubitStateImplCopyWithImpl<$Res>;
+  factory _$$DrawerCubitStateImplCopyWith(
+    _$DrawerCubitStateImpl value,
+    $Res Function(_$DrawerCubitStateImpl) then,
+  ) = __$$DrawerCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Vector2 origin,
-      PresetTileResource? tileToDraw,
-      bool isDeleteSelection,
-      bool isDeleteSelectionCompletely,
-      CanvasDataModel canvasData,
-      LayerModelId drawLayerId,
-      TilesetPresetResources tileResources,
-      List<TilesetConfigModel> tilesetsConfigs});
+  $Res call({
+    Vector2 origin,
+    PresetTileResource? tileToDraw,
+    bool isDeleteSelection,
+    bool isDeleteSelectionCompletely,
+    CanvasDataModel canvasData,
+    LayerModelId drawLayerId,
+    TilesetPresetResources tileResources,
+    List<TilesetConfigModel> tilesetsConfigs,
+  });
 
   @override
   $PresetTileResourceCopyWith<$Res>? get tileToDraw;
@@ -201,9 +209,10 @@ abstract class _$$DrawerCubitStateImplCopyWith<$Res>
 class __$$DrawerCubitStateImplCopyWithImpl<$Res>
     extends _$DrawerCubitStateCopyWithImpl<$Res, _$DrawerCubitStateImpl>
     implements _$$DrawerCubitStateImplCopyWith<$Res> {
-  __$$DrawerCubitStateImplCopyWithImpl(_$DrawerCubitStateImpl _value,
-      $Res Function(_$DrawerCubitStateImpl) _then)
-      : super(_value, _then);
+  __$$DrawerCubitStateImplCopyWithImpl(
+    _$DrawerCubitStateImpl _value,
+    $Res Function(_$DrawerCubitStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DrawerCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -219,57 +228,59 @@ class __$$DrawerCubitStateImplCopyWithImpl<$Res>
     Object? tileResources = null,
     Object? tilesetsConfigs = null,
   }) {
-    return _then(_$DrawerCubitStateImpl(
-      origin: null == origin
-          ? _value.origin
-          : origin // ignore: cast_nullable_to_non_nullable
-              as Vector2,
-      tileToDraw: freezed == tileToDraw
-          ? _value.tileToDraw
-          : tileToDraw // ignore: cast_nullable_to_non_nullable
-              as PresetTileResource?,
-      isDeleteSelection: null == isDeleteSelection
-          ? _value.isDeleteSelection
-          : isDeleteSelection // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDeleteSelectionCompletely: null == isDeleteSelectionCompletely
-          ? _value.isDeleteSelectionCompletely
-          : isDeleteSelectionCompletely // ignore: cast_nullable_to_non_nullable
-              as bool,
-      canvasData: null == canvasData
-          ? _value.canvasData
-          : canvasData // ignore: cast_nullable_to_non_nullable
-              as CanvasDataModel,
-      drawLayerId: null == drawLayerId
-          ? _value.drawLayerId
-          : drawLayerId // ignore: cast_nullable_to_non_nullable
-              as LayerModelId,
-      tileResources: null == tileResources
-          ? _value.tileResources
-          : tileResources // ignore: cast_nullable_to_non_nullable
-              as TilesetPresetResources,
-      tilesetsConfigs: null == tilesetsConfigs
-          ? _value._tilesetsConfigs
-          : tilesetsConfigs // ignore: cast_nullable_to_non_nullable
-              as List<TilesetConfigModel>,
-    ));
+    return _then(
+      _$DrawerCubitStateImpl(
+        origin: null == origin
+            ? _value.origin
+            : origin // ignore: cast_nullable_to_non_nullable
+                  as Vector2,
+        tileToDraw: freezed == tileToDraw
+            ? _value.tileToDraw
+            : tileToDraw // ignore: cast_nullable_to_non_nullable
+                  as PresetTileResource?,
+        isDeleteSelection: null == isDeleteSelection
+            ? _value.isDeleteSelection
+            : isDeleteSelection // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isDeleteSelectionCompletely: null == isDeleteSelectionCompletely
+            ? _value.isDeleteSelectionCompletely
+            : isDeleteSelectionCompletely // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        canvasData: null == canvasData
+            ? _value.canvasData
+            : canvasData // ignore: cast_nullable_to_non_nullable
+                  as CanvasDataModel,
+        drawLayerId: null == drawLayerId
+            ? _value.drawLayerId
+            : drawLayerId // ignore: cast_nullable_to_non_nullable
+                  as LayerModelId,
+        tileResources: null == tileResources
+            ? _value.tileResources
+            : tileResources // ignore: cast_nullable_to_non_nullable
+                  as TilesetPresetResources,
+        tilesetsConfigs: null == tilesetsConfigs
+            ? _value._tilesetsConfigs
+            : tilesetsConfigs // ignore: cast_nullable_to_non_nullable
+                  as List<TilesetConfigModel>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$DrawerCubitStateImpl extends _DrawerCubitState {
-  const _$DrawerCubitStateImpl(
-      {required this.origin,
-      this.tileToDraw,
-      this.isDeleteSelection = false,
-      this.isDeleteSelectionCompletely = false,
-      this.canvasData = CanvasDataModel.empty,
-      this.drawLayerId = LayerModelId.empty,
-      this.tileResources = TilesetPresetResources.empty,
-      final List<TilesetConfigModel> tilesetsConfigs = const []})
-      : _tilesetsConfigs = tilesetsConfigs,
-        super._();
+  const _$DrawerCubitStateImpl({
+    required this.origin,
+    this.tileToDraw,
+    this.isDeleteSelection = false,
+    this.isDeleteSelectionCompletely = false,
+    this.canvasData = CanvasDataModel.empty,
+    this.drawLayerId = LayerModelId.empty,
+    this.tileResources = TilesetPresetResources.empty,
+    final List<TilesetConfigModel> tilesetsConfigs = const [],
+  }) : _tilesetsConfigs = tilesetsConfigs,
+       super._();
 
   /// Real origin for all elements
   @override
@@ -322,8 +333,10 @@ class _$DrawerCubitStateImpl extends _DrawerCubitState {
                 other.tileToDraw == tileToDraw) &&
             (identical(other.isDeleteSelection, isDeleteSelection) ||
                 other.isDeleteSelection == isDeleteSelection) &&
-            (identical(other.isDeleteSelectionCompletely,
-                    isDeleteSelectionCompletely) ||
+            (identical(
+                  other.isDeleteSelectionCompletely,
+                  isDeleteSelectionCompletely,
+                ) ||
                 other.isDeleteSelectionCompletely ==
                     isDeleteSelectionCompletely) &&
             (identical(other.canvasData, canvasData) ||
@@ -332,21 +345,24 @@ class _$DrawerCubitStateImpl extends _DrawerCubitState {
                 other.drawLayerId == drawLayerId) &&
             (identical(other.tileResources, tileResources) ||
                 other.tileResources == tileResources) &&
-            const DeepCollectionEquality()
-                .equals(other._tilesetsConfigs, _tilesetsConfigs));
+            const DeepCollectionEquality().equals(
+              other._tilesetsConfigs,
+              _tilesetsConfigs,
+            ));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      origin,
-      tileToDraw,
-      isDeleteSelection,
-      isDeleteSelectionCompletely,
-      canvasData,
-      drawLayerId,
-      tileResources,
-      const DeepCollectionEquality().hash(_tilesetsConfigs));
+    runtimeType,
+    origin,
+    tileToDraw,
+    isDeleteSelection,
+    isDeleteSelectionCompletely,
+    canvasData,
+    drawLayerId,
+    tileResources,
+    const DeepCollectionEquality().hash(_tilesetsConfigs),
+  );
 
   /// Create a copy of DrawerCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -355,19 +371,22 @@ class _$DrawerCubitStateImpl extends _DrawerCubitState {
   @pragma('vm:prefer-inline')
   _$$DrawerCubitStateImplCopyWith<_$DrawerCubitStateImpl> get copyWith =>
       __$$DrawerCubitStateImplCopyWithImpl<_$DrawerCubitStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _DrawerCubitState extends DrawerCubitState {
-  const factory _DrawerCubitState(
-      {required final Vector2 origin,
-      final PresetTileResource? tileToDraw,
-      final bool isDeleteSelection,
-      final bool isDeleteSelectionCompletely,
-      final CanvasDataModel canvasData,
-      final LayerModelId drawLayerId,
-      final TilesetPresetResources tileResources,
-      final List<TilesetConfigModel> tilesetsConfigs}) = _$DrawerCubitStateImpl;
+  const factory _DrawerCubitState({
+    required final Vector2 origin,
+    final PresetTileResource? tileToDraw,
+    final bool isDeleteSelection,
+    final bool isDeleteSelectionCompletely,
+    final CanvasDataModel canvasData,
+    final LayerModelId drawLayerId,
+    final TilesetPresetResources tileResources,
+    final List<TilesetConfigModel> tilesetsConfigs,
+  }) = _$DrawerCubitStateImpl;
   const _DrawerCubitState._() : super._();
 
   /// Real origin for all elements

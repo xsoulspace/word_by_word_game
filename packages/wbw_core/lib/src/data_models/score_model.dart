@@ -7,9 +7,7 @@ const kScoreFactor = 10;
 @freezed
 class ScoreModel with _$ScoreModel {
   /// to create use [ScoreMechanics.getScoreFromWord]
-  const factory ScoreModel({
-    required final double value,
-  }) = _ScoreModel;
+  const factory ScoreModel({required final double value}) = _ScoreModel;
 
   const ScoreModel._();
 

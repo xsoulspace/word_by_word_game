@@ -72,11 +72,7 @@ class UIMobilePlayerScore extends StatelessWidget {
 }
 
 class UiPlayerScoreIcon extends StatelessWidget {
-  const UiPlayerScoreIcon({
-    this.size = 12,
-    this.color,
-    super.key,
-  });
+  const UiPlayerScoreIcon({this.size = 12, this.color, super.key});
   final double size;
   final Color? color;
 
@@ -101,9 +97,9 @@ class _LabelText extends StatelessWidget {
     this.value,
     this.text = '',
   }) : assert(
-          value != null || text != '',
-          'Either value or text must be provided',
-        );
+         value != null || text != '',
+         'Either value or text must be provided',
+       );
   final bool isHighlighted;
   final TutorialUiItem uiKey;
   final Alignment uiKeyPosition;
@@ -124,26 +120,20 @@ class _LabelText extends StatelessWidget {
         child: AnimatedDefaultTextStyle(
           duration: 170.milliseconds,
           style: isHighlighted
-              ? textTheme.titleLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                )
-              : textTheme.labelMedium!.copyWith(
-                  color: colorScheme.tertiary,
-                ),
-          child: (text.isEmpty
-                  ? UiTextCounter(
-                      value: value ?? 0,
-                      textAlign: TextAlign.center,
-                      delay: 350.milliseconds,
-                    )
-                  : Text(
-                      text,
-                      textAlign: TextAlign.center,
-                    ))
-              .animate()
-              .fadeIn()
-              .scaleXY(begin: 1.1)
-              .slideY(begin: -0.2),
+              ? textTheme.titleLarge!.copyWith(fontWeight: FontWeight.bold)
+              : textTheme.labelMedium!.copyWith(color: colorScheme.tertiary),
+          child:
+              (text.isEmpty
+                      ? UiTextCounter(
+                          value: value ?? 0,
+                          textAlign: TextAlign.center,
+                          delay: 350.milliseconds,
+                        )
+                      : Text(text, textAlign: TextAlign.center))
+                  .animate()
+                  .fadeIn()
+                  .scaleXY(begin: 1.1)
+                  .slideY(begin: -0.2),
         ),
       ),
     );

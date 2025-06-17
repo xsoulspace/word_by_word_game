@@ -71,43 +71,43 @@ class _UiAnimatedFocusManagerState extends State<UiAnimatedFocusManager>
 
   @override
   Widget build(final BuildContext context) => Stack(
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: widget.children.map((final child) {
-              if (child is UiStyledButton) {
-                return UiFocusableWidget(
-                  index: widget.children.indexOf(child),
-                  onFocusChange: _onFocusChange,
-                  child: child,
-                );
-              }
-              return child;
-            }).toList(),
-          ),
-          if (_startPosition != null && _endPosition != null)
-            AnimatedBuilder(
-              animation: _controller,
-              builder: (final context, final child) {
-                final position = Offset.lerp(
-                  _startPosition,
-                  _endPosition,
-                  _controller.value,
-                )!;
-                return Positioned(
-                  left: 0,
-                  top: position.dy + 10,
-                  child: const Icon(
-                    Icons.arrow_forward_ios_rounded,
-                    color: UiColors.mediumLight,
-                    size: 24,
-                  ),
-                );
-              },
-            ),
-        ],
-      );
+    children: [
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: widget.children.map((final child) {
+          if (child is UiStyledButton) {
+            return UiFocusableWidget(
+              index: widget.children.indexOf(child),
+              onFocusChange: _onFocusChange,
+              child: child,
+            );
+          }
+          return child;
+        }).toList(),
+      ),
+      if (_startPosition != null && _endPosition != null)
+        AnimatedBuilder(
+          animation: _controller,
+          builder: (final context, final child) {
+            final position = Offset.lerp(
+              _startPosition,
+              _endPosition,
+              _controller.value,
+            )!;
+            return Positioned(
+              left: 0,
+              top: position.dy + 10,
+              child: const Icon(
+                Icons.arrow_forward_ios_rounded,
+                color: UiColors.mediumLight,
+                size: 24,
+              ),
+            );
+          },
+        ),
+    ],
+  );
 }
 
 class UiFocusableWidget extends StatefulWidget {
@@ -130,17 +130,14 @@ class _UiFocusableWidgetState extends State<UiFocusableWidget> {
 
   @override
   Widget build(final BuildContext context) => Focus(
-        onFocusChange: (final hasFocus) {
-          if (hasFocus) {
-            final RenderBox renderBox =
-                _key.currentContext!.findRenderObject()! as RenderBox;
-            final position = renderBox.localToGlobal(Offset.zero);
-            widget.onFocusChange(widget.index, position);
-          }
-        },
-        child: KeyedSubtree(
-          key: _key,
-          child: widget.child,
-        ),
-      );
+    onFocusChange: (final hasFocus) {
+      if (hasFocus) {
+        final RenderBox renderBox =
+            _key.currentContext!.findRenderObject()! as RenderBox;
+        final position = renderBox.localToGlobal(Offset.zero);
+        widget.onFocusChange(widget.index, position);
+      }
+    },
+    child: KeyedSubtree(key: _key, child: widget.child),
+  );
 }

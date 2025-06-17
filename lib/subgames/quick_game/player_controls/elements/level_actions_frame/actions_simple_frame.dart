@@ -13,10 +13,7 @@ class UiActionFrameSimple extends StatelessWidget {
 
     return Column(
       children: [
-        Text(
-          S.of(context).applyFuelOption,
-          style: textTheme.titleMedium,
-        ),
+        Text(S.of(context).applyFuelOption, style: textTheme.titleMedium),
         Divider(color: colorScheme.tertiary),
         UiGaps.small,
         const UiEnergyCards(),
@@ -33,8 +30,11 @@ class UiEnergyCards extends StatelessWidget with TechLevelMixin {
     final (
       isUnblocked: isPoweringEngineAvailable,
       isPlaying: _,
-      isAdvancedGame: _
-    ) = useTechLevelAvailable(context, TechnologyLevelIndex.poweringEngine);
+      isAdvancedGame: _,
+    ) = useTechLevelAvailable(
+      context,
+      TechnologyLevelIndex.poweringEngine,
+    );
     return BlocBuilder<LevelBloc, LevelBlocState>(
       buildWhen: LevelBloc.useCheckStateEqualityBuilder(
         checkLiveState: (final previous, final current) =>
@@ -83,8 +83,10 @@ class UIEnergyOptionCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final (:applyingScore, :compositionState) =
-        useApplyingScoreComposable(type: type, context: context);
+    final (:applyingScore, :compositionState) = useApplyingScoreComposable(
+      type: type,
+      context: context,
+    );
     // final isAllowedToUse = mechanics.score.checkPlayerAbilityToUseScore(
     //   player: player,
     //   score: applyingScore,
@@ -106,10 +108,7 @@ class UIEnergyOptionCard extends StatelessWidget {
 
     return UiActionButton(
       onCompleted: onApply,
-      padding: const EdgeInsets.symmetric(
-        vertical: 3,
-        horizontal: 12,
-      ),
+      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 12),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [

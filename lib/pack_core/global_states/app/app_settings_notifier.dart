@@ -4,16 +4,15 @@ import 'package:flutter/foundation.dart';
 import 'package:word_by_word_game/common_imports.dart';
 
 class AppSettingsCubitDto {
-  AppSettingsCubitDto({
-    required final BuildContext context,
-  }) : appSettingsRepository = context.read();
+  AppSettingsCubitDto({required final BuildContext context})
+    : appSettingsRepository = context.read();
   final AppSettingsRepository appSettingsRepository;
 }
 
 class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
   AppSettingsNotifier(final BuildContext context)
-      : dto = AppSettingsCubitDto(context: context),
-        super(AppSettingsModel.empty);
+    : dto = AppSettingsCubitDto(context: context),
+      super(AppSettingsModel.empty);
   final AppSettingsCubitDto dto;
 
   Future<void> _updateSettings(final AppSettingsModel value) async {

@@ -35,8 +35,7 @@ class TemplateRouteParser extends RouteInformationParser<ParsedRoute> {
   @override
   Future<ParsedRoute> parseRouteInformation(
     final RouteInformation routeInformation,
-  ) async =>
-      _parse(routeInformation);
+  ) async => _parse(routeInformation);
 
   ParsedRoute? _handleMatch({
     required final String pathTemplate,

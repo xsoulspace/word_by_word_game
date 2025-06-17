@@ -64,11 +64,11 @@ class UiFlexibleLayout extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Flex(
-        direction: direction,
-        mainAxisAlignment: mainAxisAlignment,
-        crossAxisAlignment: crossAxisAlignment,
-        children: _addSpacers(children, spacing),
-      );
+    direction: direction,
+    mainAxisAlignment: mainAxisAlignment,
+    crossAxisAlignment: crossAxisAlignment,
+    children: _addSpacers(children, spacing),
+  );
 
   List<Widget> _addSpacers(final List<Widget> widgets, final double space) =>
       widgets

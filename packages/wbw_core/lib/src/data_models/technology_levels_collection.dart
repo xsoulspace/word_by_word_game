@@ -29,14 +29,12 @@ enum TechnologyLevelIndex {
 
 class TechnologyLevelsCollection {
   TechnologyLevelsCollection._();
-  static final levels = List<TechnologyLevelTuple>.filled(
-    /// -1 because maxLevel is not a real level
-    TechnologyLevelIndex.values.length - 1,
-    (
-      title: '',
-      technologies: [],
-    ),
-  )
+  static final levels =
+      List<TechnologyLevelTuple>.filled(
+          /// -1 because maxLevel is not a real level
+          TechnologyLevelIndex.values.length - 1,
+          (title: '', technologies: []),
+        )
         ..[TechnologyLevelIndex.buildAndSave.index] = (
           // TODO(arenukvern): l10n
           title: 'Build & Save',
@@ -50,17 +48,18 @@ class TechnologyLevelsCollection {
         ..[TechnologyLevelIndex.takeOffAndLanding.index] = (
           // TODO(arenukvern): l10n
           title: 'Take Off & Landing',
-          technologies:
-              [TechnologyType.ascending, TechnologyType.descending].toIds(),
+          technologies: [
+            TechnologyType.ascending,
+            TechnologyType.descending,
+          ].toIds(),
         )
         ..[TechnologyLevelIndex.measuringTheWind.index] = (
           // TODO(arenukvern): l10n
           title: 'Measuring the Wind',
           technologies: [TechnologyType.buildingWindWaterTower].toIds(),
         )
-
-      //  add other levels
-      ;
+  //  add other levels
+  ;
 }
 
 extension TechnologyTypeX on List<TechnologyType> {

@@ -41,9 +41,7 @@ class UiTextButton extends HookWidget {
   bool get isEnabled => !isLoading && onPressed != null;
   @override
   Widget build(final BuildContext context) {
-    final state = useUiIconButtonState(
-      isLongButton: isLongButton,
-    );
+    final state = useUiIconButtonState(isLongButton: isLongButton);
     const height = 32.0;
     final theme = Theme.of(context);
     // final uiTheme = UiTheme.of(context);
@@ -85,11 +83,7 @@ class UiTextButton extends HookWidget {
                 mainAxisAlignment: mainAlignment,
                 children: [
                   if (icon != null) ...[
-                    UiIcon.asset(
-                      width: height,
-                      height: height,
-                      icon: icon!,
-                    ),
+                    UiIcon.asset(width: height, height: height, icon: icon!),
                   ],
                   AnimatedSwitcher(
                     duration: 250.milliseconds,

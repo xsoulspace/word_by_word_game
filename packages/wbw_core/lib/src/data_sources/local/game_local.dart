@@ -5,16 +5,12 @@ import '../../data_models/data_models.dart';
 import '../interfaces/interfaces.dart';
 
 class GameLocalDataSourceImpl implements GameLocalDataSource {
-  GameLocalDataSourceImpl({
-    required this.localDb,
-  });
+  GameLocalDataSourceImpl({required this.localDb});
 
   final LocalDbI localDb;
   static const _persistenceKey = 'game_save';
   @override
-  Future<void> saveGame({
-    required final GameSaveModel game,
-  }) async {
+  Future<void> saveGame({required final GameSaveModel game}) async {
     await localDb.setMap(key: _persistenceKey, value: game.toJson());
   }
 

@@ -18,9 +18,7 @@ mixin HasEditorResourcesLoaderRef on Component, HasGameRef<EditorRendererGame> {
 }
 
 class ResourcesLoader {
-  ResourcesLoader({
-    required this.tilesetAssets,
-  });
+  ResourcesLoader({required this.tilesetAssets});
   final AssetsCache tilesetAssets;
   TilesetConstants? _tilesetConstants;
   TilesetConstants get tilesetConstants {
@@ -75,7 +73,7 @@ class ResourcesLoader {
       path.replaceAll(tilesetAssets.prefix, '');
 
   Map<TileBehaviourType, AnimationEntryModel>
-      getPathsForPresetCharacterGraphics({
+  getPathsForPresetCharacterGraphics({
     required final PresetTileModel tile,
     required final TilesetConfigModel tilesetConfig,
   }) {
@@ -150,8 +148,9 @@ class ResourcesLoader {
       // }
     } else {
       for (final filePathWithExtension in paths) {
-        final filePathWithoutExtension =
-            path.withoutExtension(filePathWithExtension);
+        final filePathWithoutExtension = path.withoutExtension(
+          filePathWithExtension,
+        );
 
         final [..., fileTitle] = filePathWithoutExtension.split('/');
 
@@ -177,9 +176,7 @@ class AnimationUpdater extends Component
     if (frameIndex > entry.framesLength - 1) {
       frameIndex = 0;
     }
-    return entry.copyWith(
-      frameIndex: frameIndex,
-    );
+    return entry.copyWith(frameIndex: frameIndex);
   }
 
   static Map<TileId, PresetTileResource> _updateTiles({
@@ -272,46 +269,36 @@ class AnimationUpdater extends Component
       orignalTiles: drawerCubit.tilesPresetResources.tiles,
       config: game.config,
     );
-    drawerCubit.tilesPresetResources =
-        drawerCubit.tilesPresetResources.copyWith(
-      tiles: tiles,
-    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(tiles: tiles);
     final objects = _updateObjects(
       dt: dt,
       config: game.config,
       originalObjects: drawerCubit.tilesPresetResources.objects,
     );
-    drawerCubit.tilesPresetResources =
-        drawerCubit.tilesPresetResources.copyWith(
-      objects: objects,
-    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(objects: objects);
     final npcs = _updateObjects(
       dt: dt,
       config: game.config,
       originalObjects: drawerCubit.tilesPresetResources.npcs,
     );
-    drawerCubit.tilesPresetResources =
-        drawerCubit.tilesPresetResources.copyWith(
-      npcs: npcs,
-    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(npcs: npcs);
     final players = _updateObjects(
       dt: dt,
       config: game.config,
       originalObjects: drawerCubit.tilesPresetResources.players,
     );
-    drawerCubit.tilesPresetResources =
-        drawerCubit.tilesPresetResources.copyWith(
-      players: players,
-    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(players: players);
     final other = _updateObjects(
       dt: dt,
       config: game.config,
       originalObjects: drawerCubit.tilesPresetResources.other,
     );
-    drawerCubit.tilesPresetResources =
-        drawerCubit.tilesPresetResources.copyWith(
-      other: other,
-    );
+    drawerCubit.tilesPresetResources = drawerCubit.tilesPresetResources
+        .copyWith(other: other);
 
     super.update(dt);
   }

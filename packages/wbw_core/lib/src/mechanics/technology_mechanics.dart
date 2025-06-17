@@ -10,9 +10,7 @@ typedef TechUnlockStatusTuple = ({
 });
 
 class TechnologyMechanics {
-  TechnologyMechanics({
-    required this.scoreMechanics,
-  });
+  TechnologyMechanics({required this.scoreMechanics});
   final ScoreMechanics scoreMechanics;
 
   /// returns if even one language is unlocked
@@ -41,11 +39,12 @@ class TechnologyMechanics {
         isUnlocked: false,
         percentage: 0,
         investedScore: 0,
-        requiredScore: 0
+        requiredScore: 0,
       );
     }
-    final (:investedScore, :requiredScore) =
-        _calculateResearchPointsToUnlock(words: words);
+    final (:investedScore, :requiredScore) = _calculateResearchPointsToUnlock(
+      words: words,
+    );
     final summaryInvestedScore =
         investedScore + unlockCondition.investedResearchPoints;
 
@@ -62,21 +61,22 @@ class TechnologyMechanics {
   }
 
   ({double allRequiredScore, double allInvestedScore, bool isUnlocked})
-      getResearchPointsToUnlock({
+  getResearchPointsToUnlock({
     required final TechnologyUnlockConditionModel unlockCondition,
   }) {
     double allRequiredScore = 0;
     double allInvestedScore = 0;
     for (final MapEntry(value: words)
         in unlockCondition.languageWords.entries) {
-      final (:investedScore, :requiredScore) =
-          _calculateResearchPointsToUnlock(words: words);
+      final (:investedScore, :requiredScore) = _calculateResearchPointsToUnlock(
+        words: words,
+      );
       allRequiredScore += requiredScore;
       allInvestedScore += investedScore;
     }
     final isUnlocked =
         (unlockCondition.investedResearchPoints + allInvestedScore) >=
-            allRequiredScore;
+        allRequiredScore;
 
     return (
       allRequiredScore: allRequiredScore,
@@ -85,18 +85,14 @@ class TechnologyMechanics {
     );
   }
 
-  ({
-    double requiredScore,
-    double investedScore,
-  }) _calculateResearchPointsToUnlock({
+  ({double requiredScore, double investedScore})
+  _calculateResearchPointsToUnlock({
     required final List<UsefulWordModel> words,
   }) {
     double requiredScore = 0;
     double investedScore = 0;
     for (final word in words) {
-      final wordScore = scoreMechanics.getScoreFromWord(
-        word: word.word,
-      );
+      final wordScore = scoreMechanics.getScoreFromWord(word: word.word);
       requiredScore += wordScore.value;
       if (word.isUsed) investedScore += wordScore.value;
     }
@@ -107,7 +103,8 @@ class TechnologyMechanics {
     ScoreModel scoreLeftForNextLevel,
     TechnologyLevelIndex levelIndex,
     List<double> scoresByLevel,
-  }) getCurrentAchievedLevelIndex({
+  })
+  getCurrentAchievedLevelIndex({
     required final ScoreModel allInvesetedScore,
     required final List<TechnologyLevelTuple> levels,
     required final Map<TechnologyModelId, TechnologyModel> technologies,
@@ -123,18 +120,21 @@ class TechnologyMechanics {
       final level = levels[i];
       if (level.title.isEmpty) continue;
 
-      final scoreNeeded = level.technologies.map(
-        (final e) {
-          final technology = technologies[e];
-          if (technology == null) return 0.0;
-          final (:allRequiredScore, :allInvestedScore, :isUnlocked) =
-              getResearchPointsToUnlock(
-            unlockCondition: technology.unlockCondition,
-          );
-          allScoreLeft += allInvestedScore;
-          return allRequiredScore;
-        },
-      ).reduce((final a, final b) => a + b);
+      final scoreNeeded = level.technologies
+          .map((final e) {
+            final technology = technologies[e];
+            if (technology == null) return 0.0;
+            final (
+              :allRequiredScore,
+              :allInvestedScore,
+              :isUnlocked,
+            ) = getResearchPointsToUnlock(
+              unlockCondition: technology.unlockCondition,
+            );
+            allScoreLeft += allInvestedScore;
+            return allRequiredScore;
+          })
+          .reduce((final a, final b) => a + b);
       scoresByLevel.add(scoreNeeded);
     }
 
@@ -169,5 +169,5 @@ class TechnologyMechanics {
 
 typedef AllRequiredScoreByLevelsTuple = ({
   List<ScoreModel> levelsScores,
-  ScoreModel allScore
+  ScoreModel allScore,
 });

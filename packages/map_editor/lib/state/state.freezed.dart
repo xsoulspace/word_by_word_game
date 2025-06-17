@@ -12,7 +12,8 @@ part of 'state.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$WorldState {
@@ -30,13 +31,15 @@ mixin _$WorldState {
 /// @nodoc
 abstract class $WorldStateCopyWith<$Res> {
   factory $WorldStateCopyWith(
-          WorldState value, $Res Function(WorldState) then) =
-      _$WorldStateCopyWithImpl<$Res, WorldState>;
+    WorldState value,
+    $Res Function(WorldState) then,
+  ) = _$WorldStateCopyWithImpl<$Res, WorldState>;
   @useResult
-  $Res call(
-      {WorldDateTimeModel dateTime,
-      WorldDateTimeModel lastDateTime,
-      int dateTimeDelta});
+  $Res call({
+    WorldDateTimeModel dateTime,
+    WorldDateTimeModel lastDateTime,
+    int dateTimeDelta,
+  });
 
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
   $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
@@ -61,20 +64,23 @@ class _$WorldStateCopyWithImpl<$Res, $Val extends WorldState>
     Object? lastDateTime = null,
     Object? dateTimeDelta = null,
   }) {
-    return _then(_value.copyWith(
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
-      lastDateTime: null == lastDateTime
-          ? _value.lastDateTime
-          : lastDateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
-      dateTimeDelta: null == dateTimeDelta
-          ? _value.dateTimeDelta
-          : dateTimeDelta // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            dateTime: null == dateTime
+                ? _value.dateTime
+                : dateTime // ignore: cast_nullable_to_non_nullable
+                      as WorldDateTimeModel,
+            lastDateTime: null == lastDateTime
+                ? _value.lastDateTime
+                : lastDateTime // ignore: cast_nullable_to_non_nullable
+                      as WorldDateTimeModel,
+            dateTimeDelta: null == dateTimeDelta
+                ? _value.dateTimeDelta
+                : dateTimeDelta // ignore: cast_nullable_to_non_nullable
+                      as int,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of WorldState
@@ -102,14 +108,16 @@ class _$WorldStateCopyWithImpl<$Res, $Val extends WorldState>
 abstract class _$$WorldStateImplCopyWith<$Res>
     implements $WorldStateCopyWith<$Res> {
   factory _$$WorldStateImplCopyWith(
-          _$WorldStateImpl value, $Res Function(_$WorldStateImpl) then) =
-      __$$WorldStateImplCopyWithImpl<$Res>;
+    _$WorldStateImpl value,
+    $Res Function(_$WorldStateImpl) then,
+  ) = __$$WorldStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {WorldDateTimeModel dateTime,
-      WorldDateTimeModel lastDateTime,
-      int dateTimeDelta});
+  $Res call({
+    WorldDateTimeModel dateTime,
+    WorldDateTimeModel lastDateTime,
+    int dateTimeDelta,
+  });
 
   @override
   $WorldDateTimeModelCopyWith<$Res> get dateTime;
@@ -122,8 +130,9 @@ class __$$WorldStateImplCopyWithImpl<$Res>
     extends _$WorldStateCopyWithImpl<$Res, _$WorldStateImpl>
     implements _$$WorldStateImplCopyWith<$Res> {
   __$$WorldStateImplCopyWithImpl(
-      _$WorldStateImpl _value, $Res Function(_$WorldStateImpl) _then)
-      : super(_value, _then);
+    _$WorldStateImpl _value,
+    $Res Function(_$WorldStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of WorldState
   /// with the given fields replaced by the non-null parameter values.
@@ -134,31 +143,33 @@ class __$$WorldStateImplCopyWithImpl<$Res>
     Object? lastDateTime = null,
     Object? dateTimeDelta = null,
   }) {
-    return _then(_$WorldStateImpl(
-      dateTime: null == dateTime
-          ? _value.dateTime
-          : dateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
-      lastDateTime: null == lastDateTime
-          ? _value.lastDateTime
-          : lastDateTime // ignore: cast_nullable_to_non_nullable
-              as WorldDateTimeModel,
-      dateTimeDelta: null == dateTimeDelta
-          ? _value.dateTimeDelta
-          : dateTimeDelta // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+    return _then(
+      _$WorldStateImpl(
+        dateTime: null == dateTime
+            ? _value.dateTime
+            : dateTime // ignore: cast_nullable_to_non_nullable
+                  as WorldDateTimeModel,
+        lastDateTime: null == lastDateTime
+            ? _value.lastDateTime
+            : lastDateTime // ignore: cast_nullable_to_non_nullable
+                  as WorldDateTimeModel,
+        dateTimeDelta: null == dateTimeDelta
+            ? _value.dateTimeDelta
+            : dateTimeDelta // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$WorldStateImpl extends _WorldState {
-  const _$WorldStateImpl(
-      {this.dateTime = WorldDateTimeModel.zero,
-      this.lastDateTime = WorldDateTimeModel.zero,
-      this.dateTimeDelta = 0})
-      : super._();
+  const _$WorldStateImpl({
+    this.dateTime = WorldDateTimeModel.zero,
+    this.lastDateTime = WorldDateTimeModel.zero,
+    this.dateTimeDelta = 0,
+  }) : super._();
 
   @override
   @JsonKey()
@@ -202,10 +213,11 @@ class _$WorldStateImpl extends _WorldState {
 }
 
 abstract class _WorldState extends WorldState {
-  const factory _WorldState(
-      {final WorldDateTimeModel dateTime,
-      final WorldDateTimeModel lastDateTime,
-      final int dateTimeDelta}) = _$WorldStateImpl;
+  const factory _WorldState({
+    final WorldDateTimeModel dateTime,
+    final WorldDateTimeModel lastDateTime,
+    final int dateTimeDelta,
+  }) = _$WorldStateImpl;
   const _WorldState._() : super._();
 
   @override

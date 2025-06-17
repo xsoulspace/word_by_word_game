@@ -98,63 +98,59 @@ enum WindScale {
   /// Every weight has WindScale.
   /// If wind scale chosen by the random index, the same as requested
   /// wind scale, then change the wind direction.
-  static List<WindScale> get _directionWeightedValues => values
-      .expand(
-        (final c) => List.generate(
-          c.directionWeight,
-          (final i) => c,
-        ),
-      )
-      .toList()
-    ..shuffle();
+  static List<WindScale> get _directionWeightedValues =>
+      values
+          .expand((final c) => List.generate(c.directionWeight, (final i) => c))
+          .toList()
+        ..shuffle();
 
   // TODO(arenuvkern): make rebalance
   int get directionWeight => switch (this) {
-        WindScale.calm => 1,
-        WindScale.lightAir => 1,
-        WindScale.lightBreeze => 2,
-        WindScale.gentleBreeze => 2,
-        WindScale.moderateBreeze => 3,
-        WindScale.freshBreeze => 3,
-        WindScale.strongBreeze => 3,
-        WindScale.highWind => 3,
-        WindScale.gale => 3,
-        WindScale.severeGale => 4,
-        WindScale.storm => 4,
-        WindScale.violentStorm => 6,
-        WindScale.hurricane => 6,
-      };
+    WindScale.calm => 1,
+    WindScale.lightAir => 1,
+    WindScale.lightBreeze => 2,
+    WindScale.gentleBreeze => 2,
+    WindScale.moderateBreeze => 3,
+    WindScale.freshBreeze => 3,
+    WindScale.strongBreeze => 3,
+    WindScale.highWind => 3,
+    WindScale.gale => 3,
+    WindScale.severeGale => 4,
+    WindScale.storm => 4,
+    WindScale.violentStorm => 6,
+    WindScale.hurricane => 6,
+  };
 
   String get emojiRepresentation => switch (this) {
-        WindScale.calm => '☀️',
-        WindScale.lightAir => '☀️',
-        WindScale.lightBreeze => '🌤️',
-        WindScale.gentleBreeze => '🌤️',
-        WindScale.moderateBreeze => '🌥️',
-        WindScale.freshBreeze => '💨',
-        WindScale.strongBreeze => '💨',
-        WindScale.highWind => '🌧️',
-        WindScale.gale => '🌩️',
-        WindScale.severeGale => '⛈️',
-        WindScale.storm => '⛈️',
-        WindScale.violentStorm => '⛈️',
-        WindScale.hurricane => '🌪️',
-      };
+    WindScale.calm => '☀️',
+    WindScale.lightAir => '☀️',
+    WindScale.lightBreeze => '🌤️',
+    WindScale.gentleBreeze => '🌤️',
+    WindScale.moderateBreeze => '🌥️',
+    WindScale.freshBreeze => '💨',
+    WindScale.strongBreeze => '💨',
+    WindScale.highWind => '🌧️',
+    WindScale.gale => '🌩️',
+    WindScale.severeGale => '⛈️',
+    WindScale.storm => '⛈️',
+    WindScale.violentStorm => '⛈️',
+    WindScale.hurricane => '🌪️',
+  };
   String toLocalizedName(final BuildContext context) => switch (this) {
-        WindScale.calm => S.of(context).windCalm,
-        WindScale.lightAir => S.of(context).windLightAir,
-        WindScale.lightBreeze => S.of(context).windLightBreeze,
-        WindScale.gentleBreeze => S.of(context).windGentleBreeze,
-        WindScale.moderateBreeze => S.of(context).windModerateBreeze,
-        WindScale.freshBreeze => S.of(context).windFreshBreeze,
-        WindScale.strongBreeze => S.of(context).windStrongBreeze,
-        WindScale.highWind => S.of(context).windHighWind,
-        WindScale.gale => S.of(context).windGale,
-        WindScale.severeGale => S.of(context).windSevereGale,
-        WindScale.storm => S.of(context).windStorm,
-        WindScale.violentStorm => S.of(context).windViolentStorm,
-        WindScale.hurricane => S.of(context).windHurricane,
-      };
+    WindScale.calm => S.of(context).windCalm,
+    WindScale.lightAir => S.of(context).windLightAir,
+    WindScale.lightBreeze => S.of(context).windLightBreeze,
+    WindScale.gentleBreeze => S.of(context).windGentleBreeze,
+    WindScale.moderateBreeze => S.of(context).windModerateBreeze,
+    WindScale.freshBreeze => S.of(context).windFreshBreeze,
+    WindScale.strongBreeze => S.of(context).windStrongBreeze,
+    WindScale.highWind => S.of(context).windHighWind,
+    WindScale.gale => S.of(context).windGale,
+    WindScale.severeGale => S.of(context).windSevereGale,
+    WindScale.storm => S.of(context).windStorm,
+    WindScale.violentStorm => S.of(context).windViolentStorm,
+    WindScale.hurricane => S.of(context).windHurricane,
+  };
 }
 
 @freezed
@@ -184,13 +180,13 @@ enum WindDirection {
 
   static const defaultDirection = right;
   WindDirection get opposite => switch (this) {
-        WindDirection.right => left,
-        WindDirection.left => right,
-      };
+    WindDirection.right => left,
+    WindDirection.left => right,
+  };
   int get sign => switch (this) {
-        WindDirection.right => 1,
-        WindDirection.left => -1,
-      };
+    WindDirection.right => 1,
+    WindDirection.left => -1,
+  };
 }
 
 /// The wind can blow right, left, top, bottom.
@@ -231,29 +227,23 @@ class WeatherMechanics {
     required final bool isWindDirectionChangeEnabled,
     required final WindDirection oldWindDirection,
     final int count = 4,
-  }) =>
-      List.generate(
-        count,
-        (final i) {
-          final randomIndex = _random.nextInt(
-            max: WindScale._weightedValues.length,
-          );
-          final windScale = WindScale._weightedValues[randomIndex];
+  }) => List.generate(count, (final i) {
+    final randomIndex = _random.nextInt(max: WindScale._weightedValues.length);
+    final windScale = WindScale._weightedValues[randomIndex];
 
-          final newWindDirection = isWindDirectionChangeEnabled
-              ? generateWindDirection(
-                  scale: windScale,
-                  isWindDirectionChangeEnabled: isWindDirectionChangeEnabled,
-                  windDirection: oldWindDirection,
-                )
-              : oldWindDirection;
-          return WeatherModel(
-            windScale: windScale,
-            windDirection: newWindDirection,
-            durationInGameSeconds: _random.nextInt(max: 40, min: 10),
-          );
-        },
-      );
+    final newWindDirection = isWindDirectionChangeEnabled
+        ? generateWindDirection(
+            scale: windScale,
+            isWindDirectionChangeEnabled: isWindDirectionChangeEnabled,
+            windDirection: oldWindDirection,
+          )
+        : oldWindDirection;
+    return WeatherModel(
+      windScale: windScale,
+      windDirection: newWindDirection,
+      durationInGameSeconds: _random.nextInt(max: 40, min: 10),
+    );
+  });
   WindDirection generateWindDirection({
     required final WindScale scale,
     required final WindDirection windDirection,
@@ -270,12 +260,11 @@ class WeatherMechanics {
   WindModel getWindByWeather({
     required final WeatherModel weather,
     required final int heightInTiles,
-  }) =>
-      getWind(
-        heightInTiles: heightInTiles,
-        scale: weather.windScale,
-        windDirection: weather.windDirection,
-      );
+  }) => getWind(
+    heightInTiles: heightInTiles,
+    scale: weather.windScale,
+    windDirection: weather.windDirection,
+  );
 
   WindModel getWind({
     required final WindScale scale,
@@ -283,12 +272,14 @@ class WeatherMechanics {
     required final WindDirection windDirection,
   }) {
     final yDirection = _random.nextBool() ? -1 : 1;
-    final y = _random.nextInt(
+    final y =
+        _random.nextInt(
           max: (scale.yMax * 1000).toInt(),
           min: (scale.yMin * 1000).toInt(),
         ) /
         1000;
-    final x = _random.nextInt(
+    final x =
+        _random.nextInt(
           max: (scale.xMax * 1000).toInt(),
           min: (scale.xMin * 1000).toInt(),
         ) /

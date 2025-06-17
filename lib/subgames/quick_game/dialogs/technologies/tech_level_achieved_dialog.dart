@@ -1,10 +1,7 @@
 import 'package:word_by_word_game/common_imports.dart';
 
 class TechLevelAchievedDialog extends StatelessWidget {
-  const TechLevelAchievedDialog({
-    required this.onClose,
-    super.key,
-  });
+  const TechLevelAchievedDialog({required this.onClose, super.key});
 
   final VoidCallback onClose;
 
@@ -67,10 +64,7 @@ class TechLevelAchievedDialog extends StatelessWidget {
             const Gap(24),
             const Divider(),
             const Gap(12),
-            Text(
-              'Now available',
-              style: context.textTheme.titleMedium,
-            ),
+            Text('Now available', style: context.textTheme.titleMedium),
             const Gap(12),
             ...achievedLevel.technologies.map((final techId) {
               final technology = technologiesCubit.technologies[techId];

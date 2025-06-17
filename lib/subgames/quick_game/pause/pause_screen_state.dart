@@ -4,8 +4,8 @@ part of 'pause_screen.dart';
 
 class _PauseScreenStateDiDto {
   _PauseScreenStateDiDto.use(final BuildContext context)
-      : mechanics = context.read(),
-        globalGameBloc = context.read();
+    : mechanics = context.read(),
+      globalGameBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final MechanicsCollection mechanics;
 }
@@ -15,8 +15,8 @@ class PauseScreenState extends ValueNotifier<void> {
     required final BuildContext context,
     required this.uxState,
     required this.uiState,
-  })  : dto = _PauseScreenStateDiDto.use(context),
-        super(null);
+  }) : dto = _PauseScreenStateDiDto.use(context),
+       super(null);
   final LevelStartDialogUxNotifier uxState;
   final LevelStartDialogUiState uiState;
   final _PauseScreenStateDiDto dto;
@@ -49,18 +49,11 @@ class PauseScreenState extends ValueNotifier<void> {
     final locale = useLocale(context, listen: false);
     final theme = Theme.of(context);
     final s = S.of(context);
-    final madeWith = '${LocalizedMap(
-      value: {
-        languages.en: 'Made with',
-        languages.ru: 'Сделано с помощью',
-        languages.it: 'Fatto con',
-      },
-    ).getValue(locale)} Flame Engine, Flutter & Dart.';
+    final madeWith =
+        '${LocalizedMap(value: {languages.en: 'Made with', languages.ru: 'Сделано с помощью', languages.it: 'Fatto con'}).getValue(locale)} Flame Engine, Flutter & Dart.';
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
-        constraints: const BoxConstraints(
-          maxWidth: 200,
-        ),
+        constraints: const BoxConstraints(maxWidth: 200),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -75,9 +68,8 @@ class PauseScreenState extends ValueNotifier<void> {
                   padding: const EdgeInsets.all(8),
                   child: Text(s.sendFeedback),
                 ),
-                onPressed: () => launchUrlString(
-                  'https://discord.com/invite/y54DpJwmAn',
-                ),
+                onPressed: () =>
+                    launchUrlString('https://discord.com/invite/y54DpJwmAn'),
               ),
             ),
             UiGaps.small,
@@ -114,24 +106,14 @@ class PauseScreenState extends ValueNotifier<void> {
       ),
     ];
     final applicationLegalese =
-        '\u{a9} 2020-${DateTime.now().year} ${LocalizedMap(
-      value: {
-        languages.en: 'Game by Anton Malofeev, Irina Veter',
-        languages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер',
-        languages.it: 'Gioco di Anton Malofeev, Irina Veter',
-      },
-    ).getValue(locale)}';
+        '\u{a9} 2020-${DateTime.now().year} ${LocalizedMap(value: {languages.en: 'Game by Anton Malofeev, Irina Veter', languages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер', languages.it: 'Gioco di Anton Malofeev, Irina Veter'}).getValue(locale)}';
 
     final packageInfo = await PackageInfo.fromPlatform();
     final applicationVersion =
         '${packageInfo.version}+${packageInfo.buildNumber}';
     final icon = Container(
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: Image.asset(
-            'assets/icon.png',
-          ).image,
-        ),
+        image: DecorationImage(image: Image.asset('assets/icon.png').image),
         borderRadius: const BorderRadius.all(Radius.elliptical(12, 12)),
       ),
       width: 64,
@@ -191,9 +173,9 @@ class PauseScreenState extends ValueNotifier<void> {
               UiGaps.large,
               Text(
                 S.of(context).graphicsCreditsThanks,
-                style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                      fontWeight: FontWeight.bold,
-                    ),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
               ),
               UiGaps.medium,
               const Text('Sonnenstein - Evening Tileset'),

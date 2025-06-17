@@ -33,18 +33,18 @@ class CharactersRow extends StatelessWidget {
   final List<PlayerCharacterModel> characters;
   @override
   Widget build(final BuildContext context) => ListView.builder(
-        scrollDirection: Axis.horizontal,
-        itemCount: characters.length,
-        itemBuilder: (final context, final index) {
-          final character = characters[index];
-          return CharacterCard(
-            selected: checkIsCharacterSelected(character),
-            onPressed: onCharacterPressed,
-            character: character,
-            key: ValueKey(character),
-          );
-        },
+    scrollDirection: Axis.horizontal,
+    itemCount: characters.length,
+    itemBuilder: (final context, final index) {
+      final character = characters[index];
+      return CharacterCard(
+        selected: checkIsCharacterSelected(character),
+        onPressed: onCharacterPressed,
+        character: character,
+        key: ValueKey(character),
       );
+    },
+  );
 }
 
 class CharacterAvatarButton extends StatelessWidget {
@@ -118,9 +118,7 @@ class CharacterCard extends StatelessWidget {
           children: [
             Positioned.fill(
               child: Container(
-                margin: const EdgeInsets.all(UiSpace.medium).copyWith(
-                  top: 36,
-                ),
+                margin: const EdgeInsets.all(UiSpace.medium).copyWith(top: 36),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   image: DecorationImage(

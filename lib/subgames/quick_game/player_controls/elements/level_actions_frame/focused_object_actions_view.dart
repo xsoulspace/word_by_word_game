@@ -48,13 +48,13 @@ class SwitchFocusButton extends StatelessWidget {
 
 extension TileIdX on TileId {
   String localizedTitle(final Locale locale) => switch (value) {
-        // TODO(arenukvern): l10n
-        'hot_air_balloon' => 'Hot Air Balloon',
-        // TODO(arenukvern): l10n
-        'building_tent' => 'Tent',
-        'building_water_wind_tower' => 'Wind Water Tower',
-        _ => '',
-      };
+    // TODO(arenukvern): l10n
+    'hot_air_balloon' => 'Hot Air Balloon',
+    // TODO(arenukvern): l10n
+    'building_tent' => 'Tent',
+    'building_water_wind_tower' => 'Wind Water Tower',
+    _ => '',
+  };
 }
 
 class HotAirBaloonActionsView extends StatelessWidget {
@@ -63,8 +63,9 @@ class HotAirBaloonActionsView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final isTentUnblocked = context.select<TechnologiesCubit, bool>(
-      (final technologiesCubit) => technologiesCubit
-          .isTechLevelUnlocked(TechnologyLevelIndex.buildAndSave),
+      (final technologiesCubit) => technologiesCubit.isTechLevelUnlocked(
+        TechnologyLevelIndex.buildAndSave,
+      ),
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,8 +84,9 @@ class TentActionsView extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final isMeasuringTheWindUnblocked = context.select<TechnologiesCubit, bool>(
-      (final technologiesCubit) => technologiesCubit
-          .isTechLevelUnlocked(TechnologyLevelIndex.measuringTheWind),
+      (final technologiesCubit) => technologiesCubit.isTechLevelUnlocked(
+        TechnologyLevelIndex.measuringTheWind,
+      ),
     );
 
     return Column(
@@ -114,7 +116,8 @@ class _RestActionButton extends StatelessWidget {
     final applyingScore = composable.applyingScore;
     return Tooltip(
       // TODO(arenukvern): l10n
-      message: 'Adds some power to Hot Air Balloon. '
+      message:
+          'Adds some power to Hot Air Balloon. '
           '\nBecames last checkpoint, if Hot Air Balloon crashes.',
       child: TextButton.icon(
         onPressed: () => context
@@ -145,9 +148,9 @@ class _TentObjectBuildButton extends StatelessWidget {
       label: Text('Build Tent (${applyingScore.value.formattedScore})'),
       // TODO(arenukvern): add icon
       icon: const Icon(CupertinoIcons.hammer),
-      onPressed: () => context
-          .read<GuiBuildingNotifier>()
-          .startPlacing(type: GuiBuildingTypeEnum.tent),
+      onPressed: () => context.read<GuiBuildingNotifier>().startPlacing(
+        type: GuiBuildingTypeEnum.tent,
+      ),
     );
   }
 }
@@ -170,9 +173,9 @@ class _WindWaterTowerObjectBuildButton extends StatelessWidget {
       ),
       // TODO(arenukvern): add icon
       icon: const Icon(CupertinoIcons.hammer),
-      onPressed: () => context
-          .read<GuiBuildingNotifier>()
-          .startPlacing(type: GuiBuildingTypeEnum.windWaterTower),
+      onPressed: () => context.read<GuiBuildingNotifier>().startPlacing(
+        type: GuiBuildingTypeEnum.windWaterTower,
+      ),
     );
   }
 }

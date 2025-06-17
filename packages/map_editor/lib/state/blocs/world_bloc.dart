@@ -7,10 +7,9 @@ class WorldBlocDiDto {
 }
 
 class WorldBloc extends Cubit<WorldState> {
-  WorldBloc({
-    required final Locator read,
-  })  : diDto = WorldBlocDiDto.use(read),
-        super(const WorldState()) {
+  WorldBloc({required final Locator read})
+    : diDto = WorldBlocDiDto.use(read),
+      super(const WorldState()) {
     unawaited(onInitWorld());
   }
   final WorldBlocDiDto diDto;
@@ -31,9 +30,7 @@ class WorldBloc extends Cubit<WorldState> {
   void onWorldTimeChange(final WorldTimeMechanics worldTime) =>
       onWorldTick(worldTime);
 
-  void onWorldTick(
-    final WorldTimeMechanics worldTime,
-  ) {
+  void onWorldTick(final WorldTimeMechanics worldTime) {
     final newDateTime = worldTime.dateTime;
     final lastDateTime = state.dateTime;
     final dateTimeDelta = newDateTime.second - lastDateTime.second;

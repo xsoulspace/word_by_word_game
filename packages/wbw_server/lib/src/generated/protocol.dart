@@ -1,21 +1,19 @@
 /* AUTOMATICALLY GENERATED CODE DO NOT MODIFY */
 /*   To generate run: "serverpod generate"    */
 
-// ignore_for_file: library_private_types_in_public_api
-// ignore_for_file: public_member_api_docs
 // ignore_for_file: implementation_imports
-// ignore_for_file: use_super_parameters
+// ignore_for_file: library_private_types_in_public_api
+// ignore_for_file: non_constant_identifier_names
+// ignore_for_file: public_member_api_docs
 // ignore_for_file: type_literal_in_constant_pattern
+// ignore_for_file: use_super_parameters
 
-library protocol; // ignore_for_file: no_leading_underscores_for_library_prefixes
-
-import 'package:serverpod/protocol.dart' as _i2;
+// ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod/serverpod.dart' as _i1;
-
+import 'package:serverpod/protocol.dart' as _i2;
 import 'word_language.dart' as _i3;
 import 'word_model.dart' as _i4;
 import 'word_request.dart' as _i5;
-
 export 'word_language.dart';
 export 'word_model.dart';
 export 'word_request.dart';
@@ -129,7 +127,9 @@ class Protocol extends _i1.SerializationManagerServer {
   }
 
   @override
-  String? getClassNameForObject(Object data) {
+  String? getClassNameForObject(Object? data) {
+    String? className = super.getClassNameForObject(data);
+    if (className != null) return className;
     if (data is _i3.WordLanguage) {
       return 'WordLanguage';
     }
@@ -139,19 +139,31 @@ class Protocol extends _i1.SerializationManagerServer {
     if (data is _i5.WordRequest) {
       return 'WordRequest';
     }
-    return super.getClassNameForObject(data);
+    className = _i2.Protocol().getClassNameForObject(data);
+    if (className != null) {
+      return 'serverpod.$className';
+    }
+    return null;
   }
 
   @override
   dynamic deserializeByClassName(Map<String, dynamic> data) {
-    if (data['className'] == 'WordLanguage') {
+    var dataClassName = data['className'];
+    if (dataClassName is! String) {
+      return super.deserializeByClassName(data);
+    }
+    if (dataClassName == 'WordLanguage') {
       return deserialize<_i3.WordLanguage>(data['data']);
     }
-    if (data['className'] == 'WordModel') {
+    if (dataClassName == 'WordModel') {
       return deserialize<_i4.WordModel>(data['data']);
     }
-    if (data['className'] == 'WordRequest') {
+    if (dataClassName == 'WordRequest') {
       return deserialize<_i5.WordRequest>(data['data']);
+    }
+    if (dataClassName.startsWith('serverpod.')) {
+      data['className'] = dataClassName.substring(10);
+      return _i2.Protocol().deserializeByClassName(data);
     }
     return super.deserializeByClassName(data);
   }

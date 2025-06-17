@@ -93,28 +93,21 @@ class LanguageSwitcherMenuOld extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => DropdownMenu<UiLanguage>(
-        menuStyle: _defaultDropdownMenuStyle,
-        textStyle: context.textTheme.bodyMedium,
-        inputDecorationTheme: _defaultDropdownMenuInputTheme,
-        initialSelection: initLanguage,
-        onSelected: onSelected,
-        dropdownMenuEntries: namedLocalesMap.entries
-            .where((final e) => languages.contains(e.key))
-            .map(
-              (final e) => DropdownMenuEntry(
-                value: e.key,
-                label: e.value.name,
-              ),
-            )
-            .toList(),
-      );
+    menuStyle: _defaultDropdownMenuStyle,
+    textStyle: context.textTheme.bodyMedium,
+    inputDecorationTheme: _defaultDropdownMenuInputTheme,
+    initialSelection: initLanguage,
+    onSelected: onSelected,
+    dropdownMenuEntries: namedLocalesMap.entries
+        .where((final e) => languages.contains(e.key))
+        .map((final e) => DropdownMenuEntry(value: e.key, label: e.value.name))
+        .toList(),
+  );
 }
 
 final _defaultDropdownMenuStyle = MenuStyle(
   shape: WidgetStatePropertyAll(
-    RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(9),
-    ),
+    RoundedRectangleBorder(borderRadius: BorderRadius.circular(9)),
   ),
 );
 

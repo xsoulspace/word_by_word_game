@@ -1,5 +1,5 @@
 ---
-description: 
+description: whenever you edit flutter widgets in dart files
 globs: 
 alwaysApply: false
 ---

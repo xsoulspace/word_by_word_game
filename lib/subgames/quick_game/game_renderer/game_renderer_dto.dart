@@ -5,18 +5,18 @@ class GameRendererDiDto {
     required final BuildContext context,
     required this.theme,
     required this.dialogController,
-  })  : levelBloc = context.read(),
-        levelPlayersBloc = context.read(),
-        globalGameBloc = context.read(),
-        mechanics = context.read(),
-        canvasCubit = context.read(),
-        debugCubit = context.read(),
-        statesStatusesCubit = context.read(),
-        gameConstantsCubit = context.read(),
-        buildingCubit = context.read(),
-        guiFocusableObjectsNotifier = context.read(),
-        wordCompositionCubit = context.read(),
-        weatherCubit = context.read();
+  }) : levelBloc = context.read(),
+       levelPlayersBloc = context.read(),
+       globalGameBloc = context.read(),
+       mechanics = context.read(),
+       canvasCubit = context.read(),
+       debugCubit = context.read(),
+       statesStatusesCubit = context.read(),
+       gameConstantsCubit = context.read(),
+       buildingCubit = context.read(),
+       guiFocusableObjectsNotifier = context.read(),
+       wordCompositionCubit = context.read(),
+       weatherCubit = context.read();
 
   /// ********************************************
   /// *      Ephemeral
@@ -56,9 +56,6 @@ class GameRendererDiDto {
       ),
     ];
 
-    return FlameMultiBlocProvider(
-      providers: providers,
-      children: children,
-    );
+    return FlameMultiBlocProvider(providers: providers, children: children);
   }
 }

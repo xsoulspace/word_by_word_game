@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:universal_io/io.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
@@ -29,9 +28,7 @@ class GlobalStatesInitializer implements StateInitializer {
     final wordsType = await services.userWordsRepository.loadUserWords();
     await dictionariesBloc.onLoad(wordsType: wordsType);
     await canvasCubit.loadInitialData();
-    final initGame = await GameInitializer().loadGameModel(
-      services: services,
-    );
+    final initGame = await GameInitializer().loadGameModel(services: services);
     await dictionariesRepository.preloadWrongWordsDictionary();
     final levelId = await globalGameBloc.onInitGlobalGame(initGame);
     await analyticsService.onDelayedLoad();
@@ -51,21 +48,21 @@ class GlobalStatesInitializer implements StateInitializer {
 
 class GameInitializer {
   List<PlayerCharacterModel> get characters => [
-        PlayerCharacterModel(
-          id: const Gid(value: 'balloon 1'),
-          gid: const Gid(value: 'balloon 1'),
-          localizedName: LocalizedMap(
-            value: {
-              languages.en: 'Hot Air Balloon',
-              languages.ru: 'Воздушный шар',
-              languages.it: 'Mongolfiera',
-            },
-          ),
-          characterIcon: 'char_hot_air_baloon',
-          description: 'Moves with the wind..',
-          color: Colors.green.value,
-        ),
-      ];
+    PlayerCharacterModel(
+      id: const Gid(value: 'balloon 1'),
+      gid: const Gid(value: 'balloon 1'),
+      localizedName: LocalizedMap(
+        value: {
+          languages.en: 'Hot Air Balloon',
+          languages.ru: 'Воздушный шар',
+          languages.it: 'Mongolfiera',
+        },
+      ),
+      characterIcon: 'char_hot_air_baloon',
+      description: 'Moves with the wind..',
+      color: Colors.green.value,
+    ),
+  ];
 
   /// the logic is to migrate from the version to to the next version
   GameSaveModel migrateSave(final GameSaveModel savedGame) {
@@ -81,9 +78,9 @@ class GameInitializer {
     for (var i = savedGame.version.index; i < GameVersion.values.length; i++) {
       switch (savedGame.version) {
         case GameVersion.$1 ||
-              GameVersion.$2 ||
-              GameVersion.$3 ||
-              GameVersion.$4:
+            GameVersion.$2 ||
+            GameVersion.$3 ||
+            GameVersion.$4:
           game = game.copyWith(
             version: GameVersion.$5,
             currentLevelId: CanvasDataModelId.empty,

@@ -15,34 +15,23 @@ class GameBottomBar extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => MultiProvider(
-        providers: [
-          ChangeNotifierProvider(create: BottomActionsNotifier.new),
-        ],
-        builder: (final context, final child) => Stack(
-          children: [
-            const Positioned.fill(
-              child: IgnorePointer(
-                child: UiBottomEnergyAnimation(),
-              ),
-            ),
-            UiGameBottomBarCard(
-              builder: (final context) => const Column(
-                children: [
-                  UILevelCenterBar(),
-                  UiWordActions(),
-                ],
-              ),
-            ),
-          ],
+    providers: [ChangeNotifierProvider(create: BottomActionsNotifier.new)],
+    builder: (final context, final child) => Stack(
+      children: [
+        const Positioned.fill(
+          child: IgnorePointer(child: UiBottomEnergyAnimation()),
         ),
-      );
+        UiGameBottomBarCard(
+          builder: (final context) =>
+              const Column(children: [UILevelCenterBar(), UiWordActions()]),
+        ),
+      ],
+    ),
+  );
 }
 
 class UiGameBottomBarCard extends StatelessWidget {
-  const UiGameBottomBarCard({
-    required this.builder,
-    super.key,
-  });
+  const UiGameBottomBarCard({required this.builder, super.key});
   final WidgetBuilder builder;
   static const maxWidth = 365.0;
   @override
@@ -51,8 +40,8 @@ class UiGameBottomBarCard extends StatelessWidget {
       (final cubit) => cubit.state.levelStateStatus == LevelStateStatus.playing,
     );
     final guiBuildingNotifier = context.watch<GuiBuildingNotifier>();
-    final guiFocusableObjectsNotifier =
-        context.watch<GuiFocusableObjectsNotifier>();
+    final guiFocusableObjectsNotifier = context
+        .watch<GuiFocusableObjectsNotifier>();
     final isPlacingBuilding = guiBuildingNotifier.isPlacing;
     final isFocusingOnBuilding = guiFocusableObjectsNotifier.isFocusing;
     final persistentFormFactors = UiPersistentFormFactors.of(context);
@@ -103,23 +92,22 @@ class UiGameBottomBarCard extends StatelessWidget {
                                   : S.of(context).showPane,
                               child: UiBaseButton(
                                 onPressed: () {},
-                                builder: (
-                                  final context,
-                                  final focused,
-                                  final onlyFocused,
-                                ) =>
-                                    effectiveIsCardVisible
-                                        ? TextButton(
-                                            onPressed: onTap,
-                                            child: const Icon(
-                                              Icons.arrow_drop_down,
-                                            ),
-                                          )
-                                        : OutlinedButton(
-                                            onPressed: onTap,
-                                            child:
-                                                const Icon(Icons.arrow_drop_up),
-                                          ),
+                                builder:
+                                    (
+                                      final context,
+                                      final focused,
+                                      final onlyFocused,
+                                    ) => effectiveIsCardVisible
+                                    ? TextButton(
+                                        onPressed: onTap,
+                                        child: const Icon(
+                                          Icons.arrow_drop_down,
+                                        ),
+                                      )
+                                    : OutlinedButton(
+                                        onPressed: onTap,
+                                        child: const Icon(Icons.arrow_drop_up),
+                                      ),
                               ),
                             );
                           },
@@ -203,10 +191,7 @@ class _UiBuildingPlacementText extends StatelessWidget {
         const Gap(12),
         TextButton(
           onPressed: guiBuildingNotifier.cancelPlacing,
-          child: Text(
-            'Cancel',
-            style: context.errorTextTheme.bodyLarge,
-          ),
+          child: Text('Cancel', style: context.errorTextTheme.bodyLarge),
         ),
         const Gap(24),
       ],
@@ -219,8 +204,8 @@ class _UiFocusableObjectsRow extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final guiFocusableObjectsNotifier =
-        context.watch<GuiFocusableObjectsNotifier>();
+    final guiFocusableObjectsNotifier = context
+        .watch<GuiFocusableObjectsNotifier>();
     final canvasCubit = context.watch<CanvasCubit>();
     final nearestObjectIds = guiFocusableObjectsNotifier.value.nearestObjectIds;
     // TODO(arenukvern): add main character
@@ -285,17 +270,11 @@ class _UiFocusableObjectsRow extends StatelessWidget {
           children: [
             TextButton(
               onPressed: guiFocusableObjectsNotifier.cancelFocusing,
-              child: Text(
-                'Cancel',
-                style: context.errorTextTheme.bodyLarge,
-              ),
+              child: Text('Cancel', style: context.errorTextTheme.bodyLarge),
             ),
             UiOutlinedButton(
               onPressed: guiFocusableObjectsNotifier.confirmChoosing,
-              child: Text(
-                'Confirm',
-                style: context.textTheme.bodyLarge,
-              ),
+              child: Text('Confirm', style: context.textTheme.bodyLarge),
             ),
           ],
         ),
@@ -348,30 +327,21 @@ class UiCurrentPlayerCard extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Column(
-        children: [
-          Card(
-            elevation: 1,
-            child: AnimatedSize(
-              duration: 1.seconds,
-              child: const Padding(
-                padding: EdgeInsets.only(
-                  left: 10,
-                  right: 10,
-                  top: 2,
-                  bottom: 4,
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    UIMobilePlayerName(),
-                    Gap(6),
-                    UIMobilePlayerScore(),
-                  ],
-                ),
-              ),
+    children: [
+      Card(
+        elevation: 1,
+        child: AnimatedSize(
+          duration: 1.seconds,
+          child: const Padding(
+            padding: EdgeInsets.only(left: 10, right: 10, top: 2, bottom: 4),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [UIMobilePlayerName(), Gap(6), UIMobilePlayerScore()],
             ),
           ),
-          const Gap(3),
-        ],
-      );
+        ),
+      ),
+      const Gap(3),
+    ],
+  );
 }

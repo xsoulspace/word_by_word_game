@@ -16,13 +16,10 @@ class UiAnimatedText extends StatelessWidget {
   final Widget? labelChild;
   @override
   Widget build(final BuildContext context) => AnimatedDefaultTextStyle(
-        duration: const Duration(milliseconds: 200),
-        style: textStyle ??
-            TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
-        child: labelChild ?? Text(label),
-      );
+    duration: const Duration(milliseconds: 200),
+    style:
+        textStyle ??
+        TextStyle(color: textColor, fontWeight: FontWeight.bold, fontSize: 20),
+    child: labelChild ?? Text(label),
+  );
 }

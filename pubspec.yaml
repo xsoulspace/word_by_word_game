@@ -21,6 +21,14 @@ publish_to: "none" # Remove this line if you wish to publish to pub.dev
 # https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
 version: 3.3.1+58
 
+workspace:
+  - packages/wbw_core
+  - packages/wbw_client
+  - packages/wbw_dictionaries
+  - packages/wbw_locale
+  - packages/wbw_ui_kit
+  - packages/map_editor
+
 environment:
   sdk: ">=3.8.1 <4.0.0"
 
@@ -62,7 +70,6 @@ dependencies:
   life_hooks: ^0.1.1
   logger: ^2.5.0
   map_editor:
-    path: packages/map_editor
   nes_ui: ^0.25.0
   package_info_plus: ^8.3.0
   path: ^1.9.1
@@ -77,13 +84,9 @@ dependencies:
   universal_io: ^2.2.2
   url_launcher: ^6.3.1
   wbw_core:
-    path: packages/wbw_core
   wbw_dictionaries:
-    path: packages/wbw_dictionaries
   wbw_locale:
-    path: packages/wbw_locale
   wbw_ui_kit:
-    path: packages/wbw_ui_kit
   xsoulspace_foundation: ^0.2.0
 
 dev_dependencies:
@@ -105,6 +108,8 @@ dependency_overrides:
       url: git@github.com:jonahwilliams/flutter_shaders.git
       ref: main
   package_info_plus: ^8.3.0
+  collection: ^1.19.1
+  web: ^1.1.1
 
 # flutter pub run flutter_launcher_icons:main
 flutter_icons:

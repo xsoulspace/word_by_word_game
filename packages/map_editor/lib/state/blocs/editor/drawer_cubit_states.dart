@@ -28,9 +28,9 @@ class DrawerCubitState with _$DrawerCubitState {
   /// currently fitted into screen size.
   @useResult
   Vector2 getOffsetOrigin() => Vector2(
-        origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
-        origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
-      );
+    origin.x - ((origin.x ~/ kTileDimension) * kTileDimension),
+    origin.y - ((origin.y ~/ kTileDimension) * kTileDimension),
+  );
   LayerModel get drawLayer {
     final layers = canvasData.layers;
     if (layers.isEmpty || (drawLayerId.isEmpty)) {

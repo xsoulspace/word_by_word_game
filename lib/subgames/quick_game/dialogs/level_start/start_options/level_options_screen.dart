@@ -12,10 +12,7 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_
 import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
 
 class LevelOptionsScreen extends HookWidget {
-  const LevelOptionsScreen({
-    required this.onCreatePlayer,
-    super.key,
-  });
+  const LevelOptionsScreen({required this.onCreatePlayer, super.key});
   final VoidCallback onCreatePlayer;
   @override
   Widget build(final BuildContext context) {
@@ -69,7 +66,8 @@ class LevelOptionsScreen extends HookWidget {
                 ),
                 UiTextButton.text(
                   text: S.of(context).play,
-                  isLoading: uxState.isDictionariesLoading.value ||
+                  isLoading:
+                      uxState.isDictionariesLoading.value ||
                       statusCubit.isLoading,
                   isLongButton: true,
                   mainAlignment: MainAxisAlignment.center,
@@ -102,9 +100,7 @@ class LevelOptionsScreen extends HookWidget {
 }
 
 class _ExperimentsListView extends HookWidget {
-  const _ExperimentsListView({
-    required this.unblockerNotifier,
-  });
+  const _ExperimentsListView({required this.unblockerNotifier});
   final ValueNotifier<int> unblockerNotifier;
 
   @override
@@ -189,9 +185,8 @@ class _ExperimentsListView extends HookWidget {
             title: const Text('Wind can change direction'),
             value: isWindDirectionChangeEnabled,
             onChanged: (final isEnabled) => uxState.changeFeaturesSettings(
-              (final old) => old.copyWith(
-                isWindDirectionChangeEnabled: isEnabled,
-              ),
+              (final old) =>
+                  old.copyWith(isWindDirectionChangeEnabled: isEnabled),
             ),
           ).animate().fadeIn(),
       ],
@@ -209,9 +204,9 @@ class WordsLanguageSwitcher extends StatelessWidget {
   final ValueChanged<UiLanguage> onChanged;
   @override
   Widget build(final BuildContext context) => UiLanguageSwitcherMenu(
-        isShortAbbreviationUsed: false,
-        languages: wordsLanguages,
-        onChanged: onChanged,
-        value: value,
-      );
+    isShortAbbreviationUsed: false,
+    languages: wordsLanguages,
+    onChanged: onChanged,
+    value: value,
+  );
 }

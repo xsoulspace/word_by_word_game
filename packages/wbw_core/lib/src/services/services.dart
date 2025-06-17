@@ -9,11 +9,11 @@ export 'online_status_service.dart';
 
 class ServicesCollection {
   ServicesCollection(final BuildContext context)
-      : gameRepository = context.read(),
-        localDataService = context.read(),
-        userWordsRepository = context.read(),
-        appSettingsRepository = context.read(),
-        levelsRepository = context.read();
+    : gameRepository = context.read(),
+      localDataService = context.read(),
+      userWordsRepository = context.read(),
+      appSettingsRepository = context.read(),
+      levelsRepository = context.read();
 
   final LocalDbI localDataService;
   final WordsRespository userWordsRepository;

@@ -23,20 +23,14 @@ class MaterialTransparentRoute<T> extends PageRoute<T> {
     return Stack(
       children: [
         Container()
-            .blurred(
-              colorOpacity: 0.1,
-            )
+            .blurred(colorOpacity: 0.1)
             .animate()
             .then(delay: 25.milliseconds)
             .fadeIn(
               curve: Curves.fastLinearToSlowEaseIn,
               duration: 400.milliseconds,
             ),
-        Semantics(
-          scopesRoute: true,
-          explicitChildNodes: true,
-          child: result,
-        ),
+        Semantics(scopesRoute: true, explicitChildNodes: true, child: result),
       ],
     );
   }

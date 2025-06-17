@@ -1,13 +1,11 @@
 part of 'editor_renderer.dart';
 
 class GameRendererDiDto {
-  GameRendererDiDto.use({
-    required final Locator read,
-    required this.theme,
-  })  : mapEditorBloc = read(),
-        mechanics = read(),
-        drawerCubit = read(),
-        worldBloc = read();
+  GameRendererDiDto.use({required final Locator read, required this.theme})
+    : mapEditorBloc = read(),
+      mechanics = read(),
+      drawerCubit = read(),
+      worldBloc = read();
 
   /// ********************************************
   /// *      Ephemeral
@@ -30,9 +28,6 @@ class GameRendererDiDto {
       ),
     ];
 
-    return FlameMultiBlocProvider(
-      providers: providers,
-      children: children,
-    );
+    return FlameMultiBlocProvider(providers: providers, children: children);
   }
 }

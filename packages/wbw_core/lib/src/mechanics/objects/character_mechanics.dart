@@ -79,10 +79,7 @@ class HotAirBalloonMechanics {
 
     return LiftForceModel(
       liftPower: liftForce,
-      updatedPowers: balloonPowers.copyWith(
-        power: powerLeft,
-        volume: volume,
-      ),
+      updatedPowers: balloonPowers.copyWith(power: powerLeft, volume: volume),
     );
   }
 }
@@ -104,9 +101,7 @@ class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
   }) = _BalloonLiftPowersModel;
   factory BalloonLiftPowersModel.fromJson(final Map<String, dynamic> json) =>
       _$BalloonLiftPowersModelFromJson(json);
-  static const initial = BalloonLiftPowersModel(
-    power: 2000,
-  );
+  static const initial = BalloonLiftPowersModel(power: 2000);
 }
 
 @Freezed()

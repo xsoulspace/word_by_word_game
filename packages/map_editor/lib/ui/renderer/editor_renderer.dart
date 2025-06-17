@@ -51,10 +51,7 @@ class EditorRendererGame extends FlameGame
     required final Locator read,
     required final material.ThemeData theme,
     this.config = const GameRendererConfig(),
-  }) : diDto = GameRendererDiDto.use(
-          read: read,
-          theme: theme,
-        );
+  }) : diDto = GameRendererDiDto.use(read: read, theme: theme);
   final GameRendererConfig config;
   final GameRendererDiDto diDto;
   late final RouterComponent router;
@@ -98,9 +95,7 @@ class EditorRendererGame extends FlameGame
   }
 
   Future<CameraComponent> _initCamera() async {
-    final camera = CameraComponent(
-      world: world,
-    );
+    final camera = CameraComponent(world: world);
     camera.viewfinder.anchor = Anchor.topLeft;
     return camera;
   }

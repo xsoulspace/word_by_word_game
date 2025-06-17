@@ -9,11 +9,11 @@ class EmptyScreen extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => const Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [Text(r'At least it works ¯\_(ツ)_/¯')],
-        ),
-      );
+    child: Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [Text(r'At least it works ¯\_(ツ)_/¯')],
+    ),
+  );
 }
 
 class LoadingScreen extends StatelessWidget {
@@ -21,41 +21,39 @@ class LoadingScreen extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Directionality(
-        textDirection: TextDirection.ltr,
-        child: Container(
-          color: UiColors.offWhite,
-          alignment: Alignment.center,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              const FloatingHotAirBalloon(size: 150),
-              ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 300),
-                child: Row(
-                  children: [
-                    Flexible(
-                      child: Material(
-                        child: UiText(
-                          // TODO(arenukvern): add gifs - tips
-                          'Tip: You can delete letters by clicking them if you have enough points.',
-                          style: TextStyle(
-                            color: UiColors.dark.withOpacity(0.8),
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        )
-                            .animate(delay: 0.5.seconds)
-                            .fadeIn(duration: 2.seconds),
+    textDirection: TextDirection.ltr,
+    child: Container(
+      color: UiColors.offWhite,
+      alignment: Alignment.center,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          const FloatingHotAirBalloon(size: 150),
+          ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 300),
+            child: Row(
+              children: [
+                Flexible(
+                  child: Material(
+                    child: UiText(
+                      // TODO(arenukvern): add gifs - tips
+                      'Tip: You can delete letters by clicking them if you have enough points.',
+                      style: TextStyle(
+                        color: UiColors.dark.withOpacity(0.8),
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontStyle: FontStyle.italic,
                       ),
-                    ),
-                  ],
+                    ).animate(delay: 0.5.seconds).fadeIn(duration: 2.seconds),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
-      );
+        ],
+      ),
+    ),
+  );
 }
 
 class UiCircularProgress extends StatelessWidget {
@@ -63,25 +61,22 @@ class UiCircularProgress extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => Center(
-        child:
-            CupertinoActivityIndicator(color: BrandColorSchemes.light.primary),
-      );
+    child: CupertinoActivityIndicator(color: BrandColorSchemes.light.primary),
+  );
 }
 
 class FloatingHotAirBalloon extends StatelessWidget {
-  const FloatingHotAirBalloon({
-    super.key,
-    this.size = 100.0,
-  });
+  const FloatingHotAirBalloon({super.key, this.size = 100.0});
 
   final double size;
 
   @override
-  Widget build(final BuildContext context) => Image.asset(
-        'packages/map_editor/assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png',
-        height: size,
-        width: size,
-      )
+  Widget build(final BuildContext context) =>
+      Image.asset(
+            'packages/map_editor/assets/images/tilesets/white_black/hot_air_balloon__idle_right_0.png',
+            height: size,
+            width: size,
+          )
           .animate(
             onPlay: (final controller) => controller.repeat(reverse: true),
           )

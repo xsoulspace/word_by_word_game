@@ -22,11 +22,7 @@ import 'package:flutter/material.dart';
 /// @ai When generating tooltips, consider using [UiTooltip] for consistent
 /// tooltips throughout the application.
 class UiTooltip extends StatelessWidget {
-  const UiTooltip({
-    required this.child,
-    super.key,
-    this.tooltip,
-  });
+  const UiTooltip({required this.child, super.key, this.tooltip});
 
   /// {@macro ui_tooltip.ai_description}
   static const String aiDescription =
@@ -42,9 +38,6 @@ class UiTooltip extends StatelessWidget {
   Widget build(final BuildContext context) {
     final tooltip = this.tooltip ?? '';
     if (tooltip.isEmpty) return child;
-    return Tooltip(
-      message: tooltip,
-      child: child,
-    );
+    return Tooltip(message: tooltip, child: child);
   }
 }

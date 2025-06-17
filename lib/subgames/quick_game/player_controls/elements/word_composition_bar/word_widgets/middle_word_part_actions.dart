@@ -25,10 +25,8 @@ class MiddleWordPartActions extends StatelessWidget {
 
     final mechanics = context.watch<MechanicsCollection>();
 
-    final isPlayerAbleToDecrease =
-        mechanics.score.checkPlayerAbilityToDecreaseLetters(
-      player: player,
-    );
+    final isPlayerAbleToDecrease = mechanics.score
+        .checkPlayerAbilityToDecreaseLetters(player: player);
 
     Widget child;
     if (isPlayerAbleToDecrease) {

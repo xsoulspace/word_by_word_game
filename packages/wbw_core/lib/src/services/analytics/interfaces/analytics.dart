@@ -3,11 +3,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
-enum AnalyticEvents {
-  usedInAndroid,
-  usedInIOS,
-  usedInWeb,
-}
+enum AnalyticEvents { usedInAndroid, usedInIOS, usedInWeb }
 
 abstract class AnalyticsService extends AnalyticsServicePlugin {
   void upsertPlugin<T extends AnalyticsServicePlugin>(final T plugin);

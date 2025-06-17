@@ -2,9 +2,7 @@ import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 
 class WeatherOverlay extends StatelessWidget {
-  const WeatherOverlay({
-    super.key,
-  });
+  const WeatherOverlay({super.key});
 
   @override
   Widget build(final BuildContext context) {
@@ -16,10 +14,7 @@ class WeatherOverlay extends StatelessWidget {
 }
 
 class _WeatherOverlayBody extends StatefulWidget {
-  const _WeatherOverlayBody({
-    required this.weather,
-    super.key,
-  });
+  const _WeatherOverlayBody({required this.weather, super.key});
   final WeatherModel weather;
 
   @override
@@ -94,8 +89,12 @@ class _WeatherOverlayBodyState extends State<_WeatherOverlayBody> {
 
   @override
   Widget build(final BuildContext context) {
-    final color =
-        const Color.fromARGB(255, 1, 20, 17).withOpacity(_maxTargetOpacity);
+    final color = const Color.fromARGB(
+      255,
+      1,
+      20,
+      17,
+    ).withOpacity(_maxTargetOpacity);
     return const IgnorePointer(
       child: Stack(
         fit: StackFit.expand,

@@ -3,18 +3,15 @@ part of 'debug_side_bar.dart';
 class UiDebugSideBarCubitState {}
 
 class UiDebugSideBarCubitDto {
-  UiDebugSideBarCubitDto({
-    required final BuildContext context,
-  })  : gameConstantsCubit = context.read(),
-        levelPlayersBloc = context.read();
+  UiDebugSideBarCubitDto({required final BuildContext context})
+    : gameConstantsCubit = context.read(),
+      levelPlayersBloc = context.read();
   final GameConstantsCubit gameConstantsCubit;
   final LevelPlayersBloc levelPlayersBloc;
 }
 
 class UiDebugSideBarCubit extends Cubit<UiDebugSideBarCubitState> {
-  UiDebugSideBarCubit({
-    required this.dto,
-  }) : super(UiDebugSideBarCubitState());
+  UiDebugSideBarCubit({required this.dto}) : super(UiDebugSideBarCubitState());
   GameConstantsCubit get gameConstantsCubit => dto.gameConstantsCubit;
   GameConstantsCubitState get _gameConstants => dto.gameConstantsCubit.state;
   PlayerCharacterModel get _character =>
@@ -107,9 +104,7 @@ class UiDebugSideBarCubit extends Cubit<UiDebugSideBarCubitState> {
 
   void changeForces(final ForcesConstantsModel forces) {
     gameConstantsCubit.changeState(
-      gameConstantsCubit.state.copyWith(
-        forces: forces,
-      ),
+      gameConstantsCubit.state.copyWith(forces: forces),
     );
   }
 }

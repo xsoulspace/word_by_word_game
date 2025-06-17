@@ -24,9 +24,7 @@ class TilesetConstants {
   final AssetsCache assets;
   FireAtlas? _atlas;
   Images? images;
-  Future<void> onLoad({
-    required final Images images,
-  }) async {
+  Future<void> onLoad({required final Images images}) async {
     this.images = images;
     try {
       _atlas = await FireAtlas.loadAsset(
@@ -97,11 +95,10 @@ class TilesetConstants {
   ({Sprite sprite, String path}) getAtlasSpriteByCode({
     required final PresetTileModel tile,
     required final SpriteCode spriteCode,
-  }) =>
-      getAtlasSpriteByName(
-        tile: tile,
-        tileName: getSpriteTileName(spriteCode: spriteCode),
-      );
+  }) => getAtlasSpriteByName(
+    tile: tile,
+    tileName: getSpriteTileName(spriteCode: spriteCode),
+  );
 
   Sprite getAtlasSpriteByPath(final String path) => _atlas!.getSprite(path);
   ({Sprite sprite, String path}) getAtlasSpriteByName({
@@ -116,8 +113,7 @@ class TilesetConstants {
   String getSpriteTilePath({
     required final PresetTileModel tile,
     required final SpriteTileName tileName,
-  }) =>
-      '${tile.path}${tileName.name.snakeCase}';
+  }) => '${tile.path}${tileName.name.snakeCase}';
   SpriteTileName getSpriteTileName({required final SpriteCode spriteCode}) =>
       _codeToName[spriteCode] ?? SpriteTileName.x;
   void resetCache() => _codeToNameCache = null;
@@ -137,9 +133,7 @@ class TilesetConstants {
 
 class ImageFileGenerator {
   ImageFileGenerator._();
-  static Future<Image?> generateFromImages(
-    final Image rawImage,
-  ) async {
+  static Future<Image?> generateFromImages(final Image rawImage) async {
     final pictureRecorder = ui.PictureRecorder();
     final canvas = ui.Canvas(pictureRecorder);
     Offset offset = Offset.zero;

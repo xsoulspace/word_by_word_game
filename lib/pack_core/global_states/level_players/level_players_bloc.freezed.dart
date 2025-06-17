@@ -12,92 +12,94 @@ part of 'level_players_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LevelPlayerEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
+    required TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )
+    init,
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
-  }) =>
-      throw _privateConstructorUsedError;
+    updatePlayerHighscore,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult? Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
-  }) =>
-      throw _privateConstructorUsedError;
+    updatePlayerHighscore,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
     required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
+    changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
     required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
-  }) =>
-      throw _privateConstructorUsedError;
+    updatePlayerHighscore,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
     TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
     TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $LevelPlayerEventCopyWith<$Res> {
   factory $LevelPlayerEventCopyWith(
-          LevelPlayerEvent value, $Res Function(LevelPlayerEvent) then) =
-      _$LevelPlayerEventCopyWithImpl<$Res, LevelPlayerEvent>;
+    LevelPlayerEvent value,
+    $Res Function(LevelPlayerEvent) then,
+  ) = _$LevelPlayerEventCopyWithImpl<$Res, LevelPlayerEvent>;
 }
 
 /// @nodoc
@@ -117,12 +119,14 @@ class _$LevelPlayerEventCopyWithImpl<$Res, $Val extends LevelPlayerEvent>
 /// @nodoc
 abstract class _$$InitLevelPlayersEventImplCopyWith<$Res> {
   factory _$$InitLevelPlayersEventImplCopyWith(
-          _$InitLevelPlayersEventImpl value,
-          $Res Function(_$InitLevelPlayersEventImpl) then) =
-      __$$InitLevelPlayersEventImplCopyWithImpl<$Res>;
+    _$InitLevelPlayersEventImpl value,
+    $Res Function(_$InitLevelPlayersEventImpl) then,
+  ) = __$$InitLevelPlayersEventImplCopyWithImpl<$Res>;
   @useResult
-  $Res call(
-      {LevelPlayersModel playersModel, LevelCharactersModel charactersModel});
+  $Res call({
+    LevelPlayersModel playersModel,
+    LevelCharactersModel charactersModel,
+  });
 
   $LevelPlayersModelCopyWith<$Res> get playersModel;
   $LevelCharactersModelCopyWith<$Res> get charactersModel;
@@ -132,28 +136,28 @@ abstract class _$$InitLevelPlayersEventImplCopyWith<$Res> {
 class __$$InitLevelPlayersEventImplCopyWithImpl<$Res>
     extends _$LevelPlayerEventCopyWithImpl<$Res, _$InitLevelPlayersEventImpl>
     implements _$$InitLevelPlayersEventImplCopyWith<$Res> {
-  __$$InitLevelPlayersEventImplCopyWithImpl(_$InitLevelPlayersEventImpl _value,
-      $Res Function(_$InitLevelPlayersEventImpl) _then)
-      : super(_value, _then);
+  __$$InitLevelPlayersEventImplCopyWithImpl(
+    _$InitLevelPlayersEventImpl _value,
+    $Res Function(_$InitLevelPlayersEventImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? playersModel = null,
-    Object? charactersModel = null,
-  }) {
-    return _then(_$InitLevelPlayersEventImpl(
-      playersModel: null == playersModel
-          ? _value.playersModel
-          : playersModel // ignore: cast_nullable_to_non_nullable
-              as LevelPlayersModel,
-      charactersModel: null == charactersModel
-          ? _value.charactersModel
-          : charactersModel // ignore: cast_nullable_to_non_nullable
-              as LevelCharactersModel,
-    ));
+  $Res call({Object? playersModel = null, Object? charactersModel = null}) {
+    return _then(
+      _$InitLevelPlayersEventImpl(
+        playersModel: null == playersModel
+            ? _value.playersModel
+            : playersModel // ignore: cast_nullable_to_non_nullable
+                  as LevelPlayersModel,
+        charactersModel: null == charactersModel
+            ? _value.charactersModel
+            : charactersModel // ignore: cast_nullable_to_non_nullable
+                  as LevelCharactersModel,
+      ),
+    );
   }
 
   /// Create a copy of LevelPlayerEvent
@@ -180,8 +184,10 @@ class __$$InitLevelPlayersEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
-  const _$InitLevelPlayersEventImpl(
-      {required this.playersModel, required this.charactersModel});
+  const _$InitLevelPlayersEventImpl({
+    required this.playersModel,
+    required this.charactersModel,
+  });
 
   @override
   final LevelPlayersModel playersModel;
@@ -213,21 +219,26 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
   @override
   @pragma('vm:prefer-inline')
   _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
-      get copyWith => __$$InitLevelPlayersEventImplCopyWithImpl<
-          _$InitLevelPlayersEventImpl>(this, _$identity);
+  get copyWith =>
+      __$$InitLevelPlayersEventImplCopyWithImpl<_$InitLevelPlayersEventImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
+    required TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )
+    init,
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return init(playersModel, charactersModel);
   }
@@ -235,15 +246,17 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult? Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return init?.call(playersModel, charactersModel);
   }
@@ -251,15 +264,17 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
     required TResult orElse(),
   }) {
     if (init != null) {
@@ -274,11 +289,11 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
     required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
+    changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
     required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return init(this);
   }
@@ -289,7 +304,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
     TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -303,7 +318,7 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
     TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -317,10 +332,10 @@ class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
 }
 
 abstract class InitLevelPlayersEvent implements LevelPlayerEvent {
-  const factory InitLevelPlayersEvent(
-          {required final LevelPlayersModel playersModel,
-          required final LevelCharactersModel charactersModel}) =
-      _$InitLevelPlayersEventImpl;
+  const factory InitLevelPlayersEvent({
+    required final LevelPlayersModel playersModel,
+    required final LevelCharactersModel charactersModel,
+  }) = _$InitLevelPlayersEventImpl;
 
   LevelPlayersModel get playersModel;
   LevelCharactersModel get charactersModel;
@@ -329,15 +344,15 @@ abstract class InitLevelPlayersEvent implements LevelPlayerEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$SwitchToNextPlayerEventImplCopyWith<$Res> {
   factory _$$SwitchToNextPlayerEventImplCopyWith(
-          _$SwitchToNextPlayerEventImpl value,
-          $Res Function(_$SwitchToNextPlayerEventImpl) then) =
-      __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>;
+    _$SwitchToNextPlayerEventImpl value,
+    $Res Function(_$SwitchToNextPlayerEventImpl) then,
+  ) = __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
@@ -345,9 +360,9 @@ class __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>
     extends _$LevelPlayerEventCopyWithImpl<$Res, _$SwitchToNextPlayerEventImpl>
     implements _$$SwitchToNextPlayerEventImplCopyWith<$Res> {
   __$$SwitchToNextPlayerEventImplCopyWithImpl(
-      _$SwitchToNextPlayerEventImpl _value,
-      $Res Function(_$SwitchToNextPlayerEventImpl) _then)
-      : super(_value, _then);
+    _$SwitchToNextPlayerEventImpl _value,
+    $Res Function(_$SwitchToNextPlayerEventImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -376,15 +391,17 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
+    required TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )
+    init,
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return switchToNextPlayer();
   }
@@ -392,15 +409,17 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult? Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return switchToNextPlayer?.call();
   }
@@ -408,15 +427,17 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
     required TResult orElse(),
   }) {
     if (switchToNextPlayer != null) {
@@ -431,11 +452,11 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
     required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
+    changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
     required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return switchToNextPlayer(this);
   }
@@ -446,7 +467,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
     TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -460,7 +481,7 @@ class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
     TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -480,36 +501,36 @@ abstract class SwitchToNextPlayerEvent implements LevelPlayerEvent {
 /// @nodoc
 abstract class _$$ChangeCharacterPositionEventImplCopyWith<$Res> {
   factory _$$ChangeCharacterPositionEventImplCopyWith(
-          _$ChangeCharacterPositionEventImpl value,
-          $Res Function(_$ChangeCharacterPositionEventImpl) then) =
-      __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>;
+    _$ChangeCharacterPositionEventImpl value,
+    $Res Function(_$ChangeCharacterPositionEventImpl) then,
+  ) = __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({Vector2 position});
 }
 
 /// @nodoc
 class __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res,
-        _$ChangeCharacterPositionEventImpl>
+    extends
+        _$LevelPlayerEventCopyWithImpl<$Res, _$ChangeCharacterPositionEventImpl>
     implements _$$ChangeCharacterPositionEventImplCopyWith<$Res> {
   __$$ChangeCharacterPositionEventImplCopyWithImpl(
-      _$ChangeCharacterPositionEventImpl _value,
-      $Res Function(_$ChangeCharacterPositionEventImpl) _then)
-      : super(_value, _then);
+    _$ChangeCharacterPositionEventImpl _value,
+    $Res Function(_$ChangeCharacterPositionEventImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? position = null,
-  }) {
-    return _then(_$ChangeCharacterPositionEventImpl(
-      position: null == position
-          ? _value.position
-          : position // ignore: cast_nullable_to_non_nullable
-              as Vector2,
-    ));
+  $Res call({Object? position = null}) {
+    return _then(
+      _$ChangeCharacterPositionEventImpl(
+        position: null == position
+            ? _value.position
+            : position // ignore: cast_nullable_to_non_nullable
+                  as Vector2,
+      ),
+    );
   }
 }
 
@@ -545,22 +566,27 @@ class _$ChangeCharacterPositionEventImpl
   @override
   @pragma('vm:prefer-inline')
   _$$ChangeCharacterPositionEventImplCopyWith<
-          _$ChangeCharacterPositionEventImpl>
-      get copyWith => __$$ChangeCharacterPositionEventImplCopyWithImpl<
-          _$ChangeCharacterPositionEventImpl>(this, _$identity);
+    _$ChangeCharacterPositionEventImpl
+  >
+  get copyWith =>
+      __$$ChangeCharacterPositionEventImplCopyWithImpl<
+        _$ChangeCharacterPositionEventImpl
+      >(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
+    required TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )
+    init,
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return changeCharacterPosition(position);
   }
@@ -568,15 +594,17 @@ class _$ChangeCharacterPositionEventImpl
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult? Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return changeCharacterPosition?.call(position);
   }
@@ -584,15 +612,17 @@ class _$ChangeCharacterPositionEventImpl
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
     required TResult orElse(),
   }) {
     if (changeCharacterPosition != null) {
@@ -607,11 +637,11 @@ class _$ChangeCharacterPositionEventImpl
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
     required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
+    changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
     required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return changeCharacterPosition(this);
   }
@@ -622,7 +652,7 @@ class _$ChangeCharacterPositionEventImpl
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
     TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -636,7 +666,7 @@ class _$ChangeCharacterPositionEventImpl
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
     TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -650,8 +680,9 @@ class _$ChangeCharacterPositionEventImpl
 }
 
 abstract class ChangeCharacterPositionEvent implements LevelPlayerEvent {
-  const factory ChangeCharacterPositionEvent(
-      {required final Vector2 position}) = _$ChangeCharacterPositionEventImpl;
+  const factory ChangeCharacterPositionEvent({
+    required final Vector2 position,
+  }) = _$ChangeCharacterPositionEventImpl;
 
   Vector2 get position;
 
@@ -659,15 +690,17 @@ abstract class ChangeCharacterPositionEvent implements LevelPlayerEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ChangeCharacterPositionEventImplCopyWith<
-          _$ChangeCharacterPositionEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+    _$ChangeCharacterPositionEventImpl
+  >
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$RefuelStorageEventImplCopyWith<$Res> {
-  factory _$$RefuelStorageEventImplCopyWith(_$RefuelStorageEventImpl value,
-          $Res Function(_$RefuelStorageEventImpl) then) =
-      __$$RefuelStorageEventImplCopyWithImpl<$Res>;
+  factory _$$RefuelStorageEventImplCopyWith(
+    _$RefuelStorageEventImpl value,
+    $Res Function(_$RefuelStorageEventImpl) then,
+  ) = __$$RefuelStorageEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ScoreModel score});
 
@@ -678,23 +711,24 @@ abstract class _$$RefuelStorageEventImplCopyWith<$Res> {
 class __$$RefuelStorageEventImplCopyWithImpl<$Res>
     extends _$LevelPlayerEventCopyWithImpl<$Res, _$RefuelStorageEventImpl>
     implements _$$RefuelStorageEventImplCopyWith<$Res> {
-  __$$RefuelStorageEventImplCopyWithImpl(_$RefuelStorageEventImpl _value,
-      $Res Function(_$RefuelStorageEventImpl) _then)
-      : super(_value, _then);
+  __$$RefuelStorageEventImplCopyWithImpl(
+    _$RefuelStorageEventImpl _value,
+    $Res Function(_$RefuelStorageEventImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? score = null,
-  }) {
-    return _then(_$RefuelStorageEventImpl(
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as ScoreModel,
-    ));
+  $Res call({Object? score = null}) {
+    return _then(
+      _$RefuelStorageEventImpl(
+        score: null == score
+            ? _value.score
+            : score // ignore: cast_nullable_to_non_nullable
+                  as ScoreModel,
+      ),
+    );
   }
 
   /// Create a copy of LevelPlayerEvent
@@ -739,20 +773,24 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
   @pragma('vm:prefer-inline')
   _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
       __$$RefuelStorageEventImplCopyWithImpl<_$RefuelStorageEventImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
+    required TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )
+    init,
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return refuelStorage(score);
   }
@@ -760,15 +798,17 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult? Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return refuelStorage?.call(score);
   }
@@ -776,15 +816,17 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
     required TResult orElse(),
   }) {
     if (refuelStorage != null) {
@@ -799,11 +841,11 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
     required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
+    changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
     required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return refuelStorage(this);
   }
@@ -814,7 +856,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
     TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -828,7 +870,7 @@ class _$RefuelStorageEventImpl implements RefuelStorageEvent {
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
     TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -857,9 +899,9 @@ abstract class RefuelStorageEvent implements LevelPlayerEvent {
 /// @nodoc
 abstract class _$$ResearchTechnologyEventImplCopyWith<$Res> {
   factory _$$ResearchTechnologyEventImplCopyWith(
-          _$ResearchTechnologyEventImpl value,
-          $Res Function(_$ResearchTechnologyEventImpl) then) =
-      __$$ResearchTechnologyEventImplCopyWithImpl<$Res>;
+    _$ResearchTechnologyEventImpl value,
+    $Res Function(_$ResearchTechnologyEventImpl) then,
+  ) = __$$ResearchTechnologyEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({ScoreModel score});
 
@@ -871,23 +913,23 @@ class __$$ResearchTechnologyEventImplCopyWithImpl<$Res>
     extends _$LevelPlayerEventCopyWithImpl<$Res, _$ResearchTechnologyEventImpl>
     implements _$$ResearchTechnologyEventImplCopyWith<$Res> {
   __$$ResearchTechnologyEventImplCopyWithImpl(
-      _$ResearchTechnologyEventImpl _value,
-      $Res Function(_$ResearchTechnologyEventImpl) _then)
-      : super(_value, _then);
+    _$ResearchTechnologyEventImpl _value,
+    $Res Function(_$ResearchTechnologyEventImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? score = null,
-  }) {
-    return _then(_$ResearchTechnologyEventImpl(
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as ScoreModel,
-    ));
+  $Res call({Object? score = null}) {
+    return _then(
+      _$ResearchTechnologyEventImpl(
+        score: null == score
+            ? _value.score
+            : score // ignore: cast_nullable_to_non_nullable
+                  as ScoreModel,
+      ),
+    );
   }
 
   /// Create a copy of LevelPlayerEvent
@@ -931,21 +973,25 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
   @override
   @pragma('vm:prefer-inline')
   _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
-      get copyWith => __$$ResearchTechnologyEventImplCopyWithImpl<
-          _$ResearchTechnologyEventImpl>(this, _$identity);
+  get copyWith =>
+      __$$ResearchTechnologyEventImplCopyWithImpl<
+        _$ResearchTechnologyEventImpl
+      >(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
+    required TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )
+    init,
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return researchTechnology(score);
   }
@@ -953,15 +999,17 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult? Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return researchTechnology?.call(score);
   }
@@ -969,15 +1017,17 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
     required TResult orElse(),
   }) {
     if (researchTechnology != null) {
@@ -992,11 +1042,11 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
     required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
+    changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
     required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return researchTechnology(this);
   }
@@ -1007,7 +1057,7 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
     TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -1021,7 +1071,7 @@ class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
     TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -1044,15 +1094,15 @@ abstract class ResearchTechnologyEvent implements LevelPlayerEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$UpdatePlayerHighscoreEventImplCopyWith<$Res> {
   factory _$$UpdatePlayerHighscoreEventImplCopyWith(
-          _$UpdatePlayerHighscoreEventImpl value,
-          $Res Function(_$UpdatePlayerHighscoreEventImpl) then) =
-      __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>;
+    _$UpdatePlayerHighscoreEventImpl value,
+    $Res Function(_$UpdatePlayerHighscoreEventImpl) then,
+  ) = __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String playerId, ScoreModel score, String? word});
 
@@ -1061,13 +1111,13 @@ abstract class _$$UpdatePlayerHighscoreEventImplCopyWith<$Res> {
 
 /// @nodoc
 class __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res,
-        _$UpdatePlayerHighscoreEventImpl>
+    extends
+        _$LevelPlayerEventCopyWithImpl<$Res, _$UpdatePlayerHighscoreEventImpl>
     implements _$$UpdatePlayerHighscoreEventImplCopyWith<$Res> {
   __$$UpdatePlayerHighscoreEventImplCopyWithImpl(
-      _$UpdatePlayerHighscoreEventImpl _value,
-      $Res Function(_$UpdatePlayerHighscoreEventImpl) _then)
-      : super(_value, _then);
+    _$UpdatePlayerHighscoreEventImpl _value,
+    $Res Function(_$UpdatePlayerHighscoreEventImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelPlayerEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -1078,20 +1128,22 @@ class __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>
     Object? score = null,
     Object? word = freezed,
   }) {
-    return _then(_$UpdatePlayerHighscoreEventImpl(
-      playerId: null == playerId
-          ? _value.playerId
-          : playerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      score: null == score
-          ? _value.score
-          : score // ignore: cast_nullable_to_non_nullable
-              as ScoreModel,
-      word: freezed == word
-          ? _value.word
-          : word // ignore: cast_nullable_to_non_nullable
-              as String?,
-    ));
+    return _then(
+      _$UpdatePlayerHighscoreEventImpl(
+        playerId: null == playerId
+            ? _value.playerId
+            : playerId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        score: null == score
+            ? _value.score
+            : score // ignore: cast_nullable_to_non_nullable
+                  as ScoreModel,
+        word: freezed == word
+            ? _value.word
+            : word // ignore: cast_nullable_to_non_nullable
+                  as String?,
+      ),
+    );
   }
 
   /// Create a copy of LevelPlayerEvent
@@ -1108,8 +1160,11 @@ class __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
-  const _$UpdatePlayerHighscoreEventImpl(
-      {required this.playerId, required this.score, this.word});
+  const _$UpdatePlayerHighscoreEventImpl({
+    required this.playerId,
+    required this.score,
+    this.word,
+  });
 
   @override
   final String playerId;
@@ -1143,21 +1198,25 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
   @override
   @pragma('vm:prefer-inline')
   _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
-      get copyWith => __$$UpdatePlayerHighscoreEventImplCopyWithImpl<
-          _$UpdatePlayerHighscoreEventImpl>(this, _$identity);
+  get copyWith =>
+      __$$UpdatePlayerHighscoreEventImplCopyWithImpl<
+        _$UpdatePlayerHighscoreEventImpl
+      >(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)
-        init,
+    required TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )
+    init,
     required TResult Function() switchToNextPlayer,
     required TResult Function(Vector2 position) changeCharacterPosition,
     required TResult Function(ScoreModel score) refuelStorage,
     required TResult Function(ScoreModel score) researchTechnology,
     required TResult Function(String playerId, ScoreModel score, String? word)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return updatePlayerHighscore(playerId, score, word);
   }
@@ -1165,15 +1224,17 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult? Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult? Function()? switchToNextPlayer,
     TResult? Function(Vector2 position)? changeCharacterPosition,
     TResult? Function(ScoreModel score)? refuelStorage,
     TResult? Function(ScoreModel score)? researchTechnology,
     TResult? Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return updatePlayerHighscore?.call(playerId, score, word);
   }
@@ -1181,15 +1242,17 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(LevelPlayersModel playersModel,
-            LevelCharactersModel charactersModel)?
-        init,
+    TResult Function(
+      LevelPlayersModel playersModel,
+      LevelCharactersModel charactersModel,
+    )?
+    init,
     TResult Function()? switchToNextPlayer,
     TResult Function(Vector2 position)? changeCharacterPosition,
     TResult Function(ScoreModel score)? refuelStorage,
     TResult Function(ScoreModel score)? researchTechnology,
     TResult Function(String playerId, ScoreModel score, String? word)?
-        updatePlayerHighscore,
+    updatePlayerHighscore,
     required TResult orElse(),
   }) {
     if (updatePlayerHighscore != null) {
@@ -1204,11 +1267,11 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     required TResult Function(InitLevelPlayersEvent value) init,
     required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
     required TResult Function(ChangeCharacterPositionEvent value)
-        changeCharacterPosition,
+    changeCharacterPosition,
     required TResult Function(RefuelStorageEvent value) refuelStorage,
     required TResult Function(ResearchTechnologyEvent value) researchTechnology,
     required TResult Function(UpdatePlayerHighscoreEvent value)
-        updatePlayerHighscore,
+    updatePlayerHighscore,
   }) {
     return updatePlayerHighscore(this);
   }
@@ -1219,7 +1282,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     TResult? Function(InitLevelPlayersEvent value)? init,
     TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult? Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult? Function(RefuelStorageEvent value)? refuelStorage,
     TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -1233,7 +1296,7 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
     TResult Function(InitLevelPlayersEvent value)? init,
     TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
     TResult Function(ChangeCharacterPositionEvent value)?
-        changeCharacterPosition,
+    changeCharacterPosition,
     TResult Function(RefuelStorageEvent value)? refuelStorage,
     TResult Function(ResearchTechnologyEvent value)? researchTechnology,
     TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
@@ -1247,10 +1310,11 @@ class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
 }
 
 abstract class UpdatePlayerHighscoreEvent implements LevelPlayerEvent {
-  const factory UpdatePlayerHighscoreEvent(
-      {required final String playerId,
-      required final ScoreModel score,
-      final String? word}) = _$UpdatePlayerHighscoreEventImpl;
+  const factory UpdatePlayerHighscoreEvent({
+    required final String playerId,
+    required final ScoreModel score,
+    final String? word,
+  }) = _$UpdatePlayerHighscoreEventImpl;
 
   String get playerId;
   ScoreModel get score;
@@ -1260,7 +1324,7 @@ abstract class UpdatePlayerHighscoreEvent implements LevelPlayerEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -1282,23 +1346,27 @@ mixin _$LevelPlayersBlocState {
 
 /// @nodoc
 abstract class $LevelPlayersBlocStateCopyWith<$Res> {
-  factory $LevelPlayersBlocStateCopyWith(LevelPlayersBlocState value,
-          $Res Function(LevelPlayersBlocState) then) =
-      _$LevelPlayersBlocStateCopyWithImpl<$Res, LevelPlayersBlocState>;
+  factory $LevelPlayersBlocStateCopyWith(
+    LevelPlayersBlocState value,
+    $Res Function(LevelPlayersBlocState) then,
+  ) = _$LevelPlayersBlocStateCopyWithImpl<$Res, LevelPlayersBlocState>;
   @useResult
-  $Res call(
-      {List<PlayerProfileModel> players,
-      String currentPlayerId,
-      PlayerCharacterModel playerCharacter,
-      Gid focusedObjectGid});
+  $Res call({
+    List<PlayerProfileModel> players,
+    String currentPlayerId,
+    PlayerCharacterModel playerCharacter,
+    Gid focusedObjectGid,
+  });
 
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
   $GidCopyWith<$Res> get focusedObjectGid;
 }
 
 /// @nodoc
-class _$LevelPlayersBlocStateCopyWithImpl<$Res,
-        $Val extends LevelPlayersBlocState>
+class _$LevelPlayersBlocStateCopyWithImpl<
+  $Res,
+  $Val extends LevelPlayersBlocState
+>
     implements $LevelPlayersBlocStateCopyWith<$Res> {
   _$LevelPlayersBlocStateCopyWithImpl(this._value, this._then);
 
@@ -1317,24 +1385,27 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
     Object? playerCharacter = null,
     Object? focusedObjectGid = null,
   }) {
-    return _then(_value.copyWith(
-      players: null == players
-          ? _value.players
-          : players // ignore: cast_nullable_to_non_nullable
-              as List<PlayerProfileModel>,
-      currentPlayerId: null == currentPlayerId
-          ? _value.currentPlayerId
-          : currentPlayerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      playerCharacter: null == playerCharacter
-          ? _value.playerCharacter
-          : playerCharacter // ignore: cast_nullable_to_non_nullable
-              as PlayerCharacterModel,
-      focusedObjectGid: null == focusedObjectGid
-          ? _value.focusedObjectGid
-          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
-              as Gid,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            players: null == players
+                ? _value.players
+                : players // ignore: cast_nullable_to_non_nullable
+                      as List<PlayerProfileModel>,
+            currentPlayerId: null == currentPlayerId
+                ? _value.currentPlayerId
+                : currentPlayerId // ignore: cast_nullable_to_non_nullable
+                      as String,
+            playerCharacter: null == playerCharacter
+                ? _value.playerCharacter
+                : playerCharacter // ignore: cast_nullable_to_non_nullable
+                      as PlayerCharacterModel,
+            focusedObjectGid: null == focusedObjectGid
+                ? _value.focusedObjectGid
+                : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+                      as Gid,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of LevelPlayersBlocState
@@ -1362,16 +1433,17 @@ class _$LevelPlayersBlocStateCopyWithImpl<$Res,
 abstract class _$$LevelPlayersBlocStateImplCopyWith<$Res>
     implements $LevelPlayersBlocStateCopyWith<$Res> {
   factory _$$LevelPlayersBlocStateImplCopyWith(
-          _$LevelPlayersBlocStateImpl value,
-          $Res Function(_$LevelPlayersBlocStateImpl) then) =
-      __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>;
+    _$LevelPlayersBlocStateImpl value,
+    $Res Function(_$LevelPlayersBlocStateImpl) then,
+  ) = __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {List<PlayerProfileModel> players,
-      String currentPlayerId,
-      PlayerCharacterModel playerCharacter,
-      Gid focusedObjectGid});
+  $Res call({
+    List<PlayerProfileModel> players,
+    String currentPlayerId,
+    PlayerCharacterModel playerCharacter,
+    Gid focusedObjectGid,
+  });
 
   @override
   $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
@@ -1381,12 +1453,13 @@ abstract class _$$LevelPlayersBlocStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>
-    extends _$LevelPlayersBlocStateCopyWithImpl<$Res,
-        _$LevelPlayersBlocStateImpl>
+    extends
+        _$LevelPlayersBlocStateCopyWithImpl<$Res, _$LevelPlayersBlocStateImpl>
     implements _$$LevelPlayersBlocStateImplCopyWith<$Res> {
-  __$$LevelPlayersBlocStateImplCopyWithImpl(_$LevelPlayersBlocStateImpl _value,
-      $Res Function(_$LevelPlayersBlocStateImpl) _then)
-      : super(_value, _then);
+  __$$LevelPlayersBlocStateImplCopyWithImpl(
+    _$LevelPlayersBlocStateImpl _value,
+    $Res Function(_$LevelPlayersBlocStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LevelPlayersBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -1398,37 +1471,39 @@ class __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>
     Object? playerCharacter = null,
     Object? focusedObjectGid = null,
   }) {
-    return _then(_$LevelPlayersBlocStateImpl(
-      players: null == players
-          ? _value._players
-          : players // ignore: cast_nullable_to_non_nullable
-              as List<PlayerProfileModel>,
-      currentPlayerId: null == currentPlayerId
-          ? _value.currentPlayerId
-          : currentPlayerId // ignore: cast_nullable_to_non_nullable
-              as String,
-      playerCharacter: null == playerCharacter
-          ? _value.playerCharacter
-          : playerCharacter // ignore: cast_nullable_to_non_nullable
-              as PlayerCharacterModel,
-      focusedObjectGid: null == focusedObjectGid
-          ? _value.focusedObjectGid
-          : focusedObjectGid // ignore: cast_nullable_to_non_nullable
-              as Gid,
-    ));
+    return _then(
+      _$LevelPlayersBlocStateImpl(
+        players: null == players
+            ? _value._players
+            : players // ignore: cast_nullable_to_non_nullable
+                  as List<PlayerProfileModel>,
+        currentPlayerId: null == currentPlayerId
+            ? _value.currentPlayerId
+            : currentPlayerId // ignore: cast_nullable_to_non_nullable
+                  as String,
+        playerCharacter: null == playerCharacter
+            ? _value.playerCharacter
+            : playerCharacter // ignore: cast_nullable_to_non_nullable
+                  as PlayerCharacterModel,
+        focusedObjectGid: null == focusedObjectGid
+            ? _value.focusedObjectGid
+            : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+                  as Gid,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
-  const _$LevelPlayersBlocStateImpl(
-      {final List<PlayerProfileModel> players = const [],
-      this.currentPlayerId = '',
-      this.playerCharacter = PlayerCharacterModel.empty,
-      this.focusedObjectGid = Gid.empty})
-      : _players = players,
-        super._();
+  const _$LevelPlayersBlocStateImpl({
+    final List<PlayerProfileModel> players = const [],
+    this.currentPlayerId = '',
+    this.playerCharacter = PlayerCharacterModel.empty,
+    this.focusedObjectGid = Gid.empty,
+  }) : _players = players,
+       super._();
 
   final List<PlayerProfileModel> _players;
   @override
@@ -1472,11 +1547,12 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      const DeepCollectionEquality().hash(_players),
-      currentPlayerId,
-      playerCharacter,
-      focusedObjectGid);
+    runtimeType,
+    const DeepCollectionEquality().hash(_players),
+    currentPlayerId,
+    playerCharacter,
+    focusedObjectGid,
+  );
 
   /// Create a copy of LevelPlayersBlocState
   /// with the given fields replaced by the non-null parameter values.
@@ -1484,16 +1560,20 @@ class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
   @override
   @pragma('vm:prefer-inline')
   _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
-      get copyWith => __$$LevelPlayersBlocStateImplCopyWithImpl<
-          _$LevelPlayersBlocStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$LevelPlayersBlocStateImplCopyWithImpl<_$LevelPlayersBlocStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
 abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
-  const factory _LevelPlayersBlocState(
-      {final List<PlayerProfileModel> players,
-      final String currentPlayerId,
-      final PlayerCharacterModel playerCharacter,
-      final Gid focusedObjectGid}) = _$LevelPlayersBlocStateImpl;
+  const factory _LevelPlayersBlocState({
+    final List<PlayerProfileModel> players,
+    final String currentPlayerId,
+    final PlayerCharacterModel playerCharacter,
+    final Gid focusedObjectGid,
+  }) = _$LevelPlayersBlocStateImpl;
   const _LevelPlayersBlocState._() : super._();
 
   @override
@@ -1512,5 +1592,5 @@ abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

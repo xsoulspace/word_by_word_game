@@ -50,9 +50,9 @@ class EngineMechanics {
   /// 0.4, flight min
   /// 0, min
   double convertCrystalCountToPowerUsage(final int count) => switch (count) {
-        <= 2 => _crystalCountToPowerUsageMap[count] ?? 0,
-        _ => _crystalCountToPowerUsageMap.values.last,
-      };
+    <= 2 => _crystalCountToPowerUsageMap[count] ?? 0,
+    _ => _crystalCountToPowerUsageMap.values.last,
+  };
 
   int convertPowerUsageToCrystalCount(final double value) =>
       _powerUsageToCrystalCount[value] ?? 0;

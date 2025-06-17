@@ -71,15 +71,15 @@ class UiResponsiveLayout extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => LayoutBuilder(
-        builder: (final context, final constraints) {
-          final formFactor = UiPersistentFormFactors.of(context);
-          if (formFactor.width case WidthFormFactor.desktop) {
-            return desktop ?? tablet ?? mobile;
-          } else if (formFactor.width case WidthFormFactor.tablet) {
-            return tablet ?? mobile;
-          } else {
-            return mobile;
-          }
-        },
-      );
+    builder: (final context, final constraints) {
+      final formFactor = UiPersistentFormFactors.of(context);
+      if (formFactor.width case WidthFormFactor.desktop) {
+        return desktop ?? tablet ?? mobile;
+      } else if (formFactor.width case WidthFormFactor.tablet) {
+        return tablet ?? mobile;
+      } else {
+        return mobile;
+      }
+    },
+  );
 }

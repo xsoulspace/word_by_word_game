@@ -21,10 +21,10 @@ class AdventureView extends HookWidget {
           .reversed
           .toList(),
     );
-    final levelSaves =
-        context.select<GlobalGameBloc, Map<CanvasDataModelId, LevelModel>>(
-      (final c) => c.state.savedLevels,
-    );
+    final levelSaves = context
+        .select<GlobalGameBloc, Map<CanvasDataModelId, LevelModel>>(
+          (final c) => c.state.savedLevels,
+        );
     final currentLevelId = context.select<GlobalGameBloc, CanvasDataModelId>(
       (final c) => c.state.currentLevelId,
     );
@@ -40,8 +40,9 @@ class AdventureView extends HookWidget {
         },
         child: Padding(
           padding: EdgeInsets.only(
-            right:
-                hasMobileLayout ? 0.0 : MediaQuery.sizeOf(context).width * 0.18,
+            right: hasMobileLayout
+                ? 0.0
+                : MediaQuery.sizeOf(context).width * 0.18,
           ),
           child: Column(
             mainAxisSize: MainAxisSize.min,
@@ -114,9 +115,8 @@ class ViewBackButton extends StatelessWidget {
   final VoidCallback? onBack;
 
   @override
-  Widget build(final BuildContext context) => UiCircleCloseButton(
-        onPressed: onBack ?? () => Navigator.pop(context),
-      );
+  Widget build(final BuildContext context) =>
+      UiCircleCloseButton(onPressed: onBack ?? () => Navigator.pop(context));
 }
 
 class _LevelCard extends StatelessWidget {
@@ -145,8 +145,10 @@ class _LevelCard extends StatelessWidget {
   final VoidCallback onRestart;
   @override
   Widget build(final BuildContext context) {
-    final canvasData =
-        context.read<GlobalGameBloc>().state.allCanvasData[canvasId];
+    final canvasData = context
+        .read<GlobalGameBloc>()
+        .state
+        .allCanvasData[canvasId];
     if (canvasData == null) return const SizedBox();
     final levelSave = this.levelSave;
     final playerId = levelSave?.players.currentPlayerId ?? '';

@@ -2,8 +2,8 @@ part of 'word_composition_bar.dart';
 
 class WordCompositionTutorialEventListenerDiDto {
   WordCompositionTutorialEventListenerDiDto.use(final Locator read)
-      : mechanics = read(),
-        tutorialBloc = read();
+    : mechanics = read(),
+      tutorialBloc = read();
   final MechanicsCollection mechanics;
   final TutorialBloc tutorialBloc;
 }
@@ -42,12 +42,12 @@ class WordCompositionTutorialEventListener extends TutorialEventListener {
 
 class WordCompositionStateDiDto {
   WordCompositionStateDiDto.use(this.read)
-      : levelBloc = read(),
-        tutorialBloc = read(),
-        mechanics = read(),
-        globalGameBloc = read(),
-        technologiesCubit = read(),
-        dialogController = read();
+    : levelBloc = read(),
+      tutorialBloc = read(),
+      mechanics = read(),
+      globalGameBloc = read(),
+      technologiesCubit = read(),
+      dialogController = read();
   final Locator read;
   final LevelBloc levelBloc;
   final TutorialBloc tutorialBloc;
@@ -59,7 +59,7 @@ class WordCompositionStateDiDto {
 
 class GuiWordCompositionCubit extends ChangeNotifier {
   GuiWordCompositionCubit(final BuildContext context)
-      : dto = WordCompositionStateDiDto.use(context.read) {
+    : dto = WordCompositionStateDiDto.use(context.read) {
     wordController = WordFieldController(
       currentWord: dto.levelBloc.state.currentWord,
     );
@@ -80,8 +80,9 @@ class GuiWordCompositionCubit extends ChangeNotifier {
 
   void onLoad() {
     _latestWord = dto.levelBloc.state.latestWord;
-    _levelBlocSubscription =
-        dto.levelBloc.stream.distinct().listen((final newState) {
+    _levelBlocSubscription = dto.levelBloc.stream.distinct().listen((
+      final newState,
+    ) {
       if (_latestWord != newState.latestWord) {
         _latestWord = newState.latestWord;
         wordController.currentWord = newState.currentWord;
@@ -96,9 +97,7 @@ class GuiWordCompositionCubit extends ChangeNotifier {
     dto.tutorialBloc.notifier.addListener(_tutorialEventsListener);
     unawaited(
       _wordUpdatesController.stream
-          .sampleTime(
-            const Duration(milliseconds: 150),
-          )
+          .sampleTime(const Duration(milliseconds: 150))
           .forEach(_changeFullWord),
     );
     onRequestTextFocus();
@@ -118,8 +117,9 @@ class GuiWordCompositionCubit extends ChangeNotifier {
   }
 
   Future<void> onAddWordToDictionary() async {
-    await dto.levelBloc
-        .onAddNewWordToDictionary(const LevelBlocEventAddNewWordToDictionary());
+    await dto.levelBloc.onAddNewWordToDictionary(
+      const LevelBlocEventAddNewWordToDictionary(),
+    );
     await onToSelectActionPhase();
   }
 
@@ -203,7 +203,7 @@ extension UiGuiWordCompositionCubitCallbacksX on GuiWordCompositionCubit {
 class BottomActionsNotifier extends ValueNotifier<BottomActionsNotifierState> {
   // ignore: avoid_unused_constructor_parameters
   BottomActionsNotifier(final BuildContext context)
-      : super(const BottomActionsNotifierState());
+    : super(const BottomActionsNotifierState());
 
   void changeCardVisiblity() {
     value = value.copyWith(isCardVisible: !value.isCardVisible);

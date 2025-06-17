@@ -51,8 +51,8 @@ class UiIcon extends StatelessWidget {
     this.height = defaultSize,
     this.width = defaultSize,
     super.key,
-  })  : libIcon = null,
-        assetIcon = null;
+  }) : libIcon = null,
+       assetIcon = null;
 
   /// Creates an icon from the Flutter material library.
   ///
@@ -62,9 +62,9 @@ class UiIcon extends StatelessWidget {
     this.height = defaultSize,
     this.width = defaultSize,
     super.key,
-  })  : libIcon = icon,
-        assetIcon = null,
-        painter = null;
+  }) : libIcon = icon,
+       assetIcon = null,
+       painter = null;
 
   /// Creates an icon from an asset.
   ///
@@ -74,9 +74,9 @@ class UiIcon extends StatelessWidget {
     this.height = defaultSize,
     this.width = defaultSize,
     super.key,
-  })  : libIcon = null,
-        assetIcon = icon,
-        painter = null;
+  }) : libIcon = null,
+       assetIcon = icon,
+       painter = null;
 
   /// {@macro ui_icon.ai_description}
   static const String aiDescription =
@@ -110,9 +110,7 @@ class UiIcon extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(
-              UiAssetHelper.useImagePath(assetIcon.path),
-            ),
+            image: AssetImage(UiAssetHelper.useImagePath(assetIcon.path)),
             fit: BoxFit.contain,
           ),
         ),

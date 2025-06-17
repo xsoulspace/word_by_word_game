@@ -6,6 +6,8 @@ publish_to: "none"
 environment:
   sdk: ">=3.8.1 <4.0.0"
 
+resolution: workspace
+
 dependencies:
   flutter:
     sdk: flutter
@@ -15,20 +17,17 @@ dependencies:
   intl: ^0.20.2
   xsoulspace_foundation: ^0.2.0
   xsoulspace_locale: ^0.2.0
+  xsoulspace_ui_foundation: ^0.1.0
 
 dev_dependencies:
   build_runner: ^2.5.0
-  lints: ^6.0.0
   flutter_test:
     sdk: flutter
   freezed: ^3.0.6
   json_serializable: ^6.9.5
+  lints: ^6.0.0
   xsoulspace_lints: ^0.1.0
 
-dependency_overrides:
-  collection: ^1.19.1
-  package_info_plus: ^8.3.0
-  web: ^1.1.1
 # For information see the following page:
 # https://pub.dev/packages/flutter_gen
 flutter_gen:

@@ -51,9 +51,9 @@ class UiBodyBuilder extends StatelessWidget {
     this.padding,
     super.key,
   }) : assert(
-          (builder == null) != (children == null),
-          'Either builder or children must be provided, but not both.',
-        );
+         (builder == null) != (children == null),
+         'Either builder or children must be provided, but not both.',
+       );
 
   /// {@macro ui_divider.ai_description}
   static const String aiDescription =

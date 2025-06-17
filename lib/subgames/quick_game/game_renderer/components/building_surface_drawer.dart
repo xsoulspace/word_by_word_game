@@ -60,10 +60,7 @@ class BuildingSurfaceDrawer extends Component
 
     if (playerBottomLeftTileMapCell == null) return;
     final startMapVector2 = GameVector2.fromMapTileCell(
-      math.Point(
-        playerBottomLeftTileMapCell.x,
-        playerBottomLeftTileMapCell.y,
-      ),
+      math.Point(playerBottomLeftTileMapCell.x, playerBottomLeftTileMapCell.y),
     ).mapVector2;
 
     final drawableObjects = <_PlacingSurfaceComponent>[];
@@ -97,10 +94,7 @@ class BuildingSurfaceDrawer extends Component
             parent: this,
             index: index,
             type: _buildingCubit.value.type,
-            onSelect: () => _onSelect(
-              index: index,
-              gameVector2: gameVector2,
-            ),
+            onSelect: () => _onSelect(index: index, gameVector2: gameVector2),
           ),
         );
       }
@@ -109,15 +103,11 @@ class BuildingSurfaceDrawer extends Component
     /// we need to check left and right
     for (final (:i, :xTile) in kFocusableTilesList) {
       final shiftedMapVector2 = startMapVector2.clone()
-
         /// by translating it up to one tile, we place it left right
         /// to the player
         // TODO(arenukvern): if hot air baloon is higher then ground level it applies up
         ..translate(xTile, -1 * kTileDimensionDouble);
-      checkAndVerify(
-        mapVector2: shiftedMapVector2,
-        index: i,
-      );
+      checkAndVerify(mapVector2: shiftedMapVector2, index: i);
     }
 
     return addAll(drawableObjects);
@@ -230,10 +220,7 @@ class _PlacingSurfaceComponent extends PositionComponent
   @override
   void render(final Canvas canvas) {
     canvas.drawRRect(
-      RRect.fromRectAndRadius(
-        _rect,
-        const Radius.circular(4),
-      ),
+      RRect.fromRectAndRadius(_rect, const Radius.circular(4)),
       isHovered ? _selectedBorderPaint : _borderPaint,
     );
     if (isHovered || _isSelected) {
@@ -265,24 +252,24 @@ class GuiFlatButton extends ButtonComponent {
     super.onReleased,
     super.position,
   }) : super(
-          button: GuiButtonBackground(material.Colors.blue[300]!),
-          buttonDown: GuiButtonBackground(color),
-          children: [
-            TextComponent(
-              text: text,
-              textRenderer: TextPaint(
-                style: TextStyle(
-                  fontSize: 0.5 * size!.y,
-                  fontWeight: FontWeight.bold,
-                  color: color,
-                ),
-              ),
-              position: size / 2.0,
-              anchor: Anchor.center,
-            ),
-          ],
-          anchor: Anchor.center,
-        );
+         button: GuiButtonBackground(material.Colors.blue[300]!),
+         buttonDown: GuiButtonBackground(color),
+         children: [
+           TextComponent(
+             text: text,
+             textRenderer: TextPaint(
+               style: TextStyle(
+                 fontSize: 0.5 * size!.y,
+                 fontWeight: FontWeight.bold,
+                 color: color,
+               ),
+             ),
+             position: size / 2.0,
+             anchor: Anchor.center,
+           ),
+         ],
+         anchor: Anchor.center,
+       );
 }
 
 class GuiButtonBackground extends PositionComponent

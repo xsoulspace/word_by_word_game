@@ -12,7 +12,8 @@ part of 'gui_building_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$GuiBuildingNotifierState {
@@ -30,23 +31,27 @@ mixin _$GuiBuildingNotifierState {
 
 /// @nodoc
 abstract class $GuiBuildingNotifierStateCopyWith<$Res> {
-  factory $GuiBuildingNotifierStateCopyWith(GuiBuildingNotifierState value,
-          $Res Function(GuiBuildingNotifierState) then) =
-      _$GuiBuildingNotifierStateCopyWithImpl<$Res, GuiBuildingNotifierState>;
+  factory $GuiBuildingNotifierStateCopyWith(
+    GuiBuildingNotifierState value,
+    $Res Function(GuiBuildingNotifierState) then,
+  ) = _$GuiBuildingNotifierStateCopyWithImpl<$Res, GuiBuildingNotifierState>;
   @useResult
-  $Res call(
-      {GuiBuildingStatusEnum status,
-      GuiBuildingTypeEnum type,
-      SerializedVector2 distanceToOrigin,
-      CellPointModel? cellPoint});
+  $Res call({
+    GuiBuildingStatusEnum status,
+    GuiBuildingTypeEnum type,
+    SerializedVector2 distanceToOrigin,
+    CellPointModel? cellPoint,
+  });
 
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
   $CellPointModelCopyWith<$Res>? get cellPoint;
 }
 
 /// @nodoc
-class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
-        $Val extends GuiBuildingNotifierState>
+class _$GuiBuildingNotifierStateCopyWithImpl<
+  $Res,
+  $Val extends GuiBuildingNotifierState
+>
     implements $GuiBuildingNotifierStateCopyWith<$Res> {
   _$GuiBuildingNotifierStateCopyWithImpl(this._value, this._then);
 
@@ -65,24 +70,27 @@ class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
     Object? distanceToOrigin = null,
     Object? cellPoint = freezed,
   }) {
-    return _then(_value.copyWith(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as GuiBuildingStatusEnum,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as GuiBuildingTypeEnum,
-      distanceToOrigin: null == distanceToOrigin
-          ? _value.distanceToOrigin
-          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
-              as SerializedVector2,
-      cellPoint: freezed == cellPoint
-          ? _value.cellPoint
-          : cellPoint // ignore: cast_nullable_to_non_nullable
-              as CellPointModel?,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            status: null == status
+                ? _value.status
+                : status // ignore: cast_nullable_to_non_nullable
+                      as GuiBuildingStatusEnum,
+            type: null == type
+                ? _value.type
+                : type // ignore: cast_nullable_to_non_nullable
+                      as GuiBuildingTypeEnum,
+            distanceToOrigin: null == distanceToOrigin
+                ? _value.distanceToOrigin
+                : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+                      as SerializedVector2,
+            cellPoint: freezed == cellPoint
+                ? _value.cellPoint
+                : cellPoint // ignore: cast_nullable_to_non_nullable
+                      as CellPointModel?,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of GuiBuildingNotifierState
@@ -114,16 +122,17 @@ class _$GuiBuildingNotifierStateCopyWithImpl<$Res,
 abstract class _$$GuiBuildingNotifierStateImplCopyWith<$Res>
     implements $GuiBuildingNotifierStateCopyWith<$Res> {
   factory _$$GuiBuildingNotifierStateImplCopyWith(
-          _$GuiBuildingNotifierStateImpl value,
-          $Res Function(_$GuiBuildingNotifierStateImpl) then) =
-      __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>;
+    _$GuiBuildingNotifierStateImpl value,
+    $Res Function(_$GuiBuildingNotifierStateImpl) then,
+  ) = __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {GuiBuildingStatusEnum status,
-      GuiBuildingTypeEnum type,
-      SerializedVector2 distanceToOrigin,
-      CellPointModel? cellPoint});
+  $Res call({
+    GuiBuildingStatusEnum status,
+    GuiBuildingTypeEnum type,
+    SerializedVector2 distanceToOrigin,
+    CellPointModel? cellPoint,
+  });
 
   @override
   $SerializedVector2CopyWith<$Res> get distanceToOrigin;
@@ -133,13 +142,16 @@ abstract class _$$GuiBuildingNotifierStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>
-    extends _$GuiBuildingNotifierStateCopyWithImpl<$Res,
-        _$GuiBuildingNotifierStateImpl>
+    extends
+        _$GuiBuildingNotifierStateCopyWithImpl<
+          $Res,
+          _$GuiBuildingNotifierStateImpl
+        >
     implements _$$GuiBuildingNotifierStateImplCopyWith<$Res> {
   __$$GuiBuildingNotifierStateImplCopyWithImpl(
-      _$GuiBuildingNotifierStateImpl _value,
-      $Res Function(_$GuiBuildingNotifierStateImpl) _then)
-      : super(_value, _then);
+    _$GuiBuildingNotifierStateImpl _value,
+    $Res Function(_$GuiBuildingNotifierStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of GuiBuildingNotifierState
   /// with the given fields replaced by the non-null parameter values.
@@ -151,35 +163,38 @@ class __$$GuiBuildingNotifierStateImplCopyWithImpl<$Res>
     Object? distanceToOrigin = null,
     Object? cellPoint = freezed,
   }) {
-    return _then(_$GuiBuildingNotifierStateImpl(
-      status: null == status
-          ? _value.status
-          : status // ignore: cast_nullable_to_non_nullable
-              as GuiBuildingStatusEnum,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as GuiBuildingTypeEnum,
-      distanceToOrigin: null == distanceToOrigin
-          ? _value.distanceToOrigin
-          : distanceToOrigin // ignore: cast_nullable_to_non_nullable
-              as SerializedVector2,
-      cellPoint: freezed == cellPoint
-          ? _value.cellPoint
-          : cellPoint // ignore: cast_nullable_to_non_nullable
-              as CellPointModel?,
-    ));
+    return _then(
+      _$GuiBuildingNotifierStateImpl(
+        status: null == status
+            ? _value.status
+            : status // ignore: cast_nullable_to_non_nullable
+                  as GuiBuildingStatusEnum,
+        type: null == type
+            ? _value.type
+            : type // ignore: cast_nullable_to_non_nullable
+                  as GuiBuildingTypeEnum,
+        distanceToOrigin: null == distanceToOrigin
+            ? _value.distanceToOrigin
+            : distanceToOrigin // ignore: cast_nullable_to_non_nullable
+                  as SerializedVector2,
+        cellPoint: freezed == cellPoint
+            ? _value.cellPoint
+            : cellPoint // ignore: cast_nullable_to_non_nullable
+                  as CellPointModel?,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$GuiBuildingNotifierStateImpl implements _GuiBuildingNotifierState {
-  const _$GuiBuildingNotifierStateImpl(
-      {this.status = GuiBuildingStatusEnum.idle,
-      this.type = GuiBuildingTypeEnum.nothing,
-      this.distanceToOrigin = SerializedVector2.zero,
-      this.cellPoint});
+  const _$GuiBuildingNotifierStateImpl({
+    this.status = GuiBuildingStatusEnum.idle,
+    this.type = GuiBuildingTypeEnum.nothing,
+    this.distanceToOrigin = SerializedVector2.zero,
+    this.cellPoint,
+  });
 
   @override
   @JsonKey()
@@ -221,16 +236,19 @@ class _$GuiBuildingNotifierStateImpl implements _GuiBuildingNotifierState {
   @override
   @pragma('vm:prefer-inline')
   _$$GuiBuildingNotifierStateImplCopyWith<_$GuiBuildingNotifierStateImpl>
-      get copyWith => __$$GuiBuildingNotifierStateImplCopyWithImpl<
-          _$GuiBuildingNotifierStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$GuiBuildingNotifierStateImplCopyWithImpl<
+        _$GuiBuildingNotifierStateImpl
+      >(this, _$identity);
 }
 
 abstract class _GuiBuildingNotifierState implements GuiBuildingNotifierState {
-  const factory _GuiBuildingNotifierState(
-      {final GuiBuildingStatusEnum status,
-      final GuiBuildingTypeEnum type,
-      final SerializedVector2 distanceToOrigin,
-      final CellPointModel? cellPoint}) = _$GuiBuildingNotifierStateImpl;
+  const factory _GuiBuildingNotifierState({
+    final GuiBuildingStatusEnum status,
+    final GuiBuildingTypeEnum type,
+    final SerializedVector2 distanceToOrigin,
+    final CellPointModel? cellPoint,
+  }) = _$GuiBuildingNotifierStateImpl;
 
   @override
   GuiBuildingStatusEnum get status;
@@ -246,5 +264,5 @@ abstract class _GuiBuildingNotifierState implements GuiBuildingNotifierState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GuiBuildingNotifierStateImplCopyWith<_$GuiBuildingNotifierStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

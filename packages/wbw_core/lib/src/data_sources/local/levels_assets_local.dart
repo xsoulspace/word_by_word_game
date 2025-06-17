@@ -8,15 +8,13 @@ import '../../gen/assets.gen.dart';
 import '../data_sources.dart';
 
 class LevelsLocalDataSourceAssetsImpl implements LevelsLocalDataSource {
-  LevelsLocalDataSourceAssetsImpl({
-    required this.localDb,
-  });
+  LevelsLocalDataSourceAssetsImpl({required this.localDb});
   final LocalDbI localDb;
   final String _localKey = 'template_levels';
 
   @override
   Future<Map<CanvasDataModelId, CanvasDataModel>>
-      getDefaultTemplateLevels() async {
+  getDefaultTemplateLevels() async {
     final map = <CanvasDataModelId, CanvasDataModel>{};
     for (final path in Assets.levels.values) {
       final string = await rootBundle.loadString(path);

@@ -12,7 +12,8 @@ part of 'models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$AdPermissions {
@@ -31,14 +32,16 @@ mixin _$AdPermissions {
 /// @nodoc
 abstract class $AdPermissionsCopyWith<$Res> {
   factory $AdPermissionsCopyWith(
-          AdPermissions value, $Res Function(AdPermissions) then) =
-      _$AdPermissionsCopyWithImpl<$Res, AdPermissions>;
+    AdPermissions value,
+    $Res Function(AdPermissions) then,
+  ) = _$AdPermissionsCopyWithImpl<$Res, AdPermissions>;
   @useResult
-  $Res call(
-      {bool adsAllowed,
-      bool pauseGameScreenBannerEnabled,
-      bool levelEndScreenBannerEnabled,
-      bool onContinueLevelVideoEnabled});
+  $Res call({
+    bool adsAllowed,
+    bool pauseGameScreenBannerEnabled,
+    bool levelEndScreenBannerEnabled,
+    bool onContinueLevelVideoEnabled,
+  });
 }
 
 /// @nodoc
@@ -61,24 +64,27 @@ class _$AdPermissionsCopyWithImpl<$Res, $Val extends AdPermissions>
     Object? levelEndScreenBannerEnabled = null,
     Object? onContinueLevelVideoEnabled = null,
   }) {
-    return _then(_value.copyWith(
-      adsAllowed: null == adsAllowed
-          ? _value.adsAllowed
-          : adsAllowed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled
-          ? _value.pauseGameScreenBannerEnabled
-          : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled
-          ? _value.levelEndScreenBannerEnabled
-          : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled
-          ? _value.onContinueLevelVideoEnabled
-          : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            adsAllowed: null == adsAllowed
+                ? _value.adsAllowed
+                : adsAllowed // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled
+                ? _value.pauseGameScreenBannerEnabled
+                : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled
+                ? _value.levelEndScreenBannerEnabled
+                : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled
+                ? _value.onContinueLevelVideoEnabled
+                : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -86,15 +92,17 @@ class _$AdPermissionsCopyWithImpl<$Res, $Val extends AdPermissions>
 abstract class _$$AdPermissionsImplCopyWith<$Res>
     implements $AdPermissionsCopyWith<$Res> {
   factory _$$AdPermissionsImplCopyWith(
-          _$AdPermissionsImpl value, $Res Function(_$AdPermissionsImpl) then) =
-      __$$AdPermissionsImplCopyWithImpl<$Res>;
+    _$AdPermissionsImpl value,
+    $Res Function(_$AdPermissionsImpl) then,
+  ) = __$$AdPermissionsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool adsAllowed,
-      bool pauseGameScreenBannerEnabled,
-      bool levelEndScreenBannerEnabled,
-      bool onContinueLevelVideoEnabled});
+  $Res call({
+    bool adsAllowed,
+    bool pauseGameScreenBannerEnabled,
+    bool levelEndScreenBannerEnabled,
+    bool onContinueLevelVideoEnabled,
+  });
 }
 
 /// @nodoc
@@ -102,8 +110,9 @@ class __$$AdPermissionsImplCopyWithImpl<$Res>
     extends _$AdPermissionsCopyWithImpl<$Res, _$AdPermissionsImpl>
     implements _$$AdPermissionsImplCopyWith<$Res> {
   __$$AdPermissionsImplCopyWithImpl(
-      _$AdPermissionsImpl _value, $Res Function(_$AdPermissionsImpl) _then)
-      : super(_value, _then);
+    _$AdPermissionsImpl _value,
+    $Res Function(_$AdPermissionsImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AdPermissions
   /// with the given fields replaced by the non-null parameter values.
@@ -115,36 +124,38 @@ class __$$AdPermissionsImplCopyWithImpl<$Res>
     Object? levelEndScreenBannerEnabled = null,
     Object? onContinueLevelVideoEnabled = null,
   }) {
-    return _then(_$AdPermissionsImpl(
-      adsAllowed: null == adsAllowed
-          ? _value.adsAllowed
-          : adsAllowed // ignore: cast_nullable_to_non_nullable
-              as bool,
-      pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled
-          ? _value.pauseGameScreenBannerEnabled
-          : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled
-          ? _value.levelEndScreenBannerEnabled
-          : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-      onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled
-          ? _value.onContinueLevelVideoEnabled
-          : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$AdPermissionsImpl(
+        adsAllowed: null == adsAllowed
+            ? _value.adsAllowed
+            : adsAllowed // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled
+            ? _value.pauseGameScreenBannerEnabled
+            : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled
+            ? _value.levelEndScreenBannerEnabled
+            : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled
+            ? _value.onContinueLevelVideoEnabled
+            : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$AdPermissionsImpl extends _AdPermissions {
-  const _$AdPermissionsImpl(
-      {this.adsAllowed = false,
-      this.pauseGameScreenBannerEnabled = false,
-      this.levelEndScreenBannerEnabled = false,
-      this.onContinueLevelVideoEnabled = false})
-      : super._();
+  const _$AdPermissionsImpl({
+    this.adsAllowed = false,
+    this.pauseGameScreenBannerEnabled = false,
+    this.levelEndScreenBannerEnabled = false,
+    this.onContinueLevelVideoEnabled = false,
+  }) : super._();
 
   @override
   @JsonKey()
@@ -171,27 +182,34 @@ class _$AdPermissionsImpl extends _AdPermissions {
             other is _$AdPermissionsImpl &&
             (identical(other.adsAllowed, adsAllowed) ||
                 other.adsAllowed == adsAllowed) &&
-            (identical(other.pauseGameScreenBannerEnabled,
-                    pauseGameScreenBannerEnabled) ||
+            (identical(
+                  other.pauseGameScreenBannerEnabled,
+                  pauseGameScreenBannerEnabled,
+                ) ||
                 other.pauseGameScreenBannerEnabled ==
                     pauseGameScreenBannerEnabled) &&
-            (identical(other.levelEndScreenBannerEnabled,
-                    levelEndScreenBannerEnabled) ||
+            (identical(
+                  other.levelEndScreenBannerEnabled,
+                  levelEndScreenBannerEnabled,
+                ) ||
                 other.levelEndScreenBannerEnabled ==
                     levelEndScreenBannerEnabled) &&
-            (identical(other.onContinueLevelVideoEnabled,
-                    onContinueLevelVideoEnabled) ||
+            (identical(
+                  other.onContinueLevelVideoEnabled,
+                  onContinueLevelVideoEnabled,
+                ) ||
                 other.onContinueLevelVideoEnabled ==
                     onContinueLevelVideoEnabled));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      adsAllowed,
-      pauseGameScreenBannerEnabled,
-      levelEndScreenBannerEnabled,
-      onContinueLevelVideoEnabled);
+    runtimeType,
+    adsAllowed,
+    pauseGameScreenBannerEnabled,
+    levelEndScreenBannerEnabled,
+    onContinueLevelVideoEnabled,
+  );
 
   /// Create a copy of AdPermissions
   /// with the given fields replaced by the non-null parameter values.
@@ -203,11 +221,12 @@ class _$AdPermissionsImpl extends _AdPermissions {
 }
 
 abstract class _AdPermissions extends AdPermissions {
-  const factory _AdPermissions(
-      {final bool adsAllowed,
-      final bool pauseGameScreenBannerEnabled,
-      final bool levelEndScreenBannerEnabled,
-      final bool onContinueLevelVideoEnabled}) = _$AdPermissionsImpl;
+  const factory _AdPermissions({
+    final bool adsAllowed,
+    final bool pauseGameScreenBannerEnabled,
+    final bool levelEndScreenBannerEnabled,
+    final bool onContinueLevelVideoEnabled,
+  }) = _$AdPermissionsImpl;
   const _AdPermissions._() : super._();
 
   @override

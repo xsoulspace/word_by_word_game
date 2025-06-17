@@ -14,8 +14,9 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
     final locale = useLocale(context);
     final playersBloc = context.watch<LevelPlayersBloc>();
     final isPlayerFocused = playersBloc.isPlayerFocused;
-    final isTentFocused =
-        playersBloc.focusedObject.tileId.value.contains('tent');
+    final isTentFocused = playersBloc.focusedObject.tileId.value.contains(
+      'tent',
+    );
     final isPoweringEngineAvailable = context.select<TechnologiesCubit, bool>(
       (final cubit) =>
           cubit.isTechLevelUnlocked(TechnologyLevelIndex.takeOffAndLanding),
@@ -69,10 +70,7 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
             languages.it: 'Azioni',
           },
         ),
-        iconChildren: [
-          const Icon(CupertinoIcons.book, size: 18),
-          const Gap(2),
-        ],
+        iconChildren: [const Icon(CupertinoIcons.book, size: 18), const Gap(2)],
         tabView: const TentActionsView(),
       ),
     ];
@@ -125,8 +123,9 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
                             child: FocusableActionDetector(
                               onShowHoverHighlight: (final isHovered) {
                                 if (isHovered) {
-                                  DefaultTabController.of(context)
-                                      .animateTo(index);
+                                  DefaultTabController.of(
+                                    context,
+                                  ).animateTo(index);
                                 }
                               },
                               child: Column(
@@ -165,9 +164,9 @@ class _ActionsTabView extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => const Row(
-        children: [
-          Flexible(child: HeatEngineView()),
-          HotAirBaloonActionsView(),
-        ],
-      );
+    children: [
+      Flexible(child: HeatEngineView()),
+      HotAirBaloonActionsView(),
+    ],
+  );
 }

@@ -73,19 +73,14 @@ class PlayerGameCanvasObject extends GameCanvasObject {
   void _showLevelLostDialog() {
     _pauseGame();
     gameRef.dto.dialogController.showLevelLostDialog(
-      EndLevelEvent(
-        isPassed: false,
-        maxDistance: maxDistance.toDouble(),
-      ),
+      EndLevelEvent(isPassed: false, maxDistance: maxDistance.toDouble()),
     );
   }
 
   void _onGuiFocusableObjectsChanged() {
     if (guiFocusableObjectsNotifier.isFocusing) {
       unawaited(
-        guiFocusableObjectsNotifier.updateNearestObjectsOfPlayer(
-          player: this,
-        ),
+        guiFocusableObjectsNotifier.updateNearestObjectsOfPlayer(player: this),
       );
     }
   }
@@ -110,10 +105,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     _pauseGame();
     unawaited(
       gameRef.dto.dialogController.showLevelWinDialog(
-        EndLevelEvent(
-          isPassed: true,
-          maxDistance: maxDistance.toDouble(),
-        ),
+        EndLevelEvent(isPassed: true, maxDistance: maxDistance.toDouble()),
       ),
     );
   }
@@ -131,10 +123,8 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     if (game.timePaused) {
       // do nothing
     } else {
-      final collisionConsequences =
-          game.dto.canvasCubit.checkIsCollidingWithTiles(
-        hitboxMapCells: hitboxMapCells,
-      );
+      final collisionConsequences = game.dto.canvasCubit
+          .checkIsCollidingWithTiles(hitboxMapCells: hitboxMapCells);
       if (collisionConsequences.isNotEmpty && hitboxMapCells.isNotEmpty) {
         /// means we have at least one collision
         for (final consequence in collisionConsequences) {
@@ -181,8 +171,9 @@ class PlayerGameCanvasObject extends GameCanvasObject {
     final mapVector2 = gameVector2.mapVector2.toOffset();
     final height = gravity.getHeight(mapVector2);
     final heightInTiles = gravity.getHeightInTiles(mapVector2);
-    final windOffset =
-        game.dto.weatherCubit.generateWindForce(heightInTiles: heightInTiles);
+    final windOffset = game.dto.weatherCubit.generateWindForce(
+      heightInTiles: heightInTiles,
+    );
     if (heightInTiles < 0 || isCollided) {
       // do not update position
       // update position if needed
@@ -226,16 +217,11 @@ class PlayerGameCanvasObject extends GameCanvasObject {
 
     if (playerBottomLeftTileMapCell == null) return [];
     final startMapVector2 = GameVector2.fromMapTileCell(
-      math.Point(
-        playerBottomLeftTileMapCell.x,
-        playerBottomLeftTileMapCell.y,
-      ),
+      math.Point(playerBottomLeftTileMapCell.x, playerBottomLeftTileMapCell.y),
     ).mapVector2;
 
     final objectsIds = <Gid>[];
-    void checkAndVerify({
-      required final Vector2 mapVector2,
-    }) {
+    void checkAndVerify({required final Vector2 mapVector2}) {
       final gameVector2 = GameVector2.fromMapVector2(mapVector2);
       final mapCell = gameVector2.toMapTileCell().toCellPoint();
       final focusableTiles = game.dto.canvasCubit.getFocusableTiles(
@@ -267,10 +253,7 @@ class PlayerGameCanvasObject extends GameCanvasObject {
       final rect = shiftedScreenHitbox;
       if (rect != null) {
         canvas.drawRRect(
-          RRect.fromRectAndRadius(
-            rect,
-            FocusedObjectComponent.kBorderRadius,
-          ),
+          RRect.fromRectAndRadius(rect, FocusedObjectComponent.kBorderRadius),
           FocusedObjectComponent.kBorderPaint,
         );
       }

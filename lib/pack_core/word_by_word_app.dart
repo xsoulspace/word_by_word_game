@@ -10,9 +10,9 @@ class WordByWordApp extends StatelessWidget {
   final GlobalServicesInitializer initializer;
   @override
   Widget build(final BuildContext context) => GlobalStatesProvider(
-        initializer: initializer,
-        builder: (final context) => const AppScaffoldBuilder(),
-      );
+    initializer: initializer,
+    builder: (final context) => const AppScaffoldBuilder(),
+  );
 }
 
 class AppScaffoldBuilder extends StatelessWidget {
@@ -48,10 +48,7 @@ class AppScaffoldBuilder extends StatelessWidget {
 /// Used to create toolbar instead of native, but resizing
 /// doesn't work on ubuntu.
 class WindowControlsScaffold extends HookWidget {
-  const WindowControlsScaffold({
-    required this.child,
-    super.key,
-  });
+  const WindowControlsScaffold({required this.child, super.key});
   final Widget child;
   @override
   Widget build(final BuildContext context) {
@@ -136,9 +133,7 @@ class WindowControlsScaffold extends HookWidget {
                       },
                       icon: Stack(
                         children: [
-                          const Icon(
-                            CupertinoIcons.circle_filled,
-                          ),
+                          const Icon(CupertinoIcons.circle_filled),
                           if (isHovered)
                             const Center(
                               child: Icon(

@@ -47,12 +47,13 @@ abstract base class WbwDictionaryLocalSourceBase {
         for (final row in data) {
           final tuple = converter(row);
           if (tuple == null) return;
-          final future =
-              _store.record(_getRecordKeyByMeaning(language, tuple)).put(txn, {
-            'language': language.code,
-            'word': tuple.word,
-            'meaning': tuple.meaning,
-          });
+          final future = _store
+              .record(_getRecordKeyByMeaning(language, tuple))
+              .put(txn, {
+                'language': language.code,
+                'word': tuple.word,
+                'meaning': tuple.meaning,
+              });
           futures.add(future);
         }
         await Future.wait(futures);
@@ -82,8 +83,7 @@ abstract base class WbwDictionaryLocalSourceBase {
   String _getRecordKeyByMeaning(
     final UiLanguage language,
     final WordMeaningTuple tuple,
-  ) =>
-      '${language.code}:${tuple.word}';
+  ) => '${language.code}:${tuple.word}';
 
   Future<void> writeWord(
     final WordMeaningRequestTuple tuple, {

@@ -8,11 +8,12 @@ part of 'weather_mechanics.dart';
 
 _$WeatherModelImpl _$$WeatherModelImplFromJson(Map<String, dynamic> json) =>
     _$WeatherModelImpl(
-      windScale: $enumDecodeNullable(_$WindScaleEnumMap, json['windScale']) ??
+      windScale:
+          $enumDecodeNullable(_$WindScaleEnumMap, json['windScale']) ??
           WindScale.calm,
       windDirection:
           $enumDecodeNullable(_$WindDirectionEnumMap, json['windDirection']) ??
-              WindDirection.defaultDirection,
+          WindDirection.defaultDirection,
       durationInGameSeconds:
           (json['durationInGameSeconds'] as num?)?.toInt() ?? 20,
     );
@@ -53,6 +54,4 @@ _$WindModelImpl _$$WindModelImplFromJson(Map<String, dynamic> json) =>
     );
 
 Map<String, dynamic> _$$WindModelImplToJson(_$WindModelImpl instance) =>
-    <String, dynamic>{
-      'force': instance.force,
-    };
+    <String, dynamic>{'force': instance.force};

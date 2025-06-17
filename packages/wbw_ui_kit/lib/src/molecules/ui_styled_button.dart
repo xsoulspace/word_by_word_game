@@ -47,8 +47,8 @@ class UiStyledButton extends StatelessWidget {
     final Widget child = UiBaseButton(
       onPressed: onPressed,
       builder: (final context, final focused, final onlyFocused) {
-        final textColor =
-            (focused ? UiColors.dark : UiColors.mediumDark).withOpacity(0.9);
+        final textColor = (focused ? UiColors.dark : UiColors.mediumDark)
+            .withOpacity(0.9);
         final buttonBorderColor = borderColor ?? textColor;
         final buttonRadius = radius ?? 30.0;
         final showFocusIcon = focusIcon != null;
@@ -60,11 +60,7 @@ class UiStyledButton extends StatelessWidget {
               AnimatedOpacity(
                 opacity: onlyFocused ? 1.0 : 0.0,
                 duration: const Duration(milliseconds: 150),
-                child: Icon(
-                  focusIcon,
-                  color: textColor,
-                  size: 24,
-                )
+                child: Icon(focusIcon, color: textColor, size: 24)
                     .animate(
                       onComplete: (final controller) => controller.repeat(),
                     )
@@ -116,7 +112,8 @@ class UiStyledButton extends StatelessWidget {
                   radius: buttonRadius,
                 ),
                 child: Padding(
-                  padding: padding ??
+                  padding:
+                      padding ??
                       EdgeInsets.symmetric(
                         vertical: styleType == ButtonStyleType.text ? 2.5 : 12,
                         horizontal: styleType == ButtonStyleType.text ? 8 : 16,
@@ -125,11 +122,7 @@ class UiStyledButton extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       if (icon != null) ...[
-                        Icon(
-                          icon,
-                          color: textColor,
-                          size: 20,
-                        ),
+                        Icon(icon, color: textColor, size: 20),
                         if (isLabelExists) const Gap(8),
                       ],
                       if (isLabelExists)
@@ -161,10 +154,7 @@ class UiStyledButton extends StatelessWidget {
       button: true,
       enabled: onPressed != null,
       label: tooltip ?? label.whenEmptyUse('Button'),
-      child: UiTooltip(
-        tooltip: tooltip,
-        child: child,
-      ),
+      child: UiTooltip(tooltip: tooltip, child: child),
     );
   }
 }

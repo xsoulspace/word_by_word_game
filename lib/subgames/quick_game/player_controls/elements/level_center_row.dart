@@ -6,9 +6,7 @@ import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/e
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
 
 class UILevelCenterBar extends StatelessWidget {
-  const UILevelCenterBar({
-    super.key,
-  });
+  const UILevelCenterBar({super.key});
 
   static Future<void> onConfirmWord(final BuildContext context) async {
     unawaited(context.read<GuiWordCompositionCubit>().onToSelectActionPhase());
@@ -25,10 +23,9 @@ class UILevelCenterBar extends StatelessWidget {
     );
 
     return MediaQuery(
-      data: MediaQuery.of(context).copyWith(
-        devicePixelRatio: 1,
-        textScaler: TextScaler.noScaling,
-      ),
+      data: MediaQuery.of(
+        context,
+      ).copyWith(devicePixelRatio: 1, textScaler: TextScaler.noScaling),
       child: Column(
         children: [
           Row(
@@ -44,14 +41,14 @@ class UILevelCenterBar extends StatelessWidget {
           Divider(color: context.colorScheme.tertiary.withOpacity(0.2)),
           ...switch (phaseType) {
             GamePhaseType.entryWord => [
-                const UiWordCompositionBar(
-                  rightSlot: Padding(
-                    padding: EdgeInsets.only(left: 4),
-                    child: ActionConfirmWordButton(),
-                  ),
+              const UiWordCompositionBar(
+                rightSlot: Padding(
+                  padding: EdgeInsets.only(left: 4),
+                  child: ActionConfirmWordButton(),
                 ),
-                UiGaps.medium,
-              ],
+              ),
+              UiGaps.medium,
+            ],
             GamePhaseType.selectAction => [const UiActionFrame()],
           },
         ],

@@ -12,7 +12,8 @@ part of 'player_profile_creator.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$PlayerProfileCreatorState {
@@ -28,16 +29,19 @@ mixin _$PlayerProfileCreatorState {
 
 /// @nodoc
 abstract class $PlayerProfileCreatorStateCopyWith<$Res> {
-  factory $PlayerProfileCreatorStateCopyWith(PlayerProfileCreatorState value,
-          $Res Function(PlayerProfileCreatorState) then) =
-      _$PlayerProfileCreatorStateCopyWithImpl<$Res, PlayerProfileCreatorState>;
+  factory $PlayerProfileCreatorStateCopyWith(
+    PlayerProfileCreatorState value,
+    $Res Function(PlayerProfileCreatorState) then,
+  ) = _$PlayerProfileCreatorStateCopyWithImpl<$Res, PlayerProfileCreatorState>;
   @useResult
   $Res call({String nameErrorMessage, Color color});
 }
 
 /// @nodoc
-class _$PlayerProfileCreatorStateCopyWithImpl<$Res,
-        $Val extends PlayerProfileCreatorState>
+class _$PlayerProfileCreatorStateCopyWithImpl<
+  $Res,
+  $Val extends PlayerProfileCreatorState
+>
     implements $PlayerProfileCreatorStateCopyWith<$Res> {
   _$PlayerProfileCreatorStateCopyWithImpl(this._value, this._then);
 
@@ -50,20 +54,20 @@ class _$PlayerProfileCreatorStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? nameErrorMessage = null,
-    Object? color = null,
-  }) {
-    return _then(_value.copyWith(
-      nameErrorMessage: null == nameErrorMessage
-          ? _value.nameErrorMessage
-          : nameErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-    ) as $Val);
+  $Res call({Object? nameErrorMessage = null, Object? color = null}) {
+    return _then(
+      _value.copyWith(
+            nameErrorMessage: null == nameErrorMessage
+                ? _value.nameErrorMessage
+                : nameErrorMessage // ignore: cast_nullable_to_non_nullable
+                      as String,
+            color: null == color
+                ? _value.color
+                : color // ignore: cast_nullable_to_non_nullable
+                      as Color,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -71,9 +75,9 @@ class _$PlayerProfileCreatorStateCopyWithImpl<$Res,
 abstract class _$$PlayerProfileCreatorStateImplCopyWith<$Res>
     implements $PlayerProfileCreatorStateCopyWith<$Res> {
   factory _$$PlayerProfileCreatorStateImplCopyWith(
-          _$PlayerProfileCreatorStateImpl value,
-          $Res Function(_$PlayerProfileCreatorStateImpl) then) =
-      __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>;
+    _$PlayerProfileCreatorStateImpl value,
+    $Res Function(_$PlayerProfileCreatorStateImpl) then,
+  ) = __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String nameErrorMessage, Color color});
@@ -81,40 +85,44 @@ abstract class _$$PlayerProfileCreatorStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>
-    extends _$PlayerProfileCreatorStateCopyWithImpl<$Res,
-        _$PlayerProfileCreatorStateImpl>
+    extends
+        _$PlayerProfileCreatorStateCopyWithImpl<
+          $Res,
+          _$PlayerProfileCreatorStateImpl
+        >
     implements _$$PlayerProfileCreatorStateImplCopyWith<$Res> {
   __$$PlayerProfileCreatorStateImplCopyWithImpl(
-      _$PlayerProfileCreatorStateImpl _value,
-      $Res Function(_$PlayerProfileCreatorStateImpl) _then)
-      : super(_value, _then);
+    _$PlayerProfileCreatorStateImpl _value,
+    $Res Function(_$PlayerProfileCreatorStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of PlayerProfileCreatorState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? nameErrorMessage = null,
-    Object? color = null,
-  }) {
-    return _then(_$PlayerProfileCreatorStateImpl(
-      nameErrorMessage: null == nameErrorMessage
-          ? _value.nameErrorMessage
-          : nameErrorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-      color: null == color
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
-              as Color,
-    ));
+  $Res call({Object? nameErrorMessage = null, Object? color = null}) {
+    return _then(
+      _$PlayerProfileCreatorStateImpl(
+        nameErrorMessage: null == nameErrorMessage
+            ? _value.nameErrorMessage
+            : nameErrorMessage // ignore: cast_nullable_to_non_nullable
+                  as String,
+        color: null == color
+            ? _value.color
+            : color // ignore: cast_nullable_to_non_nullable
+                  as Color,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$PlayerProfileCreatorStateImpl implements _PlayerProfileCreatorState {
-  const _$PlayerProfileCreatorStateImpl(
-      {this.nameErrorMessage = '', this.color = Colors.teal});
+  const _$PlayerProfileCreatorStateImpl({
+    this.nameErrorMessage = '',
+    this.color = Colors.teal,
+  });
 
   @override
   @JsonKey()
@@ -147,14 +155,17 @@ class _$PlayerProfileCreatorStateImpl implements _PlayerProfileCreatorState {
   @override
   @pragma('vm:prefer-inline')
   _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
-      get copyWith => __$$PlayerProfileCreatorStateImplCopyWithImpl<
-          _$PlayerProfileCreatorStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$PlayerProfileCreatorStateImplCopyWithImpl<
+        _$PlayerProfileCreatorStateImpl
+      >(this, _$identity);
 }
 
 abstract class _PlayerProfileCreatorState implements PlayerProfileCreatorState {
-  const factory _PlayerProfileCreatorState(
-      {final String nameErrorMessage,
-      final Color color}) = _$PlayerProfileCreatorStateImpl;
+  const factory _PlayerProfileCreatorState({
+    final String nameErrorMessage,
+    final Color color,
+  }) = _$PlayerProfileCreatorStateImpl;
 
   @override
   String get nameErrorMessage;
@@ -166,5 +177,5 @@ abstract class _PlayerProfileCreatorState implements PlayerProfileCreatorState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

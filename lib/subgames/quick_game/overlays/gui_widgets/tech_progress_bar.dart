@@ -17,7 +17,8 @@ class TechProgressBar extends StatelessWidget {
       :technologies,
       :title,
       :scoresByLevel,
-    ) = technologiesCubit.getCurrentLevel();
+    ) = technologiesCubit
+        .getCurrentLevel();
     final dialogController = context.read<DialogController>();
     const width = 80.0;
     if (!levelCubit.featuresSettings.isTechnologiesEnabled) {
@@ -25,12 +26,11 @@ class TechProgressBar extends StatelessWidget {
     }
     var pointsLeft = 0;
     pointsLeft = pointsLeft < 0 ? 0 : pointsLeft;
-    final borderSide = BorderSide(
-      color: context.colorScheme.primary,
-    );
+    final borderSide = BorderSide(color: context.colorScheme.primary);
     final isMaxLevel = lastLevelIndex == TechnologyLevelIndex.maxLevel;
-    final nextScore =
-        isMaxLevel ? 0 : scoresByLevel[lastLevelIndex.index].formattedScore;
+    final nextScore = isMaxLevel
+        ? 0
+        : scoresByLevel[lastLevelIndex.index].formattedScore;
     final percentageDelay = 1.seconds;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -42,10 +42,7 @@ class TechProgressBar extends StatelessWidget {
             languages.ru: 'Прогресс технологий',
             languages.it: 'Progresso tecnologie',
           },
-          icon: const Icon(
-            CupertinoIcons.lab_flask,
-            color: Colors.black,
-          ),
+          icon: const Icon(CupertinoIcons.lab_flask, color: Colors.black),
           text: isMaxLevel ? 'Max' : lastLevelIndex.index.toString(),
           backgroundColor: context.colorScheme.primary.withOpacity(0.1),
           filledColor: context.colorScheme.primary.withOpacity(0.4),
@@ -66,7 +63,7 @@ class TechProgressBar extends StatelessWidget {
           percentage: isMaxLevel
               ? 1
               : (nextScore - scoreLeftForNextLevel.value.formattedScore) /
-                  nextScore,
+                    nextScore,
           percentageDelay: percentageDelay,
         ),
         if (isMaxLevel)

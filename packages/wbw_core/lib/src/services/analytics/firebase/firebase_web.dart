@@ -10,9 +10,7 @@ import '../utils/utils.dart';
 import 'firebase_initializer.dart';
 
 class FirebaseInitializerImpl implements FirebaseInitializer {
-  FirebaseInitializerImpl({
-    required this.firebaseOptions,
-  });
+  FirebaseInitializerImpl({required this.firebaseOptions});
   @override
   final FirebaseOptions? firebaseOptions;
 
@@ -20,9 +18,7 @@ class FirebaseInitializerImpl implements FirebaseInitializer {
   Future<void> onLoad() async {}
   @override
   Future<void> onDelayedLoad() async {
-    await FirebaseCoreWeb().initializeApp(
-      options: firebaseOptions,
-    );
+    await FirebaseCoreWeb().initializeApp(options: firebaseOptions);
   }
 }
 

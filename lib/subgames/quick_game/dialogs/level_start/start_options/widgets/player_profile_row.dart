@@ -54,34 +54,34 @@ class PlayerProfileCard extends StatelessWidget {
   final bool? selected;
   @override
   Widget build(final BuildContext context) => Center(
-        child: FocusableActionDetector(
-          mouseCursor: SystemMouseCursors.click,
-          child: Card(
-            clipBehavior: Clip.hardEdge,
-            child: InkWell(
-              onTap: () => onSelected?.call(player),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    UiPlayerProfileAvatar(player: player),
-                    UiGaps.large,
-                    Text(player.name),
-                    if (onSelected != null) ...[
-                      Checkbox(
-                        value: selected,
-                        onChanged: (final _) => onSelected!(player),
-                      ),
-                    ],
-                  ],
-                ),
-              ),
+    child: FocusableActionDetector(
+      mouseCursor: SystemMouseCursors.click,
+      child: Card(
+        clipBehavior: Clip.hardEdge,
+        child: InkWell(
+          onTap: () => onSelected?.call(player),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                UiPlayerProfileAvatar(player: player),
+                UiGaps.large,
+                Text(player.name),
+                if (onSelected != null) ...[
+                  Checkbox(
+                    value: selected,
+                    onChanged: (final _) => onSelected!(player),
+                  ),
+                ],
+              ],
             ),
           ),
         ),
-      );
+      ),
+    ),
+  );
 }
 
 class PlayerProfileTile extends StatelessWidget {
@@ -98,38 +98,28 @@ class PlayerProfileTile extends StatelessWidget {
   final bool? selected;
   @override
   Widget build(final BuildContext context) => Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(player.name),
-          const Spacer(),
-          const Icon(
-            CupertinoIcons.lab_flask,
-            size: 14,
-            color: UiColors.light,
-          ),
-          const Gap(4),
-          Flexible(child: UiPlayerProfileAvatar(player: player)),
-          UiGaps.medium,
-          if (onSelected != null) ...[
-            Checkbox(
-              value: selected,
-              onChanged: (final _) => onSelected!(player),
-            ),
-          ],
-          if (kDebugMode)
-            IconButton(
-              onPressed: onDelete == null ? null : () => onDelete!(player),
-              icon: const Icon(Icons.delete),
-            ),
-        ],
-      );
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      Text(player.name),
+      const Spacer(),
+      const Icon(CupertinoIcons.lab_flask, size: 14, color: UiColors.light),
+      const Gap(4),
+      Flexible(child: UiPlayerProfileAvatar(player: player)),
+      UiGaps.medium,
+      if (onSelected != null) ...[
+        Checkbox(value: selected, onChanged: (final _) => onSelected!(player)),
+      ],
+      if (kDebugMode)
+        IconButton(
+          onPressed: onDelete == null ? null : () => onDelete!(player),
+          icon: const Icon(Icons.delete),
+        ),
+    ],
+  );
 }
 
 class UiPlayerProfileAvatar extends StatelessWidget {
-  const UiPlayerProfileAvatar({
-    required this.player,
-    super.key,
-  });
+  const UiPlayerProfileAvatar({required this.player, super.key});
   final PlayerProfileModel player;
   @override
   Widget build(final BuildContext context) {

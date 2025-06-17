@@ -2,15 +2,15 @@ part of 'dialog_stack.dart';
 
 class _DialogControllerDiDto {
   _DialogControllerDiDto.use(final Locator read)
-      : globalGameBloc = read(),
-        tutorialBloc = read();
+    : globalGameBloc = read(),
+      tutorialBloc = read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
 }
 
 class DialogController extends ChangeNotifier {
   DialogController(final BuildContext context)
-      : dto = _DialogControllerDiDto.use(context.read) {
+    : dto = _DialogControllerDiDto.use(context.read) {
     unawaited(_tutorialSubscriber.onLoad());
   }
   //  DialogController get dialogController => (
@@ -31,22 +31,21 @@ class DialogController extends ChangeNotifier {
 
   GameDialogType get dialogType => _dialogType;
   bool get isWinLoseDialog => switch (dialogType) {
-        GameDialogType.gameLevelLost || GameDialogType.gameLevelWin => true,
-        GameDialogType.none ||
-        GameDialogType.gameTechnologiesTree ||
-        GameDialogType.gameLevelWordSuggestion ||
-        GameDialogType.gameTutorialBool ||
-        GameDialogType.gameTutorialOk ||
-        GameDialogType.gameTechLevelAchieved ||
-        GameDialogType.menuSettings ||
-        GameDialogType.menuPlayersAndHighscore
-          // ||
-          // GameDialogType.menuCredits ||
-          // GameDialogType.menuAdventure ||
-          // GameDialogType.menuQuickGame
-          =>
-          false,
-      };
+    GameDialogType.gameLevelLost || GameDialogType.gameLevelWin => true,
+    GameDialogType.none ||
+    GameDialogType.gameTechnologiesTree ||
+    GameDialogType.gameLevelWordSuggestion ||
+    GameDialogType.gameTutorialBool ||
+    GameDialogType.gameTutorialOk ||
+    GameDialogType.gameTechLevelAchieved ||
+    GameDialogType.menuSettings ||
+    GameDialogType.menuPlayersAndHighscore
+    // ||
+    // GameDialogType.menuCredits ||
+    // GameDialogType.menuAdventure ||
+    // GameDialogType.menuQuickGame
+    => false,
+  };
 
   set dialogType(final GameDialogType dialogType) {
     _dialogType = dialogType;
@@ -73,10 +72,7 @@ class DialogController extends ChangeNotifier {
 
   void onRestartContinueLevel() {
     unawaited(
-      dto.globalGameBloc.onLevelEnd(
-        event: endLevelEvent,
-        isPaused: false,
-      ),
+      dto.globalGameBloc.onLevelEnd(event: endLevelEvent, isPaused: false),
     );
 
     closeDialog();
@@ -85,10 +81,7 @@ class DialogController extends ChangeNotifier {
   /// used to stop game from running and show levels list
   void onExitLevel() {
     unawaited(
-      dto.globalGameBloc.onLevelEnd(
-        event: endLevelEvent,
-        isPaused: true,
-      ),
+      dto.globalGameBloc.onLevelEnd(event: endLevelEvent, isPaused: true),
     );
 
     closeDialog();
@@ -171,18 +164,16 @@ class DialogController extends ChangeNotifier {
 }
 
 class _TutorialSubscriber implements Loadable, Disposable {
-  _TutorialSubscriber({
-    required this.diDto,
-    required this.onTutorialChanged,
-  });
+  _TutorialSubscriber({required this.diDto, required this.onTutorialChanged});
   final _DialogControllerDiDto diDto;
   final ValueChanged<TutorialBlocState> onTutorialChanged;
   StreamSubscription<TutorialBlocState>? _tutorialSubscription;
 
   @override
   Future<void> onLoad() async {
-    _tutorialSubscription =
-        diDto.tutorialBloc.stream.distinct().listen(onTutorialChanged);
+    _tutorialSubscription = diDto.tutorialBloc.stream.distinct().listen(
+      onTutorialChanged,
+    );
   }
 
   @override

@@ -6,7 +6,7 @@ import 'base_repository.dart';
 
 final class GameRespository extends BaseLocalRepository<GameLocalDataSource> {
   GameRespository(final BuildContext context)
-      : super(local: GameLocalDataSourceImpl(localDb: context.read()));
+    : super(local: GameLocalDataSourceImpl(localDb: context.read()));
   late final saveGame = local.saveGame;
   late final loadGame = local.loadGame;
 }

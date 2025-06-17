@@ -32,10 +32,7 @@ class UiCard extends StatefulWidget {
     this.padding = const EdgeInsets.all(UiSpace.medium),
     this.margin = const EdgeInsets.all(UiSpace.small),
     this.borderRadius = const BorderRadius.all(
-      Radius.elliptical(
-        UiDecorators.radiusLarge,
-        UiDecorators.radiusLarge,
-      ),
+      Radius.elliptical(UiDecorators.radiusLarge, UiDecorators.radiusLarge),
     ),
     this.elevation = 1,
     this.color = UiColors.offWhite,
@@ -88,9 +85,7 @@ class _UiCardState extends State<UiCard> {
   Widget build(final BuildContext context) {
     final cardWidget = Card(
       margin: widget.margin,
-      shape: RoundedRectangleBorder(
-        borderRadius: widget.borderRadius,
-      ),
+      shape: RoundedRectangleBorder(borderRadius: widget.borderRadius),
       elevation: widget.elevation,
       color: widget.color,
       shadowColor: widget.shadowColor,
@@ -98,10 +93,7 @@ class _UiCardState extends State<UiCard> {
       child: Padding(
         padding: widget.padding,
         child: DefaultTextStyle.merge(
-          style: const TextStyle(
-            fontSize: 16,
-            color: UiColors.dark,
-          ),
+          style: const TextStyle(fontSize: 16, color: UiColors.dark),
           child: widget.child,
         ),
       ),

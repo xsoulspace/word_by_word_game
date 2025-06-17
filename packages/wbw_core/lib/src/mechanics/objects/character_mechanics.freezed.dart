@@ -12,7 +12,8 @@ part of 'character_mechanics.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$LiftForceModel {
@@ -30,8 +31,9 @@ mixin _$LiftForceModel {
 /// @nodoc
 abstract class $LiftForceModelCopyWith<$Res> {
   factory $LiftForceModelCopyWith(
-          LiftForceModel value, $Res Function(LiftForceModel) then) =
-      _$LiftForceModelCopyWithImpl<$Res, LiftForceModel>;
+    LiftForceModel value,
+    $Res Function(LiftForceModel) then,
+  ) = _$LiftForceModelCopyWithImpl<$Res, LiftForceModel>;
   @useResult
   $Res call({double liftPower, BalloonLiftPowersModel updatedPowers});
 
@@ -52,20 +54,20 @@ class _$LiftForceModelCopyWithImpl<$Res, $Val extends LiftForceModel>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? liftPower = null,
-    Object? updatedPowers = null,
-  }) {
-    return _then(_value.copyWith(
-      liftPower: null == liftPower
-          ? _value.liftPower
-          : liftPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      updatedPowers: null == updatedPowers
-          ? _value.updatedPowers
-          : updatedPowers // ignore: cast_nullable_to_non_nullable
-              as BalloonLiftPowersModel,
-    ) as $Val);
+  $Res call({Object? liftPower = null, Object? updatedPowers = null}) {
+    return _then(
+      _value.copyWith(
+            liftPower: null == liftPower
+                ? _value.liftPower
+                : liftPower // ignore: cast_nullable_to_non_nullable
+                      as double,
+            updatedPowers: null == updatedPowers
+                ? _value.updatedPowers
+                : updatedPowers // ignore: cast_nullable_to_non_nullable
+                      as BalloonLiftPowersModel,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of LiftForceModel
@@ -82,9 +84,10 @@ class _$LiftForceModelCopyWithImpl<$Res, $Val extends LiftForceModel>
 /// @nodoc
 abstract class _$$LiftForceModelImplCopyWith<$Res>
     implements $LiftForceModelCopyWith<$Res> {
-  factory _$$LiftForceModelImplCopyWith(_$LiftForceModelImpl value,
-          $Res Function(_$LiftForceModelImpl) then) =
-      __$$LiftForceModelImplCopyWithImpl<$Res>;
+  factory _$$LiftForceModelImplCopyWith(
+    _$LiftForceModelImpl value,
+    $Res Function(_$LiftForceModelImpl) then,
+  ) = __$$LiftForceModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double liftPower, BalloonLiftPowersModel updatedPowers});
@@ -98,35 +101,37 @@ class __$$LiftForceModelImplCopyWithImpl<$Res>
     extends _$LiftForceModelCopyWithImpl<$Res, _$LiftForceModelImpl>
     implements _$$LiftForceModelImplCopyWith<$Res> {
   __$$LiftForceModelImplCopyWithImpl(
-      _$LiftForceModelImpl _value, $Res Function(_$LiftForceModelImpl) _then)
-      : super(_value, _then);
+    _$LiftForceModelImpl _value,
+    $Res Function(_$LiftForceModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of LiftForceModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? liftPower = null,
-    Object? updatedPowers = null,
-  }) {
-    return _then(_$LiftForceModelImpl(
-      liftPower: null == liftPower
-          ? _value.liftPower
-          : liftPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      updatedPowers: null == updatedPowers
-          ? _value.updatedPowers
-          : updatedPowers // ignore: cast_nullable_to_non_nullable
-              as BalloonLiftPowersModel,
-    ));
+  $Res call({Object? liftPower = null, Object? updatedPowers = null}) {
+    return _then(
+      _$LiftForceModelImpl(
+        liftPower: null == liftPower
+            ? _value.liftPower
+            : liftPower // ignore: cast_nullable_to_non_nullable
+                  as double,
+        updatedPowers: null == updatedPowers
+            ? _value.updatedPowers
+            : updatedPowers // ignore: cast_nullable_to_non_nullable
+                  as BalloonLiftPowersModel,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$LiftForceModelImpl implements _LiftForceModel {
-  const _$LiftForceModelImpl(
-      {required this.liftPower, required this.updatedPowers});
+  const _$LiftForceModelImpl({
+    required this.liftPower,
+    required this.updatedPowers,
+  });
 
   @override
   final double liftPower;
@@ -159,14 +164,16 @@ class _$LiftForceModelImpl implements _LiftForceModel {
   @pragma('vm:prefer-inline')
   _$$LiftForceModelImplCopyWith<_$LiftForceModelImpl> get copyWith =>
       __$$LiftForceModelImplCopyWithImpl<_$LiftForceModelImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _LiftForceModel implements LiftForceModel {
-  const factory _LiftForceModel(
-          {required final double liftPower,
-          required final BalloonLiftPowersModel updatedPowers}) =
-      _$LiftForceModelImpl;
+  const factory _LiftForceModel({
+    required final double liftPower,
+    required final BalloonLiftPowersModel updatedPowers,
+  }) = _$LiftForceModelImpl;
 
   @override
   double get liftPower;
@@ -182,7 +189,8 @@ abstract class _LiftForceModel implements LiftForceModel {
 }
 
 BalloonLiftPowersModel _$BalloonLiftPowersModelFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _BalloonLiftPowersModel.fromJson(json);
 }
 
@@ -203,16 +211,19 @@ mixin _$BalloonLiftPowersModel {
 
 /// @nodoc
 abstract class $BalloonLiftPowersModelCopyWith<$Res> {
-  factory $BalloonLiftPowersModelCopyWith(BalloonLiftPowersModel value,
-          $Res Function(BalloonLiftPowersModel) then) =
-      _$BalloonLiftPowersModelCopyWithImpl<$Res, BalloonLiftPowersModel>;
+  factory $BalloonLiftPowersModelCopyWith(
+    BalloonLiftPowersModel value,
+    $Res Function(BalloonLiftPowersModel) then,
+  ) = _$BalloonLiftPowersModelCopyWithImpl<$Res, BalloonLiftPowersModel>;
   @useResult
   $Res call({double power, double volume});
 }
 
 /// @nodoc
-class _$BalloonLiftPowersModelCopyWithImpl<$Res,
-        $Val extends BalloonLiftPowersModel>
+class _$BalloonLiftPowersModelCopyWithImpl<
+  $Res,
+  $Val extends BalloonLiftPowersModel
+>
     implements $BalloonLiftPowersModelCopyWith<$Res> {
   _$BalloonLiftPowersModelCopyWithImpl(this._value, this._then);
 
@@ -225,20 +236,20 @@ class _$BalloonLiftPowersModelCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? power = null,
-    Object? volume = null,
-  }) {
-    return _then(_value.copyWith(
-      power: null == power
-          ? _value.power
-          : power // ignore: cast_nullable_to_non_nullable
-              as double,
-      volume: null == volume
-          ? _value.volume
-          : volume // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+  $Res call({Object? power = null, Object? volume = null}) {
+    return _then(
+      _value.copyWith(
+            power: null == power
+                ? _value.power
+                : power // ignore: cast_nullable_to_non_nullable
+                      as double,
+            volume: null == volume
+                ? _value.volume
+                : volume // ignore: cast_nullable_to_non_nullable
+                      as double,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -246,9 +257,9 @@ class _$BalloonLiftPowersModelCopyWithImpl<$Res,
 abstract class _$$BalloonLiftPowersModelImplCopyWith<$Res>
     implements $BalloonLiftPowersModelCopyWith<$Res> {
   factory _$$BalloonLiftPowersModelImplCopyWith(
-          _$BalloonLiftPowersModelImpl value,
-          $Res Function(_$BalloonLiftPowersModelImpl) then) =
-      __$$BalloonLiftPowersModelImplCopyWithImpl<$Res>;
+    _$BalloonLiftPowersModelImpl value,
+    $Res Function(_$BalloonLiftPowersModelImpl) then,
+  ) = __$$BalloonLiftPowersModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double power, double volume});
@@ -256,32 +267,31 @@ abstract class _$$BalloonLiftPowersModelImplCopyWith<$Res>
 
 /// @nodoc
 class __$$BalloonLiftPowersModelImplCopyWithImpl<$Res>
-    extends _$BalloonLiftPowersModelCopyWithImpl<$Res,
-        _$BalloonLiftPowersModelImpl>
+    extends
+        _$BalloonLiftPowersModelCopyWithImpl<$Res, _$BalloonLiftPowersModelImpl>
     implements _$$BalloonLiftPowersModelImplCopyWith<$Res> {
   __$$BalloonLiftPowersModelImplCopyWithImpl(
-      _$BalloonLiftPowersModelImpl _value,
-      $Res Function(_$BalloonLiftPowersModelImpl) _then)
-      : super(_value, _then);
+    _$BalloonLiftPowersModelImpl _value,
+    $Res Function(_$BalloonLiftPowersModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of BalloonLiftPowersModel
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? power = null,
-    Object? volume = null,
-  }) {
-    return _then(_$BalloonLiftPowersModelImpl(
-      power: null == power
-          ? _value.power
-          : power // ignore: cast_nullable_to_non_nullable
-              as double,
-      volume: null == volume
-          ? _value.volume
-          : volume // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+  $Res call({Object? power = null, Object? volume = null}) {
+    return _then(
+      _$BalloonLiftPowersModelImpl(
+        power: null == power
+            ? _value.power
+            : power // ignore: cast_nullable_to_non_nullable
+                  as double,
+        volume: null == volume
+            ? _value.volume
+            : volume // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
   }
 }
 
@@ -324,21 +334,23 @@ class _$BalloonLiftPowersModelImpl implements _BalloonLiftPowersModel {
   @override
   @pragma('vm:prefer-inline')
   _$$BalloonLiftPowersModelImplCopyWith<_$BalloonLiftPowersModelImpl>
-      get copyWith => __$$BalloonLiftPowersModelImplCopyWithImpl<
-          _$BalloonLiftPowersModelImpl>(this, _$identity);
+  get copyWith =>
+      __$$BalloonLiftPowersModelImplCopyWithImpl<_$BalloonLiftPowersModelImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BalloonLiftPowersModelImplToJson(
-      this,
-    );
+    return _$$BalloonLiftPowersModelImplToJson(this);
   }
 }
 
 abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
-  const factory _BalloonLiftPowersModel(
-      {required final double power,
-      final double volume}) = _$BalloonLiftPowersModelImpl;
+  const factory _BalloonLiftPowersModel({
+    required final double power,
+    final double volume,
+  }) = _$BalloonLiftPowersModelImpl;
 
   factory _BalloonLiftPowersModel.fromJson(Map<String, dynamic> json) =
       _$BalloonLiftPowersModelImpl.fromJson;
@@ -353,11 +365,12 @@ abstract class _BalloonLiftPowersModel implements BalloonLiftPowersModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BalloonLiftPowersModelImplCopyWith<_$BalloonLiftPowersModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 BalloonLiftParamsModel _$BalloonLiftParamsModelFromJson(
-    Map<String, dynamic> json) {
+  Map<String, dynamic> json,
+) {
   return _BalloonLiftParamsModel.fromJson(json);
 }
 
@@ -379,16 +392,19 @@ mixin _$BalloonLiftParamsModel {
 
 /// @nodoc
 abstract class $BalloonLiftParamsModelCopyWith<$Res> {
-  factory $BalloonLiftParamsModelCopyWith(BalloonLiftParamsModel value,
-          $Res Function(BalloonLiftParamsModel) then) =
-      _$BalloonLiftParamsModelCopyWithImpl<$Res, BalloonLiftParamsModel>;
+  factory $BalloonLiftParamsModelCopyWith(
+    BalloonLiftParamsModel value,
+    $Res Function(BalloonLiftParamsModel) then,
+  ) = _$BalloonLiftParamsModelCopyWithImpl<$Res, BalloonLiftParamsModel>;
   @useResult
   $Res call({double maxVolume, double maxPower, double powerUsage});
 }
 
 /// @nodoc
-class _$BalloonLiftParamsModelCopyWithImpl<$Res,
-        $Val extends BalloonLiftParamsModel>
+class _$BalloonLiftParamsModelCopyWithImpl<
+  $Res,
+  $Val extends BalloonLiftParamsModel
+>
     implements $BalloonLiftParamsModelCopyWith<$Res> {
   _$BalloonLiftParamsModelCopyWithImpl(this._value, this._then);
 
@@ -406,20 +422,23 @@ class _$BalloonLiftParamsModelCopyWithImpl<$Res,
     Object? maxPower = null,
     Object? powerUsage = null,
   }) {
-    return _then(_value.copyWith(
-      maxVolume: null == maxVolume
-          ? _value.maxVolume
-          : maxVolume // ignore: cast_nullable_to_non_nullable
-              as double,
-      maxPower: null == maxPower
-          ? _value.maxPower
-          : maxPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      powerUsage: null == powerUsage
-          ? _value.powerUsage
-          : powerUsage // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            maxVolume: null == maxVolume
+                ? _value.maxVolume
+                : maxVolume // ignore: cast_nullable_to_non_nullable
+                      as double,
+            maxPower: null == maxPower
+                ? _value.maxPower
+                : maxPower // ignore: cast_nullable_to_non_nullable
+                      as double,
+            powerUsage: null == powerUsage
+                ? _value.powerUsage
+                : powerUsage // ignore: cast_nullable_to_non_nullable
+                      as double,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -427,9 +446,9 @@ class _$BalloonLiftParamsModelCopyWithImpl<$Res,
 abstract class _$$BalloonLiftParamsModelImplCopyWith<$Res>
     implements $BalloonLiftParamsModelCopyWith<$Res> {
   factory _$$BalloonLiftParamsModelImplCopyWith(
-          _$BalloonLiftParamsModelImpl value,
-          $Res Function(_$BalloonLiftParamsModelImpl) then) =
-      __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>;
+    _$BalloonLiftParamsModelImpl value,
+    $Res Function(_$BalloonLiftParamsModelImpl) then,
+  ) = __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double maxVolume, double maxPower, double powerUsage});
@@ -437,13 +456,13 @@ abstract class _$$BalloonLiftParamsModelImplCopyWith<$Res>
 
 /// @nodoc
 class __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>
-    extends _$BalloonLiftParamsModelCopyWithImpl<$Res,
-        _$BalloonLiftParamsModelImpl>
+    extends
+        _$BalloonLiftParamsModelCopyWithImpl<$Res, _$BalloonLiftParamsModelImpl>
     implements _$$BalloonLiftParamsModelImplCopyWith<$Res> {
   __$$BalloonLiftParamsModelImplCopyWithImpl(
-      _$BalloonLiftParamsModelImpl _value,
-      $Res Function(_$BalloonLiftParamsModelImpl) _then)
-      : super(_value, _then);
+    _$BalloonLiftParamsModelImpl _value,
+    $Res Function(_$BalloonLiftParamsModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of BalloonLiftParamsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -454,20 +473,22 @@ class __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>
     Object? maxPower = null,
     Object? powerUsage = null,
   }) {
-    return _then(_$BalloonLiftParamsModelImpl(
-      maxVolume: null == maxVolume
-          ? _value.maxVolume
-          : maxVolume // ignore: cast_nullable_to_non_nullable
-              as double,
-      maxPower: null == maxPower
-          ? _value.maxPower
-          : maxPower // ignore: cast_nullable_to_non_nullable
-              as double,
-      powerUsage: null == powerUsage
-          ? _value.powerUsage
-          : powerUsage // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    return _then(
+      _$BalloonLiftParamsModelImpl(
+        maxVolume: null == maxVolume
+            ? _value.maxVolume
+            : maxVolume // ignore: cast_nullable_to_non_nullable
+                  as double,
+        maxPower: null == maxPower
+            ? _value.maxPower
+            : maxPower // ignore: cast_nullable_to_non_nullable
+                  as double,
+        powerUsage: null == powerUsage
+            ? _value.powerUsage
+            : powerUsage // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
   }
 }
 
@@ -475,10 +496,11 @@ class __$$BalloonLiftParamsModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$BalloonLiftParamsModelImpl implements _BalloonLiftParamsModel {
-  const _$BalloonLiftParamsModelImpl(
-      {required this.maxVolume,
-      required this.maxPower,
-      required this.powerUsage});
+  const _$BalloonLiftParamsModelImpl({
+    required this.maxVolume,
+    required this.maxPower,
+    required this.powerUsage,
+  });
 
   factory _$BalloonLiftParamsModelImpl.fromJson(Map<String, dynamic> json) =>
       _$$BalloonLiftParamsModelImplFromJson(json);
@@ -518,22 +540,24 @@ class _$BalloonLiftParamsModelImpl implements _BalloonLiftParamsModel {
   @override
   @pragma('vm:prefer-inline')
   _$$BalloonLiftParamsModelImplCopyWith<_$BalloonLiftParamsModelImpl>
-      get copyWith => __$$BalloonLiftParamsModelImplCopyWithImpl<
-          _$BalloonLiftParamsModelImpl>(this, _$identity);
+  get copyWith =>
+      __$$BalloonLiftParamsModelImplCopyWithImpl<_$BalloonLiftParamsModelImpl>(
+        this,
+        _$identity,
+      );
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$BalloonLiftParamsModelImplToJson(
-      this,
-    );
+    return _$$BalloonLiftParamsModelImplToJson(this);
   }
 }
 
 abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
-  const factory _BalloonLiftParamsModel(
-      {required final double maxVolume,
-      required final double maxPower,
-      required final double powerUsage}) = _$BalloonLiftParamsModelImpl;
+  const factory _BalloonLiftParamsModel({
+    required final double maxVolume,
+    required final double maxPower,
+    required final double powerUsage,
+  }) = _$BalloonLiftParamsModelImpl;
 
   factory _BalloonLiftParamsModel.fromJson(Map<String, dynamic> json) =
       _$BalloonLiftParamsModelImpl.fromJson;
@@ -550,7 +574,7 @@ abstract class _BalloonLiftParamsModel implements BalloonLiftParamsModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BalloonLiftParamsModelImplCopyWith<_$BalloonLiftParamsModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -570,21 +594,25 @@ mixin _$ForcesConstantsModel {
 
 /// @nodoc
 abstract class $ForcesConstantsModelCopyWith<$Res> {
-  factory $ForcesConstantsModelCopyWith(ForcesConstantsModel value,
-          $Res Function(ForcesConstantsModel) then) =
-      _$ForcesConstantsModelCopyWithImpl<$Res, ForcesConstantsModel>;
+  factory $ForcesConstantsModelCopyWith(
+    ForcesConstantsModel value,
+    $Res Function(ForcesConstantsModel) then,
+  ) = _$ForcesConstantsModelCopyWithImpl<$Res, ForcesConstantsModel>;
   @useResult
-  $Res call(
-      {double gravityForce,
-      double volumeDecreaseRatio,
-      double volumeIncreaseRatio,
-      double volumeIncreaseRatioMax,
-      double volumeToLiftRatio});
+  $Res call({
+    double gravityForce,
+    double volumeDecreaseRatio,
+    double volumeIncreaseRatio,
+    double volumeIncreaseRatioMax,
+    double volumeToLiftRatio,
+  });
 }
 
 /// @nodoc
-class _$ForcesConstantsModelCopyWithImpl<$Res,
-        $Val extends ForcesConstantsModel>
+class _$ForcesConstantsModelCopyWithImpl<
+  $Res,
+  $Val extends ForcesConstantsModel
+>
     implements $ForcesConstantsModelCopyWith<$Res> {
   _$ForcesConstantsModelCopyWithImpl(this._value, this._then);
 
@@ -604,54 +632,60 @@ class _$ForcesConstantsModelCopyWithImpl<$Res,
     Object? volumeIncreaseRatioMax = null,
     Object? volumeToLiftRatio = null,
   }) {
-    return _then(_value.copyWith(
-      gravityForce: null == gravityForce
-          ? _value.gravityForce
-          : gravityForce // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeDecreaseRatio: null == volumeDecreaseRatio
-          ? _value.volumeDecreaseRatio
-          : volumeDecreaseRatio // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeIncreaseRatio: null == volumeIncreaseRatio
-          ? _value.volumeIncreaseRatio
-          : volumeIncreaseRatio // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeIncreaseRatioMax: null == volumeIncreaseRatioMax
-          ? _value.volumeIncreaseRatioMax
-          : volumeIncreaseRatioMax // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeToLiftRatio: null == volumeToLiftRatio
-          ? _value.volumeToLiftRatio
-          : volumeToLiftRatio // ignore: cast_nullable_to_non_nullable
-              as double,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            gravityForce: null == gravityForce
+                ? _value.gravityForce
+                : gravityForce // ignore: cast_nullable_to_non_nullable
+                      as double,
+            volumeDecreaseRatio: null == volumeDecreaseRatio
+                ? _value.volumeDecreaseRatio
+                : volumeDecreaseRatio // ignore: cast_nullable_to_non_nullable
+                      as double,
+            volumeIncreaseRatio: null == volumeIncreaseRatio
+                ? _value.volumeIncreaseRatio
+                : volumeIncreaseRatio // ignore: cast_nullable_to_non_nullable
+                      as double,
+            volumeIncreaseRatioMax: null == volumeIncreaseRatioMax
+                ? _value.volumeIncreaseRatioMax
+                : volumeIncreaseRatioMax // ignore: cast_nullable_to_non_nullable
+                      as double,
+            volumeToLiftRatio: null == volumeToLiftRatio
+                ? _value.volumeToLiftRatio
+                : volumeToLiftRatio // ignore: cast_nullable_to_non_nullable
+                      as double,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$ForcesConstantsModelImplCopyWith<$Res>
     implements $ForcesConstantsModelCopyWith<$Res> {
-  factory _$$ForcesConstantsModelImplCopyWith(_$ForcesConstantsModelImpl value,
-          $Res Function(_$ForcesConstantsModelImpl) then) =
-      __$$ForcesConstantsModelImplCopyWithImpl<$Res>;
+  factory _$$ForcesConstantsModelImplCopyWith(
+    _$ForcesConstantsModelImpl value,
+    $Res Function(_$ForcesConstantsModelImpl) then,
+  ) = __$$ForcesConstantsModelImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {double gravityForce,
-      double volumeDecreaseRatio,
-      double volumeIncreaseRatio,
-      double volumeIncreaseRatioMax,
-      double volumeToLiftRatio});
+  $Res call({
+    double gravityForce,
+    double volumeDecreaseRatio,
+    double volumeIncreaseRatio,
+    double volumeIncreaseRatioMax,
+    double volumeToLiftRatio,
+  });
 }
 
 /// @nodoc
 class __$$ForcesConstantsModelImplCopyWithImpl<$Res>
     extends _$ForcesConstantsModelCopyWithImpl<$Res, _$ForcesConstantsModelImpl>
     implements _$$ForcesConstantsModelImplCopyWith<$Res> {
-  __$$ForcesConstantsModelImplCopyWithImpl(_$ForcesConstantsModelImpl _value,
-      $Res Function(_$ForcesConstantsModelImpl) _then)
-      : super(_value, _then);
+  __$$ForcesConstantsModelImplCopyWithImpl(
+    _$ForcesConstantsModelImpl _value,
+    $Res Function(_$ForcesConstantsModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of ForcesConstantsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -664,28 +698,30 @@ class __$$ForcesConstantsModelImplCopyWithImpl<$Res>
     Object? volumeIncreaseRatioMax = null,
     Object? volumeToLiftRatio = null,
   }) {
-    return _then(_$ForcesConstantsModelImpl(
-      gravityForce: null == gravityForce
-          ? _value.gravityForce
-          : gravityForce // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeDecreaseRatio: null == volumeDecreaseRatio
-          ? _value.volumeDecreaseRatio
-          : volumeDecreaseRatio // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeIncreaseRatio: null == volumeIncreaseRatio
-          ? _value.volumeIncreaseRatio
-          : volumeIncreaseRatio // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeIncreaseRatioMax: null == volumeIncreaseRatioMax
-          ? _value.volumeIncreaseRatioMax
-          : volumeIncreaseRatioMax // ignore: cast_nullable_to_non_nullable
-              as double,
-      volumeToLiftRatio: null == volumeToLiftRatio
-          ? _value.volumeToLiftRatio
-          : volumeToLiftRatio // ignore: cast_nullable_to_non_nullable
-              as double,
-    ));
+    return _then(
+      _$ForcesConstantsModelImpl(
+        gravityForce: null == gravityForce
+            ? _value.gravityForce
+            : gravityForce // ignore: cast_nullable_to_non_nullable
+                  as double,
+        volumeDecreaseRatio: null == volumeDecreaseRatio
+            ? _value.volumeDecreaseRatio
+            : volumeDecreaseRatio // ignore: cast_nullable_to_non_nullable
+                  as double,
+        volumeIncreaseRatio: null == volumeIncreaseRatio
+            ? _value.volumeIncreaseRatio
+            : volumeIncreaseRatio // ignore: cast_nullable_to_non_nullable
+                  as double,
+        volumeIncreaseRatioMax: null == volumeIncreaseRatioMax
+            ? _value.volumeIncreaseRatioMax
+            : volumeIncreaseRatioMax // ignore: cast_nullable_to_non_nullable
+                  as double,
+        volumeToLiftRatio: null == volumeToLiftRatio
+            ? _value.volumeToLiftRatio
+            : volumeToLiftRatio // ignore: cast_nullable_to_non_nullable
+                  as double,
+      ),
+    );
   }
 }
 
@@ -693,12 +729,13 @@ class __$$ForcesConstantsModelImplCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$ForcesConstantsModelImpl implements _ForcesConstantsModel {
-  const _$ForcesConstantsModelImpl(
-      {required this.gravityForce,
-      required this.volumeDecreaseRatio,
-      required this.volumeIncreaseRatio,
-      required this.volumeIncreaseRatioMax,
-      required this.volumeToLiftRatio});
+  const _$ForcesConstantsModelImpl({
+    required this.gravityForce,
+    required this.volumeDecreaseRatio,
+    required this.volumeIncreaseRatio,
+    required this.volumeIncreaseRatioMax,
+    required this.volumeToLiftRatio,
+  });
 
   @override
   final double gravityForce;
@@ -735,12 +772,13 @@ class _$ForcesConstantsModelImpl implements _ForcesConstantsModel {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      gravityForce,
-      volumeDecreaseRatio,
-      volumeIncreaseRatio,
-      volumeIncreaseRatioMax,
-      volumeToLiftRatio);
+    runtimeType,
+    gravityForce,
+    volumeDecreaseRatio,
+    volumeIncreaseRatio,
+    volumeIncreaseRatioMax,
+    volumeToLiftRatio,
+  );
 
   /// Create a copy of ForcesConstantsModel
   /// with the given fields replaced by the non-null parameter values.
@@ -748,18 +786,21 @@ class _$ForcesConstantsModelImpl implements _ForcesConstantsModel {
   @override
   @pragma('vm:prefer-inline')
   _$$ForcesConstantsModelImplCopyWith<_$ForcesConstantsModelImpl>
-      get copyWith =>
-          __$$ForcesConstantsModelImplCopyWithImpl<_$ForcesConstantsModelImpl>(
-              this, _$identity);
+  get copyWith =>
+      __$$ForcesConstantsModelImplCopyWithImpl<_$ForcesConstantsModelImpl>(
+        this,
+        _$identity,
+      );
 }
 
 abstract class _ForcesConstantsModel implements ForcesConstantsModel {
-  const factory _ForcesConstantsModel(
-      {required final double gravityForce,
-      required final double volumeDecreaseRatio,
-      required final double volumeIncreaseRatio,
-      required final double volumeIncreaseRatioMax,
-      required final double volumeToLiftRatio}) = _$ForcesConstantsModelImpl;
+  const factory _ForcesConstantsModel({
+    required final double gravityForce,
+    required final double volumeDecreaseRatio,
+    required final double volumeIncreaseRatio,
+    required final double volumeIncreaseRatioMax,
+    required final double volumeToLiftRatio,
+  }) = _$ForcesConstantsModelImpl;
 
   @override
   double get gravityForce;
@@ -777,5 +818,5 @@ abstract class _ForcesConstantsModel implements ForcesConstantsModel {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$ForcesConstantsModelImplCopyWith<_$ForcesConstantsModelImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

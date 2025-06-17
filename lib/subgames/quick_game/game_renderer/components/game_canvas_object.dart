@@ -5,8 +5,6 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/extensions.dart';
 import 'package:flutter/material.dart' as material;
-import 'package:map_editor/state/blocs/editor/editor.dart';
-import 'package:map_editor/state/models/models.dart';
 import 'package:map_editor/state/state.dart';
 import 'package:map_editor/ui/renderer/editor_renderer.dart';
 import 'package:map_editor/ui/renderer/renderer.dart';
@@ -26,10 +24,11 @@ class GameCanvasObject extends Component
   GameCanvasObject.fromRenderObject({
     required final material.ValueChanged<RenderObjectModel> onPositionChanged,
     required this.data,
-  })  : screenVector2 = data.position.toOffset(),
-        gameVector2 =
-            GameVector2.fromMapVector2(data.distanceToOrigin.toVector2()),
-        onChanged = onPositionChanged {
+  }) : screenVector2 = data.position.toOffset(),
+       gameVector2 = GameVector2.fromMapVector2(
+         data.distanceToOrigin.toVector2(),
+       ),
+       onChanged = onPositionChanged {
     _updateDistanceToOrigin();
   }
 
@@ -45,9 +44,9 @@ class GameCanvasObject extends Component
   math.Point<int> get topLeftTileMapCell => gameVector2.toMapTileCell();
 
   void _updateDistanceToOrigin() => gameVector2 = GameVector2.fromScreenVector2(
-        screenVector2: screenVector2.toVector2(),
-        origins: origins,
-      );
+    screenVector2: screenVector2.toVector2(),
+    origins: origins,
+  );
 
   @override
   FutureOr<void> onLoad() {
@@ -70,7 +69,7 @@ class GameCanvasObject extends Component
         GameVector2.fromMapVector2(Vector2(0, hitbox.height)) + gameVector2;
     final bottomRight =
         GameVector2.fromMapVector2(Vector2(hitbox.width, hitbox.height)) +
-            gameVector2;
+        gameVector2;
 
     return [
       topLeft,
@@ -109,11 +108,7 @@ class GameCanvasObject extends Component
     //   );
     // }
     // }
-    canvas.drawImage(
-      tileImage,
-      screenVector2,
-      Palette.white.paint(),
-    );
+    canvas.drawImage(tileImage, screenVector2, Palette.white.paint());
     super.render(canvas);
   }
 

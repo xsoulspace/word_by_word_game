@@ -82,28 +82,28 @@ class UiFlexibleContainer extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => LayoutBuilder(
-        builder: (final context, final constraints) {
-          double width = constraints.maxWidth;
-          double height = constraints.maxHeight;
+    builder: (final context, final constraints) {
+      double width = constraints.maxWidth;
+      double height = constraints.maxHeight;
 
-          if (minWidth != null) {
-            width = width.clamp(minWidth!, constraints.maxWidth);
-          }
-          if (maxWidth != null) width = width.clamp(0, maxWidth!);
-          if (minHeight != null) {
-            height = height.clamp(minHeight!, constraints.maxHeight);
-          }
-          if (maxHeight != null) height = height.clamp(0, maxHeight!);
+      if (minWidth != null) {
+        width = width.clamp(minWidth!, constraints.maxWidth);
+      }
+      if (maxWidth != null) width = width.clamp(0, maxWidth!);
+      if (minHeight != null) {
+        height = height.clamp(minHeight!, constraints.maxHeight);
+      }
+      if (maxHeight != null) height = height.clamp(0, maxHeight!);
 
-          return Container(
-            width: width,
-            height: height,
-            decoration: BoxDecoration(
-              color: UiColors.offWhite,
-              borderRadius: BorderRadius.circular(UiSpace.small),
-            ),
-            child: child,
-          );
-        },
+      return Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+          color: UiColors.offWhite,
+          borderRadius: BorderRadius.circular(UiSpace.small),
+        ),
+        child: child,
       );
+    },
+  );
 }

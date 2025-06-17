@@ -61,22 +61,22 @@ class $GoogleFontsGen {
 
   /// List of all assets
   List<String> get values => [
-        ofl,
-        openSansBold,
-        openSansBoldItalic,
-        openSansExtraBold,
-        openSansExtraBoldItalic,
-        openSansItalic,
-        openSansLight,
-        openSansLightItalic,
-        openSansMedium,
-        openSansMediumItalic,
-        openSansRegular,
-        openSansSemiBold,
-        openSansSemiBoldItalic,
-        rEADMEMd,
-        rEADMETxt
-      ];
+    ofl,
+    openSansBold,
+    openSansBoldItalic,
+    openSansExtraBold,
+    openSansExtraBoldItalic,
+    openSansItalic,
+    openSansLight,
+    openSansLightItalic,
+    openSansMedium,
+    openSansMediumItalic,
+    openSansRegular,
+    openSansSemiBold,
+    openSansSemiBoldItalic,
+    rEADMEMd,
+    rEADMETxt,
+  ];
 }
 
 class $AssetsImagesGen {
@@ -112,7 +112,8 @@ class $AssetsImagesButtonsGen {
 
   /// File path: assets/images/buttons/icon_button_pressed_highres.png
   AssetGenImage get iconButtonPressedHighres => const AssetGenImage(
-      'assets/images/buttons/icon_button_pressed_highres.png');
+    'assets/images/buttons/icon_button_pressed_highres.png',
+  );
 
   /// File path: assets/images/buttons/long_button_highres.png
   AssetGenImage get longButtonHighres =>
@@ -120,15 +121,16 @@ class $AssetsImagesButtonsGen {
 
   /// File path: assets/images/buttons/long_button_pressed_highres.png
   AssetGenImage get longButtonPressedHighres => const AssetGenImage(
-      'assets/images/buttons/long_button_pressed_highres.png');
+    'assets/images/buttons/long_button_pressed_highres.png',
+  );
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        iconButtonHighres,
-        iconButtonPressedHighres,
-        longButtonHighres,
-        longButtonPressedHighres
-      ];
+    iconButtonHighres,
+    iconButtonPressedHighres,
+    longButtonHighres,
+    longButtonPressedHighres,
+  ];
 }
 
 class $AssetsImagesIconsGen {
@@ -136,11 +138,13 @@ class $AssetsImagesIconsGen {
 
   /// File path: assets/images/icons/icon_action_collect_highres.png
   AssetGenImage get iconActionCollectHighres => const AssetGenImage(
-      'assets/images/icons/icon_action_collect_highres.png');
+    'assets/images/icons/icon_action_collect_highres.png',
+  );
 
   /// File path: assets/images/icons/icon_action_dictionary_add_highres.png
   AssetGenImage get iconActionDictionaryAddHighres => const AssetGenImage(
-      'assets/images/icons/icon_action_dictionary_add_highres.png');
+    'assets/images/icons/icon_action_dictionary_add_highres.png',
+  );
 
   /// File path: assets/images/icons/icon_action_fire_highres.png
   AssetGenImage get iconActionFireHighres =>
@@ -160,13 +164,13 @@ class $AssetsImagesIconsGen {
 
   /// List of all assets
   List<AssetGenImage> get values => [
-        iconActionCollectHighres,
-        iconActionDictionaryAddHighres,
-        iconActionFireHighres,
-        iconActionIdeaHighres,
-        iconActionMinusHighres,
-        iconActionPauseHighres
-      ];
+    iconActionCollectHighres,
+    iconActionDictionaryAddHighres,
+    iconActionFireHighres,
+    iconActionIdeaHighres,
+    iconActionMinusHighres,
+    iconActionPauseHighres,
+  ];
 }
 
 class $AssetsImagesUiFramesGen {
@@ -182,11 +186,15 @@ class $AssetsImagesUiFramesGen {
 
   /// File path: assets/images/ui_frames/text_field_frame_highres.png
   AssetGenImage get textFieldFrameHighres => const AssetGenImage(
-      'assets/images/ui_frames/text_field_frame_highres.png');
+    'assets/images/ui_frames/text_field_frame_highres.png',
+  );
 
   /// List of all assets
-  List<AssetGenImage> get values =>
-      [actionsFrameHighres, centerFrameHighres, textFieldFrameHighres];
+  List<AssetGenImage> get values => [
+    actionsFrameHighres,
+    centerFrameHighres,
+    textFieldFrameHighres,
+  ];
 }
 
 class Assets {
@@ -203,11 +211,7 @@ class Assets {
 }
 
 class AssetGenImage {
-  const AssetGenImage(
-    this._assetName, {
-    this.size,
-    this.flavors = const {},
-  });
+  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
 
   final String _assetName;
 
@@ -267,15 +271,8 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({
-    AssetBundle? bundle,
-    String? package,
-  }) {
-    return AssetImage(
-      _assetName,
-      bundle: bundle,
-      package: package,
-    );
+  ImageProvider provider({AssetBundle? bundle, String? package}) {
+    return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;

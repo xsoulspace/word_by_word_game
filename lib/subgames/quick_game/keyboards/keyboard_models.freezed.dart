@@ -12,7 +12,8 @@ part of 'keyboard_models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$UiKeyboardEvent {
@@ -20,48 +21,43 @@ mixin _$UiKeyboardEvent {
   TResult when<TResult extends Object?>({
     required TResult Function(String character) addCharacter,
     required TResult Function() removeCharacter,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(String character)? addCharacter,
     TResult? Function()? removeCharacter,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(String character)? addCharacter,
     TResult Function()? removeCharacter,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(UiKeyboardEventAddCharacter value) addCharacter,
     required TResult Function(UiKeyboardEventRemoveCharacter value)
-        removeCharacter,
-  }) =>
-      throw _privateConstructorUsedError;
+    removeCharacter,
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(UiKeyboardEventAddCharacter value)? addCharacter,
     TResult? Function(UiKeyboardEventRemoveCharacter value)? removeCharacter,
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(UiKeyboardEventAddCharacter value)? addCharacter,
     TResult Function(UiKeyboardEventRemoveCharacter value)? removeCharacter,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $UiKeyboardEventCopyWith<$Res> {
   factory $UiKeyboardEventCopyWith(
-          UiKeyboardEvent value, $Res Function(UiKeyboardEvent) then) =
-      _$UiKeyboardEventCopyWithImpl<$Res, UiKeyboardEvent>;
+    UiKeyboardEvent value,
+    $Res Function(UiKeyboardEvent) then,
+  ) = _$UiKeyboardEventCopyWithImpl<$Res, UiKeyboardEvent>;
 }
 
 /// @nodoc
@@ -81,36 +77,36 @@ class _$UiKeyboardEventCopyWithImpl<$Res, $Val extends UiKeyboardEvent>
 /// @nodoc
 abstract class _$$UiKeyboardEventAddCharacterImplCopyWith<$Res> {
   factory _$$UiKeyboardEventAddCharacterImplCopyWith(
-          _$UiKeyboardEventAddCharacterImpl value,
-          $Res Function(_$UiKeyboardEventAddCharacterImpl) then) =
-      __$$UiKeyboardEventAddCharacterImplCopyWithImpl<$Res>;
+    _$UiKeyboardEventAddCharacterImpl value,
+    $Res Function(_$UiKeyboardEventAddCharacterImpl) then,
+  ) = __$$UiKeyboardEventAddCharacterImplCopyWithImpl<$Res>;
   @useResult
   $Res call({String character});
 }
 
 /// @nodoc
 class __$$UiKeyboardEventAddCharacterImplCopyWithImpl<$Res>
-    extends _$UiKeyboardEventCopyWithImpl<$Res,
-        _$UiKeyboardEventAddCharacterImpl>
+    extends
+        _$UiKeyboardEventCopyWithImpl<$Res, _$UiKeyboardEventAddCharacterImpl>
     implements _$$UiKeyboardEventAddCharacterImplCopyWith<$Res> {
   __$$UiKeyboardEventAddCharacterImplCopyWithImpl(
-      _$UiKeyboardEventAddCharacterImpl _value,
-      $Res Function(_$UiKeyboardEventAddCharacterImpl) _then)
-      : super(_value, _then);
+    _$UiKeyboardEventAddCharacterImpl _value,
+    $Res Function(_$UiKeyboardEventAddCharacterImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UiKeyboardEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? character = null,
-  }) {
-    return _then(_$UiKeyboardEventAddCharacterImpl(
-      character: null == character
-          ? _value.character
-          : character // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+  $Res call({Object? character = null}) {
+    return _then(
+      _$UiKeyboardEventAddCharacterImpl(
+        character: null == character
+            ? _value.character
+            : character // ignore: cast_nullable_to_non_nullable
+                  as String,
+      ),
+    );
   }
 }
 
@@ -145,8 +141,10 @@ class _$UiKeyboardEventAddCharacterImpl implements UiKeyboardEventAddCharacter {
   @override
   @pragma('vm:prefer-inline')
   _$$UiKeyboardEventAddCharacterImplCopyWith<_$UiKeyboardEventAddCharacterImpl>
-      get copyWith => __$$UiKeyboardEventAddCharacterImplCopyWithImpl<
-          _$UiKeyboardEventAddCharacterImpl>(this, _$identity);
+  get copyWith =>
+      __$$UiKeyboardEventAddCharacterImplCopyWithImpl<
+        _$UiKeyboardEventAddCharacterImpl
+      >(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -184,7 +182,7 @@ class _$UiKeyboardEventAddCharacterImpl implements UiKeyboardEventAddCharacter {
   TResult map<TResult extends Object?>({
     required TResult Function(UiKeyboardEventAddCharacter value) addCharacter,
     required TResult Function(UiKeyboardEventRemoveCharacter value)
-        removeCharacter,
+    removeCharacter,
   }) {
     return addCharacter(this);
   }
@@ -222,26 +220,29 @@ abstract class UiKeyboardEventAddCharacter implements UiKeyboardEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UiKeyboardEventAddCharacterImplCopyWith<_$UiKeyboardEventAddCharacterImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class _$$UiKeyboardEventRemoveCharacterImplCopyWith<$Res> {
   factory _$$UiKeyboardEventRemoveCharacterImplCopyWith(
-          _$UiKeyboardEventRemoveCharacterImpl value,
-          $Res Function(_$UiKeyboardEventRemoveCharacterImpl) then) =
-      __$$UiKeyboardEventRemoveCharacterImplCopyWithImpl<$Res>;
+    _$UiKeyboardEventRemoveCharacterImpl value,
+    $Res Function(_$UiKeyboardEventRemoveCharacterImpl) then,
+  ) = __$$UiKeyboardEventRemoveCharacterImplCopyWithImpl<$Res>;
 }
 
 /// @nodoc
 class __$$UiKeyboardEventRemoveCharacterImplCopyWithImpl<$Res>
-    extends _$UiKeyboardEventCopyWithImpl<$Res,
-        _$UiKeyboardEventRemoveCharacterImpl>
+    extends
+        _$UiKeyboardEventCopyWithImpl<
+          $Res,
+          _$UiKeyboardEventRemoveCharacterImpl
+        >
     implements _$$UiKeyboardEventRemoveCharacterImplCopyWith<$Res> {
   __$$UiKeyboardEventRemoveCharacterImplCopyWithImpl(
-      _$UiKeyboardEventRemoveCharacterImpl _value,
-      $Res Function(_$UiKeyboardEventRemoveCharacterImpl) _then)
-      : super(_value, _then);
+    _$UiKeyboardEventRemoveCharacterImpl _value,
+    $Res Function(_$UiKeyboardEventRemoveCharacterImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UiKeyboardEvent
   /// with the given fields replaced by the non-null parameter values.
@@ -304,7 +305,7 @@ class _$UiKeyboardEventRemoveCharacterImpl
   TResult map<TResult extends Object?>({
     required TResult Function(UiKeyboardEventAddCharacter value) addCharacter,
     required TResult Function(UiKeyboardEventRemoveCharacter value)
-        removeCharacter,
+    removeCharacter,
   }) {
     return removeCharacter(this);
   }
@@ -351,16 +352,19 @@ mixin _$UiKeyboardControllerState {
 
 /// @nodoc
 abstract class $UiKeyboardControllerStateCopyWith<$Res> {
-  factory $UiKeyboardControllerStateCopyWith(UiKeyboardControllerState value,
-          $Res Function(UiKeyboardControllerState) then) =
-      _$UiKeyboardControllerStateCopyWithImpl<$Res, UiKeyboardControllerState>;
+  factory $UiKeyboardControllerStateCopyWith(
+    UiKeyboardControllerState value,
+    $Res Function(UiKeyboardControllerState) then,
+  ) = _$UiKeyboardControllerStateCopyWithImpl<$Res, UiKeyboardControllerState>;
   @useResult
   $Res call({bool isVisible, KeyboardLanguage language});
 }
 
 /// @nodoc
-class _$UiKeyboardControllerStateCopyWithImpl<$Res,
-        $Val extends UiKeyboardControllerState>
+class _$UiKeyboardControllerStateCopyWithImpl<
+  $Res,
+  $Val extends UiKeyboardControllerState
+>
     implements $UiKeyboardControllerStateCopyWith<$Res> {
   _$UiKeyboardControllerStateCopyWithImpl(this._value, this._then);
 
@@ -373,20 +377,20 @@ class _$UiKeyboardControllerStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isVisible = null,
-    Object? language = null,
-  }) {
-    return _then(_value.copyWith(
-      isVisible: null == isVisible
-          ? _value.isVisible
-          : isVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      language: null == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as KeyboardLanguage,
-    ) as $Val);
+  $Res call({Object? isVisible = null, Object? language = null}) {
+    return _then(
+      _value.copyWith(
+            isVisible: null == isVisible
+                ? _value.isVisible
+                : isVisible // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            language: null == language
+                ? _value.language
+                : language // ignore: cast_nullable_to_non_nullable
+                      as KeyboardLanguage,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -394,9 +398,9 @@ class _$UiKeyboardControllerStateCopyWithImpl<$Res,
 abstract class _$$UiKeyboardControllerStateImplCopyWith<$Res>
     implements $UiKeyboardControllerStateCopyWith<$Res> {
   factory _$$UiKeyboardControllerStateImplCopyWith(
-          _$UiKeyboardControllerStateImpl value,
-          $Res Function(_$UiKeyboardControllerStateImpl) then) =
-      __$$UiKeyboardControllerStateImplCopyWithImpl<$Res>;
+    _$UiKeyboardControllerStateImpl value,
+    $Res Function(_$UiKeyboardControllerStateImpl) then,
+  ) = __$$UiKeyboardControllerStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isVisible, KeyboardLanguage language});
@@ -404,40 +408,44 @@ abstract class _$$UiKeyboardControllerStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$UiKeyboardControllerStateImplCopyWithImpl<$Res>
-    extends _$UiKeyboardControllerStateCopyWithImpl<$Res,
-        _$UiKeyboardControllerStateImpl>
+    extends
+        _$UiKeyboardControllerStateCopyWithImpl<
+          $Res,
+          _$UiKeyboardControllerStateImpl
+        >
     implements _$$UiKeyboardControllerStateImplCopyWith<$Res> {
   __$$UiKeyboardControllerStateImplCopyWithImpl(
-      _$UiKeyboardControllerStateImpl _value,
-      $Res Function(_$UiKeyboardControllerStateImpl) _then)
-      : super(_value, _then);
+    _$UiKeyboardControllerStateImpl _value,
+    $Res Function(_$UiKeyboardControllerStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UiKeyboardControllerState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isVisible = null,
-    Object? language = null,
-  }) {
-    return _then(_$UiKeyboardControllerStateImpl(
-      isVisible: null == isVisible
-          ? _value.isVisible
-          : isVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      language: null == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as KeyboardLanguage,
-    ));
+  $Res call({Object? isVisible = null, Object? language = null}) {
+    return _then(
+      _$UiKeyboardControllerStateImpl(
+        isVisible: null == isVisible
+            ? _value.isVisible
+            : isVisible // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        language: null == language
+            ? _value.language
+            : language // ignore: cast_nullable_to_non_nullable
+                  as KeyboardLanguage,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$UiKeyboardControllerStateImpl implements _UiKeyboardControllerState {
-  const _$UiKeyboardControllerStateImpl(
-      {this.isVisible = false, this.language = KeyboardLanguage.en});
+  const _$UiKeyboardControllerStateImpl({
+    this.isVisible = false,
+    this.language = KeyboardLanguage.en,
+  });
 
   @override
   @JsonKey()
@@ -471,14 +479,17 @@ class _$UiKeyboardControllerStateImpl implements _UiKeyboardControllerState {
   @override
   @pragma('vm:prefer-inline')
   _$$UiKeyboardControllerStateImplCopyWith<_$UiKeyboardControllerStateImpl>
-      get copyWith => __$$UiKeyboardControllerStateImplCopyWithImpl<
-          _$UiKeyboardControllerStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$UiKeyboardControllerStateImplCopyWithImpl<
+        _$UiKeyboardControllerStateImpl
+      >(this, _$identity);
 }
 
 abstract class _UiKeyboardControllerState implements UiKeyboardControllerState {
-  const factory _UiKeyboardControllerState(
-      {final bool isVisible,
-      final KeyboardLanguage language}) = _$UiKeyboardControllerStateImpl;
+  const factory _UiKeyboardControllerState({
+    final bool isVisible,
+    final KeyboardLanguage language,
+  }) = _$UiKeyboardControllerStateImpl;
 
   @override
   bool get isVisible;
@@ -490,5 +501,5 @@ abstract class _UiKeyboardControllerState implements UiKeyboardControllerState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UiKeyboardControllerStateImplCopyWith<_$UiKeyboardControllerStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

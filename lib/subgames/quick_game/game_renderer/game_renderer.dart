@@ -36,10 +36,10 @@ class CanvasRendererGame extends FlameGame
     required final ThemeData theme,
     required final DialogController dialogController,
   }) : dto = GameRendererDiDto.use(
-          context: context,
-          theme: theme,
-          dialogController: dialogController,
-        );
+         context: context,
+         theme: theme,
+         dialogController: dialogController,
+       );
   final GameRendererDiDto dto;
   LevelFeaturesSettingsModel get featureSettings =>
       dto.levelBloc.featuresSettings;
@@ -77,10 +77,7 @@ class CanvasRendererGame extends FlameGame
 
     dto.mechanics.worldTime.addListener(_onWorldTimeChange);
     providersComponent = dto.getBlocsProviderComponent(
-      children: [
-        world,
-        worldCamera,
-      ],
+      children: [world, worldCamera],
     );
 
     await add(providersComponent);
@@ -122,13 +119,11 @@ class CanvasRendererGame extends FlameGame
     _removeFpsComponent();
     final style = material.TextStyle(color: BasicPalette.red.color);
     final regular = TextPaint(style: style);
-    final newComponent = _fpsComponent = FpsTextComponent(
-      textRenderer: regular,
-      priority: 100,
-    )
-      ..anchor = Anchor.topLeft
-      ..x = 32
-      ..y = 200.0;
+    final newComponent = _fpsComponent =
+        FpsTextComponent(textRenderer: regular, priority: 100)
+          ..anchor = Anchor.topLeft
+          ..x = 32
+          ..y = 200.0;
     return world.add(newComponent);
   }
 

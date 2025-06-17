@@ -103,12 +103,14 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
   @override
   void didUpdateWidget(covariant final UiLocalizedTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
-    final newText =
-        widget.value.value.isEmpty ? '' : widget.value.getValueByLanguage();
+    final newText = widget.value.value.isEmpty
+        ? ''
+        : widget.value.getValueByLanguage();
     if (widget.value != _value || newText != _textController.text) {
       _value = widget.value;
-      _textController.text =
-          _value.value.isEmpty ? '' : _value.getValueByLanguage(_language);
+      _textController.text = _value.value.isEmpty
+          ? ''
+          : _value.getValueByLanguage(_language);
     }
   }
 
@@ -126,9 +128,7 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
         focusedBorder: widget.focusedBorder,
       ),
       onChanged: (final value) {
-        _value = _value.copyWith(
-          value: {..._value.value}..[_language] = value,
-        );
+        _value = _value.copyWith(value: {..._value.value}..[_language] = value);
         widget.onChanged(_value);
       },
       controller: _textController,

@@ -65,8 +65,6 @@ class UiAspectRatioBox extends StatelessWidget {
   final double aspectRatio;
 
   @override
-  Widget build(final BuildContext context) => AspectRatio(
-        aspectRatio: aspectRatio,
-        child: child,
-      );
+  Widget build(final BuildContext context) =>
+      AspectRatio(aspectRatio: aspectRatio, child: child);
 }

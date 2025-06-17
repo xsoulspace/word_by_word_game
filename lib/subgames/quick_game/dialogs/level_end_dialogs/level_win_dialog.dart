@@ -18,10 +18,10 @@ class LevelWinDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final playersState =
-        context.select<LevelPlayersBloc, LevelPlayersBlocState>(
-      (final value) => value.state,
-    );
+    final playersState = context
+        .select<LevelPlayersBloc, LevelPlayersBlocState>(
+          (final value) => value.state,
+        );
 
     return DialogScaffold(
       children: [
@@ -30,9 +30,7 @@ class LevelWinDialog extends StatelessWidget {
           style: theme.textTheme.titleLarge,
         ),
         UiGaps.large,
-        ...playersState.players.map(
-          (final e) => PlayerProfileTile(player: e),
-        ),
+        ...playersState.players.map((final e) => PlayerProfileTile(player: e)),
         UiGaps.large,
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,

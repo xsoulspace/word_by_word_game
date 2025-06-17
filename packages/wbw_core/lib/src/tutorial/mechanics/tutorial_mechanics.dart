@@ -43,9 +43,7 @@ class TutorialMechanics {
         return tutorialEvent;
       }
       void complete() {
-        completeActions[index] = actionEvent.copyWith(
-          isCompleted: true,
-        );
+        completeActions[index] = actionEvent.copyWith(isCompleted: true);
       }
 
       switch (uiEvent.action) {
@@ -59,9 +57,7 @@ class TutorialMechanics {
           if (actionEvent.uiItem == uiEvent.key) {
             final boolValue = uiEvent.boolValue.toPrimitiveBool();
             final postEffects = actionEvent.boolConsquenses[boolValue];
-            completeActions[index] = actionEvent.copyWith(
-              isCompleted: true,
-            );
+            completeActions[index] = actionEvent.copyWith(isCompleted: true);
             if (postEffects != null) gamePostEffects.addAll(postEffects);
           }
         case TutorialCompleteAction.onEdit:

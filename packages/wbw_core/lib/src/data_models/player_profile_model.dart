@@ -29,12 +29,11 @@ class PlayerProfileModel with _$PlayerProfileModel {
   factory PlayerProfileModel.create({
     required final String name,
     required final int colorValue,
-  }) =>
-      PlayerProfileModel(
-        colorValue: colorValue,
-        id: IdCreator.create(),
-        name: name,
-      );
+  }) => PlayerProfileModel(
+    colorValue: colorValue,
+    id: IdCreator.create(),
+    name: name,
+  );
   static const emptyPlayerId = '0';
   static const empty = PlayerProfileModel(
     colorValue: 0xFFFF9000,
@@ -45,18 +44,16 @@ class PlayerProfileModel with _$PlayerProfileModel {
 
   static Map<CanvasDataModelId, PlayerLevelHighscoreModel> _highscoreFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          CanvasDataModelId.fromJson(key),
-          PlayerLevelHighscoreModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) => MapEntry(
+      CanvasDataModelId.fromJson(key),
+      PlayerLevelHighscoreModel.fromJson(value),
+    ),
+  );
 
   static Map<String, dynamic> _highscoreToJson(
     final Map<CanvasDataModelId, PlayerLevelHighscoreModel> map,
-  ) =>
-      map.map((final key, final value) => MapEntry(key.value, value.toJson()));
+  ) => map.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
 
 @immutable

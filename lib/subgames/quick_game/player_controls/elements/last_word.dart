@@ -7,9 +7,7 @@ import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
 class LastWordWidget extends StatelessWidget {
-  const LastWordWidget({
-    super.key,
-  });
+  const LastWordWidget({super.key});
   @override
   Widget build(final BuildContext context) {
     final latestWord = context.select<LevelBloc, String>(
@@ -20,10 +18,7 @@ class LastWordWidget extends StatelessWidget {
 }
 
 class LastWordText extends StatefulWidget {
-  const LastWordText({
-    required this.latestWord,
-    super.key,
-  });
+  const LastWordText({required this.latestWord, super.key});
   final String latestWord;
 
   @override
@@ -70,12 +65,7 @@ class _LastWordTextState extends State<LastWordText> {
           color: colorScheme.tertiaryContainer.withOpacity(0.4),
         ),
       ),
-      padding: const EdgeInsets.only(
-        left: 4,
-        right: 4,
-        top: 2,
-        bottom: 2,
-      ),
+      padding: const EdgeInsets.only(left: 4, right: 4, top: 2, bottom: 2),
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -97,17 +87,9 @@ class _LastWordTextState extends State<LastWordText> {
               color: colorScheme.tertiaryContainer.withOpacity(0.3),
               borderRadius: const BorderRadius.all(radius),
             ),
-            child: Text(
-              _lastWord,
-              style: textStyle,
-            )
-                .animate(
-                  onInit: (final controller) => _controller = controller,
-                )
-                .slideY(
-                  begin: -0.1,
-                  end: 0,
-                )
+            child: Text(_lastWord, style: textStyle)
+                .animate(onInit: (final controller) => _controller = controller)
+                .slideY(begin: -0.1, end: 0)
                 .scale(begin: const Offset(1.1, 1.1)),
           ),
         ],

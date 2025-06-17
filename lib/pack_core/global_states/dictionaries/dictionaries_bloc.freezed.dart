@@ -12,7 +12,8 @@ part of 'dictionaries_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$DictionariesBlocState {
@@ -27,16 +28,19 @@ mixin _$DictionariesBlocState {
 
 /// @nodoc
 abstract class $DictionariesBlocStateCopyWith<$Res> {
-  factory $DictionariesBlocStateCopyWith(DictionariesBlocState value,
-          $Res Function(DictionariesBlocState) then) =
-      _$DictionariesBlocStateCopyWithImpl<$Res, DictionariesBlocState>;
+  factory $DictionariesBlocStateCopyWith(
+    DictionariesBlocState value,
+    $Res Function(DictionariesBlocState) then,
+  ) = _$DictionariesBlocStateCopyWithImpl<$Res, DictionariesBlocState>;
   @useResult
   $Res call({WordsType wordsType});
 }
 
 /// @nodoc
-class _$DictionariesBlocStateCopyWithImpl<$Res,
-        $Val extends DictionariesBlocState>
+class _$DictionariesBlocStateCopyWithImpl<
+  $Res,
+  $Val extends DictionariesBlocState
+>
     implements $DictionariesBlocStateCopyWith<$Res> {
   _$DictionariesBlocStateCopyWithImpl(this._value, this._then);
 
@@ -49,15 +53,16 @@ class _$DictionariesBlocStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? wordsType = null,
-  }) {
-    return _then(_value.copyWith(
-      wordsType: null == wordsType
-          ? _value.wordsType
-          : wordsType // ignore: cast_nullable_to_non_nullable
-              as WordsType,
-    ) as $Val);
+  $Res call({Object? wordsType = null}) {
+    return _then(
+      _value.copyWith(
+            wordsType: null == wordsType
+                ? _value.wordsType
+                : wordsType // ignore: cast_nullable_to_non_nullable
+                      as WordsType,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -65,9 +70,9 @@ class _$DictionariesBlocStateCopyWithImpl<$Res,
 abstract class _$$DictionariesBlocStateImplCopyWith<$Res>
     implements $DictionariesBlocStateCopyWith<$Res> {
   factory _$$DictionariesBlocStateImplCopyWith(
-          _$DictionariesBlocStateImpl value,
-          $Res Function(_$DictionariesBlocStateImpl) then) =
-      __$$DictionariesBlocStateImplCopyWithImpl<$Res>;
+    _$DictionariesBlocStateImpl value,
+    $Res Function(_$DictionariesBlocStateImpl) then,
+  ) = __$$DictionariesBlocStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({WordsType wordsType});
@@ -75,26 +80,27 @@ abstract class _$$DictionariesBlocStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$DictionariesBlocStateImplCopyWithImpl<$Res>
-    extends _$DictionariesBlocStateCopyWithImpl<$Res,
-        _$DictionariesBlocStateImpl>
+    extends
+        _$DictionariesBlocStateCopyWithImpl<$Res, _$DictionariesBlocStateImpl>
     implements _$$DictionariesBlocStateImplCopyWith<$Res> {
-  __$$DictionariesBlocStateImplCopyWithImpl(_$DictionariesBlocStateImpl _value,
-      $Res Function(_$DictionariesBlocStateImpl) _then)
-      : super(_value, _then);
+  __$$DictionariesBlocStateImplCopyWithImpl(
+    _$DictionariesBlocStateImpl _value,
+    $Res Function(_$DictionariesBlocStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DictionariesBlocState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? wordsType = null,
-  }) {
-    return _then(_$DictionariesBlocStateImpl(
-      wordsType: null == wordsType
-          ? _value.wordsType
-          : wordsType // ignore: cast_nullable_to_non_nullable
-              as WordsType,
-    ));
+  $Res call({Object? wordsType = null}) {
+    return _then(
+      _$DictionariesBlocStateImpl(
+        wordsType: null == wordsType
+            ? _value.wordsType
+            : wordsType // ignore: cast_nullable_to_non_nullable
+                  as WordsType,
+      ),
+    );
   }
 }
 
@@ -130,8 +136,11 @@ class _$DictionariesBlocStateImpl implements _DictionariesBlocState {
   @override
   @pragma('vm:prefer-inline')
   _$$DictionariesBlocStateImplCopyWith<_$DictionariesBlocStateImpl>
-      get copyWith => __$$DictionariesBlocStateImplCopyWithImpl<
-          _$DictionariesBlocStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$DictionariesBlocStateImplCopyWithImpl<_$DictionariesBlocStateImpl>(
+        this,
+        _$identity,
+      );
 }
 
 abstract class _DictionariesBlocState implements DictionariesBlocState {
@@ -146,5 +155,5 @@ abstract class _DictionariesBlocState implements DictionariesBlocState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$DictionariesBlocStateImplCopyWith<_$DictionariesBlocStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

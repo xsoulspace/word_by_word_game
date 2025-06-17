@@ -68,22 +68,14 @@ class TilesetPresetDataModel with _$TilesetPresetDataModel {
 
   static Map<TileId, PresetTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          TileId.fromJson(key),
-          PresetTileModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(TileId.fromJson(key), PresetTileModel.fromJson(value)),
+  );
   static Map<String, dynamic> _tilesToJson(
     final Map<TileId, PresetTileModel> json,
   ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          key.value,
-          value.toJson(),
-        ),
-      );
+      json.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
 
 enum TilesetType {
@@ -101,13 +93,13 @@ class TilesetConfigModel with _$TilesetConfigModel {
   }) = _TilesetConfigModel;
   const TilesetConfigModel._();
   String get cleanPath => paths.withoutExtension(
-        path.replaceAll('assets/images/', '').replaceAll('_preset_data', ''),
-      );
+    path.replaceAll('assets/images/', '').replaceAll('_preset_data', ''),
+  );
   TilesetType get type => switch (cleanPath.split('/').last) {
-        'white_black' => TilesetType.whiteBlack,
-        'evening' => TilesetType.evening,
-        _ => throw UnimplementedError()
-      };
+    'white_black' => TilesetType.whiteBlack,
+    'evening' => TilesetType.evening,
+    _ => throw UnimplementedError(),
+  };
   String get encodedAtlasPath => '$cleanPath.fa';
   String get decodedAtlasPath => '$cleanPath.json';
   String get folderPath => cleanPath;
@@ -144,63 +136,62 @@ class TilesetPresetResources with _$TilesetPresetResources {
     required final TilesetPresetDataModel data,
     required final ResourcesLoader resourcesLoader,
     required final TilesetConfigModel tilesetConfig,
-  }) =>
-      TilesetPresetResources(
-        name: data.name,
-        type: data.type,
-        theme: data.theme,
-        autotileRules: data.autotileRules,
-        tiles: data.tiles.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+  }) => TilesetPresetResources(
+    name: data.name,
+    type: data.type,
+    theme: data.theme,
+    autotileRules: data.autotileRules,
+    tiles: data.tiles.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        objects: data.objects.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    objects: data.objects.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        npcs: data.npcs.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    npcs: data.npcs.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        other: data.other.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    other: data.other.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-        players: data.players.map(
-          (final key, final tile) => MapEntry(
-            key,
-            PresetTileResource.fromTile(
-              tilesetConfig: tilesetConfig,
-              tile: tile,
-              resourcesLoader: resourcesLoader,
-            ),
-          ),
+      ),
+    ),
+    players: data.players.map(
+      (final key, final tile) => MapEntry(
+        key,
+        PresetTileResource.fromTile(
+          tilesetConfig: tilesetConfig,
+          tile: tile,
+          resourcesLoader: resourcesLoader,
         ),
-      );
+      ),
+    ),
+  );
 
   static const empty = TilesetPresetResources();
 }

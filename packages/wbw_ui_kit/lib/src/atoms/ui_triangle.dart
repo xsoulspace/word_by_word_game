@@ -48,15 +48,15 @@ class UiTriangle extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => RotatedBox(
-        quarterTurns: quarterTurns,
-        child: CustomPaint(
-          painter: UiTrianglePainter(
-            size: size,
-            color: color ?? UiColors.mediumLight.withOpacity(0.5),
-          ),
-          size: Size(size * 2, size),
-        ),
-      );
+    quarterTurns: quarterTurns,
+    child: CustomPaint(
+      painter: UiTrianglePainter(
+        size: size,
+        color: color ?? UiColors.mediumLight.withOpacity(0.5),
+      ),
+      size: Size(size * 2, size),
+    ),
+  );
 }
 
 /// See also:
@@ -67,10 +67,7 @@ class UiTriangle extends StatelessWidget {
 /// @ai When generating triangles, consider using [UiTriangle] for consistent
 /// triangles throughout the application.
 class UiTrianglePainter extends CustomPainter {
-  UiTrianglePainter({
-    required this.size,
-    required this.color,
-  });
+  UiTrianglePainter({required this.size, required this.color});
 
   /// {@macro _triangle_painter.ai_description}
   static const String aiDescription =

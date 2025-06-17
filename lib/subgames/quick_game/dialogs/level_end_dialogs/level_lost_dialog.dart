@@ -19,16 +19,15 @@ class LevelLostDialog extends StatelessWidget {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final players = context.select<LevelPlayersBloc, List<PlayerProfileModel>>(
-      (final value) {
-        final effectivePlayers = [...value.state.players];
-        return effectivePlayers
-          ..sort(
-            (final a, final b) =>
-                b.highscore.score.value.compareTo(a.highscore.score.value),
-          );
-      },
-    );
+    final players = context.select<LevelPlayersBloc, List<PlayerProfileModel>>((
+      final value,
+    ) {
+      final effectivePlayers = [...value.state.players];
+      return effectivePlayers..sort(
+        (final a, final b) =>
+            b.highscore.score.value.compareTo(a.highscore.score.value),
+      );
+    });
     return DialogScaffold(
       children: [
         Text(

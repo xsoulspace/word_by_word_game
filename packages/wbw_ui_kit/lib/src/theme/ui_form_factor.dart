@@ -8,11 +8,7 @@ part of 'theme.dart';
 /// ********************************************
 
 @immutable
-@Freezed(
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@Freezed(equal: true, addImplicitFinal: true, copyWith: true)
 class UiPersistentFormFactors with _$UiPersistentFormFactors {
   const factory UiPersistentFormFactors({
     required final WidthFormFactor width,
@@ -67,19 +63,11 @@ class UiPersistentFormFactors with _$UiPersistentFormFactors {
 
 enum WidthFormFactor {
   xs(max: 375),
-  mobile(
-    max: 500,
-  ),
-  tablet(
-    max: 1000,
-  ),
-  desktop(
-    max: double.infinity,
-  );
+  mobile(max: 500),
+  tablet(max: 1000),
+  desktop(max: double.infinity);
 
-  const WidthFormFactor({
-    required this.max,
-  });
+  const WidthFormFactor({required this.max});
   final double max;
   static bool checkIsXs(final Size size) => size.width <= xs.max;
   static bool checkIsXsByContext(final BuildContext context) =>
@@ -88,24 +76,12 @@ enum WidthFormFactor {
 }
 
 enum DeviceWindowFormFactor {
-  android(
-    hasWindowClose: false,
-    hasWindowExpand: false,
-    hasWindowHide: false,
-  ),
-  iOS(
-    hasWindowClose: false,
-    hasWindowExpand: false,
-    hasWindowHide: false,
-  ),
+  android(hasWindowClose: false, hasWindowExpand: false, hasWindowHide: false),
+  iOS(hasWindowClose: false, hasWindowExpand: false, hasWindowHide: false),
   macOS(),
   windows(),
   linux(),
-  web(
-    hasWindowClose: false,
-    hasWindowExpand: false,
-    hasWindowHide: false,
-  );
+  web(hasWindowClose: false, hasWindowExpand: false, hasWindowHide: false);
 
   const DeviceWindowFormFactor({
     this.hasWindowClose = true,
@@ -128,11 +104,7 @@ enum DeviceWindowFormFactor {
 /// ********************************************
 
 @immutable
-@Freezed(
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@Freezed(equal: true, addImplicitFinal: true, copyWith: true)
 class UiCustomizableFormFactors with _$UiCustomizableFormFactors {
   const factory UiCustomizableFormFactors({
     required final PerformanceFormFactor performance,
@@ -163,19 +135,12 @@ class UiCustomizableFormFactors with _$UiCustomizableFormFactors {
   }
 }
 
-enum ControlsFormFactor {
-  touch,
-  mouse;
-}
+enum ControlsFormFactor { touch, mouse }
 
 enum PerformanceFormFactor {
-  batterySaver(
-    hasAnimations: false,
-  ),
+  batterySaver(hasAnimations: false),
   regular();
 
-  const PerformanceFormFactor({
-    this.hasAnimations = true,
-  });
+  const PerformanceFormFactor({this.hasAnimations = true});
   final bool hasAnimations;
 }

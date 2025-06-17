@@ -25,8 +25,11 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
     final powers = playerParams.balloonPowers;
     final currentPower = playerParams.balloonPowers.power;
     final maxPower = playerParams.balloonParams.maxPower;
-    final power =
-        clampDouble(currentPower, 0, playerParams.balloonParams.maxPower);
+    final power = clampDouble(
+      currentPower,
+      0,
+      playerParams.balloonParams.maxPower,
+    );
     final powerRatio = power / maxPower;
     final borderSide = BorderSide(
       color: context.colorScheme.error.withOpacity(0.3),
@@ -38,7 +41,8 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TutorialFrame(
-          highlightPosition: MediaQuery.sizeOf(context).width >
+          highlightPosition:
+              MediaQuery.sizeOf(context).width >
                   WidthFormFactor.mobileTutorialMaxWidth
               ? Alignment.centerRight
               : Alignment.bottomCenter,
@@ -56,8 +60,9 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
                   // ignore: lines_longer_than_80_chars
                   'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
             },
-            text:
-                isUsingPoints ? (powers.power ~/ kScoreFactor).toString() : '',
+            text: isUsingPoints
+                ? (powers.power ~/ kScoreFactor).toString()
+                : '',
             width: 80,
             iconPadding: EdgeInsets.zero,
             border: Border(
@@ -100,42 +105,40 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
                 bottomRight: Radius.elliptical(8, 8),
               ),
             ),
-            constraints: const BoxConstraints(
-              maxWidth: 150,
-            ),
+            constraints: const BoxConstraints(maxWidth: 150),
             child: UiBaseButton(
               onPressed: () {
                 context.read<GuiFocusableObjectsNotifier>().startChoosing();
               },
               builder: (final context, final focused, final onlyFocused) =>
                   Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Gap(6),
-                      Flexible(
-                        child: Text(
-                          // TODO(arenukvern): l10n
-                          focusedObject.tileId.localizedTitle(locale),
-                          textAlign: TextAlign.center,
-                          style: context.textTheme.bodyMedium!.copyWith(
-                            fontStyle: FontStyle.italic,
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Gap(6),
+                          Flexible(
+                            child: Text(
+                              // TODO(arenukvern): l10n
+                              focusedObject.tileId.localizedTitle(locale),
+                              textAlign: TextAlign.center,
+                              style: context.textTheme.bodyMedium!.copyWith(
+                                fontStyle: FontStyle.italic,
+                              ),
+                            ),
                           ),
-                        ),
+                          const Gap(6),
+                        ],
                       ),
-                      const Gap(6),
+                      // TODO(arenukvern): replace with focused object icon
+                      Image.asset(
+                        UiAssetHelper.useImagePath(UiAssetsIcons.fire.path),
+                        width: 32,
+                        height: 32,
+                      ),
                     ],
                   ),
-                  // TODO(arenukvern): replace with focused object icon
-                  Image.asset(
-                    UiAssetHelper.useImagePath(UiAssetsIcons.fire.path),
-                    width: 32,
-                    height: 32,
-                  ),
-                ],
-              ),
             ),
           ),
           const Gap(6),

@@ -20,13 +20,12 @@ class LevelPlayersBlocState with _$LevelPlayersBlocState {
   static LevelPlayersBlocState fromModel({
     required final LevelPlayersModel levelPlayersModel,
     required final LevelCharactersModel levelCharactersModel,
-  }) =>
-      LevelPlayersBlocState(
-        currentPlayerId: levelPlayersModel.currentPlayerId,
-        players: levelPlayersModel.players,
-        playerCharacter: levelCharactersModel.playerCharacter,
-        focusedObjectGid: levelCharactersModel.focusedObjectGid,
-      );
+  }) => LevelPlayersBlocState(
+    currentPlayerId: levelPlayersModel.currentPlayerId,
+    players: levelPlayersModel.players,
+    playerCharacter: levelCharactersModel.playerCharacter,
+    focusedObjectGid: levelCharactersModel.focusedObjectGid,
+  );
   bool get isEmpty => currentPlayerId.isEmpty;
   bool get isNotEmpty => currentPlayerId.isNotEmpty;
 }

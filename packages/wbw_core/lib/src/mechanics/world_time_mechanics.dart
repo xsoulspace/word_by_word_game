@@ -72,9 +72,7 @@ class WorldTimeMechanics implements Loadable {
   }
 
   /// Run this method when the player should initialize the
-  void onInitLevel({
-    required final WorldDateTimeModel worldDateTime,
-  }) {
+  void onInitLevel({required final WorldDateTimeModel worldDateTime}) {
     useDateTime(worldDateTime);
     resume();
   }

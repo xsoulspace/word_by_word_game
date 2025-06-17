@@ -4,21 +4,18 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_
 import 'package:word_by_word_game/subgames/quick_game/pause/adventure_view.dart';
 
 class PlayersAndHighscoreView extends HookWidget {
-  const PlayersAndHighscoreView({
-    super.key,
-  });
+  const PlayersAndHighscoreView({super.key});
   @override
   Widget build(final BuildContext context) {
-    final players = context.select<GlobalGameBloc, List<PlayerProfileModel>>(
-      (final value) {
-        final effectivePlayers = [...value.state.playersCollection];
-        return effectivePlayers
-          ..sort(
-            (final a, final b) =>
-                b.highscore.score.value.compareTo(a.highscore.score.value),
-          );
-      },
-    );
+    final players = context.select<GlobalGameBloc, List<PlayerProfileModel>>((
+      final value,
+    ) {
+      final effectivePlayers = [...value.state.playersCollection];
+      return effectivePlayers..sort(
+        (final a, final b) =>
+            b.highscore.score.value.compareTo(a.highscore.score.value),
+      );
+    });
     final locale = useLocale(context);
     return DecoratedDialogScaffold(
       bottomButton: const ViewBackButton(),
@@ -39,9 +36,7 @@ class PlayersAndHighscoreView extends HookWidget {
         ),
         const Row(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            UiHorizontalDivider(),
-          ],
+          children: [UiHorizontalDivider()],
         ),
         ...players.map(
           (final e) => PlayerProfileTile(
@@ -51,10 +46,8 @@ class PlayersAndHighscoreView extends HookWidget {
                 : (final profile) {
                     unawaited(
                       context.read<GlobalGameBloc>().onDeletePlayerProfile(
-                            DeletePlayerProfileEvent(
-                              profile: profile,
-                            ),
-                          ),
+                        DeletePlayerProfileEvent(profile: profile),
+                      ),
                     );
                   },
           ),

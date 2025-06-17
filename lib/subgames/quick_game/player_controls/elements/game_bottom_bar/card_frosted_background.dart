@@ -28,9 +28,7 @@ class CardFrostedBackground extends StatelessWidget {
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(radius),
               ),
-            ).frosted(
-              borderRadius: const BorderRadius.all(radius),
-            ),
+            ).frosted(borderRadius: const BorderRadius.all(radius)),
           ),
           AnimatedContainer(
             duration: 330.milliseconds,

@@ -6,6 +6,8 @@ publish_to: none
 environment:
   sdk: ">=3.8.1 <4.0.0"
 
+resolution: workspace
+
 dependencies:
   animate_do: ^4.2.0
   blur: ^4.0.2
@@ -27,24 +29,18 @@ dependencies:
   sliver_tools: ^0.2.12
   tap_builder: ^0.5.0
   wbw_core:
-    path: ../wbw_core
   wbw_locale:
-    path: ../wbw_locale
   xsoulspace_foundation: ^0.2.0
 
 dev_dependencies:
   analyzer: ^7.4.5
   build_runner: ^2.5.0
-  lints: ^6.0.0
   flutter_test:
     sdk: flutter
   freezed: ^3.0.6
+  lints: ^6.0.0
   xsoulspace_lints: ^0.1.0
 
-dependency_overrides:
-  collection: ^1.19.1
-  package_info_plus: ^8.3.0
-  web: ^1.1.1
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 # The following section is specific to Flutter.

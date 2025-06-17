@@ -21,7 +21,7 @@ class CurrentWordModel with _$CurrentWordModel {
 
   @useResult
   String get middlePart => List.generate(inactiveIndexes.length, (final i) {
-        final index = inactiveIndexes[i];
-        return fullWord[index];
-      }).join();
+    final index = inactiveIndexes[i];
+    return fullWord[index];
+  }).join();
 }

@@ -5,9 +5,8 @@ part of 'saveable_models.dart';
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
 class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
-  const factory CanvasDataModelId({
-    required final String value,
-  }) = _CanvasDataModelId;
+  const factory CanvasDataModelId({required final String value}) =
+      _CanvasDataModelId;
   const CanvasDataModelId._();
   factory CanvasDataModelId.fromJson(final String value) =>
       CanvasDataModelId(value: value);
@@ -70,9 +69,7 @@ class CanvasDataModel with _$CanvasDataModel {
     @Default(TilesetType.whiteBlack) final TilesetType tilesetType,
   }) = _CanvasDataModel;
   const CanvasDataModel._();
-  factory CanvasDataModel.fromJson(
-    final Map<String, dynamic> json,
-  ) =>
+  factory CanvasDataModel.fromJson(final Map<String, dynamic> json) =>
       _$CanvasDataModelFromJson(json);
   factory CanvasDataModel.create() =>
       CanvasDataModel(id: CanvasDataModelId(value: IdCreator.create()));
@@ -80,22 +77,14 @@ class CanvasDataModel with _$CanvasDataModel {
 
   static Map<Gid, RenderObjectModel> objectsFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          Gid.fromJson(key),
-          RenderObjectModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(Gid.fromJson(key), RenderObjectModel.fromJson(value)),
+  );
   static Map<String, dynamic> objectsToJson(
     final Map<Gid, RenderObjectModel> json,
   ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          key.value,
-          value.toJson(),
-        ),
-      );
+      json.map((final key, final value) => MapEntry(key.value, value.toJson()));
 }
 
 @freezed
@@ -123,9 +112,7 @@ class GravityModel with _$GravityModel {
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
 class LayerModelId with _$LayerModelId, EquatableMixin {
-  const factory LayerModelId({
-    required final String value,
-  }) = _LayerModelId;
+  const factory LayerModelId({required final String value}) = _LayerModelId;
   const LayerModelId._();
   factory LayerModelId.fromJson(final String value) =>
       LayerModelId(value: value);
@@ -140,19 +127,12 @@ class LayerModelId with _$LayerModelId, EquatableMixin {
   List<Object?> get props => [value];
 }
 
-enum CollisionConsequence {
-  none,
-  win,
-  lose,
-}
+enum CollisionConsequence { none, win, lose }
 
 @freezed
 class LayerModel with _$LayerModel {
   const factory LayerModel({
-    @JsonKey(
-      fromJson: LayerModelId.fromJson,
-      toJson: LayerModelId.toJsonString,
-    )
+    @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
     required final LayerModelId id,
     @Default('') final String title,
     @JsonKey(
@@ -173,27 +153,21 @@ class LayerModel with _$LayerModel {
   factory LayerModel.fromJson(final Map<String, dynamic> json) =>
       _$LayerModelFromJson(json);
   static const empty = LayerModel(id: LayerModelId.empty);
-  static const buildings = LayerModel(
-    id: kDrawerBuildingsLayerId,
-  );
+  static const buildings = LayerModel(id: kDrawerBuildingsLayerId);
   static Map<CellPointModel, CellTileModel> _tilesFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          CellPointModel.fromJson(jsonDecode(key)),
-          CellTileModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) => MapEntry(
+      CellPointModel.fromJson(jsonDecode(key)),
+      CellTileModel.fromJson(value),
+    ),
+  );
   static Map<String, dynamic> _tilesToJson(
     final Map<CellPointModel, CellTileModel> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          jsonEncode(key.toJson()),
-          value.toJson(),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(jsonEncode(key.toJson()), value.toJson()),
+  );
 }
 
 /// Class which keeps all information about one tile and its references
@@ -242,8 +216,5 @@ class RenderObjectModel with _$RenderObjectModel {
   factory RenderObjectModel.fromJson(final Map<String, dynamic> json) =>
       _$RenderObjectModelFromJson(json);
   const RenderObjectModel._();
-  static const empty = RenderObjectModel(
-    id: Gid.empty,
-    tileId: TileId.empty,
-  );
+  static const empty = RenderObjectModel(id: Gid.empty, tileId: TileId.empty);
 }

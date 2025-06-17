@@ -66,9 +66,7 @@ class CreatePlayerScreen extends HookWidget {
               isLongButton: true,
               mainAlignment: MainAxisAlignment.center,
               onPressed: () async {
-                final profile = await notifier.onCreateProfile(
-                  locale: locale,
-                );
+                final profile = await notifier.onCreateProfile(locale: locale);
                 if (profile == null) return;
                 onPlayerCreated(profile);
               },

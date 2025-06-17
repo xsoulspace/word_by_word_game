@@ -25,16 +25,12 @@ enum WbwDictionariesVersion {
   static const latest = $1;
 }
 
-enum WbwDictionariesLoadingStatus {
-  notLoaded,
-  loading,
-  loaded,
-}
+enum WbwDictionariesLoadingStatus { notLoaded, loading, loaded }
 
 typedef WbwDictionaryEntryTuple = ({
   UiLanguage language,
   String archivePath,
-  String csvPath
+  String csvPath,
 });
 const _kVersionKey = 'wbw_dictionary_version';
 const _kWasCalledToLoadKey = 'wbw_dictionary_load_called';
@@ -44,22 +40,22 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     required this.simpleLocal,
     required this.repository,
     final AssetBundle? assetBundle,
-  })  : assetBundle = assetBundle ?? rootBundle,
-        super(WbwDictionariesLoadingStatus.notLoaded);
+  }) : assetBundle = assetBundle ?? rootBundle,
+       super(WbwDictionariesLoadingStatus.notLoaded);
 
   // ignore: avoid_unused_constructor_parameters
   factory WbwDictionary.provide(final BuildContext context) => WbwDictionary(
-        assetBundle: DefaultAssetBundle.of(context),
-        simpleLocal: context.read(),
-        repository: WbwDictionaryRepository(
-          remote: WbwDictionaryRemoteSource(client: context.read()),
-          // TODO(arenukvern): maybe restrict some clients.. not sure about
-          /// will server be able to hold.
-          isAllowedToUseRemote:
-              DeviceRuntimeType.isNativeMobile || DeviceRuntimeType.isWeb,
-          onlineStatusService: context.read(),
-        ),
-      );
+    assetBundle: DefaultAssetBundle.of(context),
+    simpleLocal: context.read(),
+    repository: WbwDictionaryRepository(
+      remote: WbwDictionaryRemoteSource(client: context.read()),
+      // TODO(arenukvern): maybe restrict some clients.. not sure about
+      /// will server be able to hold.
+      isAllowedToUseRemote:
+          DeviceRuntimeType.isNativeMobile || DeviceRuntimeType.isWeb,
+      onlineStatusService: context.read(),
+    ),
+  );
   final LocalDbI simpleLocal;
   final AssetBundle assetBundle;
   final WbwDictionaryRepository repository;
@@ -69,8 +65,10 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
       value == WbwDictionariesLoadingStatus.notLoaded || isLoading;
   int debugLoadingTimeInSeconds = 0;
   Future<String> getWordMeaning(final WordMeaningRequestTuple tuple) async =>
-      (await repository.getWordMeaning(tuple, isLocalAllowed: isLoaded))
-          .clearWhitespaces();
+      (await repository.getWordMeaning(
+        tuple,
+        isLocalAllowed: isLoaded,
+      )).clearWhitespaces();
 
   /// checks all languages
   ///
@@ -80,13 +78,12 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     final String word,
   ) async {
     for (final lang in _paths) {
-      final result =
-          await getWordMeaning((language: lang.language, word: word));
+      final result = await getWordMeaning((
+        language: lang.language,
+        word: word,
+      ));
       if (result.isNotEmpty) {
-        return (
-          meaning: result,
-          language: lang.language,
-        );
+        return (meaning: result, language: lang.language);
       }
     }
     return null;
@@ -124,17 +121,17 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
   ///
   /// can be called anytime, as once it is cached,
   /// it is very fast operation.
-  Future<void> loadAndCache({
-    final bool shouldForceUpdate = false,
-  }) async {
+  Future<void> loadAndCache({final bool shouldForceUpdate = false}) async {
     if (isLoading) return;
-    final isAllowedToBeLoaded =
-        await simpleLocal.getBool(key: _kWasCalledToLoadKey);
+    final isAllowedToBeLoaded = await simpleLocal.getBool(
+      key: _kWasCalledToLoadKey,
+    );
     if (!isAllowedToBeLoaded) return;
 
     /// do not load if user is online
     if (repository.onlineStatusService.isConnected &&
-        repository.isAllowedToUseRemote) return;
+        repository.isAllowedToUseRemote)
+      return;
 
     value = WbwDictionariesLoadingStatus.loading;
     _startStopwatch();
@@ -145,7 +142,8 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     final version = versionName.isEmpty
         ? null
         : WbwDictionariesVersion.values.byName(versionName);
-    final requiresUpdate = shouldForceUpdate ||
+    final requiresUpdate =
+        shouldForceUpdate ||
         version == null ||
         version != WbwDictionariesVersion.latest;
     print('dictionaries version $version requiresUpdate: $requiresUpdate');
@@ -197,10 +195,10 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     if (isNotLoaded) return false;
 
     for (final path in _paths) {
-      final isCorrect = await repository.checkWord(
-        (language: path.language, word: word),
-        isLocalAllowed: isLoaded,
-      );
+      final isCorrect = await repository.checkWord((
+        language: path.language,
+        word: word,
+      ), isLocalAllowed: isLoaded);
       if (isCorrect) return true;
     }
     return false;

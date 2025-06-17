@@ -4,12 +4,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'states_statuses_cubit.freezed.dart';
 
-enum LevelStateStatus {
-  loading,
-  paused,
-  levelReady,
-  playing;
-}
+enum LevelStateStatus { loading, paused, levelReady, playing }
 
 enum LevelPartName {
   level,
@@ -47,18 +42,16 @@ class StatesStatusesCubitDto {
 
 class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
   StatesStatusesCubit(final BuildContext context)
-      : dto = StatesStatusesCubitDto(context: context),
-        super(const StatesStatusesCubitState());
+    : dto = StatesStatusesCubitDto(context: context),
+      super(const StatesStatusesCubitState());
   final StatesStatusesCubitDto dto;
   // ignore: avoid_setters_without_getters
   set _state(final StatesStatusesCubitState value) => emit(value);
   bool get isLoading => switch (state.levelStateStatus) {
-        LevelStateStatus.levelReady || LevelStateStatus.paused => false,
-        LevelStateStatus.playing || LevelStateStatus.loading => true,
-      };
-  void onLevelPartLoaded({
-    required final LevelPartName levelPartName,
-  }) {
+    LevelStateStatus.levelReady || LevelStateStatus.paused => false,
+    LevelStateStatus.playing || LevelStateStatus.loading => true,
+  };
+  void onLevelPartLoaded({required final LevelPartName levelPartName}) {
     final loadedLevelParts = {...state.loadedLevelParts, levelPartName};
     _state = state.copyWith(loadedLevelParts: loadedLevelParts);
     if (LevelPartName.containsAll(loadedLevelParts)) {
@@ -69,15 +62,13 @@ class StatesStatusesCubit extends Cubit<StatesStatusesCubitState> {
   void resume() => onChangeLevelStateStatus(status: LevelStateStatus.playing);
   void pause() => onChangeLevelStateStatus(status: LevelStateStatus.paused);
 
-  void onChangeLevelStateStatus({
-    required final LevelStateStatus status,
-  }) {
+  void onChangeLevelStateStatus({required final LevelStateStatus status}) {
     switch (status) {
       case LevelStateStatus.loading:
         _state = state.copyWith(loadedLevelParts: {});
       case LevelStateStatus.paused ||
-            LevelStateStatus.levelReady ||
-            LevelStateStatus.playing:
+          LevelStateStatus.levelReady ||
+          LevelStateStatus.playing:
     }
     _state = state.copyWith(levelStateStatus: status);
   }

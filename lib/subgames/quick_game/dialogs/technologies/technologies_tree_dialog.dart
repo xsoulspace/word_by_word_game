@@ -15,7 +15,7 @@ typedef TechnologyWordInfoTuple = ({
   /// original word
   ///
   /// Controlled by [wordsLanguage]
-  UsefulWordModel? languageWord
+  UsefulWordModel? languageWord,
 });
 
 class _TechnologyTile extends StatelessWidget {
@@ -41,7 +41,8 @@ class _TechnologyTile extends StatelessWidget {
 
     /// used to provide fast translation and meaning
     final allUiWords = value.unlockCondition.languageWords[locale.language]!;
-    final isUnlocked = unlockCondition != null &&
+    final isUnlocked =
+        unlockCondition != null &&
         mechanics.technology.checkIsUnlockedInSomeLanguages(
           unlockCondition: unlockCondition,
         );
@@ -110,10 +111,11 @@ class _TechnologyTile extends StatelessWidget {
                           ))
                     .getValue(locale),
                 style: context.textTheme.labelMedium?.copyWith(
-                  color: (isUnlocked
-                          ? context.colorScheme.surfaceTint
-                          : context.colorScheme.secondary)
-                      .withOpacity(0.5),
+                  color:
+                      (isUnlocked
+                              ? context.colorScheme.surfaceTint
+                              : context.colorScheme.secondary)
+                          .withOpacity(0.5),
                 ),
               ),
             ],
@@ -122,40 +124,36 @@ class _TechnologyTile extends StatelessWidget {
             height: 48,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: allWords.mapIndexed(
-                (final index, final word) {
-                  void onWordPressed() => onHover(
-                        (
-                          technology: value,
-                          uiWord: allUiWords[index],
-                          languageWord: word,
-                        ),
-                      );
-                  return FocusableActionDetector(
-                    onShowHoverHighlight: (final isHovered) {
-                      if (!isHovered) return;
-                      onWordPressed();
-                    },
-                    key: ValueKey(word),
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                      child: InputChip(
-                        onPressed: onWordPressed,
-                        padding: EdgeInsets.zero,
-                        label: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(word.word),
-                            const Gap(8),
-                            const Icon(Icons.info_outline, size: 14),
-                          ],
-                        ),
-                        selected: wordsProgress?[index].isUsed == true,
+              children: allWords.mapIndexed((final index, final word) {
+                void onWordPressed() => onHover((
+                  technology: value,
+                  uiWord: allUiWords[index],
+                  languageWord: word,
+                ));
+                return FocusableActionDetector(
+                  onShowHoverHighlight: (final isHovered) {
+                    if (!isHovered) return;
+                    onWordPressed();
+                  },
+                  key: ValueKey(word),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 2),
+                    child: InputChip(
+                      onPressed: onWordPressed,
+                      padding: EdgeInsets.zero,
+                      label: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(word.word),
+                          const Gap(8),
+                          const Icon(Icons.info_outline, size: 14),
+                        ],
                       ),
+                      selected: wordsProgress?[index].isUsed == true,
                     ),
-                  );
-                },
-              ).toList(),
+                  ),
+                );
+              }).toList(),
             ),
           ),
           Divider(color: context.colorScheme.surfaceTint.withOpacity(0.1)),
@@ -166,9 +164,7 @@ class _TechnologyTile extends StatelessWidget {
 }
 
 class _TechnologyPanelView extends StatefulWidget {
-  const _TechnologyPanelView({
-    required this.technologyWord,
-  });
+  const _TechnologyPanelView({required this.technologyWord});
   final TechnologyWordInfoTuple? technologyWord;
 
   @override
@@ -195,12 +191,10 @@ class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
     }
 
     if (uiWord != null) {
-      _wordMeaning = await _wbwDictionary.getWordMeaning(
-        (
-          language: language,
-          word: uiWord.word,
-        ),
-      );
+      _wordMeaning = await _wbwDictionary.getWordMeaning((
+        language: language,
+        word: uiWord.word,
+      ));
       if (_wordMeaning == '') setEmptyMeaning();
     } else {
       setEmptyMeaning();

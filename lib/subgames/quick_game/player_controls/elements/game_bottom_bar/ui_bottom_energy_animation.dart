@@ -19,40 +19,42 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
   void initState() {
     super.initState();
     _subscription = context.read<LevelBloc>().stream.asBroadcastStream().listen(
-          (final state) => _onData(
-            phaseType: state.phaseType,
-            word: state.latestWord,
-          ),
-        );
+      (final state) =>
+          _onData(phaseType: state.phaseType, word: state.latestWord),
+    );
   }
 
   Animatable<double> _fadeInTweenSequence() {
     const finalOpacity = 0.8;
-    return TweenSequence<double>(
-      [
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0, end: finalOpacity)
-              .chain(CurveTween(curve: Curves.easeIn)),
-          weight: 10,
-        ),
-        TweenSequenceItem<double>(
-          tween: ConstantTween<double>(finalOpacity),
-          weight: 80,
-        ),
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: finalOpacity, end: 0)
-              .chain(CurveTween(curve: Curves.easeOut)),
-          weight: 10,
-        ),
-      ],
-    );
+    return TweenSequence<double>([
+      TweenSequenceItem<double>(
+        tween: Tween<double>(
+          begin: 0,
+          end: finalOpacity,
+        ).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 10,
+      ),
+      TweenSequenceItem<double>(
+        tween: ConstantTween<double>(finalOpacity),
+        weight: 80,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(
+          begin: finalOpacity,
+          end: 0,
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 10,
+      ),
+    ]);
   }
 
   AnimationControllerTuple _createAnimation({
     required final Animatable<double> tweenSequence,
   }) {
-    final controller =
-        AnimationController(vsync: this, duration: 350.milliseconds);
+    final controller = AnimationController(
+      vsync: this,
+      duration: 350.milliseconds,
+    );
     final moveAnimation = controller.drive(
       CurveTween(curve: Curves.easeInBack),
     );
@@ -62,7 +64,7 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
     return (
       controller: controller,
       animation: moveAnimation,
-      fadeAnimation: fadeAnimation
+      fadeAnimation: fadeAnimation,
     );
   }
 
@@ -77,10 +79,9 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
       if (_isAnimationRunning || word == _lastWord) return;
       _lastWord = word;
       _isAnimationRunning = true;
-      final score = context
-          .read<MechanicsCollection>()
-          .score
-          .getScoreFromWord(word: word);
+      final score = context.read<MechanicsCollection>().score.getScoreFromWord(
+        word: word,
+      );
       int count = score.value.formattedScore ~/ 3;
       final maxCount = count;
       final maxWidth = _getMaxWidth();
@@ -95,23 +96,21 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
           final icon = _UiEnergyIcon(maxWidth: maxWidth, tuple: tuple);
           final key = 'l$count';
           _icons[key] = icon;
-          tuple.animation.addStatusListener(
-            (final status) {
-              if (status
-                  case AnimationStatus.completed || AnimationStatus.dismissed) {
-                final firstKey = 'l$maxCount';
-                final isFirstKey = firstKey == key;
-                if (isFirstKey) {
-                  context
-                      .read<UiTechPointsAnimationNotifier>()
-                      .setPoints(maxCount);
-                }
-                tuple.controller.dispose();
-                _icons.remove(key);
-                setState(() {});
+          tuple.animation.addStatusListener((final status) {
+            if (status
+                case AnimationStatus.completed || AnimationStatus.dismissed) {
+              final firstKey = 'l$maxCount';
+              final isFirstKey = firstKey == key;
+              if (isFirstKey) {
+                context.read<UiTechPointsAnimationNotifier>().setPoints(
+                  maxCount,
+                );
               }
-            },
-          );
+              tuple.controller.dispose();
+              _icons.remove(key);
+              setState(() {});
+            }
+          });
           tuple.controller.forward();
           setState(() {});
           count--;
@@ -138,10 +137,8 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
   }
 
   @override
-  Widget build(final BuildContext context) => Stack(
-        fit: StackFit.expand,
-        children: _icons.values.toList(),
-      );
+  Widget build(final BuildContext context) =>
+      Stack(fit: StackFit.expand, children: _icons.values.toList());
 }
 
 typedef AnimationControllerTuple = ({
@@ -151,10 +148,7 @@ typedef AnimationControllerTuple = ({
 });
 
 class _UiEnergyIcon extends HookWidget {
-  const _UiEnergyIcon({
-    required this.tuple,
-    required this.maxWidth,
-  });
+  const _UiEnergyIcon({required this.tuple, required this.maxWidth});
   final AnimationControllerTuple tuple;
   final double maxWidth;
 
@@ -178,11 +172,7 @@ class _UiEnergyIcon extends HookWidget {
       ],
     );
 
-    return Positioned(
-      top: offset.dy,
-      right: offset.dx,
-      child: icon,
-    );
+    return Positioned(top: offset.dy, right: offset.dx, child: icon);
   }
 
   Offset _calculateBezierOffset({
@@ -195,11 +185,13 @@ class _UiEnergyIcon extends HookWidget {
     final uuu = uu * u;
     final ttt = tt * t;
 
-    final dx = (uuu * points[0].dx) +
+    final dx =
+        (uuu * points[0].dx) +
         (3 * uu * t * points[1].dx) +
         (3 * u * tt * points[2].dx) +
         (ttt * points[3].dx);
-    final dy = (uuu * points[0].dy) +
+    final dy =
+        (uuu * points[0].dy) +
         (3 * uu * t * points[1].dy) +
         (3 * u * tt * points[2].dy) +
         (ttt * points[3].dy);

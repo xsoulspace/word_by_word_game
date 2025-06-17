@@ -50,9 +50,7 @@ class TilesDrawer extends Component
       if (effectiveLayerTiles.containsKey(cell)) {
         effectiveLayerTiles.update(
           cell,
-          (final value) => value.copyWith(
-            tileNeighbours: [],
-          ),
+          (final value) => value.copyWith(tileNeighbours: []),
         );
         for (final MapEntry(key: direction, value: side)
             in tilesNeighbourDirections.entries) {
@@ -95,11 +93,8 @@ class TilesDrawer extends Component
       if (effectiveLayerTiles.containsKey(cellPoint)) {
         final updatedValue = effectiveLayerTiles.update(
           cellPoint,
-          (final value) => value.copyWith(
-            tileId: TileId.empty,
-            npcs: [],
-            objects: [],
-          ),
+          (final value) =>
+              value.copyWith(tileId: TileId.empty, npcs: [], objects: []),
         );
         if (updatedValue.isEmpty) effectiveLayerTiles.remove(cellPoint);
       }
@@ -116,7 +111,8 @@ class TilesDrawer extends Component
           final gid = Gid.create();
           final objects = [gid];
           canvasData = canvasData.copyWith(
-            objects: {...canvasData.objects}..[gid] = RenderObjectModel(
+            objects: {...canvasData.objects}
+              ..[gid] = RenderObjectModel(
                 id: gid,
                 animationBehaviour: tileToDraw.behaviourPaths.keys.first,
                 tileId: tileToDraw.id,
@@ -124,12 +120,8 @@ class TilesDrawer extends Component
           );
           effectiveLayerTiles.update(
             cellPoint,
-            (final value) => value.copyWith(
-              objects: objects,
-            ),
-            ifAbsent: () => CellTileModel(
-              objects: objects,
-            ),
+            (final value) => value.copyWith(objects: objects),
+            ifAbsent: () => CellTileModel(objects: objects),
           );
         case TileType.playerObject:
       }
@@ -226,7 +218,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
         for (var row = -1; row < tileRows + 3; row++) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
-                  Vector2(col.toDouble(), row.toDouble());
+              Vector2(col.toDouble(), row.toDouble());
 
           final cellPoint = CellPointModel(
             cellPointVector.x.toInt(),
@@ -265,9 +257,7 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 tileName: tilename,
               );
               final src = _runtimeCache[spritePath] ??= () {
-                final s = tilesetConstants.getAtlasSpriteByPath(
-                  spritePath,
-                );
+                final s = tilesetConstants.getAtlasSpriteByPath(spritePath);
 
                 _spriteImage ??= s.image;
 
@@ -283,8 +273,9 @@ class TilesPainterAtlasImpl implements TilesPainterInterface {
                 _tmpRenderPosition.y - (0 * _tmpRenderSize.y),
               );
 
-              final drawRect =
-                  _tmpRenderPosition.toPositionedRect(_tmpRenderSize);
+              final drawRect = _tmpRenderPosition.toPositionedRect(
+                _tmpRenderSize,
+              );
 
               final rsTransform = RSTransform.fromComponents(
                 rotation: 0,
@@ -410,15 +401,16 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
       _tilesetType = canvasData.tilesetType;
       tilesetConstants.resetCache();
     }
-    final visibleLayers =
-        canvasData.layers.where((final e) => e.isVisible).toList();
+    final visibleLayers = canvasData.layers
+        .where((final e) => e.isVisible)
+        .toList();
 
     for (final tileLayer in visibleLayers) {
       for (var col = -1; col < tileColumns + 1; col++) {
         for (var row = -1; row < tileRows + 3; row++) {
           final cellPointVector =
               ((offsetOrigin - origin) / kTileDimension.toDouble()) +
-                  Vector2(col.toDouble(), row.toDouble());
+              Vector2(col.toDouble(), row.toDouble());
 
           final cellPoint = CellPointModel(
             cellPointVector.x.toInt(),
@@ -444,11 +436,7 @@ class TilesPainterImagesImpl implements TilesPainterInterface {
 
               final image = images.fromCache(tilePath);
 
-              canvas.drawImage(
-                image,
-                vectorPosition.toOffset(),
-                _paint,
-              );
+              canvas.drawImage(image, vectorPosition.toOffset(), _paint);
             }
 
             /// Drawing tile

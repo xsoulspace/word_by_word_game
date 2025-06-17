@@ -5,11 +5,11 @@ import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 
 class _DialogStateDiDto {
   _DialogStateDiDto.use(final Locator read)
-      : levelBloc = read(),
-        levelPlayersBloc = read(),
-        dialogController = read(),
-        wbwDictionary = read(),
-        mechanics = read();
+    : levelBloc = read(),
+      levelPlayersBloc = read(),
+      dialogController = read(),
+      wbwDictionary = read(),
+      mechanics = read();
   final LevelBloc levelBloc;
   final WbwDictionary wbwDictionary;
   final LevelPlayersBloc levelPlayersBloc;
@@ -57,8 +57,9 @@ class _DialogState extends ValueNotifier<bool> {
     _setCostOfWord();
     if (_isMounted) notifyListeners();
     // TODO(arenukvern): not good solution, but may work:)
-    final result =
-        await dto.wbwDictionary.getWordMeaningCheckAll(_suggestedWord);
+    final result = await dto.wbwDictionary.getWordMeaningCheckAll(
+      _suggestedWord,
+    );
     if (result != null && result.meaning.isNotEmpty) {
       _suggestedWordMeaning = result.meaning;
       if (_isMounted) notifyListeners();
@@ -194,15 +195,16 @@ class LevelWordSuggestionDialog extends HookWidget {
               child: Builder(
                 builder: (final context) {
                   final children = <Widget>[];
-                  final parts =
-                      state._suggestedWord.split(currentWord.middlePart).map(
-                            (final e) => Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Text(
-                                e.characters.map((final e) => '*').join(),
-                              ),
-                            ),
-                          );
+                  final parts = state._suggestedWord
+                      .split(currentWord.middlePart)
+                      .map(
+                        (final e) => Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text(
+                            e.characters.map((final e) => '*').join(),
+                          ),
+                        ),
+                      );
                   children
                     ..add(parts.first)
                     ..add(
@@ -247,8 +249,9 @@ class LevelWordSuggestionDialog extends HookWidget {
               children: [
                 Expanded(
                   child: UiOutlinedButton(
-                    onPressed:
-                        state.isUsageAvailable ? state.onRevealWord : null,
+                    onPressed: state.isUsageAvailable
+                        ? state.onRevealWord
+                        : null,
                     child: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -307,11 +310,7 @@ class LevelWordSuggestionDialog extends HookWidget {
 }
 
 class UiCircleCloseButton extends StatelessWidget {
-  const UiCircleCloseButton({
-    required this.onPressed,
-    this.icon,
-    super.key,
-  });
+  const UiCircleCloseButton({required this.onPressed, this.icon, super.key});
   final VoidCallback onPressed;
   final IconData? icon;
   @override
@@ -329,10 +328,7 @@ class UiCircleCloseButton extends StatelessWidget {
       icon: icon,
       padding: icon != null
           ? null
-          : const EdgeInsets.symmetric(
-              vertical: 8,
-              horizontal: 18,
-            ),
+          : const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
       labelChild: icon != null ? null : const Text('X'),
       focusIcon: null,
       styleType: ButtonStyleType.outlined,
@@ -371,9 +367,7 @@ class _UsePointsButton extends StatelessWidget {
                 languages.it: 'Punteggio',
               },
             ).getValue(locale),
-            style: context.textThemeBold.labelLarge?.copyWith(
-              color: fadeColor,
-            ),
+            style: context.textThemeBold.labelLarge?.copyWith(color: fadeColor),
             textAlign: TextAlign.right,
           ),
         ),
@@ -385,12 +379,7 @@ class _UsePointsButton extends StatelessWidget {
                 ? context.colorScheme.primary
                 : context.colorScheme.error.withOpacity(0.8),
           ),
-        )
-            .animate(
-              key: ValueKey(word),
-              autoPlay: !isUsageAvailable,
-            )
-            .shake(),
+        ).animate(key: ValueKey(word), autoPlay: !isUsageAvailable).shake(),
         const Gap(12),
         Expanded(
           child: Text(
@@ -401,9 +390,7 @@ class _UsePointsButton extends StatelessWidget {
                 languages.it: 'Punteggio Parola',
               },
             ).getValue(locale),
-            style: context.textThemeBold.labelLarge?.copyWith(
-              color: fadeColor,
-            ),
+            style: context.textThemeBold.labelLarge?.copyWith(color: fadeColor),
           ),
         ),
       ],
@@ -422,12 +409,12 @@ class UiOutlinedButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => AnimatedOpacity(
-        duration: 250.milliseconds,
-        opacity: onPressed == null ? 0.2 : 1,
-        child: UiBaseButton(
-          onPressed: onPressed,
-          builder: (final context, final focused, final onlyFocused) =>
-              Card.outlined(
+    duration: 250.milliseconds,
+    opacity: onPressed == null ? 0.2 : 1,
+    child: UiBaseButton(
+      onPressed: onPressed,
+      builder: (final context, final focused, final onlyFocused) =>
+          Card.outlined(
             elevation: onPressed == null ? null : 1,
             shape: BeveledRectangleBorder(
               side: BorderSide(color: context.colorScheme.primary),
@@ -439,6 +426,6 @@ class UiOutlinedButton extends StatelessWidget {
               child: child,
             ),
           ),
-        ),
-      );
+    ),
+  );
 }

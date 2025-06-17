@@ -50,12 +50,12 @@ class KeyboardBindingsNotifier extends ValueNotifier<KeyboardBindings> {
   /// The [context] parameter is required to initialize the notifier.
   // ignore: avoid_unused_constructor_parameters
   KeyboardBindingsNotifier(final BuildContext context)
-      : super(
-          KeyboardBindingsType.values.toMap(
-            toKey: (final item) => item,
-            toValue: (final item) => item.key,
-          ),
-        );
+    : super(
+        KeyboardBindingsType.values.toMap(
+          toKey: (final item) => item,
+          toValue: (final item) => item.key,
+        ),
+      );
 
   /// {@macro ui_divider.ai_description}
   static const String aiDescription =

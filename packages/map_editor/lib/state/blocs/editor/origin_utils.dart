@@ -19,7 +19,7 @@ class GameOrigins {
 class GameVector2 {
   const GameVector2.fromMapVector2(this.mapVector2);
   GameVector2.fromMapSerializedVector2(final SerializedVector2 vector)
-      : mapVector2 = Vector2(vector.x, vector.y);
+    : mapVector2 = Vector2(vector.x, vector.y);
 
   factory GameVector2.fromScreenVector2({
     required final Vector2 screenVector2,
@@ -64,10 +64,8 @@ class GameVector2 {
     return math.Point(x, y);
   }
 
-  SerializedVector2 toSerializedMapVector2() => SerializedVector2(
-        x: mapVector2.x,
-        y: mapVector2.y,
-      );
+  SerializedVector2 toSerializedMapVector2() =>
+      SerializedVector2(x: mapVector2.x, y: mapVector2.y);
   String getPrintableString(final GameOrigins origins) =>
       '\n\nGameVector2(mapVector2: $mapVector2). '
       '\norigins: $origins. '

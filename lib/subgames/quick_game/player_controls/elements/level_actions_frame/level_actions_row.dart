@@ -16,11 +16,7 @@ class UiActionFrame extends StatelessWidget {
       return const UIActionFrameAdvanced();
     } else {
       return const Column(
-        children: [
-          UiGaps.small,
-          UiActionFrameSimple(),
-          UiGaps.medium,
-        ],
+        children: [UiGaps.small, UiActionFrameSimple(), UiGaps.medium],
       );
     }
   }

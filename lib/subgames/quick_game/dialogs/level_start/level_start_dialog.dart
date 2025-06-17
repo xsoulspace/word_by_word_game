@@ -15,10 +15,7 @@ part 'level_start_dialog_ui_state.dart';
 part 'level_start_dialog_ux_notifier.dart';
 
 class LevelUiUxStatesProvider extends HookWidget {
-  const LevelUiUxStatesProvider({
-    required this.builder,
-    super.key,
-  });
+  const LevelUiUxStatesProvider({required this.builder, super.key});
   final WidgetBuilder builder;
 
   @override
@@ -52,8 +49,9 @@ class LevelUiUxStatesProvider extends HookWidget {
               color: Colors.white60,
               child: GestureDetector(
                 behavior: HitTestBehavior.opaque,
-                onTap:
-                    uiState.isVisible ? uiState.onSwitchDialogVisiblity : null,
+                onTap: uiState.isVisible
+                    ? uiState.onSwitchDialogVisiblity
+                    : null,
               ),
             ),
           ),
@@ -64,9 +62,9 @@ class LevelUiUxStatesProvider extends HookWidget {
             // ),
             portalFollower: Visibility(
               visible: uiState.isVisible,
-              child: const _DialogScreen()
-                  .animate()
-                  .fadeIn(duration: 50.milliseconds),
+              child: const _DialogScreen().animate().fadeIn(
+                duration: 50.milliseconds,
+              ),
             ),
             child: builder(context),
           ),
@@ -98,14 +96,14 @@ class _DialogScreen extends HookWidget {
                 valueListenable: widgetUiState.currentViewNotifier,
                 builder: (final context, final currentView, final child) =>
                     switch (currentView) {
-                  LevelStartDialogView.choosePlayers => LevelOptionsScreen(
-                      onCreatePlayer: widgetUiState.onCreatePlayer,
-                    ),
-                  LevelStartDialogView.createPlayer => CreatePlayerScreen(
-                      onCancel: widgetUiState.onChoosePlayers,
-                      onPlayerCreated: widgetUiState.onPlayerCreated,
-                    ),
-                },
+                      LevelStartDialogView.choosePlayers => LevelOptionsScreen(
+                        onCreatePlayer: widgetUiState.onCreatePlayer,
+                      ),
+                      LevelStartDialogView.createPlayer => CreatePlayerScreen(
+                        onCancel: widgetUiState.onChoosePlayers,
+                        onPlayerCreated: widgetUiState.onPlayerCreated,
+                      ),
+                    },
               ),
             ),
           ),
@@ -136,11 +134,7 @@ class _DialogScreen extends HookWidget {
     );
     if (DeviceRuntimeType.isMobile) {
       return Center(
-        child: SafeArea(
-          child: SingleChildScrollView(
-            child: child,
-          ),
-        ),
+        child: SafeArea(child: SingleChildScrollView(child: child)),
       );
     } else {
       return Center(child: child);

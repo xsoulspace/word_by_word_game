@@ -71,8 +71,8 @@ class UiTextField extends StatefulWidget {
     this.focusNode,
     this.obscureText = false,
     super.key,
-  })  : focusedBorder = const UnderlineInputBorder(),
-        decoration = null;
+  }) : focusedBorder = const UnderlineInputBorder(),
+       decoration = null;
 
   /// The hint text displayed in the text field.
   final String? hintText;
@@ -154,7 +154,8 @@ class _UiTextFieldState extends State<UiTextField> {
       validator: widget.validator,
       onEditingComplete: widget.onEditingComplete,
       onFieldSubmitted: widget.onFieldSubmitted,
-      decoration: widget.decoration ??
+      decoration:
+          widget.decoration ??
           InputDecoration(
             hintText: widget.hintText,
             labelText: widget.labelText,

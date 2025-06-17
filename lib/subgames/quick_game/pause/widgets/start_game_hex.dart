@@ -3,8 +3,9 @@ import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
 
-const kQuickGameMapId =
-    CanvasDataModelId(value: '823ea880-44c3-11ee-a8e7-c3f4020ba610');
+const kQuickGameMapId = CanvasDataModelId(
+  value: '823ea880-44c3-11ee-a8e7-c3f4020ba610',
+);
 
 ({
   bool isAdventureSaveExists,
@@ -13,7 +14,8 @@ const kQuickGameMapId =
   bool isCurrentLevelRunning,
   PauseScreenState pauseScreenState,
   CanvasDataModelId currentLevelId,
-}) useGameStartButtonsStatuses(final BuildContext context) {
+})
+useGameStartButtonsStatuses(final BuildContext context) {
   final pauseScreenState = context.read<PauseScreenState>();
   final levelPlayersBloc = context.watch<LevelPlayersBloc>();
   final quickGameSave = context.select<GlobalGameBloc, LevelModel?>(

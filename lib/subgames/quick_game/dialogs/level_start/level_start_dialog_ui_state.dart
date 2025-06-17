@@ -2,21 +2,18 @@ part of 'level_start_dialog.dart';
 
 class _LevelStartDialogUiStateDiDto {
   _LevelStartDialogUiStateDiDto.use(final Locator read)
-      : globalGameBloc = read();
+    : globalGameBloc = read();
   final GlobalGameBloc globalGameBloc;
 }
 
-enum LevelStartDialogView {
-  choosePlayers,
-  createPlayer,
-}
+enum LevelStartDialogView { choosePlayers, createPlayer }
 
 class LevelStartDialogUiState extends ValueNotifier<void> {
   LevelStartDialogUiState({
     required final BuildContext context,
     required this.uxState,
-  })  : diDto = _LevelStartDialogUiStateDiDto.use(context.read),
-        super(null);
+  }) : diDto = _LevelStartDialogUiStateDiDto.use(context.read),
+       super(null);
   final LevelStartDialogUxNotifier uxState;
   final _LevelStartDialogUiStateDiDto diDto;
 

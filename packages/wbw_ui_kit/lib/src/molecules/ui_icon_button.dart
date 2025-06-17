@@ -61,9 +61,7 @@ class UiIconButton extends HookWidget {
               ),
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage(
-                    UiAssetHelper.useImagePath(icon.path),
-                  ),
+                  image: AssetImage(UiAssetHelper.useImagePath(icon.path)),
                   fit: BoxFit.contain,
                 ),
               ),

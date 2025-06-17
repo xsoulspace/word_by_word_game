@@ -20,13 +20,15 @@ class SEn extends S {
   }
 
   @override
-  String get wordAlreadyWritten => 'This word already written. Try another word.';
+  String get wordAlreadyWritten =>
+      'This word already written. Try another word.';
 
   @override
   String get resetEnding => 'Reset ending';
 
   @override
-  String get congratulationsYouPassedTheLandscape => 'Congratulations! You passed this landscape!';
+  String get congratulationsYouPassedTheLandscape =>
+      'Congratulations! You passed this landscape!';
 
   @override
   String get congratulations => 'Congratulations!';
@@ -50,7 +52,8 @@ class SEn extends S {
   String get toLandscapes => 'To Landscapes';
 
   @override
-  String get youHaveLandedInTheNowhere => 'You have landed in the middle of nowhere..';
+  String get youHaveLandedInTheNowhere =>
+      'You have landed in the middle of nowhere..';
 
   @override
   String get profileCreator => 'Profile Creator';
@@ -125,7 +128,8 @@ class SEn extends S {
   String get newGame => 'New Game';
 
   @override
-  String get sendFeedback => 'If you have an idea, improvements, or bugs join Discord server.';
+  String get sendFeedback =>
+      'If you have an idea, improvements, or bugs join Discord server.';
 
   @override
   String get back => 'Back';
@@ -157,10 +161,12 @@ class SEn extends S {
   String get privacyPolicy => 'Privacy Policy';
 
   @override
-  String get creatingGame => 'Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)';
+  String get creatingGame =>
+      'Hi, I\'m Anton. Thank you for your interest in this game. Hope you like it:)';
 
   @override
-  String get supportGame => 'You can support the game in https://boosty.to/arenukvern';
+  String get supportGame =>
+      'You can support the game in https://boosty.to/arenukvern';
 
   @override
   String get thankYou => 'Have a great day!';
@@ -233,31 +239,37 @@ class SEn extends S {
   String get currentPlayerName => 'Name of current player';
 
   @override
-  String get suggestWordButtonTooltip => 'Click to get random word based on current letters.';
+  String get suggestWordButtonTooltip =>
+      'Click to get random word based on current letters.';
 
   @override
-  String get mainMenuButtonTooltip => 'Click to open menu (current progress will be saved).';
+  String get mainMenuButtonTooltip =>
+      'Click to open menu (current progress will be saved).';
 
   @override
   String get yourCurrentHighcoreTooltip => 'Your current points.';
 
   @override
-  String get youDontHaveEnoughPoints => 'You don\'t have enough points to apply.';
+  String get youDontHaveEnoughPoints =>
+      'You don\'t have enough points to apply.';
 
   @override
   String get applyFuelOption => 'Convert score to energy';
 
   @override
-  String get createNewPlayerTooltip => 'Click to create profile for new player.';
+  String get createNewPlayerTooltip =>
+      'Click to create profile for new player.';
 
   @override
-  String get createNewFirstPlayerTitle => 'Create player profile to start a game.';
+  String get createNewFirstPlayerTitle =>
+      'Create player profile to start a game.';
 
   @override
   String get createNewPlayerTitle => 'Create profile for new player.';
 
   @override
-  String get createNewPlayerBody => 'You will be able to add this player\'s profile to any new game.';
+  String get createNewPlayerBody =>
+      'You will be able to add this player\'s profile to any new game.';
 
   @override
   String get createPlayer => 'Create player';

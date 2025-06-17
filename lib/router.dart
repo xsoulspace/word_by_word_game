@@ -20,15 +20,13 @@ final router = GoRouter(
           routes: [
             GoRoute(
               path: ScreenPaths.playableLevel,
-              builder: (final context, final state) => const WbwGameWidget(
-                key: ValueKey('lvl'),
-              ),
+              builder: (final context, final state) =>
+                  const WbwGameWidget(key: ValueKey('lvl')),
               routes: [
                 AppRoute(
                   'pause',
-                  (final context, final state) => const PauseScreen(
-                    key: ValueKey(ScreenPaths.pause),
-                  ),
+                  (final context, final state) =>
+                      const PauseScreen(key: ValueKey(ScreenPaths.pause)),
                   isTransparent: true,
                   useFade: true,
                 ),
@@ -65,32 +63,32 @@ class AppRoute extends GoRoute {
     final bool useFade = false,
     final bool isTransparent = false,
   }) : super(
-          path: path,
-          routes: routes,
-          pageBuilder: (final context, final state) {
-            // final pageContent = Scaffold(
-            //   body: builder(state),
-            //   resizeToAvoidBottomInset: false,
-            // );
-            final pageContent = builder(context, state);
-            if (useFade || isTransparent) {
-              return CustomTransitionPage(
-                key: state.pageKey,
-                child: pageContent,
-                opaque: !isTransparent,
-                barrierColor: Colors.transparent,
-                transitionsBuilder: (
-                  final context,
-                  final animation,
-                  final secondaryAnimation,
-                  final child,
-                ) =>
-                    FadeTransition(opacity: animation, child: child),
-              );
-            }
-            return CupertinoPage(child: pageContent);
-          },
-        );
+         path: path,
+         routes: routes,
+         pageBuilder: (final context, final state) {
+           // final pageContent = Scaffold(
+           //   body: builder(state),
+           //   resizeToAvoidBottomInset: false,
+           // );
+           final pageContent = builder(context, state);
+           if (useFade || isTransparent) {
+             return CustomTransitionPage(
+               key: state.pageKey,
+               child: pageContent,
+               opaque: !isTransparent,
+               barrierColor: Colors.transparent,
+               transitionsBuilder:
+                   (
+                     final context,
+                     final animation,
+                     final secondaryAnimation,
+                     final child,
+                   ) => FadeTransition(opacity: animation, child: child),
+             );
+           }
+           return CupertinoPage(child: pageContent);
+         },
+       );
 }
 
 /// !If you want to add new route, please add the route to the [routes]
@@ -119,9 +117,7 @@ class AppPathsController {
     to(ScreenPaths.toPause(id: currentLevelId));
   }
 
-  void toPauseOrRoot({
-    required final GlobalGameBloc globalGameBloc,
-  }) {
+  void toPauseOrRoot({required final GlobalGameBloc globalGameBloc}) {
     final levelId = globalGameBloc.state.currentLevelId;
     final isGameIsRunning = levelId.isNotEmpty;
     if (isGameIsRunning) {
@@ -133,9 +129,7 @@ class AppPathsController {
 
   void to(final String path) => context.go(path);
 
-  void toPause({
-    required final CanvasDataModelId id,
-  }) =>
+  void toPause({required final CanvasDataModelId id}) =>
       to(ScreenPaths.toPause(id: id));
 }
 

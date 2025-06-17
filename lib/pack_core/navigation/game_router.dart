@@ -21,9 +21,6 @@ class GameOverlayBuilderMapRouter {
         GameOverlaysRoutes.notifications: (final context, final game) =>
             const NotificationsOverlay(),
         GameOverlaysRoutes.debug: (final context, final game) =>
-            WbwGameProvider(
-              game: game,
-              child: const DebugOverlay(),
-            ),
+            WbwGameProvider(game: game, child: const DebugOverlay()),
       };
 }

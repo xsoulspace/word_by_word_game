@@ -48,10 +48,11 @@ class EditorCanvasObject extends Component
   EditorCanvasObject.fromRenderObject({
     required final material.ValueChanged<RenderObjectModel> onPositionChanged,
     required this.data,
-  })  : screenVector2 = data.position.toOffset(),
-        gameVector2 =
-            GameVector2.fromMapSerializedVector2(data.distanceToOrigin),
-        onChanged = onPositionChanged;
+  }) : screenVector2 = data.position.toOffset(),
+       gameVector2 = GameVector2.fromMapSerializedVector2(
+         data.distanceToOrigin,
+       ),
+       onChanged = onPositionChanged;
 
   final material.ValueChanged<RenderObjectModel>? onChanged;
   Gid get gid => data.id;
@@ -93,11 +94,7 @@ class EditorCanvasObject extends Component
       tileImage.width.toDouble(),
       tileImage.height.toDouble(),
     );
-    canvas.drawImage(
-      tileImage,
-      screenVector2,
-      Palette.white.paint(),
-    );
+    canvas.drawImage(tileImage, screenVector2, Palette.white.paint());
     super.render(canvas);
   }
 
@@ -253,10 +250,9 @@ class EditorCanvasObjectsDrawer extends Component
         ),
       ),
       onPositionChanged: (final object) {
-        final updatedY =
-            GameVector2.fromMapVector2(object.distanceToOrigin.toVector2())
-                .toMapTileCell()
-                .y;
+        final updatedY = GameVector2.fromMapVector2(
+          object.distanceToOrigin.toVector2(),
+        ).toMapTileCell().y;
         final updatedGravity = drawerCubit.canvasData.gravity.copyWith(
           yTilePosition: updatedY,
         );

@@ -12,7 +12,8 @@ part of 'word_composition_bar.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$BottomActionsNotifierState {
@@ -22,22 +23,28 @@ mixin _$BottomActionsNotifierState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   $BottomActionsNotifierStateCopyWith<BottomActionsNotifierState>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $BottomActionsNotifierStateCopyWith<$Res> {
-  factory $BottomActionsNotifierStateCopyWith(BottomActionsNotifierState value,
-          $Res Function(BottomActionsNotifierState) then) =
-      _$BottomActionsNotifierStateCopyWithImpl<$Res,
-          BottomActionsNotifierState>;
+  factory $BottomActionsNotifierStateCopyWith(
+    BottomActionsNotifierState value,
+    $Res Function(BottomActionsNotifierState) then,
+  ) =
+      _$BottomActionsNotifierStateCopyWithImpl<
+        $Res,
+        BottomActionsNotifierState
+      >;
   @useResult
   $Res call({bool isCardVisible});
 }
 
 /// @nodoc
-class _$BottomActionsNotifierStateCopyWithImpl<$Res,
-        $Val extends BottomActionsNotifierState>
+class _$BottomActionsNotifierStateCopyWithImpl<
+  $Res,
+  $Val extends BottomActionsNotifierState
+>
     implements $BottomActionsNotifierStateCopyWith<$Res> {
   _$BottomActionsNotifierStateCopyWithImpl(this._value, this._then);
 
@@ -50,15 +57,16 @@ class _$BottomActionsNotifierStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isCardVisible = null,
-  }) {
-    return _then(_value.copyWith(
-      isCardVisible: null == isCardVisible
-          ? _value.isCardVisible
-          : isCardVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+  $Res call({Object? isCardVisible = null}) {
+    return _then(
+      _value.copyWith(
+            isCardVisible: null == isCardVisible
+                ? _value.isCardVisible
+                : isCardVisible // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -66,9 +74,9 @@ class _$BottomActionsNotifierStateCopyWithImpl<$Res,
 abstract class _$$BottomActionsNotifierStateImplCopyWith<$Res>
     implements $BottomActionsNotifierStateCopyWith<$Res> {
   factory _$$BottomActionsNotifierStateImplCopyWith(
-          _$BottomActionsNotifierStateImpl value,
-          $Res Function(_$BottomActionsNotifierStateImpl) then) =
-      __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>;
+    _$BottomActionsNotifierStateImpl value,
+    $Res Function(_$BottomActionsNotifierStateImpl) then,
+  ) = __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({bool isCardVisible});
@@ -76,27 +84,30 @@ abstract class _$$BottomActionsNotifierStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>
-    extends _$BottomActionsNotifierStateCopyWithImpl<$Res,
-        _$BottomActionsNotifierStateImpl>
+    extends
+        _$BottomActionsNotifierStateCopyWithImpl<
+          $Res,
+          _$BottomActionsNotifierStateImpl
+        >
     implements _$$BottomActionsNotifierStateImplCopyWith<$Res> {
   __$$BottomActionsNotifierStateImplCopyWithImpl(
-      _$BottomActionsNotifierStateImpl _value,
-      $Res Function(_$BottomActionsNotifierStateImpl) _then)
-      : super(_value, _then);
+    _$BottomActionsNotifierStateImpl _value,
+    $Res Function(_$BottomActionsNotifierStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of BottomActionsNotifierState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? isCardVisible = null,
-  }) {
-    return _then(_$BottomActionsNotifierStateImpl(
-      isCardVisible: null == isCardVisible
-          ? _value.isCardVisible
-          : isCardVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+  $Res call({Object? isCardVisible = null}) {
+    return _then(
+      _$BottomActionsNotifierStateImpl(
+        isCardVisible: null == isCardVisible
+            ? _value.isCardVisible
+            : isCardVisible // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
@@ -142,8 +153,10 @@ class _$BottomActionsNotifierStateImpl
   @override
   @pragma('vm:prefer-inline')
   _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
-      get copyWith => __$$BottomActionsNotifierStateImplCopyWithImpl<
-          _$BottomActionsNotifierStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$BottomActionsNotifierStateImplCopyWithImpl<
+        _$BottomActionsNotifierStateImpl
+      >(this, _$identity);
 }
 
 abstract class _BottomActionsNotifierState
@@ -159,5 +172,5 @@ abstract class _BottomActionsNotifierState
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

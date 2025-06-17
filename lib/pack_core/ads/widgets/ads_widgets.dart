@@ -41,12 +41,12 @@ class AdLevelEndScreenBanner extends AdWidget {
   @override
   Widget builder(final BuildContext context, final String adUnitId) =>
       const SizedBox()
-      // YandexFlexibleBanner(
-      //   height: 50,
-      //   width: MediaQuery.of(context).size.width,
-      //   adUnitId: adUnitId,
-      // )
-      ;
+  // YandexFlexibleBanner(
+  //   height: 50,
+  //   width: MediaQuery.of(context).size.width,
+  //   adUnitId: adUnitId,
+  // )
+  ;
 }
 
 class AdPauseScreenBanner extends AdWidget {

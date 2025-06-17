@@ -36,26 +36,23 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
   }) = _TechnologyTreeProgressModel;
   factory TechnologyTreeProgressModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TechnologyTreeProgressModelFromJson(json);
+  ) => _$TechnologyTreeProgressModelFromJson(json);
   const TechnologyTreeProgressModel._();
   static const empty = TechnologyTreeProgressModel();
   static Map<TechnologyModelId, TechnologyProgressModel> _technologiesFromJson(
     final Map<String, dynamic> json,
-  ) =>
-      json.map(
-        (final key, final value) => MapEntry(
-          TechnologyModelId.fromJson(jsonDecode(key)),
-          TechnologyProgressModel.fromJson(value),
-        ),
-      );
+  ) => json.map(
+    (final key, final value) => MapEntry(
+      TechnologyModelId.fromJson(jsonDecode(key)),
+      TechnologyProgressModel.fromJson(value),
+    ),
+  );
   static Map<String, dynamic> _technologiesToJson(
     final Map<TechnologyModelId, TechnologyProgressModel> json,
-  ) =>
-      json.map(
-        (final key, final value) =>
-            MapEntry(jsonEncode(key.toJson()), value.toJson()),
-      );
+  ) => json.map(
+    (final key, final value) =>
+        MapEntry(jsonEncode(key.toJson()), value.toJson()),
+  );
 }
 
 /// Should be short version of [TechnologyModel]
@@ -111,8 +108,7 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
   }) = _TechnologyUnlockConditionModel;
   factory TechnologyUnlockConditionModel.fromJson(
     final Map<String, dynamic> json,
-  ) =>
-      _$TechnologyUnlockConditionModelFromJson(json);
+  ) => _$TechnologyUnlockConditionModelFromJson(json);
   const TechnologyUnlockConditionModel._();
 }
 

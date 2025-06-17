@@ -63,8 +63,9 @@ class FocusSurfaceDrawer extends Component
     final gid = _focusableObjectsNotifier.value.focusedObjectId;
     final object = canvasCubit.objects[gid];
     if (object == null) return;
-    final gameVector2 =
-        GameVector2.fromMapVector2(object.distanceToOrigin.toVector2());
+    final gameVector2 = GameVector2.fromMapVector2(
+      object.distanceToOrigin.toVector2(),
+    );
     final obj = FocusedObjectComponent(
       position: gameVector2.toScreenVector2(origins),
     );
@@ -80,9 +81,7 @@ class FocusedObjectComponent extends PositionComponent
         HoverCallbacks,
         HasGameRef<CanvasRendererGame>,
         HasCanvasResourcesLoaderRef {
-  FocusedObjectComponent({
-    super.position,
-  }) : super() {
+  FocusedObjectComponent({super.position}) : super() {
     size = Vector2(kTileDimensionDouble, kTileDimensionDouble);
   }
   static final kBorderPaint = material.Paint()

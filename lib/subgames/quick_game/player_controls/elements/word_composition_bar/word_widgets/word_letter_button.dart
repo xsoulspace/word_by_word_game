@@ -11,9 +11,9 @@ class UiWordLetterButton extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => UiTextButton.text(
-        text: letter,
-        mainAlignment: MainAxisAlignment.center,
-        onPressed: onPressed,
-        width: null,
-      );
+    text: letter,
+    mainAlignment: MainAxisAlignment.center,
+    onPressed: onPressed,
+    width: null,
+  );
 }

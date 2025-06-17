@@ -8,9 +8,7 @@ const kTestingCrashlytics = false;
 const kTestingAnalytics = false;
 
 abstract class FirebaseInitializer implements Loadable {
-  FirebaseInitializer({
-    required this.firebaseOptions,
-  });
+  FirebaseInitializer({required this.firebaseOptions});
   final FirebaseOptions? firebaseOptions;
 
   @override

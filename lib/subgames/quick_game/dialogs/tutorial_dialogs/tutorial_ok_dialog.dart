@@ -6,12 +6,12 @@ class TutorialOkDialog extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) {
-    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>(
-      (final bloc) {
-        if (bloc.state is! TutorialBlocStateLive) return null;
-        return bloc.getTutorialEvent();
-      },
-    );
+    final tutorialEvent = context.select<TutorialBloc, TutorialEventModel?>((
+      final bloc,
+    ) {
+      if (bloc.state is! TutorialBlocStateLive) return null;
+      return bloc.getTutorialEvent();
+    });
     final locale = useLocale(context);
     if (tutorialEvent == null) return const SizedBox();
 
@@ -26,11 +26,11 @@ class TutorialOkDialog extends StatelessWidget {
                 onPressed: () {
                   context.read<DialogController>().closeDialog();
                   context.read<TutorialBloc>().onTutorialUiAction(
-                        const TutorialUiActionEvent(
-                          action: TutorialCompleteAction.onClick,
-                          key: TutorialUiItem.tutorialOkDialog,
-                        ),
-                      );
+                    const TutorialUiActionEvent(
+                      action: TutorialCompleteAction.onClick,
+                      key: TutorialUiItem.tutorialOkDialog,
+                    ),
+                  );
                 },
                 child: const Text('Ok'),
               ),

@@ -12,8 +12,9 @@ class TechLevelsDialog extends StatelessWidget {
   Widget build(final BuildContext context) {
     final locale = useLocale(context);
     final levelCubit = context.read<LevelBloc>();
-    final wordsLanguage =
-        context.select<LevelBloc, UiLanguage>((final c) => c.wordsLanguage);
+    final wordsLanguage = context.select<LevelBloc, UiLanguage>(
+      (final c) => c.wordsLanguage,
+    );
     final wordsLocale = Locales.byLanguage(wordsLanguage);
     final technologiesCubit = context.watch<TechnologiesCubit>();
     final (
@@ -22,7 +23,8 @@ class TechLevelsDialog extends StatelessWidget {
       :technologies,
       :title,
       :scoresByLevel,
-    ) = technologiesCubit.getCurrentLevel();
+    ) = technologiesCubit
+        .getCurrentLevel();
     return DialogScaffold(
       padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
       top: Padding(
@@ -84,8 +86,9 @@ class TechLevelsDialog extends StatelessWidget {
                               },
                             ).getValue(locale),
                             textAlign: TextAlign.center,
-                            style: context.textTheme.bodyMedium
-                                ?.copyWith(color: color),
+                            style: context.textTheme.bodyMedium?.copyWith(
+                              color: color,
+                            ),
                           ),
                         ],
                       ),
@@ -100,16 +103,14 @@ class TechLevelsDialog extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Icon(
-                          Icons.language,
-                          color: color,
-                        ),
+                        Icon(Icons.language, color: color),
                         const Gap(4),
                         Text(
                           // TODO(arenukvern): l10n
                           'Words Language',
-                          style: context.textTheme.bodyMedium
-                              ?.copyWith(color: color),
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            color: color,
+                          ),
                         ),
                         WordsLanguageSwitcher(
                           onChanged: levelCubit.onChangeWordsLanguage,
@@ -127,16 +128,14 @@ class TechLevelsDialog extends StatelessWidget {
                     ),
                     child: Column(
                       children: [
-                        Icon(
-                          Icons.landscape_outlined,
-                          color: color,
-                        ),
+                        Icon(Icons.landscape_outlined, color: color),
                         Text(
                           isMaxLevel
                               ? 'Max Level'
                               : 'Next Level (${lastLevelIndex.index})',
-                          style: context.textTheme.bodyMedium
-                              ?.copyWith(color: color),
+                          style: context.textTheme.bodyMedium?.copyWith(
+                            color: color,
+                          ),
                         ),
                         if (isMaxLevel)
                           Text(
@@ -160,12 +159,10 @@ class TechLevelsDialog extends StatelessWidget {
                                       text: '${nextScore - scoreLeft}',
                                       style: context.textThemeBold.titleMedium
                                           ?.copyWith(
-                                        color: context.colorScheme.primary,
-                                      ),
+                                            color: context.colorScheme.primary,
+                                          ),
                                     ),
-                                    TextSpan(
-                                      text: '/$nextScore',
-                                    ),
+                                    TextSpan(text: '/$nextScore'),
                                   ],
                                 ),
                               );
@@ -217,8 +214,9 @@ class _TechLevel extends StatelessWidget {
     const iconSize = 40.0;
     const iconPadding = 12.0;
     final isUnblocked = (index + 1) <= lastLevelIndex.index;
-    final color =
-        isUnblocked ? null : context.colorScheme.onSurface.withOpacity(0.4);
+    final color = isUnblocked
+        ? null
+        : context.colorScheme.onSurface.withOpacity(0.4);
     return DefaultTextStyle.merge(
       style: TextStyle(color: color),
       child: Stack(
@@ -230,9 +228,7 @@ class _TechLevel extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.only(left: 6),
                 child: DefaultTextStyle.merge(
-                  style: context.textTheme.titleLarge?.copyWith(
-                    color: color,
-                  ),
+                  style: context.textTheme.titleLarge?.copyWith(color: color),
                   child: Row(
                     children: [
                       Text('$index'),
@@ -252,25 +248,23 @@ class _TechLevel extends StatelessWidget {
                       runSpacing: 2,
                       spacing: 2,
                       children: [
-                        ...level.technologies.map(
-                          (final id) {
-                            final tech = technologies[id]!;
-                            return Card(
-                              margin: EdgeInsets.zero,
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                  vertical: 4,
-                                  horizontal: 12,
-                                ),
-                                child: Text(
-                                  tech.title.getValue(wordsLocale),
-                                  style: context.textThemeBold.titleMedium
-                                      ?.copyWith(color: color),
-                                ),
+                        ...level.technologies.map((final id) {
+                          final tech = technologies[id]!;
+                          return Card(
+                            margin: EdgeInsets.zero,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 4,
+                                horizontal: 12,
                               ),
-                            );
-                          },
-                        ),
+                              child: Text(
+                                tech.title.getValue(wordsLocale),
+                                style: context.textThemeBold.titleMedium
+                                    ?.copyWith(color: color),
+                              ),
+                            ),
+                          );
+                        }),
                       ],
                     ),
                   ),

@@ -30,10 +30,7 @@ enum GameDialogType {
 }
 
 class DialogStack extends StatefulWidget {
-  const DialogStack({
-    required this.child,
-    super.key,
-  });
+  const DialogStack({required this.child, super.key});
   final Widget child;
 
   @override
@@ -58,10 +55,7 @@ class _DialogStackState extends State<DialogStack> {
     if (dialogType != GameDialogType.none) {
       unawaited(
         Navigator.of(context).push(
-          _Dialog(
-            dialogType: dialogType,
-            onDismiss: _controller.closeDialog,
-          ),
+          _Dialog(dialogType: dialogType, onDismiss: _controller.closeDialog),
         ),
       );
     }
@@ -79,10 +73,7 @@ class _DialogStackState extends State<DialogStack> {
 }
 
 class _Dialog extends PopupRoute {
-  _Dialog({
-    required this.dialogType,
-    required this.onDismiss,
-  });
+  _Dialog({required this.dialogType, required this.onDismiss});
 
   final GameDialogType dialogType;
   final VoidCallback onDismiss;
@@ -94,11 +85,10 @@ class _Dialog extends PopupRoute {
   // the escape key on the keyboard.
   @override
   bool get barrierDismissible => switch (dialogType) {
-        GameDialogType.menuSettings ||
-        GameDialogType.menuPlayersAndHighscore =>
-          true,
-        _ => false,
-      };
+    GameDialogType.menuSettings ||
+    GameDialogType.menuPlayersAndHighscore => true,
+    _ => false,
+  };
 
   @override
   String? get barrierLabel => 'Game Dialog';
@@ -108,28 +98,28 @@ class _Dialog extends PopupRoute {
     final BuildContext context,
     final Animation<double> animation,
     final Animation<double> secondaryAnimation,
-  ) =>
-      AnimatedBuilder(
-        animation: animation,
-        builder: (final context, final child) => SlideTransition(
-          position: animation
-              .drive(Tween(begin: const Offset(0, 0.05), end: Offset.zero)),
-          child: FadeTransition(
-            opacity: animation,
-            child: FocusScope(
-              autofocus: true,
-              child: PopScope(
-                canPop: barrierDismissible,
-                onPopInvokedWithResult: (final didPop, final result) {
-                  if (didPop) onDismiss();
-                },
-                child: child!,
-              ),
-            ),
+  ) => AnimatedBuilder(
+    animation: animation,
+    builder: (final context, final child) => SlideTransition(
+      position: animation.drive(
+        Tween(begin: const Offset(0, 0.05), end: Offset.zero),
+      ),
+      child: FadeTransition(
+        opacity: animation,
+        child: FocusScope(
+          autofocus: true,
+          child: PopScope(
+            canPop: barrierDismissible,
+            onPopInvokedWithResult: (final didPop, final result) {
+              if (didPop) onDismiss();
+            },
+            child: child!,
           ),
         ),
-        child: _DialogBody(onDismiss: onDismiss),
-      );
+      ),
+    ),
+    child: _DialogBody(onDismiss: onDismiss),
+  );
 
   @override
   Duration get transitionDuration => 250.milliseconds;
@@ -144,40 +134,37 @@ class _DialogBody extends HookWidget {
   Widget build(final BuildContext context) {
     final state = context.watch<DialogController>();
 
-    useEffect(
-      () {
-        if (state.dialogType case GameDialogType.none when context.mounted) {
-          Navigator.pop(context);
-        }
-        return null;
-      },
-      [state],
-    );
+    useEffect(() {
+      if (state.dialogType case GameDialogType.none when context.mounted) {
+        Navigator.pop(context);
+      }
+      return null;
+    }, [state]);
 
     return switch (state.dialogType) {
       GameDialogType.none => const SizedBox(),
       GameDialogType.gameTechnologiesTree => TechLevelsDialog(
-          onClose: state.closeDialogAndResume,
-        ),
+        onClose: state.closeDialogAndResume,
+      ),
       GameDialogType.gameTechLevelAchieved => TechLevelAchievedDialog(
-          onClose: state.closeDialogAndResume,
-        ),
+        onClose: state.closeDialogAndResume,
+      ),
       GameDialogType.gameLevelLost => LevelLostDialog(
-          onRestart: state.onRestartContinueLevel,
-          onToLevels: state.onExitLevel,
-        ),
+        onRestart: state.onRestartContinueLevel,
+        onToLevels: state.onExitLevel,
+      ),
       GameDialogType.gameLevelWin => LevelWinDialog(
-          onContinue: state.onRestartContinueLevel,
-          onToLevels: state.onExitLevel,
-        ),
+        onContinue: state.onRestartContinueLevel,
+        onToLevels: state.onExitLevel,
+      ),
       GameDialogType.gameLevelWordSuggestion =>
         const LevelWordSuggestionDialog(),
       GameDialogType.gameTutorialBool => const TutorialBoolDialog(),
       GameDialogType.gameTutorialOk => const TutorialOkDialog(),
       GameDialogType.menuSettings => const Center(child: SettingsView()),
       GameDialogType.menuPlayersAndHighscore => const Center(
-          child: PlayersAndHighscoreView(),
-        ),
+        child: PlayersAndHighscoreView(),
+      ),
 
       // GameDialogType.menuCredits => ,
       // GameDialogType.menuAdventure => AdventureView(

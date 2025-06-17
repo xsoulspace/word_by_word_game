@@ -9,15 +9,15 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 /// Class for canvas data rendering
 final class CanvasCubit extends DrawerCubit {
   CanvasCubit(final BuildContext context)
-      : super(
-          dto: DrawerCubitDto.use(context: context),
-          resourcesLoader: ResourcesLoader(
-            tilesetAssets: AssetsCache(
-              prefix: 'packages/map_editor/assets/images/',
-            ),
+    : super(
+        dto: DrawerCubitDto.use(context: context),
+        resourcesLoader: ResourcesLoader(
+          tilesetAssets: AssetsCache(
+            prefix: 'packages/map_editor/assets/images/',
           ),
-          rootPath: 'packages/map_editor/',
-        );
+        ),
+        rootPath: 'packages/map_editor/',
+      );
   final _log = Logger();
   @override
   Future<void> close() {
@@ -61,7 +61,8 @@ final class CanvasCubit extends DrawerCubit {
     final layerIndex = layers.indexOf(layer);
 
     final newObjects = {...state.canvasData.objects}..[object.id] = object;
-    final newCellTile = layer.tiles[cell] ??
+    final newCellTile =
+        layer.tiles[cell] ??
         CellTileModel.empty.copyWith(
           objects: [...layer.tiles[cell]?.objects ?? [], object.id],
         );

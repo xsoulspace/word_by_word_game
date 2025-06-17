@@ -2,13 +2,13 @@ part of 'level_start_dialog.dart';
 
 class _LevelStartDialogUxStateDiDto {
   _LevelStartDialogUxStateDiDto.use(final BuildContext context)
-      : globalGameBloc = context.read(),
-        mechanics = context.read(),
-        appSettingsNotifier = context.read(),
-        onlineStatusService = context.read(),
-        wbwDictionary = context.read(),
-        statesStatusesCubit = context.read(),
-        tutorialBloc = context.read();
+    : globalGameBloc = context.read(),
+      mechanics = context.read(),
+      appSettingsNotifier = context.read(),
+      onlineStatusService = context.read(),
+      wbwDictionary = context.read(),
+      statesStatusesCubit = context.read(),
+      tutorialBloc = context.read();
   final GlobalGameBloc globalGameBloc;
   final TutorialBloc tutorialBloc;
   final AppSettingsNotifier appSettingsNotifier;
@@ -19,10 +19,9 @@ class _LevelStartDialogUxStateDiDto {
 }
 
 class LevelStartDialogUxNotifier extends ValueNotifier<String> {
-  LevelStartDialogUxNotifier({
-    required final BuildContext context,
-  })  : dto = _LevelStartDialogUxStateDiDto.use(context),
-        super('') {
+  LevelStartDialogUxNotifier({required final BuildContext context})
+    : dto = _LevelStartDialogUxStateDiDto.use(context),
+      super('') {
     onLoad();
   }
 
@@ -67,8 +66,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
 
   void onPlayerProfileCreated(final PlayerProfileModel profile) {
     unawaited(
-      dto.globalGameBloc
-          .onCreatePlayerProfile(CreatePlayerProfileEvent(profile: profile)),
+      dto.globalGameBloc.onCreatePlayerProfile(
+        CreatePlayerProfileEvent(profile: profile),
+      ),
     );
     onPlayerSelected(profile);
   }
@@ -80,13 +80,11 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
     notifyListeners();
   }
 
-  LevelFeaturesSettingsModel featuresSettings =
-      LevelFeaturesSettingsModel.empty.copyWith(
-    isTechnologiesEnabled: kDebugMode,
-  );
+  LevelFeaturesSettingsModel featuresSettings = LevelFeaturesSettingsModel.empty
+      .copyWith(isTechnologiesEnabled: kDebugMode);
   void changeFeaturesSettings(
     final LevelFeaturesSettingsModel Function(LevelFeaturesSettingsModel old)
-        update,
+    update,
   ) {
     featuresSettings = update(featuresSettings);
     notifyListeners();
@@ -124,8 +122,9 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
       characterId: character!.id,
       featuresSettings: featuresSettings,
     );
-    await dto.globalGameBloc
-        .onInitGlobalGameLevel(InitGlobalGameLevelEvent(levelModel: level));
+    await dto.globalGameBloc.onInitGlobalGameLevel(
+      InitGlobalGameLevelEvent(levelModel: level),
+    );
     await dto.globalGameBloc.onStartPlayingLevel(
       StartPlayingLevelEvent(shouldRestartTutorial: shouldStartTutorial),
     );
@@ -160,7 +159,8 @@ class LevelStartDialogUxNotifier extends ValueNotifier<String> {
         levelModel: level,
         isNewStart: false,
         playerStartPoint: PlayerStartPointType.fromSamePlace,
-        windDirection: level.weathers.firstOrNull?.windDirection ??
+        windDirection:
+            level.weathers.firstOrNull?.windDirection ??
             WindDirection.defaultDirection,
       ),
     );

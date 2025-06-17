@@ -14,9 +14,9 @@ class DialogScaffold extends HookWidget {
     this.bottomButton,
     super.key,
   }) : assert(
-          children != null || builder != null,
-          'Children or builder should be provided',
-        );
+         children != null || builder != null,
+         'Children or builder should be provided',
+       );
   final List<Widget>? children;
   final Widget? bottom;
   final Widget? top;
@@ -39,16 +39,13 @@ class DialogScaffold extends HookWidget {
     return Stack(
       children: [
         Container(
-          margin:
-              bottomButton != null ? const EdgeInsets.only(bottom: 24) : null,
-          constraints: const BoxConstraints(
-            maxWidth: 450,
-          ),
+          margin: bottomButton != null
+              ? const EdgeInsets.only(bottom: 24)
+              : null,
+          constraints: const BoxConstraints(maxWidth: 450),
           child: Semantics(
             container: semanticsContainer,
-            child: UiCard(
-              child: child,
-            ),
+            child: UiCard(child: child),
           ),
         ),
         if (bottomButton != null)
@@ -56,9 +53,7 @@ class DialogScaffold extends HookWidget {
             bottom: 6,
             right: 0,
             left: 0,
-            child: Center(
-              child: bottomButton,
-            ),
+            child: Center(child: bottomButton),
           ).animate().fadeIn(),
       ],
     );
@@ -71,10 +66,7 @@ class DecoratedDialogScaffold extends StatelessWidget {
     this.builder,
     this.bottom,
     this.top,
-    this.padding = const EdgeInsets.symmetric(
-      horizontal: 16,
-      vertical: 13,
-    ),
+    this.padding = const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
     this.bottomButton,
     super.key,
   });
@@ -88,18 +80,18 @@ class DecoratedDialogScaffold extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => KeyboardBindingsViewFocusScope(
-        child: DialogScaffold(
-          bottomButton: bottomButton,
-          builder: (final context) => UiDecoratedContainer(
-            padding: padding,
-            child: UiBodyBuilder(
-              builder: builder,
-              top: top,
-              bottom: bottom,
-              padding: padding,
-              children: children,
-            ),
-          ),
+    child: DialogScaffold(
+      bottomButton: bottomButton,
+      builder: (final context) => UiDecoratedContainer(
+        padding: padding,
+        child: UiBodyBuilder(
+          builder: builder,
+          top: top,
+          bottom: bottom,
+          padding: padding,
+          children: children,
         ),
-      );
+      ),
+    ),
+  );
 }

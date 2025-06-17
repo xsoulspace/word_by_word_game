@@ -25,15 +25,15 @@ extension KeyboardLanguageX on KeyboardLanguage {
   ];
 
   List<List<String>> get letters => switch (this) {
-        KeyboardLanguage.en => enLetters,
-        KeyboardLanguage.ru => ruLetters,
-      };
+    KeyboardLanguage.en => enLetters,
+    KeyboardLanguage.ru => ruLetters,
+  };
 
   /// rewrite to indexes when there be a lot of letters
   KeyboardLanguage next() => switch (this) {
-        KeyboardLanguage.en => KeyboardLanguage.ru,
-        KeyboardLanguage.ru => KeyboardLanguage.en,
-      };
+    KeyboardLanguage.en => KeyboardLanguage.ru,
+    KeyboardLanguage.ru => KeyboardLanguage.en,
+  };
 }
 
 extension LanguagesX on UiLanguage {
@@ -49,9 +49,7 @@ class UiKeyboardControllerState with _$UiKeyboardControllerState {
 }
 
 class LetterModel {
-  LetterModel({
-    required this.title,
-  }) : id = IdCreator.create();
+  LetterModel({required this.title}) : id = IdCreator.create();
   final String id;
   final String title;
 }

@@ -5,9 +5,7 @@ import 'package:map_editor/ui/widgets/dialogs.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 
-Future<void> showLayersDialog({
-  required final BuildContext context,
-}) async {
+Future<void> showLayersDialog({required final BuildContext context}) async {
   await showDialog(
     context: context,
     builder: (final context) => const LayersDialog(),
@@ -39,10 +37,7 @@ class _LayersDialogState extends State<LayersDialog> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          AppBar(
-            leading: const CloseButton(),
-            title: const Text('Layers'),
-          ),
+          AppBar(leading: const CloseButton(), title: const Text('Layers')),
           Expanded(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -56,12 +51,8 @@ class _LayersDialogState extends State<LayersDialog> {
                       const Gap(16),
                       Flexible(
                         child: ConstrainedBox(
-                          constraints: const BoxConstraints(
-                            maxWidth: 240,
-                          ),
-                          child: TextFormField(
-                            controller: _textController,
-                          ),
+                          constraints: const BoxConstraints(maxWidth: 240),
+                          child: TextFormField(controller: _textController),
                         ),
                       ),
                       IconButton(
@@ -100,22 +91,19 @@ class _LayersDialogState extends State<LayersDialog> {
                                     value: layer.id,
                                     groupValue: drawerCubit.drawLayer.id,
                                     onChanged: (final id) =>
-                                        drawerCubit.selectLayer(
-                                      id: id,
-                                    ),
+                                        drawerCubit.selectLayer(id: id),
                                   ),
                                   const Gap(16),
                                   Flexible(
                                     child: ConstrainedBox(
-                                      constraints:
-                                          const BoxConstraints(maxWidth: 250),
+                                      constraints: const BoxConstraints(
+                                        maxWidth: 250,
+                                      ),
                                       child: TextFormField(
                                         initialValue: layer.title,
                                         onChanged: (final value) {
                                           drawerCubit.changeLayer(
-                                            layer: layer.copyWith(
-                                              title: value,
-                                            ),
+                                            layer: layer.copyWith(title: value),
                                             index: index,
                                           );
                                         },
@@ -147,10 +135,11 @@ class _LayersDialogState extends State<LayersDialog> {
                                   IconButton.filled(
                                     onPressed: () async {
                                       final shouldDeleteLayer =
-                                          await Dialogs.of(context)
-                                              .showDeleteDialog(
-                                        title: const Text('Delete layer?'),
-                                      );
+                                          await Dialogs.of(
+                                            context,
+                                          ).showDeleteDialog(
+                                            title: const Text('Delete layer?'),
+                                          );
                                       if (shouldDeleteLayer == true) {
                                         drawerCubit.deleteLayer(layer: layer);
                                       }
@@ -167,10 +156,11 @@ class _LayersDialogState extends State<LayersDialog> {
                                     value: layer.isCollidable,
                                     onChanged: (final value) =>
                                         drawerCubit.changeLayer(
-                                      index: index,
-                                      layer:
-                                          layer.copyWith(isCollidable: value),
-                                    ),
+                                          index: index,
+                                          layer: layer.copyWith(
+                                            isCollidable: value,
+                                          ),
+                                        ),
                                   ),
                                   const Gap(16),
                                   if (layer.isCollidable)
@@ -183,25 +173,25 @@ class _LayersDialogState extends State<LayersDialog> {
                                               child: Text(e.name),
                                               onPressed: () =>
                                                   drawerCubit.changeLayer(
-                                                index: index,
-                                                layer: layer.copyWith(
-                                                  collisionConsequence: e,
-                                                ),
-                                              ),
+                                                    index: index,
+                                                    layer: layer.copyWith(
+                                                      collisionConsequence: e,
+                                                    ),
+                                                  ),
                                             ),
                                           )
                                           .toList(),
-                                      builder: (
-                                        final context,
-                                        final controller,
-                                        final child,
-                                      ) =>
-                                          TextButton(
-                                        onPressed: controller.open,
-                                        child: Text(
-                                          layer.collisionConsequence.name,
-                                        ),
-                                      ),
+                                      builder:
+                                          (
+                                            final context,
+                                            final controller,
+                                            final child,
+                                          ) => TextButton(
+                                            onPressed: controller.open,
+                                            child: Text(
+                                              layer.collisionConsequence.name,
+                                            ),
+                                          ),
                                     ),
                                 ],
                               ),

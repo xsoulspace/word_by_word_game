@@ -15,9 +15,7 @@ class _PreloadingScreenState extends State<PreloadingScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((final _) async {
-      unawaited(
-        GlobalStatesInitializer().onLoad(context),
-      );
+      unawaited(GlobalStatesInitializer().onLoad(context));
     });
   }
 

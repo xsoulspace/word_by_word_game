@@ -12,7 +12,8 @@ part of 'states_statuses_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$StatesStatusesCubitState {
@@ -35,17 +36,22 @@ mixin _$StatesStatusesCubitState {
 
 /// @nodoc
 abstract class $StatesStatusesCubitStateCopyWith<$Res> {
-  factory $StatesStatusesCubitStateCopyWith(StatesStatusesCubitState value,
-          $Res Function(StatesStatusesCubitState) then) =
-      _$StatesStatusesCubitStateCopyWithImpl<$Res, StatesStatusesCubitState>;
+  factory $StatesStatusesCubitStateCopyWith(
+    StatesStatusesCubitState value,
+    $Res Function(StatesStatusesCubitState) then,
+  ) = _$StatesStatusesCubitStateCopyWithImpl<$Res, StatesStatusesCubitState>;
   @useResult
-  $Res call(
-      {Set<LevelPartName> loadedLevelParts, LevelStateStatus levelStateStatus});
+  $Res call({
+    Set<LevelPartName> loadedLevelParts,
+    LevelStateStatus levelStateStatus,
+  });
 }
 
 /// @nodoc
-class _$StatesStatusesCubitStateCopyWithImpl<$Res,
-        $Val extends StatesStatusesCubitState>
+class _$StatesStatusesCubitStateCopyWithImpl<
+  $Res,
+  $Val extends StatesStatusesCubitState
+>
     implements $StatesStatusesCubitStateCopyWith<$Res> {
   _$StatesStatusesCubitStateCopyWithImpl(this._value, this._then);
 
@@ -62,16 +68,19 @@ class _$StatesStatusesCubitStateCopyWithImpl<$Res,
     Object? loadedLevelParts = null,
     Object? levelStateStatus = null,
   }) {
-    return _then(_value.copyWith(
-      loadedLevelParts: null == loadedLevelParts
-          ? _value.loadedLevelParts
-          : loadedLevelParts // ignore: cast_nullable_to_non_nullable
-              as Set<LevelPartName>,
-      levelStateStatus: null == levelStateStatus
-          ? _value.levelStateStatus
-          : levelStateStatus // ignore: cast_nullable_to_non_nullable
-              as LevelStateStatus,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            loadedLevelParts: null == loadedLevelParts
+                ? _value.loadedLevelParts
+                : loadedLevelParts // ignore: cast_nullable_to_non_nullable
+                      as Set<LevelPartName>,
+            levelStateStatus: null == levelStateStatus
+                ? _value.levelStateStatus
+                : levelStateStatus // ignore: cast_nullable_to_non_nullable
+                      as LevelStateStatus,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -79,24 +88,29 @@ class _$StatesStatusesCubitStateCopyWithImpl<$Res,
 abstract class _$$StatesStatusesCubitStateImplCopyWith<$Res>
     implements $StatesStatusesCubitStateCopyWith<$Res> {
   factory _$$StatesStatusesCubitStateImplCopyWith(
-          _$StatesStatusesCubitStateImpl value,
-          $Res Function(_$StatesStatusesCubitStateImpl) then) =
-      __$$StatesStatusesCubitStateImplCopyWithImpl<$Res>;
+    _$StatesStatusesCubitStateImpl value,
+    $Res Function(_$StatesStatusesCubitStateImpl) then,
+  ) = __$$StatesStatusesCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {Set<LevelPartName> loadedLevelParts, LevelStateStatus levelStateStatus});
+  $Res call({
+    Set<LevelPartName> loadedLevelParts,
+    LevelStateStatus levelStateStatus,
+  });
 }
 
 /// @nodoc
 class __$$StatesStatusesCubitStateImplCopyWithImpl<$Res>
-    extends _$StatesStatusesCubitStateCopyWithImpl<$Res,
-        _$StatesStatusesCubitStateImpl>
+    extends
+        _$StatesStatusesCubitStateCopyWithImpl<
+          $Res,
+          _$StatesStatusesCubitStateImpl
+        >
     implements _$$StatesStatusesCubitStateImplCopyWith<$Res> {
   __$$StatesStatusesCubitStateImplCopyWithImpl(
-      _$StatesStatusesCubitStateImpl _value,
-      $Res Function(_$StatesStatusesCubitStateImpl) _then)
-      : super(_value, _then);
+    _$StatesStatusesCubitStateImpl _value,
+    $Res Function(_$StatesStatusesCubitStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of StatesStatusesCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -106,26 +120,28 @@ class __$$StatesStatusesCubitStateImplCopyWithImpl<$Res>
     Object? loadedLevelParts = null,
     Object? levelStateStatus = null,
   }) {
-    return _then(_$StatesStatusesCubitStateImpl(
-      loadedLevelParts: null == loadedLevelParts
-          ? _value._loadedLevelParts
-          : loadedLevelParts // ignore: cast_nullable_to_non_nullable
-              as Set<LevelPartName>,
-      levelStateStatus: null == levelStateStatus
-          ? _value.levelStateStatus
-          : levelStateStatus // ignore: cast_nullable_to_non_nullable
-              as LevelStateStatus,
-    ));
+    return _then(
+      _$StatesStatusesCubitStateImpl(
+        loadedLevelParts: null == loadedLevelParts
+            ? _value._loadedLevelParts
+            : loadedLevelParts // ignore: cast_nullable_to_non_nullable
+                  as Set<LevelPartName>,
+        levelStateStatus: null == levelStateStatus
+            ? _value.levelStateStatus
+            : levelStateStatus // ignore: cast_nullable_to_non_nullable
+                  as LevelStateStatus,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$StatesStatusesCubitStateImpl implements _StatesStatusesCubitState {
-  const _$StatesStatusesCubitStateImpl(
-      {final Set<LevelPartName> loadedLevelParts = const {},
-      this.levelStateStatus = LevelStateStatus.loading})
-      : _loadedLevelParts = loadedLevelParts;
+  const _$StatesStatusesCubitStateImpl({
+    final Set<LevelPartName> loadedLevelParts = const {},
+    this.levelStateStatus = LevelStateStatus.loading,
+  }) : _loadedLevelParts = loadedLevelParts;
 
   /// global statuses
   /// - loading
@@ -165,15 +181,20 @@ class _$StatesStatusesCubitStateImpl implements _StatesStatusesCubitState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$StatesStatusesCubitStateImpl &&
-            const DeepCollectionEquality()
-                .equals(other._loadedLevelParts, _loadedLevelParts) &&
+            const DeepCollectionEquality().equals(
+              other._loadedLevelParts,
+              _loadedLevelParts,
+            ) &&
             (identical(other.levelStateStatus, levelStateStatus) ||
                 other.levelStateStatus == levelStateStatus));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType,
-      const DeepCollectionEquality().hash(_loadedLevelParts), levelStateStatus);
+  int get hashCode => Object.hash(
+    runtimeType,
+    const DeepCollectionEquality().hash(_loadedLevelParts),
+    levelStateStatus,
+  );
 
   /// Create a copy of StatesStatusesCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -181,15 +202,17 @@ class _$StatesStatusesCubitStateImpl implements _StatesStatusesCubitState {
   @override
   @pragma('vm:prefer-inline')
   _$$StatesStatusesCubitStateImplCopyWith<_$StatesStatusesCubitStateImpl>
-      get copyWith => __$$StatesStatusesCubitStateImplCopyWithImpl<
-          _$StatesStatusesCubitStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$StatesStatusesCubitStateImplCopyWithImpl<
+        _$StatesStatusesCubitStateImpl
+      >(this, _$identity);
 }
 
 abstract class _StatesStatusesCubitState implements StatesStatusesCubitState {
-  const factory _StatesStatusesCubitState(
-          {final Set<LevelPartName> loadedLevelParts,
-          final LevelStateStatus levelStateStatus}) =
-      _$StatesStatusesCubitStateImpl;
+  const factory _StatesStatusesCubitState({
+    final Set<LevelPartName> loadedLevelParts,
+    final LevelStateStatus levelStateStatus,
+  }) = _$StatesStatusesCubitStateImpl;
 
   /// global statuses
   /// - loading
@@ -208,5 +231,5 @@ abstract class _StatesStatusesCubitState implements StatesStatusesCubitState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$StatesStatusesCubitStateImplCopyWith<_$StatesStatusesCubitStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

@@ -12,9 +12,7 @@ import 'package:flutter/material.dart' hide Image;
 
 ///https://github.com/flame-engine/flame/blob/main/examples/lib/stories/collision_detection/raycast_example.dart
 void main(final List<String> args) {
-  runApp(
-    GameWidget(game: RaycastExample()),
-  );
+  runApp(GameWidget(game: RaycastExample()));
 }
 
 class RaycastExample extends Forge2DGame with MouseMovementDetector {
@@ -67,10 +65,7 @@ class RaycastExample extends Forge2DGame with MouseMovementDetector {
   @override
   void onMouseMove(final PointerHoverInfo info) {
     final rayStart = screenToWorld(
-      Vector2(
-        camera.viewport.size.x / 4,
-        camera.viewport.size.y / 2,
-      ),
+      Vector2(camera.viewport.size.x / 4, camera.viewport.size.y / 2),
     );
 
     final worldPosition = screenToWorld(info.eventPosition.widget);
@@ -152,11 +147,7 @@ class LineComponent extends Component {
   @override
   void render(final Canvas canvas) {
     for (var i = 0; i < points.length - 1; ++i) {
-      canvas.drawLine(
-        points[i].toOffset(),
-        points[i + 1].toOffset(),
-        paint,
-      );
+      canvas.drawLine(points[i].toOffset(), points[i + 1].toOffset(), paint);
     }
   }
 }
@@ -246,7 +237,7 @@ List<Wall> createBoundaries(
 
 class Wall extends BodyComponent {
   Wall(this.start, this.end, {final double? strokeWidth})
-      : strokeWidth = strokeWidth ?? 1;
+    : strokeWidth = strokeWidth ?? 1;
   final Vector2 start;
   final Vector2 end;
   final double strokeWidth;

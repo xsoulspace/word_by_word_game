@@ -51,7 +51,7 @@ class UiDivider extends StatelessWidget {
   ///
   /// @ai Use this constructor for vertical dividers in layouts.
   const UiDivider.vertical({super.key, this.size = _kDefaultSize})
-      : horizontal = false;
+    : horizontal = false;
 
   /// Provides a description for AI about the properties of this widget.
   ///
@@ -121,10 +121,8 @@ class UiHorizontalDivider extends StatelessWidget {
   final Size size;
 
   @override
-  Widget build(final BuildContext context) => CustomPaint(
-        painter: _HorizontalDividerPainter(),
-        size: size,
-      );
+  Widget build(final BuildContext context) =>
+      CustomPaint(painter: _HorizontalDividerPainter(), size: size);
 }
 
 /// A horizontal divider with a triangle in the middle.
@@ -214,9 +212,9 @@ class UiVerticalDivider extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => CustomPaint(
-        painter: _VerticalDividerPainter(includeTriangle: includeTriangle),
-        size: size,
-      );
+    painter: _VerticalDividerPainter(includeTriangle: includeTriangle),
+    size: size,
+  );
 }
 
 class _VerticalDividerPainter extends CustomPainter {

@@ -1,4 +1,4 @@
-import 'package:life_hooks/life_hooks.dart';
+import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 export 'ya_ads_mock_service.dart'
     if (dart.library.html) 'ya_ads_web_service.dart'

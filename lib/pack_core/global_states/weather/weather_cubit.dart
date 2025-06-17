@@ -21,9 +21,9 @@ class WeatherCubitState with _$WeatherCubitState {
 
 class WeatherCubitDto {
   WeatherCubitDto(final BuildContext context)
-      : mechanics = context.read(),
-        levelFeaturesNotifier = context.read(),
-        statesStatusesCubit = context.read();
+    : mechanics = context.read(),
+      levelFeaturesNotifier = context.read(),
+      statesStatusesCubit = context.read();
   final StatesStatusesCubit statesStatusesCubit;
   final LevelFeaturesNotifier levelFeaturesNotifier;
   final MechanicsCollection mechanics;
@@ -32,8 +32,8 @@ class WeatherCubitDto {
 class WeatherCubit extends Cubit<WeatherCubitState>
     implements WorldTickConsumable {
   WeatherCubit(final BuildContext context)
-      : dto = WeatherCubitDto(context),
-        super(const WeatherCubitState());
+    : dto = WeatherCubitDto(context),
+      super(const WeatherCubitState());
   final WeatherCubitDto dto;
   WeatherMechanics get mechanics => dto.mechanics.weather;
   @override
@@ -66,9 +66,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     }
   }
 
-  void regenerateWeather({
-    final WindDirection? windDirection,
-  }) {
+  void regenerateWeather({final WindDirection? windDirection}) {
     _generateWeather(oldWeathers: [], forcedWindDirection: windDirection);
     if (kDebugMode) print({'weathers generated': state.weathers});
   }
@@ -92,7 +90,8 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     final newWeathers = mechanics.generateWeather(
       isWindDirectionChangeEnabled:
           dto.levelFeaturesNotifier.features.isWindDirectionChangeEnabled,
-      oldWindDirection: forcedWindDirection ??
+      oldWindDirection:
+          forcedWindDirection ??
           (oldWeathers.isEmpty ? state.weather : oldWeathers.last)
               .windDirection,
     );
@@ -104,9 +103,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
   int _previousHeightInTiles = 0;
   Offset? _currentWindOffsetCache;
 
-  Offset generateWindForce({
-    required final int heightInTiles,
-  }) {
+  Offset generateWindForce({required final int heightInTiles}) {
     int heightDelta = _previousHeightInTiles - heightInTiles;
     if (heightDelta < 0) heightDelta *= -1;
 

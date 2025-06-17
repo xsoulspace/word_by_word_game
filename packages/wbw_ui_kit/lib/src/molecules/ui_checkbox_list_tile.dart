@@ -13,9 +13,6 @@ class UiCheckboxListTile extends StatelessWidget {
   final Widget? title;
 
   @override
-  Widget build(final BuildContext context) => CheckboxListTile(
-        value: value,
-        onChanged: onChanged,
-        title: title,
-      );
+  Widget build(final BuildContext context) =>
+      CheckboxListTile(value: value, onChanged: onChanged, title: title);
 }

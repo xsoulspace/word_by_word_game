@@ -2,12 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../theme/theme.dart';
 
-enum ButtonStyleType {
-  filled,
-  outlined,
-  gradient,
-  text,
-}
+enum ButtonStyleType { filled, outlined, gradient, text }
 
 class GameMenuButtonPainter extends CustomPainter {
   const GameMenuButtonPainter({

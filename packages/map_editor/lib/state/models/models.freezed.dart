@@ -12,7 +12,8 @@ part of 'models.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$AnimationEntryModel {
@@ -30,8 +31,9 @@ mixin _$AnimationEntryModel {
 /// @nodoc
 abstract class $AnimationEntryModelCopyWith<$Res> {
   factory $AnimationEntryModelCopyWith(
-          AnimationEntryModel value, $Res Function(AnimationEntryModel) then) =
-      _$AnimationEntryModelCopyWithImpl<$Res, AnimationEntryModel>;
+    AnimationEntryModel value,
+    $Res Function(AnimationEntryModel) then,
+  ) = _$AnimationEntryModelCopyWithImpl<$Res, AnimationEntryModel>;
   @useResult
   $Res call({double frameIndex, int framesLength, List<String> framesPaths});
 }
@@ -55,29 +57,33 @@ class _$AnimationEntryModelCopyWithImpl<$Res, $Val extends AnimationEntryModel>
     Object? framesLength = null,
     Object? framesPaths = null,
   }) {
-    return _then(_value.copyWith(
-      frameIndex: null == frameIndex
-          ? _value.frameIndex
-          : frameIndex // ignore: cast_nullable_to_non_nullable
-              as double,
-      framesLength: null == framesLength
-          ? _value.framesLength
-          : framesLength // ignore: cast_nullable_to_non_nullable
-              as int,
-      framesPaths: null == framesPaths
-          ? _value.framesPaths
-          : framesPaths // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            frameIndex: null == frameIndex
+                ? _value.frameIndex
+                : frameIndex // ignore: cast_nullable_to_non_nullable
+                      as double,
+            framesLength: null == framesLength
+                ? _value.framesLength
+                : framesLength // ignore: cast_nullable_to_non_nullable
+                      as int,
+            framesPaths: null == framesPaths
+                ? _value.framesPaths
+                : framesPaths // ignore: cast_nullable_to_non_nullable
+                      as List<String>,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$AnimationEntryModelImplCopyWith<$Res>
     implements $AnimationEntryModelCopyWith<$Res> {
-  factory _$$AnimationEntryModelImplCopyWith(_$AnimationEntryModelImpl value,
-          $Res Function(_$AnimationEntryModelImpl) then) =
-      __$$AnimationEntryModelImplCopyWithImpl<$Res>;
+  factory _$$AnimationEntryModelImplCopyWith(
+    _$AnimationEntryModelImpl value,
+    $Res Function(_$AnimationEntryModelImpl) then,
+  ) = __$$AnimationEntryModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({double frameIndex, int framesLength, List<String> framesPaths});
@@ -87,9 +93,10 @@ abstract class _$$AnimationEntryModelImplCopyWith<$Res>
 class __$$AnimationEntryModelImplCopyWithImpl<$Res>
     extends _$AnimationEntryModelCopyWithImpl<$Res, _$AnimationEntryModelImpl>
     implements _$$AnimationEntryModelImplCopyWith<$Res> {
-  __$$AnimationEntryModelImplCopyWithImpl(_$AnimationEntryModelImpl _value,
-      $Res Function(_$AnimationEntryModelImpl) _then)
-      : super(_value, _then);
+  __$$AnimationEntryModelImplCopyWithImpl(
+    _$AnimationEntryModelImpl _value,
+    $Res Function(_$AnimationEntryModelImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of AnimationEntryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -100,32 +107,34 @@ class __$$AnimationEntryModelImplCopyWithImpl<$Res>
     Object? framesLength = null,
     Object? framesPaths = null,
   }) {
-    return _then(_$AnimationEntryModelImpl(
-      frameIndex: null == frameIndex
-          ? _value.frameIndex
-          : frameIndex // ignore: cast_nullable_to_non_nullable
-              as double,
-      framesLength: null == framesLength
-          ? _value.framesLength
-          : framesLength // ignore: cast_nullable_to_non_nullable
-              as int,
-      framesPaths: null == framesPaths
-          ? _value._framesPaths
-          : framesPaths // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
+    return _then(
+      _$AnimationEntryModelImpl(
+        frameIndex: null == frameIndex
+            ? _value.frameIndex
+            : frameIndex // ignore: cast_nullable_to_non_nullable
+                  as double,
+        framesLength: null == framesLength
+            ? _value.framesLength
+            : framesLength // ignore: cast_nullable_to_non_nullable
+                  as int,
+        framesPaths: null == framesPaths
+            ? _value._framesPaths
+            : framesPaths // ignore: cast_nullable_to_non_nullable
+                  as List<String>,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$AnimationEntryModelImpl extends _AnimationEntryModel {
-  const _$AnimationEntryModelImpl(
-      {this.frameIndex = 0,
-      this.framesLength = 0,
-      final List<String> framesPaths = const []})
-      : _framesPaths = framesPaths,
-        super._();
+  const _$AnimationEntryModelImpl({
+    this.frameIndex = 0,
+    this.framesLength = 0,
+    final List<String> framesPaths = const [],
+  }) : _framesPaths = framesPaths,
+       super._();
 
   @override
   @JsonKey()
@@ -156,13 +165,19 @@ class _$AnimationEntryModelImpl extends _AnimationEntryModel {
                 other.frameIndex == frameIndex) &&
             (identical(other.framesLength, framesLength) ||
                 other.framesLength == framesLength) &&
-            const DeepCollectionEquality()
-                .equals(other._framesPaths, _framesPaths));
+            const DeepCollectionEquality().equals(
+              other._framesPaths,
+              _framesPaths,
+            ));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, frameIndex, framesLength,
-      const DeepCollectionEquality().hash(_framesPaths));
+  int get hashCode => Object.hash(
+    runtimeType,
+    frameIndex,
+    framesLength,
+    const DeepCollectionEquality().hash(_framesPaths),
+  );
 
   /// Create a copy of AnimationEntryModel
   /// with the given fields replaced by the non-null parameter values.
@@ -171,14 +186,17 @@ class _$AnimationEntryModelImpl extends _AnimationEntryModel {
   @pragma('vm:prefer-inline')
   _$$AnimationEntryModelImplCopyWith<_$AnimationEntryModelImpl> get copyWith =>
       __$$AnimationEntryModelImplCopyWithImpl<_$AnimationEntryModelImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _AnimationEntryModel extends AnimationEntryModel {
-  const factory _AnimationEntryModel(
-      {final double frameIndex,
-      final int framesLength,
-      final List<String> framesPaths}) = _$AnimationEntryModelImpl;
+  const factory _AnimationEntryModel({
+    final double frameIndex,
+    final int framesLength,
+    final List<String> framesPaths,
+  }) = _$AnimationEntryModelImpl;
   const _AnimationEntryModel._() : super._();
 
   @override
@@ -210,8 +228,9 @@ mixin _$GameRendererConfig {
 /// @nodoc
 abstract class $GameRendererConfigCopyWith<$Res> {
   factory $GameRendererConfigCopyWith(
-          GameRendererConfig value, $Res Function(GameRendererConfig) then) =
-      _$GameRendererConfigCopyWithImpl<$Res, GameRendererConfig>;
+    GameRendererConfig value,
+    $Res Function(GameRendererConfig) then,
+  ) = _$GameRendererConfigCopyWithImpl<$Res, GameRendererConfig>;
   @useResult
   $Res call({int animationSpeed});
 }
@@ -230,24 +249,26 @@ class _$GameRendererConfigCopyWithImpl<$Res, $Val extends GameRendererConfig>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? animationSpeed = null,
-  }) {
-    return _then(_value.copyWith(
-      animationSpeed: null == animationSpeed
-          ? _value.animationSpeed
-          : animationSpeed // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
+  $Res call({Object? animationSpeed = null}) {
+    return _then(
+      _value.copyWith(
+            animationSpeed: null == animationSpeed
+                ? _value.animationSpeed
+                : animationSpeed // ignore: cast_nullable_to_non_nullable
+                      as int,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$GameRendererConfigImplCopyWith<$Res>
     implements $GameRendererConfigCopyWith<$Res> {
-  factory _$$GameRendererConfigImplCopyWith(_$GameRendererConfigImpl value,
-          $Res Function(_$GameRendererConfigImpl) then) =
-      __$$GameRendererConfigImplCopyWithImpl<$Res>;
+  factory _$$GameRendererConfigImplCopyWith(
+    _$GameRendererConfigImpl value,
+    $Res Function(_$GameRendererConfigImpl) then,
+  ) = __$$GameRendererConfigImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({int animationSpeed});
@@ -257,23 +278,24 @@ abstract class _$$GameRendererConfigImplCopyWith<$Res>
 class __$$GameRendererConfigImplCopyWithImpl<$Res>
     extends _$GameRendererConfigCopyWithImpl<$Res, _$GameRendererConfigImpl>
     implements _$$GameRendererConfigImplCopyWith<$Res> {
-  __$$GameRendererConfigImplCopyWithImpl(_$GameRendererConfigImpl _value,
-      $Res Function(_$GameRendererConfigImpl) _then)
-      : super(_value, _then);
+  __$$GameRendererConfigImplCopyWithImpl(
+    _$GameRendererConfigImpl _value,
+    $Res Function(_$GameRendererConfigImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of GameRendererConfig
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? animationSpeed = null,
-  }) {
-    return _then(_$GameRendererConfigImpl(
-      animationSpeed: null == animationSpeed
-          ? _value.animationSpeed
-          : animationSpeed // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
+  $Res call({Object? animationSpeed = null}) {
+    return _then(
+      _$GameRendererConfigImpl(
+        animationSpeed: null == animationSpeed
+            ? _value.animationSpeed
+            : animationSpeed // ignore: cast_nullable_to_non_nullable
+                  as int,
+      ),
+    );
   }
 }
 
@@ -310,7 +332,9 @@ class _$GameRendererConfigImpl implements _GameRendererConfig {
   @pragma('vm:prefer-inline')
   _$$GameRendererConfigImplCopyWith<_$GameRendererConfigImpl> get copyWith =>
       __$$GameRendererConfigImplCopyWithImpl<_$GameRendererConfigImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _GameRendererConfig implements GameRendererConfig {

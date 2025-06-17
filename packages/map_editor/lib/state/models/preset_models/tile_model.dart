@@ -90,11 +90,7 @@ class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
   static const empty = PresetTilePropertiesModel();
 }
 
-enum TileGraphicsType {
-  directional,
-  character,
-  standalone,
-}
+enum TileGraphicsType { directional, character, standalone }
 
 enum TileBehaviourType {
   idle,
@@ -105,7 +101,7 @@ enum TileBehaviourType {
   @JsonValue('fly_left')
   flyLeft,
   @JsonValue('fly_right')
-  flyRight
+  flyRight,
 }
 
 @freezed

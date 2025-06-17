@@ -13,7 +13,7 @@ class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
 
 class PlayerProfileCreatorNotifierDto {
   PlayerProfileCreatorNotifierDto(final BuildContext context)
-      : dictionariesRespository = context.read();
+    : dictionariesRespository = context.read();
   final WordsRespository dictionariesRespository;
 }
 
@@ -41,8 +41,8 @@ enum PlayerProfileCreatorError {
 class PlayerProfileCreatorNotifier
     extends ValueNotifier<PlayerProfileCreatorState> {
   PlayerProfileCreatorNotifier(final BuildContext context)
-      : _dto = PlayerProfileCreatorNotifierDto(context),
-        super(const PlayerProfileCreatorState());
+    : _dto = PlayerProfileCreatorNotifierDto(context),
+      super(const PlayerProfileCreatorState());
   final PlayerProfileCreatorNotifierDto _dto;
   final nameController = TextEditingController();
   Color get color => value.color;
@@ -51,8 +51,9 @@ class PlayerProfileCreatorNotifier
   Future<PlayerProfileCreatorError?> _validateName() async {
     final name = nameController.text;
     if (name.isEmpty) return PlayerProfileCreatorError.cannotBeEmpty;
-    final isValid =
-        await _dto.dictionariesRespository.verifyNonProfanityWord(name);
+    final isValid = await _dto.dictionariesRespository.verifyNonProfanityWord(
+      name,
+    );
     if (isValid) return null;
     return PlayerProfileCreatorError.invalidName;
   }
@@ -62,8 +63,9 @@ class PlayerProfileCreatorNotifier
   }) async {
     final errorMessage = await _validateName();
     if (errorMessage != null) {
-      value =
-          value.copyWith(nameErrorMessage: errorMessage.getLocalized(locale));
+      value = value.copyWith(
+        nameErrorMessage: errorMessage.getLocalized(locale),
+      );
       return null;
     }
     final player = PlayerProfileModel.create(

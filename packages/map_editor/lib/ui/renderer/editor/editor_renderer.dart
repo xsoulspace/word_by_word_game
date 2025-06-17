@@ -86,19 +86,11 @@ class EditorRendererComponent extends Component
   material.Paint get _greenPaint => Palette.green.paint();
 
   void _renderOrigin(final material.Canvas canvas) {
-    canvas.drawCircle(
-      origin.toOffset(),
-      15,
-      _redPaint,
-    );
+    canvas.drawCircle(origin.toOffset(), 15, _redPaint);
   }
 
   void _renderOffsetOrigin(final material.Canvas canvas) {
-    canvas.drawCircle(
-      getOffsetOrigin().toOffset(),
-      15,
-      _greenPaint,
-    );
+    canvas.drawCircle(getOffsetOrigin().toOffset(), 15, _greenPaint);
   }
 
   /// For cursor rendering
@@ -137,9 +129,7 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   Map<CellPointModel, CellTileModel> get layerTiles =>
       drawerCubit.drawLayer.tiles;
   set layerTiles(final Map<CellPointModel, CellTileModel> value) =>
-      drawerCubit.drawLayer = drawerCubit.drawLayer.copyWith(
-        tiles: value,
-      );
+      drawerCubit.drawLayer = drawerCubit.drawLayer.copyWith(tiles: value);
   CanvasDataModel get canvasData => drawerCubit.canvasData;
   set canvasData(final CanvasDataModel value) => drawerCubit.canvasData = value;
   TilesetPresetResources get presetResources =>
@@ -150,12 +140,12 @@ mixin HasEditorRef on Component, HasGameRef<EditorRendererGame> {
   ///
   /// in future change it to different tiles calls
   Map<TileId, PresetTileResource> get allTiles => {
-        ...presetResources.tiles,
-        ...presetResources.objects,
-        ...presetResources.npcs,
-        ...presetResources.players,
-        ...presetResources.other,
-      };
+    ...presetResources.tiles,
+    ...presetResources.objects,
+    ...presetResources.npcs,
+    ...presetResources.players,
+    ...presetResources.other,
+  };
 }
 
 class CursorRenderer extends Component

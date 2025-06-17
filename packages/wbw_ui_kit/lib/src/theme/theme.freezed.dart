@@ -12,7 +12,8 @@ part of 'theme.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$UiThemeScheme {
@@ -30,11 +31,14 @@ mixin _$UiThemeScheme {
 /// @nodoc
 abstract class $UiThemeSchemeCopyWith<$Res> {
   factory $UiThemeSchemeCopyWith(
-          UiThemeScheme value, $Res Function(UiThemeScheme) then) =
-      _$UiThemeSchemeCopyWithImpl<$Res, UiThemeScheme>;
+    UiThemeScheme value,
+    $Res Function(UiThemeScheme) then,
+  ) = _$UiThemeSchemeCopyWithImpl<$Res, UiThemeScheme>;
   @useResult
-  $Res call(
-      {UiTextTheme text, UiCustomizableFormFactors customizableFormFactors});
+  $Res call({
+    UiTextTheme text,
+    UiCustomizableFormFactors customizableFormFactors,
+  });
 
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors;
 }
@@ -53,20 +57,20 @@ class _$UiThemeSchemeCopyWithImpl<$Res, $Val extends UiThemeScheme>
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? text = null,
-    Object? customizableFormFactors = null,
-  }) {
-    return _then(_value.copyWith(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as UiTextTheme,
-      customizableFormFactors: null == customizableFormFactors
-          ? _value.customizableFormFactors
-          : customizableFormFactors // ignore: cast_nullable_to_non_nullable
-              as UiCustomizableFormFactors,
-    ) as $Val);
+  $Res call({Object? text = null, Object? customizableFormFactors = null}) {
+    return _then(
+      _value.copyWith(
+            text: null == text
+                ? _value.text
+                : text // ignore: cast_nullable_to_non_nullable
+                      as UiTextTheme,
+            customizableFormFactors: null == customizableFormFactors
+                ? _value.customizableFormFactors
+                : customizableFormFactors // ignore: cast_nullable_to_non_nullable
+                      as UiCustomizableFormFactors,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of UiThemeScheme
@@ -75,9 +79,11 @@ class _$UiThemeSchemeCopyWithImpl<$Res, $Val extends UiThemeScheme>
   @pragma('vm:prefer-inline')
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors {
     return $UiCustomizableFormFactorsCopyWith<$Res>(
-        _value.customizableFormFactors, (value) {
-      return _then(_value.copyWith(customizableFormFactors: value) as $Val);
-    });
+      _value.customizableFormFactors,
+      (value) {
+        return _then(_value.copyWith(customizableFormFactors: value) as $Val);
+      },
+    );
   }
 }
 
@@ -85,12 +91,15 @@ class _$UiThemeSchemeCopyWithImpl<$Res, $Val extends UiThemeScheme>
 abstract class _$$UiThemeSchemeImplCopyWith<$Res>
     implements $UiThemeSchemeCopyWith<$Res> {
   factory _$$UiThemeSchemeImplCopyWith(
-          _$UiThemeSchemeImpl value, $Res Function(_$UiThemeSchemeImpl) then) =
-      __$$UiThemeSchemeImplCopyWithImpl<$Res>;
+    _$UiThemeSchemeImpl value,
+    $Res Function(_$UiThemeSchemeImpl) then,
+  ) = __$$UiThemeSchemeImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {UiTextTheme text, UiCustomizableFormFactors customizableFormFactors});
+  $Res call({
+    UiTextTheme text,
+    UiCustomizableFormFactors customizableFormFactors,
+  });
 
   @override
   $UiCustomizableFormFactorsCopyWith<$Res> get customizableFormFactors;
@@ -101,36 +110,37 @@ class __$$UiThemeSchemeImplCopyWithImpl<$Res>
     extends _$UiThemeSchemeCopyWithImpl<$Res, _$UiThemeSchemeImpl>
     implements _$$UiThemeSchemeImplCopyWith<$Res> {
   __$$UiThemeSchemeImplCopyWithImpl(
-      _$UiThemeSchemeImpl _value, $Res Function(_$UiThemeSchemeImpl) _then)
-      : super(_value, _then);
+    _$UiThemeSchemeImpl _value,
+    $Res Function(_$UiThemeSchemeImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UiThemeScheme
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? text = null,
-    Object? customizableFormFactors = null,
-  }) {
-    return _then(_$UiThemeSchemeImpl(
-      text: null == text
-          ? _value.text
-          : text // ignore: cast_nullable_to_non_nullable
-              as UiTextTheme,
-      customizableFormFactors: null == customizableFormFactors
-          ? _value.customizableFormFactors
-          : customizableFormFactors // ignore: cast_nullable_to_non_nullable
-              as UiCustomizableFormFactors,
-    ));
+  $Res call({Object? text = null, Object? customizableFormFactors = null}) {
+    return _then(
+      _$UiThemeSchemeImpl(
+        text: null == text
+            ? _value.text
+            : text // ignore: cast_nullable_to_non_nullable
+                  as UiTextTheme,
+        customizableFormFactors: null == customizableFormFactors
+            ? _value.customizableFormFactors
+            : customizableFormFactors // ignore: cast_nullable_to_non_nullable
+                  as UiCustomizableFormFactors,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$UiThemeSchemeImpl extends _UiThemeScheme with DiagnosticableTreeMixin {
-  const _$UiThemeSchemeImpl(
-      {required this.text, required this.customizableFormFactors})
-      : super._();
+  const _$UiThemeSchemeImpl({
+    required this.text,
+    required this.customizableFormFactors,
+  }) : super._();
 
   @override
   final UiTextTheme text;
@@ -148,8 +158,9 @@ class _$UiThemeSchemeImpl extends _UiThemeScheme with DiagnosticableTreeMixin {
     properties
       ..add(DiagnosticsProperty('type', 'UiThemeScheme'))
       ..add(DiagnosticsProperty('text', text))
-      ..add(DiagnosticsProperty(
-          'customizableFormFactors', customizableFormFactors));
+      ..add(
+        DiagnosticsProperty('customizableFormFactors', customizableFormFactors),
+      );
   }
 
   @override
@@ -159,7 +170,9 @@ class _$UiThemeSchemeImpl extends _UiThemeScheme with DiagnosticableTreeMixin {
             other is _$UiThemeSchemeImpl &&
             (identical(other.text, text) || other.text == text) &&
             (identical(
-                    other.customizableFormFactors, customizableFormFactors) ||
+                  other.customizableFormFactors,
+                  customizableFormFactors,
+                ) ||
                 other.customizableFormFactors == customizableFormFactors));
   }
 
@@ -176,10 +189,10 @@ class _$UiThemeSchemeImpl extends _UiThemeScheme with DiagnosticableTreeMixin {
 }
 
 abstract class _UiThemeScheme extends UiThemeScheme {
-  const factory _UiThemeScheme(
-          {required final UiTextTheme text,
-          required final UiCustomizableFormFactors customizableFormFactors}) =
-      _$UiThemeSchemeImpl;
+  const factory _UiThemeScheme({
+    required final UiTextTheme text,
+    required final UiCustomizableFormFactors customizableFormFactors,
+  }) = _$UiThemeSchemeImpl;
   const _UiThemeScheme._() : super._();
 
   @override
@@ -210,19 +223,23 @@ mixin _$UiPersistentFormFactors {
 
 /// @nodoc
 abstract class $UiPersistentFormFactorsCopyWith<$Res> {
-  factory $UiPersistentFormFactorsCopyWith(UiPersistentFormFactors value,
-          $Res Function(UiPersistentFormFactors) then) =
-      _$UiPersistentFormFactorsCopyWithImpl<$Res, UiPersistentFormFactors>;
+  factory $UiPersistentFormFactorsCopyWith(
+    UiPersistentFormFactors value,
+    $Res Function(UiPersistentFormFactors) then,
+  ) = _$UiPersistentFormFactorsCopyWithImpl<$Res, UiPersistentFormFactors>;
   @useResult
-  $Res call(
-      {WidthFormFactor width,
-      DeviceWindowFormFactor deviceWindow,
-      Size screenSize});
+  $Res call({
+    WidthFormFactor width,
+    DeviceWindowFormFactor deviceWindow,
+    Size screenSize,
+  });
 }
 
 /// @nodoc
-class _$UiPersistentFormFactorsCopyWithImpl<$Res,
-        $Val extends UiPersistentFormFactors>
+class _$UiPersistentFormFactorsCopyWithImpl<
+  $Res,
+  $Val extends UiPersistentFormFactors
+>
     implements $UiPersistentFormFactorsCopyWith<$Res> {
   _$UiPersistentFormFactorsCopyWithImpl(this._value, this._then);
 
@@ -240,20 +257,23 @@ class _$UiPersistentFormFactorsCopyWithImpl<$Res,
     Object? deviceWindow = null,
     Object? screenSize = null,
   }) {
-    return _then(_value.copyWith(
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as WidthFormFactor,
-      deviceWindow: null == deviceWindow
-          ? _value.deviceWindow
-          : deviceWindow // ignore: cast_nullable_to_non_nullable
-              as DeviceWindowFormFactor,
-      screenSize: null == screenSize
-          ? _value.screenSize
-          : screenSize // ignore: cast_nullable_to_non_nullable
-              as Size,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            width: null == width
+                ? _value.width
+                : width // ignore: cast_nullable_to_non_nullable
+                      as WidthFormFactor,
+            deviceWindow: null == deviceWindow
+                ? _value.deviceWindow
+                : deviceWindow // ignore: cast_nullable_to_non_nullable
+                      as DeviceWindowFormFactor,
+            screenSize: null == screenSize
+                ? _value.screenSize
+                : screenSize // ignore: cast_nullable_to_non_nullable
+                      as Size,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -261,26 +281,30 @@ class _$UiPersistentFormFactorsCopyWithImpl<$Res,
 abstract class _$$UiPersistentFormFactorsImplCopyWith<$Res>
     implements $UiPersistentFormFactorsCopyWith<$Res> {
   factory _$$UiPersistentFormFactorsImplCopyWith(
-          _$UiPersistentFormFactorsImpl value,
-          $Res Function(_$UiPersistentFormFactorsImpl) then) =
-      __$$UiPersistentFormFactorsImplCopyWithImpl<$Res>;
+    _$UiPersistentFormFactorsImpl value,
+    $Res Function(_$UiPersistentFormFactorsImpl) then,
+  ) = __$$UiPersistentFormFactorsImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {WidthFormFactor width,
-      DeviceWindowFormFactor deviceWindow,
-      Size screenSize});
+  $Res call({
+    WidthFormFactor width,
+    DeviceWindowFormFactor deviceWindow,
+    Size screenSize,
+  });
 }
 
 /// @nodoc
 class __$$UiPersistentFormFactorsImplCopyWithImpl<$Res>
-    extends _$UiPersistentFormFactorsCopyWithImpl<$Res,
-        _$UiPersistentFormFactorsImpl>
+    extends
+        _$UiPersistentFormFactorsCopyWithImpl<
+          $Res,
+          _$UiPersistentFormFactorsImpl
+        >
     implements _$$UiPersistentFormFactorsImplCopyWith<$Res> {
   __$$UiPersistentFormFactorsImplCopyWithImpl(
-      _$UiPersistentFormFactorsImpl _value,
-      $Res Function(_$UiPersistentFormFactorsImpl) _then)
-      : super(_value, _then);
+    _$UiPersistentFormFactorsImpl _value,
+    $Res Function(_$UiPersistentFormFactorsImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UiPersistentFormFactors
   /// with the given fields replaced by the non-null parameter values.
@@ -291,20 +315,22 @@ class __$$UiPersistentFormFactorsImplCopyWithImpl<$Res>
     Object? deviceWindow = null,
     Object? screenSize = null,
   }) {
-    return _then(_$UiPersistentFormFactorsImpl(
-      width: null == width
-          ? _value.width
-          : width // ignore: cast_nullable_to_non_nullable
-              as WidthFormFactor,
-      deviceWindow: null == deviceWindow
-          ? _value.deviceWindow
-          : deviceWindow // ignore: cast_nullable_to_non_nullable
-              as DeviceWindowFormFactor,
-      screenSize: null == screenSize
-          ? _value.screenSize
-          : screenSize // ignore: cast_nullable_to_non_nullable
-              as Size,
-    ));
+    return _then(
+      _$UiPersistentFormFactorsImpl(
+        width: null == width
+            ? _value.width
+            : width // ignore: cast_nullable_to_non_nullable
+                  as WidthFormFactor,
+        deviceWindow: null == deviceWindow
+            ? _value.deviceWindow
+            : deviceWindow // ignore: cast_nullable_to_non_nullable
+                  as DeviceWindowFormFactor,
+        screenSize: null == screenSize
+            ? _value.screenSize
+            : screenSize // ignore: cast_nullable_to_non_nullable
+                  as Size,
+      ),
+    );
   }
 }
 
@@ -312,11 +338,11 @@ class __$$UiPersistentFormFactorsImplCopyWithImpl<$Res>
 
 class _$UiPersistentFormFactorsImpl extends _UiPersistentFormFactors
     with DiagnosticableTreeMixin {
-  const _$UiPersistentFormFactorsImpl(
-      {required this.width,
-      required this.deviceWindow,
-      required this.screenSize})
-      : super._();
+  const _$UiPersistentFormFactorsImpl({
+    required this.width,
+    required this.deviceWindow,
+    required this.screenSize,
+  }) : super._();
 
   @override
   final WidthFormFactor width;
@@ -361,15 +387,18 @@ class _$UiPersistentFormFactorsImpl extends _UiPersistentFormFactors
   @override
   @pragma('vm:prefer-inline')
   _$$UiPersistentFormFactorsImplCopyWith<_$UiPersistentFormFactorsImpl>
-      get copyWith => __$$UiPersistentFormFactorsImplCopyWithImpl<
-          _$UiPersistentFormFactorsImpl>(this, _$identity);
+  get copyWith =>
+      __$$UiPersistentFormFactorsImplCopyWithImpl<
+        _$UiPersistentFormFactorsImpl
+      >(this, _$identity);
 }
 
 abstract class _UiPersistentFormFactors extends UiPersistentFormFactors {
-  const factory _UiPersistentFormFactors(
-      {required final WidthFormFactor width,
-      required final DeviceWindowFormFactor deviceWindow,
-      required final Size screenSize}) = _$UiPersistentFormFactorsImpl;
+  const factory _UiPersistentFormFactors({
+    required final WidthFormFactor width,
+    required final DeviceWindowFormFactor deviceWindow,
+    required final Size screenSize,
+  }) = _$UiPersistentFormFactorsImpl;
   const _UiPersistentFormFactors._() : super._();
 
   @override
@@ -384,7 +413,7 @@ abstract class _UiPersistentFormFactors extends UiPersistentFormFactors {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UiPersistentFormFactorsImplCopyWith<_$UiPersistentFormFactorsImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
@@ -401,16 +430,19 @@ mixin _$UiCustomizableFormFactors {
 
 /// @nodoc
 abstract class $UiCustomizableFormFactorsCopyWith<$Res> {
-  factory $UiCustomizableFormFactorsCopyWith(UiCustomizableFormFactors value,
-          $Res Function(UiCustomizableFormFactors) then) =
-      _$UiCustomizableFormFactorsCopyWithImpl<$Res, UiCustomizableFormFactors>;
+  factory $UiCustomizableFormFactorsCopyWith(
+    UiCustomizableFormFactors value,
+    $Res Function(UiCustomizableFormFactors) then,
+  ) = _$UiCustomizableFormFactorsCopyWithImpl<$Res, UiCustomizableFormFactors>;
   @useResult
   $Res call({PerformanceFormFactor performance, ControlsFormFactor controls});
 }
 
 /// @nodoc
-class _$UiCustomizableFormFactorsCopyWithImpl<$Res,
-        $Val extends UiCustomizableFormFactors>
+class _$UiCustomizableFormFactorsCopyWithImpl<
+  $Res,
+  $Val extends UiCustomizableFormFactors
+>
     implements $UiCustomizableFormFactorsCopyWith<$Res> {
   _$UiCustomizableFormFactorsCopyWithImpl(this._value, this._then);
 
@@ -423,20 +455,20 @@ class _$UiCustomizableFormFactorsCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? performance = null,
-    Object? controls = null,
-  }) {
-    return _then(_value.copyWith(
-      performance: null == performance
-          ? _value.performance
-          : performance // ignore: cast_nullable_to_non_nullable
-              as PerformanceFormFactor,
-      controls: null == controls
-          ? _value.controls
-          : controls // ignore: cast_nullable_to_non_nullable
-              as ControlsFormFactor,
-    ) as $Val);
+  $Res call({Object? performance = null, Object? controls = null}) {
+    return _then(
+      _value.copyWith(
+            performance: null == performance
+                ? _value.performance
+                : performance // ignore: cast_nullable_to_non_nullable
+                      as PerformanceFormFactor,
+            controls: null == controls
+                ? _value.controls
+                : controls // ignore: cast_nullable_to_non_nullable
+                      as ControlsFormFactor,
+          )
+          as $Val,
+    );
   }
 }
 
@@ -444,9 +476,9 @@ class _$UiCustomizableFormFactorsCopyWithImpl<$Res,
 abstract class _$$UiCustomizableFormFactorsImplCopyWith<$Res>
     implements $UiCustomizableFormFactorsCopyWith<$Res> {
   factory _$$UiCustomizableFormFactorsImplCopyWith(
-          _$UiCustomizableFormFactorsImpl value,
-          $Res Function(_$UiCustomizableFormFactorsImpl) then) =
-      __$$UiCustomizableFormFactorsImplCopyWithImpl<$Res>;
+    _$UiCustomizableFormFactorsImpl value,
+    $Res Function(_$UiCustomizableFormFactorsImpl) then,
+  ) = __$$UiCustomizableFormFactorsImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({PerformanceFormFactor performance, ControlsFormFactor controls});
@@ -454,32 +486,34 @@ abstract class _$$UiCustomizableFormFactorsImplCopyWith<$Res>
 
 /// @nodoc
 class __$$UiCustomizableFormFactorsImplCopyWithImpl<$Res>
-    extends _$UiCustomizableFormFactorsCopyWithImpl<$Res,
-        _$UiCustomizableFormFactorsImpl>
+    extends
+        _$UiCustomizableFormFactorsCopyWithImpl<
+          $Res,
+          _$UiCustomizableFormFactorsImpl
+        >
     implements _$$UiCustomizableFormFactorsImplCopyWith<$Res> {
   __$$UiCustomizableFormFactorsImplCopyWithImpl(
-      _$UiCustomizableFormFactorsImpl _value,
-      $Res Function(_$UiCustomizableFormFactorsImpl) _then)
-      : super(_value, _then);
+    _$UiCustomizableFormFactorsImpl _value,
+    $Res Function(_$UiCustomizableFormFactorsImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of UiCustomizableFormFactors
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? performance = null,
-    Object? controls = null,
-  }) {
-    return _then(_$UiCustomizableFormFactorsImpl(
-      performance: null == performance
-          ? _value.performance
-          : performance // ignore: cast_nullable_to_non_nullable
-              as PerformanceFormFactor,
-      controls: null == controls
-          ? _value.controls
-          : controls // ignore: cast_nullable_to_non_nullable
-              as ControlsFormFactor,
-    ));
+  $Res call({Object? performance = null, Object? controls = null}) {
+    return _then(
+      _$UiCustomizableFormFactorsImpl(
+        performance: null == performance
+            ? _value.performance
+            : performance // ignore: cast_nullable_to_non_nullable
+                  as PerformanceFormFactor,
+        controls: null == controls
+            ? _value.controls
+            : controls // ignore: cast_nullable_to_non_nullable
+                  as ControlsFormFactor,
+      ),
+    );
   }
 }
 
@@ -487,9 +521,10 @@ class __$$UiCustomizableFormFactorsImplCopyWithImpl<$Res>
 
 class _$UiCustomizableFormFactorsImpl extends _UiCustomizableFormFactors
     with DiagnosticableTreeMixin {
-  const _$UiCustomizableFormFactorsImpl(
-      {required this.performance, required this.controls})
-      : super._();
+  const _$UiCustomizableFormFactorsImpl({
+    required this.performance,
+    required this.controls,
+  }) : super._();
 
   @override
   final PerformanceFormFactor performance;
@@ -530,15 +565,17 @@ class _$UiCustomizableFormFactorsImpl extends _UiCustomizableFormFactors
   @override
   @pragma('vm:prefer-inline')
   _$$UiCustomizableFormFactorsImplCopyWith<_$UiCustomizableFormFactorsImpl>
-      get copyWith => __$$UiCustomizableFormFactorsImplCopyWithImpl<
-          _$UiCustomizableFormFactorsImpl>(this, _$identity);
+  get copyWith =>
+      __$$UiCustomizableFormFactorsImplCopyWithImpl<
+        _$UiCustomizableFormFactorsImpl
+      >(this, _$identity);
 }
 
 abstract class _UiCustomizableFormFactors extends UiCustomizableFormFactors {
-  const factory _UiCustomizableFormFactors(
-          {required final PerformanceFormFactor performance,
-          required final ControlsFormFactor controls}) =
-      _$UiCustomizableFormFactorsImpl;
+  const factory _UiCustomizableFormFactors({
+    required final PerformanceFormFactor performance,
+    required final ControlsFormFactor controls,
+  }) = _$UiCustomizableFormFactorsImpl;
   const _UiCustomizableFormFactors._() : super._();
 
   @override
@@ -551,5 +588,5 @@ abstract class _UiCustomizableFormFactors extends UiCustomizableFormFactors {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$UiCustomizableFormFactorsImplCopyWith<_$UiCustomizableFormFactorsImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

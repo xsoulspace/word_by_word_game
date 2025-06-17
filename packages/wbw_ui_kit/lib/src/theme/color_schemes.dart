@@ -1,15 +1,12 @@
 part of 'theme.dart';
 
 class AppColorSchemes {
-  AppColorSchemes._({
-    required this.light,
-    required this.lightSurface,
-  });
+  AppColorSchemes._({required this.light, required this.lightSurface});
 
   factory AppColorSchemes.brand() => AppColorSchemes._(
-        lightSurface: BrandColorSchemes.lightSurface,
-        light: BrandColorSchemes.light,
-      );
+    lightSurface: BrandColorSchemes.lightSurface,
+    light: BrandColorSchemes.light,
+  );
 
   final ColorScheme light;
   final SurfaceColorScheme lightSurface;
@@ -51,31 +48,31 @@ class BrandColorSchemes {
 
 class SurfaceColorScheme extends ThemeExtension<SurfaceColorScheme> {
   SurfaceColorScheme(final ColorScheme scheme)
-      : surface1 = ElevationOverlay.applySurfaceTint(
-          scheme.surface,
-          scheme.surfaceTint,
-          5,
-        ),
-        surface2 = ElevationOverlay.applySurfaceTint(
-          scheme.surface,
-          scheme.surfaceTint,
-          8,
-        ),
-        surface3 = ElevationOverlay.applySurfaceTint(
-          scheme.surface,
-          scheme.surfaceTint,
-          11,
-        ),
-        surface4 = ElevationOverlay.applySurfaceTint(
-          scheme.surface,
-          scheme.surfaceTint,
-          12,
-        ),
-        surface5 = ElevationOverlay.applySurfaceTint(
-          scheme.surface,
-          scheme.surfaceTint,
-          14,
-        );
+    : surface1 = ElevationOverlay.applySurfaceTint(
+        scheme.surface,
+        scheme.surfaceTint,
+        5,
+      ),
+      surface2 = ElevationOverlay.applySurfaceTint(
+        scheme.surface,
+        scheme.surfaceTint,
+        8,
+      ),
+      surface3 = ElevationOverlay.applySurfaceTint(
+        scheme.surface,
+        scheme.surfaceTint,
+        11,
+      ),
+      surface4 = ElevationOverlay.applySurfaceTint(
+        scheme.surface,
+        scheme.surfaceTint,
+        12,
+      ),
+      surface5 = ElevationOverlay.applySurfaceTint(
+        scheme.surface,
+        scheme.surfaceTint,
+        14,
+      );
   SurfaceColorScheme._({
     required this.surface1,
     required this.surface2,

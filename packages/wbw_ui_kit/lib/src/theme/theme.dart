@@ -16,11 +16,7 @@ part 'ui_form_factor.dart';
 part 'ui_text_theme.dart';
 
 @immutable
-@Freezed(
-  equal: true,
-  addImplicitFinal: true,
-  copyWith: true,
-)
+@Freezed(equal: true, addImplicitFinal: true, copyWith: true)
 class UiThemeScheme with _$UiThemeScheme {
   const factory UiThemeScheme({
     required final UiTextTheme text,
@@ -28,7 +24,7 @@ class UiThemeScheme with _$UiThemeScheme {
   }) = _UiThemeScheme;
   const UiThemeScheme._();
   factory UiThemeScheme.m3(final BuildContext context) => UiThemeScheme(
-        text: UiTextTheme(context),
-        customizableFormFactors: UiCustomizableFormFactors.ofTargetPlatform(),
-      );
+    text: UiTextTheme(context),
+    customizableFormFactors: UiCustomizableFormFactors.ofTargetPlatform(),
+  );
 }

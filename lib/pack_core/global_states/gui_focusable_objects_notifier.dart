@@ -11,10 +11,10 @@ part 'gui_focusable_objects_notifier.freezed.dart';
 
 class GuiFocusableObjectsNotifierDto {
   GuiFocusableObjectsNotifierDto({required final BuildContext context})
-      : canvasCubit = context.read(),
-        mechanics = context.read(),
-        levelPlayersBloc = context.read(),
-        levelBloc = context.read();
+    : canvasCubit = context.read(),
+      mechanics = context.read(),
+      levelPlayersBloc = context.read(),
+      levelBloc = context.read();
   final CanvasCubit canvasCubit;
   final LevelBloc levelBloc;
   final LevelPlayersBloc levelPlayersBloc;
@@ -45,8 +45,8 @@ class GuiFocusableObjectsNotifierState with _$GuiFocusableObjectsNotifierState {
 class GuiFocusableObjectsNotifier
     extends ValueNotifier<GuiFocusableObjectsNotifierState> {
   GuiFocusableObjectsNotifier(final BuildContext context)
-      : dto = GuiFocusableObjectsNotifierDto(context: context),
-        super(GuiFocusableObjectsNotifierState.idle);
+    : dto = GuiFocusableObjectsNotifierDto(context: context),
+      super(GuiFocusableObjectsNotifierState.idle);
   final GuiFocusableObjectsNotifierDto dto;
   bool get isFocusing => value.isChoosing;
   bool get isPlayerFocused => value.focusedObjectId.isEmpty;

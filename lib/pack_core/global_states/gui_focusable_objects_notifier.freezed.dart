@@ -12,7 +12,8 @@ part of 'gui_focusable_objects_notifier.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$GuiFocusableObjectsNotifierState {
@@ -32,29 +33,35 @@ mixin _$GuiFocusableObjectsNotifierState {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   $GuiFocusableObjectsNotifierStateCopyWith<GuiFocusableObjectsNotifierState>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
 abstract class $GuiFocusableObjectsNotifierStateCopyWith<$Res> {
   factory $GuiFocusableObjectsNotifierStateCopyWith(
-          GuiFocusableObjectsNotifierState value,
-          $Res Function(GuiFocusableObjectsNotifierState) then) =
-      _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
-          GuiFocusableObjectsNotifierState>;
+    GuiFocusableObjectsNotifierState value,
+    $Res Function(GuiFocusableObjectsNotifierState) then,
+  ) =
+      _$GuiFocusableObjectsNotifierStateCopyWithImpl<
+        $Res,
+        GuiFocusableObjectsNotifierState
+      >;
   @useResult
-  $Res call(
-      {bool isChoosing,
-      List<Gid> nearestObjectIds,
-      bool isNearestObjectsLoaded,
-      Gid focusedObjectId});
+  $Res call({
+    bool isChoosing,
+    List<Gid> nearestObjectIds,
+    bool isNearestObjectsLoaded,
+    Gid focusedObjectId,
+  });
 
   $GidCopyWith<$Res> get focusedObjectId;
 }
 
 /// @nodoc
-class _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
-        $Val extends GuiFocusableObjectsNotifierState>
+class _$GuiFocusableObjectsNotifierStateCopyWithImpl<
+  $Res,
+  $Val extends GuiFocusableObjectsNotifierState
+>
     implements $GuiFocusableObjectsNotifierStateCopyWith<$Res> {
   _$GuiFocusableObjectsNotifierStateCopyWithImpl(this._value, this._then);
 
@@ -73,24 +80,27 @@ class _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
     Object? isNearestObjectsLoaded = null,
     Object? focusedObjectId = null,
   }) {
-    return _then(_value.copyWith(
-      isChoosing: null == isChoosing
-          ? _value.isChoosing
-          : isChoosing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      nearestObjectIds: null == nearestObjectIds
-          ? _value.nearestObjectIds
-          : nearestObjectIds // ignore: cast_nullable_to_non_nullable
-              as List<Gid>,
-      isNearestObjectsLoaded: null == isNearestObjectsLoaded
-          ? _value.isNearestObjectsLoaded
-          : isNearestObjectsLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
-      focusedObjectId: null == focusedObjectId
-          ? _value.focusedObjectId
-          : focusedObjectId // ignore: cast_nullable_to_non_nullable
-              as Gid,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isChoosing: null == isChoosing
+                ? _value.isChoosing
+                : isChoosing // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            nearestObjectIds: null == nearestObjectIds
+                ? _value.nearestObjectIds
+                : nearestObjectIds // ignore: cast_nullable_to_non_nullable
+                      as List<Gid>,
+            isNearestObjectsLoaded: null == isNearestObjectsLoaded
+                ? _value.isNearestObjectsLoaded
+                : isNearestObjectsLoaded // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            focusedObjectId: null == focusedObjectId
+                ? _value.focusedObjectId
+                : focusedObjectId // ignore: cast_nullable_to_non_nullable
+                      as Gid,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of GuiFocusableObjectsNotifierState
@@ -107,16 +117,18 @@ class _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
 /// @nodoc
 abstract class _$$GuiFcoNotifierStateImplCopyWith<$Res>
     implements $GuiFocusableObjectsNotifierStateCopyWith<$Res> {
-  factory _$$GuiFcoNotifierStateImplCopyWith(_$GuiFcoNotifierStateImpl value,
-          $Res Function(_$GuiFcoNotifierStateImpl) then) =
-      __$$GuiFcoNotifierStateImplCopyWithImpl<$Res>;
+  factory _$$GuiFcoNotifierStateImplCopyWith(
+    _$GuiFcoNotifierStateImpl value,
+    $Res Function(_$GuiFcoNotifierStateImpl) then,
+  ) = __$$GuiFcoNotifierStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isChoosing,
-      List<Gid> nearestObjectIds,
-      bool isNearestObjectsLoaded,
-      Gid focusedObjectId});
+  $Res call({
+    bool isChoosing,
+    List<Gid> nearestObjectIds,
+    bool isNearestObjectsLoaded,
+    Gid focusedObjectId,
+  });
 
   @override
   $GidCopyWith<$Res> get focusedObjectId;
@@ -124,12 +136,16 @@ abstract class _$$GuiFcoNotifierStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$GuiFcoNotifierStateImplCopyWithImpl<$Res>
-    extends _$GuiFocusableObjectsNotifierStateCopyWithImpl<$Res,
-        _$GuiFcoNotifierStateImpl>
+    extends
+        _$GuiFocusableObjectsNotifierStateCopyWithImpl<
+          $Res,
+          _$GuiFcoNotifierStateImpl
+        >
     implements _$$GuiFcoNotifierStateImplCopyWith<$Res> {
-  __$$GuiFcoNotifierStateImplCopyWithImpl(_$GuiFcoNotifierStateImpl _value,
-      $Res Function(_$GuiFcoNotifierStateImpl) _then)
-      : super(_value, _then);
+  __$$GuiFcoNotifierStateImplCopyWithImpl(
+    _$GuiFcoNotifierStateImpl _value,
+    $Res Function(_$GuiFcoNotifierStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of GuiFocusableObjectsNotifierState
   /// with the given fields replaced by the non-null parameter values.
@@ -141,36 +157,38 @@ class __$$GuiFcoNotifierStateImplCopyWithImpl<$Res>
     Object? isNearestObjectsLoaded = null,
     Object? focusedObjectId = null,
   }) {
-    return _then(_$GuiFcoNotifierStateImpl(
-      isChoosing: null == isChoosing
-          ? _value.isChoosing
-          : isChoosing // ignore: cast_nullable_to_non_nullable
-              as bool,
-      nearestObjectIds: null == nearestObjectIds
-          ? _value._nearestObjectIds
-          : nearestObjectIds // ignore: cast_nullable_to_non_nullable
-              as List<Gid>,
-      isNearestObjectsLoaded: null == isNearestObjectsLoaded
-          ? _value.isNearestObjectsLoaded
-          : isNearestObjectsLoaded // ignore: cast_nullable_to_non_nullable
-              as bool,
-      focusedObjectId: null == focusedObjectId
-          ? _value.focusedObjectId
-          : focusedObjectId // ignore: cast_nullable_to_non_nullable
-              as Gid,
-    ));
+    return _then(
+      _$GuiFcoNotifierStateImpl(
+        isChoosing: null == isChoosing
+            ? _value.isChoosing
+            : isChoosing // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        nearestObjectIds: null == nearestObjectIds
+            ? _value._nearestObjectIds
+            : nearestObjectIds // ignore: cast_nullable_to_non_nullable
+                  as List<Gid>,
+        isNearestObjectsLoaded: null == isNearestObjectsLoaded
+            ? _value.isNearestObjectsLoaded
+            : isNearestObjectsLoaded // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        focusedObjectId: null == focusedObjectId
+            ? _value.focusedObjectId
+            : focusedObjectId // ignore: cast_nullable_to_non_nullable
+                  as Gid,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
-  const _$GuiFcoNotifierStateImpl(
-      {this.isChoosing = false,
-      final List<Gid> nearestObjectIds = const [],
-      this.isNearestObjectsLoaded = false,
-      this.focusedObjectId = Gid.empty})
-      : _nearestObjectIds = nearestObjectIds;
+  const _$GuiFcoNotifierStateImpl({
+    this.isChoosing = false,
+    final List<Gid> nearestObjectIds = const [],
+    this.isNearestObjectsLoaded = false,
+    this.focusedObjectId = Gid.empty,
+  }) : _nearestObjectIds = nearestObjectIds;
 
   @override
   @JsonKey()
@@ -216,8 +234,10 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
             other is _$GuiFcoNotifierStateImpl &&
             (identical(other.isChoosing, isChoosing) ||
                 other.isChoosing == isChoosing) &&
-            const DeepCollectionEquality()
-                .equals(other._nearestObjectIds, _nearestObjectIds) &&
+            const DeepCollectionEquality().equals(
+              other._nearestObjectIds,
+              _nearestObjectIds,
+            ) &&
             (identical(other.isNearestObjectsLoaded, isNearestObjectsLoaded) ||
                 other.isNearestObjectsLoaded == isNearestObjectsLoaded) &&
             (identical(other.focusedObjectId, focusedObjectId) ||
@@ -226,11 +246,12 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
 
   @override
   int get hashCode => Object.hash(
-      runtimeType,
-      isChoosing,
-      const DeepCollectionEquality().hash(_nearestObjectIds),
-      isNearestObjectsLoaded,
-      focusedObjectId);
+    runtimeType,
+    isChoosing,
+    const DeepCollectionEquality().hash(_nearestObjectIds),
+    isNearestObjectsLoaded,
+    focusedObjectId,
+  );
 
   /// Create a copy of GuiFocusableObjectsNotifierState
   /// with the given fields replaced by the non-null parameter values.
@@ -239,16 +260,19 @@ class _$GuiFcoNotifierStateImpl implements _GuiFcoNotifierState {
   @pragma('vm:prefer-inline')
   _$$GuiFcoNotifierStateImplCopyWith<_$GuiFcoNotifierStateImpl> get copyWith =>
       __$$GuiFcoNotifierStateImplCopyWithImpl<_$GuiFcoNotifierStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _GuiFcoNotifierState
     implements GuiFocusableObjectsNotifierState {
-  const factory _GuiFcoNotifierState(
-      {final bool isChoosing,
-      final List<Gid> nearestObjectIds,
-      final bool isNearestObjectsLoaded,
-      final Gid focusedObjectId}) = _$GuiFcoNotifierStateImpl;
+  const factory _GuiFcoNotifierState({
+    final bool isChoosing,
+    final List<Gid> nearestObjectIds,
+    final bool isNearestObjectsLoaded,
+    final Gid focusedObjectId,
+  }) = _$GuiFcoNotifierStateImpl;
 
   @override
   bool get isChoosing;

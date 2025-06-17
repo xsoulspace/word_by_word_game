@@ -12,7 +12,8 @@ part of 'debug_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$DebugCubitState {
@@ -31,14 +32,16 @@ mixin _$DebugCubitState {
 /// @nodoc
 abstract class $DebugCubitStateCopyWith<$Res> {
   factory $DebugCubitStateCopyWith(
-          DebugCubitState value, $Res Function(DebugCubitState) then) =
-      _$DebugCubitStateCopyWithImpl<$Res, DebugCubitState>;
+    DebugCubitState value,
+    $Res Function(DebugCubitState) then,
+  ) = _$DebugCubitStateCopyWithImpl<$Res, DebugCubitState>;
   @useResult
-  $Res call(
-      {bool isCameraFollowingFocusedObject,
-      bool isDebugPaneVisible,
-      bool isDebugLinesVisible,
-      bool isFpsEnabled});
+  $Res call({
+    bool isCameraFollowingFocusedObject,
+    bool isDebugPaneVisible,
+    bool isDebugLinesVisible,
+    bool isFpsEnabled,
+  });
 }
 
 /// @nodoc
@@ -61,40 +64,46 @@ class _$DebugCubitStateCopyWithImpl<$Res, $Val extends DebugCubitState>
     Object? isDebugLinesVisible = null,
     Object? isFpsEnabled = null,
   }) {
-    return _then(_value.copyWith(
-      isCameraFollowingFocusedObject: null == isCameraFollowingFocusedObject
-          ? _value.isCameraFollowingFocusedObject
-          : isCameraFollowingFocusedObject // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDebugPaneVisible: null == isDebugPaneVisible
-          ? _value.isDebugPaneVisible
-          : isDebugPaneVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDebugLinesVisible: null == isDebugLinesVisible
-          ? _value.isDebugLinesVisible
-          : isDebugLinesVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFpsEnabled: null == isFpsEnabled
-          ? _value.isFpsEnabled
-          : isFpsEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+    return _then(
+      _value.copyWith(
+            isCameraFollowingFocusedObject:
+                null == isCameraFollowingFocusedObject
+                ? _value.isCameraFollowingFocusedObject
+                : isCameraFollowingFocusedObject // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isDebugPaneVisible: null == isDebugPaneVisible
+                ? _value.isDebugPaneVisible
+                : isDebugPaneVisible // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isDebugLinesVisible: null == isDebugLinesVisible
+                ? _value.isDebugLinesVisible
+                : isDebugLinesVisible // ignore: cast_nullable_to_non_nullable
+                      as bool,
+            isFpsEnabled: null == isFpsEnabled
+                ? _value.isFpsEnabled
+                : isFpsEnabled // ignore: cast_nullable_to_non_nullable
+                      as bool,
+          )
+          as $Val,
+    );
   }
 }
 
 /// @nodoc
 abstract class _$$DebugCubitStateImplCopyWith<$Res>
     implements $DebugCubitStateCopyWith<$Res> {
-  factory _$$DebugCubitStateImplCopyWith(_$DebugCubitStateImpl value,
-          $Res Function(_$DebugCubitStateImpl) then) =
-      __$$DebugCubitStateImplCopyWithImpl<$Res>;
+  factory _$$DebugCubitStateImplCopyWith(
+    _$DebugCubitStateImpl value,
+    $Res Function(_$DebugCubitStateImpl) then,
+  ) = __$$DebugCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call(
-      {bool isCameraFollowingFocusedObject,
-      bool isDebugPaneVisible,
-      bool isDebugLinesVisible,
-      bool isFpsEnabled});
+  $Res call({
+    bool isCameraFollowingFocusedObject,
+    bool isDebugPaneVisible,
+    bool isDebugLinesVisible,
+    bool isFpsEnabled,
+  });
 }
 
 /// @nodoc
@@ -102,8 +111,9 @@ class __$$DebugCubitStateImplCopyWithImpl<$Res>
     extends _$DebugCubitStateCopyWithImpl<$Res, _$DebugCubitStateImpl>
     implements _$$DebugCubitStateImplCopyWith<$Res> {
   __$$DebugCubitStateImplCopyWithImpl(
-      _$DebugCubitStateImpl _value, $Res Function(_$DebugCubitStateImpl) _then)
-      : super(_value, _then);
+    _$DebugCubitStateImpl _value,
+    $Res Function(_$DebugCubitStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of DebugCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -115,24 +125,26 @@ class __$$DebugCubitStateImplCopyWithImpl<$Res>
     Object? isDebugLinesVisible = null,
     Object? isFpsEnabled = null,
   }) {
-    return _then(_$DebugCubitStateImpl(
-      isCameraFollowingFocusedObject: null == isCameraFollowingFocusedObject
-          ? _value.isCameraFollowingFocusedObject
-          : isCameraFollowingFocusedObject // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDebugPaneVisible: null == isDebugPaneVisible
-          ? _value.isDebugPaneVisible
-          : isDebugPaneVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isDebugLinesVisible: null == isDebugLinesVisible
-          ? _value.isDebugLinesVisible
-          : isDebugLinesVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isFpsEnabled: null == isFpsEnabled
-          ? _value.isFpsEnabled
-          : isFpsEnabled // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    return _then(
+      _$DebugCubitStateImpl(
+        isCameraFollowingFocusedObject: null == isCameraFollowingFocusedObject
+            ? _value.isCameraFollowingFocusedObject
+            : isCameraFollowingFocusedObject // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isDebugPaneVisible: null == isDebugPaneVisible
+            ? _value.isDebugPaneVisible
+            : isDebugPaneVisible // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isDebugLinesVisible: null == isDebugLinesVisible
+            ? _value.isDebugLinesVisible
+            : isDebugLinesVisible // ignore: cast_nullable_to_non_nullable
+                  as bool,
+        isFpsEnabled: null == isFpsEnabled
+            ? _value.isFpsEnabled
+            : isFpsEnabled // ignore: cast_nullable_to_non_nullable
+                  as bool,
+      ),
+    );
   }
 }
 
@@ -141,11 +153,12 @@ class __$$DebugCubitStateImplCopyWithImpl<$Res>
 class _$DebugCubitStateImpl
     with DiagnosticableTreeMixin
     implements _DebugCubitState {
-  const _$DebugCubitStateImpl(
-      {this.isCameraFollowingFocusedObject = true,
-      this.isDebugPaneVisible = kDebugMode,
-      this.isDebugLinesVisible = false,
-      this.isFpsEnabled = false});
+  const _$DebugCubitStateImpl({
+    this.isCameraFollowingFocusedObject = true,
+    this.isDebugPaneVisible = kDebugMode,
+    this.isDebugLinesVisible = false,
+    this.isFpsEnabled = false,
+  });
 
   @override
   @JsonKey()
@@ -170,8 +183,12 @@ class _$DebugCubitStateImpl
     super.debugFillProperties(properties);
     properties
       ..add(DiagnosticsProperty('type', 'DebugCubitState'))
-      ..add(DiagnosticsProperty(
-          'isCameraFollowingFocusedObject', isCameraFollowingFocusedObject))
+      ..add(
+        DiagnosticsProperty(
+          'isCameraFollowingFocusedObject',
+          isCameraFollowingFocusedObject,
+        ),
+      )
       ..add(DiagnosticsProperty('isDebugPaneVisible', isDebugPaneVisible))
       ..add(DiagnosticsProperty('isDebugLinesVisible', isDebugLinesVisible))
       ..add(DiagnosticsProperty('isFpsEnabled', isFpsEnabled));
@@ -182,8 +199,10 @@ class _$DebugCubitStateImpl
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$DebugCubitStateImpl &&
-            (identical(other.isCameraFollowingFocusedObject,
-                    isCameraFollowingFocusedObject) ||
+            (identical(
+                  other.isCameraFollowingFocusedObject,
+                  isCameraFollowingFocusedObject,
+                ) ||
                 other.isCameraFollowingFocusedObject ==
                     isCameraFollowingFocusedObject) &&
             (identical(other.isDebugPaneVisible, isDebugPaneVisible) ||
@@ -195,8 +214,13 @@ class _$DebugCubitStateImpl
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, isCameraFollowingFocusedObject,
-      isDebugPaneVisible, isDebugLinesVisible, isFpsEnabled);
+  int get hashCode => Object.hash(
+    runtimeType,
+    isCameraFollowingFocusedObject,
+    isDebugPaneVisible,
+    isDebugLinesVisible,
+    isFpsEnabled,
+  );
 
   /// Create a copy of DebugCubitState
   /// with the given fields replaced by the non-null parameter values.
@@ -205,15 +229,18 @@ class _$DebugCubitStateImpl
   @pragma('vm:prefer-inline')
   _$$DebugCubitStateImplCopyWith<_$DebugCubitStateImpl> get copyWith =>
       __$$DebugCubitStateImplCopyWithImpl<_$DebugCubitStateImpl>(
-          this, _$identity);
+        this,
+        _$identity,
+      );
 }
 
 abstract class _DebugCubitState implements DebugCubitState {
-  const factory _DebugCubitState(
-      {final bool isCameraFollowingFocusedObject,
-      final bool isDebugPaneVisible,
-      final bool isDebugLinesVisible,
-      final bool isFpsEnabled}) = _$DebugCubitStateImpl;
+  const factory _DebugCubitState({
+    final bool isCameraFollowingFocusedObject,
+    final bool isDebugPaneVisible,
+    final bool isDebugLinesVisible,
+    final bool isFpsEnabled,
+  }) = _$DebugCubitStateImpl;
 
   @override
   bool get isCameraFollowingFocusedObject;

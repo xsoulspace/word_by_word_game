@@ -1,22 +1,15 @@
 part of 'ui_icon_button.dart';
 
 @Deprecated('remove after UiIconButton will be merged into UiStyledButton')
-_ButtonState useUiIconButtonState({
-  final bool isLongButton = false,
-}) =>
-    use(
-      ContextfulLifeHook(
-        debugLabel: '_useButtonState',
-        state: _ButtonState(
-          isLongButton: isLongButton,
-        ),
-      ),
-    );
+_ButtonState useUiIconButtonState({final bool isLongButton = false}) => use(
+  ContextfulLifeHook(
+    debugLabel: '_useButtonState',
+    state: _ButtonState(isLongButton: isLongButton),
+  ),
+);
 
 class _ButtonState extends ContextfulLifeState {
-  _ButtonState({
-    required this.isLongButton,
-  });
+  _ButtonState({required this.isLongButton});
   final bool isLongButton;
   bool _isPressed = false;
 

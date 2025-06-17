@@ -16,11 +16,8 @@ class _App extends StatelessWidget {
 
   @override
   Widget build(final BuildContext context) => const Center(
-        child: SizedBox.square(
-          dimension: dimension,
-          child: _ShaderExp(),
-        ),
-      );
+    child: SizedBox.square(dimension: dimension, child: _ShaderExp()),
+  );
 }
 
 class _ShaderExp extends StatefulWidget {

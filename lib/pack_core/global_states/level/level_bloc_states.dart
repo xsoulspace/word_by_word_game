@@ -36,8 +36,4 @@ class LevelBlocState with _$LevelBlocState {
       );
 }
 
-enum WordWarning {
-  none,
-  isWritten,
-  isNotCorrect,
-}
+enum WordWarning { none, isWritten, isNotCorrect }

@@ -3,10 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 
-Locale useLocale(
-  final BuildContext context, {
-  final bool listen = true,
-}) =>
+Locale useLocale(final BuildContext context, {final bool listen = true}) =>
     Provider.of<UiLocaleNotifier>(context, listen: listen).value;
 
 class UiLocalizedText extends HookWidget {

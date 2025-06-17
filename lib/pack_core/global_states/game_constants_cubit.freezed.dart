@@ -12,7 +12,8 @@ part of 'game_constants_cubit.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
+  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
+);
 
 /// @nodoc
 mixin _$GameConstantsCubitState {
@@ -27,9 +28,10 @@ mixin _$GameConstantsCubitState {
 
 /// @nodoc
 abstract class $GameConstantsCubitStateCopyWith<$Res> {
-  factory $GameConstantsCubitStateCopyWith(GameConstantsCubitState value,
-          $Res Function(GameConstantsCubitState) then) =
-      _$GameConstantsCubitStateCopyWithImpl<$Res, GameConstantsCubitState>;
+  factory $GameConstantsCubitStateCopyWith(
+    GameConstantsCubitState value,
+    $Res Function(GameConstantsCubitState) then,
+  ) = _$GameConstantsCubitStateCopyWithImpl<$Res, GameConstantsCubitState>;
   @useResult
   $Res call({ForcesConstantsModel forces});
 
@@ -37,8 +39,10 @@ abstract class $GameConstantsCubitStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$GameConstantsCubitStateCopyWithImpl<$Res,
-        $Val extends GameConstantsCubitState>
+class _$GameConstantsCubitStateCopyWithImpl<
+  $Res,
+  $Val extends GameConstantsCubitState
+>
     implements $GameConstantsCubitStateCopyWith<$Res> {
   _$GameConstantsCubitStateCopyWithImpl(this._value, this._then);
 
@@ -51,15 +55,16 @@ class _$GameConstantsCubitStateCopyWithImpl<$Res,
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? forces = null,
-  }) {
-    return _then(_value.copyWith(
-      forces: null == forces
-          ? _value.forces
-          : forces // ignore: cast_nullable_to_non_nullable
-              as ForcesConstantsModel,
-    ) as $Val);
+  $Res call({Object? forces = null}) {
+    return _then(
+      _value.copyWith(
+            forces: null == forces
+                ? _value.forces
+                : forces // ignore: cast_nullable_to_non_nullable
+                      as ForcesConstantsModel,
+          )
+          as $Val,
+    );
   }
 
   /// Create a copy of GameConstantsCubitState
@@ -77,9 +82,9 @@ class _$GameConstantsCubitStateCopyWithImpl<$Res,
 abstract class _$$GameConstantsCubitStateImplCopyWith<$Res>
     implements $GameConstantsCubitStateCopyWith<$Res> {
   factory _$$GameConstantsCubitStateImplCopyWith(
-          _$GameConstantsCubitStateImpl value,
-          $Res Function(_$GameConstantsCubitStateImpl) then) =
-      __$$GameConstantsCubitStateImplCopyWithImpl<$Res>;
+    _$GameConstantsCubitStateImpl value,
+    $Res Function(_$GameConstantsCubitStateImpl) then,
+  ) = __$$GameConstantsCubitStateImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({ForcesConstantsModel forces});
@@ -90,35 +95,39 @@ abstract class _$$GameConstantsCubitStateImplCopyWith<$Res>
 
 /// @nodoc
 class __$$GameConstantsCubitStateImplCopyWithImpl<$Res>
-    extends _$GameConstantsCubitStateCopyWithImpl<$Res,
-        _$GameConstantsCubitStateImpl>
+    extends
+        _$GameConstantsCubitStateCopyWithImpl<
+          $Res,
+          _$GameConstantsCubitStateImpl
+        >
     implements _$$GameConstantsCubitStateImplCopyWith<$Res> {
   __$$GameConstantsCubitStateImplCopyWithImpl(
-      _$GameConstantsCubitStateImpl _value,
-      $Res Function(_$GameConstantsCubitStateImpl) _then)
-      : super(_value, _then);
+    _$GameConstantsCubitStateImpl _value,
+    $Res Function(_$GameConstantsCubitStateImpl) _then,
+  ) : super(_value, _then);
 
   /// Create a copy of GameConstantsCubitState
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
   @override
-  $Res call({
-    Object? forces = null,
-  }) {
-    return _then(_$GameConstantsCubitStateImpl(
-      forces: null == forces
-          ? _value.forces
-          : forces // ignore: cast_nullable_to_non_nullable
-              as ForcesConstantsModel,
-    ));
+  $Res call({Object? forces = null}) {
+    return _then(
+      _$GameConstantsCubitStateImpl(
+        forces: null == forces
+            ? _value.forces
+            : forces // ignore: cast_nullable_to_non_nullable
+                  as ForcesConstantsModel,
+      ),
+    );
   }
 }
 
 /// @nodoc
 
 class _$GameConstantsCubitStateImpl implements _GameConstantsCubitState {
-  const _$GameConstantsCubitStateImpl(
-      {this.forces = ForcesConstantsModel.initial});
+  const _$GameConstantsCubitStateImpl({
+    this.forces = ForcesConstantsModel.initial,
+  });
 
   @override
   @JsonKey()
@@ -146,8 +155,10 @@ class _$GameConstantsCubitStateImpl implements _GameConstantsCubitState {
   @override
   @pragma('vm:prefer-inline')
   _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
-      get copyWith => __$$GameConstantsCubitStateImplCopyWithImpl<
-          _$GameConstantsCubitStateImpl>(this, _$identity);
+  get copyWith =>
+      __$$GameConstantsCubitStateImplCopyWithImpl<
+        _$GameConstantsCubitStateImpl
+      >(this, _$identity);
 }
 
 abstract class _GameConstantsCubitState implements GameConstantsCubitState {
@@ -162,5 +173,5 @@ abstract class _GameConstantsCubitState implements GameConstantsCubitState {
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  get copyWith => throw _privateConstructorUsedError;
 }

@@ -53,16 +53,14 @@ class _UiPowerPointsAnimationState extends State<UiPowerPointsAnimation>
         );
         final key = 'l$count';
         _icons[key] = icon;
-        tuple.animation.addStatusListener(
-          (final status) {
-            if (status == AnimationStatus.completed ||
-                status == AnimationStatus.dismissed) {
-              tuple.controller.dispose();
-              _icons.remove(key);
-              setState(() {});
-            }
-          },
-        );
+        tuple.animation.addStatusListener((final status) {
+          if (status == AnimationStatus.completed ||
+              status == AnimationStatus.dismissed) {
+            tuple.controller.dispose();
+            _icons.remove(key);
+            setState(() {});
+          }
+        });
         tuple.controller.forward();
         setState(() {});
         count--;
@@ -72,58 +70,59 @@ class _UiPowerPointsAnimationState extends State<UiPowerPointsAnimation>
 
   Animatable<double> _fadeInTweenSequence() {
     const finalOpacity = 0.6;
-    return TweenSequence<double>(
-      [
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0, end: 0.5)
-              .chain(CurveTween(curve: Curves.easeIn)),
-          weight: 10,
-        ),
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0.5, end: 0)
-              .chain(CurveTween(curve: Curves.linear)),
-          weight: 10,
-        ),
-        TweenSequenceItem<double>(
-          tween: ConstantTween<double>(0),
-          weight: 50,
-        ),
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: 0, end: finalOpacity)
-              .chain(CurveTween(curve: Curves.decelerate)),
-          weight: 15,
-        ),
-        TweenSequenceItem<double>(
-          tween: Tween<double>(begin: finalOpacity, end: 0)
-              .chain(CurveTween(curve: Curves.easeOut)),
-          weight: 15,
-        ),
-      ],
-    );
+    return TweenSequence<double>([
+      TweenSequenceItem<double>(
+        tween: Tween<double>(
+          begin: 0,
+          end: 0.5,
+        ).chain(CurveTween(curve: Curves.easeIn)),
+        weight: 10,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(
+          begin: 0.5,
+          end: 0,
+        ).chain(CurveTween(curve: Curves.linear)),
+        weight: 10,
+      ),
+      TweenSequenceItem<double>(tween: ConstantTween<double>(0), weight: 50),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(
+          begin: 0,
+          end: finalOpacity,
+        ).chain(CurveTween(curve: Curves.decelerate)),
+        weight: 15,
+      ),
+      TweenSequenceItem<double>(
+        tween: Tween<double>(
+          begin: finalOpacity,
+          end: 0,
+        ).chain(CurveTween(curve: Curves.easeOut)),
+        weight: 15,
+      ),
+    ]);
   }
 
   AnimationControllerTuple _createAnimation({
     required final Animatable<double> tweenSequence,
   }) {
-    final controller =
-        AnimationController(vsync: this, duration: 750.milliseconds);
-    final moveAnimation = controller.drive(
-      CurveTween(curve: Curves.easeInOut),
+    final controller = AnimationController(
+      vsync: this,
+      duration: 750.milliseconds,
     );
+    final moveAnimation = controller.drive(CurveTween(curve: Curves.easeInOut));
     final fadeAnimation = tweenSequence.animate(controller);
 
     return (
       animation: moveAnimation,
       controller: controller,
-      fadeAnimation: fadeAnimation
+      fadeAnimation: fadeAnimation,
     );
   }
 
   @override
-  Widget build(final BuildContext context) => Stack(
-        fit: StackFit.expand,
-        children: _icons.values.toList(),
-      );
+  Widget build(final BuildContext context) =>
+      Stack(fit: StackFit.expand, children: _icons.values.toList());
 }
 
 class _UiTechPointIcon extends HookWidget {
@@ -144,14 +143,16 @@ class _UiTechPointIcon extends HookWidget {
       color: context.colorScheme.error.withOpacity(tuple.fadeAnimation.value),
     );
     useListenable(tuple.controller);
-    final bottom =
-        lerpDouble(bottomOffset.min, bottomOffset.max, tuple.animation.value);
-    final right =
-        lerpDouble(rightOffset.min, rightOffset.max, tuple.animation.value);
-    return Positioned(
-      bottom: bottom,
-      right: right,
-      child: icon,
+    final bottom = lerpDouble(
+      bottomOffset.min,
+      bottomOffset.max,
+      tuple.animation.value,
     );
+    final right = lerpDouble(
+      rightOffset.min,
+      rightOffset.max,
+      tuple.animation.value,
+    );
+    return Positioned(bottom: bottom, right: right, child: icon);
   }
 }

@@ -2,9 +2,7 @@ import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
 
 class LocaleSwitcherButton extends StatelessWidget {
-  const LocaleSwitcherButton({
-    super.key,
-  });
+  const LocaleSwitcherButton({super.key});
   static Future<void> applyNewLanguage(
     final BuildContext context,
     final UiLanguage newLanguage,
@@ -34,9 +32,7 @@ class LocaleSwitcherButton extends StatelessWidget {
 }
 
 class LocaleSwitcherGrid extends StatelessWidget {
-  const LocaleSwitcherGrid({
-    super.key,
-  });
+  const LocaleSwitcherGrid({super.key});
 
   @override
   Widget build(final BuildContext context) {

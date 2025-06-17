@@ -10,9 +10,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_services_initia
 import 'package:word_by_word_game/pack_core/word_by_word_app.dart';
 
 class AppBlocObserver extends BlocObserver {
-  AppBlocObserver({
-    required this.analyticsService,
-  });
+  AppBlocObserver({required this.analyticsService});
   final AnalyticsService analyticsService;
   @override
   // ignore: unnecessary_overrides
@@ -36,29 +34,24 @@ class AppBlocObserver extends BlocObserver {
   }
 }
 
-Future<void> bootstrap({
-  final FirebaseOptions? firebaseOptions,
-}) async {
+Future<void> bootstrap({final FirebaseOptions? firebaseOptions}) async {
   // await Flame.device.fullScreen();
 
   final GlobalServicesInitializer initializer = GlobalServicesInitializerImpl(
     firebaseOptions: firebaseOptions,
   );
 
-  await runZonedGuarded(
-    () async {
-      WidgetsFlutterBinding.ensureInitialized();
-      LicenseRegistry.addLicense(() async* {
-        final license = await rootBundle.loadString('google_fonts/OFL.txt');
-        yield LicenseEntryWithLineBreaks(['google_fonts'], license);
-      });
-      unawaited(initializer.onLoad());
+  await runZonedGuarded(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    LicenseRegistry.addLicense(() async* {
+      final license = await rootBundle.loadString('google_fonts/OFL.txt');
+      yield LicenseEntryWithLineBreaks(['google_fonts'], license);
+    });
+    unawaited(initializer.onLoad());
 
-      Bloc.observer = AppBlocObserver(
-        analyticsService: initializer.analyticsService,
-      );
-      runApp(WordByWordApp(initializer: initializer));
-    },
-    initializer.analyticsService.recordError,
-  );
+    Bloc.observer = AppBlocObserver(
+      analyticsService: initializer.analyticsService,
+    );
+    runApp(WordByWordApp(initializer: initializer));
+  }, initializer.analyticsService.recordError);
 }

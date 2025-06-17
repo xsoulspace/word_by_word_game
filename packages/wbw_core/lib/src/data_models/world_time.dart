@@ -7,12 +7,9 @@ part of 'data_models.dart';
 @immutable
 @freezed
 class WorldDateTimeModel with _$WorldDateTimeModel {
-  @JsonSerializable(
-    explicitToJson: true,
-  )
-  const factory WorldDateTimeModel({
-    @Default(0) final int second,
-  }) = _WorldDateTime;
+  @JsonSerializable(explicitToJson: true)
+  const factory WorldDateTimeModel({@Default(0) final int second}) =
+      _WorldDateTime;
   const WorldDateTimeModel._();
   factory WorldDateTimeModel.fromJson(final Map<String, dynamic> json) =>
       _$WorldDateTimeModelFromJson(json);
