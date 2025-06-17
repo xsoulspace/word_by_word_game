@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:wbw_locale/wbw_locale.dart';
-import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
 
 /// A widget that allows the user to select a language from a menu.
 ///
@@ -94,7 +93,7 @@ class LanguageSwitcherMenuOld extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => DropdownMenu<UiLanguage>(
     menuStyle: _defaultDropdownMenuStyle,
-    textStyle: context.textTheme.bodyMedium,
+    textStyle: TextTheme.of(context).bodyMedium,
     inputDecorationTheme: _defaultDropdownMenuInputTheme,
     initialSelection: initLanguage,
     onSelected: onSelected,

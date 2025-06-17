@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:xsoulspace_foundation/xsoulspace_foundation.dart';
+import 'package:is_dart_empty_or_not/is_dart_empty_or_not.dart';
 
 import '../../wbw_ui_kit.dart';
 

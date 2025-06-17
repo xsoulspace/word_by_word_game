@@ -22,6 +22,7 @@ dependencies:
   freezed_annotation: ^3.0.0
   gap: ^3.0.1
   google_fonts: ^6.2.1
+  is_dart_empty_or_not: ^0.2.3
   life_hooks: ^0.1.1
   provider: ^6.1.5
   recase: ^4.1.0
@@ -31,6 +32,7 @@ dependencies:
   wbw_core:
   wbw_locale:
   xsoulspace_foundation: ^0.2.0
+  xsoulspace_ui_foundation: ^0.1.0
 
 dev_dependencies:
   analyzer: ^7.4.5
