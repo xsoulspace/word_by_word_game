@@ -182,12 +182,12 @@ class WbwDictionary extends ValueNotifier<WbwDictionariesLoadingStatus> {
     (
       archivePath: Assets.archives.engDicTar,
       csvPath: Assets.src.engDic,
-      language: languages.en,
+      language: uiLanguages.en,
     ),
     (
       archivePath: Assets.archives.ruDicTar,
       csvPath: Assets.src.ruDic,
-      language: languages.ru,
+      language: uiLanguages.ru,
     ),
   ];
 

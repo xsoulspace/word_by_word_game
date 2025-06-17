@@ -55,9 +55,9 @@ class AdventureView extends HookWidget {
                     child: ViewTitle(
                       title: LocalizedMap(
                         value: {
-                          languages.en: 'Adventures',
-                          languages.ru: 'Приключения',
-                          languages.it: 'Avventure',
+                          uiLanguages.en: 'Adventures',
+                          uiLanguages.ru: 'Приключения',
+                          uiLanguages.it: 'Avventure',
                         },
                       ),
                     ),

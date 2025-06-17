@@ -271,7 +271,7 @@ class KeyboardLanguageSwitcher extends StatelessWidget {
     menuChildren: KeyboardLanguage.values
         .map(
           (final e) => MenuItemButton(
-            child: Text(e.name),
+            child: Text(e.code),
             onPressed: () => onChanged(e),
           ),
         )
@@ -292,7 +292,7 @@ class DeleteLetterButton extends StatefulWidget {
 }
 
 class _DeleteLetterButtonState extends State<DeleteLetterButton> {
-  bool _isLongPressed = false;
+  var _isLongPressed = false;
   @override
   Widget build(final BuildContext context) => GestureDetector(
     onLongPress: () async {

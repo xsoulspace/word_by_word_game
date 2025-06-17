@@ -37,7 +37,7 @@ class DictionaryMechanics {
         shouldReturnIfNotFound: true,
       );
     } else {
-      for (final lang in wordsLanguages) {
+      for (final lang in wordsLanguages.all) {
         words = searchWords(
           dictionaryWords: _getDictionary(lang),
           exceptions: exceptions,
@@ -55,11 +55,11 @@ class DictionaryMechanics {
 
   // TODO(arenukvern): add wbw dictionary implementation
   List<String> _getDictionary(final UiLanguage wordsLanguage) {
-    if (wordsLanguage == languages.en) {
+    if (wordsLanguage == uiLanguages.en) {
       return _shuffledEnglishWords;
-    } else if (wordsLanguage == languages.ru) {
+    } else if (wordsLanguage == uiLanguages.ru) {
       return _shuffledRussianWords;
-    } else if (wordsLanguage == languages.it) {
+    } else if (wordsLanguage == uiLanguages.it) {
       throw UnimplementedError();
     }
     throw UnimplementedError();

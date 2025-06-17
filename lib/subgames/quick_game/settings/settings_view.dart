@@ -17,9 +17,9 @@ class SettingsView extends HookWidget {
           child: Text(
             LocalizedMap(
               value: {
-                languages.en: 'SETTINGS',
-                languages.ru: 'НАСТРОЙКИ',
-                languages.it: 'IMPOSTAZIONI',
+                uiLanguages.en: 'SETTINGS',
+                uiLanguages.ru: 'НАСТРОЙКИ',
+                uiLanguages.it: 'IMPOSTAZIONI',
               },
             ).getValue(locale),
             style: const TextStyle(fontSize: 24),
@@ -38,9 +38,9 @@ class SettingsView extends HookWidget {
               Text(
                 LocalizedMap(
                   value: {
-                    languages.en: 'Language',
-                    languages.ru: 'Язык',
-                    languages.it: 'Lingua',
+                    uiLanguages.en: 'Language',
+                    uiLanguages.ru: 'Язык',
+                    uiLanguages.it: 'Lingua',
                   },
                 ).getValue(locale),
                 style: const TextStyle(

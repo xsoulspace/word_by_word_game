@@ -22,9 +22,9 @@ extension WordMeaningRequestTupleX on WordMeaningRequestTuple {
 
 extension _LanguagesX on UiLanguage {
   WordLanguage toLanguage() {
-    if (this == languages.en) return WordLanguage.eng;
-    if (this == languages.ru) return WordLanguage.ru;
-    if (this == languages.it) throw UnimplementedError();
+    if (this == uiLanguages.en) return WordLanguage.eng;
+    if (this == uiLanguages.ru) return WordLanguage.ru;
+    if (this == uiLanguages.it) throw UnimplementedError();
     throw UnimplementedError();
   }
 }

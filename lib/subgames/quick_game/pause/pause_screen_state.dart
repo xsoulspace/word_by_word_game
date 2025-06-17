@@ -50,7 +50,7 @@ class PauseScreenState extends ValueNotifier<void> {
     final theme = Theme.of(context);
     final s = S.of(context);
     final madeWith =
-        '${LocalizedMap(value: {languages.en: 'Made with', languages.ru: 'Сделано с помощью', languages.it: 'Fatto con'}).getValue(locale)} Flame Engine, Flutter & Dart.';
+        '${LocalizedMap(value: {uiLanguages.en: 'Made with', uiLanguages.ru: 'Сделано с помощью', uiLanguages.it: 'Fatto con'}).getValue(locale)} Flame Engine, Flutter & Dart.';
     final List<Widget> aboutBoxChildren = <Widget>[
       ConstrainedBox(
         constraints: const BoxConstraints(maxWidth: 200),
@@ -106,7 +106,7 @@ class PauseScreenState extends ValueNotifier<void> {
       ),
     ];
     final applicationLegalese =
-        '\u{a9} 2020-${DateTime.now().year} ${LocalizedMap(value: {languages.en: 'Game by Anton Malofeev, Irina Veter', languages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер', languages.it: 'Gioco di Anton Malofeev, Irina Veter'}).getValue(locale)}';
+        '\u{a9} 2020-${DateTime.now().year} ${LocalizedMap(value: {uiLanguages.en: 'Game by Anton Malofeev, Irina Veter', uiLanguages.ru: 'Создатели игры: Антон Малофеев, Ирина Ветер', uiLanguages.it: 'Gioco di Anton Malofeev, Irina Veter'}).getValue(locale)}';
 
     final packageInfo = await PackageInfo.fromPlatform();
     final applicationVersion =
@@ -122,9 +122,9 @@ class PauseScreenState extends ValueNotifier<void> {
     final applicationName = Envs.store.isYandexGames
         ? LocalizedMap(
             value: {
-              languages.en: 'Word By Word Adventure',
-              languages.ru: 'Слово после слова Приключение',
-              languages.it: 'Parola dopo parola Avventura',
+              uiLanguages.en: 'Word By Word Adventure',
+              uiLanguages.ru: 'Слово после слова Приключение',
+              uiLanguages.it: 'Parola dopo parola Avventura',
             },
           ).getValue(locale)
         : 'Word By Word: Adventure';

@@ -121,9 +121,9 @@ class _ExperimentsListView extends HookWidget {
         Text(
           LocalizedMap(
             value: {
-              languages.en: 'Experiments',
-              languages.ru: 'Эксперименты',
-              languages.it: 'Esperimenti',
+              uiLanguages.en: 'Experiments',
+              uiLanguages.ru: 'Эксперименты',
+              uiLanguages.it: 'Esperimenti',
             },
           ).getValue(locale).toUpperCase(),
           style: context.textThemeBold.titleMedium,
@@ -139,9 +139,9 @@ class _ExperimentsListView extends HookWidget {
               Text(
                 LocalizedMap(
                   value: {
-                    languages.en: 'Technologies',
-                    languages.ru: 'Технологии',
-                    languages.it: 'Tecnologie',
+                    uiLanguages.en: 'Technologies',
+                    uiLanguages.ru: 'Технологии',
+                    uiLanguages.it: 'Tecnologie',
                   },
                 ).getValue(locale),
               ),
@@ -155,13 +155,13 @@ class _ExperimentsListView extends HookWidget {
           subtitle: Text(
             LocalizedMap(
               value: {
-                languages.en:
+                uiLanguages.en:
                     // ignore: lines_longer_than_80_chars
                     'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading may take a few minutes.',
-                languages.ru:
+                uiLanguages.ru:
                     // ignore: lines_longer_than_80_chars
                     'Примечание: данная функция требует предварительного большой загрузки дополнительных словарей (около 30 мб), поэтому первая загрузка уровня займет несколько минут.',
-                languages.it:
+                uiLanguages.it:
                     // ignore: lines_longer_than_80_chars
                     'Nota: questa funzione richiede di caricare un grande numero di dizionari (circa 30 mb), pertanto il caricamento del primo livello potrebbe richiedere alcuni minuti.',
               },
@@ -205,7 +205,7 @@ class WordsLanguageSwitcher extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => UiLanguageSwitcherMenu(
     isShortAbbreviationUsed: false,
-    languages: wordsLanguages,
+    languages: wordsLanguages.all,
     onChanged: onChanged,
     value: value,
   );

@@ -50,13 +50,13 @@ class UIPowerBar extends StatelessWidget with TechLevelMixin {
           child: UiLabledProgressBar(
             percentageDelay: 550.milliseconds,
             tooltipMessage: {
-              languages.en:
+              uiLanguages.en:
                   // ignore: lines_longer_than_80_chars
                   'Power. This force creates the lift force that moves the balloon upwards.',
-              languages.ru:
+              uiLanguages.ru:
                   // ignore: lines_longer_than_80_chars
                   'Сила. Создает подъёмную силу, которая перемещает баллон вверх.',
-              languages.it:
+              uiLanguages.it:
                   // ignore: lines_longer_than_80_chars
                   'Potenza. Questa forza crea la forza che si muove il balsamo in su.',
             },

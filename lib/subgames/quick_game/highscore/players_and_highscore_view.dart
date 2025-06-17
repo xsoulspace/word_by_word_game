@@ -26,9 +26,9 @@ class PlayersAndHighscoreView extends HookWidget {
           child: Text(
             LocalizedMap(
               value: {
-                languages.en: 'HIGHSCORES',
-                languages.ru: 'РЕЙТИНГ',
-                languages.it: 'CLASSIFICA',
+                uiLanguages.en: 'HIGHSCORES',
+                uiLanguages.ru: 'РЕЙТИНГ',
+                uiLanguages.it: 'CLASSIFICA',
               },
             ).getValue(locale),
             style: const TextStyle(fontSize: 24),

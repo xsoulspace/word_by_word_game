@@ -53,9 +53,9 @@ class GameInitializer {
       gid: const Gid(value: 'balloon 1'),
       localizedName: LocalizedMap(
         value: {
-          languages.en: 'Hot Air Balloon',
-          languages.ru: 'Воздушный шар',
-          languages.it: 'Mongolfiera',
+          uiLanguages.en: 'Hot Air Balloon',
+          uiLanguages.ru: 'Воздушный шар',
+          uiLanguages.it: 'Mongolfiera',
         },
       ),
       characterIcon: 'char_hot_air_baloon',

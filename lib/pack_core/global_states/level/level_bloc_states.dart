@@ -20,7 +20,7 @@ class LevelBlocState with _$LevelBlocState {
     @Default(WordWarning.none) final WordWarning wordWarning,
     @Default(LevelFeaturesSettingsModel.empty)
     final LevelFeaturesSettingsModel featuresSettings,
-    @Default(Locales.fallback) final UiLanguage wordsLanguage,
+    @Default(defaultLanguage) final UiLanguage wordsLanguage,
   }) = _LevelBlocState;
   // ignore: prefer_constructors_over_static_methods
   static LevelBlocState liveFromModel(final LevelModel levelModel) =>

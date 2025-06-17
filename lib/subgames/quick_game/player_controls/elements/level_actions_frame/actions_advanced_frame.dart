@@ -25,9 +25,9 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
       (
         title: LocalizedMap(
           value: {
-            languages.en: 'Flying Energy',
-            languages.ru: 'Энергия полета',
-            languages.it: 'Energia di volo',
+            uiLanguages.en: 'Flying Energy',
+            uiLanguages.ru: 'Энергия полета',
+            uiLanguages.it: 'Energia di volo',
           },
         ),
         iconChildren: [
@@ -49,9 +49,9 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
         (
           title: LocalizedMap(
             value: {
-              languages.en: 'Actions',
-              languages.ru: 'Действия',
-              languages.it: 'Azioni',
+              uiLanguages.en: 'Actions',
+              uiLanguages.ru: 'Действия',
+              uiLanguages.it: 'Azioni',
             },
           ),
           iconChildren: [
@@ -65,9 +65,9 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
       (
         title: LocalizedMap(
           value: {
-            languages.en: 'Actions',
-            languages.ru: 'Действия',
-            languages.it: 'Azioni',
+            uiLanguages.en: 'Actions',
+            uiLanguages.ru: 'Действия',
+            uiLanguages.it: 'Azioni',
           },
         ),
         iconChildren: [const Icon(CupertinoIcons.book, size: 18), const Gap(2)],

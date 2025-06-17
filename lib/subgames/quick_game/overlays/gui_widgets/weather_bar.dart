@@ -96,9 +96,9 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
               _CurrentWeatherText(
                 tooltipMessage: LocalizedMap(
                   value: {
-                    languages.en: 'Current weather type',
-                    languages.ru: 'Текущий тип погоды',
-                    languages.it: 'Tipo di previsione attuale',
+                    uiLanguages.en: 'Current weather type',
+                    uiLanguages.ru: 'Текущий тип погоды',
+                    uiLanguages.it: 'Tipo di previsione attuale',
                   },
                 ).getValue(locale),
                 weather: currentWeather,
@@ -115,9 +115,9 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
                       WindDirectionBadge(
                         tooltipMessage: LocalizedMap(
                           value: {
-                            languages.en: 'Horizontal wind force',
-                            languages.ru: 'Горизонтальная сила ветера',
-                            languages.it: 'Forza del vento orizzontale',
+                            uiLanguages.en: 'Horizontal wind force',
+                            uiLanguages.ru: 'Горизонтальная сила ветера',
+                            uiLanguages.it: 'Forza del vento orizzontale',
                           },
                         ).getValue(locale),
                         value: currentWind.force.x,
@@ -127,11 +127,11 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
                       WindDirectionBadge(
                         tooltipMessage: LocalizedMap(
                           value: {
-                            languages.en:
+                            uiLanguages.en:
                                 'Vertical wind force, can blow up or down',
-                            languages.ru:
+                            uiLanguages.ru:
                                 'Вертикальная сила ветера, может дуть вниз или вверх',
-                            languages.it:
+                            uiLanguages.it:
                                 'Forza del vento verticale, puô essere sopra o sotto',
                           },
                         ).getValue(locale),
@@ -172,9 +172,9 @@ class _NextWeathersRow extends StatelessWidget {
           Tooltip(
             message: LocalizedMap(
               value: {
-                languages.en: 'Next weather predictions',
-                languages.ru: 'Предсказания погоды',
-                languages.it: 'Previsioni della prossima previsione',
+                uiLanguages.en: 'Next weather predictions',
+                uiLanguages.ru: 'Предсказания погоды',
+                uiLanguages.it: 'Previsioni della prossima previsione',
               },
             ).getValue(locale),
             child: TutorialFrame(
@@ -185,7 +185,7 @@ class _NextWeathersRow extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${firstWeather.windScale.emojiRepresentation}${LocalizedMap(value: {languages.en: 'in', languages.ru: 'в', languages.it: 'in'}).getValue(locale)} ${state.weather.durationInGameSeconds}',
+                        '${firstWeather.windScale.emojiRepresentation}${LocalizedMap(value: {uiLanguages.en: 'in', uiLanguages.ru: 'в', uiLanguages.it: 'in'}).getValue(locale)} ${state.weather.durationInGameSeconds}',
                         style: context.textTheme.labelSmall,
                       ),
                       WindDirectionArrow.fromWeather(weather: firstWeather),

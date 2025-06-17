@@ -34,9 +34,9 @@ class TechLevelsDialog extends StatelessWidget {
             Text(
               LocalizedMap(
                 value: {
-                  languages.en: 'Technologies Progress',
-                  languages.ru: 'Прогресс технологий',
-                  languages.it: 'Progresso tecnologie',
+                  uiLanguages.en: 'Technologies Progress',
+                  uiLanguages.ru: 'Прогресс технологий',
+                  uiLanguages.it: 'Progresso tecnologie',
                 },
               ).getValue(locale),
               style: context.textTheme.titleLarge,
@@ -77,11 +77,11 @@ class TechLevelsDialog extends StatelessWidget {
                           Text(
                             LocalizedMap(
                               value: {
-                                languages.en:
+                                uiLanguages.en:
                                     'Use words to research technology faster.',
-                                languages.ru:
+                                uiLanguages.ru:
                                     'Использовать слова для быстрого исследования технологий.',
-                                languages.it:
+                                uiLanguages.it:
                                     'Usare parole per un ricerche veloce della tecnologia.',
                               },
                             ).getValue(locale),

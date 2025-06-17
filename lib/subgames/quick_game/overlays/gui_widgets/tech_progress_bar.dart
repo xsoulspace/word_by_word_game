@@ -38,9 +38,9 @@ class TechProgressBar extends StatelessWidget {
         UiLabledProgressBar(
           hiddenWhenNotHovered: false,
           tooltipMessage: {
-            languages.en: 'Technologies Progress',
-            languages.ru: 'Прогресс технологий',
-            languages.it: 'Progresso tecnologie',
+            uiLanguages.en: 'Technologies Progress',
+            uiLanguages.ru: 'Прогресс технологий',
+            uiLanguages.it: 'Progresso tecnologie',
           },
           icon: const Icon(CupertinoIcons.lab_flask, color: Colors.black),
           text: isMaxLevel ? 'Max' : lastLevelIndex.index.toString(),

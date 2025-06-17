@@ -97,16 +97,16 @@ class _TechnologyTile extends StatelessWidget {
                 (isUnlocked
                         ? LocalizedMap(
                             value: {
-                              languages.en: 'Researched',
-                              languages.ru: 'Исследовано',
-                              languages.it: 'Ricerco',
+                              uiLanguages.en: 'Researched',
+                              uiLanguages.ru: 'Исследовано',
+                              uiLanguages.it: 'Ricerco',
                             },
                           )
                         : LocalizedMap(
                             value: {
-                              languages.en: 'Not researched',
-                              languages.ru: 'Не исследовано',
-                              languages.it: 'Non ricerco',
+                              uiLanguages.en: 'Not researched',
+                              uiLanguages.ru: 'Не исследовано',
+                              uiLanguages.it: 'Non ricerco',
                             },
                           ))
                     .getValue(locale),

@@ -23,14 +23,14 @@ enum PlayerProfileCreatorError {
 
   static final locales = <PlayerProfileCreatorError, Map<UiLanguage, String>>{
     cannotBeEmpty: {
-      languages.en: 'Name cannot be empty',
-      languages.ru: 'Имя не может быть пустым',
-      languages.it: 'Il nome non puè essere vuoto',
+      uiLanguages.en: 'Name cannot be empty',
+      uiLanguages.ru: 'Имя не может быть пустым',
+      uiLanguages.it: 'Il nome non puè essere vuoto',
     },
     invalidName: {
-      languages.en: 'Try another name',
-      languages.ru: 'Попробуйте другое имя',
-      languages.it: 'Prova un altro nome',
+      uiLanguages.en: 'Try another name',
+      uiLanguages.ru: 'Попробуйте другое имя',
+      uiLanguages.it: 'Prova un altro nome',
     },
   };
 
