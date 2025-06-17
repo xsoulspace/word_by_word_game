@@ -29,12 +29,12 @@ dependencies:
     path: ../wbw_locale
   xsoulspace_foundation: ^0.2.0
 dev_dependencies:
-  build_runner: ^2.4.15
+  build_runner: ^2.5.0
   flutter_gen: ^5.10.0
   flutter_gen_runner: ^5.10.0
-  flutter_lints: ^6.0.0
   flutter_test:
     sdk: flutter
+  lints: ^6.0.0
   xsoulspace_lints: ^0.1.0
 
 dependency_overrides:

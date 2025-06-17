@@ -15,7 +15,7 @@ dependencies:
   collection: ^1.19.1
   cupertino_icons: ^1.0.8
   equatable: ^2.0.7
-  file_picker: ^10.1.9
+  file_picker: ^10.2.0
   firebase_analytics: ^11.5.0
   firebase_analytics_web: ^0.5.10+13
   firebase_core: ^3.14.0
@@ -31,13 +31,13 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   flutter_portal: ^1.1.4
-  flutter_svg: ^2.1.0
+  flutter_svg: ^2.2.0
   freezed_annotation: ^3.0.0
   gap: ^3.0.1
   google_fonts: ^6.2.1
   intl: ^0.20.2
   json_annotation: ^4.9.0
-  life_hooks: ^0.0.21
+  life_hooks: ^0.1.1
   logger: ^2.5.0
   package_info_plus: ^8.3.0
   path: ^1.9.1
@@ -46,7 +46,7 @@ dependencies:
   recase: ^4.1.0
   rxdart: ^0.28.0
   shared_preferences: ^2.5.3
-  tiled: ^0.11.0
+  tiled: ^0.11.1
   universal_io: ^2.2.2
   url_launcher: ^6.3.1
   wbw_core:
@@ -58,10 +58,10 @@ dependencies:
   xsoulspace_foundation: ^0.2.0
 dev_dependencies:
   analyzer: ^7.4.5
-  build_runner: ^2.4.15
+  build_runner: ^2.5.0
   flutter_gen: ^5.10.0
   flutter_gen_runner: ^5.10.0
-  flutter_lints: ^6.0.0
+  lints: ^6.0.0
   flutter_test:
     sdk: flutter
   freezed: ^3.0.6
