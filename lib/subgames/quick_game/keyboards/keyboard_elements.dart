@@ -2,18 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_models.dart';
 
+extension ChangeNotifierX on ChangeNotifier {
+  void setState(final VoidCallback callback) {
+    callback();
+    // ignore: invalid_use_of_protected_member, invalid_use_of_visible_for_testing_member
+    notifyListeners();
+  }
+}
+
 const kKeyboardWidth = 360.0;
 
-class UiKeyboardController extends Cubit<UiKeyboardControllerState> {
+class UiKeyboardController with ChangeNotifier {
   // ignore: avoid_unused_constructor_parameters
-  UiKeyboardController(final BuildContext context)
-    : super(const UiKeyboardControllerState());
+  UiKeyboardController(final BuildContext context) : super();
+
+  var _isVisible = false;
+  var _language = englishKeyboard;
+  bool get isVisible => _isVisible;
+  KeyboardLanguage get language => _language;
 
   final _controller = StreamController<UiKeyboardEvent>.broadcast();
   Stream<UiKeyboardEvent> get keyEventsStream => _controller.stream;
 
   void onChangeLanguage(final KeyboardLanguage language) {
-    emit(state.copyWith(language: language));
+    setState(() => _language = language);
   }
 
   void onDeleteCharacter() =>
@@ -22,17 +34,17 @@ class UiKeyboardController extends Cubit<UiKeyboardControllerState> {
       _controller.add(UiKeyboardEvent.addCharacter(character: character));
 
   void showKeyboard() {
-    emit(state.copyWith(isVisible: true));
+    setState(() => _isVisible = true);
   }
 
   void hideKeyboard() {
-    emit(state.copyWith(isVisible: false));
+    setState(() => _isVisible = false);
   }
 
   @override
-  Future<void> close() async {
-    await _controller.close();
-    return super.close();
+  void dispose() {
+    unawaited(_controller.close());
+    super.dispose();
   }
 }
 
@@ -105,7 +117,7 @@ class UiKeyboard extends StatelessWidget {
   Widget build(final BuildContext context) {
     final controller = context.read<UiKeyboardController>();
     final language = context.select<UiKeyboardController, KeyboardLanguage>(
-      (final cubit) => cubit.state.language,
+      (final cubit) => cubit.language,
     );
     return KeyboardLetters(
       language: language,

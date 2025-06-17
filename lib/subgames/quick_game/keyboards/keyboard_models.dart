@@ -24,28 +24,22 @@ extension KeyboardLanguageX on KeyboardLanguage {
     ['я', 'ч', 'с', 'м', 'и', 'т', 'ь', 'б', 'ю'],
   ];
 
-  List<List<String>> get letters => switch (this) {
-    KeyboardLanguage.en => enLetters,
-    KeyboardLanguage.ru => ruLetters,
-  };
+  List<List<String>> get letters {
+    if (this == englishKeyboard) return enLetters;
+    if (this == russianKeyboard) return ruLetters;
+    return enLetters;
+  }
 
   /// rewrite to indexes when there be a lot of letters
-  KeyboardLanguage next() => switch (this) {
-    KeyboardLanguage.en => KeyboardLanguage.ru,
-    KeyboardLanguage.ru => KeyboardLanguage.en,
-  };
+  KeyboardLanguage next() {
+    if (this == englishKeyboard) return russianKeyboard;
+    if (this == russianKeyboard) return englishKeyboard;
+    return englishKeyboard;
+  }
 }
 
 extension LanguagesX on UiLanguage {
   KeyboardLanguage toKeyboardLanguage() => KeyboardLanguage.fromLanguage(this);
-}
-
-@freezed
-class UiKeyboardControllerState with _$UiKeyboardControllerState {
-  const factory UiKeyboardControllerState({
-    @Default(false) final bool isVisible,
-    @Default(KeyboardLanguage.en) final KeyboardLanguage language,
-  }) = _UiKeyboardControllerState;
 }
 
 class LetterModel {
