@@ -30,9 +30,8 @@ abstract class WordModel implements _i1.SerializableModel {
   factory WordModel.fromJson(Map<String, dynamic> jsonSerialization) {
     return WordModel(
       id: jsonSerialization['id'] as int?,
-      language: _i2.WordLanguage.fromJson(
-        (jsonSerialization['language'] as String),
-      ),
+      language:
+          _i2.WordLanguage.fromJson((jsonSerialization['language'] as String)),
       word: jsonSerialization['word'] as String,
       meaning: jsonSerialization['meaning'] as String,
     );
@@ -82,7 +81,12 @@ class _WordModelImpl extends WordModel {
     required _i2.WordLanguage language,
     required String word,
     required String meaning,
-  }) : super._(id: id, language: language, word: word, meaning: meaning);
+  }) : super._(
+          id: id,
+          language: language,
+          word: word,
+          meaning: meaning,
+        );
 
   /// Returns a shallow copy of this [WordModel]
   /// with some or all fields replaced by the given arguments.

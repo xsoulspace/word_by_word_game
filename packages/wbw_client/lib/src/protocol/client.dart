@@ -10,7 +10,31 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:serverpod_client/serverpod_client.dart' as _i1;
-import 'protocol.dart' as _i2;
+import 'dart:async' as _i2;
+import 'package:wbw_client/src/protocol/word_request.dart' as _i3;
+import 'protocol.dart' as _i4;
+
+/// {@category Endpoint}
+class EndpointWord extends _i1.EndpointRef {
+  EndpointWord(_i1.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'word';
+
+  _i2.Future<String> getWordMeaning(_i3.WordRequest wordRequest) =>
+      caller.callServerEndpoint<String>(
+        'word',
+        'getWordMeaning',
+        {'wordRequest': wordRequest},
+      );
+
+  _i2.Future<bool> checkWord(_i3.WordRequest wordRequest) =>
+      caller.callServerEndpoint<bool>(
+        'word',
+        'checkWord',
+        {'wordRequest': wordRequest},
+      );
+}
 
 class Client extends _i1.ServerpodClientShared {
   Client(
@@ -19,24 +43,32 @@ class Client extends _i1.ServerpodClientShared {
     _i1.AuthenticationKeyManager? authenticationKeyManager,
     Duration? streamingConnectionTimeout,
     Duration? connectionTimeout,
-    Function(_i1.MethodCallContext, Object, StackTrace)? onFailedCall,
+    Function(
+      _i1.MethodCallContext,
+      Object,
+      StackTrace,
+    )? onFailedCall,
     Function(_i1.MethodCallContext)? onSucceededCall,
     bool? disconnectStreamsOnLostInternetConnection,
   }) : super(
-         host,
-         _i2.Protocol(),
-         securityContext: securityContext,
-         authenticationKeyManager: authenticationKeyManager,
-         streamingConnectionTimeout: streamingConnectionTimeout,
-         connectionTimeout: connectionTimeout,
-         onFailedCall: onFailedCall,
-         onSucceededCall: onSucceededCall,
-         disconnectStreamsOnLostInternetConnection:
-             disconnectStreamsOnLostInternetConnection,
-       ) {}
+          host,
+          _i4.Protocol(),
+          securityContext: securityContext,
+          authenticationKeyManager: authenticationKeyManager,
+          streamingConnectionTimeout: streamingConnectionTimeout,
+          connectionTimeout: connectionTimeout,
+          onFailedCall: onFailedCall,
+          onSucceededCall: onSucceededCall,
+          disconnectStreamsOnLostInternetConnection:
+              disconnectStreamsOnLostInternetConnection,
+        ) {
+    word = EndpointWord(this);
+  }
+
+  late final EndpointWord word;
 
   @override
-  Map<String, _i1.EndpointRef> get endpointRefLookup => {};
+  Map<String, _i1.EndpointRef> get endpointRefLookup => {'word': word};
 
   @override
   Map<String, _i1.ModuleEndpointCaller> get moduleLookup => {};

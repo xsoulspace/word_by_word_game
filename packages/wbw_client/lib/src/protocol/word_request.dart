@@ -13,7 +13,10 @@ import 'package:serverpod_client/serverpod_client.dart' as _i1;
 import 'word_language.dart' as _i2;
 
 abstract class WordRequest implements _i1.SerializableModel {
-  WordRequest._({required this.language, required this.word});
+  WordRequest._({
+    required this.language,
+    required this.word,
+  });
 
   factory WordRequest({
     required _i2.WordLanguage language,
@@ -22,9 +25,8 @@ abstract class WordRequest implements _i1.SerializableModel {
 
   factory WordRequest.fromJson(Map<String, dynamic> jsonSerialization) {
     return WordRequest(
-      language: _i2.WordLanguage.fromJson(
-        (jsonSerialization['language'] as String),
-      ),
+      language:
+          _i2.WordLanguage.fromJson((jsonSerialization['language'] as String)),
       word: jsonSerialization['word'] as String,
     );
   }
@@ -36,10 +38,16 @@ abstract class WordRequest implements _i1.SerializableModel {
   /// Returns a shallow copy of this [WordRequest]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
-  WordRequest copyWith({_i2.WordLanguage? language, String? word});
+  WordRequest copyWith({
+    _i2.WordLanguage? language,
+    String? word,
+  });
   @override
   Map<String, dynamic> toJson() {
-    return {'language': language.toJson(), 'word': word};
+    return {
+      'language': language.toJson(),
+      'word': word,
+    };
   }
 
   @override
@@ -49,14 +57,22 @@ abstract class WordRequest implements _i1.SerializableModel {
 }
 
 class _WordRequestImpl extends WordRequest {
-  _WordRequestImpl({required _i2.WordLanguage language, required String word})
-    : super._(language: language, word: word);
+  _WordRequestImpl({
+    required _i2.WordLanguage language,
+    required String word,
+  }) : super._(
+          language: language,
+          word: word,
+        );
 
   /// Returns a shallow copy of this [WordRequest]
   /// with some or all fields replaced by the given arguments.
   @_i1.useResult
   @override
-  WordRequest copyWith({_i2.WordLanguage? language, String? word}) {
+  WordRequest copyWith({
+    _i2.WordLanguage? language,
+    String? word,
+  }) {
     return WordRequest(
       language: language ?? this.language,
       word: word ?? this.word,
