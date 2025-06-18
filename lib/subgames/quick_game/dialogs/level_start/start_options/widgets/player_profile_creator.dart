@@ -4,7 +4,7 @@ import 'package:word_by_word_game/common_imports.dart';
 part 'player_profile_creator.freezed.dart';
 
 @freezed
-class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
+abstract class PlayerProfileCreatorState with _$PlayerProfileCreatorState {
   const factory PlayerProfileCreatorState({
     @Default('') final String nameErrorMessage,
     @Default(Colors.teal) final Color color,

@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,171 +10,151 @@ part of 'technologies_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$TechnologiesCubitState {
-  TechnologyTreeProgressModel get progress =>
-      throw _privateConstructorUsedError;
 
-  /// Create a copy of TechnologiesCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $TechnologiesCubitStateCopyWith<TechnologiesCubitState> get copyWith =>
-      throw _privateConstructorUsedError;
+ TechnologyTreeProgressModel get progress;
+/// Create a copy of TechnologiesCubitState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$TechnologiesCubitStateCopyWith<TechnologiesCubitState> get copyWith => _$TechnologiesCubitStateCopyWithImpl<TechnologiesCubitState>(this as TechnologiesCubitState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is TechnologiesCubitState&&(identical(other.progress, progress) || other.progress == progress));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,progress);
+
+@override
+String toString() {
+  return 'TechnologiesCubitState(progress: $progress)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $TechnologiesCubitStateCopyWith<$Res> {
-  factory $TechnologiesCubitStateCopyWith(
-    TechnologiesCubitState value,
-    $Res Function(TechnologiesCubitState) then,
-  ) = _$TechnologiesCubitStateCopyWithImpl<$Res, TechnologiesCubitState>;
-  @useResult
-  $Res call({TechnologyTreeProgressModel progress});
+abstract mixin class $TechnologiesCubitStateCopyWith<$Res>  {
+  factory $TechnologiesCubitStateCopyWith(TechnologiesCubitState value, $Res Function(TechnologiesCubitState) _then) = _$TechnologiesCubitStateCopyWithImpl;
+@useResult
+$Res call({
+ TechnologyTreeProgressModel progress
+});
 
-  $TechnologyTreeProgressModelCopyWith<$Res> get progress;
+
+$TechnologyTreeProgressModelCopyWith<$Res> get progress;
+
 }
-
 /// @nodoc
-class _$TechnologiesCubitStateCopyWithImpl<
-  $Res,
-  $Val extends TechnologiesCubitState
->
+class _$TechnologiesCubitStateCopyWithImpl<$Res>
     implements $TechnologiesCubitStateCopyWith<$Res> {
-  _$TechnologiesCubitStateCopyWithImpl(this._value, this._then);
+  _$TechnologiesCubitStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TechnologiesCubitState _self;
+  final $Res Function(TechnologiesCubitState) _then;
 
-  /// Create a copy of TechnologiesCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? progress = null}) {
-    return _then(
-      _value.copyWith(
-            progress: null == progress
-                ? _value.progress
-                : progress // ignore: cast_nullable_to_non_nullable
-                      as TechnologyTreeProgressModel,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of TechnologiesCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $TechnologyTreeProgressModelCopyWith<$Res> get progress {
-    return $TechnologyTreeProgressModelCopyWith<$Res>(_value.progress, (value) {
-      return _then(_value.copyWith(progress: value) as $Val);
-    });
-  }
+/// Create a copy of TechnologiesCubitState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? progress = null,}) {
+  return _then(_self.copyWith(
+progress: null == progress ? _self.progress : progress // ignore: cast_nullable_to_non_nullable
+as TechnologyTreeProgressModel,
+  ));
+}
+/// Create a copy of TechnologiesCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TechnologyTreeProgressModelCopyWith<$Res> get progress {
+  
+  return $TechnologyTreeProgressModelCopyWith<$Res>(_self.progress, (value) {
+    return _then(_self.copyWith(progress: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$TechnologiesCubitStateImplCopyWith<$Res>
-    implements $TechnologiesCubitStateCopyWith<$Res> {
-  factory _$$TechnologiesCubitStateImplCopyWith(
-    _$TechnologiesCubitStateImpl value,
-    $Res Function(_$TechnologiesCubitStateImpl) then,
-  ) = __$$TechnologiesCubitStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({TechnologyTreeProgressModel progress});
-
-  @override
-  $TechnologyTreeProgressModelCopyWith<$Res> get progress;
-}
-
-/// @nodoc
-class __$$TechnologiesCubitStateImplCopyWithImpl<$Res>
-    extends
-        _$TechnologiesCubitStateCopyWithImpl<$Res, _$TechnologiesCubitStateImpl>
-    implements _$$TechnologiesCubitStateImplCopyWith<$Res> {
-  __$$TechnologiesCubitStateImplCopyWithImpl(
-    _$TechnologiesCubitStateImpl _value,
-    $Res Function(_$TechnologiesCubitStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of TechnologiesCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? progress = null}) {
-    return _then(
-      _$TechnologiesCubitStateImpl(
-        progress: null == progress
-            ? _value.progress
-            : progress // ignore: cast_nullable_to_non_nullable
-                  as TechnologyTreeProgressModel,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$TechnologiesCubitStateImpl extends _TechnologiesCubitState {
-  const _$TechnologiesCubitStateImpl({
-    this.progress = TechnologyTreeProgressModel.empty,
-  }) : super._();
 
-  @override
-  @JsonKey()
-  final TechnologyTreeProgressModel progress;
+class _TechnologiesCubitState extends TechnologiesCubitState {
+  const _TechnologiesCubitState({this.progress = TechnologyTreeProgressModel.empty}): super._();
+  
 
-  @override
-  String toString() {
-    return 'TechnologiesCubitState(progress: $progress)';
-  }
+@override@JsonKey() final  TechnologyTreeProgressModel progress;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$TechnologiesCubitStateImpl &&
-            (identical(other.progress, progress) ||
-                other.progress == progress));
-  }
+/// Create a copy of TechnologiesCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$TechnologiesCubitStateCopyWith<_TechnologiesCubitState> get copyWith => __$TechnologiesCubitStateCopyWithImpl<_TechnologiesCubitState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, progress);
 
-  /// Create a copy of TechnologiesCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$TechnologiesCubitStateImplCopyWith<_$TechnologiesCubitStateImpl>
-  get copyWith =>
-      __$$TechnologiesCubitStateImplCopyWithImpl<_$TechnologiesCubitStateImpl>(
-        this,
-        _$identity,
-      );
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _TechnologiesCubitState&&(identical(other.progress, progress) || other.progress == progress));
 }
 
-abstract class _TechnologiesCubitState extends TechnologiesCubitState {
-  const factory _TechnologiesCubitState({
-    final TechnologyTreeProgressModel progress,
-  }) = _$TechnologiesCubitStateImpl;
-  const _TechnologiesCubitState._() : super._();
 
-  @override
-  TechnologyTreeProgressModel get progress;
+@override
+int get hashCode => Object.hash(runtimeType,progress);
 
-  /// Create a copy of TechnologiesCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TechnologiesCubitStateImplCopyWith<_$TechnologiesCubitStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'TechnologiesCubitState(progress: $progress)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$TechnologiesCubitStateCopyWith<$Res> implements $TechnologiesCubitStateCopyWith<$Res> {
+  factory _$TechnologiesCubitStateCopyWith(_TechnologiesCubitState value, $Res Function(_TechnologiesCubitState) _then) = __$TechnologiesCubitStateCopyWithImpl;
+@override @useResult
+$Res call({
+ TechnologyTreeProgressModel progress
+});
+
+
+@override $TechnologyTreeProgressModelCopyWith<$Res> get progress;
+
+}
+/// @nodoc
+class __$TechnologiesCubitStateCopyWithImpl<$Res>
+    implements _$TechnologiesCubitStateCopyWith<$Res> {
+  __$TechnologiesCubitStateCopyWithImpl(this._self, this._then);
+
+  final _TechnologiesCubitState _self;
+  final $Res Function(_TechnologiesCubitState) _then;
+
+/// Create a copy of TechnologiesCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? progress = null,}) {
+  return _then(_TechnologiesCubitState(
+progress: null == progress ? _self.progress : progress // ignore: cast_nullable_to_non_nullable
+as TechnologyTreeProgressModel,
+  ));
+}
+
+/// Create a copy of TechnologiesCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$TechnologyTreeProgressModelCopyWith<$Res> get progress {
+  
+  return $TechnologyTreeProgressModelCopyWith<$Res>(_self.progress, (value) {
+    return _then(_self.copyWith(progress: value));
+  });
+}
+}
+
+// dart format on

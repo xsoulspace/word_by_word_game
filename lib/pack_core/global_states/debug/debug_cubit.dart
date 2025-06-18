@@ -5,7 +5,7 @@ import 'package:word_by_word_game/common_imports.dart';
 part 'debug_cubit.freezed.dart';
 
 @freezed
-class DebugCubitState with _$DebugCubitState {
+abstract class DebugCubitState with _$DebugCubitState {
   const factory DebugCubitState({
     @Default(true) final bool isCameraFollowingFocusedObject,
     @Default(kDebugMode) final bool isDebugPaneVisible,
@@ -41,7 +41,7 @@ class DebugCubit extends Cubit<DebugCubitState> {
     emit(state.copyWith(isFpsEnabled: isFpsEnabled));
   }
 
-  int _countdown = 5;
+  var _countdown = 5;
   void tryOpenDebugPane() {
     _countdown--;
     if (_countdown <= 0) {

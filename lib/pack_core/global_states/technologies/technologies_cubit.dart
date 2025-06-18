@@ -10,7 +10,7 @@ typedef _WordTechnologyPairTuple = ({
 });
 
 @freezed
-class TechnologiesCubitState with _$TechnologiesCubitState {
+abstract class TechnologiesCubitState with _$TechnologiesCubitState {
   const factory TechnologiesCubitState({
     @Default(TechnologyTreeProgressModel.empty)
     final TechnologyTreeProgressModel progress,

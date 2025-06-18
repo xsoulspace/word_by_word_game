@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,1588 +10,629 @@ part of 'level_players_bloc.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$LevelPlayerEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )
-    init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(ScoreModel score) researchTechnology,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-    updatePlayerHighscore,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(ScoreModel score)? researchTechnology,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(ScoreModel score)? researchTechnology,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ChangeCharacterPositionEvent value)
-    changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-    updatePlayerHighscore,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) => throw _privateConstructorUsedError;
+
+
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelPlayerEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'LevelPlayerEvent()';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LevelPlayerEventCopyWith<$Res> {
-  factory $LevelPlayerEventCopyWith(
-    LevelPlayerEvent value,
-    $Res Function(LevelPlayerEvent) then,
-  ) = _$LevelPlayerEventCopyWithImpl<$Res, LevelPlayerEvent>;
+class $LevelPlayerEventCopyWith<$Res>  {
+$LevelPlayerEventCopyWith(LevelPlayerEvent _, $Res Function(LevelPlayerEvent) __);
+}
+
+
+/// @nodoc
+
+
+class InitLevelPlayersEvent implements LevelPlayerEvent {
+  const InitLevelPlayersEvent({required this.playersModel, required this.charactersModel});
+  
+
+ final  LevelPlayersModel playersModel;
+ final  LevelCharactersModel charactersModel;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$InitLevelPlayersEventCopyWith<InitLevelPlayersEvent> get copyWith => _$InitLevelPlayersEventCopyWithImpl<InitLevelPlayersEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is InitLevelPlayersEvent&&(identical(other.playersModel, playersModel) || other.playersModel == playersModel)&&(identical(other.charactersModel, charactersModel) || other.charactersModel == charactersModel));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,playersModel,charactersModel);
+
+@override
+String toString() {
+  return 'LevelPlayerEvent.init(playersModel: $playersModel, charactersModel: $charactersModel)';
+}
+
+
 }
 
 /// @nodoc
-class _$LevelPlayerEventCopyWithImpl<$Res, $Val extends LevelPlayerEvent>
-    implements $LevelPlayerEventCopyWith<$Res> {
-  _$LevelPlayerEventCopyWithImpl(this._value, this._then);
+abstract mixin class $InitLevelPlayersEventCopyWith<$Res> implements $LevelPlayerEventCopyWith<$Res> {
+  factory $InitLevelPlayersEventCopyWith(InitLevelPlayersEvent value, $Res Function(InitLevelPlayersEvent) _then) = _$InitLevelPlayersEventCopyWithImpl;
+@useResult
+$Res call({
+ LevelPlayersModel playersModel, LevelCharactersModel charactersModel
+});
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
 
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
+$LevelPlayersModelCopyWith<$Res> get playersModel;$LevelCharactersModelCopyWith<$Res> get charactersModel;
+
+}
+/// @nodoc
+class _$InitLevelPlayersEventCopyWithImpl<$Res>
+    implements $InitLevelPlayersEventCopyWith<$Res> {
+  _$InitLevelPlayersEventCopyWithImpl(this._self, this._then);
+
+  final InitLevelPlayersEvent _self;
+  final $Res Function(InitLevelPlayersEvent) _then;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? playersModel = null,Object? charactersModel = null,}) {
+  return _then(InitLevelPlayersEvent(
+playersModel: null == playersModel ? _self.playersModel : playersModel // ignore: cast_nullable_to_non_nullable
+as LevelPlayersModel,charactersModel: null == charactersModel ? _self.charactersModel : charactersModel // ignore: cast_nullable_to_non_nullable
+as LevelCharactersModel,
+  ));
 }
 
-/// @nodoc
-abstract class _$$InitLevelPlayersEventImplCopyWith<$Res> {
-  factory _$$InitLevelPlayersEventImplCopyWith(
-    _$InitLevelPlayersEventImpl value,
-    $Res Function(_$InitLevelPlayersEventImpl) then,
-  ) = __$$InitLevelPlayersEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({
-    LevelPlayersModel playersModel,
-    LevelCharactersModel charactersModel,
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LevelPlayersModelCopyWith<$Res> get playersModel {
+  
+  return $LevelPlayersModelCopyWith<$Res>(_self.playersModel, (value) {
+    return _then(_self.copyWith(playersModel: value));
   });
-
-  $LevelPlayersModelCopyWith<$Res> get playersModel;
-  $LevelCharactersModelCopyWith<$Res> get charactersModel;
-}
-
-/// @nodoc
-class __$$InitLevelPlayersEventImplCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$InitLevelPlayersEventImpl>
-    implements _$$InitLevelPlayersEventImplCopyWith<$Res> {
-  __$$InitLevelPlayersEventImplCopyWithImpl(
-    _$InitLevelPlayersEventImpl _value,
-    $Res Function(_$InitLevelPlayersEventImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? playersModel = null, Object? charactersModel = null}) {
-    return _then(
-      _$InitLevelPlayersEventImpl(
-        playersModel: null == playersModel
-            ? _value.playersModel
-            : playersModel // ignore: cast_nullable_to_non_nullable
-                  as LevelPlayersModel,
-        charactersModel: null == charactersModel
-            ? _value.charactersModel
-            : charactersModel // ignore: cast_nullable_to_non_nullable
-                  as LevelCharactersModel,
-      ),
-    );
-  }
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LevelPlayersModelCopyWith<$Res> get playersModel {
-    return $LevelPlayersModelCopyWith<$Res>(_value.playersModel, (value) {
-      return _then(_value.copyWith(playersModel: value));
-    });
-  }
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $LevelCharactersModelCopyWith<$Res> get charactersModel {
-    return $LevelCharactersModelCopyWith<$Res>(_value.charactersModel, (value) {
-      return _then(_value.copyWith(charactersModel: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$InitLevelPlayersEventImpl implements InitLevelPlayersEvent {
-  const _$InitLevelPlayersEventImpl({
-    required this.playersModel,
-    required this.charactersModel,
+}/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$LevelCharactersModelCopyWith<$Res> get charactersModel {
+  
+  return $LevelCharactersModelCopyWith<$Res>(_self.charactersModel, (value) {
+    return _then(_self.copyWith(charactersModel: value));
   });
-
-  @override
-  final LevelPlayersModel playersModel;
-  @override
-  final LevelCharactersModel charactersModel;
-
-  @override
-  String toString() {
-    return 'LevelPlayerEvent.init(playersModel: $playersModel, charactersModel: $charactersModel)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$InitLevelPlayersEventImpl &&
-            (identical(other.playersModel, playersModel) ||
-                other.playersModel == playersModel) &&
-            (identical(other.charactersModel, charactersModel) ||
-                other.charactersModel == charactersModel));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, playersModel, charactersModel);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
-  get copyWith =>
-      __$$InitLevelPlayersEventImplCopyWithImpl<_$InitLevelPlayersEventImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )
-    init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(ScoreModel score) researchTechnology,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-    updatePlayerHighscore,
-  }) {
-    return init(playersModel, charactersModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(ScoreModel score)? researchTechnology,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-  }) {
-    return init?.call(playersModel, charactersModel);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(ScoreModel score)? researchTechnology,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(playersModel, charactersModel);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ChangeCharacterPositionEvent value)
-    changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-    updatePlayerHighscore,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
 }
-
-abstract class InitLevelPlayersEvent implements LevelPlayerEvent {
-  const factory InitLevelPlayersEvent({
-    required final LevelPlayersModel playersModel,
-    required final LevelCharactersModel charactersModel,
-  }) = _$InitLevelPlayersEventImpl;
-
-  LevelPlayersModel get playersModel;
-  LevelCharactersModel get charactersModel;
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$InitLevelPlayersEventImplCopyWith<_$InitLevelPlayersEventImpl>
-  get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$SwitchToNextPlayerEventImplCopyWith<$Res> {
-  factory _$$SwitchToNextPlayerEventImplCopyWith(
-    _$SwitchToNextPlayerEventImpl value,
-    $Res Function(_$SwitchToNextPlayerEventImpl) then,
-  ) = __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SwitchToNextPlayerEventImplCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$SwitchToNextPlayerEventImpl>
-    implements _$$SwitchToNextPlayerEventImplCopyWith<$Res> {
-  __$$SwitchToNextPlayerEventImplCopyWithImpl(
-    _$SwitchToNextPlayerEventImpl _value,
-    $Res Function(_$SwitchToNextPlayerEventImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
 }
 
 /// @nodoc
 
-class _$SwitchToNextPlayerEventImpl implements SwitchToNextPlayerEvent {
-  const _$SwitchToNextPlayerEventImpl();
 
-  @override
-  String toString() {
-    return 'LevelPlayerEvent.switchToNextPlayer()';
-  }
+class SwitchToNextPlayerEvent implements LevelPlayerEvent {
+  const SwitchToNextPlayerEvent();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SwitchToNextPlayerEventImpl);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )
-    init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(ScoreModel score) researchTechnology,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-    updatePlayerHighscore,
-  }) {
-    return switchToNextPlayer();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(ScoreModel score)? researchTechnology,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-  }) {
-    return switchToNextPlayer?.call();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(ScoreModel score)? researchTechnology,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (switchToNextPlayer != null) {
-      return switchToNextPlayer();
-    }
-    return orElse();
-  }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ChangeCharacterPositionEvent value)
-    changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-    updatePlayerHighscore,
-  }) {
-    return switchToNextPlayer(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) {
-    return switchToNextPlayer?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (switchToNextPlayer != null) {
-      return switchToNextPlayer(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is SwitchToNextPlayerEvent);
 }
 
-abstract class SwitchToNextPlayerEvent implements LevelPlayerEvent {
-  const factory SwitchToNextPlayerEvent() = _$SwitchToNextPlayerEventImpl;
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'LevelPlayerEvent.switchToNextPlayer()';
+}
+
+
+}
+
+
+
+
+/// @nodoc
+
+
+class ChangeCharacterPositionEvent implements LevelPlayerEvent {
+  const ChangeCharacterPositionEvent({required this.position});
+  
+
+ final  Vector2 position;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ChangeCharacterPositionEventCopyWith<ChangeCharacterPositionEvent> get copyWith => _$ChangeCharacterPositionEventCopyWithImpl<ChangeCharacterPositionEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ChangeCharacterPositionEvent&&(identical(other.position, position) || other.position == position));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,position);
+
+@override
+String toString() {
+  return 'LevelPlayerEvent.changeCharacterPosition(position: $position)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$ChangeCharacterPositionEventImplCopyWith<$Res> {
-  factory _$$ChangeCharacterPositionEventImplCopyWith(
-    _$ChangeCharacterPositionEventImpl value,
-    $Res Function(_$ChangeCharacterPositionEventImpl) then,
-  ) = __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Vector2 position});
+abstract mixin class $ChangeCharacterPositionEventCopyWith<$Res> implements $LevelPlayerEventCopyWith<$Res> {
+  factory $ChangeCharacterPositionEventCopyWith(ChangeCharacterPositionEvent value, $Res Function(ChangeCharacterPositionEvent) _then) = _$ChangeCharacterPositionEventCopyWithImpl;
+@useResult
+$Res call({
+ Vector2 position
+});
+
+
+
+
+}
+/// @nodoc
+class _$ChangeCharacterPositionEventCopyWithImpl<$Res>
+    implements $ChangeCharacterPositionEventCopyWith<$Res> {
+  _$ChangeCharacterPositionEventCopyWithImpl(this._self, this._then);
+
+  final ChangeCharacterPositionEvent _self;
+  final $Res Function(ChangeCharacterPositionEvent) _then;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? position = null,}) {
+  return _then(ChangeCharacterPositionEvent(
+position: null == position ? _self.position : position // ignore: cast_nullable_to_non_nullable
+as Vector2,
+  ));
 }
 
-/// @nodoc
-class __$$ChangeCharacterPositionEventImplCopyWithImpl<$Res>
-    extends
-        _$LevelPlayerEventCopyWithImpl<$Res, _$ChangeCharacterPositionEventImpl>
-    implements _$$ChangeCharacterPositionEventImplCopyWith<$Res> {
-  __$$ChangeCharacterPositionEventImplCopyWithImpl(
-    _$ChangeCharacterPositionEventImpl _value,
-    $Res Function(_$ChangeCharacterPositionEventImpl) _then,
-  ) : super(_value, _then);
 
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? position = null}) {
-    return _then(
-      _$ChangeCharacterPositionEventImpl(
-        position: null == position
-            ? _value.position
-            : position // ignore: cast_nullable_to_non_nullable
-                  as Vector2,
-      ),
-    );
-  }
 }
 
 /// @nodoc
 
-class _$ChangeCharacterPositionEventImpl
-    implements ChangeCharacterPositionEvent {
-  const _$ChangeCharacterPositionEventImpl({required this.position});
 
-  @override
-  final Vector2 position;
+class RefuelStorageEvent implements LevelPlayerEvent {
+  const RefuelStorageEvent({required this.score});
+  
 
-  @override
-  String toString() {
-    return 'LevelPlayerEvent.changeCharacterPosition(position: $position)';
-  }
+ final  ScoreModel score;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ChangeCharacterPositionEventImpl &&
-            (identical(other.position, position) ||
-                other.position == position));
-  }
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$RefuelStorageEventCopyWith<RefuelStorageEvent> get copyWith => _$RefuelStorageEventCopyWithImpl<RefuelStorageEvent>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, position);
 
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ChangeCharacterPositionEventImplCopyWith<
-    _$ChangeCharacterPositionEventImpl
-  >
-  get copyWith =>
-      __$$ChangeCharacterPositionEventImplCopyWithImpl<
-        _$ChangeCharacterPositionEventImpl
-      >(this, _$identity);
 
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )
-    init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(ScoreModel score) researchTechnology,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-    updatePlayerHighscore,
-  }) {
-    return changeCharacterPosition(position);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(ScoreModel score)? researchTechnology,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-  }) {
-    return changeCharacterPosition?.call(position);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(ScoreModel score)? researchTechnology,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (changeCharacterPosition != null) {
-      return changeCharacterPosition(position);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ChangeCharacterPositionEvent value)
-    changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-    updatePlayerHighscore,
-  }) {
-    return changeCharacterPosition(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) {
-    return changeCharacterPosition?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (changeCharacterPosition != null) {
-      return changeCharacterPosition(this);
-    }
-    return orElse();
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is RefuelStorageEvent&&(identical(other.score, score) || other.score == score));
 }
 
-abstract class ChangeCharacterPositionEvent implements LevelPlayerEvent {
-  const factory ChangeCharacterPositionEvent({
-    required final Vector2 position,
-  }) = _$ChangeCharacterPositionEventImpl;
 
-  Vector2 get position;
+@override
+int get hashCode => Object.hash(runtimeType,score);
 
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ChangeCharacterPositionEventImplCopyWith<
-    _$ChangeCharacterPositionEventImpl
-  >
-  get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'LevelPlayerEvent.refuelStorage(score: $score)';
+}
+
+
 }
 
 /// @nodoc
-abstract class _$$RefuelStorageEventImplCopyWith<$Res> {
-  factory _$$RefuelStorageEventImplCopyWith(
-    _$RefuelStorageEventImpl value,
-    $Res Function(_$RefuelStorageEventImpl) then,
-  ) = __$$RefuelStorageEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ScoreModel score});
+abstract mixin class $RefuelStorageEventCopyWith<$Res> implements $LevelPlayerEventCopyWith<$Res> {
+  factory $RefuelStorageEventCopyWith(RefuelStorageEvent value, $Res Function(RefuelStorageEvent) _then) = _$RefuelStorageEventCopyWithImpl;
+@useResult
+$Res call({
+ ScoreModel score
+});
 
-  $ScoreModelCopyWith<$Res> get score;
+
+$ScoreModelCopyWith<$Res> get score;
+
 }
-
 /// @nodoc
-class __$$RefuelStorageEventImplCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$RefuelStorageEventImpl>
-    implements _$$RefuelStorageEventImplCopyWith<$Res> {
-  __$$RefuelStorageEventImplCopyWithImpl(
-    _$RefuelStorageEventImpl _value,
-    $Res Function(_$RefuelStorageEventImpl) _then,
-  ) : super(_value, _then);
+class _$RefuelStorageEventCopyWithImpl<$Res>
+    implements $RefuelStorageEventCopyWith<$Res> {
+  _$RefuelStorageEventCopyWithImpl(this._self, this._then);
 
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? score = null}) {
-    return _then(
-      _$RefuelStorageEventImpl(
-        score: null == score
-            ? _value.score
-            : score // ignore: cast_nullable_to_non_nullable
-                  as ScoreModel,
-      ),
-    );
-  }
+  final RefuelStorageEvent _self;
+  final $Res Function(RefuelStorageEvent) _then;
 
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ScoreModelCopyWith<$Res> get score {
-    return $ScoreModelCopyWith<$Res>(_value.score, (value) {
-      return _then(_value.copyWith(score: value));
-    });
-  }
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? score = null,}) {
+  return _then(RefuelStorageEvent(
+score: null == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+as ScoreModel,
+  ));
 }
 
-/// @nodoc
-
-class _$RefuelStorageEventImpl implements RefuelStorageEvent {
-  const _$RefuelStorageEventImpl({required this.score});
-
-  @override
-  final ScoreModel score;
-
-  @override
-  String toString() {
-    return 'LevelPlayerEvent.refuelStorage(score: $score)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$RefuelStorageEventImpl &&
-            (identical(other.score, score) || other.score == score));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, score);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
-      __$$RefuelStorageEventImplCopyWithImpl<_$RefuelStorageEventImpl>(
-        this,
-        _$identity,
-      );
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )
-    init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(ScoreModel score) researchTechnology,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-    updatePlayerHighscore,
-  }) {
-    return refuelStorage(score);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(ScoreModel score)? researchTechnology,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-  }) {
-    return refuelStorage?.call(score);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(ScoreModel score)? researchTechnology,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (refuelStorage != null) {
-      return refuelStorage(score);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ChangeCharacterPositionEvent value)
-    changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-    updatePlayerHighscore,
-  }) {
-    return refuelStorage(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) {
-    return refuelStorage?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (refuelStorage != null) {
-      return refuelStorage(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class RefuelStorageEvent implements LevelPlayerEvent {
-  const factory RefuelStorageEvent({required final ScoreModel score}) =
-      _$RefuelStorageEventImpl;
-
-  ScoreModel get score;
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$RefuelStorageEventImplCopyWith<_$RefuelStorageEventImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ResearchTechnologyEventImplCopyWith<$Res> {
-  factory _$$ResearchTechnologyEventImplCopyWith(
-    _$ResearchTechnologyEventImpl value,
-    $Res Function(_$ResearchTechnologyEventImpl) then,
-  ) = __$$ResearchTechnologyEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({ScoreModel score});
-
-  $ScoreModelCopyWith<$Res> get score;
-}
-
-/// @nodoc
-class __$$ResearchTechnologyEventImplCopyWithImpl<$Res>
-    extends _$LevelPlayerEventCopyWithImpl<$Res, _$ResearchTechnologyEventImpl>
-    implements _$$ResearchTechnologyEventImplCopyWith<$Res> {
-  __$$ResearchTechnologyEventImplCopyWithImpl(
-    _$ResearchTechnologyEventImpl _value,
-    $Res Function(_$ResearchTechnologyEventImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? score = null}) {
-    return _then(
-      _$ResearchTechnologyEventImpl(
-        score: null == score
-            ? _value.score
-            : score // ignore: cast_nullable_to_non_nullable
-                  as ScoreModel,
-      ),
-    );
-  }
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ScoreModelCopyWith<$Res> get score {
-    return $ScoreModelCopyWith<$Res>(_value.score, (value) {
-      return _then(_value.copyWith(score: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$ResearchTechnologyEventImpl implements ResearchTechnologyEvent {
-  const _$ResearchTechnologyEventImpl({required this.score});
-
-  @override
-  final ScoreModel score;
-
-  @override
-  String toString() {
-    return 'LevelPlayerEvent.researchTechnology(score: $score)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ResearchTechnologyEventImpl &&
-            (identical(other.score, score) || other.score == score));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, score);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
-  get copyWith =>
-      __$$ResearchTechnologyEventImplCopyWithImpl<
-        _$ResearchTechnologyEventImpl
-      >(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )
-    init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(ScoreModel score) researchTechnology,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-    updatePlayerHighscore,
-  }) {
-    return researchTechnology(score);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(ScoreModel score)? researchTechnology,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-  }) {
-    return researchTechnology?.call(score);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(ScoreModel score)? researchTechnology,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (researchTechnology != null) {
-      return researchTechnology(score);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ChangeCharacterPositionEvent value)
-    changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-    updatePlayerHighscore,
-  }) {
-    return researchTechnology(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) {
-    return researchTechnology?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (researchTechnology != null) {
-      return researchTechnology(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ResearchTechnologyEvent implements LevelPlayerEvent {
-  const factory ResearchTechnologyEvent({required final ScoreModel score}) =
-      _$ResearchTechnologyEventImpl;
-
-  ScoreModel get score;
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ResearchTechnologyEventImplCopyWith<_$ResearchTechnologyEventImpl>
-  get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$UpdatePlayerHighscoreEventImplCopyWith<$Res> {
-  factory _$$UpdatePlayerHighscoreEventImplCopyWith(
-    _$UpdatePlayerHighscoreEventImpl value,
-    $Res Function(_$UpdatePlayerHighscoreEventImpl) then,
-  ) = __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String playerId, ScoreModel score, String? word});
-
-  $ScoreModelCopyWith<$Res> get score;
-}
-
-/// @nodoc
-class __$$UpdatePlayerHighscoreEventImplCopyWithImpl<$Res>
-    extends
-        _$LevelPlayerEventCopyWithImpl<$Res, _$UpdatePlayerHighscoreEventImpl>
-    implements _$$UpdatePlayerHighscoreEventImplCopyWith<$Res> {
-  __$$UpdatePlayerHighscoreEventImplCopyWithImpl(
-    _$UpdatePlayerHighscoreEventImpl _value,
-    $Res Function(_$UpdatePlayerHighscoreEventImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? playerId = null,
-    Object? score = null,
-    Object? word = freezed,
-  }) {
-    return _then(
-      _$UpdatePlayerHighscoreEventImpl(
-        playerId: null == playerId
-            ? _value.playerId
-            : playerId // ignore: cast_nullable_to_non_nullable
-                  as String,
-        score: null == score
-            ? _value.score
-            : score // ignore: cast_nullable_to_non_nullable
-                  as ScoreModel,
-        word: freezed == word
-            ? _value.word
-            : word // ignore: cast_nullable_to_non_nullable
-                  as String?,
-      ),
-    );
-  }
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ScoreModelCopyWith<$Res> get score {
-    return $ScoreModelCopyWith<$Res>(_value.score, (value) {
-      return _then(_value.copyWith(score: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$UpdatePlayerHighscoreEventImpl implements UpdatePlayerHighscoreEvent {
-  const _$UpdatePlayerHighscoreEventImpl({
-    required this.playerId,
-    required this.score,
-    this.word,
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ScoreModelCopyWith<$Res> get score {
+  
+  return $ScoreModelCopyWith<$Res>(_self.score, (value) {
+    return _then(_self.copyWith(score: value));
   });
-
-  @override
-  final String playerId;
-  @override
-  final ScoreModel score;
-  @override
-  final String? word;
-
-  @override
-  String toString() {
-    return 'LevelPlayerEvent.updatePlayerHighscore(playerId: $playerId, score: $score, word: $word)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$UpdatePlayerHighscoreEventImpl &&
-            (identical(other.playerId, playerId) ||
-                other.playerId == playerId) &&
-            (identical(other.score, score) || other.score == score) &&
-            (identical(other.word, word) || other.word == word));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, playerId, score, word);
-
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
-  get copyWith =>
-      __$$UpdatePlayerHighscoreEventImplCopyWithImpl<
-        _$UpdatePlayerHighscoreEventImpl
-      >(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )
-    init,
-    required TResult Function() switchToNextPlayer,
-    required TResult Function(Vector2 position) changeCharacterPosition,
-    required TResult Function(ScoreModel score) refuelStorage,
-    required TResult Function(ScoreModel score) researchTechnology,
-    required TResult Function(String playerId, ScoreModel score, String? word)
-    updatePlayerHighscore,
-  }) {
-    return updatePlayerHighscore(playerId, score, word);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult? Function()? switchToNextPlayer,
-    TResult? Function(Vector2 position)? changeCharacterPosition,
-    TResult? Function(ScoreModel score)? refuelStorage,
-    TResult? Function(ScoreModel score)? researchTechnology,
-    TResult? Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-  }) {
-    return updatePlayerHighscore?.call(playerId, score, word);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-      LevelPlayersModel playersModel,
-      LevelCharactersModel charactersModel,
-    )?
-    init,
-    TResult Function()? switchToNextPlayer,
-    TResult Function(Vector2 position)? changeCharacterPosition,
-    TResult Function(ScoreModel score)? refuelStorage,
-    TResult Function(ScoreModel score)? researchTechnology,
-    TResult Function(String playerId, ScoreModel score, String? word)?
-    updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (updatePlayerHighscore != null) {
-      return updatePlayerHighscore(playerId, score, word);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(InitLevelPlayersEvent value) init,
-    required TResult Function(SwitchToNextPlayerEvent value) switchToNextPlayer,
-    required TResult Function(ChangeCharacterPositionEvent value)
-    changeCharacterPosition,
-    required TResult Function(RefuelStorageEvent value) refuelStorage,
-    required TResult Function(ResearchTechnologyEvent value) researchTechnology,
-    required TResult Function(UpdatePlayerHighscoreEvent value)
-    updatePlayerHighscore,
-  }) {
-    return updatePlayerHighscore(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(InitLevelPlayersEvent value)? init,
-    TResult? Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult? Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult? Function(RefuelStorageEvent value)? refuelStorage,
-    TResult? Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult? Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-  }) {
-    return updatePlayerHighscore?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(InitLevelPlayersEvent value)? init,
-    TResult Function(SwitchToNextPlayerEvent value)? switchToNextPlayer,
-    TResult Function(ChangeCharacterPositionEvent value)?
-    changeCharacterPosition,
-    TResult Function(RefuelStorageEvent value)? refuelStorage,
-    TResult Function(ResearchTechnologyEvent value)? researchTechnology,
-    TResult Function(UpdatePlayerHighscoreEvent value)? updatePlayerHighscore,
-    required TResult orElse(),
-  }) {
-    if (updatePlayerHighscore != null) {
-      return updatePlayerHighscore(this);
-    }
-    return orElse();
-  }
+}
 }
 
-abstract class UpdatePlayerHighscoreEvent implements LevelPlayerEvent {
-  const factory UpdatePlayerHighscoreEvent({
-    required final String playerId,
-    required final ScoreModel score,
-    final String? word,
-  }) = _$UpdatePlayerHighscoreEventImpl;
+/// @nodoc
 
-  String get playerId;
-  ScoreModel get score;
-  String? get word;
 
-  /// Create a copy of LevelPlayerEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$UpdatePlayerHighscoreEventImplCopyWith<_$UpdatePlayerHighscoreEventImpl>
-  get copyWith => throw _privateConstructorUsedError;
+class ResearchTechnologyEvent implements LevelPlayerEvent {
+  const ResearchTechnologyEvent({required this.score});
+  
+
+ final  ScoreModel score;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ResearchTechnologyEventCopyWith<ResearchTechnologyEvent> get copyWith => _$ResearchTechnologyEventCopyWithImpl<ResearchTechnologyEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ResearchTechnologyEvent&&(identical(other.score, score) || other.score == score));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,score);
+
+@override
+String toString() {
+  return 'LevelPlayerEvent.researchTechnology(score: $score)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $ResearchTechnologyEventCopyWith<$Res> implements $LevelPlayerEventCopyWith<$Res> {
+  factory $ResearchTechnologyEventCopyWith(ResearchTechnologyEvent value, $Res Function(ResearchTechnologyEvent) _then) = _$ResearchTechnologyEventCopyWithImpl;
+@useResult
+$Res call({
+ ScoreModel score
+});
+
+
+$ScoreModelCopyWith<$Res> get score;
+
+}
+/// @nodoc
+class _$ResearchTechnologyEventCopyWithImpl<$Res>
+    implements $ResearchTechnologyEventCopyWith<$Res> {
+  _$ResearchTechnologyEventCopyWithImpl(this._self, this._then);
+
+  final ResearchTechnologyEvent _self;
+  final $Res Function(ResearchTechnologyEvent) _then;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? score = null,}) {
+  return _then(ResearchTechnologyEvent(
+score: null == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+as ScoreModel,
+  ));
+}
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ScoreModelCopyWith<$Res> get score {
+  
+  return $ScoreModelCopyWith<$Res>(_self.score, (value) {
+    return _then(_self.copyWith(score: value));
+  });
+}
+}
+
+/// @nodoc
+
+
+class UpdatePlayerHighscoreEvent implements LevelPlayerEvent {
+  const UpdatePlayerHighscoreEvent({required this.playerId, required this.score, this.word});
+  
+
+ final  PlayerProfileModelId playerId;
+ final  ScoreModel score;
+ final  String? word;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UpdatePlayerHighscoreEventCopyWith<UpdatePlayerHighscoreEvent> get copyWith => _$UpdatePlayerHighscoreEventCopyWithImpl<UpdatePlayerHighscoreEvent>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdatePlayerHighscoreEvent&&(identical(other.playerId, playerId) || other.playerId == playerId)&&(identical(other.score, score) || other.score == score)&&(identical(other.word, word) || other.word == word));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,playerId,score,word);
+
+@override
+String toString() {
+  return 'LevelPlayerEvent.updatePlayerHighscore(playerId: $playerId, score: $score, word: $word)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $UpdatePlayerHighscoreEventCopyWith<$Res> implements $LevelPlayerEventCopyWith<$Res> {
+  factory $UpdatePlayerHighscoreEventCopyWith(UpdatePlayerHighscoreEvent value, $Res Function(UpdatePlayerHighscoreEvent) _then) = _$UpdatePlayerHighscoreEventCopyWithImpl;
+@useResult
+$Res call({
+ PlayerProfileModelId playerId, ScoreModel score, String? word
+});
+
+
+$ScoreModelCopyWith<$Res> get score;
+
+}
+/// @nodoc
+class _$UpdatePlayerHighscoreEventCopyWithImpl<$Res>
+    implements $UpdatePlayerHighscoreEventCopyWith<$Res> {
+  _$UpdatePlayerHighscoreEventCopyWithImpl(this._self, this._then);
+
+  final UpdatePlayerHighscoreEvent _self;
+  final $Res Function(UpdatePlayerHighscoreEvent) _then;
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? playerId = null,Object? score = null,Object? word = freezed,}) {
+  return _then(UpdatePlayerHighscoreEvent(
+playerId: null == playerId ? _self.playerId : playerId // ignore: cast_nullable_to_non_nullable
+as PlayerProfileModelId,score: null == score ? _self.score : score // ignore: cast_nullable_to_non_nullable
+as ScoreModel,word: freezed == word ? _self.word : word // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+/// Create a copy of LevelPlayerEvent
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ScoreModelCopyWith<$Res> get score {
+  
+  return $ScoreModelCopyWith<$Res>(_self.score, (value) {
+    return _then(_self.copyWith(score: value));
+  });
+}
 }
 
 /// @nodoc
 mixin _$LevelPlayersBlocState {
-  List<PlayerProfileModel> get players => throw _privateConstructorUsedError;
-  String get currentPlayerId => throw _privateConstructorUsedError;
-  PlayerCharacterModel get playerCharacter =>
-      throw _privateConstructorUsedError;
 
-  /// {@macro focusedObjectId}
-  Gid get focusedObjectGid => throw _privateConstructorUsedError;
+ List<PlayerProfileModel> get players; PlayerProfileModelId get currentPlayerId; PlayerCharacterModel get playerCharacter;/// {@macro focusedObjectId}
+ Gid get focusedObjectGid;
+/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$LevelPlayersBlocStateCopyWith<LevelPlayersBlocState> get copyWith => _$LevelPlayersBlocStateCopyWithImpl<LevelPlayersBlocState>(this as LevelPlayersBlocState, _$identity);
 
-  /// Create a copy of LevelPlayersBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $LevelPlayersBlocStateCopyWith<LevelPlayersBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is LevelPlayersBlocState&&const DeepCollectionEquality().equals(other.players, players)&&(identical(other.currentPlayerId, currentPlayerId) || other.currentPlayerId == currentPlayerId)&&(identical(other.playerCharacter, playerCharacter) || other.playerCharacter == playerCharacter)&&(identical(other.focusedObjectGid, focusedObjectGid) || other.focusedObjectGid == focusedObjectGid));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(players),currentPlayerId,playerCharacter,focusedObjectGid);
+
+@override
+String toString() {
+  return 'LevelPlayersBlocState(players: $players, currentPlayerId: $currentPlayerId, playerCharacter: $playerCharacter, focusedObjectGid: $focusedObjectGid)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $LevelPlayersBlocStateCopyWith<$Res> {
-  factory $LevelPlayersBlocStateCopyWith(
-    LevelPlayersBlocState value,
-    $Res Function(LevelPlayersBlocState) then,
-  ) = _$LevelPlayersBlocStateCopyWithImpl<$Res, LevelPlayersBlocState>;
-  @useResult
-  $Res call({
-    List<PlayerProfileModel> players,
-    String currentPlayerId,
-    PlayerCharacterModel playerCharacter,
-    Gid focusedObjectGid,
-  });
+abstract mixin class $LevelPlayersBlocStateCopyWith<$Res>  {
+  factory $LevelPlayersBlocStateCopyWith(LevelPlayersBlocState value, $Res Function(LevelPlayersBlocState) _then) = _$LevelPlayersBlocStateCopyWithImpl;
+@useResult
+$Res call({
+ List<PlayerProfileModel> players, PlayerProfileModelId currentPlayerId, PlayerCharacterModel playerCharacter, Gid focusedObjectGid
+});
 
-  $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
-  $GidCopyWith<$Res> get focusedObjectGid;
+
+$PlayerCharacterModelCopyWith<$Res> get playerCharacter;$GidCopyWith<$Res> get focusedObjectGid;
+
 }
-
 /// @nodoc
-class _$LevelPlayersBlocStateCopyWithImpl<
-  $Res,
-  $Val extends LevelPlayersBlocState
->
+class _$LevelPlayersBlocStateCopyWithImpl<$Res>
     implements $LevelPlayersBlocStateCopyWith<$Res> {
-  _$LevelPlayersBlocStateCopyWithImpl(this._value, this._then);
+  _$LevelPlayersBlocStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final LevelPlayersBlocState _self;
+  final $Res Function(LevelPlayersBlocState) _then;
 
-  /// Create a copy of LevelPlayersBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? players = null,
-    Object? currentPlayerId = null,
-    Object? playerCharacter = null,
-    Object? focusedObjectGid = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            players: null == players
-                ? _value.players
-                : players // ignore: cast_nullable_to_non_nullable
-                      as List<PlayerProfileModel>,
-            currentPlayerId: null == currentPlayerId
-                ? _value.currentPlayerId
-                : currentPlayerId // ignore: cast_nullable_to_non_nullable
-                      as String,
-            playerCharacter: null == playerCharacter
-                ? _value.playerCharacter
-                : playerCharacter // ignore: cast_nullable_to_non_nullable
-                      as PlayerCharacterModel,
-            focusedObjectGid: null == focusedObjectGid
-                ? _value.focusedObjectGid
-                : focusedObjectGid // ignore: cast_nullable_to_non_nullable
-                      as Gid,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of LevelPlayersBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $PlayerCharacterModelCopyWith<$Res> get playerCharacter {
-    return $PlayerCharacterModelCopyWith<$Res>(_value.playerCharacter, (value) {
-      return _then(_value.copyWith(playerCharacter: value) as $Val);
-    });
-  }
-
-  /// Create a copy of LevelPlayersBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $GidCopyWith<$Res> get focusedObjectGid {
-    return $GidCopyWith<$Res>(_value.focusedObjectGid, (value) {
-      return _then(_value.copyWith(focusedObjectGid: value) as $Val);
-    });
-  }
+/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? players = null,Object? currentPlayerId = null,Object? playerCharacter = null,Object? focusedObjectGid = null,}) {
+  return _then(_self.copyWith(
+players: null == players ? _self.players : players // ignore: cast_nullable_to_non_nullable
+as List<PlayerProfileModel>,currentPlayerId: null == currentPlayerId ? _self.currentPlayerId : currentPlayerId // ignore: cast_nullable_to_non_nullable
+as PlayerProfileModelId,playerCharacter: null == playerCharacter ? _self.playerCharacter : playerCharacter // ignore: cast_nullable_to_non_nullable
+as PlayerCharacterModel,focusedObjectGid: null == focusedObjectGid ? _self.focusedObjectGid : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+as Gid,
+  ));
 }
-
-/// @nodoc
-abstract class _$$LevelPlayersBlocStateImplCopyWith<$Res>
-    implements $LevelPlayersBlocStateCopyWith<$Res> {
-  factory _$$LevelPlayersBlocStateImplCopyWith(
-    _$LevelPlayersBlocStateImpl value,
-    $Res Function(_$LevelPlayersBlocStateImpl) then,
-  ) = __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    List<PlayerProfileModel> players,
-    String currentPlayerId,
-    PlayerCharacterModel playerCharacter,
-    Gid focusedObjectGid,
+/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PlayerCharacterModelCopyWith<$Res> get playerCharacter {
+  
+  return $PlayerCharacterModelCopyWith<$Res>(_self.playerCharacter, (value) {
+    return _then(_self.copyWith(playerCharacter: value));
   });
-
-  @override
-  $PlayerCharacterModelCopyWith<$Res> get playerCharacter;
-  @override
-  $GidCopyWith<$Res> get focusedObjectGid;
+}/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GidCopyWith<$Res> get focusedObjectGid {
+  
+  return $GidCopyWith<$Res>(_self.focusedObjectGid, (value) {
+    return _then(_self.copyWith(focusedObjectGid: value));
+  });
+}
 }
 
-/// @nodoc
-class __$$LevelPlayersBlocStateImplCopyWithImpl<$Res>
-    extends
-        _$LevelPlayersBlocStateCopyWithImpl<$Res, _$LevelPlayersBlocStateImpl>
-    implements _$$LevelPlayersBlocStateImplCopyWith<$Res> {
-  __$$LevelPlayersBlocStateImplCopyWithImpl(
-    _$LevelPlayersBlocStateImpl _value,
-    $Res Function(_$LevelPlayersBlocStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of LevelPlayersBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? players = null,
-    Object? currentPlayerId = null,
-    Object? playerCharacter = null,
-    Object? focusedObjectGid = null,
-  }) {
-    return _then(
-      _$LevelPlayersBlocStateImpl(
-        players: null == players
-            ? _value._players
-            : players // ignore: cast_nullable_to_non_nullable
-                  as List<PlayerProfileModel>,
-        currentPlayerId: null == currentPlayerId
-            ? _value.currentPlayerId
-            : currentPlayerId // ignore: cast_nullable_to_non_nullable
-                  as String,
-        playerCharacter: null == playerCharacter
-            ? _value.playerCharacter
-            : playerCharacter // ignore: cast_nullable_to_non_nullable
-                  as PlayerCharacterModel,
-        focusedObjectGid: null == focusedObjectGid
-            ? _value.focusedObjectGid
-            : focusedObjectGid // ignore: cast_nullable_to_non_nullable
-                  as Gid,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$LevelPlayersBlocStateImpl extends _LevelPlayersBlocState {
-  const _$LevelPlayersBlocStateImpl({
-    final List<PlayerProfileModel> players = const [],
-    this.currentPlayerId = '',
-    this.playerCharacter = PlayerCharacterModel.empty,
-    this.focusedObjectGid = Gid.empty,
-  }) : _players = players,
-       super._();
 
-  final List<PlayerProfileModel> _players;
-  @override
-  @JsonKey()
-  List<PlayerProfileModel> get players {
-    if (_players is EqualUnmodifiableListView) return _players;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_players);
-  }
+class _LevelPlayersBlocState extends LevelPlayersBlocState {
+  const _LevelPlayersBlocState({final  List<PlayerProfileModel> players = const [], this.currentPlayerId = '', this.playerCharacter = PlayerCharacterModel.empty, this.focusedObjectGid = Gid.empty}): _players = players,super._();
+  
 
-  @override
-  @JsonKey()
-  final String currentPlayerId;
-  @override
-  @JsonKey()
-  final PlayerCharacterModel playerCharacter;
-
-  /// {@macro focusedObjectId}
-  @override
-  @JsonKey()
-  final Gid focusedObjectGid;
-
-  @override
-  String toString() {
-    return 'LevelPlayersBlocState(players: $players, currentPlayerId: $currentPlayerId, playerCharacter: $playerCharacter, focusedObjectGid: $focusedObjectGid)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$LevelPlayersBlocStateImpl &&
-            const DeepCollectionEquality().equals(other._players, _players) &&
-            (identical(other.currentPlayerId, currentPlayerId) ||
-                other.currentPlayerId == currentPlayerId) &&
-            (identical(other.playerCharacter, playerCharacter) ||
-                other.playerCharacter == playerCharacter) &&
-            (identical(other.focusedObjectGid, focusedObjectGid) ||
-                other.focusedObjectGid == focusedObjectGid));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_players),
-    currentPlayerId,
-    playerCharacter,
-    focusedObjectGid,
-  );
-
-  /// Create a copy of LevelPlayersBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
-  get copyWith =>
-      __$$LevelPlayersBlocStateImplCopyWithImpl<_$LevelPlayersBlocStateImpl>(
-        this,
-        _$identity,
-      );
+ final  List<PlayerProfileModel> _players;
+@override@JsonKey() List<PlayerProfileModel> get players {
+  if (_players is EqualUnmodifiableListView) return _players;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_players);
 }
 
-abstract class _LevelPlayersBlocState extends LevelPlayersBlocState {
-  const factory _LevelPlayersBlocState({
-    final List<PlayerProfileModel> players,
-    final String currentPlayerId,
-    final PlayerCharacterModel playerCharacter,
-    final Gid focusedObjectGid,
-  }) = _$LevelPlayersBlocStateImpl;
-  const _LevelPlayersBlocState._() : super._();
+@override@JsonKey() final  PlayerProfileModelId currentPlayerId;
+@override@JsonKey() final  PlayerCharacterModel playerCharacter;
+/// {@macro focusedObjectId}
+@override@JsonKey() final  Gid focusedObjectGid;
 
-  @override
-  List<PlayerProfileModel> get players;
-  @override
-  String get currentPlayerId;
-  @override
-  PlayerCharacterModel get playerCharacter;
+/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LevelPlayersBlocStateCopyWith<_LevelPlayersBlocState> get copyWith => __$LevelPlayersBlocStateCopyWithImpl<_LevelPlayersBlocState>(this, _$identity);
 
-  /// {@macro focusedObjectId}
-  @override
-  Gid get focusedObjectGid;
 
-  /// Create a copy of LevelPlayersBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$LevelPlayersBlocStateImplCopyWith<_$LevelPlayersBlocStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _LevelPlayersBlocState&&const DeepCollectionEquality().equals(other._players, _players)&&(identical(other.currentPlayerId, currentPlayerId) || other.currentPlayerId == currentPlayerId)&&(identical(other.playerCharacter, playerCharacter) || other.playerCharacter == playerCharacter)&&(identical(other.focusedObjectGid, focusedObjectGid) || other.focusedObjectGid == focusedObjectGid));
 }
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_players),currentPlayerId,playerCharacter,focusedObjectGid);
+
+@override
+String toString() {
+  return 'LevelPlayersBlocState(players: $players, currentPlayerId: $currentPlayerId, playerCharacter: $playerCharacter, focusedObjectGid: $focusedObjectGid)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$LevelPlayersBlocStateCopyWith<$Res> implements $LevelPlayersBlocStateCopyWith<$Res> {
+  factory _$LevelPlayersBlocStateCopyWith(_LevelPlayersBlocState value, $Res Function(_LevelPlayersBlocState) _then) = __$LevelPlayersBlocStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<PlayerProfileModel> players, PlayerProfileModelId currentPlayerId, PlayerCharacterModel playerCharacter, Gid focusedObjectGid
+});
+
+
+@override $PlayerCharacterModelCopyWith<$Res> get playerCharacter;@override $GidCopyWith<$Res> get focusedObjectGid;
+
+}
+/// @nodoc
+class __$LevelPlayersBlocStateCopyWithImpl<$Res>
+    implements _$LevelPlayersBlocStateCopyWith<$Res> {
+  __$LevelPlayersBlocStateCopyWithImpl(this._self, this._then);
+
+  final _LevelPlayersBlocState _self;
+  final $Res Function(_LevelPlayersBlocState) _then;
+
+/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? players = null,Object? currentPlayerId = null,Object? playerCharacter = null,Object? focusedObjectGid = null,}) {
+  return _then(_LevelPlayersBlocState(
+players: null == players ? _self._players : players // ignore: cast_nullable_to_non_nullable
+as List<PlayerProfileModel>,currentPlayerId: null == currentPlayerId ? _self.currentPlayerId : currentPlayerId // ignore: cast_nullable_to_non_nullable
+as PlayerProfileModelId,playerCharacter: null == playerCharacter ? _self.playerCharacter : playerCharacter // ignore: cast_nullable_to_non_nullable
+as PlayerCharacterModel,focusedObjectGid: null == focusedObjectGid ? _self.focusedObjectGid : focusedObjectGid // ignore: cast_nullable_to_non_nullable
+as Gid,
+  ));
+}
+
+/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$PlayerCharacterModelCopyWith<$Res> get playerCharacter {
+  
+  return $PlayerCharacterModelCopyWith<$Res>(_self.playerCharacter, (value) {
+    return _then(_self.copyWith(playerCharacter: value));
+  });
+}/// Create a copy of LevelPlayersBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$GidCopyWith<$Res> get focusedObjectGid {
+  
+  return $GidCopyWith<$Res>(_self.focusedObjectGid, (value) {
+    return _then(_self.copyWith(focusedObjectGid: value));
+  });
+}
+}
+
+// dart format on

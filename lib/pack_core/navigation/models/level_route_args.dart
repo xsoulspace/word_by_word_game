@@ -4,7 +4,7 @@ part of 'models.dart';
 
 @immutable
 @freezed
-class LevelRouteArgs with _$LevelRouteArgs {
+abstract class LevelRouteArgs with _$LevelRouteArgs {
   @JsonSerializable(explicitToJson: true)
   const factory LevelRouteArgs({@Default('') final String levelId}) =
       _LevelRouteArgs;

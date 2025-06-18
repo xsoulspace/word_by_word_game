@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,239 +10,142 @@ part of 'models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$AdPermissions {
-  bool get adsAllowed => throw _privateConstructorUsedError;
-  bool get pauseGameScreenBannerEnabled => throw _privateConstructorUsedError;
-  bool get levelEndScreenBannerEnabled => throw _privateConstructorUsedError;
-  bool get onContinueLevelVideoEnabled => throw _privateConstructorUsedError;
 
-  /// Create a copy of AdPermissions
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AdPermissionsCopyWith<AdPermissions> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get adsAllowed; bool get pauseGameScreenBannerEnabled; bool get levelEndScreenBannerEnabled; bool get onContinueLevelVideoEnabled;
+/// Create a copy of AdPermissions
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AdPermissionsCopyWith<AdPermissions> get copyWith => _$AdPermissionsCopyWithImpl<AdPermissions>(this as AdPermissions, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AdPermissions&&(identical(other.adsAllowed, adsAllowed) || other.adsAllowed == adsAllowed)&&(identical(other.pauseGameScreenBannerEnabled, pauseGameScreenBannerEnabled) || other.pauseGameScreenBannerEnabled == pauseGameScreenBannerEnabled)&&(identical(other.levelEndScreenBannerEnabled, levelEndScreenBannerEnabled) || other.levelEndScreenBannerEnabled == levelEndScreenBannerEnabled)&&(identical(other.onContinueLevelVideoEnabled, onContinueLevelVideoEnabled) || other.onContinueLevelVideoEnabled == onContinueLevelVideoEnabled));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,adsAllowed,pauseGameScreenBannerEnabled,levelEndScreenBannerEnabled,onContinueLevelVideoEnabled);
+
+@override
+String toString() {
+  return 'AdPermissions(adsAllowed: $adsAllowed, pauseGameScreenBannerEnabled: $pauseGameScreenBannerEnabled, levelEndScreenBannerEnabled: $levelEndScreenBannerEnabled, onContinueLevelVideoEnabled: $onContinueLevelVideoEnabled)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AdPermissionsCopyWith<$Res> {
-  factory $AdPermissionsCopyWith(
-    AdPermissions value,
-    $Res Function(AdPermissions) then,
-  ) = _$AdPermissionsCopyWithImpl<$Res, AdPermissions>;
-  @useResult
-  $Res call({
-    bool adsAllowed,
-    bool pauseGameScreenBannerEnabled,
-    bool levelEndScreenBannerEnabled,
-    bool onContinueLevelVideoEnabled,
-  });
-}
+abstract mixin class $AdPermissionsCopyWith<$Res>  {
+  factory $AdPermissionsCopyWith(AdPermissions value, $Res Function(AdPermissions) _then) = _$AdPermissionsCopyWithImpl;
+@useResult
+$Res call({
+ bool adsAllowed, bool pauseGameScreenBannerEnabled, bool levelEndScreenBannerEnabled, bool onContinueLevelVideoEnabled
+});
 
+
+
+
+}
 /// @nodoc
-class _$AdPermissionsCopyWithImpl<$Res, $Val extends AdPermissions>
+class _$AdPermissionsCopyWithImpl<$Res>
     implements $AdPermissionsCopyWith<$Res> {
-  _$AdPermissionsCopyWithImpl(this._value, this._then);
+  _$AdPermissionsCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AdPermissions _self;
+  final $Res Function(AdPermissions) _then;
 
-  /// Create a copy of AdPermissions
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? adsAllowed = null,
-    Object? pauseGameScreenBannerEnabled = null,
-    Object? levelEndScreenBannerEnabled = null,
-    Object? onContinueLevelVideoEnabled = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            adsAllowed: null == adsAllowed
-                ? _value.adsAllowed
-                : adsAllowed // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled
-                ? _value.pauseGameScreenBannerEnabled
-                : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled
-                ? _value.levelEndScreenBannerEnabled
-                : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-                      as bool,
-            onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled
-                ? _value.onContinueLevelVideoEnabled
-                : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of AdPermissions
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? adsAllowed = null,Object? pauseGameScreenBannerEnabled = null,Object? levelEndScreenBannerEnabled = null,Object? onContinueLevelVideoEnabled = null,}) {
+  return _then(_self.copyWith(
+adsAllowed: null == adsAllowed ? _self.adsAllowed : adsAllowed // ignore: cast_nullable_to_non_nullable
+as bool,pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled ? _self.pauseGameScreenBannerEnabled : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+as bool,levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled ? _self.levelEndScreenBannerEnabled : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+as bool,onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled ? _self.onContinueLevelVideoEnabled : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$AdPermissionsImplCopyWith<$Res>
-    implements $AdPermissionsCopyWith<$Res> {
-  factory _$$AdPermissionsImplCopyWith(
-    _$AdPermissionsImpl value,
-    $Res Function(_$AdPermissionsImpl) then,
-  ) = __$$AdPermissionsImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    bool adsAllowed,
-    bool pauseGameScreenBannerEnabled,
-    bool levelEndScreenBannerEnabled,
-    bool onContinueLevelVideoEnabled,
-  });
 }
 
-/// @nodoc
-class __$$AdPermissionsImplCopyWithImpl<$Res>
-    extends _$AdPermissionsCopyWithImpl<$Res, _$AdPermissionsImpl>
-    implements _$$AdPermissionsImplCopyWith<$Res> {
-  __$$AdPermissionsImplCopyWithImpl(
-    _$AdPermissionsImpl _value,
-    $Res Function(_$AdPermissionsImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of AdPermissions
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? adsAllowed = null,
-    Object? pauseGameScreenBannerEnabled = null,
-    Object? levelEndScreenBannerEnabled = null,
-    Object? onContinueLevelVideoEnabled = null,
-  }) {
-    return _then(
-      _$AdPermissionsImpl(
-        adsAllowed: null == adsAllowed
-            ? _value.adsAllowed
-            : adsAllowed // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled
-            ? _value.pauseGameScreenBannerEnabled
-            : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled
-            ? _value.levelEndScreenBannerEnabled
-            : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
-                  as bool,
-        onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled
-            ? _value.onContinueLevelVideoEnabled
-            : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$AdPermissionsImpl extends _AdPermissions {
-  const _$AdPermissionsImpl({
-    this.adsAllowed = false,
-    this.pauseGameScreenBannerEnabled = false,
-    this.levelEndScreenBannerEnabled = false,
-    this.onContinueLevelVideoEnabled = false,
-  }) : super._();
 
-  @override
-  @JsonKey()
-  final bool adsAllowed;
-  @override
-  @JsonKey()
-  final bool pauseGameScreenBannerEnabled;
-  @override
-  @JsonKey()
-  final bool levelEndScreenBannerEnabled;
-  @override
-  @JsonKey()
-  final bool onContinueLevelVideoEnabled;
+class _AdPermissions extends AdPermissions {
+  const _AdPermissions({this.adsAllowed = false, this.pauseGameScreenBannerEnabled = false, this.levelEndScreenBannerEnabled = false, this.onContinueLevelVideoEnabled = false}): super._();
+  
 
-  @override
-  String toString() {
-    return 'AdPermissions(adsAllowed: $adsAllowed, pauseGameScreenBannerEnabled: $pauseGameScreenBannerEnabled, levelEndScreenBannerEnabled: $levelEndScreenBannerEnabled, onContinueLevelVideoEnabled: $onContinueLevelVideoEnabled)';
-  }
+@override@JsonKey() final  bool adsAllowed;
+@override@JsonKey() final  bool pauseGameScreenBannerEnabled;
+@override@JsonKey() final  bool levelEndScreenBannerEnabled;
+@override@JsonKey() final  bool onContinueLevelVideoEnabled;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AdPermissionsImpl &&
-            (identical(other.adsAllowed, adsAllowed) ||
-                other.adsAllowed == adsAllowed) &&
-            (identical(
-                  other.pauseGameScreenBannerEnabled,
-                  pauseGameScreenBannerEnabled,
-                ) ||
-                other.pauseGameScreenBannerEnabled ==
-                    pauseGameScreenBannerEnabled) &&
-            (identical(
-                  other.levelEndScreenBannerEnabled,
-                  levelEndScreenBannerEnabled,
-                ) ||
-                other.levelEndScreenBannerEnabled ==
-                    levelEndScreenBannerEnabled) &&
-            (identical(
-                  other.onContinueLevelVideoEnabled,
-                  onContinueLevelVideoEnabled,
-                ) ||
-                other.onContinueLevelVideoEnabled ==
-                    onContinueLevelVideoEnabled));
-  }
+/// Create a copy of AdPermissions
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AdPermissionsCopyWith<_AdPermissions> get copyWith => __$AdPermissionsCopyWithImpl<_AdPermissions>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    adsAllowed,
-    pauseGameScreenBannerEnabled,
-    levelEndScreenBannerEnabled,
-    onContinueLevelVideoEnabled,
-  );
 
-  /// Create a copy of AdPermissions
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AdPermissionsImplCopyWith<_$AdPermissionsImpl> get copyWith =>
-      __$$AdPermissionsImplCopyWithImpl<_$AdPermissionsImpl>(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AdPermissions&&(identical(other.adsAllowed, adsAllowed) || other.adsAllowed == adsAllowed)&&(identical(other.pauseGameScreenBannerEnabled, pauseGameScreenBannerEnabled) || other.pauseGameScreenBannerEnabled == pauseGameScreenBannerEnabled)&&(identical(other.levelEndScreenBannerEnabled, levelEndScreenBannerEnabled) || other.levelEndScreenBannerEnabled == levelEndScreenBannerEnabled)&&(identical(other.onContinueLevelVideoEnabled, onContinueLevelVideoEnabled) || other.onContinueLevelVideoEnabled == onContinueLevelVideoEnabled));
 }
 
-abstract class _AdPermissions extends AdPermissions {
-  const factory _AdPermissions({
-    final bool adsAllowed,
-    final bool pauseGameScreenBannerEnabled,
-    final bool levelEndScreenBannerEnabled,
-    final bool onContinueLevelVideoEnabled,
-  }) = _$AdPermissionsImpl;
-  const _AdPermissions._() : super._();
 
-  @override
-  bool get adsAllowed;
-  @override
-  bool get pauseGameScreenBannerEnabled;
-  @override
-  bool get levelEndScreenBannerEnabled;
-  @override
-  bool get onContinueLevelVideoEnabled;
+@override
+int get hashCode => Object.hash(runtimeType,adsAllowed,pauseGameScreenBannerEnabled,levelEndScreenBannerEnabled,onContinueLevelVideoEnabled);
 
-  /// Create a copy of AdPermissions
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AdPermissionsImplCopyWith<_$AdPermissionsImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'AdPermissions(adsAllowed: $adsAllowed, pauseGameScreenBannerEnabled: $pauseGameScreenBannerEnabled, levelEndScreenBannerEnabled: $levelEndScreenBannerEnabled, onContinueLevelVideoEnabled: $onContinueLevelVideoEnabled)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AdPermissionsCopyWith<$Res> implements $AdPermissionsCopyWith<$Res> {
+  factory _$AdPermissionsCopyWith(_AdPermissions value, $Res Function(_AdPermissions) _then) = __$AdPermissionsCopyWithImpl;
+@override @useResult
+$Res call({
+ bool adsAllowed, bool pauseGameScreenBannerEnabled, bool levelEndScreenBannerEnabled, bool onContinueLevelVideoEnabled
+});
+
+
+
+
+}
+/// @nodoc
+class __$AdPermissionsCopyWithImpl<$Res>
+    implements _$AdPermissionsCopyWith<$Res> {
+  __$AdPermissionsCopyWithImpl(this._self, this._then);
+
+  final _AdPermissions _self;
+  final $Res Function(_AdPermissions) _then;
+
+/// Create a copy of AdPermissions
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? adsAllowed = null,Object? pauseGameScreenBannerEnabled = null,Object? levelEndScreenBannerEnabled = null,Object? onContinueLevelVideoEnabled = null,}) {
+  return _then(_AdPermissions(
+adsAllowed: null == adsAllowed ? _self.adsAllowed : adsAllowed // ignore: cast_nullable_to_non_nullable
+as bool,pauseGameScreenBannerEnabled: null == pauseGameScreenBannerEnabled ? _self.pauseGameScreenBannerEnabled : pauseGameScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+as bool,levelEndScreenBannerEnabled: null == levelEndScreenBannerEnabled ? _self.levelEndScreenBannerEnabled : levelEndScreenBannerEnabled // ignore: cast_nullable_to_non_nullable
+as bool,onContinueLevelVideoEnabled: null == onContinueLevelVideoEnabled ? _self.onContinueLevelVideoEnabled : onContinueLevelVideoEnabled // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on

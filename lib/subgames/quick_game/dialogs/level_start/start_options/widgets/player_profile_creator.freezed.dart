@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,173 +10,136 @@ part of 'player_profile_creator.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$PlayerProfileCreatorState {
-  String get nameErrorMessage => throw _privateConstructorUsedError;
-  Color get color => throw _privateConstructorUsedError;
 
-  /// Create a copy of PlayerProfileCreatorState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $PlayerProfileCreatorStateCopyWith<PlayerProfileCreatorState> get copyWith =>
-      throw _privateConstructorUsedError;
+ String get nameErrorMessage; Color get color;
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$PlayerProfileCreatorStateCopyWith<PlayerProfileCreatorState> get copyWith => _$PlayerProfileCreatorStateCopyWithImpl<PlayerProfileCreatorState>(this as PlayerProfileCreatorState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is PlayerProfileCreatorState&&(identical(other.nameErrorMessage, nameErrorMessage) || other.nameErrorMessage == nameErrorMessage)&&(identical(other.color, color) || other.color == color));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,nameErrorMessage,color);
+
+@override
+String toString() {
+  return 'PlayerProfileCreatorState(nameErrorMessage: $nameErrorMessage, color: $color)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $PlayerProfileCreatorStateCopyWith<$Res> {
-  factory $PlayerProfileCreatorStateCopyWith(
-    PlayerProfileCreatorState value,
-    $Res Function(PlayerProfileCreatorState) then,
-  ) = _$PlayerProfileCreatorStateCopyWithImpl<$Res, PlayerProfileCreatorState>;
-  @useResult
-  $Res call({String nameErrorMessage, Color color});
-}
+abstract mixin class $PlayerProfileCreatorStateCopyWith<$Res>  {
+  factory $PlayerProfileCreatorStateCopyWith(PlayerProfileCreatorState value, $Res Function(PlayerProfileCreatorState) _then) = _$PlayerProfileCreatorStateCopyWithImpl;
+@useResult
+$Res call({
+ String nameErrorMessage, Color color
+});
 
+
+
+
+}
 /// @nodoc
-class _$PlayerProfileCreatorStateCopyWithImpl<
-  $Res,
-  $Val extends PlayerProfileCreatorState
->
+class _$PlayerProfileCreatorStateCopyWithImpl<$Res>
     implements $PlayerProfileCreatorStateCopyWith<$Res> {
-  _$PlayerProfileCreatorStateCopyWithImpl(this._value, this._then);
+  _$PlayerProfileCreatorStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final PlayerProfileCreatorState _self;
+  final $Res Function(PlayerProfileCreatorState) _then;
 
-  /// Create a copy of PlayerProfileCreatorState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? nameErrorMessage = null, Object? color = null}) {
-    return _then(
-      _value.copyWith(
-            nameErrorMessage: null == nameErrorMessage
-                ? _value.nameErrorMessage
-                : nameErrorMessage // ignore: cast_nullable_to_non_nullable
-                      as String,
-            color: null == color
-                ? _value.color
-                : color // ignore: cast_nullable_to_non_nullable
-                      as Color,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? nameErrorMessage = null,Object? color = null,}) {
+  return _then(_self.copyWith(
+nameErrorMessage: null == nameErrorMessage ? _self.nameErrorMessage : nameErrorMessage // ignore: cast_nullable_to_non_nullable
+as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color,
+  ));
 }
 
-/// @nodoc
-abstract class _$$PlayerProfileCreatorStateImplCopyWith<$Res>
-    implements $PlayerProfileCreatorStateCopyWith<$Res> {
-  factory _$$PlayerProfileCreatorStateImplCopyWith(
-    _$PlayerProfileCreatorStateImpl value,
-    $Res Function(_$PlayerProfileCreatorStateImpl) then,
-  ) = __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({String nameErrorMessage, Color color});
 }
 
-/// @nodoc
-class __$$PlayerProfileCreatorStateImplCopyWithImpl<$Res>
-    extends
-        _$PlayerProfileCreatorStateCopyWithImpl<
-          $Res,
-          _$PlayerProfileCreatorStateImpl
-        >
-    implements _$$PlayerProfileCreatorStateImplCopyWith<$Res> {
-  __$$PlayerProfileCreatorStateImplCopyWithImpl(
-    _$PlayerProfileCreatorStateImpl _value,
-    $Res Function(_$PlayerProfileCreatorStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of PlayerProfileCreatorState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? nameErrorMessage = null, Object? color = null}) {
-    return _then(
-      _$PlayerProfileCreatorStateImpl(
-        nameErrorMessage: null == nameErrorMessage
-            ? _value.nameErrorMessage
-            : nameErrorMessage // ignore: cast_nullable_to_non_nullable
-                  as String,
-        color: null == color
-            ? _value.color
-            : color // ignore: cast_nullable_to_non_nullable
-                  as Color,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$PlayerProfileCreatorStateImpl implements _PlayerProfileCreatorState {
-  const _$PlayerProfileCreatorStateImpl({
-    this.nameErrorMessage = '',
-    this.color = Colors.teal,
-  });
 
-  @override
-  @JsonKey()
-  final String nameErrorMessage;
-  @override
-  @JsonKey()
-  final Color color;
+class _PlayerProfileCreatorState implements PlayerProfileCreatorState {
+  const _PlayerProfileCreatorState({this.nameErrorMessage = '', this.color = Colors.teal});
+  
 
-  @override
-  String toString() {
-    return 'PlayerProfileCreatorState(nameErrorMessage: $nameErrorMessage, color: $color)';
-  }
+@override@JsonKey() final  String nameErrorMessage;
+@override@JsonKey() final  Color color;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$PlayerProfileCreatorStateImpl &&
-            (identical(other.nameErrorMessage, nameErrorMessage) ||
-                other.nameErrorMessage == nameErrorMessage) &&
-            (identical(other.color, color) || other.color == color));
-  }
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$PlayerProfileCreatorStateCopyWith<_PlayerProfileCreatorState> get copyWith => __$PlayerProfileCreatorStateCopyWithImpl<_PlayerProfileCreatorState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, nameErrorMessage, color);
 
-  /// Create a copy of PlayerProfileCreatorState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
-  get copyWith =>
-      __$$PlayerProfileCreatorStateImplCopyWithImpl<
-        _$PlayerProfileCreatorStateImpl
-      >(this, _$identity);
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _PlayerProfileCreatorState&&(identical(other.nameErrorMessage, nameErrorMessage) || other.nameErrorMessage == nameErrorMessage)&&(identical(other.color, color) || other.color == color));
 }
 
-abstract class _PlayerProfileCreatorState implements PlayerProfileCreatorState {
-  const factory _PlayerProfileCreatorState({
-    final String nameErrorMessage,
-    final Color color,
-  }) = _$PlayerProfileCreatorStateImpl;
 
-  @override
-  String get nameErrorMessage;
-  @override
-  Color get color;
+@override
+int get hashCode => Object.hash(runtimeType,nameErrorMessage,color);
 
-  /// Create a copy of PlayerProfileCreatorState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$PlayerProfileCreatorStateImplCopyWith<_$PlayerProfileCreatorStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'PlayerProfileCreatorState(nameErrorMessage: $nameErrorMessage, color: $color)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$PlayerProfileCreatorStateCopyWith<$Res> implements $PlayerProfileCreatorStateCopyWith<$Res> {
+  factory _$PlayerProfileCreatorStateCopyWith(_PlayerProfileCreatorState value, $Res Function(_PlayerProfileCreatorState) _then) = __$PlayerProfileCreatorStateCopyWithImpl;
+@override @useResult
+$Res call({
+ String nameErrorMessage, Color color
+});
+
+
+
+
+}
+/// @nodoc
+class __$PlayerProfileCreatorStateCopyWithImpl<$Res>
+    implements _$PlayerProfileCreatorStateCopyWith<$Res> {
+  __$PlayerProfileCreatorStateCopyWithImpl(this._self, this._then);
+
+  final _PlayerProfileCreatorState _self;
+  final $Res Function(_PlayerProfileCreatorState) _then;
+
+/// Create a copy of PlayerProfileCreatorState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? nameErrorMessage = null,Object? color = null,}) {
+  return _then(_PlayerProfileCreatorState(
+nameErrorMessage: null == nameErrorMessage ? _self.nameErrorMessage : nameErrorMessage // ignore: cast_nullable_to_non_nullable
+as String,color: null == color ? _self.color : color // ignore: cast_nullable_to_non_nullable
+as Color,
+  ));
+}
+
+
+}
+
+// dart format on

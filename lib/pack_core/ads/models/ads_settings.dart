@@ -8,7 +8,7 @@ part of 'models.dart';
   addImplicitFinal: true,
   copyWith: true,
 )
-class AdPermissions with _$AdPermissions {
+abstract class AdPermissions with _$AdPermissions {
   const factory AdPermissions({
     @Default(false) final bool adsAllowed,
     @Default(false) final bool pauseGameScreenBannerEnabled,

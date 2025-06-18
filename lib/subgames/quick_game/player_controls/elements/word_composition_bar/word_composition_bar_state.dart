@@ -73,7 +73,7 @@ class GuiWordCompositionCubit extends ChangeNotifier {
     getCurrentLevel: () => dto.technologiesCubit.getCurrentLevel().levelIndex,
     onTechLevelAchieved: dto.dialogController.showTechLevelAchieveDialog,
   );
-  String _latestWord = '';
+  var _latestWord = '';
   StreamSubscription<LevelBlocState>? _levelBlocSubscription;
   final _wordUpdatesController = StreamController<CurrentWordModel>();
   final WordCompositionStateDiDto dto;
@@ -166,7 +166,7 @@ class GuiWordCompositionCubit extends ChangeNotifier {
 }
 
 @freezed
-class BottomActionsNotifierState with _$BottomActionsNotifierState {
+abstract class BottomActionsNotifierState with _$BottomActionsNotifierState {
   const factory BottomActionsNotifierState({
     @Default(true) final bool isCardVisible,
   }) = _BottomActionsNotifierState;

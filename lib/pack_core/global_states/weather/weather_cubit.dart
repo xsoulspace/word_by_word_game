@@ -8,7 +8,7 @@ import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 part 'weather_cubit.freezed.dart';
 
 @freezed
-class WeatherCubitState with _$WeatherCubitState {
+abstract class WeatherCubitState with _$WeatherCubitState {
   const factory WeatherCubitState({
     /// idea that current weather always first.
     /// With weather completed, [weathers] first element should be removed
@@ -100,7 +100,7 @@ class WeatherCubit extends Cubit<WeatherCubitState>
     if (kDebugMode) print({'weathers generated': state.weathers});
   }
 
-  int _previousHeightInTiles = 0;
+  var _previousHeightInTiles = 0;
   Offset? _currentWindOffsetCache;
 
   Offset generateWindForce({required final int heightInTiles}) {

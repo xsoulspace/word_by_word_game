@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,169 +10,151 @@ part of 'game_constants_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$GameConstantsCubitState {
-  ForcesConstantsModel get forces => throw _privateConstructorUsedError;
 
-  /// Create a copy of GameConstantsCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GameConstantsCubitStateCopyWith<GameConstantsCubitState> get copyWith =>
-      throw _privateConstructorUsedError;
+ ForcesConstantsModel get forces;
+/// Create a copy of GameConstantsCubitState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GameConstantsCubitStateCopyWith<GameConstantsCubitState> get copyWith => _$GameConstantsCubitStateCopyWithImpl<GameConstantsCubitState>(this as GameConstantsCubitState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameConstantsCubitState&&(identical(other.forces, forces) || other.forces == forces));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,forces);
+
+@override
+String toString() {
+  return 'GameConstantsCubitState(forces: $forces)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $GameConstantsCubitStateCopyWith<$Res> {
-  factory $GameConstantsCubitStateCopyWith(
-    GameConstantsCubitState value,
-    $Res Function(GameConstantsCubitState) then,
-  ) = _$GameConstantsCubitStateCopyWithImpl<$Res, GameConstantsCubitState>;
-  @useResult
-  $Res call({ForcesConstantsModel forces});
+abstract mixin class $GameConstantsCubitStateCopyWith<$Res>  {
+  factory $GameConstantsCubitStateCopyWith(GameConstantsCubitState value, $Res Function(GameConstantsCubitState) _then) = _$GameConstantsCubitStateCopyWithImpl;
+@useResult
+$Res call({
+ ForcesConstantsModel forces
+});
 
-  $ForcesConstantsModelCopyWith<$Res> get forces;
+
+$ForcesConstantsModelCopyWith<$Res> get forces;
+
 }
-
 /// @nodoc
-class _$GameConstantsCubitStateCopyWithImpl<
-  $Res,
-  $Val extends GameConstantsCubitState
->
+class _$GameConstantsCubitStateCopyWithImpl<$Res>
     implements $GameConstantsCubitStateCopyWith<$Res> {
-  _$GameConstantsCubitStateCopyWithImpl(this._value, this._then);
+  _$GameConstantsCubitStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GameConstantsCubitState _self;
+  final $Res Function(GameConstantsCubitState) _then;
 
-  /// Create a copy of GameConstantsCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? forces = null}) {
-    return _then(
-      _value.copyWith(
-            forces: null == forces
-                ? _value.forces
-                : forces // ignore: cast_nullable_to_non_nullable
-                      as ForcesConstantsModel,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of GameConstantsCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ForcesConstantsModelCopyWith<$Res> get forces {
-    return $ForcesConstantsModelCopyWith<$Res>(_value.forces, (value) {
-      return _then(_value.copyWith(forces: value) as $Val);
-    });
-  }
+/// Create a copy of GameConstantsCubitState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? forces = null,}) {
+  return _then(_self.copyWith(
+forces: null == forces ? _self.forces : forces // ignore: cast_nullable_to_non_nullable
+as ForcesConstantsModel,
+  ));
 }
-
-/// @nodoc
-abstract class _$$GameConstantsCubitStateImplCopyWith<$Res>
-    implements $GameConstantsCubitStateCopyWith<$Res> {
-  factory _$$GameConstantsCubitStateImplCopyWith(
-    _$GameConstantsCubitStateImpl value,
-    $Res Function(_$GameConstantsCubitStateImpl) then,
-  ) = __$$GameConstantsCubitStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({ForcesConstantsModel forces});
-
-  @override
-  $ForcesConstantsModelCopyWith<$Res> get forces;
-}
-
-/// @nodoc
-class __$$GameConstantsCubitStateImplCopyWithImpl<$Res>
-    extends
-        _$GameConstantsCubitStateCopyWithImpl<
-          $Res,
-          _$GameConstantsCubitStateImpl
-        >
-    implements _$$GameConstantsCubitStateImplCopyWith<$Res> {
-  __$$GameConstantsCubitStateImplCopyWithImpl(
-    _$GameConstantsCubitStateImpl _value,
-    $Res Function(_$GameConstantsCubitStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of GameConstantsCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? forces = null}) {
-    return _then(
-      _$GameConstantsCubitStateImpl(
-        forces: null == forces
-            ? _value.forces
-            : forces // ignore: cast_nullable_to_non_nullable
-                  as ForcesConstantsModel,
-      ),
-    );
-  }
-}
-
-/// @nodoc
-
-class _$GameConstantsCubitStateImpl implements _GameConstantsCubitState {
-  const _$GameConstantsCubitStateImpl({
-    this.forces = ForcesConstantsModel.initial,
+/// Create a copy of GameConstantsCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ForcesConstantsModelCopyWith<$Res> get forces {
+  
+  return $ForcesConstantsModelCopyWith<$Res>(_self.forces, (value) {
+    return _then(_self.copyWith(forces: value));
   });
-
-  @override
-  @JsonKey()
-  final ForcesConstantsModel forces;
-
-  @override
-  String toString() {
-    return 'GameConstantsCubitState(forces: $forces)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GameConstantsCubitStateImpl &&
-            (identical(other.forces, forces) || other.forces == forces));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, forces);
-
-  /// Create a copy of GameConstantsCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
-  get copyWith =>
-      __$$GameConstantsCubitStateImplCopyWithImpl<
-        _$GameConstantsCubitStateImpl
-      >(this, _$identity);
+}
 }
 
-abstract class _GameConstantsCubitState implements GameConstantsCubitState {
-  const factory _GameConstantsCubitState({final ForcesConstantsModel forces}) =
-      _$GameConstantsCubitStateImpl;
 
-  @override
-  ForcesConstantsModel get forces;
+/// @nodoc
 
-  /// Create a copy of GameConstantsCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GameConstantsCubitStateImplCopyWith<_$GameConstantsCubitStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+
+class _GameConstantsCubitState implements GameConstantsCubitState {
+  const _GameConstantsCubitState({this.forces = ForcesConstantsModel.initial});
+  
+
+@override@JsonKey() final  ForcesConstantsModel forces;
+
+/// Create a copy of GameConstantsCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GameConstantsCubitStateCopyWith<_GameConstantsCubitState> get copyWith => __$GameConstantsCubitStateCopyWithImpl<_GameConstantsCubitState>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameConstantsCubitState&&(identical(other.forces, forces) || other.forces == forces));
 }
+
+
+@override
+int get hashCode => Object.hash(runtimeType,forces);
+
+@override
+String toString() {
+  return 'GameConstantsCubitState(forces: $forces)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GameConstantsCubitStateCopyWith<$Res> implements $GameConstantsCubitStateCopyWith<$Res> {
+  factory _$GameConstantsCubitStateCopyWith(_GameConstantsCubitState value, $Res Function(_GameConstantsCubitState) _then) = __$GameConstantsCubitStateCopyWithImpl;
+@override @useResult
+$Res call({
+ ForcesConstantsModel forces
+});
+
+
+@override $ForcesConstantsModelCopyWith<$Res> get forces;
+
+}
+/// @nodoc
+class __$GameConstantsCubitStateCopyWithImpl<$Res>
+    implements _$GameConstantsCubitStateCopyWith<$Res> {
+  __$GameConstantsCubitStateCopyWithImpl(this._self, this._then);
+
+  final _GameConstantsCubitState _self;
+  final $Res Function(_GameConstantsCubitState) _then;
+
+/// Create a copy of GameConstantsCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? forces = null,}) {
+  return _then(_GameConstantsCubitState(
+forces: null == forces ? _self.forces : forces // ignore: cast_nullable_to_non_nullable
+as ForcesConstantsModel,
+  ));
+}
+
+/// Create a copy of GameConstantsCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$ForcesConstantsModelCopyWith<$Res> get forces {
+  
+  return $ForcesConstantsModelCopyWith<$Res>(_self.forces, (value) {
+    return _then(_self.copyWith(forces: value));
+  });
+}
+}
+
+// dart format on

@@ -22,7 +22,8 @@ class GuiFocusableObjectsNotifierDto {
 }
 
 @freezed
-class GuiFocusableObjectsNotifierState with _$GuiFocusableObjectsNotifierState {
+abstract class GuiFocusableObjectsNotifierState
+    with _$GuiFocusableObjectsNotifierState {
   const factory GuiFocusableObjectsNotifierState({
     @Default(false) final bool isChoosing,
 
@@ -86,7 +87,7 @@ class GuiFocusableObjectsNotifier
     // TODO(arenukvern): get nearest focusable objects by gid
   }
 
-  bool _isLoadingIds = false;
+  var _isLoadingIds = false;
 
   /// should be called from [player]
   Future<void> updateNearestObjectsOfPlayer({

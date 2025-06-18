@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,168 +10,145 @@ part of 'word_composition_bar.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
-mixin _$BottomActionsNotifierState {
-  bool get isCardVisible => throw _privateConstructorUsedError;
+mixin _$BottomActionsNotifierState implements DiagnosticableTreeMixin {
 
-  /// Create a copy of BottomActionsNotifierState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $BottomActionsNotifierStateCopyWith<BottomActionsNotifierState>
-  get copyWith => throw _privateConstructorUsedError;
+ bool get isCardVisible;
+/// Create a copy of BottomActionsNotifierState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$BottomActionsNotifierStateCopyWith<BottomActionsNotifierState> get copyWith => _$BottomActionsNotifierStateCopyWithImpl<BottomActionsNotifierState>(this as BottomActionsNotifierState, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'BottomActionsNotifierState'))
+    ..add(DiagnosticsProperty('isCardVisible', isCardVisible));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is BottomActionsNotifierState&&(identical(other.isCardVisible, isCardVisible) || other.isCardVisible == isCardVisible));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isCardVisible);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'BottomActionsNotifierState(isCardVisible: $isCardVisible)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $BottomActionsNotifierStateCopyWith<$Res> {
-  factory $BottomActionsNotifierStateCopyWith(
-    BottomActionsNotifierState value,
-    $Res Function(BottomActionsNotifierState) then,
-  ) =
-      _$BottomActionsNotifierStateCopyWithImpl<
-        $Res,
-        BottomActionsNotifierState
-      >;
-  @useResult
-  $Res call({bool isCardVisible});
-}
+abstract mixin class $BottomActionsNotifierStateCopyWith<$Res>  {
+  factory $BottomActionsNotifierStateCopyWith(BottomActionsNotifierState value, $Res Function(BottomActionsNotifierState) _then) = _$BottomActionsNotifierStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isCardVisible
+});
 
+
+
+
+}
 /// @nodoc
-class _$BottomActionsNotifierStateCopyWithImpl<
-  $Res,
-  $Val extends BottomActionsNotifierState
->
+class _$BottomActionsNotifierStateCopyWithImpl<$Res>
     implements $BottomActionsNotifierStateCopyWith<$Res> {
-  _$BottomActionsNotifierStateCopyWithImpl(this._value, this._then);
+  _$BottomActionsNotifierStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final BottomActionsNotifierState _self;
+  final $Res Function(BottomActionsNotifierState) _then;
 
-  /// Create a copy of BottomActionsNotifierState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? isCardVisible = null}) {
-    return _then(
-      _value.copyWith(
-            isCardVisible: null == isCardVisible
-                ? _value.isCardVisible
-                : isCardVisible // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of BottomActionsNotifierState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isCardVisible = null,}) {
+  return _then(_self.copyWith(
+isCardVisible: null == isCardVisible ? _self.isCardVisible : isCardVisible // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$BottomActionsNotifierStateImplCopyWith<$Res>
-    implements $BottomActionsNotifierStateCopyWith<$Res> {
-  factory _$$BottomActionsNotifierStateImplCopyWith(
-    _$BottomActionsNotifierStateImpl value,
-    $Res Function(_$BottomActionsNotifierStateImpl) then,
-  ) = __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool isCardVisible});
 }
 
-/// @nodoc
-class __$$BottomActionsNotifierStateImplCopyWithImpl<$Res>
-    extends
-        _$BottomActionsNotifierStateCopyWithImpl<
-          $Res,
-          _$BottomActionsNotifierStateImpl
-        >
-    implements _$$BottomActionsNotifierStateImplCopyWith<$Res> {
-  __$$BottomActionsNotifierStateImplCopyWithImpl(
-    _$BottomActionsNotifierStateImpl _value,
-    $Res Function(_$BottomActionsNotifierStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of BottomActionsNotifierState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? isCardVisible = null}) {
-    return _then(
-      _$BottomActionsNotifierStateImpl(
-        isCardVisible: null == isCardVisible
-            ? _value.isCardVisible
-            : isCardVisible // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$BottomActionsNotifierStateImpl
-    with DiagnosticableTreeMixin
-    implements _BottomActionsNotifierState {
-  const _$BottomActionsNotifierStateImpl({this.isCardVisible = true});
 
-  @override
-  @JsonKey()
-  final bool isCardVisible;
+class _BottomActionsNotifierState with DiagnosticableTreeMixin implements BottomActionsNotifierState {
+  const _BottomActionsNotifierState({this.isCardVisible = true});
+  
 
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'BottomActionsNotifierState(isCardVisible: $isCardVisible)';
-  }
+@override@JsonKey() final  bool isCardVisible;
 
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'BottomActionsNotifierState'))
-      ..add(DiagnosticsProperty('isCardVisible', isCardVisible));
-  }
+/// Create a copy of BottomActionsNotifierState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$BottomActionsNotifierStateCopyWith<_BottomActionsNotifierState> get copyWith => __$BottomActionsNotifierStateCopyWithImpl<_BottomActionsNotifierState>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$BottomActionsNotifierStateImpl &&
-            (identical(other.isCardVisible, isCardVisible) ||
-                other.isCardVisible == isCardVisible));
-  }
 
-  @override
-  int get hashCode => Object.hash(runtimeType, isCardVisible);
-
-  /// Create a copy of BottomActionsNotifierState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
-  get copyWith =>
-      __$$BottomActionsNotifierStateImplCopyWithImpl<
-        _$BottomActionsNotifierStateImpl
-      >(this, _$identity);
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'BottomActionsNotifierState'))
+    ..add(DiagnosticsProperty('isCardVisible', isCardVisible));
 }
 
-abstract class _BottomActionsNotifierState
-    implements BottomActionsNotifierState {
-  const factory _BottomActionsNotifierState({final bool isCardVisible}) =
-      _$BottomActionsNotifierStateImpl;
-
-  @override
-  bool get isCardVisible;
-
-  /// Create a copy of BottomActionsNotifierState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$BottomActionsNotifierStateImplCopyWith<_$BottomActionsNotifierStateImpl>
-  get copyWith => throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _BottomActionsNotifierState&&(identical(other.isCardVisible, isCardVisible) || other.isCardVisible == isCardVisible));
 }
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isCardVisible);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'BottomActionsNotifierState(isCardVisible: $isCardVisible)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$BottomActionsNotifierStateCopyWith<$Res> implements $BottomActionsNotifierStateCopyWith<$Res> {
+  factory _$BottomActionsNotifierStateCopyWith(_BottomActionsNotifierState value, $Res Function(_BottomActionsNotifierState) _then) = __$BottomActionsNotifierStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isCardVisible
+});
+
+
+
+
+}
+/// @nodoc
+class __$BottomActionsNotifierStateCopyWithImpl<$Res>
+    implements _$BottomActionsNotifierStateCopyWith<$Res> {
+  __$BottomActionsNotifierStateCopyWithImpl(this._self, this._then);
+
+  final _BottomActionsNotifierState _self;
+  final $Res Function(_BottomActionsNotifierState) _then;
+
+/// Create a copy of BottomActionsNotifierState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isCardVisible = null,}) {
+  return _then(_BottomActionsNotifierState(
+isCardVisible: null == isCardVisible ? _self.isCardVisible : isCardVisible // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on

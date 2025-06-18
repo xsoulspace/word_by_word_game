@@ -6,7 +6,7 @@ import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 part 'game_constants_cubit.freezed.dart';
 
 @freezed
-class GameConstantsCubitState with _$GameConstantsCubitState {
+abstract class GameConstantsCubitState with _$GameConstantsCubitState {
   const factory GameConstantsCubitState({
     @Default(ForcesConstantsModel.initial) final ForcesConstantsModel forces,
   }) = _GameConstantsCubitState;

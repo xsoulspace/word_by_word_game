@@ -4,7 +4,7 @@ part of 'level_bloc.dart';
 
 @immutable
 @freezed
-class LevelBlocState with _$LevelBlocState {
+abstract class LevelBlocState with _$LevelBlocState {
   const factory LevelBlocState({
     @Default(CanvasDataModelId.empty) final CanvasDataModelId id,
     @Default(CurrentWordModel()) final CurrentWordModel currentWord,

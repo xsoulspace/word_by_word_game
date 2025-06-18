@@ -4,7 +4,7 @@ part of 'level_players_bloc.dart';
 
 @immutable
 @freezed
-class LevelPlayersBlocState with _$LevelPlayersBlocState {
+abstract class LevelPlayersBlocState with _$LevelPlayersBlocState {
   const factory LevelPlayersBlocState({
     @Default([]) final List<PlayerProfileModel> players,
     @Default('') final PlayerProfileModelId currentPlayerId,

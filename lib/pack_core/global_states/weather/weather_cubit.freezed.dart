@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,211 +10,178 @@ part of 'weather_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
-mixin _$WeatherCubitState {
-  /// idea that current weather always first.
-  /// With weather completed, [weathers] first element should be removed
-  List<WeatherModel> get weathers => throw _privateConstructorUsedError;
-  WindModel get wind => throw _privateConstructorUsedError;
+mixin _$WeatherCubitState implements DiagnosticableTreeMixin {
 
-  /// Create a copy of WeatherCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $WeatherCubitStateCopyWith<WeatherCubitState> get copyWith =>
-      throw _privateConstructorUsedError;
+/// idea that current weather always first.
+/// With weather completed, [weathers] first element should be removed
+ List<WeatherModel> get weathers; WindModel get wind;
+/// Create a copy of WeatherCubitState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$WeatherCubitStateCopyWith<WeatherCubitState> get copyWith => _$WeatherCubitStateCopyWithImpl<WeatherCubitState>(this as WeatherCubitState, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'WeatherCubitState'))
+    ..add(DiagnosticsProperty('weathers', weathers))..add(DiagnosticsProperty('wind', wind));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is WeatherCubitState&&const DeepCollectionEquality().equals(other.weathers, weathers)&&(identical(other.wind, wind) || other.wind == wind));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(weathers),wind);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'WeatherCubitState(weathers: $weathers, wind: $wind)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $WeatherCubitStateCopyWith<$Res> {
-  factory $WeatherCubitStateCopyWith(
-    WeatherCubitState value,
-    $Res Function(WeatherCubitState) then,
-  ) = _$WeatherCubitStateCopyWithImpl<$Res, WeatherCubitState>;
-  @useResult
-  $Res call({List<WeatherModel> weathers, WindModel wind});
+abstract mixin class $WeatherCubitStateCopyWith<$Res>  {
+  factory $WeatherCubitStateCopyWith(WeatherCubitState value, $Res Function(WeatherCubitState) _then) = _$WeatherCubitStateCopyWithImpl;
+@useResult
+$Res call({
+ List<WeatherModel> weathers, WindModel wind
+});
 
-  $WindModelCopyWith<$Res> get wind;
+
+$WindModelCopyWith<$Res> get wind;
+
 }
-
 /// @nodoc
-class _$WeatherCubitStateCopyWithImpl<$Res, $Val extends WeatherCubitState>
+class _$WeatherCubitStateCopyWithImpl<$Res>
     implements $WeatherCubitStateCopyWith<$Res> {
-  _$WeatherCubitStateCopyWithImpl(this._value, this._then);
+  _$WeatherCubitStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final WeatherCubitState _self;
+  final $Res Function(WeatherCubitState) _then;
 
-  /// Create a copy of WeatherCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? weathers = null, Object? wind = null}) {
-    return _then(
-      _value.copyWith(
-            weathers: null == weathers
-                ? _value.weathers
-                : weathers // ignore: cast_nullable_to_non_nullable
-                      as List<WeatherModel>,
-            wind: null == wind
-                ? _value.wind
-                : wind // ignore: cast_nullable_to_non_nullable
-                      as WindModel,
-          )
-          as $Val,
-    );
-  }
-
-  /// Create a copy of WeatherCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $WindModelCopyWith<$Res> get wind {
-    return $WindModelCopyWith<$Res>(_value.wind, (value) {
-      return _then(_value.copyWith(wind: value) as $Val);
-    });
-  }
+/// Create a copy of WeatherCubitState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? weathers = null,Object? wind = null,}) {
+  return _then(_self.copyWith(
+weathers: null == weathers ? _self.weathers : weathers // ignore: cast_nullable_to_non_nullable
+as List<WeatherModel>,wind: null == wind ? _self.wind : wind // ignore: cast_nullable_to_non_nullable
+as WindModel,
+  ));
+}
+/// Create a copy of WeatherCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WindModelCopyWith<$Res> get wind {
+  
+  return $WindModelCopyWith<$Res>(_self.wind, (value) {
+    return _then(_self.copyWith(wind: value));
+  });
+}
 }
 
-/// @nodoc
-abstract class _$$WeatherCubitStateImplCopyWith<$Res>
-    implements $WeatherCubitStateCopyWith<$Res> {
-  factory _$$WeatherCubitStateImplCopyWith(
-    _$WeatherCubitStateImpl value,
-    $Res Function(_$WeatherCubitStateImpl) then,
-  ) = __$$WeatherCubitStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({List<WeatherModel> weathers, WindModel wind});
-
-  @override
-  $WindModelCopyWith<$Res> get wind;
-}
-
-/// @nodoc
-class __$$WeatherCubitStateImplCopyWithImpl<$Res>
-    extends _$WeatherCubitStateCopyWithImpl<$Res, _$WeatherCubitStateImpl>
-    implements _$$WeatherCubitStateImplCopyWith<$Res> {
-  __$$WeatherCubitStateImplCopyWithImpl(
-    _$WeatherCubitStateImpl _value,
-    $Res Function(_$WeatherCubitStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of WeatherCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? weathers = null, Object? wind = null}) {
-    return _then(
-      _$WeatherCubitStateImpl(
-        weathers: null == weathers
-            ? _value._weathers
-            : weathers // ignore: cast_nullable_to_non_nullable
-                  as List<WeatherModel>,
-        wind: null == wind
-            ? _value.wind
-            : wind // ignore: cast_nullable_to_non_nullable
-                  as WindModel,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$WeatherCubitStateImpl extends _WeatherCubitState
-    with DiagnosticableTreeMixin {
-  const _$WeatherCubitStateImpl({
-    final List<WeatherModel> weathers = const [],
-    this.wind = WindModel.zero,
-  }) : _weathers = weathers,
-       super._();
 
-  /// idea that current weather always first.
-  /// With weather completed, [weathers] first element should be removed
-  final List<WeatherModel> _weathers;
+class _WeatherCubitState extends WeatherCubitState with DiagnosticableTreeMixin {
+  const _WeatherCubitState({final  List<WeatherModel> weathers = const [], this.wind = WindModel.zero}): _weathers = weathers,super._();
+  
 
-  /// idea that current weather always first.
-  /// With weather completed, [weathers] first element should be removed
-  @override
-  @JsonKey()
-  List<WeatherModel> get weathers {
-    if (_weathers is EqualUnmodifiableListView) return _weathers;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_weathers);
-  }
-
-  @override
-  @JsonKey()
-  final WindModel wind;
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'WeatherCubitState(weathers: $weathers, wind: $wind)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'WeatherCubitState'))
-      ..add(DiagnosticsProperty('weathers', weathers))
-      ..add(DiagnosticsProperty('wind', wind));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$WeatherCubitStateImpl &&
-            const DeepCollectionEquality().equals(other._weathers, _weathers) &&
-            (identical(other.wind, wind) || other.wind == wind));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    const DeepCollectionEquality().hash(_weathers),
-    wind,
-  );
-
-  /// Create a copy of WeatherCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$WeatherCubitStateImplCopyWith<_$WeatherCubitStateImpl> get copyWith =>
-      __$$WeatherCubitStateImplCopyWithImpl<_$WeatherCubitStateImpl>(
-        this,
-        _$identity,
-      );
+/// idea that current weather always first.
+/// With weather completed, [weathers] first element should be removed
+ final  List<WeatherModel> _weathers;
+/// idea that current weather always first.
+/// With weather completed, [weathers] first element should be removed
+@override@JsonKey() List<WeatherModel> get weathers {
+  if (_weathers is EqualUnmodifiableListView) return _weathers;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_weathers);
 }
 
-abstract class _WeatherCubitState extends WeatherCubitState {
-  const factory _WeatherCubitState({
-    final List<WeatherModel> weathers,
-    final WindModel wind,
-  }) = _$WeatherCubitStateImpl;
-  const _WeatherCubitState._() : super._();
+@override@JsonKey() final  WindModel wind;
 
-  /// idea that current weather always first.
-  /// With weather completed, [weathers] first element should be removed
-  @override
-  List<WeatherModel> get weathers;
-  @override
-  WindModel get wind;
+/// Create a copy of WeatherCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$WeatherCubitStateCopyWith<_WeatherCubitState> get copyWith => __$WeatherCubitStateCopyWithImpl<_WeatherCubitState>(this, _$identity);
 
-  /// Create a copy of WeatherCubitState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$WeatherCubitStateImplCopyWith<_$WeatherCubitStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'WeatherCubitState'))
+    ..add(DiagnosticsProperty('weathers', weathers))..add(DiagnosticsProperty('wind', wind));
 }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _WeatherCubitState&&const DeepCollectionEquality().equals(other._weathers, _weathers)&&(identical(other.wind, wind) || other.wind == wind));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_weathers),wind);
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'WeatherCubitState(weathers: $weathers, wind: $wind)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$WeatherCubitStateCopyWith<$Res> implements $WeatherCubitStateCopyWith<$Res> {
+  factory _$WeatherCubitStateCopyWith(_WeatherCubitState value, $Res Function(_WeatherCubitState) _then) = __$WeatherCubitStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<WeatherModel> weathers, WindModel wind
+});
+
+
+@override $WindModelCopyWith<$Res> get wind;
+
+}
+/// @nodoc
+class __$WeatherCubitStateCopyWithImpl<$Res>
+    implements _$WeatherCubitStateCopyWith<$Res> {
+  __$WeatherCubitStateCopyWithImpl(this._self, this._then);
+
+  final _WeatherCubitState _self;
+  final $Res Function(_WeatherCubitState) _then;
+
+/// Create a copy of WeatherCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? weathers = null,Object? wind = null,}) {
+  return _then(_WeatherCubitState(
+weathers: null == weathers ? _self._weathers : weathers // ignore: cast_nullable_to_non_nullable
+as List<WeatherModel>,wind: null == wind ? _self.wind : wind // ignore: cast_nullable_to_non_nullable
+as WindModel,
+  ));
+}
+
+/// Create a copy of WeatherCubitState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$WindModelCopyWith<$Res> get wind {
+  
+  return $WindModelCopyWith<$Res>(_self.wind, (value) {
+    return _then(_self.copyWith(wind: value));
+  });
+}
+}
+
+// dart format on

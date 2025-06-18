@@ -44,7 +44,7 @@ enum GuiBuildingTypeEnum {
 }
 
 @freezed
-class GuiBuildingNotifierState with _$GuiBuildingNotifierState {
+abstract class GuiBuildingNotifierState with _$GuiBuildingNotifierState {
   const factory GuiBuildingNotifierState({
     @Default(GuiBuildingStatusEnum.idle) final GuiBuildingStatusEnum status,
     @Default(GuiBuildingTypeEnum.nothing) final GuiBuildingTypeEnum type,

@@ -19,7 +19,7 @@ enum LevelPartName {
 }
 
 @freezed
-class StatesStatusesCubitState with _$StatesStatusesCubitState {
+abstract class StatesStatusesCubitState with _$StatesStatusesCubitState {
   const factory StatesStatusesCubitState({
     /// global statuses
     /// - loading

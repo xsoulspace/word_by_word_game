@@ -15,7 +15,7 @@ class DictionariesBlocDiDto {
 
 @immutable
 @Freezed(fromJson: false, toJson: false)
-class DictionariesBlocState with _$DictionariesBlocState {
+abstract class DictionariesBlocState with _$DictionariesBlocState {
   const factory DictionariesBlocState({
     @Default(WordsType({})) final WordsType wordsType,
   }) = _DictionariesBlocState;

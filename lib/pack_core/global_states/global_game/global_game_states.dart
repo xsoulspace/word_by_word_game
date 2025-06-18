@@ -4,7 +4,7 @@ part of 'global_game_bloc.dart';
 
 @immutable
 @Freezed(fromJson: false, toJson: false)
-class GlobalGameBlocState with _$GlobalGameBlocState {
+abstract class GlobalGameBlocState with _$GlobalGameBlocState {
   const factory GlobalGameBlocState({
     /// ********************************************
     /// *      RESTORABLE FROM MODEL
