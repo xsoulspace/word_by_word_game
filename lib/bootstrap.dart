@@ -6,6 +6,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wbw_core/wbw_core.dart';
+import 'package:wbw_locale/wbw_locale.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
 import 'package:word_by_word_game/pack_core/word_by_word_app.dart';
 
@@ -39,6 +40,13 @@ Future<void> bootstrap({final FirebaseOptions? firebaseOptions}) async {
 
   final GlobalServicesInitializer initializer = GlobalServicesInitializerImpl(
     firebaseOptions: firebaseOptions,
+  );
+
+  LocalizationConfig.initialize(
+    LocalizationConfig(
+      supportedLanguages: uiLanguages.all,
+      fallbackLanguage: uiLanguages.en,
+    ),
   );
 
   await runZonedGuarded(() async {

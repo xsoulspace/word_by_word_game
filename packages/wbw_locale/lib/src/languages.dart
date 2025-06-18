@@ -6,6 +6,11 @@ const uiLanguages = (
   ru: UiLanguage('ru', 'Russian'),
   it: UiLanguage('it', 'Italian'),
 );
+
+extension UiLanguageX on UiLanguage {
+  Locale get all => Locale(code);
+}
+
 final englishKeyboard = KeyboardLanguage.fromLanguage(uiLanguages.en);
 final russianKeyboard = KeyboardLanguage.fromLanguage(uiLanguages.ru);
 final allKeyboardLanguages = KeyboardLanguage.values;
