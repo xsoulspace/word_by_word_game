@@ -3,7 +3,7 @@ part of 'saveable_models.dart';
 enum TileNeighbourDirection { a, b, c, d, e, f, g, h }
 
 @Freezed(equal: false)
-class TileNeighbourTitle with _$TileNeighbourTitle, EquatableMixin {
+abstract class TileNeighbourTitle with _$TileNeighbourTitle, EquatableMixin {
   /// please use [TileNeighbourTitle.fromDirection] instead
   const factory TileNeighbourTitle.secured({required final String value}) =
       _TileNeighbourTitle;
@@ -29,14 +29,14 @@ const tilesNeighbourDirections = <TileNeighbourDirection, CellPointModel>{
 };
 
 @freezed
-class CellDataModel with _$CellDataModel {
+abstract class CellDataModel with _$CellDataModel {
   const factory CellDataModel() = _CellDataModel;
   factory CellDataModel.fromJson(final Map<String, dynamic> json) =>
       _$CellDataModelFromJson(json);
 }
 
 @Freezed(equal: false)
-class CellPointModel with _$CellPointModel, EquatableMixin {
+abstract class CellPointModel with _$CellPointModel, EquatableMixin {
   const factory CellPointModel(final int x, final int y) = _CellPointModel;
   const CellPointModel._();
   factory CellPointModel.fromJson(final Map<String, dynamic> json) =>

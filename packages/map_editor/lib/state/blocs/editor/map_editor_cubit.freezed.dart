@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,146 +10,133 @@ part of 'map_editor_cubit.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$MapEditorBlocState {
-  bool get isEditing => throw _privateConstructorUsedError;
 
-  /// Create a copy of MapEditorBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $MapEditorBlocStateCopyWith<MapEditorBlocState> get copyWith =>
-      throw _privateConstructorUsedError;
+ bool get isEditing;
+/// Create a copy of MapEditorBlocState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$MapEditorBlocStateCopyWith<MapEditorBlocState> get copyWith => _$MapEditorBlocStateCopyWithImpl<MapEditorBlocState>(this as MapEditorBlocState, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is MapEditorBlocState&&(identical(other.isEditing, isEditing) || other.isEditing == isEditing));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,isEditing);
+
+@override
+String toString() {
+  return 'MapEditorBlocState(isEditing: $isEditing)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $MapEditorBlocStateCopyWith<$Res> {
-  factory $MapEditorBlocStateCopyWith(
-    MapEditorBlocState value,
-    $Res Function(MapEditorBlocState) then,
-  ) = _$MapEditorBlocStateCopyWithImpl<$Res, MapEditorBlocState>;
-  @useResult
-  $Res call({bool isEditing});
-}
+abstract mixin class $MapEditorBlocStateCopyWith<$Res>  {
+  factory $MapEditorBlocStateCopyWith(MapEditorBlocState value, $Res Function(MapEditorBlocState) _then) = _$MapEditorBlocStateCopyWithImpl;
+@useResult
+$Res call({
+ bool isEditing
+});
 
+
+
+
+}
 /// @nodoc
-class _$MapEditorBlocStateCopyWithImpl<$Res, $Val extends MapEditorBlocState>
+class _$MapEditorBlocStateCopyWithImpl<$Res>
     implements $MapEditorBlocStateCopyWith<$Res> {
-  _$MapEditorBlocStateCopyWithImpl(this._value, this._then);
+  _$MapEditorBlocStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final MapEditorBlocState _self;
+  final $Res Function(MapEditorBlocState) _then;
 
-  /// Create a copy of MapEditorBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? isEditing = null}) {
-    return _then(
-      _value.copyWith(
-            isEditing: null == isEditing
-                ? _value.isEditing
-                : isEditing // ignore: cast_nullable_to_non_nullable
-                      as bool,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of MapEditorBlocState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? isEditing = null,}) {
+  return _then(_self.copyWith(
+isEditing: null == isEditing ? _self.isEditing : isEditing // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
 }
 
-/// @nodoc
-abstract class _$$MapEditorBlocStateImplCopyWith<$Res>
-    implements $MapEditorBlocStateCopyWith<$Res> {
-  factory _$$MapEditorBlocStateImplCopyWith(
-    _$MapEditorBlocStateImpl value,
-    $Res Function(_$MapEditorBlocStateImpl) then,
-  ) = __$$MapEditorBlocStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({bool isEditing});
 }
 
-/// @nodoc
-class __$$MapEditorBlocStateImplCopyWithImpl<$Res>
-    extends _$MapEditorBlocStateCopyWithImpl<$Res, _$MapEditorBlocStateImpl>
-    implements _$$MapEditorBlocStateImplCopyWith<$Res> {
-  __$$MapEditorBlocStateImplCopyWithImpl(
-    _$MapEditorBlocStateImpl _value,
-    $Res Function(_$MapEditorBlocStateImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of MapEditorBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? isEditing = null}) {
-    return _then(
-      _$MapEditorBlocStateImpl(
-        isEditing: null == isEditing
-            ? _value.isEditing
-            : isEditing // ignore: cast_nullable_to_non_nullable
-                  as bool,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$MapEditorBlocStateImpl implements _MapEditorBlocState {
-  const _$MapEditorBlocStateImpl({this.isEditing = false});
 
-  @override
-  @JsonKey()
-  final bool isEditing;
+class _MapEditorBlocState implements MapEditorBlocState {
+  const _MapEditorBlocState({this.isEditing = false});
+  
 
-  @override
-  String toString() {
-    return 'MapEditorBlocState(isEditing: $isEditing)';
-  }
+@override@JsonKey() final  bool isEditing;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$MapEditorBlocStateImpl &&
-            (identical(other.isEditing, isEditing) ||
-                other.isEditing == isEditing));
-  }
+/// Create a copy of MapEditorBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$MapEditorBlocStateCopyWith<_MapEditorBlocState> get copyWith => __$MapEditorBlocStateCopyWithImpl<_MapEditorBlocState>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, isEditing);
 
-  /// Create a copy of MapEditorBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$MapEditorBlocStateImplCopyWith<_$MapEditorBlocStateImpl> get copyWith =>
-      __$$MapEditorBlocStateImplCopyWithImpl<_$MapEditorBlocStateImpl>(
-        this,
-        _$identity,
-      );
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _MapEditorBlocState&&(identical(other.isEditing, isEditing) || other.isEditing == isEditing));
 }
 
-abstract class _MapEditorBlocState implements MapEditorBlocState {
-  const factory _MapEditorBlocState({final bool isEditing}) =
-      _$MapEditorBlocStateImpl;
 
-  @override
-  bool get isEditing;
+@override
+int get hashCode => Object.hash(runtimeType,isEditing);
 
-  /// Create a copy of MapEditorBlocState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$MapEditorBlocStateImplCopyWith<_$MapEditorBlocStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'MapEditorBlocState(isEditing: $isEditing)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$MapEditorBlocStateCopyWith<$Res> implements $MapEditorBlocStateCopyWith<$Res> {
+  factory _$MapEditorBlocStateCopyWith(_MapEditorBlocState value, $Res Function(_MapEditorBlocState) _then) = __$MapEditorBlocStateCopyWithImpl;
+@override @useResult
+$Res call({
+ bool isEditing
+});
+
+
+
+
+}
+/// @nodoc
+class __$MapEditorBlocStateCopyWithImpl<$Res>
+    implements _$MapEditorBlocStateCopyWith<$Res> {
+  __$MapEditorBlocStateCopyWithImpl(this._self, this._then);
+
+  final _MapEditorBlocState _self;
+  final $Res Function(_MapEditorBlocState) _then;
+
+/// Create a copy of MapEditorBlocState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? isEditing = null,}) {
+  return _then(_MapEditorBlocState(
+isEditing: null == isEditing ? _self.isEditing : isEditing // ignore: cast_nullable_to_non_nullable
+as bool,
+  ));
+}
+
+
+}
+
+// dart format on

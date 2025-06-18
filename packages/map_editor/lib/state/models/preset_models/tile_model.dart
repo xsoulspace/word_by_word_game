@@ -4,7 +4,7 @@ part of 'preset_models.dart';
 
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
-class TileId with _$TileId, EquatableMixin {
+abstract class TileId with _$TileId, EquatableMixin {
   const factory TileId({required final String value}) = _TileId;
   const TileId._();
   factory TileId.fromJson(final String value) => TileId(value: value);
@@ -37,7 +37,7 @@ enum DataCategoryType {
 }
 
 @freezed
-class PresetTileModel with _$PresetTileModel {
+abstract class PresetTileModel with _$PresetTileModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTileModel({
     required final TileId id,
@@ -72,7 +72,7 @@ enum SpriteTileName {
 }
 
 @freezed
-class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
+abstract class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTilePropertiesModel({
     @Default('') final String title,
@@ -105,7 +105,7 @@ enum TileBehaviourType {
 }
 
 @freezed
-class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
+abstract class PresetTileGraphicsModel with _$PresetTileGraphicsModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory PresetTileGraphicsModel({
     required final TileGraphicsType type,

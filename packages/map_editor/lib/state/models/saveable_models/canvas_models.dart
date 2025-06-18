@@ -4,7 +4,7 @@ part of 'saveable_models.dart';
 
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
-class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
+abstract class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
   const factory CanvasDataModelId({required final String value}) =
       _CanvasDataModelId;
   const CanvasDataModelId._();
@@ -28,7 +28,7 @@ class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
 /// It can be changed during the game. If this will be
 /// implemented, then it should be saved with the level.
 @freezed
-class CanvasDataModel with _$CanvasDataModel {
+abstract class CanvasDataModel with _$CanvasDataModel {
   const factory CanvasDataModel({
     @JsonKey(
       fromJson: CanvasDataModelId.fromJson,
@@ -88,7 +88,7 @@ class CanvasDataModel with _$CanvasDataModel {
 }
 
 @freezed
-class GravityModel with _$GravityModel {
+abstract class GravityModel with _$GravityModel {
   const factory GravityModel({
     ///absolute tile position. may be negative and positive
     required final int yTilePosition,
@@ -111,7 +111,7 @@ class GravityModel with _$GravityModel {
 
 @immutable
 @Freezed(fromJson: false, toJson: false, equal: false)
-class LayerModelId with _$LayerModelId, EquatableMixin {
+abstract class LayerModelId with _$LayerModelId, EquatableMixin {
   const factory LayerModelId({required final String value}) = _LayerModelId;
   const LayerModelId._();
   factory LayerModelId.fromJson(final String value) =>
@@ -130,7 +130,7 @@ class LayerModelId with _$LayerModelId, EquatableMixin {
 enum CollisionConsequence { none, win, lose }
 
 @freezed
-class LayerModel with _$LayerModel {
+abstract class LayerModel with _$LayerModel {
   const factory LayerModel({
     @JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)
     required final LayerModelId id,
@@ -172,7 +172,7 @@ class LayerModel with _$LayerModel {
 
 /// Class which keeps all information about one tile and its references
 @freezed
-class CellTileModel with _$CellTileModel {
+abstract class CellTileModel with _$CellTileModel {
   const factory CellTileModel({
     /// to remove tile just set [TileId.empty] and recalculate [tileNeighbours]
     @Default(TileId.empty) final TileId tileId,
@@ -194,7 +194,7 @@ class CellTileModel with _$CellTileModel {
 /// Used to save and restore canvas object.
 
 @freezed
-class RenderObjectModel with _$RenderObjectModel {
+abstract class RenderObjectModel with _$RenderObjectModel {
   const factory RenderObjectModel({
     /// Since tileId can be used several times
     /// It cannot be used as gid.

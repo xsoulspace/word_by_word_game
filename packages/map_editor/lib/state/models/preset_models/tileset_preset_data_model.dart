@@ -16,7 +16,7 @@ const Map<SpriteTileName, List<SpriteCode>> _nameCodes = {
 };
 
 @freezed
-class TilesetPresetDataModel with _$TilesetPresetDataModel {
+abstract class TilesetPresetDataModel with _$TilesetPresetDataModel {
   @JsonSerializable(fieldRename: FieldRename.snake)
   const factory TilesetPresetDataModel({
     @JsonKey(
@@ -86,7 +86,7 @@ enum TilesetType {
 }
 
 @Freezed(fromJson: false, toJson: false)
-class TilesetConfigModel with _$TilesetConfigModel {
+abstract class TilesetConfigModel with _$TilesetConfigModel {
   const factory TilesetConfigModel({
     /// should be a _preset_data.json
     @Default('') final String path,
@@ -107,7 +107,7 @@ class TilesetConfigModel with _$TilesetConfigModel {
 }
 
 @freezed
-class TilesetThemeModel with _$TilesetThemeModel {
+abstract class TilesetThemeModel with _$TilesetThemeModel {
   const factory TilesetThemeModel({
     required final String backgroundSkyColorHex,
   }) = _TilesetThemeModel;
@@ -119,7 +119,7 @@ class TilesetThemeModel with _$TilesetThemeModel {
 }
 
 @Freezed(toJson: false, fromJson: false)
-class TilesetPresetResources with _$TilesetPresetResources {
+abstract class TilesetPresetResources with _$TilesetPresetResources {
   const factory TilesetPresetResources({
     @Default(LocalizedMap.empty) final LocalizedMap name,
     @Default(TilesetThemeModel.empty) final TilesetThemeModel theme,

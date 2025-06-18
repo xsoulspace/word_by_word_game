@@ -1,7 +1,7 @@
 part of 'drawer_cubit.dart';
 
 @freezed
-class DrawerCubitState with _$DrawerCubitState {
+abstract class DrawerCubitState with _$DrawerCubitState {
   const factory DrawerCubitState({
     /// Real origin for all elements
     required final Vector2 origin,

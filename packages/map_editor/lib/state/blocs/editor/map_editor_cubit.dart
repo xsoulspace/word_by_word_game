@@ -9,7 +9,7 @@ import 'package:map_editor/state/blocs/editor/drawer_cubit.dart';
 part 'map_editor_cubit.freezed.dart';
 
 @freezed
-class MapEditorBlocState with _$MapEditorBlocState {
+abstract class MapEditorBlocState with _$MapEditorBlocState {
   const factory MapEditorBlocState({@Default(false) final bool isEditing}) =
       _MapEditorBlocState;
 }

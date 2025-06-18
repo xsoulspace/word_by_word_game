@@ -1,7 +1,7 @@
 part of '../models.dart';
 
 @freezed
-class AnimationEntryModel with _$AnimationEntryModel {
+abstract class AnimationEntryModel with _$AnimationEntryModel {
   const factory AnimationEntryModel({
     @Default(0) final double frameIndex,
     @Default(0) final int framesLength,

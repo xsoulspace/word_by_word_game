@@ -70,13 +70,12 @@ dev_dependencies:
 
 flutter_gen:
   output: lib/generated/
-  lineLength: 80
 
   assets:
     enabled: true
-    outputs:
-      gen_for_package: false
-      package_parameter_enabled: false
+    # outputs:
+    #   gen_for_package: false
+    #   package_parameter_enabled: false
 
   integrations:
     flutter_svg: true

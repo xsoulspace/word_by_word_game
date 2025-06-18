@@ -3,7 +3,7 @@
 part of 'saveable_models.dart';
 
 @Freezed(equal: false, fromJson: false, toJson: false)
-class Gid with _$Gid, EquatableMixin {
+abstract class Gid with _$Gid, EquatableMixin {
   @JsonSerializable()
   const factory Gid({required final String value}) = _Gid;
   const Gid._();

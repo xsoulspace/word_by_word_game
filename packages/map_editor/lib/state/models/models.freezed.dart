@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,345 +10,272 @@ part of 'models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
 mixin _$AnimationEntryModel {
-  double get frameIndex => throw _privateConstructorUsedError;
-  int get framesLength => throw _privateConstructorUsedError;
-  List<String> get framesPaths => throw _privateConstructorUsedError;
 
-  /// Create a copy of AnimationEntryModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $AnimationEntryModelCopyWith<AnimationEntryModel> get copyWith =>
-      throw _privateConstructorUsedError;
+ double get frameIndex; int get framesLength; List<String> get framesPaths;
+/// Create a copy of AnimationEntryModel
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AnimationEntryModelCopyWith<AnimationEntryModel> get copyWith => _$AnimationEntryModelCopyWithImpl<AnimationEntryModel>(this as AnimationEntryModel, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AnimationEntryModel&&(identical(other.frameIndex, frameIndex) || other.frameIndex == frameIndex)&&(identical(other.framesLength, framesLength) || other.framesLength == framesLength)&&const DeepCollectionEquality().equals(other.framesPaths, framesPaths));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,frameIndex,framesLength,const DeepCollectionEquality().hash(framesPaths));
+
+@override
+String toString() {
+  return 'AnimationEntryModel(frameIndex: $frameIndex, framesLength: $framesLength, framesPaths: $framesPaths)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $AnimationEntryModelCopyWith<$Res> {
-  factory $AnimationEntryModelCopyWith(
-    AnimationEntryModel value,
-    $Res Function(AnimationEntryModel) then,
-  ) = _$AnimationEntryModelCopyWithImpl<$Res, AnimationEntryModel>;
-  @useResult
-  $Res call({double frameIndex, int framesLength, List<String> framesPaths});
-}
+abstract mixin class $AnimationEntryModelCopyWith<$Res>  {
+  factory $AnimationEntryModelCopyWith(AnimationEntryModel value, $Res Function(AnimationEntryModel) _then) = _$AnimationEntryModelCopyWithImpl;
+@useResult
+$Res call({
+ double frameIndex, int framesLength, List<String> framesPaths
+});
 
+
+
+
+}
 /// @nodoc
-class _$AnimationEntryModelCopyWithImpl<$Res, $Val extends AnimationEntryModel>
+class _$AnimationEntryModelCopyWithImpl<$Res>
     implements $AnimationEntryModelCopyWith<$Res> {
-  _$AnimationEntryModelCopyWithImpl(this._value, this._then);
+  _$AnimationEntryModelCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AnimationEntryModel _self;
+  final $Res Function(AnimationEntryModel) _then;
 
-  /// Create a copy of AnimationEntryModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? frameIndex = null,
-    Object? framesLength = null,
-    Object? framesPaths = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            frameIndex: null == frameIndex
-                ? _value.frameIndex
-                : frameIndex // ignore: cast_nullable_to_non_nullable
-                      as double,
-            framesLength: null == framesLength
-                ? _value.framesLength
-                : framesLength // ignore: cast_nullable_to_non_nullable
-                      as int,
-            framesPaths: null == framesPaths
-                ? _value.framesPaths
-                : framesPaths // ignore: cast_nullable_to_non_nullable
-                      as List<String>,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of AnimationEntryModel
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? frameIndex = null,Object? framesLength = null,Object? framesPaths = null,}) {
+  return _then(_self.copyWith(
+frameIndex: null == frameIndex ? _self.frameIndex : frameIndex // ignore: cast_nullable_to_non_nullable
+as double,framesLength: null == framesLength ? _self.framesLength : framesLength // ignore: cast_nullable_to_non_nullable
+as int,framesPaths: null == framesPaths ? _self.framesPaths : framesPaths // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$AnimationEntryModelImplCopyWith<$Res>
-    implements $AnimationEntryModelCopyWith<$Res> {
-  factory _$$AnimationEntryModelImplCopyWith(
-    _$AnimationEntryModelImpl value,
-    $Res Function(_$AnimationEntryModelImpl) then,
-  ) = __$$AnimationEntryModelImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({double frameIndex, int framesLength, List<String> framesPaths});
 }
 
-/// @nodoc
-class __$$AnimationEntryModelImplCopyWithImpl<$Res>
-    extends _$AnimationEntryModelCopyWithImpl<$Res, _$AnimationEntryModelImpl>
-    implements _$$AnimationEntryModelImplCopyWith<$Res> {
-  __$$AnimationEntryModelImplCopyWithImpl(
-    _$AnimationEntryModelImpl _value,
-    $Res Function(_$AnimationEntryModelImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of AnimationEntryModel
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? frameIndex = null,
-    Object? framesLength = null,
-    Object? framesPaths = null,
-  }) {
-    return _then(
-      _$AnimationEntryModelImpl(
-        frameIndex: null == frameIndex
-            ? _value.frameIndex
-            : frameIndex // ignore: cast_nullable_to_non_nullable
-                  as double,
-        framesLength: null == framesLength
-            ? _value.framesLength
-            : framesLength // ignore: cast_nullable_to_non_nullable
-                  as int,
-        framesPaths: null == framesPaths
-            ? _value._framesPaths
-            : framesPaths // ignore: cast_nullable_to_non_nullable
-                  as List<String>,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$AnimationEntryModelImpl extends _AnimationEntryModel {
-  const _$AnimationEntryModelImpl({
-    this.frameIndex = 0,
-    this.framesLength = 0,
-    final List<String> framesPaths = const [],
-  }) : _framesPaths = framesPaths,
-       super._();
 
-  @override
-  @JsonKey()
-  final double frameIndex;
-  @override
-  @JsonKey()
-  final int framesLength;
-  final List<String> _framesPaths;
-  @override
-  @JsonKey()
-  List<String> get framesPaths {
-    if (_framesPaths is EqualUnmodifiableListView) return _framesPaths;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_framesPaths);
-  }
+class _AnimationEntryModel extends AnimationEntryModel {
+  const _AnimationEntryModel({this.frameIndex = 0, this.framesLength = 0, final  List<String> framesPaths = const []}): _framesPaths = framesPaths,super._();
+  
 
-  @override
-  String toString() {
-    return 'AnimationEntryModel(frameIndex: $frameIndex, framesLength: $framesLength, framesPaths: $framesPaths)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AnimationEntryModelImpl &&
-            (identical(other.frameIndex, frameIndex) ||
-                other.frameIndex == frameIndex) &&
-            (identical(other.framesLength, framesLength) ||
-                other.framesLength == framesLength) &&
-            const DeepCollectionEquality().equals(
-              other._framesPaths,
-              _framesPaths,
-            ));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    frameIndex,
-    framesLength,
-    const DeepCollectionEquality().hash(_framesPaths),
-  );
-
-  /// Create a copy of AnimationEntryModel
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$AnimationEntryModelImplCopyWith<_$AnimationEntryModelImpl> get copyWith =>
-      __$$AnimationEntryModelImplCopyWithImpl<_$AnimationEntryModelImpl>(
-        this,
-        _$identity,
-      );
+@override@JsonKey() final  double frameIndex;
+@override@JsonKey() final  int framesLength;
+ final  List<String> _framesPaths;
+@override@JsonKey() List<String> get framesPaths {
+  if (_framesPaths is EqualUnmodifiableListView) return _framesPaths;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_framesPaths);
 }
 
-abstract class _AnimationEntryModel extends AnimationEntryModel {
-  const factory _AnimationEntryModel({
-    final double frameIndex,
-    final int framesLength,
-    final List<String> framesPaths,
-  }) = _$AnimationEntryModelImpl;
-  const _AnimationEntryModel._() : super._();
 
-  @override
-  double get frameIndex;
-  @override
-  int get framesLength;
-  @override
-  List<String> get framesPaths;
+/// Create a copy of AnimationEntryModel
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$AnimationEntryModelCopyWith<_AnimationEntryModel> get copyWith => __$AnimationEntryModelCopyWithImpl<_AnimationEntryModel>(this, _$identity);
 
-  /// Create a copy of AnimationEntryModel
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AnimationEntryModelImplCopyWith<_$AnimationEntryModelImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _AnimationEntryModel&&(identical(other.frameIndex, frameIndex) || other.frameIndex == frameIndex)&&(identical(other.framesLength, framesLength) || other.framesLength == framesLength)&&const DeepCollectionEquality().equals(other._framesPaths, _framesPaths));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,frameIndex,framesLength,const DeepCollectionEquality().hash(_framesPaths));
+
+@override
+String toString() {
+  return 'AnimationEntryModel(frameIndex: $frameIndex, framesLength: $framesLength, framesPaths: $framesPaths)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$AnimationEntryModelCopyWith<$Res> implements $AnimationEntryModelCopyWith<$Res> {
+  factory _$AnimationEntryModelCopyWith(_AnimationEntryModel value, $Res Function(_AnimationEntryModel) _then) = __$AnimationEntryModelCopyWithImpl;
+@override @useResult
+$Res call({
+ double frameIndex, int framesLength, List<String> framesPaths
+});
+
+
+
+
+}
+/// @nodoc
+class __$AnimationEntryModelCopyWithImpl<$Res>
+    implements _$AnimationEntryModelCopyWith<$Res> {
+  __$AnimationEntryModelCopyWithImpl(this._self, this._then);
+
+  final _AnimationEntryModel _self;
+  final $Res Function(_AnimationEntryModel) _then;
+
+/// Create a copy of AnimationEntryModel
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? frameIndex = null,Object? framesLength = null,Object? framesPaths = null,}) {
+  return _then(_AnimationEntryModel(
+frameIndex: null == frameIndex ? _self.frameIndex : frameIndex // ignore: cast_nullable_to_non_nullable
+as double,framesLength: null == framesLength ? _self.framesLength : framesLength // ignore: cast_nullable_to_non_nullable
+as int,framesPaths: null == framesPaths ? _self._framesPaths : framesPaths // ignore: cast_nullable_to_non_nullable
+as List<String>,
+  ));
+}
+
+
 }
 
 /// @nodoc
 mixin _$GameRendererConfig {
-  int get animationSpeed => throw _privateConstructorUsedError;
 
-  /// Create a copy of GameRendererConfig
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $GameRendererConfigCopyWith<GameRendererConfig> get copyWith =>
-      throw _privateConstructorUsedError;
+ int get animationSpeed;
+/// Create a copy of GameRendererConfig
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$GameRendererConfigCopyWith<GameRendererConfig> get copyWith => _$GameRendererConfigCopyWithImpl<GameRendererConfig>(this as GameRendererConfig, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is GameRendererConfig&&(identical(other.animationSpeed, animationSpeed) || other.animationSpeed == animationSpeed));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,animationSpeed);
+
+@override
+String toString() {
+  return 'GameRendererConfig(animationSpeed: $animationSpeed)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $GameRendererConfigCopyWith<$Res> {
-  factory $GameRendererConfigCopyWith(
-    GameRendererConfig value,
-    $Res Function(GameRendererConfig) then,
-  ) = _$GameRendererConfigCopyWithImpl<$Res, GameRendererConfig>;
-  @useResult
-  $Res call({int animationSpeed});
-}
+abstract mixin class $GameRendererConfigCopyWith<$Res>  {
+  factory $GameRendererConfigCopyWith(GameRendererConfig value, $Res Function(GameRendererConfig) _then) = _$GameRendererConfigCopyWithImpl;
+@useResult
+$Res call({
+ int animationSpeed
+});
 
+
+
+
+}
 /// @nodoc
-class _$GameRendererConfigCopyWithImpl<$Res, $Val extends GameRendererConfig>
+class _$GameRendererConfigCopyWithImpl<$Res>
     implements $GameRendererConfigCopyWith<$Res> {
-  _$GameRendererConfigCopyWithImpl(this._value, this._then);
+  _$GameRendererConfigCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final GameRendererConfig _self;
+  final $Res Function(GameRendererConfig) _then;
 
-  /// Create a copy of GameRendererConfig
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? animationSpeed = null}) {
-    return _then(
-      _value.copyWith(
-            animationSpeed: null == animationSpeed
-                ? _value.animationSpeed
-                : animationSpeed // ignore: cast_nullable_to_non_nullable
-                      as int,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of GameRendererConfig
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? animationSpeed = null,}) {
+  return _then(_self.copyWith(
+animationSpeed: null == animationSpeed ? _self.animationSpeed : animationSpeed // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
 }
 
-/// @nodoc
-abstract class _$$GameRendererConfigImplCopyWith<$Res>
-    implements $GameRendererConfigCopyWith<$Res> {
-  factory _$$GameRendererConfigImplCopyWith(
-    _$GameRendererConfigImpl value,
-    $Res Function(_$GameRendererConfigImpl) then,
-  ) = __$$GameRendererConfigImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({int animationSpeed});
 }
 
-/// @nodoc
-class __$$GameRendererConfigImplCopyWithImpl<$Res>
-    extends _$GameRendererConfigCopyWithImpl<$Res, _$GameRendererConfigImpl>
-    implements _$$GameRendererConfigImplCopyWith<$Res> {
-  __$$GameRendererConfigImplCopyWithImpl(
-    _$GameRendererConfigImpl _value,
-    $Res Function(_$GameRendererConfigImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of GameRendererConfig
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({Object? animationSpeed = null}) {
-    return _then(
-      _$GameRendererConfigImpl(
-        animationSpeed: null == animationSpeed
-            ? _value.animationSpeed
-            : animationSpeed // ignore: cast_nullable_to_non_nullable
-                  as int,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
-class _$GameRendererConfigImpl implements _GameRendererConfig {
-  const _$GameRendererConfigImpl({this.animationSpeed = 8});
 
-  @override
-  @JsonKey()
-  final int animationSpeed;
+class _GameRendererConfig implements GameRendererConfig {
+  const _GameRendererConfig({this.animationSpeed = 8});
+  
 
-  @override
-  String toString() {
-    return 'GameRendererConfig(animationSpeed: $animationSpeed)';
-  }
+@override@JsonKey() final  int animationSpeed;
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$GameRendererConfigImpl &&
-            (identical(other.animationSpeed, animationSpeed) ||
-                other.animationSpeed == animationSpeed));
-  }
+/// Create a copy of GameRendererConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$GameRendererConfigCopyWith<_GameRendererConfig> get copyWith => __$GameRendererConfigCopyWithImpl<_GameRendererConfig>(this, _$identity);
 
-  @override
-  int get hashCode => Object.hash(runtimeType, animationSpeed);
 
-  /// Create a copy of GameRendererConfig
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$GameRendererConfigImplCopyWith<_$GameRendererConfigImpl> get copyWith =>
-      __$$GameRendererConfigImplCopyWithImpl<_$GameRendererConfigImpl>(
-        this,
-        _$identity,
-      );
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _GameRendererConfig&&(identical(other.animationSpeed, animationSpeed) || other.animationSpeed == animationSpeed));
 }
 
-abstract class _GameRendererConfig implements GameRendererConfig {
-  const factory _GameRendererConfig({final int animationSpeed}) =
-      _$GameRendererConfigImpl;
 
-  @override
-  int get animationSpeed;
+@override
+int get hashCode => Object.hash(runtimeType,animationSpeed);
 
-  /// Create a copy of GameRendererConfig
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$GameRendererConfigImplCopyWith<_$GameRendererConfigImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+String toString() {
+  return 'GameRendererConfig(animationSpeed: $animationSpeed)';
 }
+
+
+}
+
+/// @nodoc
+abstract mixin class _$GameRendererConfigCopyWith<$Res> implements $GameRendererConfigCopyWith<$Res> {
+  factory _$GameRendererConfigCopyWith(_GameRendererConfig value, $Res Function(_GameRendererConfig) _then) = __$GameRendererConfigCopyWithImpl;
+@override @useResult
+$Res call({
+ int animationSpeed
+});
+
+
+
+
+}
+/// @nodoc
+class __$GameRendererConfigCopyWithImpl<$Res>
+    implements _$GameRendererConfigCopyWith<$Res> {
+  __$GameRendererConfigCopyWithImpl(this._self, this._then);
+
+  final _GameRendererConfig _self;
+  final $Res Function(_GameRendererConfig) _then;
+
+/// Create a copy of GameRendererConfig
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? animationSpeed = null,}) {
+  return _then(_GameRendererConfig(
+animationSpeed: null == animationSpeed ? _self.animationSpeed : animationSpeed // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
+
+// dart format on

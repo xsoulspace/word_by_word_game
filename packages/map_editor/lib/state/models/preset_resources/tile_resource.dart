@@ -8,7 +8,7 @@ part of 'preset_resources.dart';
 typedef SpriteCode = String;
 
 @freezed
-class PresetTileResource with _$PresetTileResource {
+abstract class PresetTileResource with _$PresetTileResource {
   const factory PresetTileResource({
     required final PresetTileModel tile,
     @Default({})
