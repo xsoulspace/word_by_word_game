@@ -24,7 +24,6 @@ class _TechnologyTile extends StatelessWidget {
     required this.progress,
     required this.onHover,
     required this.language,
-    super.key,
   });
   final ValueChanged<TechnologyWordInfoTuple> onHover;
   final TechnologyModel value;
@@ -172,7 +171,7 @@ class _TechnologyPanelView extends StatefulWidget {
 }
 
 class _TechnologyPanelViewState extends State<_TechnologyPanelView> {
-  String _wordMeaning = '';
+  var _wordMeaning = '';
   UsefulWordModel? _uiWord;
   UsefulWordModel? _languageWord;
 

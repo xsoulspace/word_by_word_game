@@ -8,7 +8,7 @@ part of 'data_models.dart';
 /// For User Profile model see [PlayerProfileModel]
 @immutable
 @freezed
-class PlayerCharacterModel with _$PlayerCharacterModel {
+abstract class PlayerCharacterModel with _$PlayerCharacterModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerCharacterModel({
     /// unique id which used to identify unqiue set of following params:
@@ -20,7 +20,9 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
     @Default(Gid.empty) final Gid gid,
     @Default('') final String description,
     @Default(0) final int color,
-    @Default(LocalizedMap.empty) final LocalizedMap localizedName,
+    @JsonKey(fromJson: LocalizedMap.fromJsonValueMap)
+    @Default(LocalizedMap.empty)
+    final LocalizedMap localizedName,
     @Default('') final String characterIcon,
     @Default(SerializedVector2.zero) final SerializedVector2 distanceToOrigin,
 
@@ -52,7 +54,7 @@ class PlayerCharacterModel with _$PlayerCharacterModel {
 
 @immutable
 @Freezed(toJson: false)
-class SerializedVector2 with _$SerializedVector2 {
+abstract class SerializedVector2 with _$SerializedVector2 {
   @JsonSerializable(explicitToJson: true)
   const factory SerializedVector2({
     @Default(0) final double x,

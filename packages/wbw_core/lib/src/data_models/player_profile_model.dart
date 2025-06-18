@@ -9,7 +9,7 @@ typedef PlayerProfileModelId = String;
 /// For game entity model see [PlayerCharacterModel]
 @immutable
 @freezed
-class PlayerProfileModel with _$PlayerProfileModel {
+abstract class PlayerProfileModel with _$PlayerProfileModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerProfileModel({
     required final PlayerProfileModelId id,
@@ -58,7 +58,7 @@ class PlayerProfileModel with _$PlayerProfileModel {
 
 @immutable
 @freezed
-class PlayerHighscoreModel with _$PlayerHighscoreModel {
+abstract class PlayerHighscoreModel with _$PlayerHighscoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerHighscoreModel({
     @Default(0) final int maxWordsCount,
@@ -79,7 +79,7 @@ class PlayerHighscoreModel with _$PlayerHighscoreModel {
 
 @immutable
 @freezed
-class PlayerLevelHighscoreModel with _$PlayerLevelHighscoreModel {
+abstract class PlayerLevelHighscoreModel with _$PlayerLevelHighscoreModel {
   @JsonSerializable(explicitToJson: true)
   const factory PlayerLevelHighscoreModel({
     required final CanvasDataModelId levelId,

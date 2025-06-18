@@ -10,7 +10,7 @@ const kLatestGameVersion = GameVersion.$5;
 
 @immutable
 @freezed
-class GameSaveModel with _$GameSaveModel {
+abstract class GameSaveModel with _$GameSaveModel {
   @JsonSerializable(explicitToJson: true)
   const factory GameSaveModel({
     required final GameSaveModelId id,

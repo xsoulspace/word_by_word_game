@@ -6,8 +6,8 @@ part of 'weather_mechanics.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$WeatherModelImpl _$$WeatherModelImplFromJson(Map<String, dynamic> json) =>
-    _$WeatherModelImpl(
+_WeatherModel _$WeatherModelFromJson(Map<String, dynamic> json) =>
+    _WeatherModel(
       windScale:
           $enumDecodeNullable(_$WindScaleEnumMap, json['windScale']) ??
           WindScale.calm,
@@ -18,7 +18,7 @@ _$WeatherModelImpl _$$WeatherModelImplFromJson(Map<String, dynamic> json) =>
           (json['durationInGameSeconds'] as num?)?.toInt() ?? 20,
     );
 
-Map<String, dynamic> _$$WeatherModelImplToJson(_$WeatherModelImpl instance) =>
+Map<String, dynamic> _$WeatherModelToJson(_WeatherModel instance) =>
     <String, dynamic>{
       'windScale': _$WindScaleEnumMap[instance.windScale]!,
       'windDirection': _$WindDirectionEnumMap[instance.windDirection]!,
@@ -46,12 +46,11 @@ const _$WindDirectionEnumMap = {
   WindDirection.left: 'left',
 };
 
-_$WindModelImpl _$$WindModelImplFromJson(Map<String, dynamic> json) =>
-    _$WindModelImpl(
-      force: json['force'] == null
-          ? SerializedVector2.zero
-          : SerializedVector2.fromJson(json['force'] as Map<String, dynamic>),
-    );
+_WindModel _$WindModelFromJson(Map<String, dynamic> json) => _WindModel(
+  force: json['force'] == null
+      ? SerializedVector2.zero
+      : SerializedVector2.fromJson(json['force'] as Map<String, dynamic>),
+);
 
-Map<String, dynamic> _$$WindModelImplToJson(_$WindModelImpl instance) =>
+Map<String, dynamic> _$WindModelToJson(_WindModel instance) =>
     <String, dynamic>{'force': instance.force};

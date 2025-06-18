@@ -1,3 +1,4 @@
+// dart format width=80
 // coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // ignore_for_file: type=lint
@@ -9,275 +10,176 @@ part of 'router.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-  'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models',
-);
-
 /// @nodoc
-mixin _$ParsedRoute {
-  /// The current path location without query parameters. (/book/123)
-  String get path => throw _privateConstructorUsedError;
+mixin _$ParsedRoute implements DiagnosticableTreeMixin {
 
-  /// The path template (/book/:id)
-  String get pathTemplate => throw _privateConstructorUsedError;
+/// The current path location without query parameters. (/book/123)
+ String get path;/// The path template (/book/:id)
+ String get pathTemplate;/// The path parameters ({id: 123})
+ Map<String, String> get parameters;/// The query parameters ({search: abc})
+ Map<String, String> get queryParameters;
+/// Create a copy of ParsedRoute
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$ParsedRouteCopyWith<ParsedRoute> get copyWith => _$ParsedRouteCopyWithImpl<ParsedRoute>(this as ParsedRoute, _$identity);
 
-  /// The path parameters ({id: 123})
-  Map<String, String> get parameters => throw _privateConstructorUsedError;
 
-  /// The query parameters ({search: abc})
-  Map<String, String> get queryParameters => throw _privateConstructorUsedError;
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'ParsedRoute'))
+    ..add(DiagnosticsProperty('path', path))..add(DiagnosticsProperty('pathTemplate', pathTemplate))..add(DiagnosticsProperty('parameters', parameters))..add(DiagnosticsProperty('queryParameters', queryParameters));
+}
 
-  /// Create a copy of ParsedRoute
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ParsedRouteCopyWith<ParsedRoute> get copyWith =>
-      throw _privateConstructorUsedError;
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is ParsedRoute&&(identical(other.path, path) || other.path == path)&&(identical(other.pathTemplate, pathTemplate) || other.pathTemplate == pathTemplate)&&const DeepCollectionEquality().equals(other.parameters, parameters)&&const DeepCollectionEquality().equals(other.queryParameters, queryParameters));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,path,pathTemplate,const DeepCollectionEquality().hash(parameters),const DeepCollectionEquality().hash(queryParameters));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'ParsedRoute(path: $path, pathTemplate: $pathTemplate, parameters: $parameters, queryParameters: $queryParameters)';
+}
+
+
 }
 
 /// @nodoc
-abstract class $ParsedRouteCopyWith<$Res> {
-  factory $ParsedRouteCopyWith(
-    ParsedRoute value,
-    $Res Function(ParsedRoute) then,
-  ) = _$ParsedRouteCopyWithImpl<$Res, ParsedRoute>;
-  @useResult
-  $Res call({
-    String path,
-    String pathTemplate,
-    Map<String, String> parameters,
-    Map<String, String> queryParameters,
-  });
-}
+abstract mixin class $ParsedRouteCopyWith<$Res>  {
+  factory $ParsedRouteCopyWith(ParsedRoute value, $Res Function(ParsedRoute) _then) = _$ParsedRouteCopyWithImpl;
+@useResult
+$Res call({
+ String path, String pathTemplate, Map<String, String> parameters, Map<String, String> queryParameters
+});
 
+
+
+
+}
 /// @nodoc
-class _$ParsedRouteCopyWithImpl<$Res, $Val extends ParsedRoute>
+class _$ParsedRouteCopyWithImpl<$Res>
     implements $ParsedRouteCopyWith<$Res> {
-  _$ParsedRouteCopyWithImpl(this._value, this._then);
+  _$ParsedRouteCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ParsedRoute _self;
+  final $Res Function(ParsedRoute) _then;
 
-  /// Create a copy of ParsedRoute
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? path = null,
-    Object? pathTemplate = null,
-    Object? parameters = null,
-    Object? queryParameters = null,
-  }) {
-    return _then(
-      _value.copyWith(
-            path: null == path
-                ? _value.path
-                : path // ignore: cast_nullable_to_non_nullable
-                      as String,
-            pathTemplate: null == pathTemplate
-                ? _value.pathTemplate
-                : pathTemplate // ignore: cast_nullable_to_non_nullable
-                      as String,
-            parameters: null == parameters
-                ? _value.parameters
-                : parameters // ignore: cast_nullable_to_non_nullable
-                      as Map<String, String>,
-            queryParameters: null == queryParameters
-                ? _value.queryParameters
-                : queryParameters // ignore: cast_nullable_to_non_nullable
-                      as Map<String, String>,
-          )
-          as $Val,
-    );
-  }
+/// Create a copy of ParsedRoute
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? path = null,Object? pathTemplate = null,Object? parameters = null,Object? queryParameters = null,}) {
+  return _then(_self.copyWith(
+path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,pathTemplate: null == pathTemplate ? _self.pathTemplate : pathTemplate // ignore: cast_nullable_to_non_nullable
+as String,parameters: null == parameters ? _self.parameters : parameters // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,queryParameters: null == queryParameters ? _self.queryParameters : queryParameters // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,
+  ));
 }
 
-/// @nodoc
-abstract class _$$ParsedRouteImplCopyWith<$Res>
-    implements $ParsedRouteCopyWith<$Res> {
-  factory _$$ParsedRouteImplCopyWith(
-    _$ParsedRouteImpl value,
-    $Res Function(_$ParsedRouteImpl) then,
-  ) = __$$ParsedRouteImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({
-    String path,
-    String pathTemplate,
-    Map<String, String> parameters,
-    Map<String, String> queryParameters,
-  });
 }
 
-/// @nodoc
-class __$$ParsedRouteImplCopyWithImpl<$Res>
-    extends _$ParsedRouteCopyWithImpl<$Res, _$ParsedRouteImpl>
-    implements _$$ParsedRouteImplCopyWith<$Res> {
-  __$$ParsedRouteImplCopyWithImpl(
-    _$ParsedRouteImpl _value,
-    $Res Function(_$ParsedRouteImpl) _then,
-  ) : super(_value, _then);
-
-  /// Create a copy of ParsedRoute
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? path = null,
-    Object? pathTemplate = null,
-    Object? parameters = null,
-    Object? queryParameters = null,
-  }) {
-    return _then(
-      _$ParsedRouteImpl(
-        path: null == path
-            ? _value.path
-            : path // ignore: cast_nullable_to_non_nullable
-                  as String,
-        pathTemplate: null == pathTemplate
-            ? _value.pathTemplate
-            : pathTemplate // ignore: cast_nullable_to_non_nullable
-                  as String,
-        parameters: null == parameters
-            ? _value._parameters
-            : parameters // ignore: cast_nullable_to_non_nullable
-                  as Map<String, String>,
-        queryParameters: null == queryParameters
-            ? _value._queryParameters
-            : queryParameters // ignore: cast_nullable_to_non_nullable
-                  as Map<String, String>,
-      ),
-    );
-  }
-}
 
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
-class _$ParsedRouteImpl extends _ParsedRoute with DiagnosticableTreeMixin {
-  const _$ParsedRouteImpl({
-    required this.path,
-    required this.pathTemplate,
-    required final Map<String, String> parameters,
-    required final Map<String, String> queryParameters,
-  }) : _parameters = parameters,
-       _queryParameters = queryParameters,
-       super._();
+class _ParsedRoute extends ParsedRoute with DiagnosticableTreeMixin {
+  const _ParsedRoute({required this.path, required this.pathTemplate, required final  Map<String, String> parameters, required final  Map<String, String> queryParameters}): _parameters = parameters,_queryParameters = queryParameters,super._();
+  
 
-  /// The current path location without query parameters. (/book/123)
-  @override
-  final String path;
-
-  /// The path template (/book/:id)
-  @override
-  final String pathTemplate;
-
-  /// The path parameters ({id: 123})
-  final Map<String, String> _parameters;
-
-  /// The path parameters ({id: 123})
-  @override
-  Map<String, String> get parameters {
-    if (_parameters is EqualUnmodifiableMapView) return _parameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_parameters);
-  }
-
-  /// The query parameters ({search: abc})
-  final Map<String, String> _queryParameters;
-
-  /// The query parameters ({search: abc})
-  @override
-  Map<String, String> get queryParameters {
-    if (_queryParameters is EqualUnmodifiableMapView) return _queryParameters;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableMapView(_queryParameters);
-  }
-
-  @override
-  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'ParsedRoute(path: $path, pathTemplate: $pathTemplate, parameters: $parameters, queryParameters: $queryParameters)';
-  }
-
-  @override
-  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
-    super.debugFillProperties(properties);
-    properties
-      ..add(DiagnosticsProperty('type', 'ParsedRoute'))
-      ..add(DiagnosticsProperty('path', path))
-      ..add(DiagnosticsProperty('pathTemplate', pathTemplate))
-      ..add(DiagnosticsProperty('parameters', parameters))
-      ..add(DiagnosticsProperty('queryParameters', queryParameters));
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ParsedRouteImpl &&
-            (identical(other.path, path) || other.path == path) &&
-            (identical(other.pathTemplate, pathTemplate) ||
-                other.pathTemplate == pathTemplate) &&
-            const DeepCollectionEquality().equals(
-              other._parameters,
-              _parameters,
-            ) &&
-            const DeepCollectionEquality().equals(
-              other._queryParameters,
-              _queryParameters,
-            ));
-  }
-
-  @override
-  int get hashCode => Object.hash(
-    runtimeType,
-    path,
-    pathTemplate,
-    const DeepCollectionEquality().hash(_parameters),
-    const DeepCollectionEquality().hash(_queryParameters),
-  );
-
-  /// Create a copy of ParsedRoute
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ParsedRouteImplCopyWith<_$ParsedRouteImpl> get copyWith =>
-      __$$ParsedRouteImplCopyWithImpl<_$ParsedRouteImpl>(this, _$identity);
+/// The current path location without query parameters. (/book/123)
+@override final  String path;
+/// The path template (/book/:id)
+@override final  String pathTemplate;
+/// The path parameters ({id: 123})
+ final  Map<String, String> _parameters;
+/// The path parameters ({id: 123})
+@override Map<String, String> get parameters {
+  if (_parameters is EqualUnmodifiableMapView) return _parameters;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_parameters);
 }
 
-abstract class _ParsedRoute extends ParsedRoute {
-  const factory _ParsedRoute({
-    required final String path,
-    required final String pathTemplate,
-    required final Map<String, String> parameters,
-    required final Map<String, String> queryParameters,
-  }) = _$ParsedRouteImpl;
-  const _ParsedRoute._() : super._();
-
-  /// The current path location without query parameters. (/book/123)
-  @override
-  String get path;
-
-  /// The path template (/book/:id)
-  @override
-  String get pathTemplate;
-
-  /// The path parameters ({id: 123})
-  @override
-  Map<String, String> get parameters;
-
-  /// The query parameters ({search: abc})
-  @override
-  Map<String, String> get queryParameters;
-
-  /// Create a copy of ParsedRoute
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ParsedRouteImplCopyWith<_$ParsedRouteImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+/// The query parameters ({search: abc})
+ final  Map<String, String> _queryParameters;
+/// The query parameters ({search: abc})
+@override Map<String, String> get queryParameters {
+  if (_queryParameters is EqualUnmodifiableMapView) return _queryParameters;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableMapView(_queryParameters);
 }
+
+
+/// Create a copy of ParsedRoute
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$ParsedRouteCopyWith<_ParsedRoute> get copyWith => __$ParsedRouteCopyWithImpl<_ParsedRoute>(this, _$identity);
+
+
+@override
+void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+  properties
+    ..add(DiagnosticsProperty('type', 'ParsedRoute'))
+    ..add(DiagnosticsProperty('path', path))..add(DiagnosticsProperty('pathTemplate', pathTemplate))..add(DiagnosticsProperty('parameters', parameters))..add(DiagnosticsProperty('queryParameters', queryParameters));
+}
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _ParsedRoute&&(identical(other.path, path) || other.path == path)&&(identical(other.pathTemplate, pathTemplate) || other.pathTemplate == pathTemplate)&&const DeepCollectionEquality().equals(other._parameters, _parameters)&&const DeepCollectionEquality().equals(other._queryParameters, _queryParameters));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,path,pathTemplate,const DeepCollectionEquality().hash(_parameters),const DeepCollectionEquality().hash(_queryParameters));
+
+@override
+String toString({ DiagnosticLevel minLevel = DiagnosticLevel.info }) {
+  return 'ParsedRoute(path: $path, pathTemplate: $pathTemplate, parameters: $parameters, queryParameters: $queryParameters)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class _$ParsedRouteCopyWith<$Res> implements $ParsedRouteCopyWith<$Res> {
+  factory _$ParsedRouteCopyWith(_ParsedRoute value, $Res Function(_ParsedRoute) _then) = __$ParsedRouteCopyWithImpl;
+@override @useResult
+$Res call({
+ String path, String pathTemplate, Map<String, String> parameters, Map<String, String> queryParameters
+});
+
+
+
+
+}
+/// @nodoc
+class __$ParsedRouteCopyWithImpl<$Res>
+    implements _$ParsedRouteCopyWith<$Res> {
+  __$ParsedRouteCopyWithImpl(this._self, this._then);
+
+  final _ParsedRoute _self;
+  final $Res Function(_ParsedRoute) _then;
+
+/// Create a copy of ParsedRoute
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? path = null,Object? pathTemplate = null,Object? parameters = null,Object? queryParameters = null,}) {
+  return _then(_ParsedRoute(
+path: null == path ? _self.path : path // ignore: cast_nullable_to_non_nullable
+as String,pathTemplate: null == pathTemplate ? _self.pathTemplate : pathTemplate // ignore: cast_nullable_to_non_nullable
+as String,parameters: null == parameters ? _self._parameters : parameters // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,queryParameters: null == queryParameters ? _self._queryParameters : queryParameters // ignore: cast_nullable_to_non_nullable
+as Map<String, String>,
+  ));
+}
+
+
+}
+
+// dart format on

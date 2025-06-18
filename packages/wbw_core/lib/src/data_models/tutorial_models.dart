@@ -5,9 +5,10 @@ part of 'data_models.dart';
 
 @immutable
 @freezed
-class TutorialEventModel with _$TutorialEventModel {
+abstract class TutorialEventModel with _$TutorialEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialEventModel({
+    @JsonKey(fromJson: LocalizedMap.fromJsonValueMap)
     required final LocalizedMap localizedMap,
 
     /// what will switch this event to the next
@@ -40,7 +41,7 @@ class TutorialEventModel with _$TutorialEventModel {
 
 @immutable
 @freezed
-class TutorialGameEffectModel with _$TutorialGameEffectModel {
+abstract class TutorialGameEffectModel with _$TutorialGameEffectModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialGameEffectModel({
     required final TutorialGameEffectName name,
@@ -68,7 +69,7 @@ extension BooleanExtension on bool {
 
 @immutable
 @freezed
-class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
+abstract class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialUiActionEventModel({
     /// If [uiItem] is set null and the action
@@ -102,7 +103,8 @@ class TutorialUiActionEventModel with _$TutorialUiActionEventModel {
 
 @immutable
 @freezed
-class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
+abstract class TutorialEventsCollectionModel
+    with _$TutorialEventsCollectionModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialEventsCollectionModel({
     required final List<TutorialEventModel> events,
@@ -156,7 +158,8 @@ class TutorialEventsCollectionModel with _$TutorialEventsCollectionModel {
 /// use [TutorialEventsCollectionModel.fromData]
 @immutable
 @freezed
-class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
+abstract class TutorialCollectionsProgressModel
+    with _$TutorialCollectionsProgressModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialCollectionsProgressModel({
     /// Key - [TutorialCollectionsName]
@@ -175,7 +178,8 @@ class TutorialCollectionsProgressModel with _$TutorialCollectionsProgressModel {
 /// Actual tutorial events
 @immutable
 @freezed
-class TutorialCollectionsDataModel with _$TutorialCollectionsDataModel {
+abstract class TutorialCollectionsDataModel
+    with _$TutorialCollectionsDataModel {
   const factory TutorialCollectionsDataModel({
     required final Map<TutorialCollectionsName, List<TutorialEventModel>>
     events,

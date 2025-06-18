@@ -154,7 +154,7 @@ enum WindScale {
 }
 
 @freezed
-class WeatherModel with _$WeatherModel {
+abstract class WeatherModel with _$WeatherModel {
   const factory WeatherModel({
     @Default(WindScale.calm) final WindScale windScale,
     @Default(WindDirection.defaultDirection) final WindDirection windDirection,
@@ -193,7 +193,7 @@ enum WindDirection {
 /// The force vector2 should never blow left, or right
 /// during the flight
 @freezed
-class WindModel with _$WindModel {
+abstract class WindModel with _$WindModel {
   const factory WindModel({
     @Default(SerializedVector2.zero) final SerializedVector2 force,
   }) = _WindModel;

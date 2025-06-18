@@ -23,7 +23,7 @@ extension type const TechnologyModelId(TechnologyType value) {
 }
 
 @freezed
-class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
+abstract class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyTreeProgressModel({
     @JsonKey(
@@ -58,7 +58,7 @@ class TechnologyTreeProgressModel with _$TechnologyTreeProgressModel {
 /// Should be short version of [TechnologyModel]
 /// and only to store progress.
 @freezed
-class TechnologyProgressModel with _$TechnologyProgressModel {
+abstract class TechnologyProgressModel with _$TechnologyProgressModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyProgressModel({
     required final TechnologyModelId id,
@@ -74,10 +74,11 @@ class TechnologyProgressModel with _$TechnologyProgressModel {
 ///
 /// To save changes for [unlockCondition] use [TechnologyProgressModel]
 @freezed
-class TechnologyModel with _$TechnologyModel {
+abstract class TechnologyModel with _$TechnologyModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyModel({
     required final TechnologyModelId id,
+    @JsonKey(fromJson: LocalizedMap.fromJsonValueMap)
     required final LocalizedMap title,
     // TODO(antmalofeev): add icon?
     /// use [TechnologyProgressModel] to store/retrieve actual progress
@@ -91,12 +92,14 @@ class TechnologyModel with _$TechnologyModel {
 }
 
 @freezed
-class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
+abstract class TechnologyUnlockConditionModel
+    with _$TechnologyUnlockConditionModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyUnlockConditionModel({
     /// Principle: if several words for one language in [languageWords] are used
     /// then [TechnologyModel] is unlocked
     /// for that certain language.
+    @JsonKey(fromJson: languageWordsMapFromJson, toJson: languageWordsMapToJson)
     required final Map<UiLanguage, List<UsefulWordModel>> languageWords,
 
     /// one idea is to have minimum words to unlock the technology
@@ -112,8 +115,24 @@ class TechnologyUnlockConditionModel with _$TechnologyUnlockConditionModel {
   const TechnologyUnlockConditionModel._();
 }
 
+Map<UiLanguage, List<UsefulWordModel>> languageWordsMapFromJson(
+  final Map<String, dynamic> json,
+) => json.map(
+  (final key, final value) => MapEntry(
+    uiLanguageFromJson(key),
+    (value as List).map((final e) => UsefulWordModel.fromJson(e)).toList(),
+  ),
+);
+
+Map<String, dynamic> languageWordsMapToJson(
+  final Map<UiLanguage, List<UsefulWordModel>> map,
+) => map.map(
+  (final key, final value) =>
+      MapEntry(key.code, value.map((final e) => e.toJson()).toList()),
+);
+
 @freezed
-class UsefulWordModel with _$UsefulWordModel {
+abstract class UsefulWordModel with _$UsefulWordModel {
   @JsonSerializable(explicitToJson: true)
   const factory UsefulWordModel({
     required final FullWordString word,

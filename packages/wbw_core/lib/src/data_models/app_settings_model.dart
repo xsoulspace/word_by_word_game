@@ -4,7 +4,7 @@ part of 'data_models.dart';
 
 @immutable
 @Freezed()
-class AppSettingsModel with _$AppSettingsModel {
+abstract class AppSettingsModel with _$AppSettingsModel {
   @JsonSerializable(explicitToJson: true)
   const factory AppSettingsModel({
     @JsonKey(fromJson: localeFromString, toJson: localeToString)

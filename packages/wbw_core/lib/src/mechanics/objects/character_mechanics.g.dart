@@ -6,36 +6,36 @@ part of 'character_mechanics.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BalloonLiftPowersModelImpl _$$BalloonLiftPowersModelImplFromJson(
+_BalloonLiftPowersModel _$BalloonLiftPowersModelFromJson(
   Map<String, dynamic> json,
-) => _$BalloonLiftPowersModelImpl(
+) => _BalloonLiftPowersModel(
   power: (json['power'] as num).toDouble(),
   volume: (json['volume'] as num?)?.toDouble() ?? 0,
 );
 
-Map<String, dynamic> _$$BalloonLiftPowersModelImplToJson(
-  _$BalloonLiftPowersModelImpl instance,
+Map<String, dynamic> _$BalloonLiftPowersModelToJson(
+  _BalloonLiftPowersModel instance,
 ) => <String, dynamic>{'power': instance.power, 'volume': instance.volume};
 
-_$BalloonLiftParamsModelImpl _$$BalloonLiftParamsModelImplFromJson(
+_BalloonLiftParamsModel _$BalloonLiftParamsModelFromJson(
   Map<String, dynamic> json,
-) => _$BalloonLiftParamsModelImpl(
+) => _BalloonLiftParamsModel(
   maxVolume: (json['maxVolume'] as num).toDouble(),
   maxPower: (json['maxPower'] as num).toDouble(),
   powerUsage: (json['powerUsage'] as num).toDouble(),
 );
 
-Map<String, dynamic> _$$BalloonLiftParamsModelImplToJson(
-  _$BalloonLiftParamsModelImpl instance,
+Map<String, dynamic> _$BalloonLiftParamsModelToJson(
+  _BalloonLiftParamsModel instance,
 ) => <String, dynamic>{
   'maxVolume': instance.maxVolume,
   'maxPower': instance.maxPower,
   'powerUsage': instance.powerUsage,
 };
 
-_$ForcesConstantsModelImpl _$$ForcesConstantsModelImplFromJson(
+_ForcesConstantsModel _$ForcesConstantsModelFromJson(
   Map<String, dynamic> json,
-) => _$ForcesConstantsModelImpl(
+) => _ForcesConstantsModel(
   gravityForce: (json['gravityForce'] as num).toDouble(),
   volumeDecreaseRatio: (json['volumeDecreaseRatio'] as num).toDouble(),
   volumeIncreaseRatio: (json['volumeIncreaseRatio'] as num).toDouble(),
@@ -43,8 +43,8 @@ _$ForcesConstantsModelImpl _$$ForcesConstantsModelImplFromJson(
   volumeToLiftRatio: (json['volumeToLiftRatio'] as num).toDouble(),
 );
 
-Map<String, dynamic> _$$ForcesConstantsModelImplToJson(
-  _$ForcesConstantsModelImpl instance,
+Map<String, dynamic> _$ForcesConstantsModelToJson(
+  _ForcesConstantsModel instance,
 ) => <String, dynamic>{
   'gravityForce': instance.gravityForce,
   'volumeDecreaseRatio': instance.volumeDecreaseRatio,

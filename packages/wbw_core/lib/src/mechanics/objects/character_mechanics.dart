@@ -85,7 +85,7 @@ class HotAirBalloonMechanics {
 }
 
 @freezed
-class LiftForceModel with _$LiftForceModel {
+abstract class LiftForceModel with _$LiftForceModel {
   const factory LiftForceModel({
     required final double liftPower,
     required final BalloonLiftPowersModel updatedPowers,
@@ -93,7 +93,7 @@ class LiftForceModel with _$LiftForceModel {
 }
 
 @freezed
-class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
+abstract class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
   @JsonSerializable(explicitToJson: true)
   const factory BalloonLiftPowersModel({
     required final double power,
@@ -105,7 +105,7 @@ class BalloonLiftPowersModel with _$BalloonLiftPowersModel {
 }
 
 @Freezed()
-class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
+abstract class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
   @JsonSerializable(explicitToJson: true)
   const factory BalloonLiftParamsModel({
     required final double maxVolume,
@@ -122,7 +122,7 @@ class BalloonLiftParamsModel with _$BalloonLiftParamsModel {
 }
 
 @Freezed()
-class ForcesConstantsModel with _$ForcesConstantsModel {
+abstract class ForcesConstantsModel with _$ForcesConstantsModel {
   @JsonSerializable(explicitToJson: true)
   const factory ForcesConstantsModel({
     required final double gravityForce,

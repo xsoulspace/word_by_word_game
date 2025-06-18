@@ -5,7 +5,7 @@ const kScoreFactor = 10;
 
 @immutable
 @freezed
-class ScoreModel with _$ScoreModel {
+abstract class ScoreModel with _$ScoreModel {
   /// to create use [ScoreMechanics.getScoreFromWord]
   const factory ScoreModel({required final double value}) = _ScoreModel;
 

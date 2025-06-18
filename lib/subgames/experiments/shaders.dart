@@ -12,7 +12,7 @@ void runShaderApp(final List<String> args) {
 const dimension = 300.0;
 
 class _App extends StatelessWidget {
-  const _App({super.key});
+  const _App();
 
   @override
   Widget build(final BuildContext context) => const Center(
@@ -21,7 +21,7 @@ class _App extends StatelessWidget {
 }
 
 class _ShaderExp extends StatefulWidget {
-  const _ShaderExp({super.key});
+  const _ShaderExp();
 
   @override
   _ShaderExpState createState() => _ShaderExpState();

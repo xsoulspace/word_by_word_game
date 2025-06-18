@@ -6,21 +6,22 @@ part of 'data_models.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$AppSettingsModelImpl _$$AppSettingsModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$AppSettingsModelImpl(
-  locale: localeFromString(json['locale'] as String?),
-  brightnessMode:
-      $enumDecodeNullable(_$BrightnessModeEnumMap, json['brightnessMode']) ??
-      BrightnessMode.system,
-);
+_AppSettingsModel _$AppSettingsModelFromJson(Map<String, dynamic> json) =>
+    _AppSettingsModel(
+      locale: localeFromString(json['locale'] as String?),
+      brightnessMode:
+          $enumDecodeNullable(
+            _$BrightnessModeEnumMap,
+            json['brightnessMode'],
+          ) ??
+          BrightnessMode.system,
+    );
 
-Map<String, dynamic> _$$AppSettingsModelImplToJson(
-  _$AppSettingsModelImpl instance,
-) => <String, dynamic>{
-  'locale': localeToString(instance.locale),
-  'brightnessMode': _$BrightnessModeEnumMap[instance.brightnessMode]!,
-};
+Map<String, dynamic> _$AppSettingsModelToJson(_AppSettingsModel instance) =>
+    <String, dynamic>{
+      'locale': localeToString(instance.locale),
+      'brightnessMode': _$BrightnessModeEnumMap[instance.brightnessMode]!,
+    };
 
 const _$BrightnessModeEnumMap = {
   BrightnessMode.system: 'system',
@@ -28,27 +29,23 @@ const _$BrightnessModeEnumMap = {
   BrightnessMode.dark: 'dark',
 };
 
-_$CurrentWordModelImpl _$$CurrentWordModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$CurrentWordModelImpl(
-  inactiveIndexes:
-      (json['inactiveIndexes'] as List<dynamic>?)
-          ?.map((e) => (e as num).toInt())
-          .toList() ??
-      const [],
-  fullWord: json['fullWord'] as String? ?? '',
-);
+_CurrentWordModel _$CurrentWordModelFromJson(Map<String, dynamic> json) =>
+    _CurrentWordModel(
+      inactiveIndexes:
+          (json['inactiveIndexes'] as List<dynamic>?)
+              ?.map((e) => (e as num).toInt())
+              .toList() ??
+          const [],
+      fullWord: json['fullWord'] as String? ?? '',
+    );
 
-Map<String, dynamic> _$$CurrentWordModelImplToJson(
-  _$CurrentWordModelImpl instance,
-) => <String, dynamic>{
-  'inactiveIndexes': instance.inactiveIndexes,
-  'fullWord': instance.fullWord,
-};
+Map<String, dynamic> _$CurrentWordModelToJson(_CurrentWordModel instance) =>
+    <String, dynamic>{
+      'inactiveIndexes': instance.inactiveIndexes,
+      'fullWord': instance.fullWord,
+    };
 
-_$GameModelImpl _$$GameModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$GameModelImpl(
+_GameModel _$GameModelFromJson(Map<String, dynamic> json) => _GameModel(
   id: json['id'] as String,
   currentLevelId: CanvasDataModelId.fromJson(json['currentLevelId'] as String),
   currentLevel: json['currentLevel'] == null
@@ -79,7 +76,7 @@ _$GameModelImpl _$$GameModelImplFromJson(
         ),
 );
 
-Map<String, dynamic> _$$GameModelImplToJson(_$GameModelImpl instance) =>
+Map<String, dynamic> _$GameModelToJson(_GameModel instance) =>
     <String, dynamic>{
       'id': instance.id,
       'currentLevelId': instance.currentLevelId.toJson(),
@@ -103,9 +100,9 @@ const _$GameVersionEnumMap = {
   GameVersion.$5: r'$5',
 };
 
-_$LevelCharactersModelImpl _$$LevelCharactersModelImplFromJson(
+_LevelCharactersModel _$LevelCharactersModelFromJson(
   Map<String, dynamic> json,
-) => _$LevelCharactersModelImpl(
+) => _LevelCharactersModel(
   playerCharacter: PlayerCharacterModel.fromJson(
     json['playerCharacter'] as Map<String, dynamic>,
   ),
@@ -114,16 +111,14 @@ _$LevelCharactersModelImpl _$$LevelCharactersModelImplFromJson(
       : Gid.fromJson(json['focusedObjectGid'] as String),
 );
 
-Map<String, dynamic> _$$LevelCharactersModelImplToJson(
-  _$LevelCharactersModelImpl instance,
+Map<String, dynamic> _$LevelCharactersModelToJson(
+  _LevelCharactersModel instance,
 ) => <String, dynamic>{
   'playerCharacter': instance.playerCharacter.toJson(),
   'focusedObjectGid': instance.focusedObjectGid.toJson(),
 };
 
-_$LevelModelImpl _$$LevelModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$LevelModelImpl(
+_LevelModel _$LevelModelFromJson(Map<String, dynamic> json) => _LevelModel(
   players: LevelPlayersModel.fromJson(json['players'] as Map<String, dynamic>),
   characters: LevelCharactersModel.fromJson(
     json['characters'] as Map<String, dynamic>,
@@ -181,9 +176,9 @@ _$LevelModelImpl _$$LevelModelImplFromJson(
       : LevelFeaturesSettingsModel.fromJson(
           json['featuresSettings'] as Map<String, dynamic>,
         ),
-  wordsLanguage:
-      $enumDecodeNullable(_$LanguagesEnumMap, json['wordsLanguage']) ??
-      Languages.en,
+  wordsLanguage: json['wordsLanguage'] == null
+      ? defaultLanguage
+      : uiLanguageFromJson(json['wordsLanguage'] as String),
   playerStartPoint:
       $enumDecodeNullable(
         _$PlayerStartPointTypeEnumMap,
@@ -202,8 +197,8 @@ _$LevelModelImpl _$$LevelModelImplFromJson(
       const [],
 );
 
-Map<String, dynamic> _$$LevelModelImplToJson(
-  _$LevelModelImpl instance,
+Map<String, dynamic> _$LevelModelToJson(
+  _LevelModel instance,
 ) => <String, dynamic>{
   'players': instance.players.toJson(),
   'characters': instance.characters.toJson(),
@@ -221,7 +216,7 @@ Map<String, dynamic> _$$LevelModelImplToJson(
   'lastDateTime': instance.lastDateTime.toJson(),
   'technologyTreeProgress': instance.technologyTreeProgress.toJson(),
   'featuresSettings': instance.featuresSettings.toJson(),
-  'wordsLanguage': _$LanguagesEnumMap[instance.wordsLanguage]!,
+  'wordsLanguage': uiLanguageToJson(instance.wordsLanguage),
   'playerStartPoint': _$PlayerStartPointTypeEnumMap[instance.playerStartPoint]!,
   'canvasObjects': CanvasDataModel.objectsToJson(instance.canvasObjects),
   'canvasLayers': instance.canvasLayers.map((e) => e.toJson()).toList(),
@@ -243,59 +238,53 @@ const _$EnergyMultiplierTypeEnumMap = {
   EnergyMultiplierType.m3: 'm3',
 };
 
-const _$LanguagesEnumMap = {
-  Languages.ru: 'ru',
-  Languages.en: 'en',
-  Languages.it: 'it',
-};
-
 const _$PlayerStartPointTypeEnumMap = {
   PlayerStartPointType.fromSamePlace: 'fromSamePlace',
   PlayerStartPointType.fromSavePoint: 'fromSavePoint',
   PlayerStartPointType.fromSpawnPoint: 'fromSpawnPoint',
 };
 
-_$LevelFeaturesSettingsModelImpl _$$LevelFeaturesSettingsModelImplFromJson(
+_LevelFeaturesSettingsModel _$LevelFeaturesSettingsModelFromJson(
   Map<String, dynamic> json,
-) => _$LevelFeaturesSettingsModelImpl(
+) => _LevelFeaturesSettingsModel(
   isTechnologiesEnabled: json['isTechnologiesEnabled'] as bool? ?? false,
   isWindDirectionChangeEnabled:
       json['isWindDirectionChangeEnabled'] as bool? ?? false,
 );
 
-Map<String, dynamic> _$$LevelFeaturesSettingsModelImplToJson(
-  _$LevelFeaturesSettingsModelImpl instance,
+Map<String, dynamic> _$LevelFeaturesSettingsModelToJson(
+  _LevelFeaturesSettingsModel instance,
 ) => <String, dynamic>{
   'isTechnologiesEnabled': instance.isTechnologiesEnabled,
   'isWindDirectionChangeEnabled': instance.isWindDirectionChangeEnabled,
 };
 
-_$LevelPlayersModelImpl _$$LevelPlayersModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$LevelPlayersModelImpl(
-  players: (json['players'] as List<dynamic>)
-      .map((e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
-      .toList(),
-  currentPlayerId: json['currentPlayerId'] as String,
-);
+_LevelPlayersModel _$LevelPlayersModelFromJson(Map<String, dynamic> json) =>
+    _LevelPlayersModel(
+      players: (json['players'] as List<dynamic>)
+          .map((e) => PlayerProfileModel.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      currentPlayerId: json['currentPlayerId'] as String,
+    );
 
-Map<String, dynamic> _$$LevelPlayersModelImplToJson(
-  _$LevelPlayersModelImpl instance,
-) => <String, dynamic>{
-  'players': instance.players.map((e) => e.toJson()).toList(),
-  'currentPlayerId': instance.currentPlayerId,
-};
+Map<String, dynamic> _$LevelPlayersModelToJson(_LevelPlayersModel instance) =>
+    <String, dynamic>{
+      'players': instance.players.map((e) => e.toJson()).toList(),
+      'currentPlayerId': instance.currentPlayerId,
+    };
 
-_$PlayerCharacterModelImpl _$$PlayerCharacterModelImplFromJson(
+_PlayerCharacterModel _$PlayerCharacterModelFromJson(
   Map<String, dynamic> json,
-) => _$PlayerCharacterModelImpl(
+) => _PlayerCharacterModel(
   id: json['id'] == null ? Gid.empty : Gid.fromJson(json['id'] as String),
   gid: json['gid'] == null ? Gid.empty : Gid.fromJson(json['gid'] as String),
   description: json['description'] as String? ?? '',
   color: (json['color'] as num?)?.toInt() ?? 0,
   localizedName: json['localizedName'] == null
       ? LocalizedMap.empty
-      : LocalizedMap.fromJson(json['localizedName'] as Map<String, dynamic>),
+      : LocalizedMap.fromJsonValueMap(
+          json['localizedName'] as Map<String, dynamic>,
+        ),
   characterIcon: json['characterIcon'] as String? ?? '',
   distanceToOrigin: json['distanceToOrigin'] == null
       ? SerializedVector2.zero
@@ -320,8 +309,8 @@ _$PlayerCharacterModelImpl _$$PlayerCharacterModelImplFromJson(
   isAnchored: json['isAnchored'] as bool? ?? true,
 );
 
-Map<String, dynamic> _$$PlayerCharacterModelImplToJson(
-  _$PlayerCharacterModelImpl instance,
+Map<String, dynamic> _$PlayerCharacterModelToJson(
+  _PlayerCharacterModel instance,
 ) => <String, dynamic>{
   'id': instance.id.toJson(),
   'gid': instance.gid.toJson(),
@@ -336,50 +325,46 @@ Map<String, dynamic> _$$PlayerCharacterModelImplToJson(
   'isAnchored': instance.isAnchored,
 };
 
-_$SerializedVector2Impl _$$SerializedVector2ImplFromJson(
+_SerializedVector2 _$SerializedVector2FromJson(Map<String, dynamic> json) =>
+    _SerializedVector2(
+      x: (json['x'] as num?)?.toDouble() ?? 0,
+      y: (json['y'] as num?)?.toDouble() ?? 0,
+    );
+
+Map<String, dynamic> _$SerializedVector2ToJson(_SerializedVector2 instance) =>
+    <String, dynamic>{'x': instance.x, 'y': instance.y};
+
+_PlayerProfileModel _$PlayerProfileModelFromJson(Map<String, dynamic> json) =>
+    _PlayerProfileModel(
+      id: json['id'] as String,
+      colorValue: (json['colorValue'] as num).toInt(),
+      name: json['name'] as String,
+      levelsHighscores: json['levelsHighscores'] == null
+          ? const {}
+          : PlayerProfileModel._highscoreFromJson(
+              json['levelsHighscores'] as Map<String, dynamic>,
+            ),
+      highscore: json['highscore'] == null
+          ? PlayerHighscoreModel.empty
+          : PlayerHighscoreModel.fromJson(
+              json['highscore'] as Map<String, dynamic>,
+            ),
+    );
+
+Map<String, dynamic> _$PlayerProfileModelToJson(_PlayerProfileModel instance) =>
+    <String, dynamic>{
+      'id': instance.id,
+      'colorValue': instance.colorValue,
+      'name': instance.name,
+      'levelsHighscores': PlayerProfileModel._highscoreToJson(
+        instance.levelsHighscores,
+      ),
+      'highscore': instance.highscore.toJson(),
+    };
+
+_PlayerHighscoreModel _$PlayerHighscoreModelFromJson(
   Map<String, dynamic> json,
-) => _$SerializedVector2Impl(
-  x: (json['x'] as num?)?.toDouble() ?? 0,
-  y: (json['y'] as num?)?.toDouble() ?? 0,
-);
-
-Map<String, dynamic> _$$SerializedVector2ImplToJson(
-  _$SerializedVector2Impl instance,
-) => <String, dynamic>{'x': instance.x, 'y': instance.y};
-
-_$PlayerProfileModelImpl _$$PlayerProfileModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$PlayerProfileModelImpl(
-  id: json['id'] as String,
-  colorValue: (json['colorValue'] as num).toInt(),
-  name: json['name'] as String,
-  levelsHighscores: json['levelsHighscores'] == null
-      ? const {}
-      : PlayerProfileModel._highscoreFromJson(
-          json['levelsHighscores'] as Map<String, dynamic>,
-        ),
-  highscore: json['highscore'] == null
-      ? PlayerHighscoreModel.empty
-      : PlayerHighscoreModel.fromJson(
-          json['highscore'] as Map<String, dynamic>,
-        ),
-);
-
-Map<String, dynamic> _$$PlayerProfileModelImplToJson(
-  _$PlayerProfileModelImpl instance,
-) => <String, dynamic>{
-  'id': instance.id,
-  'colorValue': instance.colorValue,
-  'name': instance.name,
-  'levelsHighscores': PlayerProfileModel._highscoreToJson(
-    instance.levelsHighscores,
-  ),
-  'highscore': instance.highscore.toJson(),
-};
-
-_$PlayerHighscoreModelImpl _$$PlayerHighscoreModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$PlayerHighscoreModelImpl(
+) => _PlayerHighscoreModel(
   maxWordsCount: (json['maxWordsCount'] as num?)?.toInt() ?? 0,
   maxLettersCount: (json['maxLettersCount'] as num?)?.toInt() ?? 0,
   totalWordsCount: (json['totalWordsCount'] as num?)?.toInt() ?? 0,
@@ -389,8 +374,8 @@ _$PlayerHighscoreModelImpl _$$PlayerHighscoreModelImplFromJson(
       : ScoreModel.fromJson(json['score'] as Map<String, dynamic>),
 );
 
-Map<String, dynamic> _$$PlayerHighscoreModelImplToJson(
-  _$PlayerHighscoreModelImpl instance,
+Map<String, dynamic> _$PlayerHighscoreModelToJson(
+  _PlayerHighscoreModel instance,
 ) => <String, dynamic>{
   'maxWordsCount': instance.maxWordsCount,
   'maxLettersCount': instance.maxLettersCount,
@@ -399,9 +384,9 @@ Map<String, dynamic> _$$PlayerHighscoreModelImplToJson(
   'score': instance.score.toJson(),
 };
 
-_$PlayerLevelHighscoreModelImpl _$$PlayerLevelHighscoreModelImplFromJson(
+_PlayerLevelHighscoreModel _$PlayerLevelHighscoreModelFromJson(
   Map<String, dynamic> json,
-) => _$PlayerLevelHighscoreModelImpl(
+) => _PlayerLevelHighscoreModel(
   levelId: CanvasDataModelId.fromJson(json['levelId'] as String),
   maxDistance: (json['maxDistance'] as num?)?.toDouble() ?? 0,
   totalDistance: (json['totalDistance'] as num?)?.toDouble() ?? 0,
@@ -409,8 +394,8 @@ _$PlayerLevelHighscoreModelImpl _$$PlayerLevelHighscoreModelImplFromJson(
   flightTime: (json['flightTime'] as num?)?.toDouble() ?? 0,
 );
 
-Map<String, dynamic> _$$PlayerLevelHighscoreModelImplToJson(
-  _$PlayerLevelHighscoreModelImpl instance,
+Map<String, dynamic> _$PlayerLevelHighscoreModelToJson(
+  _PlayerLevelHighscoreModel instance,
 ) => <String, dynamic>{
   'levelId': instance.levelId.toJson(),
   'maxDistance': instance.maxDistance,
@@ -419,15 +404,15 @@ Map<String, dynamic> _$$PlayerLevelHighscoreModelImplToJson(
   'flightTime': instance.flightTime,
 };
 
-_$ScoreModelImpl _$$ScoreModelImplFromJson(Map<String, dynamic> json) =>
-    _$ScoreModelImpl(value: (json['value'] as num).toDouble());
+_ScoreModel _$ScoreModelFromJson(Map<String, dynamic> json) =>
+    _ScoreModel(value: (json['value'] as num).toDouble());
 
-Map<String, dynamic> _$$ScoreModelImplToJson(_$ScoreModelImpl instance) =>
+Map<String, dynamic> _$ScoreModelToJson(_ScoreModel instance) =>
     <String, dynamic>{'value': instance.value};
 
-_$TechnologyTreeProgressModelImpl _$$TechnologyTreeProgressModelImplFromJson(
+_TechnologyTreeProgressModel _$TechnologyTreeProgressModelFromJson(
   Map<String, dynamic> json,
-) => _$TechnologyTreeProgressModelImpl(
+) => _TechnologyTreeProgressModel(
   technologies: json['technologies'] == null
       ? const {}
       : TechnologyTreeProgressModel._technologiesFromJson(
@@ -440,8 +425,8 @@ _$TechnologyTreeProgressModelImpl _$$TechnologyTreeProgressModelImplFromJson(
         ),
 );
 
-Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
-  _$TechnologyTreeProgressModelImpl instance,
+Map<String, dynamic> _$TechnologyTreeProgressModelToJson(
+  _TechnologyTreeProgressModel instance,
 ) => <String, dynamic>{
   'technologies': TechnologyTreeProgressModel._technologiesToJson(
     instance.technologies,
@@ -449,114 +434,105 @@ Map<String, dynamic> _$$TechnologyTreeProgressModelImplToJson(
   'investedResearchScore': instance.investedResearchScore.toJson(),
 };
 
-_$TechnologyProgressModelImpl _$$TechnologyProgressModelImplFromJson(
+_TechnologyProgressModel _$TechnologyProgressModelFromJson(
   Map<String, dynamic> json,
-) => _$TechnologyProgressModelImpl(
+) => _TechnologyProgressModel(
   id: TechnologyModelId.fromJson(json['id']),
   unlockCondition: TechnologyUnlockConditionModel.fromJson(
     json['unlockCondition'] as Map<String, dynamic>,
   ),
 );
 
-Map<String, dynamic> _$$TechnologyProgressModelImplToJson(
-  _$TechnologyProgressModelImpl instance,
+Map<String, dynamic> _$TechnologyProgressModelToJson(
+  _TechnologyProgressModel instance,
 ) => <String, dynamic>{
   'id': instance.id.toJson(),
   'unlockCondition': instance.unlockCondition.toJson(),
 };
 
-_$TechnologyModelImpl _$$TechnologyModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$TechnologyModelImpl(
-  id: TechnologyModelId.fromJson(json['id']),
-  title: LocalizedMap.fromJson(json['title'] as Map<String, dynamic>),
-  unlockCondition: TechnologyUnlockConditionModel.fromJson(
-    json['unlockCondition'] as Map<String, dynamic>,
-  ),
-  index: (json['index'] as num?)?.toInt() ?? 0,
-);
-
-Map<String, dynamic> _$$TechnologyModelImplToJson(
-  _$TechnologyModelImpl instance,
-) => <String, dynamic>{
-  'id': instance.id.toJson(),
-  'title': instance.title.toJson(),
-  'unlockCondition': instance.unlockCondition.toJson(),
-  'index': instance.index,
-};
-
-_$TechnologyUnlockConditionModelImpl
-_$$TechnologyUnlockConditionModelImplFromJson(Map<String, dynamic> json) =>
-    _$TechnologyUnlockConditionModelImpl(
-      languageWords: (json['languageWords'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(
-          $enumDecode(_$LanguagesEnumMap, k),
-          (e as List<dynamic>)
-              .map((e) => UsefulWordModel.fromJson(e as Map<String, dynamic>))
-              .toList(),
-        ),
+_TechnologyModel _$TechnologyModelFromJson(Map<String, dynamic> json) =>
+    _TechnologyModel(
+      id: TechnologyModelId.fromJson(json['id']),
+      title: LocalizedMap.fromJsonValueMap(
+        json['title'] as Map<String, dynamic>,
       ),
-      wordsUnlockThreshold:
-          (json['wordsUnlockThreshold'] as num?)?.toInt() ?? 0,
-      investedResearchPoints:
-          (json['investedResearchPoints'] as num?)?.toDouble() ?? 0.0,
+      unlockCondition: TechnologyUnlockConditionModel.fromJson(
+        json['unlockCondition'] as Map<String, dynamic>,
+      ),
+      index: (json['index'] as num?)?.toInt() ?? 0,
     );
 
-Map<String, dynamic> _$$TechnologyUnlockConditionModelImplToJson(
-  _$TechnologyUnlockConditionModelImpl instance,
-) => <String, dynamic>{
-  'languageWords': instance.languageWords.map(
-    (k, e) =>
-        MapEntry(_$LanguagesEnumMap[k]!, e.map((e) => e.toJson()).toList()),
+Map<String, dynamic> _$TechnologyModelToJson(_TechnologyModel instance) =>
+    <String, dynamic>{
+      'id': instance.id.toJson(),
+      'title': instance.title.toJson(),
+      'unlockCondition': instance.unlockCondition.toJson(),
+      'index': instance.index,
+    };
+
+_TechnologyUnlockConditionModel _$TechnologyUnlockConditionModelFromJson(
+  Map<String, dynamic> json,
+) => _TechnologyUnlockConditionModel(
+  languageWords: languageWordsMapFromJson(
+    json['languageWords'] as Map<String, dynamic>,
   ),
+  wordsUnlockThreshold: (json['wordsUnlockThreshold'] as num?)?.toInt() ?? 0,
+  investedResearchPoints:
+      (json['investedResearchPoints'] as num?)?.toDouble() ?? 0.0,
+);
+
+Map<String, dynamic> _$TechnologyUnlockConditionModelToJson(
+  _TechnologyUnlockConditionModel instance,
+) => <String, dynamic>{
+  'languageWords': languageWordsMapToJson(instance.languageWords),
   'wordsUnlockThreshold': instance.wordsUnlockThreshold,
   'investedResearchPoints': instance.investedResearchPoints,
 };
 
-_$UsefulWordModelImpl _$$UsefulWordModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$UsefulWordModelImpl(
-  word: json['word'] as String,
-  isUsed: json['isUsed'] as bool? ?? false,
-);
+_UsefulWordModel _$UsefulWordModelFromJson(Map<String, dynamic> json) =>
+    _UsefulWordModel(
+      word: json['word'] as String,
+      isUsed: json['isUsed'] as bool? ?? false,
+    );
 
-Map<String, dynamic> _$$UsefulWordModelImplToJson(
-  _$UsefulWordModelImpl instance,
-) => <String, dynamic>{'word': instance.word, 'isUsed': instance.isUsed};
+Map<String, dynamic> _$UsefulWordModelToJson(_UsefulWordModel instance) =>
+    <String, dynamic>{'word': instance.word, 'isUsed': instance.isUsed};
 
-_$TutorialEventModelImpl _$$TutorialEventModelImplFromJson(
-  Map<String, dynamic> json,
-) => _$TutorialEventModelImpl(
-  localizedMap: LocalizedMap.fromJson(
-    json['localizedMap'] as Map<String, dynamic>,
-  ),
-  completeActions: (json['completeActions'] as List<dynamic>)
-      .map(
-        (e) => TutorialUiActionEventModel.fromJson(e as Map<String, dynamic>),
-      )
-      .toList(),
-  gamePreEffects:
-      (json['gamePreEffects'] as List<dynamic>?)
-          ?.map(
-            (e) => TutorialGameEffectModel.fromJson(e as Map<String, dynamic>),
+_TutorialEventModel _$TutorialEventModelFromJson(Map<String, dynamic> json) =>
+    _TutorialEventModel(
+      localizedMap: LocalizedMap.fromJsonValueMap(
+        json['localizedMap'] as Map<String, dynamic>,
+      ),
+      completeActions: (json['completeActions'] as List<dynamic>)
+          .map(
+            (e) =>
+                TutorialUiActionEventModel.fromJson(e as Map<String, dynamic>),
           )
-          .toList() ??
-      const [],
-  gamePostEffects:
-      (json['gamePostEffects'] as List<dynamic>?)
-          ?.map(
-            (e) => TutorialGameEffectModel.fromJson(e as Map<String, dynamic>),
-          )
-          .toList() ??
-      const [],
-  anchorUiItem: $enumDecodeNullable(
-    _$TutorialUiItemEnumMap,
-    json['anchorUiItem'],
-  ),
-);
+          .toList(),
+      gamePreEffects:
+          (json['gamePreEffects'] as List<dynamic>?)
+              ?.map(
+                (e) =>
+                    TutorialGameEffectModel.fromJson(e as Map<String, dynamic>),
+              )
+              .toList() ??
+          const [],
+      gamePostEffects:
+          (json['gamePostEffects'] as List<dynamic>?)
+              ?.map(
+                (e) =>
+                    TutorialGameEffectModel.fromJson(e as Map<String, dynamic>),
+              )
+              .toList() ??
+          const [],
+      anchorUiItem: $enumDecodeNullable(
+        _$TutorialUiItemEnumMap,
+        json['anchorUiItem'],
+      ),
+    );
 
-Map<String, dynamic> _$$TutorialEventModelImplToJson(
-  _$TutorialEventModelImpl instance,
+Map<String, dynamic> _$TutorialEventModelToJson(
+  _TutorialEventModel instance,
 ) => <String, dynamic>{
   'localizedMap': instance.localizedMap.toJson(),
   'completeActions': instance.completeActions.map((e) => e.toJson()).toList(),
@@ -586,14 +562,14 @@ const _$TutorialUiItemEnumMap = {
   TutorialUiItem.anchoredOkDialog: 'anchoredOkDialog',
 };
 
-_$TutorialGameEffectModelImpl _$$TutorialGameEffectModelImplFromJson(
+_TutorialGameEffectModel _$TutorialGameEffectModelFromJson(
   Map<String, dynamic> json,
-) => _$TutorialGameEffectModelImpl(
+) => _TutorialGameEffectModel(
   name: $enumDecode(_$TutorialGameEffectNameEnumMap, json['name']),
 );
 
-Map<String, dynamic> _$$TutorialGameEffectModelImplToJson(
-  _$TutorialGameEffectModelImpl instance,
+Map<String, dynamic> _$TutorialGameEffectModelToJson(
+  _TutorialGameEffectModel instance,
 ) => <String, dynamic>{'name': _$TutorialGameEffectNameEnumMap[instance.name]!};
 
 const _$TutorialGameEffectNameEnumMap = {
@@ -603,9 +579,9 @@ const _$TutorialGameEffectNameEnumMap = {
   TutorialGameEffectName.completeCurrentTutorial: 'completeCurrentTutorial',
 };
 
-_$TutorialUiActionEventModelImpl _$$TutorialUiActionEventModelImplFromJson(
+_TutorialUiActionEventModel _$TutorialUiActionEventModelFromJson(
   Map<String, dynamic> json,
-) => _$TutorialUiActionEventModelImpl(
+) => _TutorialUiActionEventModel(
   action: $enumDecode(_$TutorialCompleteActionEnumMap, json['action']),
   uiItem: $enumDecodeNullable(_$TutorialUiItemEnumMap, json['uiItem']),
   isCompleted: json['isCompleted'] as bool? ?? false,
@@ -624,8 +600,8 @@ _$TutorialUiActionEventModelImpl _$$TutorialUiActionEventModelImplFromJson(
       const {},
 );
 
-Map<String, dynamic> _$$TutorialUiActionEventModelImplToJson(
-  _$TutorialUiActionEventModelImpl instance,
+Map<String, dynamic> _$TutorialUiActionEventModelToJson(
+  _TutorialUiActionEventModel instance,
 ) => <String, dynamic>{
   'action': _$TutorialCompleteActionEnumMap[instance.action]!,
   'uiItem': _$TutorialUiItemEnumMap[instance.uiItem],
@@ -648,18 +624,18 @@ const _$PrimitiveBoolEnumMap = {
   PrimitiveBool.kFalse: 'kFalse',
 };
 
-_$TutorialEventsCollectionModelImpl
-_$$TutorialEventsCollectionModelImplFromJson(Map<String, dynamic> json) =>
-    _$TutorialEventsCollectionModelImpl(
-      events: (json['events'] as List<dynamic>)
-          .map((e) => TutorialEventModel.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      name: $enumDecode(_$TutorialCollectionsNameEnumMap, json['name']),
-      currentIndex: (json['currentIndex'] as num).toInt(),
-    );
+_TutorialEventsCollectionModel _$TutorialEventsCollectionModelFromJson(
+  Map<String, dynamic> json,
+) => _TutorialEventsCollectionModel(
+  events: (json['events'] as List<dynamic>)
+      .map((e) => TutorialEventModel.fromJson(e as Map<String, dynamic>))
+      .toList(),
+  name: $enumDecode(_$TutorialCollectionsNameEnumMap, json['name']),
+  currentIndex: (json['currentIndex'] as num).toInt(),
+);
 
-Map<String, dynamic> _$$TutorialEventsCollectionModelImplToJson(
-  _$TutorialEventsCollectionModelImpl instance,
+Map<String, dynamic> _$TutorialEventsCollectionModelToJson(
+  _TutorialEventsCollectionModel instance,
 ) => <String, dynamic>{
   'events': instance.events.map((e) => e.toJson()).toList(),
   'name': _$TutorialCollectionsNameEnumMap[instance.name]!,
@@ -671,28 +647,28 @@ const _$TutorialCollectionsNameEnumMap = {
   TutorialCollectionsName.archive: 'archive',
 };
 
-_$TutorialCollectionsProgressModelImpl
-_$$TutorialCollectionsProgressModelImplFromJson(Map<String, dynamic> json) =>
-    _$TutorialCollectionsProgressModelImpl(
-      indexes: (json['indexes'] as Map<String, dynamic>).map(
-        (k, e) => MapEntry(
-          $enumDecode(_$TutorialCollectionsNameEnumMap, k),
-          (e as num).toInt(),
-        ),
-      ),
-    );
+_TutorialCollectionsProgressModel _$TutorialCollectionsProgressModelFromJson(
+  Map<String, dynamic> json,
+) => _TutorialCollectionsProgressModel(
+  indexes: (json['indexes'] as Map<String, dynamic>).map(
+    (k, e) => MapEntry(
+      $enumDecode(_$TutorialCollectionsNameEnumMap, k),
+      (e as num).toInt(),
+    ),
+  ),
+);
 
-Map<String, dynamic> _$$TutorialCollectionsProgressModelImplToJson(
-  _$TutorialCollectionsProgressModelImpl instance,
+Map<String, dynamic> _$TutorialCollectionsProgressModelToJson(
+  _TutorialCollectionsProgressModel instance,
 ) => <String, dynamic>{
   'indexes': instance.indexes.map(
     (k, e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e),
   ),
 };
 
-_$TutorialCollectionsDataModelImpl _$$TutorialCollectionsDataModelImplFromJson(
+_TutorialCollectionsDataModel _$TutorialCollectionsDataModelFromJson(
   Map<String, dynamic> json,
-) => _$TutorialCollectionsDataModelImpl(
+) => _TutorialCollectionsDataModel(
   events: (json['events'] as Map<String, dynamic>).map(
     (k, e) => MapEntry(
       $enumDecode(_$TutorialCollectionsNameEnumMap, k),
@@ -703,16 +679,16 @@ _$TutorialCollectionsDataModelImpl _$$TutorialCollectionsDataModelImplFromJson(
   ),
 );
 
-Map<String, dynamic> _$$TutorialCollectionsDataModelImplToJson(
-  _$TutorialCollectionsDataModelImpl instance,
+Map<String, dynamic> _$TutorialCollectionsDataModelToJson(
+  _TutorialCollectionsDataModel instance,
 ) => <String, dynamic>{
   'events': instance.events.map(
     (k, e) => MapEntry(_$TutorialCollectionsNameEnumMap[k]!, e),
   ),
 };
 
-_$WorldDateTimeImpl _$$WorldDateTimeImplFromJson(Map<String, dynamic> json) =>
-    _$WorldDateTimeImpl(second: (json['second'] as num?)?.toInt() ?? 0);
+_WorldDateTime _$WorldDateTimeFromJson(Map<String, dynamic> json) =>
+    _WorldDateTime(second: (json['second'] as num?)?.toInt() ?? 0);
 
-Map<String, dynamic> _$$WorldDateTimeImplToJson(_$WorldDateTimeImpl instance) =>
+Map<String, dynamic> _$WorldDateTimeToJson(_WorldDateTime instance) =>
     <String, dynamic>{'second': instance.second};

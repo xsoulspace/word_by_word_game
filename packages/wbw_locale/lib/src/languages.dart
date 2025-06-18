@@ -19,3 +19,8 @@ const wordsLanguages = (en: defaultLanguage, ru: UiLanguage('ru', 'Russian'));
 extension WordsLanguagesX on WordsLanguages {
   List<UiLanguage> get all => [en, ru];
 }
+
+UiLanguage uiLanguageFromJson(final String json) =>
+    UiLanguage.byCode(json) ?? defaultLanguage;
+
+String uiLanguageToJson(final UiLanguage language) => language.code;

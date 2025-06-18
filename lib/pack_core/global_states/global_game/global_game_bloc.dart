@@ -4,6 +4,7 @@ import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
 import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_elements.dart';
+import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboards.dart';
 import 'package:word_by_word_game/subgames/quick_game/tutorial/tutorial_listener.dart';
 
 part 'global_game_bloc.freezed.dart';

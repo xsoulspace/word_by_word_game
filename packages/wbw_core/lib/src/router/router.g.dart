@@ -6,15 +6,14 @@ part of 'router.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ParsedRouteImpl _$$ParsedRouteImplFromJson(Map<String, dynamic> json) =>
-    _$ParsedRouteImpl(
-      path: json['path'] as String,
-      pathTemplate: json['pathTemplate'] as String,
-      parameters: Map<String, String>.from(json['parameters'] as Map),
-      queryParameters: Map<String, String>.from(json['queryParameters'] as Map),
-    );
+_ParsedRoute _$ParsedRouteFromJson(Map<String, dynamic> json) => _ParsedRoute(
+  path: json['path'] as String,
+  pathTemplate: json['pathTemplate'] as String,
+  parameters: Map<String, String>.from(json['parameters'] as Map),
+  queryParameters: Map<String, String>.from(json['queryParameters'] as Map),
+);
 
-Map<String, dynamic> _$$ParsedRouteImplToJson(_$ParsedRouteImpl instance) =>
+Map<String, dynamic> _$ParsedRouteToJson(_ParsedRoute instance) =>
     <String, dynamic>{
       'path': instance.path,
       'pathTemplate': instance.pathTemplate,

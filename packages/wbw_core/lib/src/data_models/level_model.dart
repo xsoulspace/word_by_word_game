@@ -32,7 +32,7 @@ enum PlayerStartPointType {
 /// compatible with older versions of the app.
 @immutable
 @freezed
-class LevelModel with _$LevelModel {
+abstract class LevelModel with _$LevelModel {
   @JsonSerializable(explicitToJson: true)
   const factory LevelModel({
     required final LevelPlayersModel players,
@@ -59,7 +59,9 @@ class LevelModel with _$LevelModel {
     final TechnologyTreeProgressModel technologyTreeProgress,
     @Default(LevelFeaturesSettingsModel.empty)
     final LevelFeaturesSettingsModel featuresSettings,
-    @Default(defaultLanguage) final UiLanguage wordsLanguage,
+    @JsonKey(fromJson: uiLanguageFromJson, toJson: uiLanguageToJson)
+    @Default(defaultLanguage)
+    final UiLanguage wordsLanguage,
     @Default(PlayerStartPointType.fromSpawnPoint)
     final PlayerStartPointType playerStartPoint,
 
@@ -84,7 +86,7 @@ class LevelModel with _$LevelModel {
 /// he can start simple game, without
 /// any "adventure" features, as technologies, etc
 @freezed
-class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
+abstract class LevelFeaturesSettingsModel with _$LevelFeaturesSettingsModel {
   const factory LevelFeaturesSettingsModel({
     @Default(false) final bool isTechnologiesEnabled,
 

@@ -7,7 +7,7 @@ typedef FullWordString = String;
 
 @immutable
 @freezed
-class CurrentWordModel with _$CurrentWordModel {
+abstract class CurrentWordModel with _$CurrentWordModel {
   @JsonSerializable(explicitToJson: true)
   const factory CurrentWordModel({
     @Default([]) final List<int> inactiveIndexes,

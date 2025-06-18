@@ -200,7 +200,6 @@ class _TechLevel extends StatelessWidget {
     required this.wordsLanguage,
     required this.technologies,
     required this.wordsLocale,
-    super.key,
   });
   final TechnologyLevelIndex lastLevelIndex;
   final int index;

@@ -5,7 +5,7 @@ part of '../router.dart';
 /// A route path that has been parsed by [TemplateRouteParser].
 @immutable
 @freezed
-class ParsedRoute with _$ParsedRoute {
+abstract class ParsedRoute with _$ParsedRoute {
   @JsonSerializable(explicitToJson: true)
   const factory ParsedRoute({
     /// The current path location without query parameters. (/book/123)
