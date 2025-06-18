@@ -75,11 +75,11 @@ class EditorRendererComponent extends Component
     event.continuePropagation = true;
     super.onDragUpdate(event);
     if (!game.diDto.mapEditorBloc.state.isEditing) {
-      final eventPosition = event.canvasPosition;
+      final eventPosition = event.canvasStartPosition;
       origin = eventPosition - _dragOffset;
       canvasObjectsDrawer.onOriginUpdate();
     }
-    mousePosition = event.canvasPosition;
+    mousePosition = event.canvasStartPosition;
   }
 
   material.Paint get _redPaint => Palette.red.paint();

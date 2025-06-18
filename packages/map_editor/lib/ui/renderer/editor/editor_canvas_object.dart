@@ -98,8 +98,8 @@ class EditorCanvasObject extends Component
     super.render(canvas);
   }
 
-  bool _selected = false;
-  Vector2 _dragOffset = Vector2.zero();
+  var _selected = false;
+  var _dragOffset = Vector2.zero();
 
   @override
   void onDragStart(final DragStartEvent event) {
@@ -111,9 +111,9 @@ class EditorCanvasObject extends Component
 
   @override
   void onDragUpdate(final DragUpdateEvent event) {
-    if (event.canvasPosition.isNaN) return super.onDragUpdate(event);
+    if (event.canvasStartPosition.isNaN) return super.onDragUpdate(event);
     if (_selected) {
-      screenVector2 = (event.canvasPosition - _dragOffset).toOffset();
+      screenVector2 = (event.canvasStartPosition - _dragOffset).toOffset();
       _updateDistanceToOrigin();
       _savePosition();
     }
