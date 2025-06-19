@@ -7,8 +7,10 @@ const uiLanguages = (
   it: UiLanguage('it', 'Italian'),
 );
 
-extension UiLanguageX on UiLanguage {
-  Locale get all => Locale(code);
+typedef UiLanguages = ({UiLanguage en, UiLanguage ru, UiLanguage it});
+
+extension UiLanguagesX on UiLanguages {
+  List<UiLanguage> get all => [en, ru, it];
 }
 
 final englishKeyboard = KeyboardLanguage.fromLanguage(uiLanguages.en);

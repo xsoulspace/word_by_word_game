@@ -49,7 +49,7 @@ Future<void> bootstrap({final FirebaseOptions? firebaseOptions}) async {
     ),
   );
 
-  await runZonedGuarded(() async {
+  runZonedGuarded(() {
     WidgetsFlutterBinding.ensureInitialized();
     LicenseRegistry.addLicense(() async* {
       final license = await rootBundle.loadString('google_fonts/OFL.txt');

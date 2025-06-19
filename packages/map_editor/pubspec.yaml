@@ -73,12 +73,14 @@ flutter_gen:
 
   assets:
     enabled: true
-    # outputs:
-    #   gen_for_package: false
-    #   package_parameter_enabled: false
+    outputs:
+      directory_path_enabled: true
+      package_parameter_enabled: true
 
   integrations:
+    image: true
     flutter_svg: true
+    rive: true
 
   fonts:
     enabled: true

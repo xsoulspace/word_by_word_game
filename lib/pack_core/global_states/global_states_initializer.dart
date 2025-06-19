@@ -20,6 +20,8 @@ class GlobalStatesInitializer implements StateInitializer {
     final canvasCubit = read<CanvasCubit>();
     final appSettingsNotifier = read<AppSettingsNotifier>();
     final onlineStatusService = read<OnlineStatusService>();
+    final localDb = read<LocalDbI>();
+    await localDb.init();
     await Future.wait([
       onlineStatusService.onLoad(),
       appSettingsNotifier.onLoad(),
