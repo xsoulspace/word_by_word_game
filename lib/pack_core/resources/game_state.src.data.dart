@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:uuid/uuid.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/di/base_classes.dart';
 
@@ -41,6 +42,10 @@ enum GameDifficulty {
   expert,
 }
 
+extension type const GameId(String value) {
+  factory GameId.generate() => GameId(const Uuid().v4());
+}
+
 /// {@template game_state_data}
 /// Immutable data class holding the core game state.
 ///
@@ -52,7 +57,7 @@ enum GameDifficulty {
 /// managed by [GameStateResource] which extends ValueNotifier.
 /// {@endtemplate}
 @freezed
-class GameStateData with _$GameStateData implements ResourceData {
+abstract class GameStateData with _$GameStateData implements ResourceData {
   /// {@macro game_state_data}
   const factory GameStateData({
     /// Current phase of the game
