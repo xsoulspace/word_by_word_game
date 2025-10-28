@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -41,6 +40,160 @@ class $TutorialEventCopyWith<$Res>  {
 $TutorialEventCopyWith(TutorialEvent _, $Res Function(TutorialEvent) __);
 }
 
+
+/// Adds pattern-matching-related methods to [TutorialEvent].
+extension TutorialEventPatterns on TutorialEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( CompleteTutorialEvent value)?  complete,TResult Function( LoadTutorialsProgressEvent value)?  loadTutorialProgress,TResult Function( StartTutorialEvent value)?  start,TResult Function( NextTutorialEvent value)?  next,TResult Function( TutorialUiActionEvent value)?  uiAction,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case CompleteTutorialEvent() when complete != null:
+return complete(_that);case LoadTutorialsProgressEvent() when loadTutorialProgress != null:
+return loadTutorialProgress(_that);case StartTutorialEvent() when start != null:
+return start(_that);case NextTutorialEvent() when next != null:
+return next(_that);case TutorialUiActionEvent() when uiAction != null:
+return uiAction(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( CompleteTutorialEvent value)  complete,required TResult Function( LoadTutorialsProgressEvent value)  loadTutorialProgress,required TResult Function( StartTutorialEvent value)  start,required TResult Function( NextTutorialEvent value)  next,required TResult Function( TutorialUiActionEvent value)  uiAction,}){
+final _that = this;
+switch (_that) {
+case CompleteTutorialEvent():
+return complete(_that);case LoadTutorialsProgressEvent():
+return loadTutorialProgress(_that);case StartTutorialEvent():
+return start(_that);case NextTutorialEvent():
+return next(_that);case TutorialUiActionEvent():
+return uiAction(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( CompleteTutorialEvent value)?  complete,TResult? Function( LoadTutorialsProgressEvent value)?  loadTutorialProgress,TResult? Function( StartTutorialEvent value)?  start,TResult? Function( NextTutorialEvent value)?  next,TResult? Function( TutorialUiActionEvent value)?  uiAction,}){
+final _that = this;
+switch (_that) {
+case CompleteTutorialEvent() when complete != null:
+return complete(_that);case LoadTutorialsProgressEvent() when loadTutorialProgress != null:
+return loadTutorialProgress(_that);case StartTutorialEvent() when start != null:
+return start(_that);case NextTutorialEvent() when next != null:
+return next(_that);case TutorialUiActionEvent() when uiAction != null:
+return uiAction(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  complete,TResult Function( TutorialCollectionsProgressModel progress)?  loadTutorialProgress,TResult Function( TutorialCollectionsName tutorialName,  bool shouldContinueIfPlayed,  bool shouldStartFromBeginning)?  start,TResult Function( NextTutorialEventType action)?  next,TResult Function( TutorialCompleteAction action,  TutorialUiItem? key,  String stringValue,  bool boolValue)?  uiAction,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case CompleteTutorialEvent() when complete != null:
+return complete();case LoadTutorialsProgressEvent() when loadTutorialProgress != null:
+return loadTutorialProgress(_that.progress);case StartTutorialEvent() when start != null:
+return start(_that.tutorialName,_that.shouldContinueIfPlayed,_that.shouldStartFromBeginning);case NextTutorialEvent() when next != null:
+return next(_that.action);case TutorialUiActionEvent() when uiAction != null:
+return uiAction(_that.action,_that.key,_that.stringValue,_that.boolValue);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  complete,required TResult Function( TutorialCollectionsProgressModel progress)  loadTutorialProgress,required TResult Function( TutorialCollectionsName tutorialName,  bool shouldContinueIfPlayed,  bool shouldStartFromBeginning)  start,required TResult Function( NextTutorialEventType action)  next,required TResult Function( TutorialCompleteAction action,  TutorialUiItem? key,  String stringValue,  bool boolValue)  uiAction,}) {final _that = this;
+switch (_that) {
+case CompleteTutorialEvent():
+return complete();case LoadTutorialsProgressEvent():
+return loadTutorialProgress(_that.progress);case StartTutorialEvent():
+return start(_that.tutorialName,_that.shouldContinueIfPlayed,_that.shouldStartFromBeginning);case NextTutorialEvent():
+return next(_that.action);case TutorialUiActionEvent():
+return uiAction(_that.action,_that.key,_that.stringValue,_that.boolValue);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  complete,TResult? Function( TutorialCollectionsProgressModel progress)?  loadTutorialProgress,TResult? Function( TutorialCollectionsName tutorialName,  bool shouldContinueIfPlayed,  bool shouldStartFromBeginning)?  start,TResult? Function( NextTutorialEventType action)?  next,TResult? Function( TutorialCompleteAction action,  TutorialUiItem? key,  String stringValue,  bool boolValue)?  uiAction,}) {final _that = this;
+switch (_that) {
+case CompleteTutorialEvent() when complete != null:
+return complete();case LoadTutorialsProgressEvent() when loadTutorialProgress != null:
+return loadTutorialProgress(_that.progress);case StartTutorialEvent() when start != null:
+return start(_that.tutorialName,_that.shouldContinueIfPlayed,_that.shouldStartFromBeginning);case NextTutorialEvent() when next != null:
+return next(_that.action);case TutorialUiActionEvent() when uiAction != null:
+return uiAction(_that.action,_that.key,_that.stringValue,_that.boolValue);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -386,6 +539,142 @@ class $TutorialBlocStateCopyWith<$Res>  {
 $TutorialBlocStateCopyWith(TutorialBlocState _, $Res Function(TutorialBlocState) __);
 }
 
+
+/// Adds pattern-matching-related methods to [TutorialBlocState].
+extension TutorialBlocStatePatterns on TutorialBlocState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( TutorialBlocStateEmpty value)?  empty,TResult Function( TutorialBlocStatePending value)?  pending,TResult Function( TutorialBlocStateLive value)?  live,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case TutorialBlocStateEmpty() when empty != null:
+return empty(_that);case TutorialBlocStatePending() when pending != null:
+return pending(_that);case TutorialBlocStateLive() when live != null:
+return live(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( TutorialBlocStateEmpty value)  empty,required TResult Function( TutorialBlocStatePending value)  pending,required TResult Function( TutorialBlocStateLive value)  live,}){
+final _that = this;
+switch (_that) {
+case TutorialBlocStateEmpty():
+return empty(_that);case TutorialBlocStatePending():
+return pending(_that);case TutorialBlocStateLive():
+return live(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( TutorialBlocStateEmpty value)?  empty,TResult? Function( TutorialBlocStatePending value)?  pending,TResult? Function( TutorialBlocStateLive value)?  live,}){
+final _that = this;
+switch (_that) {
+case TutorialBlocStateEmpty() when empty != null:
+return empty(_that);case TutorialBlocStatePending() when pending != null:
+return pending(_that);case TutorialBlocStateLive() when live != null:
+return live(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  empty,TResult Function( TutorialCollectionsProgressModel progress)?  pending,TResult Function( TutorialEventsCollectionModel tutorial,  TutorialCollectionsProgressModel progress)?  live,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case TutorialBlocStateEmpty() when empty != null:
+return empty();case TutorialBlocStatePending() when pending != null:
+return pending(_that.progress);case TutorialBlocStateLive() when live != null:
+return live(_that.tutorial,_that.progress);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  empty,required TResult Function( TutorialCollectionsProgressModel progress)  pending,required TResult Function( TutorialEventsCollectionModel tutorial,  TutorialCollectionsProgressModel progress)  live,}) {final _that = this;
+switch (_that) {
+case TutorialBlocStateEmpty():
+return empty();case TutorialBlocStatePending():
+return pending(_that.progress);case TutorialBlocStateLive():
+return live(_that.tutorial,_that.progress);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  empty,TResult? Function( TutorialCollectionsProgressModel progress)?  pending,TResult? Function( TutorialEventsCollectionModel tutorial,  TutorialCollectionsProgressModel progress)?  live,}) {final _that = this;
+switch (_that) {
+case TutorialBlocStateEmpty() when empty != null:
+return empty();case TutorialBlocStatePending() when pending != null:
+return pending(_that.progress);case TutorialBlocStateLive() when live != null:
+return live(_that.tutorial,_that.progress);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 

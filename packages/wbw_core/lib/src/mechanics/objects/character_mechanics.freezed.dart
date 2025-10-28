@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -82,6 +81,136 @@ $BalloonLiftPowersModelCopyWith<$Res> get updatedPowers {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [LiftForceModel].
+extension LiftForceModelPatterns on LiftForceModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LiftForceModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LiftForceModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LiftForceModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _LiftForceModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LiftForceModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LiftForceModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double liftPower,  BalloonLiftPowersModel updatedPowers)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LiftForceModel() when $default != null:
+return $default(_that.liftPower,_that.updatedPowers);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double liftPower,  BalloonLiftPowersModel updatedPowers)  $default,) {final _that = this;
+switch (_that) {
+case _LiftForceModel():
+return $default(_that.liftPower,_that.updatedPowers);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double liftPower,  BalloonLiftPowersModel updatedPowers)?  $default,) {final _that = this;
+switch (_that) {
+case _LiftForceModel() when $default != null:
+return $default(_that.liftPower,_that.updatedPowers);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -225,6 +354,136 @@ as double,
 }
 
 
+/// Adds pattern-matching-related methods to [BalloonLiftPowersModel].
+extension BalloonLiftPowersModelPatterns on BalloonLiftPowersModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BalloonLiftPowersModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _BalloonLiftPowersModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BalloonLiftPowersModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _BalloonLiftPowersModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BalloonLiftPowersModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _BalloonLiftPowersModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double power,  double volume)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _BalloonLiftPowersModel() when $default != null:
+return $default(_that.power,_that.volume);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double power,  double volume)  $default,) {final _that = this;
+switch (_that) {
+case _BalloonLiftPowersModel():
+return $default(_that.power,_that.volume);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double power,  double volume)?  $default,) {final _that = this;
+switch (_that) {
+case _BalloonLiftPowersModel() when $default != null:
+return $default(_that.power,_that.volume);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 
 @JsonSerializable(explicitToJson: true)
@@ -361,6 +620,136 @@ as double,
 
 }
 
+
+/// Adds pattern-matching-related methods to [BalloonLiftParamsModel].
+extension BalloonLiftParamsModelPatterns on BalloonLiftParamsModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _BalloonLiftParamsModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _BalloonLiftParamsModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _BalloonLiftParamsModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _BalloonLiftParamsModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _BalloonLiftParamsModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _BalloonLiftParamsModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double maxVolume,  double maxPower,  double powerUsage)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _BalloonLiftParamsModel() when $default != null:
+return $default(_that.maxVolume,_that.maxPower,_that.powerUsage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double maxVolume,  double maxPower,  double powerUsage)  $default,) {final _that = this;
+switch (_that) {
+case _BalloonLiftParamsModel():
+return $default(_that.maxVolume,_that.maxPower,_that.powerUsage);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double maxVolume,  double maxPower,  double powerUsage)?  $default,) {final _that = this;
+switch (_that) {
+case _BalloonLiftParamsModel() when $default != null:
+return $default(_that.maxVolume,_that.maxPower,_that.powerUsage);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -499,6 +888,136 @@ as double,
 
 }
 
+
+/// Adds pattern-matching-related methods to [ForcesConstantsModel].
+extension ForcesConstantsModelPatterns on ForcesConstantsModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _ForcesConstantsModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _ForcesConstantsModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _ForcesConstantsModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _ForcesConstantsModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _ForcesConstantsModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _ForcesConstantsModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( double gravityForce,  double volumeDecreaseRatio,  double volumeIncreaseRatio,  double volumeIncreaseRatioMax,  double volumeToLiftRatio)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _ForcesConstantsModel() when $default != null:
+return $default(_that.gravityForce,_that.volumeDecreaseRatio,_that.volumeIncreaseRatio,_that.volumeIncreaseRatioMax,_that.volumeToLiftRatio);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( double gravityForce,  double volumeDecreaseRatio,  double volumeIncreaseRatio,  double volumeIncreaseRatioMax,  double volumeToLiftRatio)  $default,) {final _that = this;
+switch (_that) {
+case _ForcesConstantsModel():
+return $default(_that.gravityForce,_that.volumeDecreaseRatio,_that.volumeIncreaseRatio,_that.volumeIncreaseRatioMax,_that.volumeToLiftRatio);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( double gravityForce,  double volumeDecreaseRatio,  double volumeIncreaseRatio,  double volumeIncreaseRatioMax,  double volumeToLiftRatio)?  $default,) {final _that = this;
+switch (_that) {
+case _ForcesConstantsModel() when $default != null:
+return $default(_that.gravityForce,_that.volumeDecreaseRatio,_that.volumeIncreaseRatio,_that.volumeIncreaseRatioMax,_that.volumeToLiftRatio);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 

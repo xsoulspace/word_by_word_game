@@ -282,9 +282,7 @@ _PlayerCharacterModel _$PlayerCharacterModelFromJson(
   color: (json['color'] as num?)?.toInt() ?? 0,
   localizedName: json['localizedName'] == null
       ? LocalizedMap.empty
-      : LocalizedMap.fromJsonValueMap(
-          json['localizedName'] as Map<String, dynamic>,
-        ),
+      : LocalizedMap.fromJson(json['localizedName']),
   characterIcon: json['characterIcon'] as String? ?? '',
   distanceToOrigin: json['distanceToOrigin'] == null
       ? SerializedVector2.zero
@@ -453,9 +451,7 @@ Map<String, dynamic> _$TechnologyProgressModelToJson(
 _TechnologyModel _$TechnologyModelFromJson(Map<String, dynamic> json) =>
     _TechnologyModel(
       id: TechnologyModelId.fromJson(json['id']),
-      title: LocalizedMap.fromJsonValueMap(
-        json['title'] as Map<String, dynamic>,
-      ),
+      title: LocalizedMap.fromJson(json['title']),
       unlockCondition: TechnologyUnlockConditionModel.fromJson(
         json['unlockCondition'] as Map<String, dynamic>,
       ),
@@ -500,9 +496,7 @@ Map<String, dynamic> _$UsefulWordModelToJson(_UsefulWordModel instance) =>
 
 _TutorialEventModel _$TutorialEventModelFromJson(Map<String, dynamic> json) =>
     _TutorialEventModel(
-      localizedMap: LocalizedMap.fromJsonValueMap(
-        json['localizedMap'] as Map<String, dynamic>,
-      ),
+      localizedMap: LocalizedMap.fromJson(json['localizedMap']),
       completeActions: (json['completeActions'] as List<dynamic>)
           .map(
             (e) =>
