@@ -163,7 +163,7 @@ class UiSuggestionsButton extends StatelessWidget {
     final locale = useLocale(context);
     return UiTextButton.icon(
       isLongButton: true,
-      text: LocalizedMap.fromJson({
+      text: LocalizedMap({
         /// Other naming suggestions:
         ///
         /// Word Spiriter

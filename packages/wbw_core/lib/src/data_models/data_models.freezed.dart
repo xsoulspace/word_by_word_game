@@ -2317,7 +2317,7 @@ mixin _$PlayerCharacterModel {
 /// [balloonPowers] [balloonParams] [color] [localizedName] etc
  Gid get id;/// is assigning during game start to pick required tileId's
 /// reference from the canvasCubit
- Gid get gid; String get description; int get color;@JsonKey(fromJson: LocalizedMap.fromJson) LocalizedMap get localizedName; String get characterIcon; SerializedVector2 get distanceToOrigin;/// use this vector, to restore object position
+ Gid get gid; String get description; int get color;@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap get localizedName; String get characterIcon; SerializedVector2 get distanceToOrigin;/// use this vector, to restore object position
 /// after object was deleted. For example, if player had
 /// crashed, then we need to restore
 /// his position to the last checkpoint if it is exists.
@@ -2356,7 +2356,7 @@ abstract mixin class $PlayerCharacterModelCopyWith<$Res>  {
   factory $PlayerCharacterModelCopyWith(PlayerCharacterModel value, $Res Function(PlayerCharacterModel) _then) = _$PlayerCharacterModelCopyWithImpl;
 @useResult
 $Res call({
- Gid id, Gid gid, String description, int color,@JsonKey(fromJson: LocalizedMap.fromJson) LocalizedMap localizedName, String characterIcon, SerializedVector2 distanceToOrigin, SerializedVector2 checkpointDistanceToOrigin, BalloonLiftPowersModel balloonPowers, BalloonLiftParamsModel balloonParams, bool isAnchored
+ Gid id, Gid gid, String description, int color,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap localizedName, String characterIcon, SerializedVector2 distanceToOrigin, SerializedVector2 checkpointDistanceToOrigin, BalloonLiftPowersModel balloonPowers, BalloonLiftParamsModel balloonParams, bool isAnchored
 });
 
 
@@ -2525,7 +2525,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Gid id,  Gid gid,  String description,  int color, @JsonKey(fromJson: LocalizedMap.fromJson)  LocalizedMap localizedName,  String characterIcon,  SerializedVector2 distanceToOrigin,  SerializedVector2 checkpointDistanceToOrigin,  BalloonLiftPowersModel balloonPowers,  BalloonLiftParamsModel balloonParams,  bool isAnchored)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Gid id,  Gid gid,  String description,  int color, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap localizedName,  String characterIcon,  SerializedVector2 distanceToOrigin,  SerializedVector2 checkpointDistanceToOrigin,  BalloonLiftPowersModel balloonPowers,  BalloonLiftParamsModel balloonParams,  bool isAnchored)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _PlayerCharacterModel() when $default != null:
 return $default(_that.id,_that.gid,_that.description,_that.color,_that.localizedName,_that.characterIcon,_that.distanceToOrigin,_that.checkpointDistanceToOrigin,_that.balloonPowers,_that.balloonParams,_that.isAnchored);case _:
@@ -2546,7 +2546,7 @@ return $default(_that.id,_that.gid,_that.description,_that.color,_that.localized
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Gid id,  Gid gid,  String description,  int color, @JsonKey(fromJson: LocalizedMap.fromJson)  LocalizedMap localizedName,  String characterIcon,  SerializedVector2 distanceToOrigin,  SerializedVector2 checkpointDistanceToOrigin,  BalloonLiftPowersModel balloonPowers,  BalloonLiftParamsModel balloonParams,  bool isAnchored)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Gid id,  Gid gid,  String description,  int color, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap localizedName,  String characterIcon,  SerializedVector2 distanceToOrigin,  SerializedVector2 checkpointDistanceToOrigin,  BalloonLiftPowersModel balloonPowers,  BalloonLiftParamsModel balloonParams,  bool isAnchored)  $default,) {final _that = this;
 switch (_that) {
 case _PlayerCharacterModel():
 return $default(_that.id,_that.gid,_that.description,_that.color,_that.localizedName,_that.characterIcon,_that.distanceToOrigin,_that.checkpointDistanceToOrigin,_that.balloonPowers,_that.balloonParams,_that.isAnchored);case _:
@@ -2566,7 +2566,7 @@ return $default(_that.id,_that.gid,_that.description,_that.color,_that.localized
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Gid id,  Gid gid,  String description,  int color, @JsonKey(fromJson: LocalizedMap.fromJson)  LocalizedMap localizedName,  String characterIcon,  SerializedVector2 distanceToOrigin,  SerializedVector2 checkpointDistanceToOrigin,  BalloonLiftPowersModel balloonPowers,  BalloonLiftParamsModel balloonParams,  bool isAnchored)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Gid id,  Gid gid,  String description,  int color, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap localizedName,  String characterIcon,  SerializedVector2 distanceToOrigin,  SerializedVector2 checkpointDistanceToOrigin,  BalloonLiftPowersModel balloonPowers,  BalloonLiftParamsModel balloonParams,  bool isAnchored)?  $default,) {final _that = this;
 switch (_that) {
 case _PlayerCharacterModel() when $default != null:
 return $default(_that.id,_that.gid,_that.description,_that.color,_that.localizedName,_that.characterIcon,_that.distanceToOrigin,_that.checkpointDistanceToOrigin,_that.balloonPowers,_that.balloonParams,_that.isAnchored);case _:
@@ -2581,7 +2581,7 @@ return $default(_that.id,_that.gid,_that.description,_that.color,_that.localized
 
 @JsonSerializable(explicitToJson: true)
 class _PlayerCharacterModel extends PlayerCharacterModel {
-  const _PlayerCharacterModel({this.id = Gid.empty, this.gid = Gid.empty, this.description = '', this.color = 0, @JsonKey(fromJson: LocalizedMap.fromJson) this.localizedName = LocalizedMap.empty, this.characterIcon = '', this.distanceToOrigin = SerializedVector2.zero, this.checkpointDistanceToOrigin = SerializedVector2.zero, this.balloonPowers = BalloonLiftPowersModel.initial, this.balloonParams = BalloonLiftParamsModel.initial, this.isAnchored = true}): super._();
+  const _PlayerCharacterModel({this.id = Gid.empty, this.gid = Gid.empty, this.description = '', this.color = 0, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) this.localizedName = LocalizedMap.empty, this.characterIcon = '', this.distanceToOrigin = SerializedVector2.zero, this.checkpointDistanceToOrigin = SerializedVector2.zero, this.balloonPowers = BalloonLiftPowersModel.initial, this.balloonParams = BalloonLiftParamsModel.initial, this.isAnchored = true}): super._();
   factory _PlayerCharacterModel.fromJson(Map<String, dynamic> json) => _$PlayerCharacterModelFromJson(json);
 
 /// unique id which used to identify unqiue set of following params:
@@ -2592,7 +2592,7 @@ class _PlayerCharacterModel extends PlayerCharacterModel {
 @override@JsonKey() final  Gid gid;
 @override@JsonKey() final  String description;
 @override@JsonKey() final  int color;
-@override@JsonKey(fromJson: LocalizedMap.fromJson) final  LocalizedMap localizedName;
+@override@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) final  LocalizedMap localizedName;
 @override@JsonKey() final  String characterIcon;
 @override@JsonKey() final  SerializedVector2 distanceToOrigin;
 /// use this vector, to restore object position
@@ -2639,7 +2639,7 @@ abstract mixin class _$PlayerCharacterModelCopyWith<$Res> implements $PlayerChar
   factory _$PlayerCharacterModelCopyWith(_PlayerCharacterModel value, $Res Function(_PlayerCharacterModel) _then) = __$PlayerCharacterModelCopyWithImpl;
 @override @useResult
 $Res call({
- Gid id, Gid gid, String description, int color,@JsonKey(fromJson: LocalizedMap.fromJson) LocalizedMap localizedName, String characterIcon, SerializedVector2 distanceToOrigin, SerializedVector2 checkpointDistanceToOrigin, BalloonLiftPowersModel balloonPowers, BalloonLiftParamsModel balloonParams, bool isAnchored
+ Gid id, Gid gid, String description, int color,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap localizedName, String characterIcon, SerializedVector2 distanceToOrigin, SerializedVector2 checkpointDistanceToOrigin, BalloonLiftPowersModel balloonPowers, BalloonLiftParamsModel balloonParams, bool isAnchored
 });
 
 

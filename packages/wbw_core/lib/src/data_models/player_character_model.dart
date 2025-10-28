@@ -20,7 +20,10 @@ abstract class PlayerCharacterModel with _$PlayerCharacterModel {
     @Default(Gid.empty) final Gid gid,
     @Default('') final String description,
     @Default(0) final int color,
-    @JsonKey(fromJson: LocalizedMap.fromJson)
+    @JsonKey(
+      fromJson: LocalizedMap.fromJson,
+      toJson: LocalizedMap.toJsonValueMap,
+    )
     @Default(LocalizedMap.empty)
     final LocalizedMap localizedName,
     @Default('') final String characterIcon,

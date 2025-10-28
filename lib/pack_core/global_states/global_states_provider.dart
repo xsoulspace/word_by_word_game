@@ -33,7 +33,7 @@ class GlobalStatesProvider extends StatelessWidget {
         create: (final context) => AppServerpodClient(url: Envs.serverUrl),
       ),
       Provider(create: (final context) => initializer.analyticsService),
-      Provider<LocalDbI>(create: PrefsDb.new),
+      Provider<LocalDbI>.value(value: Di.get()),
       ChangeNotifierProvider(create: WbwDictionary.provide),
       Provider(create: LevelsRepository.new),
       Provider(create: GameRespository.new),

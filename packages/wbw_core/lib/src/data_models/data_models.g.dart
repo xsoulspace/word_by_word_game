@@ -314,7 +314,7 @@ Map<String, dynamic> _$PlayerCharacterModelToJson(
   'gid': instance.gid.toJson(),
   'description': instance.description,
   'color': instance.color,
-  'localizedName': instance.localizedName.toJson(),
+  'localizedName': LocalizedMap.toJsonValueMap(instance.localizedName),
   'characterIcon': instance.characterIcon,
   'distanceToOrigin': instance.distanceToOrigin.toJson(),
   'checkpointDistanceToOrigin': instance.checkpointDistanceToOrigin.toJson(),

@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states_provider.dart';

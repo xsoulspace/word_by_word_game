@@ -34,12 +34,7 @@ Future<void> _init() async {
   /// *      Layer 1: Infrastructure Services
   /// ********************************************
 
-  // Note: LocalDbI needs BuildContext, will be initialized during app startup
-  rl<LocalDbI>(
-    () => throw UnimplementedError(
-      'LocalDbI needs context - initialize in GlobalStateInitializer',
-    ),
-  );
+  rl<LocalDbI>(PrefsDb.new);
 
   // Analytics Service (from initializer)
   // Will be registered by GlobalServicesInitializer
