@@ -53,9 +53,7 @@ _PresetTilePropertiesModel _$PresetTilePropertiesModelFromJson(
   thumbnailPath: json['thumbnail_path'] as String? ?? '',
   description: json['description'] == null
       ? LocalizedMap.empty
-      : LocalizedMap.fromJsonValueMap(
-          json['description'] as Map<String, dynamic>,
-        ),
+      : LocalizedMap.fromJson(json['description']),
 );
 
 Map<String, dynamic> _$PresetTilePropertiesModelToJson(
@@ -140,7 +138,7 @@ _TilesetPresetDataModel _$TilesetPresetDataModelFromJson(
       _nameCodes,
   name: json['name'] == null
       ? LocalizedMap.empty
-      : LocalizedMap.fromJsonValueMap(json['name'] as Map<String, dynamic>),
+      : LocalizedMap.fromJson(json['name']),
   type:
       $enumDecodeNullable(_$TilesetTypeEnumMap, json['type']) ??
       TilesetType.whiteBlack,

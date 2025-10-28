@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -61,6 +60,136 @@ as String,
 
 }
 
+
+/// Adds pattern-matching-related methods to [TileId].
+extension TileIdPatterns on TileId {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TileId value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TileId() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TileId value)  $default,){
+final _that = this;
+switch (_that) {
+case _TileId():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TileId value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TileId() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String value)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TileId() when $default != null:
+return $default(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String value)  $default,) {final _that = this;
+switch (_that) {
+case _TileId():
+return $default(_that.value);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String value)?  $default,) {final _that = this;
+switch (_that) {
+case _TileId() when $default != null:
+return $default(_that.value);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -212,6 +341,136 @@ $PresetTilePropertiesModelCopyWith<$Res> get properties {
 }
 
 
+/// Adds pattern-matching-related methods to [PresetTileModel].
+extension PresetTileModelPatterns on PresetTileModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PresetTileModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PresetTileModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PresetTileModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _PresetTileModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PresetTileModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PresetTileModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TileId id,  TileType type,  DataCategoryType category,  PresetTileGraphicsModel graphics,  PresetTilePropertiesModel properties)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PresetTileModel() when $default != null:
+return $default(_that.id,_that.type,_that.category,_that.graphics,_that.properties);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TileId id,  TileType type,  DataCategoryType category,  PresetTileGraphicsModel graphics,  PresetTilePropertiesModel properties)  $default,) {final _that = this;
+switch (_that) {
+case _PresetTileModel():
+return $default(_that.id,_that.type,_that.category,_that.graphics,_that.properties);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TileId id,  TileType type,  DataCategoryType category,  PresetTileGraphicsModel graphics,  PresetTilePropertiesModel properties)?  $default,) {final _that = this;
+switch (_that) {
+case _PresetTileModel() when $default != null:
+return $default(_that.id,_that.type,_that.category,_that.graphics,_that.properties);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -320,7 +579,7 @@ $PresetTilePropertiesModelCopyWith<$Res> get properties {
 /// @nodoc
 mixin _$PresetTilePropertiesModel {
 
- String get title; String get thumbnailPath;@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap get description;
+ String get title; String get thumbnailPath;@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap get description;
 /// Create a copy of PresetTilePropertiesModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -353,7 +612,7 @@ abstract mixin class $PresetTilePropertiesModelCopyWith<$Res>  {
   factory $PresetTilePropertiesModelCopyWith(PresetTilePropertiesModel value, $Res Function(PresetTilePropertiesModel) _then) = _$PresetTilePropertiesModelCopyWithImpl;
 @useResult
 $Res call({
- String title, String thumbnailPath,@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap description
+ String title, String thumbnailPath,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap description
 });
 
 
@@ -382,16 +641,146 @@ as LocalizedMap,
 }
 
 
+/// Adds pattern-matching-related methods to [PresetTilePropertiesModel].
+extension PresetTilePropertiesModelPatterns on PresetTilePropertiesModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PresetTilePropertiesModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PresetTilePropertiesModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PresetTilePropertiesModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _PresetTilePropertiesModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PresetTilePropertiesModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PresetTilePropertiesModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String title,  String thumbnailPath, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap description)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PresetTilePropertiesModel() when $default != null:
+return $default(_that.title,_that.thumbnailPath,_that.description);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String title,  String thumbnailPath, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap description)  $default,) {final _that = this;
+switch (_that) {
+case _PresetTilePropertiesModel():
+return $default(_that.title,_that.thumbnailPath,_that.description);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String title,  String thumbnailPath, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap description)?  $default,) {final _that = this;
+switch (_that) {
+case _PresetTilePropertiesModel() when $default != null:
+return $default(_that.title,_that.thumbnailPath,_that.description);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _PresetTilePropertiesModel extends PresetTilePropertiesModel {
-  const _PresetTilePropertiesModel({this.title = '', this.thumbnailPath = '', @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) this.description = LocalizedMap.empty}): super._();
+  const _PresetTilePropertiesModel({this.title = '', this.thumbnailPath = '', @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) this.description = LocalizedMap.empty}): super._();
   factory _PresetTilePropertiesModel.fromJson(Map<String, dynamic> json) => _$PresetTilePropertiesModelFromJson(json);
 
 @override@JsonKey() final  String title;
 @override@JsonKey() final  String thumbnailPath;
-@override@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) final  LocalizedMap description;
+@override@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) final  LocalizedMap description;
 
 /// Create a copy of PresetTilePropertiesModel
 /// with the given fields replaced by the non-null parameter values.
@@ -426,7 +815,7 @@ abstract mixin class _$PresetTilePropertiesModelCopyWith<$Res> implements $Prese
   factory _$PresetTilePropertiesModelCopyWith(_PresetTilePropertiesModel value, $Res Function(_PresetTilePropertiesModel) _then) = __$PresetTilePropertiesModelCopyWithImpl;
 @override @useResult
 $Res call({
- String title, String thumbnailPath,@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap description
+ String title, String thumbnailPath,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap description
 });
 
 
@@ -521,6 +910,136 @@ as List<TileBehaviourType>,
 }
 
 
+/// Adds pattern-matching-related methods to [PresetTileGraphicsModel].
+extension PresetTileGraphicsModelPatterns on PresetTileGraphicsModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PresetTileGraphicsModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PresetTileGraphicsModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PresetTileGraphicsModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _PresetTileGraphicsModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PresetTileGraphicsModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PresetTileGraphicsModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TileGraphicsType type,  bool animated,  List<TileBehaviourType> behaviours)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PresetTileGraphicsModel() when $default != null:
+return $default(_that.type,_that.animated,_that.behaviours);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TileGraphicsType type,  bool animated,  List<TileBehaviourType> behaviours)  $default,) {final _that = this;
+switch (_that) {
+case _PresetTileGraphicsModel():
+return $default(_that.type,_that.animated,_that.behaviours);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TileGraphicsType type,  bool animated,  List<TileBehaviourType> behaviours)?  $default,) {final _that = this;
+switch (_that) {
+case _PresetTileGraphicsModel() when $default != null:
+return $default(_that.type,_that.animated,_that.behaviours);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
@@ -604,7 +1123,7 @@ as List<TileBehaviourType>,
 /// @nodoc
 mixin _$TilesetPresetDataModel {
 
-@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get tiles;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get objects;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get npcs;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get players;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get other; Map<SpriteTileName, List<SpriteCode>> get autotileRules;@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap get name; TilesetType get type; TilesetThemeModel get theme;
+@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get tiles;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get objects;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get npcs;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get players;@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> get other; Map<SpriteTileName, List<SpriteCode>> get autotileRules;@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap get name; TilesetType get type; TilesetThemeModel get theme;
 /// Create a copy of TilesetPresetDataModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -637,7 +1156,7 @@ abstract mixin class $TilesetPresetDataModelCopyWith<$Res>  {
   factory $TilesetPresetDataModelCopyWith(TilesetPresetDataModel value, $Res Function(TilesetPresetDataModel) _then) = _$TilesetPresetDataModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> tiles,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> objects,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> npcs,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> players,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> other, Map<SpriteTileName, List<SpriteCode>> autotileRules,@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, TilesetType type, TilesetThemeModel theme
+@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> tiles,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> objects,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> npcs,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> players,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> other, Map<SpriteTileName, List<SpriteCode>> autotileRules,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, TilesetType type, TilesetThemeModel theme
 });
 
 
@@ -681,11 +1200,141 @@ $TilesetThemeModelCopyWith<$Res> get theme {
 }
 
 
+/// Adds pattern-matching-related methods to [TilesetPresetDataModel].
+extension TilesetPresetDataModelPatterns on TilesetPresetDataModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TilesetPresetDataModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TilesetPresetDataModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TilesetPresetDataModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetPresetDataModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TilesetPresetDataModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetPresetDataModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> tiles, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> objects, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> npcs, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> players, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> other,  Map<SpriteTileName, List<SpriteCode>> autotileRules, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap name,  TilesetType type,  TilesetThemeModel theme)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TilesetPresetDataModel() when $default != null:
+return $default(_that.tiles,_that.objects,_that.npcs,_that.players,_that.other,_that.autotileRules,_that.name,_that.type,_that.theme);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> tiles, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> objects, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> npcs, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> players, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> other,  Map<SpriteTileName, List<SpriteCode>> autotileRules, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap name,  TilesetType type,  TilesetThemeModel theme)  $default,) {final _that = this;
+switch (_that) {
+case _TilesetPresetDataModel():
+return $default(_that.tiles,_that.objects,_that.npcs,_that.players,_that.other,_that.autotileRules,_that.name,_that.type,_that.theme);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> tiles, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> objects, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> npcs, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> players, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson)  Map<TileId, PresetTileModel> other,  Map<SpriteTileName, List<SpriteCode>> autotileRules, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap name,  TilesetType type,  TilesetThemeModel theme)?  $default,) {final _that = this;
+switch (_that) {
+case _TilesetPresetDataModel() when $default != null:
+return $default(_that.tiles,_that.objects,_that.npcs,_that.players,_that.other,_that.autotileRules,_that.name,_that.type,_that.theme);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 
 @JsonSerializable(fieldRename: FieldRename.snake)
 class _TilesetPresetDataModel implements TilesetPresetDataModel {
-  const _TilesetPresetDataModel({@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> tiles = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> objects = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> npcs = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> players = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> other = const {}, final  Map<SpriteTileName, List<SpriteCode>> autotileRules = _nameCodes, @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) this.name = LocalizedMap.empty, this.type = TilesetType.whiteBlack, this.theme = TilesetThemeModel.empty}): _tiles = tiles,_objects = objects,_npcs = npcs,_players = players,_other = other,_autotileRules = autotileRules;
+  const _TilesetPresetDataModel({@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> tiles = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> objects = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> npcs = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> players = const {}, @JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) final  Map<TileId, PresetTileModel> other = const {}, final  Map<SpriteTileName, List<SpriteCode>> autotileRules = _nameCodes, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) this.name = LocalizedMap.empty, this.type = TilesetType.whiteBlack, this.theme = TilesetThemeModel.empty}): _tiles = tiles,_objects = objects,_npcs = npcs,_players = players,_other = other,_autotileRules = autotileRules;
   factory _TilesetPresetDataModel.fromJson(Map<String, dynamic> json) => _$TilesetPresetDataModelFromJson(json);
 
  final  Map<TileId, PresetTileModel> _tiles;
@@ -730,7 +1379,7 @@ class _TilesetPresetDataModel implements TilesetPresetDataModel {
   return EqualUnmodifiableMapView(_autotileRules);
 }
 
-@override@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) final  LocalizedMap name;
+@override@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) final  LocalizedMap name;
 @override@JsonKey() final  TilesetType type;
 @override@JsonKey() final  TilesetThemeModel theme;
 
@@ -767,7 +1416,7 @@ abstract mixin class _$TilesetPresetDataModelCopyWith<$Res> implements $TilesetP
   factory _$TilesetPresetDataModelCopyWith(_TilesetPresetDataModel value, $Res Function(_TilesetPresetDataModel) _then) = __$TilesetPresetDataModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> tiles,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> objects,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> npcs,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> players,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> other, Map<SpriteTileName, List<SpriteCode>> autotileRules,@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, TilesetType type, TilesetThemeModel theme
+@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> tiles,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> objects,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> npcs,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> players,@JsonKey(fromJson: TilesetPresetDataModel._tilesFromJson, toJson: TilesetPresetDataModel._tilesToJson) Map<TileId, PresetTileModel> other, Map<SpriteTileName, List<SpriteCode>> autotileRules,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, TilesetType type, TilesetThemeModel theme
 });
 
 
@@ -872,6 +1521,136 @@ as String,
 
 }
 
+
+/// Adds pattern-matching-related methods to [TilesetConfigModel].
+extension TilesetConfigModelPatterns on TilesetConfigModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TilesetConfigModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TilesetConfigModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TilesetConfigModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetConfigModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TilesetConfigModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetConfigModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String path)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TilesetConfigModel() when $default != null:
+return $default(_that.path);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String path)  $default,) {final _that = this;
+switch (_that) {
+case _TilesetConfigModel():
+return $default(_that.path);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String path)?  $default,) {final _that = this;
+switch (_that) {
+case _TilesetConfigModel() when $default != null:
+return $default(_that.path);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -1003,6 +1782,136 @@ as String,
 
 }
 
+
+/// Adds pattern-matching-related methods to [TilesetThemeModel].
+extension TilesetThemeModelPatterns on TilesetThemeModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TilesetThemeModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TilesetThemeModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TilesetThemeModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetThemeModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TilesetThemeModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetThemeModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String backgroundSkyColorHex)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TilesetThemeModel() when $default != null:
+return $default(_that.backgroundSkyColorHex);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String backgroundSkyColorHex)  $default,) {final _that = this;
+switch (_that) {
+case _TilesetThemeModel():
+return $default(_that.backgroundSkyColorHex);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String backgroundSkyColorHex)?  $default,) {final _that = this;
+switch (_that) {
+case _TilesetThemeModel() when $default != null:
+return $default(_that.backgroundSkyColorHex);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 @JsonSerializable()
@@ -1150,6 +2059,136 @@ $TilesetThemeModelCopyWith<$Res> get theme {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [TilesetPresetResources].
+extension TilesetPresetResourcesPatterns on TilesetPresetResources {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _TilesetPresetResources value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TilesetPresetResources() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _TilesetPresetResources value)  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetPresetResources():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _TilesetPresetResources value)?  $default,){
+final _that = this;
+switch (_that) {
+case _TilesetPresetResources() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( LocalizedMap name,  TilesetThemeModel theme,  TilesetType type,  Map<SpriteTileName, List<SpriteCode>> autotileRules,  Map<TileId, PresetTileResource> tiles,  Map<TileId, PresetTileResource> objects,  Map<TileId, PresetTileResource> npcs,  Map<TileId, PresetTileResource> players,  Map<TileId, PresetTileResource> other)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TilesetPresetResources() when $default != null:
+return $default(_that.name,_that.theme,_that.type,_that.autotileRules,_that.tiles,_that.objects,_that.npcs,_that.players,_that.other);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( LocalizedMap name,  TilesetThemeModel theme,  TilesetType type,  Map<SpriteTileName, List<SpriteCode>> autotileRules,  Map<TileId, PresetTileResource> tiles,  Map<TileId, PresetTileResource> objects,  Map<TileId, PresetTileResource> npcs,  Map<TileId, PresetTileResource> players,  Map<TileId, PresetTileResource> other)  $default,) {final _that = this;
+switch (_that) {
+case _TilesetPresetResources():
+return $default(_that.name,_that.theme,_that.type,_that.autotileRules,_that.tiles,_that.objects,_that.npcs,_that.players,_that.other);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( LocalizedMap name,  TilesetThemeModel theme,  TilesetType type,  Map<SpriteTileName, List<SpriteCode>> autotileRules,  Map<TileId, PresetTileResource> tiles,  Map<TileId, PresetTileResource> objects,  Map<TileId, PresetTileResource> npcs,  Map<TileId, PresetTileResource> players,  Map<TileId, PresetTileResource> other)?  $default,) {final _that = this;
+switch (_that) {
+case _TilesetPresetResources() when $default != null:
+return $default(_that.name,_that.theme,_that.type,_that.autotileRules,_that.tiles,_that.objects,_that.npcs,_that.players,_that.other);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 

@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -62,6 +61,136 @@ as String,
 }
 
 
+/// Adds pattern-matching-related methods to [CanvasDataModelId].
+extension CanvasDataModelIdPatterns on CanvasDataModelId {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CanvasDataModelId value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CanvasDataModelId() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CanvasDataModelId value)  $default,){
+final _that = this;
+switch (_that) {
+case _CanvasDataModelId():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CanvasDataModelId value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CanvasDataModelId() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String value)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CanvasDataModelId() when $default != null:
+return $default(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String value)  $default,) {final _that = this;
+switch (_that) {
+case _CanvasDataModelId():
+return $default(_that.value);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String value)?  $default,) {final _that = this;
+switch (_that) {
+case _CanvasDataModelId() when $default != null:
+return $default(_that.value);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 
 
@@ -121,7 +250,7 @@ as String,
 /// @nodoc
 mixin _$CanvasDataModel {
 
-@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) CanvasDataModelId get id;@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap get name; List<LayerModel> get layers;/// Moving or idle obstacle, decoration - objects,
+@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) CanvasDataModelId get id;@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap get name; List<LayerModel> get layers;/// Moving or idle obstacle, decoration - objects,
 /// like the birds, trees etc.
 ///
 /// The main idea, that any objet should be accessed from top to bottom
@@ -163,7 +292,7 @@ abstract mixin class $CanvasDataModelCopyWith<$Res>  {
   factory $CanvasDataModelCopyWith(CanvasDataModel value, $Res Function(CanvasDataModel) _then) = _$CanvasDataModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) CanvasDataModelId id,@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, List<LayerModel> layers,@JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) Map<Gid, RenderObjectModel> objects, RenderObjectModel playerObject, int skyYTilePosition, GravityModel gravity, List<TechnologyModel> technologies, TilesetType tilesetType
+@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) CanvasDataModelId id,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, List<LayerModel> layers,@JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) Map<Gid, RenderObjectModel> objects, RenderObjectModel playerObject, int skyYTilePosition, GravityModel gravity, List<TechnologyModel> technologies, TilesetType tilesetType
 });
 
 
@@ -225,15 +354,145 @@ $GravityModelCopyWith<$Res> get gravity {
 }
 
 
+/// Adds pattern-matching-related methods to [CanvasDataModel].
+extension CanvasDataModelPatterns on CanvasDataModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CanvasDataModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CanvasDataModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CanvasDataModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _CanvasDataModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CanvasDataModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CanvasDataModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)  CanvasDataModelId id, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap name,  List<LayerModel> layers, @JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson)  Map<Gid, RenderObjectModel> objects,  RenderObjectModel playerObject,  int skyYTilePosition,  GravityModel gravity,  List<TechnologyModel> technologies,  TilesetType tilesetType)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CanvasDataModel() when $default != null:
+return $default(_that.id,_that.name,_that.layers,_that.objects,_that.playerObject,_that.skyYTilePosition,_that.gravity,_that.technologies,_that.tilesetType);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)  CanvasDataModelId id, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap name,  List<LayerModel> layers, @JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson)  Map<Gid, RenderObjectModel> objects,  RenderObjectModel playerObject,  int skyYTilePosition,  GravityModel gravity,  List<TechnologyModel> technologies,  TilesetType tilesetType)  $default,) {final _that = this;
+switch (_that) {
+case _CanvasDataModel():
+return $default(_that.id,_that.name,_that.layers,_that.objects,_that.playerObject,_that.skyYTilePosition,_that.gravity,_that.technologies,_that.tilesetType);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString)  CanvasDataModelId id, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap)  LocalizedMap name,  List<LayerModel> layers, @JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson)  Map<Gid, RenderObjectModel> objects,  RenderObjectModel playerObject,  int skyYTilePosition,  GravityModel gravity,  List<TechnologyModel> technologies,  TilesetType tilesetType)?  $default,) {final _that = this;
+switch (_that) {
+case _CanvasDataModel() when $default != null:
+return $default(_that.id,_that.name,_that.layers,_that.objects,_that.playerObject,_that.skyYTilePosition,_that.gravity,_that.technologies,_that.tilesetType);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 @JsonSerializable()
 
 class _CanvasDataModel extends CanvasDataModel {
-  const _CanvasDataModel({@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) this.id = CanvasDataModelId.empty, @JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) this.name = LocalizedMap.empty, final  List<LayerModel> layers = const [], @JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) final  Map<Gid, RenderObjectModel> objects = const {}, this.playerObject = RenderObjectModel.empty, this.skyYTilePosition = 0, this.gravity = GravityModel.initial, final  List<TechnologyModel> technologies = const [], this.tilesetType = TilesetType.whiteBlack}): _layers = layers,_objects = objects,_technologies = technologies,super._();
+  const _CanvasDataModel({@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) this.id = CanvasDataModelId.empty, @JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) this.name = LocalizedMap.empty, final  List<LayerModel> layers = const [], @JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) final  Map<Gid, RenderObjectModel> objects = const {}, this.playerObject = RenderObjectModel.empty, this.skyYTilePosition = 0, this.gravity = GravityModel.initial, final  List<TechnologyModel> technologies = const [], this.tilesetType = TilesetType.whiteBlack}): _layers = layers,_objects = objects,_technologies = technologies,super._();
   factory _CanvasDataModel.fromJson(Map<String, dynamic> json) => _$CanvasDataModelFromJson(json);
 
 @override@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) final  CanvasDataModelId id;
-@override@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) final  LocalizedMap name;
+@override@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) final  LocalizedMap name;
  final  List<LayerModel> _layers;
 @override@JsonKey() List<LayerModel> get layers {
   if (_layers is EqualUnmodifiableListView) return _layers;
@@ -308,7 +567,7 @@ abstract mixin class _$CanvasDataModelCopyWith<$Res> implements $CanvasDataModel
   factory _$CanvasDataModelCopyWith(_CanvasDataModel value, $Res Function(_CanvasDataModel) _then) = __$CanvasDataModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) CanvasDataModelId id,@JsonKey(fromJson: LocalizedMap.fromJsonValueMap, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, List<LayerModel> layers,@JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) Map<Gid, RenderObjectModel> objects, RenderObjectModel playerObject, int skyYTilePosition, GravityModel gravity, List<TechnologyModel> technologies, TilesetType tilesetType
+@JsonKey(fromJson: CanvasDataModelId.fromJson, toJson: CanvasDataModelId.toJsonString) CanvasDataModelId id,@JsonKey(fromJson: LocalizedMap.fromJson, toJson: LocalizedMap.toJsonValueMap) LocalizedMap name, List<LayerModel> layers,@JsonKey(fromJson: CanvasDataModel.objectsFromJson, toJson: CanvasDataModel.objectsToJson) Map<Gid, RenderObjectModel> objects, RenderObjectModel playerObject, int skyYTilePosition, GravityModel gravity, List<TechnologyModel> technologies, TilesetType tilesetType
 });
 
 
@@ -435,6 +694,136 @@ as int,
 }
 
 
+/// Adds pattern-matching-related methods to [GravityModel].
+extension GravityModelPatterns on GravityModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GravityModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GravityModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GravityModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _GravityModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GravityModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GravityModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int yTilePosition)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GravityModel() when $default != null:
+return $default(_that.yTilePosition);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int yTilePosition)  $default,) {final _that = this;
+switch (_that) {
+case _GravityModel():
+return $default(_that.yTilePosition);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int yTilePosition)?  $default,) {final _that = this;
+switch (_that) {
+case _GravityModel() when $default != null:
+return $default(_that.yTilePosition);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 @JsonSerializable()
 
@@ -554,6 +943,136 @@ as String,
 
 }
 
+
+/// Adds pattern-matching-related methods to [LayerModelId].
+extension LayerModelIdPatterns on LayerModelId {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LayerModelId value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LayerModelId() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LayerModelId value)  $default,){
+final _that = this;
+switch (_that) {
+case _LayerModelId():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LayerModelId value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LayerModelId() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String value)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LayerModelId() when $default != null:
+return $default(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String value)  $default,) {final _that = this;
+switch (_that) {
+case _LayerModelId():
+return $default(_that.value);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String value)?  $default,) {final _that = this;
+switch (_that) {
+case _LayerModelId() when $default != null:
+return $default(_that.value);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -689,6 +1208,136 @@ $LayerModelIdCopyWith<$Res> get id {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [LayerModel].
+extension LayerModelPatterns on LayerModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LayerModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LayerModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LayerModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _LayerModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LayerModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LayerModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function(@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)  LayerModelId id,  String title, @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)  Map<CellPointModel, CellTileModel> tiles,  bool isCollidable,  CollisionConsequence collisionConsequence,  bool isVisible)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LayerModel() when $default != null:
+return $default(_that.id,_that.title,_that.tiles,_that.isCollidable,_that.collisionConsequence,_that.isVisible);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function(@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)  LayerModelId id,  String title, @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)  Map<CellPointModel, CellTileModel> tiles,  bool isCollidable,  CollisionConsequence collisionConsequence,  bool isVisible)  $default,) {final _that = this;
+switch (_that) {
+case _LayerModel():
+return $default(_that.id,_that.title,_that.tiles,_that.isCollidable,_that.collisionConsequence,_that.isVisible);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function(@JsonKey(fromJson: LayerModelId.fromJson, toJson: LayerModelId.toJsonString)  LayerModelId id,  String title, @JsonKey(fromJson: LayerModel._tilesFromJson, toJson: LayerModel._tilesToJson)  Map<CellPointModel, CellTileModel> tiles,  bool isCollidable,  CollisionConsequence collisionConsequence,  bool isVisible)?  $default,) {final _that = this;
+switch (_that) {
+case _LayerModel() when $default != null:
+return $default(_that.id,_that.title,_that.tiles,_that.isCollidable,_that.collisionConsequence,_that.isVisible);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 @JsonSerializable()
@@ -862,6 +1511,136 @@ $TileIdCopyWith<$Res> get tileId {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [CellTileModel].
+extension CellTileModelPatterns on CellTileModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CellTileModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CellTileModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CellTileModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _CellTileModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CellTileModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CellTileModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( TileId tileId,  List<TileNeighbourTitle> tileNeighbours,  List<Gid> objects,  List<Gid> npcs)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CellTileModel() when $default != null:
+return $default(_that.tileId,_that.tileNeighbours,_that.objects,_that.npcs);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( TileId tileId,  List<TileNeighbourTitle> tileNeighbours,  List<Gid> objects,  List<Gid> npcs)  $default,) {final _that = this;
+switch (_that) {
+case _CellTileModel():
+return $default(_that.tileId,_that.tileNeighbours,_that.objects,_that.npcs);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( TileId tileId,  List<TileNeighbourTitle> tileNeighbours,  List<Gid> objects,  List<Gid> npcs)?  $default,) {final _that = this;
+switch (_that) {
+case _CellTileModel() when $default != null:
+return $default(_that.tileId,_that.tileNeighbours,_that.objects,_that.npcs);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 @JsonSerializable()
@@ -1088,6 +1867,136 @@ $SerializedVector2CopyWith<$Res> get distanceToTileLeftTopCorner {
 }
 
 
+/// Adds pattern-matching-related methods to [RenderObjectModel].
+extension RenderObjectModelPatterns on RenderObjectModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _RenderObjectModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _RenderObjectModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _RenderObjectModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _RenderObjectModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _RenderObjectModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _RenderObjectModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Gid id,  TileId tileId,  SerializedVector2 position,  SerializedVector2 distanceToOrigin,  SerializedVector2 distanceToTileLeftTopCorner,  TileBehaviourType animationBehaviour)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _RenderObjectModel() when $default != null:
+return $default(_that.id,_that.tileId,_that.position,_that.distanceToOrigin,_that.distanceToTileLeftTopCorner,_that.animationBehaviour);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Gid id,  TileId tileId,  SerializedVector2 position,  SerializedVector2 distanceToOrigin,  SerializedVector2 distanceToTileLeftTopCorner,  TileBehaviourType animationBehaviour)  $default,) {final _that = this;
+switch (_that) {
+case _RenderObjectModel():
+return $default(_that.id,_that.tileId,_that.position,_that.distanceToOrigin,_that.distanceToTileLeftTopCorner,_that.animationBehaviour);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Gid id,  TileId tileId,  SerializedVector2 position,  SerializedVector2 distanceToOrigin,  SerializedVector2 distanceToTileLeftTopCorner,  TileBehaviourType animationBehaviour)?  $default,) {final _that = this;
+switch (_that) {
+case _RenderObjectModel() when $default != null:
+return $default(_that.id,_that.tileId,_that.position,_that.distanceToOrigin,_that.distanceToTileLeftTopCorner,_that.animationBehaviour);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 @JsonSerializable()
 
@@ -1270,6 +2179,136 @@ as String,
 }
 
 
+/// Adds pattern-matching-related methods to [Gid].
+extension GidPatterns on Gid {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _Gid value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _Gid() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _Gid value)  $default,){
+final _that = this;
+switch (_that) {
+case _Gid():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _Gid value)?  $default,){
+final _that = this;
+switch (_that) {
+case _Gid() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String value)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _Gid() when $default != null:
+return $default(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String value)  $default,) {final _that = this;
+switch (_that) {
+case _Gid():
+return $default(_that.value);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String value)?  $default,) {final _that = this;
+switch (_that) {
+case _Gid() when $default != null:
+return $default(_that.value);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 
 @JsonSerializable()
@@ -1399,6 +2438,136 @@ $GidCopyWith<$Res> get id {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [PlayerModel].
+extension PlayerModelPatterns on PlayerModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _PlayerModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _PlayerModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _PlayerModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _PlayerModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _PlayerModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _PlayerModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( Gid id)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _PlayerModel() when $default != null:
+return $default(_that.id);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( Gid id)  $default,) {final _that = this;
+switch (_that) {
+case _PlayerModel():
+return $default(_that.id);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( Gid id)?  $default,) {final _that = this;
+switch (_that) {
+case _PlayerModel() when $default != null:
+return $default(_that.id);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 @JsonSerializable()
@@ -1533,6 +2702,136 @@ as String,
 }
 
 
+/// Adds pattern-matching-related methods to [TileNeighbourTitle].
+extension TileNeighbourTitlePatterns on TileNeighbourTitle {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( _TileNeighbourTitle value)?  secured,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _TileNeighbourTitle() when secured != null:
+return secured(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( _TileNeighbourTitle value)  secured,}){
+final _that = this;
+switch (_that) {
+case _TileNeighbourTitle():
+return secured(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( _TileNeighbourTitle value)?  secured,}){
+final _that = this;
+switch (_that) {
+case _TileNeighbourTitle() when secured != null:
+return secured(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String value)?  secured,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _TileNeighbourTitle() when secured != null:
+return secured(_that.value);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String value)  secured,}) {final _that = this;
+switch (_that) {
+case _TileNeighbourTitle():
+return secured(_that.value);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String value)?  secured,}) {final _that = this;
+switch (_that) {
+case _TileNeighbourTitle() when secured != null:
+return secured(_that.value);case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 @JsonSerializable()
 
@@ -1624,6 +2923,136 @@ $CellDataModelCopyWith(CellDataModel _, $Res Function(CellDataModel) __);
 }
 
 
+/// Adds pattern-matching-related methods to [CellDataModel].
+extension CellDataModelPatterns on CellDataModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CellDataModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CellDataModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CellDataModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _CellDataModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CellDataModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CellDataModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function()?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CellDataModel() when $default != null:
+return $default();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function()  $default,) {final _that = this;
+switch (_that) {
+case _CellDataModel():
+return $default();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function()?  $default,) {final _that = this;
+switch (_that) {
+case _CellDataModel() when $default != null:
+return $default();case _:
+  return null;
+
+}
+}
+
+}
+
 /// @nodoc
 @JsonSerializable()
 
@@ -1712,6 +3141,136 @@ as int,
 
 }
 
+
+/// Adds pattern-matching-related methods to [CellPointModel].
+extension CellPointModelPatterns on CellPointModel {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CellPointModel value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _CellPointModel() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CellPointModel value)  $default,){
+final _that = this;
+switch (_that) {
+case _CellPointModel():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CellPointModel value)?  $default,){
+final _that = this;
+switch (_that) {
+case _CellPointModel() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int x,  int y)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _CellPointModel() when $default != null:
+return $default(_that.x,_that.y);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int x,  int y)  $default,) {final _that = this;
+switch (_that) {
+case _CellPointModel():
+return $default(_that.x,_that.y);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int x,  int y)?  $default,) {final _that = this;
+switch (_that) {
+case _CellPointModel() when $default != null:
+return $default(_that.x,_that.y);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 @JsonSerializable()

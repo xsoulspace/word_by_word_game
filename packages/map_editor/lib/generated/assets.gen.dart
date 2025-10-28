@@ -1,3 +1,5 @@
+// dart format width=80
+
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -5,7 +7,7 @@
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
-// ignore_for_file: directives_ordering,unnecessary_import,implicit_dynamic_list_literal,deprecated_member_use
+// ignore_for_file: deprecated_member_use,directives_ordering,implicit_dynamic_list_literal,unnecessary_import
 
 import 'package:flutter/widgets.dart';
 
@@ -20,6 +22,9 @@ class $AssetsImagesGen {
 
   /// Directory path: assets/images/tilesets
   $AssetsImagesTilesetsGen get tilesets => const $AssetsImagesTilesetsGen();
+
+  /// Directory path: packages/map_editor/assets/images
+  String get path => 'packages/map_editor/assets/images';
 }
 
 class $AssetsImagesCursorsGen {
@@ -28,6 +33,9 @@ class $AssetsImagesCursorsGen {
   /// Directory path: assets/images/cursors/cursor
   $AssetsImagesCursorsCursorGen get cursor =>
       const $AssetsImagesCursorsCursorGen();
+
+  /// Directory path: packages/map_editor/assets/images/cursors
+  String get path => 'packages/map_editor/assets/images/cursors';
 }
 
 class $AssetsImagesPreviewGen {
@@ -44,48 +52,59 @@ class $AssetsImagesPreviewGen {
   /// Directory path: assets/images/preview/white_black
   $AssetsImagesPreviewWhiteBlackGen get whiteBlack =>
       const $AssetsImagesPreviewWhiteBlackGen();
+
+  /// Directory path: packages/map_editor/assets/images/preview
+  String get path => 'packages/map_editor/assets/images/preview';
 }
 
 class $AssetsImagesTilesetsGen {
   const $AssetsImagesTilesetsGen();
 
   /// File path: assets/images/tilesets/README.md
-  String get readme => 'assets/images/tilesets/README.md';
+  String get readme => 'packages/map_editor/assets/images/tilesets/README.md';
 
   /// Directory path: assets/images/tilesets/evening
   $AssetsImagesTilesetsEveningGen get evening =>
       const $AssetsImagesTilesetsEveningGen();
 
   /// File path: assets/images/tilesets/evening.fa
-  String get eveningFa => 'assets/images/tilesets/evening.fa';
+  String get eveningFa =>
+      'packages/map_editor/assets/images/tilesets/evening.fa';
 
   /// File path: assets/images/tilesets/evening.json
-  String get eveningJson => 'assets/images/tilesets/evening.json';
+  String get eveningJson =>
+      'packages/map_editor/assets/images/tilesets/evening.json';
 
   /// File path: assets/images/tilesets/evening_credits.md
-  String get eveningCredits => 'assets/images/tilesets/evening_credits.md';
+  String get eveningCredits =>
+      'packages/map_editor/assets/images/tilesets/evening_credits.md';
 
   /// File path: assets/images/tilesets/evening_preset_data.json
   String get eveningPresetData =>
-      'assets/images/tilesets/evening_preset_data.json';
+      'packages/map_editor/assets/images/tilesets/evening_preset_data.json';
 
   /// Directory path: assets/images/tilesets/white_black
   $AssetsImagesTilesetsWhiteBlackGen get whiteBlack =>
       const $AssetsImagesTilesetsWhiteBlackGen();
 
   /// File path: assets/images/tilesets/white_black.fa
-  String get whiteBlackFa => 'assets/images/tilesets/white_black.fa';
+  String get whiteBlackFa =>
+      'packages/map_editor/assets/images/tilesets/white_black.fa';
 
   /// File path: assets/images/tilesets/white_black.json
-  String get whiteBlackJson => 'assets/images/tilesets/white_black.json';
+  String get whiteBlackJson =>
+      'packages/map_editor/assets/images/tilesets/white_black.json';
 
   /// File path: assets/images/tilesets/white_black_credits.md
   String get whiteBlackCredits =>
-      'assets/images/tilesets/white_black_credits.md';
+      'packages/map_editor/assets/images/tilesets/white_black_credits.md';
 
   /// File path: assets/images/tilesets/white_black_preset_data.json
   String get whiteBlackPresetData =>
-      'assets/images/tilesets/white_black_preset_data.json';
+      'packages/map_editor/assets/images/tilesets/white_black_preset_data.json';
+
+  /// Directory path: packages/map_editor/assets/images/tilesets
+  String get path => 'packages/map_editor/assets/images/tilesets';
 
   /// List of all assets
   List<String> get values => [
@@ -108,6 +127,9 @@ class $AssetsImagesCursorsCursorGen {
   AssetGenImage get idle =>
       const AssetGenImage('assets/images/cursors/cursor/idle.png');
 
+  /// Directory path: packages/map_editor/assets/images/cursors/cursor
+  String get path => 'packages/map_editor/assets/images/cursors/cursor';
+
   /// List of all assets
   List<AssetGenImage> get values => [idle];
 }
@@ -123,6 +145,9 @@ class $AssetsImagesPreviewColourfulGen {
   AssetGenImage get markerRed =>
       const AssetGenImage('assets/images/preview/colourful/marker_red.png');
 
+  /// Directory path: packages/map_editor/assets/images/preview/colourful
+  String get path => 'packages/map_editor/assets/images/preview/colourful';
+
   /// List of all assets
   List<AssetGenImage> get values => [markerGreen, markerRed];
 }
@@ -134,6 +159,9 @@ class $AssetsImagesPreviewEveningGen {
   AssetGenImage get land =>
       const AssetGenImage('assets/images/preview/evening/land.png');
 
+  /// Directory path: packages/map_editor/assets/images/preview/evening
+  String get path => 'packages/map_editor/assets/images/preview/evening';
+
   /// List of all assets
   List<AssetGenImage> get values => [land];
 }
@@ -144,6 +172,9 @@ class $AssetsImagesPreviewWhiteBlackGen {
   /// File path: assets/images/preview/white_black/land.png
   AssetGenImage get land =>
       const AssetGenImage('assets/images/preview/white_black/land.png');
+
+  /// Directory path: packages/map_editor/assets/images/preview/white_black
+  String get path => 'packages/map_editor/assets/images/preview/white_black';
 
   /// List of all assets
   List<AssetGenImage> get values => [land];
@@ -216,6 +247,9 @@ class $AssetsImagesTilesetsEveningGen {
   AssetGenImage get objectCursorHandleIdle => const AssetGenImage(
     'assets/images/tilesets/evening/object__cursor_handle__idle.png',
   );
+
+  /// Directory path: packages/map_editor/assets/images/tilesets/evening
+  String get path => 'packages/map_editor/assets/images/tilesets/evening';
 
   /// List of all assets
   List<AssetGenImage> get values => [
@@ -328,6 +362,9 @@ class $AssetsImagesTilesetsWhiteBlackGen {
     'assets/images/tilesets/white_black/object__plant_6__idle.png',
   );
 
+  /// Directory path: packages/map_editor/assets/images/tilesets/white_black
+  String get path => 'packages/map_editor/assets/images/tilesets/white_black';
+
   /// List of all assets
   List<AssetGenImage> get values => [
     hotAirBalloonIdleRight0,
@@ -354,16 +391,26 @@ class $AssetsImagesTilesetsWhiteBlackGen {
 class Assets {
   const Assets._();
 
+  static const String package = 'map_editor';
+
   static const $AssetsImagesGen images = $AssetsImagesGen();
 }
 
 class AssetGenImage {
-  const AssetGenImage(this._assetName, {this.size, this.flavors = const {}});
+  const AssetGenImage(
+    this._assetName, {
+    this.size,
+    this.flavors = const {},
+    this.animation,
+  });
 
   final String _assetName;
 
+  static const String package = 'map_editor';
+
   final Size? size;
   final Set<String> flavors;
+  final AssetGenImageAnimation? animation;
 
   Image image({
     Key? key,
@@ -385,7 +432,8 @@ class AssetGenImage {
     bool matchTextDirection = false,
     bool gaplessPlayback = true,
     bool isAntiAlias = false,
-    String? package,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
     FilterQuality filterQuality = FilterQuality.medium,
     int? cacheWidth,
     int? cacheHeight,
@@ -418,11 +466,27 @@ class AssetGenImage {
     );
   }
 
-  ImageProvider provider({AssetBundle? bundle, String? package}) {
+  ImageProvider provider({
+    AssetBundle? bundle,
+    @Deprecated('Do not specify package for a generated library asset')
+    String? package = package,
+  }) {
     return AssetImage(_assetName, bundle: bundle, package: package);
   }
 
   String get path => _assetName;
 
-  String get keyName => _assetName;
+  String get keyName => 'packages/map_editor/$_assetName';
+}
+
+class AssetGenImageAnimation {
+  const AssetGenImageAnimation({
+    required this.isAnimation,
+    required this.duration,
+    required this.frames,
+  });
+
+  final bool isAnimation;
+  final Duration duration;
+  final int frames;
 }

@@ -13,7 +13,7 @@ _CanvasDataModel _$CanvasDataModelFromJson(Map<String, dynamic> json) =>
           : CanvasDataModelId.fromJson(json['id'] as String),
       name: json['name'] == null
           ? LocalizedMap.empty
-          : LocalizedMap.fromJsonValueMap(json['name'] as Map<String, dynamic>),
+          : LocalizedMap.fromJson(json['name']),
       layers:
           (json['layers'] as List<dynamic>?)
               ?.map((e) => LayerModel.fromJson(e as Map<String, dynamic>))
