@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 class EasyIn extends StatefulWidget {
@@ -40,7 +42,7 @@ class _EasyInState extends State<EasyIn> with SingleTickerProviderStateMixin {
       });
 
     _controller = controller;
-    controller.forward();
+    unawaited(controller.forward());
   }
 
   void disposeController() {

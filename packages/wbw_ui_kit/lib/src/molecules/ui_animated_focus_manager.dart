@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../wbw_ui_kit.dart';
@@ -64,7 +66,7 @@ class _UiAnimatedFocusManagerState extends State<UiAnimatedFocusManager>
       } else {
         _startPosition = _endPosition;
         _endPosition = position;
-        _controller.forward(from: 0);
+        unawaited(_controller.forward(from: 0));
       }
     });
   }

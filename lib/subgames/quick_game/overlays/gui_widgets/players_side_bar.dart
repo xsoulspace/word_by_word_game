@@ -1,8 +1,5 @@
-import 'dart:async';
 import 'dart:math' as math;
 
-import 'package:flutter_hooks/flutter_hooks.dart';
-import 'package:life_hooks/life_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/overlays/gui_widgets/gui_widgets.dart';
@@ -221,10 +218,12 @@ class _UiAvatarBookmarkState extends State<UiAvatarBookmark>
     if (newScore != _score) {
       _appearanceScoreAnimationController
         ?..reset()
+        // ignore: discarded_futures
         ..forward();
       if (newScore < _score) {
         _decreaseScoreAnimationController
           ?..reset()
+          // ignore: discarded_futures
           ..forward();
       }
       _score = newScore;

@@ -39,7 +39,7 @@ class _UiTextCounterState extends State<UiTextCounter>
         vsync: this,
       );
       _initializeAnimations();
-      _controller.forward();
+      unawaited(_controller.forward());
     });
   }
 

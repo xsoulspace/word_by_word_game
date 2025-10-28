@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/elements.dart';
 
@@ -111,7 +108,7 @@ class _UiBottomEnergyAnimationState extends State<UiBottomEnergyAnimation>
               setState(() {});
             }
           });
-          tuple.controller.forward();
+          unawaited(tuple.controller.forward());
           setState(() {});
           count--;
         }

@@ -37,6 +37,7 @@ class _LastWordTextState extends State<LastWordText> {
         try {
           _controller
             ?..reset()
+            // ignore: discarded_futures
             ..forward();
           // ignore: empty_catches, avoid_catches_without_on_clauses
         } catch (e) {
