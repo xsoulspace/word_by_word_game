@@ -8,7 +8,7 @@ part of 'data_models.dart';
 abstract class TutorialEventModel with _$TutorialEventModel {
   @JsonSerializable(explicitToJson: true)
   const factory TutorialEventModel({
-    @JsonKey(fromJson: LocalizedMap.fromJsonValueMap)
+    @JsonKey(fromJson: LocalizedMap.fromJson)
     required final LocalizedMap localizedMap,
 
     /// what will switch this event to the next

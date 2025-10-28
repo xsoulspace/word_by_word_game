@@ -78,7 +78,7 @@ abstract class PresetTilePropertiesModel with _$PresetTilePropertiesModel {
     @Default('') final String title,
     @Default('') final String thumbnailPath,
     @JsonKey(
-      fromJson: LocalizedMap.fromJsonValueMap,
+      fromJson: LocalizedMap.fromJson,
       toJson: LocalizedMap.toJsonValueMap,
     )
     @Default(LocalizedMap.empty)

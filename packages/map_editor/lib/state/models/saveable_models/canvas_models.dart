@@ -37,7 +37,7 @@ abstract class CanvasDataModel with _$CanvasDataModel {
     @Default(CanvasDataModelId.empty)
     final CanvasDataModelId id,
     @JsonKey(
-      fromJson: LocalizedMap.fromJsonValueMap,
+      fromJson: LocalizedMap.fromJson,
       toJson: LocalizedMap.toJsonValueMap,
     )
     @Default(LocalizedMap.empty)

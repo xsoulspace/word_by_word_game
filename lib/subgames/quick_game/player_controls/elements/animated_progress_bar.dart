@@ -144,7 +144,7 @@ class UiLabledProgressBar extends HookWidget {
       width: width,
       height: height,
       child: Tooltip(
-        message: LocalizedMap(value: tooltipMessage).getValue(locale),
+        message: LocalizedMap(tooltipMessage).getValue(locale),
         child: UiBaseButton(
           onPressed: onPressed,
           builder: (final context, final focused, final onlyFocused) => Stack(

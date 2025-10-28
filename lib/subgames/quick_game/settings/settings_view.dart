@@ -15,13 +15,11 @@ class SettingsView extends HookWidget {
         UiGaps.small,
         Center(
           child: Text(
-            LocalizedMap(
-              value: {
-                uiLanguages.en: 'SETTINGS',
-                uiLanguages.ru: 'НАСТРОЙКИ',
-                uiLanguages.it: 'IMPOSTAZIONI',
-              },
-            ).getValue(locale),
+            LocalizedMap({
+              uiLanguages.en: 'SETTINGS',
+              uiLanguages.ru: 'НАСТРОЙКИ',
+              uiLanguages.it: 'IMPOSTAZIONI',
+            }).getValue(locale),
             style: const TextStyle(fontSize: 24),
           ),
         ),
@@ -36,13 +34,11 @@ class SettingsView extends HookWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                LocalizedMap(
-                  value: {
-                    uiLanguages.en: 'Language',
-                    uiLanguages.ru: 'Язык',
-                    uiLanguages.it: 'Lingua',
-                  },
-                ).getValue(locale),
+                LocalizedMap({
+                  uiLanguages.en: 'Language',
+                  uiLanguages.ru: 'Язык',
+                  uiLanguages.it: 'Lingua',
+                }).getValue(locale),
                 style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w800,

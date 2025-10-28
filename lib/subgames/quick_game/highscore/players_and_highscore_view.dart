@@ -24,13 +24,11 @@ class PlayersAndHighscoreView extends HookWidget {
         UiGaps.small,
         Center(
           child: Text(
-            LocalizedMap(
-              value: {
-                uiLanguages.en: 'HIGHSCORES',
-                uiLanguages.ru: 'РЕЙТИНГ',
-                uiLanguages.it: 'CLASSIFICA',
-              },
-            ).getValue(locale),
+            LocalizedMap({
+              uiLanguages.en: 'HIGHSCORES',
+              uiLanguages.ru: 'РЕЙТИНГ',
+              uiLanguages.it: 'CLASSIFICA',
+            }).getValue(locale),
             style: const TextStyle(fontSize: 24),
           ),
         ),

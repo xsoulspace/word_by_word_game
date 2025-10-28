@@ -92,7 +92,7 @@ class _UiLocalizedTextFieldState extends State<UiLocalizedTextField> {
     text: widget.value.value.isEmpty ? null : widget.value.getValueByLanguage(),
   );
   late LocalizedMap _value = widget.value;
-  late UiLanguage _language = context.read<UiLocaleNotifier>().value.language;
+  late UiLanguage _language = context.read<UiLocaleResource>().value.language;
 
   @override
   void dispose() {

@@ -23,13 +23,11 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
     );
     final hotAirBalloonActions = [
       (
-        title: LocalizedMap(
-          value: {
-            uiLanguages.en: 'Flying Energy',
-            uiLanguages.ru: 'Энергия полета',
-            uiLanguages.it: 'Energia di volo',
-          },
-        ),
+        title: LocalizedMap({
+          uiLanguages.en: 'Flying Energy',
+          uiLanguages.ru: 'Энергия полета',
+          uiLanguages.it: 'Energia di volo',
+        }),
         iconChildren: [
           Image.asset(
             UiAssetHelper.useImagePath(UiAssetsIcons.fire.path),
@@ -47,13 +45,11 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
       ),
       if (isPoweringEngineAvailable)
         (
-          title: LocalizedMap(
-            value: {
-              uiLanguages.en: 'Actions',
-              uiLanguages.ru: 'Действия',
-              uiLanguages.it: 'Azioni',
-            },
-          ),
+          title: LocalizedMap({
+            uiLanguages.en: 'Actions',
+            uiLanguages.ru: 'Действия',
+            uiLanguages.it: 'Azioni',
+          }),
           iconChildren: [
             const Icon(CupertinoIcons.book, size: 18),
             const Gap(2),
@@ -63,13 +59,11 @@ class UIActionFrameAdvanced extends StatelessWidget with TechLevelMixin {
     ];
     final tentActions = [
       (
-        title: LocalizedMap(
-          value: {
-            uiLanguages.en: 'Actions',
-            uiLanguages.ru: 'Действия',
-            uiLanguages.it: 'Azioni',
-          },
-        ),
+        title: LocalizedMap({
+          uiLanguages.en: 'Actions',
+          uiLanguages.ru: 'Действия',
+          uiLanguages.it: 'Azioni',
+        }),
         iconChildren: [const Icon(CupertinoIcons.book, size: 18), const Gap(2)],
         tabView: const TentActionsView(),
       ),

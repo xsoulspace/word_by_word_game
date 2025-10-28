@@ -53,13 +53,11 @@ class GameInitializer {
     PlayerCharacterModel(
       id: const Gid(value: 'balloon 1'),
       gid: const Gid(value: 'balloon 1'),
-      localizedName: LocalizedMap(
-        value: {
-          uiLanguages.en: 'Hot Air Balloon',
-          uiLanguages.ru: 'Воздушный шар',
-          uiLanguages.it: 'Mongolfiera',
-        },
-      ),
+      localizedName: LocalizedMap({
+        uiLanguages.en: 'Hot Air Balloon',
+        uiLanguages.ru: 'Воздушный шар',
+        uiLanguages.it: 'Mongolfiera',
+      }),
       characterIcon: 'char_hot_air_baloon',
       description: 'Moves with the wind..',
       color: Colors.green.value,

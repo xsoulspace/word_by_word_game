@@ -71,7 +71,7 @@ Future<void> _init() async {
   /// ********************************************
   /// *      Notifiers
   /// ********************************************
-  final localeNotifier = UiLocaleNotifier(Locales.fallback);
+  final localeNotifier = UiLocaleResource(Locales.fallback);
   r(localeNotifier, dispose: d);
 }
 
@@ -82,7 +82,9 @@ mixin HasLocalApis {
 /// Resources cannot access any Notifiers directly.
 /// They have simple mission - to distribute and store runtime data
 /// for ui access.
-mixin HasResources {}
+mixin HasResources {
+  UiLocaleResource get uiLocaleResource => _g();
+}
 
 /// These states should not be used in each other,
 /// but they can access Distributors via [HasResources]
@@ -90,7 +92,7 @@ mixin HasResources {}
 /// States can and should have business logic, but should minimize
 /// state usage to make ui management more effective.
 mixin HasNotifiers {
-  UiLocaleNotifier get localeNotifier => _g();
+  UiLocaleResource get localeNotifier => _g();
   AppSettingsNotifier get appSettingsNotifier => _g();
 }
 

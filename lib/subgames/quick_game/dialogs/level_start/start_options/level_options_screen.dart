@@ -119,13 +119,11 @@ class _ExperimentsListView extends HookWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(
-          LocalizedMap(
-            value: {
-              uiLanguages.en: 'Experiments',
-              uiLanguages.ru: 'Эксперименты',
-              uiLanguages.it: 'Esperimenti',
-            },
-          ).getValue(locale).toUpperCase(),
+          LocalizedMap({
+            uiLanguages.en: 'Experiments',
+            uiLanguages.ru: 'Эксперименты',
+            uiLanguages.it: 'Esperimenti',
+          }).getValue(locale).toUpperCase(),
           style: context.textThemeBold.titleMedium,
         ),
         CheckboxListTile(
@@ -137,13 +135,11 @@ class _ExperimentsListView extends HookWidget {
           title: Row(
             children: [
               Text(
-                LocalizedMap(
-                  value: {
-                    uiLanguages.en: 'Technologies',
-                    uiLanguages.ru: 'Технологии',
-                    uiLanguages.it: 'Tecnologie',
-                  },
-                ).getValue(locale),
+                LocalizedMap({
+                  uiLanguages.en: 'Technologies',
+                  uiLanguages.ru: 'Технологии',
+                  uiLanguages.it: 'Tecnologie',
+                }).getValue(locale),
               ),
               if (isDictionariesLoading) ...[
                 const Gap(12),
@@ -153,19 +149,17 @@ class _ExperimentsListView extends HookWidget {
           ),
           enabled: !isDictionariesLoading,
           subtitle: Text(
-            LocalizedMap(
-              value: {
-                uiLanguages.en:
-                    // ignore: lines_longer_than_80_chars
-                    'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading may take a few minutes.',
-                uiLanguages.ru:
-                    // ignore: lines_longer_than_80_chars
-                    'Примечание: данная функция требует предварительного большой загрузки дополнительных словарей (около 30 мб), поэтому первая загрузка уровня займет несколько минут.',
-                uiLanguages.it:
-                    // ignore: lines_longer_than_80_chars
-                    'Nota: questa funzione richiede di caricare un grande numero di dizionari (circa 30 mb), pertanto il caricamento del primo livello potrebbe richiedere alcuni minuti.',
-              },
-            ).getValue(locale),
+            LocalizedMap({
+              uiLanguages.en:
+                  // ignore: lines_longer_than_80_chars
+                  'Notice: this feature requires to preload a massive amount of dictionaries (about 30 mb), so first level loading may take a few minutes.',
+              uiLanguages.ru:
+                  // ignore: lines_longer_than_80_chars
+                  'Примечание: данная функция требует предварительного большой загрузки дополнительных словарей (около 30 мб), поэтому первая загрузка уровня займет несколько минут.',
+              uiLanguages.it:
+                  // ignore: lines_longer_than_80_chars
+                  'Nota: questa funzione richiede di caricare un grande numero di dizionari (circa 30 mb), pertanto il caricamento del primo livello potrebbe richiedere alcuni minuti.',
+            }).getValue(locale),
           ),
         ),
         if (isAdvancedGame)

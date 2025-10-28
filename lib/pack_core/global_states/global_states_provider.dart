@@ -2,6 +2,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_dictionaries/wbw_dictionaries.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/pack_core/ads/states/states.dart';
+import 'package:word_by_word_game/pack_core/di/di.dart';
 import 'package:word_by_word_game/pack_core/global_states/debug/debug.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_services_initializer.dart';
 import 'package:word_by_word_game/pack_core/global_states/weather/weather_cubit.dart';
@@ -10,8 +11,6 @@ import 'package:word_by_word_game/subgames/quick_game/keyboards/keyboard_element
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_power_points_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/screen_animations/ui_tech_points_animation.dart';
 import 'package:word_by_word_game/subgames/quick_game/player_controls/elements/word_composition_bar/word_composition_bar.dart';
-
-final uiLocaleNotifier = UiLocaleNotifier(uiLanguages.en.locale);
 
 class GlobalStatesProvider extends StatelessWidget {
   const GlobalStatesProvider({
@@ -28,7 +27,7 @@ class GlobalStatesProvider extends StatelessWidget {
       ChangeNotifierProvider(create: UiTechPointsAnimationNotifier.new),
       ChangeNotifierProvider(create: UiPowerPointsAnimationNotifier.new),
       ChangeNotifierProvider(create: AppStatusNotifier.new),
-      ChangeNotifierProvider.value(value: uiLocaleNotifier),
+      ChangeNotifierProvider.value(value: Di.get<UiLocaleResource>()),
       ChangeNotifierProvider(create: OnlineStatusService.new),
       Provider(
         create: (final context) => AppServerpodClient(url: Envs.serverUrl),

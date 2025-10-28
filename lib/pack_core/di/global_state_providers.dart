@@ -13,7 +13,7 @@ class GlobalStateProviders extends StatelessWidget {
     const g = Di.get;
 
     return MultiProvider(
-      providers: [ChangeNotifierProvider<UiLocaleNotifier>.value(value: g())],
+      providers: [ChangeNotifierProvider<UiLocaleResource>.value(value: g())],
       child: builder(context),
     );
   }

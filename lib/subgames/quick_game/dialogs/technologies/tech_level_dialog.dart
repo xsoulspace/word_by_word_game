@@ -32,13 +32,11 @@ class TechLevelsDialog extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              LocalizedMap(
-                value: {
-                  uiLanguages.en: 'Technologies Progress',
-                  uiLanguages.ru: 'Прогресс технологий',
-                  uiLanguages.it: 'Progresso tecnologie',
-                },
-              ).getValue(locale),
+              LocalizedMap({
+                uiLanguages.en: 'Technologies Progress',
+                uiLanguages.ru: 'Прогресс технологий',
+                uiLanguages.it: 'Progresso tecnologie',
+              }).getValue(locale),
               style: context.textTheme.titleLarge,
               textAlign: TextAlign.center,
             ),
@@ -75,16 +73,14 @@ class TechLevelsDialog extends StatelessWidget {
                           ),
                           const Gap(4),
                           Text(
-                            LocalizedMap(
-                              value: {
-                                uiLanguages.en:
-                                    'Use words to research technology faster.',
-                                uiLanguages.ru:
-                                    'Использовать слова для быстрого исследования технологий.',
-                                uiLanguages.it:
-                                    'Usare parole per un ricerche veloce della tecnologia.',
-                              },
-                            ).getValue(locale),
+                            LocalizedMap({
+                              uiLanguages.en:
+                                  'Use words to research technology faster.',
+                              uiLanguages.ru:
+                                  'Использовать слова для быстрого исследования технологий.',
+                              uiLanguages.it:
+                                  'Usare parole per un ricerche veloce della tecnologia.',
+                            }).getValue(locale),
                             textAlign: TextAlign.center,
                             style: context.textTheme.bodyMedium?.copyWith(
                               color: color,

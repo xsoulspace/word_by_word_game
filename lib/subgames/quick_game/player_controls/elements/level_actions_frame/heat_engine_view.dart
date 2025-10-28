@@ -468,7 +468,7 @@ class UiTechnologyCircle extends StatelessWidget {
     final locale = useLocale(context);
 
     return Tooltip(
-      message: LocalizedMap(value: tooltipMessage).getValue(locale),
+      message: LocalizedMap(tooltipMessage).getValue(locale),
       child: UiBaseButton(
         onPressed: onPressed,
         builder: (final context, final focused, final onlyFocused) => Column(

@@ -107,13 +107,11 @@ class LevelWordSuggestionDialog extends HookWidget {
                     Expanded(child: Divider(color: fadeColor)),
                     const Gap(16),
                     Text(
-                      LocalizedMap(
-                        value: {
-                          uiLanguages.en: 'Meaning',
-                          uiLanguages.ru: 'Значение',
-                          uiLanguages.it: 'Meaning',
-                        },
-                      ).getValue(locale),
+                      LocalizedMap({
+                        uiLanguages.en: 'Meaning',
+                        uiLanguages.ru: 'Значение',
+                        uiLanguages.it: 'Meaning',
+                      }).getValue(locale),
                       style: context.textTheme.labelMedium?.copyWith(
                         color: fadeColor,
                       ),
@@ -256,13 +254,11 @@ class LevelWordSuggestionDialog extends HookWidget {
                       mainAxisSize: MainAxisSize.min,
                       children: [
                         Text(
-                          LocalizedMap(
-                            value: {
-                              uiLanguages.en: 'Use Score',
-                              uiLanguages.ru: 'Применить очки',
-                              uiLanguages.it: 'Usa punteggio',
-                            },
-                          ).getValue(locale),
+                          LocalizedMap({
+                            uiLanguages.en: 'Use Score',
+                            uiLanguages.ru: 'Применить очки',
+                            uiLanguages.it: 'Usa punteggio',
+                          }).getValue(locale),
                           style: context.textTheme.labelLarge,
                         ),
                       ],
@@ -281,13 +277,11 @@ class LevelWordSuggestionDialog extends HookWidget {
                         children: [
                           Flexible(
                             child: Text(
-                              LocalizedMap(
-                                value: {
-                                  uiLanguages.en: 'Roll a Chance',
-                                  uiLanguages.ru: 'Бросить шанс',
-                                  uiLanguages.it: 'Tira la possibilità',
-                                },
-                              ).getValue(locale),
+                              LocalizedMap({
+                                uiLanguages.en: 'Roll a Chance',
+                                uiLanguages.ru: 'Бросить шанс',
+                                uiLanguages.it: 'Tira la possibilità',
+                              }).getValue(locale),
                               textAlign: TextAlign.center,
                             ),
                           ),
@@ -317,13 +311,11 @@ class UiCircleCloseButton extends StatelessWidget {
   Widget build(final BuildContext context) {
     final locale = useLocale(context);
     return UiStyledButton(
-      tooltip: LocalizedMap(
-        value: {
-          uiLanguages.en: 'Close (X or ESC)',
-          uiLanguages.ru: 'Закрыть (X или ESC)',
-          uiLanguages.it: 'Chiudi (X o ESC)',
-        },
-      ).getValue(locale),
+      tooltip: LocalizedMap({
+        uiLanguages.en: 'Close (X or ESC)',
+        uiLanguages.ru: 'Закрыть (X или ESC)',
+        uiLanguages.it: 'Chiudi (X o ESC)',
+      }).getValue(locale),
       onPressed: onPressed,
       icon: icon,
       padding: icon != null
@@ -360,13 +352,11 @@ class _UsePointsButton extends StatelessWidget {
       children: [
         Expanded(
           child: Text(
-            LocalizedMap(
-              value: {
-                uiLanguages.en: 'Your Score',
-                uiLanguages.ru: 'Твои очки',
-                uiLanguages.it: 'Punteggio',
-              },
-            ).getValue(locale),
+            LocalizedMap({
+              uiLanguages.en: 'Your Score',
+              uiLanguages.ru: 'Твои очки',
+              uiLanguages.it: 'Punteggio',
+            }).getValue(locale),
             style: context.textThemeBold.labelLarge?.copyWith(color: fadeColor),
             textAlign: TextAlign.right,
           ),
@@ -383,13 +373,11 @@ class _UsePointsButton extends StatelessWidget {
         const Gap(12),
         Expanded(
           child: Text(
-            LocalizedMap(
-              value: {
-                uiLanguages.en: 'Word Score',
-                uiLanguages.ru: 'Очки слова',
-                uiLanguages.it: 'Punteggio Parola',
-              },
-            ).getValue(locale),
+            LocalizedMap({
+              uiLanguages.en: 'Word Score',
+              uiLanguages.ru: 'Очки слова',
+              uiLanguages.it: 'Punteggio Parola',
+            }).getValue(locale),
             style: context.textThemeBold.labelLarge?.copyWith(color: fadeColor),
           ),
         ),

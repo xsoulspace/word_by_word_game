@@ -78,8 +78,7 @@ abstract class TechnologyModel with _$TechnologyModel {
   @JsonSerializable(explicitToJson: true)
   const factory TechnologyModel({
     required final TechnologyModelId id,
-    @JsonKey(fromJson: LocalizedMap.fromJsonValueMap)
-    required final LocalizedMap title,
+    @JsonKey(fromJson: LocalizedMap.fromJson) required final LocalizedMap title,
     // TODO(antmalofeev): add icon?
     /// use [TechnologyProgressModel] to store/retrieve actual progress
     required final TechnologyUnlockConditionModel unlockCondition,

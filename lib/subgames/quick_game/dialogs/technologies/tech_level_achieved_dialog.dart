@@ -24,14 +24,12 @@ class TechLevelAchievedDialog extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  LocalizedMap(
-                    value: {
-                      // TODO(arenukvern): l10n
-                      uiLanguages.en: achievedLevel.title,
-                      uiLanguages.ru: achievedLevel.title,
-                      uiLanguages.it: achievedLevel.title,
-                    },
-                  ).getValue(locale),
+                  LocalizedMap({
+                    // TODO(arenukvern): l10n
+                    uiLanguages.en: achievedLevel.title,
+                    uiLanguages.ru: achievedLevel.title,
+                    uiLanguages.it: achievedLevel.title,
+                  }).getValue(locale),
                   style: context.textTheme.titleLarge,
                   textAlign: TextAlign.center,
                 ),
@@ -46,16 +44,13 @@ class TechLevelAchievedDialog extends StatelessWidget {
               children: [
                 Flexible(
                   child: Text(
-                    LocalizedMap(
-                      value: {
-                        uiLanguages.en:
-                            'Congratulations! You achieved a new level!',
-                        uiLanguages.ru:
-                            'Поздравляем! Вы достигли нового уровня!',
-                        uiLanguages.it:
-                            'Congratulazioni! Hai raggiunto un nuovo livello!',
-                      },
-                    ).getValue(locale),
+                    LocalizedMap({
+                      uiLanguages.en:
+                          'Congratulations! You achieved a new level!',
+                      uiLanguages.ru: 'Поздравляем! Вы достигли нового уровня!',
+                      uiLanguages.it:
+                          'Congratulazioni! Hai raggiunto un nuovo livello!',
+                    }).getValue(locale),
                     style: context.textTheme.labelMedium,
                     textAlign: TextAlign.center,
                   ),

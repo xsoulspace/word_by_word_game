@@ -35,7 +35,7 @@ enum PlayerProfileCreatorError {
   };
 
   String getLocalized(final Locale locale) =>
-      LocalizedMap(value: locales[this]!).getValue(locale);
+      LocalizedMap(locales[this]!).getValue(locale);
 }
 
 class PlayerProfileCreatorNotifier

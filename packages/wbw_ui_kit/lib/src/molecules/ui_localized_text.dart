@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:wbw_locale/wbw_locale.dart';
 
 Locale useLocale(final BuildContext context, {final bool listen = true}) =>
-    Provider.of<UiLocaleNotifier>(context, listen: listen).value;
+    Provider.of<UiLocaleResource>(context, listen: listen).value;
 
 class UiLocalizedText extends HookWidget {
   const UiLocalizedText({super.key});

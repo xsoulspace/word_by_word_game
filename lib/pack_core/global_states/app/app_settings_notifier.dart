@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:word_by_word_game/common_imports.dart';
-import 'package:word_by_word_game/pack_core/global_states/global_states_provider.dart';
+import 'package:word_by_word_game/pack_core/di/dependency_injector.dart';
 
 class AppSettingsCubitDto {
   AppSettingsCubitDto({required final BuildContext context})
@@ -8,7 +8,8 @@ class AppSettingsCubitDto {
   final AppSettingsRepository appSettingsRepository;
 }
 
-class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
+class AppSettingsNotifier extends ValueNotifier<AppSettingsModel>
+    with HasResources {
   AppSettingsNotifier(final BuildContext context)
     : dto = AppSettingsCubitDto(context: context),
       super(AppSettingsModel.empty);
@@ -25,16 +26,16 @@ class AppSettingsNotifier extends ValueNotifier<AppSettingsModel> {
     await updateLocale(value.locale);
   }
 
-  ValueListenable<Locale> get locale => uiLocaleNotifier;
+  ValueListenable<Locale> get locale => uiLocaleResource;
   UiLanguage get language => locale.value.language;
   Future<void> updateLocale(final Locale? locale) async {
-    final result = await LocaleLogic().updateLocale(
+    final result = await const LocaleLogic().updateLocale(
       newLocale: locale,
       oldLocale: value.locale,
-      uiLocale: uiLocaleNotifier.value,
+      uiLocale: uiLocaleResource.value,
     );
     if (result == null) return;
-    uiLocaleNotifier.value = result.uiLocale;
+    uiLocaleResource.value = result.uiLocale;
     notifyListeners();
     if (value.locale == result.updatedLocale) return;
     await _updateSettings(value.copyWith(locale: result.updatedLocale));

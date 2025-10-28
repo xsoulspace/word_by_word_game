@@ -94,13 +94,11 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
             mainAxisSize: MainAxisSize.min,
             children: [
               _CurrentWeatherText(
-                tooltipMessage: LocalizedMap(
-                  value: {
-                    uiLanguages.en: 'Current weather type',
-                    uiLanguages.ru: 'Текущий тип погоды',
-                    uiLanguages.it: 'Tipo di previsione attuale',
-                  },
-                ).getValue(locale),
+                tooltipMessage: LocalizedMap({
+                  uiLanguages.en: 'Current weather type',
+                  uiLanguages.ru: 'Текущий тип погоды',
+                  uiLanguages.it: 'Tipo di previsione attuale',
+                }).getValue(locale),
                 weather: currentWeather,
               ),
 
@@ -113,28 +111,24 @@ class UIWeatherBar extends StatelessWidget with TechLevelMixin {
                   child: Column(
                     children: [
                       WindDirectionBadge(
-                        tooltipMessage: LocalizedMap(
-                          value: {
-                            uiLanguages.en: 'Horizontal wind force',
-                            uiLanguages.ru: 'Горизонтальная сила ветера',
-                            uiLanguages.it: 'Forza del vento orizzontale',
-                          },
-                        ).getValue(locale),
+                        tooltipMessage: LocalizedMap({
+                          uiLanguages.en: 'Horizontal wind force',
+                          uiLanguages.ru: 'Горизонтальная сила ветера',
+                          uiLanguages.it: 'Forza del vento orizzontale',
+                        }).getValue(locale),
                         value: currentWind.force.x,
                         direction: Axis.horizontal,
                       ),
                       Divider(color: borderColor, height: 1, thickness: 1),
                       WindDirectionBadge(
-                        tooltipMessage: LocalizedMap(
-                          value: {
-                            uiLanguages.en:
-                                'Vertical wind force, can blow up or down',
-                            uiLanguages.ru:
-                                'Вертикальная сила ветера, может дуть вниз или вверх',
-                            uiLanguages.it:
-                                'Forza del vento verticale, puô essere sopra o sotto',
-                          },
-                        ).getValue(locale),
+                        tooltipMessage: LocalizedMap({
+                          uiLanguages.en:
+                              'Vertical wind force, can blow up or down',
+                          uiLanguages.ru:
+                              'Вертикальная сила ветера, может дуть вниз или вверх',
+                          uiLanguages.it:
+                              'Forza del vento verticale, puô essere sopra o sotto',
+                        }).getValue(locale),
                         value: currentWind.force.y,
                         direction: Axis.vertical,
                       ),
@@ -170,13 +164,11 @@ class _NextWeathersRow extends StatelessWidget {
       children: [
         if (firstWeather != null)
           Tooltip(
-            message: LocalizedMap(
-              value: {
-                uiLanguages.en: 'Next weather predictions',
-                uiLanguages.ru: 'Предсказания погоды',
-                uiLanguages.it: 'Previsioni della prossima previsione',
-              },
-            ).getValue(locale),
+            message: LocalizedMap({
+              uiLanguages.en: 'Next weather predictions',
+              uiLanguages.ru: 'Предсказания погоды',
+              uiLanguages.it: 'Previsioni della prossima previsione',
+            }).getValue(locale),
             child: TutorialFrame(
               highlightPosition: Alignment.bottomRight,
               uiKey: TutorialUiItem.currentWeather,
@@ -185,7 +177,7 @@ class _NextWeathersRow extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        '${firstWeather.windScale.emojiRepresentation}${LocalizedMap(value: {uiLanguages.en: 'in', uiLanguages.ru: 'в', uiLanguages.it: 'in'}).getValue(locale)} ${state.weather.durationInGameSeconds}',
+                        '${firstWeather.windScale.emojiRepresentation}${LocalizedMap({uiLanguages.en: 'in', uiLanguages.ru: 'в', uiLanguages.it: 'in'}).getValue(locale)} ${state.weather.durationInGameSeconds}',
                         style: context.textTheme.labelSmall,
                       ),
                       WindDirectionArrow.fromWeather(weather: firstWeather),

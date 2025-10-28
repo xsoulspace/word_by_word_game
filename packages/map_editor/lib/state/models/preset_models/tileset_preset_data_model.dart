@@ -52,7 +52,7 @@ abstract class TilesetPresetDataModel with _$TilesetPresetDataModel {
     @Default(_nameCodes)
     final Map<SpriteTileName, List<SpriteCode>> autotileRules,
     @JsonKey(
-      fromJson: LocalizedMap.fromJsonValueMap,
+      fromJson: LocalizedMap.fromJson,
       toJson: LocalizedMap.toJsonValueMap,
     )
     @Default(LocalizedMap.empty)
