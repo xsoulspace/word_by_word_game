@@ -132,7 +132,7 @@ class _TechRow {
               onChanged: (final value) {
                 final updatedTechnology = technology.copyWith(
                   title: technology.title.copyWith(
-                    value: {...technology.title.value}..[language] = value,
+                    value: {...technology.title.value, language: value},
                   ),
                 );
                 onChanged(updatedTechnology);

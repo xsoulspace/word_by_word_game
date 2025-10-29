@@ -16,7 +16,7 @@ dependencies:
   freezed_annotation: ^3.1.0
   intl: ^0.20.2
   xsoulspace_foundation: ^0.3.0
-  xsoulspace_locale: ^0.3.2
+  xsoulspace_locale: ^0.3.6
   xsoulspace_ui_foundation: ^0.3.1
 
 dev_dependencies:
