@@ -141,19 +141,23 @@ class _DialogBody extends HookWidget {
 
     return switch (state.dialogType) {
       GameDialogType.none => const SizedBox(),
-      GameDialogType.gameTechnologiesTree => TechLevelsDialog(
-        onClose: state.closeDialogAndResume,
+      GameDialogType.gameTechnologiesTree => Center(
+        child: TechLevelsDialog(onClose: state.closeDialogAndResume),
       ),
-      GameDialogType.gameTechLevelAchieved => TechLevelAchievedDialog(
-        onClose: state.closeDialogAndResume,
+      GameDialogType.gameTechLevelAchieved => Center(
+        child: TechLevelAchievedDialog(onClose: state.closeDialogAndResume),
       ),
-      GameDialogType.gameLevelLost => LevelLostDialog(
-        onRestart: state.onRestartContinueLevel,
-        onToLevels: state.onExitLevel,
+      GameDialogType.gameLevelLost => Center(
+        child: LevelLostDialog(
+          onRestart: state.onRestartContinueLevel,
+          onToLevels: state.onExitLevel,
+        ),
       ),
-      GameDialogType.gameLevelWin => LevelWinDialog(
-        onContinue: state.onRestartContinueLevel,
-        onToLevels: state.onExitLevel,
+      GameDialogType.gameLevelWin => Center(
+        child: LevelWinDialog(
+          onContinue: state.onRestartContinueLevel,
+          onToLevels: state.onExitLevel,
+        ),
       ),
       GameDialogType.gameLevelWordSuggestion => const Center(
         child: LevelWordSuggestionDialog(),
