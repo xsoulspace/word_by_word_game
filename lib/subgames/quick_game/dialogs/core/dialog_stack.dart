@@ -1,6 +1,3 @@
-import 'dart:async';
-
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:provider/provider.dart';
 import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
@@ -87,6 +84,7 @@ class _Dialog extends PopupRoute {
   bool get barrierDismissible => switch (dialogType) {
     GameDialogType.menuSettings ||
     GameDialogType.menuPlayersAndHighscore => true,
+    GameDialogType.none => true,
     _ => false,
   };
 
@@ -139,7 +137,7 @@ class _DialogBody extends HookWidget {
         Navigator.pop(context);
       }
       return null;
-    }, [state]);
+    }, [state._dialogType]);
 
     return switch (state.dialogType) {
       GameDialogType.none => const SizedBox(),
@@ -157,8 +155,9 @@ class _DialogBody extends HookWidget {
         onContinue: state.onRestartContinueLevel,
         onToLevels: state.onExitLevel,
       ),
-      GameDialogType.gameLevelWordSuggestion =>
-        const LevelWordSuggestionDialog(),
+      GameDialogType.gameLevelWordSuggestion => const Center(
+        child: LevelWordSuggestionDialog(),
+      ),
       GameDialogType.gameTutorialBool => const TutorialBoolDialog(),
       GameDialogType.gameTutorialOk => const TutorialOkDialog(),
       GameDialogType.menuSettings => const Center(child: SettingsView()),
