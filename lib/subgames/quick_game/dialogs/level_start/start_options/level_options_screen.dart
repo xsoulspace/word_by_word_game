@@ -20,9 +20,10 @@ class LevelOptionsScreen extends HookWidget {
     useListenable(uxState.isDictionariesLoading);
     final statusCubit = context.watch<StatesStatusesCubit>();
     final isQuickGame = uxState.isQuickGame;
-    return Scrollbar(
-      thumbVisibility: true,
-      child: SingleChildScrollView(
+
+    return UiScrollbarBuilder(
+      builder: (final context, final scrollController) => SingleChildScrollView(
+        controller: scrollController,
         child: Column(
           children: [
             UiGaps.medium,
@@ -82,7 +83,7 @@ class LevelOptionsScreen extends HookWidget {
                             );
                             return;
                           }
-                          return uxState.onStartNewGame(
+                          await uxState.onStartNewGame(
                             context: context,
                             canvasId: canvasId,
                           );

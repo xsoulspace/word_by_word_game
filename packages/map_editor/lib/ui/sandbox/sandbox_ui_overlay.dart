@@ -2,7 +2,6 @@ import 'dart:ui';
 
 import 'package:blur/blur.dart';
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:map_editor/state/models/preset_resources/preset_resources.dart';
 import 'package:map_editor/state/state.dart';
@@ -50,9 +49,10 @@ class TileButtons extends StatelessWidget {
     final tilesResources = drawerCubit.tilesPresetResources;
     // final locale = useLocale(context);
 
-    return CupertinoScrollbar(
+    return UiScrollbarBuilder(
       thumbVisibility: true,
-      child: ListView(
+      builder: (final context, final scrollController) => ListView(
+        controller: scrollController,
         primary: true,
         shrinkWrap: true,
         scrollDirection: Axis.horizontal,

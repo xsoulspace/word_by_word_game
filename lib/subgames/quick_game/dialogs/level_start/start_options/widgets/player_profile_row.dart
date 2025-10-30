@@ -2,11 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:wbw_core/wbw_core.dart';
 import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 
-class PlayerProfileRow extends StatelessWidget {
+class PlayerProfileRow extends HookWidget {
   const PlayerProfileRow({
     required this.onSelected,
     required this.checkIsPlayerSelected,
@@ -19,24 +20,28 @@ class PlayerProfileRow extends StatelessWidget {
       BlocBuilder<GlobalGameBloc, GlobalGameBlocState>(
         builder: (final context, final state) {
           final players = state.playersCollection;
-          return Scrollbar(
+
+          return UiScrollbarBuilder(
             interactive: true,
-            child: ListView.separated(
-              scrollDirection: Axis.horizontal,
-              separatorBuilder: (final context, final index) => UiGaps.large,
-              padding: EdgeInsets.zero,
-              itemCount: players.length,
-              shrinkWrap: true,
-              itemBuilder: (final context, final index) {
-                final player = players[index];
-                return PlayerProfileCard(
-                  key: ValueKey(player),
-                  player: player,
-                  onSelected: onSelected,
-                  selected: checkIsPlayerSelected(player),
-                );
-              },
-            ),
+            builder: (final context, final scrollController) =>
+                ListView.separated(
+                  controller: scrollController,
+                  scrollDirection: Axis.horizontal,
+                  separatorBuilder: (final context, final index) =>
+                      UiGaps.large,
+                  padding: EdgeInsets.zero,
+                  itemCount: players.length,
+                  shrinkWrap: true,
+                  itemBuilder: (final context, final index) {
+                    final player = players[index];
+                    return PlayerProfileCard(
+                      key: ValueKey(player),
+                      player: player,
+                      onSelected: onSelected,
+                      selected: checkIsPlayerSelected(player),
+                    );
+                  },
+                ),
           );
         },
       );

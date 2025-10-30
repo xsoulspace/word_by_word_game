@@ -116,7 +116,7 @@ class _Dialog extends PopupRoute {
         ),
       ),
     ),
-    child: _DialogBody(onDismiss: onDismiss),
+    child: const _DialogBody(),
   );
 
   @override
@@ -124,9 +124,7 @@ class _Dialog extends PopupRoute {
 }
 
 class _DialogBody extends HookWidget {
-  const _DialogBody({required this.onDismiss});
-
-  final VoidCallback onDismiss;
+  const _DialogBody();
 
   @override
   Widget build(final BuildContext context) {
@@ -134,7 +132,8 @@ class _DialogBody extends HookWidget {
 
     useEffect(() {
       if (state.dialogType case GameDialogType.none when context.mounted) {
-        Navigator.pop(context);
+        final navigator = Navigator.maybeOf(context);
+        unawaited(navigator?.maybePop());
       }
       return null;
     }, [state._dialogType]);

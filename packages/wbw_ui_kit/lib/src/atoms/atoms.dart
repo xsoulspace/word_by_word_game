@@ -16,6 +16,7 @@ export 'ui_gaps.dart';
 export 'ui_icon.dart';
 export 'ui_responsible_layout.dart';
 export 'ui_safe_area.dart';
+export 'ui_scrollbar_builder.dart';
 export 'ui_text.dart';
 export 'ui_tooltip.dart';
 export 'ui_triangle.dart';

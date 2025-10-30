@@ -8,7 +8,6 @@ import 'package:word_by_word_game/common_imports.dart';
 import 'package:word_by_word_game/router.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/level_options.dart';
 import 'package:word_by_word_game/subgames/quick_game/pause/pause.dart';
-import 'package:word_by_word_game/subgames/quick_game/pause/widgets/widgets.dart';
 
 part 'level_start_dialog_ui_state.dart';
 part 'level_start_dialog_ux_notifier.dart';
