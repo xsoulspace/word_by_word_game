@@ -9,7 +9,6 @@ import 'package:wbw_ui_kit/wbw_ui_kit.dart';
 import 'package:word_by_word_game/pack_core/global_states/global_states.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/dialogs.dart';
 import 'package:word_by_word_game/subgames/quick_game/dialogs/level_start/start_options/widgets/player_profile_row.dart';
-import 'package:word_by_word_game/subgames/quick_game/pause/widgets/start_game_hex.dart';
 
 class LevelOptionsScreen extends HookWidget {
   const LevelOptionsScreen({required this.onCreatePlayer, super.key});
@@ -20,7 +19,7 @@ class LevelOptionsScreen extends HookWidget {
     final unblockerNotifier = useState(0);
     useListenable(uxState.isDictionariesLoading);
     final statusCubit = context.watch<StatesStatusesCubit>();
-    final isQuickGame = uxState.canvasDataId == kQuickGameMapId;
+    final isQuickGame = uxState.isQuickGame;
     return Scrollbar(
       thumbVisibility: true,
       child: SingleChildScrollView(

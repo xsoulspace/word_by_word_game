@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -41,6 +40,166 @@ class $LevelPlayerEventCopyWith<$Res>  {
 $LevelPlayerEventCopyWith(LevelPlayerEvent _, $Res Function(LevelPlayerEvent) __);
 }
 
+
+/// Adds pattern-matching-related methods to [LevelPlayerEvent].
+extension LevelPlayerEventPatterns on LevelPlayerEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( InitLevelPlayersEvent value)?  init,TResult Function( SwitchToNextPlayerEvent value)?  switchToNextPlayer,TResult Function( ChangeCharacterPositionEvent value)?  changeCharacterPosition,TResult Function( RefuelStorageEvent value)?  refuelStorage,TResult Function( ResearchTechnologyEvent value)?  researchTechnology,TResult Function( UpdatePlayerHighscoreEvent value)?  updatePlayerHighscore,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case InitLevelPlayersEvent() when init != null:
+return init(_that);case SwitchToNextPlayerEvent() when switchToNextPlayer != null:
+return switchToNextPlayer(_that);case ChangeCharacterPositionEvent() when changeCharacterPosition != null:
+return changeCharacterPosition(_that);case RefuelStorageEvent() when refuelStorage != null:
+return refuelStorage(_that);case ResearchTechnologyEvent() when researchTechnology != null:
+return researchTechnology(_that);case UpdatePlayerHighscoreEvent() when updatePlayerHighscore != null:
+return updatePlayerHighscore(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( InitLevelPlayersEvent value)  init,required TResult Function( SwitchToNextPlayerEvent value)  switchToNextPlayer,required TResult Function( ChangeCharacterPositionEvent value)  changeCharacterPosition,required TResult Function( RefuelStorageEvent value)  refuelStorage,required TResult Function( ResearchTechnologyEvent value)  researchTechnology,required TResult Function( UpdatePlayerHighscoreEvent value)  updatePlayerHighscore,}){
+final _that = this;
+switch (_that) {
+case InitLevelPlayersEvent():
+return init(_that);case SwitchToNextPlayerEvent():
+return switchToNextPlayer(_that);case ChangeCharacterPositionEvent():
+return changeCharacterPosition(_that);case RefuelStorageEvent():
+return refuelStorage(_that);case ResearchTechnologyEvent():
+return researchTechnology(_that);case UpdatePlayerHighscoreEvent():
+return updatePlayerHighscore(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( InitLevelPlayersEvent value)?  init,TResult? Function( SwitchToNextPlayerEvent value)?  switchToNextPlayer,TResult? Function( ChangeCharacterPositionEvent value)?  changeCharacterPosition,TResult? Function( RefuelStorageEvent value)?  refuelStorage,TResult? Function( ResearchTechnologyEvent value)?  researchTechnology,TResult? Function( UpdatePlayerHighscoreEvent value)?  updatePlayerHighscore,}){
+final _that = this;
+switch (_that) {
+case InitLevelPlayersEvent() when init != null:
+return init(_that);case SwitchToNextPlayerEvent() when switchToNextPlayer != null:
+return switchToNextPlayer(_that);case ChangeCharacterPositionEvent() when changeCharacterPosition != null:
+return changeCharacterPosition(_that);case RefuelStorageEvent() when refuelStorage != null:
+return refuelStorage(_that);case ResearchTechnologyEvent() when researchTechnology != null:
+return researchTechnology(_that);case UpdatePlayerHighscoreEvent() when updatePlayerHighscore != null:
+return updatePlayerHighscore(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LevelPlayersModel playersModel,  LevelCharactersModel charactersModel)?  init,TResult Function()?  switchToNextPlayer,TResult Function( Vector2 position)?  changeCharacterPosition,TResult Function( ScoreModel score)?  refuelStorage,TResult Function( ScoreModel score)?  researchTechnology,TResult Function( PlayerProfileModelId playerId,  ScoreModel score,  String? word)?  updatePlayerHighscore,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case InitLevelPlayersEvent() when init != null:
+return init(_that.playersModel,_that.charactersModel);case SwitchToNextPlayerEvent() when switchToNextPlayer != null:
+return switchToNextPlayer();case ChangeCharacterPositionEvent() when changeCharacterPosition != null:
+return changeCharacterPosition(_that.position);case RefuelStorageEvent() when refuelStorage != null:
+return refuelStorage(_that.score);case ResearchTechnologyEvent() when researchTechnology != null:
+return researchTechnology(_that.score);case UpdatePlayerHighscoreEvent() when updatePlayerHighscore != null:
+return updatePlayerHighscore(_that.playerId,_that.score,_that.word);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LevelPlayersModel playersModel,  LevelCharactersModel charactersModel)  init,required TResult Function()  switchToNextPlayer,required TResult Function( Vector2 position)  changeCharacterPosition,required TResult Function( ScoreModel score)  refuelStorage,required TResult Function( ScoreModel score)  researchTechnology,required TResult Function( PlayerProfileModelId playerId,  ScoreModel score,  String? word)  updatePlayerHighscore,}) {final _that = this;
+switch (_that) {
+case InitLevelPlayersEvent():
+return init(_that.playersModel,_that.charactersModel);case SwitchToNextPlayerEvent():
+return switchToNextPlayer();case ChangeCharacterPositionEvent():
+return changeCharacterPosition(_that.position);case RefuelStorageEvent():
+return refuelStorage(_that.score);case ResearchTechnologyEvent():
+return researchTechnology(_that.score);case UpdatePlayerHighscoreEvent():
+return updatePlayerHighscore(_that.playerId,_that.score,_that.word);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LevelPlayersModel playersModel,  LevelCharactersModel charactersModel)?  init,TResult? Function()?  switchToNextPlayer,TResult? Function( Vector2 position)?  changeCharacterPosition,TResult? Function( ScoreModel score)?  refuelStorage,TResult? Function( ScoreModel score)?  researchTechnology,TResult? Function( PlayerProfileModelId playerId,  ScoreModel score,  String? word)?  updatePlayerHighscore,}) {final _that = this;
+switch (_that) {
+case InitLevelPlayersEvent() when init != null:
+return init(_that.playersModel,_that.charactersModel);case SwitchToNextPlayerEvent() when switchToNextPlayer != null:
+return switchToNextPlayer();case ChangeCharacterPositionEvent() when changeCharacterPosition != null:
+return changeCharacterPosition(_that.position);case RefuelStorageEvent() when refuelStorage != null:
+return refuelStorage(_that.score);case ResearchTechnologyEvent() when researchTechnology != null:
+return researchTechnology(_that.score);case UpdatePlayerHighscoreEvent() when updatePlayerHighscore != null:
+return updatePlayerHighscore(_that.playerId,_that.score,_that.word);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -537,6 +696,136 @@ $GidCopyWith<$Res> get focusedObjectGid {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [LevelPlayersBlocState].
+extension LevelPlayersBlocStatePatterns on LevelPlayersBlocState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LevelPlayersBlocState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LevelPlayersBlocState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LevelPlayersBlocState value)  $default,){
+final _that = this;
+switch (_that) {
+case _LevelPlayersBlocState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LevelPlayersBlocState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LevelPlayersBlocState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( List<PlayerProfileModel> players,  PlayerProfileModelId currentPlayerId,  PlayerCharacterModel playerCharacter,  Gid focusedObjectGid)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LevelPlayersBlocState() when $default != null:
+return $default(_that.players,_that.currentPlayerId,_that.playerCharacter,_that.focusedObjectGid);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( List<PlayerProfileModel> players,  PlayerProfileModelId currentPlayerId,  PlayerCharacterModel playerCharacter,  Gid focusedObjectGid)  $default,) {final _that = this;
+switch (_that) {
+case _LevelPlayersBlocState():
+return $default(_that.players,_that.currentPlayerId,_that.playerCharacter,_that.focusedObjectGid);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( List<PlayerProfileModel> players,  PlayerProfileModelId currentPlayerId,  PlayerCharacterModel playerCharacter,  Gid focusedObjectGid)?  $default,) {final _that = this;
+switch (_that) {
+case _LevelPlayersBlocState() when $default != null:
+return $default(_that.players,_that.currentPlayerId,_that.playerCharacter,_that.focusedObjectGid);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 

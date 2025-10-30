@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -41,6 +40,166 @@ class $GameEventCopyWith<$Res>  {
 $GameEventCopyWith(GameEvent _, $Res Function(GameEvent) __);
 }
 
+
+/// Adds pattern-matching-related methods to [GameEvent].
+extension GameEventPatterns on GameEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( InitGlobalGameLevelEvent value)?  initGlobalGameLevel,TResult Function( StartPlayingLevelEvent value)?  startPlayingLevel,TResult Function( DeletePlayerProfileEvent value)?  deletePlayerProfile,TResult Function( CreatePlayerProfileEvent value)?  createPlayerProfile,TResult Function( SaveGameEvent value)?  saveGame,TResult Function( SaveCurrentLevelEvent value)?  saveCurrentLevel,TResult Function( EndLevelEvent value)?  endLevel,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case InitGlobalGameLevelEvent() when initGlobalGameLevel != null:
+return initGlobalGameLevel(_that);case StartPlayingLevelEvent() when startPlayingLevel != null:
+return startPlayingLevel(_that);case DeletePlayerProfileEvent() when deletePlayerProfile != null:
+return deletePlayerProfile(_that);case CreatePlayerProfileEvent() when createPlayerProfile != null:
+return createPlayerProfile(_that);case SaveGameEvent() when saveGame != null:
+return saveGame(_that);case SaveCurrentLevelEvent() when saveCurrentLevel != null:
+return saveCurrentLevel(_that);case EndLevelEvent() when endLevel != null:
+return endLevel(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( InitGlobalGameLevelEvent value)  initGlobalGameLevel,required TResult Function( StartPlayingLevelEvent value)  startPlayingLevel,required TResult Function( DeletePlayerProfileEvent value)  deletePlayerProfile,required TResult Function( CreatePlayerProfileEvent value)  createPlayerProfile,required TResult Function( SaveGameEvent value)  saveGame,required TResult Function( SaveCurrentLevelEvent value)  saveCurrentLevel,required TResult Function( EndLevelEvent value)  endLevel,}){
+final _that = this;
+switch (_that) {
+case InitGlobalGameLevelEvent():
+return initGlobalGameLevel(_that);case StartPlayingLevelEvent():
+return startPlayingLevel(_that);case DeletePlayerProfileEvent():
+return deletePlayerProfile(_that);case CreatePlayerProfileEvent():
+return createPlayerProfile(_that);case SaveGameEvent():
+return saveGame(_that);case SaveCurrentLevelEvent():
+return saveCurrentLevel(_that);case EndLevelEvent():
+return endLevel(_that);}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( InitGlobalGameLevelEvent value)?  initGlobalGameLevel,TResult? Function( StartPlayingLevelEvent value)?  startPlayingLevel,TResult? Function( DeletePlayerProfileEvent value)?  deletePlayerProfile,TResult? Function( CreatePlayerProfileEvent value)?  createPlayerProfile,TResult? Function( SaveGameEvent value)?  saveGame,TResult? Function( SaveCurrentLevelEvent value)?  saveCurrentLevel,TResult? Function( EndLevelEvent value)?  endLevel,}){
+final _that = this;
+switch (_that) {
+case InitGlobalGameLevelEvent() when initGlobalGameLevel != null:
+return initGlobalGameLevel(_that);case StartPlayingLevelEvent() when startPlayingLevel != null:
+return startPlayingLevel(_that);case DeletePlayerProfileEvent() when deletePlayerProfile != null:
+return deletePlayerProfile(_that);case CreatePlayerProfileEvent() when createPlayerProfile != null:
+return createPlayerProfile(_that);case SaveGameEvent() when saveGame != null:
+return saveGame(_that);case SaveCurrentLevelEvent() when saveCurrentLevel != null:
+return saveCurrentLevel(_that);case EndLevelEvent() when endLevel != null:
+return endLevel(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LevelModel levelModel,  bool isNewStart,  PlayerStartPointType playerStartPoint,  WindDirection windDirection)?  initGlobalGameLevel,TResult Function( bool shouldRestartTutorial)?  startPlayingLevel,TResult Function( PlayerProfileModel profile)?  deletePlayerProfile,TResult Function( PlayerProfileModel profile)?  createPlayerProfile,TResult Function()?  saveGame,TResult Function()?  saveCurrentLevel,TResult Function( bool isPassed,  double maxDistance)?  endLevel,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case InitGlobalGameLevelEvent() when initGlobalGameLevel != null:
+return initGlobalGameLevel(_that.levelModel,_that.isNewStart,_that.playerStartPoint,_that.windDirection);case StartPlayingLevelEvent() when startPlayingLevel != null:
+return startPlayingLevel(_that.shouldRestartTutorial);case DeletePlayerProfileEvent() when deletePlayerProfile != null:
+return deletePlayerProfile(_that.profile);case CreatePlayerProfileEvent() when createPlayerProfile != null:
+return createPlayerProfile(_that.profile);case SaveGameEvent() when saveGame != null:
+return saveGame();case SaveCurrentLevelEvent() when saveCurrentLevel != null:
+return saveCurrentLevel();case EndLevelEvent() when endLevel != null:
+return endLevel(_that.isPassed,_that.maxDistance);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LevelModel levelModel,  bool isNewStart,  PlayerStartPointType playerStartPoint,  WindDirection windDirection)  initGlobalGameLevel,required TResult Function( bool shouldRestartTutorial)  startPlayingLevel,required TResult Function( PlayerProfileModel profile)  deletePlayerProfile,required TResult Function( PlayerProfileModel profile)  createPlayerProfile,required TResult Function()  saveGame,required TResult Function()  saveCurrentLevel,required TResult Function( bool isPassed,  double maxDistance)  endLevel,}) {final _that = this;
+switch (_that) {
+case InitGlobalGameLevelEvent():
+return initGlobalGameLevel(_that.levelModel,_that.isNewStart,_that.playerStartPoint,_that.windDirection);case StartPlayingLevelEvent():
+return startPlayingLevel(_that.shouldRestartTutorial);case DeletePlayerProfileEvent():
+return deletePlayerProfile(_that.profile);case CreatePlayerProfileEvent():
+return createPlayerProfile(_that.profile);case SaveGameEvent():
+return saveGame();case SaveCurrentLevelEvent():
+return saveCurrentLevel();case EndLevelEvent():
+return endLevel(_that.isPassed,_that.maxDistance);}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LevelModel levelModel,  bool isNewStart,  PlayerStartPointType playerStartPoint,  WindDirection windDirection)?  initGlobalGameLevel,TResult? Function( bool shouldRestartTutorial)?  startPlayingLevel,TResult? Function( PlayerProfileModel profile)?  deletePlayerProfile,TResult? Function( PlayerProfileModel profile)?  createPlayerProfile,TResult? Function()?  saveGame,TResult? Function()?  saveCurrentLevel,TResult? Function( bool isPassed,  double maxDistance)?  endLevel,}) {final _that = this;
+switch (_that) {
+case InitGlobalGameLevelEvent() when initGlobalGameLevel != null:
+return initGlobalGameLevel(_that.levelModel,_that.isNewStart,_that.playerStartPoint,_that.windDirection);case StartPlayingLevelEvent() when startPlayingLevel != null:
+return startPlayingLevel(_that.shouldRestartTutorial);case DeletePlayerProfileEvent() when deletePlayerProfile != null:
+return deletePlayerProfile(_that.profile);case CreatePlayerProfileEvent() when createPlayerProfile != null:
+return createPlayerProfile(_that.profile);case SaveGameEvent() when saveGame != null:
+return saveGame();case SaveCurrentLevelEvent() when saveCurrentLevel != null:
+return saveCurrentLevel();case EndLevelEvent() when endLevel != null:
+return endLevel(_that.isPassed,_that.maxDistance);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -524,7 +683,7 @@ $Res call({
 });
 
 
-$CanvasDataModelIdCopyWith<$Res> get currentLevelId;$LevelModelCopyWith<$Res>? get currentLevelModel;$WorldDateTimeModelCopyWith<$Res> get dateTime;$WorldDateTimeModelCopyWith<$Res> get lastDateTime;
+$LevelModelCopyWith<$Res>? get currentLevelModel;$WorldDateTimeModelCopyWith<$Res> get dateTime;$WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 
 }
 /// @nodoc
@@ -553,15 +712,6 @@ as int,
   ));
 }
 /// Create a copy of GlobalGameBlocState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get currentLevelId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.currentLevelId, (value) {
-    return _then(_self.copyWith(currentLevelId: value));
-  });
-}/// Create a copy of GlobalGameBlocState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -594,6 +744,136 @@ $WorldDateTimeModelCopyWith<$Res> get lastDateTime {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [GlobalGameBlocState].
+extension GlobalGameBlocStatePatterns on GlobalGameBlocState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _GlobalGameBlocState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _GlobalGameBlocState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _GlobalGameBlocState value)  $default,){
+final _that = this;
+switch (_that) {
+case _GlobalGameBlocState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _GlobalGameBlocState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _GlobalGameBlocState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( GameSaveModelId id,  CanvasDataModelId currentLevelId,  Map<CanvasDataModelId, CanvasDataModel> allCanvasData,  LevelModel? currentLevelModel,  WorldDateTimeModel dateTime,  WorldDateTimeModel lastDateTime,  List<PlayerProfileModel> playersCollection,  List<PlayerCharacterModel> playersCharacters,  Map<CanvasDataModelId, LevelModel> savedLevels,  int dateTimeDelta)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _GlobalGameBlocState() when $default != null:
+return $default(_that.id,_that.currentLevelId,_that.allCanvasData,_that.currentLevelModel,_that.dateTime,_that.lastDateTime,_that.playersCollection,_that.playersCharacters,_that.savedLevels,_that.dateTimeDelta);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( GameSaveModelId id,  CanvasDataModelId currentLevelId,  Map<CanvasDataModelId, CanvasDataModel> allCanvasData,  LevelModel? currentLevelModel,  WorldDateTimeModel dateTime,  WorldDateTimeModel lastDateTime,  List<PlayerProfileModel> playersCollection,  List<PlayerCharacterModel> playersCharacters,  Map<CanvasDataModelId, LevelModel> savedLevels,  int dateTimeDelta)  $default,) {final _that = this;
+switch (_that) {
+case _GlobalGameBlocState():
+return $default(_that.id,_that.currentLevelId,_that.allCanvasData,_that.currentLevelModel,_that.dateTime,_that.lastDateTime,_that.playersCollection,_that.playersCharacters,_that.savedLevels,_that.dateTimeDelta);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( GameSaveModelId id,  CanvasDataModelId currentLevelId,  Map<CanvasDataModelId, CanvasDataModel> allCanvasData,  LevelModel? currentLevelModel,  WorldDateTimeModel dateTime,  WorldDateTimeModel lastDateTime,  List<PlayerProfileModel> playersCollection,  List<PlayerCharacterModel> playersCharacters,  Map<CanvasDataModelId, LevelModel> savedLevels,  int dateTimeDelta)?  $default,) {final _that = this;
+switch (_that) {
+case _GlobalGameBlocState() when $default != null:
+return $default(_that.id,_that.currentLevelId,_that.allCanvasData,_that.currentLevelModel,_that.dateTime,_that.lastDateTime,_that.playersCollection,_that.playersCharacters,_that.savedLevels,_that.dateTimeDelta);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -690,7 +970,7 @@ $Res call({
 });
 
 
-@override $CanvasDataModelIdCopyWith<$Res> get currentLevelId;@override $LevelModelCopyWith<$Res>? get currentLevelModel;@override $WorldDateTimeModelCopyWith<$Res> get dateTime;@override $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
+@override $LevelModelCopyWith<$Res>? get currentLevelModel;@override $WorldDateTimeModelCopyWith<$Res> get dateTime;@override $WorldDateTimeModelCopyWith<$Res> get lastDateTime;
 
 }
 /// @nodoc
@@ -720,15 +1000,6 @@ as int,
 }
 
 /// Create a copy of GlobalGameBlocState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get currentLevelId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.currentLevelId, (value) {
-    return _then(_self.copyWith(currentLevelId: value));
-  });
-}/// Create a copy of GlobalGameBlocState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -119,33 +120,35 @@ class _UiMainMenuList extends StatelessWidget {
           focusIcon: Icons.timer_outlined,
         ),
         divider,
-        Row(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const Gap(leadingGapWithIcon),
-            UiAnimatedText(
-              label: 'ADVENTURE',
-              textStyle: TextStyle(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
-                color: UiColors.mediumLight.withOpacity(0.9),
+        if (kDebugMode) ...[
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              const Gap(leadingGapWithIcon),
+              UiAnimatedText(
+                label: 'ADVENTURE',
+                textStyle: TextStyle(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                  color: UiColors.mediumLight.withOpacity(0.9),
+                ),
               ),
+            ],
+          ),
+          const Gap(3),
+          if (tuple.isAdventureSaveExists)
+            UiStyledButton(
+              onPressed: tuple.onContinueAdventure,
+              label: 'continue',
+              focusIcon: Icons.explore_outlined,
             ),
-          ],
-        ),
-        const Gap(3),
-        if (tuple.isAdventureSaveExists)
           UiStyledButton(
-            onPressed: tuple.onContinueAdventure,
-            label: 'continue',
+            onPressed: tuple.onChooseAdventure,
+            label: 'choose',
             focusIcon: Icons.explore_outlined,
           ),
-        UiStyledButton(
-          onPressed: tuple.onChooseAdventure,
-          label: 'choose',
-          focusIcon: Icons.explore_outlined,
-        ),
-        divider,
+          divider,
+        ],
         Row(
           children: [
             const Gap(8),

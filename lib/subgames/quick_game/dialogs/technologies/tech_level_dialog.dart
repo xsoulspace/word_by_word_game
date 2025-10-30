@@ -176,6 +176,7 @@ class TechLevelsDialog extends StatelessWidget {
         ...technologiesCubit.levels.mapIndexed(
           (final index, final level) => _TechLevel(
             wordsLocale: wordsLocale,
+            key: ValueKey(level.technologies),
             wordsLanguage: wordsLanguage,
             lastLevelIndex: lastLevelIndex,
             index: index,
@@ -196,6 +197,7 @@ class _TechLevel extends StatelessWidget {
     required this.wordsLanguage,
     required this.technologies,
     required this.wordsLocale,
+    super.key,
   });
   final TechnologyLevelIndex lastLevelIndex;
   final int index;
@@ -244,7 +246,11 @@ class _TechLevel extends StatelessWidget {
                       spacing: 2,
                       children: [
                         ...level.technologies.map((final id) {
-                          final tech = technologies[id]!;
+                          final tech = technologies[id];
+                          if (tech == null) {
+                            assert(false, 'Technology $id not found');
+                            return const SizedBox.shrink();
+                          }
                           return Card(
                             margin: EdgeInsets.zero,
                             child: Padding(

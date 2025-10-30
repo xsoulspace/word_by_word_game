@@ -10,7 +10,7 @@ _CanvasDataModel _$CanvasDataModelFromJson(Map<String, dynamic> json) =>
     _CanvasDataModel(
       id: json['id'] == null
           ? CanvasDataModelId.empty
-          : CanvasDataModelId.fromJson(json['id'] as String),
+          : CanvasDataModelId.fromJson(json['id']),
       name: json['name'] == null
           ? LocalizedMap.empty
           : LocalizedMap.fromJson(json['name']),

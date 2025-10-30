@@ -11,241 +11,6 @@ part of 'saveable_models.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-/// @nodoc
-mixin _$CanvasDataModelId {
-
- String get value;
-/// Create a copy of CanvasDataModelId
-/// with the given fields replaced by the non-null parameter values.
-@JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<CanvasDataModelId> get copyWith => _$CanvasDataModelIdCopyWithImpl<CanvasDataModelId>(this as CanvasDataModelId, _$identity);
-
-
-
-
-
-
-
-}
-
-/// @nodoc
-abstract mixin class $CanvasDataModelIdCopyWith<$Res>  {
-  factory $CanvasDataModelIdCopyWith(CanvasDataModelId value, $Res Function(CanvasDataModelId) _then) = _$CanvasDataModelIdCopyWithImpl;
-@useResult
-$Res call({
- String value
-});
-
-
-
-
-}
-/// @nodoc
-class _$CanvasDataModelIdCopyWithImpl<$Res>
-    implements $CanvasDataModelIdCopyWith<$Res> {
-  _$CanvasDataModelIdCopyWithImpl(this._self, this._then);
-
-  final CanvasDataModelId _self;
-  final $Res Function(CanvasDataModelId) _then;
-
-/// Create a copy of CanvasDataModelId
-/// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? value = null,}) {
-  return _then(_self.copyWith(
-value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-}
-
-
-/// Adds pattern-matching-related methods to [CanvasDataModelId].
-extension CanvasDataModelIdPatterns on CanvasDataModelId {
-/// A variant of `map` that fallback to returning `orElse`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _CanvasDataModelId value)?  $default,{required TResult orElse(),}){
-final _that = this;
-switch (_that) {
-case _CanvasDataModelId() when $default != null:
-return $default(_that);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// Callbacks receives the raw object, upcasted.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case final Subclass2 value:
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _CanvasDataModelId value)  $default,){
-final _that = this;
-switch (_that) {
-case _CanvasDataModelId():
-return $default(_that);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `map` that fallback to returning `null`.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case final Subclass value:
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _CanvasDataModelId value)?  $default,){
-final _that = this;
-switch (_that) {
-case _CanvasDataModelId() when $default != null:
-return $default(_that);case _:
-  return null;
-
-}
-}
-/// A variant of `when` that fallback to an `orElse` callback.
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return orElse();
-/// }
-/// ```
-
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String value)?  $default,{required TResult orElse(),}) {final _that = this;
-switch (_that) {
-case _CanvasDataModelId() when $default != null:
-return $default(_that.value);case _:
-  return orElse();
-
-}
-}
-/// A `switch`-like method, using callbacks.
-///
-/// As opposed to `map`, this offers destructuring.
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case Subclass2(:final field2):
-///     return ...;
-/// }
-/// ```
-
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String value)  $default,) {final _that = this;
-switch (_that) {
-case _CanvasDataModelId():
-return $default(_that.value);case _:
-  throw StateError('Unexpected subclass');
-
-}
-}
-/// A variant of `when` that fallback to returning `null`
-///
-/// It is equivalent to doing:
-/// ```dart
-/// switch (sealedClass) {
-///   case Subclass(:final field):
-///     return ...;
-///   case _:
-///     return null;
-/// }
-/// ```
-
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String value)?  $default,) {final _that = this;
-switch (_that) {
-case _CanvasDataModelId() when $default != null:
-return $default(_that.value);case _:
-  return null;
-
-}
-}
-
-}
-
-/// @nodoc
-
-
-class _CanvasDataModelId extends CanvasDataModelId {
-  const _CanvasDataModelId({required this.value}): super._();
-  
-
-@override final  String value;
-
-/// Create a copy of CanvasDataModelId
-/// with the given fields replaced by the non-null parameter values.
-@override @JsonKey(includeFromJson: false, includeToJson: false)
-@pragma('vm:prefer-inline')
-_$CanvasDataModelIdCopyWith<_CanvasDataModelId> get copyWith => __$CanvasDataModelIdCopyWithImpl<_CanvasDataModelId>(this, _$identity);
-
-
-
-
-
-
-
-}
-
-/// @nodoc
-abstract mixin class _$CanvasDataModelIdCopyWith<$Res> implements $CanvasDataModelIdCopyWith<$Res> {
-  factory _$CanvasDataModelIdCopyWith(_CanvasDataModelId value, $Res Function(_CanvasDataModelId) _then) = __$CanvasDataModelIdCopyWithImpl;
-@override @useResult
-$Res call({
- String value
-});
-
-
-
-
-}
-/// @nodoc
-class __$CanvasDataModelIdCopyWithImpl<$Res>
-    implements _$CanvasDataModelIdCopyWith<$Res> {
-  __$CanvasDataModelIdCopyWithImpl(this._self, this._then);
-
-  final _CanvasDataModelId _self;
-  final $Res Function(_CanvasDataModelId) _then;
-
-/// Create a copy of CanvasDataModelId
-/// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? value = null,}) {
-  return _then(_CanvasDataModelId(
-value: null == value ? _self.value : value // ignore: cast_nullable_to_non_nullable
-as String,
-  ));
-}
-
-
-}
-
 
 /// @nodoc
 mixin _$CanvasDataModel {
@@ -296,7 +61,7 @@ $Res call({
 });
 
 
-$CanvasDataModelIdCopyWith<$Res> get id;$RenderObjectModelCopyWith<$Res> get playerObject;$GravityModelCopyWith<$Res> get gravity;
+$RenderObjectModelCopyWith<$Res> get playerObject;$GravityModelCopyWith<$Res> get gravity;
 
 }
 /// @nodoc
@@ -324,15 +89,6 @@ as TilesetType,
   ));
 }
 /// Create a copy of CanvasDataModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get id {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.id, (value) {
-    return _then(_self.copyWith(id: value));
-  });
-}/// Create a copy of CanvasDataModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -571,7 +327,7 @@ $Res call({
 });
 
 
-@override $CanvasDataModelIdCopyWith<$Res> get id;@override $RenderObjectModelCopyWith<$Res> get playerObject;@override $GravityModelCopyWith<$Res> get gravity;
+@override $RenderObjectModelCopyWith<$Res> get playerObject;@override $GravityModelCopyWith<$Res> get gravity;
 
 }
 /// @nodoc
@@ -600,15 +356,6 @@ as TilesetType,
 }
 
 /// Create a copy of CanvasDataModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get id {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.id, (value) {
-    return _then(_self.copyWith(id: value));
-  });
-}/// Create a copy of CanvasDataModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')

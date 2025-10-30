@@ -35,6 +35,7 @@ dependencies:
   flutter_portal: ^1.1.4
   flutter_svg: ^2.2.1
   freezed_annotation: ^3.1.0
+  from_json_to_json: ^0.3.0
   gap: ^3.0.1
   google_fonts: ^6.3.2
   intl: ^0.20.2

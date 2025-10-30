@@ -600,7 +600,7 @@ $Res call({
 });
 
 
-$CanvasDataModelIdCopyWith<$Res> get currentLevelId;$LevelModelCopyWith<$Res>? get currentLevel;$TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
+$LevelModelCopyWith<$Res>? get currentLevel;$TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
 
 }
 /// @nodoc
@@ -627,15 +627,6 @@ as Map<CanvasDataModelId, LevelModel>,
   ));
 }
 /// Create a copy of GameSaveModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get currentLevelId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.currentLevelId, (value) {
-    return _then(_self.copyWith(currentLevelId: value));
-  });
-}/// Create a copy of GameSaveModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -865,7 +856,7 @@ $Res call({
 });
 
 
-@override $CanvasDataModelIdCopyWith<$Res> get currentLevelId;@override $LevelModelCopyWith<$Res>? get currentLevel;@override $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
+@override $LevelModelCopyWith<$Res>? get currentLevel;@override $TutorialCollectionsProgressModelCopyWith<$Res> get tutorialProgress;
 
 }
 /// @nodoc
@@ -893,15 +884,6 @@ as Map<CanvasDataModelId, LevelModel>,
 }
 
 /// Create a copy of GameSaveModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get currentLevelId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.currentLevelId, (value) {
-    return _then(_self.copyWith(currentLevelId: value));
-  });
-}/// Create a copy of GameSaveModel
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
@@ -1287,7 +1269,7 @@ $Res call({
 });
 
 
-$LevelPlayersModelCopyWith<$Res> get players;$LevelCharactersModelCopyWith<$Res> get characters;$WindModelCopyWith<$Res> get wind;$CanvasDataModelIdCopyWith<$Res> get canvasDataId;$CurrentWordModelCopyWith<$Res> get currentWord;$WorldDateTimeModelCopyWith<$Res> get dateTime;$WorldDateTimeModelCopyWith<$Res> get lastDateTime;$TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+$LevelPlayersModelCopyWith<$Res> get players;$LevelCharactersModelCopyWith<$Res> get characters;$WindModelCopyWith<$Res> get wind;$CurrentWordModelCopyWith<$Res> get currentWord;$WorldDateTimeModelCopyWith<$Res> get dateTime;$WorldDateTimeModelCopyWith<$Res> get lastDateTime;$TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 
 }
 /// @nodoc
@@ -1351,15 +1333,6 @@ $WindModelCopyWith<$Res> get wind {
   
   return $WindModelCopyWith<$Res>(_self.wind, (value) {
     return _then(_self.copyWith(wind: value));
-  });
-}/// Create a copy of LevelModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get canvasDataId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.canvasDataId, (value) {
-    return _then(_self.copyWith(canvasDataId: value));
   });
 }/// Create a copy of LevelModel
 /// with the given fields replaced by the non-null parameter values.
@@ -1636,7 +1609,7 @@ $Res call({
 });
 
 
-@override $LevelPlayersModelCopyWith<$Res> get players;@override $LevelCharactersModelCopyWith<$Res> get characters;@override $WindModelCopyWith<$Res> get wind;@override $CanvasDataModelIdCopyWith<$Res> get canvasDataId;@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $WorldDateTimeModelCopyWith<$Res> get dateTime;@override $WorldDateTimeModelCopyWith<$Res> get lastDateTime;@override $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;@override $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+@override $LevelPlayersModelCopyWith<$Res> get players;@override $LevelCharactersModelCopyWith<$Res> get characters;@override $WindModelCopyWith<$Res> get wind;@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $WorldDateTimeModelCopyWith<$Res> get dateTime;@override $WorldDateTimeModelCopyWith<$Res> get lastDateTime;@override $TechnologyTreeProgressModelCopyWith<$Res> get technologyTreeProgress;@override $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 
 }
 /// @nodoc
@@ -1701,15 +1674,6 @@ $WindModelCopyWith<$Res> get wind {
   
   return $WindModelCopyWith<$Res>(_self.wind, (value) {
     return _then(_self.copyWith(wind: value));
-  });
-}/// Create a copy of LevelModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get canvasDataId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.canvasDataId, (value) {
-    return _then(_self.copyWith(canvasDataId: value));
   });
 }/// Create a copy of LevelModel
 /// with the given fields replaced by the non-null parameter values.
@@ -3624,7 +3588,7 @@ $Res call({
 });
 
 
-$CanvasDataModelIdCopyWith<$Res> get levelId;
+
 
 }
 /// @nodoc
@@ -3647,16 +3611,7 @@ as double,flightTime: null == flightTime ? _self.flightTime : flightTime // igno
 as double,
   ));
 }
-/// Create a copy of PlayerLevelHighscoreModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get levelId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.levelId, (value) {
-    return _then(_self.copyWith(levelId: value));
-  });
-}
+
 }
 
 
@@ -3840,7 +3795,7 @@ $Res call({
 });
 
 
-@override $CanvasDataModelIdCopyWith<$Res> get levelId;
+
 
 }
 /// @nodoc
@@ -3864,16 +3819,7 @@ as double,
   ));
 }
 
-/// Create a copy of PlayerLevelHighscoreModel
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get levelId {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.levelId, (value) {
-    return _then(_self.copyWith(levelId: value));
-  });
-}
+
 }
 
 

@@ -129,7 +129,7 @@ class _MainMenuView extends StatelessWidget {
       );
     }
 
-    Future<void> onRestartQuick() async => buttonStatuses.pauseScreenState
+    Future<void> onRestartQuick() => buttonStatuses.pauseScreenState
         .onShowStartDialog(canvasDataId: kQuickGameMapId, context: context);
     final tuple = (
       onContinueQuick: onContinueQuick,
@@ -138,8 +138,7 @@ class _MainMenuView extends StatelessWidget {
       onChooseAdventure: () => onChangeRoute(PauseScreenRoute.adventure),
       onPlayersAndHighscore: dialogController.openPlayersAndHighscore,
       // onCredits: () => screenRouteState.value = PauseScreenRoute.credits,
-      onCredits: () async =>
-          buttonStatuses.pauseScreenState.onShowAbout(context),
+      onCredits: () => buttonStatuses.pauseScreenState.onShowAbout(context),
       onSettings: dialogController.openSettings,
       onExit: SystemNavigator.pop,
       isAdventureSaveExists: buttonStatuses.isAdventureSaveExists,

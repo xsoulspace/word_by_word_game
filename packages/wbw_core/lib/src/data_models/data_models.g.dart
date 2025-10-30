@@ -47,7 +47,7 @@ Map<String, dynamic> _$CurrentWordModelToJson(_CurrentWordModel instance) =>
 
 _GameModel _$GameModelFromJson(Map<String, dynamic> json) => _GameModel(
   id: json['id'] as String,
-  currentLevelId: CanvasDataModelId.fromJson(json['currentLevelId'] as String),
+  currentLevelId: CanvasDataModelId.fromJson(json['currentLevelId']),
   currentLevel: json['currentLevel'] == null
       ? null
       : LevelModel.fromJson(json['currentLevel'] as Map<String, dynamic>),
@@ -139,7 +139,7 @@ _LevelModel _$LevelModelFromJson(Map<String, dynamic> json) => _LevelModel(
       : WindModel.fromJson(json['wind'] as Map<String, dynamic>),
   canvasDataId: json['canvasDataId'] == null
       ? CanvasDataModelId.empty
-      : CanvasDataModelId.fromJson(json['canvasDataId'] as String),
+      : CanvasDataModelId.fromJson(json['canvasDataId']),
   currentWord: json['currentWord'] == null
       ? const CurrentWordModel()
       : CurrentWordModel.fromJson(json['currentWord'] as Map<String, dynamic>),
@@ -385,7 +385,7 @@ Map<String, dynamic> _$PlayerHighscoreModelToJson(
 _PlayerLevelHighscoreModel _$PlayerLevelHighscoreModelFromJson(
   Map<String, dynamic> json,
 ) => _PlayerLevelHighscoreModel(
-  levelId: CanvasDataModelId.fromJson(json['levelId'] as String),
+  levelId: CanvasDataModelId.fromJson(json['levelId']),
   maxDistance: (json['maxDistance'] as num?)?.toDouble() ?? 0,
   totalDistance: (json['totalDistance'] as num?)?.toDouble() ?? 0,
   landingsCount: (json['landingsCount'] as num?)?.toDouble() ?? 0,

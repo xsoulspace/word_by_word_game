@@ -1,22 +1,52 @@
-// ignore_for_file: invalid_annotation_target
+// ignore_for_file: invalid_annotation_target, avoid_annotating_with_dynamic
 
 part of 'saveable_models.dart';
 
-@immutable
-@Freezed(fromJson: false, toJson: false, equal: false)
-abstract class CanvasDataModelId with _$CanvasDataModelId, EquatableMixin {
-  const factory CanvasDataModelId({required final String value}) =
-      _CanvasDataModelId;
-  const CanvasDataModelId._();
-  factory CanvasDataModelId.fromJson(final String value) =>
-      CanvasDataModelId(value: value);
-  static const empty = CanvasDataModelId(value: '');
-  bool get isEmpty => value.isEmpty;
-  bool get isNotEmpty => value.isNotEmpty;
-  String toJson() => value;
+final kQuickGameMapId = CanvasDataModelId.fromJson(
+  '823ea880-44c3-11ee-a8e7-c3f4020ba610',
+);
+
+/// Extension type that represents a unique identifier for CanvasDataModel.
+///
+/// Provides type safety, value-object semantics, and robust JSON serialization/deserialization.
+/// Useful for referencing and managing canvas data entries across the editor and game domains.
+///
+/// {@template CanvasDataModelId}
+/// Usage:
+/// ```dart
+/// final id = CanvasDataModelId.fromJson('abc');
+/// if (id.isNotEmpty) { /* ... */ }
+/// final json = id.toJson();
+/// ```
+/// {@endtemplate}
+extension type const CanvasDataModelId._(String value) {
+  /// Creates a [CanvasDataModelId] from a JSON-compatible value.
+  factory CanvasDataModelId.fromJson(final dynamic value) =>
+      CanvasDataModelId._(jsonDecodeString(value));
+  factory CanvasDataModelId.create() => CanvasDataModelId._(IdCreator.create());
+
   static String toJsonString(final CanvasDataModelId id) => id.value;
-  @override
-  List<Object?> get props => [value];
+
+  /// Returns the string representation for JSON serialization.
+  String toJson() => value;
+
+  /// Returns the string value.
+  String get string => value;
+
+  /// Returns `true` if this ID is empty.
+  bool get isEmpty => value.isEmpty;
+
+  /// Returns `true` if this ID is not empty.
+  bool get isNotEmpty => value.isNotEmpty;
+
+  bool get isQuickGame => this == kQuickGameMapId;
+
+  /// If this ID is empty, returns [other], otherwise returns this.
+  CanvasDataModelId whenEmptyUse(final CanvasDataModelId other) =>
+      isEmpty ? other : this;
+
+  /// Default empty ID.
+  static const empty = CanvasDataModelId._('');
 }
 
 /// Canvas data is what is displayed on the screen
@@ -72,7 +102,7 @@ abstract class CanvasDataModel with _$CanvasDataModel {
   factory CanvasDataModel.fromJson(final Map<String, dynamic> json) =>
       _$CanvasDataModelFromJson(json);
   factory CanvasDataModel.create() =>
-      CanvasDataModel(id: CanvasDataModelId(value: IdCreator.create()));
+      CanvasDataModel(id: CanvasDataModelId.create());
   static const empty = CanvasDataModel();
 
   static Map<Gid, RenderObjectModel> objectsFromJson(

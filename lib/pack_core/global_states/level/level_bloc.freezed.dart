@@ -1,6 +1,5 @@
-// dart format width=80
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -41,6 +40,166 @@ class $LevelBlocEventCopyWith<$Res>  {
 $LevelBlocEventCopyWith(LevelBlocEvent _, $Res Function(LevelBlocEvent) __);
 }
 
+
+/// Adds pattern-matching-related methods to [LevelBlocEvent].
+extension LevelBlocEventPatterns on LevelBlocEvent {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( LevelBlocEventInit value)?  init,TResult Function( LevelBlocEventConsumeTick value)?  consumeTick,TResult Function( LevelBlocEventHideWarning value)?  hideWarning,TResult Function( LevelBlocEventChangeCurrentWord value)?  changeCurrentWord,TResult Function( LevelBlocEventSelectActionMultiplier value)?  selectActionMultiplier,TResult Function( LevelBlocEventAddNewWordToDictionary value)?  addNewWordToDictionary,required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning(_that);case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( LevelBlocEventInit value)  init,required TResult Function( LevelBlocEventConsumeTick value)  consumeTick,required TResult Function( LevelBlocEventHideWarning value)  hideWarning,required TResult Function( LevelBlocEventChangeCurrentWord value)  changeCurrentWord,required TResult Function( LevelBlocEventSelectActionMultiplier value)  selectActionMultiplier,required TResult Function( LevelBlocEventAddNewWordToDictionary value)  addNewWordToDictionary,}){
+final _that = this;
+switch (_that) {
+case LevelBlocEventInit():
+return init(_that);case LevelBlocEventConsumeTick():
+return consumeTick(_that);case LevelBlocEventHideWarning():
+return hideWarning(_that);case LevelBlocEventChangeCurrentWord():
+return changeCurrentWord(_that);case LevelBlocEventSelectActionMultiplier():
+return selectActionMultiplier(_that);case LevelBlocEventAddNewWordToDictionary():
+return addNewWordToDictionary(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( LevelBlocEventInit value)?  init,TResult? Function( LevelBlocEventConsumeTick value)?  consumeTick,TResult? Function( LevelBlocEventHideWarning value)?  hideWarning,TResult? Function( LevelBlocEventChangeCurrentWord value)?  changeCurrentWord,TResult? Function( LevelBlocEventSelectActionMultiplier value)?  selectActionMultiplier,TResult? Function( LevelBlocEventAddNewWordToDictionary value)?  addNewWordToDictionary,}){
+final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning(_that);case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( LevelModel levelModel)?  init,TResult Function( int timeDeltaInSeconds)?  consumeTick,TResult Function()?  hideWarning,TResult Function( CurrentWordModel word)?  changeCurrentWord,TResult Function( EnergyMultiplierType multiplier)?  selectActionMultiplier,TResult Function()?  addNewWordToDictionary,required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that.levelModel);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that.timeDeltaInSeconds);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning();case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that.word);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that.multiplier);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary();case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( LevelModel levelModel)  init,required TResult Function( int timeDeltaInSeconds)  consumeTick,required TResult Function()  hideWarning,required TResult Function( CurrentWordModel word)  changeCurrentWord,required TResult Function( EnergyMultiplierType multiplier)  selectActionMultiplier,required TResult Function()  addNewWordToDictionary,}) {final _that = this;
+switch (_that) {
+case LevelBlocEventInit():
+return init(_that.levelModel);case LevelBlocEventConsumeTick():
+return consumeTick(_that.timeDeltaInSeconds);case LevelBlocEventHideWarning():
+return hideWarning();case LevelBlocEventChangeCurrentWord():
+return changeCurrentWord(_that.word);case LevelBlocEventSelectActionMultiplier():
+return selectActionMultiplier(_that.multiplier);case LevelBlocEventAddNewWordToDictionary():
+return addNewWordToDictionary();case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( LevelModel levelModel)?  init,TResult? Function( int timeDeltaInSeconds)?  consumeTick,TResult? Function()?  hideWarning,TResult? Function( CurrentWordModel word)?  changeCurrentWord,TResult? Function( EnergyMultiplierType multiplier)?  selectActionMultiplier,TResult? Function()?  addNewWordToDictionary,}) {final _that = this;
+switch (_that) {
+case LevelBlocEventInit() when init != null:
+return init(_that.levelModel);case LevelBlocEventConsumeTick() when consumeTick != null:
+return consumeTick(_that.timeDeltaInSeconds);case LevelBlocEventHideWarning() when hideWarning != null:
+return hideWarning();case LevelBlocEventChangeCurrentWord() when changeCurrentWord != null:
+return changeCurrentWord(_that.word);case LevelBlocEventSelectActionMultiplier() when selectActionMultiplier != null:
+return selectActionMultiplier(_that.multiplier);case LevelBlocEventAddNewWordToDictionary() when addNewWordToDictionary != null:
+return addNewWordToDictionary();case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -430,7 +589,7 @@ $Res call({
 });
 
 
-$CanvasDataModelIdCopyWith<$Res> get id;$CurrentWordModelCopyWith<$Res> get currentWord;$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+$CurrentWordModelCopyWith<$Res> get currentWord;$LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 
 }
 /// @nodoc
@@ -461,15 +620,6 @@ as UiLanguage,
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get id {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.id, (value) {
-    return _then(_self.copyWith(id: value));
-  });
-}/// Create a copy of LevelBlocState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
 $CurrentWordModelCopyWith<$Res> get currentWord {
   
   return $CurrentWordModelCopyWith<$Res>(_self.currentWord, (value) {
@@ -487,6 +637,136 @@ $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings {
 }
 }
 
+
+/// Adds pattern-matching-related methods to [LevelBlocState].
+extension LevelBlocStatePatterns on LevelBlocState {
+/// A variant of `map` that fallback to returning `orElse`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>(TResult Function( _LevelBlocState value)?  $default,{required TResult orElse(),}){
+final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// Callbacks receives the raw object, upcasted.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case final Subclass2 value:
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult map<TResult extends Object?>(TResult Function( _LevelBlocState value)  $default,){
+final _that = this;
+switch (_that) {
+case _LevelBlocState():
+return $default(_that);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `map` that fallback to returning `null`.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case final Subclass value:
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>(TResult? Function( _LevelBlocState value)?  $default,){
+final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that);case _:
+  return null;
+
+}
+}
+/// A variant of `when` that fallback to an `orElse` callback.
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return orElse();
+/// }
+/// ```
+
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( CanvasDataModelId id,  CurrentWordModel currentWord,  Map<FullWordString, PlayerProfileModelId> words,  String latestWord,  GamePhaseType phaseType,  EnergyMultiplierType energyMultiplier,  WordWarning wordWarning,  LevelFeaturesSettingsModel featuresSettings,  UiLanguage wordsLanguage)?  $default,{required TResult orElse(),}) {final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that.id,_that.currentWord,_that.words,_that.latestWord,_that.phaseType,_that.energyMultiplier,_that.wordWarning,_that.featuresSettings,_that.wordsLanguage);case _:
+  return orElse();
+
+}
+}
+/// A `switch`-like method, using callbacks.
+///
+/// As opposed to `map`, this offers destructuring.
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case Subclass2(:final field2):
+///     return ...;
+/// }
+/// ```
+
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( CanvasDataModelId id,  CurrentWordModel currentWord,  Map<FullWordString, PlayerProfileModelId> words,  String latestWord,  GamePhaseType phaseType,  EnergyMultiplierType energyMultiplier,  WordWarning wordWarning,  LevelFeaturesSettingsModel featuresSettings,  UiLanguage wordsLanguage)  $default,) {final _that = this;
+switch (_that) {
+case _LevelBlocState():
+return $default(_that.id,_that.currentWord,_that.words,_that.latestWord,_that.phaseType,_that.energyMultiplier,_that.wordWarning,_that.featuresSettings,_that.wordsLanguage);case _:
+  throw StateError('Unexpected subclass');
+
+}
+}
+/// A variant of `when` that fallback to returning `null`
+///
+/// It is equivalent to doing:
+/// ```dart
+/// switch (sealedClass) {
+///   case Subclass(:final field):
+///     return ...;
+///   case _:
+///     return null;
+/// }
+/// ```
+
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( CanvasDataModelId id,  CurrentWordModel currentWord,  Map<FullWordString, PlayerProfileModelId> words,  String latestWord,  GamePhaseType phaseType,  EnergyMultiplierType energyMultiplier,  WordWarning wordWarning,  LevelFeaturesSettingsModel featuresSettings,  UiLanguage wordsLanguage)?  $default,) {final _that = this;
+switch (_that) {
+case _LevelBlocState() when $default != null:
+return $default(_that.id,_that.currentWord,_that.words,_that.latestWord,_that.phaseType,_that.energyMultiplier,_that.wordWarning,_that.featuresSettings,_that.wordsLanguage);case _:
+  return null;
+
+}
+}
+
+}
 
 /// @nodoc
 
@@ -548,7 +828,7 @@ $Res call({
 });
 
 
-@override $CanvasDataModelIdCopyWith<$Res> get id;@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
+@override $CurrentWordModelCopyWith<$Res> get currentWord;@override $LevelFeaturesSettingsModelCopyWith<$Res> get featuresSettings;
 
 }
 /// @nodoc
@@ -577,15 +857,6 @@ as UiLanguage,
 }
 
 /// Create a copy of LevelBlocState
-/// with the given fields replaced by the non-null parameter values.
-@override
-@pragma('vm:prefer-inline')
-$CanvasDataModelIdCopyWith<$Res> get id {
-  
-  return $CanvasDataModelIdCopyWith<$Res>(_self.id, (value) {
-    return _then(_self.copyWith(id: value));
-  });
-}/// Create a copy of LevelBlocState
 /// with the given fields replaced by the non-null parameter values.
 @override
 @pragma('vm:prefer-inline')
