@@ -43,8 +43,7 @@ slots:
 apps:
   word-by-word-game:
     command: word_by_word_game
-    extensions: [flutter-stable] # Where "master" defines which Flutter channel to use for the build
-    # using dev as it is the one channel that supports linux
+    extensions: [flutter] # Flutter extension for stable channel
     plugs:
       - home
       - network
@@ -62,4 +61,5 @@ parts:
   word-by-word-game:
     source: .
     plugin: flutter
+    flutter-channel: stable # Specify Flutter channel here
     flutter-target: lib/main.dart # The main entry-point file of the application
